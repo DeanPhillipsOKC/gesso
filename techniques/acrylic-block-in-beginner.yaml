@@ -1,7 +1,8 @@
-# Acrylic, beginner: block in the big shapes, then build up in layers.
+# Acrylic, beginner: block in the big shapes back to front, then build up in layers.
 # This is the standard way acrylic is taught to beginners: cover the canvas fast with flat shapes,
 # then improve it layer by layer. Acrylic dries in minutes, so every layer can go straight on top
-# of the last, and mistakes are fixed by painting over them.
+# of the last, and mistakes are fixed by painting over them. Order is back to front: what's behind
+# goes on first, so things in front can be painted over it (owner's correction, 2026-10-19).
 #
 # Stage order matters: the last stage is the finished painting. covers_canvas marks stages where
 # paint covers the whole canvas, so the toned ground must not show through.
@@ -11,9 +12,9 @@ medium: acrylic
 level: beginner
 name: Block in, then build up
 summary: >-
-  Cover the canvas with big, flat shapes of color first, darkest to lightest, then build it up in
-  layers: refine the shapes, blend where needed, and save the details and brightest highlights for
-  last.
+  Paint back to front: the background first, then the shapes in front of it, each as big, flat
+  color. Then build it up in layers: refine the shapes, blend where needed, and save the details
+  and brightest highlights for last.
 
 palette:
   - Titanium white
@@ -61,6 +62,7 @@ stages:
       - It doesn't need to be perfect. Streaks disappear under later layers.
 
   - id: sketch
+    trace_finish: true  # the sketch outlines everything, so it's traced from the finished painting
     name: Sketch the big shapes
     looks_like: >-
       The toned canvas with a loose line sketch in thin dark paint (burnt sienna with a touch of
@@ -76,37 +78,42 @@ stages:
       - Drawing details too early. You'll paint over them anyway.
       - Pressing hard and making thick lines. Keep them light and thin.
 
-  - id: darks
-    name: Block in the darks
+  - id: background
+    name: Paint the background
     looks_like: >-
-      The sketch with only the darkest shapes filled in with flat, thin dark paint. Every other
-      area is still just the toned ground and sketch lines.
+      Only the farthest-back areas are painted, in flat, thin color: the sky and anything distant,
+      like far hills or a back wall. The background is one continuous area that runs straight
+      through where trees, branches, poles, and other silhouettes will go; those shapes are not
+      there at all yet, not even as outlines or gaps. Only big solid objects standing in front
+      (a person, a house, an animal, a large object) are left unpainted, showing the toned canvas.
+      No foreground objects, no details.
     steps:
-      - Find the darkest areas in the reference by squinting at it.
-      - Fill them with flat, thin dark paint. Don't blend.
-      - Keep the edges a little rough. They'll get refined later.
-    brushes: Medium flat brush (size 8 to 12)
-    dry_time: A few minutes
+      - Paint what's farthest away first, usually the sky. Blend any gradient now, while it's wet.
+      - Paint right through where thin things in front will go, like branches. You'll paint them on top later.
+      - Go around big solid shapes in front, overlapping their edges a little so no gaps show later.
+    brushes: Large flat brush for big areas, medium flat for edges
+    dry_time: 10 to 15 minutes. It has to be dry before anything goes on top.
     watch_out:
-      - Using pure black. Mix darks from ultramarine and burnt sienna instead; they look richer.
-      - Painting middle tones as darks. If you're not sure, leave it for the next step.
+      - Painting around every branch or thin shape. It's slow and leaves halos. Paint over them later instead.
+      - Skimping on the background. It shows through gaps between things in front, so give it real color.
 
   - id: block-in
     covers_canvas: true  # no toned canvas shows from this stage on
-    name: Block in everything else
+    name: Paint what's in front
     looks_like: >-
-      Every area of the canvas covered with flat, thin color close to its real color and value,
-      with the dark shapes from the previous step still there as flat darks. Big simple shapes, no
-      blending, no details, rough edges, brushstrokes visible. The toned ground no longer shows.
+      The finished-looking flat background, now with every shape in front of it blocked in on
+      top, back to front, in flat, thin color close to its real color and value: middle-distance
+      shapes first, then the nearest. Big simple shapes, no blending, no fine details, rough edges,
+      brushstrokes visible. The whole canvas is covered.
     steps:
-      - Work from the background forward, or from the biggest shapes to the smallest.
-      - Mix each area's color and value, then fill it flat. One color per shape for now.
-      - Cover the whole canvas before improving any single part.
-    brushes: Medium and large flat brushes
+      - Work from back to front. Things farther away go on first, closer things go on top.
+      - Paint dark silhouettes, like trees against a bright sky, straight over the dry background.
+      - Fill each shape with one flat color for now, close to its real value.
+    brushes: Medium flat brush for shapes, small round for thin branches and stems
     dry_time: About 10 minutes
     watch_out:
-      - Spending too long on one area. Cover everything first.
-      - Mixing too little paint. Mix more than you think you'll need.
+      - Painting the closest things first. Whatever is in front has to go on last.
+      - Using pure black for dark shapes. Mix darks from ultramarine and burnt sienna; they look richer.
 
   - id: build-up
     covers_canvas: true  # no toned canvas shows from this stage on

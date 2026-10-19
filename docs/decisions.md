@@ -21,6 +21,10 @@ with the date.
 - **Acrylic only for the proof of concept (2026-10-19).** Oil comes after acrylic lessons are
   good. Other mediums wait longer. The first technique is the standard beginner method: block in
   the big shapes, then build up in layers (`techniques/acrylic-block-in-beginner.yaml`).
+- **Paint back to front (2026-10-19, owner's correction).** Acrylic lessons go background first
+  (sky, distant things), painted straight through where silhouettes like branches will go, then
+  whatever is in front on top of it, back to front. Not "darks first." The sketch is traced from
+  the finished painting so it outlines everything.
 - **Simplify the photo first (2026-10-19, owner's idea).** Every lesson starts by turning the
   photo into a simplified reference matched to the skill level (fewer shapes, three values, a
   palette the painter can mix), and the painting is made from that, not the raw photo. It's shown

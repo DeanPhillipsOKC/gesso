@@ -293,6 +293,17 @@ def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str
         later = images[last["id"]]
         for i in range(len(stages) - 2, 0, -1):
             s = stages[i]
+            if s.get("trace_finish"):
+                # A sketch outlines everything, so trace it from the finish rather than the stage after it.
+                images[s["id"]] = edit_image(
+                    s["id"], [images[last["id"]], tone],
+                    "Draw the sketch for this painting on the toned canvas from the second image: "
+                    f"{s['looks_like']}{(' For this picture: ' + notes[s['id']]) if notes.get(s['id']) else ''} "
+                    "Trace the big shapes of the first image in the same places and sizes, so later layers line up "
+                    f"with the lines. Everything except the lines must look exactly like the second image. {technique['framing']}",
+                    out / f"{i + 1:02d}_{s['id']}.png", size, quality, ledger,
+                )
+                continue
             covered = s.get("covers_canvas", False)
             later = edit_image(
                 s["id"], [later] if covered else [later, tone],
