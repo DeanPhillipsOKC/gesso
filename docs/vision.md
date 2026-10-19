@@ -27,21 +27,24 @@ not the other way around.
 
 ## How it works
 
-1. **You give it:** a photo, a medium (acrylic or oil), a skill level, and optionally a canvas
-   size and how much time you have.
-2. **It studies the photo.** Claude looks at the composition, the main shapes, the light source,
-   the value structure (lights, mid-tones, darks), and the colors that matter.
-3. **It writes a lesson plan.** A structured list of stages that real painters use, for example:
-   tone the canvas, sketch the big shapes, a value study or thin underpainting, block in the large
-   color masses, build the middle layers, refine the focal point, then highlights and final
-   accents. The plan depends on the medium and the level (see below).
-4. **It paints the finish first.** It generates the final painting in the chosen medium and level,
-   so every stage has the same destination.
-5. **It works toward the finish.** Each stage image is made by editing the previous stage, guided
-   by that stage's instructions and the final target. Working this way keeps the stages
-   consistent, so step 5 doesn't turn into a different painting than step 2.
-6. **It checks its own work.** Claude compares each stage image against the plan ("is this still a
-   loose value sketch, or did it jump ahead to detail?") and regenerates any stage that fails.
+1. **You give it:** a photo, a medium (acrylic or oil), a technique (see below), a skill level,
+   and optionally a canvas size and how much time you have.
+2. **The technique library sets the stages.** Gesso ships with a hand-checked library of real
+   techniques for each medium and level: the stages in order, what the canvas looks like at each
+   one, brushes, drying times, and common mistakes. No AI invents the steps.
+3. **Claude reads the photo, once.** One vision call fills in what a template can't know: the
+   subject and focal point, the main shapes, the light and value structure, the palette and the
+   mixes for this photo, and one or two photo-specific sentences for each stage. It comes back as
+   structured output that slots into the template.
+4. **It paints the finish first.** It generates the final painting in the chosen medium, technique,
+   and level, so every stage has the same destination.
+5. **It works toward the finish.** Each stage image is made by editing the previous stage. The
+   image prompt comes from the library's description of that stage, plus Claude's specifics.
+   Working this way keeps the stages consistent, so step 5 doesn't turn into a different painting
+   than step 2.
+6. **It checks its own work (later).** Claude compares each stage image against the plan ("is this
+   still a loose value sketch, or did it jump ahead to detail?") and regenerates any stage that
+   fails. Optional at first.
 7. **You get a lesson** you can follow at the easel, one step at a time.
 
 It will be slow, maybe several minutes per lesson. That's fine. It shows progress as stages
@@ -55,6 +58,17 @@ finish, and a finished lesson is saved so it never has to be made twice.
 - Brush type and size, and how to hold or load it when it matters
 - How long to let it dry (acrylic: minutes; oil: depends on the layer, see fat over lean)
 - Common beginner mistakes at this step, and how to fix them
+
+## Techniques
+
+The library holds techniques per medium, and the painter picks one. A starting set:
+
+- **Acrylic:** block-in and layer (the default for beginners), glazing, dry brush, impasto.
+- **Oil:** alla prima (wet into wet, one session), indirect painting over a grisaille or a
+  colored underpainting, and glazing.
+
+Each technique lists which levels it suits. The library is plain data in the repo, versioned and
+reviewed like code, so improving a lesson means editing a file, not rewriting a prompt.
 
 ## Skill levels
 
@@ -75,8 +89,11 @@ finish, and a finished lesson is saved so it never has to be made twice.
 
 ## Models
 
-- **Claude** reads the photo, writes the lesson plan as structured output, writes the step
-  instructions, and checks each stage image.
+- **The technique library** (data, no AI) decides the stages and most of each step's text.
+- **Claude** makes one vision call per lesson to fill in the photo-specific parts as structured
+  output, and later checks stage images. Text inference earns its keep there: a template can say
+  "block in the large shapes," but only a model that sees the photo can say "mix ultramarine, a
+  touch of burnt sienna, and white for the barn's shadow side."
 - **OpenAI's image model** (the gpt-image family, through the API) generates the finish and edits
   each stage. In the owner's own use it has been better at careful, step-by-step image edits
   than Gemini's image model. Keep the image provider behind one small interface so it can change.

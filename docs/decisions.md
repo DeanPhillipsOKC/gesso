@@ -9,6 +9,10 @@ with the date.
 - **Name: Gesso (2026-10-19)**, renamed from PaintPath. A quick search found no painting app by
   that name (only an unrelated audio-tour app). Revisit before any app store listing.
 
+- **A technique library, plus one Claude call per lesson (2026-10-19).** Stages come from a
+  hand-checked library of techniques per medium and level, and the painter picks the technique.
+  Claude (not another provider) reads the photo once per lesson to fill in photo-specific details
+  such as the focal point, palette, and mixes. Don't move stage planning into the model.
 - **Real technique drives generation (2026-10-19).** Every stage image comes from a lesson plan
   built on real painting technique for the medium and level. Never ask an image model to invent
   the steps on its own.
