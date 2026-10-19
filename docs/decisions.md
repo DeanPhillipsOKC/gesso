@@ -19,6 +19,11 @@ with the date.
 - **Acrylic and oil only to start (2026-10-19).** Other mediums wait until these two are good.
 - **Beginners first (2026-10-19).** The owner and their partner are beginners, so the Beginner
   level gets the most care. Intermediate and Advanced follow.
+- **Quality first, then cost (2026-10-19).** Until there's a measured baseline, use the best
+  models and settings: Claude Opus 5.5 for text and vision, and the highest-quality setting of
+  OpenAI's current gpt-image model. Record the cost and time of every call. Cost work starts only
+  after the baseline exists, and every cheaper option gets compared against it on the reference
+  photos before it's adopted.
 - **Slow is fine (2026-10-19).** Quality beats speed. A lesson can take minutes to generate as long
   as progress is visible and a finished lesson is saved.
 - **Photos stay private (2026-10-19).** No public gallery or sharing by default, and lessons are
