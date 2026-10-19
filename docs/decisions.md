@@ -18,7 +18,13 @@ with the date.
 - **Real technique drives generation (2026-10-19).** Every stage image comes from a lesson plan
   built on real painting technique for the medium and level. Never ask an image model to invent
   the steps on its own.
-- **Acrylic and oil only to start (2026-10-19).** Other mediums wait until these two are good.
+- **Acrylic only for the proof of concept (2026-10-19).** Oil comes after acrylic lessons are
+  good. Other mediums wait longer. The first technique is the standard beginner method: block in
+  the big shapes, then build up in layers (`techniques/acrylic-block-in-beginner.yaml`).
+- **Simplify the photo first (2026-10-19, owner's idea).** Every lesson starts by turning the
+  photo into a simplified reference matched to the skill level (fewer shapes, three values, a
+  palette the painter can mix), and the painting is made from that, not the raw photo. It's shown
+  to the painter next to their photo.
 - **Beginners first (2026-10-19).** The owner and their partner are beginners, so the Beginner
   level gets the most care. Intermediate and Advanced follow.
 - **Quality first, then cost (2026-10-19).** Until there's a measured baseline, use the best

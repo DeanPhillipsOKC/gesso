@@ -29,26 +29,29 @@ not the other way around.
 
 1. **You give it:** a photo, a medium (acrylic or oil), a technique (see below), a skill level,
    and optionally a canvas size and how much time you have.
-2. **The technique library sets the stages.** Gesso ships with a hand-checked library of real
+2. **It simplifies the photo.** The photo becomes a simplified reference matched to the skill
+   level: fewer, bigger shapes, three clear values, and colors the palette can mix. Everything
+   after this works from the reference, and the painter sees it next to their photo.
+3. **The technique library sets the stages.** Gesso ships with a hand-checked library of real
    techniques for each medium and level: the stages in order, what the canvas looks like at each
    one, brushes, drying times, and common mistakes. No AI invents the steps.
-3. **Claude reads the photo.** A vision call fills in what a template can't know: the
+4. **Claude reads the photo.** A vision call fills in what a template can't know: the
    subject and focal point, the main shapes, the light and value structure, the palette and the
    mixes for this photo, and one or two photo-specific sentences for each stage. It comes back as
    structured output that slots into the template.
-4. **It paints the finish first.** It generates the final painting in the chosen medium, technique,
+5. **It paints the finish first.** It generates the final painting in the chosen medium, technique,
    and level, so every stage has the same destination.
-5. **It works toward the finish.** Each stage image is made by editing the previous stage. The
+6. **It works out the earlier stages.** Each stage image is made by editing the previous stage. The
    image prompt comes from the library's description of that stage, plus Claude's specifics.
    Working this way keeps the stages consistent, so step 5 doesn't turn into a different painting
    than step 2.
-6. **It writes the steps from the pictures.** Once the stage images exist, Claude looks at all of
+7. **It writes the steps from the pictures.** Once the stage images exist, Claude looks at all of
    them and writes each step's instructions to match what the image actually shows, so a beginner
    never sees words that disagree with the picture.
-7. **It checks its own work.** Claude compares each stage image against the plan ("is this
+8. **It checks its own work.** Claude compares each stage image against the plan ("is this
    still a loose value sketch, or did it jump ahead to detail?") and regenerates any stage that
    fails. The pipeline spike measures how much this is needed.
-8. **You get a lesson** you can follow at the easel, one step at a time.
+9. **You get a lesson** you can follow at the easel, one step at a time.
 
 It will be slow, maybe several minutes per lesson. That's fine. It shows progress as stages
 finish, and a finished lesson is saved so it never has to be made twice.
