@@ -108,15 +108,20 @@ reviewed like code, so improving a lesson means editing a file, not rewriting a 
 - Track the cost and time of every lesson (Claude tokens and image calls) and show it in the app.
 - Cache everything: the plan, every stage image, and every check result.
 
-## Platform (proposed)
+## Platform
 
-- A web app that works well on a phone, since it'll be used at the easel. Installable like
-  RepBunny.
-- Vue 3 and TypeScript on the front end, to match RepBunny.
-- A small serverless back end that holds the API keys and runs the slow generation work, since
-  keys can't live in the browser. Cloudflare Workers is the first candidate.
+Decided (see `docs/decisions.md` > Stack):
 
-Decide this in a short spike before building the app. The first milestone doesn't need a UI.
+- A Vue 3 + TypeScript PWA that works well on a phone, since it'll be used at the easel.
+  Installable, like RepBunny.
+- Lessons live on the device: lesson data in SQLite in the browser or IndexedDB, images in the
+  browser's file storage. No accounts.
+- A small Cloudflare Worker holds the API keys and runs each lesson in the background, so closing
+  the app or locking the phone doesn't stop it. The app picks up the finished lesson, and the
+  Worker keeps nothing after that.
+- Later, maybe: a way to share a lesson between the two phones.
+
+The first milestone (the pipeline spike) doesn't need any of this; it runs as a script.
 
 ## Privacy
 

@@ -33,6 +33,13 @@ with the date.
 - **Image model: OpenAI's gpt-image family first (2026-10-19)**, behind a small interface so the
   provider can change. Claude does the planning, instructions, and checks.
 
+- **Stack: Vue PWA, local storage, and a small Cloudflare Worker (2026-10-19).** A Vue 3 +
+  TypeScript PWA, like RepBunny. Lessons are stored on the device (SQLite in the browser or
+  IndexedDB for lesson data, browser file storage for images), with no accounts. A Cloudflare
+  Worker holds the Anthropic and OpenAI keys and runs generation in the background, since keys
+  can't live in the PWA and phones suspend tabs mid-lesson. The Worker keeps nothing once a
+  lesson is downloaded. Sharing lessons between phones waits until after real use.
+
 ## How we work
 
 - **Same approach as RepBunny (2026-10-19):** automate as much as possible, built up bit by bit.
