@@ -8,3 +8,17 @@ would, using real techniques for the medium and the painter's level, and generat
 that plan.
 
 Early days: see [the vision](docs/vision.md) for where it's headed.
+
+## Running the pipeline spike
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
+pip install -r spike/requirements.txt
+# put OPENAI_API_KEY and ANTHROPIC_API_KEY in .env (see .env.example)
+python spike/run.py photos/your-photo.jpg                 # full quality, Claude variant
+python spike/run.py photos/your-photo.jpg --quality low   # cheap test run
+```
+
+Each run writes a folder under `output/` with every image, `lesson.json`, and `lesson.html`.
+`python spike/contact_sheet.py output/<folder>` tiles the images into one picture.

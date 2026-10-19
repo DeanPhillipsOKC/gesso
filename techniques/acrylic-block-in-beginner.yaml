@@ -1,0 +1,137 @@
+# Acrylic, beginner: block in the big shapes, then build up in layers.
+# This is the standard way acrylic is taught to beginners: cover the canvas fast with flat shapes,
+# then improve it layer by layer. Acrylic dries in minutes, so every layer can go straight on top
+# of the last, and mistakes are fixed by painting over them.
+#
+# Stage order matters: the last stage is the finished painting.
+
+id: acrylic-block-in-beginner
+medium: acrylic
+level: beginner
+name: Block in, then build up
+summary: >-
+  Cover the canvas with big, flat shapes of color first, darkest to lightest, then build it up in
+  layers: refine the shapes, blend where needed, and save the details and brightest highlights for
+  last.
+
+palette:
+  - Titanium white
+  - Cadmium yellow medium (hue)
+  - Cadmium red medium (hue)
+  - Ultramarine blue
+  - Burnt sienna
+
+# Same framing for every image, so the stages line up when you flip between them.
+framing: >-
+  Straight-on view of the whole canvas filling the frame edge to edge, evenly lit. No easel,
+  hands, brushes, table, or background.
+
+simplify:
+  prompt: >-
+    Simplify this image into a reference a beginner acrylic painter could copy. Keep the
+    composition and the main subject exactly where they are. Merge small details into a handful of
+    large, simple shapes (roughly 10 to 25). Reduce it to three clear values: light, middle, and
+    dark. Keep only colors that can be mixed from white, yellow, red, ultramarine blue, and burnt
+    sienna. Remove clutter, fine textures, and anything a beginner couldn't paint in an afternoon.
+    It must still be clearly the same scene. Flat image, full frame, no border, no text.
+
+finish:
+  prompt: >-
+    Paint this reference as a finished acrylic painting by a careful beginner on stretched canvas.
+    Simple shapes, slightly soft edges, visible brushstrokes, matte acrylic finish, canvas weave
+    faintly visible in thin areas. Limited palette of white, yellow, red, ultramarine blue, and
+    burnt sienna. Charming and achievable, not photorealistic. Keep the composition exactly as in
+    the reference.
+
+stages:
+  - id: tone
+    name: Tone the canvas
+    looks_like: >-
+      The bare canvas covered in a thin, even, slightly streaky wash of warm earth tone (burnt
+      sienna thinned with water). No white canvas shows. No drawing and no other color yet.
+    steps:
+      - Thin a little burnt sienna with water until it's like milky tea.
+      - Brush it over the whole canvas with a big flat brush, then wipe it with a paper towel so it's even and thin.
+      - Let it dry completely before the next step.
+    brushes: Large flat brush (1 to 2 inch) and a paper towel
+    dry_time: 10 to 15 minutes, until it feels dry to the touch
+    watch_out:
+      - Too thick a wash leaves ridges you'll fight later. Keep it thin.
+      - It doesn't need to be perfect. Streaks disappear under later layers.
+
+  - id: sketch
+    name: Sketch the big shapes
+    looks_like: >-
+      The toned canvas with a loose line sketch in thin dark paint (burnt sienna with a touch of
+      ultramarine). Outlines of the large shapes and the main subject only. No shading, no fill,
+      no color, no small details.
+    steps:
+      - Mix burnt sienna with a little ultramarine and thin it with water.
+      - With a small round brush, draw only the biggest shapes and the outline of the main subject.
+      - Check the placement against the reference before moving on. It's easy to fix now and hard later.
+    brushes: Small round brush (size 2 to 4)
+    dry_time: A few minutes
+    watch_out:
+      - Drawing details too early. You'll paint over them anyway.
+      - Pressing hard and making thick lines. Keep them light and thin.
+
+  - id: darks
+    name: Block in the darks
+    looks_like: >-
+      The sketch with only the darkest shapes filled in with flat, thin dark paint. Every other
+      area is still just the toned ground and sketch lines.
+    steps:
+      - Find the darkest areas in the reference by squinting at it.
+      - Fill them with flat, thin dark paint. Don't blend.
+      - Keep the edges a little rough. They'll get refined later.
+    brushes: Medium flat brush (size 8 to 12)
+    dry_time: A few minutes
+    watch_out:
+      - Using pure black. Mix darks from ultramarine and burnt sienna instead; they look richer.
+      - Painting middle tones as darks. If you're not sure, leave it for the next step.
+
+  - id: block-in
+    name: Block in everything else
+    looks_like: >-
+      Every area of the canvas covered with flat, thin color close to its real color and value,
+      with the dark shapes from the previous step still there as flat darks. Big simple shapes, no
+      blending, no details, rough edges, brushstrokes visible. The toned ground no longer shows.
+    steps:
+      - Work from the background forward, or from the biggest shapes to the smallest.
+      - Mix each area's color and value, then fill it flat. One color per shape for now.
+      - Cover the whole canvas before improving any single part.
+    brushes: Medium and large flat brushes
+    dry_time: About 10 minutes
+    watch_out:
+      - Spending too long on one area. Cover everything first.
+      - Mixing too little paint. Mix more than you think you'll need.
+
+  - id: build-up
+    name: Build up the layers
+    looks_like: >-
+      The block-in painted over with thicker second and third layers. Shapes are refined, colors
+      are adjusted, and soft transitions are blended where values meet, like gradients in the sky
+      and rounded forms. Some mid-sized details appear. No fine details or brightest highlights
+      yet.
+    steps:
+      - Repaint each area with slightly thicker paint, correcting its shape and color.
+      - Blend quickly where two colors meet softly. Acrylic dries fast, so work in small sections.
+      - Add the medium-sized details that make the subject read clearly.
+    brushes: Medium flat and filbert brushes
+    dry_time: 10 to 20 minutes
+    watch_out:
+      - Overblending until everything turns muddy. A few soft edges go a long way.
+      - Losing the darks you blocked in. Keep the value pattern.
+
+  - id: details
+    name: Details and highlights
+    looks_like: The finished painting.
+    steps:
+      - Add the small details at the focal point first, then only where they help.
+      - Put in the brightest highlights last, with thicker paint.
+      - Step back and stop before it feels done. Beginners usually overwork the last step.
+    brushes: Small round and liner brushes
+    dry_time: An hour before handling, and a day before varnishing
+    watch_out:
+      - Detailing everything evenly. Detail draws the eye, so save it for the focal point.
+      - Pure white highlights everywhere. Use them sparingly.

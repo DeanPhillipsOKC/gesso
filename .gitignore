@@ -6,3 +6,8 @@
 # Generated lessons and reference photos stay local
 output/
 photos/
+.venv/
+__pycache__/
+
+# Spike output
+output/

@@ -1,0 +1,6 @@
+anthropic>=1.15,<2
+openai>=3.35
+pydantic>=2
+pyyaml
+pillow
+python-dotenv
