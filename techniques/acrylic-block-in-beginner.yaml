@@ -3,7 +3,8 @@
 # then improve it layer by layer. Acrylic dries in minutes, so every layer can go straight on top
 # of the last, and mistakes are fixed by painting over them.
 #
-# Stage order matters: the last stage is the finished painting.
+# Stage order matters: the last stage is the finished painting. covers_canvas marks stages where
+# paint covers the whole canvas, so the toned ground must not show through.
 
 id: acrylic-block-in-beginner
 medium: acrylic
@@ -91,6 +92,7 @@ stages:
       - Painting middle tones as darks. If you're not sure, leave it for the next step.
 
   - id: block-in
+    covers_canvas: true  # no toned canvas shows from this stage on
     name: Block in everything else
     looks_like: >-
       Every area of the canvas covered with flat, thin color close to its real color and value,
@@ -107,6 +109,7 @@ stages:
       - Mixing too little paint. Mix more than you think you'll need.
 
   - id: build-up
+    covers_canvas: true  # no toned canvas shows from this stage on
     name: Build up the layers
     looks_like: >-
       The block-in painted over with thicker second and third layers. Shapes are refined, colors
@@ -124,6 +127,7 @@ stages:
       - Losing the darks you blocked in. Keep the value pattern.
 
   - id: details
+    covers_canvas: true  # no toned canvas shows from this stage on
     name: Details and highlights
     looks_like: The finished painting.
     steps:

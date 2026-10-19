@@ -24,7 +24,7 @@ from pathlib import Path
 
 import yaml
 from dotenv import load_dotenv
-from PIL import Image
+from PIL import Image, ImageOps
 from pydantic import BaseModel
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -102,7 +102,7 @@ class Ledger:
 
 
 def size_for(path: Path) -> str:
-    w, h = Image.open(path).size
+    w, h = ImageOps.exif_transpose(Image.open(path)).size  # honor the camera's rotation flag
     if w > h * 1.15:
         return "1536x1024"
     if h > w * 1.15:
@@ -111,7 +111,7 @@ def size_for(path: Path) -> str:
 
 
 def png_bytes(path: Path, max_side: int = 1536) -> bytes:
-    img = Image.open(path).convert("RGB")
+    img = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
     img.thumbnail((max_side, max_side))
     buf = io.BytesIO()
     img.save(buf, format="PNG")
@@ -234,6 +234,13 @@ For each stage, rewrite the steps for this painting so they match what its image
 def stage_prompt(technique: dict, stage: dict, note: str, kind: str) -> str:
     extra = f" For this picture: {note}" if note else ""
     framing = technique["framing"]
+    if kind == "backward-covered":
+        return (
+            "The image is an acrylic painting in progress at a later stage. Show the SAME canvas one stage earlier "
+            f"in the technique '{technique['name']}': {stage['looks_like']}{extra} Keep the composition, shapes, and "
+            "placement identical. Paint still covers the entire canvas at this stage: no bare or toned canvas shows "
+            f"anywhere. Make it rougher and simpler, not emptier. {framing}"
+        )
     if kind == "backward":
         return (
             "The first image is an acrylic painting in progress at a later stage. Show the SAME canvas at an earlier "
@@ -286,8 +293,10 @@ def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str
         later = images[last["id"]]
         for i in range(len(stages) - 2, 0, -1):
             s = stages[i]
+            covered = s.get("covers_canvas", False)
             later = edit_image(
-                s["id"], [later, tone], stage_prompt(technique, s, notes.get(s["id"], ""), "backward"),
+                s["id"], [later] if covered else [later, tone],
+                stage_prompt(technique, s, notes.get(s["id"], ""), "backward-covered" if covered else "backward"),
                 out / f"{i + 1:02d}_{s['id']}.png", size, quality, ledger,
             )
             images[s["id"]] = later
