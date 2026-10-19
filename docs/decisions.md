@@ -6,6 +6,9 @@ with the date.
 
 ## Product
 
+- **Name: Gesso (2026-10-19)**, renamed from PaintPath. A quick search found no painting app by
+  that name (only an unrelated audio-tour app). Revisit before any app store listing.
+
 - **Real technique drives generation (2026-10-19).** Every stage image comes from a lesson plan
   built on real painting technique for the medium and level. Never ask an image model to invent
   the steps on its own.

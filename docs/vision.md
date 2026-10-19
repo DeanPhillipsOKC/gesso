@@ -1,8 +1,15 @@
-# PaintPath: vision
+# Gesso: vision
 
-PaintPath turns a photo into a step-by-step painting lesson at your skill level, in acrylic or
+*From blank canvas to finished painting, one step at a time.*
+
+Gesso turns a photo into a step-by-step painting lesson at your skill level, in acrylic or
 oil. Each step shows what your canvas should look like when you finish it, and tells you how to
 get there: what to mix, which brush to use, and what to watch out for.
+
+## The name
+
+Gesso is the primer that goes on a canvas before any paint. It's step zero, which fits an app
+where real technique comes first and the image generation follows it.
 
 ## Why
 
@@ -13,7 +20,7 @@ the underpainting, the blocked-in shapes, and the layers that come after.
 
 ## What makes it different
 
-**Real technique drives the pictures.** PaintPath doesn't ask an image model to "show the steps."
+**Real technique drives the pictures.** Gesso doesn't ask an image model to "show the steps."
 It first plans the painting the way a teacher would, using the techniques that fit the medium and
 the painter's level, and then generates each stage from that plan. The pictures follow the lesson,
 not the other way around.

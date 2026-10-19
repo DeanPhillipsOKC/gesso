@@ -1,6 +1,6 @@
 # Backlog
 
-The backlog lives in GitHub Issues: https://github.com/DeanPhillipsOKC/paintpath/issues. Use the
+The backlog lives in GitHub Issues: https://github.com/DeanPhillipsOKC/gesso/issues. Use the
 `gh` CLI to read and change it. This file holds the conventions, which follow RepBunny's.
 
 ## Conventions
