@@ -1,0 +1,8 @@
+# API keys. Never commit these.
+.env
+.env.*
+!.env.example
+
+# Generated lessons and reference photos stay local
+output/
+photos/
