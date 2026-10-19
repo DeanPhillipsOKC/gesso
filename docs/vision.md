@@ -41,10 +41,10 @@ not the other way around.
    structured output that slots into the template.
 5. **It paints the finish first.** It generates the final painting in the chosen medium, technique,
    and level, so every stage has the same destination.
-6. **It works out the earlier stages.** Each stage image is made by editing the previous stage. The
-   image prompt comes from the library's description of that stage, plus Claude's specifics.
-   Working this way keeps the stages consistent, so step 5 doesn't turn into a different painting
-   than step 2.
+6. **It works out the earlier stages.** It makes the toned canvas first, then works backward from
+   the finish: each earlier stage is the next one with a layer taken off, and anything not painted
+   yet shows the toned canvas. Working backward keeps every stage consistent with the finish (the
+   spike also tries building forward, for comparison).
 7. **It writes the steps from the pictures.** Once the stage images exist, Claude looks at all of
    them and writes each step's instructions to match what the image actually shows, so a beginner
    never sees words that disagree with the picture.
