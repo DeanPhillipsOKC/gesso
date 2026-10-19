@@ -32,7 +32,7 @@ not the other way around.
 2. **The technique library sets the stages.** Gesso ships with a hand-checked library of real
    techniques for each medium and level: the stages in order, what the canvas looks like at each
    one, brushes, drying times, and common mistakes. No AI invents the steps.
-3. **Claude reads the photo, once.** One vision call fills in what a template can't know: the
+3. **Claude reads the photo.** A vision call fills in what a template can't know: the
    subject and focal point, the main shapes, the light and value structure, the palette and the
    mixes for this photo, and one or two photo-specific sentences for each stage. It comes back as
    structured output that slots into the template.
@@ -42,10 +42,13 @@ not the other way around.
    image prompt comes from the library's description of that stage, plus Claude's specifics.
    Working this way keeps the stages consistent, so step 5 doesn't turn into a different painting
    than step 2.
-6. **It checks its own work (later).** Claude compares each stage image against the plan ("is this
+6. **It writes the steps from the pictures.** Once the stage images exist, Claude looks at all of
+   them and writes each step's instructions to match what the image actually shows, so a beginner
+   never sees words that disagree with the picture.
+7. **It checks its own work.** Claude compares each stage image against the plan ("is this
    still a loose value sketch, or did it jump ahead to detail?") and regenerates any stage that
-   fails. Optional at first.
-7. **You get a lesson** you can follow at the easel, one step at a time.
+   fails. The pipeline spike measures how much this is needed.
+8. **You get a lesson** you can follow at the easel, one step at a time.
 
 It will be slow, maybe several minutes per lesson. That's fine. It shows progress as stages
 finish, and a finished lesson is saved so it never has to be made twice.
@@ -90,8 +93,8 @@ reviewed like code, so improving a lesson means editing a file, not rewriting a 
 ## Models
 
 - **The technique library** (data, no AI) decides the stages and most of each step's text.
-- **Claude** makes one vision call per lesson to fill in the photo-specific parts as structured
-  output, and later checks stage images. Text inference earns its keep there: a template can say
+- **Claude** reads the photo to fill in the photo-specific parts as structured output, writes the
+  step instructions from the finished stage images, and checks stages. Text inference earns its keep there: a template can say
   "block in the large shapes," but only a model that sees the photo can say "mix ultramarine, a
   touch of burnt sienna, and white for the barn's shadow side."
 - **OpenAI's image model** (the gpt-image family, through the API) generates the finish and edits
