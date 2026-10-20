@@ -43,6 +43,7 @@ load_dotenv(ROOT / ".env")
 CLAUDE_MODEL = "claude-opus-5-5"
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 IMAGE_MODEL = "gpt-image-2.5-sunburst"
+REVIEW_ROUNDS = 2  # review the steps, redo what's flagged, and review again (rules-only techniques)
 
 # Published per-million-token rates, checked 2026-10-19. Used only to estimate cost.
 PRICES = {
@@ -638,14 +639,18 @@ def run_planned(photo: Path, technique: dict, mode: str, quality: str, finish_qu
             later = images[i] = render(i, later)
 
     issues: list[dict] = []
-    if check:
+    # Review, redo what's flagged, then review once more: a redo doesn't always take, and with more steps
+    # there's more to catch (pumpkin patch, 10 steps: 5 flagged, two still wrong after one redo).
+    ids = {s.id: i for i, s in enumerate(steps)}
+    for rnd in range(1, (REVIEW_ROUNDS if check else 0) + 1):
         review = review_steps(plan, images, ledger)
-        ids = {s.id: i for i, s in enumerate(steps)}
         flagged = sorted(((ids[x.step_id], x) for x in review.issues if x.step_id in ids and ids[x.step_id] != last),
                          key=lambda t: -t[0])  # latest first, so anchored redos see fixed later steps
+        if not flagged:
+            break
         for i, x in flagged:
-            print(f"  review: {x.step_id}: {x.problem}")
-            issues.append(x.model_dump())
+            print(f"  review {rnd}: {x.step_id}: {x.problem}")
+            issues.append({**x.model_dump(), "round": rnd})
         if mode == "parallel":  # redos don't depend on each other, so run them together
             with ThreadPoolExecutor(max_workers=6) as pool:
                 for (i, _), img in zip(flagged, pool.map(lambda t: render(t[0], None, t[1].fix), flagged)):
