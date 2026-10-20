@@ -1,9 +1,17 @@
 """Gesso pipeline spike (#3): photo in, step-by-step painting lesson out, as a folder and an HTML page.
 
-    python spike/run.py photos/sleeping-cat.jpg
-    python spike/run.py photos/sleeping-cat.jpg --mode forward --variant templates --quality max
+    python spike/run.py photos/sleeping-cat.jpg                      # paint-along, Claude-planned steps
+    python spike/run.py photos/sleeping-cat.jpg --mode parallel      # all steps at once
+    python spike/run.py photos/sleeping-cat.jpg --technique techniques/acrylic-block-in-beginner.yaml --mode backward
 
-Pipeline:
+Rules-only techniques (no fixed stage list, e.g. paint-along):
+  0. Simplify the photo; paint the finished painting from it (--finish-quality, default high).
+  1. Claude plans the steps from the finished painting, with named paints; swatches are sampled from it.
+  2. Render each step from the finish (anchored: also from the step after; parallel: all at once).
+  3. Claude reviews the step images in order; flagged steps are redone once with its fix.
+  4. Claude writes each step's instructions from the images. Then lesson.json and lesson.html.
+
+Fixed-stage techniques (e.g. block-in):
   0. Simplify the photo into a reference matched to the skill level.
   1. (claude variant) Claude reads the photo and reference: focal point, mixes, a note per stage.
   2. Paint the finished painting from the reference.
@@ -71,6 +79,7 @@ class StepText(BaseModel):
     what_to_do: list[str]
     mixes: list[str]
     watch_out: list[str]
+    paint_notes: list[str]  # tweaks to named paints for this step, e.g. "Sunset Orange plus a little extra red"
 
 
 class LessonText(BaseModel):
@@ -80,8 +89,11 @@ class LessonText(BaseModel):
 class Paint(BaseModel):
     name: str  # e.g. "Sunset orange"; reused across steps for the same paint
     recipe: str  # e.g. "2 parts yellow, 1 part red, a touch of white"
-    hex: str  # approximate swatch color, "#rrggbb"
+    hex: str  # Claude's guess, "#rrggbb"; replaced by the color sampled at (sample_x, sample_y)
     used_for: str
+    sample_x: float  # a spot in the finished painting where this paint shows clearly, 0-1 from the left
+    sample_y: float  # 0-1 from the top
+    guess_hex: str | None = None  # set by sample_swatches: Claude's original guess, kept for comparison
 
 
 class PlannedStep(BaseModel):
@@ -103,6 +115,16 @@ class LessonPlan(BaseModel):
     components: list[str]  # the parts of the picture, farthest first
     paints: list[Paint]
     steps: list[PlannedStep]
+
+
+class StepIssue(BaseModel):
+    step_id: str
+    problem: str
+    fix: str  # what the redo must change, phrased as an instruction for the image
+
+
+class StepReview(BaseModel):
+    issues: list[StepIssue]  # empty when every step is right
 
 
 # ---------------------------------------------------------------------------
@@ -233,11 +255,12 @@ Describe what matters for painting this particular picture:
     return ask_claude("read photo", [image_block(photo), image_block(reference), {"type": "text", "text": prompt}], PhotoRead, ledger)
 
 
-def plan_lesson(photo: Path, reference: Path, technique: dict, ledger: Ledger) -> LessonPlan:
+def plan_lesson(photo: Path, finish: Path, technique: dict, ledger: Ledger) -> LessonPlan:
     lo, hi = technique["step_range"]
     rules = "\n".join(f"- {r}" for r in technique["rules"])
     moves = "\n".join(f"- {m}" for m in technique["brush_moves"])
-    prompt = f"""You're planning a beginner acrylic painting lesson for the second image (a simplified reference made from the first photo), using the technique "{technique['name']}": {technique['summary']}
+    prompt = f"""You're planning a beginner acrylic painting lesson that ends in exactly the second image (the finished painting, made from the first photo), using the technique "{technique['name']}": {technique['summary']}
+Plan only what the finished painting shows, where it shows it. The photo is just context.
 
 Palette (the only tubes): {', '.join(technique['palette'])}.
 The painter starts on a plain white canvas.
@@ -251,7 +274,7 @@ Brush moves to choose from:
 Plan it:
 1. Name the subject, the focal point, and where the light comes from.
 2. List the parts of this picture (components), farthest back first, e.g. sky gradient, clouds, sun glow, distant tree line, field, trunks, branches.
-3. List the paints: every mix the lesson needs, each with a short memorable name, a recipe in parts from the palette tubes, an approximate swatch color as #rrggbb, and what it's for.
+3. List the paints: every mix the lesson needs, each with a short memorable name, a recipe in parts from the palette tubes, an approximate swatch color as #rrggbb, what it's for, and a spot (sample_x, sample_y as 0-1 fractions from the top-left) in the finished painting where that paint shows clearly in a flat patch, away from edges.
 4. Plan {lo} to {hi} steps that follow the rules, using as many as this picture needs and no more. For each step:
    - id: short lowercase slug, unique
    - paints: which components it adds
@@ -260,7 +283,13 @@ Plan it:
    - colors: names from your paints list
    - brushes, how (2 to 5 short instructions, each naming its brush move), watch_out (1 or 2 beginner mistakes)
    The last step's looks_like is exactly "The finished painting."."""
-    plan = ask_claude("plan lesson", [image_block(photo), image_block(reference), {"type": "text", "text": prompt}], LessonPlan, ledger)
+    content = [image_block(photo), image_block(finish), {"type": "text", "text": prompt}]
+    plan = ask_claude("plan lesson", content, LessonPlan, ledger)
+    if not lo <= len(plan.steps) <= hi:  # one retry with the reason, then fail loudly
+        content.append({"type": "text", "text": f"Your last plan had {len(plan.steps)} steps. It must have {lo} to {hi}."})
+        plan = ask_claude("plan lesson (retry)", content, LessonPlan, ledger)
+        if not lo <= len(plan.steps) <= hi:
+            raise RuntimeError(f"Plan has {len(plan.steps)} steps, outside {lo}-{hi}")
 
     known = {p.name for p in plan.paints}
     seen: set[str] = set()
@@ -269,9 +298,72 @@ Plan it:
         while s.id in seen:  # keep image file names unique
             s.id += "-2"
         seen.add(s.id)
-    if not lo <= len(plan.steps) <= hi:
-        print(f"  note: plan has {len(plan.steps)} steps, outside {lo}-{hi}")
+    plan.steps[-1].looks_like = "The finished painting."
+    plan.steps[-1].covers_canvas = True
     return plan
+
+
+def sample_swatches(plan: LessonPlan, finish: Path) -> None:
+    """Snap each paint's guessed hex to the closest color actually painted near its sample spot.
+
+    Claude's spots are often a little off (a trunk instead of the sky beside it), so sampling the spot
+    alone picks the wrong paint. Instead: in a window around the spot (or the whole painting if nothing
+    there is close), take the pixels nearest the guessed color and use their median. Keeps the guessed
+    hex if nothing in the painting is near it."""
+    img = Image.open(finish).convert("RGB")
+    img.thumbnail((256, 256))  # plenty for color, and fast
+    w, h = img.size
+    px = img.load()
+
+    def nearest(guess, box):
+        x0, y0, x1, y1 = box
+        pts = sorted(
+            (sum((a - b) ** 2 for a, b in zip(px[x, y], guess)), px[x, y]) for x in range(x0, x1) for y in range(y0, y1)
+        )
+        best = pts[: max(5, len(pts) // 50)]
+        return best[0][0], tuple(sorted(c[k] for _, c in best)[len(best) // 2] for k in range(3))
+
+    for p in plan.paints:
+        p.guess_hex = p.hex
+        try:
+            guess = tuple(int(p.hex.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
+        except ValueError:
+            continue
+        cx, cy = min(max(p.sample_x, 0.0), 1.0) * (w - 1), min(max(p.sample_y, 0.0), 1.0) * (h - 1)
+        r = int(min(w, h) * 0.12)
+        dist, color = nearest(guess, (max(0, int(cx) - r), max(0, int(cy) - r), min(w, int(cx) + r + 1), min(h, int(cy) + r + 1)))
+        if dist > 40 ** 2 * 3:  # nothing close by: look across the whole painting
+            dist, color = nearest(guess, (0, 0, w, h))
+        if dist <= 30 ** 2 * 3:  # only small corrections; a big jump means it found a different paint
+            p.hex = "#" + "".join(f"{c:02x}" for c in color)
+
+    def rgb(hexv):
+        return tuple(int(hexv.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
+
+    def d2(a, b):
+        return sum((x - y) ** 2 for x, y in zip(rgb(a), rgb(b)))
+
+    # Two different paints must not end up as one swatch: put back the one that moved more.
+    for a in plan.paints:
+        for b in plan.paints:
+            if a is not b and a.guess_hex and b.guess_hex and d2(a.hex, b.hex) < 12 ** 2 * 3 <= d2(a.guess_hex, b.guess_hex):
+                worse = a if d2(a.hex, a.guess_hex) >= d2(b.hex, b.guess_hex) else b
+                worse.hex = worse.guess_hex
+
+
+def review_steps(plan: LessonPlan, images: list[Path], ledger: Ledger) -> StepReview:
+    content: list[dict] = []
+    for i, (s, img) in enumerate(zip(plan.steps, images), 1):
+        content.append({"type": "text", "text": f"Step {i}, id {s.id}: adds {s.paints}. Should look like: {s.looks_like}"})
+        content.append(image_block(img))
+    content.append({"type": "text", "text": """These are the step images of a beginner painting lesson, in order; the last one is the finished painting. Each step should be the canvas after that step: everything from earlier steps still there in the same place and shape, plus only what this step adds.
+
+Flag only clear problems a painter following along would notice:
+- something appears before the step that paints it
+- something painted in an earlier step is missing, moved, or a clearly different shape or size
+- the image doesn't match what the step should look like (for example, white canvas showing where it should be covered, or covered where it should still be white)
+Ignore small differences in brushwork, texture, and exact color. Never flag the last step. For each problem, give the step id, the problem, and the fix as an instruction for redrawing that image."""})
+    return ask_claude("review steps", content, StepReview, ledger)
 
 
 def write_steps(technique: dict, stages: list[dict], stage_images: list[Path], read: BaseModel | None, ledger: Ledger) -> LessonText:
@@ -289,7 +381,7 @@ def write_steps(technique: dict, stages: list[dict], stage_images: list[Path], r
 Planned steps for each stage:
 {template}
 
-For each stage, rewrite the steps for this painting so they match what its image actually shows: name the real shapes and areas, give the mixes to use (by the paint names above, when there are any), and keep the planned advice that still applies. Plain words a beginner understands, short steps, 2 to 5 per stage. Use the stage ids above.""",
+For each stage, rewrite the steps for this painting so they match what its image actually shows: name the real shapes and areas, give the mixes to use (by the paint names above, when there are any), and keep the planned advice that still applies. Plain words a beginner understands, short steps, 2 to 5 per stage. Use the stage ids above. In paint_notes, list any change this step makes to a named paint (for example "Sunset Orange plus a little extra red"), or leave it empty.""",
         }
     )
     return ask_claude("write steps", content, LessonText, ledger)
@@ -330,35 +422,27 @@ def stage_prompt(technique: dict, stage: dict, note: str, kind: str) -> str:
     )
 
 
-def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str, out_root: Path) -> Path:
+def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str, out_root: Path,
+        finish_quality: str = "high", check: bool = True) -> Path:
     technique = yaml.safe_load(technique_path.read_text(encoding="utf-8"))
-    planned = "stages" not in technique  # rules-only technique: Claude plans the steps for this picture
     tag = "" if technique["id"] == "acrylic-block-in-beginner" else f"{technique['id']}_"  # older runs have no tag
     out = out_root / f"{photo.stem}_{tag}{mode}_{variant}_{quality}_{datetime.now():%Y%m%d-%H%M%S}"
     out.mkdir(parents=True)
     size = size_for(photo)
     ledger = Ledger()
     print(f"{photo.name}: {technique['name']}, mode={mode}, variant={variant}, quality={quality}, size={size}")
+    if "stages" not in technique:  # rules-only technique: Claude plans the steps for this picture
+        if variant != "claude" or mode not in ("anchored", "parallel"):
+            raise SystemExit("A rules-only technique needs --variant claude and --mode anchored or parallel.")
+        return run_planned(photo, technique, mode, quality, finish_quality, check, out, size, ledger)
+    if mode == "parallel":
+        raise SystemExit("--mode parallel is only for rules-only techniques.")
 
     reference = edit_image("simplify", [photo], f"{technique['simplify']['prompt']}", out / "00_reference.png", size, quality, ledger)
 
-    plan = None
-    if planned:
-        if variant != "claude" or mode == "finish-last":
-            raise SystemExit("A rules-only technique needs --variant claude and a finished painting to aim at.")
-        plan = plan_lesson(photo, reference, technique, ledger)
-        paints = {p.name: p for p in plan.paints}
-        stages = [
-            {"id": s.id, "name": s.name, "looks_like": s.looks_like, "covers_canvas": s.covers_canvas,
-             "steps": s.how, "watch_out": s.watch_out, "brushes": s.brushes, "dry_time": technique["dry_time"],
-             "colors": [paints[c].model_dump() for c in s.colors]}
-            for s in plan.steps
-        ]
-        read, notes = None, {}
-    else:
-        stages = technique["stages"]
-        read = read_photo(photo, reference, technique, ledger) if variant == "claude" else None
-        notes = {n.stage_id: n.note for n in read.stage_notes} if read else {}
+    stages = technique["stages"]
+    read = read_photo(photo, reference, technique, ledger) if variant == "claude" else None
+    notes = {n.stage_id: n.note for n in read.stage_notes} if read else {}
 
     images: dict[str, Path] = {}
     last = stages[-1]
@@ -423,13 +507,9 @@ def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str
             images[s["id"]] = prev
 
     ordered = [images[s["id"]] for s in stages]
-    text = write_steps(technique, stages, ordered, plan or read, ledger) if variant == "claude" else None
+    text = write_steps(technique, stages, ordered, read, ledger) if variant == "claude" else None
     steps_by_id = {t.stage_id: t for t in text.steps} if text else {}
-    if plan:  # same shape as a photo read, plus the components and swatches
-        read_out = {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
-                    "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]}
-    else:
-        read_out = read.model_dump() if read else None
+    read_out = read.model_dump() if read else None
 
     lesson = {
         "photo": photo.name,
@@ -466,6 +546,128 @@ def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str
     return out
 
 
+def planned_prompt(technique: dict, step: PlannedStep, anchored: bool, done: list[str], todo: list[str], fix: str = "") -> str:
+    """anchored: inputs are [next step, (canvas), finish]; otherwise [finish, (canvas)].
+    done/todo: what earlier-or-this and later steps paint, listed outright so nothing already painted gets dropped."""
+    covered = step.covers_canvas
+    if not anchored:
+        lead = "The first image is a finished acrylic painting."
+    else:
+        lead = ("The first image is this acrylic painting at the next step. The last image is the finished painting: copy the "
+                "shape, edge, and placement of everything this step shows from it exactly.")
+    unpainted = ("Paint covers the entire canvas at this step: no bare canvas shows anywhere." if covered else
+                 "Anywhere that isn't painted at this step must show the plain white canvas exactly as in the second image.")
+    redo = f" Correction: {fix}" if fix else ""
+    inventory = (f" Already painted, exactly as in the finished painting: {'; '.join(done)}."
+                 f" Not painted yet, so not there at all (not even outlines or gaps): {'; '.join(todo)}.")
+    return (
+        f"{lead} Show the SAME canvas earlier in the painting, right after this step: {step.looks_like}{inventory} Keep the "
+        f"composition, shapes, and placement identical to the finished painting; only remove what isn't painted yet. "
+        f"{unpainted}{redo} {technique['framing']}"
+    )
+
+
+def run_planned(photo: Path, technique: dict, mode: str, quality: str, finish_quality: str, check: bool,
+                out: Path, size: str, ledger: Ledger) -> Path:
+    """Rules-only technique: finish first, Claude plans the steps from it, then render, review, and write."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    started = time.time()
+    reference = edit_image("simplify", [photo], technique["simplify"]["prompt"], out / "00_reference.png", size, quality, ledger)
+    finish = edit_image("finish", [reference], f"{technique['finish']['prompt']} {technique['framing']}",
+                        out / "99_finish.png", size, finish_quality, ledger)
+    plan = plan_lesson(photo, finish, technique, ledger)
+    sample_swatches(plan, finish)
+
+    canvas = out / "00_canvas.png"
+    Image.new("RGB", tuple(int(n) for n in size.split("x")), (246, 245, 240)).save(canvas)
+    steps = plan.steps
+    last = len(steps) - 1
+    paths = [out / f"{i + 1:02d}_{s.id}.png" for i, s in enumerate(steps)]
+    paths[last] = finish
+    images: list[Path] = list(paths)
+
+    def render(i: int, later: Path | None, fix: str = "") -> Path:
+        s = steps[i]
+        anchored = mode != "parallel" and later != finish
+        base = later if anchored else finish
+        inputs = ([base] if s.covers_canvas else [base, canvas]) + ([finish] if anchored else [])
+        prompt = planned_prompt(technique, s, anchored, [t.paints for t in steps[: i + 1]], [t.paints for t in steps[i + 1:]], fix)
+        return edit_image(s.id + (" (redo)" if fix else ""), inputs, prompt, paths[i], size, quality, ledger)
+
+    if mode == "parallel":
+        with ThreadPoolExecutor(max_workers=6) as pool:
+            for i, img in zip(range(last), pool.map(lambda i: render(i, None), range(last))):
+                images[i] = img
+    else:
+        later = finish
+        for i in range(last - 1, -1, -1):
+            later = images[i] = render(i, later)
+
+    issues: list[dict] = []
+    if check:
+        review = review_steps(plan, images, ledger)
+        ids = {s.id: i for i, s in enumerate(steps)}
+        flagged = sorted(((ids[x.step_id], x) for x in review.issues if x.step_id in ids and ids[x.step_id] != last),
+                         key=lambda t: -t[0])  # latest first, so anchored redos see fixed later steps
+        for i, x in flagged:
+            print(f"  review: {x.step_id}: {x.problem}")
+            issues.append(x.model_dump())
+        if mode == "parallel":  # redos don't depend on each other, so run them together
+            with ThreadPoolExecutor(max_workers=6) as pool:
+                for (i, _), img in zip(flagged, pool.map(lambda t: render(t[0], None, t[1].fix), flagged)):
+                    images[i] = img
+        else:
+            for i, x in flagged:
+                images[i] = render(i, images[i + 1], x.fix)
+
+    text = write_steps(technique, [{"id": s.id, "name": s.name, "steps": s.how, "watch_out": s.watch_out} for s in steps],
+                       images, plan, ledger)
+    by_id = {t.stage_id: t for t in text.steps}
+    paints = {p.name: p for p in plan.paints}
+
+    lesson = {
+        "photo": photo.name,
+        "technique": technique["id"],
+        "mode": mode,
+        "variant": "claude",
+        "quality": quality,
+        "finish_quality": finish_quality,
+        "image_model": IMAGE_MODEL,
+        "claude_model": CLAUDE_MODEL,
+        "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
+                       "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]},
+        "review_issues": issues,
+        "stages": [
+            {
+                "id": s.id,
+                "name": s.name,
+                "image": images[i].name,
+                "paints": s.paints,
+                "looks_like": s.looks_like,
+                "steps": by_id[s.id].what_to_do if s.id in by_id else s.how,
+                "mixes": by_id[s.id].mixes if s.id in by_id else [],
+                "colors": [paints[c].model_dump() for c in s.colors],
+                "paint_notes": by_id[s.id].paint_notes if s.id in by_id else [],
+                "watch_out": by_id[s.id].watch_out if s.id in by_id else s.watch_out,
+                "brushes": s.brushes,
+                "dry_time": technique["dry_time"],
+            }
+            for i, s in enumerate(steps)
+        ],
+        "calls": ledger.calls,
+        "total_cost_usd": ledger.total_cost,
+        "total_seconds": ledger.total_seconds,
+        "wall_seconds": round(time.time() - started, 1),
+    }
+    (out / "lesson.json").write_text(json.dumps(lesson, indent=2), encoding="utf-8")
+    photo_copy = out / f"photo{photo.suffix}"
+    photo_copy.write_bytes(photo.read_bytes())
+    (out / "lesson.html").write_text(render_html(lesson, technique, photo_copy.name), encoding="utf-8")
+    print(f"Done: {out / 'lesson.html'}  (~${ledger.total_cost}, {lesson['wall_seconds']}s wall, {ledger.total_seconds}s of API time)")
+    return out
+
+
 def render_html(lesson: dict, technique: dict, photo_name: str) -> str:
     from html import escape as e
 
@@ -484,6 +686,7 @@ def render_html(lesson: dict, technique: dict, photo_name: str) -> str:
 <h3>Step {i + 1}: {e(s['name'])}</h3><ol>{items(s['steps'])}</ol>
 {''.join(f'<p><span style="display:inline-block;width:1em;height:1em;border-radius:3px;vertical-align:-2px;background:{e(c["hex"])}"></span> <b>{e(c["name"])}:</b> {e(c["recipe"])}</p>' for c in s.get('colors', []))
  or ('<p><b>Mixes:</b> ' + e('; '.join(s['mixes'])) + '</p>' if s['mixes'] else '')}
+{''.join(f'<p class=muted>{e(n)}</p>' for n in s.get('paint_notes', []))}
 <p><b>Brushes:</b> {e(s['brushes'])}<br><b>Drying:</b> {e(s['dry_time'])}</p>
 <p class=muted><b>Watch out:</b></p><ul class=muted>{items(s['watch_out'])}</ul></div></section>"""
         for i, s in enumerate(lesson["stages"])
@@ -510,18 +713,22 @@ img{{width:100%;border-radius:8px;display:block}} .pair{{display:grid;grid-templ
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("photo", type=Path)
-    ap.add_argument("--technique", type=Path, default=ROOT / "techniques" / "acrylic-block-in-beginner.yaml")
-    ap.add_argument("--mode", choices=["backward", "anchored", "forward", "finish-last"], default="anchored",
+    ap.add_argument("--technique", type=Path, default=ROOT / "techniques" / "acrylic-paint-along-beginner.yaml")
+    ap.add_argument("--mode", choices=["backward", "anchored", "parallel", "forward", "finish-last"], default="anchored",
                     help="backward: finish first, then each earlier stage by stripping layers off the next. "
                          "anchored: backward, but every stage also copies shapes from the finish. "
+                         "parallel (rules-only techniques): every step made from the finish alone, all at once. "
                          "forward: finish first, then build up from the start toward it. "
                          "finish-last: build up from the start with no finished target.")
     ap.add_argument("--variant", choices=["claude", "templates"], default="claude")
     ap.add_argument("--quality", choices=["low", "medium", "high", "xhigh", "max"], default="low",
                     help="Image quality. Low while experimenting (docs/decisions.md); raise it if a run stops following directions.")
+    ap.add_argument("--finish-quality", choices=["low", "medium", "high", "xhigh", "max"], default="high",
+                    help="Quality of the finished painting (rules-only techniques). Every step copies from it.")
+    ap.add_argument("--no-check", action="store_true", help="Skip Claude's review of the step images (rules-only techniques).")
     ap.add_argument("--out", type=Path, default=ROOT / "output")
     a = ap.parse_args()
-    run(a.photo, a.technique, a.mode, a.variant, a.quality, a.out)
+    run(a.photo, a.technique, a.mode, a.variant, a.quality, a.out, a.finish_quality, not a.no_check)
 
 
 if __name__ == "__main__":
