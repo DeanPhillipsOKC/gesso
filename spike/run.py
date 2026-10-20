@@ -714,7 +714,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("photo", type=Path)
     ap.add_argument("--technique", type=Path, default=ROOT / "techniques" / "acrylic-paint-along-beginner.yaml")
-    ap.add_argument("--mode", choices=["backward", "anchored", "parallel", "forward", "finish-last"], default="anchored",
+    ap.add_argument("--mode", choices=["backward", "anchored", "parallel", "forward", "finish-last"], default="parallel",
                     help="backward: finish first, then each earlier stage by stripping layers off the next. "
                          "anchored: backward, but every stage also copies shapes from the finish. "
                          "parallel (rules-only techniques): every step made from the finish alone, all at once. "
