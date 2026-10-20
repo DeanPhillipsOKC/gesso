@@ -1,11 +1,10 @@
 # Acrylic, beginner: paint along, back to front, the way most YouTube beginner tutorials teach.
-# No toned ground, no sketch, no separate block-in: start on a plain white canvas, paint the sky,
-# then each band of the scene from far to near, then the subject, then texture, shadows, and
-# highlights. Each step is "paint this thing now," and each names the brush move to use (owner's
-# pick, 2026-10-19).
+# No toned ground, no sketch, no separate block-in: start on a plain white canvas and paint each
+# part of the scene from farthest to nearest, then texture, shadows, and highlights. Each step names
+# the brush move to use (owner's pick, 2026-10-19).
 #
-# Stage order matters: the last stage is the finished painting. covers_canvas marks stages where
-# paint covers the whole canvas, so no white canvas shows through.
+# This technique sets the rules; Claude plans the steps for each picture within them (no fixed
+# stage list, docs/decisions.md). The fixed seven-stage version is in git history (5936bbe).
 
 id: acrylic-paint-along-beginner
 medium: acrylic
@@ -26,7 +25,30 @@ palette:
 # The pipeline starts from a plain white canvas instead of a toned one.
 ground: white
 
-# Same framing for every image, so the stages line up when you flip between them.
+# How many steps a lesson may have. Claude picks the number that fits the picture.
+step_range: [5, 10]
+
+rules:
+  - Paint back to front. What's farthest away goes on first; anything in front goes on later, on top.
+  - Paint background areas straight through where thinner things in front will go (branches, poles, grass, shrubs). Never leave gaps or outlines for them.
+  - Each step paints one part of the picture or a small group of parts at the same distance. No empty steps, and no step for something the picture doesn't have.
+  - Big shapes before small ones. Texture, shadows, and highlights come after the shapes they sit on, and only where the picture has them.
+  - The last step is the final details and brightest highlights, and it ends with the finished painting.
+  - Every color is a named mix of the palette tubes. Reuse the same mix name whenever the same paint is used again.
+  - Beginner-friendly: 2 to 5 short instructions per step, plain words, one brush move per instruction.
+
+brush_moves:
+  - Long side-to-side strokes or the X stroke for blending skies and gradients while wet
+  - Tapping or dabbing with the brush corner, an old stiff brush, or a sponge for foliage and distant tree lines
+  - Pulling and tapering with a small round brush for trunks, branches, and stems (press, then lift)
+  - Flicking upward with a fan brush edge for grass
+  - Dry brushing with very little paint for soft light, mist, and texture
+  - Horizontal strokes for ground, water, and fields; strokes that follow the direction of roads and paths
+  - A liner brush for twigs and fine lines
+
+dry_time: About 10 minutes between steps (a hair dryer on low speeds it up). An hour after the last step before handling.
+
+# Same framing for every image, so the steps line up when you flip between them.
 framing: >-
   Straight-on view of the whole canvas filling the frame edge to edge, evenly lit. No easel,
   hands, brushes, table, or background.
@@ -47,126 +69,3 @@ finish:
     faintly visible in thin areas. Limited palette of white, yellow, red, ultramarine blue, and
     burnt sienna. Charming and achievable, not photorealistic. Keep the composition exactly as in
     the reference.
-
-stages:
-  - id: sky
-    name: Paint the sky
-    looks_like: >-
-      Only the sky is painted, as a smooth blended gradient (or the sky's main colors softly
-      blended), running from the top edge down slightly past the horizon. The sky is one
-      continuous area that runs straight through where trees, branches, hills, and anything else
-      will go; none of those are there yet, not even as outlines or gaps. Everything below the
-      horizon is still plain white canvas. No clouds with detail, no other objects.
-    steps:
-      - Start at the top with the darkest or deepest sky color and work down, adding lighter color as you go.
-      - Blend where the colors meet with long, side-to-side strokes (the "X stroke" works too) while the paint is wet.
-      - Paint right through where trees and hills will go. They go on top later.
-    brushes: Large flat brush (1 inch or bigger)
-    dry_time: 10 to 15 minutes. Use a hair dryer on low if you like.
-    watch_out:
-      - Stopping at the horizon line. Go a little past it so no white gap shows later.
-      - Overworking the blend after it starts to dry. If it drags, let it dry and add a second coat.
-
-  - id: distance
-    name: Paint the far shapes
-    looks_like: >-
-      The finished sky, now with the farthest shapes painted on top: far hills, mountains, a
-      distant tree line, or soft distant light, kept hazy and lighter in value (bluer and paler
-      than anything near). Everything nearer is not painted yet; below the far shapes is still
-      plain white canvas, except where the sky already extends. No near objects, no details.
-    steps:
-      - Mix the far color with extra white and a touch of blue so it looks far away.
-      - Dab or tap the top edge of distant tree lines with the corner of the brush; keep hills smooth.
-      - Keep edges soft. Far things never get sharp edges or details.
-    brushes: Medium flat brush, or an old stiff brush for dabbing tree lines
-    dry_time: About 10 minutes
-    watch_out:
-      - Making far shapes too dark. They should look faded next to what's in front.
-      - Adding detail far away. Save it for the front.
-
-  - id: ground
-    covers_canvas: true  # no white canvas shows from this stage on
-    name: Paint the ground
-    looks_like: >-
-      The sky and far shapes, now with the ground, water, road, or field painted as broad base
-      colors across the bottom of the canvas, lighter and cooler toward the back, warmer and
-      darker toward the front. The whole canvas is covered. Trees, people, and other main
-      subjects standing on the ground are not painted yet; the ground runs straight through where
-      they will go.
-    steps:
-      - Paint the ground in horizontal strokes, back to front, lighter at the back and darker at the front.
-      - Lay in any road or path with strokes that follow its direction, narrowing as it goes back.
-      - Paint right through where the trees or subject will stand.
-    brushes: Large or medium flat brush
-    dry_time: About 10 minutes
-    watch_out:
-      - Leaving white specks of canvas. Cover the whole bottom.
-      - Making the ground one flat color. A little change from back to front adds depth.
-
-  - id: subject
-    covers_canvas: true
-    name: Paint the main shapes
-    looks_like: >-
-      The finished background, with the main subject (trees and trunks, a building, a person, an
-      animal) painted on top as solid base shapes in their middle or dark color, back to front.
-      Trunks and big branches are in; leaf masses are simple flat or lightly dabbed shapes. No
-      texture, no shadows, no highlights yet.
-    steps:
-      - Paint the shapes farthest back first, then the nearest on top.
-      - Pull trunks and branches with a small round brush, pressing harder at the base and lifting as you go up so they taper.
-      - Fill each shape with one color for now, close to its real darkness.
-    brushes: Medium flat brush for big shapes, small round for trunks and branches
-    dry_time: About 10 minutes
-    watch_out:
-      - Branches the same thickness all the way. Taper them toward the tips.
-      - Using black for dark shapes. Mix darks from ultramarine and burnt sienna.
-
-  - id: texture
-    covers_canvas: true
-    name: Add leaves and texture
-    looks_like: >-
-      The main shapes, now with texture added: leaves and foliage dabbed on in two or three
-      values, grass flicked upward, bark, rocks, or ripples suggested with simple broken strokes.
-      Light and dark leaf clusters give the trees some volume. No brightest highlights or final
-      details yet.
-    steps:
-      - Load an old stiff brush, fan brush, or crumpled sponge and dab leaf clusters, darker first, then a lighter mix on top.
-      - Flick grass upward from the ground with the edge of a fan brush.
-      - Leave some gaps in the leaves so sky shows through; trees look more real with holes.
-    brushes: Fan brush, old stiff brush, or a sponge for dabbing; small round for bark
-    dry_time: About 10 minutes
-    watch_out:
-      - Dabbing in the same pattern everywhere. Vary the size and spacing of clusters.
-      - Covering the whole tree in leaves. Gaps let it breathe.
-
-  - id: shadows
-    covers_canvas: true
-    name: Shadows and depth
-    looks_like: >-
-      The textured painting, now with shadows added: the shaded side of trunks and leaf masses,
-      cast shadows on the ground pointing away from the light, and darker accents under and
-      behind things. The light direction now reads clearly. No brightest highlights or final
-      details yet.
-    steps:
-      - Find where the light comes from. Shadows go on the opposite side of each shape.
-      - Paint cast shadows on the ground with a thin, slightly blue darker mix, stretched away from the light.
-      - Darken the bottom and inside of leaf masses so they look round.
-    brushes: Small flat and small round brushes
-    dry_time: About 10 minutes
-    watch_out:
-      - Shadows going different directions. They all point away from the same light.
-      - Making shadows too heavy. Thin paint keeps them see-through.
-
-  - id: highlights
-    covers_canvas: true
-    name: Highlights and final details
-    looks_like: The finished painting.
-    steps:
-      - Add the brightest light where it hits: edges of leaves, trunks, and anything facing the light.
-      - Add the last small details at the focal point, like thin twigs with a liner brush.
-      - Step back and stop. Fewer highlights look brighter.
-    brushes: Small round and liner brush
-    dry_time: An hour before handling, and a day before varnishing
-    watch_out:
-      - Highlights everywhere. Use them only where light really hits.
-      - Pure white highlights. Warm them with a touch of yellow in sunlight.

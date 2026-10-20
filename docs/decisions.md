@@ -9,15 +9,18 @@ with the date.
 - **Name: Gesso (2026-10-19)**, renamed from PaintPath. A quick search found no painting app by
   that name (only an unrelated audio-tour app). Revisit before any app store listing.
 
-- **The technique library decides the stages; Claude fills in and checks (2026-10-19).** Stages
-  come from a hand-checked library of techniques per medium and level, and the painter picks the
-  technique. Don't move stage planning into the model. Claude (not another provider) reads the
-  photo for the specifics (focal point, palette, mixes), writes the step instructions from the
-  finished stage images so the words match the pictures, and can check stages. There's no limit
-  on calls: add one when it measurably improves the lesson.
+- **The technique sets the rules; Claude plans the steps for each picture (2026-10-19, owner's
+  call; replaces "the technique library decides the stages").** A fixed list of stages left empty
+  steps (a "ground" step for a photo with no ground). A hand-checked technique per medium and
+  level sets the rules: painting order, starting canvas, palette, brush moves, one thing per step,
+  and a step-count range. Claude (not another provider) breaks the simplified reference into its
+  parts and plans the steps within those rules, each with its colors as named mixes from the
+  palette. The image model renders the plan, and Claude writes the final instructions from the
+  rendered images so the words match the pictures. There's no limit on calls: add one when it
+  measurably improves the lesson.
 - **Real technique drives generation (2026-10-19).** Every stage image comes from a lesson plan
   built on real painting technique for the medium and level. Never ask an image model to invent
-  the steps on its own.
+  the steps on its own; the steps come from Claude's plan under the technique's rules.
 - **Acrylic only for the proof of concept (2026-10-19).** Oil comes after acrylic lessons are
   good. Other mediums wait longer. The first technique is the standard beginner method: block in
   the big shapes, then build up in layers (`techniques/acrylic-block-in-beginner.yaml`).
