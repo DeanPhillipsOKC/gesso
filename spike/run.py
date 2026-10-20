@@ -242,11 +242,12 @@ def stage_prompt(technique: dict, stage: dict, note: str, kind: str) -> str:
             f"anywhere. Make it rougher and simpler, not emptier. {framing}"
         )
     if kind == "backward":
+        ground = "plain white canvas" if technique.get("ground") == "white" else "toned canvas"
         return (
             "The first image is an acrylic painting in progress at a later stage. Show the SAME canvas at an earlier "
             f"stage of the technique '{technique['name']}': {stage['looks_like']}{extra} Keep the composition, shapes, "
             f"and placement identical; only remove what wouldn't be painted yet. Anywhere that isn't painted at this stage "
-            f"must show the toned canvas exactly as in the second image. {framing}"
+            f"must show the {ground} exactly as in the second image. {framing}"
         )
     if kind == "forward-first":
         return (
@@ -263,7 +264,8 @@ def stage_prompt(technique: dict, stage: dict, note: str, kind: str) -> str:
 def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str, out_root: Path) -> Path:
     technique = yaml.safe_load(technique_path.read_text(encoding="utf-8"))
     stages = technique["stages"]
-    out = out_root / f"{photo.stem}_{mode}_{variant}_{quality}_{datetime.now():%Y%m%d-%H%M%S}"
+    tag = "" if technique["id"] == "acrylic-block-in-beginner" else f"{technique['id']}_"  # older runs have no tag
+    out = out_root / f"{photo.stem}_{tag}{mode}_{variant}_{quality}_{datetime.now():%Y%m%d-%H%M%S}"
     out.mkdir(parents=True)
     size = size_for(photo)
     ledger = Ledger()
@@ -282,16 +284,23 @@ def run(photo: Path, technique_path: Path, mode: str, variant: str, quality: str
         images[last["id"]] = edit_image("finish", [reference], finish_prompt, out / f"{len(stages):02d}_{last['id']}.png", size, quality, ledger)
 
     if mode == "backward":
-        # The toned canvas comes first, so every earlier stage can show it in the unpainted areas.
-        first = stages[0]
-        tone = edit_image(
-            first["id"], [images[last["id"]]],
-            f"Show only the bare canvas before any painting of this picture: {first['looks_like']} {technique['framing']}",
-            out / f"01_{first['id']}.png", size, quality, ledger,
-        )
-        images[first["id"]] = tone
+        if technique.get("ground") == "white":
+            # Plain white canvas: no stage and no API call, just the blank surface unpainted areas show.
+            tone = out / "00_canvas.png"
+            Image.new("RGB", tuple(int(n) for n in size.split("x")), (246, 245, 240)).save(tone)
+            lowest = 0
+        else:
+            # The toned canvas comes first, so every earlier stage can show it in the unpainted areas.
+            first = stages[0]
+            tone = edit_image(
+                first["id"], [images[last["id"]]],
+                f"Show only the bare canvas before any painting of this picture: {first['looks_like']} {technique['framing']}",
+                out / f"01_{first['id']}.png", size, quality, ledger,
+            )
+            images[first["id"]] = tone
+            lowest = 1
         later = images[last["id"]]
-        for i in range(len(stages) - 2, 0, -1):
+        for i in range(len(stages) - 2, lowest - 1, -1):
             s = stages[i]
             if s.get("trace_finish"):
                 # A sketch outlines everything, so trace it from the finish rather than the stage after it.

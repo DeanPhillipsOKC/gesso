@@ -25,6 +25,11 @@ with the date.
   (sky, distant things), painted straight through where silhouettes like branches will go, then
   whatever is in front on top of it, back to front. Not "darks first." The sketch is traced from
   the finished painting so it outlines everything.
+- **Paint-along for acrylic, wet-on-wet for oil (2026-10-19, owner's pick).** The owner follows
+  YouTube-style tutorials, which skip toning, sketching, and block-in. Acrylic beginner lessons use
+  paint-along: white canvas, sky, far shapes, ground, main shapes, texture, shadows, highlights,
+  each step naming its brush move (`techniques/acrylic-paint-along-beginner.yaml`). Block-in stays
+  in the library as an option. When oil comes, its beginner technique is wet-on-wet.
 - **Simplify the photo first (2026-10-19, owner's idea).** Every lesson starts by turning the
   photo into a simplified reference matched to the skill level (fewer shapes, three values, a
   palette the painter can mix), and the painting is made from that, not the raw photo. It's shown
