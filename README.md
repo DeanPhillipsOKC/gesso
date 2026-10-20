@@ -16,8 +16,8 @@ python -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
 pip install -r spike/requirements.txt
 # put OPENAI_API_KEY and ANTHROPIC_API_KEY in .env (see .env.example)
-python spike/run.py photos/your-photo.jpg                 # full quality, Claude variant
-python spike/run.py photos/your-photo.jpg --quality low   # cheap test run
+python spike/run.py photos/your-photo.jpg                 # low quality (default while experimenting)
+python spike/run.py photos/your-photo.jpg --quality max   # best images, about 5x the cost
 ```
 
 Each run writes a folder under `output/` with every image, `lesson.json`, and `lesson.html`.

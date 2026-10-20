@@ -36,6 +36,12 @@ with the date.
   OpenAI's current gpt-image model. Record the cost and time of every call. Cost work starts only
   after the baseline exists, and every cheaper option gets compared against it on the reference
   photos before it's adopted.
+- **Low image quality while experimenting (2026-10-19).** The baseline exists: on the trees photo,
+  a lesson cost $0.26 and 2.4 min at low, $0.30 at medium, $0.52 at high, and $1.39 and 9.8 min
+  at max. Every quality level followed the back-to-front instructions, and differences between
+  runs were about as big as differences between levels. So experiments run at low. Bump the
+  quality up if a run stops following directions (painting order, coverage, continuity between
+  steps), and judge final picture quality separately.
 - **Slow is fine (2026-10-19).** Quality beats speed. A lesson can take minutes to generate as long
   as progress is visible and a finished lesson is saved.
 - **Photos stay private (2026-10-19).** No public gallery or sharing by default, and lessons are

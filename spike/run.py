@@ -1,7 +1,7 @@
 """Gesso pipeline spike (#3): photo in, step-by-step painting lesson out, as a folder and an HTML page.
 
     python spike/run.py photos/sleeping-cat.jpg
-    python spike/run.py photos/sleeping-cat.jpg --mode forward --variant templates --quality low
+    python spike/run.py photos/sleeping-cat.jpg --mode forward --variant templates --quality max
 
 Pipeline:
   0. Simplify the photo into a reference matched to the skill level.
@@ -413,7 +413,8 @@ def main():
                          "forward: finish first, then build up from the start toward it. "
                          "finish-last: build up from the start with no finished target.")
     ap.add_argument("--variant", choices=["claude", "templates"], default="claude")
-    ap.add_argument("--quality", choices=["low", "medium", "high", "xhigh", "max"], default="max")
+    ap.add_argument("--quality", choices=["low", "medium", "high", "xhigh", "max"], default="low",
+                    help="Image quality. Low while experimenting (docs/decisions.md); raise it if a run stops following directions.")
     ap.add_argument("--out", type=Path, default=ROOT / "output")
     a = ap.parse_args()
     run(a.photo, a.technique, a.mode, a.variant, a.quality, a.out)
