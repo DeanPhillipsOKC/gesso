@@ -5,7 +5,8 @@
     python spike/run.py photos/sleeping-cat.jpg --technique techniques/acrylic-block-in-beginner.yaml --mode backward
 
 Rules-only techniques (no fixed stage list, e.g. paint-along):
-  0. Simplify the photo; paint the finished painting from it (--finish-quality, default high).
+  0. Simplify the photo; paint the finished painting from it (--finish-quality, default high). Claude checks the
+     finish against the photo and it's repainted once if colors or objects changed.
   1. Claude plans the steps from the finished painting, with named paints; swatches are sampled from it.
   2. Render each step from the finish (anchored: also from the step after; parallel: all at once).
   3. Claude reviews the step images in order; flagged steps are redone once with its fix.
@@ -26,6 +27,7 @@ import argparse
 import base64
 import io
 import json
+import shutil
 import time
 from datetime import datetime
 from pathlib import Path
@@ -125,6 +127,10 @@ class StepIssue(BaseModel):
 
 class StepReview(BaseModel):
     issues: list[StepIssue]  # empty when every step is right
+
+
+class FinishReview(BaseModel):
+    differences: list[str]  # each one an instruction for fixing the painting; empty when it's faithful
 
 
 # ---------------------------------------------------------------------------
@@ -349,6 +355,20 @@ def sample_swatches(plan: LessonPlan, finish: Path) -> None:
             if a is not b and a.guess_hex and b.guess_hex and d2(a.hex, b.hex) < 12 ** 2 * 3 <= d2(a.guess_hex, b.guess_hex):
                 worse = a if d2(a.hex, a.guess_hex) >= d2(b.hex, b.guess_hex) else b
                 worse.hex = worse.guess_hex
+
+
+def check_finish(photo: Path, finish: Path, ledger: Ledger) -> FinishReview:
+    """Compare the finished painting with the picture. Everything after it copies the finish, so a color or
+    object it loses here (the cat's mint cream, the pumpkin patch's fall leaves) is lost from every step."""
+    prompt = """The first image is someone's picture. The second is a beginner acrylic painting made from it, meant to be simpler but clearly the same picture.
+Simplifying is expected: fewer details, fewer shapes, softer edges, a limited palette. Don't flag that.
+Flag only changes the person would notice and mind:
+- an area changed color or hue (for example mint green became blue, a purple sky became plain blue, golden became red-orange)
+- something was added, removed, or turned into something else (for example scattered fall leaves became green pumpkin leaves)
+- a texture changed character (for example splattered stars became a few dots, swirling strokes became flat)
+- the mood or time of day changed
+For each one, write an instruction for repainting it, naming the area and what it should look like. Return an empty list if the painting is faithful."""
+    return ask_claude("check finish", [image_block(photo), image_block(finish), {"type": "text", "text": prompt}], FinishReview, ledger)
 
 
 def review_steps(plan: LessonPlan, images: list[Path], ledger: Ledger) -> StepReview:
@@ -576,6 +596,19 @@ def run_planned(photo: Path, technique: dict, mode: str, quality: str, finish_qu
     reference = edit_image("simplify", [photo], technique["simplify"]["prompt"], out / "00_reference.png", size, quality, ledger)
     finish = edit_image("finish", [reference], f"{technique['finish']['prompt']} {technique['framing']}",
                         out / "99_finish.png", size, finish_quality, ledger)
+    finish_issues: list[str] = []
+    if check:  # one repaint against the picture itself, before anything copies the finish
+        finish_issues = check_finish(photo, finish, ledger).differences
+        for d in finish_issues:
+            print(f"  finish: {d}")
+        if finish_issues:
+            shutil.copy(finish, out / "99_finish_first.png")
+            fixes = " ".join(f"- {d}" for d in finish_issues)
+            finish = edit_image("finish (redo)", [finish, photo],
+                                "The first image is an acrylic painting of the second image. Repaint it with these fixes so it "
+                                f"matches the second image: {fixes} Keep everything else the same: composition, shapes, "
+                                f"brushwork, and painting style. {technique['framing']}",
+                                out / "99_finish.png", size, finish_quality, ledger)
     plan = plan_lesson(photo, finish, technique, ledger)
     sample_swatches(plan, finish)
 
@@ -637,6 +670,7 @@ def run_planned(photo: Path, technique: dict, mode: str, quality: str, finish_qu
         "claude_model": CLAUDE_MODEL,
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
                        "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]},
+        "finish_issues": finish_issues,
         "review_issues": issues,
         "stages": [
             {

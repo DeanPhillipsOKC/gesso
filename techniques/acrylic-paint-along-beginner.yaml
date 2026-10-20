@@ -26,13 +26,15 @@ palette:
 ground: white
 
 # How many steps a lesson may have. Claude picks the number that fits the picture.
-step_range: [5, 10]
+step_range: [5, 12]
 
 rules:
   - Paint back to front. What's farthest away goes on first; anything in front goes on later, on top.
   - Paint background areas straight through where thinner things in front will go (branches, poles, grass, shrubs). Never leave gaps or outlines for them.
   - Each step paints one part of the picture or a small group of parts at the same distance. No empty steps, and no step for something the picture doesn't have.
   - Big shapes before small ones. Texture, shadows, and highlights come after the shapes they sit on, and only where the picture has them.
+  - Give the main subject the steps a teacher would. Base color, shading, and highlights are separate steps when the subject has them, and a teacher's two or three shading layers (a darker middle tone, then the darkest lines, then the light) stay separate steps too.
+  - Anything in front of the subject (leaves, grass, flowers, vines at its base) goes on after the subject, over it.
   - The last step is the final details and brightest highlights, and it ends with the finished painting.
   - Every color is a named mix of the palette tubes. Reuse the same mix name whenever the same paint is used again.
   - Beginner-friendly: 2 to 5 short instructions per step, plain words, one brush move per instruction.
@@ -59,8 +61,11 @@ simplify:
     composition and the main subject exactly where they are. Merge small details into a handful of
     large, simple shapes (roughly 10 to 25). Reduce it to three clear values: light, middle, and
     dark. Keep only colors that can be mixed from white, yellow, red, ultramarine blue, and burnt
-    sienna. Remove clutter, fine textures, and anything a beginner couldn't paint in an afternoon.
-    It must still be clearly the same scene. Flat image, full frame, no border, no text.
+    sienna, but keep every area's own color and hue: mix purples, golds, and mint greens rather
+    than swapping them for plainer colors. Remove clutter and anything a beginner couldn't paint in
+    an afternoon, but keep the character of each texture in simple form (scattered dabs stay
+    scattered dabs, splattered stars stay many small dots, swirls stay swirls). Don't add objects
+    or turn anything into something else. It must still be clearly the same scene. Flat image, full frame, no border, no text.
 
 finish:
   prompt: >-
@@ -68,4 +73,4 @@ finish:
     Simple shapes, slightly soft edges, visible brushstrokes, matte acrylic finish, canvas weave
     faintly visible in thin areas. Limited palette of white, yellow, red, ultramarine blue, and
     burnt sienna. Charming and achievable, not photorealistic. Keep the composition exactly as in
-    the reference.
+    the reference, and keep every area's colors and textures as in the reference.
