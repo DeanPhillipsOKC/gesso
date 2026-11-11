@@ -14,11 +14,11 @@ paid image model, so it needs a reason no filter works and stays under the lesso
 from __future__ import annotations
 
 import argparse
-import contextlib
 import hashlib
 import json
 import shutil
 import sys
+import threading
 import time
 from pathlib import Path
 
@@ -87,54 +87,102 @@ def cache_key(inputs: list[Path], prompt: str, size: str, quality: str) -> str:
     return h.hexdigest()
 
 
-def render(a: argparse.Namespace, client=None) -> dict:
-    reason = (a.why_not_filter or "").strip()
+class QuietLedger(Ledger):
+    """The spike's ledger, with progress on stderr so stdout stays one JSON line (and threads don't fight
+    over a redirected stdout)."""
+
+    def add(self, step, model, seconds, usage, cost):
+        self.calls.append({"step": step, "model": model, "seconds": round(seconds, 1), "usage": usage, "cost_usd": round(cost, 4)})
+        print(f"  {step}: {seconds:.0f}s, ~${cost:.3f}", file=sys.stderr)
+
+
+class Budget:
+    """The lesson's ledger plus its caps, safe to share between render threads. A render reserves its
+    estimated cost before calling, so parallel renders can't overshoot the cap together."""
+
+    def __init__(self, lesson: Path, max_cost: float, max_redos: int):
+        self.ledger = LessonLedger(lesson)
+        self.max_cost, self.max_redos = max_cost, max_redos
+        self.lock = threading.Lock()
+        self.reserved = 0.0
+        self.reserved_steps: dict[str, int] = {}
+
+    def reserve(self, step: str, quality: str) -> float:
+        with self.lock:
+            done = self.ledger.paid_renders_for(step) + self.reserved_steps.get(step, 0)
+            if done > self.max_redos:
+                raise Refused(f"step '{step}' already has {done} renders (1 plus {self.max_redos} redos). "
+                              "Flag it for the owner instead of rendering again.")
+            estimate = self.ledger.estimate(quality)
+            spent = self.ledger.total_cost + self.reserved
+            if spent + estimate > self.max_cost:
+                raise Refused(f"lesson has spent ${spent:.2f} of its ${self.max_cost:.2f} cap and a {quality} render "
+                              f"can cost up to ${estimate:.2f}. Flag the step for the owner.")
+            self.reserved += estimate
+            self.reserved_steps[step] = self.reserved_steps.get(step, 0) + 1
+            return estimate
+
+    def record(self, entry: dict, estimate: float = 0.0) -> None:
+        with self.lock:
+            if estimate:
+                self.reserved -= estimate
+                self.reserved_steps[entry["step"]] -= 1
+            self.ledger.calls.append(entry)
+            self.ledger.save()
+
+    def release(self, step: str, estimate: float) -> None:
+        with self.lock:
+            self.reserved -= estimate
+            self.reserved_steps[step] -= 1
+
+
+def render_one(budget: Budget, step: str, inputs: list[Path], prompt: str, out: Path, quality: str, reason: str,
+               size: str | None = None, fresh: bool = False, client=None) -> dict:
+    """One render under the lesson's caps, from the cache when possible. Raises Refused without spending."""
+    reason = (reason or "").strip()
     if not reason:
         raise Refused("--why-not-filter is required: say why no filter or composite can make this step.")
-    inputs = [Path(p) for p in a.inputs]
     for p in inputs:
         if not p.exists():
             raise Refused(f"input image not found: {p}")
-
-    lesson = Path(a.lesson)
-    ledger = LessonLedger(lesson)
-    size = a.size or size_for(inputs[0])
-    out = Path(a.out) if a.out else lesson / f"{a.step}.png"
-    key = cache_key(inputs, a.prompt, size, a.quality)
+    size = size or size_for(inputs[0])
+    key = cache_key(inputs, prompt, size, quality)
     cached = CACHE_DIR / f"{key}.png"
-    entry = {"tool": "render", "step": a.step, "model": IMAGE_MODEL, "quality": a.quality, "size": size,
+    entry = {"tool": "render", "step": step, "model": IMAGE_MODEL, "quality": quality, "size": size,
              "reason": reason, "inputs": [str(p) for p in inputs], "out": str(out), "cache_key": key}
+    out.parent.mkdir(parents=True, exist_ok=True)
 
-    if cached.exists() and not a.fresh:
-        out.parent.mkdir(parents=True, exist_ok=True)
+    if cached.exists() and not fresh:
         shutil.copyfile(cached, out)
         entry.update(cached=True, seconds=0, cost_usd=0.0)
+        budget.record(entry)
     else:
-        done = ledger.paid_renders_for(a.step)
-        if done > a.max_redos:
-            raise Refused(f"step '{a.step}' already has {done} renders (1 plus {a.max_redos} redos). "
-                          "Flag it for the owner instead of rendering again.")
-        estimate = ledger.estimate(a.quality)
-        if ledger.total_cost + estimate > a.max_cost:
-            raise Refused(f"lesson has spent ${ledger.total_cost:.2f} of its ${a.max_cost:.2f} cap and a "
-                          f"{a.quality} render can cost up to ${estimate:.2f}. Flag the step for the owner.")
-        out.parent.mkdir(parents=True, exist_ok=True)
-        tmp = Ledger()
-        with contextlib.redirect_stdout(sys.stderr):
-            edit_image(a.step, inputs, a.prompt, out, size, a.quality, tmp, client=client)
+        estimate = budget.reserve(step, quality)
+        try:
+            tmp = QuietLedger()
+            edit_image(step, inputs, prompt, out, size, quality, tmp, client=client)
+        except Exception:
+            budget.release(step, estimate)
+            raise
         call = tmp.calls[-1]
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(out, cached)
         entry.update(cached=False, seconds=call["seconds"], cost_usd=call["cost_usd"], usage=call["usage"])
+        budget.record(entry, estimate)
 
-    ledger.calls.append(entry)
-    ledger.save()
-    return {
-        "out": str(out), "step": a.step, "cached": entry["cached"], "cost_usd": entry["cost_usd"],
-        "seconds": entry["seconds"], "lesson_total_usd": ledger.total_cost,
-        "budget_left_usd": round(a.max_cost - ledger.total_cost, 4),
-        "paid_renders_for_step": ledger.paid_renders_for(a.step),
-    }
+    led = budget.ledger
+    return {"out": str(out), "step": step, "cached": entry["cached"], "cost_usd": entry["cost_usd"],
+            "seconds": entry["seconds"], "lesson_total_usd": led.total_cost,
+            "budget_left_usd": round(budget.max_cost - led.total_cost, 4),
+            "paid_renders_for_step": led.paid_renders_for(step)}
+
+
+def render(a: argparse.Namespace, client=None) -> dict:
+    lesson = Path(a.lesson)
+    out = Path(a.out) if a.out else lesson / f"{a.step}.png"
+    budget = Budget(lesson, a.max_cost, a.max_redos)
+    return render_one(budget, a.step, [Path(p) for p in a.inputs], a.prompt, out, a.quality, a.why_not_filter,
+                      a.size, a.fresh, client)
 
 
 def add_render(sub) -> None:
@@ -155,6 +203,172 @@ def add_render(sub) -> None:
     p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS, help=f"redos per step (default {DEFAULT_MAX_REDOS})")
     p.add_argument("--fresh", action="store_true", help="skip the cache and pay for a new render")
     p.set_defaults(func=render)
+
+
+# ---------------------------------------------------------------------------
+# Lesson files (#10): plan.json in, step images and lesson.html out
+# ---------------------------------------------------------------------------
+#
+# <lesson>/plan.json     written by the skill: the spike's LessonPlan fields plus "photo" and "technique" paths
+#                        (relative to the repo) and "quality"
+# <lesson>/99_finish.png the finished painting; every step copies from it
+# <lesson>/00_canvas.png plain white canvas (made on first use)
+# <lesson>/NN_<id>.png   step images, NN from 01
+# <lesson>/text.json     written by the skill: {"steps": [{stage_id, what_to_do, mixes, watch_out, paint_notes,
+#                        made_with, reason}]}
+# <lesson>/review.json   optional, written by the skill: {"finish_issues": [...], "review_issues": [...]}
+
+
+def load_plan(lesson: Path):
+    import yaml
+    from run import LessonPlan
+
+    raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
+    technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
+    return raw, LessonPlan.model_validate(raw), technique
+
+
+def step_paths(lesson: Path, plan) -> list[Path]:
+    paths = [lesson / f"{i + 1:02d}_{s.id}.png" for i, s in enumerate(plan.steps)]
+    paths[-1] = lesson / "99_finish.png"
+    return paths
+
+
+def render_step(a: argparse.Namespace, client=None) -> dict:
+    """Render planned steps with the spike's step prompt, all at once (parallel) or each from the next (anchored)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    from PIL import Image
+
+    from run import planned_prompt
+
+    lesson = Path(a.lesson)
+    raw, plan, technique = load_plan(lesson)
+    ids = [s.id for s in plan.steps]
+    finish = lesson / "99_finish.png"
+    if not finish.exists():
+        raise Refused(f"no finished painting at {finish}; make it first")
+    unknown = [x for x in a.steps if x not in ids]
+    if unknown:
+        raise Refused(f"unknown step ids {unknown}; plan has {ids}")
+    if ids[-1] in a.steps:
+        raise Refused(f"'{ids[-1]}' is the last step, which is the finished painting itself")
+    if a.fix and len(a.steps) != 1:
+        raise Refused("--fix applies to one step at a time")
+    canvas = lesson / "00_canvas.png"
+    if not canvas.exists():
+        Image.new("RGB", Image.open(finish).size, (246, 245, 240)).save(canvas)
+    paths = step_paths(lesson, plan)
+    budget = Budget(lesson, a.max_cost, a.max_redos)
+
+    def one(step_id: str) -> dict:
+        i = ids.index(step_id)
+        s = plan.steps[i]
+        later = paths[i + 1]
+        anchored = a.mode == "anchored" and later != finish
+        if anchored and not later.exists():
+            return {"step": s.id, "refused": f"anchored mode needs the next step's image first: {later.name}"}
+        base = later if anchored else finish
+        inputs = ([base] if s.covers_canvas else [base, canvas]) + ([finish] if anchored else [])
+        prompt = planned_prompt(technique, s, anchored, [t.paints for t in plan.steps[: i + 1]],
+                                [t.paints for t in plan.steps[i + 1:]], a.fix or "")
+        try:
+            return render_one(budget, s.id, inputs, prompt, paths[i], a.quality, a.why_not_filter, None, a.fresh, client)
+        except Refused as e:
+            return {"step": s.id, "refused": str(e)}
+
+    if not (a.why_not_filter or "").strip():
+        raise Refused("--why-not-filter is required: say why no filter or composite can make these steps.")
+    order = sorted(a.steps, key=ids.index, reverse=True)  # latest first, so anchored steps can chain
+    if a.mode == "parallel":
+        with ThreadPoolExecutor(max_workers=6) as pool:
+            results = list(pool.map(one, order))
+    else:
+        results = [one(x) for x in order]
+    led = budget.ledger
+    return {"steps": results, "lesson_total_usd": led.total_cost, "budget_left_usd": round(a.max_cost - led.total_cost, 4)}
+
+
+def publish(a: argparse.Namespace) -> dict:
+    """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
+    from run import CLAUDE_MODEL, render_html, sample_swatches
+
+    lesson = Path(a.lesson)
+    raw, plan, technique = load_plan(lesson)
+    paths = step_paths(lesson, plan)
+    missing = [p.name for p in paths if not p.exists()]
+    if missing:
+        raise Refused(f"missing step images: {missing}")
+    sample_swatches(plan, paths[-1])
+    text_path = lesson / "text.json"
+    text = {t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]} if text_path.exists() else {}
+    review_path = lesson / "review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
+    led = LessonLedger(lesson)
+    paints = {p.name: p for p in plan.paints}
+
+    photo = ROOT / raw["photo"]
+    photo_copy = lesson / f"photo{photo.suffix}"
+    if photo.exists() and not photo_copy.exists():
+        shutil.copyfile(photo, photo_copy)
+
+    def txt(s, key, default):
+        return text[s.id].get(key, default) if s.id in text else default
+
+    stages = [
+        {
+            "id": s.id, "name": s.name, "image": paths[i].name, "paints": s.paints, "looks_like": s.looks_like,
+            "steps": txt(s, "what_to_do", s.how), "mixes": txt(s, "mixes", []),
+            "colors": [paints[c].model_dump() for c in s.colors if c in paints],
+            "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
+            "brushes": s.brushes, "dry_time": technique["dry_time"],
+            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""),
+        }
+        for i, s in enumerate(plan.steps)
+    ]
+    lesson_data = {
+        "photo": photo.name, "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
+        "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
+        "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
+                       "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]},
+        "finish_issues": review.get("finish_issues", []), "review_issues": review.get("review_issues", []),
+        "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
+        "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
+    }
+    (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
+    (lesson / "lesson.html").write_text(render_html(lesson_data, technique, photo_copy.name), encoding="utf-8")
+
+    by_source: dict[str, int] = {}
+    for st in stages:
+        k = st["made_with"].split(":")[0]
+        by_source[k] = by_source.get(k, 0) + 1
+    renders = [c for c in led.calls if c.get("tool") == "render"]
+    return {"html": str(lesson / "lesson.html"), "steps": len(stages), "steps_by_source": by_source,
+            "paid_renders": sum(1 for c in renders if not c.get("cached")),
+            "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
+
+
+def add_lesson_tools(sub) -> None:
+    p = sub.add_parser(
+        "render-step", help="PAID. Render planned steps from <lesson>/plan.json with the spike's step prompt.",
+        description="Render one or more planned steps, each copying from the finished painting (parallel) or from the "
+                    "next step and the finish (anchored). Same reason, caps, ledger, and cache as render.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--steps", nargs="+", required=True, help="step ids from plan.json (not the last one)")
+    p.add_argument("--mode", choices=["parallel", "anchored"], default="parallel")
+    p.add_argument("--fix", help="redo instruction for one step, from the review")
+    p.add_argument("--why-not-filter", help="required: why no filter or composite can make these steps")
+    p.add_argument("--quality", choices=QUALITIES, default="low")
+    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST)
+    p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS)
+    p.add_argument("--fresh", action="store_true")
+    p.set_defaults(func=render_step)
+
+    p = sub.add_parser("publish", help="Free. Build lesson.json and lesson.html once every step image exists.",
+                       description="Snap paint swatches to the finish, merge plan.json, text.json, review.json, and "
+                                   "the ledger, and write lesson.json and lesson.html.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=publish)
 
 
 # ---------------------------------------------------------------------------
@@ -258,6 +472,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub = ap.add_subparsers(dest="tool", required=True, metavar="TOOL")
     add_filters(sub)
     add_render(sub)
+    add_lesson_tools(sub)
     return ap
 
 
@@ -265,7 +480,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool == "render" else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "render-step") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2
