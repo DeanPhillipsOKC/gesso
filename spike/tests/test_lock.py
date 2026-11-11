@@ -91,6 +91,32 @@ class LockTests(unittest.TestCase):
             self.assertTrue(np.abs(out[5, 5].astype(int) - finish[5, 5]).max() < 5)  # settled to the finish
             self.assertTrue(np.abs(out[75, 115].astype(int) - finish[75, 115]).max() > 50)  # the star is still to come
 
+    def test_a_redo_after_locking_becomes_the_new_raw(self):
+        with tempfile.TemporaryDirectory() as d:
+            lesson = Path(d)
+            Image.fromarray(blank((30, 90, 200))).save(lesson / "99_finish.png")
+            Image.fromarray(blank((30, 90, 200))).save(lesson / "01_sky.png")
+            args = (lesson, [lesson / "01_sky.png"], lesson / "99_finish.png", None, [[[0, 0, 1, 1]]])
+            lock.lock(*args)
+            redo = blank((40, 100, 210))
+            Image.fromarray(redo).save(lesson / "01_sky.png")  # a redo replaces the step after the lock
+            lock.lock(*args)
+            raw = np.asarray(Image.open(lesson / "trials" / "raw" / "01_sky.png"))
+            self.assertTrue((raw == redo).all())
+
+    def test_backward_pass_matches_tone_inside_later_boxes(self):
+        with tempfile.TemporaryDirectory() as d:
+            lesson = Path(d)
+            finish = blank((40, 150, 150))  # teal water everywhere
+            Image.fromarray(finish).save(lesson / "99_finish.png")
+            step = blank((55, 170, 165))  # the step's water, a lighter shade of the same teal
+            Image.fromarray(step).save(lesson / "01_water.png")
+            lock.lock(lesson, [lesson / "01_water.png"], lesson / "99_finish.png", None, [[[0, 0, 1, 1]]],
+                      final_regions=[[0.5, 0.3, 0.8, 0.7]])  # a boat box: the last step paints there
+            out = np.asarray(Image.open(lesson / "01_water.png")).astype(int)
+            inside, outside = out[40, 78], out[40, 20]
+            self.assertLess(np.abs(inside - outside).max(), 8)  # no lighter rectangle where the box is
+
     def test_lock_keeps_raw_renders_and_can_rerun(self):
         with tempfile.TemporaryDirectory() as d:
             lesson = Path(d)
