@@ -255,6 +255,12 @@ The budget is a signal, not a cap: never make an instruction unclear to fit it. 
   text. Split the step in the plan if its pictures allow it, move how-to detail into `strokes` or a construction
   diagram, or leave it long and say why in `notes.json` under `long_steps_kept`. A clear long step beats a short
   vague one.
+Never trim a size, a position, or a count: where something goes, how big it is, and how many there are are the
+instruction itself (balloon trim, 2026-11-11: halving the text dropped the balloon's width, the number of lavender
+rows, and the trunk's size, and the reviewer's vague findings went from 3 to 8). Give them as grid numbers
+("centered 28% across, about 15% wide"), or show them in a diagram.
+A mix used only in one step (a shadow or highlight made from another paint) still goes in that step's `colors`,
+so the painter sees its recipe and swatch; better, put it in the step's `values` table.
 The step review (6b) runs after this and flags any instruction that got vague, so trimming can't quietly drop
 what the painter needs.
 
