@@ -24,7 +24,9 @@ def _git(*args: str) -> str:
 
 def stamp(today: dt.date | None = None) -> dict:
     commit = _git("rev-parse", "--short", "HEAD") or "unknown"
-    dirty = bool(_git("status", "--porcelain", "--untracked-files=no"))
+    # only code that shapes a lesson counts; site/ and docs/ edits don't make a lesson's stamp dirty
+    dirty = bool(_git("status", "--porcelain", "--untracked-files=no", "--", "spike", "techniques", "palettes",
+                      ".claude"))
     return {"version": version(), "commit": commit, "dirty": dirty,
             "published": (today or dt.date.today()).isoformat()}
 
