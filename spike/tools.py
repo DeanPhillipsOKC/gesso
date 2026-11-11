@@ -688,6 +688,66 @@ def split_texture(a: argparse.Namespace) -> dict:
                     "lock-steps, publish, step-pairs"}
 
 
+def carry_forward(a: argparse.Namespace) -> dict:
+    """Copy a later step's pixels inside boxes onto an earlier step, so a subject's shape and markings match from
+    the step that paints them on. Free (chickadee, 2026-11-11: the head step's cap and cheek band differed from the
+    feather step's; the head step was made from the feather step's head on the body step's plain bird)."""
+    import cv2
+    import numpy as np
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    _, plan, _ = load_plan(lesson)
+    ids = [s.id for s in plan.steps]
+    for sid in (a.source, a.target):
+        if sid not in ids:
+            raise Refused(f"unknown step {sid}; plan has {ids}")
+    if ids.index(a.source) <= ids.index(a.target):
+        raise Refused("--from must be a later step than --to")
+    paths = step_paths(lesson, plan)
+    to_path, from_path = paths[ids.index(a.target)], paths[ids.index(a.source)]
+    dst = np.asarray(Image.open(to_path).convert("RGB")).astype(np.float32)
+    src = np.asarray(Image.open(from_path).convert("RGB").resize(dst.shape[1::-1])).astype(np.float32)
+    h, w = dst.shape[:2]
+    mask = np.zeros((h, w), np.float32)
+    for x0, y0, x1, y1 in a.box:
+        mask[int(y0 * h):int(y1 * h), int(x0 * w):int(x1 * w)] = 1
+    mask = cv2.GaussianBlur(mask, (0, 0), 3)[..., None]
+    Image.fromarray(np.clip(dst * (1 - mask) + src * mask, 0, 255).astype(np.uint8)).save(to_path)
+    LessonLedger(lesson).append({"tool": "filter", "filter": "carry-forward", "step": a.target, "why": a.why,
+                                 "input": str(from_path), "out": str(to_path), "settings": {"box": a.box}, "cost_usd": 0.0})
+    return {"out": str(to_path), "from": a.source, "cost_usd": 0.0,
+            "next": "lock-steps, then publish and step-pairs, and look at the subject across its steps"}
+
+
+def finish_from_step(a: argparse.Namespace, client=None) -> dict:
+    """Rebuild the finished painting from the last step, adding only what the last step paints, so the subject
+    can't change shape at the very end (chickadee, 2026-11-11: the finish drew the bird smaller and more upright
+    than every step before it). The old finish is kept in trials/."""
+    lesson = Path(a.lesson)
+    _, plan, technique = load_plan(lesson)
+    paths = step_paths(lesson, plan)
+    base = paths[-2]
+    if not base.exists():
+        raise Refused(f"missing {base.name}")
+    finish = paths[-1]
+    keep = lesson / "trials" / f"99_finish_before_{time.strftime('%H%M%S')}.png"
+    keep.parent.mkdir(parents=True, exist_ok=True)
+    if finish.exists():
+        shutil.copyfile(finish, keep)
+    prompt = (f"This is a nearly finished acrylic painting. Add only: {a.add}. Change nothing else: keep every "
+              f"shape, size, position, color, and brushstroke exactly as it is. {technique.get('framing', '')}")
+    budget = Budget(lesson, a.max_cost, a.max_redos)
+    out = lesson / "trials" / "finish_from_step.png"
+    r = render_one(budget, "finish", [base], prompt, out, a.quality, a.why_not_filter, None, False, client)
+    from PIL import Image
+
+    Image.open(out).convert("RGB").resize(Image.open(base).size).save(finish)
+    return {**r, "finish": str(finish), "previous_finish": str(keep),
+            "next": "read the new finish against the last step: only the listed details added. Then sample swatches "
+                    "again (mix), lock-steps, publish, step-pairs"}
+
+
 def lock_steps(a: argparse.Namespace) -> dict:
     """Keep finished areas and areas a step doesn't paint from changing (#30). Free."""
     import lock as lk
@@ -796,6 +856,28 @@ def add_lesson_tools(sub) -> None:
                    help="the subject's box, 0-1; a crop must keep it whole")
     p.add_argument("--why", required=True, help="what the subject is and what must stay in the picture")
     p.set_defaults(func=fit_canvas)
+
+    p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
+                       description="For a subject that changes shape between steps: copies the later step's pixels inside the "
+                                   "boxes onto the earlier step, with a soft edge. Lock again afterwards.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--from", dest="source", required=True, help="the later step id, whose shape is right")
+    p.add_argument("--to", dest="target", required=True, help="the earlier step id to correct")
+    p.add_argument("--box", type=float, nargs=4, action="append", required=True, metavar=("X0", "Y0", "X1", "Y1"),
+                   help="0-1 box to copy; repeat for more")
+    p.add_argument("--why", required=True)
+    p.set_defaults(func=carry_forward)
+
+    p = sub.add_parser("finish-from-step", help="PAID. Rebuild the finished painting from the last step, adding only its details.",
+                       description="When the finish changes the subject's shape compared with the steps before it: renders "
+                                   "a new finish from the last step with only the listed details added. Keeps the old one.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--add", required=True, help="what the last step adds, e.g. 'the eye, beak, and feet; leaf veins'")
+    p.add_argument("--why-not-filter", required=True)
+    p.add_argument("--quality", choices=QUALITIES, default="high")
+    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST)
+    p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS)
+    p.set_defaults(func=finish_from_step)
 
     p = sub.add_parser("split-texture", help="Free. Split a step that jumps from flat to textured into passes, darkest marks first.",
                        description="Makes in-between pictures from the step before and the step itself (its new paint arriving "
@@ -975,7 +1057,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "render-step") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "render-step", "finish-from-step") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2

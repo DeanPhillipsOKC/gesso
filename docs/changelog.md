@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.22.0 (2026-11-11)
+- The main subject keeps its shape: both reviews flag a subject whose outline, size, posture, or markings change
+  between steps (the finish included) as a shape problem, never as drift, and the skill fixes it.
+- `finish-from-step` rebuilds the finish from the last step, adding only its details; `carry-forward` copies a
+  later step's subject onto an earlier step, free.
+
 ## POC 0.21.0 (2026-11-11)
 - Research on flower masses and water reflections (23 more sources, 61 in all), with rules and seven new stroke
   results in the paint-along technique.
