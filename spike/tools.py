@@ -430,6 +430,7 @@ def publish(a: argparse.Namespace) -> dict:
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
                        "components": plan.components, "mixes": list(paints.values())},
         "finish_issues": review.get("finish_issues", []), "review_issues": review.get("review_issues", []),
+        "text_issues": review.get("text_issues", []),
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }

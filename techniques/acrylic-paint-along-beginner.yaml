@@ -58,6 +58,8 @@ rules:
   - The last step is the final details and brightest highlights, and it ends with the finished painting.
   - Every color is a named mix of the palette tubes. Reuse the same mix name whenever the same paint is used again.
   - Beginner-friendly: 2 to 5 short instructions per step, plain words, one brush move per instruction.
+  - Let a layer dry before painting on top of it. Whenever a step paints over color from an earlier step (stripes, details, ribs, highlights over a base), its first instruction says to let that layer dry first, and how to tell (it's dry when it no longer feels cool or tacky). Wet paint underneath mixes into mud and makes lines feather. Paint wet into wet only where the step means to blend, and say so.
+  - Give each area the values the picture shows. Where the picture shows depth or texture (light and shadow sides, two greens in a field, bumpy rows, cloud undersides), name a dark, a middle, and a light mix and say where each goes, dark first, then lighter on top. One flat mix only where the picture is flat.
 
 brush_moves:
   - Long side-to-side strokes or the X stroke for blending skies and gradients while wet
