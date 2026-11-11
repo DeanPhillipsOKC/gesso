@@ -229,7 +229,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     """embed: images inlined (one file). standalone with embed: also a full HTML document, for the lessons site."""
     from construct import strip as build_strip
     from lesson_notes import behind, step_why
-    from version import line
+    from version import line, made_line
     read = lesson["photo_read"]
     stages = lesson["stages"]
     # Problems the review found and left (caps or rounds ran out), shown on their step so the painter knows.
@@ -360,7 +360,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
   <section><h2>The steps</h2><nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}
   {behind(lesson, technique, folder, embed, thumbs, sizes)}
-  {f'<footer class="made">Made with {e(line(lesson["gesso"]))}</footer>' if lesson.get("gesso") else ""}
+  {f'<footer class="made">Made with {e(made_line(lesson["gesso"]))}</footer>' if lesson.get("gesso") else ""}
 </div>"""
     if embed and not standalone:
         return head + body

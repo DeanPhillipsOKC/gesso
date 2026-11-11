@@ -38,3 +38,15 @@ class VersionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MadeWithTests(unittest.TestCase):
+    def test_republishing_keeps_the_made_with_version(self):
+        first = version.with_made({"version": "POC 0.20.0", "commit": "aaa1111", "dirty": False, "published": "2026-11-10"}, None)
+        self.assertEqual(first["made"]["version"], "POC 0.20.0")
+        again = version.with_made({"version": "POC 0.23.0", "commit": "bbb2222", "dirty": False, "published": "2026-11-11"}, first)
+        self.assertEqual(again["made"], first["made"])
+        self.assertIn("republished with POC 0.23.0", version.made_line(again))
+        self.assertNotIn("republished", version.made_line(first))
+        old = {"version": "POC 0.17.0", "commit": "ccc3333", "dirty": False, "published": "2026-11-09"}  # no made yet
+        self.assertEqual(version.with_made(first, old)["made"]["version"], "POC 0.17.0")

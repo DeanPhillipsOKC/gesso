@@ -192,7 +192,7 @@ def ladder(lesson: dict, filters: list[dict]) -> str:
 
 def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: list[str], sizes: list[str]) -> str:
     from lesson_page import dims
-    from version import line
+    from version import line, made_line
     notes = lesson.get("notes") or {}
     stages = lesson["stages"]
     calls = lesson.get("calls", [])
@@ -350,7 +350,7 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
                + (f'<div class="row"><span>Diagrams ({len(drawn)})</span><span>$0</span></div>' if drawn else "") +
                '<div class="row"><span>Planning, review, writing</span><span>$0*</span></div>'
                f'<div class="row total"><span>Total, {len(renders)} renders</span><span>${total:.2f}</span></div>'
-               + (f'<div class="row sub"><span>{e(line(lesson["gesso"]))}</span></div>' if lesson.get("gesso") else "") +
+               + (f'<div class="row sub"><span>{e(made_line(lesson["gesso"]))}</span></div>' if lesson.get("gesso") else "") +
                '<p class="thanks">thanks for painting!</p></div>'
                '<p class="small">* Claude did this in Claude Code on a subscription, so there was no API charge.</p>')
     parts.append(fold("The receipt", f"${total:.2f} in image renders", receipt))
