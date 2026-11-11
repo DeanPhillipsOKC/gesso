@@ -103,7 +103,8 @@ def packet(lesson: Path) -> dict:
             "what_to_do": s.get("steps", []), "strokes": s.get("strokes", []),
             "brushes": [b["brush"] for b in s.get("brush_list", [])],
             "paints": [{"name": c["name"], "recipe": c.get("recipe", "")} for c in s.get("colors", [])],
-            "watch_out": s.get("watch_out", []),
+            "watch_out": s.get("watch_out", []), "values": s.get("values", []),
+            "has_diagram": bool(s.get("construct")),
         })
     result = {"lesson": str(lesson), "level": technique.get("level", "beginner"),
               "stroke_results": technique.get("stroke_results", []), "steps": steps}

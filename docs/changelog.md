@@ -6,6 +6,17 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.13.0 (2026-11-11)
+- Show, don't tell: when something takes more than a sentence to explain (a shape, a stroke path, which value
+  goes where), the lesson shows it with a diagram, a `values` table, or the step picture, and the words point at it.
+- Steps can carry a `values` table (dark, mid, light: paint and where), shown with swatches on the page and in
+  the walkthrough export.
+- `publish` also lists single instructions over about 40 words in `long_instructions`.
+- The word budget is a signal, not a cap: a long step is trimmed only where it repeats the page; an instruction
+  doing two moves is split; a step that really has a lot to do is split in the plan, moved into strokes or a
+  diagram, or kept long with a reason. Length is checked before the step review, so the reviewer catches any
+  instruction trimming made vague.
+
 ## POC 0.12.0 (2026-11-11)
 - A word budget for step text (about 100 words a step), with `publish` listing steps over it in `long_steps`.
   The page already shows recipes, brushes, strokes, and drying, so the text doesn't repeat them.

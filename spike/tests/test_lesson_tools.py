@@ -134,12 +134,25 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn("Text check: flat", html)
         self.assertIn("One green for a two-tone hill", html)
 
+    def test_values_table_shows_depth(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [
+            {"value": "dark", "paint": "Sky blue", "where": "the top"}, {"value": "light", "paint": "Glow", "where": "low"}]}]}
+        (self.lesson / "text.json").write_text(json.dumps(text))
+        self.run_tool("publish", "--lesson", str(self.lesson))
+        html = (self.lesson / "lesson.html").read_text(encoding="utf-8")
+        self.assertIn('<table class="values">', html)
+        self.assertIn("the top", html)
+        data = json.loads((self.lesson / "embed" / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["steps"][0]["values"][0]["value"], "dark")
+
     def test_publish_lists_long_steps(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["word " * 120]}, {"stage_id": "hill", "what_to_do": ["Short."]}]}
         (self.lesson / "text.json").write_text(json.dumps(text))
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(r["long_steps"], [{"id": "sky", "words": 120}])
+        self.assertEqual(r["long_instructions"], [{"id": "sky", "n": 1, "words": 120}])
 
     def test_preview_with_no_diagrams_says_why(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")

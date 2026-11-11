@@ -87,6 +87,13 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .mix{display:flex;align-items:center;gap:.4rem;font-size:.92rem}
 .dot{width:1rem;height:1rem;border-radius:50%;border:1px solid var(--rule);flex:none}
 .watch{color:var(--warn);font-size:.95rem}
+/* Values table: the dark, mid, and light of a step, so depth is shown, not described. */
+table.values{border-collapse:collapse;width:100%;font-size:.92rem}
+table.values caption{text-align:left;font:600 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:.4rem}
+table.values th,table.values td{text-align:left;padding:.35rem .5rem;border-bottom:1px solid var(--rule);vertical-align:top}
+table.values thead th{font:600 .72rem/1.2 var(--mono);color:var(--muted)}
+table.values tbody th{font-weight:700;text-transform:capitalize;white-space:nowrap}
+table.values td .dot{display:inline-block;vertical-align:-2px;margin-right:.35rem}
 .warnc{display:block;color:var(--warn)}.warnc .dot{display:inline-block;vertical-align:-2px}
 /* Paints for this step: the mixes it uses, recipes included, so nothing has to be mixed ahead and dry out. */
 details.mixfor{background:var(--panel);border-radius:6px;padding:.6rem 1rem}
@@ -297,6 +304,12 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
                  f'<span class="small">{len(used)} paint{"s" if len(used) != 1 else ""}'
                  f'{f", {len(fresh)} new" if fresh else ""}</span></summary><ul class="plain mixlist">{mix_rows}</ul></details>'
                  ) if used else ""
+        vrows = "".join(
+            f'<tr><th scope="row">{e(v.get("value", ""))}</th><td>'
+            + (f'<span class="dot" style="background:{e(by_name[v["paint"]]["hex"])}"></span>' if v.get("paint") in by_name else "")
+            + f'{e(v.get("paint", ""))}</td><td>{e(v.get("where", ""))}</td></tr>' for v in s.get("values", []))
+        values = (f'<table class="values"><caption>Build the depth, dark first</caption><thead><tr><th>Value</th>'
+                  f'<th>Paint</th><th>Where</th></tr></thead><tbody>{vrows}</tbody></table>') if vrows else ""
         notes = "".join(f'<p class="small">{e(n)}</p>' for n in s.get("paint_notes", []))
         watch = "".join(f'<p class="watch">Watch out: {e(w)}</p>' for w in s.get("watch_out", []))
         flags = "".join(f'<p class="flag">Heads up, this picture is a little off: {e(x)} Paint what the steps say.</p>'
@@ -307,7 +320,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
   <div class="text">
     <div><p class="num">STEP {i + 1} OF {len(stages)}</p><h3>{e(s['name'])}</h3></div>
     <ol class="do">{items(s['steps'])}</ol>
-    {mixes}{notes}
+    {mixes}{values}{notes}
     <div class="tools">
       <p class="label">Brushes</p><div class="chips">{chips}</div>
       {f'<p class="label">Strokes</p>{strokes}' if strokes else ''}
