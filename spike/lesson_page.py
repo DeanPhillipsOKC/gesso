@@ -146,7 +146,6 @@ details.note>summary .hint{font:400 .85rem/1.3 var(--body);color:var(--muted);ma
 @media (max-width: 560px){.rung{grid-template-columns:1fr;gap:.4rem}.note-body,.why-body{padding-left:0}
   details.note>summary .hint{display:none}}
 @media (max-width: 760px){.step,.pair{grid-template-columns:1fr}}
-@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 """
 
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700'
@@ -161,6 +160,16 @@ def image_src(folder: Path, name: str, embed: bool, max_side: int = 900) -> str:
     buf = io.BytesIO()
     img.save(buf, format="JPEG", quality=82, optimize=True)
     return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+
+
+def dims(path: Path) -> str:
+    """width/height attributes, so the browser reserves each image's space before it decodes. Without them the page
+    grows while images load, and a jump to #behind or #step-N lands somewhere else."""
+    try:
+        w, h = ImageOps.exif_transpose(Image.open(path)).size
+    except OSError:
+        return ""
+    return f' width="{w}" height="{h}"'
 
 
 def title_for(lesson: dict) -> str:
@@ -205,7 +214,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
            f'<div><p class="label">Brushes</p><ul>{brush_items}</ul></div>'
            f'<div><p class="label">Also</p><ul><li>White canvas or canvas board</li><li>Water jar and paper towel</li>'
            f'<li>Palette or paper plate for mixing</li></ul></div>')
-    strip = "".join(f'<a href="#step-{i + 1}"><img src="{thumbs[i]}" alt="" loading="lazy">Step {i + 1}</a>'
+    sizes = [dims(folder / s["image"]) for s in stages]
+    strip = "".join(f'<a href="#step-{i + 1}"><img src="{thumbs[i]}"{sizes[i]} alt="" loading="lazy">Step {i + 1}</a>'
                     for i in range(len(stages)))
 
     steps_html = []
@@ -222,7 +232,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
                         for x in left.get(s["id"], []))
         steps_html.append(f"""
 <article class="step" id="step-{i + 1}">
-  <figure><img src="{imgs[i]}" alt="The canvas after step {i + 1}: {e(s['name'])}" loading="lazy"></figure>
+  <figure><img src="{imgs[i]}"{sizes[i]} alt="The canvas after step {i + 1}: {e(s['name'])}" loading="lazy"></figure>
   <div class="text">
     <div><p class="num">STEP {i + 1} OF {len(stages)}</p><h3>{e(s['name'])}</h3></div>
     <ol class="do">{items(s['steps'])}</ol>
@@ -249,15 +259,15 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
       <span>Light: <b>{e(read['light'])}</b></span><a href="#behind">How this lesson was made</a></div>
   </header>
   <div class="pair">
-    {f'<figure><img src="{photo}" alt="The original photo"><figcaption>Your photo</figcaption></figure>' if photo else ''}
-    <figure><img src="{finish}" alt="The finished painting"><figcaption>Where you'll end up</figcaption></figure>
+    {f'<figure><img src="{photo}"{dims(folder / lesson["photo_file"])} alt="The original photo"><figcaption>Your photo</figcaption></figure>' if photo else ''}
+    <figure><img src="{finish}"{sizes[-1]} alt="The finished painting"><figcaption>Where you'll end up</figcaption></figure>
   </div>
   <section><h2>What you need</h2><div class="kit">{kit}</div></section>
   <section><h2>Your paints</h2><p class="small">Mix these from the tubes before you start. Parts are by volume.</p>
     <div class="paints">{paint_cards}</div></section>
   <section><h2>The steps</h2><nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}
-  {behind(lesson, technique, folder, embed, thumbs)}
+  {behind(lesson, technique, folder, embed, thumbs, sizes)}
 </div>"""
     if embed:
         return head + body

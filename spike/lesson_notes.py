@@ -171,7 +171,8 @@ def ladder(lesson: dict, filters: list[dict]) -> str:
             "didn't hold up. Claude starts at the top and pays for a render only when nothing free will do.</p></div>")
 
 
-def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: list[str]) -> str:
+def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: list[str], sizes: list[str]) -> str:
+    from lesson_page import dims
     notes = lesson.get("notes") or {}
     stages = lesson["stages"]
     calls = lesson.get("calls", [])
@@ -203,7 +204,7 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     # Step order, as a storyboard
     if notes.get("order") or notes.get("steps"):
         board = "".join(
-            f'<li><img src="{thumbs[i]}" alt="" loading="lazy"><div><b>{i + 1}. {e(s["name"])}</b>'
+            f'<li><img src="{thumbs[i]}"{sizes[i]} alt="" loading="lazy"><div><b>{i + 1}. {e(s["name"])}</b>'
             f'<p class="small">{e(notes.get("steps", {}).get(s["id"], ""))}</p></div></li>' for i, s in enumerate(stages))
         order = f"<p>{e(notes['order'])}</p>" if notes.get("order") else ""
         parts.append(fold("Why the steps go in this order", f"{len(stages)} steps", f'{order}<ol class="board">{board}</ol>'))
@@ -218,7 +219,7 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
                  "dropped": '<span class="stamp">Not used</span>'}.get(f.get("verdict", ""), "")
         settings = f" · {e(f['settings'])}" if f.get("settings") else ""
         result = f" {e(f['result'])}" if f.get("result") else ""
-        figs.append(f'<figure><img src="{src_for(folder, path, embed, 420)}" alt="{e(f.get("tool", ""))} filter output" '
+        figs.append(f'<figure><img src="{src_for(folder, path, embed, 420)}"{dims(path)} alt="{e(f.get("tool", ""))} filter output" '
                     f'loading="lazy">{stamp}<b>{e(f.get("label") or f.get("tool", ""))}</b>'
                     f'<code>{e(f.get("tool", ""))}{settings}</code><figcaption>{e(f.get("why", ""))}{result}</figcaption></figure>')
     if figs:
@@ -228,7 +229,7 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     cards = []
     for t in notes.get("throwaways", []):
         imgs = [p for p in (find_image(folder, x) for x in t.get("images", [])) if p]
-        sheet = "".join(f'<figure><img src="{src_for(folder, p, embed, 420)}" alt="Throwaway filter output" loading="lazy">'
+        sheet = "".join(f'<figure><img src="{src_for(folder, p, embed, 420)}"{dims(p)} alt="Throwaway filter output" loading="lazy">'
                         f"<code>{e(p.name)}</code></figure>" for p in imgs)
         steps_txt = ", ".join(f"step {num[x]}" for x in t.get("steps", []) if x in num)
         verdict = t.get("verdict", "")
