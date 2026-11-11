@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.21.0 (2026-11-11)
+- Research on flower masses and water reflections (23 more sources, 61 in all), with rules and seven new stroke
+  results in the paint-along technique.
+- `split-texture`'s new steps start blank (their own colors and text, not the parent's copy).
+- `canvas-view` takes full paths and refuses missing files; old crops are dropped after steps are renumbered.
+- A paint one tube already gives (within the slack) uses that tube straight; `publish` lists `duplicate_recipes`.
+
 ## POC 0.20.0 (2026-11-11)
 - No texture arrives all at once: `publish` and `step-pairs` measure `texture_jumps` (a step turning over 10% of
   the canvas from flat to textured), and the skill fixes each one with `split-texture`, which inserts free
