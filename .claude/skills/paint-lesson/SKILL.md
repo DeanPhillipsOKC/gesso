@@ -192,6 +192,11 @@ this check exists so that doesn't happen again.
 - The step adds lines whose placement depends on the object's structure: rib lines on seams, fur that follows
   the body, a face's features, windows in perspective, branches forking off a trunk.
 - You'd need to sketch it on scrap paper first to get it right.
+- Where things start or join isn't clear from the picture: which trunk a branch grows from, where a trunk forks.
+
+**Also check the words against the picture.** While you look at each step, fix any instruction that says
+something the picture doesn't show (the beginner checks on 2026-11-11 found a trunk said to pass "left of the
+sun" that actually forks around it, and a cat head said to be a third of the body's width that is about half).
 
 **Usually no diagram:** flat fills and backgrounds, skies and gradients, textures made by repeating one mark
 (dabbed foliage, flicked grass, stars), and anything the words already make obvious ("a thin line along the
