@@ -2,6 +2,8 @@
 # No toned ground, no sketch, no separate block-in: start on a plain white canvas and paint each
 # part of the scene from farthest to nearest, then texture, shadows, and highlights. Each step names
 # the brush move to use (owner's pick, 2026-10-19).
+# Owner's corrections from the pumpkin-patch lesson (2026-11-11): run the sky past the ground so its
+# swirls stay continuous, and build shaped objects from simple pieces, as the real tutorials do.
 #
 # This technique sets the rules; Claude plans the steps for each picture within them (no fixed
 # stage list, docs/decisions.md). The fixed seven-stage version is in git history (5936bbe).
@@ -31,6 +33,8 @@ step_range: [5, 12]
 rules:
   - Paint back to front. What's farthest away goes on first; anything in front goes on later, on top.
   - Paint background areas straight through where thinner things in front will go (branches, poles, grass, shrubs). Never leave gaps or outlines for them.
+  - Run each background layer past where the next layer will cover it, so its strokes stay long and continuous. A sky goes below the horizon, and all the way to the bottom edge when its strokes are circular or swirly; the ground is then painted over it. Never stop a sky at the hill line and leave white canvas below.
+  - Build each shaped object from simple pieces, the way a teacher draws it. Start with one simple shape (an oval, circle, or rectangle), then add the rest in curved pieces. A pumpkin is a center oval first, then curved side segments on each side like ( ) or moustache shapes, smaller toward the edges. Say this in the block-in step's instructions.
   - Each step paints one part of the picture or a small group of parts at the same distance. No empty steps, and no step for something the picture doesn't have.
   - Big shapes before small ones. Texture, shadows, and highlights come after the shapes they sit on, and only where the picture has them.
   - Give the main subject the steps a teacher would. Base color, shading, and highlights are separate steps when the subject has them, and a teacher's two or three shading layers (a darker middle tone, then the darkest lines, then the light) stay separate steps too.
@@ -47,6 +51,7 @@ brush_moves:
   - Dry brushing with very little paint for soft light, mist, and texture
   - Horizontal strokes for ground, water, and fields; strokes that follow the direction of roads and paths
   - A liner brush for twigs and fine lines
+  - Building a shape from simple pieces: one center shape first, then curved strokes hugging it on each side, like parentheses
 
 dry_time: About 10 minutes between steps (a hair dryer on low speeds it up). An hour after the last step before handling.
 
