@@ -6,6 +6,14 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.12.0 (2026-11-11)
+- A word budget for step text (about 100 words a step), with `publish` listing steps over it in `long_steps`.
+  The page already shows recipes, brushes, strokes, and drying, so the text doesn't repeat them.
+- The first step says where the light comes from.
+- Paints used straight from a tube keep a one-tube recipe instead of a computed three-tube mix.
+- Two more stroke results: strokes toward a vanishing point (rows, paths) and horizontal strokes for flat ground.
+- `preview-diagrams` says when lesson.json has no diagrams yet, instead of blaming the browser.
+
 ## POC 0.11.0 (2026-11-11)
 - Technique rules and stroke results now come from cited research (`docs/research/acrylic-paint-along.md`):
   three values per 3D object, a stated light direction, distance and edges, stroke direction, paint load in

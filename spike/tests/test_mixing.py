@@ -45,6 +45,16 @@ class MixingTests(unittest.TestCase):
                          "3 parts white, 1 part ultramarine, a touch of burnt sienna")
         self.assertEqual(mixing.words({"Burnt sienna": 1}), "Burnt sienna, straight from the tube")
 
+    def test_straight_from_the_tube_stays_one_tube(self):
+        self.assertEqual(mixing.single_tube("Burnt sienna", "", PALETTE), "Burnt sienna")
+        self.assertEqual(mixing.single_tube("Basket brown", "burnt sienna, straight from the tube", PALETTE), "Burnt sienna")
+        self.assertIsNone(mixing.single_tube("Trunk brown", "2 parts burnt sienna, 1 part ultramarine", PALETTE))
+        self.assertIsNone(mixing.single_tube("Warm sky", "white with a touch of yellow", PALETTE))
+        self.assertIsNone(mixing.single_tube("Sky blue", "white and blue", PALETTE))
+        r = mixing.straight("Burnt sienna", "#7b4a10")
+        self.assertEqual(r["parts"], {"Burnt sienna": 1})
+        self.assertEqual(r["text"], "Burnt sienna, straight from the tube")
+
     def test_no_scaled_duplicates(self):
         for parts in mixing._candidates(PALETTE):
             self.assertFalse(parts.get("Titanium white") == 2 and parts.get("Ultramarine blue") == 2 and len(parts) == 2)

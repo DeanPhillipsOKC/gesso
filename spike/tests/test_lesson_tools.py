@@ -134,6 +134,19 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn("Text check: flat", html)
         self.assertIn("One green for a two-tone hill", html)
 
+    def test_publish_lists_long_steps(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        text = {"steps": [{"stage_id": "sky", "what_to_do": ["word " * 120]}, {"stage_id": "hill", "what_to_do": ["Short."]}]}
+        (self.lesson / "text.json").write_text(json.dumps(text))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(r["long_steps"], [{"id": "sky", "words": 120}])
+
+    def test_preview_with_no_diagrams_says_why(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.run_tool("publish", "--lesson", str(self.lesson))
+        code, r = self.run_tool("preview-diagrams", "--lesson", str(self.lesson))
+        self.assertIn("No diagrams in lesson.json", r["note"])
+
     def test_mix_computes_recipes_and_every_step_lists_its_paints(self):
         code, r = self.run_tool("mix", "--lesson", str(self.lesson))
         self.assertEqual(code, 0)

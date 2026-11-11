@@ -135,6 +135,12 @@ stroke_results:
   - stroke: Curved strokes that follow a form (hills, pumpkin ribs, a balloon)
     leaves: Marks that bend with the shape, which is what makes it look round or sloped.
     then: Use the darker mix along the shadow side and the lighter one along the lit side, both following the curve.
+  - stroke: Strokes toward a vanishing point (rows, paths, fences, furrows)
+    leaves: Bands that narrow and bunch together toward one point, which is what makes the ground lie down and recede.
+    then: Mark the point first with a dot. Pull every stroke along its row toward that dot, front to back, with the rows wide in front and thin near the point. Check a few rows with the brush handle held from the dot.
+  - stroke: Horizontal strokes for flat ground (fields, water, distant land)
+    leaves: Flat, level bands that read as ground stretching away; slight streaks that follow the stroke.
+    then: Keep the brush level and the strokes long. Lighter and smoother toward the back, darker and more textured in front.
   - stroke: Building from pieces (a center shape, then curved pieces on each side like parentheses)
     leaves: A shape made of distinct curved segments with small gaps or overlaps between them.
     then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.

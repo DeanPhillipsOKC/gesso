@@ -233,7 +233,24 @@ pick a sample spot nearer what the step needs.
 
 Read the final images in order and write each step's instructions from what its image actually shows, like
 `write_steps` in `spike/run.py`: name the real shapes and areas, give the mixes by paint name, keep the planned
-advice that still applies, plain words, 2 to 5 short steps. Every step's page lists its paints with their recipes,
+advice that still applies, plain words, 2 to 5 short steps.
+
+Keep it short; a beginner reads this with a wet brush in hand. Each step's `what_to_do` stays under about 100
+words, and each instruction under about 35 (balloon rerun, 2026-11-11: the new rules doubled the text to about 160
+words a step). To fit everything the technique asks for:
+- Don't repeat what the page already shows: recipes are in "Paints for this step", brushes in the brush chips,
+  stroke how-tos in `strokes`, and drying time in the drying line. Name the paint, brush, and stroke; don't
+  explain them again.
+- Say the drying cue in four words or so ("Let the sky dry."), and the paint load in one or two ("creamy",
+  "nearly dry", "thinned like ink").
+- The once-per-lesson notes (colors dry darker, the ugly stage, a test stroke) go in `paint_notes` or `watch_out`,
+  not in the instructions.
+`publish` lists any step over the budget in `long_steps`: trim those before you publish the artifact.
+
+The first step's first instruction states where the light comes from ("The light comes from the sun, low and a
+little left of center"), and every highlight after it stays on that side.
+
+Every step's page lists its paints with their recipes,
 because beginners mix as they go (acrylics dry on the palette), so a step's `colors` must hold every paint it uses.
 
 Every step also recommends its brushes and strokes, because beginners don't know which brush makes which mark:
