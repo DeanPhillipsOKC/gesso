@@ -56,6 +56,28 @@ not the other way around.
 It will be slow, maybe several minutes per lesson. That's fine. It shows progress as stages
 finish, and a finished lesson is saved so it never has to be made twice.
 
+### The proof of concept today: the paint-lesson skill (2026-11-10)
+
+Until the app exists, lessons are made by a Claude Code skill, `/paint-lesson <photo>`
+(`.claude/skills/paint-lesson/SKILL.md`), with image tools in `spike/tools.py`. It follows the steps above
+with these differences (`docs/decisions.md`, 2026-11-10):
+
+- **Claude Code does the thinking.** Planning, the finish check, the step review (in a fresh subagent, so
+  nothing grades its own work), and the step text all run in the session, with no API calls.
+- **Filters first, renders last.** The simplified reference, value study, and palette come from free local
+  filters. Each image takes the first tool that works: a filter, a composite of the finish (#8), a throwaway
+  filter script (#11), a render seeded by one of those, then a plain render. Every render gives its reason and
+  stays under a dollar cap per lesson and a redo cap per step, and repeats come from a cache for free.
+- **Every step says how to paint it.** Each step recommends its brushes and the named strokes to use (X stroke,
+  press and lift, dry brushing, ...), and the lesson opens with the tubes, brushes, and mixed paints.
+- **The lesson is a private Claude artifact**: photo, finish, paints, and each step's picture, instructions,
+  brushes, and strokes, readable on a phone at the easel. Problems the review couldn't fix show on their step.
+
+First three lessons (paint-along, low quality steps, high quality finish): trees 6 steps $0.28, pumpkin patch
+10 steps $0.34, sleeping cat 9 steps $0.39, all image cost. The spike's lessons on the trees photo cost about
+$0.40, half of it Claude API calls. So far filters make the reference and the painter's studies, while the
+paint-along steps themselves are still renders; compositing (#8) is the next big saving.
+
 ## What each step includes
 
 - The image of the canvas at the end of the step, next to the reference photo
