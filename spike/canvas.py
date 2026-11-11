@@ -58,20 +58,27 @@ def frame_for(aspect: float) -> tuple[int, int]:
     return max(FRAMES.values(), key=used)
 
 
-def _crop_box(W: int, H: int, target: float, focus: tuple[float, float]) -> tuple[int, int, int, int]:
-    """The biggest box of the target shape, centered on the focal point as far as the edges allow."""
+def _crop_box(W: int, H: int, target: float, focus: tuple[float, float], keep=None) -> tuple[int, int, int, int]:
+    """The biggest box of the target shape. It starts centered on the picture, so the cut is split evenly between
+    both sides and the picture's own composition changes least, then shifts only as far as it must to keep the
+    subject (or, without one, the focal point) inside (11x14 run, 2026-11-11: centering on an off-center focal
+    point took the whole cut from one side, into the hill)."""
     if W / H > target:
         cw, ch = round(H * target), H
     else:
         cw, ch = W, round(W / target)
-    fx, fy = focus[0] * W, focus[1] * H
+    k = keep or (focus[0], focus[1], focus[0], focus[1])
 
-    def place(f: float, size: int, full: int) -> int:
-        # Center the focal point, as far as the edges allow. The picture's own composition already put it where
-        # it looks right; keeping it near the middle of what's left changes that the least.
-        return round(min(max(f - size / 2, 0), full - size)) if size < full else 0
+    def place(lo: float, hi: float, size: int, full: int) -> int:
+        if size >= full:
+            return 0
+        start = (full - size) / 2  # split evenly
+        start = min(start, lo)  # shift so the subject's near edge is in
+        start = max(start, hi - size)  # and its far edge
+        return round(min(max(start, 0), full - size))
 
-    x0, y0 = place(fx, cw, W), place(fy, ch, H)
+    x0 = place(k[0] * W, k[2] * W, cw, W)
+    y0 = place(k[1] * H, k[3] * H, ch, H)
     return x0, y0, x0 + cw, y0 + ch
 
 
@@ -87,10 +94,11 @@ def fit(img: Image.Image, canvas: str, focus=(0.5, 0.5), keep=None, orientation:
     if abs((W / H) / target - 1) <= SAME:
         mode, on_canvas, lost = "none", img, 0.0
     else:
-        box = _crop_box(W, H, target, focus)
+        box = _crop_box(W, H, target, focus, keep)
         lost = 1 - (box[2] - box[0]) * (box[3] - box[1]) / (W * H)
         k = keep or (focus[0], focus[1], focus[0], focus[1])
-        keeps = box[0] <= k[0] * W and box[1] <= k[1] * H and box[2] >= k[2] * W and box[3] >= k[3] * H
+        keeps = (box[0] <= k[0] * W + 1 and box[1] <= k[1] * H + 1 and box[2] >= k[2] * W - 1
+                 and box[3] >= k[3] * H - 1)  # a pixel of rounding either way
         if keeps and lost <= MAX_CROP_LOSS:
             mode, on_canvas = "crop", img.crop(box)
             result["crop_box"] = list(box)
@@ -104,6 +112,15 @@ def fit(img: Image.Image, canvas: str, focus=(0.5, 0.5), keep=None, orientation:
 
     # 2. the canvas in the model's frame
     FW, FH = frame_for(target)
+    if mode == "crop" and abs((W / H) / (FW / FH) - 1) <= SAME:
+        # The picture already has the frame's shape, so the frame is just the picture: what the crop cut off is
+        # exactly what fills the bands. No render (11x14 run, 2026-11-11).
+        box = result["crop_box"]
+        result["frame"] = img.resize((FW, FH), Image.LANCZOS)
+        result["frame_size"] = [FW, FH]
+        result["canvas_box"] = [round(box[0] / W, 4), round(box[1] / H, 4), round(box[2] / W, 4), round(box[3] / H, 4)]
+        result["needs_render"] = False
+        return result
     if abs((FW / FH) / target - 1) <= SAME:
         bw, bh = FW, FH
     elif FW / FH > target:

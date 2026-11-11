@@ -99,7 +99,7 @@ fits a square canvas (owner, 2026-11-11). Do this after 0b and before anything e
 5. Two coordinate systems, so keep them apart:
    - the plan's `looks_like` and render prompts describe the frame;
    - the step text the painter reads describes the canvas. Before writing it, run
-     `canvas-view 99_finish.png --lesson <lesson>` and measure on `canvas/99_finish.png` (grid it).
+     `canvas-view 99_finish.png --lesson <lesson>` and measure on `canvas/99_finish.png` with `grid --percent`.
 6. Record it in `notes.json` as `canvas_fit`: `{"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...",
    "lost": "the right 15% of empty water"}`.
 
@@ -187,7 +187,7 @@ plus three):
 }
 ```
 
-Measure, don't guess. Before writing any `looks_like`, run `grid --cells 10` on the finish and read where things
+Measure, don't guess. Before writing any `looks_like`, run `grid --percent` on the finish and read where things
 are from it: "the sun's center is 44% across and 40% down", not "right of center" (balloon, 2026-11-11: that guess
 was wrong and cost a paid redo). Give edges as numbers too: when a step leaves white canvas, say "a straight lower edge at 62% down" (balloon
 rerun, 2026-11-11: three redos were renders stopping the sky short). Spell out a subject's exact pattern (stripe

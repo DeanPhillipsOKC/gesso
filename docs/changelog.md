@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.14.1 (2026-11-11)
+- Canvas crops split the cut evenly between both sides, shifting only as far as the subject needs.
+- No band-fill render when the photo already has the frame's shape: the cut-off edges fill the bands for free.
+- `grid --percent`: lines at every 10% of width and height, so measurements match the page's percentages on any
+  canvas shape.
+- A stroke result for horizontal dashes on water (ripples, sun paths, reflections).
+
 ## POC 0.14.0 (2026-11-11)
 - `--canvas WxH` (inches): the picture is fitted to the painter's canvas before planning, cheapest first: no
   change, a free crop that keeps the subject, or one render that extends the scene. A rectangular canvas hangs

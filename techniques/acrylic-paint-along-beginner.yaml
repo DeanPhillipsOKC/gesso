@@ -141,6 +141,9 @@ stroke_results:
   - stroke: Horizontal strokes for flat ground (fields, water, distant land)
     leaves: Flat, level bands that read as ground stretching away; slight streaks that follow the stroke.
     then: Keep the brush level and the strokes long. Lighter and smoother toward the back, darker and more textured in front.
+  - stroke: Horizontal dashes on water (ripples, a sun or moon path, reflections)
+    leaves: Short, flat, level marks with gaps of the water color between them; smaller and closer together toward the horizon, longer and wider apart in front.
+    then: Use a flat brush on its edge or a small round, with creamy paint and a light touch. Keep every dash level. Over dry water only, or they smear into the base.
   - stroke: Building from pieces (a center shape, then curved pieces on each side like parentheses)
     leaves: A shape made of distinct curved segments with small gaps or overlaps between them.
     then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.
