@@ -21,6 +21,8 @@ Free: no renders. The raw renders are kept in trials/raw/, so locking can be rer
 
 from __future__ import annotations
 
+import hashlib
+import json
 import shutil
 from pathlib import Path
 
@@ -31,6 +33,7 @@ from PIL import Image
 DONE_COLOR = 10.0  # Lab distance (blurred) under which an area matches the finish
 DONE_TEXTURE = 6.0  # and a local texture difference under which it has the finish's texture too
 CHANGED = 14.0  # Lab distance over which the step changed the area (same as the step review's change map)
+SAME_STUFF = 24.0  # Lab distance under which a step's area is the same thing as the finish's, just shaded differently
 
 
 def _lab(rgb: np.ndarray, sigma: float = 3) -> np.ndarray:
@@ -131,10 +134,13 @@ def lock(lesson: Path, steps: list[Path], finish: Path, canvas: Path | None = No
             else np.full_like(fin, 246))
     blank = prev.copy()
     report = {}
+    state_path = raw_dir / "locked.json"
+    state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
     for i, path in enumerate(steps):
         raw = raw_dir / path.name
-        if not raw.exists():
-            shutil.copyfile(path, raw)  # first lock: keep the render as it came
+        # A step file the lock didn't write is a new render (first lock, or a redo since): keep it as the raw.
+        if not raw.exists() or state.get(path.name) != _digest(path):
+            shutil.copyfile(path, raw)
         render = np.asarray(Image.open(raw).convert("RGB").resize(size))
         boxes = regions[i] if regions and i < len(regions) else None
         guard = protects[i] if protects and i < len(protects) else None
@@ -145,7 +151,12 @@ def lock(lesson: Path, steps: list[Path], finish: Path, canvas: Path | None = No
         prev = locked
     if final_regions is not None and regions and all(regions):
         report["backward"] = backward(steps, fin, regions, final_regions)
+    state_path.write_text(json.dumps({p.name: _digest(p) for p in steps}, indent=1), encoding="utf-8")
     return report
+
+
+def _digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:16] if path.exists() else ""
 
 
 def backward(steps: list[Path], fin: np.ndarray, regions: list, final_regions: list[list[float]]) -> dict:
@@ -160,6 +171,19 @@ def backward(steps: list[Path], fin: np.ndarray, regions: list, final_regions: l
     out = {}
     for i in range(len(steps) - 1, -1, -1):
         img = np.asarray(Image.open(steps[i]).convert("RGB").resize((w, h))).astype(np.float32)
+        # Inside later boxes the step keeps its own pixels, but where they're the same stuff as the finish (the same
+        # water, a slightly different shade), shift their broad tone to the finish's and keep the brushwork. Without
+        # this, the box edges show as straight tone steps (sailboat run, 2026-11-11: a lighter rectangle in the water).
+        same = _dist(_lab(img.astype(np.uint8)), _lab(fin)) < SAME_STUFF
+        # broad tones measured only over matching pixels, so a sail or boat in the finish can't bleed its color
+        # into the shift as a ghost (sailboat relock, 2026-11-11)
+        w8 = same.astype(np.float32)[..., None]
+        norm = cv2.GaussianBlur(w8, (0, 0), 12)[..., None] + 1e-3
+        img_low = cv2.GaussianBlur(img * w8, (0, 0), 12) / norm
+        fin_ok = cv2.GaussianBlur(fin.astype(np.float32) * w8, (0, 0), 12) / norm
+        inner = cv2.erode((same & later).astype(np.uint8), np.ones((9, 9), np.uint8)).astype(np.float32)
+        tone = cv2.GaussianBlur(inner, (0, 0), 6)[..., None]
+        img = img + (fin_ok - img_low) * tone
         settled = cv2.GaussianBlur((~later).astype(np.float32), (0, 0), 4)[..., None]
         merged = img * (1 - settled) + fin.astype(np.float32) * settled
         Image.fromarray(np.clip(merged, 0, 255).astype(np.uint8)).save(steps[i])

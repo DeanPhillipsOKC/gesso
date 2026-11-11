@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.17.1 (2026-11-11)
+- The backward pass shifts the broad tone of matching areas inside later boxes to the finish's, keeping the
+  brushwork, so box edges don't show as straight tone steps (sailboat run: a lighter rectangle in the water).
+- `lock-steps` keeps a step redone after a lock as its new raw render, instead of locking the stale one.
+
 ## POC 0.17.0 (2026-11-11)
 - `lock-steps` runs a backward pass from the finish when every step has regions: wherever no later step paints,
   a step already shows the finished painting, so the last step only shows what it adds (#30).
