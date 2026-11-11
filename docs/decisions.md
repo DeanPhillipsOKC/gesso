@@ -89,6 +89,11 @@ with the date.
   a loose, impressionist beginner version: it drops the extras, merges what's busy, and turns
   textures into one repeated mark. The lesson is made from that version. No step may jump from
   flat to dense texture; dense texture is split into passes.
+- **Mix recipes are computed, not written by eye (2026-11-11, owner's call, #22).** A pigment
+  mixing model (Mixbox) solves each paint's recipe from the palette tubes and reports how far it
+  lands (Delta E). Mixbox is CC BY-NC: free while Gesso isn't sold. If it ever is, swap in
+  Spectral.js (MIT) or buy a license; only `spike/mixing.py` touches it. Every step lists its own
+  paints and recipes, because beginners mix as they go and acrylics dry on the palette.
 
 ## How we work
 
