@@ -116,6 +116,11 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual([s["summary"] for s in data["steps"][:2]], ["Paint the sky.", "Block the hill in one go."])
         self.assertEqual(data["steps"][0]["paints"][0]["first_step"], 1)
         self.assertEqual(data["steps"][0]["brushes"][0]["kind"], "flat")
+        self.assertTrue(data["gesso"]["version"].startswith("POC "))
+        self.assertIn("Made with Gesso POC", (self.lesson / "lesson.html").read_text(encoding="utf-8"))
+        self.assertIsNone(r["previous_version"])  # first publish
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(r["previous_version"], data["gesso"]["version"])
         for s in data["steps"]:
             self.assertTrue((self.lesson / "embed" / s["image"]).exists())
             self.assertTrue((self.lesson / "embed" / s["thumb"]).exists())

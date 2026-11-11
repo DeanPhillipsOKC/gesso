@@ -358,7 +358,10 @@ leave out still show, without a verdict. Every technique in `techniques/` you di
 (If whoever started you said they'll publish the artifact themselves, run `publish` and skip the Artifact tool.)
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
 `lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`, plus `embed/` (lesson.json and WebP images) for showing the lesson as a
-step-by-step walkthrough on another page, like a blog post.
+step-by-step walkthrough on another page, like a blog post. Every lesson is stamped with the Gesso version that made it
+(`spike/VERSION`, the commit, the date). Say the version in your report, and on a republish the version it had
+before (`previous_version`). When a change alters what lessons look like or contain, bump `spike/VERSION` and add
+a line to `docs/changelog.md`.
 
 Then publish `lesson-artifact.html` as a Claude artifact with the Artifact tool, when it's available:
 - Copy it into the session's scratchpad (or working directory) first, named `<photo stem>-lesson.html`, since the
