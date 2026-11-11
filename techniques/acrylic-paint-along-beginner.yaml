@@ -66,6 +66,9 @@ rules:
   - Stroke direction follows the form: down the ribs of a pumpkin, around a balloon, small circles for clouds, upward for grass, outward from the trunk for branches. Say the direction in the instruction.
   - Every instruction names the brush, the mix, the paint load (wet and creamy, thin and flowing like ink, or nearly dry), the stroke, its direction, and where on the canvas. Each step ends by saying what it should look like when done, including what should still show through.
   - Light over dark needs 2 to 3 thin coats with drying between; say so where it happens. Keep layers thin to medium, no thick impasto.
+  - "Flower masses (lavender rows, poppies, wildflowers) go on a dry field, never painted around. Each clump builds in passes, each covering less than the last: dark stems and leaves, a dark bloom base, a mid value (the base plus white), then light tips on the lit top only. Every pass says which dark stays showing. One mark per flower type for the whole lesson, and three distance bands: tiny, close, and pale at the back; bigger and wider-spaced in the middle; largest with petals at the front."
+  - "Rows in perspective start from one dot at the vanishing point with 3 to 5 faint lines fanned from it; rows are narrow and tight at the back, wide in front."
+  - "Water reflections go on after everything above the water is dry, in order: a horizontal water base, reflection colors pulled straight down under their objects, horizontal ripple dashes once dry, then thin lines and sparkles last. A reflection is softer and less detailed than its object, a little darker for light things and lighter for dark ones, never the same mix."
   - Suggest a test stroke on scrap paper before any new kind of stroke (fan brush tapping, liner lines, dry brush, press and lift).
   - Once per lesson, say colors dry a little darker, so test a mix on the palette edge before a big area. Once around the middle, say the painting goes through an ugly stage and that's normal.
 
@@ -144,6 +147,27 @@ stroke_results:
   - stroke: Horizontal dashes on water (ripples, a sun or moon path, reflections)
     leaves: Short, flat, level marks with gaps of the water color between them; smaller and closer together toward the horizon, longer and wider apart in front.
     then: Use a flat brush on its edge or a small round, with creamy paint and a light touch. Keep every dash level. Over dry water only, or they smear into the base.
+  - stroke: Stamp with the brush end (bright or flat, creamy load, straight down)
+    leaves: A short, blunt block of color; a strip of them makes a lavender or crop row.
+    then: Stamp a lighter mix over the same row without covering all of it, and wipe (don't rinse) between dark and light passes.
+  - stroke: Dotted or oval column (round, creamy load, marks angled out from a stem)
+    leaves: A spike of small marks, narrow at the top and wider at the base (lavender, lupine).
+    then: Add a lighter column over it, mostly near the top, leaving the dark showing lower down.
+  - stroke: Small petal clusters (round, angle changed each mark, some past the outline)
+    leaves: A ruffled, textured flower head (hydrangea, lilac).
+    then: Lighter marks dense at the top and sparse at the bottom, only on a dry base.
+  - stroke: Far flower dots (round tip, small and close together)
+    leaves: A speckled meadow that reads as distant flowers.
+    then: Make the dots bigger and wider apart lower on the canvas; give only the nearest ones petal shapes.
+  - stroke: Vertical pull-down (bright or flat, wiped nearly dry, straight down from the waterline)
+    leaves: A soft, streaky, see-through reflection of a tree, boat, or shore.
+    then: Once dry, cross it with thin horizontal dashes of the water color.
+  - stroke: Zigzag (small round, light load)
+    leaves: A wavy vertical line, for the reflection of a mast, post, or plank.
+    then: Break it in one or two places with a ripple dash.
+  - stroke: Sparkle (10/0 liner, white, after everything is dry)
+    leaves: A tiny asterisk of light on the water.
+    then: Use only a few, beside the brightest part of the sun or moon path.
   - stroke: Building from pieces (a center shape, then curved pieces on each side like parentheses)
     leaves: A shape made of distinct curved segments with small gaps or overlaps between them.
     then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.

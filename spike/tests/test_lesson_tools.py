@@ -181,6 +181,11 @@ class LessonToolTests(unittest.TestCase):
         self.assertTrue((self.lesson / "03_hill.png").exists())
         ids = [s["id"] for s in json.loads((self.lesson / "plan.json").read_text())["steps"]]
         self.assertEqual(ids, ["sky", "hill-dark", "hill", "tree"])
+        new = json.loads((self.lesson / "plan.json").read_text())["steps"][1]
+        self.assertEqual(new["colors"], [])  # its own pass, not a copy of the parent's
+        self.assertIn("darkest marks", new["looks_like"])
+        code, r = self.run_tool("canvas-view", str(self.lesson / "02_hill-dark.png"), "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)  # a full path works
 
     def test_values_table_shows_depth(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")

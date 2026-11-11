@@ -359,6 +359,8 @@ hill, a pumpkin) from more than one value. Two limits (balloon run, 2026-11-11):
 - **A color sequence isn't a table of values.** A sunset sky going blue, then coral, then red-orange, then gold
   near the sun is several hues in order, not one object's dark, mid, and light. Name the bands in the instruction,
   in order, with where each sits.
+`publish` also lists `duplicate_recipes`: two paint names that come out the same color. Merge them into one
+paint, or move one's sample spot to where the painting really shows the other value.
 Every paint an instruction or a table names goes in the step's `colors`, so its recipe shows. `publish` lists any
 that don't in `paints_not_listed`; fix those before publishing.
 
@@ -400,8 +402,9 @@ from flat to textured. Every one gets fixed before the text is final, free:
 `split-texture --lesson <lesson> --step <id> --ids <new ids...> --names "<names>"...` makes in-between pictures
 from the step before and the step itself. Its new paint arrives darkest first: dark marks on the flat base, then
 the mid marks, then the rest, the way a teacher layers it. It inserts them as steps before it and renumbers the
-step images. Use two in-betweens for a dense texture (lavender, grass, foliage). Then write their text (dark
-marks first, then mid), run `lock-steps`, `publish`, and check `texture_jumps` is empty. Never leave a jump as
+step images. Use two in-betweens for a dense texture (lavender, grass, foliage). The new steps come with no colors or text:
+give each its colors in plan.json and its own text from its picture (only the marks it adds), and trim the
+original step's text to what it still adds, run `lock-steps`, `publish`, and check `texture_jumps` is empty. Never leave a jump as
 a heads-up.
 
 ### 6b. Step review: would the text get a beginner there? (#24)

@@ -381,6 +381,151 @@ Each step covers less area than the step before[^13][^20]. The light comes from 
 
 ---
 
+## 7. Flower masses and clumps in a field
+
+Covers lavender rows, poppies, wildflower meadows, lupines and flower bushes such as hydrangeas. Added 2026-11-11 after lesson runs had no guidance for these.
+
+### Paint the ground first, flowers on top
+
+- Lay the field or background first and let it dry, then paint the flowers over it. Mont Marte says this avoids the mess of cutting the background in around each flower[^48]. Its poppy field lays a dark green and crimson base over the whole foreground and lets it dry before any poppy goes on[^47].
+- Flowers go dark to light, in thin layers rather than one heavy coat[^48].
+- Kiernan's lavender field starts the field as a solid deep violet sloping up to the horizon, with white blended in at the top so the back is lighter and the front darker[^39].
+
+### Building a clump in passes
+
+The tutorials agree on the order, even when the subject changes:
+
+1. **Stems and leaves (where the flower has them).** Lupines start with tall, thin stems in a very dark green (about equal parts green and dioxazine purple), then narrow pointed leaves pressed out from the tip to a wider base[^41]. Debasree Dey's poppy field paints liner-brush stems before the poppy heads (search-index excerpt)[^61]. Mont Marte's poppies do the opposite and add stems last with a fine round[^47]. A painted lavender sprig drags the stems first with a flat, then adds leaves with chisel-edge strokes[^46].
+2. **Dark base of the bloom.** A solid coat of the darkest flower color. Hydrangea heads start as solid dark balls of phthalo blue, dioxazine purple or red[^42]. Lavender rows in the Tuscan scene start as dioxazine purple with a little black[^40]. Lupines get dark purple oval marks angled out from the stem, narrow at the top and wider lower down[^41].
+3. **Mid value.** The same color plus white, over most but not all of the dark. Kiernan's lavender rows stamp a purple, blue and white mix that must read lighter than the base, and she says to add white if it doesn't[^39].
+4. **Light tips.** A smaller amount of a much lighter mix, mostly on the top or lit side. Lavender gets a double load of purple and white, then a tiny bit of white only in the back rows[^39]. Lupines get a pale pink double load of magenta and white[^41]. Hydrangeas get pure white marks last, sparingly[^42].
+
+What every one of these repeats: don't cover the dark. Kiernan's lupine step warns against covering all of the dark purple layer, and she says the light-over-dark layering is what creates depth[^41]. Her hydrangeas keep the bottom of each ball dark and say not to put too much light purple there[^42]. Marks get dense at the top of a bush and sparse at the bottom[^42].
+
+### Marks, brushes and paint load
+
+| Mark | Used for | Brush and load | Source |
+|---|---|---|---|
+| Stamp with the brush end or edge | Lavender rows, vine rows, the dark shadow at the base of each row | A #12 bright, stamped straight down. Black on the edge for row shadows | [^39][^40] |
+| Short upward drag or dab | Lavender texture, foreground clusters | A bright or the corner of a flat or fan brush, tapped or dragged up a little | [^40][^44] |
+| Dotted columns | Near lavender spikes | A #4 round, dots in a column, then lighter dots on top | [^40] |
+| Overlapping columns of short strokes | Lavender spikes in a meadow | A round, double-loaded purple and white. Vary the angle of each column and how much of each color is reloaded | [^43] |
+| Oval marks angled out from a stem | Lupine and other spike flowers | A #4 round. Narrow ovals at the top, wider lower down | [^41] |
+| Small four-petal marks | Hydrangea heads | A #4 round, angle changed often, some marks in clusters of two or three, some going past the outline for ruffled edges | [^42] |
+| Dabs and spots | Poppy field color, poppy centers, far blooms | A filbert or round. Dabs of color through the middle ground, a dark dab off-center in each poppy, a white dot in the center | [^47] |
+| Plain dots | Far wildflowers, small hydrangeas | The tip of a round. Simple dots replace petal shapes on small or distant flowers | [^42][^43] |
+
+- Load is wet and creamy for stamps and ovals. Kiernan wipes the brush without rinsing between the dark and light passes on lavender, so the colors stay related[^39].
+- The same stroke repeated many times can be done on a still-wet layer. Kiernan says the lupine magenta doesn't need the purple to dry first[^41]. Detail marks over a base do need it dry: her hydrangea balls must dry before the petal texture goes on, and Mont Marte waits for the poppy base to dry before the scarlet highlight[^42][^47].
+- Kiernan notes the paint darkens as it dries, so a dried hydrangea may need another light layer[^42].
+- Stippling with a stiff brush shows up for foliage and land in these tutorials, not for the flowers themselves[^43][^39].
+
+### Size and detail shrink with distance
+
+- Far flowers are smaller, closer together, lighter, and less detailed. Near flowers are larger, more spread out and more detailed. Kiernan's white wildflower dots are bigger and wider-spaced at the bottom of the canvas and smaller and packed tighter farther back[^43]. Her far vine rows have white added and are smaller and closer together, and each nearer row is larger and spaced a bit wider[^40].
+- Distant lavender rows are a muted purple and gray-blue. Near rows are deeper and more saturated[^44].
+- Detail drops out first. Small or far hydrangeas become dots, far leaves become simple brush marks, and vein lines go only on the big near leaves[^42]. Very light purple dots stand in for lavender far behind the cypress trees[^40].
+- This matches the general distance rule in section 4: cooler, paler and softer far away, warmer and sharper up close[^26].
+
+### Rows in perspective
+
+- Rows aim at one point on the horizon. A one-point perspective field guide puts a dot on the horizon line and draws diagonal lines from it out to the sides and bottom of the paper, so each row is a long triangle[^45].
+- Each row is narrow at the back and wide at the front. Kiernan's lavender rows are wider in front and narrower toward the back, the rows on the right tilt right and the row on the left tilts left[^39]. Her vine rows are thin and pointed far away and wide at the bottom of the hill[^40].
+- Spacing grows toward the viewer: tight at the top, wider at the bottom[^44][^40].
+- Thin warm strips of ochre or orange between rows suggest the soil and keep the field from looking flat[^44].
+- Kiernan's dark accent between the rows stops about three-quarters of the way back and fades out[^39]. The far rows stay simple.
+- Kiernan tells learners to "Think abstract" for lavender rows[^39]. The rows read as stamped stripes of color, not individual plants.
+
+> **Sources disagree: draw the guide lines, or just paint the rows?**
+> The perspective guide draws every line from a vanishing point first[^45]. Kiernan never mentions a vanishing point. She gets the effect from row width, tilt and spacing alone[^39][^40].
+> **Recommendation:** For a beginner, have them mark one dot on the horizon and draw three to five faint chalk or pencil lines fanning out from it before painting the rows. It costs a minute and stops rows from running parallel or crossing.
+
+### Common beginner mistakes with flower masses
+
+| Mistake | What it looks like | Fix |
+|---|---|---|
+| Covering all of the dark base | A flat, one-value blob with no depth | Light marks go mostly on top and on the lit side. Leave dark showing at the bottom and between marks[^41][^42]. |
+| Cutting the background in around flowers | Messy halos and gaps around each bloom | Paint the field first, let it dry, then paint flowers over it[^48]. |
+| Same size and spacing everywhere | A wallpaper pattern with no depth | Smaller, tighter, lighter in the back. Bigger, wider-spaced, more detailed in front[^40][^43]. |
+| Parallel rows | Rows look like a flat striped wall | Aim every row at one horizon point, wide in front and narrow in back[^45][^39]. |
+| Petal detail on distant flowers | A busy, flat background | Use dots or stamped color far away. Save petal shapes for the front[^42]. |
+| Detail marks on a wet base | Marks sink in and blur | Let the base of the bloom dry before petal texture or highlights[^42][^47]. |
+| Flower color bleeding into the hill or sky | Purple smeared into green | Let it dry, then repaint the edge with the hill color[^39]. |
+
+---
+
+## 8. Water reflections
+
+Covers still and gently moving water: lakes with trees, a boat, a sun or moon path.
+
+### What a reflection is
+
+- A reflection sits directly below the object, on the side toward the viewer[^60].
+- Light things reflect a little darker. Gurney's examples are clouds, white houses and light leaves. He explains it this way: some of the light goes into the water instead of bouncing off[^56].
+- Draw Paint Academy's rule is that values squeeze toward the middle: the darks reflect slightly lighter and the lights slightly darker[^57].
+- The reflection is softer and more broken than the object. Kiernan paints a land reflection lighter and more see-through than the land itself[^50], and her pine reflection doesn't have to be as detailed as the tree[^49]. Penny Apple Studio says reflections are like a mirror but slightly distorted, and that making them too perfect is a mistake[^55].
+- Reflections are most solid right under the object and break up as they move away from it (watercolor source)[^59].
+- Water mirrors best when you look across it at a shallow angle. From higher up, the reflection gets weaker[^56].
+- Jenna Rainey mixes reflection colors slightly darker and cooler than the sky and land, and keeps the water's color temperature matched to the sky: warm water under a sunset, cool water at midday (watercolor source)[^58].
+
+### Order of painting
+
+The order across the acrylic tutorials:
+
+1. **Everything above the water first.** Penny Apple Studio paints the trees, rocks or sky first and then pulls those colors down into the water[^55]. Rainey lets the landscape dry completely before starting the water[^58].
+2. **The water base.** Kiernan's lake base is about 3 parts white to 1 part cerulean, in loose left and right strokes with a 3/4" flat, not fully blended, with a few darker streaks left in for ripples[^49]. The rowing boat lesson blocks in the water but leaves the area that reflects the sky clear, then paints that area light blue[^54]. Penny Apple Studio starts with the dark areas of the water, then lays lighter reflected light on top[^55].
+3. **Reflection colors in vertical strokes.** Kiernan wipes a #12 bright loaded with black until only a little paint is left and strokes down just below each pine[^49]. In another scene she pulls thin, dry vertical strokes down below the land, then dry-brushes white verticals below the aspen trunks[^50]. Draw Paint Academy drags the subject's main color down through the water with a large brush for glassy water[^57]. For a moon path, Kiernan paints vertical white lines straight below the moon[^52].
+4. **Horizontal ripple dashes over the verticals.** Kiernan paints thin horizontal lines of white and light blue-violet over the vertical strokes with a round, then loose horizontal lines across the whole lake[^50]. The rowing boat lesson uses the cutting edge of a flat for short horizontal flicks[^54]. Penny Apple Studio puts ripples last, dragging a lightly loaded brush sideways[^55].
+5. **Thin lines and sparkles once dry.** A white line where the water meets the land, with a #4 round[^50]. Sparkles beside the moon path as tiny asterisks with a 10/0 liner[^52]. Kiernan's sun path waits until everything is dry before the second, brighter layer[^51].
+
+### Stroke direction
+
+- **Vertical** for the reflection of anything upright: trees, trunks, a boat, the land at the shore[^49][^50][^57].
+- **Horizontal** for the water surface, ripples, and the sky reflected in open water[^49][^54][^55].
+- **Zigzag** for straight upright lines like a mast or boat planks, since ripples bend them[^54].
+- **Sun and moon paths** have been painted both ways. Kiernan's sunset path is horizontal left and right strokes under the sun[^51]. Her moon path is vertical lines below the moon[^52]. Both get wider toward the bottom of the canvas[^51][^52].
+- Ripple lines near the horizon are short and close together. Lower down they get longer and more spread out[^49].
+
+> **Sources disagree: vertical or horizontal for the reflection itself?**
+> Rainey says reflections follow the water's surface, so strokes are horizontal only (watercolor)[^58]. Kiernan, Draw Paint Academy and Brienne Brown pull the reflection down first, then add horizontals[^49][^50][^57][^59].
+> **Recommendation:** Vertical pull-downs for the reflection of trees, a boat, or the shore. Horizontal for the water base, the sun or moon path, and every ripple. The horizontal dashes laid over the verticals are what make it read as water.
+
+### Softening and broken edges
+
+- Dry-brushing does most of the softening. Kiernan's reflections use a thin, wiped brush, so the strokes go on broken and see-through[^49][^50].
+- Penny Apple Studio drags a dry brush over wet paint to blur edges, and breaks up a reflection with quick strokes so it isn't too exact[^55].
+- Brienne Brown lifts a few horizontal lines out of a dry reflection with a clean, damp brush (watercolor technique; in acrylic the equivalent is painting a few water-colored horizontal dashes across it)[^59].
+- Leaving the ground showing through gives a broken, see-through reflection. Kemp varies the paint thickness so more or less of the sand shows[^53].
+- A boat reflection goes on lightly, and the rowing boat lesson tells learners not to be too accurate because the water is moving[^54].
+- Kiernan pushes distant tree reflections toward gray as loose horizontal marks, since they're farther away[^50].
+
+### Drying between layers
+
+- Let the scene above the water dry before working the water[^58].
+- Let each layer of the water dry before the next. Penny Apple Studio says this keeps reflections clear[^55]. Kiernan's sun path waits for full dryness before its second, brighter layer, and paints the wave between the two layers so the second layer can go around it[^51].
+- Fine ripple lines, the waterline and sparkles need a dry surface, the same as any liner work (section 2).
+- The vertical pull-down and the horizontal dashes can go into a damp base when the goal is a soft reflection. Draw Paint Academy's glassy water and Brown's soft reflections both work wet[^57][^59]. For a beginner with fast-drying acrylic, it is safer to let the verticals dry and then add the horizontals.
+
+### Keeping the reflection behind the object
+
+- Kemp glazed his boat's reflection darker with raw umber, a little ultramarine and white, because it was competing with the boat. He wanted the boat to stay the focus[^53].
+- The rowing boat lesson uses a very light blue splash at the water's edge to separate boat from water[^54].
+- Kiernan paints a white line where water meets land[^50].
+
+### Common beginner mistakes with reflections
+
+| Mistake | What it looks like | Fix |
+|---|---|---|
+| Reflection as sharp and detailed as the object | Looks like a mirror or a second picture | Fewer details, softer edges, a thin dry brush[^49][^55]. |
+| Reflection at the same value as the object | Flat, no sense of water | Lights a bit darker, darks a bit lighter[^56][^57]. |
+| Reflection offset from the object | Looks pasted on | Put it straight below the object, starting at the waterline[^60]. |
+| Ripple lines the same length everywhere | Water looks like a flat wall | Short and close near the horizon, longer and wider apart lower down[^49]. |
+| Ripples on wet paint | Lines blur into the base | Let it dry before thin lines[^51]. |
+| Reflection louder than the subject | Eye goes to the water, not the boat | Knock it back with a darker or grayer layer[^53]. |
+| Overworking | Muddy, fussy water | A few confident strokes. Don't copy every color[^55][^58]. |
+
+---
+
 ## For Gesso
 
 Rules a lesson generator should follow. These assume standard (not slow-drying) student or craft acrylics, a canvas or canvas panel, and a learner who has painted about ten pictures.
@@ -418,6 +563,32 @@ Rules a lesson generator should follow. These assume standard (not slow-drying) 
 6. Ground each object with a cast shadow or a darker patch underneath.
 7. Keep the sharpest edges and strongest contrast at the focal point. Soften elsewhere.
 
+### Flower masses
+
+1. Paint the field or ground under the flowers first and let it dry. Never ask the learner to paint around flowers.
+2. Build every clump in this order: stems and leaves in a very dark green (if the flower has them), dark bloom base, mid value (base plus white) over most of it, light tips on the top or lit side only. Each pass covers less than the last.
+3. Every flower pass says what dark must stay visible: "leave the dark purple showing at the bottom of each bush."
+4. The petal texture and highlights go on a dry base. A second color in the same pass (magenta into purple) can go on wet.
+5. Name one mark per flower type and keep it the same through the lesson: stamps for lavender rows, ovals in a column for spikes, small four-petal marks for hydrangea heads, dabs for poppies, dots for far wildflowers.
+6. Scale by distance in three bands. Back: tiny dots or stamps, close together, paler and grayer, no petals. Middle: larger marks, more space between. Front: largest, widest-spaced, with petal shapes, centers and a few stems.
+7. For rows in perspective: mark one dot on the horizon and draw three to five faint chalk lines fanning out from it before painting. Rows are narrow and tight at the back, wide and spaced out at the front.
+8. Let the dark between rows fade out about three-quarters of the way back. Far rows get no light tips.
+9. Optional: a thin warm ochre or orange strip between near rows for soil.
+10. Tell the learner to think of rows and bushes as stamped color, not individual flowers, and that the dark gaps are what make them look full.
+
+### Water reflections
+
+1. Finish and dry everything above the water before starting the water.
+2. Order: water base in horizontal strokes, reflection colors pulled down in vertical strokes, horizontal ripple dashes across them once dry, then thin lines (waterline, sparkles) last.
+3. Put every reflection directly under its object, starting at the waterline.
+4. Mix the reflection from the object's own colors, a little darker for light objects and a little lighter for dark ones. Never the exact same mix. Push distant reflections toward gray.
+5. Reflections use a thin, wiped brush and less detail than the object. Say "softer and less detailed than the tree" in the step.
+6. Vertical strokes for trees, trunks, boats and shore. Horizontal strokes for the water base, the sky in the water, the sun or moon path, and all ripples. Zigzags for masts and posts.
+7. A sun or moon path is narrow under the light and wider toward the bottom of the canvas, brightest in the middle. Paint it in two layers, the second lighter and smaller, with a dry wait between.
+8. Ripple dashes: short and close near the horizon, longer and wider apart near the viewer.
+9. If the reflection pulls the eye from the subject, add a step to knock it back with a slightly darker or grayer mix.
+10. Mark an explicit dry wait before the horizontal dashes and again before any liner lines or sparkles.
+
 ### Stroke results (stroke: leaves, then)
 
 - **Long horizontal blend (flat, even coat):** leaves smooth bands of color. Then: stroke back over each join while wet. If a join is harsh, add more of the lighter color there.
@@ -436,6 +607,14 @@ Rules a lesson generator should follow. These assume standard (not slow-drying) 
 - **Dotting (handle end or dotting tool, fresh paint each dot):** leaves round raised dots. Then: wipe bad dots off while wet, or cover with background color once dry.
 - **Splatter (thinned paint, toothbrush or flicked brush):** leaves random speckles. Then: wipe strays right away with a damp swab. Let dry before the next step.
 - **Small circles with the brush tip (clouds):** leaves a bumpy, soft edge. Then: smooth with a finger or the same circular motion, and highlight only the lit top edges.
+- **Stamp with the brush end (bright or flat, creamy load, straight down):** leaves a short, blunt block of color, a strip of them making a lavender or crop row. Then: stamp a lighter mix over the same row without covering all of it, and wipe (don't rinse) between dark and light passes.
+- **Dotted or oval column (round, creamy load, marks angled out from a stem):** leaves a spike of small marks, narrow at the top and wider at the base (lavender, lupine). Then: add a lighter column over it, mostly near the top, leaving the dark showing lower down.
+- **Small petal clusters (round, angle changed each mark, some past the outline):** leaves a ruffled, textured flower head (hydrangea, lilac). Then: put the lighter marks dense at the top and sparse at the bottom. Only on a dry base.
+- **Far flower dots (round tip, small and close together):** leaves a speckled meadow that reads as distant flowers. Then: make the dots bigger and wider apart lower on the canvas, and give only the nearest ones petal shapes.
+- **Vertical pull-down (bright or flat, wiped nearly dry, stroked straight down from the waterline):** leaves a soft, streaky, see-through reflection of a tree, boat or shore. Then: once dry, cross it with thin horizontal dashes of the water color.
+- **Horizontal ripple dash (cutting edge of a flat or a small round, light load, side to side):** leaves thin broken lines that read as a water surface. Then: keep them short and close near the horizon and longer and farther apart lower down.
+- **Zigzag (small round, light load):** leaves a wavy vertical line for the reflection of a mast, post or plank. Then: break it in one or two places with a ripple dash.
+- **Sparkle (10/0 liner, white, after everything is dry):** leaves a tiny asterisk of light on the water. Then: use only a few, beside the brightest part of the sun or moon path.
 
 ### Mixing
 
@@ -490,6 +669,29 @@ Rules a lesson generator should follow. These assume standard (not slow-drying) 
 [^36]: Artists Network, "8 Beginner Painting Mistakes to Conquer." http://www.artistsnetwork.com/art-techniques/beginner-artist/8-beginner-painting-mistakes-conquer
 [^37]: Jerry's Artarama, Liquitex Basics Cadmium Red Medium Hue listing (pigments and opacity rating). Taken from a search-index excerpt. https://www.jerrysartarama.com/liquitex-basics-acrylic-cadmium-red-medium-hue-4oz-tube
 [^38]: The Art Sherpa, "How you can prevent new acrylic painters' biggest mistakes: loading the brush" (video lesson page; title and description only). https://theartsherpa.com/videos/1981/how-you-can-prevent-new-acrylic-painters-biggest-mistakes-loading-the-brush-20-theartsherpa
+[^39]: Tracie Kiernan, Step By Step Painting, "Lavender Fields – Acrylic Painting Tutorial." https://stepbysteppainting.net/?p=59102
+[^40]: Tracie Kiernan, Step By Step Painting, "How To Paint A Tuscan Landscape." https://stepbysteppainting.net/2024/01/10/how-to-paint-a-tuscan-landscape-acrylic-painting-tutorial/
+[^41]: Tracie Kiernan, Step By Step Painting, "How To Paint Lupine Mountain." https://stepbysteppainting.net/?p=58130
+[^42]: Tracie Kiernan, Step By Step Painting, "Hydrangea Backyard Bliss – Acrylic Painting Tutorial." https://stepbysteppainting.net/2026/04/29/hydrangea-backyard-bliss-acrylic-painting-tutorial/
+[^43]: Tracie Kiernan, Step By Step Painting, "Spring Landscape Painting – Acrylic Painting Tutorial For Beginners." https://stepbysteppainting.net/?p=40356
+[^44]: Jae Johns, "Lavender Field Painting" (acrylic step-by-step). https://jaejohns.com/?p=31243
+[^45]: Brit + Co Guides, "How to draw a field with one point perspective." https://guides.brit.co/guides/draw-a-field-with-one-point-perspective
+[^46]: Pamela Groppe, "How to Paint Lavender in Acrylics" (formerly Flower Patch Farmhouse). https://www.pamelagroppe.com/how-to-paint-lavender-in-acrylics/
+[^47]: Mont Marte, "Paint Field Poppies Using Acrylic Colour." https://www.montmarte.com/blogs/projects-how-to/paint-field-poppies-using-acrylic-colour
+[^48]: Mont Marte, "Top Tips for Realistic Flower Painting with Acrylics." https://www.montmarte.com/blogs/tips-techniques/top-tips-for-realistic-flower-painting-with-acrylics
+[^49]: Tracie Kiernan, Step By Step Painting, "Snowy Mountain Scene – Acrylic Painting Tutorial." https://stepbysteppainting.net/?p=38839
+[^50]: Tracie Kiernan, Step By Step Painting, "First Hints Of Fall – Acrylic Painting Tutorial." https://stepbysteppainting.net/2026/08/12/first-hints-of-fall-acrylic-painting-tutorial/
+[^51]: Tracie Kiernan, Step By Step Painting, "How To Paint Twilight Tides." https://stepbysteppainting.net/2025/01/22/how-to-paint-twilight-tides-acrylic-painting-tutorial/
+[^52]: Tracie Kiernan, Step By Step Painting, "Moonlight Kayak Acrylic Painting Tutorial." https://stepbysteppainting.net/2021/09/01/moonlight-kayak-acrylic-painting-tutorial/
+[^53]: Will Kemp Art School, "Acrylic Step-by-Step Tutorial – Easy Fishing Boat Painting." https://willkempartschool.com/acrylic-step-by-step-tutorial-for-beginners/
+[^54]: Online Art Lessons, "How to Paint a Rowing Boat in Acrylic." https://onlineartlessons.com/class/how-to-paint-a-rowing-boat-in-acrylic/
+[^55]: Penny Apple Studio, "How to Create Dynamic Reflections in Water with Acrylics." https://pennyapplestudio.squarespace.com/blog/how-to-create-dynamic-reflections-in-water-with-acrylics
+[^56]: James Gurney, Gurney Journey, "Water Reflections, Part 1." https://gurneyjourney.blogspot.com/2007/12/water-reflections-part-1.html
+[^57]: Draw Paint Academy, "How to Paint Water." https://drawpaintacademy.com/how-to-paint-water/
+[^58]: Jenna Rainey, "Painting Water Reflections" (watercolor). https://jennarainey.com/painting-water-reflections/
+[^59]: American Watercolor, "The Secrets to Painting Convincing Water Reflections" (Brienne Brown, watercolor). https://americanwatercolor.net/the-secrets-to-painting-convincing-water-reflections/
+[^60]: Painting With Watercolors, "Painting reflections and shadows" (placement rule applies to any medium). https://paintingwithwatercolors.com/painting-reflections-and-shadows
+[^61]: Debasree Dey Art, "Easy poppy field painting." Step order taken from a search-index excerpt; the fetched page returned the site homepage. https://debasreedeyart.com/easy-poppy-field-painting
 
 ### Gaps worth a follow-up pass
 
@@ -497,3 +699,4 @@ Rules a lesson generator should follow. These assume standard (not slow-drying) 
 - There's no written source for "slip-slap" as a distinct stroke, and only thin acrylic-specific written sources for flicking grass and for dotting consistency. Those entries lean on general practice.
 - The Art Sherpa's teaching is mostly video. A transcript pass on two or three of her beginner lessons would add phrasing and pacing data from the most-watched paint-along instructor.
 - No controlled research was found on paint-along formats specifically (close-ups, step length, learner outcomes).
+- Sections 7 and 8: no paint maker had a technical page on flower fields or water reflections (Golden, Liquitex, Winsor & Newton and Daler-Rowney searches came up empty), so these lean on instructor tutorials. Three reflection sources are watercolor ([^58], [^59], [^60]) and were used only for principles, not handling. Painters Online (Wendy Jelbert, Terry Harrison) and Kevin Hayler's water guide refused the fetcher and are worth a retry. No written source covered flicked spikes as a separate flower mark, so that stroke result is left out.
