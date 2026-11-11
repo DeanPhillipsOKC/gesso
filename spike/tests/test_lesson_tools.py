@@ -143,6 +143,23 @@ class LessonToolTests(unittest.TestCase):
         for text in ("The lumpy outline.", "An oval first.", "Where Claude drew diagrams", "Diagrams (1)"):
             self.assertIn(text, html)
 
+    def test_preview_diagrams_needs_publish_then_draws_each_one(self):
+        code, r = self.run_tool("preview-diagrams", "--lesson", str(self.lesson))
+        self.assertEqual(code, 2)  # no lesson.json yet
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        shape = {"stages": [{"caption": "An oval", "add": [{"ellipse": [50, 50, 20, 30]}]}]}
+        broken = {"stages": [{"add": [{"path": "not a path"}]}]}
+        (self.lesson / "text.json").write_text(json.dumps({"steps": [
+            {"stage_id": "sky", "what_to_do": ["x"], "construct": shape},
+            {"stage_id": "hill", "what_to_do": ["x"], "construct": broken}]}))
+        self.run_tool("publish", "--lesson", str(self.lesson))
+        code, r = self.run_tool("preview-diagrams", "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)
+        self.assertEqual(r["diagrams"], 2)
+        html = Path(r["html"]).read_text(encoding="utf-8")
+        self.assertIn("An oval", html)
+        self.assertIn("This spec is broken", html)
+
     def test_publish_refuses_missing_images(self):
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(code, 2)

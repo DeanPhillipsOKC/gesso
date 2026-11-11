@@ -402,6 +402,50 @@ def publish(a: argparse.Namespace) -> dict:
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 
 
+BROWSERS = [r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+            r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+            "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"]
+
+
+def preview_diagrams(a: argparse.Namespace) -> dict:
+    """Draw every construction diagram next to its step image, as HTML and (with Chrome or Edge) a PNG to Read."""
+    import subprocess
+    from construct import strip
+    from lesson_page import STYLE, image_src
+
+    lesson = Path(a.lesson)
+    data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8")) if (lesson / "lesson.json").exists() else None
+    if not data:
+        raise Refused("run publish first: the preview reads lesson.json")
+    paints = {m["name"]: m["hex"] for m in data["photo_read"]["mixes"]}
+    rows = []
+    for i, st in enumerate(data["stages"], 1):
+        html = strip(st.get("construct"), paints, st["id"])
+        if st.get("construct") and not html:
+            html = '<p class="flag">This spec is broken: it draws nothing. Check its shapes and path data.</p>'
+        if html:
+            rows.append(f'<section style="display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start">'
+                        f'<figure><img src="{image_src(lesson, st["image"], True, 640)}" alt=""><figcaption>Step {i}: '
+                        f'{st["name"]}</figcaption></figure><div style="display:grid">{html}</div></section>')
+    trials = lesson / "trials"
+    trials.mkdir(exist_ok=True)
+    page = trials / "diagrams.html"
+    page.write_text(f'<!doctype html><meta charset="utf-8"><style>{STYLE}</style><body><div class="wrap" '
+                    f'style="max-width:1200px">{"".join(rows) or "<p>No diagrams.</p>"}</div></body>', encoding="utf-8")
+    result = {"diagrams": len(rows), "html": str(page), "png": None}
+    browser = next((b for b in BROWSERS if Path(b).exists()), None)
+    if browser and rows:
+        png = trials / "diagrams.png"
+        subprocess.run([browser, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--force-color-profile=srgb",
+                        f"--window-size=1240,{120 + 380 * len(rows)}", f"--screenshot={png.resolve()}",
+                        page.resolve().as_uri()], capture_output=True, timeout=120)
+        result["png"] = str(png) if png.exists() else None
+    if not result["png"]:
+        result["note"] = "No PNG: no Chrome or Edge found. Open the HTML in a browser, or serve the folder and look."
+    return result
+
+
 def add_lesson_tools(sub) -> None:
     p = sub.add_parser(
         "render-step", help="PAID. Render planned steps from <lesson>/plan.json with the spike's step prompt.",
@@ -424,6 +468,12 @@ def add_lesson_tools(sub) -> None:
                                    "for publishing as a Claude artifact).")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=publish)
+
+    p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
+                       description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "
+                                   "installed, trials/diagrams.png, so you can check each diagram against its step.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=preview_diagrams)
 
 
 # ---------------------------------------------------------------------------

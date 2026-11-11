@@ -81,6 +81,14 @@ with the date.
   with a reason for each. Real technique still drives generation: when nothing in the library
   fits, Claude drafts one from real painting practice, marks those steps as not checked yet, and
   files the draft for the owner to check (#12).
+- **A picture too busy for the level gets a beginner version first (2026-11-11, owner's call).**
+  Every step is copied from the finished painting, so its detail decides what the steps must
+  paint. The balloon lesson kept a village of tiny houses and every lavender stalk, and one step
+  jumped from flat rows to thousands of stalks. When a picture has tiny separate things, textures
+  made of hundreds of items, or more parts than the technique's detail budget, Claude first makes
+  a loose, impressionist beginner version: it drops the extras, merges what's busy, and turns
+  textures into one repeated mark. The lesson is made from that version. No step may jump from
+  flat to dense texture; dense texture is split into passes.
 
 ## How we work
 

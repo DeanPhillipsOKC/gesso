@@ -9,9 +9,10 @@ You are the lesson pipeline. You do the planning, checking, and writing yourself
 call `spike/tools.py` for images. Filters are free; renders cost money, so they come last
 (`docs/decisions.md`, 2026-11-10). Read `docs/decisions.md` and the technique file before starting.
 
-Arguments: `<photo>` (required, e.g. `photos/sleeping-cat.jpg`), technique (default
-`techniques/acrylic-paint-along-beginner.yaml`), quality for steps (default `low`). Per-photo technique choice
-(#12) isn't built yet: use the technique given.
+Arguments: `<photo>` (required, e.g. `photos/sleeping-cat.jpg`), technique (optional), quality for steps (default
+`low`). If the owner names a technique, use it. Otherwise read every file in `techniques/` and choose the one that
+fits this photo and the level (decisions: Claude chooses techniques per photo from the hand-checked library), and
+record why, with every technique you passed on, in `notes.json`.
 
 Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`. `$PY spike/tools.py --help`
 lists every tool and what it's for; read it at the start, since filters get added over time.
@@ -70,12 +71,37 @@ only when what you'd cut away is clearly not part of the scene. Don't recompose 
 Record it in `notes.json` as `photo_prep` (step 8), so the page says what was done before the lesson started. If
 the image is already just the picture, skip the crop and say so in `photo_prep` in a few words.
 
+### 0c. Is it beginner-sized? (`00_beginner.png`)
+Every step is copied backward from the finished painting, so whatever detail the finish has, some step has to
+paint. The balloon lesson (2026-11-11) kept a village of tiny houses, textured clouds, and every lavender stalk,
+and one step jumped from flat purple rows to thousands of stalks. A beginner can't paint that. Look at the photo
+(or the crop) and answer, for the technique's level (`detail_budget` in the technique file):
+- **Tiny separate things** that aren't the subject: houses, windows, people, boats, fence posts, a village?
+- **Textures made of hundreds of items**: stalks, blades of grass, single leaves, bricks, a fine dust of stars?
+- **Detail inside big shapes** that one repeated mark can't make: veined clouds, carved bark, every wave?
+- **More parts** at different distances than `detail_budget.max_parts`?
+
+If any answer is yes, make a beginner version before anything else, and make the rest of the lesson from it:
+`render --step beginner --inputs <photo> --quality medium --out <lesson>/00_beginner.png --why-not-filter "<why no filter can drop and merge these>" --prompt "<beginner_version.prompt> <your list> <framing>"`.
+Your list names exactly what to drop ("remove the village"), merge ("the clouds become three big soft masses"),
+and turn into a repeated mark ("the lavender becomes rows of loose purple dabs, darker at the base, no single
+stalks"). Keep the composition, the subject, the light, and the mood. Read the result: everything the owner
+would recognize the picture by is still there, and nothing on your list survived. One redo at most, then take the
+better one. From here on, "the photo" means `00_beginner.png` (the reference, the palette, and the finish's color
+source). If every answer is no, skip this and say so.
+
+Record the answers and the list in `notes.json` as `beginner_version` (step 8), and put `00_beginner.png` in
+`notes.filters` with `"label": "Beginner version"`, `"tool": "render"`, and `"verdict": "kept"`: it's a render, but
+listing it there puts it in the page's contact sheet.
+
 ### 1. Simplified reference (`00_reference.png`)
 The reference is what the painting is made from: fewer shapes, clear values, colors a beginner can mix
 (decisions: "Simplify the photo first").
 - Try `simplify --strength 2` or `3` on the photo, then look at it. If small clutter is still there, try a
   higher strength or `--method meanshift`. For line art or anything with outlines (an illustration, a cartoon),
   start with `--method meanshift --strength 3`: Kuwahara breaks thin dark lines apart (the cat lost its face).
+  The same goes for many small bright dots (stars, fireflies, sparkles): Kuwahara wipes them out (tree of life,
+  2026-11-11), so start with mean shift there too.
   Write trials to `<lesson>/trials/` with `--out`, and copy the one you pick to `<lesson>/00_reference.png`.
 - Also make, for the painter and for you: `value-study --tones 3`, `palette --colors 6` (their outputs go in the
   lesson folder with `--lesson`).
@@ -84,16 +110,19 @@ The reference is what the painting is made from: fewer shapes, clear values, col
 
 ### 2. Finished painting (`99_finish.png`)
 No filter turns a reference into an acrylic painting on canvas, so this is a render:
-`render --step finish --inputs <reference> <photo> --prompt "<finish.prompt> The second image is the original photo: take every area's colors from it. No text, signature, or watermark. <framing>" --quality high --out <lesson>/99_finish.png`
+`render --step finish --inputs <reference> <photo> --prompt "<finish.prompt> The second image is the original photo: take every area's colors from it, and keep each area's share of the canvas (if the water is the bottom third there, it's the bottom third here). No text, signature, or watermark. <framing>" --quality high --out <lesson>/99_finish.png`
 with a reason. Every step copies from the finish, so it gets high quality (as in the spike). Pass the photo too:
 on the trees photo (2026-11-10) a Kuwahara reference alone turned a cream-gold sky into blue and purple patches,
-and the finish needed a paid repaint.
+and the finish needed a paid repaint. With a beginner version, pass it as the photo, not the original: the
+original's detail flows back in through the second input. The canvas snaps to a few fixed shapes, so the share
+line matters (tree of life, 2026-11-11: the lake got squeezed to a strip).
 
 Then check it against the photo yourself (Read both images). Simplifying is expected; flag only what the owner
 would notice and mind: an area changed color or hue, something added, removed, or turned into something else, a
 texture changed character, the mood or time of day changed, or the subject looks stretched or squeezed. The
 render snaps to 1024x1536, 1536x1024, or 1024x1024, so the canvas shape can differ a little from the photo; that's
-fine as long as the shapes in it aren't distorted. If anything is flagged, render once more with
+fine as long as the shapes in it aren't distorted. With a beginner version, also flag anything on your drop or
+merge list that came back. If anything is flagged, render once more with
 `--inputs <finish> <photo>`, a prompt listing the fixes ("Repaint it with these fixes so it matches the second
 image: ... Keep everything else the same"), and `--fresh` not needed (the prompt differs). Save the flagged list
 for `review.json` as `finish_issues`.
@@ -117,6 +146,16 @@ plus three):
 }
 ```
 
+Measure, don't guess. Before writing any `looks_like`, run `grid --cells 10` on the finish and read where things
+are from it: "the sun's center is 44% across and 40% down", not "right of center" (balloon, 2026-11-11: that guess
+was wrong and cost a paid redo). Give edges as numbers too: when a step leaves white canvas, say "a straight lower edge at 62% down" (balloon
+rerun, 2026-11-11: three redos were renders stopping the sky short). Spell out a subject's exact pattern (stripe
+colors in order, left to right) so a subject painted late matches the finish. Describe only what the finish shows. If later layers hide most of something
+(branches inside a crown), say how much shows, so the render doesn't invent the rest.
+
+Step `colors` and every diagram `paint` must be names from the plan's `paints`. A tube name like "Burnt sienna"
+isn't one: add it as a paint (with its recipe) if a step uses it straight.
+
 The last step is the finished painting: `"looks_like": "The finished painting."`, `"covers_canvas": true`. Step
 ids are unique lowercase slugs. Use only palette tubes in recipes. `sample_x`/`sample_y` (0-1 from the top left)
 point at a flat patch of that paint in the finish; `publish` snaps each hex to the painted color there. The palette
@@ -126,6 +165,9 @@ Before moving on, read the plan as a painter would (owner's notes on the pumpkin
 - A background step must let the brush keep moving. If the sky's `looks_like` stops at a hill line with white
   canvas below, swirly or circular strokes break at that line. Run the sky to the bottom edge (or well past the
   horizon) and let the ground step paint over it; that also stops the sky and hill edges disagreeing between steps.
+- No step jumps from flat to dense texture. A texture step adds one kind of mark at a size a beginner can make in
+  a few minutes. If the finish has dense texture (rows of lavender dabs, foliage), split it into passes: the dark
+  marks, then the light marks on top, each its own step.
 - A block-in step for a shaped object says how to build the shape from simple pieces in its `how` (a pumpkin: a
   center oval, then curved side segments like ( ) on each side). The image can show the plain shape; the words
   carry the construction.
@@ -149,7 +191,9 @@ Don't grade your own images. Start a subagent (Agent tool, general-purpose) with
   problems a painter following along would notice: something appears before the step that paints it; something
   painted earlier is missing, moved, or a clearly different shape or size; the image doesn't match `looks_like`
   (white canvas showing where it should be covered, or covered where it should be white). Ignore small differences
-  in brushwork, texture, and exact color. Never flag the last step. Also check the technique's painting order.
+  in brushwork, texture, and exact color. Never flag the last step. Also check the technique's painting order,
+  and flag a step that jumps from flat to dense texture a beginner couldn't paint in a few minutes (a step adding
+  thousands of lavender stalks at once): the fix is a plan change, splitting it into passes, not a redo.
 - when two neighboring steps disagree, compare both with the finish and flag the one that differs from it,
   not automatically the later one;
 - ask it to Read every image and answer with JSON only: `{"issues": [{"step_id", "problem", "fix"}]}`, `fix`
@@ -168,6 +212,9 @@ is no third review. A step whose redo was refused by the caps stays as it is. Sa
  "review_issues": [{"step_id": "moon", "problem": "...", "fix": "...", "round": 2,
                     "action": "redone | redone neighbor <id> | left"}]}
 ```
+
+A mismatch you spot yourself after the last review round (when writing text or diagrams) goes in `review.json`
+too, as `"left"` with `"round": 2`, and the step's words should tell the painter what to do about it.
 
 Use `"left"` for anything not redone (a cap refused it, or you judged it not worth a redo). The lesson page shows
 every `"left"` problem on its step as a heads-up for the painter.
@@ -235,7 +282,8 @@ horizon"). Say why for each of these in `no_diagram`, so the page shows every st
 
 Put the `construct` spec on that step in `text.json`. The lesson page draws it as a strip of small, free SVG panels
 under the step. Each panel adds the next pieces with a dashed outline and arrows for the brush's direction.
-Coordinates are a 100 x 100 box, y down:
+Coordinates are a 100 x 100 box, y down. For a wide, short area (a field, a horizon), draw it at its real
+proportions inside the box (a 100 x 40 band), not stretched to fill it:
 
 ```json
 "construct": {"title": "Build the big pumpkin from simple pieces", "paint": "Pumpkin orange",
@@ -249,7 +297,9 @@ Shapes: `ellipse [cx, cy, rx, ry]` (optional `rotate`), `circle [cx, cy, r]`, `r
 `round`), `path "<d>"` (filled, optional `opacity`), `line "<d>"` (stroked, `width`). Any shape can set `paint` (a
 paint name from the plan), `behind: true` (drawn under what's there), or `done: true` (already painted in an
 earlier step). `arrows` are paths shown only in their panel. The renderer is `spike/construct.py`. A broken spec
-is left off the page, so check `publish`'s `diagrams` count.
+is left off the page, so check `publish`'s `diagrams` count. Look at your diagrams before publishing:
+`preview-diagrams --lesson <lesson>` draws every one next to its step image into `<lesson>/trials/diagrams.png`
+(free; it needs Chrome or Edge installed) for you to Read.
 
 Write what you noticed and decided into `notes.json` as `beginner_check` (next step). It's what the page shows
 under "Why a diagram" on the step and in "Where Claude drew diagrams". `publish` lists any diagram without a note
@@ -278,6 +328,8 @@ reference, the plan, and each throwaway) so nothing is reconstructed at the end.
                  "images": ["filters/01_sky-glow_filter.png"]}],
  "photo_prep": {"subject": "what the picture is of", "found": "what else was in the image, or 'just the picture'",
                 "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "why that was right"},
+ "beginner_version": {"made": true, "found": "the answers to the four questions",
+                      "list": "what you dropped, merged, and turned into marks", "why": "why this was beginner-sized"},
  "beginner_check": {"summary": "a sentence on what the check found overall",
                     "diagrams": {"<step id>": {"noticed": "what made this step need a diagram",
                                                "pieces": "how you broke the shape down, and why that way",
@@ -291,6 +343,7 @@ List every filter you looked at, kept or not, with its image path relative to th
 leave out still show, without a verdict. Every technique in `techniques/` you didn't pick goes in `considered`.
 
 ### 9. Publish the lesson as an artifact and report
+(If whoever started you said they'll publish the artifact themselves, run `publish` and skip the Artifact tool.)
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
 `lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`.
 
