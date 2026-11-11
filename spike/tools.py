@@ -394,6 +394,10 @@ def publish(a: argparse.Namespace) -> dict:
     renders = [c for c in led.calls if c.get("tool") == "render"]
     return {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "steps": len(stages), "steps_by_source": by_source,
+            "diagrams": sum(1 for st in stages if st["construct"]),
+            # a diagram the page can't explain: the skill's beginner check didn't write down why
+            "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
+                                      ((notes.get("beginner_check") or {}).get("diagrams") or {})],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 

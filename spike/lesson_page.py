@@ -103,7 +103,9 @@ details[open].why>summary::before,details[open].note>summary::before{content:"\\
 .tag{font:600 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;
   border-radius:3px;padding:.2rem .4rem;white-space:nowrap}
 .t-filter{color:var(--r-filter)}.t-throw{color:var(--r-throw)}.t-seeded{color:var(--r-seeded)}.t-render{color:var(--r-render)}
-.t-review{color:var(--warn)}
+.t-review{color:var(--warn)}.t-diagram{color:var(--ultramarine)}
+.diag{border-left:3px solid var(--ultramarine);padding-left:.75rem;display:grid;gap:.35rem}
+.diaglist{display:grid;gap:.9rem}.diaglist a{color:var(--ink)}.diaglist p{margin-top:.2rem}
 ol.trail{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;border-left:2px solid var(--rule);padding-left:.9rem}
 ol.trail li{display:grid;gap:.2rem;min-width:0}
 ol.trail .head{display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:center;font:.78rem/1.3 var(--mono);color:var(--muted)}

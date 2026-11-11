@@ -124,6 +124,25 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(html.count('<details class="why">'), 2)  # sky and hill; the finish has nothing logged
         self.assertNotIn("<details open", html)  # nothing unfolds on its own
 
+    def test_publish_explains_diagrams_and_flags_unexplained_ones(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        shape = {"stages": [{"caption": "An oval", "add": [{"ellipse": [50, 50, 20, 30]}]}]}
+        text = {"steps": [{"stage_id": "sky", "what_to_do": ["Blend"], "construct": shape},
+                          {"stage_id": "hill", "what_to_do": ["Block"], "construct": shape}]}
+        (self.lesson / "text.json").write_text(json.dumps(text))
+        notes = {"beginner_check": {"summary": "One shaped object.",
+                                    "diagrams": {"sky": {"noticed": "The lumpy outline.", "pieces": "An oval first.",
+                                                         "source": "beginner check"}},
+                                    "no_diagram": {}}}
+        (self.lesson / "notes.json").write_text(json.dumps(notes))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)
+        self.assertEqual(r["diagrams"], 2)
+        self.assertEqual(r["undocumented_diagrams"], ["hill"])
+        html = (self.lesson / "lesson-artifact.html").read_text(encoding="utf-8")
+        for text in ("The lumpy outline.", "An oval first.", "Where Claude drew diagrams", "Diagrams (1)"):
+            self.assertIn(text, html)
+
     def test_publish_refuses_missing_images(self):
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(code, 2)
