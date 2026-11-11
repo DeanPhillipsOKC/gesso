@@ -72,7 +72,16 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .tools{display:grid;gap:.6rem;background:var(--panel);border-radius:6px;padding:1rem}
 .label{font:600 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:.4rem}
-.chip{background:var(--ultramarine-soft);color:var(--ink);border-radius:999px;padding:.2rem .7rem;font-size:.88rem}
+.chip{background:var(--ultramarine-soft);color:var(--ink);border-radius:999px;padding:.2rem .7rem;font-size:.88rem;
+  display:inline-flex;align-items:center;gap:.35rem}
+/* Brush pictures: the head and the mark it makes, so "#8 round" means something to a beginner. */
+.brushpic{width:10rem;height:auto;flex:none;display:block}
+.brushpic.sm{width:2.4rem}
+.kit li.brush{display:grid;grid-template-columns:10rem 1fr;gap:.6rem;align-items:center}
+.kit li.brush .small{display:block}
+.kit div:has(li.brush){grid-column:1/-1}
+.kit ul:has(li.brush){list-style:none;padding-left:0;grid-template-columns:repeat(auto-fill, minmax(20rem, 1fr));gap:.8rem 1.5rem}
+@media (max-width: 480px){.kit li.brush{grid-template-columns:6rem 1fr}.brushpic{width:6rem}}
 .stroke b{color:var(--ultramarine)}
 .mixes{display:flex;flex-wrap:wrap;gap:.5rem 1rem}
 .mix{display:flex;align-items:center;gap:.4rem;font-size:.92rem}
@@ -254,7 +263,11 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
         f'<span class="recipe">{e(p["recipe"])}</span><br><span class="small">{e(p.get("used_for", ""))}'
         f'{" · " + when(p["name"]) if when(p["name"]) else ""}</span>{closest(p)}</div></div>'
         for p in paints)
-    brush_items = "".join(f"<li><b>{e(b)}</b>" + (f": {e(u)}" if u else "") + "</li>" for b, u in brushes.items())
+    from brushes import describe, picture
+    brush_items = "".join(
+        f'<li class="brush">{picture(b)}<div><b>{e(b)}</b>' + (f": {e(u)}" if u else "")
+        + (f'<span class="small">{e(describe(b))}</span>' if describe(b) else "") + "</div></li>"
+        for b, u in brushes.items())
     kit = (f'<div><p class="label">Tubes</p><ul>{items(tubes)}</ul></div>'
            f'<div><p class="label">Brushes</p><ul>{brush_items}</ul></div>'
            f'<div><p class="label">Also</p><ul><li>White canvas or canvas board</li><li>Water jar and paper towel</li>'
@@ -266,7 +279,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     steps_html = []
     for i, s in enumerate(stages):
         blist = s.get("brush_list") or ([{"brush": s["brushes"], "use": ""}] if s.get("brushes") else [])
-        chips = "".join(f'<span class="chip" title="{e(b.get("use", ""))}">{e(b["brush"])}</span>' for b in blist)
+        chips = "".join(f'<span class="chip" title="{e(describe(b["brush"]) or b.get("use", ""))}">{picture(b["brush"], "small")}'
+                        f'{e(b["brush"])}</span>' for b in blist)
         strokes = "".join(f'<p class="stroke"><b>{e(t["name"])}.</b> {e(t["how"])}</p>' for t in s.get("strokes", []))
         used = [by_name[c["name"]] for c in s.get("colors", []) if c["name"] in by_name]
         fresh = [p for p in used if first.get(p["name"]) == i + 1]
