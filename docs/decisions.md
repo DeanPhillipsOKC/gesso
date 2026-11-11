@@ -64,8 +64,30 @@ with the date.
   can't live in the PWA and phones suspend tabs mid-lesson. The Worker keeps nothing once a
   lesson is downloaded. Sharing lessons between phones waits until after real use.
 
+- **Filters first, image generation as the fallback (2026-11-10, owner's call).** Image costs add
+  up while experimenting, and much of a lesson (value studies, palette, simplified shapes, the
+  sketch, back-to-front steps built from masks of the finish) can come from ordinary filters and
+  compositing for free. Claude picks a tool for each step and uses gpt-image only when no filter
+  or composite does the job, giving a reason for each render. Renders have a dollar cap per
+  lesson and a redo cap per step. The finish is still rendered. Cheaper lessons still get compared
+  against the low-quality baseline before the approach is adopted (#7 to #10). When no filter
+  fits a step, Claude writes a throwaway filter script and tries it before rendering, and files
+  a filter request (with the script) for anything a filter could have done (#11).
+- **Claude chooses the techniques for each photo and level (2026-11-10, owner's call; updates
+  "the technique sets the rules").** One fixed technique may not fit the subject or the level,
+  and most pictures mix parts painted differently. The library becomes hand-checked building
+  blocks: whole-painting approaches (painting order, ground, step range) and element techniques
+  (sky, foliage, water, fur, ...). Claude picks an approach and an element technique per part,
+  with a reason for each. Real technique still drives generation: when nothing in the library
+  fits, Claude drafts one from real painting practice, marks those steps as not checked yet, and
+  files the draft for the owner to check (#12).
+
 ## How we work
 
 - **Same approach as RepBunny (2026-10-19):** automate as much as possible, built up bit by bit.
   Skills first (`refine-backlog`, then `next-item`), routines and review agents later.
+- **The proof of concept runs as a Claude Code skill (2026-11-10, owner's call).** The
+  `paint-lesson` skill (#10) has Claude Code do the planning and reviews under the owner's
+  subscription instead of paying for API calls, with filters and renders as command-line tools.
+  The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
