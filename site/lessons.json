@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "lavender-balloon",
+    "title": "A striped hot-air balloon floating over a lavender field at sunset",
+    "subject": "A striped hot-air balloon floating over a lavender field at sunset, with soft violet mountains, golden hills, and one big tree on the right.",
+    "steps": 12,
+    "canvas": "14 x 11 in",
+    "tubes": 12,
+    "version": "POC 0.21.0",
+    "published": "2026-11-11",
+    "source": "balloon-lavender_skill_20261111-142734"
+  },
+  {
+    "slug": "chickadee",
+    "title": "A plump black-capped chickadee perched on a curved autumn branch",
+    "subject": "A plump black-capped chickadee perched on a curved autumn branch, with four red, orange, and gold leaves, against a soft, misty sunset forest.",
+    "steps": 11,
+    "canvas": "14 x 11 in",
+    "tubes": 11,
+    "version": "POC 0.21.0",
+    "published": "2026-11-11",
+    "source": "chickadee_skill_20261111-152140"
+  },
+  {
+    "slug": "red-sailboat",
+    "title": "A small red sailboat",
+    "subject": "A small red sailboat with two cream-white sails on calm teal water at sunset, with the setting sun, its golden path on the water, and a violet mountain on the far shore.",
+    "steps": 11,
+    "canvas": "14 x 11 in",
+    "tubes": 5,
+    "version": "POC 0.21.0",
+    "published": "2026-11-11",
+    "source": "red-sailboat_skill_20261111-114028"
+  }
+]

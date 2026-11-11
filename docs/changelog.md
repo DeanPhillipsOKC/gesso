@@ -6,6 +6,10 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.23.0 (2026-11-11)
+- A private lessons site (`site/`, deployed with Cloudflare Pages and locked with Cloudflare Access): `publish`
+  also writes `lesson-standalone.html`, one self-contained page per lesson, and `site-add` puts it on the site.
+
 ## POC 0.21.0 (2026-11-11)
 - Research on flower masses and water reflections (23 more sources, 61 in all), with rules and seven new stroke
   results in the paint-along technique.
