@@ -192,3 +192,43 @@ def grid(rgb: np.ndarray, cells: int = 4) -> np.ndarray:
         cv2.line(out, (0, int(y)), (w, int(y)), color, thick)
         y += step
     return out
+
+
+def _variety(lines: np.ndarray) -> np.ndarray:
+    """How many different colors each row of `lines` has (5 bits a channel). Photos and paintings have hundreds;
+    app bars, buttons, and text on a flat background have a handful."""
+    q = (lines >> 3).astype(np.int32)
+    code = (q[..., 0] << 10) | (q[..., 1] << 5) | q[..., 2]
+    return np.array([len(np.unique(r)) for r in code])
+
+
+def _longest_run(mask: np.ndarray, gap: int) -> tuple[int, int]:
+    """Start and end (exclusive) of the longest run of True, bridging gaps of up to `gap` False entries."""
+    best, start, last = (0, 0), None, None
+    for i, m in enumerate(mask):
+        if not m:
+            continue
+        if start is None or i - last > gap + 1:
+            start = i
+        last = i
+        if last + 1 - start > best[1] - best[0]:
+            best = (start, last + 1)
+    return best
+
+
+def find_picture(rgb: np.ndarray, min_colors: int = 30) -> dict:
+    """Find the picture inside a screenshot: the biggest block of colorful rows, then colorful columns within it.
+    Returns the box in pixels, how much of the image it covers, and whether it's the whole image anyway."""
+    h, w = rgb.shape[:2]
+    y0, y1 = _longest_run(_variety(rgb) >= min_colors, gap=max(4, h // 200))
+    band = rgb[y0:y1]
+    x0, x1 = _longest_run(_variety(band.transpose(1, 0, 2)) >= min_colors, gap=max(4, w // 200))
+    if y1 - y0 < h * 0.1 or x1 - x0 < w * 0.1:
+        return {"box": [0, 0, w, h], "coverage": 1.0, "whole_image": True}
+    coverage = round((x1 - x0) * (y1 - y0) / (w * h), 3)
+    return {"box": [int(x0), int(y0), int(x1), int(y1)], "coverage": coverage, "whole_image": coverage > 0.92}
+
+
+def crop(rgb: np.ndarray, box: list[int]) -> np.ndarray:
+    x0, y0, x1, y1 = box
+    return rgb[max(0, y0):y1, max(0, x0):x1].copy()

@@ -51,6 +51,25 @@ render with the same inputs comes back free from the cache, so rerunning a lesso
   `render-step`), and the filter outputs. Put trial outputs you won't use under `<lesson>/trials/` with `--out`.
 - Read the technique YAML: `rules`, `brush_moves`, `palette`, `step_range`, `ground`, `framing`, `simplify`, `finish`.
 
+### 0b. Check the photo is just the picture
+Read the photo before anything else and say what the subject is. Then ask: is everything in this image part of
+the picture someone wants to paint? Owners send screenshots (2026-11-11: a shop page with the painting in the
+middle), so look for:
+- a phone status bar, app or browser bars, buttons, prices, ratings, sale banners, captions, or page text;
+- a carousel's dots or the edges of the next image;
+- a photo of a screen, print, or canvas with the wall, frame, or desk around it;
+- a border, watermark, or the subject taking up only a small part with a lot of unrelated scene around it.
+
+If any of these show, crop: `crop <photo> --lesson <lesson> --out <lesson>/photo_cropped.png --why "<what's around
+the picture>"` finds the picture on its own (the biggest block of photo-like rows and columns). Read the output:
+it must hold the whole picture and nothing else. If it's off, measure the picture's edges yourself and pass
+`--box X0 Y0 X1 Y1` (pixels in the original). Then use the cropped file as the photo everywhere: in `plan.json`,
+`"photo": "output/<lesson folder>/photo_cropped.png"`, and as the finish render's photo input. Crop to the subject
+only when what you'd cut away is clearly not part of the scene. Don't recompose a real photo.
+
+Record it in `notes.json` as `photo_prep` (step 8), so the page says what was done before the lesson started. If
+the image is already just the picture, skip the crop and say so in `photo_prep` in a few words.
+
 ### 1. Simplified reference (`00_reference.png`)
 The reference is what the painting is made from: fewer shapes, clear values, colors a beginner can mix
 (decisions: "Simplify the photo first").
@@ -257,6 +276,8 @@ reference, the plan, and each throwaway) so nothing is reconstructed at the end.
  "throwaways": [{"script": "filters/sky_only.py", "for": "...", "steps": ["sky-glow"], "tries": 1,
                  "outcome": "what happened", "verdict": "kept | seeded a render | dropped",
                  "images": ["filters/01_sky-glow_filter.png"]}],
+ "photo_prep": {"subject": "what the picture is of", "found": "what else was in the image, or 'just the picture'",
+                "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "why that was right"},
  "beginner_check": {"summary": "a sentence on what the check found overall",
                     "diagrams": {"<step id>": {"noticed": "what made this step need a diagram",
                                                "pieces": "how you broke the shape down, and why that way",

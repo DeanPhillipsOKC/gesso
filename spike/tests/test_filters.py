@@ -79,6 +79,29 @@ class FilterTests(unittest.TestCase):
         self.assertTrue((out[:, :, 0] < 128).any())
 
 
+class FindPictureTests(unittest.TestCase):
+    def test_finds_a_picture_between_app_bars_and_text(self):
+        noise = np.random.default_rng(3).integers(-14, 15, (120, 180, 3))
+        pic = np.clip(scene().astype(int) + noise, 0, 255).astype(np.uint8)  # photo-like: many colors a row
+        h, w = pic.shape[:2]
+        shot = np.full((h * 3, w, 3), 245, np.uint8)  # a flat app page
+        shot[: h // 4] = 30                             # a dark top bar
+        shot[h // 8: h // 8 + 6, 20: w - 20] = 250      # a line of "text" in it
+        shot[h: 2 * h] = pic
+        shot[2 * h + 40: 2 * h + 50, 30: 120] = 0       # a caption below
+        found = f.find_picture(shot)
+        x0, y0, x1, y1 = found["box"]
+        self.assertFalse(found["whole_image"])
+        self.assertLessEqual(abs(y0 - h), 3)
+        self.assertLessEqual(abs(y1 - 2 * h), 3)
+        self.assertEqual((x0, x1), (0, w))
+
+    def test_a_plain_photo_needs_no_crop(self):
+        noise = np.random.default_rng(4).integers(-14, 15, (120, 180, 3))
+        photo = np.clip(scene().astype(int) + noise, 0, 255).astype(np.uint8)
+        self.assertTrue(f.find_picture(photo)["whole_image"])
+
+
 class CommandLineTests(unittest.TestCase):
     def test_every_filter_writes_output_and_json(self):
         tmp = Path(tempfile.mkdtemp())

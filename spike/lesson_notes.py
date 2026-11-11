@@ -204,7 +204,13 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     # How Claude read the photo
     read = lesson["photo_read"]
     comps = "".join(f"<li>{e(c)}</li>" for c in read.get("components", []))
+    prep = notes.get("photo_prep") or {}
+    prep_html = ('<div class="diag"><p class="label">Before starting</p>' + "".join(
+        f"<p><b>{k}:</b> {e(prep[f])}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
+                                                        ("Done", "action"), ("Why", "why")) if prep.get(f)) + "</div>"
+                 ) if prep else ""
     parts.append(fold("How Claude read your photo", "subject, light, layers", "".join([
+        prep_html,
         f"<p>{e(notes['read'])}</p>" if notes.get("read") else "",
         f"<p><b>Subject:</b> {e(read['subject'])}<br><b>Focal point:</b> {e(read['focal_point'])}<br>"
         f"<b>Light:</b> {e(read['light'])}</p>",
