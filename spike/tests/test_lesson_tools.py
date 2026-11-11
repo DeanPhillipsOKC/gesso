@@ -147,6 +147,23 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn({"id": "sky", "paint": "Coral cloud"}, r["paints_not_listed"])
         self.assertNotIn({"id": "sky", "paint": "Sky blue"}, r["paints_not_listed"])
 
+    def test_owner_palette_mixes_from_their_tubes_and_lists_only_the_used_ones(self):
+        import yaml
+        import mixing
+        self.addCleanup(mixing.CUSTOM.clear)  # registered tubes are process-wide; don't leak into other tests
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        plan = json.loads((self.lesson / "plan.json").read_text())
+        plan["palette"] = "owner"
+        (self.lesson / "plan.json").write_text(json.dumps(plan))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)
+        data = json.loads((self.lesson / "lesson.json").read_text(encoding="utf-8"))
+        owned = [t["name"] for t in yaml.safe_load((tools.ROOT / "palettes" / "owner.yaml").read_text())["tubes"]]
+        parts = data["photo_read"]["mixes"][0]["mix"]["parts"]
+        self.assertTrue(set(parts) <= set(owned))
+        self.assertTrue(0 < len(data["tubes"]) <= len(parts))  # only the tubes the recipes use
+        self.assertEqual(data["palette_name"], "The owner's paints")
+
     def test_values_table_shows_depth(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [

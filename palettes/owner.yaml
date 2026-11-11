@@ -1,0 +1,38 @@
+# The owner's own acrylics (2026-11-11). Mostly Master's Touch (Hobby Lobby), some Royal & Langnickel Essentials.
+# Use with /paint-lesson ... --palette owner. Lessons mix only from these, and "What you need" lists the ones used.
+#
+# rgb is each paint's approximate masstone, from typical swatches of these pigments and names, not measured.
+# Brands vary, so recipes are close, not exact. To calibrate: paint a swatch of each, photograph it next to a white
+# card in daylight, and replace the rgb here (see the brand-exact follow-up on issue 22).
+name: The owner's paints
+tubes:
+  - {name: Titanium white, rgb: [255, 255, 255]}
+  - {name: Milky white, rgb: [247, 243, 232]}
+  - {name: Lemon yellow, rgb: [255, 236, 40]}
+  - {name: Medium yellow, rgb: [255, 205, 0]}
+  - {name: Yellow deep, rgb: [255, 170, 0]}
+  - {name: Yellow ochre, rgb: [204, 148, 40]}
+  - {name: Raw sienna, rgb: [190, 120, 50]}
+  - {name: Cashew, rgb: [222, 190, 140]}
+  - {name: Flesh tint, rgb: [240, 190, 160]}
+  - {name: Orange, rgb: [255, 110, 0]}
+  - {name: Permanent red, rgb: [220, 30, 30]}
+  - {name: Crimson, rgb: [165, 20, 45]}
+  - {name: Rouge, rgb: [200, 40, 80]}
+  - {name: Purple red, rgb: [140, 30, 80]}
+  - {name: Light magenta, rgb: [230, 80, 170]}
+  - {name: Violet, rgb: [90, 40, 140]}
+  - {name: Ultramarine, rgb: [25, 0, 89]}
+  - {name: Dark ultramarine, rgb: [20, 10, 70]}
+  - {name: Phthalo blue, rgb: [13, 27, 68]}
+  - {name: Lake blue, rgb: [40, 90, 170]}
+  - {name: Sky blue, rgb: [110, 170, 225]}
+  - {name: Cadmium green, rgb: [20, 130, 60]}
+  - {name: Dark green, rgb: [15, 70, 40]}
+  - {name: Light olive green, rgb: [140, 150, 60]}
+  - {name: Ocean green, rgb: [0, 130, 120]}
+  - {name: Burnt sienna, rgb: [123, 72, 0]}
+  - {name: Burnt umber, rgb: [74, 46, 26]}
+  - {name: Raw umber, rgb: [90, 70, 45]}
+  - {name: Permanent black, rgb: [20, 20, 22]}
+  - {name: Neutral gray, rgb: [128, 128, 128]}

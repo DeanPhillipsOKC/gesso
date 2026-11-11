@@ -52,7 +52,19 @@ class UnknownTube(ValueError):
     pass
 
 
+CUSTOM: dict[str, tuple[int, int, int]] = {}  # a painter's own tubes, by exact name (palettes/*.yaml)
+
+
+def register(tubes: list[dict]) -> list[str]:
+    """Load a painter's palette ({name, rgb} each) so recipes can use those tubes by name. Returns the names."""
+    for t in tubes:
+        CUSTOM[t["name"]] = tuple(int(v) for v in t["rgb"])
+    return [t["name"] for t in tubes]
+
+
 def tube_rgb(name: str) -> tuple[int, int, int]:
+    if name in CUSTOM:
+        return CUSTOM[name]
     """'Cadmium yellow medium (hue)' -> the cadmium yellow pigment. Matches the longest known key in the name."""
     low = name.lower()
     hits = [k for k in TUBES if k in low] or (["white"] if "white" in low else [])
@@ -62,7 +74,10 @@ def tube_rgb(name: str) -> tuple[int, int, int]:
 
 
 def short_name(tube: str) -> str:
-    """The name a painter says: 'Cadmium yellow medium (hue)' -> 'yellow', 'Titanium white' -> 'white'."""
+    """The name a painter says: 'Cadmium yellow medium (hue)' -> 'yellow', 'Titanium white' -> 'white'. A
+    painter's own tube is said the way it's labeled."""
+    if tube in CUSTOM:  # a painter's own tube: said the way it's labeled ("dark ultramarine" isn't "ultramarine")
+        return "white" if tube.lower() == "titanium white" else tube.lower()
     low = tube.lower()
     key = max([k for k in TUBES if k in low] or ["white" if "white" in low else low], key=len)
     return {"cadmium yellow": "yellow", "cadmium red": "red", "cadmium orange": "orange"}.get(key, key)
@@ -196,9 +211,40 @@ def _complexity(parts: dict[str, float]) -> tuple:
     return (len(parts), sum(v for v in parts.values()))
 
 
+SHORTLIST = 7  # a big palette is first narrowed to this many colored tubes for the full search
+
+
+def _shortlist(goal, palette: list[str]) -> list[str]:
+    """With a big palette (a painter's 30 tubes), search one- and two-tube recipes first, then keep the tubes the
+    best of those use. The full three-tube search over 30 tubes would be millions of mixes."""
+    white = next((t for t in palette if "white" in t.lower()), None)
+    colored = [t for t in palette if t != white]
+    tubes = {t: tube_rgb(t) for t in palette}
+    tries = []
+    for k in (1, 2):
+        for combo in itertools.combinations(colored, k):
+            for amounts in itertools.product([1, 2, 3], repeat=k):
+                for w in ([0, 1, 3, 8] if white else [0]):
+                    parts = dict(zip(combo, amounts))
+                    if w:
+                        parts[white] = w
+                    rgb = _mix_rgb([(tubes[t], v) for t, v in parts.items()])
+                    tries.append((delta_e(goal, rgb), combo))
+    keep: list[str] = []
+    for _, combo in sorted(tries, key=lambda x: x[0]):
+        for t in combo:
+            if t not in keep:
+                keep.append(t)
+        if len(keep) >= SHORTLIST:
+            break
+    return ([white] if white else []) + keep[:SHORTLIST]
+
+
 @lru_cache(maxsize=None)
 def _solve(target: str, palette: tuple[str, ...]) -> dict:
     goal = hex_rgb(target)
+    if len(palette) > SHORTLIST + 1:
+        palette = tuple(_shortlist(goal, list(palette)))
     tubes = {t: tube_rgb(t) for t in palette}
     scored = []
     for parts in _candidates(list(palette)):
@@ -240,3 +286,47 @@ def straight(tube: str, target_hex: str) -> dict:
     de = delta_e(target_hex, mixed)
     return {"parts": {tube: 1}, "text": words({tube: 1}), "mixed_hex": mixed, "target_hex": target_hex.lower(),
             "delta_e": round(de, 1), "reachable": True, "straight": True}
+
+
+CORE_TUBES = 8  # with a painter's big palette, a lesson aims to use about this many colored tubes in all
+CORE_SLACK = 2.0  # a paint may land this much further off to stay inside the lesson's core tubes
+
+
+def solve_lesson(targets: dict[str, str], palette: list[str]) -> dict[str, dict]:
+    """Recipes for a whole lesson that share a small set of tubes. Mixing every paint from whichever of 30 tubes
+    lands closest asked for 28 tubes (owner's palette, 2026-11-11). So: solve each paint freely, keep the tubes
+    used most (by how many paints use them) as the lesson's core, re-solve every paint from the core, and only
+    let a paint step outside it when the core can't get within CORE_SLACK of its best and within REACHABLE."""
+    free = {n: solve(h, palette) for n, h in targets.items()}
+    if len(palette) <= CORE_TUBES + 1:
+        return free
+    white = next((t for t in palette if "white" in t.lower()), None)
+    counts: dict[str, int] = {}
+    for m in free.values():
+        for t in m["parts"]:
+            if t != white:
+                counts[t] = counts.get(t, 0) + 1
+    core = sorted(counts, key=lambda t: -counts[t])[:CORE_TUBES]
+
+    def pal(tubes):
+        return ([white] if white else []) + [t for t in palette if t in tubes]
+
+    def good(n, m):
+        return m["reachable"] and m["delta_e"] <= max(free[n]["delta_e"] + CORE_SLACK, 3.0)
+
+    out = {}
+    # hardest paints first, so a tube one of them adds is there for the rest
+    for n in sorted(targets, key=lambda n: -solve(targets[n], pal(core))["delta_e"]):
+        m = solve(targets[n], pal(core))
+        if not good(n, m):
+            # add the one tube (from its own best recipe) that helps most, and keep it for every later paint
+            tries = [(solve(targets[n], pal(core + [t])), t) for t in free[n]["parts"] if t not in core and t != white]
+            tries = [(r, t) for r, t in tries if good(n, r)]
+            if tries:
+                m, t = min(tries, key=lambda x: x[0]["delta_e"])
+                core.append(t)
+            else:
+                m = free[n]
+                core.extend(t for t in m["parts"] if t not in core and t != white)
+        out[n] = m
+    return {n: out[n] for n in targets}

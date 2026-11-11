@@ -71,7 +71,7 @@ def export(lesson: dict, technique: dict, folder: Path) -> dict:
     data = {
         "title": title_for(lesson, folder), "subject": lesson["photo_read"]["subject"],
         "technique": technique.get("name", ""), "level": technique.get("level", "beginner"),
-        "tubes": technique.get("palette", []), "size": size, **extra,
+        "tubes": lesson.get("tubes") or technique.get("palette", []), "size": size, **extra,
         "cost_usd": lesson.get("total_cost_usd", 0), "gesso": lesson.get("gesso"), "steps": steps,
     }
     (out / "lesson.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
