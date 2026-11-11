@@ -6,6 +6,10 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.15.0 (2026-11-11)
+- Step pictures no longer repaint earlier work (#30): each step says where it paints (`regions` in plan.json),
+  and `lock-steps` puts back any change outside them, free. Raw renders stay in trials/raw/.
+
 ## POC 0.14.1 (2026-11-11)
 - Canvas crops split the cut evenly between both sides, shifting only as far as the subject needs.
 - No band-fill render when the photo already has the frame's shape: the cut-off edges fill the bands for free.
