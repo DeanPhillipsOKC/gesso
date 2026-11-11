@@ -137,5 +137,15 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(code, 2)
 
 
+class PercentGridTests(unittest.TestCase):
+    def test_lines_at_every_tenth_of_each_side(self):
+        import numpy as np
+        import filters as fl
+        img = np.full((110, 140, 3), 250, np.uint8)  # a 14x11 canvas shape
+        out = fl.grid(img, percent=True)
+        self.assertTrue((out[:, 14] < 100).any() and (out[:, 70] < 100).any())  # 10% and 50% across
+        self.assertTrue((out[55, :] < 100).any())  # 50% down
+
+
 if __name__ == "__main__":
     unittest.main()

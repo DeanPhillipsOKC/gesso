@@ -695,8 +695,8 @@ def run_filter(a: argparse.Namespace) -> dict:
         img = f.edges(rgb, a.detail)
         settings = {"detail": a.detail}
     elif a.tool == "grid":
-        img = f.grid(rgb, a.cells)
-        settings = {"cells": a.cells}
+        img = f.grid(rgb, a.cells, a.percent)
+        settings = {"percent": True} if a.percent else {"cells": a.cells}
     else:
         raise Refused(f"unknown filter {a.tool}")
     out = f.save(img, filter_out(a))
@@ -731,7 +731,9 @@ FILTERS = {
     "edges": ("a clean line drawing to trace for the sketch step",
               [("--detail", dict(choices=["low", "medium", "high"], default="medium"))]),
     "grid": ("a square grid over the picture for transferring the drawing",
-             [("--cells", dict(type=int, default=4, help="squares along the long side (default 4)"))]),
+             [("--cells", dict(type=int, default=4, help="squares along the long side (default 4)")),
+              ("--percent", dict(action="store_true", help="lines at every 10%% of width and height, labeled: "
+                                                            "use this to measure positions for step text"))]),
 }
 
 

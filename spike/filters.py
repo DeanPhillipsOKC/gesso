@@ -176,8 +176,12 @@ def edges(rgb: np.ndarray, detail: str = "medium") -> np.ndarray:
     return gray3(255 - e)
 
 
-def grid(rgb: np.ndarray, cells: int = 4) -> np.ndarray:
-    """Square grid over the picture, `cells` squares along the longer side, for transferring the drawing."""
+def grid(rgb: np.ndarray, cells: int = 4, percent: bool = False) -> np.ndarray:
+    """Square grid over the picture, `cells` squares along the longer side, for transferring the drawing. With
+    `percent`, lines at every 10% of the width and of the height instead, labeled, so positions read as the
+    percentages the lesson text uses on any canvas shape (11x14 run, 2026-11-11)."""
+    if percent:
+        return percent_grid(rgb)
     out = rgb.copy()
     h, w = rgb.shape[:2]
     step = max(h, w) / cells
@@ -191,6 +195,21 @@ def grid(rgb: np.ndarray, cells: int = 4) -> np.ndarray:
     while y < h - 1:
         cv2.line(out, (0, int(y)), (w, int(y)), color, thick)
         y += step
+    return out
+
+
+def percent_grid(rgb: np.ndarray) -> np.ndarray:
+    out = rgb.copy()
+    h, w = rgb.shape[:2]
+    thick = max(1, int(max(h, w) / 700))
+    color = (40, 40, 40) if lightness(rgb).mean() > 110 else (230, 230, 230)
+    scale = max(h, w) / 1400
+    for k in range(1, 10):
+        x, y = int(w * k / 10), int(h * k / 10)
+        cv2.line(out, (x, 0), (x, h), color, thick)
+        cv2.line(out, (0, y), (w, y), color, thick)
+        cv2.putText(out, f"{k * 10}", (x + 3, int(18 * scale) + 4), cv2.FONT_HERSHEY_SIMPLEX, 0.5 * scale, color, thick)
+        cv2.putText(out, f"{k * 10}", (3, y - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.5 * scale, color, thick)
     return out
 
 

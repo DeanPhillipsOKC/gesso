@@ -33,13 +33,25 @@ class CanvasTests(unittest.TestCase):
         self.assertFalse(r["needs_render"])
         self.assertEqual(r["canvas_box"], [0.0, 0.0, 1.0, 1.0])
 
-    def test_crop_keeps_the_subject_and_centers_the_focus(self):
+    def test_crop_splits_evenly_when_the_subject_allows(self):
+        # 14x11 from a 3:2 picture: the boat at 68-87% across fits a centered crop, so cut both sides equally
+        r = canvas.fit(wide(), "11x14", focus=(0.78, 0.5), keep=(0.68, 0.25, 0.87, 0.65))
+        self.assertEqual(r["mode"], "crop")
+        x0, _, x1, _ = r["crop_box"]
+        self.assertAlmostEqual(x0, 1536 - x1, delta=1)
+
+    def test_crop_shifts_only_as_far_as_the_subject_needs(self):
         r = canvas.fit(wide(), "10x10", focus=(0.8, 0.5), keep=(0.7, 0.3, 0.9, 0.7))
         self.assertEqual(r["mode"], "crop")
         x0, _, x1, _ = r["crop_box"]
-        self.assertTrue(x0 <= 0.7 * 1536 and x1 >= 0.9 * 1536)
-        self.assertEqual(x1, 1536)  # pushed to the right edge, as near the focus as it can get
+        self.assertEqual(x1, round(0.9 * 1536))  # its right edge just holds the subject
         self.assertFalse(r["needs_render"])  # a square canvas fits the square frame
+
+    def test_frame_shaped_photo_needs_no_render_after_a_crop(self):
+        r = canvas.fit(wide(), "11x14", focus=(0.78, 0.5), keep=(0.68, 0.25, 0.87, 0.65))
+        self.assertFalse(r["needs_render"])  # the cut-off edges are the bands
+        self.assertEqual(r["frame_size"], [1536, 1024])
+        self.assertAlmostEqual(r["canvas_box"][0], r["crop_box"][0] / 1536, places=3)
 
     def test_subject_that_wont_survive_a_crop_is_extended(self):
         r = canvas.fit(wide(), "10x10", focus=(0.5, 0.5), keep=(0.05, 0.2, 0.95, 0.8))
@@ -48,7 +60,9 @@ class CanvasTests(unittest.TestCase):
         self.assertEqual(r["frame"].getpixel((512, 5)), canvas.PAD)  # gray above the picture, for the model to fill
 
     def test_11x14_sits_in_a_frame_with_bands(self):
-        r = canvas.fit(Image.new("RGB", (1024, 1536)), "11x14", focus=(0.5, 0.5))
+        # the whole picture must stay (keep is everything), so it's extended, and the frame has bands to fill
+        r = canvas.fit(Image.new("RGB", (1024, 1536)), "11x14", focus=(0.5, 0.5), keep=(0, 0, 1, 1))
+        self.assertEqual(r["mode"], "extend")
         self.assertEqual(r["canvas"]["orientation"], "portrait")
         self.assertEqual(r["frame_size"], [1024, 1536])
         x0, y0, x1, y1 = r["canvas_box"]
