@@ -118,19 +118,43 @@ owner. Save all issues, with their round, in `review.json` as `review_issues`.
 ### 6. Write the steps (`text.json`)
 Read the final images in order and write each step's instructions from what its image actually shows, like
 `write_steps` in `spike/run.py`: name the real shapes and areas, give the mixes by paint name, keep the planned
-advice that still applies, plain words, 2 to 5 short steps. Write `<lesson>/text.json`:
+advice that still applies, plain words, 2 to 5 short steps.
+
+Every step also recommends its brushes and strokes, because beginners don't know which brush makes which mark:
+- `brushes`: each brush by its usual name and size (`1 inch flat`, `#8 round`, `Liner (#1 or #0)`, `fan brush`,
+  `old stiff flat`) and what it's for in this step. The lesson's "What you need" list is built from these.
+- `strokes`: the named stroke techniques for this step, from the technique's `brush_moves` where one fits (X stroke,
+  wet blending, dabbing, press and lift, flicking, dry brushing, ...), each with one or two sentences on how to do it
+  with that brush, for this picture.
+
+Write `<lesson>/text.json`:
 
 ```json
 {"steps": [{"stage_id": "sky-gradient", "what_to_do": ["..."], "mixes": ["Sunset orange"], "watch_out": ["..."],
-            "paint_notes": [], "made_with": "render", "reason": "why this tool"}]}
+            "paint_notes": [], "made_with": "render", "reason": "why this tool",
+            "brushes": [{"brush": "1 inch flat", "use": "covering and blending the sky"}],
+            "strokes": [{"name": "X stroke", "how": "Criss-cross the flat in overlapping X shapes so the paint blends with no streaks."}]}]}
 ```
 
-`made_with` is `filter:<name>`, `composite`, `throwaway:<script>`, `render+filter:<name>`, or `render`.
+`made_with` is `filter:<name>`, `composite`, `throwaway:<script>`, `render+throwaway:<script>`,
+`render+filter:<name>`, or `render`.
 
-### 7. Publish and report
-`publish --lesson <lesson>` writes `lesson.json` and `lesson.html`. Then tell the owner, starting with anything that
-needs them:
+### 7. Publish the lesson as an artifact and report
+`publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
+`lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`.
+
+Then publish `lesson-artifact.html` as a Claude artifact with the Artifact tool, when it's available:
+- Copy it into the session's scratchpad (or working directory) first, named `<photo stem>-lesson.html`, since the
+  tool only publishes files from there. The page already meets the artifact page contract, so don't rewrite it.
+- `icon: "paint"`, and a one-sentence `description` (steps, subject, level). For a lesson re-run on the same photo,
+  publish to the same URL instead of creating a new artifact.
+- Artifacts are private by default. Keep them that way: the page shows the owner's photo (decisions: photos stay
+  private), so never suggest sharing it.
+
+Tell the owner, starting with anything that needs them:
 - steps flagged and left as they are, with the reason;
+- the artifact link;
 - image cost for the lesson (`image_cost_usd`), paid and cached renders, and steps by source (filter, render, ...);
-- compared with the spike's low-quality baseline: $0.26 for a whole lesson on the trees photo (`docs/decisions.md`);
-- the path to `lesson.html`, and send it to them (SendUserFile) when that tool is available.
+- compared with the spike: its parallel lessons on the trees photo cost about $0.40 each, $0.19 of images plus
+  $0.22 of Claude API calls (2026-10-19); this skill's Claude work costs nothing extra;
+- any throwaway filters used (until #11 files them as requests).

@@ -215,7 +215,7 @@ def add_render(sub) -> None:
 # <lesson>/00_canvas.png plain white canvas (made on first use)
 # <lesson>/NN_<id>.png   step images, NN from 01
 # <lesson>/text.json     written by the skill: {"steps": [{stage_id, what_to_do, mixes, watch_out, paint_notes,
-#                        made_with, reason}]}
+#                        made_with, reason, brushes: [{brush, use}], strokes: [{name, how}]}]}
 # <lesson>/review.json   optional, written by the skill: {"finish_issues": [...], "review_issues": [...]}
 
 
@@ -291,7 +291,8 @@ def render_step(a: argparse.Namespace, client=None) -> dict:
 
 def publish(a: argparse.Namespace) -> dict:
     """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
-    from run import CLAUDE_MODEL, render_html, sample_swatches
+    from lesson_page import page
+    from run import CLAUDE_MODEL, sample_swatches
 
     lesson = Path(a.lesson)
     raw, plan, technique = load_plan(lesson)
@@ -323,11 +324,12 @@ def publish(a: argparse.Namespace) -> dict:
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
             "brushes": s.brushes, "dry_time": technique["dry_time"],
             "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""),
+            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []),
         }
         for i, s in enumerate(plan.steps)
     ]
     lesson_data = {
-        "photo": photo.name, "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
+        "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
                        "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]},
@@ -336,14 +338,17 @@ def publish(a: argparse.Namespace) -> dict:
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
-    (lesson / "lesson.html").write_text(render_html(lesson_data, technique, photo_copy.name), encoding="utf-8")
+    (lesson / "lesson.html").write_text(page(lesson_data, technique, lesson), encoding="utf-8")
+    artifact = lesson / "lesson-artifact.html"
+    artifact.write_text(page(lesson_data, technique, lesson, embed=True), encoding="utf-8")
 
     by_source: dict[str, int] = {}
     for st in stages:
         k = st["made_with"].split(":")[0]
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
-    return {"html": str(lesson / "lesson.html"), "steps": len(stages), "steps_by_source": by_source,
+    return {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
+            "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "steps": len(stages), "steps_by_source": by_source,
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 
@@ -364,9 +369,10 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--fresh", action="store_true")
     p.set_defaults(func=render_step)
 
-    p = sub.add_parser("publish", help="Free. Build lesson.json and lesson.html once every step image exists.",
+    p = sub.add_parser("publish", help="Free. Build lesson.json, lesson.html, and lesson-artifact.html once every step image exists.",
                        description="Snap paint swatches to the finish, merge plan.json, text.json, review.json, and "
-                                   "the ledger, and write lesson.json and lesson.html.")
+                                   "the ledger, and write lesson.json, lesson.html, and lesson-artifact.html (images inlined, "
+                                   "for publishing as a Claude artifact).")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=publish)
 
