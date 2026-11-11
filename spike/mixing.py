@@ -76,8 +76,8 @@ def tube_rgb(name: str) -> tuple[int, int, int]:
 def short_name(tube: str) -> str:
     """The name a painter says: 'Cadmium yellow medium (hue)' -> 'yellow', 'Titanium white' -> 'white'. A
     painter's own tube is said the way it's labeled."""
-    if tube in CUSTOM:
-        return tube.lower()
+    if tube in CUSTOM and not any(k in tube.lower() for k in TUBES):
+        return tube.lower()  # "Light magenta", "Cashew": said the way they're labeled
     low = tube.lower()
     key = max([k for k in TUBES if k in low] or ["white" if "white" in low else low], key=len)
     return {"cadmium yellow": "yellow", "cadmium red": "red", "cadmium orange": "orange"}.get(key, key)
