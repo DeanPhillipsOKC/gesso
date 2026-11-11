@@ -14,8 +14,10 @@ paid image model, so it needs a reason no filter works and stays under the lesso
 from __future__ import annotations
 
 import argparse
+import contextlib
 import hashlib
 import json
+import os
 import shutil
 import sys
 import threading
@@ -48,14 +50,56 @@ def emit(result: dict) -> None:
 
 
 class LessonLedger:
+    """<lesson>/ledger.json. Several tools.py processes may render for one lesson at once, so every change
+    takes a lock file and re-reads the ledger first; otherwise the last process to save drops the others'
+    entries (seen 2026-11-10: 5 of 8 parallel renders lost)."""
+
     def __init__(self, lesson: Path):
         self.path = lesson / "ledger.json"
-        self.calls: list[dict] = json.loads(self.path.read_text(encoding="utf-8"))["calls"] if self.path.exists() else []
+        self.calls: list[dict] = []
+        self.reload()
+
+    def reload(self) -> None:
+        self.calls = json.loads(self.path.read_text(encoding="utf-8"))["calls"] if self.path.exists() else []
+
+    @contextlib.contextmanager
+    def locked(self, timeout: float = 60.0):
+        """Exclusive access to the ledger across processes, with the latest calls loaded."""
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        lock = self.path.with_suffix(".lock")
+        deadline = time.time() + timeout
+        while True:
+            try:
+                fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.close(fd)
+                break
+            except FileExistsError:
+                try:
+                    if time.time() - lock.stat().st_mtime > timeout:  # left behind by a crashed process
+                        lock.unlink(missing_ok=True)
+                        continue
+                except FileNotFoundError:
+                    continue
+                if time.time() > deadline:
+                    raise Refused(f"ledger is locked ({lock}); another render seems stuck")
+                time.sleep(0.05)
+        try:
+            self.reload()
+            yield self
+        finally:
+            lock.unlink(missing_ok=True)
 
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         data = {"calls": self.calls, "total_cost_usd": self.total_cost}
-        self.path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        tmp = self.path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        os.replace(tmp, self.path)
+
+    def append(self, entry: dict) -> None:
+        with self.locked():
+            self.calls.append(entry)
+            self.save()
 
     @property
     def renders(self) -> list[dict]:
@@ -108,7 +152,7 @@ class Budget:
         self.reserved_steps: dict[str, int] = {}
 
     def reserve(self, step: str, quality: str) -> float:
-        with self.lock:
+        with self.lock, self.ledger.locked():  # see other processes' renders too
             done = self.ledger.paid_renders_for(step) + self.reserved_steps.get(step, 0)
             if done > self.max_redos:
                 raise Refused(f"step '{step}' already has {done} renders (1 plus {self.max_redos} redos). "
@@ -127,8 +171,7 @@ class Budget:
             if estimate:
                 self.reserved -= estimate
                 self.reserved_steps[entry["step"]] -= 1
-            self.ledger.calls.append(entry)
-            self.ledger.save()
+            self.ledger.append(entry)
 
     def release(self, step: str, estimate: float) -> None:
         with self.lock:

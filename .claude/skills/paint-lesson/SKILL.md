@@ -25,7 +25,10 @@ For each image the lesson needs, take the first of these that does the job, and 
 3. **A throwaway filter** (#11): a one-off script in `<lesson>/filters/`, tried before renders, 2 tries at most.
    Write every try's output inside `<lesson>/filters/` too, and copy only the one you use to `<lesson>/NN_<id>.png`.
    If neither try works, keep the better one there as a seed for option 4. Until #11 adds filing filter requests,
-   list each throwaway in the report to the owner. Example from the trees
+   list each throwaway in the report to the owner. Worth trying when a step only takes away things that sit on a
+   simple background (the trees in front of a sky). Skip it when a later layer hides something the step has to
+   show (the swirl under the cat, the sky behind the vines): inpainting can't invent what was covered, and two
+   runs (cat, pumpkin, 2026-11-10) spent both tries and still rendered. Example from the trees
    run: the first step (sky only) came from masking the dark trees in the finish, inpainting the holes, and
    blurring; it left a mark the review caught, and a render seeded by it fixed that for $0.018.
 4. **A render seeded by a filter or composite**: `render --step <id> --inputs <seed image> --out <lesson>/NN_<id>.png`
@@ -50,7 +53,9 @@ render with the same inputs comes back free from the cache, so rerunning a lesso
 The reference is what the painting is made from: fewer shapes, clear values, colors a beginner can mix
 (decisions: "Simplify the photo first").
 - Try `simplify --strength 2` or `3` on the photo, then look at it. If small clutter is still there, try a
-  higher strength or `--method meanshift`. Write the result to `<lesson>/00_reference.png` (`--out`).
+  higher strength or `--method meanshift`. For line art or anything with outlines (an illustration, a cartoon),
+  start with `--method meanshift --strength 3`: Kuwahara breaks thin dark lines apart (the cat lost its face).
+  Write trials to `<lesson>/trials/` with `--out`, and copy the one you pick to `<lesson>/00_reference.png`.
 - Also make, for the painter and for you: `value-study --tones 3`, `palette --colors 6` (their outputs go in the
   lesson folder with `--lesson`).
 - Only if no filter result reads as a clean reference (for example the photo is too busy for any strength),
@@ -123,8 +128,8 @@ Don't grade your own images. Start a subagent (Agent tool, general-purpose) with
 
 Before redoing, check each issue yourself against the finish: if the flagged step matches the finish and its
 neighbor doesn't, redo the neighbor instead and say so in `action`. Redo with
-`render-step --steps <id> --fix "<fix>" --why-not-filter "<reason>"` (one step per call; run several as separate
-commands in parallel).
+`render-step --steps <id> --fix "<fix>" --why-not-filter "<reason>"` (one step per call; several can run as
+separate commands in parallel, since the ledger locks itself).
 
 The rounds go as in the spike: review, redo, review again in a new subagent, redo what that flags, and stop. There
 is no third review. A step whose redo was refused by the caps stays as it is. Save every issue in `review.json`:
@@ -160,7 +165,8 @@ Write `<lesson>/text.json`:
 ```
 
 `made_with` is `filter:<name>`, `composite`, `throwaway:<script>`, `render+throwaway:<script>`,
-`render+filter:<name>`, or `render`.
+`render+filter:<name>`, or `render`, for the image the lesson ends up with. When a redo replaced a filter or
+seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
 
 ### 7. Publish the lesson as an artifact and report
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
