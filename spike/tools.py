@@ -158,6 +158,97 @@ def add_render(sub) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Filters (#7): free and local
+# ---------------------------------------------------------------------------
+
+
+def filter_out(a: argparse.Namespace, suffix: str = "png") -> Path:
+    if a.out:
+        return Path(a.out)
+    folder = Path(a.lesson) if a.lesson else ROOT / "output" / "filters"
+    return folder / f"{Path(a.input).stem}_{a.tool}.{suffix}"
+
+
+def run_filter(a: argparse.Namespace) -> dict:
+    import filters as f
+
+    src = Path(a.input)
+    if not src.exists():
+        raise Refused(f"input image not found: {src}")
+    rgb = f.load(src)
+    settings: dict = {}
+    extra: dict = {}
+    if a.tool == "value-study":
+        img = f.value_study(rgb, a.tones)
+        settings = {"tones": a.tones}
+    elif a.tool == "notan":
+        img, used = f.notan(rgb, a.threshold)
+        settings = {"threshold": used}
+    elif a.tool == "squint":
+        img = f.squint(rgb, a.amount)
+        settings = {"amount": a.amount}
+    elif a.tool == "palette":
+        swatches = f.palette(rgb, a.colors)
+        img = f.swatch_image(swatches)
+        settings = {"colors": a.colors}
+        out_json = filter_out(a).with_suffix(".json")
+        out_json.parent.mkdir(parents=True, exist_ok=True)
+        out_json.write_text(json.dumps(swatches, indent=2), encoding="utf-8")
+        extra = {"json": str(out_json), "swatches": [{"hex": s["hex"], "share": s["share"]} for s in swatches]}
+    elif a.tool == "simplify":
+        img = f.simplify(rgb, a.strength, a.method)
+        settings = {"strength": a.strength, "method": a.method}
+    elif a.tool == "posterize":
+        pal = [s["rgb"] for s in json.loads(Path(a.palette).read_text(encoding="utf-8"))] if a.palette else None
+        img = f.posterize(rgb, a.colors, pal)
+        settings = {"colors": len(pal) if pal else a.colors, "palette": a.palette}
+    elif a.tool == "edges":
+        img = f.edges(rgb, a.detail)
+        settings = {"detail": a.detail}
+    elif a.tool == "grid":
+        img = f.grid(rgb, a.cells)
+        settings = {"cells": a.cells}
+    else:
+        raise Refused(f"unknown filter {a.tool}")
+    out = f.save(img, filter_out(a))
+    return {"tool": a.tool, "input": str(src), "out": str(out), "settings": settings, "cost_usd": 0.0, **extra}
+
+
+FILTERS = {
+    # name: (use this for, extra arguments)
+    "value-study": ("values: the lights, middles, and darks to block in (3 to 5 tones)",
+                    [("--tones", dict(type=int, default=3, choices=range(2, 8), help="number of values (default 3)"))]),
+    "notan": ("the big dark and light pattern, two values; checks a composition reads",
+              [("--threshold", dict(type=int, help="0-255; default picks one automatically"))]),
+    "squint": ("seeing big shapes and values with details gone, like squinting",
+               [("--amount", dict(type=float, default=2.0, help="blur as percent of the long side (default 2)"))]),
+    "palette": ("the picture's main colors as swatches plus JSON (hex, share); mixing targets",
+                [("--colors", dict(type=int, default=6, help="number of colors (default 6)"))]),
+    "simplify": ("block-in and simplified-reference looks: flat painterly patches, sharp edges kept",
+                 [("--strength", dict(type=int, default=2, choices=range(1, 6), help="1 light to 5 heavy (default 2)")),
+                  ("--method", dict(choices=["kuwahara", "meanshift"], default="kuwahara"))]),
+    "posterize": ("a few flat colors, its own or a palette's; color blocking stages",
+                  [("--colors", dict(type=int, default=6, help="number of colors (default 6)")),
+                   ("--palette", dict(help="palette JSON from the palette tool; snaps to those colors"))]),
+    "edges": ("a clean line drawing to trace for the sketch step",
+              [("--detail", dict(choices=["low", "medium", "high"], default="medium"))]),
+    "grid": ("a square grid over the picture for transferring the drawing",
+             [("--cells", dict(type=int, default=4, help="squares along the long side (default 4)"))]),
+}
+
+
+def add_filters(sub) -> None:
+    for name, (use_for, args) in FILTERS.items():
+        p = sub.add_parser(name, help=f"Free. Use for {use_for}.", description=f"Free filter. Use for {use_for}.")
+        p.add_argument("input", help="image to filter")
+        p.add_argument("--lesson", help="lesson folder to write into (default output/filters/)")
+        p.add_argument("--out", help="output path; default <folder>/<input name>_<tool>.png")
+        for flag, kw in args:
+            p.add_argument(flag, **kw)
+        p.set_defaults(func=run_filter)
+
+
+# ---------------------------------------------------------------------------
 # Command line
 # ---------------------------------------------------------------------------
 
@@ -165,6 +256,7 @@ def add_render(sub) -> None:
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="tools.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="tool", required=True, metavar="TOOL")
+    add_filters(sub)
     add_render(sub)
     return ap
 
