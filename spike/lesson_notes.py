@@ -231,6 +231,28 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
         how = f'<p class="small">{e(t["how_chosen"])}</p>' if t.get("how_chosen") else ""
         parts.append(fold("Why this technique", technique.get("name", ""), f'{how}<div class="pick">{"".join(cards)}</div>'))
 
+    # Paint recipes: worked out by the mixer, compared with the ones written by eye
+    mixed = [m for m in read.get("mixes", []) if m.get("mix")]
+    if mixed:
+        def chip(hexv: str, label: str) -> str:
+            return f'<span class="mix"><span class="dot" style="background:{e(hexv)}"></span>{e(label)}</span>'
+        rows = "".join(
+            f'<li><b>{e(m["name"])}</b> {tag("filter" if m["mix"]["reachable"] else "review", "Delta E " + str(m["mix"]["delta_e"]))}'
+            f'<div class="mixes">{chip(m["mix"]["target_hex"], "in the painting")}{chip(m["mix"]["mixed_hex"], "the recipe mixed")}</div>'
+            f'<p><b>Mixer:</b> {e(m["recipe"])}</p>'
+            + (f'<p class="small"><b>Written by eye first:</b> {e(m["guess_recipe"])}</p>' if m.get("guess_recipe") else "")
+            + "</li>" for m in mixed)
+        worst = max(m["mix"]["delta_e"] for m in mixed)
+        parts.append(fold("How the paint recipes were worked out", f"{len(mixed)} paints, free", "".join([
+            "<p>Paint doesn't mix like light on a screen: blue and yellow make green, not gray. So the recipes come from "
+            "a pigment mixing model (Mixbox), not a guess. For each paint it tried every simple recipe from your tubes, "
+            "up to three colors plus white, and kept the one that lands closest to the color in the painting. Delta E is "
+            "how far off it lands: under 2 is hard to see, under 5 is close, and over 8 means these tubes can't quite "
+            "make it.</p>",
+            f'<ul class="plain diaglist">{rows}</ul>',
+            f'<p class="small">Furthest off: Delta E {worst}. Real tubes vary by brand, so mix, compare with the step '
+            "picture, and nudge.</p>"])))
+
     # Step order, as a storyboard
     if notes.get("order") or notes.get("steps"):
         board = "".join(

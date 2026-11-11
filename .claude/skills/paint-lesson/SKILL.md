@@ -157,7 +157,7 @@ Step `colors` and every diagram `paint` must be names from the plan's `paints`. 
 isn't one: add it as a paint (with its recipe) if a step uses it straight.
 
 The last step is the finished painting: `"looks_like": "The finished painting."`, `"covers_canvas": true`. Step
-ids are unique lowercase slugs. Use only palette tubes in recipes. `sample_x`/`sample_y` (0-1 from the top left)
+ids are unique lowercase slugs. Use only palette tubes in recipes (a first guess; `mix` computes the real ones). `sample_x`/`sample_y` (0-1 from the top left)
 point at a flat patch of that paint in the finish; `publish` snaps each hex to the painted color there. The palette
 filter output on the finish helps you pick hexes.
 
@@ -220,9 +220,17 @@ Use `"left"` for anything not redone (a cap refused it, or you judged it not wor
 every `"left"` problem on its step as a heads-up for the painter.
 
 ### 6. Write the steps (`text.json`)
+First run `mix --lesson <lesson>` (free). It works out every paint's recipe from the palette tubes with a pigment
+mixing model and prints each one with how far it lands from the paint's swatch (Delta E). Your plan recipes were a
+first guess: the computed ones replace them on the page, so never write amounts in the step text. Name paints only
+(Five lessons, 2026-11-11: recipes written by eye missed by Delta E 11 on average, the mixer by 2). For each paint
+in `unreachable`, the tubes can't make it: say so in that step's `paint_notes` ("as close as these tubes get") or
+pick a sample spot nearer what the step needs.
+
 Read the final images in order and write each step's instructions from what its image actually shows, like
 `write_steps` in `spike/run.py`: name the real shapes and areas, give the mixes by paint name, keep the planned
-advice that still applies, plain words, 2 to 5 short steps.
+advice that still applies, plain words, 2 to 5 short steps. Every step's page lists its paints with their recipes,
+because beginners mix as they go (acrylics dry on the palette), so a step's `colors` must hold every paint it uses.
 
 Every step also recommends its brushes and strokes, because beginners don't know which brush makes which mark:
 - `brushes`: each brush by its usual name and size (`1 inch flat`, `#8 round`, `Liner (#1 or #0)`, `fan brush`,

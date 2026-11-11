@@ -6,3 +6,4 @@ pillow
 python-dotenv
 numpy>=2
 opencv-python-headless>=4.10
+pymixbox

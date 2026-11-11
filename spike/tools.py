@@ -332,6 +332,44 @@ def render_step(a: argparse.Namespace, client=None) -> dict:
     return {"steps": results, "lesson_total_usd": led.total_cost, "budget_left_usd": round(a.max_cost - led.total_cost, 4)}
 
 
+def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
+    """Solve every paint's recipe from the palette tubes against its swatch (#22), and write <lesson>/mixes.json.
+    The swatches must already be snapped to the finish (sample_swatches)."""
+    import mixing
+
+    tubes = technique.get("palette", [])
+    try:
+        for t in tubes:
+            mixing.tube_rgb(t)
+    except mixing.UnknownTube as err:
+        raise Refused(str(err)) from err
+    mixes = {}
+    for p in plan.paints:
+        m = mixing.solve(p.hex, tubes)
+        m["guess_recipe"] = p.recipe
+        mixes[p.name] = m
+    (lesson / "mixes.json").write_text(json.dumps(mixes, indent=2), encoding="utf-8")
+    return mixes
+
+
+def mix_tool(a: argparse.Namespace) -> dict:
+    """Compute the paint recipes for a lesson, so the skill can see them before writing the step text."""
+    from run import sample_swatches
+
+    lesson = Path(a.lesson)
+    raw, plan, technique = load_plan(lesson)
+    finish = lesson / "99_finish.png"
+    if not finish.exists():
+        raise Refused(f"no finished painting at {finish}; the swatches are sampled from it")
+    sample_swatches(plan, finish)
+    mixes = compute_mixes(lesson, plan, technique)
+    return {"json": str(lesson / "mixes.json"), "cost_usd": 0.0,
+            "paints": [{"name": n, "recipe": m["text"], "target": m["target_hex"], "mixed": m["mixed_hex"],
+                        "delta_e": m["delta_e"], "reachable": m["reachable"], "your_recipe": m["guess_recipe"]}
+                       for n, m in mixes.items()],
+            "unreachable": [n for n, m in mixes.items() if not m["reachable"]]}
+
+
 def publish(a: argparse.Namespace) -> dict:
     """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
     from lesson_page import page
@@ -344,6 +382,7 @@ def publish(a: argparse.Namespace) -> dict:
     if missing:
         raise Refused(f"missing step images: {missing}")
     sample_swatches(plan, paths[-1])
+    mixes = compute_mixes(lesson, plan, technique)
     text_path = lesson / "text.json"
     text = {t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]} if text_path.exists() else {}
     review_path = lesson / "review.json"
@@ -351,7 +390,15 @@ def publish(a: argparse.Namespace) -> dict:
     notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters, throwaways
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
     led = LessonLedger(lesson)
-    paints = {p.name: p for p in plan.paints}
+
+    def paint_dict(p) -> dict:
+        d = p.model_dump()
+        m = mixes.get(p.name)
+        if m:  # the computed recipe replaces the one written by eye, which is kept for the notes
+            d.update(guess_recipe=d["recipe"], recipe=m["text"], mix=m)
+        return d
+
+    paints = {p.name: paint_dict(p) for p in plan.paints}
 
     photo = ROOT / raw["photo"]
     photo_copy = lesson / f"photo{photo.suffix}"
@@ -365,7 +412,7 @@ def publish(a: argparse.Namespace) -> dict:
         {
             "id": s.id, "name": s.name, "image": paths[i].name, "paints": s.paints, "looks_like": s.looks_like,
             "steps": txt(s, "what_to_do", s.how), "mixes": txt(s, "mixes", []),
-            "colors": [paints[c].model_dump() for c in s.colors if c in paints],
+            "colors": [paints[c] for c in s.colors if c in paints],
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
             "brushes": s.brushes, "dry_time": technique["dry_time"],
             "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""),
@@ -377,7 +424,7 @@ def publish(a: argparse.Namespace) -> dict:
         "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
-                       "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]},
+                       "components": plan.components, "mixes": list(paints.values())},
         "finish_issues": review.get("finish_issues", []), "review_issues": review.get("review_issues", []),
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
@@ -398,6 +445,7 @@ def publish(a: argparse.Namespace) -> dict:
             # a diagram the page can't explain: the skill's beginner check didn't write down why
             "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
                                       ((notes.get("beginner_check") or {}).get("diagrams") or {})],
+            "unreachable_paints": [n for n, m in mixes.items() if not m["reachable"]],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 
@@ -468,6 +516,13 @@ def add_lesson_tools(sub) -> None:
                                    "for publishing as a Claude artifact).")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=publish)
+
+    p = sub.add_parser("mix", help="Free. Compute every paint's recipe from the palette tubes (pigment mixing, not by eye).",
+                       description="Snap paint swatches to the finish, then solve each paint's recipe from the technique's "
+                                   "tubes with a pigment mixing model (Mixbox). Writes <lesson>/mixes.json with the recipe, "
+                                   "the mixed color, and how far it lands from the swatch (Delta E). publish runs it too.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=mix_tool)
 
     p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
                        description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "

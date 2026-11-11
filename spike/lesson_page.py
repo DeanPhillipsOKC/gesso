@@ -78,6 +78,19 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .mix{display:flex;align-items:center;gap:.4rem;font-size:.92rem}
 .dot{width:1rem;height:1rem;border-radius:50%;border:1px solid var(--rule);flex:none}
 .watch{color:var(--warn);font-size:.95rem}
+.warnc{display:block;color:var(--warn)}.warnc .dot{display:inline-block;vertical-align:-2px}
+/* Paints for this step: the mixes it uses, recipes included, so nothing has to be mixed ahead and dry out. */
+details.mixfor{background:var(--panel);border-radius:6px;padding:.6rem 1rem}
+details.mixfor>summary{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .7rem}
+details.mixfor>summary::before{content:"+";font:600 .95rem/1 var(--mono);color:var(--ultramarine);width:1rem;text-align:center}
+details[open].mixfor>summary::before{content:"\\2212"}
+details.mixfor .dots{display:flex;gap:.2rem}
+.mixlist{margin:.6rem 0 .2rem;display:grid;gap:.7rem}
+.mixlist li{display:grid;grid-template-columns:2rem 1fr;gap:.6rem;align-items:start;min-width:0}
+.mixlist .blob{width:2rem;height:2rem}
+.mixlist .recipe{display:block}
+.new{font:600 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--r-filter);
+  border:1px solid currentColor;border-radius:3px;padding:.15rem .35rem}
 .small{font-size:.85rem;color:var(--muted)}
 ul.plain{list-style:none;padding-left:0!important}
 /* Construction diagrams: build a shape from simple pieces, one panel per move, under the step it belongs to. */
@@ -220,9 +233,26 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     imgs = [image_src(folder, s["image"], embed, 1000) for s in stages]
     thumbs = [image_src(folder, s["image"], embed, 200) for s in stages] if embed else imgs
 
+    # The step each paint is first needed in. Beginners mix as they go, since acrylics dry on the palette.
+    first: dict[str, int] = {}
+    for i, s in enumerate(stages):
+        for c in s.get("colors", []):
+            first.setdefault(c["name"], i + 1)
+
+    def closest(p: dict) -> str:
+        m = p.get("mix") or {}
+        if not m or m.get("reachable", True):
+            return ""
+        return (f'<span class="small warnc">Closest you can get from these tubes '
+                f'<span class="dot" style="background:{e(m["mixed_hex"])}"></span>. Match the step picture as best you can.</span>')
+
+    def when(name: str) -> str:
+        return f"First needed in step {first[name]}" if name in first else ""
+
     paint_cards = "".join(
         f'<div class="paint"><span class="blob" style="background:{e(p["hex"])}"></span><div><b>{e(p["name"])}</b>'
-        f'<span class="recipe">{e(p["recipe"])}</span><br><span class="small">{e(p.get("used_for", ""))}</span></div></div>'
+        f'<span class="recipe">{e(p["recipe"])}</span><br><span class="small">{e(p.get("used_for", ""))}'
+        f'{" · " + when(p["name"]) if when(p["name"]) else ""}</span>{closest(p)}</div></div>'
         for p in paints)
     brush_items = "".join(f"<li><b>{e(b)}</b>" + (f": {e(u)}" if u else "") + "</li>" for b, u in brushes.items())
     kit = (f'<div><p class="label">Tubes</p><ul>{items(tubes)}</ul></div>'
@@ -238,9 +268,19 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
         blist = s.get("brush_list") or ([{"brush": s["brushes"], "use": ""}] if s.get("brushes") else [])
         chips = "".join(f'<span class="chip" title="{e(b.get("use", ""))}">{e(b["brush"])}</span>' for b in blist)
         strokes = "".join(f'<p class="stroke"><b>{e(t["name"])}.</b> {e(t["how"])}</p>' for t in s.get("strokes", []))
-        mixes = "".join(
-            f'<span class="mix"><span class="dot" style="background:{e(by_name[c]["hex"])}"></span>{e(c)}</span>'
-            for c in [c["name"] for c in s.get("colors", [])] if c in by_name)
+        used = [by_name[c["name"]] for c in s.get("colors", []) if c["name"] in by_name]
+        fresh = [p for p in used if first.get(p["name"]) == i + 1]
+        mix_rows = "".join(
+            f'<li><span class="blob" style="background:{e(p["hex"])}"></span><div><b>{e(p["name"])}</b> '
+            + ('<span class="new">new</span>' if first.get(p["name"]) == i + 1 else
+               f'<span class="small">from step {first.get(p["name"])}, mix more if it has dried</span>')
+            + f'<span class="recipe">{e(p["recipe"])}</span>{closest(p)}</div></li>' for p in used)
+        dots = "".join(f'<span class="dot" style="background:{e(p["hex"])}"></span>' for p in used)
+        mixes = (f'<details class="mixfor" open><summary><span class="label">Paints for this step</span>'
+                 f'<span class="dots">{dots}</span>'
+                 f'<span class="small">{len(used)} paint{"s" if len(used) != 1 else ""}'
+                 f'{f", {len(fresh)} new" if fresh else ""}</span></summary><ul class="plain mixlist">{mix_rows}</ul></details>'
+                 ) if used else ""
         notes = "".join(f'<p class="small">{e(n)}</p>' for n in s.get("paint_notes", []))
         watch = "".join(f'<p class="watch">Watch out: {e(w)}</p>' for w in s.get("watch_out", []))
         flags = "".join(f'<p class="flag">Heads up, this picture is a little off: {e(x)} Paint what the steps say.</p>'
@@ -251,7 +291,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
   <div class="text">
     <div><p class="num">STEP {i + 1} OF {len(stages)}</p><h3>{e(s['name'])}</h3></div>
     <ol class="do">{items(s['steps'])}</ol>
-    {f'<div class="mixes">{mixes}</div>' if mixes else ''}{notes}
+    {mixes}{notes}
     <div class="tools">
       <p class="label">Brushes</p><div class="chips">{chips}</div>
       {f'<p class="label">Strokes</p>{strokes}' if strokes else ''}
@@ -279,7 +319,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     <figure><img src="{finish}"{sizes[-1]} alt="The finished painting"><figcaption>Where you'll end up</figcaption></figure>
   </div>
   <section><h2>What you need</h2><div class="kit">{kit}</div></section>
-  <section><h2>Your paints</h2><p class="small">Mix these from the tubes before you start. Parts are by volume.</p>
+  <section><h2>Your paints</h2><p class="small">Every paint in the lesson. You don't have to mix them all at the start: each step lists
+    the paints it uses with their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>
     <div class="paints">{paint_cards}</div></section>
   <section><h2>The steps</h2><nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}

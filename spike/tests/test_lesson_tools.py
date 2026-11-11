@@ -105,6 +105,23 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(r["steps_by_source"], {"render": 2, "filter": 1})
         self.assertEqual(r["paid_renders"], 2)
 
+    def test_mix_computes_recipes_and_every_step_lists_its_paints(self):
+        code, r = self.run_tool("mix", "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)
+        self.assertEqual(r["paints"][0]["your_recipe"], "white and blue")
+        self.assertIn("ultramarine", r["paints"][0]["recipe"])
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.run_tool("publish", "--lesson", str(self.lesson))
+        data = json.loads((self.lesson / "lesson.json").read_text(encoding="utf-8"))
+        sky = data["photo_read"]["mixes"][0]
+        self.assertEqual(sky["guess_recipe"], "white and blue")
+        self.assertEqual(sky["recipe"], sky["mix"]["text"])
+        html = (self.lesson / "lesson.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count('<details class="mixfor"'), 3)  # Sky blue is on all three steps
+        self.assertEqual(html.count('class="new"'), 1)  # new only where it's first needed
+        self.assertIn("First needed in step 1", html)
+        self.assertIn("How the paint recipes were worked out", html)
+
     def test_publish_shows_the_reasoning_folded_away(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "no mask yet")
         notes = {"read": "Mostly sky.", "order": "Back to front.", "steps": {"sky": "The sky is behind everything."},
