@@ -6,7 +6,7 @@
     "steps": 12,
     "canvas": "14 x 11 in",
     "tubes": 12,
-    "version": "POC 0.21.0",
+    "version": "POC 0.20.0",
     "published": "2026-11-11",
     "source": "balloon-lavender_skill_20261111-142734"
   },
@@ -28,7 +28,7 @@
     "steps": 11,
     "canvas": "14 x 11 in",
     "tubes": 5,
-    "version": "POC 0.21.0",
+    "version": "POC 0.17.0",
     "published": "2026-11-11",
     "source": "red-sailboat_skill_20261111-114028"
   }
