@@ -531,6 +531,13 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=mix_tool)
 
+    p = sub.add_parser("step-pairs", help="Free. Before/after/what-changed sheets for every step, for the step review (#24).",
+                       description="After publish: writes <lesson>/trials/review/NN_<id>.png (before, after, and a measured "
+                                   "change map, all on a 10% grid) and packet.json with each step's text and the "
+                                   "technique's stroke_results. A fresh reviewer follows .claude/skills/paint-lesson/step-review.md.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=lambda a: __import__("step_review").packet(Path(a.lesson)))
+
     p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
                        description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "
                                    "installed, trials/diagrams.png, so you can check each diagram against its step.")

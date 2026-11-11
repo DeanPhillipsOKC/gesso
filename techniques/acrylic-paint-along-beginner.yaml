@@ -69,6 +69,47 @@ brush_moves:
   - A liner brush for twigs and fine lines
   - Building a shape from simple pieces: one center shape first, then curved strokes hugging it on each side, like parentheses
 
+# What each stroke really leaves on the canvas, and what to do after it to change that. The step review (#24)
+# checks a step's picture against these, not against its own idea of a stroke, so add to this list when a
+# lesson uses a stroke it doesn't cover.
+stroke_results:
+  - stroke: X stroke
+    leaves: A soft, crosshatched texture with visible criss-cross marks, and blotchy blends where two colors meet.
+    then: For a glassy, even gradient, finish with long, light side-to-side strokes across the whole width with an almost dry brush, wiping it between passes.
+  - stroke: Long side-to-side strokes
+    leaves: Horizontal bands with faint streaks; where two wet colors meet, a soft blend about a brush-width tall.
+    then: Go back over each seam lightly, overlapping both colors, until the line disappears. Work while the paint is wet.
+  - stroke: Wet blending
+    leaves: A soft transition only where both paints were still wet; a hard line where one had dried.
+    then: Paint the two colors next to each other in one go, then blend at once. If one dried, repaint a strip of it and blend again.
+  - stroke: Dabbing or tapping
+    leaves: Clusters of small, irregular marks with gaps between them; the brush shape shows in each mark.
+    then: For a solid look, dab a darker layer first and lighter dabs on top, leaving some of the dark showing.
+  - stroke: Pull and taper (press, then lift)
+    leaves: A line that starts wide and ends in a point; wobbly if pulled slowly.
+    then: Pull in one quick, confident move. For a trunk, do several pulls side by side.
+  - stroke: Flicking upward
+    leaves: Thin, uneven blades that taper upward, denser at the base.
+    then: Flick in a few passes with different colors, dark first.
+  - stroke: Dry brushing
+    leaves: A broken, scratchy layer that only catches the canvas texture; never a solid area.
+    then: Build up with several light passes; reload with very little paint each time.
+  - stroke: Liner line
+    leaves: A thin, even line if the paint is thinned to ink; a skippy, broken line if it's thick.
+    then: Thin the paint with water until it's like ink, and roll the brush to a point.
+  - stroke: Circular or swirling strokes
+    leaves: Curved bands that follow the brush; where two colors swirl together wet, soft streaks of both.
+    then: Keep each swirl one continuous move. For crisp light swirls on a dark sky, let the sky dry first.
+  - stroke: Curved strokes that follow a form (hills, pumpkin ribs, paths)
+    leaves: Brush marks that bend with the shape, which is what makes it look round or sloped.
+    then: Use a darker mix along the shadow side and a lighter one along the lit side, both following the curve.
+  - stroke: Dotting
+    leaves: Round dots the size of the tool tip; uneven if the paint is thin or the tool is reloaded rarely.
+    then: Reload for every few dots, and use the brush handle's end for bigger, even dots.
+  - stroke: Building from pieces (center shape, then parentheses)
+    leaves: A shape made of distinct curved segments with small gaps or overlaps between them.
+    then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.
+
 dry_time: About 10 minutes between steps (a hair dryer on low speeds it up). An hour after the last step before handling.
 
 # Same framing for every image, so the steps line up when you flip between them.
