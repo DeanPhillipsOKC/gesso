@@ -369,7 +369,7 @@ def publish(a: argparse.Namespace) -> dict:
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
             "brushes": s.brushes, "dry_time": technique["dry_time"],
             "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""),
-            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []),
+            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
         }
         for i, s in enumerate(plan.steps)
     ]

@@ -80,6 +80,13 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .watch{color:var(--warn);font-size:.95rem}
 .small{font-size:.85rem;color:var(--muted)}
 ul.plain{list-style:none;padding-left:0!important}
+/* Construction diagrams: build a shape from simple pieces, one panel per move, under the step it belongs to. */
+.build{grid-column:1/-1;display:grid;gap:.6rem;background:var(--panel);border-radius:8px;padding:1rem;min-width:0}
+.panels{display:grid;grid-template-columns:repeat(auto-fill, minmax(8.5rem, 12rem));gap:.75rem}
+.panel{gap:.35rem}
+.panel svg{width:100%;height:auto;aspect-ratio:1;background:var(--gesso);border:1px solid var(--rule);border-radius:6px;display:block}
+.panel figcaption{color:var(--ink);font-size:.88rem}
+.panel figcaption b{font:700 .78rem/1 var(--mono);color:var(--ultramarine);margin-right:.25rem}
 .flag{border-left:3px solid var(--warn);padding:.4rem .75rem;font-size:.92rem;background:var(--panel)}
 /* Behind the easel: the reasoning, folded away so it never gets between the painter and the steps. */
 .facts a{color:var(--ultramarine)}
@@ -182,6 +189,7 @@ def items(xs, cls="") -> str:
 
 
 def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> str:
+    from construct import strip as build_strip
     from lesson_notes import behind, step_why
     read = lesson["photo_read"]
     stages = lesson["stages"]
@@ -245,6 +253,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     <p class="small">Drying: {e(s.get('dry_time', ''))}</p>
     {step_why(lesson, s, i == len(stages) - 1)}
   </div>
+  {build_strip(s.get('construct'), {n: p['hex'] for n, p in by_name.items()}, s['id'])}
 </article>""")
 
     head = (f'<title>{e(title_for(lesson))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'

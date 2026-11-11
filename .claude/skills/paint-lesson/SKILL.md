@@ -174,6 +174,30 @@ Write `<lesson>/text.json`:
             "strokes": [{"name": "X stroke", "how": "Criss-cross the flat in overlapping X shapes so the paint blends with no streaks."}]}]}
 ```
 
+**Construction diagrams (`construct`).** A finished step image shows the shape, not how to get there, and a
+beginner can't see the pieces in it (owner, 2026-11-11). For every step that blocks in a shaped object, and any
+other step whose image alone doesn't show how to start (where rib lines go, how a cat's body sits on its head),
+add a `construct` spec to that step in `text.json`. The lesson page draws it as a strip of small free SVG panels
+under the step, each adding the next pieces with a dashed outline and arrows for the brush's direction. Draw from
+the shapes in this picture, but as simple pieces: a pumpkin is an oval plus ( ) side sections, a cat is a circle
+head on an oval body with triangle ears, a house is a box plus a triangle roof, a tree is a tapering trunk then
+Y-shaped branches. 2 to 4 panels, captions of a few words. Coordinates are a 100 x 100 box, y down:
+
+```json
+"construct": {"title": "Build the big pumpkin from simple pieces", "paint": "Pumpkin orange",
+  "stages": [
+    {"caption": "A center oval", "add": [{"ellipse": [50, 58, 12, 21]}], "arrows": ["M 50 40 Q 40 58 50 76"]},
+    {"caption": "A ( ) on each side, tucked behind",
+     "add": [{"ellipse": [38, 60, 12, 19], "behind": true}, {"ellipse": [62, 60, 12, 19], "behind": true}]}]}
+```
+
+Shapes: `ellipse [cx, cy, rx, ry]` (optional `rotate`), `circle [cx, cy, r]`, `rect [x, y, w, h]` (optional
+`round`), `path "<d>"` (filled, optional `opacity`), `line "<d>"` (stroked, `width`). Any shape can set `paint` (a
+paint name from the plan), `behind: true` (drawn under what's there), or `done: true` (already painted in an
+earlier step, so a later step's diagram can start from it). `arrows` are paths shown only in their panel. The
+renderer is `spike/construct.py`; a broken spec is left off the page, so check that the diagram shows up after
+`publish`. Fill the shape so it fills most of the box; tiny shapes are hard to read on a phone.
+
 `made_with` is `filter:<name>`, `composite`, `throwaway:<script>`, `render+throwaway:<script>`,
 `render+filter:<name>`, or `render`, for the image the lesson ends up with. When a redo replaced a filter or
 seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
