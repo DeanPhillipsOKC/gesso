@@ -51,6 +51,25 @@ render with the same inputs comes back free from the cache, so rerunning a lesso
   `render-step`), and the filter outputs. Put trial outputs you won't use under `<lesson>/trials/` with `--out`.
 - Read the technique YAML: `rules`, `brush_moves`, `palette`, `step_range`, `ground`, `framing`, `simplify`, `finish`.
 
+### 0b. Check the photo is just the picture
+Read the photo before anything else and say what the subject is. Then ask: is everything in this image part of
+the picture someone wants to paint? Owners send screenshots (2026-11-11: a shop page with the painting in the
+middle), so look for:
+- a phone status bar, app or browser bars, buttons, prices, ratings, sale banners, captions, or page text;
+- a carousel's dots or the edges of the next image;
+- a photo of a screen, print, or canvas with the wall, frame, or desk around it;
+- a border, watermark, or the subject taking up only a small part with a lot of unrelated scene around it.
+
+If any of these show, crop: `crop <photo> --lesson <lesson> --out <lesson>/photo_cropped.png --why "<what's around
+the picture>"` finds the picture on its own (the biggest block of photo-like rows and columns). Read the output:
+it must hold the whole picture and nothing else. If it's off, measure the picture's edges yourself and pass
+`--box X0 Y0 X1 Y1` (pixels in the original). Then use the cropped file as the photo everywhere: in `plan.json`,
+`"photo": "output/<lesson folder>/photo_cropped.png"`, and as the finish render's photo input. Crop to the subject
+only when what you'd cut away is clearly not part of the scene. Don't recompose a real photo.
+
+Record it in `notes.json` as `photo_prep` (step 8), so the page says what was done before the lesson started. If
+the image is already just the picture, skip the crop and say so in `photo_prep` in a few words.
+
 ### 1. Simplified reference (`00_reference.png`)
 The reference is what the painting is made from: fewer shapes, clear values, colors a beginner can mix
 (decisions: "Simplify the photo first").
@@ -174,11 +193,71 @@ Write `<lesson>/text.json`:
             "strokes": [{"name": "X stroke", "how": "Criss-cross the flat in overlapping X shapes so the paint blends with no streaks."}]}]}
 ```
 
+Construction diagrams (`construct`) are added in step 7.
+
 `made_with` is `filter:<name>`, `composite`, `throwaway:<script>`, `render+throwaway:<script>`,
 `render+filter:<name>`, or `render`, for the image the lesson ends up with. When a redo replaced a filter or
 seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
 
-### 7. Write down your thinking (`notes.json`)
+### 7. Beginner check: where the picture isn't enough
+A step image shows what the canvas looks like after the step, not how to get there. Before writing notes, go
+through every step as someone who has never painted, with only that step's picture and words, and ask: **could I
+start this?** Nobody will tell you where it's missing; the owner had to point out the pumpkins (2026-11-11), and
+this check exists so that doesn't happen again.
+
+**Signs a step needs a construction diagram** (any one is enough):
+- A shaped object appears whole in one step: a pumpkin, an animal, a person, a building, a boat, a vase.
+- The outline is lumpy, segmented, or made of repeated parts (pumpkin lobes, petals, a row of fence posts).
+- The step adds lines whose placement depends on the object's structure: rib lines on seams, fur that follows
+  the body, a face's features, windows in perspective, branches forking off a trunk.
+- You'd need to sketch it on scrap paper first to get it right.
+- Where things start or join isn't clear from the picture: which trunk a branch grows from, where a trunk forks.
+
+**Also check the words against the picture.** While you look at each step, fix any instruction that says
+something the picture doesn't show (the beginner checks on 2026-11-11 found a trunk said to pass "left of the
+sun" that actually forks around it, and a cat head said to be a third of the body's width that is about half).
+
+**Usually no diagram:** flat fills and backgrounds, skies and gradients, textures made by repeating one mark
+(dabbed foliage, flicked grass, stars), and anything the words already make obvious ("a thin line along the
+horizon"). Say why for each of these in `no_diagram`, so the page shows every step was looked at.
+
+**How to break a shape into pieces.** Build it the way a drawing teacher would, from what the object actually is:
+1. Name its structure. What is it made of? A pumpkin is lobes bulging around a core; a sleeping cat is a round
+   head tucked against an oval body; a house is a box with a triangle on top; a tree is a trunk that splits into Y's.
+2. The biggest mass first, as one simple shape (oval, circle, rectangle, triangle), where it sits in the picture.
+3. Add the attached parts in order of size, back pieces tucked `behind`. Repeated parts get smaller or narrower
+   toward the edges or the distance.
+4. Let the pieces set up later steps: the seams between pumpkin lobes are where the rib lines go, so the shading
+   step's diagram can start from the block-in's pieces (`done`) and draw ribs on the seams.
+5. Check it against the step image and the finish (Read them): proportions (how wide against how tall), how many
+   parts and where they attach. If the final panel's silhouette doesn't match the painted shape, fix the pieces.
+   2 to 4 panels per diagram, captions of a few words, and the shape should fill most of the box.
+
+Put the `construct` spec on that step in `text.json`. The lesson page draws it as a strip of small, free SVG panels
+under the step. Each panel adds the next pieces with a dashed outline and arrows for the brush's direction.
+Coordinates are a 100 x 100 box, y down:
+
+```json
+"construct": {"title": "Build the big pumpkin from simple pieces", "paint": "Pumpkin orange",
+  "stages": [
+    {"caption": "A center oval", "add": [{"ellipse": [50, 58, 12, 21]}], "arrows": ["M 50 40 Q 40 58 50 76"]},
+    {"caption": "A ( ) on each side, tucked behind",
+     "add": [{"ellipse": [38, 60, 12, 19], "behind": true}, {"ellipse": [62, 60, 12, 19], "behind": true}]}]}
+```
+
+Shapes: `ellipse [cx, cy, rx, ry]` (optional `rotate`), `circle [cx, cy, r]`, `rect [x, y, w, h]` (optional
+`round`), `path "<d>"` (filled, optional `opacity`), `line "<d>"` (stroked, `width`). Any shape can set `paint` (a
+paint name from the plan), `behind: true` (drawn under what's there), or `done: true` (already painted in an
+earlier step). `arrows` are paths shown only in their panel. The renderer is `spike/construct.py`. A broken spec
+is left off the page, so check `publish`'s `diagrams` count.
+
+Write what you noticed and decided into `notes.json` as `beginner_check` (next step). It's what the page shows
+under "Why a diagram" on the step and in "Where Claude drew diagrams". `publish` lists any diagram without a note
+in `undocumented_diagrams`; fix those before publishing the artifact. When the owner points out something the
+check missed, set that diagram's `source` to the owner's feedback with the date, and add the gap to `learned` so
+the signs above can grow.
+
+### 8. Write down your thinking (`notes.json`)
 The lesson page has a folded "How this lesson was made" section and a "How this picture was made" fold under every
 step, so a curious painter (and the owner) can see why the lesson looks the way it does. The ledger and review
 fill in what was run and caught; `notes.json` holds the reasoning only you know. Keep notes as you go (after the
@@ -197,13 +276,21 @@ reference, the plan, and each throwaway) so nothing is reconstructed at the end.
  "throwaways": [{"script": "filters/sky_only.py", "for": "...", "steps": ["sky-glow"], "tries": 1,
                  "outcome": "what happened", "verdict": "kept | seeded a render | dropped",
                  "images": ["filters/01_sky-glow_filter.png"]}],
+ "photo_prep": {"subject": "what the picture is of", "found": "what else was in the image, or 'just the picture'",
+                "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "why that was right"},
+ "beginner_check": {"summary": "a sentence on what the check found overall",
+                    "diagrams": {"<step id>": {"noticed": "what made this step need a diagram",
+                                               "pieces": "how you broke the shape down, and why that way",
+                                               "checked": "how the pieces compare with the step image",
+                                               "source": "beginner check | owner feedback, <date>"}},
+                    "no_diagram": {"<step id>": "why the picture and words are enough"}},
  "learned": ["what you'd do differently next time"]}
 ```
 
 List every filter you looked at, kept or not, with its image path relative to the lesson; logged filters you
 leave out still show, without a verdict. Every technique in `techniques/` you didn't pick goes in `considered`.
 
-### 8. Publish the lesson as an artifact and report
+### 9. Publish the lesson as an artifact and report
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
 `lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`.
 

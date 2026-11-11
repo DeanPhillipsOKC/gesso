@@ -106,12 +106,31 @@ def step_why(lesson: dict, s: dict, is_last: bool) -> str:
     body = "".join([
         f"<p><b>Why this step, now:</b> {e(why_now)}</p>" if why_now else "",
         f"<p><b>Why this tool:</b> {e(reason)}</p>" if reason else "",
+        diagram_why(notes, s),
         f'<ol class="trail">{"".join(trail)}</ol>' if trail else "",
     ])
     if not body:
         return ""
-    return (f'<details class="why"><summary>How this picture was made {tag(rung, RUNG_NAME[rung] + tries)}</summary>'
+    has_diagram = bool(s.get("construct")) and s["id"] in diagrams_of(notes)
+    extra = " " + tag("diagram", "Diagram · free") if has_diagram else ""
+    return (f'<details class="why"><summary>How this picture was made {tag(rung, RUNG_NAME[rung] + tries)}{extra}</summary>'
             f'<div class="why-body">{body}</div></details>')
+
+
+def diagrams_of(notes: dict) -> dict:
+    return (notes.get("beginner_check") or {}).get("diagrams") or {}
+
+
+def diagram_why(notes: dict, s: dict) -> str:
+    """Why this step got a construction diagram (or why the beginner check decided it didn't need one)."""
+    check = notes.get("beginner_check") or {}
+    d = diagrams_of(notes).get(s["id"])
+    if d and s.get("construct"):
+        rows = [("Why a diagram", d.get("noticed")), ("How it broke the shape down", d.get("pieces")),
+                ("Checked against the picture", d.get("checked")), ("Where this came from", d.get("source"))]
+        return '<div class="diag">' + "".join(f"<p><b>{k}:</b> {e(v)}</p>" for k, v in rows if v) + "</div>"
+    skip = (check.get("no_diagram") or {}).get(s["id"])
+    return f"<p><b>No diagram:</b> {e(skip)}</p>" if skip else ""
 
 
 def fold(title: str, hint: str, body: str) -> str:
@@ -185,7 +204,13 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     # How Claude read the photo
     read = lesson["photo_read"]
     comps = "".join(f"<li>{e(c)}</li>" for c in read.get("components", []))
+    prep = notes.get("photo_prep") or {}
+    prep_html = ('<div class="diag"><p class="label">Before starting</p>' + "".join(
+        f"<p><b>{k}:</b> {e(prep[f])}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
+                                                        ("Done", "action"), ("Why", "why")) if prep.get(f)) + "</div>"
+                 ) if prep else ""
     parts.append(fold("How Claude read your photo", "subject, light, layers", "".join([
+        prep_html,
         f"<p>{e(notes['read'])}</p>" if notes.get("read") else "",
         f"<p><b>Subject:</b> {e(read['subject'])}<br><b>Focal point:</b> {e(read['focal_point'])}<br>"
         f"<b>Light:</b> {e(read['light'])}</p>",
@@ -243,6 +268,23 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     if cards:
         parts.append(fold("Throwaway filters it wrote", "small scripts for this photo only", "".join(cards)))
 
+    # Beginner check: which steps got construction diagrams, and why
+    check = notes.get("beginner_check") or {}
+    drawn = [(st, diagrams_of(notes)[st["id"]]) for st in stages
+             if st["id"] in diagrams_of(notes) and st.get("construct")]
+    if check or drawn:
+        rows = []
+        for st, d in drawn:
+            n = num[st["id"]]
+            rows.append(f'<li><a href="#step-{n}"><b>Step {n}: {e(st["name"])}</b></a> {tag("diagram", d.get("source") or "beginner check")}'
+                        f'<p><b>Noticed:</b> {e(d.get("noticed", ""))}</p><p><b>Pieces:</b> {e(d.get("pieces", ""))}</p></li>')
+        skipped = "".join(f'<li><b>Step {num[k]}:</b> {e(v)}</li>' for k, v in (check.get("no_diagram") or {}).items()
+                          if k in num)
+        parts.append(fold("Where Claude drew diagrams", f"{len(drawn)} steps, free", "".join([
+            f"<p>{e(check['summary'])}</p>" if check.get("summary") else "",
+            f'<ul class="plain diaglist">{"".join(rows)}</ul>' if rows else "<p>No step needed one.</p>",
+            f'<div><p class="label">Looked at and left without one</p><ul>{skipped}</ul></div>' if skipped else ""])))
+
     # Review
     rev = [f'<li>{tag("review", "Finish check")} {e(x)}</li>' for x in lesson.get("finish_issues", [])]
     for x in sorted(lesson.get("review_issues", []), key=lambda r: (r.get("round", 0), num.get(r.get("step_id"), 0))):
@@ -268,6 +310,7 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     n_filters = len(filters)
     receipt = (f'<div class="receipt" aria-label="What this lesson cost">{"".join(rows)}'
                f'<div class="row"><span>Filters ({n_filters})</span><span>$0</span></div>'
+               + (f'<div class="row"><span>Diagrams ({len(drawn)})</span><span>$0</span></div>' if drawn else "") +
                '<div class="row"><span>Planning, review, writing</span><span>$0*</span></div>'
                f'<div class="row total"><span>Total, {len(renders)} renders</span><span>${total:.2f}</span></div>'
                '<p class="thanks">thanks for painting!</p></div>'

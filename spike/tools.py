@@ -369,7 +369,7 @@ def publish(a: argparse.Namespace) -> dict:
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
             "brushes": s.brushes, "dry_time": technique["dry_time"],
             "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""),
-            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []),
+            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
         }
         for i, s in enumerate(plan.steps)
     ]
@@ -394,6 +394,10 @@ def publish(a: argparse.Namespace) -> dict:
     renders = [c for c in led.calls if c.get("tool") == "render"]
     return {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "steps": len(stages), "steps_by_source": by_source,
+            "diagrams": sum(1 for st in stages if st["construct"]),
+            # a diagram the page can't explain: the skill's beginner check didn't write down why
+            "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
+                                      ((notes.get("beginner_check") or {}).get("diagrams") or {})],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 
@@ -442,10 +446,18 @@ def run_filter(a: argparse.Namespace) -> dict:
         raise Refused(f"input image not found: {src}")
     if a.lesson and not (a.why or "").strip():
         raise Refused("--why is required with --lesson: say what you want this filter to show you")
-    rgb = f.load(src)
+    rgb = f.load(src, max_side=100_000) if a.tool == "crop" else f.load(src)  # crop keeps every pixel
     settings: dict = {}
     extra: dict = {}
-    if a.tool == "value-study":
+    if a.tool == "crop":
+        found = f.find_picture(rgb)
+        box = list(a.box) if a.box else found["box"]
+        img = f.crop(rgb, box)
+        settings = {"box": box, "found_by": "--box" if a.box else "find_picture"}
+        extra = {"found": found, "size": [int(img.shape[1]), int(img.shape[0])],
+                 "advice": ("The picture fills the image; no crop needed." if found["whole_image"] and not a.box else
+                            "Read the output and check it holds the whole picture and nothing else before using it.")}
+    elif a.tool == "value-study":
         img = f.value_study(rgb, a.tones)
         settings = {"tones": a.tones}
     elif a.tool == "notan":
@@ -488,6 +500,10 @@ def run_filter(a: argparse.Namespace) -> dict:
 
 FILTERS = {
     # name: (use this for, extra arguments)
+    "crop": ("cutting the picture out of a screenshot or a photo of a screen (app bars, buttons, captions, page "
+             "around it). Finds the picture by itself, or takes --box",
+             [("--box", dict(type=int, nargs=4, metavar=("X0", "Y0", "X1", "Y1"),
+                             help="pixels in the original image; default finds the picture"))]),
     "value-study": ("values: the lights, middles, and darks to block in (3 to 5 tones)",
                     [("--tones", dict(type=int, default=3, choices=range(2, 8), help="number of values (default 3)"))]),
     "notan": ("the big dark and light pattern, two values; checks a composition reads",

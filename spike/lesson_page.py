@@ -80,6 +80,13 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .watch{color:var(--warn);font-size:.95rem}
 .small{font-size:.85rem;color:var(--muted)}
 ul.plain{list-style:none;padding-left:0!important}
+/* Construction diagrams: build a shape from simple pieces, one panel per move, under the step it belongs to. */
+.build{grid-column:1/-1;display:grid;gap:.6rem;background:var(--panel);border-radius:8px;padding:1rem;min-width:0}
+.panels{display:grid;grid-template-columns:repeat(auto-fill, minmax(8.5rem, 12rem));gap:.75rem}
+.panel{gap:.35rem}
+.panel svg{width:100%;height:auto;aspect-ratio:1;background:var(--gesso);border:1px solid var(--rule);border-radius:6px;display:block}
+.panel figcaption{color:var(--ink);font-size:.88rem}
+.panel figcaption b{font:700 .78rem/1 var(--mono);color:var(--ultramarine);margin-right:.25rem}
 .flag{border-left:3px solid var(--warn);padding:.4rem .75rem;font-size:.92rem;background:var(--panel)}
 /* Behind the easel: the reasoning, folded away so it never gets between the painter and the steps. */
 .facts a{color:var(--ultramarine)}
@@ -96,7 +103,9 @@ details[open].why>summary::before,details[open].note>summary::before{content:"\\
 .tag{font:600 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;
   border-radius:3px;padding:.2rem .4rem;white-space:nowrap}
 .t-filter{color:var(--r-filter)}.t-throw{color:var(--r-throw)}.t-seeded{color:var(--r-seeded)}.t-render{color:var(--r-render)}
-.t-review{color:var(--warn)}
+.t-review{color:var(--warn)}.t-diagram{color:var(--ultramarine)}
+.diag{border-left:3px solid var(--ultramarine);padding-left:.75rem;display:grid;gap:.35rem}
+.diaglist{display:grid;gap:.9rem}.diaglist a{color:var(--ink)}.diaglist p{margin-top:.2rem}
 ol.trail{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;border-left:2px solid var(--rule);padding-left:.9rem}
 ol.trail li{display:grid;gap:.2rem;min-width:0}
 ol.trail .head{display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:center;font:.78rem/1.3 var(--mono);color:var(--muted)}
@@ -172,9 +181,14 @@ def dims(path: Path) -> str:
     return f' width="{w}" height="{h}"'
 
 
-def title_for(lesson: dict) -> str:
-    stem = Path(lesson["photo"]).stem.replace("-", " ").replace("_", " ").strip()
-    return f"{stem.title()} Lesson"
+def title_for(lesson: dict, folder: Path | None = None) -> str:
+    """Named after the photo. A cropped photo is named after its lesson folder (<photo stem>_skill_<time>) instead,
+    and words about where the photo came from (screenshot, screen) are dropped."""
+    stem = Path(lesson["photo"]).stem
+    if stem.startswith("photo") and folder is not None:
+        stem = folder.name.split("_skill_")[0]
+    words = [w for w in stem.replace("-", " ").replace("_", " ").split() if w.lower() not in ("screenshot", "screen", "cropped")]
+    return f"{' '.join(words).title() or 'Painting'} Lesson"
 
 
 def items(xs, cls="") -> str:
@@ -182,6 +196,7 @@ def items(xs, cls="") -> str:
 
 
 def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> str:
+    from construct import strip as build_strip
     from lesson_notes import behind, step_why
     read = lesson["photo_read"]
     stages = lesson["stages"]
@@ -245,9 +260,10 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     <p class="small">Drying: {e(s.get('dry_time', ''))}</p>
     {step_why(lesson, s, i == len(stages) - 1)}
   </div>
+  {build_strip(s.get('construct'), {n: p['hex'] for n, p in by_name.items()}, s['id'])}
 </article>""")
 
-    head = (f'<title>{e(title_for(lesson))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
+    head = (f'<title>{e(title_for(lesson, folder))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
             f'{FONTS}\n<style>{STYLE}</style>')
     body = f"""
 <div class="wrap">
