@@ -103,6 +103,14 @@ ids are unique lowercase slugs. Use only palette tubes in recipes. `sample_x`/`s
 point at a flat patch of that paint in the finish; `publish` snaps each hex to the painted color there. The palette
 filter output on the finish helps you pick hexes.
 
+Before moving on, read the plan as a painter would (owner's notes on the pumpkin lesson, 2026-11-11):
+- A background step must let the brush keep moving. If the sky's `looks_like` stops at a hill line with white
+  canvas below, swirly or circular strokes break at that line. Run the sky to the bottom edge (or well past the
+  horizon) and let the ground step paint over it; that also stops the sky and hill edges disagreeing between steps.
+- A block-in step for a shaped object says how to build the shape from simple pieces in its `how` (a pumpkin: a
+  center oval, then curved side segments like ( ) on each side). The image can show the plain shape; the words
+  carry the construction.
+
 Then decide, per step, how to make it (the tool order above), and note it for `text.json` later. For a paint-along
 lesson most steps are "the finish with later parts not painted yet", which only compositing (#8) or a render can
 make today; a sketch or tracing step (block-in technique) is the `edges` filter, and a value or color-blocking
