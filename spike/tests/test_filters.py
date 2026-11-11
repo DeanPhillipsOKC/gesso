@@ -87,12 +87,25 @@ class CommandLineTests(unittest.TestCase):
         for name in tools.FILTERS:
             out = io.StringIO()
             with contextlib.redirect_stdout(out):
-                code = tools.main([name, str(src), "--lesson", str(tmp)])
+                code = tools.main([name, str(src), "--lesson", str(tmp), "--why", f"see the {name}", "--step", "sky"])
             self.assertEqual(code, 0, name)
             result = json.loads(out.getvalue().strip().splitlines()[-1])
             self.assertEqual(result["cost_usd"], 0.0)
             self.assertTrue(Path(result["out"]).exists(), name)
         self.assertTrue((tmp / "scene_palette.json").exists())
+        logged = json.loads((tmp / "ledger.json").read_text(encoding="utf-8"))["calls"]
+        self.assertEqual([c["filter"] for c in logged], list(tools.FILTERS))
+        self.assertTrue(all(c["tool"] == "filter" and c["why"] and c["step"] == "sky" for c in logged))
+
+    def test_lesson_filter_needs_a_why(self):
+        tmp = Path(tempfile.mkdtemp())
+        src = tmp / "scene.png"
+        Image.fromarray(scene()).save(src)
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            code = tools.main(["notan", str(src), "--lesson", str(tmp)])
+        self.assertEqual(code, 2)
+        self.assertFalse((tmp / "ledger.json").exists())
 
     def test_missing_input_refuses(self):
         out = io.StringIO()

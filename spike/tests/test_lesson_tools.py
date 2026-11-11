@@ -105,6 +105,25 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(r["steps_by_source"], {"render": 2, "filter": 1})
         self.assertEqual(r["paid_renders"], 2)
 
+    def test_publish_shows_the_reasoning_folded_away(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "no mask yet")
+        notes = {"read": "Mostly sky.", "order": "Back to front.", "steps": {"sky": "The sky is behind everything."},
+                 "technique": {"why": "Simple layers.", "considered": [{"name": "Block in", "why_not": "Too few values."}]},
+                 "filters": [{"label": "Reference", "tool": "simplify", "image": "00_canvas.png", "why": "flatten it",
+                              "verdict": "kept"}],
+                 "learned": ["Composite the sky."]}
+        (self.lesson / "notes.json").write_text(json.dumps(notes))
+        (self.lesson / "review.json").write_text(json.dumps({"review_issues": [
+            {"round": 1, "step_id": "sky", "problem": "A smudge.", "action": "left"}]}))
+        code, _ = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)
+        html = (self.lesson / "lesson-artifact.html").read_text(encoding="utf-8")
+        self.assertIn('id="behind"', html)
+        for text in ("The sky is behind everything.", "Too few values.", "no mask yet", "Composite the sky.", "A smudge."):
+            self.assertIn(text, html)
+        self.assertEqual(html.count('<details class="why">'), 2)  # sky and hill; the finish has nothing logged
+        self.assertNotIn("<details open", html)  # nothing unfolds on its own
+
     def test_publish_refuses_missing_images(self):
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(code, 2)

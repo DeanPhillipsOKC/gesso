@@ -18,7 +18,9 @@ lists every tool and what it's for; read it at the start, since filters get adde
 
 ## Tool order for every image
 
-For each image the lesson needs, take the first of these that does the job, and write down which one and why:
+For each image the lesson needs, take the first of these that does the job, and write down which one and why.
+Every filter run with `--lesson` needs `--why` (what you want it to show you) and takes `--step <id>` when it's for
+one step; both go in the ledger, and the lesson page shows them under "How this lesson was made".
 
 1. **A filter** from `tools.py --help` (value study, notan, palette, simplify, posterize, edges, grid, ...).
 2. **A composite** (masks of the finish, #8), once that tool exists.
@@ -45,7 +47,7 @@ render with the same inputs comes back free from the cache, so rerunning a lesso
 
 ### 0. Set up
 - Lesson folder: `output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/`. Pass it as `--lesson` to every tool.
-- Files the tools make there besides yours: `ledger.json` (every render), `00_canvas.png` (white canvas, made by
+- Files the tools make there besides yours: `ledger.json` (every render and filter run), `00_canvas.png` (white canvas, made by
   `render-step`), and the filter outputs. Put trial outputs you won't use under `<lesson>/trials/` with `--out`.
 - Read the technique YAML: `rules`, `brush_moves`, `palette`, `step_range`, `ground`, `framing`, `simplify`, `finish`.
 
@@ -168,7 +170,32 @@ Write `<lesson>/text.json`:
 `render+filter:<name>`, or `render`, for the image the lesson ends up with. When a redo replaced a filter or
 seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
 
-### 7. Publish the lesson as an artifact and report
+### 7. Write down your thinking (`notes.json`)
+The lesson page has a folded "How this lesson was made" section and a "How this picture was made" fold under every
+step, so a curious painter (and the owner) can see why the lesson looks the way it does. The ledger and review
+fill in what was run and caught; `notes.json` holds the reasoning only you know. Keep notes as you go (after the
+reference, the plan, and each throwaway) so nothing is reconstructed at the end. Plain words, a sentence or two each:
+
+```json
+{"read": "a painter's read of the photo: what matters, what's hard, what the lesson should be about",
+ "technique": {"why": "why this technique fits this photo and level",
+               "considered": [{"name": "Block in, then build up", "why_not": "..."}],
+               "how_chosen": "only if you didn't choose it, say so (e.g. the owner named it)"},
+ "order": "why the steps go in this order",
+ "steps": {"<step id>": "why this step, and why now"},
+ "filters": [{"label": "Reference", "tool": "simplify", "settings": "meanshift, strength 3",
+              "image": "trials/simp3_ms.png", "why": "what you wanted to see", "result": "what you saw",
+              "verdict": "kept | dropped"}],
+ "throwaways": [{"script": "filters/sky_only.py", "for": "...", "steps": ["sky-glow"], "tries": 1,
+                 "outcome": "what happened", "verdict": "kept | seeded a render | dropped",
+                 "images": ["filters/01_sky-glow_filter.png"]}],
+ "learned": ["what you'd do differently next time"]}
+```
+
+List every filter you looked at, kept or not, with its image path relative to the lesson; logged filters you
+leave out still show, without a verdict. Every technique in `techniques/` you didn't pick goes in `considered`.
+
+### 8. Publish the lesson as an artifact and report
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
 `lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`.
 
