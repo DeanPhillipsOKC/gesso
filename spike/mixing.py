@@ -214,3 +214,29 @@ def _solve(target: str, palette: tuple[str, ...]) -> dict:
 def solve(target_hex: str, palette: list[str]) -> dict:
     """The friendliest recipe from these tubes that lands closest to the target color."""
     return dict(_solve(target_hex.lower(), tuple(palette)))
+
+
+def single_tube(name: str, recipe: str, palette: list[str]) -> str | None:
+    """The tube, when a paint is meant straight from it: the paint is named after one tube ("Burnt sienna") or its
+    recipe names one tube and says so ("burnt sienna, straight from the tube"). The solver would otherwise mix
+    the swatch's color from three tubes (balloon rerun, 2026-11-11)."""
+    def tubes_in(text: str) -> list[str]:
+        low = text.lower()
+        return [t for t in palette if short_name(t) in low or t.lower() in low]
+
+    named = tubes_in(name)
+    if len(named) == 1 and name.lower().strip() in (short_name(named[0]), named[0].lower()):
+        return named[0]
+    in_recipe = tubes_in(recipe)
+    says_straight = any(w in recipe.lower() for w in ("straight", "from the tube", "unmixed", "on its own"))
+    if len(in_recipe) == 1 and says_straight:
+        return in_recipe[0]
+    return None
+
+
+def straight(tube: str, target_hex: str) -> dict:
+    """A paint used straight from one tube, in the same shape solve() returns."""
+    mixed = rgb_hex(tube_rgb(tube))
+    de = delta_e(target_hex, mixed)
+    return {"parts": {tube: 1}, "text": words({tube: 1}), "mixed_hex": mixed, "target_hex": target_hex.lower(),
+            "delta_e": round(de, 1), "reachable": True, "straight": True}

@@ -31,6 +31,7 @@ from run import IMAGE_MODEL, ROOT, Ledger, edit_image, png_bytes, size_for  # no
 CACHE_DIR = ROOT / "output" / ".render-cache"
 DEFAULT_MAX_COST = 1.00  # dollars of renders per lesson
 DEFAULT_MAX_REDOS = 2  # renders per step after the first
+STEP_WORDS = 110  # a step's instructions past this many words get listed in publish's long_steps
 QUALITIES = ["low", "medium", "high", "xhigh", "max"]
 # Worst cost per render seen in the spike's 290 renders (2026-10-19), used before a lesson has its own.
 ESTIMATE_USD = {"low": 0.07, "medium": 0.05, "high": 0.08, "xhigh": 0.15, "max": 0.20}
@@ -345,7 +346,8 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
         raise Refused(str(err)) from err
     mixes = {}
     for p in plan.paints:
-        m = mixing.solve(p.hex, tubes)
+        tube = mixing.single_tube(p.name, p.recipe, tubes)
+        m = mixing.straight(tube, p.hex) if tube else mixing.solve(p.hex, tubes)
         m["guess_recipe"] = p.recipe
         mixes[p.name] = m
     (lesson / "mixes.json").write_text(json.dumps(mixes, indent=2), encoding="utf-8")
@@ -454,6 +456,9 @@ def publish(a: argparse.Namespace) -> dict:
             "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
                                       ((notes.get("beginner_check") or {}).get("diagrams") or {})],
             "unreachable_paints": [n for n, m in mixes.items() if not m["reachable"]],
+            # steps whose instructions run past the word budget in the skill (about 100 words)
+            "long_steps": [{"id": st["id"], "words": n} for st in stages
+                           if (n := sum(len(x.split()) for x in st["steps"])) > STEP_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 
@@ -497,7 +502,10 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
                         f"--window-size=1240,{120 + 380 * len(rows)}", f"--screenshot={png.resolve()}",
                         page.resolve().as_uri()], capture_output=True, timeout=120)
         result["png"] = str(png) if png.exists() else None
-    if not result["png"]:
+    if not rows:
+        result["note"] = ("No diagrams in lesson.json. If you just added `construct` to text.json, run publish first: "
+                          "this preview reads the published lesson.json.")
+    elif not result["png"]:
         result["note"] = "No PNG: no Chrome or Edge found. Open the HTML in a browser, or serve the folder and look."
     return result
 
