@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.10.0 (2026-11-11)
+- A fresh reviewer checks each step's text against a measured map of what its picture changed, and the skill
+  fixes flat, missing, vague, and wrong-stroke instructions from it, shown under "What the reviewer caught" (#24).
+- New technique rules: let a layer dry before painting over it, and give each area the values the picture shows
+  (dark, middle, light) instead of one flat mix.
+- The technique records what each stroke really leaves on the canvas (`stroke_results`).
+
 ## POC 0.9.0 (2026-11-11)
 - Each lesson is stamped with the Gesso version, commit, and date (#27).
 

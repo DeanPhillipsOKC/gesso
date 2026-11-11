@@ -430,6 +430,7 @@ def publish(a: argparse.Namespace) -> dict:
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
                        "components": plan.components, "mixes": list(paints.values())},
         "finish_issues": review.get("finish_issues", []), "review_issues": review.get("review_issues", []),
+        "text_issues": review.get("text_issues", []),
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
@@ -530,6 +531,13 @@ def add_lesson_tools(sub) -> None:
                                    "the mixed color, and how far it lands from the swatch (Delta E). publish runs it too.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=mix_tool)
+
+    p = sub.add_parser("step-pairs", help="Free. Before/after/what-changed sheets for every step, for the step review (#24).",
+                       description="After publish: writes <lesson>/trials/review/NN_<id>.png (before, after, and a measured "
+                                   "change map, all on a 10% grid) and packet.json with each step's text and the "
+                                   "technique's stroke_results. A fresh reviewer follows .claude/skills/paint-lesson/step-review.md.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=lambda a: __import__("step_review").packet(Path(a.lesson)))
 
     p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
                        description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "

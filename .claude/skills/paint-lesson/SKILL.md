@@ -258,6 +258,26 @@ Construction diagrams (`construct`) are added in step 7.
 `render+filter:<name>`, or `render`, for the image the lesson ends up with. When a redo replaced a filter or
 seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
 
+### 6b. Step review: would the text get a beginner there? (#24)
+A fresh reviewer checks your text against measured before and after pictures, because the text is written by
+the same mind that planned the pictures and misses what it takes for granted.
+
+1. Run `publish --lesson <lesson>` (a draft, so `lesson.json` exists), then `step-pairs --lesson <lesson>`.
+2. Start a subagent (Agent tool, general-purpose) with only this: follow
+   `.claude/skills/paint-lesson/step-review.md` for the lesson folder, use only `trials/review/packet.json` and
+   its sheets, and write `trials/review/review.json`. Don't pass it your reasoning or the plan.
+3. Route each problem by its `kind`. Don't go by the verdict alone:
+   - `flat`, `missing`, `vague`, `wrong_result`, `layering`: fix the step's text in `text.json` from the
+     reviewer's `fix`. Check each fix against the sheet first; skip one whose evidence doesn't hold up, and say why.
+   - `drift` (an area finished earlier changes in a later picture): leave the text alone. The picture is wrong.
+     Record it; picture drift is fixed in the pipeline, not here.
+   - `too_much`: if the reviewer proposes a split, record it with its proposal. Don't add a step this late.
+   - `unpaintable`: record it as `left` and flag it on the step, like a review issue.
+   - A `diagram` proposal goes to step 7 as a candidate. You still decide there, and say why.
+4. One review round only: no second reviewer. Save what happened in the lesson's own `review.json` (not the reviewer's) under `text_issues`:
+   `{"step_id", "kind", "problem", "fix", "action": "fixed | left | skipped: <why> | diagram"}`. The page shows
+   them in "What the reviewer caught".
+
 ### 7. Beginner check: where the picture isn't enough
 A step image shows what the canvas looks like after the step, not how to get there. Before writing notes, go
 through every step as someone who has never painted, with only that step's picture and words, and ask: **could I

@@ -318,11 +318,15 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     for x in sorted(lesson.get("review_issues", []), key=lambda r: (r.get("round", 0), num.get(r.get("step_id"), 0))):
         rev.append(f'<li>{tag("review", "Round " + str(x.get("round", "")))} <b>Step {num.get(x.get("step_id"), "?")}:</b> '
                    f'{e(x.get("problem", ""))} <span class="mono">({e(x.get("action") or "redone")})</span></li>')
+    for x in sorted(lesson.get("text_issues", []), key=lambda r: num.get(r.get("step_id"), 0)):
+        rev.append(f'<li>{tag("review", "Text check: " + x.get("kind", ""))} <b>Step {num.get(x.get("step_id"), "?")}:</b> '
+                   f'{e(x.get("problem", ""))} <span class="mono">({e(x.get("action") or "fixed")})</span></li>')
     if rev:
         parts.append(fold("What the reviewer caught", f"{len(rev)} notes",
                           "<p>A second Claude, with fresh eyes and none of this reasoning, compared each picture with its "
                           "neighbors and the finish. It gets two rounds of fixes, then stops; anything still off is "
-                          "flagged on its step.</p>" f'<ul class="plain">{"".join(rev)}</ul>'))
+                          "flagged on its step. A third checked each step's words against a measured map of what the "
+                          "picture changed, asking whether a beginner following them would get there.</p>" f'<ul class="plain">{"".join(rev)}</ul>'))
 
     # Receipt
     total = sum(c.get("cost_usd", 0) for c in calls)

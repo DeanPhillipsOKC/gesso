@@ -125,6 +125,15 @@ class LessonToolTests(unittest.TestCase):
             self.assertTrue((self.lesson / "embed" / s["image"]).exists())
             self.assertTrue((self.lesson / "embed" / s["thumb"]).exists())
 
+    def test_publish_shows_text_check_issues(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        (self.lesson / "review.json").write_text(json.dumps({"text_issues": [
+            {"step_id": "hill", "kind": "flat", "problem": "One green for a two-tone hill", "fix": "x", "action": "fixed"}]}))
+        self.run_tool("publish", "--lesson", str(self.lesson))
+        html = (self.lesson / "lesson.html").read_text(encoding="utf-8")
+        self.assertIn("Text check: flat", html)
+        self.assertIn("One green for a two-tone hill", html)
+
     def test_mix_computes_recipes_and_every_step_lists_its_paints(self):
         code, r = self.run_tool("mix", "--lesson", str(self.lesson))
         self.assertEqual(code, 0)
