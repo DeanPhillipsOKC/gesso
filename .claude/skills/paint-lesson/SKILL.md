@@ -231,11 +231,15 @@ Don't grade your own images. Start a subagent (Agent tool, general-purpose) with
 - this checklist, from `review_steps` in `spike/run.py`: each step is the canvas after that step, so everything
   from earlier steps is still there in the same place and shape, plus only what this step adds. Flag only clear
   problems a painter following along would notice: something appears before the step that paints it; something
-  painted earlier is missing, moved, or a clearly different shape or size; the image doesn't match `looks_like`
+  painted earlier is missing, moved, or a clearly different shape or size (lines laid in early keep their shape
+  to the end: paths, rows, a horizon; balloon run, 2026-11-11: straight paths turned curved two steps later); the image doesn't match `looks_like`
   (white canvas showing where it should be covered, or covered where it should be white). Ignore small differences
   in brushwork, texture, and exact color. Never flag the last step. Also check the technique's painting order,
   and flag a step that jumps from flat to dense texture a beginner couldn't paint in a few minutes (a step adding
   thousands of lavender stalks at once): the fix is a plan change, splitting it into passes, not a redo.
+  A split is by passes over the whole textured area (dark marks everywhere, then lighter marks, then tips), never
+  by cutting one render into areas: a straight line across a texture, dabbed above and flat below, is a problem to
+  fix, not a heads-up to leave (balloon run, 2026-11-11).
 - when two neighboring steps disagree, compare both with the finish and flag the one that differs from it,
   not automatically the later one;
 - ask it to Read every image and answer with JSON only: `{"issues": [{"step_id", "problem", "fix"}]}`, `fix`
@@ -342,7 +346,15 @@ what to watch for.
 
 `values` (optional, per step, in `text.json`): `[{"value": "dark", "paint": "Cloud shadow", "where": "tops and
 far sides, away from the sun"}, {"value": "mid", ...}, {"value": "light", ...}]`. The page shows it as a small
-table with swatches. Use it whenever a step builds depth from more than one value.
+table with swatches, right under the instructions. Use it whenever a step builds depth on one thing (a cloud, a
+hill, a pumpkin) from more than one value. Two limits (balloon run, 2026-11-11):
+- **A table adds to the instructions; it never replaces them.** Each instruction still names the paints it uses.
+  "Blend down as in the values table" told the painter nothing about the sky's colors.
+- **A color sequence isn't a table of values.** A sunset sky going blue, then coral, then red-orange, then gold
+  near the sun is several hues in order, not one object's dark, mid, and light. Name the bands in the instruction,
+  in order, with where each sits.
+Every paint an instruction or a table names goes in the step's `colors`, so its recipe shows. `publish` lists any
+that don't in `paints_not_listed`; fix those before publishing.
 
 Every step's page lists its paints with their recipes,
 because beginners mix as they go (acrylics dry on the palette), so a step's `colors` must hold every paint it uses.
@@ -386,6 +398,10 @@ the same mind that planned the pictures and misses what it takes for granted.
 3. Route each problem by its `kind`. Don't go by the verdict alone:
    - `flat`, `missing`, `vague`, `wrong_result`, `layering`: fix the step's text in `text.json` from the
      reviewer's `fix`. Check each fix against the sheet first; skip one whose evidence doesn't hold up, and say why.
+   - `split_edge` (a texture stopping along a straight line) or `shape_change` (a path, row, or horizon changing
+     shape): the pictures are wrong, and a painter can't follow them. Fix them now, within the caps. For a split
+     edge, re-plan that texture as passes over the whole area and render those steps. For a shape change, redo
+     the later step with `render-step --fix` so it keeps the earlier shape, then lock again. Never leave either.
    - `drift` (an area finished earlier changes in a later picture): leave the text alone. The picture is wrong.
      Record it; picture drift is fixed in the pipeline, not here.
    - `too_much`: if the reviewer proposes a split, record it with its proposal. Don't add a step this late.

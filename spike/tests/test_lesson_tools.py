@@ -134,6 +134,19 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn("Text check: flat", html)
         self.assertIn("One green for a two-tone hill", html)
 
+    def test_publish_lists_paints_named_but_not_listed(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        plan = json.loads((self.lesson / "plan.json").read_text())
+        plan["paints"].append({"name": "Coral cloud", "recipe": "red and white", "hex": "#e88070", "used_for": "clouds",
+                               "sample_x": 0.5, "sample_y": 0.5})
+        (self.lesson / "plan.json").write_text(json.dumps(plan))
+        text = {"steps": [{"stage_id": "sky", "what_to_do": ["Blend Sky blue into Coral cloud."],
+                           "values": [{"value": "dark", "paint": "Coral cloud", "where": "low"}]}]}
+        (self.lesson / "text.json").write_text(json.dumps(text))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertIn({"id": "sky", "paint": "Coral cloud"}, r["paints_not_listed"])
+        self.assertNotIn({"id": "sky", "paint": "Sky blue"}, r["paints_not_listed"])
+
     def test_values_table_shows_depth(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [
