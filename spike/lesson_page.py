@@ -22,16 +22,20 @@ STYLE = """
 :root{
   --gesso:#fbfbf8; --panel:#f1f2ef; --ink:#1d2430; --muted:#5b6474; --rule:#dcdfe3;
   --ultramarine:#2944a8; --ultramarine-soft:#e3e8f7; --warn:#8a4b12;
+  --grid:#e6e8e4; --r-filter:#2f7a4f; --r-throw:#1f7383; --r-seeded:#9a6512; --r-render:#5a3fa8; --stamp:#b0412e;
+  --hand:"Caveat", "Segoe Print", cursive;
   --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --gesso:#14171c; --panel:#1c2027; --ink:#e7e9ee; --muted:#9aa3b2; --rule:#2c323c;
-  --ultramarine:#93a8f4; --ultramarine-soft:#232c48; --warn:#e5a86b; color-scheme:dark}}
+  --ultramarine:#93a8f4; --ultramarine-soft:#232c48; --warn:#e5a86b;
+  --grid:#232831; --r-filter:#7fcf9c; --r-throw:#72c7d4; --r-seeded:#e3b25e; --r-render:#b7a4f2; --stamp:#f08f78; color-scheme:dark}}
 :root[data-theme="dark"]{
   --gesso:#14171c; --panel:#1c2027; --ink:#e7e9ee; --muted:#9aa3b2; --rule:#2c323c;
-  --ultramarine:#93a8f4; --ultramarine-soft:#232c48; --warn:#e5a86b; color-scheme:dark}
+  --ultramarine:#93a8f4; --ultramarine-soft:#232c48; --warn:#e5a86b;
+  --grid:#232831; --r-filter:#7fcf9c; --r-throw:#72c7d4; --r-seeded:#e3b25e; --r-render:#b7a4f2; --stamp:#f08f78; color-scheme:dark}
 body{background:var(--gesso);color:var(--ink);font:1.0625rem/1.6 var(--body);
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 .wrap{max-width:68rem;margin:0 auto;padding-block:2rem 4rem;display:grid;gap:2.5rem}
@@ -75,14 +79,78 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .dot{width:1rem;height:1rem;border-radius:50%;border:1px solid var(--rule);flex:none}
 .watch{color:var(--warn);font-size:.95rem}
 .small{font-size:.85rem;color:var(--muted)}
-.made{font:.75rem/1.4 var(--mono);color:var(--muted)}
+ul.plain{list-style:none;padding-left:0!important}
 .flag{border-left:3px solid var(--warn);padding:.4rem .75rem;font-size:.92rem;background:var(--panel)}
+/* Behind the easel: the reasoning, folded away so it never gets between the painter and the steps. */
+.facts a{color:var(--ultramarine)}
+details>summary{list-style:none;cursor:pointer}
+details>summary::-webkit-details-marker{display:none}
+details>summary:focus-visible{outline:2px solid var(--ultramarine);outline-offset:3px;border-radius:4px}
+details.why{border-top:1px dashed var(--rule);padding-top:.6rem}
+details.why>summary{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem;font:600 .75rem/1.3 var(--mono);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+details.why>summary::before,details.note>summary::before{content:"+";font:600 .95rem/1 var(--mono);color:var(--ultramarine);
+  width:1rem;flex:none;text-align:center}
+details[open].why>summary::before,details[open].note>summary::before{content:"\\2212"}
+.why-body{display:grid;gap:.7rem;padding:.75rem 0 .25rem 1.6rem;font-size:.93rem}
+.tag{font:600 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;
+  border-radius:3px;padding:.2rem .4rem;white-space:nowrap}
+.t-filter{color:var(--r-filter)}.t-throw{color:var(--r-throw)}.t-seeded{color:var(--r-seeded)}.t-render{color:var(--r-render)}
+.t-review{color:var(--warn)}
+ol.trail{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;border-left:2px solid var(--rule);padding-left:.9rem}
+ol.trail li{display:grid;gap:.2rem;min-width:0}
+ol.trail .head{display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:center;font:.78rem/1.3 var(--mono);color:var(--muted)}
+.behind{background-color:var(--panel);border-radius:10px;padding:clamp(1rem, 3vw, 2rem);display:grid;gap:1.25rem;
+  background-image:linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:22px 22px;scroll-margin-top:1rem}
+.behind>header{display:grid;gap:.5rem}
+.margin{font:500 1.35rem/1.2 var(--hand);color:var(--stamp);transform:rotate(-1.5deg);transform-origin:left;width:fit-content}
+.ladder{display:grid;gap:.5rem;background:var(--gesso);border:1px solid var(--rule);border-radius:8px;padding:1rem}
+.rung{display:grid;grid-template-columns:minmax(8.5rem, 11rem) 1fr;gap:.75rem;align-items:center;padding:.5rem 0;
+  border-bottom:2px solid var(--rule)}
+.rung:last-child{border-bottom:0}
+.rname{display:grid;gap:.1rem}.rname b{font:650 1rem/1.2 var(--display)}.rname span{font:.75rem/1.2 var(--mono);color:var(--muted)}
+.rchips{display:flex;flex-wrap:wrap;gap:.35rem}
+.pip{font:600 .78rem/1 var(--mono);border-radius:999px;padding:.3rem .6rem;color:var(--gesso);text-decoration:none}
+.pip.tried{background:transparent!important;border:1.5px dashed currentColor;text-decoration:line-through}
+.pip.none{color:var(--muted);background:transparent;font-weight:400;padding-inline:0}
+.p-filter{background:var(--r-filter);color:var(--gesso)}.p-throw{background:var(--r-throw);color:var(--gesso)}
+.p-seeded{background:var(--r-seeded);color:var(--gesso)}.p-render{background:var(--r-render);color:var(--gesso)}
+.pip.tried.p-filter{color:var(--r-filter)}.pip.tried.p-throw{color:var(--r-throw)}.pip.tried.p-seeded{color:var(--r-seeded)}
+details.note{border-top:1px solid var(--rule);background:var(--gesso);border-radius:8px;padding:0 1rem}
+details.note>summary{display:flex;align-items:baseline;gap:.6rem;padding:.9rem 0;font:650 1.1rem/1.25 var(--display)}
+details.note>summary .hint{font:400 .85rem/1.3 var(--body);color:var(--muted);margin-left:auto;text-align:right}
+.note-body{display:grid;gap:1rem;padding:0 0 1.25rem 1.6rem;min-width:0}
+.note-body ul,.note-body ol{margin:0;padding-left:1.2rem;display:grid;gap:.35rem}
+.pick{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit, minmax(15rem, 1fr))}
+.card{border:1px solid var(--rule);border-radius:8px;padding:.9rem;display:grid;gap:.4rem;align-content:start;position:relative}
+.card.chosen{border:2px solid var(--ultramarine)}
+.card .tag{justify-self:start}
+.stamp{font:700 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--stamp);border:2px solid currentColor;
+  border-radius:4px;padding:.25rem .45rem;transform:rotate(-4deg);justify-self:start}
+.stamp.keep{color:var(--r-filter)}
+.board{list-style:none;padding:0!important;display:grid!important;gap:.75rem!important}
+.board li{display:grid;grid-template-columns:4.5rem 1fr;gap:.75rem;align-items:start}
+.board img{border-radius:3px}
+.board b{font-family:var(--display)}
+.sheet{display:grid;grid-template-columns:repeat(auto-fill, minmax(12.5rem, 1fr));gap:1rem}
+.sheet figure{background:var(--panel);border-radius:6px;padding:.6rem;gap:.45rem;align-content:start}
+.sheet code,.mono{font:.75rem/1.4 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.receipt{font:.82rem/1.5 var(--mono);max-width:26rem;width:100%;background:var(--gesso);border:1px solid var(--rule);
+  border-block:2px dashed var(--muted);padding:1rem 1.1rem;display:grid;gap:.15rem;justify-self:start}
+.receipt .row{display:flex;justify-content:space-between;gap:1rem}
+.receipt .row span:first-child{min-width:0;overflow-wrap:anywhere}
+.receipt .sub{color:var(--muted);font-size:.72rem;padding-left:1rem}
+.receipt .total{border-top:1px dashed var(--muted);margin-top:.4rem;padding-top:.4rem;font-weight:600}
+.receipt .thanks{font:500 1.2rem/1.2 var(--hand);color:var(--stamp);text-align:center;margin-top:.5rem}
+@media (max-width: 560px){.rung{grid-template-columns:1fr;gap:.4rem}.note-body,.why-body{padding-left:0}
+  details.note>summary .hint{display:none}}
 @media (max-width: 760px){.step,.pair{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 """
 
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700'
-         '&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@400;600&display=swap">')
+         '&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Caveat:wght@500&family=JetBrains+Mono:wght@400;600&display=swap">')
 
 
 def image_src(folder: Path, name: str, embed: bool, max_side: int = 900) -> str:
@@ -105,6 +173,7 @@ def items(xs, cls="") -> str:
 
 
 def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> str:
+    from lesson_notes import behind, step_why
     read = lesson["photo_read"]
     stages = lesson["stages"]
     # Problems the review found and left (caps or rounds ran out), shown on their step so the painter knows.
@@ -151,7 +220,6 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
         watch = "".join(f'<p class="watch">Watch out: {e(w)}</p>' for w in s.get("watch_out", []))
         flags = "".join(f'<p class="flag">Heads up, this picture is a little off: {e(x)} Paint what the steps say.</p>'
                         for x in left.get(s["id"], []))
-        made = f'<p class="made">Image made with {e(s.get("made_with", "render"))}</p>' if not embed else ""
         steps_html.append(f"""
 <article class="step" id="step-{i + 1}">
   <figure><img src="{imgs[i]}" alt="The canvas after step {i + 1}: {e(s['name'])}" loading="lazy"></figure>
@@ -164,7 +232,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
       {f'<p class="label">Strokes</p>{strokes}' if strokes else ''}
     </div>
     {watch}{flags}
-    <p class="small">Drying: {e(s.get('dry_time', ''))}</p>{made}
+    <p class="small">Drying: {e(s.get('dry_time', ''))}</p>
+    {step_why(lesson, s, i == len(stages) - 1)}
   </div>
 </article>""")
 
@@ -177,7 +246,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     <h1>{e(read['subject'])}</h1>
     <p class="lede">{e(technique.get('summary', ''))}</p>
     <div class="facts"><span><b>{len(stages)}</b> steps</span><span>Focal point: <b>{e(read['focal_point'])}</b></span>
-      <span>Light: <b>{e(read['light'])}</b></span></div>
+      <span>Light: <b>{e(read['light'])}</b></span><a href="#behind">How this lesson was made</a></div>
   </header>
   <div class="pair">
     {f'<figure><img src="{photo}" alt="The original photo"><figcaption>Your photo</figcaption></figure>' if photo else ''}
@@ -188,6 +257,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     <div class="paints">{paint_cards}</div></section>
   <section><h2>The steps</h2><nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}
+  {behind(lesson, technique, folder, embed, thumbs)}
 </div>"""
     if embed:
         return head + body

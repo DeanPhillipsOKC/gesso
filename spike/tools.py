@@ -348,6 +348,8 @@ def publish(a: argparse.Namespace) -> dict:
     text = {t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]} if text_path.exists() else {}
     review_path = lesson / "review.json"
     review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
+    notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters, throwaways
+    notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
     led = LessonLedger(lesson)
     paints = {p.name: p for p in plan.paints}
 
@@ -377,7 +379,7 @@ def publish(a: argparse.Namespace) -> dict:
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
                        "components": plan.components, "mixes": [p.model_dump() for p in plan.paints]},
         "finish_issues": review.get("finish_issues", []), "review_issues": review.get("review_issues", []),
-        "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
+        "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
@@ -413,7 +415,7 @@ def add_lesson_tools(sub) -> None:
     p.set_defaults(func=render_step)
 
     p = sub.add_parser("publish", help="Free. Build lesson.json, lesson.html, and lesson-artifact.html once every step image exists.",
-                       description="Snap paint swatches to the finish, merge plan.json, text.json, review.json, and "
+                       description="Snap paint swatches to the finish, merge plan.json, text.json, review.json, notes.json, and "
                                    "the ledger, and write lesson.json, lesson.html, and lesson-artifact.html (images inlined, "
                                    "for publishing as a Claude artifact).")
     p.add_argument("--lesson", required=True)
@@ -438,6 +440,8 @@ def run_filter(a: argparse.Namespace) -> dict:
     src = Path(a.input)
     if not src.exists():
         raise Refused(f"input image not found: {src}")
+    if a.lesson and not (a.why or "").strip():
+        raise Refused("--why is required with --lesson: say what you want this filter to show you")
     rgb = f.load(src)
     settings: dict = {}
     extra: dict = {}
@@ -474,7 +478,12 @@ def run_filter(a: argparse.Namespace) -> dict:
     else:
         raise Refused(f"unknown filter {a.tool}")
     out = f.save(img, filter_out(a))
-    return {"tool": a.tool, "input": str(src), "out": str(out), "settings": settings, "cost_usd": 0.0, **extra}
+    result = {"tool": a.tool, "input": str(src), "out": str(out), "settings": settings, "cost_usd": 0.0, **extra}
+    if a.lesson:
+        # Free, but logged like a render so the lesson page can show which filters were tried and why.
+        LessonLedger(Path(a.lesson)).append({"tool": "filter", "filter": a.tool, "step": a.step or "", "why": a.why,
+                                             "input": str(src), "out": str(out), "settings": settings, "cost_usd": 0.0})
+    return result
 
 
 FILTERS = {
@@ -506,6 +515,9 @@ def add_filters(sub) -> None:
         p.add_argument("input", help="image to filter")
         p.add_argument("--lesson", help="lesson folder to write into (default output/filters/)")
         p.add_argument("--out", help="output path; default <folder>/<input name>_<tool>.png")
+        p.add_argument("--why", help="with --lesson, required: what you want this filter to show you; "
+                                     "logged in the ledger and shown on the lesson page")
+        p.add_argument("--step", help="the plan step this filter is for, if any")
         for flag, kw in args:
             p.add_argument(flag, **kw)
         p.set_defaults(func=run_filter)
