@@ -420,7 +420,11 @@ def publish(a: argparse.Namespace) -> dict:
         }
         for i, s in enumerate(plan.steps)
     ]
+    from version import stamp
+    old = lesson / "lesson.json"
+    previous = (json.loads(old.read_text(encoding="utf-8")).get("gesso") or {}).get("version", "before stamps") if old.exists() else None
     lesson_data = {
+        "gesso": stamp(),
         "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
@@ -442,7 +446,8 @@ def publish(a: argparse.Namespace) -> dict:
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
     return {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
-            "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed, "steps": len(stages), "steps_by_source": by_source,
+            "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed,
+            "gesso": lesson_data["gesso"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
             "diagrams": sum(1 for st in stages if st["construct"]),
             # a diagram the page can't explain: the skill's beginner check didn't write down why
             "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in

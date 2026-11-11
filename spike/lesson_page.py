@@ -101,6 +101,7 @@ details.mixfor .dots{display:flex;gap:.2rem}
 .new{font:600 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--r-filter);
   border:1px solid currentColor;border-radius:3px;padding:.15rem .35rem}
 .small{font-size:.85rem;color:var(--muted)}
+.made{font:.75rem/1.4 var(--mono);color:var(--muted);text-align:center}
 ul.plain{list-style:none;padding-left:0!important}
 /* Construction diagrams: build a shape from simple pieces, one panel per move, under the step it belongs to. */
 .build{grid-column:1/-1;display:grid;gap:.6rem;background:var(--panel);border-radius:8px;padding:1rem;min-width:0}
@@ -220,6 +221,7 @@ def items(xs, cls="") -> str:
 def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> str:
     from construct import strip as build_strip
     from lesson_notes import behind, step_why
+    from version import line
     read = lesson["photo_read"]
     stages = lesson["stages"]
     # Problems the review found and left (caps or rounds ran out), shown on their step so the painter knows.
@@ -339,6 +341,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
   <section><h2>The steps</h2><nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}
   {behind(lesson, technique, folder, embed, thumbs, sizes)}
+  {f'<footer class="made">Made with {e(line(lesson["gesso"]))}</footer>' if lesson.get("gesso") else ""}
 </div>"""
     if embed:
         return head + body

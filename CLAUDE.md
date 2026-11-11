@@ -9,6 +9,7 @@ Project knowledge lives under `docs/`. Read it before making changes:
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
   anything, and don't re-propose what it rules out.
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).
+- `docs/changelog.md`: what each Gesso version added. Lessons are stamped with the version that made them.
 - **GitHub Issues** (https://github.com/DeanPhillipsOKC/gesso/issues, via the `gh` CLI) is the
   backlog. Check open issues before starting new work. Issues labeled `human` aren't yours to do.
 
