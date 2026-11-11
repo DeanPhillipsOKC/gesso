@@ -51,6 +51,10 @@ render with the same inputs comes back free from the cache, so rerunning a lesso
 - Files the tools make there besides yours: `ledger.json` (every render and filter run), `00_canvas.png` (white canvas, made by
   `render-step`), and the filter outputs. Put trial outputs you won't use under `<lesson>/trials/` with `--out`.
 - Read the technique YAML: `rules`, `brush_moves`, `palette`, `step_range`, `ground`, `framing`, `simplify`, `finish`.
+- Read the medium's research notes, `docs/research/acrylic-paint-along.md`: at least sections 4 (depth and texture)
+  and 5 (beginner mistakes) and "For Gesso". Technique in the plan and the step text comes from these cited notes
+  and the YAML, not from memory. When you rely on something they don't cover, say so in `notes.json` under
+  `learned`, so the research can be extended.
 
 ### 0b. Check the photo is just the picture
 Read the photo before anything else and say what the subject is. Then ask: is everything in this image part of

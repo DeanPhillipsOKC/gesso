@@ -58,8 +58,16 @@ rules:
   - The last step is the final details and brightest highlights, and it ends with the finished painting.
   - Every color is a named mix of the palette tubes. Reuse the same mix name whenever the same paint is used again.
   - Beginner-friendly: 2 to 5 short instructions per step, plain words, one brush move per instruction.
-  - Let a layer dry before painting on top of it. Whenever a step paints over color from an earlier step (stripes, details, ribs, highlights over a base), its first instruction says to let that layer dry first, and how to tell (it's dry when it no longer feels cool or tacky). Wet paint underneath mixes into mud and makes lines feather. Paint wet into wet only where the step means to blend, and say so.
-  - Give each area the values the picture shows. Where the picture shows depth or texture (light and shadow sides, two greens in a field, bumpy rows, cloud undersides), name a dark, a middle, and a light mix and say where each goes, dark first, then lighter on top. One flat mix only where the picture is flat.
+  - Let a layer dry before painting on top of it. Whenever a step paints over color from an earlier step (stripes, details, ribs, highlights over a base), its first instruction says to let that layer dry first: a few minutes, or a hair dryer on low, until it's dry to the touch. Wet paint underneath mixes into mud and makes lines feather. Always before liner lines, dots, outlines, a contrasting color, or dry-brush highlights.
+  - Wet-on-wet blending happens only within one step, in one area, in about 5 minutes. Say to work fast and stop blending as soon as the paint starts to drag. Never tell the painter to scrub an area that has started to set; say to let it dry and paint over it.
+  - Give each area the values the picture shows. Every 3D object (clouds, hills, trees, pumpkins, a balloon) gets at least three values made from one base mix: a darker base, a mid value on the lit side, and a small lightest accent on the lit edge, each covering less than the last. Name them dark, mid, and light, and say where each goes. One flat mix only where the picture is flat.
+  - State the light direction in the first step, and keep every highlight on that side.
+  - Farther things get lighter, a little bluer or grayer, less contrast, softer edges, and no texture. Texture (grass, foliage taps, bark) goes only in the middle ground and foreground.
+  - Stroke direction follows the form: down the ribs of a pumpkin, around a balloon, small circles for clouds, upward for grass, outward from the trunk for branches. Say the direction in the instruction.
+  - Every instruction names the brush, the mix, the paint load (wet and creamy, thin and flowing like ink, or nearly dry), the stroke, its direction, and where on the canvas. Each step ends by saying what it should look like when done, including what should still show through.
+  - Light over dark needs 2 to 3 thin coats with drying between; say so where it happens. Keep layers thin to medium, no thick impasto.
+  - Suggest a test stroke on scrap paper before any new kind of stroke (fan brush tapping, liner lines, dry brush, press and lift).
+  - Once per lesson, say colors dry a little darker, so test a mix on the palette edge before a big area. Once around the middle, say the painting goes through an ugly stage and that's normal.
 
 brush_moves:
   - Long side-to-side strokes or the X stroke for blending skies and gradients while wet
@@ -75,40 +83,59 @@ brush_moves:
 # checks a step's picture against these, not against its own idea of a stroke, so add to this list when a
 # lesson uses a stroke it doesn't cover.
 stroke_results:
-  - stroke: X stroke
-    leaves: A soft, crosshatched texture with visible criss-cross marks, and blotchy blends where two colors meet.
-    then: For a glassy, even gradient, finish with long, light side-to-side strokes across the whole width with an almost dry brush, wiping it between passes.
-  - stroke: Long side-to-side strokes
-    leaves: Horizontal bands with faint streaks; where two wet colors meet, a soft blend about a brush-width tall.
-    then: Go back over each seam lightly, overlapping both colors, until the line disappears. Work while the paint is wet.
-  - stroke: Wet blending
-    leaves: A soft transition only where both paints were still wet; a hard line where one had dried.
-    then: Paint the two colors next to each other in one go, then blend at once. If one dried, repaint a strip of it and blend again.
-  - stroke: Dabbing or tapping
-    leaves: Clusters of small, irregular marks with gaps between them; the brush shape shows in each mark.
-    then: For a solid look, dab a darker layer first and lighter dabs on top, leaving some of the dark showing.
-  - stroke: Pull and taper (press, then lift)
-    leaves: A line that starts wide and ends in a point; wobbly if pulled slowly.
-    then: Pull in one quick, confident move. For a trunk, do several pulls side by side.
-  - stroke: Flicking upward
-    leaves: Thin, uneven blades that taper upward, denser at the base.
-    then: Flick in a few passes with different colors, dark first.
-  - stroke: Dry brushing
-    leaves: A broken, scratchy layer that only catches the canvas texture; never a solid area.
-    then: Build up with several light passes; reload with very little paint each time.
-  - stroke: Liner line
-    leaves: A thin, even line if the paint is thinned to ink; a skippy, broken line if it's thick.
-    then: Thin the paint with water until it's like ink, and roll the brush to a point.
-  - stroke: Circular or swirling strokes
-    leaves: Curved bands that follow the brush; where two colors swirl together wet, soft streaks of both.
-    then: Keep each swirl one continuous move. For crisp light swirls on a dark sky, let the sky dry first.
-  - stroke: Curved strokes that follow a form (hills, pumpkin ribs, paths)
-    leaves: Brush marks that bend with the shape, which is what makes it look round or sloped.
-    then: Use a darker mix along the shadow side and a lighter one along the lit side, both following the curve.
-  - stroke: Dotting
-    leaves: Round dots the size of the tool tip; uneven if the paint is thin or the tool is reloaded rarely.
-    then: Reload for every few dots, and use the brush handle's end for bigger, even dots.
-  - stroke: Building from pieces (center shape, then parentheses)
+  # From docs/research/acrylic-paint-along.md ("For Gesso", stroke results), with cited sources there.
+  - stroke: Long horizontal blend (flat brush, even coat)
+    leaves: Smooth bands of color, with a soft join where two wet colors meet.
+    then: Stroke back over each join while wet. If a join is harsh, add more of the lighter color there.
+  - stroke: X stroke, criss-cross, or slip-slap (flat brush)
+    leaves: A soft, slightly textured blended fill with visible criss-cross marks.
+    then: For a smooth, even gradient, go over it while wet with lighter, longer side-to-side strokes. Or leave it as texture.
+  - stroke: Double load (flat or angle brush, two colors on two corners)
+    leaves: A two-tone stroke that blends partway between the colors.
+    then: Reload both colors for each stroke. Don't try to make it fully smooth.
+  - stroke: Dabbing or stippling (round tip or stiff brush, little paint)
+    leaves: Dots or dappled patches that get more solid the more you tap.
+    then: Tap a lighter mix on the lit side, leaving the darker taps showing underneath.
+  - stroke: Fan brush tapping (thin paint, spread bristles, middle tips)
+    leaves: Needle or branch clusters, light at the top and heavier where pressed.
+    then: If the top is too heavy, add fine branches with a small round instead of more fan marks.
+  - stroke: Dry brush (no water, tip loaded and wiped nearly clean, light pressure)
+    leaves: Feathery, broken, see-through marks that catch the canvas texture. Never a solid area.
+    then: Build up in several light passes. If too solid, let it dry and dry-brush the base color back over part of it.
+  - stroke: Scumbling (loose, scrubby dry-brush strokes, light over dark)
+    leaves: A hazy, broken layer with the dark showing through.
+    then: If it covers too much, let it dry and scumble the dark back in.
+  - stroke: Glazing (transparent color thinned with medium, over dry paint)
+    leaves: A see-through tint over what's underneath.
+    then: If it's too dark, paint a lighter opaque color over it. Rarely used at beginner level.
+  - stroke: Wet-on-wet blend (two wet colors, light load)
+    leaves: A soft transition, only where both paints were still wet.
+    then: Stop when the paint drags; streaks can stay. If it has set, let it dry and blend a new layer on top.
+  - stroke: Press and lift (round brush, press the belly, lift to the tip)
+    leaves: A teardrop or comma shape, for petals and leaves.
+    then: If it's blobby, use less paint and lift faster. Tidy edges with the background color once dry.
+  - stroke: Thick-to-thin (flat or angle brush, press, then turn to the edge)
+    leaves: A tapered line, for branches and grass.
+    then: Add a few thinner offshoots with a liner.
+  - stroke: Flicking (light load, quick upward stroke from the base)
+    leaves: Tapered blades with broken tips, denser at the base.
+    then: Flick a lighter green over the dark base, fewer as you go up.
+  - stroke: Liner work (paint thinned to ink, brush upright, light steady pressure)
+    leaves: Thin, flowing lines; skippy, broken lines if the paint is too thick.
+    then: Reload often. Only paint lines over dry paint, or they spread.
+  - stroke: Dotting (brush handle end or a dotting tool, fresh paint for each dot)
+    leaves: Round, slightly raised dots.
+    then: Wipe a bad dot off while it's wet, or cover it with the background color once dry.
+  - stroke: Splatter (thinned paint, toothbrush or a flicked brush)
+    leaves: Random speckles, for stars or snow.
+    then: Wipe strays right away with a damp swab. Let it dry before the next step.
+  - stroke: Small circles with the brush tip (clouds)
+    leaves: A bumpy, soft edge.
+    then: Smooth with the same circular motion, and highlight only the lit top edges.
+  - stroke: Curved strokes that follow a form (hills, pumpkin ribs, a balloon)
+    leaves: Marks that bend with the shape, which is what makes it look round or sloped.
+    then: Use the darker mix along the shadow side and the lighter one along the lit side, both following the curve.
+  - stroke: Building from pieces (a center shape, then curved pieces on each side like parentheses)
     leaves: A shape made of distinct curved segments with small gaps or overlaps between them.
     then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.
 

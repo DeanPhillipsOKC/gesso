@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.11.0 (2026-11-11)
+- Technique rules and stroke results now come from cited research (`docs/research/acrylic-paint-along.md`):
+  three values per 3D object, a stated light direction, distance and edges, stroke direction, paint load in
+  every instruction, drying before layering, coats for light over dark, and test strokes.
+
 ## POC 0.10.0 (2026-11-11)
 - A fresh reviewer checks each step's text against a measured map of what its picture changed, and the skill
   fixes flat, missing, vague, and wrong-stroke instructions from it, shown under "What the reviewer caught" (#24).
