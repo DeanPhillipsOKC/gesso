@@ -288,6 +288,7 @@ def straight(tube: str, target_hex: str) -> dict:
             "delta_e": round(de, 1), "reachable": True, "straight": True}
 
 
+STRAIGHT_TUBE = 4.0  # a tube within this Delta E of a paint is used straight from the tube
 CORE_TUBES = 8  # with a painter's big palette, a lesson aims to use about this many colored tubes in all
 CORE_SLACK = 2.0  # a paint may land this much further off to stay inside the lesson's core tubes
 
@@ -314,9 +315,19 @@ def solve_lesson(targets: dict[str, str], palette: list[str]) -> dict[str, dict]
     def good(n, m):
         return m["reachable"] and m["delta_e"] <= max(free[n]["delta_e"] + CORE_SLACK, 3.0)
 
-    out = {}
+    # A paint one tube already gives on its own (Trunk brown from burnt umber) uses that tube straight, even if it
+    # isn't in the core: one tube from the box beats a three-tube mix that lands about the same (owner run,
+    # 2026-11-11: Trunk brown came out as dark green plus red).
+    straight_ok = {}
+    for n, h in targets.items():
+        best = min(((delta_e(h, rgb_hex(tube_rgb(t))), t) for t in palette), default=(99, None))
+        if best[0] <= min(STRAIGHT_TUBE, max(free[n]["delta_e"] + CORE_SLACK, 3.0)):
+            straight_ok[n] = straight(best[1], h)
+            if best[1] != white and best[1] not in core:
+                core.append(best[1])
+    out = dict(straight_ok)
     # hardest paints first, so a tube one of them adds is there for the rest
-    for n in sorted(targets, key=lambda n: -solve(targets[n], pal(core))["delta_e"]):
+    for n in sorted((n for n in targets if n not in out), key=lambda n: -solve(targets[n], pal(core))["delta_e"]):
         m = solve(targets[n], pal(core))
         if not good(n, m):
             # add the one tube (from its own best recipe) that helps most, and keep it for every later paint

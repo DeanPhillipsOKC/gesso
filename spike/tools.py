@@ -349,6 +349,19 @@ def render_step(a: argparse.Namespace, client=None) -> dict:
     return {"steps": results, "lesson_total_usd": led.total_cost, "budget_left_usd": round(a.max_cost - led.total_cost, 4)}
 
 
+def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
+    import mixing
+
+    names = list(mixes)
+    out = []
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            ma, mb = mixes[a], mixes[b]
+            if ma["parts"] == mb["parts"] or mixing.delta_e(ma["mixed_hex"], mb["mixed_hex"]) < 3:
+                out.append([a, b])
+    return out
+
+
 def texture_jumps(lesson: Path, paths: list[Path]) -> list[dict]:
     import numpy as np
     from PIL import Image
@@ -452,6 +465,7 @@ def publish(a: argparse.Namespace) -> dict:
         return text[s.id].get(key, default) if s.id in text else default
 
     view = canvas_view(lesson, [p.name for p in paths])
+    prune_canvas_view(lesson, [p.name for p in paths])
     stages = [
         {
             "id": s.id, "name": s.name, "image": view.get(paths[i].name, paths[i].name), "paints": s.paints, "looks_like": s.looks_like,
@@ -510,6 +524,8 @@ def publish(a: argparse.Namespace) -> dict:
                                   if n not in {c["name"] for c in st["colors"]}
                                   and (re.search(rf"{re.escape(n)}", " ".join(st["steps"]), re.I)
                                        or any(v.get("paint") == n for v in st.get("values", [])))],
+            # paints whose computed recipes come out the same (or mix within Delta E 3): two names, one color
+            "duplicate_recipes": duplicate_recipes(mixes),
             # steps that turn a big area from flat to textured at once: split them with split-texture
             "texture_jumps": texture_jumps(lesson, paths),
             # single instructions past the skill's budget (about 35 words): usually two moves to split
@@ -655,15 +671,21 @@ def split_texture(a: argparse.Namespace) -> dict:
     after = np.asarray(Image.open(paths[i]).convert("RGB").resize(before.shape[1::-1]))
     mids = passes.value_passes(before, after, len(a.ids) + 1)
     target = raw["steps"][i]
-    new = [{**{k: target[k] for k in ("colors", "brushes", "regions", "protect", "paints") if k in target},
-            "id": sid, "name": name, "looks_like": f"pass {k + 1} of {len(a.ids) + 1} toward: {target.get('looks_like', '')}",
+    n = len(a.ids) + 1
+    which = ["the darkest", "the mid-dark", "the middle", "the lighter"]
+    new = [{**{k: target[k] for k in ("brushes", "regions", "protect") if k in target},
+            # its own pass, not a copy of the parent's: the skill writes its colors and text from its picture
+            "colors": [], "paints": f"{which[min(k, 3)]} marks of: {target.get('paints', '')}",
+            "id": sid, "name": name, "looks_like": f"pass {k + 1} of {n}: {which[min(k, 3)]} marks only, over the base",
             "covers_canvas": target.get("covers_canvas", False), "how": [], "watch_out": []}
            for k, (sid, name) in enumerate(zip(a.ids, a.names))]
     names = insert_steps(lesson, a.step, new, mids)
     chain = [before] + mids + [after]
     return {"inserted": names, "before": a.step, "cost_usd": 0.0,
             "texture_jumps": [round(passes.texture_jump(x, y), 3) for x, y in zip(chain, chain[1:])],
-            "next": "write text.json entries for the new steps (darkest marks first), then lock-steps, publish, step-pairs"}
+            "next": "give each new step its colors in plan.json and its own text in text.json, from its picture (only "
+                    "the marks it adds, darkest first); trim the original step's text to only what it still adds; then "
+                    "lock-steps, publish, step-pairs"}
 
 
 def lock_steps(a: argparse.Namespace) -> dict:
@@ -709,6 +731,7 @@ def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
         return {}
     out = lesson / "canvas"
     out.mkdir(exist_ok=True)
+    names = [Path(n).name for n in names]  # a full path works too, not just a file name
     view = {}
     for name in names:
         src, dst = lesson / name, out / name
@@ -716,6 +739,17 @@ def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
             cv.crop_to_canvas(Image.open(src).convert("RGB"), box).save(dst)
         view[name] = f"canvas/{name}"
     return view
+
+
+def prune_canvas_view(lesson: Path, keep: list[str]) -> list[str]:
+    """Drop crops of step images that no longer exist (after split-texture renumbers steps)."""
+    out = lesson / "canvas"
+    if not out.exists():
+        return []
+    gone = [p.name for p in out.glob("*.png") if not (lesson / p.name).exists() and p.name not in keep]
+    for name in gone:
+        (out / name).unlink()
+    return gone
 
 
 def add_lesson_tools(sub) -> None:
@@ -787,8 +821,12 @@ def add_lesson_tools(sub) -> None:
                                    "step text on these crops (e.g. grid on canvas/99_finish.png), not on the frame.")
     p.add_argument("images", nargs="+", help="image file names inside the lesson folder")
     p.add_argument("--lesson", required=True)
-    p.set_defaults(func=lambda a: {"canvas": canvas_view(Path(a.lesson), a.images) or "no canvas crop needed",
-                                   "cost_usd": 0.0})
+    def _view(a):
+        missing = [n for n in a.images if not (Path(a.lesson) / Path(n).name).exists()]
+        if missing:
+            raise Refused(f"not in the lesson folder: {missing}")
+        return {"canvas": canvas_view(Path(a.lesson), a.images) or "no canvas crop needed", "cost_usd": 0.0}
+    p.set_defaults(func=_view)
 
     p = sub.add_parser("step-pairs", help="Free. Before/after/what-changed sheets for every step, for the step review (#24).",
                        description="After publish: writes <lesson>/trials/review/NN_<id>.png (before, after, and a measured "

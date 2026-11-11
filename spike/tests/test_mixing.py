@@ -70,6 +70,14 @@ class MixingTests(unittest.TestCase):
         for n, m in out.items():
             self.assertLessEqual(m["delta_e"], max(free[n] + mixing.CORE_SLACK, 3.0) + 0.01)
 
+    def test_a_paint_one_tube_gives_uses_that_tube(self):
+        import yaml
+        tubes = yaml.safe_load((Path(__file__).resolve().parent.parent.parent / "palettes" / "owner.yaml").read_text())["tubes"]
+        names = mixing.register(tubes)
+        self.addCleanup(mixing.CUSTOM.clear)
+        out = mixing.solve_lesson({"Trunk brown": "#4c2f1d", "Sky": "#6f8fd8"}, names)  # burnt umber is (74, 46, 26)
+        self.assertEqual(out["Trunk brown"]["parts"], {"Burnt umber": 1})
+
     def test_no_scaled_duplicates(self):
         for parts in mixing._candidates(PALETTE):
             self.assertFalse(parts.get("Titanium white") == 2 and parts.get("Ultramarine blue") == 2 and len(parts) == 2)
