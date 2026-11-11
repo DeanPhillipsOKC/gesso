@@ -52,7 +52,19 @@ class UnknownTube(ValueError):
     pass
 
 
+CUSTOM: dict[str, tuple[int, int, int]] = {}  # a painter's own tubes, by exact name (palettes/*.yaml)
+
+
+def register(tubes: list[dict]) -> list[str]:
+    """Load a painter's palette ({name, rgb} each) so recipes can use those tubes by name. Returns the names."""
+    for t in tubes:
+        CUSTOM[t["name"]] = tuple(int(v) for v in t["rgb"])
+    return [t["name"] for t in tubes]
+
+
 def tube_rgb(name: str) -> tuple[int, int, int]:
+    if name in CUSTOM:
+        return CUSTOM[name]
     """'Cadmium yellow medium (hue)' -> the cadmium yellow pigment. Matches the longest known key in the name."""
     low = name.lower()
     hits = [k for k in TUBES if k in low] or (["white"] if "white" in low else [])
@@ -62,7 +74,10 @@ def tube_rgb(name: str) -> tuple[int, int, int]:
 
 
 def short_name(tube: str) -> str:
-    """The name a painter says: 'Cadmium yellow medium (hue)' -> 'yellow', 'Titanium white' -> 'white'."""
+    """The name a painter says: 'Cadmium yellow medium (hue)' -> 'yellow', 'Titanium white' -> 'white'. A
+    painter's own tube is said the way it's labeled."""
+    if tube in CUSTOM:
+        return tube.lower()
     low = tube.lower()
     key = max([k for k in TUBES if k in low] or ["white" if "white" in low else low], key=len)
     return {"cadmium yellow": "yellow", "cadmium red": "red", "cadmium orange": "orange"}.get(key, key)
@@ -196,9 +211,40 @@ def _complexity(parts: dict[str, float]) -> tuple:
     return (len(parts), sum(v for v in parts.values()))
 
 
+SHORTLIST = 7  # a big palette is first narrowed to this many colored tubes for the full search
+
+
+def _shortlist(goal, palette: list[str]) -> list[str]:
+    """With a big palette (a painter's 30 tubes), search one- and two-tube recipes first, then keep the tubes the
+    best of those use. The full three-tube search over 30 tubes would be millions of mixes."""
+    white = next((t for t in palette if "white" in t.lower()), None)
+    colored = [t for t in palette if t != white]
+    tubes = {t: tube_rgb(t) for t in palette}
+    tries = []
+    for k in (1, 2):
+        for combo in itertools.combinations(colored, k):
+            for amounts in itertools.product([1, 2, 3], repeat=k):
+                for w in ([0, 1, 3, 8] if white else [0]):
+                    parts = dict(zip(combo, amounts))
+                    if w:
+                        parts[white] = w
+                    rgb = _mix_rgb([(tubes[t], v) for t, v in parts.items()])
+                    tries.append((delta_e(goal, rgb), combo))
+    keep: list[str] = []
+    for _, combo in sorted(tries, key=lambda x: x[0]):
+        for t in combo:
+            if t not in keep:
+                keep.append(t)
+        if len(keep) >= SHORTLIST:
+            break
+    return ([white] if white else []) + keep[:SHORTLIST]
+
+
 @lru_cache(maxsize=None)
 def _solve(target: str, palette: tuple[str, ...]) -> dict:
     goal = hex_rgb(target)
+    if len(palette) > SHORTLIST + 1:
+        palette = tuple(_shortlist(goal, list(palette)))
     tubes = {t: tube_rgb(t) for t in palette}
     scored = []
     for parts in _candidates(list(palette)):

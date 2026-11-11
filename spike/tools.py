@@ -271,7 +271,21 @@ def load_plan(lesson: Path):
 
     raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
     technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
+    if raw.get("palette"):  # the painter's own tubes (palettes/<name>.yaml) instead of the technique's five
+        technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
     return raw, LessonPlan.model_validate(raw), technique
+
+
+def load_palette(name: str) -> tuple[list[str], str]:
+    """palettes/<name>.yaml -> (tube names, palette title), with each tube's color registered for the mixer."""
+    import mixing
+    import yaml
+
+    path = ROOT / "palettes" / f"{name}.yaml" if not name.endswith(".yaml") else ROOT / name
+    if not path.exists():
+        raise Refused(f"no palette at {path}")
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return mixing.register(data["tubes"]), data.get("name", name)
 
 
 def step_paths(lesson: Path, plan) -> list[Path]:
@@ -333,6 +347,11 @@ def render_step(a: argparse.Namespace, client=None) -> dict:
         results = [one(x) for x in order]
     led = budget.ledger
     return {"steps": results, "lesson_total_usd": led.total_cost, "budget_left_usd": round(a.max_cost - led.total_cost, 4)}
+
+
+def tubes_used(palette: list[str], paints) -> list[str]:
+    used = {t for p in paints for t in ((p.get("mix") or {}).get("parts") or {})}
+    return [t for t in palette if t in used]
 
 
 def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
@@ -437,6 +456,9 @@ def publish(a: argparse.Namespace) -> dict:
                        "components": plan.components, "mixes": list(paints.values())},
         "finish_issues": review.get("finish_issues", []), "review_issues": review.get("review_issues", []),
         "text_issues": review.get("text_issues", []),
+        # the tubes to buy or get out: with a painter's big palette, only the ones the recipes use
+        "tubes": tubes_used(technique["palette"], paints.values()) if technique.get("palette_name") else technique.get("palette", []),
+        "palette_name": technique.get("palette_name", ""),
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }

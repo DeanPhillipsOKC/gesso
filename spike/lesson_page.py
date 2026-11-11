@@ -244,7 +244,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     for s in stages:
         for b in s.get("brush_list", []):
             brushes.setdefault(b["brush"], b.get("use", ""))
-    tubes = technique.get("palette", [])
+    tubes = lesson.get("tubes") or technique.get("palette", [])
     cv = lesson.get("canvas") or {}
     canvas_item = (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
                    + ("" if cv["orientation"] == "square" else " (hang it that way)") +

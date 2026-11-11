@@ -12,7 +12,13 @@ call `spike/tools.py` for images. Filters are free; renders cost money, so they 
 Arguments: `<photo>` (required, e.g. `photos/sleeping-cat.jpg`), technique (optional), quality for steps (default
 `low`), and `--canvas WxH` (optional, inches, e.g. `--canvas 11x14`; the owner paints mostly on 11x14, some 24x30
 and 10x10) with `--orientation portrait|landscape` (optional; a rectangular canvas hangs either way, so by
-default it follows the picture). If the owner names a technique, use it. Otherwise read every file in `techniques/` and choose the one that
+default it follows the picture). And `--palette <name>` (optional): the painter's own tubes, from `palettes/<name>.yaml` (the owner's is
+`owner`). Put `"palette": "<name>"` in plan.json. Then:
+- recipes, the paint list, and "What you need" use those tubes (the page lists only the ones the recipes use);
+- every render prompt that names the technique's limited palette (the simplify, beginner-version, and finish
+  prompts say "white, yellow, red, ultramarine blue, and burnt sienna") names the painter's colors instead, so the
+  pictures use colors they can mix ("colors mixable from the painter's paints: violet, light magenta, ...");
+- plan recipes and paint names may use any of those tubes, and a color a tube gives straight is used straight. If the owner names a technique, use it. Otherwise read every file in `techniques/` and choose the one that
 fits this photo and the level (decisions: Claude chooses techniques per photo from the hand-checked library), and
 record why, with every technique you passed on, in `notes.json`.
 

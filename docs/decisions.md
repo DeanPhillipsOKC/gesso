@@ -98,6 +98,9 @@ with the date.
   medium gets a research file in `docs/research/` (acrylic first: `acrylic-paint-along.md`, 38 sources), and
   its "For Gesso" rules and stroke results go into the technique YAML. The lesson skill reads both. Acrylic
   only for the POC; oils or pastels would each get their own research file and techniques later.
+- **Lessons can use the painter's own paints (2026-11-11, owner's call).** The owner has about 30 acrylics, so
+  a lesson can mix from `palettes/owner.yaml` instead of the five-tube teaching palette. The tube colors are
+  approximate until calibrated from swatches. The five-tube palette stays the default for mixing practice.
 
 ## How we work
 
