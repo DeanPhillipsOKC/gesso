@@ -209,8 +209,13 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
         f"<p><b>{k}:</b> {e(prep[f])}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
                                                         ("Done", "action"), ("Why", "why")) if prep.get(f)) + "</div>"
                  ) if prep else ""
+    bv = notes.get("beginner_version") or {}
+    bv_html = ('<div class="diag"><p class="label">Beginner version</p>' + "".join(
+        f"<p><b>{k}:</b> {e(bv[f])}</p>" for k, f in (("What made it too busy", "found"), ("Changed", "list"),
+                                                      ("Why", "why")) if bv.get(f)) + "</div>") if bv else ""
     parts.append(fold("How Claude read your photo", "subject, light, layers", "".join([
         prep_html,
+        bv_html,
         f"<p>{e(notes['read'])}</p>" if notes.get("read") else "",
         f"<p><b>Subject:</b> {e(read['subject'])}<br><b>Focal point:</b> {e(read['focal_point'])}<br>"
         f"<b>Light:</b> {e(read['light'])}</p>",

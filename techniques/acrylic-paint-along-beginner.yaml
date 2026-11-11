@@ -30,12 +30,28 @@ ground: white
 # How many steps a lesson may have. Claude picks the number that fits the picture.
 step_range: [5, 12]
 
+# How much detail a lesson at this level can hold. Pictures with more get a beginner version first (skill step 0c).
+detail_budget:
+  max_parts: 8
+  notes: >-
+    Big shapes, painted back to front. Every texture is one repeated mark a beginner can make with one brush,
+    loose and impressionist. No tiny separate things (houses, windows, people, boats, fence posts) unless one is
+    the subject, and no detail inside big shapes beyond what one repeated mark gives.
+
+beginner_version:
+  prompt: >-
+    Repaint this picture as a simple, loose, impressionist painting a beginner could paint in an afternoon. Keep
+    the composition, the subject, the light, the mood, and every area's colors and share of the canvas. Make
+    every texture from big, loose, repeated brush dabs instead of fine detail, and use fewer, broader shapes. Make
+    these changes:
+
 rules:
   - Paint back to front. What's farthest away goes on first; anything in front goes on later, on top.
   - Paint background areas straight through where thinner things in front will go (branches, poles, grass, shrubs). Never leave gaps or outlines for them.
   - Run each background layer past where the next layer will cover it, so its strokes stay long and continuous. A sky goes below the horizon, and all the way to the bottom edge when its strokes are circular or swirly; the ground is then painted over it. Never stop a sky at the hill line and leave white canvas below.
   - Build each shaped object from simple pieces, the way a teacher draws it. Start with one simple shape (an oval, circle, or rectangle), then add the rest in curved pieces. A pumpkin is a center oval first, then curved side segments on each side like ( ) or moustache shapes, smaller toward the edges. Say this in the block-in step's instructions, and show it as a construction diagram (simple pieces, one panel per move).
   - Each step paints one part of the picture or a small group of parts at the same distance. No empty steps, and no step for something the picture doesn't have.
+  - No step jumps from flat to dense texture. A texture step adds one kind of mark at a size a beginner can make in a few minutes; dense texture is split into passes (dark marks, then light marks), each its own step.
   - Big shapes before small ones. Texture, shadows, and highlights come after the shapes they sit on, and only where the picture has them.
   - Give the main subject the steps a teacher would. Base color, shading, and highlights are separate steps when the subject has them, and a teacher's two or three shading layers (a darker middle tone, then the darkest lines, then the light) stay separate steps too.
   - Anything in front of the subject (leaves, grass, flowers, vines at its base) goes on after the subject, over it.
