@@ -415,7 +415,7 @@ def publish(a: argparse.Namespace) -> dict:
             "colors": [paints[c] for c in s.colors if c in paints],
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
             "brushes": s.brushes, "dry_time": technique["dry_time"],
-            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""),
+            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""), "summary": txt(s, "summary", ""),
             "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
         }
         for i, s in enumerate(plan.steps)
@@ -433,6 +433,8 @@ def publish(a: argparse.Namespace) -> dict:
     (lesson / "lesson.html").write_text(page(lesson_data, technique, lesson), encoding="utf-8")
     artifact = lesson / "lesson-artifact.html"
     artifact.write_text(page(lesson_data, technique, lesson, embed=True), encoding="utf-8")
+    from lesson_embed import export
+    embed = export(lesson_data, technique, lesson)  # one folder a blog post or another page can show as a walkthrough
 
     by_source: dict[str, int] = {}
     for st in stages:
@@ -440,7 +442,7 @@ def publish(a: argparse.Namespace) -> dict:
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
     return {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
-            "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "steps": len(stages), "steps_by_source": by_source,
+            "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed, "steps": len(stages), "steps_by_source": by_source,
             "diagrams": sum(1 for st in stages if st["construct"]),
             # a diagram the page can't explain: the skill's beginner check didn't write down why
             "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
