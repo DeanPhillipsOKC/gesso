@@ -181,9 +181,14 @@ def dims(path: Path) -> str:
     return f' width="{w}" height="{h}"'
 
 
-def title_for(lesson: dict) -> str:
-    stem = Path(lesson["photo"]).stem.replace("-", " ").replace("_", " ").strip()
-    return f"{stem.title()} Lesson"
+def title_for(lesson: dict, folder: Path | None = None) -> str:
+    """Named after the photo. A cropped photo is named after its lesson folder (<photo stem>_skill_<time>) instead,
+    and words about where the photo came from (screenshot, screen) are dropped."""
+    stem = Path(lesson["photo"]).stem
+    if stem.startswith("photo") and folder is not None:
+        stem = folder.name.split("_skill_")[0]
+    words = [w for w in stem.replace("-", " ").replace("_", " ").split() if w.lower() not in ("screenshot", "screen", "cropped")]
+    return f"{' '.join(words).title() or 'Painting'} Lesson"
 
 
 def items(xs, cls="") -> str:
@@ -258,7 +263,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
   {build_strip(s.get('construct'), {n: p['hex'] for n, p in by_name.items()}, s['id'])}
 </article>""")
 
-    head = (f'<title>{e(title_for(lesson))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
+    head = (f'<title>{e(title_for(lesson, folder))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
             f'{FONTS}\n<style>{STYLE}</style>')
     body = f"""
 <div class="wrap">
