@@ -110,6 +110,7 @@ class PlannedStep(BaseModel):
     how: list[str]
     watch_out: list[str]
     regions: list[list[float]] | None = None  # where this step paints: boxes [x0, y0, x1, y1], 0-1 (lock-steps, #30)
+    protect: list[list[float]] | None = None  # inside the regions, things this step must leave alone (lock-steps)
 
 
 class LessonPlan(BaseModel):

@@ -184,7 +184,7 @@ plus three):
              "looks_like": "the WHOLE canvas after this step, including what is still white canvas",
              "covers_canvas": false, "colors": ["Sunset orange"], "brushes": "...",
              "how": ["2 to 5 instructions, each naming its brush move"], "watch_out": ["1 or 2 beginner mistakes"],
-             "regions": [[0.0, 0.0, 1.0, 0.62]]}]
+             "regions": [[0.0, 0.0, 1.0, 0.62]], "protect": []}]
 }
 ```
 
@@ -270,6 +270,12 @@ problems. So once the renders and their redos are done, lock them:
    `[x0, y0, x1, y1]` (0-1 from the top left, measured with `grid --percent`). A full background is
    `[[0, 0, 1, 1]]`. Cover only what the step is meant to add; something showing up early by mistake isn't its
    region. Add them when you plan, and correct them here against the images.
+   Where a step's boxes overlap things already painted that must stay put (a vine's box over the pumpkins and
+   field, a leaves box over a pumpkin's bottom, a moon's box over sky), also add `protect` boxes over those things.
+   Inside them, only the step's own paints (its `colors`) may change anything: the vine stays, the pumpkin
+   repainted under it goes back. Don't protect what the step changes on purpose (a shading step's pumpkin), and keep
+   protect boxes tight. One that also covers a lot of the step's new marks can leave them see-through. It can't
+   tell drift from new paint in the same color (a leaves step that uses the pumpkin's orange).
 2. `lock-steps --lesson <lesson>`. For each step in order, any change outside its regions goes back to the previous
    step's pixels, with a soft edge. Inside its regions the step is trusted. The raw renders stay in `trials/raw/`,
    and the lock can be rerun after a region fix.

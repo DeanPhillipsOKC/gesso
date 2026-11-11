@@ -556,8 +556,17 @@ def lock_steps(a: argparse.Namespace) -> dict:
     missing = [p.name for p in paths if not p.exists()]
     if missing:
         raise Refused(f"missing step images: {missing}")
+    from run import sample_swatches
+    sample_swatches(plan, paths[-1])  # the step paints' real colors, from the finish
+    hexes = {p.name: p.hex for p in plan.paints}
+
+    def rgb(h: str) -> tuple[int, int, int]:
+        return tuple(int(h.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
+
     regions = [s.regions for s in plan.steps[:-1]]
-    report = lk.lock(lesson, paths[:-1], paths[-1], lesson / "00_canvas.png", regions)
+    protects = [s.protect for s in plan.steps[:-1]]
+    colors = [[rgb(hexes[c]) for c in s.colors if c in hexes] for s in plan.steps[:-1]]
+    report = lk.lock(lesson, paths[:-1], paths[-1], lesson / "00_canvas.png", regions, protects, colors)
     LessonLedger(lesson).append({"tool": "filter", "filter": "lock-steps", "step": "", "why": a.why or "lock finished areas",
                                  "input": str(lesson), "out": str(lesson), "settings": {"put_back": report}, "cost_usd": 0.0})
     return {"put_back": report, "steps_without_regions": [s.id for s in plan.steps[:-1] if not s.regions],

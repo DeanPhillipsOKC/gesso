@@ -7,7 +7,8 @@ shift, a finished pumpkin gets repainted, grass appears in a highlights step. Th
 third of its problems (#24). A beginner comparing their canvas with the step picture sees changes nobody asked for.
 
 Two rules, from first step to last:
-1. Each step says where it paints (`regions` in plan.json: boxes, 0-1 from the top left). Outside them, nothing may
+1. Each step says where it paints (and, inside that, what it must leave alone: `protect` boxes, where only the
+   step's own paints may change anything) (`regions` in plan.json: boxes, 0-1 from the top left). Outside them, nothing may
    change, so any change there goes back to the previous step's pixels. This catches work arriving early (grass in
    a highlights step) and random repainting.
 2. A step with no regions falls back to this: an area is *finished* once the canvas there already looks like the finished
@@ -72,22 +73,53 @@ def region_mask(shape: tuple[int, int], boxes: list[list[float]] | None, margin:
     return m
 
 
+STEP_COLOR = 22.0  # Lab distance under which a changed pixel counts as one of the step's own paints
+
+
+LIGHTNESS_WEIGHT = 0.35  # a paint in shadow or highlight is still that paint: lightness counts for little
+
+
+def step_paint(render: np.ndarray, colors: list[tuple[int, int, int]]) -> np.ndarray:
+    """Where the render shows one of the step's paints, in light or shade (hue and colorfulness matter, lightness
+    much less: the pumpkin test's blue-grey shaded vine tendrils were eaten when lightness counted fully), a little
+    grown so the edges of a stroke stay too."""
+    lab = _lab(render, 1.5)
+    near = np.zeros(render.shape[:2], bool)
+    for c in colors:
+        swatch = cv2.cvtColor(np.uint8([[c]]), cv2.COLOR_RGB2LAB).astype(np.float32)[0, 0]
+        d = lab - swatch
+        near |= np.sqrt((d[..., 0] * LIGHTNESS_WEIGHT) ** 2 + d[..., 1] ** 2 + d[..., 2] ** 2) < STEP_COLOR
+    return cv2.dilate(near.astype(np.uint8), np.ones((5, 5), np.uint8))
+
+
 def lock_one(prev: np.ndarray, render: np.ndarray, finish: np.ndarray, region: np.ndarray | None = None,
-             canvas: np.ndarray | None = None) -> tuple[np.ndarray, float]:
+             canvas: np.ndarray | None = None, protect: np.ndarray | None = None,
+             colors: list[tuple[int, int, int]] | None = None) -> tuple[np.ndarray, float]:
     """The render with every change outside the step's region put back to `prev`. Inside its region the step is
-    trusted (balloon test: the finished rule bit a piece out of a newly painted sun). With no region, changes to
-    already-finished areas are put back instead. Returns (image, share of the canvas put back)."""
+    trusted (balloon test: the finished rule bit a piece out of a newly painted sun), except in its `protect`
+    boxes: there only the step's own paints may change things (a vine over a pumpkin stays; the pumpkin repainted
+    under it goes back; pumpkin test, 2026-11-11). With no region, changes to already-finished areas are put back
+    instead. Returns (image, share of the canvas put back)."""
     changed = (_dist(_lab(prev), _lab(render)) > CHANGED).astype(np.uint8)
     off_limits = finished_mask(prev, finish, canvas) if region is None else (1 - region).astype(np.uint8)
     revert = cv2.morphologyEx(off_limits & changed, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
     revert = cv2.dilate(revert, np.ones((5, 5), np.uint8))  # cover the halo around each drifted patch
-    alpha = cv2.GaussianBlur(revert.astype(np.float32), (0, 0), 4)[..., None]  # soft edge, no seams
+    alpha = cv2.GaussianBlur(revert.astype(np.float32), (0, 0), 4)  # soft edge, no seams
+    if protect is not None and colors:
+        guarded = protect & changed & (1 - step_paint(render, colors))
+        guarded = cv2.morphologyEx(guarded.astype(np.uint8), cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+        # a crisp edge here, so the step's new marks next to a protected area stay sharp, not glowy or see-through
+        alpha = np.maximum(alpha, cv2.GaussianBlur(guarded.astype(np.float32), (0, 0), 1))
+        revert |= guarded
+    alpha = alpha[..., None]
     out = render.astype(np.float32) * (1 - alpha) + prev.astype(np.float32) * alpha
     return np.clip(out, 0, 255).astype(np.uint8), float(revert.mean())
 
 
 def lock(lesson: Path, steps: list[Path], finish: Path, canvas: Path | None = None,
-         regions: list[list[list[float]] | None] | None = None) -> dict:
+         regions: list[list[list[float]] | None] | None = None,
+         protects: list[list[list[float]] | None] | None = None,
+         colors: list[list[tuple[int, int, int]]] | None = None) -> dict:
     """Lock every step picture before the finish, in order. `steps` excludes the finish itself; `regions[i]` is
     step i's boxes, or None to use the finished-area rule alone."""
     fin = np.asarray(Image.open(finish).convert("RGB"))
@@ -104,7 +136,9 @@ def lock(lesson: Path, steps: list[Path], finish: Path, canvas: Path | None = No
             shutil.copyfile(path, raw)  # first lock: keep the render as it came
         render = np.asarray(Image.open(raw).convert("RGB").resize(size))
         boxes = regions[i] if regions and i < len(regions) else None
-        locked, share = lock_one(prev, render, fin, region_mask(fin.shape[:2], boxes), blank)
+        guard = protects[i] if protects and i < len(protects) else None
+        locked, share = lock_one(prev, render, fin, region_mask(fin.shape[:2], boxes), blank,
+                                 region_mask(fin.shape[:2], guard, margin=0), colors[i] if colors else None)
         Image.fromarray(locked).save(path)
         report[path.stem] = round(share, 3)
         prev = locked
