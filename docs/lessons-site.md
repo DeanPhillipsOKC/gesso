@@ -10,6 +10,10 @@ animations and interactive pieces work like on any web page. No Claude account i
   commit and push `site/`. Cloudflare Pages deploys every push to `main`.
 - Who can open it is set in Cloudflare Access (below), never in this repo. Don't put anyone's email here.
 
+Live at https://gesso-lessons.pages.dev, deployed from `main`. It's deliberately **not** locked (owner's call,
+2026-11-11: it's painting lessons, nothing private), just kept out of search engines. The Access steps below are
+only for if that ever changes; Zero Trust asks for a card even on its free plan.
+
 ## One-time setup (owner, about 15 minutes)
 
 These are Cloudflare dashboard steps; the menus may be worded a little differently than this.

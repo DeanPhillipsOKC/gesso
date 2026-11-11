@@ -101,6 +101,8 @@ with the date.
 - **Lessons can use the painter's own paints (2026-11-11, owner's call).** The owner has about 30 acrylics, so
   a lesson can mix from `palettes/owner.yaml` instead of the five-tube teaching palette. The tube colors are
   approximate until calibrated from swatches. The five-tube palette stays the default for mixing practice.
+- **The lessons site is open, not locked (2026-11-11, owner's call).** gesso-lessons.pages.dev holds only
+  painting lessons, so there's no sign-in, just a noindex header. Keep anything personal off it.
 
 ## How we work
 
