@@ -94,6 +94,10 @@ with the date.
   lands (Delta E). Mixbox is CC BY-NC: free while Gesso isn't sold. If it ever is, swap in
   Spectral.js (MIT) or buy a license; only `spike/mixing.py` touches it. Every step lists its own
   paints and recipes, because beginners mix as they go and acrylics dry on the palette.
+- **Technique comes from cited research, not from the model's memory (2026-11-11, owner's call).** Each
+  medium gets a research file in `docs/research/` (acrylic first: `acrylic-paint-along.md`, 38 sources), and
+  its "For Gesso" rules and stroke results go into the technique YAML. The lesson skill reads both. Acrylic
+  only for the POC; oils or pastels would each get their own research file and techniques later.
 
 ## How we work
 
