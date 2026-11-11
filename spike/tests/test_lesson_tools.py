@@ -187,6 +187,22 @@ class LessonToolTests(unittest.TestCase):
         code, r = self.run_tool("canvas-view", str(self.lesson / "02_hill-dark.png"), "--lesson", str(self.lesson))
         self.assertEqual(code, 0)  # a full path works
 
+    def test_site_add_copies_the_standalone_page_and_lists_it(self):
+        import site_lessons
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.run_tool("publish", "--lesson", str(self.lesson))
+        page = (self.lesson / "lesson-standalone.html").read_text(encoding="utf-8")
+        self.assertTrue(page.startswith("<!doctype html>") and "data:image/jpeg;base64," in page)
+        site = self.tmp / "site"
+        r = site_lessons.add(self.lesson, "sky-test", site)
+        self.assertEqual(r["url_path"], "/lessons/sky-test/")
+        self.assertTrue((site / "lessons" / "sky-test" / "thumb.jpg").exists())
+        index = (site / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="lessons/sky-test/"', index)
+        self.assertIn("noindex", (site / "_headers").read_text())
+        site_lessons.add(self.lesson, "sky-test", site)  # adding again replaces, doesn't duplicate
+        self.assertEqual(index.count("lessons/sky-test/\""), (site / "index.html").read_text().count("lessons/sky-test/\""))
+
     def test_values_table_shows_depth(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [
