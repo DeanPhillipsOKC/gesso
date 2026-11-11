@@ -566,10 +566,12 @@ def lock_steps(a: argparse.Namespace) -> dict:
     regions = [s.regions for s in plan.steps[:-1]]
     protects = [s.protect for s in plan.steps[:-1]]
     colors = [[rgb(hexes[c]) for c in s.colors if c in hexes] for s in plan.steps[:-1]]
-    report = lk.lock(lesson, paths[:-1], paths[-1], lesson / "00_canvas.png", regions, protects, colors)
+    report = lk.lock(lesson, paths[:-1], paths[-1], lesson / "00_canvas.png", regions, protects, colors,
+                     plan.steps[-1].regions)
     LessonLedger(lesson).append({"tool": "filter", "filter": "lock-steps", "step": "", "why": a.why or "lock finished areas",
                                  "input": str(lesson), "out": str(lesson), "settings": {"put_back": report}, "cost_usd": 0.0})
-    return {"put_back": report, "steps_without_regions": [s.id for s in plan.steps[:-1] if not s.regions],
+    return {"put_back": report, "steps_without_regions": [s.id for s in plan.steps if not s.regions],
+            "backward_pass": "done" if "backward" in report else "skipped: every step, the last one too, needs regions",
             "raw": str(lesson / "trials" / "raw"), "cost_usd": 0.0}
 
 

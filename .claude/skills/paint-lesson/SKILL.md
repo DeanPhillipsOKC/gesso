@@ -266,7 +266,7 @@ Each step is rendered on its own, and the image model doesn't hold earlier work 
 pumpkin gets repainted, grass shows up in a highlights step. The step review found that in a third of its
 problems. So once the renders and their redos are done, lock them:
 
-1. Every step except the last needs `regions` in `plan.json`: where that step paints, as 1 to 4 boxes
+1. Every step needs `regions` in `plan.json`, the last one too: where that step paints, as 1 to 4 boxes
    `[x0, y0, x1, y1]` (0-1 from the top left, measured with `grid --percent`). A full background is
    `[[0, 0, 1, 1]]`. Cover only what the step is meant to add; something showing up early by mistake isn't its
    region. Add them when you plan, and correct them here against the images.
@@ -279,6 +279,10 @@ problems. So once the renders and their redos are done, lock them:
 2. `lock-steps --lesson <lesson>`. For each step in order, any change outside its regions goes back to the previous
    step's pixels, with a soft edge. Inside its regions the step is trusted. The raw renders stay in `trials/raw/`,
    and the lock can be rerun after a region fix.
+   With regions on every step, `lock-steps` then runs a backward pass from the finish. Wherever no later step
+   paints, a step already shows the finished painting, since nothing will change it again. So the jump to the last
+   step shows only what it adds (pumpkin test: the last step went from changing 27% of the canvas to 11%). Give the
+   last step's regions carefully. A box it should have and doesn't makes its paint show up a step early.
 3. Read the locked images: no white holes, no seams where a box edge cuts an object, nothing the step should paint
    removed. A seam usually means a box cuts through an object: widen the box to take the whole object and rerun.
 4. Lock again after any later redo.
