@@ -129,6 +129,23 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertEqual(self.client.images.calls, 1)
 
+    def test_separate_processes_keep_every_entry(self):
+        # Two Budgets on one lesson stand in for two tools.py processes; each used to save only its own view.
+        from concurrent.futures import ThreadPoolExecutor
+
+        a = tools.Budget(self.lesson, 5.0, 2)
+        b = tools.Budget(self.lesson, 5.0, 2)
+
+        def go(i):
+            budget = a if i % 2 else b
+            return tools.render_one(budget, f"s{i}", [self.photo], f"prompt {i}", self.lesson / f"s{i}.png", "low",
+                                    "test", client=self.client)
+
+        with contextlib.redirect_stderr(io.StringIO()), ThreadPoolExecutor(max_workers=8) as pool:
+            list(pool.map(go, range(8)))
+        ledger = json.loads((self.lesson / "ledger.json").read_text())
+        self.assertEqual(len(ledger["calls"]), 8)
+
 
 if __name__ == "__main__":
     unittest.main()
