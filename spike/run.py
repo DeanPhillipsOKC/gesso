@@ -185,12 +185,16 @@ def image_block(path: Path) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def edit_image(step: str, inputs: list[Path], prompt: str, out: Path, size: str, quality: str, ledger: Ledger) -> Path:
-    from openai import OpenAI
+def edit_image(step: str, inputs: list[Path], prompt: str, out: Path, size: str, quality: str, ledger: Ledger,
+               client=None) -> Path:
+    if client is None:
+        from openai import OpenAI
+
+        client = OpenAI()
 
     files = [(p.name, png_bytes(p), "image/png") for p in inputs]
     started = time.time()
-    result = OpenAI().images.edit(
+    result = client.images.edit(
         model=IMAGE_MODEL,
         image=files if len(files) > 1 else files[0],
         prompt=prompt,
