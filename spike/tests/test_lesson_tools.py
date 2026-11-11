@@ -105,6 +105,21 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(r["steps_by_source"], {"render": 2, "filter": 1})
         self.assertEqual(r["paid_renders"], 2)
 
+    def test_publish_exports_a_walkthrough_embed(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        text = {"steps": [{"stage_id": "sky", "summary": "Paint the sky.", "what_to_do": ["Blend it. Then wait."]},
+                          {"stage_id": "hill", "what_to_do": ["Block the hill in one go. Keep it flat."]}]}
+        (self.lesson / "text.json").write_text(json.dumps(text))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(code, 0)
+        data = json.loads((self.lesson / "embed" / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual([s["summary"] for s in data["steps"][:2]], ["Paint the sky.", "Block the hill in one go."])
+        self.assertEqual(data["steps"][0]["paints"][0]["first_step"], 1)
+        self.assertEqual(data["steps"][0]["brushes"][0]["kind"], "flat")
+        for s in data["steps"]:
+            self.assertTrue((self.lesson / "embed" / s["image"]).exists())
+            self.assertTrue((self.lesson / "embed" / s["thumb"]).exists())
+
     def test_mix_computes_recipes_and_every_step_lists_its_paints(self):
         code, r = self.run_tool("mix", "--lesson", str(self.lesson))
         self.assertEqual(code, 0)

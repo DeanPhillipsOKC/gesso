@@ -239,10 +239,14 @@ Every step also recommends its brushes and strokes, because beginners don't know
   wet blending, dabbing, press and lift, flicking, dry brushing, ...), each with one or two sentences on how to do it
   with that brush, for this picture.
 
+Give every step a `summary`: one sentence, under about 90 characters, saying what the step paints. It's the
+caption when the lesson is shown as a walkthrough (a blog embed), where the full text sits behind a toggle.
+
 Write `<lesson>/text.json`:
 
 ```json
-{"steps": [{"stage_id": "sky-gradient", "what_to_do": ["..."], "mixes": ["Sunset orange"], "watch_out": ["..."],
+{"steps": [{"stage_id": "sky-gradient", "summary": "Blend the sunset sky from blue at the top to orange.",
+            "what_to_do": ["..."], "mixes": ["Sunset orange"], "watch_out": ["..."],
             "paint_notes": [], "made_with": "render", "reason": "why this tool",
             "brushes": [{"brush": "1 inch flat", "use": "covering and blending the sky"}],
             "strokes": [{"name": "X stroke", "how": "Criss-cross the flat in overlapping X shapes so the paint blends with no streaks."}]}]}
@@ -353,7 +357,8 @@ leave out still show, without a verdict. Every technique in `techniques/` you di
 ### 9. Publish the lesson as an artifact and report
 (If whoever started you said they'll publish the artifact themselves, run `publish` and skip the Artifact tool.)
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
-`lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`.
+`lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`, plus `embed/` (lesson.json and WebP images) for showing the lesson as a
+step-by-step walkthrough on another page, like a blog post.
 
 Then publish `lesson-artifact.html` as a Claude artifact with the Artifact tool, when it's available:
 - Copy it into the session's scratchpad (or working directory) first, named `<photo stem>-lesson.html`, since the
