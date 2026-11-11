@@ -82,7 +82,7 @@ and one step jumped from flat purple rows to thousands of stalks. A beginner can
 - **More parts** at different distances than `detail_budget.max_parts`?
 
 If any answer is yes, make a beginner version before anything else, and make the rest of the lesson from it:
-`render --step beginner --inputs <photo> --quality medium --out <lesson>/00_beginner.png --prompt "<beginner_version.prompt> <your list> <framing>"`.
+`render --step beginner --inputs <photo> --quality medium --out <lesson>/00_beginner.png --why-not-filter "<why no filter can drop and merge these>" --prompt "<beginner_version.prompt> <your list> <framing>"`.
 Your list names exactly what to drop ("remove the village"), merge ("the clouds become three big soft masses"),
 and turn into a repeated mark ("the lavender becomes rows of loose purple dabs, darker at the base, no single
 stalks"). Keep the composition, the subject, the light, and the mood. Read the result: everything the owner
@@ -91,7 +91,8 @@ better one. From here on, "the photo" means `00_beginner.png` (the reference, th
 source). If every answer is no, skip this and say so.
 
 Record the answers and the list in `notes.json` as `beginner_version` (step 8), and put `00_beginner.png` in
-`notes.filters` with `"label": "Beginner version"` and `"verdict": "kept"`, so the page shows it.
+`notes.filters` with `"label": "Beginner version"`, `"tool": "render"`, and `"verdict": "kept"`: it's a render, but
+listing it there puts it in the page's contact sheet.
 
 ### 1. Simplified reference (`00_reference.png`)
 The reference is what the painting is made from: fewer shapes, clear values, colors a beginner can mix
@@ -147,7 +148,9 @@ plus three):
 
 Measure, don't guess. Before writing any `looks_like`, run `grid --cells 10` on the finish and read where things
 are from it: "the sun's center is 44% across and 40% down", not "right of center" (balloon, 2026-11-11: that guess
-was wrong and cost a paid redo). Describe only what the finish shows. If later layers hide most of something
+was wrong and cost a paid redo). Give edges as numbers too: when a step leaves white canvas, say "a straight lower edge at 62% down" (balloon
+rerun, 2026-11-11: three redos were renders stopping the sky short). Spell out a subject's exact pattern (stripe
+colors in order, left to right) so a subject painted late matches the finish. Describe only what the finish shows. If later layers hide most of something
 (branches inside a crown), say how much shows, so the render doesn't invent the rest.
 
 Step `colors` and every diagram `paint` must be names from the plan's `paints`. A tube name like "Burnt sienna"
@@ -209,6 +212,9 @@ is no third review. A step whose redo was refused by the caps stays as it is. Sa
  "review_issues": [{"step_id": "moon", "problem": "...", "fix": "...", "round": 2,
                     "action": "redone | redone neighbor <id> | left"}]}
 ```
+
+A mismatch you spot yourself after the last review round (when writing text or diagrams) goes in `review.json`
+too, as `"left"` with `"round": 2`, and the step's words should tell the painter what to do about it.
 
 Use `"left"` for anything not redone (a cap refused it, or you judged it not worth a redo). The lesson page shows
 every `"left"` problem on its step as a heads-up for the painter.
@@ -276,7 +282,8 @@ horizon"). Say why for each of these in `no_diagram`, so the page shows every st
 
 Put the `construct` spec on that step in `text.json`. The lesson page draws it as a strip of small, free SVG panels
 under the step. Each panel adds the next pieces with a dashed outline and arrows for the brush's direction.
-Coordinates are a 100 x 100 box, y down:
+Coordinates are a 100 x 100 box, y down. For a wide, short area (a field, a horizon), draw it at its real
+proportions inside the box (a 100 x 40 band), not stretched to fill it:
 
 ```json
 "construct": {"title": "Build the big pumpkin from simple pieces", "paint": "Pumpkin orange",

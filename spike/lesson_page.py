@@ -182,10 +182,10 @@ def dims(path: Path) -> str:
 
 
 def title_for(lesson: dict, folder: Path | None = None) -> str:
-    """Named after the photo. A cropped photo is named after its lesson folder (<photo stem>_skill_<time>) instead,
-    and words about where the photo came from (screenshot, screen) are dropped."""
+    """Named after the original photo, which the lesson folder carries (<photo stem>_skill_<time>), since the photo
+    the lesson uses may be a crop or a beginner version. Words like screenshot are dropped."""
     stem = Path(lesson["photo"]).stem
-    if stem.startswith("photo") and folder is not None:
+    if folder is not None and "_skill_" in folder.name:  # cropped or beginner-version photos have working names
         stem = folder.name.split("_skill_")[0]
     words = [w for w in stem.replace("-", " ").replace("_", " ").split() if w.lower() not in ("screenshot", "screen", "cropped")]
     return f"{' '.join(words).title() or 'Painting'} Lesson"
