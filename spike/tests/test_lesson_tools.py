@@ -164,6 +164,24 @@ class LessonToolTests(unittest.TestCase):
         self.assertTrue(0 < len(data["tubes"]) <= len(parts))  # only the tubes the recipes use
         self.assertEqual(data["palette_name"], "The owner's paints")
 
+    def test_split_texture_inserts_passes_and_renumbers(self):
+        import numpy as np
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        rng = np.random.default_rng(3)
+        flat = np.full((60, 40, 3), (90, 70, 170), np.uint8)
+        dabs = np.clip(flat + rng.integers(-60, 60, flat.shape), 0, 255).astype(np.uint8)  # heavy texture
+        Image.fromarray(flat).save(self.lesson / "02_hill.png")
+        Image.fromarray(dabs).save(self.lesson / "99_finish.png")
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertTrue(any(j["step"] == "finish" for j in r["texture_jumps"]))
+        code, r = self.run_tool("split-texture", "--lesson", str(self.lesson), "--step", "hill", "--ids", "hill-dark",
+                                "--names", "Dab the dark marks")
+        self.assertEqual(code, 0)
+        self.assertEqual(r["inserted"], ["02_hill-dark.png"])
+        self.assertTrue((self.lesson / "03_hill.png").exists())
+        ids = [s["id"] for s in json.loads((self.lesson / "plan.json").read_text())["steps"]]
+        self.assertEqual(ids, ["sky", "hill-dark", "hill", "tree"])
+
     def test_values_table_shows_depth(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [
