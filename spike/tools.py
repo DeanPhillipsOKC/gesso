@@ -18,6 +18,7 @@ import contextlib
 import hashlib
 import json
 import os
+import re
 import shutil
 import sys
 import threading
@@ -462,6 +463,11 @@ def publish(a: argparse.Namespace) -> dict:
             # steps whose instructions run past the word budget in the skill (about 100 words)
             "long_steps": [{"id": st["id"], "words": n} for st in stages
                            if (n := sum(len(x.split()) for x in st["steps"])) > STEP_WORDS],
+            # paints an instruction or values table names that aren't in the step's colors, so their recipe never shows
+            "paints_not_listed": [{"id": st["id"], "paint": n} for st in stages for n in paints
+                                  if n not in {c["name"] for c in st["colors"]}
+                                  and (re.search(rf"{re.escape(n)}", " ".join(st["steps"]), re.I)
+                                       or any(v.get("paint") == n for v in st.get("values", [])))],
             # single instructions past the skill's budget (about 35 words): usually two moves to split
             "long_instructions": [{"id": st["id"], "n": k + 1, "words": len(x.split())} for st in stages
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],

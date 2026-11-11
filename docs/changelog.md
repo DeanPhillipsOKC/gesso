@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.18.0 (2026-11-11)
+- Values tables add to the instructions, never replace them, and are for depth on one thing. Color sequences like a
+  sunset sky are named in the instruction, in order. The table now sits right under the instructions.
+- `publish` lists paints an instruction or table names that aren't in the step's colors (`paints_not_listed`).
+- Dense texture is split into passes over the whole area, never cut along a line. The step review flags
+  `split_edge` and `shape_change` (a path or row changing shape), and the skill fixes both instead of leaving them.
+
 ## POC 0.17.1 (2026-11-11)
 - The backward pass shifts the broad tone of matching areas inside later boxes to the finish's, keeping the
   brushwork, so box edges don't show as straight tone steps (sailboat run: a lighter rectangle in the water).

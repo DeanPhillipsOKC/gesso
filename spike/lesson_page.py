@@ -325,7 +325,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
   <div class="text">
     <div><p class="num">STEP {i + 1} OF {len(stages)}</p><h3>{e(s['name'])}</h3></div>
     <ol class="do">{items(s['steps'])}</ol>
-    {mixes}{values}{notes}
+    {values}{mixes}{notes}
     <div class="tools">
       <p class="label">Brushes</p><div class="chips">{chips}</div>
       {f'<p class="label">Strokes</p>{strokes}' if strokes else ''}

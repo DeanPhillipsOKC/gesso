@@ -30,13 +30,19 @@ specks as render noise.
    - `wrong_result`: an instruction whose stroke wouldn't give what the picture shows, judged by
      `stroke_results`. Example: X strokes alone for a glassy, even gradient.
    - `vague`: an instruction a beginner couldn't act on, like "add some highlights" with no where, what color,
-     or which brush.
+     or which brush. An instruction that only points at a `values` table ("blend as in the table") is vague: the
+     table adds to the words, it doesn't replace them. A sky or gradient whose colors aren't named in order in the
+     instruction is vague too.
+   - `split_edge`: a texture that stops along a straight line (dabbed above, flat below) because a step was cut
+     by area. That's never how it's painted; the fix is passes over the whole area.
    - `flat`: the text gives one color or one kind of mark for an area where the picture shows several values or
      a texture (a tree crown with a sunlit side and a shadow side, a rock with highlights, water with ripples, a
      meadow that reads as bumps and tufts). A beginner following it gets a flat, uniform patch. Fix it by
      saying how to build it: which mixes, dark first then lighter, and which mark.
    - `layering`: the step paints over color laid down earlier (stripes, highlights, details on a base) without
      saying to let the layer under it dry first. Wet paint underneath blends into a muddy mix and lines feather.
+   - `shape_change`: a line laid in earlier (a path, a row, a horizon) has a different shape or position now. The
+     picture's fault: the painter can't repaint a path's curve halfway through.
    - `drift`: an area finished in an earlier step changes here with no instruction (a house repainted, a lake
      re-textured, a sky recolored). That's the picture's fault, not the text's: the step image should be fixed
      so earlier areas stay put. Report it so it isn't mistaken for something the painter should do.
