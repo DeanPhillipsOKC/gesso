@@ -240,7 +240,11 @@ Don't grade your own images. Start a subagent (Agent tool, general-purpose) with
   painted earlier is missing, moved, or a clearly different shape or size (lines laid in early keep their shape
   to the end: paths, rows, a horizon; balloon run, 2026-11-11: straight paths turned curved two steps later); the image doesn't match `looks_like`
   (white canvas showing where it should be covered, or covered where it should be white). Ignore small differences
-  in brushwork, texture, and exact color. Never flag the last step. Also check the technique's painting order,
+  in brushwork, texture, and exact color. Never flag the last step for being the finish, but do flag the step
+  before it when the two disagree on the main subject. The main subject (an animal, a person, a boat, a balloon)
+  keeps the same outline, size, position, posture, and markings from the step that paints it to the finish;
+  any change is a shape problem, not small drift (chickadee, 2026-11-11: the finish drew the bird smaller and
+  more upright, and the head step's cap differed from the feather step's). Also check the technique's painting order,
   and flag a step that jumps from flat to dense texture a beginner couldn't paint in a few minutes (a step adding
   thousands of lavender stalks at once): the fix is a plan change, splitting it into passes, not a redo.
   A split is by passes over the whole textured area (dark marks everywhere, then lighter marks, then tips), never
@@ -420,6 +424,15 @@ the same mind that planned the pictures and misses what it takes for granted.
 3. Route each problem by its `kind`. Don't go by the verdict alone:
    - `flat`, `missing`, `vague`, `wrong_result`, `layering`: fix the step's text in `text.json` from the
      reviewer's `fix`. Check each fix against the sheet first; skip one whose evidence doesn't hold up, and say why.
+   - `shape_change` on the main subject (its outline, size, posture, or markings change between steps): fix it
+     now, free first:
+     - the finish disagrees with the steps before it: `finish-from-step --add "<only what the last step adds>"`
+       rebuilds the finish from the last step (a render that adds details only; the old finish is kept);
+     - an earlier step disagrees with a later one that's right: `carry-forward --from <later> --to <earlier>
+       --box ...` copies the later step's subject (a head, a cap) onto the earlier step;
+     - rendering the earlier step again rarely works: the image model won't copy a shape that precisely.
+     Then `mix` (swatches come from the finish), `lock-steps`, `publish`, `step-pairs`, and look at the subject
+     across all its steps side by side.
    - `split_edge` (a texture stopping along a straight line) or `shape_change` (a path, row, or horizon changing
      shape): the pictures are wrong, and a painter can't follow them. Fix them now, within the caps. For a split
      edge, re-plan that texture as passes over the whole area and render those steps. For a shape change, redo

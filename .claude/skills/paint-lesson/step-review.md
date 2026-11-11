@@ -41,7 +41,9 @@ specks as render noise.
      saying how to build it: which mixes, dark first then lighter, and which mark.
    - `layering`: the step paints over color laid down earlier (stripes, highlights, details on a base) without
      saying to let the layer under it dry first. Wet paint underneath blends into a muddy mix and lines feather.
-   - `shape_change`: a line laid in earlier (a path, a row, a horizon) has a different shape or position now. The
+   - `shape_change`: a line laid in earlier (a path, a row, a horizon) has a different shape or position now, or
+     the main subject (an animal, a person, a boat) changes outline, size, posture, or markings after the step
+     that painted them. Never file a subject's change as `drift`: drift is for small background slips. The
      picture's fault: the painter can't repaint a path's curve halfway through.
    - `drift`: an area finished in an earlier step changes here with no instruction (a house repainted, a lake
      re-textured, a sky recolored). That's the picture's fault, not the text's: the step image should be fixed
