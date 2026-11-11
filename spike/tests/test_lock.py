@@ -76,6 +76,21 @@ class LockTests(unittest.TestCase):
         self.assertTrue((out == render).all())
         self.assertEqual(share, 0.0)
 
+    def test_backward_pass_settles_what_no_later_step_paints(self):
+        with tempfile.TemporaryDirectory() as d:
+            lesson = Path(d)
+            finish = blank((30, 90, 200))
+            finish[60:80, 100:120] = (255, 255, 255)  # the last step adds a star, bottom right
+            Image.fromarray(finish).save(lesson / "99_finish.png")
+            step = blank((30, 90, 200))
+            step[0:20, 0:30] = (60, 60, 60)  # a drifted patch the final step doesn't paint
+            Image.fromarray(step).save(lesson / "01_sky.png")
+            lock.lock(lesson, [lesson / "01_sky.png"], lesson / "99_finish.png", None, [[[0, 0, 1, 1]]],
+                      final_regions=[[0.8, 0.7, 1, 1]])
+            out = np.asarray(Image.open(lesson / "01_sky.png"))
+            self.assertTrue(np.abs(out[5, 5].astype(int) - finish[5, 5]).max() < 5)  # settled to the finish
+            self.assertTrue(np.abs(out[75, 115].astype(int) - finish[75, 115]).max() > 50)  # the star is still to come
+
     def test_lock_keeps_raw_renders_and_can_rerun(self):
         with tempfile.TemporaryDirectory() as d:
             lesson = Path(d)

@@ -119,7 +119,8 @@ def lock_one(prev: np.ndarray, render: np.ndarray, finish: np.ndarray, region: n
 def lock(lesson: Path, steps: list[Path], finish: Path, canvas: Path | None = None,
          regions: list[list[list[float]] | None] | None = None,
          protects: list[list[list[float]] | None] | None = None,
-         colors: list[list[tuple[int, int, int]]] | None = None) -> dict:
+         colors: list[list[tuple[int, int, int]]] | None = None,
+         final_regions: list[list[float]] | None = None) -> dict:
     """Lock every step picture before the finish, in order. `steps` excludes the finish itself; `regions[i]` is
     step i's boxes, or None to use the finished-area rule alone."""
     fin = np.asarray(Image.open(finish).convert("RGB"))
@@ -142,4 +143,26 @@ def lock(lesson: Path, steps: list[Path], finish: Path, canvas: Path | None = No
         Image.fromarray(locked).save(path)
         report[path.stem] = round(share, 3)
         prev = locked
+    if final_regions is not None and regions and all(regions):
+        report["backward"] = backward(steps, fin, regions, final_regions)
     return report
+
+
+def backward(steps: list[Path], fin: np.ndarray, regions: list, final_regions: list[list[float]]) -> dict:
+    """Going back from the finish: wherever no later step paints, a step must already look like the finished
+    painting, because nothing will change it again. Copy the finish in there, with a soft edge. Run after the
+    forward lock, so the two agree: the jump to each next step shows only what that step paints (#30, pumpkin test:
+    the last step changed a quarter of the canvas for what should be stars and a few gold touches).
+
+    Needs regions on every step, the last one included; a missing box would make an earlier step jump ahead."""
+    h, w = fin.shape[:2]
+    later = region_mask((h, w), final_regions).astype(bool)  # what the last step paints
+    out = {}
+    for i in range(len(steps) - 1, -1, -1):
+        img = np.asarray(Image.open(steps[i]).convert("RGB").resize((w, h))).astype(np.float32)
+        settled = cv2.GaussianBlur((~later).astype(np.float32), (0, 0), 4)[..., None]
+        merged = img * (1 - settled) + fin.astype(np.float32) * settled
+        Image.fromarray(np.clip(merged, 0, 255).astype(np.uint8)).save(steps[i])
+        out[steps[i].stem] = round(float((~later).mean()), 3)
+        later |= region_mask((h, w), regions[i]).astype(bool)  # step i paints these, so steps before it may differ
+    return out

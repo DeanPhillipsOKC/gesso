@@ -6,6 +6,10 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.17.0 (2026-11-11)
+- `lock-steps` runs a backward pass from the finish when every step has regions: wherever no later step paints,
+  a step already shows the finished painting, so the last step only shows what it adds (#30).
+
 ## POC 0.16.0 (2026-11-11)
 - `protect` boxes: inside a step's regions, things already painted that must stay put. There only the step's own
   paints may change anything (matched mostly by hue, so shaded strokes count), with a crisp edge (#30).
