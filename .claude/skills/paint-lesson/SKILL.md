@@ -391,6 +391,19 @@ Construction diagrams (`construct`) are added in step 7.
 `render+filter:<name>`, or `render`, for the image the lesson ends up with. When a redo replaced a filter or
 seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
 
+### 6a. No texture arrives all at once (`texture_jumps`)
+A beginner can't go from flat paint to a finished texture in one step, and twice the lavender did exactly that:
+flat rows, then a whole field of dabs (owner, 2026-11-11: "they're straight lines, then they're textured").
+`publish` and `step-pairs` measure it: `texture_jumps` lists any step that turns more than 10% of the canvas
+from flat to textured. Every one gets fixed before the text is final, free:
+
+`split-texture --lesson <lesson> --step <id> --ids <new ids...> --names "<names>"...` makes in-between pictures
+from the step before and the step itself. Its new paint arrives darkest first: dark marks on the flat base, then
+the mid marks, then the rest, the way a teacher layers it. It inserts them as steps before it and renumbers the
+step images. Use two in-betweens for a dense texture (lavender, grass, foliage). Then write their text (dark
+marks first, then mid), run `lock-steps`, `publish`, and check `texture_jumps` is empty. Never leave a jump as
+a heads-up.
+
 ### 6b. Step review: would the text get a beginner there? (#24)
 A fresh reviewer checks your text against measured before and after pictures, because the text is written by
 the same mind that planned the pictures and misses what it takes for granted.
@@ -410,7 +423,8 @@ the same mind that planned the pictures and misses what it takes for granted.
      the later step with `render-step --fix` so it keeps the earlier shape, then lock again. Never leave either.
    - `drift` (an area finished earlier changes in a later picture): leave the text alone. The picture is wrong.
      Record it; picture drift is fixed in the pipeline, not here.
-   - `too_much`: if the reviewer proposes a split, record it with its proposal. Don't add a step this late.
+   - `too_much`: if it's a texture arriving all at once (flat rows, then a full field of dabs), fix it now with
+     `split-texture` (below). Otherwise record the reviewer's proposed split.
    - `unpaintable`: record it as `left` and flag it on the step, like a review issue.
    - A `diagram` proposal goes to step 7 as a candidate. You still decide there, and say why.
 4. One review round only: no second reviewer. Save what happened in the lesson's own `review.json` (not the reviewer's) under `text_issues`:

@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.20.0 (2026-11-11)
+- No texture arrives all at once: `publish` and `step-pairs` measure `texture_jumps` (a step turning over 10% of
+  the canvas from flat to textured), and the skill fixes each one with `split-texture`, which inserts free
+  in-between passes (the step's marks arriving darkest first) and renumbers the step images.
+
 ## POC 0.19.0 (2026-11-11)
 - `--palette <name>`: lessons mix from the painter's own tubes (`palettes/owner.yaml`, 30 tubes) instead of the
   technique's five, and "What you need" lists only the tubes the recipes use. Big palettes are searched with a
