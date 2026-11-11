@@ -24,7 +24,9 @@ def _git(*args: str) -> str:
 
 def stamp(today: dt.date | None = None) -> dict:
     commit = _git("rev-parse", "--short", "HEAD") or "unknown"
-    dirty = bool(_git("status", "--porcelain", "--untracked-files=no"))
+    # only code that shapes a lesson counts; site/ and docs/ edits don't make a lesson's stamp dirty
+    dirty = bool(_git("status", "--porcelain", "--untracked-files=no", "--", "spike", "techniques", "palettes",
+                      ".claude"))
     return {"version": version(), "commit": commit, "dirty": dirty,
             "published": (today or dt.date.today()).isoformat()}
 
@@ -32,3 +34,21 @@ def stamp(today: dt.date | None = None) -> dict:
 def line(s: dict) -> str:
     """'Gesso POC 0.9.0 (a8f52bf) on 2026-11-11', with '+dirty' when made from uncommitted code."""
     return f"Gesso {s['version']} ({s['commit']}{'+dirty' if s.get('dirty') else ''}) on {s['published']}"
+
+
+def with_made(current: dict, previous: dict | None) -> dict:
+    """The stamp for this publish, carrying the version the lesson was first made with. Republishing a lesson with
+    newer code (a relock, a site export) must not relabel what made it (site tiles, 2026-11-11: three lessons made
+    with 0.17, 0.20, and 0.21 all said 0.21 after a republish)."""
+    made = (previous or {}).get("made") or (
+        {k: previous[k] for k in ("version", "commit", "published") if k in previous} if previous else None)
+    return {**current, "made": made or {k: current[k] for k in ("version", "commit", "published")}}
+
+
+def made_line(s: dict) -> str:
+    """'Gesso POC 0.20.0 (7486118) on 2026-11-11', plus 'republished with POC 0.23.0' when that differs."""
+    made = s.get("made") or s
+    text = f"Gesso {made['version']} ({made['commit']}) on {made['published']}"
+    if made.get("version") != s.get("version"):
+        text += f", republished with {s['version']}"
+    return text

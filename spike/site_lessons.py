@@ -41,8 +41,9 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
         "steps": len(data["stages"]),
         "canvas": f'{canvas["w_in"]:g} x {canvas["h_in"]:g} in' if canvas else "",
         "tubes": len(data.get("tubes") or []),
-        "version": (data.get("gesso") or {}).get("version", ""),
-        "published": (data.get("gesso") or {}).get("published", ""),
+        # the version that made it, not the one that last republished it
+        "version": ((data.get("gesso") or {}).get("made") or data.get("gesso") or {}).get("version", ""),
+        "published": ((data.get("gesso") or {}).get("made") or data.get("gesso") or {}).get("published", ""),
         "source": lesson.name,
     }
     manifest = site / "lessons.json"
@@ -69,6 +70,7 @@ a.card:hover,a.card:focus-visible{border-color:var(--accent);outline:none}
 a.card img{width:100%;height:auto;border-radius:8px;display:block}
 a.card b{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
 .facts{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-size:.85rem;color:var(--muted)}
+.ver{flex-basis:100%;font:.75rem/1.3 ui-monospace,Consolas,monospace}
 footer{font:.75rem/1.4 ui-monospace,Consolas,monospace;color:var(--muted)}
 """
 
@@ -79,6 +81,7 @@ def build_index(site: Path, lessons: list[dict]) -> Path:
         f'<b>{e(x["title"])}</b><span class="facts"><span>{x["steps"]} steps</span>'
         + (f'<span>{e(x["canvas"])} canvas</span>' if x["canvas"] else "")
         + (f'<span>{x["tubes"]} tubes</span>' if x["tubes"] else "")
+        + (f'<span class="ver">Made with Gesso {e(x["version"])}</span>' if x.get("version") else "")
         + "</span></a>"
         for x in sorted(lessons, key=lambda x: x.get("published", ""), reverse=True))
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">

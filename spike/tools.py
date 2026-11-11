@@ -480,9 +480,11 @@ def publish(a: argparse.Namespace) -> dict:
     ]
     from version import stamp
     old = lesson / "lesson.json"
-    previous = (json.loads(old.read_text(encoding="utf-8")).get("gesso") or {}).get("version", "before stamps") if old.exists() else None
+    from version import with_made
+    old_stamp = (json.loads(old.read_text(encoding="utf-8")).get("gesso") or {}) if old.exists() else None
+    previous = old_stamp.get("version", "before stamps") if old_stamp is not None else None
     lesson_data = {
-        "gesso": stamp(),
+        "gesso": with_made(stamp(), old_stamp or None),
         "canvas": (json.loads((lesson / "canvas.json").read_text(encoding="utf-8")) if (lesson / "canvas.json").exists() else {}).get("canvas"),
         "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
