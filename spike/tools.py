@@ -32,6 +32,7 @@ CACHE_DIR = ROOT / "output" / ".render-cache"
 DEFAULT_MAX_COST = 1.00  # dollars of renders per lesson
 DEFAULT_MAX_REDOS = 2  # renders per step after the first
 STEP_WORDS = 110  # a step's instructions past this many words get listed in publish's long_steps
+INSTRUCTION_WORDS = 40  # one instruction past this many words gets listed in publish's long_instructions
 QUALITIES = ["low", "medium", "high", "xhigh", "max"]
 # Worst cost per render seen in the spike's 290 renders (2026-10-19), used before a lesson has its own.
 ESTIMATE_USD = {"low": 0.07, "medium": 0.05, "high": 0.08, "xhigh": 0.15, "max": 0.20}
@@ -417,7 +418,7 @@ def publish(a: argparse.Namespace) -> dict:
             "colors": [paints[c] for c in s.colors if c in paints],
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
             "brushes": s.brushes, "dry_time": technique["dry_time"],
-            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""), "summary": txt(s, "summary", ""),
+            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""), "summary": txt(s, "summary", ""), "values": txt(s, "values", []),
             "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
         }
         for i, s in enumerate(plan.steps)
@@ -459,6 +460,9 @@ def publish(a: argparse.Namespace) -> dict:
             # steps whose instructions run past the word budget in the skill (about 100 words)
             "long_steps": [{"id": st["id"], "words": n} for st in stages
                            if (n := sum(len(x.split()) for x in st["steps"])) > STEP_WORDS],
+            # single instructions past the skill's budget (about 35 words): usually two moves to split
+            "long_instructions": [{"id": st["id"], "n": k + 1, "words": len(x.split())} for st in stages
+                                  for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
 

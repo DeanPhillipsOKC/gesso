@@ -48,10 +48,13 @@ specks as render noise.
    evidence is dropped.
 4. Where a mark repeats across a big area (dabs in a row, ribs on a pumpkin, blades of grass), a beginner
    needs to see one small patch built up stroke by stroke. Propose a `diagram` for it if the step has none.
-5. Give a `fix` for each problem: the instruction to add or rewrite, in the lesson's plain beginner voice. For
+5. Prefer showing to telling in every fix. When the fix would take more than a sentence of description (a
+   shape, a stroke path, which value goes where), propose a `diagram` or a `values` table
+   (`[{"value": "dark", "paint": "...", "where": "..."}]`) and keep the instruction short.
+6. Give a `fix` for each problem: the instruction to add or rewrite, in the lesson's plain beginner voice. For
    `too_much`, propose a `split`: the new in-between step's name and `looks_like`, and which instructions move
    into it. For a move that's hard to picture, propose a `diagram` instead: what the stroke panels would show.
-6. Give the step one `verdict`:
+7. Give the step one `verdict`:
    - `ok`: following the text gets a beginner about there; small gaps are fine.
    - `not_enough`: a beginner would end up visibly short or different.
    - `too_much`: it should be split.

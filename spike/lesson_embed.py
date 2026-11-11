@@ -59,7 +59,7 @@ def export(lesson: dict, technique: dict, folder: Path) -> dict:
             "paints": [{"name": c["name"], "hex": c["hex"], "recipe": c.get("recipe", ""),
                         "first_step": first.get(c["name"], n)} for c in s.get("colors", [])],
             "brushes": [{"brush": b["brush"], "kind": kind(b["brush"]), "use": b.get("use", "")} for b in blist],
-            "do": s.get("steps", []), "watch_out": s.get("watch_out", []),
+            "do": s.get("steps", []), "watch_out": s.get("watch_out", []), "values": s.get("values", []),
         })
     extra = {}
     if lesson.get("photo_file") and (folder / lesson["photo_file"]).exists():

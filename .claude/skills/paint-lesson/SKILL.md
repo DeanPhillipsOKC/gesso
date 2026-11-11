@@ -245,10 +245,34 @@ words a step). To fit everything the technique asks for:
   "nearly dry", "thinned like ink").
 - The once-per-lesson notes (colors dry darker, the ugly stage, a test stroke) go in `paint_notes` or `watch_out`,
   not in the instructions.
-`publish` lists any step over the budget in `long_steps`: trim those before you publish the artifact.
+The budget is a signal, not a cap: never make an instruction unclear to fit it. When `publish` lists a step in
+`long_steps` or an instruction in `long_instructions`, ask why it's long:
+- It repeats the page, or explains a stroke or a drying time: that's wordiness. Cut the repeat.
+- It describes something that could be shown (a shape, a stroke path, the order of values): show it with a
+  diagram or a `values` table and cut the description.
+- It's one instruction doing two moves: split it into two instructions. The words stay; each one gets shorter.
+- The step itself has a lot to do (several kinds of marks, several areas): that's a complicated step, not wordy
+  text. Split the step in the plan if its pictures allow it, move how-to detail into `strokes` or a construction
+  diagram, or leave it long and say why in `notes.json` under `long_steps_kept`. A clear long step beats a short
+  vague one.
+The step review (6b) runs after this and flags any instruction that got vague, so trimming can't quietly drop
+what the painter needs.
 
 The first step's first instruction states where the light comes from ("The light comes from the sun, low and a
 little left of center"), and every highlight after it stays on that side.
+
+**Show, don't tell (owner, 2026-11-11).** When something takes more than a sentence to explain in words (a shape,
+a stroke's path, where things go, the order of values), show it instead and keep the words to a pointer ("build
+the hull as in the diagram"):
+- a construction or stroke diagram (`construct`, step 7) for shapes, stroke paths and direction, and order of moves;
+- a `values` table for depth: one row per value, dark first, each naming its paint and where it goes;
+- the step picture itself for placement: "where the picture shows the gold glow", plus a grid percentage.
+A beginner follows a picture faster than a paragraph. Prose is for what can't be drawn: timing, paint load, and
+what to watch for.
+
+`values` (optional, per step, in `text.json`): `[{"value": "dark", "paint": "Cloud shadow", "where": "tops and
+far sides, away from the sun"}, {"value": "mid", ...}, {"value": "light", ...}]`. The page shows it as a small
+table with swatches. Use it whenever a step builds depth from more than one value.
 
 Every step's page lists its paints with their recipes,
 because beginners mix as they go (acrylics dry on the palette), so a step's `colors` must hold every paint it uses.
@@ -283,7 +307,9 @@ seeded image, `made_with` says `render` and `reason` says what was tried first a
 A fresh reviewer checks your text against measured before and after pictures, because the text is written by
 the same mind that planned the pictures and misses what it takes for granted.
 
-1. Run `publish --lesson <lesson>` (a draft, so `lesson.json` exists), then `step-pairs --lesson <lesson>`.
+1. Run `publish --lesson <lesson>` (a draft, so `lesson.json` exists). Deal with its `long_steps` and
+   `long_instructions` first, as section 6 says, and publish again, so the reviewer reads the text you'll ship.
+   Then run `step-pairs --lesson <lesson>`.
 2. Start a subagent (Agent tool, general-purpose) with only this: follow
    `.claude/skills/paint-lesson/step-review.md` for the lesson folder, use only `trials/review/packet.json` and
    its sheets, and write `trials/review/review.json`. Don't pass it your reasoning or the plan.
@@ -312,6 +338,8 @@ this check exists so that doesn't happen again.
   the body, a face's features, windows in perspective, branches forking off a trunk.
 - You'd need to sketch it on scrap paper first to get it right.
 - Where things start or join isn't clear from the picture: which trunk a branch grows from, where a trunk forks.
+- An instruction needs more than a sentence to describe a shape, a stroke's path, or an order of moves. Draw it
+  instead (show, don't tell), and shorten the instruction to point at the diagram.
 
 **Also check the words against the picture.** While you look at each step, fix any instruction that says
 something the picture doesn't show (the beginner checks on 2026-11-11 found a trunk said to pass "left of the
