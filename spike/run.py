@@ -109,6 +109,7 @@ class PlannedStep(BaseModel):
     brushes: str
     how: list[str]
     watch_out: list[str]
+    regions: list[list[float]] | None = None  # where this step paints: boxes [x0, y0, x1, y1], 0-1 (lock-steps, #30)
 
 
 class LessonPlan(BaseModel):
