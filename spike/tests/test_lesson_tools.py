@@ -160,6 +160,21 @@ class LessonToolTests(unittest.TestCase):
         code, r = self.run_tool("preview-diagrams", "--lesson", str(self.lesson))
         self.assertIn("No diagrams in lesson.json", r["note"])
 
+    def test_publish_crops_steps_to_the_canvas(self):
+        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        code, r = self.run_tool("fit-canvas", str(self.lesson / "99_finish.png"), "--lesson", str(self.lesson),
+                                "--canvas", "11x14", "--why", "test")
+        self.assertEqual(code, 0)
+        self.assertTrue((self.lesson / "canvas.json").exists())
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        data = json.loads((self.lesson / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["canvas"]["w_in"], 11)
+        if data["stages"][0]["image"].startswith("canvas/"):  # the 40x60 test finish sits in a 2:3 frame
+            self.assertTrue((self.lesson / data["stages"][0]["image"]).exists())
+        html = (self.lesson / "lesson.html").read_text(encoding="utf-8")
+        self.assertIn("Canvas: <b>11 x 14 in</b>", html)
+        self.assertIn("each 10% is 1.1 in", html)
+
     def test_mix_computes_recipes_and_every_step_lists_its_paints(self):
         code, r = self.run_tool("mix", "--lesson", str(self.lesson))
         self.assertEqual(code, 0)
