@@ -6,6 +6,14 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.14.0 (2026-11-11)
+- `--canvas WxH` (inches): the picture is fitted to the painter's canvas before planning, cheapest first: no
+  change, a free crop that keeps the subject, or one render that extends the scene. A rectangular canvas hangs
+  either way, so it follows the picture unless `--orientation` says otherwise.
+- Renders stay in the image model's nearest frame; every step picture the painter sees is cropped to the canvas.
+- Canvas size scales the lesson: the detail budget (fewer parts on a 10x10, more on a 24x30) and brush sizes.
+- The page shows the canvas size and how many inches each 10% is, so grid positions can be marked with a ruler.
+
 ## POC 0.13.0 (2026-11-11)
 - Show, don't tell: when something takes more than a sentence to explain (a shape, a stroke path, which value
   goes where), the lesson shows it with a diagram, a `values` table, or the step picture, and the words point at it.

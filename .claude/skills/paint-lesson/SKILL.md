@@ -10,7 +10,9 @@ call `spike/tools.py` for images. Filters are free; renders cost money, so they 
 (`docs/decisions.md`, 2026-11-10). Read `docs/decisions.md` and the technique file before starting.
 
 Arguments: `<photo>` (required, e.g. `photos/sleeping-cat.jpg`), technique (optional), quality for steps (default
-`low`). If the owner names a technique, use it. Otherwise read every file in `techniques/` and choose the one that
+`low`), and `--canvas WxH` (optional, inches, e.g. `--canvas 11x14`; the owner paints mostly on 11x14, some 24x30
+and 10x10) with `--orientation portrait|landscape` (optional; a rectangular canvas hangs either way, so by
+default it follows the picture). If the owner names a technique, use it. Otherwise read every file in `techniques/` and choose the one that
 fits this photo and the level (decisions: Claude chooses techniques per photo from the hand-checked library), and
 record why, with every technique you passed on, in `notes.json`.
 
@@ -74,6 +76,41 @@ only when what you'd cut away is clearly not part of the scene. Don't recompose 
 
 Record it in `notes.json` as `photo_prep` (step 8), so the page says what was done before the lesson started. If
 the image is already just the picture, skip the crop and say so in `photo_prep` in a few words.
+
+### 0b2. Fit the picture to the canvas (only with `--canvas`)
+The painter has a real canvas, and the lesson should match its shape, so nobody has to imagine how a wide picture
+fits a square canvas (owner, 2026-11-11). Do this after 0b and before anything else looks at the picture.
+
+1. Read the photo and decide the subject's box and the focal point (0-1 from the top left). The subject is what
+   the picture is about (the balloon, the boat and its reflection), not the whole scene.
+2. `fit-canvas <photo> --lesson <lesson> --canvas <WxH> [--orientation ...] --focus X Y --keep X0 Y0 X1 Y1 --why
+   "<subject and what must stay>"`. It picks the cheapest fit:
+   - `none`: the picture already has the canvas's shape;
+   - `crop` (free): plain edges are cut and the subject stays whole, losing at most about a third;
+   - `extend`: the subject wouldn't survive a crop, so the whole picture sits on the canvas with gray edges.
+   It also places the canvas in the image model's nearest frame (square, 3:2, or 2:3). When the canvas has a
+   different shape, the frame has gray bands outside it.
+3. If `needs_render` is true, run the render command in its `advice` once. It fills every gray area by continuing
+   the scene. Read the result: nothing already painted changed, the edges continue the scene, and nothing new
+   appeared. Redo once at most.
+4. From here on, "the photo" is `00_canvas_fit.png` (or `00_canvas_frame.png` when no render was needed). Every
+   render and every step image stays in the model's frame. The painter sees only the canvas: `publish` crops every
+   step picture to the canvas box (in `canvas/`), and the review sheets use those crops.
+5. Two coordinate systems, so keep them apart:
+   - the plan's `looks_like` and render prompts describe the frame;
+   - the step text the painter reads describes the canvas. Before writing it, run
+     `canvas-view 99_finish.png --lesson <lesson>` and measure on `canvas/99_finish.png` (grid it).
+6. Record it in `notes.json` as `canvas_fit`: `{"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...",
+   "lost": "the right 15% of empty water"}`.
+
+**Size changes the lesson, not just its shape.** Scale to the canvas's area:
+- **Detail budget:** under 120 sq in (a 10x10), use `max_parts` minus 2: fewer, bigger shapes, since small
+  canvases can't hold small marks. From 120 to 300 sq in (11x14 is 154), use it as is. Over 300 (24x30 is 720),
+  add 3, and textures can be one size smaller.
+- **Brushes:** pick brush sizes for the canvas. On a 10x10, the biggest is a 3/4 inch flat. On an 11x14, a 1 inch
+  flat. On a 24x30, a 2 inch flat or a wide house brush for the sky, with rounds a size or two up.
+- **Measurements:** the page says how many inches each 10% is, so grid positions can be marked with a ruler.
+  Inches in the text are fine for sizes ("about 2 inches wide").
 
 ### 0c. Is it beginner-sized? (`00_beginner.png`)
 Every step is copied backward from the finished painting, so whatever detail the finish has, some step has to

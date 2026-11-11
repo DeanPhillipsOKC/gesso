@@ -210,6 +210,11 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
         f"<p><b>{k}:</b> {e(prep[f])}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
                                                         ("Done", "action"), ("Why", "why")) if prep.get(f)) + "</div>"
                  ) if prep else ""
+    cf = notes.get("canvas_fit") or {}
+    if cf:
+        prep_html += ('<div class="diag"><p class="label">Fitted to your canvas</p>' + "".join(
+            f"<p><b>{k}:</b> {e(cf[f])}</p>" for k, f in (("Canvas", "canvas"), ("Done", "mode"), ("Left out", "lost"),
+                                                          ("Why", "why")) if cf.get(f)) + "</div>")
     bv = notes.get("beginner_version") or {}
     bv_html = ('<div class="diag"><p class="label">Beginner version</p>' + "".join(
         f"<p><b>{k}:</b> {e(bv[f])}</p>" for k, f in (("What made it too busy", "found"), ("Changed", "list"),

@@ -245,6 +245,11 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
         for b in s.get("brush_list", []):
             brushes.setdefault(b["brush"], b.get("use", ""))
     tubes = technique.get("palette", [])
+    cv = lesson.get("canvas") or {}
+    canvas_item = (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
+                   + ("" if cv["orientation"] == "square" else " (hang it that way)") +
+                   f'. Positions in the steps are percentages across and down: each 10% is {cv["w_in"] / 10:g} in '
+                   f'across and {cv["h_in"] / 10:g} in down.') if cv else "White canvas or canvas board"
 
     photo = image_src(folder, lesson["photo_file"], embed) if lesson.get("photo_file") else ""
     finish = image_src(folder, stages[-1]["image"], embed)
@@ -279,7 +284,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
         for b, u in brushes.items())
     kit = (f'<div><p class="label">Tubes</p><ul>{items(tubes)}</ul></div>'
            f'<div><p class="label">Brushes</p><ul>{brush_items}</ul></div>'
-           f'<div><p class="label">Also</p><ul><li>White canvas or canvas board</li><li>Water jar and paper towel</li>'
+           f'<div><p class="label">Also</p><ul><li>{e(canvas_item)}</li><li>Water jar and paper towel</li>'
            f'<li>Palette or paper plate for mixing</li></ul></div>')
     sizes = [dims(folder / s["image"]) for s in stages]
     strip = "".join(f'<a href="#step-{i + 1}"><img src="{thumbs[i]}"{sizes[i]} alt="" loading="lazy">Step {i + 1}</a>'
@@ -340,7 +345,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
     <p class="eyebrow">Acrylic paint-along · {e(technique.get('level', 'beginner'))}</p>
     <h1>{e(read['subject'])}</h1>
     <p class="lede">{e(technique.get('summary', ''))}</p>
-    <div class="facts"><span><b>{len(stages)}</b> steps</span><span>Focal point: <b>{e(read['focal_point'])}</b></span>
+    <div class="facts"><span><b>{len(stages)}</b> steps</span>{f'<span>Canvas: <b>{cv["w_in"]:g} x {cv["h_in"]:g} in</b></span>' if cv else ''}<span>Focal point: <b>{e(read['focal_point'])}</b></span>
       <span>Light: <b>{e(read['light'])}</b></span><a href="#behind">How this lesson was made</a></div>
   </header>
   <div class="pair">

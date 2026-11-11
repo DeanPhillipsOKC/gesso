@@ -411,9 +411,10 @@ def publish(a: argparse.Namespace) -> dict:
     def txt(s, key, default):
         return text[s.id].get(key, default) if s.id in text else default
 
+    view = canvas_view(lesson, [p.name for p in paths])
     stages = [
         {
-            "id": s.id, "name": s.name, "image": paths[i].name, "paints": s.paints, "looks_like": s.looks_like,
+            "id": s.id, "name": s.name, "image": view.get(paths[i].name, paths[i].name), "paints": s.paints, "looks_like": s.looks_like,
             "steps": txt(s, "what_to_do", s.how), "mixes": txt(s, "mixes", []),
             "colors": [paints[c] for c in s.colors if c in paints],
             "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
@@ -428,6 +429,7 @@ def publish(a: argparse.Namespace) -> dict:
     previous = (json.loads(old.read_text(encoding="utf-8")).get("gesso") or {}).get("version", "before stamps") if old.exists() else None
     lesson_data = {
         "gesso": stamp(),
+        "canvas": (json.loads((lesson / "canvas.json").read_text(encoding="utf-8")) if (lesson / "canvas.json").exists() else {}).get("canvas"),
         "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
@@ -514,6 +516,59 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     return result
 
 
+def fit_canvas(a: argparse.Namespace) -> dict:
+    """Fit the photo to the painter's canvas (and the model's frame) before planning."""
+    import canvas as cv
+    from PIL import Image, ImageOps
+
+    lesson = Path(a.lesson)
+    lesson.mkdir(parents=True, exist_ok=True)
+    src = Path(a.input)
+    if not src.exists():
+        raise Refused(f"input image not found: {src}")
+    try:
+        r = cv.fit(ImageOps.exif_transpose(Image.open(src)), a.canvas, tuple(a.focus), tuple(a.keep) if a.keep else None,
+                   a.orientation)
+    except ValueError as err:
+        raise Refused(str(err)) from err
+    out = lesson / "00_canvas_frame.png"
+    r.pop("frame").save(out)
+    info = {**r, "input": str(src), "frame": str(out), "why": a.why, "grid_note": cv.grid_note(r["canvas"])}
+    (lesson / "canvas.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
+    LessonLedger(lesson).append({"tool": "filter", "filter": "fit-canvas", "step": "", "why": a.why, "input": str(src),
+                                 "out": str(out), "settings": {"canvas": a.canvas, "mode": r["mode"]}, "cost_usd": 0.0})
+    advice = ("The frame is the photo as is: use it as the photo." if not r["needs_render"] else
+              "Render once to fill the flat gray areas, then use the result as the photo: "
+              f"render --step canvas --inputs {out} --quality medium --out {lesson / '00_canvas_fit.png'} "
+              '--why-not-filter "no filter can paint the scene past the edges of the picture" --prompt "Replace every '
+              "flat gray area by continuing the painting naturally: the same sky, land, water, and light, in the same "
+              'style and brushwork. Change nothing that is already painted. No new objects."')
+    return {**{k: v for k, v in info.items() if k != "why"}, "advice": advice, "cost_usd": 0.0}
+
+
+def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
+    """Step pictures cropped to the canvas box, in <lesson>/canvas/, for the page, the embed, and the review.
+    Renders stay in the model's frame (later steps are rendered from them); only what the painter sees is cropped."""
+    import canvas as cv
+    from PIL import Image
+
+    info_path = lesson / "canvas.json"
+    if not info_path.exists():
+        return {}
+    box = json.loads(info_path.read_text(encoding="utf-8"))["canvas_box"]
+    if box == [0, 0, 1, 1] or box == [0.0, 0.0, 1.0, 1.0]:
+        return {}
+    out = lesson / "canvas"
+    out.mkdir(exist_ok=True)
+    view = {}
+    for name in names:
+        src, dst = lesson / name, out / name
+        if src.exists() and (not dst.exists() or dst.stat().st_mtime < src.stat().st_mtime):
+            cv.crop_to_canvas(Image.open(src).convert("RGB"), box).save(dst)
+        view[name] = f"canvas/{name}"
+    return view
+
+
 def add_lesson_tools(sub) -> None:
     p = sub.add_parser(
         "render-step", help="PAID. Render planned steps from <lesson>/plan.json with the spike's step prompt.",
@@ -543,6 +598,29 @@ def add_lesson_tools(sub) -> None:
                                    "the mixed color, and how far it lands from the swatch (Delta E). publish runs it too.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=mix_tool)
+
+    p = sub.add_parser("fit-canvas", help="Free. Fit the photo to the painter's canvas size: crop, or set up an extend render.",
+                       description="Before planning: fits the photo to a canvas (e.g. 11x14, either way up; 10x10) and to "
+                                   "the image model's nearest frame. Writes <lesson>/00_canvas_frame.png and canvas.json. "
+                                   "When needs_render is true, render it once to fill the gray areas (see the skill, 0b2).")
+    p.add_argument("input")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--canvas", required=True, help="width x height in inches, e.g. 11x14")
+    p.add_argument("--orientation", choices=["auto", "portrait", "landscape"], default="auto")
+    p.add_argument("--focus", type=float, nargs=2, metavar=("X", "Y"), default=[0.5, 0.5],
+                   help="the focal point, 0-1 from the top left")
+    p.add_argument("--keep", type=float, nargs=4, metavar=("X0", "Y0", "X1", "Y1"),
+                   help="the subject's box, 0-1; a crop must keep it whole")
+    p.add_argument("--why", required=True, help="what the subject is and what must stay in the picture")
+    p.set_defaults(func=fit_canvas)
+
+    p = sub.add_parser("canvas-view", help="Free. Crop images to the painter's canvas (after fit-canvas), into <lesson>/canvas/.",
+                       description="Renders stay in the model's frame; the painter sees the canvas. Measure positions for the "
+                                   "step text on these crops (e.g. grid on canvas/99_finish.png), not on the frame.")
+    p.add_argument("images", nargs="+", help="image file names inside the lesson folder")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=lambda a: {"canvas": canvas_view(Path(a.lesson), a.images) or "no canvas crop needed",
+                                   "cost_usd": 0.0})
 
     p = sub.add_parser("step-pairs", help="Free. Before/after/what-changed sheets for every step, for the step review (#24).",
                        description="After publish: writes <lesson>/trials/review/NN_<id>.png (before, after, and a measured "
