@@ -500,6 +500,9 @@ def publish(a: argparse.Namespace) -> dict:
     (lesson / "lesson.html").write_text(page(lesson_data, technique, lesson), encoding="utf-8")
     artifact = lesson / "lesson-artifact.html"
     artifact.write_text(page(lesson_data, technique, lesson, embed=True), encoding="utf-8")
+    # one self-contained HTML document (images inlined), for the lessons site or to send as a file
+    (lesson / "lesson-standalone.html").write_text(page(lesson_data, technique, lesson, embed=True, standalone=True),
+                                                 encoding="utf-8")
     from lesson_embed import export
     embed = export(lesson_data, technique, lesson)  # one folder a blog post or another page can show as a walkthrough
 
@@ -857,6 +860,12 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--why", required=True, help="what the subject is and what must stay in the picture")
     p.set_defaults(func=fit_canvas)
 
+    p = sub.add_parser("site-add", help="Free. Add a published lesson to the private lessons site (site/).",
+                       description="Copies the lesson's self-contained page to site/lessons/<slug>/, with a thumbnail, and "
+                                   "rebuilds the site's index. Commit and push site/ to deploy (docs/lessons-site.md).")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--slug", required=True, help="the lesson's address on the site, e.g. lavender-balloon")
+    p.set_defaults(func=lambda a: {**__import__("site_lessons").add(Path(a.lesson), a.slug), "cost_usd": 0.0})
     p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
                        description="For a subject that changes shape between steps: copies the later step's pixels inside the "
                                    "boxes onto the earlier step, with a soft edge. Lock again afterwards.")

@@ -569,3 +569,7 @@ Tell the owner, starting with anything that needs them:
 - compared with the spike: its parallel lessons on the trees photo cost about $0.40 each, $0.19 of images plus
   $0.22 of Claude API calls (2026-10-19); this skill's Claude work costs nothing extra;
 - any throwaway filters used (until #11 files them as requests).
+
+
+The owner also keeps a private lessons site (`docs/lessons-site.md`). When they say a lesson is a keeper, add it:
+`site-add --lesson <lesson> --slug <short-name>`, then commit and push `site/` (Cloudflare deploys it).

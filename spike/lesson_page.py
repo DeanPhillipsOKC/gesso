@@ -225,7 +225,8 @@ def items(xs, cls="") -> str:
     return "".join(f"<li{f' class={cls}' if cls else ''}>{e(x)}</li>" for x in xs)
 
 
-def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> str:
+def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, standalone: bool = False) -> str:
+    """embed: images inlined (one file). standalone with embed: also a full HTML document, for the lessons site."""
     from construct import strip as build_strip
     from lesson_notes import behind, step_why
     from version import line
@@ -361,6 +362,6 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
   {behind(lesson, technique, folder, embed, thumbs, sizes)}
   {f'<footer class="made">Made with {e(line(lesson["gesso"]))}</footer>' if lesson.get("gesso") else ""}
 </div>"""
-    if embed:
+    if embed and not standalone:
         return head + body
     return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">{head}</head><body>{body}</body></html>'
