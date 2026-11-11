@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.23.1 (2026-11-11)
+- A lesson keeps the version it was made with (`gesso.made`) when it's republished; the footer says "republished
+  with" the newer one, and the lessons site's tiles show the made-with version.
+- The dirty flag only counts code that shapes a lesson (spike, techniques, palettes, the skill), not site/ or docs/.
+
 ## POC 0.23.0 (2026-11-11)
 - A private lessons site (`site/`, deployed with Cloudflare Pages and locked with Cloudflare Access): `publish`
   also writes `lesson-standalone.html`, one self-contained page per lesson, and `site-add` puts it on the site.
