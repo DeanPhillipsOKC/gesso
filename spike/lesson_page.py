@@ -76,6 +76,7 @@ ol.do{margin:0;padding-left:1.3rem;display:grid;gap:.45rem}
 .watch{color:var(--warn);font-size:.95rem}
 .small{font-size:.85rem;color:var(--muted)}
 .made{font:.75rem/1.4 var(--mono);color:var(--muted)}
+.flag{border-left:3px solid var(--warn);padding:.4rem .75rem;font-size:.92rem;background:var(--panel)}
 @media (max-width: 760px){.step,.pair{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 """
@@ -106,6 +107,11 @@ def items(xs, cls="") -> str:
 def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> str:
     read = lesson["photo_read"]
     stages = lesson["stages"]
+    # Problems the review found and left (caps or rounds ran out), shown on their step so the painter knows.
+    left: dict[str, list[str]] = {}
+    for x in lesson.get("review_issues", []):
+        if x.get("action") == "left":
+            left.setdefault(x["step_id"], []).append(x["problem"])
     paints = read.get("mixes", [])
     by_name = {p["name"]: p for p in paints}
 
@@ -143,6 +149,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
             for c in [c["name"] for c in s.get("colors", [])] if c in by_name)
         notes = "".join(f'<p class="small">{e(n)}</p>' for n in s.get("paint_notes", []))
         watch = "".join(f'<p class="watch">Watch out: {e(w)}</p>' for w in s.get("watch_out", []))
+        flags = "".join(f'<p class="flag">Heads up, this picture is a little off: {e(x)} Paint what the steps say.</p>'
+                        for x in left.get(s["id"], []))
         made = f'<p class="made">Image made with {e(s.get("made_with", "render"))}</p>' if not embed else ""
         steps_html.append(f"""
 <article class="step" id="step-{i + 1}">
@@ -155,7 +163,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False) -> st
       <p class="label">Brushes</p><div class="chips">{chips}</div>
       {f'<p class="label">Strokes</p>{strokes}' if strokes else ''}
     </div>
-    {watch}
+    {watch}{flags}
     <p class="small">Drying: {e(s.get('dry_time', ''))}</p>{made}
   </div>
 </article>""")

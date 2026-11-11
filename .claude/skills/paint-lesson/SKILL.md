@@ -23,10 +23,15 @@ For each image the lesson needs, take the first of these that does the job, and 
 1. **A filter** from `tools.py --help` (value study, notan, palette, simplify, posterize, edges, grid, ...).
 2. **A composite** (masks of the finish, #8), once that tool exists.
 3. **A throwaway filter** (#11): a one-off script in `<lesson>/filters/`, tried before renders, 2 tries at most.
-   Until #11 adds filing filter requests, list each throwaway in the report to the owner. Example from the trees
+   Write every try's output inside `<lesson>/filters/` too, and copy only the one you use to `<lesson>/NN_<id>.png`.
+   If neither try works, keep the better one there as a seed for option 4. Until #11 adds filing filter requests,
+   list each throwaway in the report to the owner. Example from the trees
    run: the first step (sky only) came from masking the dark trees in the finish, inpainting the holes, and
    blurring; it left a mark the review caught, and a render seeded by it fixed that for $0.018.
-4. **A render seeded by a filter or composite** (pass its output as an input image).
+4. **A render seeded by a filter or composite**: `render --step <id> --inputs <seed image> --out <lesson>/NN_<id>.png`
+   with your own prompt, since `render-step` builds its prompt from the finish. Start the prompt with what the
+   image is ("This is an acrylic painting at the step where ..."), say what to fix or remove, say to keep the
+   placement, sizes, and colors exactly, and end with the technique's `framing`.
 5. **A plain render** (`render` or `render-step`), with `--why-not-filter` saying why 1 to 4 can't do it.
 
 Renders are capped per lesson (`--max-cost`, default $1.00) and per step (`--max-redos`, default 2). A refusal
@@ -37,6 +42,8 @@ render with the same inputs comes back free from the cache, so rerunning a lesso
 
 ### 0. Set up
 - Lesson folder: `output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/`. Pass it as `--lesson` to every tool.
+- Files the tools make there besides yours: `ledger.json` (every render), `00_canvas.png` (white canvas, made by
+  `render-step`), and the filter outputs. Put trial outputs you won't use under `<lesson>/trials/` with `--out`.
 - Read the technique YAML: `rules`, `brush_moves`, `palette`, `step_range`, `ground`, `framing`, `simplify`, `finish`.
 
 ### 1. Simplified reference (`00_reference.png`)
@@ -51,14 +58,16 @@ The reference is what the painting is made from: fewer shapes, clear values, col
 
 ### 2. Finished painting (`99_finish.png`)
 No filter turns a reference into an acrylic painting on canvas, so this is a render:
-`render --step finish --inputs <reference> <photo> --prompt "<finish.prompt> The second image is the original photo: take every area's colors from it. <framing>" --quality high --out <lesson>/99_finish.png`
+`render --step finish --inputs <reference> <photo> --prompt "<finish.prompt> The second image is the original photo: take every area's colors from it. No text, signature, or watermark. <framing>" --quality high --out <lesson>/99_finish.png`
 with a reason. Every step copies from the finish, so it gets high quality (as in the spike). Pass the photo too:
 on the trees photo (2026-11-10) a Kuwahara reference alone turned a cream-gold sky into blue and purple patches,
 and the finish needed a paid repaint.
 
 Then check it against the photo yourself (Read both images). Simplifying is expected; flag only what the owner
 would notice and mind: an area changed color or hue, something added, removed, or turned into something else, a
-texture changed character, the mood or time of day changed. If anything is flagged, render once more with
+texture changed character, the mood or time of day changed, or the subject looks stretched or squeezed. The
+render snaps to 1024x1536, 1536x1024, or 1024x1024, so the canvas shape can differ a little from the photo; that's
+fine as long as the shapes in it aren't distorted. If anything is flagged, render once more with
 `--inputs <finish> <photo>`, a prompt listing the fixes ("Repaint it with these fixes so it matches the second
 image: ... Keep everything else the same"), and `--fresh` not needed (the prompt differs). Save the flagged list
 for `review.json` as `finish_issues`.
@@ -107,13 +116,27 @@ Don't grade your own images. Start a subagent (Agent tool, general-purpose) with
   painted earlier is missing, moved, or a clearly different shape or size; the image doesn't match `looks_like`
   (white canvas showing where it should be covered, or covered where it should be white). Ignore small differences
   in brushwork, texture, and exact color. Never flag the last step. Also check the technique's painting order.
+- when two neighboring steps disagree, compare both with the finish and flag the one that differs from it,
+  not automatically the later one;
 - ask it to Read every image and answer with JSON only: `{"issues": [{"step_id", "problem", "fix"}]}`, `fix`
   phrased as an instruction for redrawing that image.
 
-Redo each flagged step: `render-step --steps <id> --fix "<fix>" --why-not-filter "<reason>"` (one step per call;
-run them in parallel as separate commands if there are several). Then review again in a new subagent. Two review
-rounds at most. A step still flagged after that, or refused by the caps, stays as it is and is listed for the
-owner. Save all issues, with their round, in `review.json` as `review_issues`.
+Before redoing, check each issue yourself against the finish: if the flagged step matches the finish and its
+neighbor doesn't, redo the neighbor instead and say so in `action`. Redo with
+`render-step --steps <id> --fix "<fix>" --why-not-filter "<reason>"` (one step per call; run several as separate
+commands in parallel).
+
+The rounds go as in the spike: review, redo, review again in a new subagent, redo what that flags, and stop. There
+is no third review. A step whose redo was refused by the caps stays as it is. Save every issue in `review.json`:
+
+```json
+{"finish_issues": ["..."],
+ "review_issues": [{"step_id": "moon", "problem": "...", "fix": "...", "round": 2,
+                    "action": "redone | redone neighbor <id> | left"}]}
+```
+
+Use `"left"` for anything not redone (a cap refused it, or you judged it not worth a redo). The lesson page shows
+every `"left"` problem on its step as a heads-up for the painter.
 
 ### 6. Write the steps (`text.json`)
 Read the final images in order and write each step's instructions from what its image actually shows, like
