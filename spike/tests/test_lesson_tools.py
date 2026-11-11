@@ -149,6 +149,8 @@ class LessonToolTests(unittest.TestCase):
 
     def test_owner_palette_mixes_from_their_tubes_and_lists_only_the_used_ones(self):
         import yaml
+        import mixing
+        self.addCleanup(mixing.CUSTOM.clear)  # registered tubes are process-wide; don't leak into other tests
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         plan = json.loads((self.lesson / "plan.json").read_text())
         plan["palette"] = "owner"

@@ -10,6 +10,9 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 - `--palette <name>`: lessons mix from the painter's own tubes (`palettes/owner.yaml`, 30 tubes) instead of the
   technique's five, and "What you need" lists only the tubes the recipes use. Big palettes are searched with a
   shortlist so a recipe still takes under a second.
+- A lesson from a big palette shares a small set of tubes: the 8 most useful, plus one more at a time only when
+  a paint can't get close without it (the lavender lesson went from 28 tubes to 12).
+- A painter's own tubes are called by their labels ("dark ultramarine" isn't shortened to "ultramarine").
 
 ## POC 0.18.0 (2026-11-11)
 - Values tables add to the instructions, never replace them, and are for depth on one thing. Color sequences like a

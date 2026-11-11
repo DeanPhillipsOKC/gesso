@@ -55,6 +55,21 @@ class MixingTests(unittest.TestCase):
         self.assertEqual(r["parts"], {"Burnt sienna": 1})
         self.assertEqual(r["text"], "Burnt sienna, straight from the tube")
 
+    def test_a_lesson_from_a_big_palette_shares_a_few_tubes(self):
+        import yaml
+        tubes = yaml.safe_load((Path(__file__).resolve().parent.parent.parent / "palettes" / "owner.yaml").read_text())["tubes"]
+        names = mixing.register(tubes)
+        self.addCleanup(mixing.CUSTOM.clear)
+        targets = {"sky": "#6f8fd8", "peach": "#f2b48a", "gold": "#f2c14e", "coral": "#e8805a", "mountain": "#5a5aa0",
+                   "hill": "#c8a040", "tree": "#3d6b35", "lav dark": "#3a2f6a", "lav mid": "#7a5fc0",
+                   "lav light": "#b9a3e3", "pink": "#e6a0c8", "path": "#c8783a"}
+        out = mixing.solve_lesson(targets, names)
+        used = {t for m in out.values() for t in m["parts"] if "white" not in t.lower()}
+        self.assertLessEqual(len(used), 11)
+        free = {n: mixing.solve(h, names)["delta_e"] for n, h in targets.items()}
+        for n, m in out.items():
+            self.assertLessEqual(m["delta_e"], max(free[n] + mixing.CORE_SLACK, 3.0) + 0.01)
+
     def test_no_scaled_duplicates(self):
         for parts in mixing._candidates(PALETTE):
             self.assertFalse(parts.get("Titanium white") == 2 and parts.get("Ultramarine blue") == 2 and len(parts) == 2)

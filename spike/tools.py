@@ -365,10 +365,11 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
             mixing.tube_rgb(t)
     except mixing.UnknownTube as err:
         raise Refused(str(err)) from err
+    straight = {p.name: mixing.single_tube(p.name, p.recipe, tubes) for p in plan.paints}
+    solved = mixing.solve_lesson({p.name: p.hex for p in plan.paints if not straight[p.name]}, tubes)
     mixes = {}
     for p in plan.paints:
-        tube = mixing.single_tube(p.name, p.recipe, tubes)
-        m = mixing.straight(tube, p.hex) if tube else mixing.solve(p.hex, tubes)
+        m = mixing.straight(straight[p.name], p.hex) if straight[p.name] else solved[p.name]
         m["guess_recipe"] = p.recipe
         mixes[p.name] = m
     (lesson / "mixes.json").write_text(json.dumps(mixes, indent=2), encoding="utf-8")
