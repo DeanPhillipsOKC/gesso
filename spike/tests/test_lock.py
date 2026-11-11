@@ -57,6 +57,17 @@ class LockTests(unittest.TestCase):
         out, _ = lock.lock_one(prev, render, finish, region)
         self.assertTrue((out[40, 60] == render[40, 60]).all())
 
+    def test_protect_keeps_the_steps_paint_and_puts_back_the_rest(self):
+        prev = blank((230, 120, 30))  # an orange pumpkin, finished
+        render = prev.copy()
+        render[10:70, 55:62] = (240, 238, 225)  # a cream vine painted over it: the step's own paint
+        render[50:75, 10:40] = (170, 70, 20)  # the pumpkin repainted darker under it: drift
+        region = lock.region_mask((H, W), [[0, 0, 1, 1]], margin=0)
+        protect = lock.region_mask((H, W), [[0, 0, 1, 1]], margin=0)
+        out, _ = lock.lock_one(prev, render, render, region, None, protect, [(240, 238, 225)])
+        self.assertTrue(np.abs(out[40, 58].astype(int) - render[40, 58]).max() < 5)  # vine kept
+        self.assertTrue(np.abs(out[62, 25].astype(int) - prev[62, 25]).max() < 5)  # repaint put back
+
     def test_new_paint_toward_the_finish_is_kept(self):
         finish = blank((30, 90, 200))
         prev = blank()  # white canvas, not finished yet
