@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.24.0 (2026-11-12)
+- Spike (#8): `from-finish` cuts every step picture from the finished painting instead of rendering it, in a copy of
+  the lesson. Each pixel goes to the step whose region and paints fit it (things in their own small box, like the
+  balloon, are cut out whole with GrabCut), earlier steps paint straight through where later ones go, the first of
+  several steps over one area is a flat coat, and the passes after it go on by value, darkest first, in equal
+  shares. No renders, so nothing drifts and no lock is needed.
+
 ## POC 0.23.2 (2026-11-12)
 - Lesson history: every publish that changes a lesson's pictures or text is kept (`site/history/`: a strip of every
   step and a record of the version, commit, cost, redos, and checks; the full lesson in `<lesson>/versions/<n>/`),

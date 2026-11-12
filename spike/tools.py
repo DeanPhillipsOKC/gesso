@@ -757,6 +757,48 @@ def finish_from_step(a: argparse.Namespace, client=None) -> dict:
                     "again (mix), lock-steps, publish, step-pairs"}
 
 
+def from_finish_tool(a: argparse.Namespace) -> dict:
+    """Every step picture cut from the finished painting (#8): no renders, nothing can drift. Copies the lesson to a
+    new run folder first, so the rendered lesson stays as it was and both show in the lesson history."""
+    import datetime as dt
+    import numpy as np
+    from PIL import Image
+    from from_finish import build
+
+    src = Path(a.lesson)
+    stem = src.name.split("_skill_")[0]
+    dst = src.parent / f"{stem}_skill_{dt.datetime.now():%Y%m%d-%H%M%S}"
+    skip = {"trials", "versions", "embed", "canvas"}
+    shutil.copytree(src, dst, ignore=lambda d, names: [n for n in names if Path(d) == src and n in skip])
+    raw, plan, technique = load_plan(dst)
+    paths = step_paths(dst, plan)
+    hexes = {p.name: p.hex for p in plan.paints}
+    steps = [{"id": s.id, "regions": [list(b) for b in (s.regions or [])], "colors": [hexes[c] for c in s.colors if c in hexes]}
+             for s in plan.steps]
+    finish = np.array(Image.open(paths[-1]).convert("RGB"))
+    raw_dir = dst / "trials" / "rendered"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    pictures, owner = build(finish, steps)
+    for path, pic in zip(paths, pictures):
+        if path.exists():
+            shutil.copyfile(path, raw_dir / path.name)
+        Image.fromarray(pic).save(path)
+    text_path = dst / "text.json"
+    if text_path.exists():
+        text = json.loads(text_path.read_text(encoding="utf-8"))
+        for t in text["steps"]:
+            if t["stage_id"] != plan.steps[-1].id:
+                t["made_with"], t["reason"] = "composite:from-finish", "cut from the finished painting (#8)"
+        text_path.write_text(json.dumps(text, indent=2), encoding="utf-8")
+    led = LessonLedger(dst)
+    with led.locked():
+        led.calls.append({"tool": "filter", "filter": "from-finish", "step": "", "why": a.why, "input": str(paths[-1]),
+                          "out": str(dst), "settings": {"from": src.name}, "cost_usd": 0.0})
+        led.save()
+    return {"lesson": str(dst), "from": src.name, "steps": len(paths),
+            "owned_share": {s["id"]: round(float((owner == k).mean()), 3) for k, s in enumerate(steps)}, "cost_usd": 0.0}
+
+
 def lock_steps(a: argparse.Namespace) -> dict:
     """Keep finished areas and areas a step doesn't paint from changing (#30). Free."""
     import lock as lk
@@ -884,6 +926,14 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--score", type=int)
     p.add_argument("--note", default="", help="what the owner said, in their words")
     p.set_defaults(func=lambda a: {**__import__("history").rate(a.run, a.score, a.note), "cost_usd": 0.0})
+    p = sub.add_parser("from-finish", help="Free. Cut every step picture from the finished painting, in a copy of the lesson (#8).",
+                       description="Copies the lesson to a new run folder, then builds each step from 99_finish.png: each pixel "
+                                   "goes to the step whose region and paints fit it, earlier steps paint straight through "
+                                   "where later ones go, the first of several steps over one area is a flat coat and the "
+                                   "rest go on darkest first. The rendered steps are kept in trials/rendered/. Publish after.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--why", required=True)
+    p.set_defaults(func=from_finish_tool)
     p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
                        description="For a subject that changes shape between steps: copies the later step's pixels inside the "
                                    "boxes onto the earlier step, with a soft edge. Lock again afterwards.")
