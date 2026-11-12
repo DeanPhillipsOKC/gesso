@@ -14,6 +14,14 @@ Live at https://gesso-lessons.pages.dev, deployed from `main`. It's deliberately
 2026-11-11: it's painting lessons, nothing private), just kept out of search engines. The Access steps below are
 only for if that ever changes; Zero Trust asks for a card even on its free plan.
 
+## Versions on the tiles
+
+Each tile's pick list holds every kept run of that picture (the run folders in `output/` named after it), newest
+first, with the current one selected. Opening another version opens the lesson exactly as that run made it: its
+page is written once to `lessons/<slug>/v/<run time>/` and never rewritten (runs from before self-contained pages
+are built from their saved `lesson.json`, nothing rerun). After a new run of a picture that's on the site, run
+`python spike/tools.py site-refresh` and commit `site/`. To make a new run the default, `site-add` it.
+
 ## Lesson history
 
 `site/history/` (live at `/history/`, linked from the list's footer) keeps every run of every picture: `publish`

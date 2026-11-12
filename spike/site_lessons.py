@@ -46,13 +46,78 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
         "published": ((data.get("gesso") or {}).get("made") or data.get("gesso") or {}).get("published", ""),
         "source": lesson.name,
     }
+    entry["versions"] = add_versions(site, slug, lesson.name, lesson.parent)
     manifest = site / "lessons.json"
     lessons = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else []
     lessons = [x for x in lessons if x["slug"] != slug] + [entry]
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
     build_index(site, lessons)
-    return {"url_path": f"/lessons/{slug}/", "lessons": len(lessons),
+    return {"url_path": f"/lessons/{slug}/", "lessons": len(lessons), "versions": len(entry["versions"]),
             "kb": round((out / "index.html").stat().st_size / 1024)}
+
+
+def kind(data: dict) -> str:
+    """What made the step pictures: 'cut from the finish', 'some steps cut from the finish', or '' (rendered)."""
+    made = [s.get("made_with", "") for s in data.get("stages", [])[:-1]]
+    cut = sum(1 for m in made if m.startswith("composite:from-finish"))
+    return "" if not cut else "steps cut from the finish" if cut == len(made) else "some steps cut from the finish"
+
+
+def standalone(run: Path) -> str:
+    """The run's self-contained page, or one built from its saved lesson.json for runs from before those existed
+    (nothing is rerun: same pictures, text, and recipes)."""
+    page_file = run / "lesson-standalone.html"
+    if page_file.exists():
+        return page_file.read_text(encoding="utf-8")
+    import yaml
+    from lesson_page import page
+    data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
+    raw = json.loads((run / "plan.json").read_text(encoding="utf-8")) if (run / "plan.json").exists() else {}
+    technique = yaml.safe_load((ROOT / (raw.get("technique") or "techniques/acrylic-paint-along-beginner.yaml"))
+                               .read_text(encoding="utf-8"))
+    return page(data, technique, run, embed=True, standalone=True)
+
+
+def add_versions(site: Path, slug: str, current: str, output: Path) -> list[dict]:
+    """Every kept run of the same picture as a version of the lesson (owner, 2026-11-12: pick a version on the
+    tile and open it). Each one's page goes to lessons/<slug>/v/<run time>/ once and is never rewritten, so a
+    version stays exactly what it was. The current one is the lesson's own page."""
+    from history import run_time, stamp_at
+    photo = current.split("_skill_")[0]
+    versions = []
+    for run in sorted(output.glob(f"{photo}_skill_*")):
+        if not (run / "lesson.json").exists():
+            continue
+        data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
+        g = data.get("gesso") or {}
+        made = g.get("made") or g or stamp_at(run.name) or {}
+        rid = run.name.split("_skill_")[1]
+        href = f"lessons/{slug}/" if run.name == current else f"lessons/{slug}/v/{rid}/"
+        if run.name != current:
+            out = site / "lessons" / slug / "v" / rid / "index.html"
+            if not out.exists():
+                try:
+                    html = standalone(run)
+                except (OSError, KeyError, ValueError, TypeError) as err:  # a run too old to show: leave it out
+                    print(f"skipped {run.name}: {err}")
+                    continue
+                out.parent.mkdir(parents=True, exist_ok=True)
+                out.write_text(html, encoding="utf-8")
+        versions.append({"id": rid, "version": made.get("version", "before stamps"), "when": run_time(run.name),
+                         "guessed": bool(made.get("guessed")), "kind": kind(data), "steps": len(data["stages"]),
+                         "href": href, "current": run.name == current})
+    return sorted(versions, key=lambda v: v["id"], reverse=True)
+
+
+def refresh(site: Path = SITE, output: Path = ROOT / "output") -> dict:
+    """Pick up new runs of every lesson on the site as versions, and rebuild the list."""
+    manifest = site / "lessons.json"
+    lessons = json.loads(manifest.read_text(encoding="utf-8"))
+    for x in lessons:
+        x["versions"] = add_versions(site, x["slug"], x["source"], output)
+    manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
+    build_index(site, lessons)
+    return {x["slug"]: len(x["versions"]) for x in lessons}
 
 
 INDEX_STYLE = """
@@ -64,26 +129,71 @@ body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.55 "Atkinso
 h1{font:700 clamp(1.8rem,5vw,2.6rem)/1.1 "Bricolage Grotesque","Segoe UI",sans-serif;margin:0}
 .lede{color:var(--muted);margin:0;max-width:40rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem}
-a.card{display:grid;gap:.6rem;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:.75rem;
-  color:inherit;text-decoration:none}
-a.card:hover,a.card:focus-visible{border-color:var(--accent);outline:none}
-a.card img{width:100%;height:auto;border-radius:8px;display:block}
-a.card b{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
+.card{display:grid;gap:.6rem;align-content:start;background:var(--card);border:1px solid var(--rule);border-radius:12px;
+  padding:.75rem;min-width:0}
+.card:focus-within,.card:hover{border-color:var(--accent)}
+.card img{width:100%;height:auto;border-radius:8px;display:block}
+.card a{color:inherit;text-decoration:none}
+.card .name{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
+.pick{display:grid;gap:.25rem;font-size:.8rem;color:var(--muted)}
+.pick select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;
+  padding:.45rem .5rem;min-height:2.75rem;width:100%;min-width:0}
+.card a.open{justify-self:start;background:var(--accent);color:var(--bg);font-weight:700;border-radius:8px;padding:.5rem 1rem;
+  min-height:2.75rem;display:inline-flex;align-items:center}
 .facts{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-size:.85rem;color:var(--muted)}
 .ver{flex-basis:100%;font:.75rem/1.3 ui-monospace,Consolas,monospace}
 footer{font:.75rem/1.4 ui-monospace,Consolas,monospace;color:var(--muted)}
 """
 
 
+def version_label(v: dict) -> str:
+    """'POC 0.20.0 · Nov 11, 2:27 PM · current'."""
+    import datetime as dt
+    when = v["when"]
+    try:
+        t = dt.datetime.strptime(when, "%Y-%m-%d %H:%M")
+        hour = t.hour % 12 or 12
+        when = f"{t:%b} {t.day}, {hour}:{t:%M} {'AM' if t.hour < 12 else 'PM'}"
+    except ValueError:
+        pass
+    guessed = v.get("guessed") and v["version"] != "before stamps"
+    text = f'{v["version"]}{" (guessed)" if guessed else ""} · {when}'
+    if v.get("kind"):
+        text += f' · {v["kind"]}'
+    return text + (" · current" if v.get("current") else "")
+
+
+def card(x: dict) -> str:
+    slug = e(x["slug"])
+    versions = x.get("versions") or []
+    href = f"lessons/{slug}/"
+    facts = (f'<span class="steps">{x["steps"]} steps</span>'
+             + (f'<span>{e(x["canvas"])} canvas</span>' if x["canvas"] else "")
+             + (f'<span>{x["tubes"]} tubes</span>' if x["tubes"] else ""))
+    if len(versions) > 1:
+        options = "".join(
+            f'<option value="{e(v["href"])}" data-steps="{v["steps"]}"{" selected" if v.get("current") else ""}>'
+            f'{e(version_label(v))}</option>' for v in versions)
+        picker = f'<label class="pick"><span>Version</span><select>{options}</select></label>'
+    else:
+        picker = f'<span class="ver">Made with Gesso {e(x.get("version", ""))}</span>' if x.get("version") else ""
+    return (f'<div class="card"><a class="pic" href="{href}"><img src="lessons/{slug}/thumb.jpg" alt="" loading="lazy"></a>'
+            f'<a class="name" href="{href}">{e(x["title"])}</a><span class="facts">{facts}</span>{picker}'
+            f'<a class="open" href="{href}">Open lesson</a></div>')
+
+
+PICKER_JS = """
+document.querySelectorAll('.card select').forEach(sel => sel.addEventListener('change', () => {
+  const card = sel.closest('.card'), opt = sel.selectedOptions[0];
+  card.querySelectorAll('a').forEach(a => { a.href = opt.value; });
+  card.querySelector('.steps').textContent = opt.dataset.steps + ' steps';
+}));
+window.addEventListener('pageshow', () => document.querySelectorAll('.card select').forEach(sel => sel.dispatchEvent(new Event('change'))));
+"""
+
+
 def build_index(site: Path, lessons: list[dict]) -> Path:
-    cards = "".join(
-        f'<a class="card" href="lessons/{e(x["slug"])}/"><img src="lessons/{e(x["slug"])}/thumb.jpg" alt="" loading="lazy">'
-        f'<b>{e(x["title"])}</b><span class="facts"><span>{x["steps"]} steps</span>'
-        + (f'<span>{e(x["canvas"])} canvas</span>' if x["canvas"] else "")
-        + (f'<span>{x["tubes"]} tubes</span>' if x["tubes"] else "")
-        + (f'<span class="ver">Made with Gesso {e(x["version"])}</span>' if x.get("version") else "")
-        + "</span></a>"
-        for x in sorted(lessons, key=lambda x: x.get("published", ""), reverse=True))
+    cards = "".join(card(x) for x in sorted(lessons, key=lambda x: x.get("published", ""), reverse=True))
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -95,7 +205,7 @@ def build_index(site: Path, lessons: list[dict]) -> Path:
 mix, and the brushes.</p></header>
 <div class="grid">{cards}</div>
 <footer>Made with Gesso · <a href="history/" style="color:inherit">Lesson history</a></footer>
-</div></body></html>"""
+</div><script>{PICKER_JS}</script></body></html>"""
     site.mkdir(parents=True, exist_ok=True)
     (site / "index.html").write_text(html, encoding="utf-8")
     headers = site / "_headers"

@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.24.1 (2026-11-12)
+- Each lesson's tile on the lessons site has a version pick list: every kept run of that picture, newest first,
+  labeled with the Gesso version, the time it ran, and how its steps were made. Pick one and open it. Each version's
+  page is written once to `lessons/<slug>/v/<run>/` and never rewritten; `site-refresh` adds new runs.
+
 ## POC 0.24.0 (2026-11-12)
 - Spike (#8): `from-finish` cuts every step picture from the finished painting instead of rendering it, in a copy of
   the lesson. Each pixel goes to the step whose region and paints fit it (things in their own small box, like the

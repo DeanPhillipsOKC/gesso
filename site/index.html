@@ -12,11 +12,17 @@ body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.55 "Atkinso
 h1{font:700 clamp(1.8rem,5vw,2.6rem)/1.1 "Bricolage Grotesque","Segoe UI",sans-serif;margin:0}
 .lede{color:var(--muted);margin:0;max-width:40rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem}
-a.card{display:grid;gap:.6rem;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:.75rem;
-  color:inherit;text-decoration:none}
-a.card:hover,a.card:focus-visible{border-color:var(--accent);outline:none}
-a.card img{width:100%;height:auto;border-radius:8px;display:block}
-a.card b{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
+.card{display:grid;gap:.6rem;align-content:start;background:var(--card);border:1px solid var(--rule);border-radius:12px;
+  padding:.75rem;min-width:0}
+.card:focus-within,.card:hover{border-color:var(--accent)}
+.card img{width:100%;height:auto;border-radius:8px;display:block}
+.card a{color:inherit;text-decoration:none}
+.card .name{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
+.pick{display:grid;gap:.25rem;font-size:.8rem;color:var(--muted)}
+.pick select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;
+  padding:.45rem .5rem;min-height:2.75rem;width:100%;min-width:0}
+.card a.open{justify-self:start;background:var(--accent);color:var(--bg);font-weight:700;border-radius:8px;padding:.5rem 1rem;
+  min-height:2.75rem;display:inline-flex;align-items:center}
 .facts{display:flex;flex-wrap:wrap;gap:.3rem .9rem;font-size:.85rem;color:var(--muted)}
 .ver{flex-basis:100%;font:.75rem/1.3 ui-monospace,Consolas,monospace}
 footer{font:.75rem/1.4 ui-monospace,Consolas,monospace;color:var(--muted)}
@@ -24,6 +30,13 @@ footer{font:.75rem/1.4 ui-monospace,Consolas,monospace;color:var(--muted)}
 <header style="display:grid;gap:.5rem"><h1>Our painting lessons</h1>
 <p class="lede">Pick one and open it on your phone or tablet next to the easel. Each one has every step's picture, the paints to
 mix, and the brushes.</p></header>
-<div class="grid"><a class="card" href="lessons/lavender-balloon/"><img src="lessons/lavender-balloon/thumb.jpg" alt="" loading="lazy"><b>A striped hot-air balloon floating over a lavender field at sunset</b><span class="facts"><span>12 steps</span><span>14 x 11 in canvas</span><span>12 tubes</span><span class="ver">Made with Gesso POC 0.20.0</span></span></a><a class="card" href="lessons/chickadee/"><img src="lessons/chickadee/thumb.jpg" alt="" loading="lazy"><b>A plump black-capped chickadee perched on a curved autumn branch</b><span class="facts"><span>11 steps</span><span>14 x 11 in canvas</span><span>11 tubes</span><span class="ver">Made with Gesso POC 0.21.0</span></span></a><a class="card" href="lessons/red-sailboat/"><img src="lessons/red-sailboat/thumb.jpg" alt="" loading="lazy"><b>A small red sailboat</b><span class="facts"><span>11 steps</span><span>14 x 11 in canvas</span><span>5 tubes</span><span class="ver">Made with Gesso POC 0.17.0</span></span></a></div>
+<div class="grid"><div class="card"><a class="pic" href="lessons/lavender-balloon/"><img src="lessons/lavender-balloon/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/lavender-balloon/">A striped hot-air balloon floating over a lavender field at sunset</a><span class="facts"><span class="steps">12 steps</span><span>14 x 11 in canvas</span><span>12 tubes</span></span><label class="pick"><span>Version</span><select><option value="lessons/lavender-balloon/v/20261112-084806/" data-steps="12">POC 0.24.0 · Nov 12, 8:48 AM · some steps cut from the finish</option><option value="lessons/lavender-balloon/v/20261112-084526/" data-steps="12">POC 0.24.0 · Nov 12, 8:45 AM · steps cut from the finish</option><option value="lessons/lavender-balloon/" data-steps="12" selected>POC 0.20.0 · Nov 11, 2:27 PM · current</option><option value="lessons/lavender-balloon/v/20261111-132742/" data-steps="12">POC 0.19.0 · Nov 11, 1:27 PM</option><option value="lessons/lavender-balloon/v/20261111-124236/" data-steps="11">POC 0.18.0 · Nov 11, 12:42 PM</option><option value="lessons/lavender-balloon/v/20261111-114013/" data-steps="12">POC 0.17.1 · Nov 11, 11:40 AM</option><option value="lessons/lavender-balloon/v/20261111-083555/" data-steps="12">POC 0.13.0 · Nov 11, 8:35 AM</option><option value="lessons/lavender-balloon/v/20261111-023226/" data-steps="12">POC 0.9.0 · Nov 11, 2:32 AM</option><option value="lessons/lavender-balloon/v/20261111-020247/" data-steps="11">before stamps · Nov 11, 2:02 AM</option></select></label><a class="open" href="lessons/lavender-balloon/">Open lesson</a></div><div class="card"><a class="pic" href="lessons/chickadee/"><img src="lessons/chickadee/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/chickadee/">A plump black-capped chickadee perched on a curved autumn branch</a><span class="facts"><span class="steps">11 steps</span><span>14 x 11 in canvas</span><span>11 tubes</span></span><span class="ver">Made with Gesso POC 0.21.0</span><a class="open" href="lessons/chickadee/">Open lesson</a></div><div class="card"><a class="pic" href="lessons/red-sailboat/"><img src="lessons/red-sailboat/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/red-sailboat/">A small red sailboat</a><span class="facts"><span class="steps">11 steps</span><span>14 x 11 in canvas</span><span>5 tubes</span></span><label class="pick"><span>Version</span><select><option value="lessons/red-sailboat/" data-steps="11" selected>POC 0.17.0 · Nov 11, 11:40 AM · current</option><option value="lessons/red-sailboat/v/20261111-095458/" data-steps="10">POC 0.14.0 · Nov 11, 9:54 AM</option><option value="lessons/red-sailboat/v/20261111-090906/" data-steps="8">POC 0.12.0 · Nov 11, 9:09 AM</option></select></label><a class="open" href="lessons/red-sailboat/">Open lesson</a></div></div>
 <footer>Made with Gesso · <a href="history/" style="color:inherit">Lesson history</a></footer>
-</div></body></html>
+</div><script>
+document.querySelectorAll('.card select').forEach(sel => sel.addEventListener('change', () => {
+  const card = sel.closest('.card'), opt = sel.selectedOptions[0];
+  card.querySelectorAll('a').forEach(a => { a.href = opt.value; });
+  card.querySelector('.steps').textContent = opt.dataset.steps + ' steps';
+}));
+window.addEventListener('pageshow', () => document.querySelectorAll('.card select').forEach(sel => sel.dispatchEvent(new Event('change'))));
+</script></body></html>
