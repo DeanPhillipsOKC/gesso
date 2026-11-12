@@ -1,0 +1,56 @@
+id: small-circles
+stroke_result: Small circles with the brush tip (clouds)
+name: Small circles
+motion: Small circles with the tip of the brush make a cloud's bumpy top edge. Around a sun or moon, circular strokes
+  move outward from it.
+result: A bumpy, soft edge.
+then: Smooth with the same circular motion, and highlight only the lit top edges.
+mistakes:
+- mistake: The edge is too hard.
+  fix: Soften it with lighter passes. On a cloud, smudging with a finger works too.
+diagram:
+  title: Little circles along the top
+  stages:
+  - caption: Circles with the tip
+    add:
+    - rect:
+      - 4
+      - 4
+      - 92
+      - 92
+      paint: '#5b7fc7'
+      done: true
+      round: 4
+    - circle:
+      - 28
+      - 52
+      - 10
+      paint: '#f4efe4'
+    - circle:
+      - 42
+      - 44
+      - 12
+      paint: '#f4efe4'
+    - circle:
+      - 58
+      - 46
+      - 11
+      paint: '#f4efe4'
+    - circle:
+      - 72
+      - 54
+      - 9
+      paint: '#f4efe4'
+    arrows:
+    - M 30 34 Q 50 22 72 36
+  - caption: Fill in below
+    add:
+    - ellipse:
+      - 50
+      - 62
+      - 32
+      - 10
+      paint: '#f4efe4'
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Swirls and circular strokes
+checked: false

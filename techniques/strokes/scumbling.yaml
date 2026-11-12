@@ -1,0 +1,48 @@
+id: scumbling
+stroke_result: Scumbling (loose, scrubby dry-brush strokes, light over dark)
+name: Scumbling
+brushes:
+- old stiff flat
+load: A small amount of paint straight from the tube, on a dry brush. No water or medium.
+motion: Dry brush, but in loose, scrubby strokes in different directions that follow the shape.
+result: A hazy, broken layer with the dark showing through.
+then: If it covers too much, let it dry and scumble the dark back in.
+mistakes:
+- mistake: It covered the dark underneath.
+  why: Too much paint.
+  fix: Wait until it's dry and scumble the darker color back in.
+note: Teachers use this word for different things. Here it means dry brush in loose scrubby strokes.
+diagram:
+  title: Scrub light over dark
+  stages:
+  - caption: A dark layer, dry
+    add:
+    - ellipse:
+      - 50
+      - 50
+      - 34
+      - 22
+      paint: '#5a6078'
+  - caption: Loose scrubby strokes, dark showing through
+    add:
+    - line: M 26 44 q 8 -8 14 0
+      paint: '#f4efe4'
+      width: 3
+    - line: M 44 40 q 8 8 14 -2
+      paint: '#f4efe4'
+      width: 3
+    - line: M 60 46 q 6 -8 12 2
+      paint: '#f4efe4'
+      width: 3
+    - line: M 34 54 q 8 6 14 -2
+      paint: '#f4efe4'
+      width: 3
+    - line: M 52 56 q 8 -6 14 2
+      paint: '#f4efe4'
+      width: 3
+    - line: M 40 62 q 6 4 12 -2
+      paint: '#f4efe4'
+      width: 3
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Scumbling
+checked: false

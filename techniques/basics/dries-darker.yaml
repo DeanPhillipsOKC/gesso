@@ -1,0 +1,9 @@
+id: dries-darker
+name: Colors dry darker
+lines:
+- Acrylic looks lighter when wet than when dry.
+- Before a big area, paint a test swatch and let it dry before judging the mix.
+sources:
+- docs/research/acrylic-paint-along.md, section 3, Color shift as it dries
+- docs/research/acrylic-paint-along.md, section 5, Judging wet color
+checked: false

@@ -1,0 +1,58 @@
+id: pull-down
+stroke_result: Vertical pull-down (bright or flat, wiped nearly dry, straight down from the waterline)
+name: Pull-down
+brushes:
+- '#12 bright'
+- flat
+load: Load the brush, then wipe it until only a little paint is left.
+motion: Stroke straight down, starting just below the thing being reflected.
+result: A soft, streaky, see-through reflection of a tree, boat, or shore.
+then: Once dry, cross it with thin horizontal dashes of the water color.
+note: Don't be too exact. The water is moving, so a loose reflection looks right.
+diagram:
+  title: Pull the color straight down
+  stages:
+  - caption: The thing above, and dry water
+    add:
+    - rect:
+      - 8
+      - 46
+      - 84
+      - 44
+      paint: '#1d677a'
+    - path: M 40 46 L 50 16 L 60 46 Z
+      paint: '#2f3b2a'
+  - caption: Thin, dry strokes straight down
+    add:
+    - line: M 42 48 L 42 66
+      paint: '#2f3b2a'
+      width: 1.8
+    - line: M 46 48 L 46 74
+      paint: '#2f3b2a'
+      width: 1.8
+    - line: M 50 48 L 50 80
+      paint: '#2f3b2a'
+      width: 1.8
+    - line: M 54 48 L 54 72
+      paint: '#2f3b2a'
+      width: 1.8
+    - line: M 58 48 L 58 64
+      paint: '#2f3b2a'
+      width: 1.8
+    arrows:
+    - M 68 50 L 68 78
+  - caption: Dashes of water color across
+    add:
+    - line: M 38 58 l 14 0
+      paint: '#1d677a'
+      width: 2
+    - line: M 48 66 l 14 0
+      paint: '#1d677a'
+      width: 2
+    - line: M 40 74 l 16 0
+      paint: '#1d677a'
+      width: 2
+sources:
+- docs/research/acrylic-paint-along.md, section 8, Order of painting
+- docs/research/acrylic-paint-along.md, section 8, Softening and broken edges
+checked: false

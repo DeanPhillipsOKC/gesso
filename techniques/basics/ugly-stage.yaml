@@ -1,0 +1,11 @@
+id: ugly-stage
+name: The ugly stage
+lines:
+- Partway through, every painting looks flat or wrong. That's normal. Keep building.
+- Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.
+- Details come last, and only on shapes that are already right.
+sources:
+- docs/research/acrylic-paint-along.md, section 1, Handling mistakes
+- docs/research/acrylic-paint-along.md, section 5, Giving up in the middle
+- docs/research/acrylic-paint-along.md, section 5, Details too early
+checked: false

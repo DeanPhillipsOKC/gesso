@@ -20,6 +20,7 @@ import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
 import build_steps as bs  # noqa: E402
+import cards  # noqa: E402
 import outline as ol  # noqa: E402
 import paints  # noqa: E402
 import plan2  # noqa: E402
@@ -263,6 +264,96 @@ class ToolTests(unittest.TestCase):
             lesson = self.lesson(d)
             (lesson / "parts" / "owner.png").unlink()
             self.assertIn("run outline", self.run_tool("build-steps", "--lesson", str(lesson))["refused"])
+
+
+class BackgroundTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from test_render import FakeClient
+
+        self.tmp = tempfile.TemporaryDirectory()
+        self.cache, tools.CACHE_DIR = tools.CACHE_DIR, Path(self.tmp.name) / "cache"
+        self.client = FakeClient()
+        finish, plan, owner = fixture("red-sailboat")
+        self.lesson = Path(self.tmp.name) / "lesson"
+        (self.lesson / "parts").mkdir(parents=True)
+        (self.lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
+        Image.fromarray(finish).save(self.lesson / "99_finish.png")
+        Image.fromarray(owner.astype(np.uint8)).save(self.lesson / "parts" / "owner.png")
+
+    def tearDown(self):
+        tools.CACHE_DIR = self.cache
+        self.tmp.cleanup()
+
+    def run_tool(self, *argv) -> dict:
+        import contextlib
+        import io
+
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(io.StringIO()):
+            tools.main(list(argv), client=self.client)
+        return json.loads(out.getvalue().strip().splitlines()[-1])
+
+    def test_one_render_names_what_to_remove_and_is_counted(self):
+        r = self.run_tool("background", "--lesson", str(self.lesson))
+        self.assertEqual(self.client.images.calls, 1)
+        self.assertGreater(r["cost_usd"], 0)
+        self.assertEqual(r["removed"], ["The sail", "The hull", "The mast", "The reflection"])
+        with Image.open(self.lesson / "98_background.png") as got, Image.open(self.lesson / "99_finish.png") as finish:
+            self.assertEqual(got.size, finish.size)  # back at the finish's own size
+
+    def test_a_second_render_needs_redo_and_only_one_redo_is_allowed(self):
+        self.run_tool("background", "--lesson", str(self.lesson))
+        self.assertIn("--redo", self.run_tool("background", "--lesson", str(self.lesson))["refused"])
+        self.run_tool("background", "--lesson", str(self.lesson), "--redo")
+        self.assertEqual(self.client.images.calls, 2)
+        self.assertIn("refused", self.run_tool("background", "--lesson", str(self.lesson), "--redo"))
+        self.assertEqual(self.client.images.calls, 2)
+
+    def test_a_render_that_changed_the_scene_or_left_the_objects_is_reported(self):
+        img, parts, given = scene()
+        _, owner, _ = ol.outline(img, parts, given=given)
+        front = owner == 3
+        same, numbers = bs.background_problems(img, img.copy(), front)
+        self.assertIn("didn't remove", " ".join(same))  # the ball is still there
+        cleared = img.copy()
+        cleared[front] = (110, 150, 220)
+        self.assertEqual(bs.background_problems(img, cleared, front)[0], [])
+        other = np.full_like(img, 30)
+        self.assertIn("changed", " ".join(bs.background_problems(img, other, front)[0]))
+
+
+class CardTests(unittest.TestCase):
+    def test_the_cards_in_the_repo_are_complete(self):
+        self.assertEqual(cards.problems(), [])
+        self.assertEqual(len(cards.strokes()), len(cards.stroke_results()))  # one card per stroke result
+
+    def test_every_stroke_the_fixture_plans_use_has_a_card(self):
+        have = set(cards.strokes())
+        for name in NAMES:
+            used = {s["stroke"] for s in bs.flat_steps(fixture(name)[1])}
+            self.assertEqual(used - have, set(), name)
+
+    def test_what_a_broken_card_is_told(self):
+        results = ["Dry brush (x)"]
+        good = {"id": "dry-brush", "stroke_result": "Dry brush (x)", "name": "Dry brush", "result": "Broken marks.",
+                "sources": ["research, section 2"], "checked": False, "brushes": ["flat"],
+                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10]}]}]}}
+        self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])
+        for change, expect in (({"sources": []}, "no sources"), ({"result": ""}, "no result"),
+                               ({"stroke_result": "Made up"}, "isn't an entry"), ({"brushes": ["spoon"]}, "can draw"),
+                               ({"diagram": {"stages": [{"add": [{"blob": 1}]}]}}, "doesn't draw"),
+                               ({"mistakes": [{"mistake": "Blobs."}]}, "'mistake' and 'fix'")):
+            self.assertIn(expect, " | ".join(cards.problems({"dry-brush": {**good, **change}}, {}, results)))
+        self.assertIn("no stroke card for", " | ".join(cards.problems({}, {}, results)))
+        self.assertIn("no lines", " | ".join(cards.problems({}, {"x": {"id": "x", "name": "X", "sources": ["s"], "checked": False}}, [])))
+
+    def test_an_unchecked_card_says_so_and_the_page_holds_every_card(self):
+        page = cards.page()
+        for cid in cards.strokes():
+            self.assertIn(f"id='stroke-{cid}'", page)
+        self.assertIn("Not checked yet", cards.stroke_html({**cards.strokes()["dabbing"], "checked": False}))
+        self.assertNotIn("Not checked yet", cards.stroke_html({**cards.strokes()["dabbing"], "checked": True}))
 
 
 if __name__ == "__main__":

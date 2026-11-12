@@ -1,0 +1,28 @@
+id: thick-to-thin
+stroke_result: Thick-to-thin (flat or angle brush, press, then turn to the edge)
+name: Thick to thin
+brushes:
+- flat
+- angle
+motion: Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure.
+  With an angle brush, the lighter you press, the thinner the line.
+result: A line that starts wide and tapers to a point, for branches and grass.
+then: Add a few thinner offshoots with a liner.
+diagram:
+  title: Wide, then onto the edge
+  stages:
+  - caption: Press the full width
+    add:
+    - path: M 20 78 L 34 78 L 40 52 L 30 52 Z
+      paint: '#6b4a34'
+    arrows:
+    - M 16 76 L 22 54
+  - caption: Turn to the edge and lift
+    add:
+    - path: M 30 52 L 40 52 Q 56 30 74 16 Q 52 32 30 52 Z
+      paint: '#6b4a34'
+    arrows:
+    - M 46 52 L 76 22
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Thick-to-thin stroke with a flat or angle
+checked: false

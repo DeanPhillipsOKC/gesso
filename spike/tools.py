@@ -1357,6 +1357,82 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
             "advice": advice, "cost_usd": 0.0}
 
 
+GRAY = (128, 128, 128)  # the bands around a finish that isn't the image model's shape
+
+
+def _to_frame(finish, size: str):
+    """The finish placed in the image model's frame (bands of gray where the shapes differ), and where it sits."""
+    from PIL import Image
+
+    fw, fh = (int(x) for x in size.split("x"))
+    h, w = finish.shape[:2]
+    scale = min(fw / w, fh / h)
+    nw, nh = int(round(w * scale)), int(round(h * scale))
+    x0, y0 = (fw - nw) // 2, (fh - nh) // 2
+    frame = Image.new("RGB", (fw, fh), GRAY)
+    frame.paste(Image.fromarray(finish).resize((nw, nh), Image.LANCZOS), (x0, y0))
+    return frame, (x0, y0, x0 + nw, y0 + nh)
+
+
+def background_tool(a: argparse.Namespace, client=None) -> dict:
+    """PAID, one render: the finish with everything in front taken out, for what's behind the objects."""
+    import build_steps as bs
+    import numpy as np
+    from filters import load
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2(lesson)
+    owner = _read_owner(lesson, plan)
+    parts = plan["parts"]
+    is_back = bs.back_parts(parts)
+    front = ~is_back[owner]
+    if not front.any():
+        raise Refused("this plan has no objects in front of the background, so there's nothing to take out")
+    out = lesson / "98_background.png"
+    if out.exists() and not a.redo:
+        raise Refused(f"{out.name} already exists. Pass --redo to render it once more.")
+    name = lambda p: p.get("name") or p["id"]  # noqa: E731
+    remove = [name(p) for k, p in enumerate(parts) if not is_back[k] and not p.get("parent")]
+    keep = [name(p) for k, p in enumerate(parts) if is_back[k]]
+    size = size_for(lesson / "99_finish.png")
+    frame, box = _to_frame(finish, size)
+    padded = box != (0, 0) + frame.size
+    (lesson / "trials").mkdir(exist_ok=True)
+    frame_path = lesson / "trials" / "background_in.png"
+    frame.save(frame_path)
+    prompt = ("This is an acrylic painting. Remove these things from it completely: " + "; ".join(remove) + ". "
+              "Where they were, paint what is behind them: continue the background (" + "; ".join(keep) + ") exactly as it "
+              "is around them, in the same colors and the same brushwork. Leave no trace, outline, or shadow of what "
+              "you removed. Change nothing else: everything that stays keeps its exact place, shape, and color. "
+              + ("Keep the plain gray bands at the edges exactly as they are. " if padded else "")
+              + "No text, signature, or watermark.")
+    raw = lesson / "trials" / "background_raw.png"
+    budget = Budget(lesson, a.max_cost, 1)  # one render and at most one redo
+    r = render_one(budget, "background", [frame_path], prompt, raw, a.quality,
+                   "what's behind the objects isn't in the finish, and they cover too much of it for a fill",
+                   size, fresh=a.redo, client=client)
+    got = Image.open(raw).convert("RGB")
+    if got.size != frame.size:
+        got = got.resize(frame.size, Image.LANCZOS)
+    Image.fromarray(np.array(got.crop(box).resize((finish.shape[1], finish.shape[0]), Image.LANCZOS))).save(out)
+    problems, numbers = bs.background_problems(finish, load(out, max_side=100_000), front)
+    return {**r, "out": str(out), "removed": remove, "problems": problems, **numbers,
+            "advice": "Run build-steps again and Read the sheet: no trace of the objects before their own steps."}
+
+
+def cards_tool(a: argparse.Namespace) -> dict:
+    """One HTML page of every stroke card and basics card, for the owner to read and check."""
+    import cards
+
+    out = Path(a.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(cards.page(), encoding="utf-8")
+    s, b = cards.strokes(), cards.basics()
+    return {"out": str(out), "strokes": len(s), "basics": len(b), "problems": cards.problems(s, b),
+            "unchecked": sorted(k for k, c in {**s, **b}.items() if not c.get("checked")), "cost_usd": 0.0}
+
+
 def add_v2_tools(sub) -> None:
     p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
                        description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
@@ -1370,6 +1446,20 @@ def add_v2_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--colors", type=int, default=3, help="colors per part (default 3)")
     p.set_defaults(func=part_colors_tool)
+    p = sub.add_parser("background", help="PAID, one render. v2: the finish with the objects taken out, for what's behind them.",
+                       description="Run when build-steps prints \"needs_background\": true. Writes 98_background.png; "
+                                   "build-steps then uses only its pixels behind the objects, so the render can't move "
+                                   "or recolor anything else. Counted in the lesson's ledger and cached like any render.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--quality", choices=QUALITIES, default="low")
+    p.add_argument("--redo", action="store_true", help="render it once more (one redo at most)")
+    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST, help=f"dollar cap per lesson (default {DEFAULT_MAX_COST:.2f})")
+    p.set_defaults(func=background_tool)
+    p = sub.add_parser("cards", help="Free. One page of every stroke card and basics card, for the owner to check.",
+                       description="Writes techniques/strokes/*.yaml and techniques/basics/*.yaml as one HTML page, each "
+                                   "card with its sources and what the research didn't cover.")
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cards_tool)
     p = sub.add_parser("build-steps", help="Free. v2: cut every step picture from the finished painting.",
                        description="Run after outline. Writes NN_<step id>.png for every step and trials/steps.jpg (all of "
                                    "them on one sheet). Uses 98_background.png (the finish with the objects taken out) for "
@@ -1392,7 +1482,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "render-step", "finish-from-step") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "render-step", "finish-from-step", "background") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2

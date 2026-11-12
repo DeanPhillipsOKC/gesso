@@ -98,6 +98,34 @@ def make_background(finish: np.ndarray, front: np.ndarray, given: np.ndarray | N
     return out
 
 
+CHANGED = 45  # RGB levels a background picture may differ from the finish before a pixel counts as changed
+CHANGED_SHARE = 0.25  # more of the scene changed than this, away from the objects, and the render didn't keep it
+
+
+def background_problems(finish: np.ndarray, background: np.ndarray, front: np.ndarray) -> tuple[list[str], dict]:
+    """Did the background picture keep the scene? Away from the objects it should still be the finish (brushwork
+    aside). Only its pixels behind the objects are ever used, so a changed scene can't spoil a step picture, but it
+    does mean what's behind the objects was painted for a different picture."""
+    if background.shape[:2] != finish.shape[:2]:
+        background = cv2.resize(background, (finish.shape[1], finish.shape[0]), interpolation=cv2.INTER_AREA)
+    away = ~halo(halo(front))
+    a = cv2.GaussianBlur(finish, (0, 0), 4).astype(np.int16)
+    b = cv2.GaussianBlur(background, (0, 0), 4).astype(np.int16)
+    diff = np.abs(a - b).max(2)
+    share = float((diff[away] > CHANGED).mean()) if away.any() else 0.0
+    shift = float(np.abs(a[away].mean(0) - b[away].mean(0)).max()) if away.any() else 0.0
+    left = np.abs(b[front].astype(np.int16) - a[front]).max(1) <= CHANGED / 3 if front.any() else np.array([False])
+    numbers = {"changed_share": round(share, 3), "color_shift": round(shift, 1), "objects_left": round(float(left.mean()), 3)}
+    out = []
+    if share > CHANGED_SHARE:
+        out.append(f"the background picture changed {share:.0%} of the scene away from the objects. Render it once more "
+                   "(--redo); if it still does, delete 98_background.png and keep the free fill.")
+    if left.mean() > 0.5:
+        out.append(f"{left.mean():.0%} of the objects' pixels look the same as in the finish: the render didn't remove "
+                   "them. Render it once more (--redo), naming what to remove more plainly.")
+    return out, numbers
+
+
 def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, front: np.ndarray) -> np.ndarray:
     """Who owns each pixel once the objects are taken out: the parts behind, carried across the gaps the objects
     left, and any marks (clouds, foliage) the background picture shows there."""
@@ -171,8 +199,12 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         carried = area[k] & ~mine  # hidden, or under this part's own children
         if carried.any() and mine.any():
             fill = ff.continue_paint(base, mine)
-            if _is_wide(mine):
-                fill = (1 - ROWS) * fill + ROWS * _rows(base, mine)
+            if _is_wide(mine) and hidden.any():
+                # under the next part (a sky below its horizon) a wide part carries on in bands along its rows.
+                # Under its own scattered marks (clouds, foliage) bands show as bars, so there it's filled from
+                # all around instead.
+                rows = (1 - ROWS) * fill + ROWS * _rows(base, mine)
+                fill = np.where(hidden[..., None], rows, fill)
             fill = fill + borrowed_texture(base, mine, carried)
             c[carried] = np.clip(fill, 0, 255).astype(np.uint8)[carried]
         content[k] = c

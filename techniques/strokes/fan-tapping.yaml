@@ -1,0 +1,49 @@
+id: fan-tapping
+stroke_result: Fan brush tapping (thin paint, spread bristles, middle tips)
+name: Fan brush tapping
+brushes:
+- fan
+load: 'Thin paint: thin it with a little water. Stroke the brush on the palette until the bristles fan out.'
+motion: Stamp only the tips, using the middle of the fan, not the side bristles. For a pine, work from the top down
+  in a zigzag and press harder as you go down. Short strokes in different directions make grass.
+result: Needle or branch clusters, light at the top and heavier where pressed.
+then: If the top is too heavy, add fine branches with a small round instead of more fan marks.
+practice: Try it on scrap paper first.
+mistakes:
+- mistake: Heavy, clumpy marks.
+  why: The paint is too thick, the bristles are clumped, or you stamped with the side.
+  fix: Thin the paint a little, spread the fan, and stamp with the middle tips.
+diagram:
+  title: A pine with the fan
+  stages:
+  - caption: Light taps at the top
+    add:
+    - line: M 50 14 L 50 86
+      paint: '#2f3b2a'
+      width: 1.5
+    - line: M 44 22 L 56 22
+      paint: '#2f3b2a'
+      width: 2.5
+    - line: M 41 30 L 59 30
+      paint: '#2f3b2a'
+      width: 3
+  - caption: Zigzag down, pressing harder
+    add:
+    - line: M 36 40 L 64 40
+      paint: '#2f3b2a'
+      width: 4
+    - line: M 31 52 L 69 52
+      paint: '#2f3b2a'
+      width: 5
+    - line: M 26 64 L 74 64
+      paint: '#2f3b2a'
+      width: 6
+    - line: M 22 76 L 78 76
+      paint: '#2f3b2a'
+      width: 7
+    arrows:
+    - M 82 24 L 86 74
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Tapping or stamping with a fan brush
+- docs/research/acrylic-paint-along.md, section 5, Stamping a fan brush
+checked: false

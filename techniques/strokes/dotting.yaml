@@ -1,0 +1,66 @@
+id: dotting
+stroke_result: Dotting (brush handle end or a dotting tool, fresh paint for each dot)
+name: Dotting
+tools:
+- the handle end of a brush
+- a dotting tool
+load: Dip in fresh paint for each dot or small group. Thicker paint holds a better dot than thin.
+result: Round, slightly raised dots.
+then: Wipe a bad dot off while it's wet, or cover it with the background color once dry.
+mistakes:
+- mistake: Uneven dots.
+  why: Dipping into paint that has skinned over.
+  fix: Keep a fresh puddle.
+note: The research found few written acrylic sources for how thick the paint should be. Lower confidence on the
+  load.
+diagram:
+  title: One dip, one dot
+  stages:
+  - caption: Dip the handle end
+    add:
+    - rect:
+      - 4
+      - 4
+      - 92
+      - 92
+      paint: '#27304d'
+      done: true
+      round: 4
+    - rect:
+      - 44
+      - 14
+      - 12
+      - 40
+      paint: '#b8a58a'
+      round: 5
+    - ellipse:
+      - 50
+      - 62
+      - 18
+      - 6
+      paint: '#f4efe4'
+  - caption: Touch straight down
+    add:
+    - circle:
+      - 24
+      - 84
+      - 4
+      paint: '#f4efe4'
+    - circle:
+      - 40
+      - 78
+      - 4
+      paint: '#f4efe4'
+    - circle:
+      - 58
+      - 86
+      - 4
+      paint: '#f4efe4'
+    - circle:
+      - 76
+      - 80
+      - 4
+      paint: '#f4efe4'
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Dotting
+checked: false

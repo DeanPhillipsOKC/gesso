@@ -572,7 +572,7 @@
      "paints": [
       "sun-1"
      ],
-     "stroke": "fill",
+     "stroke": "small-circles",
      "brush": "#6 round"
     }
    ]

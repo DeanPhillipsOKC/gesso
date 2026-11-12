@@ -1,0 +1,61 @@
+id: double-load
+stroke_result: Double load (flat or angle brush, two colors on two corners)
+name: Double load
+brushes:
+- flat
+- angle
+load: One corner of the brush in one color, the other corner in the second. Reload both for each stroke. A touch
+  of water helps the paint flow.
+result: A two-tone stroke that blends partway between the colors.
+then: Reload both colors for each stroke. Don't try to make it fully smooth.
+mistakes:
+- mistake: You wanted a smooth gradient and got two tones.
+  fix: That's what this stroke does. For a smooth gradient use the side-to-side blend.
+diagram:
+  title: Two colors on one brush
+  stages:
+  - caption: A corner in each color
+    add:
+    - rect:
+      - 30
+      - 20
+      - 40
+      - 14
+      paint: '#b8a58a'
+    - rect:
+      - 30
+      - 34
+      - 20
+      - 8
+      paint: '#4a3a8a'
+    - rect:
+      - 50
+      - 34
+      - 20
+      - 8
+      paint: '#f4efe4'
+  - caption: One stroke, two tones
+    add:
+    - rect:
+      - 20
+      - 56
+      - 60
+      - 10
+      paint: '#4a3a8a'
+    - rect:
+      - 20
+      - 66
+      - 60
+      - 10
+      paint: '#f4efe4'
+    - rect:
+      - 20
+      - 63
+      - 60
+      - 6
+      paint: '#a98ad0'
+    arrows:
+    - M 24 86 L 76 86
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Double load and triple load
+checked: false

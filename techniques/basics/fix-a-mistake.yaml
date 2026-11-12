@@ -1,0 +1,9 @@
+id: fix-a-mistake
+name: Fixing a mistake
+lines:
+- Acrylic is forgiving. Let the area dry, then paint over it and try again.
+- Don't keep working a spot that's half dry. Leave it, work somewhere else, and come back.
+sources:
+- docs/research/acrylic-paint-along.md, section 1, Handling mistakes
+- docs/research/acrylic-paint-along.md, section 5, Painting into a half-dry layer
+checked: false
