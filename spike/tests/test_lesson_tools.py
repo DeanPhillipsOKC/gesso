@@ -200,6 +200,12 @@ class LessonToolTests(unittest.TestCase):
         with self.assertRaises(ValueError):  # not sealed by the skill: not on the site
             site_lessons.add(self.lesson, "sky-test", site)
         code, r = self.run_tool("publish", "--lesson", str(self.lesson), "--final")
+        self.assertIn("not sealed", r["refused"])  # no reviews or notes: the seal lists what's missing
+        self.assertIn("notes.json is missing read", r["refused"])
+        self.assertIn("text review (step 6b) hasn't run", r["refused"])
+        import provenance
+        provenance.seal(self.lesson, json.loads((self.lesson / "lesson.json").read_text(encoding="utf-8")))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(r["provenance"]["kind"], "hands-off")
         r = site_lessons.add(self.lesson, "sky-test", site)
         self.assertEqual(r["url_path"], "/lessons/sky-test/")
