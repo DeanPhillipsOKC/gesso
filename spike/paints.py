@@ -35,7 +35,7 @@ TINT = mixing.REACHABLE  # main paint plus white (or the dark tube) this close t
 HUE_FAMILY = 40.0  # degrees of hue between paints of different families
 CHROMA = 15.0  # a paint with less chroma than this (Lab) is a gray, of no hue family
 KEEP_NAME = 3.0  # a paint that moved less than this keeps the name and used_for it was given
-FAR_MERGE = 14.0  # a merge further apart than this lost a color some part needs (seen on all three fixtures)
+MAX_MERGE = 12.0  # paints further apart than this are never merged: it loses a color the painter can see
 FRACTIONS = [i / 40 for i in range(1, 40)]  # shares of white (or the dark tube) tried for a tint (or shade)
 
 
@@ -68,7 +68,7 @@ def part_colors(finish: np.ndarray, mask: np.ndarray, k: int) -> list[dict]:
         else:
             y, x = int(ys[0]), int(xs[0])
         out.append({"hex": "#%02x%02x%02x" % tuple(rgb), "share": round(float((label == i).mean()), 3),
-                    "x": round(x / w, 3), "y": round(y / h, 3)})
+                    "x": round(float(x / w), 3), "y": round(float(y / h), 3)})
     return out
 
 
@@ -241,19 +241,40 @@ def _merge_steps(stages: list[dict], part: str, a: str, b: str) -> dict | None:
     return {"kept": first["id"], "dropped": second["id"], "part": part}
 
 
+def mergeable(bases: list[dict], keep: set[str]) -> list[tuple[dict, dict]]:
+    """Pairs of base paints that may still merge: neither is an accent, and they're at most MAX_MERGE apart."""
+    return [(a, b) for a, b in itertools.combinations(bases, 2)
+            if a["id"] not in keep and b["id"] not in keep and mixing.delta_e(a["hex"], b["hex"]) <= MAX_MERGE]
+
+
+def over_target(paints: list[dict]) -> list[dict]:
+    """Why each base paint is still its own mix: its nearest other base paint and how far it is, nearest first."""
+    bases = [p for p in paints if not p.get("of")]
+    keep = accents(paints)
+    out = []
+    for p in bases:
+        others = [q for q in bases if q is not p]
+        if not others:
+            continue
+        near = min(others, key=lambda q: (mixing.delta_e(p["hex"], q["hex"]), q["id"]))
+        out.append({"id": p["id"], "nearest": near["id"], "delta_e": round(mixing.delta_e(p["hex"], near["hex"]), 1),
+                    "accent": p["id"] in keep})
+    return sorted(out, key=lambda o: (o["delta_e"], o["id"]))
+
+
 def limit(paints: list[dict], stages: list[dict], max_mixes: int | None, part_order: list[str],
           white: tuple, dark: tuple, dark_name: str) -> tuple[list[dict], list[dict]]:
-    """Merge base paints (not tints or shades), closest first, until there are at most max_mixes. Pairs in
-    different parts go first; two paints of one part merge only when no other pair is left, and then their steps
-    become one. Accents are never merged. Changes paints and stages in place; returns (merges, step merges)."""
+    """Merge base paints (not tints or shades), closest first, toward max_mixes. Pairs in different parts go
+    first; two paints of one part merge only when no other pair is left, and then their steps become one. Accents
+    are never merged, and neither are two paints more than MAX_MERGE apart: that loses a color the painter can see,
+    so a lesson may end above max_mixes. Changes paints and stages in place; returns (merges, step merges)."""
     merges, step_merges = [], []
     while True:
         mark_tints(paints, part_order, white, dark, dark_name)
         bases = [p for p in paints if not p.get("of")]
         if max_mixes is None or len(bases) <= max_mixes:
             break
-        keep = accents(paints)
-        pairs = [(a, b) for a, b in itertools.combinations(bases, 2) if a["id"] not in keep and b["id"] not in keep]
+        pairs = mergeable(bases, accents(paints))
         if not pairs:
             break
         cross = [(a, b) for a, b in pairs if not set(a["shares"]) & set(b["shares"])]
@@ -370,8 +391,9 @@ def measure(finish: np.ndarray, plan: dict, owner: np.ndarray, max_mixes: int | 
         out.append(entry)
     shares = {p["id"]: {q: round(v, 4) for q, v in sorted(p["shares"].items(), key=lambda kv: order.index(kv[0]))}
               for p in paints}
+    over = over_target(out) if max_mixes is not None and len(base_mixes(out)) > max_mixes else []
     return {"paints": out, "stages": stages, "merges": merges, "step_merges": step_merges,
-            "accents": sorted(accents(out)), "shares": shares, "kept_names": kept_names}
+            "accents": sorted(accents(out)), "shares": shares, "kept_names": kept_names, "over_target": over}
 
 
 def base_mixes(paints: list[dict]) -> list[str]:

@@ -257,7 +257,7 @@ class LimitTests(unittest.TestCase):
         self.assertEqual(len(stages[0]["steps"][1]["paints"]), 1)
 
     def test_a_coat_merged_with_the_parts_last_step_finishes_the_part(self):
-        ps = [paint("leaf-1", "#2a7a3a", leaf=0.2), paint("leaf-2", "#8ab020", leaf=0.2),
+        ps = [paint("leaf-1", "#2a7a3a", leaf=0.2), paint("leaf-2", "#4a6a18", leaf=0.2),  # 10 apart, not a shade
               paint("sky-1", "#4a6fb0", sky=0.5), paint("sun-1", "#fbe9b0", sun=0.01)]
         stages = [{"id": "s", "steps": [{"id": "sky", "part": "sky", "show": "full", "paints": ["sky-1"]},
                                         {"id": "sun", "part": "sun", "show": "full", "paints": ["sun-1"]},
@@ -275,6 +275,19 @@ class LimitTests(unittest.TestCase):
         self.limit(ps, [], 3, ["sky", "sun", "hull", "sea"])
         self.assertEqual({p["id"] for p in ps} & {"sun-1", "hull-1"}, {"sun-1", "hull-1"})
         self.assertEqual(next(p for p in ps if p["id"] == "sun-1")["hex"], "#fbe9b0")  # and its color didn't move
+
+    def test_paints_further_apart_than_the_ceiling_are_never_merged(self):
+        ps = [paint("hull-1", "#952821", hull=0.01), paint("refl-1", "#765353", refl=0.01),  # 16 apart
+              paint("sea-1", "#1d677a", sea=0.3), paint("sea-2", "#2a7088", sea=0.1),
+              paint("sun-1", "#fbe9b0", sun=0.003)]
+        self.assertGreater(mixing.delta_e("#952821", "#765353"), paints.MAX_MERGE)
+        merges, _ = self.limit(ps, [], 2, ["hull", "refl", "sea", "sun"])
+        self.assertEqual({p["id"] for p in ps} & {"hull-1", "refl-1"}, {"hull-1", "refl-1"})  # the red stays
+        self.assertTrue(all(m["delta_e"] <= paints.MAX_MERGE for m in merges))
+        self.assertEqual(paints.mergeable([p for p in ps if not p.get("of")], paints.accents(ps)), [])
+        why = {o["id"]: o for o in paints.over_target(ps)}  # what kept it over the target, for the tool to say
+        self.assertEqual((why["hull-1"]["nearest"], why["hull-1"]["delta_e"]),
+                         ("refl-1", round(mixing.delta_e("#952821", "#765353"), 1)))
 
     def test_merging_stops_when_only_accents_are_left(self):
         ps = [paint("a-1", "#fbe9b0", a=0.1), paint("b-1", "#2c7f3a", b=0.1), paint("c-1", "#c03030", c=0.1)]
@@ -305,15 +318,21 @@ class MeasureTests(unittest.TestCase):
         for p in r["paints"]:
             self.assertTrue({"sample_x", "sample_y", "parts", "hex"} <= set(p))
 
-    def test_the_fixtures_come_out_at_max_mixes_or_fewer_the_same_every_run(self):
+    def test_the_fixtures_reach_the_target_or_have_nothing_left_to_merge_the_same_every_run(self):
         dark = mixing.tube_rgb("Ultramarine blue")
         for name in NAMES:
             finish, plan, owner = fixture(name)
             a = paints.measure(finish, plan, owner, 10, dark=dark, dark_name="Ultramarine blue")
-            self.assertLessEqual(len(paints.base_mixes(a["paints"])), 10, name)
+            bases = [p for p in a["paints"] if not p.get("of")]
+            if len(bases) > 10:
+                self.assertEqual(paints.mergeable(bases, set(a["accents"])), [], name)
+                self.assertEqual(len(a["over_target"]), len(bases), name)
             self.assertEqual(a, paints.measure(finish, plan, owner, 10, dark=dark, dark_name="Ultramarine blue"), name)
-            # the fixture plans are the tool's own result, and running it again changes nothing
-            self.assertEqual((a["paints"], a["stages"]), (plan["paints"], plan["stages"]), name)
+            # the fixture plans are the tool's own result, and running it again changes no paint or step. Only a
+            # spot can move: the chickadee's foliage, two paints merged into one, is measured as one color next time
+            def no_spot(ps):
+                return [{k: v for k, v in p.items() if k not in ("sample_x", "sample_y")} for p in ps]
+            self.assertEqual((no_spot(a["paints"]), a["stages"]), (no_spot(plan["paints"]), plan["stages"]), name)
             self.assertIn("sun-1", a["accents"], name)  # the sun is never merged away
 
 
@@ -340,12 +359,16 @@ class PlanTests(unittest.TestCase):
         self.breaks(lambda p: p["paints"][0].pop("sample_x"), "no sample_x/sample_y")
         self.breaks(lambda p: p["paints"][1].update(of="sky-9", plus="white"), "which isn't in paints")
 
-    def test_more_mixes_than_the_technique_allows_is_told(self):
+    def test_over_the_target_is_told_only_when_paints_could_still_merge(self):
         plan = copy.deepcopy(fixture("red-sailboat")[1])
-        self.assertEqual(plan2.problems(plan, {"max_mixes": 10}), [])
-        self.assertIn("allows 9", " | ".join(plan2.problems(plan, {"max_mixes": 9})))
-        plan["paints"][1].update(of="sky-1", plus="white")  # a tint doesn't count
-        self.assertEqual(plan2.problems(plan, {"max_mixes": 9}), [])
+        bases = [c for c in plan["paints"] if not c.get("of")]
+        self.assertGreater(len(bases), 10)
+        self.assertEqual(plan2.problems(plan, {"max_mixes": 10}), [])  # over, but nothing close enough is left
+        bases[1]["hex"] = mixing.rgb_hex(np.clip(np.array(mixing.hex_rgb(bases[2]["hex"])) + 4, 0, 255))
+        text = " | ".join(plan2.problems(plan, {"max_mixes": 10}))
+        self.assertIn(f"{bases[1]['id']} and {bases[2]['id']}", text)
+        self.assertIn("Run paints again", text)
+        self.assertEqual(plan2.problems(plan, {"max_mixes": 20}), [])  # under the target: fine either way
 
     def test_a_version_1_plan_is_not_mistaken_for_version_2(self):
         with tempfile.TemporaryDirectory() as d:
@@ -403,10 +426,11 @@ class ToolTests(unittest.TestCase):
             (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
             r = self.run_tool("paints", "--lesson", str(lesson))
             self.assertEqual(r["problems"], [])
-            self.assertLessEqual(r["base_mixes"], r["max_mixes"])
             self.assertEqual(r["max_mixes"], 10)
+            self.assertGreater(r["base_mixes"], 10)  # the lavender stops above the target rather than lose a color
+            self.assertIn("above the target of 10", r["over_target"][0])
+            self.assertTrue(all(" stays" in line and "away" in line for line in r["over_target"][1:]))
             self.assertTrue((lesson / "trials" / "paints.jpg").exists())
-            self.assertTrue(r["far_merges"])  # the lavender loses colors on its way to 10, and is told so
             written = plan2.load(lesson)
             self.assertEqual(written["paints"], plan["paints"])  # the same paints the fixture holds, still unnamed
             self.assertEqual(plan2.problems(written), [])

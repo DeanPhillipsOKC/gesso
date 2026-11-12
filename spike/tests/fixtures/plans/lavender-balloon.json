@@ -284,6 +284,17 @@
  "paints": [
   {
    "id": "sky-1",
+   "name": "Sky 1",
+   "used_for": "sunset sky",
+   "hex": "#8fa3d1",
+   "sample_x": 0.062,
+   "sample_y": 0.0,
+   "parts": [
+    "sky"
+   ]
+  },
+  {
+   "id": "sky-2",
    "name": "Sky 2",
    "used_for": "sunset sky",
    "hex": "#eca33e",
@@ -300,22 +311,22 @@
    "id": "clouds-1",
    "name": "Clouds 1",
    "used_for": "coral clouds",
-   "hex": "#e35955",
+   "hex": "#e65d5b",
    "sample_x": 0.728,
    "sample_y": 0.111,
    "parts": [
-    "clouds",
-    "balloon"
+    "clouds"
    ]
   },
   {
    "id": "clouds-2",
-   "hex": "#e47542",
+   "name": "Clouds 2",
+   "used_for": "coral clouds",
+   "hex": "#f97a41",
    "sample_x": 0.625,
    "sample_y": 0.158,
    "parts": [
-    "clouds",
-    "lavender"
+    "clouds"
    ]
   },
   {
@@ -334,7 +345,7 @@
    "name": "Fields 1",
    "used_for": "gold fields",
    "hex": "#9d8436",
-   "of": "sky-1",
+   "of": "sky-2",
    "plus": "Ultramarine blue",
    "sample_x": 0.945,
    "sample_y": 0.537,
@@ -369,7 +380,7 @@
    "id": "lavender-2",
    "name": "Lavender 2",
    "used_for": "lavender rows",
-   "hex": "#5a4da5",
+   "hex": "#5c54ab",
    "sample_x": 0.394,
    "sample_y": 0.999,
    "parts": [
@@ -379,14 +390,24 @@
   },
   {
    "id": "lavender-3",
-   "hex": "#897dc2",
+   "name": "Lavender 3",
+   "used_for": "lavender rows",
+   "hex": "#b46b43",
+   "sample_x": 0.308,
+   "sample_y": 0.999,
+   "parts": [
+    "lavender"
+   ]
+  },
+  {
+   "id": "lavender-4",
+   "name": "Lavender 4",
+   "used_for": "lavender rows",
+   "hex": "#a670c2",
    "sample_x": 0.551,
    "sample_y": 0.819,
    "parts": [
-    "sky",
-    "mountains",
-    "lavender",
-    "balloon"
+    "lavender"
    ]
   },
   {
@@ -409,6 +430,28 @@
     "trunk",
     "balloon"
    ]
+  },
+  {
+   "id": "balloon-2",
+   "name": "Balloon 2",
+   "used_for": "the balloon",
+   "hex": "#34627f",
+   "sample_x": 0.186,
+   "sample_y": 0.093,
+   "parts": [
+    "balloon"
+   ]
+  },
+  {
+   "id": "balloon-3",
+   "name": "Balloon 3",
+   "used_for": "the balloon",
+   "hex": "#cd3d27",
+   "sample_x": 0.218,
+   "sample_y": 0.095,
+   "parts": [
+    "balloon"
+   ]
   }
  ],
  "stages": [
@@ -422,8 +465,8 @@
      "part": "sky",
      "show": "blend",
      "paints": [
-      "lavender-3",
-      "sky-1"
+      "sky-1",
+      "sky-2"
      ],
      "stroke": "x-stroke",
      "brush": "1 inch flat"
@@ -471,18 +514,7 @@
      "id": "mountains-far",
      "name": "Block in the mountains",
      "part": "mountains",
-     "show": "flat",
-     "paints": [
-      "lavender-3"
-     ],
-     "stroke": "horizontal-strokes",
-     "brush": "3/4 inch flat"
-    },
-    {
-     "id": "mountains-near",
-     "name": "Darken the near ridges",
-     "part": "mountains",
-     "show": "pass",
+     "show": "full",
      "paints": [
       "lavender-2"
      ],
@@ -495,7 +527,7 @@
      "part": "fields",
      "show": "flat",
      "paints": [
-      "sky-1"
+      "sky-2"
      ],
      "stroke": "horizontal-strokes",
      "brush": "3/4 inch flat"
@@ -545,7 +577,7 @@
      "part": "lavender",
      "show": "pass",
      "paints": [
-      "clouds-2"
+      "lavender-3"
      ],
      "stroke": "press-and-lift",
      "brush": "1/2 inch flat"
@@ -567,7 +599,7 @@
      "part": "lavender",
      "show": "pass",
      "paints": [
-      "lavender-3"
+      "lavender-4"
      ],
      "stroke": "dabbing",
      "brush": "old stiff flat"
@@ -617,7 +649,7 @@
      "part": "tree",
      "show": "pass",
      "paints": [
-      "sky-1"
+      "sky-2"
      ],
      "stroke": "dabbing",
      "brush": "old stiff flat"
@@ -634,7 +666,7 @@
      "part": "balloon",
      "show": "flat",
      "paints": [
-      "clouds-1"
+      "balloon-3"
      ],
      "stroke": "build-from-pieces",
      "brush": "#8 round"
@@ -646,8 +678,8 @@
      "show": "full",
      "paints": [
       "balloon-1",
-      "lavender-3",
-      "sky-1"
+      "balloon-2",
+      "sky-2"
      ],
      "stroke": "press-and-lift",
      "brush": "#4 round"

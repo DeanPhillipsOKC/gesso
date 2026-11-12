@@ -294,12 +294,11 @@
    "id": "sky-3",
    "name": "Sky 3",
    "used_for": "sunset sky",
-   "hex": "#f68f57",
+   "hex": "#fa8c57",
    "sample_x": 0.591,
    "sample_y": 0.336,
    "parts": [
-    "sky",
-    "sun-path"
+    "sky"
    ]
   },
   {
@@ -338,13 +337,13 @@
   },
   {
    "id": "water-2",
-   "hex": "#608888",
+   "name": "Water 2",
+   "used_for": "the water",
+   "hex": "#528383",
    "sample_x": 0.247,
    "sample_y": 0.62,
    "parts": [
-    "water",
-    "hull",
-    "reflection"
+    "water"
    ]
   },
   {
@@ -352,8 +351,21 @@
    "name": "Sun path 1",
    "used_for": "the sun path",
    "hex": "#90896b",
+   "of": "sun-path-2",
+   "plus": "Ultramarine blue",
    "sample_x": 0.522,
    "sample_y": 0.681,
+   "parts": [
+    "sun-path"
+   ]
+  },
+  {
+   "id": "sun-path-2",
+   "name": "Sun path 2",
+   "used_for": "the sun path",
+   "hex": "#e2a259",
+   "sample_x": 0.48,
+   "sample_y": 0.588,
    "parts": [
     "sun-path"
    ]
@@ -370,13 +382,45 @@
    ]
   },
   {
+   "id": "hull-1",
+   "name": "Hull 1",
+   "used_for": "the hull",
+   "hex": "#952821",
+   "sample_x": 0.745,
+   "sample_y": 0.602,
+   "parts": [
+    "hull"
+   ]
+  },
+  {
+   "id": "hull-2",
+   "name": "Hull 2",
+   "used_for": "the hull",
+   "hex": "#67696e",
+   "sample_x": 0.772,
+   "sample_y": 0.581,
+   "parts": [
+    "hull"
+   ]
+  },
+  {
    "id": "reflection-1",
-   "hex": "#84453f",
+   "hex": "#765353",
    "sample_x": 0.761,
    "sample_y": 0.654,
    "parts": [
-    "hull",
     "mast",
+    "reflection"
+   ]
+  },
+  {
+   "id": "reflection-2",
+   "name": "Reflection 2",
+   "used_for": "the reflection",
+   "hex": "#87999b",
+   "sample_x": 0.774,
+   "sample_y": 0.737,
+   "parts": [
     "reflection"
    ]
   }
@@ -472,7 +516,7 @@
      "part": "sun-path",
      "show": "pass",
      "paints": [
-      "sky-3"
+      "sun-path-2"
      ],
      "stroke": "horizontal-dashes",
      "brush": "#6 round"
@@ -511,7 +555,7 @@
      "part": "hull",
      "show": "flat",
      "paints": [
-      "reflection-1"
+      "hull-1"
      ],
      "stroke": "build-from-pieces",
      "brush": "#6 round"
@@ -522,7 +566,7 @@
      "part": "hull",
      "show": "pass",
      "paints": [
-      "water-2"
+      "hull-2"
      ],
      "stroke": "press-and-lift",
      "brush": "#4 round"
@@ -555,7 +599,7 @@
      "part": "reflection",
      "show": "pass",
      "paints": [
-      "water-2"
+      "reflection-2"
      ],
      "stroke": "zigzag",
      "brush": "#6 round"

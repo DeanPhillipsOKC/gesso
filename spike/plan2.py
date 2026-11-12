@@ -81,11 +81,17 @@ def problems(plan: dict, technique: dict | None = None) -> list[str]:
     for c in paints.values():
         if c.get("of") and c["of"] not in paints:
             out.append(f"paint {c.get('id')}: it's a tint or shade of {c['of']!r}, which isn't in paints")
-    bases = [i for i, c in paints.items() if not c.get("of")]
-    limit = (technique or {}).get("max_mixes")
-    if limit is not None and len(bases) > limit:
-        out.append(f"{len(bases)} paints to mix ({', '.join(bases)}); the technique allows {limit}. Run paints, which "
-                   "merges the closest; a tint or shade of a part's main paint (with \"of\") doesn't count.")
+    bases = [c for c in paints.values() if not c.get("of") and HEX.match(c.get("hex", ""))]
+    target = (technique or {}).get("max_mixes")
+    if target is not None and len(bases) > target:
+        import paints as measured  # only here: it needs OpenCV, and the rest of this file doesn't
+
+        everything = [c for c in paints.values() if HEX.match(c.get("hex", ""))]
+        pairs = measured.mergeable(bases, measured.accents(everything))
+        if pairs:  # over the target with nothing close enough left to merge is allowed (design section 9)
+            de, a, b = min((measured.mixing.delta_e(a["hex"], b["hex"]), a["id"], b["id"]) for a, b in pairs)
+            out.append(f"{len(bases)} paints to mix, above the technique's target of {target}, and {a} and {b} are only "
+                       f"Delta E {de:.1f} apart, close enough to merge. Run paints again.")
     all_steps = steps(plan)
     if not all_steps:
         return out + ["the plan has no stages with steps"]

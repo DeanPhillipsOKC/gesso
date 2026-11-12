@@ -1339,14 +1339,18 @@ def paints_tool(a: argparse.Namespace) -> dict:
               + f" merged into {m['into']}, {m['delta_e']} apart" + (", in the same part" if m["same_part"] else "")
               for m in r["merges"]]
     steps = [f"{m['part']}: {m['dropped']} merged into {m['kept']}, because their paints merged" for m in r["step_merges"]]
-    far = [f"{', '.join(m['parts'])}: its {m['hex']} merged into {m['into']}, {m['delta_e']} apart, so the lesson has no "
-           "paint of that color now. Look at the part in trials/paints.jpg and its step pictures. If it reads wrong, "
-           "say so in notes.json for the owner (design section 9); don't raise max_mixes."
-           for m in r["merges"] if m["delta_e"] > paints.FAR_MERGE]
+    names = {p["id"]: p.get("name") or p["id"] for p in r["paints"]}
     bases = paints.base_mixes(r["paints"])
+    over = []
+    if r["over_target"]:
+        over = [f"{len(bases)} base mixes, above the target of {max_mixes}: every pair left is an accent or more than "
+                f"Delta E {paints.MAX_MERGE:g} apart, and merging it would lose a color the painter can see. That's "
+                "allowed; don't raise max_mixes or merge by hand."]
+        over += [f"{names[o['id']]} stays" + (" (an accent)" if o["accent"] else "") + f": nearest is "
+                 f"{names[o['nearest']]}, {o['delta_e']} away" for o in r["over_target"]]
     return {"paints": [{k: p[k] for k in ("id", "name", "hex", "of", "plus", "parts") if k in p} for p in r["paints"]],
             "base_mixes": len(bases), "max_mixes": max_mixes, "merged": merged, "steps_merged": steps,
-            "accents": r["accents"], "kept_names": r["kept_names"], "sheet": str(sheet), "far_merges": far,
+            "accents": r["accents"], "kept_names": r["kept_names"], "sheet": str(sheet), "over_target": over,
             "problems": plan2.problems(plan, technique),
             "advice": "Read the sheet. Name each paint and say what it's for (a paint that kept its name moved under "
                       f"Delta E {paints.KEEP_NAME:g}); then run build-steps and check no step lost its paint.",
@@ -1494,11 +1498,12 @@ def add_v2_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--colors", type=int, default=3, help="colors per part (default 3)")
     p.set_defaults(func=part_colors_tool)
-    p = sub.add_parser("paints", help="Free. v2: measure the plan's paints from the finish and keep them to max_mixes.",
+    p = sub.add_parser("paints", help="Free. v2: measure the plan's paints from the finish and merge them toward max_mixes.",
                        description="Run after outline. Writes plan.json's paints (ids <part>-<n>, darkest first; a tint "
                                    "or shade of a part's main paint gets \"of\" and \"plus\" and doesn't count), merges the "
-                                   "closest to the technique's max_mixes, points the steps at them (two steps of one part "
-                                   "become one when their paints merge), and writes trials/paints.jpg.")
+                                   "closest toward the technique's max_mixes (never two far apart: it says what kept it "
+                                   "over), points the steps at them (two steps of one part become one when their paints "
+                                   "merge), and writes trials/paints.jpg.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=paints_tool)
     p = sub.add_parser("background", help="PAID, one render. v2: the finish with the objects taken out, for what's behind them.",

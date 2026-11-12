@@ -683,16 +683,6 @@
   },
   {
    "id": "sky-2",
-   "hex": "#c39379",
-   "sample_x": 0.621,
-   "sample_y": 0.449,
-   "parts": [
-    "sky",
-    "foliage"
-   ]
-  },
-  {
-   "id": "sky-3",
    "name": "Sunset gold",
    "used_for": "misty sunset sky",
    "hex": "#f1b059",
@@ -716,10 +706,11 @@
   },
   {
    "id": "foliage-1",
-   "hex": "#e28f4d",
-   "sample_x": 0.798,
-   "sample_y": 0.202,
+   "hex": "#d19166",
+   "sample_x": 0.621,
+   "sample_y": 0.449,
    "parts": [
+    "sky",
     "foliage",
     "branch",
     "leaves",
@@ -740,11 +731,23 @@
   },
   {
    "id": "branch-2",
-   "hex": "#b15a38",
+   "name": "Bark tan",
+   "used_for": "the branch",
+   "hex": "#956043",
    "sample_x": 0.095,
    "sample_y": 0.724,
    "parts": [
-    "branch",
+    "branch"
+   ]
+  },
+  {
+   "id": "leaves-1",
+   "name": "Leaf red",
+   "used_for": "the four leaves",
+   "hex": "#d74e26",
+   "sample_x": 0.704,
+   "sample_y": 0.846,
+   "parts": [
     "leaves"
    ]
   },
@@ -817,8 +820,8 @@
      "show": "blend",
      "paints": [
       "sky-1",
-      "sky-2",
-      "sky-3"
+      "foliage-1",
+      "sky-2"
      ],
      "stroke": "x-stroke",
      "brush": "1 inch flat"
@@ -854,17 +857,6 @@
     {
      "id": "foliage-rust",
      "name": "Dab the rust foliage",
-     "part": "foliage",
-     "show": "pass",
-     "paints": [
-      "sky-2"
-     ],
-     "stroke": "dabbing",
-     "brush": "old stiff flat"
-    },
-    {
-     "id": "foliage-orange",
-     "name": "Dab the orange light",
      "part": "foliage",
      "show": "pass",
      "paints": [
@@ -924,7 +916,7 @@
      "part": "leaves",
      "show": "flat",
      "paints": [
-      "branch-2",
+      "leaves-1",
       "foliage-1"
      ],
      "stroke": "build-from-pieces",
@@ -936,7 +928,7 @@
      "part": "leaves",
      "show": "pass",
      "paints": [
-      "sky-3"
+      "sky-2"
      ],
      "stroke": "press-and-lift",
      "brush": "#4 round"
