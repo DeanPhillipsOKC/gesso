@@ -398,6 +398,11 @@ Construction diagrams (`construct`) are added in step 7.
 seeded image, `made_with` says `render` and `reason` says what was tried first and why it was replaced.
 
 ### 6a. No texture arrives all at once (`texture_jumps`)
+When a plan has a base coat followed by texture passes over the same region (lavender rows then dab passes,
+grass, flowers, foliage), give those steps identical `regions` and, after the renders, run
+`from-finish --lesson <lesson> --steps <coat and pass ids> --why "<area>"`: it cuts them from the finish (flat coat,
+then passes darkest first) in a new run folder and keeps the other steps rendered. Continue in the new folder.
+Spike #8 found this beats rendered passes; whole-picture `from-finish` isn't ready (`docs/spikes/from-finish.md`).
 A beginner can't go from flat paint to a finished texture in one step, and twice the lavender did exactly that:
 flat rows, then a whole field of dabs (owner, 2026-11-11: "they're straight lines, then they're textured").
 `publish` and `step-pairs` measure it: `texture_jumps` lists any step that turns more than 10% of the canvas
