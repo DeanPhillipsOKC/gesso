@@ -126,7 +126,7 @@ class BuildStepsTests(unittest.TestCase):
     def test_the_fixture_lessons_build_clean(self):
         for name in NAMES:
             finish, plan, owner = fixture(name)
-            pictures, rows = bs.build(finish, plan, owner)
+            pictures, rows, _ = bs.build(finish, plan, owner)
             self.assertEqual(len(pictures), len(bs.flat_steps(plan)), name)
             self.assertTrue((pictures[-1] == finish).all(), name)
             self.assertEqual(bs.problems(plan, rows), [], name)
@@ -136,14 +136,14 @@ class BuildStepsTests(unittest.TestCase):
 
     def test_the_same_inputs_give_the_same_pictures(self):
         finish, plan, owner = fixture("red-sailboat")
-        a, _ = bs.build(finish, plan, owner)
-        b, _ = bs.build(finish, plan, owner)
+        a, _, _ = bs.build(finish, plan, owner)
+        b, _, _ = bs.build(finish, plan, owner)
         self.assertTrue(all((x == y).all() for x, y in zip(a, b)))
 
     def test_back_to_front_on_a_small_scene(self):
         img, parts, given = scene()
         _, owner, _ = ol.outline(img, parts, given=given)
-        pictures, rows = bs.build(img, scene_plan(parts), owner)
+        pictures, rows, _ = bs.build(img, scene_plan(parts), owner)
         sky, dabs, ground, ball_flat, done = pictures
         canvas = np.array(bs.ff.CANVAS)
         self.assertTrue(np.abs(sky[100, 20].astype(int) - canvas).max() < 3)  # the ground is still bare canvas
@@ -157,8 +157,8 @@ class BuildStepsTests(unittest.TestCase):
         img, parts, given = scene()
         _, owner, _ = ol.outline(img, parts, given=given)
         plate = np.full_like(img, 255)  # a "render" that got everything wrong
-        with_plate, _ = bs.build(img, scene_plan(parts), owner, background=plate)
-        without, _ = bs.build(img, scene_plan(parts), owner)
+        with_plate, _, _ = bs.build(img, scene_plan(parts), owner, background=plate)
+        without, _, _ = bs.build(img, scene_plan(parts), owner)
         near_ball = bs.halo(owner == 3)
         self.assertTrue((with_plate[2][~near_ball] == without[2][~near_ball]).all())  # nothing else moved
         self.assertFalse((with_plate[2][near_ball] == without[2][near_ball]).all())

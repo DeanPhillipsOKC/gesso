@@ -1363,7 +1363,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
         raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
     plate = lesson / "98_background.png"
     background = load(plate, max_side=100_000) if plate.exists() else None
-    pictures, rows = bs.build(finish, plan, owner, background)
+    pictures, rows, _ = bs.build(finish, plan, owner, background)
     steps = bs.flat_steps(plan)
     for old in lesson.glob("[0-9][0-9]_*.png"):
         if not old.name.startswith(("00_", "98_", "99_")):
@@ -1385,6 +1385,43 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
             "objects_share": front, "background": plate.name if background is not None else None,
             "needs_background": background is None and front > bs.NEEDS_BACKGROUND,
             "advice": advice, "cost_usd": 0.0}
+
+
+def step_aids_tool(a: argparse.Namespace) -> dict:
+    """Write aids/: every step's teaching pictures (where its paint goes, a close-up, a paint map) and the transfer
+    outline, from the outlines, the plan, and the step pictures. No renders, the same bytes every run."""
+    import aids
+    import build_steps as bs
+    import numpy as np
+    from filters import load
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2(lesson)
+    owner = _read_owner(lesson, plan)
+    if owner.shape != finish.shape[:2]:
+        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
+    steps = bs.flat_steps(plan)
+    names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
+    missing = [n for n in names if not (lesson / n).exists()]
+    if missing:
+        raise Refused(f"missing step pictures {missing}: run build-steps --lesson {lesson} first")
+    plate = lesson / "98_background.png"
+    built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
+    pictures = [load(lesson / n, max_side=100_000) for n in names]
+    stale = [n for n, p, b in zip(names, pictures, built) if p.shape != b.shape or not np.array_equal(p, b)]
+    if stale:
+        raise Refused(f"the step pictures don't match the plan ({stale[0]} first): run build-steps --lesson {lesson} again")
+    info_path = lesson / "canvas.json"
+    info = json.loads(info_path.read_text(encoding="utf-8")) if info_path.exists() else {}
+    view = canvas_view(lesson, names)
+    data = aids.make(plan, pictures, masks, owner, info.get("canvas_box"), info.get("canvas"), lesson / "aids",
+                     [view.get(n, n) for n in names])
+    (lesson / "aids" / "aids.json").write_text(json.dumps(data, indent=1), encoding="utf-8")
+    rows = data["steps"]
+    return {"aids": str(lesson / "aids" / "aids.json"), "steps": len(rows),
+            "closeups": sum(1 for r in rows if r.get("closeup")), "maps": sum(1 for r in rows if r.get("map")),
+            "transfer": bool(data["transfer"]),
+            "advice": "Run publish to put them on the page. Run this again whenever build-steps runs.", "cost_usd": 0.0}
 
 
 GRAY = (128, 128, 128)  # the bands around a finish that isn't the image model's shape
@@ -1496,6 +1533,13 @@ def add_v2_tools(sub) -> None:
                                    "what's behind objects when it exists.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=build_steps_tool)
+    p = sub.add_parser("step-aids", help="Free. v2: every step's teaching pictures (where, close-up, paint map) and the transfer outline.",
+                       description="Run after build-steps. Writes aids/aids.json and its pictures: each step's painted "
+                                   "area as an outline for the page, a close-up of small areas, a paint map where a step "
+                                   "or part has 2 or more paints, the position in words (inches on the canvas from "
+                                   "canvas.json, or the quarter marks without one), and aids/transfer.png.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=step_aids_tool)
 
 
 def build_parser() -> argparse.ArgumentParser:

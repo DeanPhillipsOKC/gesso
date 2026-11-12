@@ -1,6 +1,7 @@
 """Every step picture cut from the one finished painting (pipeline v2, docs/design/pipeline-v2.md section 8).
 
-    build(finish, plan, owner, background=None) -> (one picture per step, one row of numbers per step)
+    build(finish, plan, owner, background=None) -> (one picture per step, one row of numbers per step,
+                                                    one mask per step: the pixels it lays paint on)
 
 No renders. Each step paints inside one part's outline (spike/outline.py), so a step can't move, reshape, or
 recolor anything else, and the last picture is the finish. That removes what the image reviews, the redos, and
@@ -146,7 +147,10 @@ def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, fro
 
 
 def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
-          background: np.ndarray | None = None) -> tuple[list[np.ndarray], list[dict]]:
+          background: np.ndarray | None = None) -> tuple[list[np.ndarray], list[dict], list[np.ndarray]]:
+    """(each step's picture, each step's numbers, each step's painted area). The painted area is the pixels the
+    step lays paint on, plus an object's rim on the step that brings the object back: what the step-aids outline
+    on the page."""
     parts, steps = plan["parts"], flat_steps(plan)
     index = {p["id"]: i for i, p in enumerate(parts)}
     hexes = {p["id"]: p["hex"] for p in plan["paints"]}
@@ -217,7 +221,7 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     canvas = np.empty((h, w, 3), np.float32)
     canvas[:] = ff.CANVAS
     started = np.zeros(len(parts), bool)
-    pictures, rows = [], []
+    pictures, rows, painted = [], [], []
     for i, s in enumerate(steps):
         k = index[s["part"]]
         if k not in content:
@@ -254,11 +258,12 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
                      "changed": round(float(changed.mean()), 4),
                      "outside": round(float((changed & ~rim & ~cv2.dilate(area[k].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)).mean()), 5)})
         pictures.append(np.clip(canvas, 0, 255).astype(np.uint8))
+        painted.append(where | rim)
     gap = np.abs(pictures[-1].astype(np.int16) - finish.astype(np.int16)).max(2) > 24
     for r in rows:
         r["final_gap"] = round(float(gap.mean()), 4)  # how far the built last picture is from the finish (0 = the same)
     pictures[-1] = finish.copy()
-    return pictures, rows
+    return pictures, rows, painted
 
 
 def _lay(canvas: np.ndarray, paint: np.ndarray, where: np.ndarray) -> np.ndarray:
