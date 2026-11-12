@@ -1,0 +1,12 @@
+id: let-it-dry
+name: Let each layer dry
+lines:
+- Between steps, the paint underneath should be dry to the touch. A hair dryer on low speeds it up.
+- Painting into half-dry paint drags it up and turns it gooey and muddy.
+- Thick paint can feel dry on top and still be wet inside. Give thick areas longer.
+- Fine lines and light colors over dark especially need a dry layer underneath.
+sources:
+- docs/research/acrylic-paint-along.md, section 3, Painting over wet versus dry layers
+- docs/research/acrylic-paint-along.md, section 3, Drying time and open time
+- docs/research/acrylic-paint-along.md, section 1, Pacing, waiting and drying
+checked: false

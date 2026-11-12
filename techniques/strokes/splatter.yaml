@@ -1,0 +1,90 @@
+id: splatter
+stroke_result: Splatter (thinned paint, toothbrush or a flicked brush)
+name: Splatter
+brushes:
+- flat
+tools:
+- an old toothbrush
+load: Thinned paint. Too much water gives big drips.
+motion: Flick the bristles with a finger, or tap the brush on another handle.
+result: Random speckles, for stars or snow.
+then: Let it dry before the next step.
+mistakes:
+- mistake: Speckles where you don't want them.
+  fix: Wipe them right away with a damp cloth or cotton swab.
+diagram:
+  title: Flick thinned paint
+  stages:
+  - caption: Random speckles
+    add:
+    - rect:
+      - 4
+      - 4
+      - 92
+      - 92
+      paint: '#27304d'
+      done: true
+      round: 4
+    - circle:
+      - 20
+      - 30
+      - 1.6
+      paint: '#f4efe4'
+    - circle:
+      - 34
+      - 22
+      - 1
+      paint: '#f4efe4'
+    - circle:
+      - 46
+      - 40
+      - 2
+      paint: '#f4efe4'
+    - circle:
+      - 60
+      - 26
+      - 1.2
+      paint: '#f4efe4'
+    - circle:
+      - 74
+      - 36
+      - 1.8
+      paint: '#f4efe4'
+    - circle:
+      - 28
+      - 54
+      - 1.2
+      paint: '#f4efe4'
+    - circle:
+      - 52
+      - 60
+      - 1.5
+      paint: '#f4efe4'
+    - circle:
+      - 68
+      - 56
+      - 1
+      paint: '#f4efe4'
+    - circle:
+      - 82
+      - 64
+      - 1.6
+      paint: '#f4efe4'
+    - circle:
+      - 40
+      - 74
+      - 1.1
+      paint: '#f4efe4'
+    - circle:
+      - 60
+      - 80
+      - 1.9
+      paint: '#f4efe4'
+    - circle:
+      - 22
+      - 78
+      - 1.3
+      paint: '#f4efe4'
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Splatter (stars, snow)
+checked: false

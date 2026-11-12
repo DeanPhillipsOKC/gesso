@@ -1,0 +1,50 @@
+id: flicking
+stroke_result: Flicking (light load, quick upward stroke from the base)
+name: Flicking
+brushes:
+- fan (its edge)
+load: Light paint. Too much makes flat blobs.
+motion: A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.
+result: Tapered blades with broken tips, denser at the base.
+then: Flick a lighter green over the dark base, fewer as you go up, so the dark shows between the blades.
+note: The research found few written sources for this stroke. Lower confidence than the other cards.
+diagram:
+  title: Flick up from the base
+  stages:
+  - caption: Dark blades first
+    add:
+    - line: M 24 80 Q 22 60 28 44
+      paint: '#2f3b2a'
+      width: 2
+    - line: M 34 80 Q 36 62 32 48
+      paint: '#2f3b2a'
+      width: 2
+    - line: M 44 80 Q 42 58 48 40
+      paint: '#2f3b2a'
+      width: 2
+    - line: M 54 80 Q 58 64 54 50
+      paint: '#2f3b2a'
+      width: 2
+    - line: M 64 80 Q 62 60 68 46
+      paint: '#2f3b2a'
+      width: 2
+    - line: M 74 80 Q 76 64 72 52
+      paint: '#2f3b2a'
+      width: 2
+    arrows:
+    - M 86 78 L 84 44
+  - caption: Fewer, lighter ones on top
+    add:
+    - line: M 30 80 Q 28 64 34 52
+      paint: '#9bbf4a'
+      width: 1.6
+    - line: M 50 80 Q 52 62 48 50
+      paint: '#9bbf4a'
+      width: 1.6
+    - line: M 68 80 Q 66 66 72 56
+      paint: '#9bbf4a'
+      width: 1.6
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Flicking (grass, fur)
+- techniques/acrylic-paint-along-beginner.yaml, brush_moves (the fan brush edge)
+checked: false

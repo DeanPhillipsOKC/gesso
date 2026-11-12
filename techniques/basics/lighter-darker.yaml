@@ -1,0 +1,12 @@
+id: lighter-darker
+name: Making a color lighter or darker
+lines:
+- 'To lighten: add the color to the white a little at a time, not white to the color.'
+- White also dulls a color. Too much turns it chalky.
+- 'To darken: add the dark into the lighter mix in small amounts.'
+- For the next lighter value of something, start from the mix you already have and add white, so the colors stay
+  related.
+sources:
+- docs/research/acrylic-paint-along.md, section 6, Lightening and darkening
+- docs/research/acrylic-paint-along.md, section 6, Mixing as you go
+checked: false

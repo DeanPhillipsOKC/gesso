@@ -1,0 +1,10 @@
+id: one-light
+name: One light direction
+lines:
+- Pick where the light comes from and put every highlight on that side.
+- 'Each thing is built the same way: the whole shape in a darker or middle value, a lighter value on the side facing
+  the light, then the lightest on a small area at the very edge. Each covers less than the one before.'
+sources:
+- docs/research/acrylic-paint-along.md, section 4, The core pattern
+- docs/research/acrylic-paint-along.md, section 5, Uneven lighting
+checked: false

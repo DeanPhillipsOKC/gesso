@@ -1,0 +1,37 @@
+id: horizontal-strokes
+stroke_result: Horizontal strokes for flat ground (fields, water, distant land)
+name: Horizontal strokes
+brushes:
+- 3/4 inch flat
+motion: Keep the brush level and the strokes long, left and right.
+result: Flat, level bands that read as ground or water stretching away, with slight streaks that follow the stroke.
+then: Lighter and smoother toward the back, darker and more textured in front.
+diagram:
+  title: Long and level
+  stages:
+  - caption: Left and right, level
+    add:
+    - rect:
+      - 8
+      - 30
+      - 84
+      - 44
+      paint: '#1d677a'
+    arrows:
+    - M 14 40 L 86 40
+    - M 86 62 L 14 62
+  - caption: A few darker streaks left in
+    add:
+    - line: M 16 48 l 30 0
+      paint: '#12505f'
+      width: 2
+    - line: M 52 56 l 28 0
+      paint: '#12505f'
+      width: 2
+    - line: M 22 66 l 24 0
+      paint: '#12505f'
+      width: 2
+sources:
+- docs/research/acrylic-paint-along.md, section 8, Order of painting (the water base)
+- techniques/acrylic-paint-along-beginner.yaml, stroke_results
+checked: false

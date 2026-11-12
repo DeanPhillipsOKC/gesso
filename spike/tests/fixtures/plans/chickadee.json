@@ -917,7 +917,7 @@
      "paints": [
       "sun"
      ],
-     "stroke": "fill",
+     "stroke": "small-circles",
      "brush": "#6 round"
     }
    ]
@@ -1052,7 +1052,7 @@
      "paints": [
       "wing"
      ],
-     "stroke": "fill",
+     "stroke": "build-from-pieces",
      "brush": "#6 round"
     },
     {
@@ -1063,7 +1063,7 @@
      "paints": [
       "black"
      ],
-     "stroke": "fill",
+     "stroke": "build-from-pieces",
      "brush": "#6 round"
     },
     {
@@ -1074,7 +1074,7 @@
      "paints": [
       "white"
      ],
-     "stroke": "fill",
+     "stroke": "build-from-pieces",
      "brush": "#6 round"
     },
     {

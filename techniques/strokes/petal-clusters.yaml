@@ -1,0 +1,99 @@
+id: petal-clusters
+stroke_result: Small petal clusters (round, angle changed each mark, some past the outline)
+name: Petal clusters
+brushes:
+- '#4 round'
+motion: Small four-petal marks. Change the angle often, put some in clusters of two or three, and let some go past
+  the outline for a ruffled edge.
+result: A ruffled, textured flower head (hydrangea, lilac).
+then: Lighter marks dense at the top and sparse at the bottom, only on a dry base.
+mistakes:
+- mistake: The light marks look dull once dry.
+  why: Paint darkens as it dries.
+  fix: Add another light layer.
+diagram:
+  title: Ruffle a flower head
+  stages:
+  - caption: A solid dark ball, dry
+    add:
+    - circle:
+      - 50
+      - 52
+      - 28
+      paint: '#4a3a8a'
+  - caption: Petal marks, more at the top, some past the edge
+    add:
+    - ellipse:
+      - 36
+      - 34
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: 20
+    - ellipse:
+      - 48
+      - 28
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: -30
+    - ellipse:
+      - 60
+      - 32
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: 60
+    - ellipse:
+      - 70
+      - 42
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: 10
+    - ellipse:
+      - 30
+      - 46
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: -50
+    - ellipse:
+      - 44
+      - 42
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: 80
+    - ellipse:
+      - 56
+      - 44
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: -10
+    - ellipse:
+      - 24
+      - 38
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: 40
+    - ellipse:
+      - 64
+      - 54
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: 30
+    - ellipse:
+      - 40
+      - 56
+      - 4.5
+      - 2.6
+      paint: '#a98ad0'
+      rotate: -40
+sources:
+- docs/research/acrylic-paint-along.md, section 7, Marks, brushes and paint load
+- docs/research/acrylic-paint-along.md, section 7, Building a clump in passes
+checked: false

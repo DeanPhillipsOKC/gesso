@@ -1421,6 +1421,18 @@ def background_tool(a: argparse.Namespace, client=None) -> dict:
             "advice": "Run build-steps again and Read the sheet: no trace of the objects before their own steps."}
 
 
+def cards_tool(a: argparse.Namespace) -> dict:
+    """One HTML page of every stroke card and basics card, for the owner to read and check."""
+    import cards
+
+    out = Path(a.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(cards.page(), encoding="utf-8")
+    s, b = cards.strokes(), cards.basics()
+    return {"out": str(out), "strokes": len(s), "basics": len(b), "problems": cards.problems(s, b),
+            "unchecked": sorted(k for k, c in {**s, **b}.items() if not c.get("checked")), "cost_usd": 0.0}
+
+
 def add_v2_tools(sub) -> None:
     p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
                        description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
@@ -1443,6 +1455,11 @@ def add_v2_tools(sub) -> None:
     p.add_argument("--redo", action="store_true", help="render it once more (one redo at most)")
     p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST, help=f"dollar cap per lesson (default {DEFAULT_MAX_COST:.2f})")
     p.set_defaults(func=background_tool)
+    p = sub.add_parser("cards", help="Free. One page of every stroke card and basics card, for the owner to check.",
+                       description="Writes techniques/strokes/*.yaml and techniques/basics/*.yaml as one HTML page, each "
+                                   "card with its sources and what the research didn't cover.")
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cards_tool)
     p = sub.add_parser("build-steps", help="Free. v2: cut every step picture from the finished painting.",
                        description="Run after outline. Writes NN_<step id>.png for every step and trials/steps.jpg (all of "
                                    "them on one sheet). Uses 98_background.png (the finish with the objects taken out) for "

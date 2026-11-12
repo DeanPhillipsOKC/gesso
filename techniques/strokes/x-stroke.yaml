@@ -1,0 +1,43 @@
+id: x-stroke
+stroke_result: X stroke, criss-cross, or slip-slap (flat brush)
+name: X stroke
+also_called:
+- criss-cross
+- slip-slap
+brushes:
+- flat
+load: One or two colors on the brush. How much of each is on it controls the blend.
+motion: Short strokes that cross each other in two directions, like overlapping X shapes.
+result: A soft, slightly textured blended fill with visible criss-cross marks.
+then: For a smooth, even gradient, go over it while wet with lighter, longer side-to-side strokes. Or leave it as
+  texture.
+diagram:
+  title: Fill with crossing strokes
+  stages:
+  - caption: One X
+    add:
+    - line: M 30 30 L 60 60
+      paint: '#5b7fc7'
+      width: 7
+    - line: M 60 30 L 30 60
+      paint: '#5b7fc7'
+      width: 7
+    arrows:
+    - M 30 30 L 58 58
+  - caption: Overlap the next ones
+    add:
+    - line: M 50 34 L 80 64
+      paint: '#e8a53a'
+      width: 7
+    - line: M 80 34 L 50 64
+      paint: '#e8a53a'
+      width: 7
+    - line: M 22 52 L 52 82
+      paint: '#5b7fc7'
+      width: 7
+    - line: M 52 52 L 22 82
+      paint: '#5b7fc7'
+      width: 7
+sources:
+- docs/research/acrylic-paint-along.md, section 2, X stroke, criss-cross, slip-slap
+checked: false

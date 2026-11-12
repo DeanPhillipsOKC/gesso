@@ -1,0 +1,34 @@
+id: glazing
+stroke_result: Glazing (transparent color thinned with medium, over dry paint)
+name: Glazing
+brushes:
+- soft flat
+load: A small amount of a see-through color thinned with glazing medium. Water doesn't work as well.
+result: A see-through tint over what's underneath.
+then: If it's too dark, paint a lighter opaque color over it.
+note: Needs glazing medium and see-through paints that most beginners don't own. Rarely used at beginner level.
+diagram:
+  title: A thin tint over dry paint
+  stages:
+  - caption: Dry paint
+    add:
+    - rect:
+      - 14
+      - 30
+      - 72
+      - 40
+      paint: '#e8a53a'
+  - caption: A see-through layer over part of it
+    add:
+    - rect:
+      - 40
+      - 30
+      - 46
+      - 40
+      paint: '#c0392b'
+      opacity: 0.35
+    arrows:
+    - M 44 22 L 82 22
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Glazing
+checked: false

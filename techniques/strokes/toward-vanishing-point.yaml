@@ -1,0 +1,53 @@
+id: toward-vanishing-point
+stroke_result: Strokes toward a vanishing point (rows, paths, fences, furrows)
+name: Strokes toward one point
+motion: Mark one dot on the horizon. Draw three to five faint chalk or pencil lines fanning out from it. Pull each
+  row's strokes along its line, wide in front and thin near the dot.
+result: Bands that narrow and bunch together toward one point, which is what makes the ground lie down and recede.
+then: Check a few rows with the brush handle held from the dot.
+mistakes:
+- mistake: Rows run parallel or cross each other.
+  fix: Mark the dot and the fan of lines first. It takes a minute.
+diagram:
+  title: Every row aims at one dot
+  stages:
+  - caption: A dot on the horizon, faint lines from it
+    add:
+    - line: M 6 30 L 94 30
+      paint: '#8a8a8a'
+      width: 0.8
+    - circle:
+      - 50
+      - 30
+      - 2.4
+      paint: '#333333'
+    - line: M 50 30 L 6 96
+      paint: '#9a9a9a'
+      width: 0.8
+    - line: M 50 30 L 28 96
+      paint: '#9a9a9a'
+      width: 0.8
+    - line: M 50 30 L 50 96
+      paint: '#9a9a9a'
+      width: 0.8
+    - line: M 50 30 L 72 96
+      paint: '#9a9a9a'
+      width: 0.8
+    - line: M 50 30 L 94 96
+      paint: '#9a9a9a'
+      width: 0.8
+  - caption: Rows wide in front, thin at the dot
+    add:
+    - path: M 50 30 L 8 96 L 24 96 Z
+      paint: '#4a3a8a'
+    - path: M 50 30 L 32 96 L 46 96 Z
+      paint: '#4a3a8a'
+    - path: M 50 30 L 54 96 L 68 96 Z
+      paint: '#4a3a8a'
+    - path: M 50 30 L 76 96 L 92 96 Z
+      paint: '#4a3a8a'
+    arrows:
+    - M 16 92 L 44 40
+sources:
+- docs/research/acrylic-paint-along.md, section 7, Rows in perspective
+checked: false

@@ -1,0 +1,32 @@
+id: curved-strokes
+stroke_result: Curved strokes that follow a form (hills, pumpkin ribs, a balloon)
+name: Curved strokes
+motion: 'Bend every stroke with the shape: down each rib of a pumpkin from the top of the bump, around a balloon.'
+result: Marks that bend with the shape, which is what makes it look round or sloped.
+then: Use the darker mix along the shadow side and the lighter one along the lit side, both following the curve.
+diagram:
+  title: Strokes that wrap the shape
+  stages:
+  - caption: A round shape
+    add:
+    - circle:
+      - 50
+      - 52
+      - 30
+      paint: '#e07a2c'
+  - caption: Curved strokes, lighter toward the light
+    add:
+    - line: M 40 28 Q 30 52 40 76
+      paint: '#f3b45c'
+      width: 2.4
+    - line: M 52 24 Q 46 52 52 80
+      paint: '#f3b45c'
+      width: 2.4
+    - line: M 64 28 Q 62 52 64 76
+      paint: '#f3b45c'
+      width: 2.4
+    arrows:
+    - M 30 30 Q 20 52 30 74
+sources:
+- docs/research/acrylic-paint-along.md, section 4, Round objects
+checked: false

@@ -1,0 +1,39 @@
+id: zigzag
+stroke_result: Zigzag (small round, light load)
+name: Zigzag
+brushes:
+- small round
+load: A light load.
+motion: A wavy line straight down, for the reflection of anything straight and upright. Ripples bend straight lines.
+result: A wavy vertical line, for the reflection of a mast, post, or plank.
+then: Break it in one or two places with a ripple dash.
+diagram:
+  title: Ripples bend a straight line
+  stages:
+  - caption: The straight thing above the water
+    add:
+    - rect:
+      - 8
+      - 44
+      - 84
+      - 46
+      paint: '#1d677a'
+    - line: M 50 10 L 50 44
+      paint: '#6b4a34'
+      width: 2
+  - caption: Its reflection, as a zigzag
+    add:
+    - line: M 50 46 L 46 52 L 54 58 L 46 64 L 54 70 L 47 76 L 52 82
+      paint: '#6b4a34'
+      width: 1.8
+  - caption: Break it with a dash or two
+    add:
+    - line: M 42 61 l 16 0
+      paint: '#1d677a'
+      width: 2.4
+    - line: M 44 73 l 14 0
+      paint: '#1d677a'
+      width: 2.4
+sources:
+- docs/research/acrylic-paint-along.md, section 8, Stroke direction
+checked: false

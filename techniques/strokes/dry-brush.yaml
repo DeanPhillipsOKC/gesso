@@ -1,0 +1,73 @@
+id: dry-brush
+stroke_result: Dry brush (no water, tip loaded and wiped nearly clean, light pressure)
+name: Dry brush
+brushes:
+- flat
+- old stiff flat (catches the canvas weave best)
+load: A dry brush, no water. Load only the tip, then wipe most of the paint off on a paper towel. It should feel
+  dry and hard to apply.
+motion: Light pressure, skimming the surface.
+result: Feathery, broken, see-through marks that catch the canvas texture. Never a solid area.
+then: Build up in several light passes.
+uses:
+- cloud highlights
+- grass
+- wood and fences
+- highlights on round things
+mistakes:
+- mistake: It went on solid.
+  why: The brush was too loaded.
+  fix: Let it dry, then dry-brush the base color back over part of it.
+practice: 'Try it on scrap paper first: wipe the brush until it leaves broken marks.'
+diagram:
+  title: Skim, with almost no paint
+  stages:
+  - caption: A dark base, dry
+    add:
+    - rect:
+      - 10
+      - 30
+      - 80
+      - 40
+      paint: '#6b4a34'
+  - caption: Light, broken strokes over it
+    add:
+    - line: M 14 38 l 22 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 42 36 l 14 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 62 39 l 20 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 20 46 l 12 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 38 47 l 26 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 70 48 l 12 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 14 56 l 18 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 40 58 l 12 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 58 57 l 24 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 26 64 l 20 0
+      paint: '#d9a86a'
+      width: 2
+    - line: M 54 65 l 14 0
+      paint: '#d9a86a'
+      width: 2
+    arrows:
+    - M 14 22 L 84 22
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Dry brushing
+- docs/research/acrylic-paint-along.md, section 5, Too much paint on the brush
+checked: false
