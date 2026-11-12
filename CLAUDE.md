@@ -6,6 +6,8 @@ Early stage: scaffolding and the first skills, no app code yet.
 Project knowledge lives under `docs/`. Read it before making changes:
 
 - `docs/vision.md`: what we're building and why, how the pipeline works, and the milestones.
+- `docs/design/pipeline-v2.md`: the design being built now (render the finish once, cut every step from it).
+  Read all of it before any pipeline v2 issue.
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
   anything, and don't re-propose what it rules out.
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).

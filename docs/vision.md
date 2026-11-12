@@ -78,6 +78,15 @@ First three lessons (paint-along, low quality steps, high quality finish): trees
 $0.40, half of it Claude API calls. So far filters make the reference and the painter's studies, while the
 paint-along steps themselves are still renders; compositing (#8) is the next big saving.
 
+### Next: pipeline v2 (2026-11-12)
+
+The skill above renders every step, and most of a run goes on repairing what the image model moved between
+renders. Pipeline v2 renders the finish once and cuts every step from it with free tools, so steps can't drift,
+can be as small as a beginner needs, and come with pictures of where to paint and which paint goes where. The
+design, what's built, and what's left: `docs/design/pipeline-v2.md`. The first part is in the repo
+(`outline`, `build-steps`; `docs/spikes/outlines.md`): three lessons' step pictures, 14 to 19 steps each, with no
+renders beyond the finish, in about 20 seconds.
+
 ## What each step includes
 
 - The image of the canvas at the end of the step, next to the reference photo

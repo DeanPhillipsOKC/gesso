@@ -124,6 +124,41 @@ with the date.
   lesson pages work for everyone. Keep it that way: no keys (`.env` stays ignored), no personal photos or names,
   commits with the GitHub noreply address. There's no license file, so the code is look-but-don't-reuse.
 
+- **Pipeline v2: render the finish once, cut every step from it (2026-11-12, owner's call).** The owner found the
+  lessons short on detail for new painters, too dependent on inference and image generation, and too dear ($0.40
+  to $0.51 and over 20 minutes a run). Each step picture is now cut from the one finished painting, inside real
+  outlines of its parts, by free local tools (`docs/design/pipeline-v2.md`; proven on three lessons in
+  `docs/spikes/outlines.md`). This replaces three earlier decisions where they conflict:
+  - "The image model renders the plan" (2026-10-19): it renders the finish, and when needed the beginner version,
+    the canvas extend, and one background picture. No step is rendered.
+  - "Filters first" (2026-11-10): there's no per-step ladder of filter, composite, throwaway script, render, and
+    no throwaway filter scripts or filter requests (#11 closed).
+  - "Claude writes the final instructions from the rendered images" (2026-10-19): the lines that are data (paints,
+    brush, stroke, where, drying) are drafted by a tool from the plan and hand-checked cards; Claude adds what only
+    this photo needs and corrects the draft against the pictures.
+  v1 stays in the repo, and nothing is removed, until three hands-off v2 lessons pass the gate in the design and
+  the owner agrees.
+- **Don't raise the image model's quality (2026-11-12, owner's call).** Higher settings made no clear difference to
+  how well a lesson teaches, and the cost wasn't sustainable. Fix a problem with tools or the plan, not a dearer
+  render.
+- **More, smaller steps (2026-11-12, owner's call).** One move per step, grouped into stages: 12 to 24 steps in 5 to
+  9 stages for the beginner paint-along, up from 5 to 12. Not more than that: mixes dry on the palette between
+  distant steps and the last stages matter most. A step has no word limit; detail that doesn't fit a short line
+  goes one tap away (a stroke card, a close-up, a paint map), not in the bin.
+- **Whatever helps a beginner most, including an optional chalk outline (2026-11-12, owner's call).** The
+  paint-along stays sketch-free, except that the stage that starts an object may open with "lightly chalk its
+  outline first", from a transfer picture the tool makes. Placement is shown (an outline on the picture, a grid of
+  quarters, inches from the canvas edges), never given as percentages.
+- **At most 10 mixes in a beginner lesson (2026-11-12, owner's call).** Paints are measured from the finish and
+  the closest are merged to the limit, even if the finish loses a little color nuance. An accent (a sun, an eye
+  light) is never merged away.
+- **How to do a stroke is written once and checked, not written fresh each lesson (2026-11-12).** One card per
+  stroke (and a few basics cards), built from the research file with sources, read by the owner before it counts
+  as checked. Same rule as technique: from cited research, never from the model's memory.
+- **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
+  partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
+  is made.
+
 ## How we work
 
 - **Same approach as RepBunny (2026-10-19):** automate as much as possible, built up bit by bit.
