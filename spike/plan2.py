@@ -39,7 +39,8 @@ def _boxes_ok(boxes) -> bool:
     return all(len(b) == 4 and 0 <= b[0] < b[2] <= 1 and 0 <= b[1] < b[3] <= 1 for b in boxes)
 
 
-def problems(plan: dict) -> list[str]:
+def problems(plan: dict, technique: dict | None = None) -> list[str]:
+    """What's wrong with a version 2 plan. With the technique, also more base mixes than its `max_mixes`."""
     out: list[str] = []
     parts = plan.get("parts") or []
     if not parts:
@@ -73,7 +74,18 @@ def problems(plan: dict) -> list[str]:
             out.append(f"paint {c.get('id')}: two paints have this id")
         if not HEX.match(c.get("hex", "")):
             out.append(f"paint {c.get('id')}: hex must look like #a1b2c3")
+        if c.get("sample_x") is None or c.get("sample_y") is None:
+            out.append(f"paint {c.get('id')}: no sample_x/sample_y (a spot of it in the finish). Run paints, which "
+                       "measures them.")
         paints[c.get("id")] = c
+    for c in paints.values():
+        if c.get("of") and c["of"] not in paints:
+            out.append(f"paint {c.get('id')}: it's a tint or shade of {c['of']!r}, which isn't in paints")
+    bases = [i for i, c in paints.items() if not c.get("of")]
+    limit = (technique or {}).get("max_mixes")
+    if limit is not None and len(bases) > limit:
+        out.append(f"{len(bases)} paints to mix ({', '.join(bases)}); the technique allows {limit}. Run paints, which "
+                   "merges the closest; a tint or shade of a part's main paint (with \"of\") doesn't count.")
     all_steps = steps(plan)
     if not all_steps:
         return out + ["the plan has no stages with steps"]
@@ -96,6 +108,9 @@ def problems(plan: dict) -> list[str]:
         for c in used:
             if c not in paints:
                 out.append(f"{sid}: paint {c!r} isn't in paints")
+            elif s["part"] not in (paints[c].get("parts") or []):
+                out.append(f"{sid}: paints {s['part']} with {c}, but {c}'s parts don't list {s['part']}. Add it to "
+                           f"its parts, or use one of {s['part']}'s own paints.")
         if not used:
             out.append(f"{sid}: name the paints this step uses")
         if len(used) > MAX_PAINTS and show != "blend":

@@ -314,9 +314,45 @@ versions (bark dark, mid, light). So:
 5. Keep any `name` and `used_for` already given to a paint whose color moved less than Delta E 3.
 
 Claude names each paint and says what it's for, and chooses which of a part's paints each step uses. `mix`
-computes recipes as today. The numbers here (8, 6, 40 degrees, 3) are starting values, tuned on the three fixtures
-by the issue. If the fixtures can't reach 10 without spoiling a part, the issue says which part and why, and the
-owner decides; it doesn't quietly loosen the limit or drop steps.
+computes recipes as today.
+
+**Tuned on the three fixtures (issue 4).** The numbers are `paints.py` constants:
+- Average error for the fewest colors (step 1): **Delta E 8**, unchanged. The fixtures all have steps, so it wasn't
+  exercised on them.
+- Tint or shade (step 2): **Delta E 8, was 6**, the same as `mixing.REACHABLE`, the mixer's own line for a color
+  the tubes can make. At 6 at most one paint per fixture counted as a tint, and 8 adds one (the chickadee's feather
+  edges as the wing's gray plus white) without calling a color a tint that "main plus white" can't really make; 10
+  would have saved the chickadee's leaves (below), and was rejected for that reason. A paint within 8 of the main
+  itself counts too ("a touch of white").
+- Hue family (step 4): **40 degrees**, unchanged; 30 and 20 saved none of the colors lost below. "Real chroma" is
+  **15** (Lab chroma); under it a paint is a gray and in no family.
+- Keep a name (step 5): **Delta E 3**, unchanged. Running `paints` on its own output changes nothing.
+- New, from what the fixtures showed. A part with one paint measured with one k-means color gets its *average*,
+  and where its outline caught some of a neighbor that's a color on neither (the chickadee's white cheek came out
+  gray, `#918780`, from its white and a little black cap). So a one-paint part's color must be real: at least
+  **10%** of its pixels within Delta E 8 of it; if not, it's measured with more colors and the largest is kept.
+  A merged paint is the two colors averaged in Lab, weighted by how much of the picture each covers, and keeps the
+  id of the one covering more. `paints` lists any merge more than **Delta E 14** apart under `far_merges`: past that,
+  every fixture lost a color a part needs.
+
+**Result, and what the owner has to decide.** All three fixtures come out at exactly 10 base mixes, the same every
+run, with no two steps merged: every merge was between different parts, so the step counts stayed 19, 19, and 14.
+The merges up to Delta E 14 read right in the step pictures. The last one or two in each fixture don't:
+- **Red sailboat** (16 paints, 10 base mixes): the hull's red (`#952821`) merges into the reflection's dark
+  mauve-brown (16.3 apart), and the hull's gray into the light water (17.6). The hull's block-in step turns from red
+  to brown, and the lesson has no red paint for its focal point. It reaches 12 without losing the red.
+- **Chickadee** (20 paints, 10 base mixes, 2 tints): the leaves' red (`#d74e26`) merges into the bark's tan (14.8);
+  the leaves' block-in turns rust-brown and no red is left. It reaches 11 without losing it.
+- **Lavender balloon** (22 paints, 10 base mixes, 1 shade): the mountains' blue-violet (17.3) and the sky's blue
+  (17.5) merge into the lavender's light lilac, and the balloon's teal stripe into it before them (13.3). The step
+  pictures still read (the mountains' coat is lighter; the sky and balloon steps show the finish), but the lesson has
+  no blue for its sky and no teal for the balloon. It reaches 12 losing only the teal, and 14 losing nothing.
+
+Under the accent rule none of those colors is an accent: each shares a hue family with another paint (the hull's
+red with the sky's pink; the leaf's red with the foliage's orange; the sky's blue with the lavender). The fixtures
+are saved at 10 as the rules give them, so the owner can see it. To keep those colors, either the limit for these
+pictures is 11 or 12, or an accent also covers a paint far (more than Delta E 14) from every other paint; the owner
+decides which.
 
 ## 10. Teaching content
 
