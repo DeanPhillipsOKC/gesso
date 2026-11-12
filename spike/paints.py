@@ -9,8 +9,9 @@ same finish gives the same paints every run, and a part's dark, middle, and ligh
 painted. Then:
 - a lighter or darker version of a part's main paint is that paint plus white (or plus the darkest tube): one
   puddle, lightened or darkened, the way a teacher has a beginner work. It keeps its own step and doesn't count;
-- the rest are merged, closest first, until the lesson is down to `max_mixes`, preferring pairs in different
-  parts. Two paints of one part merging means the two steps that used them become one;
+- the rest are merged, closest first, toward `max_mixes`, preferring pairs in different parts, but never two
+  paints more than MAX_MERGE apart: a lesson ends above the target rather than lose a color the painter can see.
+  Two paints of one part merging means the two steps that used them become one;
 - an accent (the lightest paint, or the only paint of its hue) is never merged.
 Distances are mixing.delta_e (CIEDE2000) throughout.
 """

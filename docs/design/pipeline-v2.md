@@ -285,29 +285,34 @@ a step that changes almost nothing; a last picture more than 2% away from the fi
 
 By construction a step can't move, reshape, or recolor another part. There is nothing to review, redo, or lock.
 
-## 9. Paints (`paints`, half built: `spike/paints.py`)
+## 9. Paints (`paints`, built: `spike/paints.py`)
 
 Built: `paints.part_colors(finish, mask, k)` and the `part-colors` tool: a part's k main colors (k-means in
-Lab, fixed seed), darkest first, each with its share and a spot inside it.
-
-To build (issue 4 of 8), the `paints` tool that writes the plan's `paints`. Color distances are `mixing.delta_e`
-(CIEDE2000) throughout.
+Lab, fixed seed), darkest first, each with its share and a spot inside it. And (issue 4 of 8) the `paints` tool,
+which writes the plan's `paints` (ids `<part id>-<n>`, darkest first), points the steps at them, prints what it
+merged and why, and writes `trials/paints.jpg` (the finish beside each part's paints with their shares). Color
+distances are `mixing.delta_e` (CIEDE2000) throughout.
 
 The limit is on **mixes a beginner has to work out**, and the fixtures show why that needs care: written by hand
 with a paint per step they have 16, 20, and 22 paints. Most of those are a part's own lighter and darker
 versions (bark dark, mid, light). So:
 1. **Colors per part:** as many as its steps name; with no steps yet, the fewest (1 to 4) that leave the part's
-   average color error under Delta E 8.
-2. **Tints and shades don't count as mixes.** Within a part, a paint is a *tint* of the part's main paint when
-   that paint plus white, in some proportion, lands within Delta E 6 of it by `mixing.py`'s model, and a *shade*
-   when the main paint plus the palette's darkest tube does. It's listed as "\<main paint\> plus white" (or the
-   dark tube), keeps its own step, and doesn't count toward the limit. This is also how a teacher has a beginner
-   work: one puddle, lightened or darkened (research section 4). In the plan such a paint carries `"of": "<main paint id>"` and
-   `"plus": "white"` (or the dark tube's name).
-3. **Merge the rest to the limit.** While the lesson has more than the technique's `max_mixes` base mixes (new
-   field: **10** for the beginner paint-along; owner, 2026-11-12), merge the two closest into one paint shared by
-   both parts, preferring pairs in different parts. If the only pairs left are in one part, merge them, merge the
-   two steps that used them into one, and say so in the output.
+   average color error under Delta E 8. A part with one paint gets a color it really has (below), not its average.
+2. **Tints and shades don't count as mixes.** Within a part, a paint is a *tint* of the part's main paint (the
+   one covering most of it) when that paint plus white, in some proportion, lands within Delta E 8 of it by
+   `mixing.py`'s model, and a *shade* when the main paint plus the palette's darkest tube does. It's listed as
+   "\<main paint\> plus white" (or the dark tube), keeps its own step, and doesn't count toward the limit. This is
+   also how a teacher has a beginner work: one puddle, lightened or darkened (research section 4). In the plan such
+   a paint carries `"of": "<main paint id>"` and `"plus": "white"` (or the dark tube's name).
+3. **Merge the rest toward the target, never past a color the painter can see.** The technique's `max_mixes`
+   (**10** for the beginner paint-along; owner, 2026-11-12) is a target, not a cap. While the lesson has more base
+   mixes than that, merge the two closest into one paint shared by both parts, preferring pairs in different parts.
+   If the only pairs left are in one part, merge them, merge the two steps that used them into one, and say so in
+   the output. **Never merge two paints more than Delta E 12 apart** (`MAX_MERGE`): that loses a color the painter
+   can see (a red hull blocked in brown). When the ceiling stops the merging above the target, `paints` says so,
+   with each paint's nearest neighbor and how far ("Hull 1 stays: nearest is reflection-1, 16.3 away").
+   That's a finished result, not a problem: `plan2.problems` reports going over the target only while two base
+   paints are still close enough to merge.
 4. **Never merge away an accent:** the lightest paint in the lesson, and any paint that is the only one of its
    hue family (more than 40 degrees of hue from every other paint with real chroma), even if it covers little
    (a sun, a sparkle, an eye light).
@@ -317,42 +322,40 @@ Claude names each paint and says what it's for, and chooses which of a part's pa
 computes recipes as today.
 
 **Tuned on the three fixtures (issue 4).** The numbers are `paints.py` constants:
+- Merge ceiling (step 3): **Delta E 12**. Without one, every fixture reached 10 only by losing a color on its last
+  merges, at 13.3 to 17.6: the sailboat's hull red (into the reflection's brown, 16.3), the chickadee's leaf red
+  (into the bark tan, 14.8), the lavender's sky blue, mountain blue-violet, and balloon teal (into one lilac, 13.3
+  to 17.5). A ceiling of 13 kept those, but the merge just under it, the balloon's red into the clouds' coral
+  (12.2), blocked the balloon in pink; so 12. Every merge at or under 11.1 reads right in the step pictures.
+- Tint or shade (step 2): **Delta E 8, was 6**, the same as `mixing.REACHABLE`, the mixer's own line for a color
+  the tubes can make. 8 adds one tint (the chickadee's feather edges, the wing's gray plus white) without calling a
+  color a tint that "main plus white" can't really make. A paint within 8 of the main itself counts too ("a touch of
+  white").
 - Average error for the fewest colors (step 1): **Delta E 8**, unchanged. The fixtures all have steps, so it wasn't
   exercised on them.
-- Tint or shade (step 2): **Delta E 8, was 6**, the same as `mixing.REACHABLE`, the mixer's own line for a color
-  the tubes can make. At 6 at most one paint per fixture counted as a tint, and 8 adds one (the chickadee's feather
-  edges as the wing's gray plus white) without calling a color a tint that "main plus white" can't really make; 10
-  would have saved the chickadee's leaves (below), and was rejected for that reason. A paint within 8 of the main
-  itself counts too ("a touch of white").
-- Hue family (step 4): **40 degrees**, unchanged; 30 and 20 saved none of the colors lost below. "Real chroma" is
-  **15** (Lab chroma); under it a paint is a gray and in no family.
-- Keep a name (step 5): **Delta E 3**, unchanged. Running `paints` on its own output changes nothing.
-- New, from what the fixtures showed. A part with one paint measured with one k-means color gets its *average*,
-  and where its outline caught some of a neighbor that's a color on neither (the chickadee's white cheek came out
-  gray, `#918780`, from its white and a little black cap). So a one-paint part's color must be real: at least
-  **10%** of its pixels within Delta E 8 of it; if not, it's measured with more colors and the largest is kept.
-  A merged paint is the two colors averaged in Lab, weighted by how much of the picture each covers, and keeps the
-  id of the one covering more. `paints` lists any merge more than **Delta E 14** apart under `far_merges`: past that,
-  every fixture lost a color a part needs.
+- Hue family (step 4): **40 degrees**, unchanged; "real chroma" is **15** (Lab chroma), under which a paint is a gray
+  in no family. With the ceiling, the hue rule marks nothing on the three fixtures; only the lightest-paint rule
+  fires (each fixture's sun). It stays (a test covers it) for a lone-hue accent within 12 of another paint.
+- Keep a name (step 5): **Delta E 3**, unchanged. Running `paints` on its own output changes no paint or step (a
+  merged paint's sample spot can move).
+- From what the fixtures showed: a part with one paint, measured with one k-means color, gets its *average*, and
+  where its outline caught some of a neighbor that's a color on neither (the chickadee's white cheek came out gray,
+  `#918780`, from its white and a little black cap). So a one-paint part's color must be real: at least **10%** of
+  its pixels within Delta E 8 of it; if not, it's measured with more colors and the largest is kept. A merged paint
+  is the two colors averaged in Lab, weighted by how much of the picture each covers, and keeps the id of the one
+  covering more.
 
-**Result, and what the owner has to decide.** All three fixtures come out at exactly 10 base mixes, the same every
-run, with no two steps merged: every merge was between different parts, so the step counts stayed 19, 19, and 14.
-The merges up to Delta E 14 read right in the step pictures. The last one or two in each fixture don't:
-- **Red sailboat** (16 paints, 10 base mixes): the hull's red (`#952821`) merges into the reflection's dark
-  mauve-brown (16.3 apart), and the hull's gray into the light water (17.6). The hull's block-in step turns from red
-  to brown, and the lesson has no red paint for its focal point. It reaches 12 without losing the red.
-- **Chickadee** (20 paints, 10 base mixes, 2 tints): the leaves' red (`#d74e26`) merges into the bark's tan (14.8);
-  the leaves' block-in turns rust-brown and no red is left. It reaches 11 without losing it.
-- **Lavender balloon** (22 paints, 10 base mixes, 1 shade): the mountains' blue-violet (17.3) and the sky's blue
-  (17.5) merge into the lavender's light lilac, and the balloon's teal stripe into it before them (13.3). The step
-  pictures still read (the mountains' coat is lighter; the sky and balloon steps show the finish), but the lesson has
-  no blue for its sky and no teal for the balloon. It reaches 12 losing only the teal, and 14 losing nothing.
+**What the fixtures came to** (hand-written paints, then base mixes; the step pictures match `docs/spikes/` by eye):
+- **Chickadee**: 20 paints, **10** base mixes and 2 tints. The foliage's rust and orange merged (10.8, one part), so
+  its two passes are one step: 18 steps, was 19. The leaves block in red.
+- **Lavender balloon**: 22 paints, **14** base mixes and 1 shade. The mountains' two paints both merged into the
+  lavender's blue-violet (11.0, 11.1), so the mountains are one step: 18 steps, was 19. The sky keeps its blue, the
+  balloon its red and teal. What's left is 12.2 or more apart.
+- **Red sailboat**: 16 paints, **13** base mixes and 1 shade (the sun path's olive, its gold plus blue). 14 steps,
+  unchanged. The hull blocks in red. What's left is 12.9 or more apart (the sun path's gold and the sky's orange).
 
-Under the accent rule none of those colors is an accent: each shares a hue family with another paint (the hull's
-red with the sky's pink; the leaf's red with the foliage's orange; the sky's blue with the lavender). The fixtures
-are saved at 10 as the rules give them, so the owner can see it. To keep those colors, either the limit for these
-pictures is 11 or 12, or an accent also covers a paint far (more than Delta E 14) from every other paint; the owner
-decides which.
+So a beginner lesson aims for 10 and lands at 10 to 14: the owner's rule (2026-11-12) is "aim for 10, but never
+lose a visible color".
 
 ## 10. Teaching content
 
