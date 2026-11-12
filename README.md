@@ -7,7 +7,8 @@ Unlike asking an image model to "show the steps," Gesso plans the painting the w
 would, using real techniques for the medium and the painter's level, and generates each stage from
 that plan.
 
-Early days: see [the vision](docs/vision.md) for where it's headed.
+Early days: see [the vision](docs/vision.md) for where it's headed, and
+[pipeline v2](docs/design/pipeline-v2.md) for what's being built now.
 
 ## Running the pipeline spike
 

@@ -1,0 +1,630 @@
+{
+ "plan_version": 2,
+ "photo": "spike/tests/fixtures/finishes/red-sailboat.jpg",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "subject": "A red sailboat on teal water at sunset",
+ "focal_point": "the sailboat",
+ "light": "the setting sun on the horizon, center",
+ "parts": [
+  {
+   "id": "sky",
+   "name": "Sunset sky",
+   "kind": "area",
+   "box": [
+    0,
+    0,
+    1,
+    0.5
+   ],
+   "covers": [
+    [
+     0,
+     0,
+     1,
+     0.56
+    ]
+   ]
+  },
+  {
+   "id": "sun",
+   "name": "The sun",
+   "kind": "object",
+   "parent": "sky",
+   "box": [
+    0.445,
+    0.38,
+    0.52,
+    0.465
+   ]
+  },
+  {
+   "id": "hill",
+   "name": "Far hill and shore",
+   "kind": "area",
+   "box": [
+    0,
+    0.39,
+    1,
+    0.545
+   ]
+  },
+  {
+   "id": "water",
+   "name": "The water",
+   "kind": "area",
+   "box": [
+    0,
+    0.52,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "sun-path",
+   "name": "The sun path",
+   "kind": "marks",
+   "parent": "water",
+   "box": [
+    0.05,
+    0.53,
+    0.72,
+    0.97
+   ],
+   "points_in": [
+    [
+     0.48,
+     0.6
+    ],
+    [
+     0.5,
+     0.73
+    ],
+    [
+     0.47,
+     0.85
+    ],
+    [
+     0.2,
+     0.73
+    ],
+    [
+     0.45,
+     0.56
+    ],
+    [
+     0.5,
+     0.66
+    ],
+    [
+     0.52,
+     0.79
+    ]
+   ],
+   "points_out": [
+    [
+     0.2,
+     0.9
+    ],
+    [
+     0.1,
+     0.6
+    ],
+    [
+     0.6,
+     0.95
+    ],
+    [
+     0.65,
+     0.6
+    ],
+    [
+     0.3,
+     0.66
+    ],
+    [
+     0.3,
+     0.8
+    ],
+    [
+     0.62,
+     0.7
+    ]
+   ]
+  },
+  {
+   "id": "sail",
+   "name": "The sail",
+   "kind": "object",
+   "box": [
+    0.72,
+    0.27,
+    0.91,
+    0.58
+   ]
+  },
+  {
+   "id": "hull",
+   "name": "The hull",
+   "kind": "object",
+   "box": [
+    0.71,
+    0.565,
+    0.94,
+    0.64
+   ]
+  },
+  {
+   "id": "mast",
+   "name": "The mast",
+   "kind": "thin",
+   "width": 0.012,
+   "paths": [
+    [
+     [
+      0.812,
+      0.26
+     ],
+     [
+      0.812,
+      0.595
+     ]
+    ]
+   ],
+   "points_in": [
+    [
+     0.812,
+     0.4
+    ],
+    [
+     0.812,
+     0.5
+    ],
+    [
+     0.812,
+     0.3
+    ]
+   ],
+   "points_out": [
+    [
+     0.79,
+     0.45
+    ],
+    [
+     0.85,
+     0.5
+    ],
+    [
+     0.8,
+     0.3
+    ],
+    [
+     0.83,
+     0.32
+    ]
+   ]
+  },
+  {
+   "id": "reflection",
+   "name": "The reflection",
+   "kind": "marks",
+   "box": [
+    0.7,
+    0.635,
+    0.95,
+    0.95
+   ],
+   "points_in": [
+    [
+     0.8,
+     0.75
+    ],
+    [
+     0.84,
+     0.8
+    ],
+    [
+     0.78,
+     0.83
+    ],
+    [
+     0.8,
+     0.655
+    ],
+    [
+     0.87,
+     0.66
+    ],
+    [
+     0.812,
+     0.8
+    ]
+   ],
+   "points_out": [
+    [
+     0.72,
+     0.9
+    ],
+    [
+     0.93,
+     0.78
+    ],
+    [
+     0.72,
+     0.72
+    ],
+    [
+     0.9,
+     0.9
+    ],
+    [
+     0.75,
+     0.94
+    ],
+    [
+     0.93,
+     0.68
+    ]
+   ]
+  }
+ ],
+ "paints": [
+  {
+   "id": "sky-1",
+   "name": "Sky 1",
+   "hex": "#956eb0",
+   "sample_x": 0.809,
+   "sample_y": 0.0,
+   "parts": [
+    "sky"
+   ],
+   "used_for": "sunset sky"
+  },
+  {
+   "id": "sky-2",
+   "name": "Sky 2",
+   "hex": "#e07c86",
+   "sample_x": 0.382,
+   "sample_y": 0.156,
+   "parts": [
+    "sky"
+   ],
+   "used_for": "sunset sky"
+  },
+  {
+   "id": "sky-3",
+   "name": "Sky 3",
+   "hex": "#fa8c57",
+   "sample_x": 0.591,
+   "sample_y": 0.336,
+   "parts": [
+    "sky"
+   ],
+   "used_for": "sunset sky"
+  },
+  {
+   "id": "sun-1",
+   "name": "Sun 1",
+   "hex": "#f9d77e",
+   "sample_x": 0.482,
+   "sample_y": 0.422,
+   "parts": [
+    "sun"
+   ],
+   "used_for": "the sun"
+  },
+  {
+   "id": "hill-1",
+   "name": "Hill 1",
+   "hex": "#4c4d85",
+   "sample_x": 0.138,
+   "sample_y": 0.469,
+   "parts": [
+    "hill"
+   ],
+   "used_for": "far hill and shore"
+  },
+  {
+   "id": "water-1",
+   "name": "Water 1",
+   "hex": "#1d677a",
+   "sample_x": 0.179,
+   "sample_y": 0.999,
+   "parts": [
+    "water"
+   ],
+   "used_for": "the water"
+  },
+  {
+   "id": "water-2",
+   "name": "Water 2",
+   "hex": "#528383",
+   "sample_x": 0.247,
+   "sample_y": 0.62,
+   "parts": [
+    "water"
+   ],
+   "used_for": "the water"
+  },
+  {
+   "id": "sun-path-1",
+   "name": "Sun path 1",
+   "hex": "#90896b",
+   "sample_x": 0.522,
+   "sample_y": 0.681,
+   "parts": [
+    "sun-path"
+   ],
+   "used_for": "the sun path"
+  },
+  {
+   "id": "sun-path-2",
+   "name": "Sun path 2",
+   "hex": "#e2a259",
+   "sample_x": 0.48,
+   "sample_y": 0.588,
+   "parts": [
+    "sun-path"
+   ],
+   "used_for": "the sun path"
+  },
+  {
+   "id": "sail-1",
+   "name": "Sail 1",
+   "hex": "#4d6c76",
+   "sample_x": 0.831,
+   "sample_y": 0.576,
+   "parts": [
+    "sail"
+   ],
+   "used_for": "the sail"
+  },
+  {
+   "id": "sail-2",
+   "name": "Sail 2",
+   "hex": "#dfccb9",
+   "sample_x": 0.853,
+   "sample_y": 0.524,
+   "parts": [
+    "sail"
+   ],
+   "used_for": "the sail"
+  },
+  {
+   "id": "hull-1",
+   "name": "Hull 1",
+   "hex": "#952821",
+   "sample_x": 0.745,
+   "sample_y": 0.602,
+   "parts": [
+    "hull"
+   ],
+   "used_for": "the hull"
+  },
+  {
+   "id": "hull-2",
+   "name": "Hull 2",
+   "hex": "#67696e",
+   "sample_x": 0.772,
+   "sample_y": 0.581,
+   "parts": [
+    "hull"
+   ],
+   "used_for": "the hull"
+  },
+  {
+   "id": "mast-1",
+   "name": "Mast 1",
+   "hex": "#7c6664",
+   "sample_x": 0.815,
+   "sample_y": 0.581,
+   "parts": [
+    "mast"
+   ],
+   "used_for": "the mast"
+  },
+  {
+   "id": "reflection-1",
+   "name": "Reflection 1",
+   "hex": "#744a4c",
+   "sample_x": 0.761,
+   "sample_y": 0.654,
+   "parts": [
+    "reflection"
+   ],
+   "used_for": "the reflection"
+  },
+  {
+   "id": "reflection-2",
+   "name": "Reflection 2",
+   "hex": "#87999b",
+   "sample_x": 0.774,
+   "sample_y": 0.737,
+   "parts": [
+    "reflection"
+   ],
+   "used_for": "the reflection"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sky",
+   "name": "The sky",
+   "steps": [
+    {
+     "id": "sky-blend",
+     "name": "Blend the sunset sky",
+     "part": "sky",
+     "show": "blend",
+     "paints": [
+      "sky-1",
+      "sky-2",
+      "sky-3"
+     ],
+     "stroke": "side-to-side-blend",
+     "brush": "1 inch flat"
+    },
+    {
+     "id": "sun",
+     "name": "Paint the sun",
+     "part": "sun",
+     "show": "full",
+     "paints": [
+      "sun-1"
+     ],
+     "stroke": "fill",
+     "brush": "#6 round"
+    }
+   ]
+  },
+  {
+   "id": "hill",
+   "name": "The far hill",
+   "steps": [
+    {
+     "id": "hill",
+     "name": "Paint the far hill and shore",
+     "part": "hill",
+     "show": "full",
+     "paints": [
+      "hill-1"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat"
+    }
+   ]
+  },
+  {
+   "id": "water",
+   "name": "The water",
+   "steps": [
+    {
+     "id": "water-coat",
+     "name": "Lay in the teal water",
+     "part": "water",
+     "show": "flat",
+     "paints": [
+      "water-1"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "1 inch flat"
+    },
+    {
+     "id": "water-light",
+     "name": "Streak the lighter water",
+     "part": "water",
+     "show": "pass",
+     "paints": [
+      "water-2"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "path-dark",
+     "name": "Dash in the sun path",
+     "part": "sun-path",
+     "show": "pass",
+     "paints": [
+      "sun-path-1"
+     ],
+     "stroke": "horizontal-dashes",
+     "brush": "#6 round"
+    },
+    {
+     "id": "path-light",
+     "name": "Brighten the sun path",
+     "part": "sun-path",
+     "show": "pass",
+     "paints": [
+      "sun-path-2"
+     ],
+     "stroke": "horizontal-dashes",
+     "brush": "#6 round"
+    }
+   ]
+  },
+  {
+   "id": "boat",
+   "name": "The sailboat",
+   "steps": [
+    {
+     "id": "sail-shape",
+     "name": "Block in the sail",
+     "part": "sail",
+     "show": "flat",
+     "paints": [
+      "sail-2"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#8 round"
+    },
+    {
+     "id": "sail-shade",
+     "name": "Shade the sail",
+     "part": "sail",
+     "show": "pass",
+     "paints": [
+      "sail-1"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#6 round"
+    },
+    {
+     "id": "hull-shape",
+     "name": "Block in the hull",
+     "part": "hull",
+     "show": "flat",
+     "paints": [
+      "hull-1"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#6 round"
+    },
+    {
+     "id": "hull-shade",
+     "name": "Add the deck line",
+     "part": "hull",
+     "show": "pass",
+     "paints": [
+      "hull-2"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#4 round"
+    },
+    {
+     "id": "mast",
+     "name": "Pull the mast",
+     "part": "mast",
+     "show": "full",
+     "paints": [
+      "mast-1"
+     ],
+     "stroke": "liner",
+     "brush": "liner"
+    },
+    {
+     "id": "reflection-dark",
+     "name": "Zigzag the reflection",
+     "part": "reflection",
+     "show": "pass",
+     "paints": [
+      "reflection-1"
+     ],
+     "stroke": "zigzag",
+     "brush": "#6 round"
+    },
+    {
+     "id": "reflection-light",
+     "name": "Add the light on the reflection",
+     "part": "reflection",
+     "show": "pass",
+     "paints": [
+      "reflection-2"
+     ],
+     "stroke": "zigzag",
+     "brush": "#6 round"
+    }
+   ]
+  }
+ ]
+}

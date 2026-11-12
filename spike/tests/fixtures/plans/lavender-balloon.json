@@ -1,0 +1,772 @@
+{
+ "plan_version": 2,
+ "photo": "spike/tests/fixtures/finishes/lavender-balloon.jpg",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "subject": "A hot air balloon over lavender fields at sunset",
+ "focal_point": "the balloon",
+ "light": "the setting sun, low center",
+ "parts": [
+  {
+   "id": "sky",
+   "name": "Sunset sky",
+   "kind": "area",
+   "box": [
+    0,
+    0,
+    1,
+    0.47
+   ],
+   "covers": [
+    [
+     0,
+     0,
+     1,
+     0.52
+    ]
+   ]
+  },
+  {
+   "id": "clouds",
+   "name": "Coral clouds",
+   "kind": "marks",
+   "parent": "sky",
+   "box": [
+    0,
+    0,
+    1,
+    0.42
+   ],
+   "points_in": [
+    [
+     0.63,
+     0.2
+    ],
+    [
+     0.75,
+     0.12
+    ],
+    [
+     0.9,
+     0.2
+    ],
+    [
+     0.05,
+     0.2
+    ],
+    [
+     0.1,
+     0.33
+    ],
+    [
+     0.3,
+     0.29
+    ],
+    [
+     0.62,
+     0.37
+    ],
+    [
+     0.85,
+     0.05
+    ],
+    [
+     0.45,
+     0.22
+    ]
+   ],
+   "points_out": [
+    [
+     0.33,
+     0.04
+    ],
+    [
+     0.97,
+     0.04
+    ],
+    [
+     0.06,
+     0.03
+    ],
+    [
+     0.45,
+     0.35
+    ],
+    [
+     0.2,
+     0.38
+    ],
+    [
+     0.55,
+     0.31
+    ],
+    [
+     0.37,
+     0.13
+    ],
+    [
+     0.6,
+     0.42
+    ]
+   ]
+  },
+  {
+   "id": "sun",
+   "name": "The sun",
+   "kind": "object",
+   "parent": "sky",
+   "box": [
+    0.34,
+    0.37,
+    0.41,
+    0.45
+   ]
+  },
+  {
+   "id": "mountains",
+   "name": "Far mountains",
+   "kind": "area",
+   "box": [
+    0,
+    0.36,
+    1,
+    0.54
+   ]
+  },
+  {
+   "id": "fields",
+   "name": "Gold fields",
+   "kind": "area",
+   "box": [
+    0,
+    0.44,
+    1,
+    0.64
+   ]
+  },
+  {
+   "id": "hedges",
+   "name": "Hedges",
+   "kind": "marks",
+   "parent": "fields",
+   "box": [
+    0,
+    0.44,
+    1,
+    0.64
+   ],
+   "points_in": [
+    [
+     0.1,
+     0.59
+    ],
+    [
+     0.25,
+     0.58
+    ],
+    [
+     0.55,
+     0.53
+    ],
+    [
+     0.85,
+     0.585
+    ],
+    [
+     0.66,
+     0.6
+    ],
+    [
+     0.47,
+     0.555
+    ]
+   ],
+   "points_out": [
+    [
+     0.2,
+     0.53
+    ],
+    [
+     0.7,
+     0.55
+    ],
+    [
+     0.9,
+     0.5
+    ],
+    [
+     0.4,
+     0.62
+    ],
+    [
+     0.1,
+     0.62
+    ],
+    [
+     0.8,
+     0.52
+    ]
+   ]
+  },
+  {
+   "id": "lavender",
+   "name": "Lavender rows",
+   "kind": "area",
+   "box": [
+    0,
+    0.6,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "tree",
+   "name": "The tree",
+   "kind": "object",
+   "box": [
+    0.73,
+    0.21,
+    1,
+    0.49
+   ]
+  },
+  {
+   "id": "trunk",
+   "name": "Trunk",
+   "kind": "marks",
+   "parent": "tree",
+   "box": [
+    0.82,
+    0.36,
+    0.92,
+    0.49
+   ],
+   "points_in": [
+    [
+     0.865,
+     0.44
+    ],
+    [
+     0.868,
+     0.41
+    ]
+   ],
+   "points_out": [
+    [
+     0.85,
+     0.3
+    ],
+    [
+     0.92,
+     0.35
+    ],
+    [
+     0.8,
+     0.36
+    ],
+    [
+     0.9,
+     0.28
+    ]
+   ]
+  },
+  {
+   "id": "balloon",
+   "name": "The balloon",
+   "kind": "object",
+   "box": [
+    0.1,
+    0.03,
+    0.3,
+    0.34
+   ]
+  }
+ ],
+ "paints": [
+  {
+   "id": "sky-1",
+   "name": "Sky 1",
+   "hex": "#8fa3d1",
+   "sample_x": 0.062,
+   "sample_y": 0.0,
+   "parts": [
+    "sky"
+   ],
+   "used_for": "sunset sky"
+  },
+  {
+   "id": "sky-2",
+   "name": "Sky 2",
+   "hex": "#f7a749",
+   "sample_x": 0.405,
+   "sample_y": 0.352,
+   "parts": [
+    "sky"
+   ],
+   "used_for": "sunset sky"
+  },
+  {
+   "id": "clouds-1",
+   "name": "Clouds 1",
+   "hex": "#e65d5b",
+   "sample_x": 0.728,
+   "sample_y": 0.111,
+   "parts": [
+    "clouds"
+   ],
+   "used_for": "coral clouds"
+  },
+  {
+   "id": "clouds-2",
+   "name": "Clouds 2",
+   "hex": "#f97a41",
+   "sample_x": 0.625,
+   "sample_y": 0.158,
+   "parts": [
+    "clouds"
+   ],
+   "used_for": "coral clouds"
+  },
+  {
+   "id": "sun-1",
+   "name": "Sun 1",
+   "hex": "#f9e098",
+   "sample_x": 0.376,
+   "sample_y": 0.41,
+   "parts": [
+    "sun"
+   ],
+   "used_for": "the sun"
+  },
+  {
+   "id": "mountains-1",
+   "name": "Mountains 1",
+   "hex": "#5c628a",
+   "sample_x": 0.365,
+   "sample_y": 0.517,
+   "parts": [
+    "mountains"
+   ],
+   "used_for": "far mountains"
+  },
+  {
+   "id": "mountains-2",
+   "name": "Mountains 2",
+   "hex": "#626dbe",
+   "sample_x": 0.587,
+   "sample_y": 0.462,
+   "parts": [
+    "mountains"
+   ],
+   "used_for": "far mountains"
+  },
+  {
+   "id": "fields-1",
+   "name": "Fields 1",
+   "hex": "#9d8436",
+   "sample_x": 0.945,
+   "sample_y": 0.537,
+   "parts": [
+    "fields"
+   ],
+   "used_for": "gold fields"
+  },
+  {
+   "id": "fields-2",
+   "name": "Fields 2",
+   "hex": "#db9e28",
+   "sample_x": 0.711,
+   "sample_y": 0.538,
+   "parts": [
+    "fields"
+   ],
+   "used_for": "gold fields"
+  },
+  {
+   "id": "hedges-1",
+   "name": "Hedges 1",
+   "hex": "#48524b",
+   "sample_x": 0.023,
+   "sample_y": 0.576,
+   "parts": [
+    "hedges"
+   ],
+   "used_for": "hedges"
+  },
+  {
+   "id": "lavender-1",
+   "name": "Lavender 1",
+   "hex": "#3c405c",
+   "sample_x": 0.999,
+   "sample_y": 0.999,
+   "parts": [
+    "lavender"
+   ],
+   "used_for": "lavender rows"
+  },
+  {
+   "id": "lavender-2",
+   "name": "Lavender 2",
+   "hex": "#5a4ba8",
+   "sample_x": 0.394,
+   "sample_y": 0.999,
+   "parts": [
+    "lavender"
+   ],
+   "used_for": "lavender rows"
+  },
+  {
+   "id": "lavender-3",
+   "name": "Lavender 3",
+   "hex": "#b46b43",
+   "sample_x": 0.308,
+   "sample_y": 0.999,
+   "parts": [
+    "lavender"
+   ],
+   "used_for": "lavender rows"
+  },
+  {
+   "id": "lavender-4",
+   "name": "Lavender 4",
+   "hex": "#a670c2",
+   "sample_x": 0.551,
+   "sample_y": 0.819,
+   "parts": [
+    "lavender"
+   ],
+   "used_for": "lavender rows"
+  },
+  {
+   "id": "tree-1",
+   "name": "Tree 1",
+   "hex": "#354749",
+   "sample_x": 0.937,
+   "sample_y": 0.373,
+   "parts": [
+    "tree"
+   ],
+   "used_for": "the tree"
+  },
+  {
+   "id": "tree-2",
+   "name": "Tree 2",
+   "hex": "#6a6838",
+   "sample_x": 0.843,
+   "sample_y": 0.28,
+   "parts": [
+    "tree"
+   ],
+   "used_for": "the tree"
+  },
+  {
+   "id": "tree-3",
+   "name": "Tree 3",
+   "hex": "#ba8f2d",
+   "sample_x": 0.807,
+   "sample_y": 0.276,
+   "parts": [
+    "tree"
+   ],
+   "used_for": "the tree"
+  },
+  {
+   "id": "trunk-1",
+   "name": "Trunk 1",
+   "hex": "#67463e",
+   "sample_x": 0.864,
+   "sample_y": 0.427,
+   "parts": [
+    "trunk"
+   ],
+   "used_for": "trunk"
+  },
+  {
+   "id": "balloon-1",
+   "name": "Balloon 1",
+   "hex": "#7e5240",
+   "sample_x": 0.2,
+   "sample_y": 0.275,
+   "parts": [
+    "balloon"
+   ],
+   "used_for": "the balloon"
+  },
+  {
+   "id": "balloon-2",
+   "name": "Balloon 2",
+   "hex": "#34627f",
+   "sample_x": 0.186,
+   "sample_y": 0.093,
+   "parts": [
+    "balloon"
+   ],
+   "used_for": "the balloon"
+  },
+  {
+   "id": "balloon-3",
+   "name": "Balloon 3",
+   "hex": "#cd3d27",
+   "sample_x": 0.218,
+   "sample_y": 0.095,
+   "parts": [
+    "balloon"
+   ],
+   "used_for": "the balloon"
+  },
+  {
+   "id": "balloon-4",
+   "name": "Balloon 4",
+   "hex": "#f19c26",
+   "sample_x": 0.245,
+   "sample_y": 0.103,
+   "parts": [
+    "balloon"
+   ],
+   "used_for": "the balloon"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sky",
+   "name": "The sky",
+   "steps": [
+    {
+     "id": "sky-blend",
+     "name": "Blend the sky",
+     "part": "sky",
+     "show": "blend",
+     "paints": [
+      "sky-1",
+      "sky-2"
+     ],
+     "stroke": "x-stroke",
+     "brush": "1 inch flat"
+    },
+    {
+     "id": "clouds-dark",
+     "name": "Lay in the cloud shapes",
+     "part": "clouds",
+     "show": "pass",
+     "paints": [
+      "clouds-1"
+     ],
+     "stroke": "dabbing",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "clouds-light",
+     "name": "Light the clouds",
+     "part": "clouds",
+     "show": "pass",
+     "paints": [
+      "clouds-2"
+     ],
+     "stroke": "dabbing",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "sun",
+     "name": "Paint the sun",
+     "part": "sun",
+     "show": "full",
+     "paints": [
+      "sun-1"
+     ],
+     "stroke": "fill",
+     "brush": "#6 round"
+    }
+   ]
+  },
+  {
+   "id": "hills",
+   "name": "Mountains and fields",
+   "steps": [
+    {
+     "id": "mountains-far",
+     "name": "Block in the mountains",
+     "part": "mountains",
+     "show": "flat",
+     "paints": [
+      "mountains-2"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "mountains-near",
+     "name": "Darken the near ridges",
+     "part": "mountains",
+     "show": "pass",
+     "paints": [
+      "mountains-1"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "fields-coat",
+     "name": "Lay in the gold fields",
+     "part": "fields",
+     "show": "flat",
+     "paints": [
+      "fields-2"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "fields-shade",
+     "name": "Shade the fields",
+     "part": "fields",
+     "show": "pass",
+     "paints": [
+      "fields-1"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "hedges",
+     "name": "Dab the hedges",
+     "part": "hedges",
+     "show": "full",
+     "paints": [
+      "hedges-1"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "name": "The lavender",
+   "steps": [
+    {
+     "id": "lavender-coat",
+     "name": "Lay in the dark rows",
+     "part": "lavender",
+     "show": "flat",
+     "paints": [
+      "lavender-1"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "1 inch flat"
+    },
+    {
+     "id": "paths",
+     "name": "Pull in the earth paths",
+     "part": "lavender",
+     "show": "pass",
+     "paints": [
+      "lavender-3"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "1/2 inch flat"
+    },
+    {
+     "id": "lavender-mid",
+     "name": "Dab the lavender",
+     "part": "lavender",
+     "show": "pass",
+     "paints": [
+      "lavender-2"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    },
+    {
+     "id": "lavender-light",
+     "name": "Dab the light tips",
+     "part": "lavender",
+     "show": "pass",
+     "paints": [
+      "lavender-4"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    }
+   ]
+  },
+  {
+   "id": "tree",
+   "name": "The tree",
+   "steps": [
+    {
+     "id": "tree-coat",
+     "name": "Block in the tree",
+     "part": "tree",
+     "show": "flat",
+     "paints": [
+      "tree-1"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    },
+    {
+     "id": "trunk",
+     "name": "Paint the trunk",
+     "part": "trunk",
+     "show": "full",
+     "paints": [
+      "trunk-1"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#6 round"
+    },
+    {
+     "id": "tree-mid",
+     "name": "Dab the mid greens",
+     "part": "tree",
+     "show": "pass",
+     "paints": [
+      "tree-2"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    },
+    {
+     "id": "tree-light",
+     "name": "Dab the sunlit leaves",
+     "part": "tree",
+     "show": "pass",
+     "paints": [
+      "tree-3"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    }
+   ]
+  },
+  {
+   "id": "balloon",
+   "name": "The balloon",
+   "steps": [
+    {
+     "id": "balloon-shape",
+     "name": "Block in the balloon",
+     "part": "balloon",
+     "show": "flat",
+     "paints": [
+      "balloon-3"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#8 round"
+    },
+    {
+     "id": "balloon-stripes",
+     "name": "Paint the stripes and basket",
+     "part": "balloon",
+     "show": "full",
+     "paints": [
+      "balloon-1",
+      "balloon-2",
+      "balloon-4"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#4 round"
+    }
+   ]
+  }
+ ]
+}

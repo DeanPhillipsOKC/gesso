@@ -1,0 +1,1138 @@
+{
+ "plan_version": 2,
+ "photo": "spike/tests/fixtures/finishes/chickadee.jpg",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "subject": "A black-capped chickadee on an autumn branch",
+ "focal_point": "the bird's head",
+ "light": "the setting sun, upper right",
+ "parts": [
+  {
+   "id": "sky",
+   "name": "Misty sunset sky",
+   "kind": "area",
+   "box": [
+    0,
+    0,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "sun",
+   "name": "The sun",
+   "kind": "object",
+   "parent": "sky",
+   "box": [
+    0.62,
+    0.08,
+    0.72,
+    0.2
+   ]
+  },
+  {
+   "id": "trunks",
+   "name": "Far misty trunks",
+   "kind": "marks",
+   "parent": "sky",
+   "box": [
+    0.78,
+    0,
+    1,
+    1
+   ],
+   "points_in": [
+    [
+     0.885,
+     0.45
+    ],
+    [
+     0.965,
+     0.55
+    ],
+    [
+     0.885,
+     0.7
+    ],
+    [
+     0.96,
+     0.3
+    ]
+   ],
+   "points_out": [
+    [
+     0.92,
+     0.62
+    ],
+    [
+     0.8,
+     0.9
+    ],
+    [
+     0.93,
+     0.2
+    ],
+    [
+     0.83,
+     0.35
+    ],
+    [
+     0.99,
+     0.85
+    ]
+   ]
+  },
+  {
+   "id": "foliage",
+   "name": "Hazy foliage",
+   "kind": "marks",
+   "parent": "sky",
+   "box": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "points_in": [
+    [
+     0.8,
+     0.4
+    ],
+    [
+     0.25,
+     0.92
+    ],
+    [
+     0.78,
+     0.18
+    ],
+    [
+     0.42,
+     0.76
+    ],
+    [
+     0.93,
+     0.42
+    ],
+    [
+     0.76,
+     0.33
+    ],
+    [
+     0.22,
+     0.28
+    ],
+    [
+     0.93,
+     0.16
+    ],
+    [
+     0.62,
+     0.27
+    ],
+    [
+     0.3,
+     0.8
+    ]
+   ],
+   "points_out": [
+    [
+     0.3,
+     0.5
+    ],
+    [
+     0.62,
+     0.5
+    ],
+    [
+     0.6,
+     0.1
+    ],
+    [
+     0.88,
+     0.8
+    ],
+    [
+     0.07,
+     0.92
+    ],
+    [
+     0.885,
+     0.45
+    ],
+    [
+     0.5,
+     0.07
+    ],
+    [
+     0.57,
+     0.16
+    ],
+    [
+     0.7,
+     0.1
+    ],
+    [
+     0.75,
+     0.6
+    ]
+   ]
+  },
+  {
+   "id": "branch",
+   "name": "The branch",
+   "kind": "thin",
+   "width": 0.08,
+   "paths": [
+    [
+     [
+      0.02,
+      0.0
+     ],
+     [
+      0.03,
+      0.3
+     ],
+     [
+      0.08,
+      0.55
+     ],
+     [
+      0.11,
+      0.68
+     ]
+    ],
+    [
+     [
+      0.0,
+      0.8
+     ],
+     [
+      0.12,
+      0.74
+     ],
+     [
+      0.3,
+      0.64
+     ],
+     [
+      0.5,
+      0.6
+     ],
+     [
+      0.65,
+      0.64
+     ],
+     [
+      0.8,
+      0.73
+     ],
+     [
+      0.9,
+      0.84
+     ],
+     [
+      1.0,
+      0.96
+     ]
+    ],
+    [
+     [
+      0.81,
+      0.73
+     ],
+     [
+      0.9,
+      0.72
+     ],
+     [
+      1.0,
+      0.65
+     ]
+    ],
+    [
+     [
+      0.86,
+      0.82
+     ],
+     [
+      1.0,
+      0.85
+     ]
+    ],
+    [
+     [
+      0.04,
+      0.07
+     ],
+     [
+      0.13,
+      0.0
+     ]
+    ],
+    [
+     [
+      0.09,
+      0.06
+     ],
+     [
+      0.11,
+      0.12
+     ]
+    ],
+    [
+     [
+      0.64,
+      0.66
+     ],
+     [
+      0.67,
+      0.78
+     ]
+    ],
+    [
+     [
+      0.0,
+      0.72
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    [
+     [
+      0.0,
+      0.9
+     ],
+     [
+      0.1,
+      0.76
+     ]
+    ]
+   ],
+   "points_in": [
+    [
+     0.05,
+     0.5
+    ],
+    [
+     0.3,
+     0.66
+    ],
+    [
+     0.5,
+     0.615
+    ],
+    [
+     0.7,
+     0.68
+    ],
+    [
+     0.2,
+     0.74
+    ],
+    [
+     0.03,
+     0.2
+    ],
+    [
+     0.4,
+     0.64
+    ],
+    [
+     0.09,
+     0.6
+    ],
+    [
+     0.45,
+     0.585
+    ],
+    [
+     0.6,
+     0.6
+    ],
+    [
+     0.02,
+     0.8
+    ],
+    [
+     0.25,
+     0.655
+    ],
+    [
+     0.72,
+     0.685
+    ]
+   ],
+   "points_out": [
+    [
+     0.3,
+     0.5
+    ],
+    [
+     0.62,
+     0.5
+    ],
+    [
+     0.25,
+     0.92
+    ],
+    [
+     0.42,
+     0.76
+    ],
+    [
+     0.88,
+     0.8
+    ],
+    [
+     0.15,
+     0.45
+    ],
+    [
+     0.5,
+     0.75
+    ]
+   ]
+  },
+  {
+   "id": "leaves",
+   "name": "The four leaves",
+   "kind": "object",
+   "boxes": [
+    [
+     0.14,
+     0,
+     0.35,
+     0.19
+    ],
+    [
+     0.07,
+     0.11,
+     0.23,
+     0.39
+    ],
+    [
+     0.47,
+     0.69,
+     0.66,
+     0.95
+    ],
+    [
+     0.65,
+     0.78,
+     0.81,
+     1.0
+    ]
+   ]
+  },
+  {
+   "id": "bird",
+   "name": "The chickadee",
+   "kind": "object",
+   "box": [
+    0.12,
+    0.1,
+    0.61,
+    0.64
+   ]
+  },
+  {
+   "id": "bird-wing",
+   "name": "Wing and tail",
+   "kind": "marks",
+   "parent": "bird",
+   "box": [
+    0.12,
+    0.25,
+    0.46,
+    0.63
+   ],
+   "points_in": [
+    [
+     0.33,
+     0.36
+    ],
+    [
+     0.27,
+     0.46
+    ],
+    [
+     0.2,
+     0.56
+    ]
+   ],
+   "points_out": [
+    [
+     0.45,
+     0.45
+    ],
+    [
+     0.55,
+     0.4
+    ],
+    [
+     0.4,
+     0.52
+    ]
+   ]
+  },
+  {
+   "id": "bird-head",
+   "name": "Black cap and bib",
+   "kind": "marks",
+   "parent": "bird",
+   "box": [
+    0.36,
+    0.1,
+    0.6,
+    0.33
+   ],
+   "points_in": [
+    [
+     0.45,
+     0.14
+    ],
+    [
+     0.53,
+     0.25
+    ]
+   ],
+   "points_out": [
+    [
+     0.43,
+     0.25
+    ],
+    [
+     0.45,
+     0.45
+    ],
+    [
+     0.55,
+     0.4
+    ],
+    [
+     0.33,
+     0.36
+    ]
+   ]
+  },
+  {
+   "id": "bird-cheek",
+   "name": "White cheek",
+   "kind": "marks",
+   "parent": "bird",
+   "box": [
+    0.36,
+    0.17,
+    0.53,
+    0.3
+   ],
+   "points_in": [
+    [
+     0.43,
+     0.25
+    ],
+    [
+     0.4,
+     0.21
+    ]
+   ],
+   "points_out": [
+    [
+     0.45,
+     0.14
+    ],
+    [
+     0.53,
+     0.25
+    ],
+    [
+     0.45,
+     0.45
+    ],
+    [
+     0.33,
+     0.36
+    ]
+   ]
+  },
+  {
+   "id": "bird-face",
+   "name": "Eye and beak",
+   "kind": "marks",
+   "parent": "bird",
+   "points_in": [
+    [
+     0.53,
+     0.19
+    ],
+    [
+     0.47,
+     0.21
+    ]
+   ],
+   "points_out": [
+    [
+     0.43,
+     0.25
+    ],
+    [
+     0.45,
+     0.14
+    ],
+    [
+     0.55,
+     0.25
+    ],
+    [
+     0.5,
+     0.16
+    ]
+   ],
+   "boxes": [
+    [
+     0.505,
+     0.17,
+     0.56,
+     0.215
+    ],
+    [
+     0.46,
+     0.2,
+     0.485,
+     0.222
+    ]
+   ]
+  },
+  {
+   "id": "bird-feet",
+   "name": "Legs and feet",
+   "kind": "marks",
+   "boxes": [
+    [
+     0.385,
+     0.53,
+     0.56,
+     0.645
+    ]
+   ],
+   "points_in": [
+    [
+     0.42,
+     0.585
+    ],
+    [
+     0.53,
+     0.585
+    ],
+    [
+     0.41,
+     0.55
+    ],
+    [
+     0.5,
+     0.555
+    ]
+   ],
+   "points_out": [
+    [
+     0.45,
+     0.45
+    ],
+    [
+     0.5,
+     0.5
+    ],
+    [
+     0.5,
+     0.62
+    ],
+    [
+     0.47,
+     0.6
+    ],
+    [
+     0.36,
+     0.6
+    ],
+    [
+     0.58,
+     0.6
+    ],
+    [
+     0.47,
+     0.565
+    ]
+   ]
+  }
+ ],
+ "paints": [
+  {
+   "id": "mist",
+   "name": "Misty blue-gray",
+   "hex": "#9294a1",
+   "parts": [
+    "sky"
+   ],
+   "used_for": "misty sunset sky",
+   "sample_x": 0.791,
+   "sample_y": 0.66
+  },
+  {
+   "id": "dusk",
+   "name": "Dusty rose",
+   "hex": "#b99882",
+   "parts": [
+    "sky"
+   ],
+   "used_for": "misty sunset sky",
+   "sample_x": 0.707,
+   "sample_y": 0.757
+  },
+  {
+   "id": "glow",
+   "name": "Sunset gold",
+   "hex": "#efb166",
+   "parts": [
+    "sky"
+   ],
+   "used_for": "misty sunset sky",
+   "sample_x": 0.597,
+   "sample_y": 0.158
+  },
+  {
+   "id": "sun",
+   "name": "Sun cream",
+   "hex": "#fae8b1",
+   "parts": [
+    "sun"
+   ],
+   "used_for": "the sun",
+   "sample_x": 0.657,
+   "sample_y": 0.13
+  },
+  {
+   "id": "trunk",
+   "name": "Mist gray",
+   "hex": "#7a7e8f",
+   "parts": [
+    "trunks"
+   ],
+   "used_for": "far misty trunks",
+   "sample_x": 0.888,
+   "sample_y": 0.684
+  },
+  {
+   "id": "rust",
+   "name": "Foliage rust",
+   "hex": "#c58165",
+   "parts": [
+    "foliage"
+   ],
+   "used_for": "hazy foliage",
+   "sample_x": 0.188,
+   "sample_y": 0.931
+  },
+  {
+   "id": "orange",
+   "name": "Foliage orange",
+   "hex": "#e78b50",
+   "parts": [
+    "foliage"
+   ],
+   "used_for": "hazy foliage",
+   "sample_x": 0.718,
+   "sample_y": 0.355
+  },
+  {
+   "id": "bark",
+   "name": "Bark brown",
+   "hex": "#5e3928",
+   "parts": [
+    "branch"
+   ],
+   "used_for": "the branch",
+   "sample_x": 0.046,
+   "sample_y": 0.553
+  },
+  {
+   "id": "bark-mid",
+   "name": "Bark tan",
+   "hex": "#935f43",
+   "parts": [
+    "branch"
+   ],
+   "used_for": "the branch",
+   "sample_x": 0.111,
+   "sample_y": 0.729
+  },
+  {
+   "id": "bark-light",
+   "name": "Bark light",
+   "hex": "#ca864e",
+   "parts": [
+    "branch"
+   ],
+   "used_for": "the branch",
+   "sample_x": 0.082,
+   "sample_y": 0.715
+  },
+  {
+   "id": "leaf-red",
+   "name": "Leaf red",
+   "hex": "#d74e26",
+   "parts": [
+    "leaves"
+   ],
+   "used_for": "the four leaves",
+   "sample_x": 0.182,
+   "sample_y": 0.256
+  },
+  {
+   "id": "leaf-orange",
+   "name": "Leaf orange",
+   "hex": "#f1881a",
+   "parts": [
+    "leaves"
+   ],
+   "used_for": "the four leaves",
+   "sample_x": 0.263,
+   "sample_y": 0.0
+  },
+  {
+   "id": "leaf-gold",
+   "name": "Leaf gold",
+   "hex": "#f8a821",
+   "parts": [
+    "leaves"
+   ],
+   "used_for": "the four leaves",
+   "sample_x": 0.582,
+   "sample_y": 0.85
+  },
+  {
+   "id": "buff",
+   "name": "Belly buff",
+   "hex": "#d7995e",
+   "parts": [
+    "bird"
+   ],
+   "used_for": "the chickadee",
+   "sample_x": 0.418,
+   "sample_y": 0.455
+  },
+  {
+   "id": "cream",
+   "name": "Chest cream",
+   "hex": "#ecd3bc",
+   "parts": [
+    "bird"
+   ],
+   "used_for": "the chickadee",
+   "sample_x": 0.552,
+   "sample_y": 0.375
+  },
+  {
+   "id": "wing",
+   "name": "Wing gray",
+   "hex": "#7f7983",
+   "parts": [
+    "bird-wing"
+   ],
+   "used_for": "wing and tail",
+   "sample_x": 0.367,
+   "sample_y": 0.299
+  },
+  {
+   "id": "wing-dark",
+   "name": "Charcoal",
+   "hex": "#4d4549",
+   "parts": [
+    "bird-wing",
+    "bird-feet"
+   ],
+   "used_for": "wing and tail, legs and feet",
+   "sample_x": 0.362,
+   "sample_y": 0.398
+  },
+  {
+   "id": "wing-light",
+   "name": "Feather edge gray",
+   "hex": "#aca1a2",
+   "parts": [
+    "bird-wing"
+   ],
+   "used_for": "wing and tail",
+   "sample_x": 0.34,
+   "sample_y": 0.347
+  },
+  {
+   "id": "black",
+   "name": "Chickadee black",
+   "hex": "#282529",
+   "parts": [
+    "bird-head",
+    "bird-face"
+   ],
+   "used_for": "black cap and bib, eye and beak",
+   "sample_x": 0.531,
+   "sample_y": 0.279
+  },
+  {
+   "id": "white",
+   "name": "Cheek white",
+   "hex": "#eedccd",
+   "parts": [
+    "bird-cheek"
+   ],
+   "used_for": "white cheek",
+   "sample_x": 0.453,
+   "sample_y": 0.268
+  }
+ ],
+ "stages": [
+  {
+   "id": "sky",
+   "name": "The misty sky",
+   "steps": [
+    {
+     "id": "sky-blend",
+     "name": "Blend the misty sunset sky",
+     "part": "sky",
+     "show": "blend",
+     "paints": [
+      "mist",
+      "dusk",
+      "glow"
+     ],
+     "stroke": "x-stroke",
+     "brush": "1 inch flat"
+    },
+    {
+     "id": "sun",
+     "name": "Paint the sun",
+     "part": "sun",
+     "show": "full",
+     "paints": [
+      "sun"
+     ],
+     "stroke": "fill",
+     "brush": "#6 round"
+    }
+   ]
+  },
+  {
+   "id": "background",
+   "name": "The far woods",
+   "steps": [
+    {
+     "id": "trunks",
+     "name": "Pull down the far trunks",
+     "part": "trunks",
+     "show": "full",
+     "paints": [
+      "trunk"
+     ],
+     "stroke": "dry-brush",
+     "brush": "3/4 inch flat"
+    },
+    {
+     "id": "foliage-rust",
+     "name": "Dab the rust foliage",
+     "part": "foliage",
+     "show": "pass",
+     "paints": [
+      "rust"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    },
+    {
+     "id": "foliage-orange",
+     "name": "Dab the orange light",
+     "part": "foliage",
+     "show": "pass",
+     "paints": [
+      "orange"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat"
+    }
+   ]
+  },
+  {
+   "id": "branch",
+   "name": "The branch",
+   "steps": [
+    {
+     "id": "branch-dark",
+     "name": "Paint the branch dark",
+     "part": "branch",
+     "show": "flat",
+     "paints": [
+      "bark"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "1/2 inch flat"
+    },
+    {
+     "id": "branch-mid",
+     "name": "Drag bark tan along the tops",
+     "part": "branch",
+     "show": "pass",
+     "paints": [
+      "bark-mid"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat"
+    },
+    {
+     "id": "branch-light",
+     "name": "Catch the light on the bark",
+     "part": "branch",
+     "show": "pass",
+     "paints": [
+      "bark-light"
+     ],
+     "stroke": "dry-brush",
+     "brush": "#4 round"
+    }
+   ]
+  },
+  {
+   "id": "leaves",
+   "name": "The leaves",
+   "steps": [
+    {
+     "id": "leaves-shape",
+     "name": "Block in the four leaves",
+     "part": "leaves",
+     "show": "flat",
+     "paints": [
+      "leaf-red",
+      "leaf-orange"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#8 round"
+    },
+    {
+     "id": "leaves-light",
+     "name": "Brighten and vein the leaves",
+     "part": "leaves",
+     "show": "pass",
+     "paints": [
+      "leaf-gold"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#4 round"
+    }
+   ]
+  },
+  {
+   "id": "bird",
+   "name": "The chickadee",
+   "steps": [
+    {
+     "id": "bird-body",
+     "name": "Block in the body",
+     "part": "bird",
+     "show": "flat",
+     "paints": [
+      "buff"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch filbert"
+    },
+    {
+     "id": "bird-wing",
+     "name": "Block in the wing and tail",
+     "part": "bird-wing",
+     "show": "flat",
+     "paints": [
+      "wing"
+     ],
+     "stroke": "fill",
+     "brush": "#6 round"
+    },
+    {
+     "id": "bird-head",
+     "name": "Paint the black cap and bib",
+     "part": "bird-head",
+     "show": "full",
+     "paints": [
+      "black"
+     ],
+     "stroke": "fill",
+     "brush": "#6 round"
+    },
+    {
+     "id": "bird-cheek",
+     "name": "Paint the white cheek",
+     "part": "bird-cheek",
+     "show": "full",
+     "paints": [
+      "white"
+     ],
+     "stroke": "fill",
+     "brush": "#6 round"
+    },
+    {
+     "id": "bird-chest",
+     "name": "Light the chest",
+     "part": "bird",
+     "show": "pass",
+     "paints": [
+      "cream"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#6 round"
+    },
+    {
+     "id": "wing-dark",
+     "name": "Stripe the wing feathers",
+     "part": "bird-wing",
+     "show": "pass",
+     "paints": [
+      "wing-dark"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#2 round"
+    },
+    {
+     "id": "wing-light",
+     "name": "Edge the feathers",
+     "part": "bird-wing",
+     "show": "pass",
+     "paints": [
+      "wing-light"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#2 round"
+    },
+    {
+     "id": "bird-face",
+     "name": "Add the eye and beak",
+     "part": "bird-face",
+     "show": "full",
+     "paints": [
+      "black"
+     ],
+     "stroke": "liner",
+     "brush": "liner"
+    },
+    {
+     "id": "bird-feet",
+     "name": "Add the legs and feet",
+     "part": "bird-feet",
+     "show": "full",
+     "paints": [
+      "wing-dark"
+     ],
+     "stroke": "liner",
+     "brush": "liner"
+    }
+   ]
+  }
+ ]
+}
