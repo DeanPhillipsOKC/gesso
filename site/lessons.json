@@ -20,7 +20,8 @@
         "href": "lessons/lavender-balloon/",
         "current": true
       }
-    ]
+    ],
+    "known": 7
   },
   {
     "slug": "chickadee",
@@ -43,7 +44,8 @@
         "href": "lessons/chickadee/",
         "current": true
       }
-    ]
+    ],
+    "known": 5
   },
   {
     "slug": "red-sailboat",
@@ -66,6 +68,7 @@
         "href": "lessons/red-sailboat/",
         "current": true
       }
-    ]
+    ],
+    "known": 4
   }
 ]

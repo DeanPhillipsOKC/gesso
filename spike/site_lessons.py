@@ -57,6 +57,7 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
         "source": lesson.name,
     }
     entry["versions"] = add_versions(site, slug, lesson.name, lesson.parent)
+    entry["known"] = known_problems_for(site, entry, lesson.parent)
     manifest = site / "lessons.json"
     lessons = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else []
     lessons = [x for x in lessons if x["slug"] != slug] + [entry]
@@ -119,6 +120,22 @@ def add_versions(site: Path, slug: str, current: str, output: Path) -> list[dict
     return sorted(versions, key=lambda v: v["id"], reverse=True)
 
 
+def known_problems_for(site: Path, x: dict, output: Path) -> int:
+    """Refresh the known-problems section on the lesson's page and every version's page. Returns how many the
+    current one has (left as they are, plus open issues), for its tile."""
+    from known_problems import refresh_page
+    photo = x["source"].split("_skill_")[0]
+    count = 0
+    for v in x.get("versions") or []:
+        page = site / v["href"] / "index.html"
+        run = output / f"{photo}_skill_{v['id']}"
+        if page.exists() and (run / "lesson.json").exists():
+            r = refresh_page(page, run)
+            if v.get("current"):
+                count = r.get("left", 0) + len(r.get("issues_open", []))
+    return count
+
+
 def refresh(site: Path = SITE, output: Path = ROOT / "output") -> dict:
     """Pick up new runs of every lesson on the site as versions, and rebuild the list."""
     manifest = site / "lessons.json"
@@ -129,14 +146,15 @@ def refresh(site: Path = SITE, output: Path = ROOT / "output") -> dict:
         for page in (site / "lessons" / x["slug"] / "v").glob("*") if (site / "lessons" / x["slug"] / "v").exists() else []:
             if page.name not in keep:  # no longer hands-off, or never was: off the site, still in the history
                 shutil.rmtree(page)
+        x["known"] = known_problems_for(site, x, output)
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
     build_index(site, lessons)
     return {x["slug"]: len(x["versions"]) for x in lessons}
 
 
 INDEX_STYLE = """
-:root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8}
-@media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;color-scheme:dark}}
+:root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8;--warn:#b3261e}
+@media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;--warn:#ff8a80;color-scheme:dark}}
 body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.55 "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 .wrap{max-width:64rem;margin:0 auto;padding-block:2rem 4rem;display:grid;gap:1.5rem}
@@ -149,6 +167,7 @@ h1{font:700 clamp(1.8rem,5vw,2.6rem)/1.1 "Bricolage Grotesque","Segoe UI",sans-s
 .card img{width:100%;height:auto;border-radius:8px;display:block}
 .card a{color:inherit;text-decoration:none}
 .card .name{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
+.card a.known{color:var(--warn);font-weight:700;text-decoration:underline}
 .pick{display:grid;gap:.25rem;font-size:.8rem;color:var(--muted)}
 .pick select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;
   padding:.45rem .5rem;min-height:2.75rem;width:100%;min-width:0}
@@ -181,9 +200,12 @@ def card(x: dict) -> str:
     slug = e(x["slug"])
     versions = x.get("versions") or []
     href = f"lessons/{slug}/"
+    known = x.get("known") or 0
     facts = (f'<span class="steps">{x["steps"]} steps</span>'
              + (f'<span>{e(x["canvas"])} canvas</span>' if x["canvas"] else "")
-             + (f'<span>{x["tubes"]} tubes</span>' if x["tubes"] else ""))
+             + (f'<span>{x["tubes"]} tubes</span>' if x["tubes"] else "")
+             + (f'<a class="known" href="{href}#known-problems">{known} known problem{"s" if known != 1 else ""}</a>'
+                if known else ""))
     if len(versions) > 1:
         options = "".join(
             f'<option value="{e(v["href"])}" data-steps="{v["steps"]}"{" selected" if v.get("current") else ""}>'

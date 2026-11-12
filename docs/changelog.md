@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.25.2 (2026-11-12)
+- Lesson pages on the site have a Known problems section: what the run's reviews found and left as they are, by
+  step, and links to the issues filed about the run (open, or fixed in a later version). The tile says how many.
+  `site-refresh` updates it as issues are filed and closed, without touching the lesson, so it stays hands-off.
+
 ## POC 0.25.1 (2026-11-12)
 - `from-finish --in-place` is the skill's own step 6a inside its run, so the lesson can still be sealed hands-off; a
   copy without it is a recut. Once a run is sealed, its draft publishes leave the lesson history (they were work in

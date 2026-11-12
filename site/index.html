@@ -4,8 +4,8 @@
 <title>Our Painting Lessons</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,650;12..96,700&display=swap">
 <style>
-:root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8}
-@media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;color-scheme:dark}}
+:root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8;--warn:#b3261e}
+@media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;--warn:#ff8a80;color-scheme:dark}}
 body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.55 "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 .wrap{max-width:64rem;margin:0 auto;padding-block:2rem 4rem;display:grid;gap:1.5rem}
@@ -18,6 +18,7 @@ h1{font:700 clamp(1.8rem,5vw,2.6rem)/1.1 "Bricolage Grotesque","Segoe UI",sans-s
 .card img{width:100%;height:auto;border-radius:8px;display:block}
 .card a{color:inherit;text-decoration:none}
 .card .name{font:650 1.1rem/1.25 "Bricolage Grotesque","Segoe UI",sans-serif}
+.card a.known{color:var(--warn);font-weight:700;text-decoration:underline}
 .pick{display:grid;gap:.25rem;font-size:.8rem;color:var(--muted)}
 .pick select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;
   padding:.45rem .5rem;min-height:2.75rem;width:100%;min-width:0}
@@ -30,7 +31,7 @@ footer{font:.75rem/1.4 ui-monospace,Consolas,monospace;color:var(--muted)}
 <header style="display:grid;gap:.5rem"><h1>Our painting lessons</h1>
 <p class="lede">Pick one and open it on your phone or tablet next to the easel. Each one has every step's picture, the paints to
 mix, and the brushes.</p></header>
-<div class="grid"><div class="card"><a class="pic" href="lessons/chickadee/"><img src="lessons/chickadee/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/chickadee/">A round black-capped chickadee perched on an arching autumn branch</a><span class="facts"><span class="steps">11 steps</span><span>14 x 11 in canvas</span><span>14 tubes</span></span><span class="ver">Made with Gesso POC 0.25.0</span><a class="open" href="lessons/chickadee/">Open lesson</a></div><div class="card"><a class="pic" href="lessons/red-sailboat/"><img src="lessons/red-sailboat/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/red-sailboat/">A small red sailboat</a><span class="facts"><span class="steps">10 steps</span><span>14 x 11 in canvas</span><span>5 tubes</span></span><span class="ver">Made with Gesso POC 0.25.0</span><a class="open" href="lessons/red-sailboat/">Open lesson</a></div><div class="card"><a class="pic" href="lessons/lavender-balloon/"><img src="lessons/lavender-balloon/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/lavender-balloon/">A striped hot-air balloon floating over a lavender field at sunset</a><span class="facts"><span class="steps">12 steps</span><span>14 x 11 in canvas</span><span>12 tubes</span></span><span class="ver">Made with Gesso POC 0.20.0</span><a class="open" href="lessons/lavender-balloon/">Open lesson</a></div></div>
+<div class="grid"><div class="card"><a class="pic" href="lessons/chickadee/"><img src="lessons/chickadee/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/chickadee/">A round black-capped chickadee perched on an arching autumn branch</a><span class="facts"><span class="steps">11 steps</span><span>14 x 11 in canvas</span><span>14 tubes</span><a class="known" href="lessons/chickadee/#known-problems">5 known problems</a></span><span class="ver">Made with Gesso POC 0.25.0</span><a class="open" href="lessons/chickadee/">Open lesson</a></div><div class="card"><a class="pic" href="lessons/red-sailboat/"><img src="lessons/red-sailboat/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/red-sailboat/">A small red sailboat</a><span class="facts"><span class="steps">10 steps</span><span>14 x 11 in canvas</span><span>5 tubes</span><a class="known" href="lessons/red-sailboat/#known-problems">4 known problems</a></span><span class="ver">Made with Gesso POC 0.25.0</span><a class="open" href="lessons/red-sailboat/">Open lesson</a></div><div class="card"><a class="pic" href="lessons/lavender-balloon/"><img src="lessons/lavender-balloon/thumb.jpg" alt="" loading="lazy"></a><a class="name" href="lessons/lavender-balloon/">A striped hot-air balloon floating over a lavender field at sunset</a><span class="facts"><span class="steps">12 steps</span><span>14 x 11 in canvas</span><span>12 tubes</span><a class="known" href="lessons/lavender-balloon/#known-problems">7 known problems</a></span><span class="ver">Made with Gesso POC 0.20.0</span><a class="open" href="lessons/lavender-balloon/">Open lesson</a></div></div>
 <footer>Made with Gesso · <a href="history/" style="color:inherit">Lesson history</a></footer>
 </div><script>
 document.querySelectorAll('.card select').forEach(sel => sel.addEventListener('change', () => {
