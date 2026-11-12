@@ -779,15 +779,29 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
     raw_dir = dst / "trials" / "rendered"
     raw_dir.mkdir(parents=True, exist_ok=True)
     pictures, owner = build(finish, steps)
-    for path, pic in zip(paths, pictures):
+    chosen = set(a.steps or [s["id"] for s in steps])
+    unknown = chosen - {s["id"] for s in steps}
+    if unknown:
+        raise Refused(f"no such steps: {sorted(unknown)}")
+    from from_finish import box_mask
+    previous = None
+    for k, (path, pic) in enumerate(zip(paths, pictures)):
         if path.exists():
             shutil.copyfile(path, raw_dir / path.name)
+        if steps[k]["id"] not in chosen:
+            previous = np.array(Image.open(path).convert("RGB")) if path.exists() else pic
+            continue
+        if a.steps and previous is not None and k < len(steps) - 1:
+            # hybrid: the cut picture inside the step's regions, the step before it (rendered) everywhere else
+            inside = box_mask(pic.shape[:2], steps[k]["regions"])[..., None]
+            pic = np.where(inside, pic, previous)
         Image.fromarray(pic).save(path)
+        previous = pic
     text_path = dst / "text.json"
     if text_path.exists():
         text = json.loads(text_path.read_text(encoding="utf-8"))
         for t in text["steps"]:
-            if t["stage_id"] != plan.steps[-1].id:
+            if t["stage_id"] != plan.steps[-1].id and t["stage_id"] in chosen:
                 t["made_with"], t["reason"] = "composite:from-finish", "cut from the finished painting (#8)"
         text_path.write_text(json.dumps(text, indent=2), encoding="utf-8")
     for name in ("lesson.json", "lesson.html", "lesson-artifact.html", "lesson-standalone.html"):
@@ -795,7 +809,7 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
     led = LessonLedger(dst)
     with led.locked():
         # keep what this lesson still uses (the finish and the prep pictures); the step renders aren't used
-        steps_only = {s.id for s in plan.steps[:-1]}
+        steps_only = {s.id for s in plan.steps[:-1]} & chosen
         led.calls = [c for c in led.calls if c.get("step") not in steps_only]
         led.calls.append({"tool": "filter", "filter": "from-finish", "step": "", "why": a.why, "input": str(paths[-1]),
                           "out": str(dst), "settings": {"from": src.name}, "cost_usd": 0.0})
@@ -937,6 +951,8 @@ def add_lesson_tools(sub) -> None:
                                    "where later ones go, the first of several steps over one area is a flat coat and the "
                                    "rest go on darkest first. The rendered steps are kept in trials/rendered/. Publish after.")
     p.add_argument("--lesson", required=True)
+    p.add_argument("--steps", nargs="+", help="only these steps (the rest stay rendered): best for a group of passes "
+                                           "over one area, like lavender rows and their dab passes")
     p.add_argument("--why", required=True)
     p.set_defaults(func=from_finish_tool)
     p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
