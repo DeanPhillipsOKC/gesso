@@ -1,0 +1,52 @@
+id: wet-blend
+stroke_result: Wet-on-wet blend (two wet colors, light load)
+name: Wet-on-wet blend
+brushes:
+- flat
+- wash brush
+load: 'Don''t overload: less paint often blends better. If the paint starts to drag, add a tiny bit of water to
+  the brush.'
+motion: Work fast, in one area, while both colors are still wet.
+result: A soft transition, only where both paints were still wet.
+then: Stop when the paint drags; streaks can stay.
+mistakes:
+- mistake: The paint turns gooey and pulls up.
+  why: It has started to set. Acrylic stays wet for only a few minutes.
+  fix: Stop. Let it dry, then blend a new layer on top.
+- mistake: Muddy, lifeless color.
+  why: Overblending.
+  fix: Blend a few strokes and stop. Visible streaks often look natural.
+diagram:
+  title: Blend only while both are wet
+  stages:
+  - caption: Two wet colors, touching
+    add:
+    - rect:
+      - 10
+      - 30
+      - 40
+      - 40
+      paint: '#e8a53a'
+    - rect:
+      - 50
+      - 30
+      - 40
+      - 40
+      paint: '#5b7fc7'
+  - caption: A few light strokes across the join
+    add:
+    - rect:
+      - 40
+      - 30
+      - 20
+      - 40
+      paint: '#a39a86'
+      opacity: 0.85
+    arrows:
+    - M 36 50 L 64 50
+    - M 64 60 L 36 60
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Wet-on-wet blending
+- docs/research/acrylic-paint-along.md, section 3, Drying time and open time
+- docs/research/acrylic-paint-along.md, section 5, Overblending
+checked: false

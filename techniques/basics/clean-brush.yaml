@@ -1,0 +1,12 @@
+id: clean-brush
+name: Keep your colors clean
+lines:
+- Wipe the brush on a rag between colors.
+- Rinse it fully before going into white.
+- Rinse often. Dirty water tints every color with the last one.
+- 'Mix on the palette, not on the canvas. Two or three colors at most: stop when the color is right.'
+sources:
+- docs/research/acrylic-paint-along.md, section 6, Keeping colors clean
+- docs/research/acrylic-paint-along.md, section 5, Dirty water or brush
+- docs/research/acrylic-paint-along.md, section 5, Mixing too many colors
+checked: false

@@ -1,0 +1,53 @@
+id: horizontal-dashes
+stroke_result: Horizontal dashes on water (ripples, a sun or moon path, reflections)
+name: Horizontal dashes
+brushes:
+- flat (on its edge)
+- small round
+load: Creamy paint, a light touch.
+motion: Short, level dashes. Small and close together near the horizon, longer and wider apart lower down.
+result: Short, flat, level marks with gaps of the water color between them.
+then: Keep every dash level.
+mistakes:
+- mistake: The dashes smear into the water.
+  why: The water underneath is still wet.
+  fix: Paint them over dry water only.
+diagram:
+  title: Dashes that grow toward you
+  stages:
+  - caption: Dry water
+    add:
+    - rect:
+      - 8
+      - 20
+      - 84
+      - 66
+      paint: '#1d677a'
+  - caption: Short and close at the top, longer below
+    add:
+    - line: M 46.0 26 l 8 0
+      paint: '#e8a53a'
+      width: 2.2
+    - line: M 44.0 32 l 12 0
+      paint: '#e8a53a'
+      width: 2.2
+    - line: M 42.0 39 l 16 0
+      paint: '#e8a53a'
+      width: 2.2
+    - line: M 38.0 48 l 24 0
+      paint: '#e8a53a'
+      width: 2.2
+    - line: M 34.0 58 l 32 0
+      paint: '#e8a53a'
+      width: 2.2
+    - line: M 28.0 70 l 44 0
+      paint: '#e8a53a'
+      width: 2.2
+    - line: M 35.0 82 l 30 0
+      paint: '#e8a53a'
+      width: 2.2
+sources:
+- docs/research/acrylic-paint-along.md, section 8, Stroke direction
+- docs/research/acrylic-paint-along.md, section 8, Order of painting
+- techniques/acrylic-paint-along-beginner.yaml, stroke_results
+checked: false

@@ -1,0 +1,96 @@
+id: dabbing
+stroke_result: Dabbing or stippling (round tip or stiff brush, little paint)
+name: Dabbing
+also_called:
+- stippling
+brushes:
+- round (the tip, for small dots)
+- old stiff brush (for foliage)
+tools:
+- a sponge, for soft patches
+load: Little paint, fairly dry.
+motion: Tap with the tip of the brush. The more you tap one spot, the more solid it gets.
+result: Dots or dappled patches that get more solid the more you tap.
+then: Tap a lighter mix on the lit side, leaving the darker taps showing underneath.
+mistakes:
+- mistake: Blobs instead of dots.
+  why: The brush is too wet or holds too much paint.
+  fix: Wipe most of the paint off on a paper towel and tap again.
+- mistake: A patch went too solid.
+  fix: Tap over it with a lighter or darker mix to break it up.
+diagram:
+  title: Tap, don't stroke
+  stages:
+  - caption: Dark taps, gaps between
+    add:
+    - circle:
+      - 30
+      - 40
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 44
+      - 34
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 58
+      - 42
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 38
+      - 54
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 52
+      - 56
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 66
+      - 52
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 46
+      - 68
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 60
+      - 68
+      - 5
+      paint: '#2f3b2a'
+    - circle:
+      - 32
+      - 66
+      - 5
+      paint: '#2f3b2a'
+  - caption: Lighter taps on the lit side
+    add:
+    - circle:
+      - 46
+      - 30
+      - 4
+      paint: '#4f7d3a'
+    - circle:
+      - 60
+      - 36
+      - 4
+      paint: '#4f7d3a'
+    - circle:
+      - 68
+      - 46
+      - 4
+      paint: '#4f7d3a'
+    - circle:
+      - 54
+      - 48
+      - 4
+      paint: '#4f7d3a'
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Dabbing and stippling
+- docs/research/acrylic-paint-along.md, section 5, Too much paint on the brush
+checked: false

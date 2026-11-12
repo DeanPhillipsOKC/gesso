@@ -1,0 +1,47 @@
+id: press-and-lift
+stroke_result: Press and lift (round brush, press the belly, lift to the tip)
+name: Press and lift
+also_called:
+- comma stroke
+- petal stroke
+- leaf stroke
+brushes:
+- round
+load: Paint loaded well into the belly of the brush, creamy, not runny.
+motion: Touch down with the tip, press so the belly spreads, then pull and lift so the stroke ends on the tip.
+result: A teardrop or comma shape, wide where you pressed and pointed where you lifted.
+then: Tidy the edges with the background color once dry.
+mistakes:
+- mistake: A blob instead of a teardrop.
+  why: Too much paint, or too slow a lift.
+  fix: Use less paint and lift faster.
+practice: Try a row of them on scrap paper first.
+diagram:
+  title: Press, pull, lift
+  stages:
+  - caption: Touch the tip down
+    add:
+    - circle:
+      - 28
+      - 50
+      - 3
+      paint: '#e07a2c'
+  - caption: Press so the brush spreads
+    add:
+    - ellipse:
+      - 38
+      - 50
+      - 12
+      - 9
+      paint: '#e07a2c'
+    arrows:
+    - M 28 34 L 46 34
+  - caption: Pull and lift to a point
+    add:
+    - path: M 46 42 Q 66 44 84 50 Q 66 56 46 58 Z
+      paint: '#e07a2c'
+    arrows:
+    - M 50 34 L 84 44
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Press and lift
+checked: false

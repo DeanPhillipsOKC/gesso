@@ -1,0 +1,55 @@
+id: side-to-side-blend
+stroke_result: Long horizontal blend (flat brush, even coat)
+name: Side-to-side blend
+brushes:
+- wide flat
+- 3/4 inch wash brush
+load: An even coat, neither thick nor thin.
+motion: Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and
+  paint below it. Then stroke back up over the join several times.
+result: Smooth bands of color, with a soft join where two wet colors meet.
+then: Stroke back over each join while it's wet.
+mistakes:
+- mistake: A hard line where two colors meet.
+  fix: Add more of the lighter color at the join and blend again.
+- mistake: Two very different colors won't blend.
+  fix: Mix a bridge color from the two on the palette (pink and yellow make orange) and paint it between them.
+- mistake: The brush is overloaded.
+  fix: Wipe it on a rag. Rinse before going into white.
+diagram:
+  title: Blend two colors side to side
+  stages:
+  - caption: Darkest color, side to side
+    add:
+    - rect:
+      - 8
+      - 14
+      - 84
+      - 30
+      paint: '#5b7fc7'
+    arrows:
+    - M 14 29 L 86 29
+  - caption: Next color below it
+    add:
+    - rect:
+      - 8
+      - 44
+      - 84
+      - 30
+      paint: '#e8a53a'
+    arrows:
+    - M 86 59 L 14 59
+  - caption: Back up over the join
+    add:
+    - rect:
+      - 8
+      - 38
+      - 84
+      - 12
+      paint: '#a39281'
+      opacity: 0.9
+    arrows:
+    - M 14 44 L 86 44
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Long horizontal stroke
+checked: false

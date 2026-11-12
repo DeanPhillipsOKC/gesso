@@ -1,0 +1,71 @@
+id: sparkle
+stroke_result: Sparkle (10/0 liner, white, after everything is dry)
+name: Sparkle
+brushes:
+- 10/0 liner
+result: A tiny asterisk of light on the water.
+then: Use only a few, beside the brightest part of the sun or moon path.
+mistakes:
+- mistake: The sparkle spreads into a smudge.
+  why: The paint underneath is still wet.
+  fix: Wait until everything is dry.
+diagram:
+  title: A few tiny asterisks
+  stages:
+  - caption: Dry water and the bright path
+    add:
+    - rect:
+      - 8
+      - 20
+      - 84
+      - 66
+      paint: '#1d677a'
+    - rect:
+      - 40
+      - 20
+      - 20
+      - 66
+      paint: '#e8a53a'
+      opacity: 0.7
+  - caption: Two or three, beside the brightest part
+    add:
+    - line: M 28 40 l 8 0
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 32 36 l 0 8
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 29 37 l 6 6
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 29 43 l 6 -6
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 64 52 l 8 0
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 68 48 l 0 8
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 65 49 l 6 6
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 65 55 l 6 -6
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 26 68 l 8 0
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 30 64 l 0 8
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 27 65 l 6 6
+      paint: '#f4efe4'
+      width: 1.1
+    - line: M 27 71 l 6 -6
+      paint: '#f4efe4'
+      width: 1.1
+sources:
+- docs/research/acrylic-paint-along.md, section 8, Order of painting (thin lines and sparkles)
+- docs/research/acrylic-paint-along.md, section 2, Liner work
+checked: false

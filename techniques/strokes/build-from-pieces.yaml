@@ -1,0 +1,56 @@
+id: build-from-pieces
+stroke_result: Building from pieces (a center shape, then curved pieces on each side like parentheses)
+name: Building from pieces
+motion: Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each
+  side, like ( ), smaller toward the edges.
+result: A shape made of distinct curved segments with small gaps or overlaps between them.
+then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.
+note: A step that uses this comes with its own diagram of the pieces for that shape.
+diagram:
+  title: One simple shape, then the sides
+  stages:
+  - caption: A center oval
+    add:
+    - ellipse:
+      - 50
+      - 55
+      - 12
+      - 21
+      paint: '#e07a2c'
+    arrows:
+    - M 50 36 Q 42 55 50 74
+  - caption: A ( ) on each side, tucked behind
+    add:
+    - ellipse:
+      - 38
+      - 57
+      - 12
+      - 19
+      paint: '#e07a2c'
+      behind: true
+    - ellipse:
+      - 62
+      - 57
+      - 12
+      - 19
+      paint: '#e07a2c'
+      behind: true
+  - caption: Smaller ones at the edges
+    add:
+    - ellipse:
+      - 27
+      - 59
+      - 9
+      - 16
+      paint: '#e07a2c'
+      behind: true
+    - ellipse:
+      - 73
+      - 59
+      - 9
+      - 16
+      paint: '#e07a2c'
+      behind: true
+sources:
+- techniques/acrylic-paint-along-beginner.yaml, rules (build each shaped object from simple pieces) and stroke_results
+checked: false

@@ -1,0 +1,149 @@
+id: dotted-column
+stroke_result: Dotted or oval column (round, creamy load, marks angled out from a stem)
+name: Dotted column
+brushes:
+- '#4 round'
+load: Wet and creamy.
+motion: 'Small dots or ovals in a column, angled out from the stem: narrow at the top, wider lower down.'
+result: A spike of small marks, narrow at the top and wider at the base (lavender, lupine).
+then: Add a lighter column over it, mostly near the top, leaving the dark showing lower down.
+diagram:
+  title: A flower spike from small marks
+  stages:
+  - caption: Dark marks, narrow at the top
+    add:
+    - line: M 50 90 L 50 30
+      paint: '#4f7d3a'
+      width: 1.4
+    - ellipse:
+      - 48
+      - 26
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: -25
+    - ellipse:
+      - 52
+      - 26
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: 25
+    - ellipse:
+      - 46
+      - 34
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: -25
+    - ellipse:
+      - 54
+      - 34
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: 25
+    - ellipse:
+      - 44
+      - 42
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: -25
+    - ellipse:
+      - 56
+      - 42
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: 25
+    - ellipse:
+      - 43
+      - 50
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: -25
+    - ellipse:
+      - 57
+      - 50
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: 25
+    - ellipse:
+      - 42
+      - 58
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: -25
+    - ellipse:
+      - 58
+      - 58
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: 25
+    - ellipse:
+      - 41
+      - 66
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: -25
+    - ellipse:
+      - 59
+      - 66
+      - 4
+      - 2.6
+      paint: '#4a3a8a'
+      rotate: 25
+  - caption: Lighter marks near the top
+    add:
+    - ellipse:
+      - 48
+      - 24
+      - 3
+      - 2
+      paint: '#a98ad0'
+      rotate: -25
+    - ellipse:
+      - 52
+      - 24
+      - 3
+      - 2
+      paint: '#a98ad0'
+      rotate: 25
+    - ellipse:
+      - 46
+      - 32
+      - 3
+      - 2
+      paint: '#a98ad0'
+      rotate: -25
+    - ellipse:
+      - 54
+      - 32
+      - 3
+      - 2
+      paint: '#a98ad0'
+      rotate: 25
+    - ellipse:
+      - 45
+      - 40
+      - 3
+      - 2
+      paint: '#a98ad0'
+      rotate: -25
+    - ellipse:
+      - 55
+      - 40
+      - 3
+      - 2
+      paint: '#a98ad0'
+      rotate: 25
+sources:
+- docs/research/acrylic-paint-along.md, section 7, Marks, brushes and paint load
+- docs/research/acrylic-paint-along.md, section 7, Building a clump in passes
+checked: false

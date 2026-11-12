@@ -1,0 +1,11 @@
+id: water
+name: How much water
+lines:
+- Keep water to about half the mix or less. More than that makes weak, see-through color that can lift when you
+  paint over it.
+- For covering, use the paint thick, with little or no water.
+- After rinsing, wipe the metal part of the brush dry.
+sources:
+- docs/research/acrylic-paint-along.md, section 5, Too much water
+- docs/research/acrylic-paint-along.md, section 3, Painting over wet versus dry layers
+checked: false

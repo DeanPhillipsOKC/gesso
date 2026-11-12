@@ -20,6 +20,7 @@ import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
 import build_steps as bs  # noqa: E402
+import cards  # noqa: E402
 import outline as ol  # noqa: E402
 import paints  # noqa: E402
 import plan2  # noqa: E402
@@ -320,6 +321,39 @@ class BackgroundTests(unittest.TestCase):
         self.assertEqual(bs.background_problems(img, cleared, front)[0], [])
         other = np.full_like(img, 30)
         self.assertIn("changed", " ".join(bs.background_problems(img, other, front)[0]))
+
+
+class CardTests(unittest.TestCase):
+    def test_the_cards_in_the_repo_are_complete(self):
+        self.assertEqual(cards.problems(), [])
+        self.assertEqual(len(cards.strokes()), len(cards.stroke_results()))  # one card per stroke result
+
+    def test_every_stroke_the_fixture_plans_use_has_a_card(self):
+        have = set(cards.strokes())
+        for name in NAMES:
+            used = {s["stroke"] for s in bs.flat_steps(fixture(name)[1])}
+            self.assertEqual(used - have, set(), name)
+
+    def test_what_a_broken_card_is_told(self):
+        results = ["Dry brush (x)"]
+        good = {"id": "dry-brush", "stroke_result": "Dry brush (x)", "name": "Dry brush", "result": "Broken marks.",
+                "sources": ["research, section 2"], "checked": False, "brushes": ["flat"],
+                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10]}]}]}}
+        self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])
+        for change, expect in (({"sources": []}, "no sources"), ({"result": ""}, "no result"),
+                               ({"stroke_result": "Made up"}, "isn't an entry"), ({"brushes": ["spoon"]}, "can draw"),
+                               ({"diagram": {"stages": [{"add": [{"blob": 1}]}]}}, "doesn't draw"),
+                               ({"mistakes": [{"mistake": "Blobs."}]}, "'mistake' and 'fix'")):
+            self.assertIn(expect, " | ".join(cards.problems({"dry-brush": {**good, **change}}, {}, results)))
+        self.assertIn("no stroke card for", " | ".join(cards.problems({}, {}, results)))
+        self.assertIn("no lines", " | ".join(cards.problems({}, {"x": {"id": "x", "name": "X", "sources": ["s"], "checked": False}}, [])))
+
+    def test_an_unchecked_card_says_so_and_the_page_holds_every_card(self):
+        page = cards.page()
+        for cid in cards.strokes():
+            self.assertIn(f"id='stroke-{cid}'", page)
+        self.assertIn("Not checked yet", cards.stroke_html({**cards.strokes()["dabbing"], "checked": False}))
+        self.assertNotIn("Not checked yet", cards.stroke_html({**cards.strokes()["dabbing"], "checked": True}))
 
 
 if __name__ == "__main__":

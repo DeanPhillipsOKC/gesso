@@ -323,7 +323,10 @@ owner decides; it doesn't quietly loosen the limit or drop steps.
 ### Cards, written once and checked by the owner
 
 `techniques/strokes/<id>.yaml`: **one card per entry in the technique file's `stroke_results`** (28 today), each
-linked to it by `stroke_result:` so the text review still judges strokes against that table.
+linked to it by `stroke_result:` so the text review still judges strokes against that table. Built: 28 stroke
+cards and 11 basics cards, `spike/cards.py` (load, check, and draw them), and `tools.py cards --out <file>` (one
+page of them all for the owner). A plan's `stroke` is a card's id; `ls techniques/strokes` lists them. There is no
+card for plainly filling a small flat shape, because the research doesn't cover it: use `build-from-pieces`.
 
 ```yaml
 id: dabbing
@@ -496,7 +499,7 @@ One issue per row, in this order. Don't start one before the ones it needs are c
 | 2 | The background picture: one render for what's behind large objects (#64) | 1 | **done**, 2026-11-12 |
 | 3 | Version 2 lessons through `publish`, the history, and the page (#65) | 1 | |
 | 4 | Paints measured from the finish, with a limit on mixes (#66) | 1 | |
-| 5 | Stroke cards and basics cards (#67) | | the owner checks the cards |
+| 5 | Stroke cards and basics cards (#67) | | **done**, 2026-11-12; the owner still has to read and check them |
 | 6 | Teaching pictures and the lesson page (#68) | 3, 5 | |
 | 7 | Step text from data, and measured checks in place of the reviews (#51) | 3, 4, 5, 6 | |
 | 8 | The v2 skill, three hands-off runs, and the gate (#69) | all | needs a key and the source photos; the owner scores |

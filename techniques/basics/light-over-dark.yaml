@@ -1,0 +1,9 @@
+id: light-over-dark
+name: Light colors over dark need more than one coat
+lines:
+- One coat of white or a light color over a dark one usually looks gray and patchy.
+- Expect two or three thin coats, letting each dry. Use the paint thick, with little water.
+sources:
+- docs/research/acrylic-paint-along.md, section 3, Opacity of common beginner pigments
+- docs/research/acrylic-paint-along.md, section 5, One coat of white or a light color over dark
+checked: false
