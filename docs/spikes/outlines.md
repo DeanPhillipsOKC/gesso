@@ -6,7 +6,8 @@ tools, and `spike/tests/test_pipeline_v2.py`. The design they belong to is `docs
 
 **Answer: go.** With an outline per part, every step of all three test lessons is cut from the one finished
 painting. No step is rendered, nothing drifts, and a step can be as small as one move. One limit was found and
-it has a known fix: when objects cover a lot of the picture, what's behind them needs one render (below).
+it has a fix that has now been tried: when objects cover a lot of the picture, what's behind them takes one
+2-cent render (below).
 
 ## What was tested
 
@@ -18,14 +19,14 @@ picture, and small steps. No image model was called.
 |---|---|---|---|---|---|---|
 | Red sailboat | 9 | 14 | 10 | 10 s | 5 s | 0 |
 | Lavender balloon | 10 | 19 | 12 | 12 s | 7 s | 0 |
-| Chickadee | 12 | 19 | 11 | 11 s | 8 s | 0 (wants 1, see below) |
+| Chickadee | 12 | 19 | 11 | 11 s | 8 s | 1 ($0.018), for the background |
 
 Times are on 4 CPU cores. v1 spent 13 to 21 renders and 4 to 7 render minutes on the same pictures.
 
 ## The pictures
 
 **Red sailboat.** Clean from step 3 on. (Steps 1 and 2 show a faint shape where the hill will go and a dark band
-along the sky's bottom edge: the sky carried under the hill, section 7 case 1.) The boat, the mast, and the reflection are each built in their own
+along the sky's bottom edge: the sky carried under the hill.) The boat, the mast, and the reflection are each built in their own
 small steps. What's behind the boat is a free fill, and it can't be seen.
 
 ![Red sailboat, 14 steps](outlines-red-sailboat.jpg)
@@ -42,16 +43,24 @@ couldn't outline) is clean.
 
 ![Chickadee, 19 steps, free fill](outlines-chickadee.jpg)
 
-Steps 1 to 5 show the limit. The bird, branch, and leaves cover 33% of this picture, and the free fill for what's
-behind them is streaky. The same lesson with a picture of the background supplied (here a stand-in: step 4 of the
-v1 lesson, which was a render of exactly that) is right behind the objects:
+Those steps are the free fill, and they show its limit: the bird, branch, and leaves cover 33% of this picture.
+(This sheet is from after the fill was improved; the first try was streaky.) With one render of the background,
+the finish with those three taken out, what's behind them is real paint:
 
-![Chickadee, 19 steps, with a background picture](outlines-chickadee-background.jpg)
+![Chickadee, 19 steps, with the background render](outlines-chickadee-background.jpg)
 
-The stand-in wasn't made for this, so its seams show faintly in steps 1 to 3. Those steps also show soft bars
-at the top where the sky is carried under the foliage and trunks; a background picture doesn't change that. A render asked for directly ("the
-finish with the bird, branch, and leaves removed") hasn't been tried: there was no API key in this session. That
-is the next issue (pipeline v2, 2 of 8).
+**The background render, tried for real** (`background` tool, #64, 2026-11-12). One low-quality render per picture:
+
+| Lesson | Objects' share | Cost | Time | Away from the objects, changed | Result |
+|---|---|---|---|---|---|
+| Chickadee | 33% | $0.018 | 13 s | 0.3% | Clean. No trace of the bird, branch, or leaves in steps 1 to 5 |
+| Lavender balloon | 7% | $0.018 | about 13 s | 0.0% | No visible difference from the free fill |
+| Red sailboat | 8% | $0.018 | about 13 s | 0.0% | No visible difference from the free fill |
+
+So the render is worth its 2 cents only when objects are big, and `NEEDS_BACKGROUND` stays at 15%, between the
+cases seen. The image model kept the rest of the scene almost exactly each time, and only its pixels behind the
+objects are used anyway. The fixtures aren't the image model's shape, so the tool puts the finish in the model's
+frame with gray bands and crops the answer back; that worked with no extra prompt trouble.
 
 The outlines themselves, one tint per part:
 [sailboat](outlines-red-sailboat-parts.jpg), [lavender](outlines-lavender-balloon-parts.jpg),
@@ -95,13 +104,12 @@ machine. Across machines this isn't promised (the model's arithmetic can differ 
 
 ## What isn't done or isn't known
 
-- The background render (above). Until it's tried, "one render fixes the chickadee" is expected, not shown.
 - These pictures are 1000 x 786 JPEGs already cropped to the canvas. A real run's finish is a larger PNG in the
   image model's frame, sometimes with gray bands. Sizes in the code are shares of the picture, but that case
   hasn't been run.
 - The parts, boxes, and points were written by hand, with the pictures on screen and a few tries each (the
   chickadee took three rounds). Whether Claude does this well inside the skill, in at most 2 rounds, is for the
   last issue's hands-off runs to show.
-- A wet blend with a lot painted on it (the lavender's sky is half cloud) shows soft bars in its first step where
-  the sky was carried under the clouds. It reads as a blended sky, and it's gone a step later.
+- A wet blend with a lot painted on it (the lavender's sky is half cloud) is soft and a little blurred in its
+  first step where the sky was carried under the clouds. It reads as a blended sky, and it's gone a step later.
 - `publish`, the lesson page, and the history don't read version 2 plans yet.

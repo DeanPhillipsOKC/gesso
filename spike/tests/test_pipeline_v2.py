@@ -265,5 +265,62 @@ class ToolTests(unittest.TestCase):
             self.assertIn("run outline", self.run_tool("build-steps", "--lesson", str(lesson))["refused"])
 
 
+class BackgroundTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from test_render import FakeClient
+
+        self.tmp = tempfile.TemporaryDirectory()
+        self.cache, tools.CACHE_DIR = tools.CACHE_DIR, Path(self.tmp.name) / "cache"
+        self.client = FakeClient()
+        finish, plan, owner = fixture("red-sailboat")
+        self.lesson = Path(self.tmp.name) / "lesson"
+        (self.lesson / "parts").mkdir(parents=True)
+        (self.lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
+        Image.fromarray(finish).save(self.lesson / "99_finish.png")
+        Image.fromarray(owner.astype(np.uint8)).save(self.lesson / "parts" / "owner.png")
+
+    def tearDown(self):
+        tools.CACHE_DIR = self.cache
+        self.tmp.cleanup()
+
+    def run_tool(self, *argv) -> dict:
+        import contextlib
+        import io
+
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(io.StringIO()):
+            tools.main(list(argv), client=self.client)
+        return json.loads(out.getvalue().strip().splitlines()[-1])
+
+    def test_one_render_names_what_to_remove_and_is_counted(self):
+        r = self.run_tool("background", "--lesson", str(self.lesson))
+        self.assertEqual(self.client.images.calls, 1)
+        self.assertGreater(r["cost_usd"], 0)
+        self.assertEqual(r["removed"], ["The sail", "The hull", "The mast", "The reflection"])
+        with Image.open(self.lesson / "98_background.png") as got, Image.open(self.lesson / "99_finish.png") as finish:
+            self.assertEqual(got.size, finish.size)  # back at the finish's own size
+
+    def test_a_second_render_needs_redo_and_only_one_redo_is_allowed(self):
+        self.run_tool("background", "--lesson", str(self.lesson))
+        self.assertIn("--redo", self.run_tool("background", "--lesson", str(self.lesson))["refused"])
+        self.run_tool("background", "--lesson", str(self.lesson), "--redo")
+        self.assertEqual(self.client.images.calls, 2)
+        self.assertIn("refused", self.run_tool("background", "--lesson", str(self.lesson), "--redo"))
+        self.assertEqual(self.client.images.calls, 2)
+
+    def test_a_render_that_changed_the_scene_or_left_the_objects_is_reported(self):
+        img, parts, given = scene()
+        _, owner, _ = ol.outline(img, parts, given=given)
+        front = owner == 3
+        same, numbers = bs.background_problems(img, img.copy(), front)
+        self.assertIn("didn't remove", " ".join(same))  # the ball is still there
+        cleared = img.copy()
+        cleared[front] = (110, 150, 220)
+        self.assertEqual(bs.background_problems(img, cleared, front)[0], [])
+        other = np.full_like(img, 30)
+        self.assertIn("changed", " ".join(bs.background_problems(img, other, front)[0]))
+
+
 if __name__ == "__main__":
     unittest.main()
