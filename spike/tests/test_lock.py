@@ -133,3 +133,25 @@ class LockTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BackwardToneTests(unittest.TestCase):
+    def test_a_later_glow_doesnt_tint_a_clean_step(self):
+        """#56: the sun path's warm glow on the water, painted by a later step, leaked into the plain water step as
+        warm vertical bands. A whole area a shade off from the finish should still shift."""
+        import cv2
+        tmp = Path(tempfile.mkdtemp())
+        rng = np.random.default_rng(0)
+        water = np.clip(np.array([30, 140, 150]) + rng.normal(0, 3, (160, 480, 3)), 0, 255)
+        finish = np.clip(np.array([36, 146, 156]) + rng.normal(0, 3, (160, 480, 3)), 0, 255)
+        glow = np.zeros((160, 480), np.float32)
+        glow[:, 230:250] = 1  # a soft warm column, faint enough to still count as the same water
+        glow = cv2.GaussianBlur(glow, (0, 0), 5)[..., None] * 0.18
+        finish = finish * (1 - glow) + np.array([230, 180, 60]) * glow
+        step = tmp / "01_water.png"
+        Image.fromarray(water.astype(np.uint8)).save(step)
+        lock.backward([step], finish.astype(np.uint8), [[[0, 0, 1, 1]]], [[0, 0, 1, 1]])
+        out = np.asarray(Image.open(step).convert("RGB")).astype(float)
+        near, far = out[:, 232:248].mean((0, 1)), out[:, 0:80].mean((0, 1))
+        self.assertLess(near[0] - far[0], 8)  # beside the glow, the water isn't pulled warm (19 without the cap)
+        self.assertGreater(far[0] - water[:, 0:80, 0].mean(), 3)  # but the whole area still shifts to the finish

@@ -34,6 +34,13 @@ DONE_COLOR = 10.0  # Lab distance (blurred) under which an area matches the fini
 DONE_TEXTURE = 6.0  # and a local texture difference under which it has the finish's texture too
 CHANGED = 14.0  # Lab distance over which the step changed the area (same as the step review's change map)
 SAME_STUFF = 24.0  # Lab distance under which a step's area is the same thing as the finish's, just shaded differently
+TONE_SAME = SAME_STUFF  # backward pass: pixels this close to the finish count as the same stuff for the tone shift
+TONE_SIGMA = 12  # backward pass: how broad the tone shift is
+# ...and how far the shift may stray from the broad shift over the whole area (a fifth of the canvas), in RGB
+# levels. Without a limit, water beside the gold sun-path dashes took on their glow as warm vertical bands (#56,
+# both hands-off sailboat runs, 2026-11-12); a whole area a shade off from the finish still shifts fully.
+TONE_BROAD = 0.2
+TONE_LOCAL = 4.0
 
 
 def _lab(rgb: np.ndarray, sigma: float = 3) -> np.ndarray:
@@ -174,16 +181,21 @@ def backward(steps: list[Path], fin: np.ndarray, regions: list, final_regions: l
         # Inside later boxes the step keeps its own pixels, but where they're the same stuff as the finish (the same
         # water, a slightly different shade), shift their broad tone to the finish's and keep the brushwork. Without
         # this, the box edges show as straight tone steps (sailboat run, 2026-11-11: a lighter rectangle in the water).
-        same = _dist(_lab(img.astype(np.uint8)), _lab(fin)) < SAME_STUFF
+        same = _dist(_lab(img.astype(np.uint8)), _lab(fin)) < TONE_SAME
         # broad tones measured only over matching pixels, so a sail or boat in the finish can't bleed its color
         # into the shift as a ghost (sailboat relock, 2026-11-11)
         w8 = same.astype(np.float32)[..., None]
-        norm = cv2.GaussianBlur(w8, (0, 0), 12)[..., None] + 1e-3
-        img_low = cv2.GaussianBlur(img * w8, (0, 0), 12) / norm
-        fin_ok = cv2.GaussianBlur(fin.astype(np.float32) * w8, (0, 0), 12) / norm
+        norm = cv2.GaussianBlur(w8, (0, 0), TONE_SIGMA)[..., None] + 1e-3
+        img_low = cv2.GaussianBlur(img * w8, (0, 0), TONE_SIGMA) / norm
+        fin_ok = cv2.GaussianBlur(fin.astype(np.float32) * w8, (0, 0), TONE_SIGMA) / norm
         inner = cv2.erode((same & later).astype(np.uint8), np.ones((9, 9), np.uint8)).astype(np.float32)
         tone = cv2.GaussianBlur(inner, (0, 0), 6)[..., None]
-        img = img + (fin_ok - img_low) * tone
+        shift = fin_ok - img_low
+        wt = inner[..., None]
+        broad_sigma = TONE_BROAD * max(h, w)
+        broad = cv2.GaussianBlur(shift * wt, (0, 0), broad_sigma) / (cv2.GaussianBlur(wt, (0, 0), broad_sigma)[..., None] + 1e-3)
+        shift = broad + np.clip(shift - broad, -TONE_LOCAL, TONE_LOCAL)
+        img = img + shift * tone
         settled = cv2.GaussianBlur((~later).astype(np.float32), (0, 0), 4)[..., None]
         merged = img * (1 - settled) + fin.astype(np.float32) * settled
         Image.fromarray(np.clip(merged, 0, 255).astype(np.uint8)).save(steps[i])

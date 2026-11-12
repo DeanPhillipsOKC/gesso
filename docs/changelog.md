@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.26.1 (2026-11-12)
+- The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's
+  warm glow showed as faint bands in the plain water step of both hands-off sailboat runs). Its tone shift still
+  matches a whole area to the finish's shade, but may stray only 4 RGB levels from that broad shift locally.
+
 ## POC 0.26.0 (2026-11-12)
 - The paint-lesson skill is a short spine (`SKILL.md`, about 700 words: arguments, the rules for the whole run,
   the steps in order) plus one file per step in `steps/`, read when that step starts, so each step's rules are
