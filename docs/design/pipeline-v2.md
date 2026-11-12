@@ -46,7 +46,6 @@ the chickadee, every step is cut from the finish with no renders, in about 20 se
 The chickadee's bird is 9 small steps where v1 had 3.
 
 **Not known yet:**
-- whether one "background" render cleanly gives what's behind large objects (section 7). A stand-in worked;
 - whether Claude writes good parts (boxes, points) inside the skill in 2 rounds. They were hand-tuned in the spike;
 - how a real run's finish behaves (a larger PNG in the image model's frame, sometimes with gray bands);
 - whether the full run meets the cost and time targets (section 14).
@@ -248,25 +247,26 @@ that sky. Three cases:
    along each row so a horizon carries straight on. An object's soft rim (0.8% of the long side) is cleared with
    it and comes back when the object is painted. Built; can't be seen on the sailboat or the lavender (objects are
    8% of each picture).
-3. **Behind objects, when they're big** (33% on the chickadee): the fill is streaky. `build-steps` reports
+3. **Behind objects, when they're big** (33% on the chickadee): the fill is soft and patchy. `build-steps` reports
    `objects_share` and asks for a background picture above 15% (`NEEDS_BACKGROUND`; a number between the two
    cases seen, to be tuned).
 
-**The background picture** (`98_background.png`; the tool `background` that renders it is *not built*: issue 2
-of 8). One render:
-the finish as input, the prompt "Remove \<the parts in front, by name\>. Paint what is behind them, continuing
-\<the parts behind\> exactly as they are around them. Change nothing else.", low quality. `build-steps` already
-uses the file when it's there (`build_steps.make_background`): only its pixels inside the objects' outlines and
-rims are taken, matched to the color around the hole, so the render can't move or recolor anything else. Marks
-that the render shows behind an object (foliage behind the bird) are found there by the same color rule.
+**The background picture** (`98_background.png`, tool `background`, built: issue 2 of 8). One low-quality render
+of the finish with everything in front removed. The tool writes the prompt from the plan (the names of the front
+parts to remove and the back parts to continue), puts the finish in the image model's frame with gray bands when
+their shapes differ and crops the answer back, and records the render in the ledger like any other.
+`build-steps` uses the file when it's there (`build_steps.make_background`): only its pixels inside the objects'
+outlines and rims are taken, matched to the color around the hole, so the render can't move or recolor anything
+else. Marks the render shows behind an object (foliage behind the bird) are found there by the same color rule.
 
-Limits: one background render per lesson, a second only if the first fails its check. The v2 skill passes
-`--max-cost 0.40` to every render (the default stays $1.00 for v1).
+Tried on the three fixtures (`docs/spikes/outlines.md`): $0.018 and 13 seconds each; clean on the chickadee; no
+visible gain on the two pictures where objects are 7 to 8% of the picture. So it's run only when `build-steps`
+prints `"needs_background": true`.
 
-The render comes back at the image model's frame size. A real run's finish is already that size. The fixtures
-aren't (1000 x 786), so a fixture has to be padded to the frame before a background render and cropped back
-after; `make_background` resizes a mismatched picture without keeping its shape, which is only right when the
-shapes already match.
+`build_steps.background_problems` checks the render: it reports when more than 25% of the scene away from the
+objects changed (the three real renders changed 0.0 to 0.3%), or when the objects are still there. One redo at
+most (`--redo`); if that fails too, delete the file and keep the free fill, and record it as `left`. The v2 skill
+passes `--max-cost 0.40` to every render (the default stays $1.00 for v1).
 
 What's behind a thing is only on screen until the thing is painted. The bar is "doesn't look wrong".
 
@@ -493,7 +493,7 @@ One issue per row, in this order. Don't start one before the ones it needs are c
 | | Issue | Needs | Who |
 |---|---|---|---|
 | 1 | Outlines and step pictures from them (#62) | | **done**, 2026-11-12 |
-| 2 | The background picture: one render for what's behind large objects (#64) | 1 | needs an OpenAI key |
+| 2 | The background picture: one render for what's behind large objects (#64) | 1 | **done**, 2026-11-12 |
 | 3 | Version 2 lessons through `publish`, the history, and the page (#65) | 1 | |
 | 4 | Paints measured from the finish, with a limit on mixes (#66) | 1 | |
 | 5 | Stroke cards and basics cards (#67) | | the owner checks the cards |
@@ -556,7 +556,7 @@ pasted only inside its part. If it fails more widely: stop and report to the own
 
 | Risk | What limits it |
 |---|---|
-| The background render doesn't come back clean, or changes the scene's colors. | Only its pixels behind the objects are used, color-matched. If it still shows, the free fill stays and the lesson says so under Known problems. |
+| The background render doesn't come back clean on some picture (it did on all three tried). | Only its pixels behind the objects are used, color-matched, and it's checked. If it still shows, the free fill stays and the lesson says so under Known problems. |
 | Claude's parts need more than 2 rounds. | Tools are free and take seconds, and the fix table in section 6 covers what went wrong in the spike. Issue 8 measures it. |
 | A pass by nearest paint doesn't match how the area is really painted. | Splitting and reordering passes is free; the text review's `wrong_result` and `flat` kinds still catch it. |
 | The finish is more detailed than a beginner can paint, and v2 copies it faithfully. | Unchanged from v1: the beginner version and `detail_budget`. Not made worse. |
