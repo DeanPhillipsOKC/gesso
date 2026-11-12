@@ -129,6 +129,11 @@ def record(lesson: Path, data: dict, checks: dict | None = None, history: Path |
         "photo": key, "run": run, "started": run_time(run), "publishes": []}
     d = digest(lesson, data)
     if rec["publishes"] and rec["publishes"][-1]["digest"] == d:
+        last = rec["publishes"][-1]  # same pictures and text, but its provenance can still change (a seal, a mark)
+        if data.get("provenance") and last.get("provenance") != data["provenance"]:
+            last["provenance"] = data["provenance"]
+            path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
+            build_page(history)
         return {"recorded": False, "reason": "nothing changed since the last publish", "run": run}
     n = len(rec["publishes"]) + 1
     g, made = _stamp(data)
@@ -138,7 +143,8 @@ def record(lesson: Path, data: dict, checks: dict | None = None, history: Path |
     rec["publishes"].append({
         "n": n, "digest": d, "strip": f"strip-{n}.jpg",
         "published_with": {k: g.get(k) for k in ("version", "commit", "dirty", "published")},
-        "made_with": made, "palette": data.get("palette_name") or "", "technique": data.get("technique", ""),
+        "made_with": made, "provenance": data.get("provenance") or {"kind": "unsealed"},
+        "palette": data.get("palette_name") or "", "technique": data.get("technique", ""),
         "canvas": data.get("canvas"), "metrics": metrics(data, checks),
         "steps": [{"id": s["id"], "name": s.get("name", ""), "made_with": s.get("made_with", "")}
                   for s in data.get("stages") or []],
@@ -215,8 +221,9 @@ def between(log: dict[str, list[str]], older: str, newer: str) -> list[tuple[str
 
 PAGE_STYLE = """
 [hidden]{display:none!important}
-:root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8;--good:#1f7a4d;--bad:#b3261e}
-@media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;--good:#6fd39c;--bad:#ff8a80;color-scheme:dark}}
+:root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8;--good:#1f7a4d;--bad:#b3261e;
+  --recut:#b4520c;--edited:#8a2b6d}
+@media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;--good:#6fd39c;--bad:#ff8a80;--recut:#c2611a;--edited:#a8417f;color-scheme:dark}}
 body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.5 "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
 .wrap{max-width:72rem;margin:0 auto;padding-block:2rem 4rem;display:grid;gap:2rem}
@@ -240,6 +247,13 @@ label.pick{font-size:.85rem;display:flex;gap:.4rem;align-items:center;cursor:poi
 #compare .pair{display:grid;grid-template-columns:1fr;gap:.5rem;max-height:70vh;overflow:auto}
 @media (min-width:60rem){#compare .pair{grid-template-columns:1fr 1fr}}
 #compare figure{margin:0;display:grid;gap:.25rem;min-width:0}#compare img{width:100%;height:auto;display:block;border-radius:6px}#compare figcaption{font-size:.8rem;color:var(--muted)}
+.strip{position:relative;overflow:hidden;border-radius:6px}
+.ribbon{position:absolute;top:1.1rem;right:-2.6rem;transform:rotate(35deg);width:10rem;text-align:center;padding:.25rem 0;
+  font:700 .8rem/1 "Bricolage Grotesque","Segoe UI",sans-serif;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 2px 6px rgb(0 0 0/.3);pointer-events:none}
+.ribbon.recut{background:var(--recut);color:#fff}.ribbon.edited{background:var(--edited);color:#fff}
+.ribbon.unsealed{background:var(--muted);color:var(--bg)}
+.prov{font-size:.85rem}.prov b{font-weight:700}
 #compare button{justify-self:start;font:inherit;padding:.3rem .8rem;border-radius:8px;border:1px solid var(--rule);
   background:var(--card);color:var(--ink);cursor:pointer}
 """
@@ -287,6 +301,16 @@ def build_page(history: Path | None = None) -> Path:
             if fails is not None:
                 facts.append(f"{fails} check flags")
             img = f'{group.name}/{r["run"]}/{p["strip"]}'
+            prov = p.get("provenance") or {"kind": "unsealed"}
+            label = {"recut": "Recut", "edited": "Edited", "unsealed": "Unsealed"}.get(prov["kind"], "")
+            ribbon = f'<span class="ribbon {prov["kind"]}">{label}</span>' if label else ""
+            prov_text = {"hands-off": "<b>Hands-off:</b> made by the skill, untouched since",
+                         "recut": f'<b>Recut</b> from {e(prov.get("from", "another run"))}, not a run of the tool',
+                         "edited": "<b>Edited</b> after the skill finished",
+                         "unsealed": "<b>Unsealed:</b> from before seals, how it was made isn't recorded"}[prov["kind"]]
+            if prov.get("note") and prov["kind"] != "unsealed":
+                prov_text += f' ({e(prov["note"])})'
+            prov_line = f'<span class="prov">{prov_text}</span>'
             guessed = " (guessed from the date)" if made.get("guessed") else ""
             repub = (p.get("published_with") or {}).get("version")
             repub_txt = f", published with {e(repub)}" if repub and repub != ver else ""
@@ -301,7 +325,8 @@ def build_page(history: Path | None = None) -> Path:
                 f'<span class="mono">{e(made.get("commit", ""))}{e(guessed)}{repub_txt}</span>'
                 f'<span class="mono">{e(r["started"])} · publish {p["n"]}</span>{score}</div>'
                 f'<span class="facts">{"".join(f"<span>{x}</span>" for x in facts)}</span>'
-                f'<img src="{e(img)}" alt="Every step of this run" loading="lazy">{changed}'
+                f'<div class="strip"><img src="{e(img)}" alt="Every step of this run" loading="lazy">{ribbon}</div>'
+                f'{prov_line}{changed}'
                 f'<label class="pick"><input type="checkbox"> Compare</label>'
                 f'<span class="mono">{e(rid)}</span></article>')
         sections.append(f'<section><h2>{e(group.name.replace("-", " ").capitalize())}</h2>'

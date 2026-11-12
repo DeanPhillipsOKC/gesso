@@ -498,6 +498,10 @@ def publish(a: argparse.Namespace) -> dict:
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
+    import provenance
+    if getattr(a, "final", False):
+        provenance.seal(lesson, lesson_data)
+    lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
     (lesson / "lesson.html").write_text(page(lesson_data, technique, lesson), encoding="utf-8")
     artifact = lesson / "lesson-artifact.html"
@@ -515,7 +519,7 @@ def publish(a: argparse.Namespace) -> dict:
     renders = [c for c in led.calls if c.get("tool") == "render"]
     result = {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed,
-            "gesso": lesson_data["gesso"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
+            "gesso": lesson_data["gesso"], "provenance": lesson_data["provenance"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
             "diagrams": sum(1 for st in stages if st["construct"]),
             # a diagram the page can't explain: the skill's beginner check didn't write down why
             "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
@@ -770,6 +774,8 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
     dst = src.parent / f"{stem}_skill_{dt.datetime.now():%Y%m%d-%H%M%S}"
     skip = {"trials", "versions", "embed", "canvas"}
     shutil.copytree(src, dst, ignore=lambda d, names: [n for n in names if Path(d) == src and n in skip])
+    from provenance import derive
+    derive(dst, src, f"from-finish{' --steps ' + ' '.join(a.steps) if a.steps else ''}: {a.why}")
     raw, plan, technique = load_plan(dst)
     paths = step_paths(dst, plan)
     hexes = {p.name: p.hex for p in plan.paints}
@@ -903,7 +909,17 @@ def add_lesson_tools(sub) -> None:
                                    "the ledger, and write lesson.json, lesson.html, and lesson-artifact.html (images inlined, "
                                    "for publishing as a Claude artifact).")
     p.add_argument("--lesson", required=True)
+    p.add_argument("--final", action="store_true",
+                   help="the skill's last publish: seals the lesson as made hands-off. Any later change marks it edited.")
     p.set_defaults(func=publish)
+
+    p = sub.add_parser("provenance-mark", help="Free. Mark a run from before seals as hands-off or edited, with a reason.",
+                       description="For runs made before publish --final existed: records what's known about how the run was "
+                                   "made (provenance.json). Only hands-off runs go on the lessons site.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--kind", choices=["hands-off", "edited"], required=True)
+    p.add_argument("--note", required=True, help="why: how the run was made and what, if anything, was changed after")
+    p.set_defaults(func=lambda a: {**__import__("provenance").mark(Path(a.lesson), a.kind, a.note), "cost_usd": 0.0})
 
     p = sub.add_parser("mix", help="Free. Compute every paint's recipe from the palette tubes (pigment mixing, not by eye).",
                        description="Snap paint swatches to the finish, then solve each paint's recipe from the technique's "

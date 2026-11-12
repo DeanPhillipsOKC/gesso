@@ -110,6 +110,12 @@ with the date.
   run, and the history page lists what changed between runs, so a regression can be traced to a version and rolled
   back.
 
+- **The lessons site shows only hands-off lessons (2026-11-12, owner's call).** Once Gesso is an app, nobody can
+  tweak a lesson after it's made, so the tool has to stand on its own. A lesson goes on the site only if the skill
+  made it and sealed it (`publish --final`) and nothing changed after. The skill's own fixes (step review redos,
+  split-texture) count as the tool; recuts, hand composites, relocks, and text edits after the seal don't. Those
+  runs stay in the lesson history, marked with a ribbon. A lesson that needs a fix gets a fixed tool and a new run.
+
 ## How we work
 
 - **Same approach as RepBunny (2026-10-19):** automate as much as possible, built up bit by bit.
