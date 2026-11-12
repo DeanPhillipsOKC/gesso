@@ -94,7 +94,7 @@ def build_index(site: Path, lessons: list[dict]) -> Path:
 <p class="lede">Pick one and open it on your phone or tablet next to the easel. Each one has every step's picture, the paints to
 mix, and the brushes.</p></header>
 <div class="grid">{cards}</div>
-<footer>Made with Gesso</footer>
+<footer>Made with Gesso · <a href="history/" style="color:inherit">Lesson history</a></footer>
 </div></body></html>"""
     site.mkdir(parents=True, exist_ok=True)
     (site / "index.html").write_text(html, encoding="utf-8")

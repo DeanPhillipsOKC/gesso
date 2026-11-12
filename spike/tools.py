@@ -513,7 +513,7 @@ def publish(a: argparse.Namespace) -> dict:
         k = st["made_with"].split(":")[0]
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
-    return {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
+    result = {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed,
             "gesso": lesson_data["gesso"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
             "diagrams": sum(1 for st in stages if st["construct"]),
@@ -538,6 +538,10 @@ def publish(a: argparse.Namespace) -> dict:
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
+    # every publish that changes the lesson is kept, with its version (site/history/, owner, 2026-11-12)
+    from history import record
+    result["history"] = record(lesson, lesson_data, result)
+    return result
 
 
 BROWSERS = [r"C:\Program Files\Google\Chrome\Application\chrome.exe",
@@ -868,6 +872,18 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--slug", required=True, help="the lesson's address on the site, e.g. lavender-balloon")
     p.set_defaults(func=lambda a: {**__import__("site_lessons").add(Path(a.lesson), a.slug), "cost_usd": 0.0})
+    p = sub.add_parser("history-backfill", help="Free. Record every finished run in output/ in the lesson history.",
+                       description="Adds each run's last publish to site/history/ (a strip of its steps and a record of its "
+                                   "version, cost, and checks), then rebuilds site/history/index.html. Runs already "
+                                   "recorded and unchanged are skipped.")
+    p.set_defaults(func=lambda a: {"runs": __import__("history").backfill(), "cost_usd": 0.0})
+    p = sub.add_parser("history-rate", help="Free. Record the owner's 1-5 score for a run in the lesson history.",
+                       description="Writes site/history/ratings.json and rebuilds the history page. The run is the output "
+                                   "folder name, or '<folder>#<n>' for one publish of it.")
+    p.add_argument("--run", required=True)
+    p.add_argument("--score", type=int)
+    p.add_argument("--note", default="", help="what the owner said, in their words")
+    p.set_defaults(func=lambda a: {**__import__("history").rate(a.run, a.score, a.note), "cost_usd": 0.0})
     p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
                        description="For a subject that changes shape between steps: copies the later step's pixels inside the "
                                    "boxes onto the earlier step, with a soft edge. Lock again afterwards.")

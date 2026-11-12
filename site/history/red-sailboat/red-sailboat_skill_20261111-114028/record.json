@@ -1,0 +1,98 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261111-114028",
+  "started": "2026-11-11 11:40",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "a2928a9ab1218f9f",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.23.1",
+        "commit": "6b017b0",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.17.0",
+        "commit": "eebbcbc",
+        "published": "2026-11-11"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 11,
+        "words": 679,
+        "tubes": 5,
+        "cost_usd": 0.312,
+        "minutes": 5.0,
+        "paid_renders": 12,
+        "redos": 1,
+        "review_problems": 4,
+        "text_problems": 13
+      },
+      "steps": [
+        {
+          "id": "sunset-sky",
+          "name": "Paint the sunset sky",
+          "made_with": "render+throwaway:filters/tone_match.py"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "render+throwaway:filters/tone_match.py"
+        },
+        {
+          "id": "far-shore",
+          "name": "Paint the far mountain and shoreline",
+          "made_with": "render+throwaway:filters/tone_match.py"
+        },
+        {
+          "id": "water-base",
+          "name": "Paint the teal water",
+          "made_with": "render"
+        },
+        {
+          "id": "water-ripples",
+          "name": "Add ripples to the water",
+          "made_with": "render"
+        },
+        {
+          "id": "sun-path",
+          "name": "Paint the sun's path on the water",
+          "made_with": "render"
+        },
+        {
+          "id": "sails",
+          "name": "Paint the two sails",
+          "made_with": "render"
+        },
+        {
+          "id": "hull",
+          "name": "Paint the red hull",
+          "made_with": "render"
+        },
+        {
+          "id": "mast-boom",
+          "name": "Paint the mast and boom",
+          "made_with": "render"
+        },
+        {
+          "id": "reflection",
+          "name": "Paint the boat's reflection",
+          "made_with": "render"
+        },
+        {
+          "id": "highlights",
+          "name": "Add the brightest highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

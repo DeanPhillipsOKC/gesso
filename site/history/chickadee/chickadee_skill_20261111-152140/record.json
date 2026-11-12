@@ -1,0 +1,98 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261111-152140",
+  "started": "2026-11-11 15:21",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "8dfe9c3510791f9d",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.23.1",
+        "commit": "6b017b0",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.21.0",
+        "commit": "84f6897",
+        "published": "2026-11-11"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 11,
+        "words": 951,
+        "tubes": 11,
+        "cost_usd": 0.638,
+        "minutes": 9.1,
+        "paid_renders": 25,
+        "redos": 4,
+        "review_problems": 5,
+        "text_problems": 22
+      },
+      "steps": [
+        {
+          "id": "sky-glow",
+          "name": "Paint the misty sunset glow",
+          "made_with": "render"
+        },
+        {
+          "id": "far-trunks",
+          "name": "Add the misty far trunks",
+          "made_with": "render"
+        },
+        {
+          "id": "foliage-dark",
+          "name": "Dab the rust foliage",
+          "made_with": "render"
+        },
+        {
+          "id": "foliage-light",
+          "name": "Dab the peach foliage",
+          "made_with": "render"
+        },
+        {
+          "id": "branches",
+          "name": "Block in the branches",
+          "made_with": "render"
+        },
+        {
+          "id": "branch-bark",
+          "name": "Light the bark",
+          "made_with": "render"
+        },
+        {
+          "id": "leaves",
+          "name": "Paint the four leaves",
+          "made_with": "render"
+        },
+        {
+          "id": "bird-body",
+          "name": "Block in the bird's body",
+          "made_with": "render"
+        },
+        {
+          "id": "bird-head",
+          "name": "Paint the head",
+          "made_with": "render"
+        },
+        {
+          "id": "bird-feathers",
+          "name": "Shade the feathers",
+          "made_with": "render"
+        },
+        {
+          "id": "details",
+          "name": "Add the eye, beak, feet, and highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

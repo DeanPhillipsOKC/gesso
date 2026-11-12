@@ -1,0 +1,98 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261111-124236",
+  "started": "2026-11-11 12:42",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "b844deb29a738449",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.18.0",
+        "commit": "4df920b",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.18.0",
+        "commit": "4df920b",
+        "published": "2026-11-11"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 11,
+        "words": 899,
+        "tubes": 0,
+        "cost_usd": 0.479,
+        "minutes": 6.8,
+        "paid_renders": 17,
+        "redos": 3,
+        "review_problems": 4,
+        "text_problems": 23
+      },
+      "steps": [
+        {
+          "id": "sky",
+          "name": "Blend the sunset sky and the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "clouds",
+          "name": "Paint the coral clouds",
+          "made_with": "render"
+        },
+        {
+          "id": "mountains",
+          "name": "Paint the far mountains and the lake",
+          "made_with": "render"
+        },
+        {
+          "id": "hills",
+          "name": "Paint the golden hills",
+          "made_with": "render"
+        },
+        {
+          "id": "tree",
+          "name": "Paint the lone tree",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-base",
+          "name": "Block in the lavender rows and paths",
+          "made_with": "render+throwaway:filters/flat_rows.py"
+        },
+        {
+          "id": "lavender-mid",
+          "name": "Dab the lavender bodies",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-light",
+          "name": "Dab the light lavender tops",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-stripes",
+          "name": "Paint the balloon's stripes",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-details",
+          "name": "Shade the balloon and add the basket",
+          "made_with": "render"
+        },
+        {
+          "id": "finish",
+          "name": "Add the brightest highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

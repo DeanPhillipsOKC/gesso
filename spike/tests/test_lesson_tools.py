@@ -8,6 +8,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -30,6 +31,8 @@ def step(id_, covers=False):
 class LessonToolTests(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
+        os.environ["GESSO_HISTORY"] = str(self.tmp / "history")
+        self.addCleanup(os.environ.pop, "GESSO_HISTORY", None)
         self.cache = tools.CACHE_DIR
         tools.CACHE_DIR = self.tmp / "cache"
         self.lesson = self.tmp / "lesson"

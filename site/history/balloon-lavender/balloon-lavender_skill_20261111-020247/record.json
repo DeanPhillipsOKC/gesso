@@ -1,0 +1,96 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261111-020247",
+  "started": "2026-11-11 02:02",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "35aea4092bea1552",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "before stamps",
+        "commit": "fc73c55",
+        "dirty": null,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "before stamps",
+        "commit": "fc73c55",
+        "published": "2026-11-11",
+        "dirty": null,
+        "guessed": true
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 11,
+        "words": 907,
+        "tubes": 0,
+        "cost_usd": 0.344,
+        "minutes": 5.4,
+        "paid_renders": 13,
+        "redos": 1,
+        "review_problems": 1,
+        "text_problems": 0
+      },
+      "steps": [
+        {
+          "id": "sky-gradient",
+          "name": "Paint the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "sunset-clouds",
+          "name": "Add the sunset clouds",
+          "made_with": "render"
+        },
+        {
+          "id": "far-mountains",
+          "name": "Paint the far mountains",
+          "made_with": "render"
+        },
+        {
+          "id": "valley-village",
+          "name": "Paint the valley and the village",
+          "made_with": "render"
+        },
+        {
+          "id": "golden-hill",
+          "name": "Paint the golden hillside",
+          "made_with": "render"
+        },
+        {
+          "id": "oak-tree",
+          "name": "Paint the oak tree",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-rows",
+          "name": "Paint the lavender rows",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-spikes",
+          "name": "Add the lavender flowers",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon",
+          "name": "Paint the hot air balloon",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-shading",
+          "name": "Shade the balloon and add the ropes",
+          "made_with": "render"
+        },
+        {
+          "id": "final-highlights",
+          "name": "Final highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

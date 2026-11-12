@@ -104,6 +104,12 @@ with the date.
 - **The lessons site is open, not locked (2026-11-11, owner's call).** gesso-lessons.pages.dev holds only
   painting lessons, so there's no sign-in, just a noindex header. Keep anything personal off it.
 
+- **Keep every lesson run, never overwrite (2026-11-12, owner's call).** So much of a lesson's quality is a
+  judgment call that a change can make lessons worse without anyone noticing when. Every publish that changes a
+  lesson is kept with the version and commit that made it (`site/history/`), the owner's scores sit next to each
+  run, and the history page lists what changed between runs, so a regression can be traced to a version and rolled
+  back.
+
 ## How we work
 
 - **Same approach as RepBunny (2026-10-19):** automate as much as possible, built up bit by bit.

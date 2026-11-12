@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.23.2 (2026-11-12)
+- Lesson history: every publish that changes a lesson's pictures or text is kept (`site/history/`: a strip of every
+  step and a record of the version, commit, cost, redos, and checks; the full lesson in `<lesson>/versions/<n>/`),
+  and `site/history/index.html` shows each picture's runs newest first, what changed between runs, the owner's
+  scores (`history-rate`), and two runs side by side. `history-backfill` recorded the runs from before.
+
 ## POC 0.23.1 (2026-11-11)
 - A lesson keeps the version it was made with (`gesso.made`) when it's republished; the footer says "republished
   with" the newer one, and the lessons site's tiles show the made-with version.

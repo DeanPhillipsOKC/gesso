@@ -1,0 +1,99 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261111-083555",
+  "started": "2026-11-11 08:35",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "98f64674c821f0d7",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.13.0",
+        "commit": "83568ea",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.13.0",
+        "commit": "83568ea",
+        "published": "2026-11-11"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 12,
+        "words": 1138,
+        "tubes": 0,
+        "cost_usd": 0.527,
+        "minutes": 6.1,
+        "paid_renders": 17,
+        "redos": 4,
+        "review_problems": 4,
+        "text_problems": 28
+      },
+      "steps": [
+        {
+          "id": "sky-glow",
+          "name": "Blend the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "cloud-base",
+          "name": "Block in the cloud shapes",
+          "made_with": "render"
+        },
+        {
+          "id": "cloud-light",
+          "name": "Light the clouds and paint the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "far-mountains",
+          "name": "Paint the far mountains",
+          "made_with": "render"
+        },
+        {
+          "id": "golden-hill",
+          "name": "Paint the valley fields and the golden hill",
+          "made_with": "render"
+        },
+        {
+          "id": "tree-line",
+          "name": "Dab in the dark tree line",
+          "made_with": "render"
+        },
+        {
+          "id": "oak-tree",
+          "name": "Paint the big tree",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-stripes",
+          "name": "Paint the balloon's stripes",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-basket",
+          "name": "Shade the balloon and hang the basket",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-rows",
+          "name": "Lay in the lavender rows and paths",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-mid",
+          "name": "Dab the middle purple on the rows",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-light",
+          "name": "Add the sunlit lavender tips",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

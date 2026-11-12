@@ -1,0 +1,93 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261111-095458",
+  "started": "2026-11-11 09:54",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "338a2dd3ad42b93d",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.14.0",
+        "commit": "f0e8126",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.14.0",
+        "commit": "f0e8126",
+        "published": "2026-11-11"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 10,
+        "words": 680,
+        "tubes": 0,
+        "cost_usd": 0.404,
+        "minutes": 6.6,
+        "paid_renders": 13,
+        "redos": 2,
+        "review_problems": 3,
+        "text_problems": 14
+      },
+      "steps": [
+        {
+          "id": "sunset-sky",
+          "name": "Blend the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "far-shore",
+          "name": "Paint the mountain and the far shore",
+          "made_with": "render"
+        },
+        {
+          "id": "water-base",
+          "name": "Lay in the water",
+          "made_with": "render"
+        },
+        {
+          "id": "water-ripples",
+          "name": "Add ripples to the water",
+          "made_with": "render"
+        },
+        {
+          "id": "sun-path",
+          "name": "Paint the sun's path on the water",
+          "made_with": "render"
+        },
+        {
+          "id": "boat-hull",
+          "name": "Paint the red hull",
+          "made_with": "render"
+        },
+        {
+          "id": "sails-mast",
+          "name": "Paint the sails and the mast",
+          "made_with": "render"
+        },
+        {
+          "id": "reflection",
+          "name": "Paint the boat's reflection",
+          "made_with": "render"
+        },
+        {
+          "id": "highlights",
+          "name": "Add the brightest highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}
