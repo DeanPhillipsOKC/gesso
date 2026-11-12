@@ -94,7 +94,21 @@ def strip(lesson: Path, data: dict, out: Path, size: int = 200, cols: int = 6) -
     return out
 
 
-def metrics(data: dict, checks: dict | None) -> dict:
+def minutes_total(run: str, published: dt.datetime) -> float | None:
+    """Minutes from the run's start (its folder name's _YYYYMMDD-HHMMSS) to a publish; None with no time in the name.
+    The gate in docs/design/pipeline-v2.md section 14 measures a run start to seal by this."""
+    m = RUN_TIME.search(run or "")
+    if not m:
+        return None
+    try:
+        started = dt.datetime.strptime("".join(m.groups()), "%Y%m%d%H%M%S")
+    except ValueError:
+        return None
+    return round((published - started).total_seconds() / 60, 1)
+
+
+def metrics(data: dict, checks: dict | None, run: str = "", published: dt.datetime | None = None) -> dict:
+    """The numbers kept for one publish. With the run's folder name and the publish's time, also minutes_total."""
     calls = data.get("calls") or []
     renders = [c for c in calls if c.get("tool") == "render"]
     review = data.get("review_issues") or []
@@ -109,9 +123,19 @@ def metrics(data: dict, checks: dict | None) -> dict:
         "review_problems": len(review),
         "text_problems": len(data.get("text_issues") or []),
     }
+    total = minutes_total(run, published) if published else None
+    if total is not None:
+        m["minutes_total"] = total
     if checks is not None:
         m["checks"] = {k: len(checks.get(k) or []) for k in CHECKS}
     return m
+
+
+def published_at(lesson: Path) -> dt.datetime:
+    """When the lesson was last published: its lesson.json's time (publish writes it just before recording, and a
+    backfill records a run's last publish), or now."""
+    path = Path(lesson) / "lesson.json"
+    return dt.datetime.fromtimestamp(path.stat().st_mtime) if path.exists() else dt.datetime.now()
 
 
 def _stamp(data: dict) -> tuple[dict, dict]:
@@ -155,7 +179,7 @@ def record(lesson: Path, data: dict, checks: dict | None = None, history: Path |
         "published_with": {k: g.get(k) for k in ("version", "commit", "dirty", "published")},
         "made_with": made, "provenance": data.get("provenance") or {"kind": "unsealed"},
         "palette": data.get("palette_name") or "", "technique": data.get("technique", ""),
-        "canvas": data.get("canvas"), "metrics": metrics(data, checks),
+        "canvas": data.get("canvas"), "metrics": metrics(data, checks, run, published_at(lesson)),
         "steps": [{"id": s["id"], "name": s.get("name", ""), "made_with": s.get("made_with", "")}
                   for s in data.get("stages") or []],
     })
@@ -312,6 +336,8 @@ def build_page(history: Path | None = None) -> Path:
                      f'{m["redos"]} redos', f'{m["review_problems"] + m["text_problems"]} review fixes']
             if m.get("tubes"):
                 facts.append(f'{m["tubes"]} tubes')
+            if m.get("minutes_total") is not None:
+                facts.append(f'{m["minutes_total"]:g} min start to publish')
             if fails is not None:
                 facts.append(f"{fails} check flags")
             img = f'{group.name}/{r["run"]}/{p["strip"]}'

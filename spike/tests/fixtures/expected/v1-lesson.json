@@ -1,0 +1,440 @@
+{
+ "canvas": {
+  "w_in": 14,
+  "h_in": 11,
+  "orientation": "landscape"
+ },
+ "photo": "source.png",
+ "photo_file": "photo.png",
+ "technique": "acrylic-paint-along-beginner",
+ "mode": "paint-lesson skill",
+ "variant": "claude-code",
+ "quality": "low",
+ "image_model": "gpt-image-2.5-sunburst",
+ "claude_model": "claude-opus-5-5 (Claude Code)",
+ "photo_read": {
+  "subject": "A red sailboat on teal water at sunset",
+  "focal_point": "the sailboat",
+  "light": "the setting sun, center",
+  "components": [
+   "sunset sky",
+   "water",
+   "sailboat"
+  ],
+  "mixes": [
+   {
+    "name": "Sunset orange",
+    "recipe": "3 parts red, 2 parts yellow, 2 parts white",
+    "hex": "#fa8e43",
+    "used_for": "the sky's glow",
+    "sample_x": 0.5,
+    "sample_y": 0.3,
+    "guess_hex": "#f08a3c",
+    "guess_recipe": "yellow, a touch of red, white",
+    "mix": {
+     "parts": {
+      "Titanium white": 2,
+      "Cadmium yellow medium (hue)": 2,
+      "Cadmium red medium (hue)": 3
+     },
+     "text": "3 parts red, 2 parts yellow, 2 parts white",
+     "mixed_hex": "#ff8c43",
+     "target_hex": "#fa8e43",
+     "delta_e": 1.5,
+     "reachable": true,
+     "guess_recipe": "yellow, a touch of red, white"
+    }
+   },
+   {
+    "name": "Dusk violet",
+    "recipe": "3 parts ultramarine, 3 parts white, 1 part red",
+    "hex": "#7b65b1",
+    "used_for": "the top of the sky",
+    "sample_x": 0.5,
+    "sample_y": 0.03,
+    "guess_hex": "#7a5aa8",
+    "guess_recipe": "blue, red, white",
+    "mix": {
+     "parts": {
+      "Titanium white": 3,
+      "Cadmium red medium (hue)": 1,
+      "Ultramarine blue": 3
+     },
+     "text": "3 parts ultramarine, 3 parts white, 1 part red",
+     "mixed_hex": "#7667aa",
+     "target_hex": "#7b65b1",
+     "delta_e": 2.0,
+     "reachable": true,
+     "guess_recipe": "blue, red, white"
+    }
+   },
+   {
+    "name": "Deep teal",
+    "recipe": "3 parts ultramarine, 1 part yellow, 1 part white",
+    "hex": "#1d677a",
+    "used_for": "the water",
+    "sample_x": 0.2,
+    "sample_y": 0.85,
+    "guess_hex": "#1d677a",
+    "guess_recipe": "blue, yellow, a touch of black",
+    "mix": {
+     "parts": {
+      "Titanium white": 1,
+      "Cadmium yellow medium (hue)": 1,
+      "Ultramarine blue": 3
+     },
+     "text": "3 parts ultramarine, 1 part yellow, 1 part white",
+     "mixed_hex": "#416e74",
+     "target_hex": "#1d677a",
+     "delta_e": 6.2,
+     "reachable": true,
+     "guess_recipe": "blue, yellow, a touch of black"
+    }
+   },
+   {
+    "name": "Boat red",
+    "recipe": "1 part red, a touch of ultramarine",
+    "hex": "#b7261e",
+    "used_for": "the hull",
+    "sample_x": 0.82,
+    "sample_y": 0.6,
+    "guess_hex": "#b8281e",
+    "guess_recipe": "red, a touch of black",
+    "mix": {
+     "parts": {
+      "Cadmium red medium (hue)": 1,
+      "Ultramarine blue": 0.2
+     },
+     "text": "1 part red, a touch of ultramarine",
+     "mixed_hex": "#b92f07",
+     "target_hex": "#b7261e",
+     "delta_e": 5.7,
+     "reachable": true,
+     "guess_recipe": "red, a touch of black"
+    }
+   },
+   {
+    "name": "Sail white",
+    "recipe": "6 parts white, 1 part burnt sienna, a touch of yellow",
+    "hex": "#f4e0c6",
+    "used_for": "the sail",
+    "sample_x": 0.8,
+    "sample_y": 0.45,
+    "guess_hex": "#ece6dc",
+    "guess_recipe": "white, a touch of yellow",
+    "mix": {
+     "parts": {
+      "Titanium white": 6,
+      "Cadmium yellow medium (hue)": 0.2,
+      "Burnt sienna": 1
+     },
+     "text": "6 parts white, 1 part burnt sienna, a touch of yellow",
+     "mixed_hex": "#efddc9",
+     "target_hex": "#f4e0c6",
+     "delta_e": 2.2,
+     "reachable": true,
+     "guess_recipe": "white, a touch of yellow"
+    }
+   }
+  ]
+ },
+ "finish_issues": [
+  "The sun is a touch smaller than in the photo."
+ ],
+ "review_issues": [
+  {
+   "round": 1,
+   "step_id": "water",
+   "problem": "The horizon tilts a little.",
+   "fix": "level it",
+   "action": "left"
+  }
+ ],
+ "text_issues": [
+  {
+   "step_id": "sky",
+   "kind": "flat",
+   "problem": "No glow named",
+   "fix": "name it",
+   "action": "fixed"
+  }
+ ],
+ "tubes": [
+  "Titanium white",
+  "Cadmium yellow medium (hue)",
+  "Cadmium red medium (hue)",
+  "Ultramarine blue",
+  "Burnt sienna"
+ ],
+ "palette_name": "",
+ "notes": {
+  "read": "A sunset with a sailboat.",
+  "technique": {
+   "why": "Simple layers."
+  },
+  "order": "Back to front.",
+  "steps": {
+   "sky": "Behind everything.",
+   "water": "Under the boat.",
+   "boat": "In front."
+  },
+  "beginner_check": {
+   "summary": "One shaped object.",
+   "diagrams": {
+    "boat": {
+     "noticed": "The sail's angle.",
+     "pieces": "A triangle.",
+     "source": "beginner check"
+    }
+   },
+   "no_diagram": {
+    "sky": "A blend.",
+    "water": "Flat."
+   }
+  },
+  "learned": [
+   "Small fixture."
+  ]
+ },
+ "stages": [
+  {
+   "id": "sky",
+   "name": "Blend the sunset sky",
+   "image": "01_sky.png",
+   "paints": "the sky",
+   "looks_like": "a glowing sky over bare canvas",
+   "steps": [
+    "Paint Dusk violet across the top quarter.",
+    "Blend Sunset orange up into it while both are wet."
+   ],
+   "mixes": [],
+   "colors": [
+    {
+     "name": "Dusk violet",
+     "recipe": "3 parts ultramarine, 3 parts white, 1 part red",
+     "hex": "#7b65b1",
+     "used_for": "the top of the sky",
+     "sample_x": 0.5,
+     "sample_y": 0.03,
+     "guess_hex": "#7a5aa8",
+     "guess_recipe": "blue, red, white",
+     "mix": {
+      "parts": {
+       "Titanium white": 3,
+       "Cadmium red medium (hue)": 1,
+       "Ultramarine blue": 3
+      },
+      "text": "3 parts ultramarine, 3 parts white, 1 part red",
+      "mixed_hex": "#7667aa",
+      "target_hex": "#7b65b1",
+      "delta_e": 2.0,
+      "reachable": true,
+      "guess_recipe": "blue, red, white"
+     }
+    },
+    {
+     "name": "Sunset orange",
+     "recipe": "3 parts red, 2 parts yellow, 2 parts white",
+     "hex": "#fa8e43",
+     "used_for": "the sky's glow",
+     "sample_x": 0.5,
+     "sample_y": 0.3,
+     "guess_hex": "#f08a3c",
+     "guess_recipe": "yellow, a touch of red, white",
+     "mix": {
+      "parts": {
+       "Titanium white": 2,
+       "Cadmium yellow medium (hue)": 2,
+       "Cadmium red medium (hue)": 3
+      },
+      "text": "3 parts red, 2 parts yellow, 2 parts white",
+      "mixed_hex": "#ff8c43",
+      "target_hex": "#fa8e43",
+      "delta_e": 1.5,
+      "reachable": true,
+      "guess_recipe": "yellow, a touch of red, white"
+     }
+    }
+   ],
+   "paint_notes": [],
+   "watch_out": [
+    "Don't let the violet dry before you blend."
+   ],
+   "brushes": "1 inch flat",
+   "dry_time": "About 10 minutes between steps (a hair dryer on low speeds it up). An hour after the last step before handling.",
+   "made_with": "render",
+   "reason": "a blended sky",
+   "summary": "Blend violet into orange across the sky.",
+   "values": [],
+   "brush_list": [
+    {
+     "brush": "1 inch flat",
+     "use": "the sky"
+    }
+   ],
+   "strokes": [
+    {
+     "name": "Side-to-side blend",
+     "how": "long strokes across, overlapping"
+    }
+   ],
+   "construct": {}
+  },
+  {
+   "id": "water",
+   "name": "Lay in the teal water",
+   "image": "02_water.png",
+   "paints": "the water",
+   "looks_like": "sky and water, no boat",
+   "steps": [
+    "Paint Deep teal from the horizon down in horizontal strokes."
+   ],
+   "mixes": [],
+   "colors": [
+    {
+     "name": "Deep teal",
+     "recipe": "3 parts ultramarine, 1 part yellow, 1 part white",
+     "hex": "#1d677a",
+     "used_for": "the water",
+     "sample_x": 0.2,
+     "sample_y": 0.85,
+     "guess_hex": "#1d677a",
+     "guess_recipe": "blue, yellow, a touch of black",
+     "mix": {
+      "parts": {
+       "Titanium white": 1,
+       "Cadmium yellow medium (hue)": 1,
+       "Ultramarine blue": 3
+      },
+      "text": "3 parts ultramarine, 1 part yellow, 1 part white",
+      "mixed_hex": "#416e74",
+      "target_hex": "#1d677a",
+      "delta_e": 6.2,
+      "reachable": true,
+      "guess_recipe": "blue, yellow, a touch of black"
+     }
+    }
+   ],
+   "paint_notes": [
+    "Deep teal plus a little white near the horizon"
+   ],
+   "watch_out": [],
+   "brushes": "1 inch flat",
+   "dry_time": "About 10 minutes between steps (a hair dryer on low speeds it up). An hour after the last step before handling.",
+   "made_with": "filter:simplify",
+   "reason": "flat water",
+   "summary": "Fill the water with teal.",
+   "values": [
+    {
+     "value": "dark",
+     "paint": "Deep teal",
+     "where": "the bottom"
+    }
+   ],
+   "brush_list": [
+    {
+     "brush": "1 inch flat",
+     "use": "the water"
+    }
+   ],
+   "strokes": [
+    {
+     "name": "Horizontal strokes",
+     "how": "flat strokes side to side"
+    }
+   ],
+   "construct": {}
+  },
+  {
+   "id": "boat",
+   "name": "Paint the sailboat",
+   "image": "99_finish.png",
+   "paints": "the boat and its sail",
+   "looks_like": "the finished painting",
+   "steps": [
+    "Paint the hull in Boat red.",
+    "Paint the sail in Sail white."
+   ],
+   "mixes": [],
+   "colors": [
+    {
+     "name": "Boat red",
+     "recipe": "1 part red, a touch of ultramarine",
+     "hex": "#b7261e",
+     "used_for": "the hull",
+     "sample_x": 0.82,
+     "sample_y": 0.6,
+     "guess_hex": "#b8281e",
+     "guess_recipe": "red, a touch of black",
+     "mix": {
+      "parts": {
+       "Cadmium red medium (hue)": 1,
+       "Ultramarine blue": 0.2
+      },
+      "text": "1 part red, a touch of ultramarine",
+      "mixed_hex": "#b92f07",
+      "target_hex": "#b7261e",
+      "delta_e": 5.7,
+      "reachable": true,
+      "guess_recipe": "red, a touch of black"
+     }
+    },
+    {
+     "name": "Sail white",
+     "recipe": "6 parts white, 1 part burnt sienna, a touch of yellow",
+     "hex": "#f4e0c6",
+     "used_for": "the sail",
+     "sample_x": 0.8,
+     "sample_y": 0.45,
+     "guess_hex": "#ece6dc",
+     "guess_recipe": "white, a touch of yellow",
+     "mix": {
+      "parts": {
+       "Titanium white": 6,
+       "Cadmium yellow medium (hue)": 0.2,
+       "Burnt sienna": 1
+      },
+      "text": "6 parts white, 1 part burnt sienna, a touch of yellow",
+      "mixed_hex": "#efddc9",
+      "target_hex": "#f4e0c6",
+      "delta_e": 2.2,
+      "reachable": true,
+      "guess_recipe": "white, a touch of yellow"
+     }
+    }
+   ],
+   "paint_notes": [],
+   "watch_out": [
+    "Clean the brush before the white."
+   ],
+   "brushes": "#6 round",
+   "dry_time": "About 10 minutes between steps (a hair dryer on low speeds it up). An hour after the last step before handling.",
+   "made_with": "render",
+   "reason": "the finish",
+   "summary": "Paint the red hull and the white sail.",
+   "values": [],
+   "brush_list": [
+    {
+     "brush": "#6 round",
+     "use": "the boat"
+    }
+   ],
+   "strokes": [],
+   "construct": {
+    "title": "The sail",
+    "stages": [
+     {
+      "caption": "A triangle",
+      "add": [
+       {
+        "path": "M50 10 L80 90 L20 90 Z"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "total_cost_usd": 0.2,
+ "total_seconds": 52.9
+}

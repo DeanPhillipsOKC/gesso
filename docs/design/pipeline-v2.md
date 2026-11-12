@@ -478,7 +478,11 @@ Elsewhere:
   `sample_swatches` is skipped: the hex is measured.
 - **`step_paths`:** `NN_<id>.png` for every step (the last is a copy of the finish, as `build-steps` writes it).
 - **Seal:** `review.json` needs `finish_issues` and `text_issues`, not `review_issues`; steps don't need `regions`;
-  `long_steps` isn't checked; everything else as today.
+  `long_steps` isn't checked (`publish` doesn't list them); each step's `text.json` entry needs `summary`, `lines`,
+  `brushes`, and `made_with`, where version 1 needs `strokes` in place of `lines` (version 2's text.json has no
+  `strokes`: they come from the plan's `stroke` and its card); everything else as today.
+- **A paint's version 2 keys** (`id`, `parts`, and later `of`, `plus`) stay on its dict in `lesson.json` beside the
+  version 1 ones. A name two paints share gets the id after it, since the mixer keys paints by name.
 - **`paid_renders`** counts what the ledger holds: the finish, the beginner version, the canvas extend, the
   background.
 - **History:** `minutes_total` joins the metrics for every run: minutes from the run folder's
