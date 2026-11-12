@@ -14,6 +14,20 @@ Live at https://gesso-lessons.pages.dev, deployed from `main`. It's deliberately
 2026-11-11: it's painting lessons, nothing private), just kept out of search engines. The Access steps below are
 only for if that ever changes; Zero Trust asks for a card even on its free plan.
 
+## Lesson history
+
+`site/history/` (live at `/history/`, linked from the list's footer) keeps every run of every picture: `publish`
+records each publish that changed the pictures or text, with a strip of every step and the version, commit, cost,
+redos, review fixes, and check flags. Each run shows the changelog entries since the run before it, which is where
+to look when a lesson got worse. Tick two runs to compare them. The full lessons stay local in
+`<lesson>/versions/<n>/`.
+
+- Record the owner's opinion of a run: `python spike/tools.py history-rate --run <output folder>[#n] --score 1-5
+  --note "<their words>"`.
+- Runs made before the history existed: `python spike/tools.py history-backfill` (versions from before stamps are
+  guessed from the run's date and marked so).
+- The strips show paintings, never the photos. Keep it that way: the site is open.
+
 ## One-time setup (owner, about 15 minutes)
 
 These are Cloudflare dashboard steps; the menus may be worded a little differently than this.

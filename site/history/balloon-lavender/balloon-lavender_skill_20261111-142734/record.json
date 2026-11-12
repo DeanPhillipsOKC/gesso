@@ -1,0 +1,103 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261111-142734",
+  "started": "2026-11-11 14:27",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "ec0fd0d04566751d",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.23.1",
+        "commit": "6b017b0",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.20.0",
+        "commit": "7486118",
+        "published": "2026-11-11"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 12,
+        "words": 901,
+        "tubes": 12,
+        "cost_usd": 0.453,
+        "minutes": 6.2,
+        "paid_renders": 15,
+        "redos": 4,
+        "review_problems": 6,
+        "text_problems": 33
+      },
+      "steps": [
+        {
+          "id": "sky-gradient",
+          "name": "Paint the sunset sky and the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "clouds-coral",
+          "name": "Lay in the coral clouds",
+          "made_with": "render"
+        },
+        {
+          "id": "clouds-glow",
+          "name": "Light the cloud edges",
+          "made_with": "render"
+        },
+        {
+          "id": "mountains",
+          "name": "Paint the far mountains",
+          "made_with": "render"
+        },
+        {
+          "id": "fields-hill",
+          "name": "Paint the fields and the golden hill",
+          "made_with": "render"
+        },
+        {
+          "id": "tree",
+          "name": "Paint the big tree",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon",
+          "name": "Paint the hot-air balloon",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-rows",
+          "name": "Block in the lavender rows and paths",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-dark-dabs",
+          "name": "Dab the dark lavender",
+          "made_with": "filter:split-texture"
+        },
+        {
+          "id": "lavender-mid-dabs",
+          "name": "Dab the middle violet",
+          "made_with": "filter:split-texture"
+        },
+        {
+          "id": "lavender-dabs",
+          "name": "Dab the lighter violet on top",
+          "made_with": "render"
+        },
+        {
+          "id": "finish",
+          "name": "Add the lavender tips and final highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

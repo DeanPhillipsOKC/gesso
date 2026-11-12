@@ -1,0 +1,71 @@
+{
+  "photo": "backlit-trees",
+  "run": "backlit-trees_skill_20261110-212302",
+  "started": "2026-11-10 21:23",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "4ce54e79a5cd5fcc",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "before stamps",
+        "commit": "18e1d75",
+        "dirty": null,
+        "published": "2026-11-10"
+      },
+      "made_with": {
+        "version": "before stamps",
+        "commit": "18e1d75",
+        "published": "2026-11-10",
+        "dirty": null,
+        "guessed": true
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 6,
+        "words": 271,
+        "tubes": 0,
+        "cost_usd": 0.277,
+        "minutes": 4.0,
+        "paid_renders": 10,
+        "redos": 0,
+        "review_problems": 4,
+        "text_problems": 0
+      },
+      "steps": [
+        {
+          "id": "sky-glow",
+          "name": "Paint the glowing sky and sun",
+          "made_with": "render+throwaway:sky_only"
+        },
+        {
+          "id": "far-branches",
+          "name": "Add the thin distant branches",
+          "made_with": "render"
+        },
+        {
+          "id": "trunks",
+          "name": "Paint the main trunks",
+          "made_with": "render"
+        },
+        {
+          "id": "big-branches",
+          "name": "Paint the big branches",
+          "made_with": "render"
+        },
+        {
+          "id": "near-twigs",
+          "name": "Add the near twigs",
+          "made_with": "render"
+        },
+        {
+          "id": "finish",
+          "name": "Add the rim light and lens flare",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

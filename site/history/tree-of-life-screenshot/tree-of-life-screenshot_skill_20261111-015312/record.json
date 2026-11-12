@@ -1,0 +1,91 @@
+{
+  "photo": "tree-of-life-screenshot",
+  "run": "tree-of-life-screenshot_skill_20261111-015312",
+  "started": "2026-11-11 01:53",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "bfa17c9106358d39",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "before stamps",
+        "commit": "fc73c55",
+        "dirty": null,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "before stamps",
+        "commit": "fc73c55",
+        "published": "2026-11-11",
+        "dirty": null,
+        "guessed": true
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 10,
+        "words": 842,
+        "tubes": 0,
+        "cost_usd": 0.33,
+        "minutes": 5.0,
+        "paid_renders": 13,
+        "redos": 2,
+        "review_problems": 2,
+        "text_problems": 0
+      },
+      "steps": [
+        {
+          "id": "sky-glow",
+          "name": "Paint the dusk sky and the glow",
+          "made_with": "render"
+        },
+        {
+          "id": "far-hills",
+          "name": "Paint the far hills",
+          "made_with": "render"
+        },
+        {
+          "id": "lake",
+          "name": "Paint the lake",
+          "made_with": "render"
+        },
+        {
+          "id": "island",
+          "name": "Paint the dark island",
+          "made_with": "render"
+        },
+        {
+          "id": "trunk",
+          "name": "Paint the twisted trunk and branches",
+          "made_with": "render"
+        },
+        {
+          "id": "crown-dark",
+          "name": "Dab in the dark crown",
+          "made_with": "render"
+        },
+        {
+          "id": "crown-pink",
+          "name": "Dab the pink leaf clusters",
+          "made_with": "render"
+        },
+        {
+          "id": "glow-leaves",
+          "name": "Add the glowing leaves",
+          "made_with": "render"
+        },
+        {
+          "id": "grass",
+          "name": "Flick the grass tufts",
+          "made_with": "render"
+        },
+        {
+          "id": "fireflies",
+          "name": "Glowing dots and final highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "photo": "pumpkin-patch",
+  "run": "pumpkin-patch_skill_20261110-213606",
+  "started": "2026-11-10 21:36",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "c4c60958e2697fbc",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "before stamps",
+        "commit": "3013e40",
+        "dirty": null,
+        "published": "2026-11-10"
+      },
+      "made_with": {
+        "version": "before stamps",
+        "commit": "3013e40",
+        "published": "2026-11-10",
+        "dirty": null,
+        "guessed": true
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 10,
+        "words": 657,
+        "tubes": 0,
+        "cost_usd": 0.378,
+        "minutes": 5.6,
+        "paid_renders": 15,
+        "redos": 3,
+        "review_problems": 3,
+        "text_problems": 0
+      },
+      "steps": [
+        {
+          "id": "night-sky",
+          "name": "Paint the swirling night sky",
+          "made_with": "render"
+        },
+        {
+          "id": "moon",
+          "name": "Paint the full moon",
+          "made_with": "render"
+        },
+        {
+          "id": "hill-field",
+          "name": "Paint the green hill and field",
+          "made_with": "render"
+        },
+        {
+          "id": "small-pumpkins",
+          "name": "Block in the small pumpkins",
+          "made_with": "render"
+        },
+        {
+          "id": "big-pumpkin",
+          "name": "Block in the big pumpkin",
+          "made_with": "render"
+        },
+        {
+          "id": "pumpkin-shading",
+          "name": "Add rib lines and shading",
+          "made_with": "render"
+        },
+        {
+          "id": "pumpkin-highlights",
+          "name": "Add yellow highlights on the pumpkins",
+          "made_with": "render"
+        },
+        {
+          "id": "stems-vines",
+          "name": "Paint the white stems and curling vines",
+          "made_with": "render"
+        },
+        {
+          "id": "autumn-leaves",
+          "name": "Dab in the autumn leaves",
+          "made_with": "render"
+        },
+        {
+          "id": "stars-finish",
+          "name": "Add stars and final highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

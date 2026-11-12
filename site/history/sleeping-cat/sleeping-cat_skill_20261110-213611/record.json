@@ -1,0 +1,86 @@
+{
+  "photo": "sleeping-cat",
+  "run": "sleeping-cat_skill_20261110-213611",
+  "started": "2026-11-10 21:36",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "6465196de4298515",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "before stamps",
+        "commit": "3013e40",
+        "dirty": null,
+        "published": "2026-11-10"
+      },
+      "made_with": {
+        "version": "before stamps",
+        "commit": "3013e40",
+        "published": "2026-11-10",
+        "dirty": null,
+        "guessed": true
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 9,
+        "words": 527,
+        "tubes": 0,
+        "cost_usd": 0.395,
+        "minutes": 5.1,
+        "paid_renders": 15,
+        "redos": 6,
+        "review_problems": 6,
+        "text_problems": 0
+      },
+      "steps": [
+        {
+          "id": "green-background",
+          "name": "Paint the lime green background",
+          "made_with": "render"
+        },
+        {
+          "id": "background-streaks",
+          "name": "Dry-brush the white streaks",
+          "made_with": "render"
+        },
+        {
+          "id": "marshmallows",
+          "name": "Paint the floating marshmallows",
+          "made_with": "render"
+        },
+        {
+          "id": "mint-swirl",
+          "name": "Paint the mint cream swirl",
+          "made_with": "render"
+        },
+        {
+          "id": "swirl-shading",
+          "name": "Shade the swirl's grooves",
+          "made_with": "render"
+        },
+        {
+          "id": "cat-base",
+          "name": "Paint the pink cat",
+          "made_with": "render"
+        },
+        {
+          "id": "cat-shading",
+          "name": "Shade the cat",
+          "made_with": "render"
+        },
+        {
+          "id": "swirl-marshmallow-lines",
+          "name": "Outline the swirl and marshmallows",
+          "made_with": "render"
+        },
+        {
+          "id": "cat-details",
+          "name": "Outline the cat and add its face",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

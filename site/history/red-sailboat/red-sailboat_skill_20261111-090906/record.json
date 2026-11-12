@@ -1,0 +1,79 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261111-090906",
+  "started": "2026-11-11 09:09",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "79aedaccc5d935bb",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.12.0",
+        "commit": "396533d",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.12.0",
+        "commit": "396533d",
+        "published": "2026-11-11"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 8,
+        "words": 638,
+        "tubes": 0,
+        "cost_usd": 0.302,
+        "minutes": 3.8,
+        "paid_renders": 9,
+        "redos": 0,
+        "review_problems": 1,
+        "text_problems": 15
+      },
+      "steps": [
+        {
+          "id": "sunset-sky",
+          "name": "Blend the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "hill-and-shore",
+          "name": "Paint the hill and the far shore",
+          "made_with": "render"
+        },
+        {
+          "id": "water",
+          "name": "Paint the calm water",
+          "made_with": "render"
+        },
+        {
+          "id": "sun-reflection",
+          "name": "Paint the sun's reflection",
+          "made_with": "render"
+        },
+        {
+          "id": "boat-shapes",
+          "name": "Block in the boat",
+          "made_with": "render"
+        },
+        {
+          "id": "mast-and-trim",
+          "name": "Add the mast, boom, and trim",
+          "made_with": "render+throwaway:filters/no_boat_reflection_v2.py"
+        },
+        {
+          "id": "boat-reflection",
+          "name": "Paint the boat's reflection",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

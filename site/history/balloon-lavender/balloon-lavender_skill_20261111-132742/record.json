@@ -1,0 +1,103 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261111-132742",
+  "started": "2026-11-11 13:27",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "1875e9e9086ae9b3",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.19.0",
+        "commit": "f5a31e0",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.19.0",
+        "commit": "f5a31e0",
+        "published": "2026-11-11"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 12,
+        "words": 1064,
+        "tubes": 12,
+        "cost_usd": 0.429,
+        "minutes": 5.5,
+        "paid_renders": 15,
+        "redos": 2,
+        "review_problems": 4,
+        "text_problems": 22
+      },
+      "steps": [
+        {
+          "id": "sky",
+          "name": "Paint the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "clouds-sun",
+          "name": "Paint the clouds and the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "mountains",
+          "name": "Paint the far mountains",
+          "made_with": "render"
+        },
+        {
+          "id": "far-fields",
+          "name": "Paint the far fields",
+          "made_with": "render"
+        },
+        {
+          "id": "golden-hill",
+          "name": "Paint the golden hill",
+          "made_with": "render"
+        },
+        {
+          "id": "tree",
+          "name": "Paint the lone tree",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-rows",
+          "name": "Block in the lavender rows and paths",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-stripes",
+          "name": "Paint the balloon's stripes",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon-details",
+          "name": "Shade the balloon and add the basket",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-dabs",
+          "name": "Dab the lavender's dark marks and stems",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-tips",
+          "name": "Add the light lavender tips",
+          "made_with": "render"
+        },
+        {
+          "id": "final-highlights",
+          "name": "Add the brightest highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

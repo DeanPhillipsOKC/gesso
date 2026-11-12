@@ -1,0 +1,99 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261111-023226",
+  "started": "2026-11-11 02:32",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "ee77a35654f3ca44",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.9.0",
+        "commit": "7e5d811",
+        "dirty": false,
+        "published": "2026-11-11"
+      },
+      "made_with": {
+        "version": "POC 0.9.0",
+        "commit": "7e5d811",
+        "published": "2026-11-11"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 12,
+        "words": 1045,
+        "tubes": 0,
+        "cost_usd": 0.477,
+        "minutes": 6.7,
+        "paid_renders": 16,
+        "redos": 3,
+        "review_problems": 4,
+        "text_problems": 0
+      },
+      "steps": [
+        {
+          "id": "sky",
+          "name": "Paint the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "clouds",
+          "name": "Dab in the big clouds",
+          "made_with": "render"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "mountains",
+          "name": "Paint the far mountains",
+          "made_with": "render"
+        },
+        {
+          "id": "fields",
+          "name": "Paint the golden fields and hill",
+          "made_with": "render"
+        },
+        {
+          "id": "treelines",
+          "name": "Dab the tree lines",
+          "made_with": "render"
+        },
+        {
+          "id": "tree",
+          "name": "Paint the lone tree",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-rows",
+          "name": "Block in the lavender rows and paths",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-dabs",
+          "name": "Dab the lavender",
+          "made_with": "render"
+        },
+        {
+          "id": "lavender-lights",
+          "name": "Add light to the lavender",
+          "made_with": "render"
+        },
+        {
+          "id": "balloon",
+          "name": "Paint the striped balloon",
+          "made_with": "render"
+        },
+        {
+          "id": "highlights",
+          "name": "Final details and highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}
