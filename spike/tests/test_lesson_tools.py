@@ -11,7 +11,9 @@ import json
 import os
 import sys
 import tempfile
+import threading
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -79,9 +81,27 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(self.client.images.calls, 0)
 
     def test_parallel_cap_is_shared(self):
-        # $0.10 fits one low render (estimated $0.07) but not two at once.
-        code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill",
-                                "--why-not-filter", "x", "--max-cost", "0.10")
+        # $0.10 fits one low render (estimated $0.07) but not two at once. The renders must really overlap: if
+        # the first finished before the second reserved, the ledger would hold its actual cost (about $0.025),
+        # the second would fit, and the test failed on a slow or loaded run. So hold every render until both
+        # steps have tried to reserve.
+        both_reserved = threading.Event()
+        tries, tries_lock = [0], threading.Lock()
+        real_reserve = tools.Budget.reserve
+
+        def reserve(budget, step_id, quality):
+            try:
+                return real_reserve(budget, step_id, quality)
+            finally:
+                with tries_lock:
+                    tries[0] += 1
+                    if tries[0] == 2:
+                        both_reserved.set()
+
+        self.client.images.before_edit = lambda: both_reserved.wait(30)
+        with mock.patch.object(tools.Budget, "reserve", reserve):
+            code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill",
+                                    "--why-not-filter", "x", "--max-cost", "0.10")
         self.assertEqual(code, 0)
         self.assertEqual(self.client.images.calls, 1)
         self.assertEqual(sum(1 for s in r["steps"] if "refused" in s), 1)
