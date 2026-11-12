@@ -8,6 +8,9 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 
 ## Pipeline v2 (in progress)
 - Version 2 lessons go through `publish`, `mix`, the seal, the page (stage headings), and the history (#65).
+- `paints` measures a version 2 lesson's paints from the finish, marks tints and shades of a part's main paint, and
+  merges the rest toward the technique's `max_mixes` (10 for the beginner paint-along), never an accent and never
+  two colors a painter can tell apart (#66).
 
 ## POC 0.26.1 (2026-11-12)
 - The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's

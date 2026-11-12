@@ -1335,6 +1335,58 @@ def part_colors_tool(a: argparse.Namespace) -> dict:
             "cost_usd": 0.0}
 
 
+def paints_tool(a: argparse.Namespace) -> dict:
+    """Measure the plan's paints from the finish, mark tints and shades, merge the rest to the technique's
+    max_mixes, and write them (and the steps pointed at them) into plan.json. Design section 9."""
+    import mixing
+    import paints
+    import plan2
+    import yaml
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2_parts_only(lesson)
+    owner = _read_owner(lesson, plan)
+    if owner.shape != finish.shape[:2]:
+        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
+    technique = yaml.safe_load((ROOT / plan["technique"]).read_text(encoding="utf-8")) if plan.get("technique") else {}
+    tubes = load_palette(plan["palette"])[0] if plan.get("palette") else technique.get("palette") or []
+    try:
+        white = next((mixing.tube_rgb(t) for t in tubes if "white" in t.lower()), (255, 255, 255))
+        colored = [t for t in tubes if "white" not in t.lower()]
+        dark = min(colored, key=lambda t: mixing._lab(mixing.tube_rgb(t))[0]) if colored else None
+    except mixing.UnknownTube as e:
+        raise Refused(str(e))
+    max_mixes = technique.get("max_mixes")
+    r = paints.measure(finish, plan, owner, max_mixes, white, mixing.tube_rgb(dark) if dark else (20, 20, 22),
+                       dark or "black")
+    plan["paints"], plan["stages"] = r["paints"], r["stages"]
+    (lesson / "plan.json").write_text(json.dumps(plan, indent=1) + "\n", encoding="utf-8")
+    (lesson / "trials").mkdir(exist_ok=True)
+    sheet = lesson / "trials" / "paints.jpg"
+    Image.fromarray(paints.swatch_sheet(finish, plan["parts"], r["paints"], r["shares"])).save(sheet, quality=90)
+    merged = [f"{', '.join(m['parts'])}: {m['hex']}" + (f" ({', '.join(m['was'])})" if m["was"] else "")
+              + f" merged into {m['into']}, {m['delta_e']} apart" + (", in the same part" if m["same_part"] else "")
+              for m in r["merges"]]
+    steps = [f"{m['part']}: {m['dropped']} merged into {m['kept']}, because their paints merged" for m in r["step_merges"]]
+    names = {p["id"]: p.get("name") or p["id"] for p in r["paints"]}
+    bases = paints.base_mixes(r["paints"])
+    over = []
+    if r["over_target"]:
+        over = [f"{len(bases)} base mixes, above the target of {max_mixes}: every pair left is an accent or more than "
+                f"Delta E {paints.MAX_MERGE:g} apart, and merging it would lose a color the painter can see. That's "
+                "allowed; don't raise max_mixes or merge by hand."]
+        over += [f"{names[o['id']]} stays" + (" (an accent)" if o["accent"] else "") + f": nearest is "
+                 f"{names[o['nearest']]}, {o['delta_e']} away" for o in r["over_target"]]
+    return {"paints": [{k: p[k] for k in ("id", "name", "hex", "of", "plus", "parts") if k in p} for p in r["paints"]],
+            "base_mixes": len(bases), "max_mixes": max_mixes, "merged": merged, "steps_merged": steps,
+            "accents": r["accents"], "kept_names": r["kept_names"], "sheet": str(sheet), "over_target": over,
+            "problems": plan2.problems(plan, technique),
+            "advice": "Read the sheet. Name each paint and say what it's for (a paint that kept its name moved under "
+                      f"Delta E {paints.KEEP_NAME:g}); then run build-steps and check no step lost its paint.",
+            "cost_usd": 0.0}
+
+
 def _v2_parts_only(lesson: Path):
     """Like _v2, for the tools that run before the plan has paints and steps."""
     import plan2
@@ -1476,6 +1528,14 @@ def add_v2_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--colors", type=int, default=3, help="colors per part (default 3)")
     p.set_defaults(func=part_colors_tool)
+    p = sub.add_parser("paints", help="Free. v2: measure the plan's paints from the finish and merge them toward max_mixes.",
+                       description="Run after outline. Writes plan.json's paints (ids <part>-<n>, darkest first; a tint "
+                                   "or shade of a part's main paint gets \"of\" and \"plus\" and doesn't count), merges the "
+                                   "closest toward the technique's max_mixes (never two far apart: it says what kept it "
+                                   "over), points the steps at them (two steps of one part become one when their paints "
+                                   "merge), and writes trials/paints.jpg.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=paints_tool)
     p = sub.add_parser("background", help="PAID, one render. v2: the finish with the objects taken out, for what's behind them.",
                        description="Run when build-steps prints \"needs_background\": true. Writes 98_background.png; "
                                    "build-steps then uses only its pixels behind the objects, so the render can't move "

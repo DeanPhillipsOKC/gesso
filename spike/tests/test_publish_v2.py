@@ -289,7 +289,7 @@ class PublishV2Tests(unittest.TestCase):
         r = site_lessons.add(lesson, "chickadee-v2", site)
         self.assertEqual(r["url_path"], "/lessons/chickadee-v2/")
         entry = json.loads((site / "lessons.json").read_text(encoding="utf-8"))[0]
-        self.assertEqual(entry["steps"], 19)
+        self.assertEqual(entry["steps"], len(self.data("chickadee")["stages"]))  # however many the plan has
         self.assertEqual(site_lessons.kind(self.data("chickadee")), "steps cut from the finish")
 
     # --- refusals ---
