@@ -92,7 +92,12 @@
           "name": "Add the eye, beak, feet, and highlights",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "edited",
+        "note": "After the skill finished, the finish was rebuilt with finish-from-step and the head was composited by hand to fix the bird's shape.",
+        "marked": "2026-11-12"
+      }
     }
   ]
 }

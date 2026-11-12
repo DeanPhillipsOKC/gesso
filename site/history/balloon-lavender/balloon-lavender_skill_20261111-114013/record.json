@@ -97,7 +97,11 @@
           "name": "Highlight the balloon and hang the basket",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "unsealed",
+        "note": "not finished by the skill, or from before seals"
+      }
     }
   ]
 }

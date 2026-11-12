@@ -770,12 +770,19 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
     from from_finish import build
 
     src = Path(a.lesson)
-    stem = src.name.split("_skill_")[0]
-    dst = src.parent / f"{stem}_skill_{dt.datetime.now():%Y%m%d-%H%M%S}"
-    skip = {"trials", "versions", "embed", "canvas"}
-    shutil.copytree(src, dst, ignore=lambda d, names: [n for n in names if Path(d) == src and n in skip])
-    from provenance import derive
-    derive(dst, src, f"from-finish{' --steps ' + ' '.join(a.steps) if a.steps else ''}: {a.why}")
+    if a.in_place:
+        # the skill's own step 6a, inside its run: the same lesson, so it can still be sealed hands-off
+        if (src / "sealed.json").exists():
+            raise Refused("this lesson is sealed; a change now would mark it edited. Make a new run, or a recut "
+                          "without --in-place.")
+        dst = src
+    else:
+        stem = src.name.split("_skill_")[0]
+        dst = src.parent / f"{stem}_skill_{dt.datetime.now():%Y%m%d-%H%M%S}"
+        skip = {"trials", "versions", "embed", "canvas"}
+        shutil.copytree(src, dst, ignore=lambda d, names: [n for n in names if Path(d) == src and n in skip])
+        from provenance import derive
+        derive(dst, src, f"from-finish{' --steps ' + ' '.join(a.steps) if a.steps else ''}: {a.why}")
     raw, plan, technique = load_plan(dst)
     paths = step_paths(dst, plan)
     hexes = {p.name: p.hex for p in plan.paints}
@@ -810,13 +817,14 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
             if t["stage_id"] != plan.steps[-1].id and t["stage_id"] in chosen:
                 t["made_with"], t["reason"] = "composite:from-finish", "cut from the finished painting (#8)"
         text_path.write_text(json.dumps(text, indent=2), encoding="utf-8")
-    for name in ("lesson.json", "lesson.html", "lesson-artifact.html", "lesson-standalone.html"):
+    for name in ("lesson.json", "lesson.html", "lesson-artifact.html", "lesson-standalone.html") if dst != src else ():
         (dst / name).unlink(missing_ok=True)  # a new lesson: stamped with this version, not the one it came from
     led = LessonLedger(dst)
     with led.locked():
         # keep what this lesson still uses (the finish and the prep pictures); the step renders aren't used
-        steps_only = {s.id for s in plan.steps[:-1]} & chosen
-        led.calls = [c for c in led.calls if c.get("step") not in steps_only]
+        if dst != src:  # a recut keeps only the renders it still uses; in place, the run's own ledger stays whole
+            steps_only = {s.id for s in plan.steps[:-1]} & chosen
+            led.calls = [c for c in led.calls if c.get("step") not in steps_only]
         led.calls.append({"tool": "filter", "filter": "from-finish", "step": "", "why": a.why, "input": str(paths[-1]),
                           "out": str(dst), "settings": {"from": src.name}, "cost_usd": 0.0})
         led.save()
@@ -974,6 +982,8 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--steps", nargs="+", help="only these steps (the rest stay rendered): best for a group of passes "
                                            "over one area, like lavender rows and their dab passes")
+    p.add_argument("--in-place", action="store_true",
+                   help="change this lesson instead of a copy: the skill's own step 6a, before the seal")
     p.add_argument("--why", required=True)
     p.set_defaults(func=from_finish_tool)
     p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",

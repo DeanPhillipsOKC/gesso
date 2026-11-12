@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.25.1 (2026-11-12)
+- `from-finish --in-place` is the skill's own step 6a inside its run, so the lesson can still be sealed hands-off; a
+  copy without it is a recut. Once a run is sealed, its draft publishes leave the lesson history (they were work in
+  progress). The history shows a Hands-off, Recut, Edited, or Unsealed tag on every run, and a band across the strip
+  of each one that isn't hands-off.
+
 ## POC 0.25.0 (2026-11-12)
 - Hands-off lessons: the skill's last publish is `publish --final`, which seals the lesson as made by the tool on
   its own. Every lesson records its provenance (hands-off, recut, edited after the seal, or unsealed), and only

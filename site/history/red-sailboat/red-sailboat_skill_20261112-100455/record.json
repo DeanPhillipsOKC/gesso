@@ -1,0 +1,106 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261112-100455",
+  "started": "2026-11-12 10:04",
+  "publishes": [
+    {
+      "n": 3,
+      "digest": "1d1c1ef174e31791",
+      "strip": "strip-3.jpg",
+      "published_with": {
+        "version": "POC 0.25.0",
+        "commit": "e76ade2",
+        "dirty": false,
+        "published": "2026-11-12"
+      },
+      "made_with": {
+        "version": "POC 0.25.0",
+        "commit": "e76ade2",
+        "published": "2026-11-12"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-12T10:21:33"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 10,
+        "words": 760,
+        "tubes": 5,
+        "cost_usd": 0.374,
+        "minutes": 5.1,
+        "paid_renders": 14,
+        "redos": 3,
+        "review_problems": 6,
+        "text_problems": 11,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky",
+          "name": "Paint the sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "render"
+        },
+        {
+          "id": "hill",
+          "name": "Paint the far hill and shore",
+          "made_with": "render"
+        },
+        {
+          "id": "water",
+          "name": "Paint the teal water",
+          "made_with": "render"
+        },
+        {
+          "id": "sun-path",
+          "name": "Paint the sun's path on the water",
+          "made_with": "render"
+        },
+        {
+          "id": "hull",
+          "name": "Paint the red hull",
+          "made_with": "render"
+        },
+        {
+          "id": "sails",
+          "name": "Paint the white sails",
+          "made_with": "render"
+        },
+        {
+          "id": "boat-details",
+          "name": "Add the mast, boom, and boat shading",
+          "made_with": "render"
+        },
+        {
+          "id": "reflection",
+          "name": "Paint the boat's reflection",
+          "made_with": "render"
+        },
+        {
+          "id": "ripples",
+          "name": "Last glints on the water",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

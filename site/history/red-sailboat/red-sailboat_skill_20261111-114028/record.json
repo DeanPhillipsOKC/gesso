@@ -92,7 +92,12 @@
           "name": "Add the brightest highlights",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "edited",
+        "note": "After the skill finished, its steps were relocked by hand with newer lock code (tone seams).",
+        "marked": "2026-11-12"
+      }
     }
   ]
 }

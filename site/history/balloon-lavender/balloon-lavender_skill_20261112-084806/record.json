@@ -106,7 +106,12 @@
           "name": "Add the lavender tips and final highlights",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "recut",
+        "from": "balloon-lavender_skill_20261111-142734",
+        "note": "from-finish --steps lavender-rows lavender-dark-dabs lavender-mid-dabs lavender-dabs: spike #8 hybrid"
+      }
     }
   ]
 }

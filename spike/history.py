@@ -128,6 +128,16 @@ def record(lesson: Path, data: dict, checks: dict | None = None, history: Path |
     rec = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {
         "photo": key, "run": run, "started": run_time(run), "publishes": []}
     d = digest(lesson, data)
+    if (data.get("provenance") or {}).get("kind") == "hands-off":
+        # the skill's draft publishes before its seal were work in progress, not versions: keep only the sealed one
+        drafts = [p for p in rec["publishes"] if (p.get("provenance") or {}).get("kind") == "unsealed"
+                  and p["digest"] != d]
+        for p in drafts:
+            (folder / p["strip"]).unlink(missing_ok=True)
+        rec["publishes"] = [p for p in rec["publishes"] if p not in drafts]
+        if drafts:
+            path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
+            build_page(history)
     if rec["publishes"] and rec["publishes"][-1]["digest"] == d:
         last = rec["publishes"][-1]  # same pictures and text, but its provenance can still change (a seal, a mark)
         if data.get("provenance") and last.get("provenance") != data["provenance"]:
@@ -135,7 +145,7 @@ def record(lesson: Path, data: dict, checks: dict | None = None, history: Path |
             path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
             build_page(history)
         return {"recorded": False, "reason": "nothing changed since the last publish", "run": run}
-    n = len(rec["publishes"]) + 1
+    n = max((p["n"] for p in rec["publishes"]), default=0) + 1
     g, made = _stamp(data)
     if stamp_override:
         g, made = stamp_override, stamp_override
@@ -248,9 +258,13 @@ label.pick{font-size:.85rem;display:flex;gap:.4rem;align-items:center;cursor:poi
 @media (min-width:60rem){#compare .pair{grid-template-columns:1fr 1fr}}
 #compare figure{margin:0;display:grid;gap:.25rem;min-width:0}#compare img{width:100%;height:auto;display:block;border-radius:6px}#compare figcaption{font-size:.8rem;color:var(--muted)}
 .strip{position:relative;overflow:hidden;border-radius:6px}
-.ribbon{position:absolute;top:1.1rem;right:-2.6rem;transform:rotate(35deg);width:10rem;text-align:center;padding:.25rem 0;
-  font:700 .8rem/1 "Bricolage Grotesque","Segoe UI",sans-serif;letter-spacing:.12em;text-transform:uppercase;
-  box-shadow:0 2px 6px rgb(0 0 0/.3);pointer-events:none}
+.ribbon{position:absolute;left:-10%;right:-10%;top:50%;transform:translateY(-50%) rotate(-8deg);text-align:center;
+  padding:.45rem 0;font:700 clamp(1rem,3.5vw,1.6rem)/1 "Bricolage Grotesque","Segoe UI",sans-serif;letter-spacing:.3em;
+  text-transform:uppercase;opacity:.92;box-shadow:0 3px 10px rgb(0 0 0/.35);pointer-events:none}
+.tag{font:700 .72rem/1 "Bricolage Grotesque","Segoe UI",sans-serif;letter-spacing:.08em;text-transform:uppercase;
+  border-radius:999px;padding:.3rem .6rem;color:#fff}
+.tag.hands-off{background:var(--good)}.tag.recut{background:var(--recut)}.tag.edited{background:var(--edited)}
+.tag.unsealed{background:var(--muted);color:var(--bg)}
 .ribbon.recut{background:var(--recut);color:#fff}.ribbon.edited{background:var(--edited);color:#fff}
 .ribbon.unsealed{background:var(--muted);color:var(--bg)}
 .prov{font-size:.85rem}.prov b{font-weight:700}
@@ -304,6 +318,7 @@ def build_page(history: Path | None = None) -> Path:
             prov = p.get("provenance") or {"kind": "unsealed"}
             label = {"recut": "Recut", "edited": "Edited", "unsealed": "Unsealed"}.get(prov["kind"], "")
             ribbon = f'<span class="ribbon {prov["kind"]}">{label}</span>' if label else ""
+            tag = f'<span class="tag {prov["kind"]}">{label or "Hands-off"}</span>'
             prov_text = {"hands-off": "<b>Hands-off:</b> made by the skill, untouched since",
                          "recut": f'<b>Recut</b> from {e(prov.get("from", "another run"))}, not a run of the tool',
                          "edited": "<b>Edited</b> after the skill finished",
@@ -321,7 +336,7 @@ def build_page(history: Path | None = None) -> Path:
                            f'({e(new[0][0])} to {e(new[-1][0])})</summary><ul>{items}</ul></details>')
             cards.append(
                 f'<article class="run" data-id="{e(rid)}" data-img="{e(img)}" data-label="{e(ver)} {e(r["started"])}">'
-                f'<div class="head"><b>{e(ver or "unknown version")}</b>'
+                f'<div class="head"><b>{e(ver or "unknown version")}</b>{tag}'
                 f'<span class="mono">{e(made.get("commit", ""))}{e(guessed)}{repub_txt}</span>'
                 f'<span class="mono">{e(r["started"])} · publish {p["n"]}</span>{score}</div>'
                 f'<span class="facts">{"".join(f"<span>{x}</span>" for x in facts)}</span>'
