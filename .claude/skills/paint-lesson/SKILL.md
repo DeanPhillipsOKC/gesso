@@ -43,7 +43,8 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
    page under Known problems. Name the lesson folder in anything you report as a bug.
 8. **Keep `notes.json` as you go,** not at the end.
 9. **Stay in your lesson folder.** Don't edit code, the skill, techniques, palettes, or docs during a run. If a
-   tool is wrong, work within what the skill allows and report it.
+   tool is wrong, work within what the skill allows and report it. (`publish` also writes the lesson history in
+   `site/history/`; that's expected.)
 10. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses to seal until the checks
     pass; fix what it lists. After the seal, change nothing: any change marks the lesson edited.
 

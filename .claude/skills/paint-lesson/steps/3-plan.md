@@ -5,7 +5,8 @@ Write `<lesson>/plan.json` with exactly these fields:
 
 ```json
 {
-  "photo": "photos/<file>", "technique": "techniques/<file>.yaml", "quality": "low",
+  "photo": "<the photo as step 0 left it: 00_beginner.png, 00_canvas_fit.png, 00_canvas_frame.png, photo_cropped.png, or the original, with its path>",
+  "technique": "techniques/<file>.yaml", "quality": "low",
   "subject": "...", "focal_point": "...", "light": "...",
   "components": ["farthest part first", "..."],
   "paints": [{"name": "Sunset orange", "recipe": "2 parts yellow, 1 part red, a touch of white",

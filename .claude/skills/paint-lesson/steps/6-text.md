@@ -19,7 +19,10 @@ step its colors in plan.json and its own text (only the marks it adds), trim the
    paints only. For a paint in `unreachable`, say so in that step's `paint_notes` ("as close as these tubes get")
    or move its sample spot.
 2. Read the final images in order and write each step from what its image actually shows: the real shapes and
-   areas, the mixes by paint name, the planned advice that still applies, plain words, 2 to 5 instructions.
+   areas, the mixes by paint name, the planned advice that still applies, plain words, 2 to 5 instructions (a
+   drying cue can end the instruction before it rather than take its own).
+3. Diagrams come in step 7, after the text review. Don't write "as in the diagram" yet: give the positions and
+   pieces in words now, and shorten them to a pointer when you add the diagram.
 
 ### Keep it short
 A beginner reads this with a wet brush in hand: each step's `what_to_do` under about 100 words, each instruction

@@ -17,6 +17,9 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   publish first, `long_steps_kept` is in the notes schema, the text review checks `ok` steps' main shapes against
   the finish, and reviewers use the venv to zoom.
 - The "uncommitted code" flag on a lesson's stamp works again (it never fired since 0.23.1).
+- From the first run on the split skill: `photo_prep` is a dict from step 0 (the page also accepts a sentence),
+  the lock runs between the two image review rounds (`fixed by lock-steps` is an action), the plan's `photo` is the
+  fitted picture, and text doesn't point at diagrams before step 7 adds them.
 
 ## POC 0.25.2 (2026-11-12)
 - Lesson pages on the site have a Known problems section: what the run's reviews found and left as they are, by

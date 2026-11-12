@@ -68,3 +68,8 @@ each step. This is where the runs that taught each rule are kept. Add to it when
 - **Hands-off** (owner, 2026-11-12): the app won't have anyone to tweak a lesson, so the tool has to stand on its
   own. The seal checks what the skill used to only ask for, because two hands-off runs each skipped a small rule
   late in a long run (the skill was 8,000 words, read 150k tokens before the steps that needed it).
+- **First run on the split skill** (sailboat, POC 0.26.0, 2026-11-12): sealed on the first try with 2 problems left
+  (the earlier run left 3), and the sky ran past the shoreline this time. It found: `photo_prep` was described as a
+  sentence in step 0 but the page wants a dict; locking belongs between the review rounds; the plan's `photo` was
+  unclear after a canvas fit; text written before step 7 pointed at diagrams the text reviewer couldn't see.
+

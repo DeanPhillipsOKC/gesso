@@ -31,13 +31,14 @@ Check each issue yourself against the finish before redoing: if the flagged step
 neighbor doesn't, redo the neighbor and say so. Redo with `render-step --steps <id> --fix "<fix>"
 --why-not-filter "<reason>"` (one step per call; several can run in parallel).
 
-Two rounds: review, redo, review again in a new subagent, redo what that flags, stop. Save every issue in
-`review.json`:
+The order: round 1 review, redo, **lock (5b)**, round 2 review in a new subagent on the locked images, redo what
+it flags, lock again, stop. Locking before round 2 means the second reviewer doesn't re-flag drift the lock already
+put back. Save every issue in `review.json`:
 
 ```json
 {"finish_issues": ["..."],
  "review_issues": [{"step_id": "moon", "problem": "...", "fix": "...", "round": 2,
-                    "action": "redone | redone neighbor <id> | left: <why>"}]}
+                    "action": "redone | redone neighbor <id> | fixed by lock-steps | left: <why>"}]}
 ```
 
 `left` is for anything not redone (a cap, or not worth a redo). A mismatch you notice later (writing text,
@@ -45,7 +46,7 @@ diagrams, or after locking) goes in too, as `left` with `"round": 2`, and the st
 to do about it. Every `left` shows on the lesson page under Known problems.
 
 ## 5b. Lock finished areas (`lock-steps`)
-The image model doesn't hold earlier work still, so once renders and redos are done, lock them.
+The image model doesn't hold earlier work still, so lock after each review round's redos.
 1. Check every step's `regions` against the images and correct them. Add `protect` boxes where a step's region
    overlaps things that must stay (a vine's box over the pumpkins). Inside a protect box only the step's own
    `colors` may change anything. Don't protect what the step changes on purpose, and keep them tight: one that
@@ -54,6 +55,7 @@ The image model doesn't hold earlier work still, so once renders and redos are d
    Then a backward pass from the finish: where no later step paints, a step already shows the finish. The raw
    renders stay in `trials/raw/`, so the lock can be rerun.
 3. Read the locked images: no white holes, no seams where a box edge cuts an object (widen the box and rerun),
-   nothing the step should paint removed, no new patches or specks the raw render didn't have. Record any lock
-   artifact you can't fix as `left`.
+   nothing the step should paint removed, no new patches or specks the raw render didn't have. A white strip along
+   an edge often comes from the raw render stopping short (the lock keeps raw pixels a little past each box):
+   redo that render. Record any lock artifact you can't fix as `left`, naming the step and where.
 4. Lock again after any later redo.

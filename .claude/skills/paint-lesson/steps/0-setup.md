@@ -25,7 +25,9 @@ the output: the whole picture and nothing else. If it's off, measure the edges a
 (pixels in the original). Use the cropped file as the photo everywhere (plan.json `"photo"`, the finish render's
 photo input). Crop only what's clearly not part of the scene; don't recompose a real photo.
 
-Record it in `notes.json` as `photo_prep` ("just the picture" when nothing was cropped).
+Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": "what else was in the image, or
+'just the picture'", "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."}`. Start
+`notes.json` now and add to it as you go; the full schema is in step 8.
 
 ## 0b2. Fit the picture to the canvas (only with `--canvas`)
 1. Decide the subject's box and the focal point (0-1 from the top left). The subject is what the picture is

@@ -206,6 +206,8 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     read = lesson["photo_read"]
     comps = "".join(f"<li>{e(c)}</li>" for c in read.get("components", []))
     prep = notes.get("photo_prep") or {}
+    if isinstance(prep, str):  # a run wrote a sentence instead of the dict (sailboat, 2026-11-12)
+        prep = {"found": prep}
     prep_html = ('<div class="diag"><p class="label">Before starting</p>' + "".join(
         f"<p><b>{k}:</b> {e(prep[f])}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
                                                         ("Done", "action"), ("Why", "why")) if prep.get(f)) + "</div>"
