@@ -554,6 +554,8 @@ leave out still show, without a verdict. Every technique in `techniques/` you di
 `publish` also adds the lesson to the lesson history (`site/history/`) whenever its pictures or text changed, so
 never delete or overwrite an earlier run to make room. When the owner says how a lesson turned out, record it in
 their words with `history-rate`.
+If the picture already has a lesson on the lessons site, run `site-refresh` so this run shows in its tile's
+version list.
 (If whoever started you said they'll publish the artifact themselves, run `publish` and skip the Artifact tool.)
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
 `lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`, plus `embed/` (lesson.json and WebP images) for showing the lesson as a

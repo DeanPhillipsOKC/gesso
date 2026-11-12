@@ -933,6 +933,11 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--slug", required=True, help="the lesson's address on the site, e.g. lavender-balloon")
     p.set_defaults(func=lambda a: {**__import__("site_lessons").add(Path(a.lesson), a.slug), "cost_usd": 0.0})
+    p = sub.add_parser("site-refresh", help="Free. Add new runs of the site's lessons as versions on their tiles.",
+                       description="For every lesson on the site, each kept run of the same picture in output/ becomes a "
+                                   "version in the tile's pick list (its page goes to lessons/<slug>/v/<run>/ once, never "
+                                   "rewritten). Commit and push site/ after.")
+    p.set_defaults(func=lambda a: {"versions": __import__("site_lessons").refresh(), "cost_usd": 0.0})
     p = sub.add_parser("history-backfill", help="Free. Record every finished run in output/ in the lesson history.",
                        description="Adds each run's last publish to site/history/ (a strip of its steps and a record of its "
                                    "version, cost, and checks), then rebuilds site/history/index.html. Runs already "

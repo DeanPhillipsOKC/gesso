@@ -8,7 +8,99 @@
     "tubes": 12,
     "version": "POC 0.20.0",
     "published": "2026-11-11",
-    "source": "balloon-lavender_skill_20261111-142734"
+    "source": "balloon-lavender_skill_20261111-142734",
+    "versions": [
+      {
+        "id": "20261112-084806",
+        "version": "POC 0.24.0",
+        "when": "2026-11-12 08:48",
+        "guessed": false,
+        "kind": "some steps cut from the finish",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261112-084806/",
+        "current": false
+      },
+      {
+        "id": "20261112-084526",
+        "version": "POC 0.24.0",
+        "when": "2026-11-12 08:45",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261112-084526/",
+        "current": false
+      },
+      {
+        "id": "20261111-142734",
+        "version": "POC 0.20.0",
+        "when": "2026-11-11 14:27",
+        "guessed": false,
+        "kind": "",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/",
+        "current": true
+      },
+      {
+        "id": "20261111-132742",
+        "version": "POC 0.19.0",
+        "when": "2026-11-11 13:27",
+        "guessed": false,
+        "kind": "",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261111-132742/",
+        "current": false
+      },
+      {
+        "id": "20261111-124236",
+        "version": "POC 0.18.0",
+        "when": "2026-11-11 12:42",
+        "guessed": false,
+        "kind": "",
+        "steps": 11,
+        "href": "lessons/lavender-balloon/v/20261111-124236/",
+        "current": false
+      },
+      {
+        "id": "20261111-114013",
+        "version": "POC 0.17.1",
+        "when": "2026-11-11 11:40",
+        "guessed": false,
+        "kind": "",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261111-114013/",
+        "current": false
+      },
+      {
+        "id": "20261111-083555",
+        "version": "POC 0.13.0",
+        "when": "2026-11-11 08:35",
+        "guessed": false,
+        "kind": "",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261111-083555/",
+        "current": false
+      },
+      {
+        "id": "20261111-023226",
+        "version": "POC 0.9.0",
+        "when": "2026-11-11 02:32",
+        "guessed": false,
+        "kind": "",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261111-023226/",
+        "current": false
+      },
+      {
+        "id": "20261111-020247",
+        "version": "before stamps",
+        "when": "2026-11-11 02:02",
+        "guessed": true,
+        "kind": "",
+        "steps": 11,
+        "href": "lessons/lavender-balloon/v/20261111-020247/",
+        "current": false
+      }
+    ]
   },
   {
     "slug": "chickadee",
@@ -19,7 +111,19 @@
     "tubes": 11,
     "version": "POC 0.21.0",
     "published": "2026-11-11",
-    "source": "chickadee_skill_20261111-152140"
+    "source": "chickadee_skill_20261111-152140",
+    "versions": [
+      {
+        "id": "20261111-152140",
+        "version": "POC 0.21.0",
+        "when": "2026-11-11 15:21",
+        "guessed": false,
+        "kind": "",
+        "steps": 11,
+        "href": "lessons/chickadee/",
+        "current": true
+      }
+    ]
   },
   {
     "slug": "red-sailboat",
@@ -30,6 +134,38 @@
     "tubes": 5,
     "version": "POC 0.17.0",
     "published": "2026-11-11",
-    "source": "red-sailboat_skill_20261111-114028"
+    "source": "red-sailboat_skill_20261111-114028",
+    "versions": [
+      {
+        "id": "20261111-114028",
+        "version": "POC 0.17.0",
+        "when": "2026-11-11 11:40",
+        "guessed": false,
+        "kind": "",
+        "steps": 11,
+        "href": "lessons/red-sailboat/",
+        "current": true
+      },
+      {
+        "id": "20261111-095458",
+        "version": "POC 0.14.0",
+        "when": "2026-11-11 09:54",
+        "guessed": false,
+        "kind": "",
+        "steps": 10,
+        "href": "lessons/red-sailboat/v/20261111-095458/",
+        "current": false
+      },
+      {
+        "id": "20261111-090906",
+        "version": "POC 0.12.0",
+        "when": "2026-11-11 09:09",
+        "guessed": false,
+        "kind": "",
+        "steps": 8,
+        "href": "lessons/red-sailboat/v/20261111-090906/",
+        "current": false
+      }
+    ]
   }
 ]
