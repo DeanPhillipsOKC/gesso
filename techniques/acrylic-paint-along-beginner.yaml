@@ -30,6 +30,10 @@ ground: white
 # How many steps a lesson may have. Claude picks the number that fits the picture.
 step_range: [5, 12]
 
+# Version 2 plans only: most paints a beginner mixes in one lesson. A tint or shade of a part's main paint doesn't
+# count (owner, 2026-11-12; docs/design/pipeline-v2.md section 9).
+max_mixes: 10
+
 # How much detail a lesson at this level can hold. Pictures with more get a beginner version first (skill step 0c).
 detail_budget:
   max_parts: 8
