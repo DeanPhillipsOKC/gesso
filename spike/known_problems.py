@@ -82,7 +82,7 @@ def section(problems: list[dict], issues: list[dict]) -> str:
     return (f'{START}{SECTION_STYLE}<section class="known" id="known-problems"><h2>Known problems</h2>'
             + (f'<p class="small">Where the pictures aren\'t quite right. Paint it the way the step says and use the '
                f'picture as a guide.</p><ul>{items}</ul>' if problems else "")
-            + (f'<p class="small">Bugs filed about this lesson (GitHub, owner only). "Fixed" means a later version of '
+            + (f'<p class="small">Bugs filed about this lesson on GitHub. "Fixed" means a later version of '
                f'Gesso fixes it; this lesson was made before that.</p><ul>{links}</ul>' if issues else "")
             + f"</section>{END}")
 

@@ -53,7 +53,10 @@ with the date.
 - **Slow is fine (2026-10-19).** Quality beats speed. A lesson can take minutes to generate as long
   as progress is visible and a finished lesson is saved.
 - **Photos stay private (2026-10-19).** No public gallery or sharing by default, and lessons are
-  easy to delete.
+  easy to delete. This is for the app's users. For the POC (2026-11-12, owner's call), the lessons site and the
+  repo show the source pictures, so they're only AI-generated images or ones the owner has the rights to; the
+  owner picks sources with that in mind. Never put a personal photo (people, homes, anything private) in a lesson
+  that goes on the site or in the repo.
 - **Image model: OpenAI's gpt-image family first (2026-10-19)**, behind a small interface so the
   provider can change. Claude does the planning, instructions, and checks.
 
@@ -115,6 +118,11 @@ with the date.
   made it and sealed it (`publish --final`) and nothing changed after. The skill's own fixes (step review redos,
   split-texture) count as the tool; recuts, hand composites, relocks, and text edits after the seal don't. Those
   runs stay in the lesson history, marked with a ribbon. A lesson that needs a fix gets a fixed tool and a new run.
+
+- **The repo is public (2026-11-12, owner's call).** It was private only by default ("meant as a portfolio piece
+  later"); an audit found no secrets, personal details, or real photos in its history. Public, the issue links on
+  lesson pages work for everyone. Keep it that way: no keys (`.env` stays ignored), no personal photos or names,
+  commits with the GitHub noreply address. There's no license file, so the code is look-but-don't-reuse.
 
 ## How we work
 
