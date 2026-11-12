@@ -11,7 +11,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   the lesson. Each pixel goes to the step whose region and paints fit it (things in their own small box, like the
   balloon, are cut out whole with GrabCut), earlier steps paint straight through where later ones go, the first of
   several steps over one area is a flat coat, and the passes after it go on by value, darkest first, in equal
-  shares. No renders, so nothing drifts and no lock is needed.
+  shares. No renders, so nothing drifts and no lock is needed. `--steps` cuts only a group of passes and keeps
+  the rest rendered (the hybrid). Findings: `docs/spikes/from-finish.md`.
 
 ## POC 0.23.2 (2026-11-12)
 - Lesson history: every publish that changes a lesson's pictures or text is kept (`site/history/`: a strip of every
