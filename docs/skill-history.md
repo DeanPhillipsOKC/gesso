@@ -72,4 +72,5 @@ each step. This is where the runs that taught each rule are kept. Add to it when
   (the earlier run left 3), and the sky ran past the shoreline this time. It found: `photo_prep` was described as a
   sentence in step 0 but the page wants a dict; locking belongs between the review rounds; the plan's `photo` was
   unclear after a canvas fit; text written before step 7 pointed at diagrams the text reviewer couldn't see.
-
+- **Lock patches** (#56, 2026-11-12): the backward pass matched a clean water step's tone to the finish's, which
+  includes the sun path's glow from a later step, and left warm bands. Its local shift is now capped.
