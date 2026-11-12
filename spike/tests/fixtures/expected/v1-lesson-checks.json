@@ -1,0 +1,24 @@
+{
+ "steps": 3,
+ "steps_by_source": {
+  "render": 2,
+  "filter": 1
+ },
+ "diagrams": 1,
+ "undocumented_diagrams": [],
+ "unreachable_paints": [],
+ "long_steps": [],
+ "paints_not_listed": [],
+ "duplicate_recipes": [],
+ "texture_jumps": [
+  {
+   "step": "water",
+   "share": 0.274
+  }
+ ],
+ "long_instructions": [],
+ "paid_renders": 2,
+ "cached_renders": 0,
+ "image_cost_usd": 0.2,
+ "previous_version": null
+}

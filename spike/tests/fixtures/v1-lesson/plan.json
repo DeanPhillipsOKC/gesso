@@ -1,0 +1,134 @@
+{
+ "photo": "spike/tests/fixtures/v1-lesson/source.png",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "quality": "low",
+ "subject": "A red sailboat on teal water at sunset",
+ "focal_point": "the sailboat",
+ "light": "the setting sun, center",
+ "components": [
+  "sunset sky",
+  "water",
+  "sailboat"
+ ],
+ "paints": [
+  {
+   "name": "Sunset orange",
+   "recipe": "yellow, a touch of red, white",
+   "hex": "#f08a3c",
+   "used_for": "the sky's glow",
+   "sample_x": 0.5,
+   "sample_y": 0.3
+  },
+  {
+   "name": "Dusk violet",
+   "recipe": "blue, red, white",
+   "hex": "#7a5aa8",
+   "used_for": "the top of the sky",
+   "sample_x": 0.5,
+   "sample_y": 0.03
+  },
+  {
+   "name": "Deep teal",
+   "recipe": "blue, yellow, a touch of black",
+   "hex": "#1d677a",
+   "used_for": "the water",
+   "sample_x": 0.2,
+   "sample_y": 0.85
+  },
+  {
+   "name": "Boat red",
+   "recipe": "red, a touch of black",
+   "hex": "#b8281e",
+   "used_for": "the hull",
+   "sample_x": 0.82,
+   "sample_y": 0.6
+  },
+  {
+   "name": "Sail white",
+   "recipe": "white, a touch of yellow",
+   "hex": "#ece6dc",
+   "used_for": "the sail",
+   "sample_x": 0.8,
+   "sample_y": 0.45
+  }
+ ],
+ "steps": [
+  {
+   "id": "sky",
+   "name": "Blend the sunset sky",
+   "paints": "the sky",
+   "looks_like": "a glowing sky over bare canvas",
+   "covers_canvas": false,
+   "colors": [
+    "Dusk violet",
+    "Sunset orange"
+   ],
+   "brushes": "1 inch flat",
+   "how": [
+    "Paint violet across the top",
+    "Blend orange into it lower down"
+   ],
+   "watch_out": [
+    "Keep it wet while you blend"
+   ],
+   "regions": [
+    [
+     0,
+     0,
+     1,
+     0.55
+    ]
+   ]
+  },
+  {
+   "id": "water",
+   "name": "Lay in the teal water",
+   "paints": "the water",
+   "looks_like": "sky and water, no boat",
+   "covers_canvas": true,
+   "colors": [
+    "Deep teal"
+   ],
+   "brushes": "1 inch flat",
+   "how": [
+    "Paint the water with horizontal strokes"
+   ],
+   "watch_out": [
+    "Keep the horizon level"
+   ],
+   "regions": [
+    [
+     0,
+     0.5,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "id": "boat",
+   "name": "Paint the sailboat",
+   "paints": "the boat and its sail",
+   "looks_like": "the finished painting",
+   "covers_canvas": true,
+   "colors": [
+    "Boat red",
+    "Sail white"
+   ],
+   "brushes": "#6 round",
+   "how": [
+    "Paint the hull",
+    "Paint the sail"
+   ],
+   "watch_out": [],
+   "regions": [
+    [
+     0.68,
+     0.25,
+     0.96,
+     0.66
+    ]
+   ]
+  }
+ ]
+}

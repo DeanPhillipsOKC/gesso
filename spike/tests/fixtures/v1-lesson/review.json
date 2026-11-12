@@ -1,0 +1,23 @@
+{
+ "finish_issues": [
+  "The sun is a touch smaller than in the photo."
+ ],
+ "review_issues": [
+  {
+   "round": 1,
+   "step_id": "water",
+   "problem": "The horizon tilts a little.",
+   "fix": "level it",
+   "action": "left"
+  }
+ ],
+ "text_issues": [
+  {
+   "step_id": "sky",
+   "kind": "flat",
+   "problem": "No glow named",
+   "fix": "name it",
+   "action": "fixed"
+  }
+ ]
+}
