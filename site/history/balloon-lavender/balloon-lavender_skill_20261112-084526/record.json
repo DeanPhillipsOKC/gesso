@@ -1,0 +1,112 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261112-084526",
+  "started": "2026-11-12 08:45",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "adcd0ab457a069c9",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.24.0",
+        "commit": "63b7da1",
+        "dirty": false,
+        "published": "2026-11-12"
+      },
+      "made_with": {
+        "version": "POC 0.24.0",
+        "commit": "63b7da1",
+        "published": "2026-11-12"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 12,
+        "words": 901,
+        "tubes": 12,
+        "cost_usd": 0.091,
+        "minutes": 0.9,
+        "paid_renders": 2,
+        "redos": 4,
+        "review_problems": 6,
+        "text_problems": 33,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 1,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-gradient",
+          "name": "Paint the sunset sky and the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-coral",
+          "name": "Lay in the coral clouds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-glow",
+          "name": "Light the cloud edges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mountains",
+          "name": "Paint the far mountains",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "fields-hill",
+          "name": "Paint the fields and the golden hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree",
+          "name": "Paint the big tree",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon",
+          "name": "Paint the hot-air balloon",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-rows",
+          "name": "Block in the lavender rows and paths",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-dark-dabs",
+          "name": "Dab the dark lavender",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-mid-dabs",
+          "name": "Dab the middle violet",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-dabs",
+          "name": "Dab the lighter violet on top",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "finish",
+          "name": "Add the lavender tips and final highlights",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}
