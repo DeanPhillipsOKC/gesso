@@ -1,7 +1,7 @@
 # Probe: outlines from a local model, on finishes already on the site
 
 2026-11-12. A one-hour check before writing `docs/design/pipeline-v2.md`, to see whether real outlines fix what the
-from-finish spike (`from-finish.md`) got wrong. It is a probe, not the spike: no code landed, the fills are crude,
+from-finish spike (`from-finish.md`) got wrong. It is a probe, not the spike: no code landed, no step pictures were built,
 and only two finishes were tried. Issue #62 does it properly.
 
 ## What was run
@@ -17,30 +17,32 @@ and only two finishes were tried. Issue #62 does it properly.
 
 ## What it showed
 
-**Works: things and areas with a clear edge, from a box.**
+**Works: things and areas with a clear edge, from one box each.**
 
 ![Lavender balloon, one colored outline per part](outline-probe-lavender.jpg)
 
-On the lavender balloon every part came back clean from one box each, with the model's own confidence between
-0.96 and 1.0: sky, sun, mountains, gold fields, tree, lavender, balloon. This is the picture where the from-finish
-spike failed, because a box could not tell the sky's gold from the field's gold. With outlines, the back-to-front
-steps from the mountains on are right with no renders:
+On the lavender balloon all 7 parts came back clean from one box each, with the model's own confidence between
+0.96 and 1.0: sky, sun, far mountains, gold fields (with their tree lines), tree, lavender, balloon. This is the
+picture where the from-finish spike failed, because a box could not tell the sky's gold from the field's gold.
 
-![Steps built by laying the parts on in order](outline-probe-lavender-steps.jpg)
-
-Steps 3 to 7 are correct. Steps 1 and 2 show the probe's crude fill, not a problem with the outlines: it filled
-the whole canvas below the sky and smeared color down (the real tool leaves unpainted canvas white, and
-`spike/from_finish.py` already has better fills, `row_paint` and `continue_paint`). The ghost where the balloon and
-tree will go is the hidden-area problem the design handles separately (`pipeline-v2.md`, "Hidden areas").
-
-**Works: a compact subject.** On the chickadee, the bird, all four leaves, and the sun came back clean from one
-box each (confidence 0.89 to 1.0).
+**Works: a compact subject.** On the chickadee, the bird, the sun, and 3 of the 4 leaves came back clean from one
+box each (confidence 0.96 to 1.0). The fourth leaf (lower left of the pair, confidence 0.89) came back in two
+pieces.
 
 ![Chickadee: bird, leaves and sun are clean; branch and trunks are not](outline-probe-chickadee.jpg)
 
-**Does not work: thin or soft parts from point prompts.** The branch (thin, runs across the whole picture) and the
-misty trunks (soft, no real edge) came back as large wrong blobs from clicked points, and a box per limb was no
-better. These need a different method, which the design gives (`kind: thin` and `kind: soft`), and #62 has to test.
+**Does not work: thin or soft parts from point prompts.** The branch (thin, runs across the whole picture) took
+most of the background with it, and the misty trunks (soft, no real edge) came back as a ragged blob. A box per
+limb was no better. These need a different method, and #62 has to find and test it.
+
+**Not tested:** the red sailboat; parts inside parts (the bird's cap); a picture with gray bands around it (what
+the image model returns when the canvas shape differs from its frame); any step pictures built from these
+outlines. No outline was scored against a hand-drawn one; "clean" is by eye.
+
+**A mistake worth knowing about.** The first version of this probe used the decoder's full-size `masks` output and
+every outline came back stretched downward (the sun's outline sat below the sun). That output assumes a square
+picture. The code below uses `low_res_masks` and undoes the padding itself. Anyone starting from other SAM ONNX
+exports should check an outline against a small round thing first.
 
 ## The probe's code
 
@@ -64,14 +66,18 @@ def mask(emb, s, shape, box=None, pos=(), neg=()):  # about 0.1 s per part
     for x, y in neg: pts.append([x * w, y * h]); lab.append(0)
     if box: pts += [[box[0] * w, box[1] * h], [box[2] * w, box[3] * h]]; lab += [2, 3]
     else: pts.append([0, 0]); lab.append(-1)
-    m, iou, _ = dec.run(None, {
+    m, iou, low = dec.run(None, {
         "image_embeddings": emb,
         "point_coords": (np.array(pts, np.float32) * s)[None],
         "point_labels": np.array(lab, np.float32)[None],
         "mask_input": np.zeros((1, 1, 256, 256), np.float32),
         "has_mask_input": np.zeros(1, np.float32),
         "orig_im_size": np.array([h, w], np.float32)})
-    return m[0, 0] > 0, float(iou.ravel()[0])      # the outline, and the model's confidence (0 to 1)
+    # `low` is 256 x 256 over the padded 1024 square: enlarge, cut the padding off, then back to the picture's size.
+    # (The decoder's full-size `masks` output skips the padding step and comes back stretched for non-square pictures.)
+    nh, nw = int(h * s + .5), int(w * s + .5)
+    up = cv2.resize(low[0, 0], (1024, 1024), interpolation=cv2.INTER_LINEAR)[:nh, :nw]
+    return cv2.resize(up, (w, h), interpolation=cv2.INTER_LINEAR) > 0, float(iou.ravel()[0])  # outline, confidence
 ```
 
 The lavender boxes: sky `[0, 0, 1, 0.47]`, mountains `[0, 0.36, 1, 0.54]`, fields `[0, 0.44, 1, 0.64]`, lavender
