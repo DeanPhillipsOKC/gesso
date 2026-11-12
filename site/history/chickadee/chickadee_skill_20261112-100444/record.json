@@ -1,0 +1,111 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261112-100444",
+  "started": "2026-11-12 10:04",
+  "publishes": [
+    {
+      "n": 4,
+      "digest": "880e312a8a56ab8e",
+      "strip": "strip-4.jpg",
+      "published_with": {
+        "version": "POC 0.25.0",
+        "commit": "e76ade2",
+        "dirty": false,
+        "published": "2026-11-12"
+      },
+      "made_with": {
+        "version": "POC 0.25.0",
+        "commit": "e76ade2",
+        "published": "2026-11-12"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-12T10:31:09"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 11,
+        "words": 978,
+        "tubes": 14,
+        "cost_usd": 0.508,
+        "minutes": 7.3,
+        "paid_renders": 21,
+        "redos": 5,
+        "review_problems": 5,
+        "text_problems": 25,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-glow",
+          "name": "Blend the misty sunset sky",
+          "made_with": "render"
+        },
+        {
+          "id": "far-trunks",
+          "name": "Paint the far misty trunks",
+          "made_with": "render"
+        },
+        {
+          "id": "foliage-rust",
+          "name": "Dab the hazy foliage, first pass",
+          "made_with": "render"
+        },
+        {
+          "id": "foliage-gold",
+          "name": "Dab light on the foliage",
+          "made_with": "render"
+        },
+        {
+          "id": "branches",
+          "name": "Paint the branches dark",
+          "made_with": "render"
+        },
+        {
+          "id": "bark-light",
+          "name": "Light the tops of the branches",
+          "made_with": "render"
+        },
+        {
+          "id": "leaves",
+          "name": "Paint the four leaves",
+          "made_with": "render"
+        },
+        {
+          "id": "bird-body",
+          "name": "Block in the bird's body",
+          "made_with": "render"
+        },
+        {
+          "id": "bird-head",
+          "name": "Paint the cap, bib, and cheek",
+          "made_with": "render"
+        },
+        {
+          "id": "bird-feathers",
+          "name": "Shade the feathers",
+          "made_with": "render"
+        },
+        {
+          "id": "details",
+          "name": "Add the eye, beak, and feet",
+          "made_with": "render"
+        }
+      ]
+    }
+  ]
+}

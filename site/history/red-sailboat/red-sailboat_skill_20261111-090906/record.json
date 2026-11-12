@@ -73,7 +73,11 @@
           "name": "Paint the boat's reflection",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "unsealed",
+        "note": "not finished by the skill, or from before seals"
+      }
     }
   ]
 }

@@ -21,8 +21,18 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 
 
+def hands_off(run: Path) -> bool:
+    from provenance import of
+    data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
+    return of(run, data)["kind"] == "hands-off"
+
+
 def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
     data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
+    if not hands_off(lesson):  # owner, 2026-11-12: the site shows what the tool makes on its own
+        from provenance import of
+        raise ValueError(f"{lesson.name} isn't hands-off ({of(lesson, data)['kind']}); only lessons the skill made and "
+                         "sealed (publish --final) go on the site. Fix the tool and run again.")
     page = lesson / "lesson-standalone.html"
     if not page.exists():
         raise FileNotFoundError(f"{page} is missing; run publish first")
@@ -86,8 +96,8 @@ def add_versions(site: Path, slug: str, current: str, output: Path) -> list[dict
     photo = current.split("_skill_")[0]
     versions = []
     for run in sorted(output.glob(f"{photo}_skill_*")):
-        if not (run / "lesson.json").exists():
-            continue
+        if not (run / "lesson.json").exists() or not hands_off(run):
+            continue  # recuts and edited runs stay in the lesson history only
         data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
         g = data.get("gesso") or {}
         made = g.get("made") or g or stamp_at(run.name) or {}
@@ -115,6 +125,10 @@ def refresh(site: Path = SITE, output: Path = ROOT / "output") -> dict:
     lessons = json.loads(manifest.read_text(encoding="utf-8"))
     for x in lessons:
         x["versions"] = add_versions(site, x["slug"], x["source"], output)
+        keep = {v["id"] for v in x["versions"]}
+        for page in (site / "lessons" / x["slug"] / "v").glob("*") if (site / "lessons" / x["slug"] / "v").exists() else []:
+            if page.name not in keep:  # no longer hands-off, or never was: off the site, still in the history
+                shutil.rmtree(page)
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
     build_index(site, lessons)
     return {x["slug"]: len(x["versions"]) for x in lessons}

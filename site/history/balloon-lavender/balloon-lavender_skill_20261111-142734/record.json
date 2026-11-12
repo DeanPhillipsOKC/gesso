@@ -97,7 +97,12 @@
           "name": "Add the lavender tips and final highlights",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "hands-off",
+        "note": "Made in a fresh context by the skill alone (owner asked for an unassisted rerun, 2026-11-11); later republished only to fix its version label, pictures and text unchanged.",
+        "marked": "2026-11-12"
+      }
     }
   ]
 }

@@ -80,7 +80,11 @@
           "name": "Outline the cat and add its face",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "unsealed",
+        "note": "not finished by the skill, or from before seals"
+      }
     }
   ]
 }

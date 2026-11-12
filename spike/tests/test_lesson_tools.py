@@ -197,6 +197,10 @@ class LessonToolTests(unittest.TestCase):
         page = (self.lesson / "lesson-standalone.html").read_text(encoding="utf-8")
         self.assertTrue(page.startswith("<!doctype html>") and "data:image/jpeg;base64," in page)
         site = self.tmp / "site"
+        with self.assertRaises(ValueError):  # not sealed by the skill: not on the site
+            site_lessons.add(self.lesson, "sky-test", site)
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson), "--final")
+        self.assertEqual(r["provenance"]["kind"], "hands-off")
         r = site_lessons.add(self.lesson, "sky-test", site)
         self.assertEqual(r["url_path"], "/lessons/sky-test/")
         self.assertTrue((site / "lessons" / "sky-test" / "thumb.jpg").exists())
@@ -205,6 +209,10 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn("noindex", (site / "_headers").read_text())
         site_lessons.add(self.lesson, "sky-test", site)  # adding again replaces, doesn't duplicate
         self.assertEqual(index.count("lessons/sky-test/\""), (site / "index.html").read_text().count("lessons/sky-test/\""))
+        (self.lesson / "text.json").write_text(json.dumps({"steps": [{"stage_id": "sky", "what_to_do": ["Changed"]}]}))
+        code, r = self.run_tool("publish", "--lesson", str(self.lesson))
+        self.assertEqual(r["provenance"]["kind"], "edited")  # changed after the seal
+
     def test_carry_forward_copies_the_later_subject_onto_the_earlier_step(self):
         import numpy as np
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")

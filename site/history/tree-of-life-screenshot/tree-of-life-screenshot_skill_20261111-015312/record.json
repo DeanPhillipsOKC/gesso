@@ -85,7 +85,11 @@
           "name": "Glowing dots and final highlights",
           "made_with": "render"
         }
-      ]
+      ],
+      "provenance": {
+        "kind": "unsealed",
+        "note": "not finished by the skill, or from before seals"
+      }
     }
   ]
 }

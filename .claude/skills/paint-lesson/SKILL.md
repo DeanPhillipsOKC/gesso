@@ -400,8 +400,9 @@ seeded image, `made_with` says `render` and `reason` says what was tried first a
 ### 6a. No texture arrives all at once (`texture_jumps`)
 When a plan has a base coat followed by texture passes over the same region (lavender rows then dab passes,
 grass, flowers, foliage), give those steps identical `regions` and, after the renders, run
-`from-finish --lesson <lesson> --steps <coat and pass ids> --why "<area>"`: it cuts them from the finish (flat coat,
-then passes darkest first) in a new run folder and keeps the other steps rendered. Continue in the new folder.
+`from-finish --lesson <lesson> --steps <coat and pass ids> --in-place --why "<area>"`: it cuts them from the finish
+(flat coat, then passes darkest first) and keeps the other steps rendered. It's part of your run, so the lesson can
+still be sealed hands-off. Without `--in-place` it makes a recut in a new folder, which is never hands-off.
 Spike #8 found this beats rendered passes; whole-picture `from-finish` isn't ready (`docs/spikes/from-finish.md`).
 A beginner can't go from flat paint to a finished texture in one step, and twice the lavender did exactly that:
 flat rows, then a whole field of dabs (owner, 2026-11-11: "they're straight lines, then they're textured").
@@ -551,11 +552,17 @@ List every filter you looked at, kept or not, with its image path relative to th
 leave out still show, without a verdict. Every technique in `techniques/` you didn't pick goes in `considered`.
 
 ### 9. Publish the lesson as an artifact and report
+**Seal it: your last publish is `publish --lesson <lesson> --final`,** once every step, check, and review is done.
+That marks the lesson hands-off: what the tool made on its own (owner, 2026-11-12: the app won't have anyone to
+tweak a lesson, so the tool has to stand on its own). Only hands-off lessons go on the lessons site. After the seal,
+don't change the lesson: any later change, even a word of text, marks it "edited" and keeps it off the site. If a
+lesson needs a fix, fix the skill or the tools and make a new run. Recuts (`from-finish` copies) are never
+hands-off; they're experiments for the lesson history.
 `publish` also adds the lesson to the lesson history (`site/history/`) whenever its pictures or text changed, so
 never delete or overwrite an earlier run to make room. When the owner says how a lesson turned out, record it in
 their words with `history-rate`.
-If the picture already has a lesson on the lessons site, run `site-refresh` so this run shows in its tile's
-version list.
+If the picture already has a lesson on the lessons site, run `site-refresh` after the seal so this run shows in
+its tile's version list.
 (If whoever started you said they'll publish the artifact themselves, run `publish` and skip the Artifact tool.)
 `publish --lesson <lesson>` writes `lesson.json`, `lesson.html` (local, images by path), and
 `lesson-artifact.html` (images inlined as JPEGs, about 1 to 2 MB), built by `spike/lesson_page.py`, plus `embed/` (lesson.json and WebP images) for showing the lesson as a
