@@ -30,8 +30,11 @@ class FakeUsage:
 class FakeImages:
     def __init__(self):
         self.calls = 0
+        self.before_edit = None  # a test can hold a render here, to make renders overlap
 
     def edit(self, **kwargs):
+        if self.before_edit:
+            self.before_edit()
         self.calls += 1
         buf = io.BytesIO()
         Image.new("RGB", (8, 8), (self.calls * 20 % 255, 100, 150)).save(buf, format="PNG")
