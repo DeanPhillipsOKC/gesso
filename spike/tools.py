@@ -790,8 +790,13 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
             if t["stage_id"] != plan.steps[-1].id:
                 t["made_with"], t["reason"] = "composite:from-finish", "cut from the finished painting (#8)"
         text_path.write_text(json.dumps(text, indent=2), encoding="utf-8")
+    for name in ("lesson.json", "lesson.html", "lesson-artifact.html", "lesson-standalone.html"):
+        (dst / name).unlink(missing_ok=True)  # a new lesson: stamped with this version, not the one it came from
     led = LessonLedger(dst)
     with led.locked():
+        # keep what this lesson still uses (the finish and the prep pictures); the step renders aren't used
+        steps_only = {s.id for s in plan.steps[:-1]}
+        led.calls = [c for c in led.calls if c.get("step") not in steps_only]
         led.calls.append({"tool": "filter", "filter": "from-finish", "step": "", "why": a.why, "input": str(paths[-1]),
                           "out": str(dst), "settings": {"from": src.name}, "cost_usd": 0.0})
         led.save()
