@@ -6,6 +6,9 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## Pipeline v2 (in progress)
+- Version 2 lessons go through `publish`, `mix`, the seal, the page (stage headings), and the history (#65).
+
 ## POC 0.26.1 (2026-11-12)
 - The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's
   warm glow showed as faint bands in the plain water step of both hands-off sailboat runs). Its tone shift still

@@ -187,6 +187,12 @@ details.note>summary .hint{font:400 .85rem/1.3 var(--body);color:var(--muted);ma
 @media (max-width: 760px){.step,.pair{grid-template-columns:1fr}}
 """
 
+# Stage headings, only on a version 2 page (a version 1 page renders exactly as before).
+GROUP_STYLE = """
+h2.group{padding-top:1rem;margin-bottom:-1.25rem;scroll-margin-top:1rem}
+h2.group .small{font:400 .85rem/1 var(--body);margin-left:.4rem}
+"""
+
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700'
          '&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Caveat:wght@500&family=JetBrains+Mono:wght@400;600&display=swap">')
 
@@ -291,8 +297,18 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     strip = "".join(f'<a href="#step-{i + 1}"><img src="{thumbs[i]}"{sizes[i]} alt="" loading="lazy">Step {i + 1}</a>'
                     for i in range(len(stages)))
 
+    # A version 2 lesson groups its steps into stages ("The chickadee"): a heading before each stage's first step.
+    group_at = {}
+    for g in lesson.get("groups") or []:
+        if g.get("steps"):
+            group_at[g["steps"][0]] = g
     steps_html = []
     for i, s in enumerate(stages):
+        if s["id"] in group_at:
+            g = group_at[s["id"]]
+            n = len(g["steps"])
+            steps_html.append(f'\n<h2 class="group" id="stage-{e(g["id"])}">{e(g["name"])} '
+                              f'<span class="small">{n} step{"s" if n != 1 else ""}</span></h2>')
         blist = s.get("brush_list") or ([{"brush": s["brushes"], "use": ""}] if s.get("brushes") else [])
         chips = "".join(f'<span class="chip" title="{e(describe(b["brush"]) or b.get("use", ""))}">{picture(b["brush"], "small")}'
                         f'{e(b["brush"])}</span>' for b in blist)
@@ -339,7 +355,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
 </article>""")
 
     head = (f'<title>{e(title_for(lesson, folder))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
-            f'{FONTS}\n<style>{STYLE}</style>')
+            f'{FONTS}\n<style>{STYLE}{GROUP_STYLE if group_at else ""}</style>')
     body = f"""
 <div class="wrap">
   <header>
