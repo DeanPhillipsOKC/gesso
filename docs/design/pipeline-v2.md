@@ -86,8 +86,8 @@ issue.
 | 4 | Read the preview once; fix boxes, points, colors; run 3 again | Claude | `plan.json` (at most 2 fix rounds per part) |
 | 5 | Measure the paints, then name them | `paints`, then Claude | `plan.json`: `paints` |
 | 6 | Stages and steps | Claude, inside the technique's rules | `plan.json`: `stages` |
-| 7 | Background picture, only if `build-steps` asks for one | `background` (1 render) | `98_background.png` |
-| 8 | Step pictures | `build-steps` | `NN_<id>.png` for every step, `trials/steps.jpg` |
+| 7 | Step pictures | `build-steps` | `NN_<id>.png` for every step, `trials/steps.jpg` |
+| 8 | Background picture, only when 7 printed `"needs_background": true`; then 7 again | `background` (1 render) | `98_background.png` |
 | 9 | Teaching pictures | `step-aids` | `aids/` |
 | 10 | Text | `draft-text`, then Claude | `text.json` |
 | 11 | Checks | `check` (also run by `publish`) | a list of failures, each saying what to change |
@@ -95,7 +95,8 @@ issue.
 | 13 | Diagrams, notes, seal, publish | as v1 | the sealed lesson |
 
 Built today: `outline`, `part-colors` (the measuring half of `paints`), `build-steps`. Run them with
-`python spike/tools.py <tool> --lesson <lesson>`; each prints one line of JSON with `problems` and `advice`.
+`python spike/tools.py <tool> --lesson <lesson>`; each prints one line of JSON (`outline` and `build-steps` with
+`problems`, a list that is empty when all is well, and `advice`).
 
 Steps 3 to 8 can loop: change the plan, run `outline` and `build-steps` again. Both are free and take seconds.
 
@@ -140,7 +141,7 @@ pixel both claim.
 
 | `kind` | For | How its outline is found | Needs |
 |---|---|---|---|
-| `area` | a big region with a visible edge: sky, hill, field, water | the outline model, from its box. An area whose box is the whole picture (`[0, 0, 1, 1]`) is the backdrop: it takes whatever nothing else claims | `box` |
+| `area` | a big region with a visible edge: sky, hill, field, water | the outline model, from its box. An area with no parent whose box covers 90% or more of the picture is the backdrop: no model, it claims everything, and every later part takes its share back. List it first | `box` |
 | `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun | the outline model, from its box, or one box per thing (`boxes`) for several of the same (four leaves) | `box` or `boxes` |
 | `thin` | long and narrow: a branch, a mast, a rail | the color rule, inside a band around its `paths` | `paths`, `width`, `points_in`/`colors_in`, `points_out`/`colors_out` |
 | `marks` | paint with no single edge: clouds, mist, foliage clumps, a sun path, sparkles, a reflection, a bird's black cap | the color rule, inside its box | `box` or `boxes`, `points_in`/`colors_in`, `points_out`/`colors_out` |
@@ -152,16 +153,18 @@ pixel both claim.
   it. `points_in` are spots on the part, `points_out` spots on what's behind it and around it (5 to 8 of each,
   covering every color on both sides). When a point can't be trusted to land on the paint (a narrow path,
   sparkles), give colors outright: `colors_in` / `colors_out` as hex, read from `part-colors`.
-- **`parent`**: the part is painted on another part and stays inside it (clouds on the sky, the cap on the bird).
-  A child comes after its parent in the list. Don't give a parent to something that reaches outside it: the
+- **`parent`**: the part is painted on another part (clouds on the sky, the cap on the bird). A `marks` or `thin`
+  child only takes pixels its parent (or the parent's other children) had; an `area` or `object` child is kept
+  inside its own box. A child comes after its parent in the list. Don't give a parent to something that reaches outside it: the
   bird's feet cross the branch, so they're a part of their own after the bird, not a child.
 - **`covers`** (optional, `area` only): boxes where the painter lays this part's paint past its visible edge, so
   a sky runs below the horizon. Left out, a part's paint runs 1.2% of the long side under the next part's edge.
 - **`paths`**: for `thin`, lists of points along the middle of each limb. `width` is its widest thickness as a
   share of the picture's width.
-- **Back and front:** every part before the first `object` or `thin` part that has no parent is *behind*; that
-  part and everything after is *in front* (`build_steps.back_parts`). So list the background first, all of it,
-  then the objects. Marks painted after an object (a reflection) go after it.
+- **Back and front:** find the first part with no parent whose kind is `object` or `thin`. Parts with no parent
+  listed before it are *behind*; it and the parentless parts after it are *in front*; a child is wherever its
+  parent is (`build_steps.back_parts`). So list the whole background first, then the objects. Marks painted after
+  an object (a reflection) go after it, with no parent.
 - **Don't make a part of what a pass can do.** If something is just one more color on a part (the lavender's
   earth paths, a hull's deck line), give the part a paint for it and a pass in that paint. That worked where
   outlining it as marks failed.
@@ -169,8 +172,9 @@ pixel both claim.
 
 ### Paints
 
-One entry per paint: `id`, `hex` (measured, section 9), `sample_x`/`sample_y`, `parts`, and from Claude `name`
-and `used_for`. Steps refer to paints by `id`.
+One entry per paint: `id`, `hex` (measured, section 9), `sample_x`/`sample_y` (a spot of it in the finish),
+`parts` (every part a step uses it on), and from Claude `name` and `used_for`. Steps refer to paints by `id`.
+`plan2.problems` checks `id` and `hex` today; issue 4 adds the rest.
 
 ### Stages and steps
 
@@ -183,8 +187,8 @@ A stage groups steps. A step paints inside **one** part. `show` says what the st
 | `full` | the part exactly as the finish has it | a part one move can make: a hill, a sun disk, a small one-color part |
 | `blend` | the same as `full` | colors blended wet in one go (a sunset sky). May use more than 3 paints |
 
-A part's **last** step always shows everything of the part that's left, whatever its paints. Rules
-(`plan2.problems` enforces them):
+A step's `name` lives here in the plan (a short instruction: "Block in the body"). A part's **last** step always
+shows everything of the part that's left, whatever its paints. Rules (`plan2.problems` enforces these five):
 - every part has at least one step; its last step isn't `flat`;
 - an `area` or `object` starts with `flat`, `full`, or `blend` (a `marks` or `thin` part may start with a pass);
 - nothing follows a `full` or `blend` step on the same part;
@@ -198,7 +202,7 @@ neighbor or fix its paints.
 A parent's steps paint over its children's places until the child's first step, then leave them alone. So the
 order inside a stage is free: body coat, wing coat, cap, cheek, then the chest pass.
 
-Step count for the beginner paint-along: 12 to 24 steps in 5 to 9 stages (owner, 2026-11-12: more, smaller
+Step count for the beginner paint-along: 12 to 24 steps in 4 to 9 stages (owner, 2026-11-12: more, smaller
 steps). Not more: a mix dries on the palette between distant steps, and the last stages matter most.
 
 ## 6. Outlines (`outline`, built: `spike/outline.py`)
@@ -207,12 +211,11 @@ steps). Not more: a mix dries on the palette between distant steps, and the last
 `parts/<id>.png`, `parts/preview.jpg` (the finish with every part tinted and labeled), `parts/stats.json`, and
 prints `problems`.
 
-1. Parts are taken in order; each claims pixels by its kind's method; a later claim replaces an earlier one. A
-   child's claim is kept inside its parent (and its parent's other children).
+1. Parts are taken in order; each claims pixels by its kind's method; a later claim replaces an earlier one.
 2. Pixels nobody claimed go to the nearest part.
 3. Pieces smaller than 0.05% of the picture go to whatever surrounds them.
 
-`outline.problems` reports: nothing outlined; model confidence under 0.80; an object filling under 15% or over 98%
+A child of kind `marks` or `thin` only takes pixels its parent's family already had. `outline.problems` reports: nothing outlined; model confidence under 0.80; an object filling under 15% or over 98%
 of its box; an object in more than 3 pieces per box. Each says what to change.
 
 Claude Reads `parts/preview.jpg` once and fixes what's visibly wrong, at most 2 rounds per part. What goes wrong
@@ -249,15 +252,21 @@ that sky. Three cases:
    `objects_share` and asks for a background picture above 15% (`NEEDS_BACKGROUND`; a number between the two
    cases seen, to be tuned).
 
-**The background picture** (`98_background.png`, tool `background`, *not built*: issue 2 of 8). One render:
+**The background picture** (`98_background.png`; the tool `background` that renders it is *not built*: issue 2
+of 8). One render:
 the finish as input, the prompt "Remove \<the parts in front, by name\>. Paint what is behind them, continuing
 \<the parts behind\> exactly as they are around them. Change nothing else.", low quality. `build-steps` already
 uses the file when it's there (`build_steps.make_background`): only its pixels inside the objects' outlines and
 rims are taken, matched to the color around the hole, so the render can't move or recolor anything else. Marks
 that the render shows behind an object (foliage behind the bird) are found there by the same color rule.
 
-Limits: one background render per lesson, a second only if the first fails its check. A version 2 lesson's render
-cap is $0.40 (v1 keeps $1.00).
+Limits: one background render per lesson, a second only if the first fails its check. The v2 skill passes
+`--max-cost 0.40` to every render (the default stays $1.00 for v1).
+
+The render comes back at the image model's frame size. A real run's finish is already that size. The fixtures
+aren't (1000 x 786), so a fixture has to be padded to the frame before a background render and cropped back
+after; `make_background` resizes a mismatched picture without keeping its shape, which is only right when the
+shapes already match.
 
 What's behind a thing is only on screen until the thing is painted. The bar is "doesn't look wrong".
 
@@ -281,21 +290,33 @@ By construction a step can't move, reshape, or recolor another part. There is no
 Built: `paints.part_colors(finish, mask, k)` and the `part-colors` tool: a part's k main colors (k-means in
 Lab, fixed seed), darkest first, each with its share and a spot inside it.
 
-To build (issue 4 of 8), the `paints` tool that writes the plan's `paints`:
-1. For each part, the fewest colors (1 to 4) that leave the part's average color error under Delta E 8; a part
-   whose steps already exist gets as many as its steps name.
-2. While the lesson has more than the technique's `max_mixes` (new field: **10** for the beginner paint-along;
-   owner, 2026-11-12), or any two paints are within Delta E 6: merge the two closest into one paint shared by
-   both parts. **Never merge away an accent**: a paint more than Delta E 25 from every other is kept even if it
-   covers little (a sun, a sparkle, an eye light).
-3. Keep any `name` and `used_for` already given to a paint whose color moved less than Delta E 3.
+To build (issue 4 of 8), the `paints` tool that writes the plan's `paints`. Color distances are `mixing.delta_e`
+(CIEDE2000) throughout.
+
+The limit is on **mixes a beginner has to work out**, and the fixtures show why that needs care: written by hand
+with a paint per step they have 16, 20, and 22 paints. Most of those are a part's own lighter and darker
+versions (bark dark, mid, light). So:
+1. **Colors per part:** as many as its steps name; with no steps yet, the fewest (1 to 4) that leave the part's
+   average color error under Delta E 8.
+2. **Tints and shades don't count as mixes.** Within a part, a paint is a *tint* of the part's main paint when
+   that paint plus white, in some proportion, lands within Delta E 6 of it by `mixing.py`'s model, and a *shade*
+   when the main paint plus the palette's darkest tube does. It's listed as "\<main paint\> plus white" (or the
+   dark tube), keeps its own step, and doesn't count toward the limit. This is also how a teacher has a beginner
+   work: one puddle, lightened or darkened (research section 4). In the plan such a paint carries `"of": "<main paint id>"` and
+   `"plus": "white"` (or the dark tube's name).
+3. **Merge the rest to the limit.** While the lesson has more than the technique's `max_mixes` base mixes (new
+   field: **10** for the beginner paint-along; owner, 2026-11-12), merge the two closest into one paint shared by
+   both parts, preferring pairs in different parts. If the only pairs left are in one part, merge them, merge the
+   two steps that used them into one, and say so in the output.
+4. **Never merge away an accent:** the lightest paint in the lesson, and any paint that is the only one of its
+   hue family (more than 40 degrees of hue from every other paint with real chroma), even if it covers little
+   (a sun, a sparkle, an eye light).
+5. Keep any `name` and `used_for` already given to a paint whose color moved less than Delta E 3.
 
 Claude names each paint and says what it's for, and chooses which of a part's paints each step uses. `mix`
-computes recipes as today. Starting numbers (8, 6, 25, 3) are tuned on the three fixtures by the issue.
-
-Not solved here, and not to be faked: v1's research says a part's values should be one base mix plus white or a
-darker tube, so the painter adjusts one puddle instead of mixing three. Measured clusters don't know that. The
-issue reports how often a part's paints are near "base plus white" and leaves the recipes to `mix`.
+computes recipes as today. The numbers here (8, 6, 40 degrees, 3) are starting values, tuned on the three fixtures
+by the issue. If the fixtures can't reach 10 without spoiling a part, the issue says which part and why, and the
+owner decides; it doesn't quietly loosen the limit or drop steps.
 
 ## 10. Teaching content
 
@@ -352,21 +373,25 @@ place on the page.
 | "Two or three thin coats." | the paint is lighter than what it goes over by more than 30 in lightness (the technique's light-over-dark rule) |
 | Watch out | the stroke card's first `mistake`; the rest stay in the card |
 | "Step back and look." | the last step of each stage |
-| Time | per stage: its steps, plus drying, from the technique's `dry_time` |
+| "Lightly chalk its outline first." (optional) | the first step of an `object` part with no parent |
 
-Claude then writes, per step, `name`, `summary` (under 90 characters), and `tip`: one to three sentences only this
+Claude then writes, per step, `summary` (under 90 characters) and `tip`: one to three sentences only this
 photo needs (which way the strokes run on this hill, which side the light is on, what to leave showing). Claude
 reads each drafted line against the step picture and corrects any that reads wrong. `draft-text` never overwrites
 what Claude wrote.
 
-`text.json` for a version 2 lesson: `{"steps": [{"stage_id": "<step id>", "name", "summary", "tip",
-"lines": [{"kind": "dry|rinse|where|paints|mix|how|result|coats|watch|step-back", "text": "..."}],
-"brushes": [{"brush", "use"}], "strokes": ["<card id>"], "made_with": "cut:finish", "reason": "..."}]}`. The key
-stays `stage_id` because `publish` and the history read it.
+`text.json` for a version 2 lesson: `{"steps": [{"stage_id": "<step id>", "summary", "tip",
+"lines": [{"kind": "dry|rinse|chalk|where|paints|mix|how|result|coats|watch|step-back", "text": "...",
+"edited": false}], "brushes": [{"brush", "use"}], "stroke_cards": ["<card id>"],
+"made_with": "composite:from-finish", "reason": "cut from the finish inside the part's outline"}]}`. The key stays
+`stage_id` because `publish` and the history read it. `made_with` is the value v1 already uses for a step cut
+from the finish, so the receipt, the site, and the history count it as free without changes.
 
 **No word limit on a step.** The page shows a step's lines short and numbered, with everything longer one tap
-away. `long_steps` goes for version 2; `long_instructions` (40 words) stays, because a long line is two moves.
-The technique's rule "2 to 5 short instructions per step" becomes "one move per step".
+away. `long_steps` isn't checked for version 2; `long_instructions` (40 words) stays, because a long line is two
+moves. The technique file gains keys only version 2 reads, so v1 keeps working: `v2_step_range: [12, 24]`,
+`v2_stage_range: [4, 9]`, `max_mixes: 10`, and `v2_rules` (the `rules` list with "2 to 5 short instructions per
+step" replaced by "one move per step").
 
 How much paint to mix needs a source the research file doesn't have. Until the owner measures it (a `human`
 issue: how far a pea, a grape, and a walnut of paint go), the page says "mix more than you think you need".
@@ -390,10 +415,10 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 
 ## 11. The page (issue 6 of 8)
 
-- Contents by stage, with each stage's time. Steps numbered inside a stage and overall. A stage is a place to
-  stop for the day.
-- A step, top to bottom: the picture with a Where / Result switch; the numbered lines and the tip; the paints with
-  recipes; then folds: close-up, paint map, stroke card (open the first time a lesson uses it), diagram.
+- Contents by stage, with each stage's step count. Steps numbered inside a stage and overall. The end of a stage
+  is marked as a good place to stop. (No times: the research has no per-step durations to build them from.)
+- A step, top to bottom: the picture with a Where / Result switch; the numbered lines and the tip when
+  `text.json` has them (issue 7 writes them; until then the step's name); the paints with recipes; then folds: close-up, paint map, stroke card (open the first time a lesson uses it), diagram.
 - "Before you start": the basics cards, the quarter marks, the transfer outline, the lesson's strokes to try on
   scrap paper.
 - One self-contained HTML page per lesson, as now. Pages are 2.3 to 2.9 MB at 10 to 12 steps today; `publish`
@@ -403,12 +428,13 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 ## 12. Checks (`check`; issue 7 of 8)
 
 `spike/checks.py` gathers `plan2.problems`, `outline.problems`, `build_steps.problems` (all built) and adds:
-- `step_range` and `stage_range` from the technique; `max_mixes`; a step whose paint isn't one of its part's;
+- `v2_step_range` and `v2_stage_range` from the technique; more top-level parts than `detail_budget.max_parts`;
 - a stroke with no card; a brush `spike/brushes.py` doesn't know;
 - `texture_jumps`, as today: no step turns more than 10% of the picture from flat to textured (fix: one more pass);
 - a percentage in step text; a line over 40 words;
 - the ones that stay: `paints_not_listed`, `duplicate_recipes`, `unreachable_paints`, `undocumented_diagrams`;
-- the page over 8 MB.
+- (`max_mixes`, and a step whose paint doesn't list its part, are in `plan2.problems` from issue 4; the 8 MB
+  page limit is in `publish` from issue 6; `check` reports them all in one list.)
 
 `publish` runs `check`; `publish --final` won't seal a version 2 lesson while anything fails. Version 1 lessons
 seal by the old rules.
@@ -419,19 +445,46 @@ recorded: split the step in the plan and run `build-steps` again.
 
 ## 13. Version 2 lessons through `publish` (issue 3 of 8)
 
-`load_plan`, `publish`, `seal_problems`, `step_paths`, `step-pairs`, the history, and the page all read version 1
-fields. For a version 2 plan:
-- `lesson.json` keeps the shape everything downstream reads: `stages` is the **flat list of steps** with today's
-  keys (`id`, `name`, `image`, `steps` for the lines, `mixes`, `brushes`, `strokes`, `made_with`, ...). It gains
-  `plan_version: 2`, `groups` (the plan's stages: id, name, step ids), and per step `part`, `show`, and `aids`.
-- A step's paints are ids in the plan and names on the page: `publish` maps them.
-- `made_with` is `cut:finish` for every step. `paid_renders` counts the finish, the beginner version, the canvas
-  extend, and the background.
-- Paint `hex` is measured: `sample_swatches` is skipped. `recipe` comes from `mix`.
-- `step_paths` for version 2 is `NN_<id>.png` for every step; the last is a copy of the finish, as `build-steps`
-  writes it.
-- Seal: no image review rounds; `regions` not required; `text_issues` and complete notes still required.
-- History: `minutes_total` (from the run folder's `_YYYYMMDD-HHMMSS` name to the seal) joins the metrics.
+`load_plan` validates against the version 1 model (`LessonPlan` in `spike/run.py`), and `publish`, `mix`,
+`seal_problems`, `step_paths`, `step-pairs`, the page, the history, the embed, and the notes all read version 1
+fields. The rule for version 2: **`lesson.json` keeps every key those readers use, with the same types, and adds
+new keys beside them.** Then nothing downstream has to change to keep working.
+
+Each entry of `lesson.json`'s `stages` (one per step, flat, as today):
+
+| Key | Type today | Version 2 value |
+|---|---|---|
+| `id`, `name`, `image` | strings | the step's `id`, `name`, and `NN_<id>.png` |
+| `steps` | list of strings (the instructions) | the text of each of `text.json`'s `lines`, in order; with no text yet, `[name]` |
+| `lines` | *new* | the `lines` dicts (`kind`, `text`), for the page |
+| `summary`, `watch_out`, `paint_notes` | string, lists of strings | from `text.json`; `watch_out` is the text of the `watch` lines |
+| `paints` | string (what the step adds) | the part's `name` |
+| `colors` | list of paint dicts | the step's paints, looked up by id, in the same dict shape (`name`, `hex`, `recipe`, ...) |
+| `brushes`, `brush_list` | string, list of `{brush, use}` | the step's `brush`; `text.json`'s `brushes`, or `[{"brush": <brush>, "use": <name>}]` |
+| `strokes` | list of `{name, how}` | one per stroke card: its `name` and `motion`. With no card yet, `{"name": <the step's stroke id>, "how": ""}` |
+| `stroke_cards` | *new* | the card ids |
+| `made_with`, `reason` | strings | `composite:from-finish`, and why |
+| `part`, `show`, `group` | *new* | from the plan; `group` is the plan stage's id |
+
+Top level: `plan_version: 2` and `groups` (the plan's stages: `id`, `name`, step ids) are new.
+`photo_read.components` is the names of the parts with no parent.
+
+Elsewhere:
+- **Paints.** The mixer keys paints by name and reads `name`, `hex`, and `recipe`. Build it a version 1 paint
+  for each version 2 paint (`recipe` empty until `mix` fills it). A paint with no `name` yet uses its id.
+  `sample_swatches` is skipped: the hex is measured.
+- **`step_paths`:** `NN_<id>.png` for every step (the last is a copy of the finish, as `build-steps` writes it).
+- **Seal:** `review.json` needs `finish_issues` and `text_issues`, not `review_issues`; steps don't need `regions`;
+  `long_steps` isn't checked; everything else as today.
+- **`paid_renders`** counts what the ledger holds: the finish, the beginner version, the canvas extend, the
+  background.
+- **History:** `minutes_total` joins the metrics for every run: minutes from the run folder's
+  `_YYYYMMDD-HHMMSS` (`history.RUN_TIME`) to the time of that publish; left out when the folder name has no time.
+
+Version 1 must not change. There's no version 1 lesson in the repo to test with, so issue 3 first commits one as
+a fixture (a small plan, text, and pictures, made by hand or cut down from a real run's folder), publishes it
+before touching anything, saves that `lesson.json` as the expected result, and compares ignoring the keys that
+carry the time, commit, and version (`gesso`, `calls`, `provenance`).
 
 ## 14. Build order and the gate
 
@@ -440,13 +493,13 @@ One issue per row, in this order. Don't start one before the ones it needs are c
 | | Issue | Needs | Who |
 |---|---|---|---|
 | 1 | Outlines and step pictures from them (#62) | | **done**, 2026-11-12 |
-| 2 | The background picture: one render for what's behind large objects | 1 | needs an OpenAI key |
-| 3 | Version 2 lessons through `publish`, the history, and the page | 1 | |
-| 4 | Paints measured from the finish, with a limit on mixes | 1 | |
-| 5 | Stroke cards and basics cards | | the owner checks the cards |
-| 6 | Teaching pictures and the lesson page | 3, 5 | |
-| 7 | Step text from data, and measured checks in place of the reviews (#51) | 3, 4, 5 | |
-| 8 | The v2 skill, three hands-off runs, and the gate | all | needs a key and the source photos; the owner scores |
+| 2 | The background picture: one render for what's behind large objects (#64) | 1 | needs an OpenAI key |
+| 3 | Version 2 lessons through `publish`, the history, and the page (#65) | 1 | |
+| 4 | Paints measured from the finish, with a limit on mixes (#66) | 1 | |
+| 5 | Stroke cards and basics cards (#67) | | the owner checks the cards |
+| 6 | Teaching pictures and the lesson page (#68) | 3, 5 | |
+| 7 | Step text from data, and measured checks in place of the reviews (#51) | 3, 4, 5, 6 | |
+| 8 | The v2 skill, three hands-off runs, and the gate (#69) | all | needs a key and the source photos; the owner scores |
 
 Issues 3, 4, and 5 don't depend on each other. Issues 3 to 7 need no API key and no model files: the three
 fixtures (`spike/tests/fixtures/`: finish, plan, and saved outlines for each) are enough, and
@@ -461,7 +514,7 @@ v2 replaces v1 only if all of these hold and the owner agrees after looking:
 | Image cost per lesson | $0.40 to $0.51 | $0.25 or less (the chickadee's fixed renders alone were $0.18 in v1) |
 | Time, start to seal (`minutes_total`) | 21 and 27 minutes | 15 minutes or less, reported per phase so the slow part is known |
 | Drift, shape, and split-edge problems | 5 left on the chickadee's page | 0 (they can't happen). Any other `left` explained |
-| Steps | 10 to 12 | 12 to 24, in 5 to 9 stages |
+| Steps | 10 to 12 | 12 to 24, in 4 to 9 stages |
 | Same finish and plan, built twice on one machine | different pictures every run | identical bytes |
 | Same finish, planned twice from scratch | never measured | reported: how much the parts and steps differ. Not a pass or fail yet |
 | Owner's score, per lesson and for each lesson's weakest stage | each v1 run's score | not lower than v1 on any |
@@ -493,8 +546,11 @@ pasted only inside its part. If it fails more widely: stop and report to the own
   something else.
 - Don't raise render quality, add renders, or add a review round to fix a problem. If a free tool can't do it,
   drop the part (section 6) or report it.
-- Each issue that changes what a lesson contains bumps `spike/VERSION` and adds a `docs/changelog.md` entry. The
-  first sealed v2 lesson is POC 0.30.0.
+- Version: issues 2 to 7 add tools next to v1 and don't change what a v1 lesson contains, so they leave
+  `spike/VERSION` alone and add one line each under a "Pipeline v2 (in progress)" heading at the top of
+  `docs/changelog.md`. Issue 8 sets POC 0.30.0 with the first sealed v2 lesson.
+- Each issue covers a few tightly linked things on purpose (a tool, its checks, and its place on the page). That's
+  an exception to "one issue per item" in `docs/backlog.md`, made so that each issue leaves something that works.
 
 ## 16. Known risks
 
@@ -504,6 +560,6 @@ pasted only inside its part. If it fails more widely: stop and report to the own
 | Claude's parts need more than 2 rounds. | Tools are free and take seconds, and the fix table in section 6 covers what went wrong in the spike. Issue 8 measures it. |
 | A pass by nearest paint doesn't match how the area is really painted. | Splitting and reordering passes is free; the text review's `wrong_result` and `flat` kinds still catch it. |
 | The finish is more detailed than a beginner can paint, and v2 copies it faithfully. | Unchanged from v1: the beginner version and `detail_budget`. Not made worse. |
-| 12 to 24 steps is a long session, and mixes dry between steps. | Stages with times and stopping points; "mix once for steps X to Y"; steps on the same paint kept next to each other. |
+| 12 to 24 steps is a long session, and mixes dry between steps. | Stages with stopping points; "mix once for steps X to Y"; steps on the same paint kept next to each other. |
 | Paints measured by clustering lose a small accent or give muddy averages. | The accent rule (section 9); the owner's score at the gate. |
 | The outline model is 108 MB and runs only where the lesson is made. | Viewing a lesson needs nothing: the site is static pages. An app would need a hosted model later; out of scope for the POC. |

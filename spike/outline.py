@@ -71,7 +71,7 @@ class Sam:
             raise NoModel("onnxruntime isn't installed: pip install -r spike/requirements.txt") from e
         paths = [fetch(name, folder) for name in FILES]
         # All cores: about 5 s a picture on 4 cores, against 24 s on one. The outlines came out the same, byte for
-        # byte, on repeated runs on one machine (tests/test_outline.py checks it when the model files are present).
+        # byte, on repeated runs on one machine (seen in the spike, docs/spikes/outlines.md).
         self.enc = ort.InferenceSession(str(paths[0]), providers=["CPUExecutionProvider"])
         self.dec = ort.InferenceSession(str(paths[1]), providers=["CPUExecutionProvider"])
         self.emb = None

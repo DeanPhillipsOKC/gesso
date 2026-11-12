@@ -1353,6 +1353,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
                    "is a rough fill until they're painted. One background render fixes that (design section 7).")
     return {"steps": names, "sheet": str(sheet), "rows": rows, "problems": bs.problems(plan, rows),
             "objects_share": front, "background": plate.name if background is not None else None,
+            "needs_background": background is None and front > bs.NEEDS_BACKGROUND,
             "advice": advice, "cost_usd": 0.0}
 
 

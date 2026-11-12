@@ -674,7 +674,10 @@
    "hex": "#9294a1",
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "misty sunset sky",
+   "sample_x": 0.791,
+   "sample_y": 0.66
   },
   {
    "id": "dusk",
@@ -682,7 +685,10 @@
    "hex": "#b99882",
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "misty sunset sky",
+   "sample_x": 0.707,
+   "sample_y": 0.757
   },
   {
    "id": "glow",
@@ -690,7 +696,10 @@
    "hex": "#efb166",
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "misty sunset sky",
+   "sample_x": 0.597,
+   "sample_y": 0.158
   },
   {
    "id": "sun",
@@ -698,7 +707,10 @@
    "hex": "#fae8b1",
    "parts": [
     "sun"
-   ]
+   ],
+   "used_for": "the sun",
+   "sample_x": 0.657,
+   "sample_y": 0.13
   },
   {
    "id": "trunk",
@@ -706,7 +718,10 @@
    "hex": "#7a7e8f",
    "parts": [
     "trunks"
-   ]
+   ],
+   "used_for": "far misty trunks",
+   "sample_x": 0.888,
+   "sample_y": 0.684
   },
   {
    "id": "rust",
@@ -714,7 +729,10 @@
    "hex": "#c58165",
    "parts": [
     "foliage"
-   ]
+   ],
+   "used_for": "hazy foliage",
+   "sample_x": 0.188,
+   "sample_y": 0.931
   },
   {
    "id": "orange",
@@ -722,7 +740,10 @@
    "hex": "#e78b50",
    "parts": [
     "foliage"
-   ]
+   ],
+   "used_for": "hazy foliage",
+   "sample_x": 0.718,
+   "sample_y": 0.355
   },
   {
    "id": "bark",
@@ -730,7 +751,10 @@
    "hex": "#5e3928",
    "parts": [
     "branch"
-   ]
+   ],
+   "used_for": "the branch",
+   "sample_x": 0.046,
+   "sample_y": 0.553
   },
   {
    "id": "bark-mid",
@@ -738,7 +762,10 @@
    "hex": "#935f43",
    "parts": [
     "branch"
-   ]
+   ],
+   "used_for": "the branch",
+   "sample_x": 0.111,
+   "sample_y": 0.729
   },
   {
    "id": "bark-light",
@@ -746,7 +773,10 @@
    "hex": "#ca864e",
    "parts": [
     "branch"
-   ]
+   ],
+   "used_for": "the branch",
+   "sample_x": 0.082,
+   "sample_y": 0.715
   },
   {
    "id": "leaf-red",
@@ -754,7 +784,10 @@
    "hex": "#d74e26",
    "parts": [
     "leaves"
-   ]
+   ],
+   "used_for": "the four leaves",
+   "sample_x": 0.182,
+   "sample_y": 0.256
   },
   {
    "id": "leaf-orange",
@@ -762,7 +795,10 @@
    "hex": "#f1881a",
    "parts": [
     "leaves"
-   ]
+   ],
+   "used_for": "the four leaves",
+   "sample_x": 0.263,
+   "sample_y": 0.0
   },
   {
    "id": "leaf-gold",
@@ -770,7 +806,10 @@
    "hex": "#f8a821",
    "parts": [
     "leaves"
-   ]
+   ],
+   "used_for": "the four leaves",
+   "sample_x": 0.582,
+   "sample_y": 0.85
   },
   {
    "id": "buff",
@@ -778,7 +817,10 @@
    "hex": "#d7995e",
    "parts": [
     "bird"
-   ]
+   ],
+   "used_for": "the chickadee",
+   "sample_x": 0.418,
+   "sample_y": 0.455
   },
   {
    "id": "cream",
@@ -786,7 +828,10 @@
    "hex": "#ecd3bc",
    "parts": [
     "bird"
-   ]
+   ],
+   "used_for": "the chickadee",
+   "sample_x": 0.552,
+   "sample_y": 0.375
   },
   {
    "id": "wing",
@@ -794,15 +839,22 @@
    "hex": "#7f7983",
    "parts": [
     "bird-wing"
-   ]
+   ],
+   "used_for": "wing and tail",
+   "sample_x": 0.367,
+   "sample_y": 0.299
   },
   {
    "id": "wing-dark",
    "name": "Charcoal",
    "hex": "#4d4549",
    "parts": [
-    "bird-wing"
-   ]
+    "bird-wing",
+    "bird-feet"
+   ],
+   "used_for": "wing and tail, legs and feet",
+   "sample_x": 0.362,
+   "sample_y": 0.398
   },
   {
    "id": "wing-light",
@@ -810,7 +862,10 @@
    "hex": "#aca1a2",
    "parts": [
     "bird-wing"
-   ]
+   ],
+   "used_for": "wing and tail",
+   "sample_x": 0.34,
+   "sample_y": 0.347
   },
   {
    "id": "black",
@@ -818,8 +873,11 @@
    "hex": "#282529",
    "parts": [
     "bird-head",
-    "bird-details"
-   ]
+    "bird-face"
+   ],
+   "used_for": "black cap and bib, eye and beak",
+   "sample_x": 0.531,
+   "sample_y": 0.279
   },
   {
    "id": "white",
@@ -827,7 +885,10 @@
    "hex": "#eedccd",
    "parts": [
     "bird-cheek"
-   ]
+   ],
+   "used_for": "white cheek",
+   "sample_x": 0.453,
+   "sample_y": 0.268
   }
  ],
  "stages": [
@@ -873,7 +934,7 @@
      "paints": [
       "trunk"
      ],
-     "stroke": "pull-down",
+     "stroke": "dry-brush",
      "brush": "3/4 inch flat"
     },
     {
@@ -912,7 +973,7 @@
      "paints": [
       "bark"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "1/2 inch flat"
     },
     {
@@ -963,7 +1024,7 @@
      "paints": [
       "leaf-gold"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#4 round"
     }
    ]
@@ -1035,7 +1096,7 @@
      "paints": [
       "wing-dark"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#2 round"
     },
     {
@@ -1046,7 +1107,7 @@
      "paints": [
       "wing-light"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#2 round"
     },
     {

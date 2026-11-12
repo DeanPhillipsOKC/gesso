@@ -270,163 +270,179 @@
  "paints": [
   {
    "id": "sky-1",
-   "name": "sky-1",
+   "name": "Sky 1",
    "hex": "#956eb0",
    "sample_x": 0.809,
    "sample_y": 0.0,
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "sunset sky"
   },
   {
    "id": "sky-2",
-   "name": "sky-2",
+   "name": "Sky 2",
    "hex": "#e07c86",
    "sample_x": 0.382,
    "sample_y": 0.156,
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "sunset sky"
   },
   {
    "id": "sky-3",
-   "name": "sky-3",
+   "name": "Sky 3",
    "hex": "#fa8c57",
    "sample_x": 0.591,
    "sample_y": 0.336,
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "sunset sky"
   },
   {
    "id": "sun-1",
-   "name": "sun-1",
+   "name": "Sun 1",
    "hex": "#f9d77e",
    "sample_x": 0.482,
    "sample_y": 0.422,
    "parts": [
     "sun"
-   ]
+   ],
+   "used_for": "the sun"
   },
   {
    "id": "hill-1",
-   "name": "hill-1",
+   "name": "Hill 1",
    "hex": "#4c4d85",
    "sample_x": 0.138,
    "sample_y": 0.469,
    "parts": [
     "hill"
-   ]
+   ],
+   "used_for": "far hill and shore"
   },
   {
    "id": "water-1",
-   "name": "water-1",
+   "name": "Water 1",
    "hex": "#1d677a",
    "sample_x": 0.179,
    "sample_y": 0.999,
    "parts": [
     "water"
-   ]
+   ],
+   "used_for": "the water"
   },
   {
    "id": "water-2",
-   "name": "water-2",
+   "name": "Water 2",
    "hex": "#528383",
    "sample_x": 0.247,
    "sample_y": 0.62,
    "parts": [
     "water"
-   ]
+   ],
+   "used_for": "the water"
   },
   {
    "id": "sun-path-1",
-   "name": "sun-path-1",
+   "name": "Sun path 1",
    "hex": "#90896b",
    "sample_x": 0.522,
    "sample_y": 0.681,
    "parts": [
     "sun-path"
-   ]
+   ],
+   "used_for": "the sun path"
   },
   {
    "id": "sun-path-2",
-   "name": "sun-path-2",
+   "name": "Sun path 2",
    "hex": "#e2a259",
    "sample_x": 0.48,
    "sample_y": 0.588,
    "parts": [
     "sun-path"
-   ]
+   ],
+   "used_for": "the sun path"
   },
   {
    "id": "sail-1",
-   "name": "sail-1",
+   "name": "Sail 1",
    "hex": "#4d6c76",
    "sample_x": 0.831,
    "sample_y": 0.576,
    "parts": [
     "sail"
-   ]
+   ],
+   "used_for": "the sail"
   },
   {
    "id": "sail-2",
-   "name": "sail-2",
+   "name": "Sail 2",
    "hex": "#dfccb9",
    "sample_x": 0.853,
    "sample_y": 0.524,
    "parts": [
     "sail"
-   ]
+   ],
+   "used_for": "the sail"
   },
   {
    "id": "hull-1",
-   "name": "hull-1",
+   "name": "Hull 1",
    "hex": "#952821",
    "sample_x": 0.745,
    "sample_y": 0.602,
    "parts": [
     "hull"
-   ]
+   ],
+   "used_for": "the hull"
   },
   {
    "id": "hull-2",
-   "name": "hull-2",
+   "name": "Hull 2",
    "hex": "#67696e",
    "sample_x": 0.772,
    "sample_y": 0.581,
    "parts": [
     "hull"
-   ]
+   ],
+   "used_for": "the hull"
   },
   {
    "id": "mast-1",
-   "name": "mast-1",
+   "name": "Mast 1",
    "hex": "#7c6664",
    "sample_x": 0.815,
    "sample_y": 0.581,
    "parts": [
     "mast"
-   ]
+   ],
+   "used_for": "the mast"
   },
   {
    "id": "reflection-1",
-   "name": "reflection-1",
+   "name": "Reflection 1",
    "hex": "#744a4c",
    "sample_x": 0.761,
    "sample_y": 0.654,
    "parts": [
     "reflection"
-   ]
+   ],
+   "used_for": "the reflection"
   },
   {
    "id": "reflection-2",
-   "name": "reflection-2",
+   "name": "Reflection 2",
    "hex": "#87999b",
    "sample_x": 0.774,
    "sample_y": 0.737,
    "parts": [
     "reflection"
-   ]
+   ],
+   "used_for": "the reflection"
   }
  ],
  "stages": [
@@ -550,7 +566,7 @@
      "paints": [
       "sail-1"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#6 round"
     },
     {
@@ -572,7 +588,7 @@
      "paints": [
       "hull-2"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#4 round"
     },
     {

@@ -24,7 +24,8 @@ Times are on 4 CPU cores. v1 spent 13 to 21 renders and 4 to 7 render minutes on
 
 ## The pictures
 
-**Red sailboat.** Clean from start to end. The boat, the mast, and the reflection are each built in their own
+**Red sailboat.** Clean from step 3 on. (Steps 1 and 2 show a faint shape where the hill will go and a dark band
+along the sky's bottom edge: the sky carried under the hill, section 7 case 1.) The boat, the mast, and the reflection are each built in their own
 small steps. What's behind the boat is a free fill, and it can't be seen.
 
 ![Red sailboat, 14 steps](outlines-red-sailboat.jpg)
@@ -43,11 +44,12 @@ couldn't outline) is clean.
 
 Steps 1 to 5 show the limit. The bird, branch, and leaves cover 33% of this picture, and the free fill for what's
 behind them is streaky. The same lesson with a picture of the background supplied (here a stand-in: step 4 of the
-v1 lesson, which was a render of exactly that) is right:
+v1 lesson, which was a render of exactly that) is right behind the objects:
 
 ![Chickadee, 19 steps, with a background picture](outlines-chickadee-background.jpg)
 
-The stand-in wasn't made for this, so its seams show faintly in steps 1 to 3. A render asked for directly ("the
+The stand-in wasn't made for this, so its seams show faintly in steps 1 to 3. Those steps also show soft bars
+at the top where the sky is carried under the foliage and trunks; a background picture doesn't change that. A render asked for directly ("the
 finish with the bird, branch, and leaves removed") hasn't been tried: there was no API key in this session. That
 is the next issue (pipeline v2, 2 of 8).
 

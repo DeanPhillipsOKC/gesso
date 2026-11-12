@@ -284,223 +284,245 @@
  "paints": [
   {
    "id": "sky-1",
-   "name": "sky-1",
+   "name": "Sky 1",
    "hex": "#8fa3d1",
    "sample_x": 0.062,
    "sample_y": 0.0,
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "sunset sky"
   },
   {
    "id": "sky-2",
-   "name": "sky-2",
+   "name": "Sky 2",
    "hex": "#f7a749",
    "sample_x": 0.405,
    "sample_y": 0.352,
    "parts": [
     "sky"
-   ]
+   ],
+   "used_for": "sunset sky"
   },
   {
    "id": "clouds-1",
-   "name": "clouds-1",
+   "name": "Clouds 1",
    "hex": "#e65d5b",
    "sample_x": 0.728,
    "sample_y": 0.111,
    "parts": [
     "clouds"
-   ]
+   ],
+   "used_for": "coral clouds"
   },
   {
    "id": "clouds-2",
-   "name": "clouds-2",
+   "name": "Clouds 2",
    "hex": "#f97a41",
    "sample_x": 0.625,
    "sample_y": 0.158,
    "parts": [
     "clouds"
-   ]
+   ],
+   "used_for": "coral clouds"
   },
   {
    "id": "sun-1",
-   "name": "sun-1",
+   "name": "Sun 1",
    "hex": "#f9e098",
    "sample_x": 0.376,
    "sample_y": 0.41,
    "parts": [
     "sun"
-   ]
+   ],
+   "used_for": "the sun"
   },
   {
    "id": "mountains-1",
-   "name": "mountains-1",
+   "name": "Mountains 1",
    "hex": "#5c628a",
    "sample_x": 0.365,
    "sample_y": 0.517,
    "parts": [
     "mountains"
-   ]
+   ],
+   "used_for": "far mountains"
   },
   {
    "id": "mountains-2",
-   "name": "mountains-2",
+   "name": "Mountains 2",
    "hex": "#626dbe",
    "sample_x": 0.587,
    "sample_y": 0.462,
    "parts": [
     "mountains"
-   ]
+   ],
+   "used_for": "far mountains"
   },
   {
    "id": "fields-1",
-   "name": "fields-1",
+   "name": "Fields 1",
    "hex": "#9d8436",
    "sample_x": 0.945,
    "sample_y": 0.537,
    "parts": [
     "fields"
-   ]
+   ],
+   "used_for": "gold fields"
   },
   {
    "id": "fields-2",
-   "name": "fields-2",
+   "name": "Fields 2",
    "hex": "#db9e28",
    "sample_x": 0.711,
    "sample_y": 0.538,
    "parts": [
     "fields"
-   ]
+   ],
+   "used_for": "gold fields"
   },
   {
    "id": "hedges-1",
-   "name": "hedges-1",
+   "name": "Hedges 1",
    "hex": "#48524b",
    "sample_x": 0.023,
    "sample_y": 0.576,
    "parts": [
     "hedges"
-   ]
+   ],
+   "used_for": "hedges"
   },
   {
    "id": "lavender-1",
-   "name": "lavender-1",
+   "name": "Lavender 1",
    "hex": "#3c405c",
    "sample_x": 0.999,
    "sample_y": 0.999,
    "parts": [
     "lavender"
-   ]
+   ],
+   "used_for": "lavender rows"
   },
   {
    "id": "lavender-2",
-   "name": "lavender-2",
+   "name": "Lavender 2",
    "hex": "#5a4ba8",
    "sample_x": 0.394,
    "sample_y": 0.999,
    "parts": [
     "lavender"
-   ]
+   ],
+   "used_for": "lavender rows"
   },
   {
    "id": "lavender-3",
-   "name": "lavender-3",
+   "name": "Lavender 3",
    "hex": "#b46b43",
    "sample_x": 0.308,
    "sample_y": 0.999,
    "parts": [
     "lavender"
-   ]
+   ],
+   "used_for": "lavender rows"
   },
   {
    "id": "lavender-4",
-   "name": "lavender-4",
+   "name": "Lavender 4",
    "hex": "#a670c2",
    "sample_x": 0.551,
    "sample_y": 0.819,
    "parts": [
     "lavender"
-   ]
+   ],
+   "used_for": "lavender rows"
   },
   {
    "id": "tree-1",
-   "name": "tree-1",
+   "name": "Tree 1",
    "hex": "#354749",
    "sample_x": 0.937,
    "sample_y": 0.373,
    "parts": [
     "tree"
-   ]
+   ],
+   "used_for": "the tree"
   },
   {
    "id": "tree-2",
-   "name": "tree-2",
+   "name": "Tree 2",
    "hex": "#6a6838",
    "sample_x": 0.843,
    "sample_y": 0.28,
    "parts": [
     "tree"
-   ]
+   ],
+   "used_for": "the tree"
   },
   {
    "id": "tree-3",
-   "name": "tree-3",
+   "name": "Tree 3",
    "hex": "#ba8f2d",
    "sample_x": 0.807,
    "sample_y": 0.276,
    "parts": [
     "tree"
-   ]
+   ],
+   "used_for": "the tree"
   },
   {
    "id": "trunk-1",
-   "name": "trunk-1",
+   "name": "Trunk 1",
    "hex": "#67463e",
    "sample_x": 0.864,
    "sample_y": 0.427,
    "parts": [
     "trunk"
-   ]
+   ],
+   "used_for": "trunk"
   },
   {
    "id": "balloon-1",
-   "name": "balloon-1",
+   "name": "Balloon 1",
    "hex": "#7e5240",
    "sample_x": 0.2,
    "sample_y": 0.275,
    "parts": [
     "balloon"
-   ]
+   ],
+   "used_for": "the balloon"
   },
   {
    "id": "balloon-2",
-   "name": "balloon-2",
+   "name": "Balloon 2",
    "hex": "#34627f",
    "sample_x": 0.186,
    "sample_y": 0.093,
    "parts": [
     "balloon"
-   ]
+   ],
+   "used_for": "the balloon"
   },
   {
    "id": "balloon-3",
-   "name": "balloon-3",
+   "name": "Balloon 3",
    "hex": "#cd3d27",
    "sample_x": 0.218,
    "sample_y": 0.095,
    "parts": [
     "balloon"
-   ]
+   ],
+   "used_for": "the balloon"
   },
   {
    "id": "balloon-4",
-   "name": "balloon-4",
+   "name": "Balloon 4",
    "hex": "#f19c26",
    "sample_x": 0.245,
    "sample_y": 0.103,
    "parts": [
     "balloon"
-   ]
+   ],
+   "used_for": "the balloon"
   }
  ],
  "stages": [
@@ -639,7 +661,7 @@
      "paints": [
       "lavender-3"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "1/2 inch flat"
     },
     {
@@ -689,7 +711,7 @@
      "paints": [
       "trunk-1"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#6 round"
     },
     {
@@ -741,7 +763,7 @@
       "balloon-2",
       "balloon-4"
      ],
-     "stroke": "pull-and-taper",
+     "stroke": "press-and-lift",
      "brush": "#4 round"
     }
    ]

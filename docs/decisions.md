@@ -141,8 +141,8 @@ with the date.
 - **Don't raise the image model's quality (2026-11-12, owner's call).** Higher settings made no clear difference to
   how well a lesson teaches, and the cost wasn't sustainable. Fix a problem with tools or the plan, not a dearer
   render.
-- **More, smaller steps (2026-11-12, owner's call).** One move per step, grouped into stages: 12 to 24 steps in 5 to
-  9 stages for the beginner paint-along, up from 5 to 12. Not more than that: mixes dry on the palette between
+- **More, smaller steps (2026-11-12, owner's call).** One move per step, grouped into stages: 12 to 24 steps in 4 to
+  9 stages for the beginner paint-along, up from 5 to 12 steps. Not more than that: mixes dry on the palette between
   distant steps and the last stages matter most. A step has no word limit; detail that doesn't fit a short line
   goes one tap away (a stroke card, a close-up, a paint map), not in the bin.
 - **Whatever helps a beginner most, including an optional chalk outline (2026-11-12, owner's call).** The
@@ -151,7 +151,8 @@ with the date.
   quarters, inches from the canvas edges), never given as percentages.
 - **At most 10 mixes in a beginner lesson (2026-11-12, owner's call).** Paints are measured from the finish and
   the closest are merged to the limit, even if the finish loses a little color nuance. An accent (a sun, an eye
-  light) is never merged away.
+  light) is never merged away. A lighter or darker version of a part's main paint ("plus white") isn't counted as
+  a mix of its own: that reading is the design's, not yet confirmed by the owner.
 - **How to do a stroke is written once and checked, not written fresh each lesson (2026-11-12).** One card per
   stroke (and a few basics cards), built from the research file with sources, read by the owner before it counts
   as checked. Same rule as technique: from cited research, never from the model's memory.
