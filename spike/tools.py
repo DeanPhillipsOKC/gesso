@@ -1227,12 +1227,163 @@ def add_filters(sub) -> None:
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Pipeline v2: outlines, and step pictures cut from the finish (docs/design/pipeline-v2.md)
+# ---------------------------------------------------------------------------
+
+
+def _v2(lesson: Path):
+    """A version 2 lesson's plan and finish, or a refusal that says what's missing."""
+    import plan2
+    from filters import load
+
+    if not (lesson / "plan.json").exists():
+        raise Refused(f"no plan.json in {lesson}")
+    try:
+        plan = plan2.load(lesson)
+    except ValueError as e:
+        raise Refused(str(e))
+    wrong = plan2.problems(plan)
+    if wrong:
+        raise Refused("fix plan.json first: " + " | ".join(wrong))
+    finish = lesson / "99_finish.png"
+    if not finish.exists():
+        raise Refused(f"no 99_finish.png in {lesson}")
+    return plan, load(finish, max_side=100_000)
+
+
+def _read_owner(lesson: Path, plan: dict):
+    import numpy as np
+    from PIL import Image
+
+    path = lesson / "parts" / "owner.png"
+    if not path.exists():
+        raise Refused(f"no outlines yet: run outline --lesson {lesson} first")
+    owner = np.array(Image.open(path)).astype("int32")
+    if owner.max() >= len(plan["parts"]):
+        raise Refused("parts/owner.png is from a different part list: run outline again")
+    return owner
+
+
+def outline_tool(a: argparse.Namespace) -> dict:
+    """Write parts/<id>.png, parts/owner.png, and parts/preview.jpg for a version 2 plan."""
+    import numpy as np
+    import outline as ol
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2(lesson)
+    try:
+        masks, owner, stats = ol.outline(finish, plan["parts"], ol.Sam())
+    except ol.NoModel as e:
+        raise Refused(str(e))
+    except ValueError as e:
+        raise Refused(str(e))
+    folder = lesson / "parts"
+    folder.mkdir(exist_ok=True)
+    for old in folder.glob("*.png"):
+        old.unlink()
+    Image.fromarray(owner.astype(np.uint8)).save(folder / "owner.png")
+    for pid, m in masks.items():
+        Image.fromarray((m * 255).astype(np.uint8)).save(folder / f"{pid}.png")
+    Image.fromarray(ol.preview(finish, plan["parts"], owner)).save(folder / "preview.jpg", quality=88)
+    (folder / "stats.json").write_text(json.dumps(stats, indent=1), encoding="utf-8")
+    return {"preview": str(folder / "preview.jpg"), "parts": stats, "problems": ol.problems(plan["parts"], stats),
+            "advice": "Read the preview once. Fix any part that's visibly wrong (its box, points, or colors) and run "
+                      "this again: at most 2 rounds per part.", "cost_usd": 0.0}
+
+
+def part_colors_tool(a: argparse.Namespace) -> dict:
+    """Each part's main colors, measured from the finish inside its outline."""
+    import paints
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2_parts_only(lesson)
+    owner = _read_owner(lesson, plan)
+    out = {p["id"]: paints.part_colors(finish, owner == k, a.colors) for k, p in enumerate(plan["parts"])}
+    return {"colors": out, "advice": "Darkest first, with each color's share of the part and a spot (0-1) inside it.",
+            "cost_usd": 0.0}
+
+
+def _v2_parts_only(lesson: Path):
+    """Like _v2, for the tools that run before the plan has paints and steps."""
+    import plan2
+    from filters import load
+
+    try:
+        plan = plan2.load(lesson)
+    except (ValueError, FileNotFoundError) as e:
+        raise Refused(str(e))
+    finish = lesson / "99_finish.png"
+    if not finish.exists():
+        raise Refused(f"no 99_finish.png in {lesson}")
+    return plan, load(finish, max_side=100_000)
+
+
+def build_steps_tool(a: argparse.Namespace) -> dict:
+    """Write NN_<step id>.png for every step of a version 2 plan, cut from the finish. No renders."""
+    import build_steps as bs
+    from filters import load
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2(lesson)
+    owner = _read_owner(lesson, plan)
+    if owner.shape != finish.shape[:2]:
+        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
+    plate = lesson / "98_background.png"
+    background = load(plate, max_side=100_000) if plate.exists() else None
+    pictures, rows = bs.build(finish, plan, owner, background)
+    steps = bs.flat_steps(plan)
+    for old in lesson.glob("[0-9][0-9]_*.png"):
+        if not old.name.startswith(("00_", "98_", "99_")):
+            old.unlink()
+    names = []
+    for i, (pic, s) in enumerate(zip(pictures, steps)):
+        name = f"{i + 1:02d}_{s['id']}.png"
+        Image.fromarray(pic).save(lesson / name)
+        names.append(name)
+    (lesson / "trials").mkdir(exist_ok=True)
+    sheet = lesson / "trials" / "steps.jpg"
+    Image.fromarray(bs.contact_sheet(pictures, steps)).save(sheet, quality=88)
+    front = round(float((~bs.back_parts(plan["parts"]))[owner].mean()), 3)
+    advice = "Read the sheet. Every step should add one thing; nothing else should change."
+    if background is None and front > bs.NEEDS_BACKGROUND:
+        advice += (f" Objects cover {front:.0%} of the picture and there's no 98_background.png, so what's behind them "
+                   "is a rough fill until they're painted. One background render fixes that (design section 7).")
+    return {"steps": names, "sheet": str(sheet), "rows": rows, "problems": bs.problems(plan, rows),
+            "objects_share": front, "background": plate.name if background is not None else None,
+            "advice": advice, "cost_usd": 0.0}
+
+
+def add_v2_tools(sub) -> None:
+    p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
+                       description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
+                                   "parts/preview.jpg (the finish with each part tinted and labeled). Downloads the outline "
+                                   "model (108 MB) to models/ the first time.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=outline_tool)
+    p = sub.add_parser("part-colors", help="Free. v2: each part's main colors, measured inside its outline.",
+                       description="Run after outline. Use it to choose a part's paints, and to give a marks part its "
+                                   "colors_in / colors_out when points can't be trusted to land on the paint.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--colors", type=int, default=3, help="colors per part (default 3)")
+    p.set_defaults(func=part_colors_tool)
+    p = sub.add_parser("build-steps", help="Free. v2: cut every step picture from the finished painting.",
+                       description="Run after outline. Writes NN_<step id>.png for every step and trials/steps.jpg (all of "
+                                   "them on one sheet). Uses 98_background.png (the finish with the objects taken out) for "
+                                   "what's behind objects when it exists.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=build_steps_tool)
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="tools.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="tool", required=True, metavar="TOOL")
     add_filters(sub)
     add_render(sub)
     add_lesson_tools(sub)
+    add_v2_tools(sub)
     return ap
 
 
