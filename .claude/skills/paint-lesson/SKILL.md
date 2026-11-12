@@ -579,6 +579,10 @@ Then publish `lesson-artifact.html` as a Claude artifact with the Artifact tool,
 - Artifacts are private by default. Keep them that way: the page shows the owner's photo (decisions: photos stay
   private), so never suggest sharing it.
 
+Problems you leave as they are (`"action": "left: <why>"` in review.json) show on the lesson's page under Known
+problems, so record every one there, including tool problems you only notice after locking. Name the lesson folder
+in anything you report as a bug, so an issue filed from it links to this lesson.
+
 Tell the owner, starting with anything that needs them:
 - steps flagged and left as they are, with the reason;
 - the artifact link;

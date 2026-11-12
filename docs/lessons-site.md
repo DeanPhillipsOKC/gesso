@@ -1,6 +1,6 @@
 # The lessons site
 
-A small private website of finished lessons, so the owner and their partner can each open the same lesson on a
+A small website of finished lessons, so the owner and their partner can each open the same lesson on a
 phone or tablet while painting. Each lesson is one self-contained HTML page (every picture is built in), so later
 animations and interactive pieces work like on any web page. No Claude account is needed to view it.
 
@@ -21,6 +21,16 @@ first, with the current one selected. Opening another version opens the lesson e
 page is written once to `lessons/<slug>/v/<run time>/` and never rewritten (runs from before self-contained pages
 are built from their saved `lesson.json`, nothing rerun). After a new run of a picture that's on the site, run
 `python spike/tools.py site-refresh` and commit `site/`. To make a new run the default, `site-add` it.
+
+## Known problems
+
+Every lesson page on the site ends with a Known problems section (the tile links to it with a count):
+- problems the run's reviews found and left as they are (`left` in its review), by step;
+- GitHub issues whose text names the run's folder (for example `red-sailboat_skill_20261112-100455`), open or fixed.
+  Name the run folder in any bug filed about a lesson so it shows up here.
+
+`site-refresh` updates the section on every page. It only rewrites the part between `<!--known-problems-->`
+markers, so the lesson's pictures and text, and its hands-off seal, are untouched.
 
 ## Lesson history
 
