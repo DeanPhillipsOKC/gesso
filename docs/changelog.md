@@ -6,6 +6,21 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 0.26.0 (2026-11-12)
+- The paint-lesson skill is a short spine (`SKILL.md`, about 700 words: arguments, the rules for the whole run,
+  the steps in order) plus one file per step in `steps/`, read when that step starts, so each step's rules are
+  fresh when they're used. The runs behind each rule moved to `docs/skill-history.md`.
+- `publish --final` checks before it seals: the reviews ran, notes are complete, every step has its summary,
+  brushes, strokes, `made_with`, and regions, and the publish checks are clean (or a long step is explained in
+  `long_steps_kept`). It refuses with a list until they pass.
+- The skill gaps two hands-off runs reported are fixed: the redo cap is spelled out, diagram previews need a
+  publish first, `long_steps_kept` is in the notes schema, the text review checks `ok` steps' main shapes against
+  the finish, and reviewers use the venv to zoom.
+- The "uncommitted code" flag on a lesson's stamp works again (it never fired since 0.23.1).
+- From the first run on the split skill: `photo_prep` is a dict from step 0 (the page also accepts a sentence),
+  the lock runs between the two image review rounds (`fixed by lock-steps` is an action), the plan's `photo` is the
+  fitted picture, and text doesn't point at diagrams before step 7 adds them.
+
 ## POC 0.25.2 (2026-11-12)
 - Lesson pages on the site have a Known problems section: what the run's reviews found and left as they are, by
   step, and links to the issues filed about the run (open, or fixed in a later version). The tile says how many.

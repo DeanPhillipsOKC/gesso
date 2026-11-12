@@ -50,3 +50,18 @@ class MadeWithTests(unittest.TestCase):
         self.assertNotIn("republished", version.made_line(first))
         old = {"version": "POC 0.17.0", "commit": "ccc3333", "dirty": False, "published": "2026-11-09"}  # no made yet
         self.assertEqual(version.with_made(first, old)["made"]["version"], "POC 0.17.0")
+
+
+class DirtyFlagTests(unittest.TestCase):
+    def test_dirty_flag_sees_spike_changes(self):
+        import version
+        calls = []
+        real = version._git
+        version._git = lambda *a: calls.append(a) or ""
+        try:
+            version.stamp()
+        finally:
+            version._git = real
+        status = next(c for c in calls if c[0] == "status")
+        self.assertIn(":/spike", status)  # from the repo root, not relative to spike/
+

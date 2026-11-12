@@ -15,6 +15,8 @@ can see.
 - `stroke_results`: what each stroke really leaves on the canvas, and what to do after it. Judge strokes against
   these, not your own idea of them. If a step uses a stroke this list doesn't cover, say so in `uncovered_strokes`.
 
+To crop or zoom into a sheet, use the project's Python: `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`.
+
 Each sheet has three panels with the same 10% grid: BEFORE, AFTER, and WHAT CHANGED. The third panel is measured
 from the pixels: outlined areas changed and everything else is dimmed. Changes in it are real. Treat tiny
 specks as render noise.
@@ -87,10 +89,3 @@ Write `<lesson>/trials/review/review.json`:
 The verdict follows the problems: a `missing`, `wrong_result`, `flat`, or `layering` problem a beginner would
 notice in the result makes the step `not_enough`. `drift` alone doesn't. Flag what a beginner would get stuck
 on or end up visibly short of, not what a perfectionist would tweak.
-
-Spike results (2026-11-11, balloon and pumpkin, against the owner's own blind labels): the first version of this
-review agreed with the owner on 8 of 15 steps. What it caught, with evidence that held up when checked, was
-*what* the text leaves out: a whole vine, grass appearing in a highlights step, stripes that change on the
-balloon. What it missed was the owner's main worry: *how* to get depth and texture (clouds, mountains, a two-tone
-field), and letting paint dry before layering. `flat`, `layering`, and the repeat-mark diagram rule were added
-for that. It also rated steps `ok` while listing real problems, so the verdict now follows the problems.

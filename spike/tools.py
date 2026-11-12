@@ -426,6 +426,55 @@ def mix_tool(a: argparse.Namespace) -> dict:
             "unreachable": [n for n, m in mixes.items() if not m["reachable"]]}
 
 
+NOTES_REQUIRED = ("read", "technique", "order", "steps", "beginner_check")
+
+
+def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict) -> list[str]:
+    """What stops a lesson being sealed hands-off: the rules the skill asks for, checked instead of remembered
+    (two hands-off runs, 2026-11-12, each let a small rule slip late in a long run)."""
+    out = []
+    ids = [s.id for s in plan.steps]
+    if not (lesson / "review.json").exists():
+        out.append("review.json is missing (steps 2, 5, 6b)")
+    for key in ("finish_issues", "review_issues", "text_issues"):
+        if key not in review:
+            out.append(f"review.json has no {key} (an empty list if there were none)")
+    if not (lesson / "trials" / "review" / "review.json").exists():
+        out.append("the text review (step 6b) hasn't run: no trials/review/review.json")
+    for key in NOTES_REQUIRED:
+        if not notes.get(key):
+            out.append(f"notes.json is missing {key} (step 8)")
+    bc = notes.get("beginner_check") or {}
+    seen = set(bc.get("diagrams") or {}) | set(bc.get("no_diagram") or {})
+    for sid in ids:
+        if sid not in (notes.get("steps") or {}):
+            out.append(f"notes.json steps has no entry for {sid}")
+        if bc and sid not in seen:
+            out.append(f"beginner_check doesn't say whether {sid} needs a diagram")
+        t = text.get(sid)
+        if t is None:
+            out.append(f"text.json has no step {sid}")
+            continue
+        for key in ("summary", "brushes", "strokes", "made_with"):
+            if not t.get(key) and not (key == "strokes" and sid == ids[-1]):
+                out.append(f"{sid}: text.json has no {key}")
+    for s in plan.steps:
+        if not s.regions:
+            out.append(f"{s.id}: no regions in plan.json")
+    for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
+        if checks.get(key):
+            out.append(f"{key}: {checks[key]}")
+    kept = notes.get("long_steps_kept") or {}
+    long = [x for x in checks.get("long_steps") or [] if x["id"] not in kept]
+    if long:
+        out.append(f"long_steps not cut or explained in notes.long_steps_kept: {long}")
+    noted = " ".join(n for t in text.values() for n in (t.get("paint_notes") or [])).lower()
+    for name in checks.get("unreachable_paints") or []:
+        if name.lower() not in noted:
+            out.append(f"{name} can't be mixed from these tubes and no step's paint_notes says so")
+    return out
+
+
 def publish(a: argparse.Namespace) -> dict:
     """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
     from lesson_page import page
@@ -499,8 +548,6 @@ def publish(a: argparse.Namespace) -> dict:
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
     import provenance
-    if getattr(a, "final", False):
-        provenance.seal(lesson, lesson_data)
     lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
     (lesson / "lesson.html").write_text(page(lesson_data, technique, lesson), encoding="utf-8")
@@ -542,6 +589,13 @@ def publish(a: argparse.Namespace) -> dict:
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
+    if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
+        problems = seal_problems(lesson, plan, text, review, notes, result)
+        if problems:
+            raise Refused("not sealed; fix these and run publish --final again: " + " | ".join(problems))
+        provenance.seal(lesson, lesson_data)
+        lesson_data["provenance"] = result["provenance"] = provenance.of(lesson, lesson_data)
+        (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
     # every publish that changes the lesson is kept, with its version (site/history/, owner, 2026-11-12)
     from history import record
     result["history"] = record(lesson, lesson_data, result)

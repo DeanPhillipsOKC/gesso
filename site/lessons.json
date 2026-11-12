@@ -59,6 +59,16 @@
     "source": "red-sailboat_skill_20261112-100455",
     "versions": [
       {
+        "id": "20261112-120423",
+        "version": "POC 0.26.0",
+        "when": "2026-11-12 12:04",
+        "guessed": false,
+        "kind": "",
+        "steps": 10,
+        "href": "lessons/red-sailboat/v/20261112-120423/",
+        "current": false
+      },
+      {
         "id": "20261112-100455",
         "version": "POC 0.25.0",
         "when": "2026-11-12 10:04",
