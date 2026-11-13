@@ -657,7 +657,7 @@ def publish(a: argparse.Namespace) -> dict:
             "paints_not_listed": paints_not_listed(stages, paints, word=v2),
             # paints whose computed recipes come out the same (or mix within Delta E 3): two names, one color
             "duplicate_recipes": duplicate_recipes(mixes),
-            # steps that turn a big area from flat to textured at once: split them with split-texture (version 2:
+            # steps that turn a big area from flat to textured at once (version 2:
             # the same list check reports, which leaves out flat coats)
             "texture_jumps": jumps,
             # single instructions past the skill's budget (about 35 words): usually two moves to split
@@ -777,82 +777,6 @@ def fit_canvas(a: argparse.Namespace) -> dict:
     return {**{k: v for k, v in info.items() if k != "why"}, "advice": advice, "cost_usd": 0.0}
 
 
-def insert_steps(lesson: Path, before_id: str, new_steps: list[dict], images: list) -> list[str]:
-    """Insert planned steps (with their pictures) before `before_id`, renumbering every step image after them, and
-    their raw copies and lock record, so splitting a step is one call (#41)."""
-    from PIL import Image
-
-    raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
-    _, plan, _ = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    if before_id not in ids:
-        raise Refused(f"unknown step {before_id}; plan has {ids}")
-    if before_id == ids[-1]:
-        raise Refused("can't insert before the finish this way; split the step before it")
-    old = step_paths(lesson, plan)
-    at = ids.index(before_id)
-    raw["steps"][at:at] = new_steps
-    raw_dir, state_path = lesson / "trials" / "raw", lesson / "trials" / "raw" / "locked.json"
-    state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
-    # rename from the last step backward so nothing is overwritten
-    moves = []
-    for i in range(len(old) - 2, at - 1, -1):  # every planned step image from `at` on, not the finish
-        src = old[i]
-        dst = lesson / f"{i + 1 + len(new_steps):02d}_{plan.steps[i].id}.png"
-        moves.append((src, dst))
-    for src, dst in moves:
-        for folder in (lesson, raw_dir):
-            a_, b_ = folder / src.name, folder / dst.name
-            if a_.exists():
-                a_.replace(b_)
-        if src.name in state:
-            state[dst.name] = state.pop(src.name)
-    names = []
-    for k, (step, img) in enumerate(zip(new_steps, images)):
-        path = lesson / f"{at + 1 + k:02d}_{step['id']}.png"
-        Image.fromarray(img).save(path)
-        names.append(path.name)
-    if state:
-        state_path.write_text(json.dumps(state, indent=1), encoding="utf-8")
-    (lesson / "plan.json").write_text(json.dumps(raw, indent=2, ensure_ascii=False), encoding="utf-8")
-    return names
-
-
-def split_texture(a: argparse.Namespace) -> dict:
-    """Free in-between passes for a step that jumps from flat to textured: its new marks arrive darkest first."""
-    import numpy as np
-    from PIL import Image
-
-    import passes
-
-    lesson = Path(a.lesson)
-    raw, plan, _ = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    if a.step not in ids or ids.index(a.step) == 0:
-        raise Refused(f"pick a step after the first; plan has {ids}")
-    paths = step_paths(lesson, plan)
-    i = ids.index(a.step)
-    before = np.asarray(Image.open(paths[i - 1]).convert("RGB"))
-    after = np.asarray(Image.open(paths[i]).convert("RGB").resize(before.shape[1::-1]))
-    mids = passes.value_passes(before, after, len(a.ids) + 1)
-    target = raw["steps"][i]
-    n = len(a.ids) + 1
-    which = ["the darkest", "the mid-dark", "the middle", "the lighter"]
-    new = [{**{k: target[k] for k in ("brushes", "regions", "protect") if k in target},
-            # its own pass, not a copy of the parent's: the skill writes its colors and text from its picture
-            "colors": [], "paints": f"{which[min(k, 3)]} marks of: {target.get('paints', '')}",
-            "id": sid, "name": name, "looks_like": f"pass {k + 1} of {n}: {which[min(k, 3)]} marks only, over the base",
-            "covers_canvas": target.get("covers_canvas", False), "how": [], "watch_out": []}
-           for k, (sid, name) in enumerate(zip(a.ids, a.names))]
-    names = insert_steps(lesson, a.step, new, mids)
-    chain = [before] + mids + [after]
-    return {"inserted": names, "before": a.step, "cost_usd": 0.0,
-            "texture_jumps": [round(passes.texture_jump(x, y), 3) for x, y in zip(chain, chain[1:])],
-            "next": "give each new step its colors in plan.json and its own text in text.json, from its picture (only "
-                    "the marks it adds, darkest first); trim the original step's text to only what it still adds; then "
-                    "lock-steps, publish, step-pairs"}
-
-
 def from_finish_tool(a: argparse.Namespace) -> dict:
     """Every step picture cut from the finished painting (#8): no renders, nothing can drift. Copies the lesson to a
     new run folder first, so the rendered lesson stays as it was and both show in the lesson history."""
@@ -949,7 +873,7 @@ def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
 
 
 def prune_canvas_view(lesson: Path, keep: list[str]) -> list[str]:
-    """Drop crops of step images that no longer exist (after split-texture renumbers steps)."""
+    """Drop crops of step images that no longer exist (after the plan's steps change)."""
     out = lesson / "canvas"
     if not out.exists():
         return []
@@ -1055,17 +979,6 @@ def add_lesson_tools(sub) -> None:
                    help="change this lesson instead of a copy: the skill's own step 6a, before the seal")
     p.add_argument("--why", required=True)
     p.set_defaults(func=from_finish_tool)
-    p = sub.add_parser("split-texture", help="Free. Split a step that jumps from flat to textured into passes, darkest marks first.",
-                       description="Makes in-between pictures from the step before and the step itself (its new paint arriving "
-                                   "darkest first: dark marks on the flat base, then mid, then the rest), inserts them as "
-                                   "steps before it in plan.json, and renumbers the step images. Use when publish or step-pairs "
-                                   "reports a texture jump.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--step", required=True, help="the step that jumps")
-    p.add_argument("--ids", nargs="+", required=True, help="ids for the new in-between steps, in order")
-    p.add_argument("--names", nargs="+", required=True, help="their names, e.g. 'Dab the dark lavender'")
-    p.set_defaults(func=split_texture)
-
     p = sub.add_parser("canvas-view", help="Free. Crop images to the painter's canvas (after fit-canvas), into <lesson>/canvas/.",
                        description="Renders stay in the model's frame; the painter sees the canvas. Measure positions for the "
                                    "step text on these crops (e.g. grid on canvas/99_finish.png), not on the frame.")
