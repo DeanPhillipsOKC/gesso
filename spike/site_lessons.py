@@ -27,8 +27,17 @@ def hands_off(run: Path) -> bool:
     return of(run, data)["kind"] == "hands-off"
 
 
+def is_v2(run: Path) -> bool:
+    """Whether a run was made by pipeline v2. The site holds versions from POC 1.0.0 on (owner, 2026-11-13, #82):
+    an older run left in output/ stays in the lesson history and never goes back on a tile."""
+    data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
+    return data.get("plan_version") == 2
+
+
 def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
     data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
+    if not is_v2(lesson):
+        raise ValueError(f"{lesson.name} was made by pipeline v1; the site holds versions from POC 1.0.0 on (#82)")
     if not hands_off(lesson):  # owner, 2026-11-12: the site shows what the tool makes on its own
         from provenance import of
         raise ValueError(f"{lesson.name} isn't hands-off ({of(lesson, data)['kind']}); only lessons the skill made and "
@@ -113,8 +122,8 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
             versions[v["id"]] = dict(v)
     for run in sorted(output.glob(f"{photo}_skill_*")):
         rid = run.name.split("_skill_")[-1]
-        if rid in remove or not (run / "lesson.json").exists():
-            continue
+        if rid in remove or not (run / "lesson.json").exists() or not is_v2(run):
+            continue  # a v1 run stays in the lesson history only (#82)
         if not hands_off(run):
             if rid in versions:
                 print(f"kept {run.name} on the site though it's no longer hands-off; site-refresh --remove {rid} "
@@ -162,7 +171,7 @@ def newest_hands_off(photo: str, output: Path, remove: tuple[str, ...] = ()) -> 
     """The newest sealed, hands-off run of a picture in `output` that can be shown, or None."""
     for run in sorted(output.glob(f"{photo}_skill_*"), reverse=True):
         if (run.name.split("_skill_")[-1] not in remove and (run / "lesson.json").exists()
-                and (run / "lesson-standalone.html").exists() and hands_off(run)):
+                and (run / "lesson-standalone.html").exists() and is_v2(run) and hands_off(run)):
             return run
     return None
 

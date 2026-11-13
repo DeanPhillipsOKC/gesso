@@ -34,7 +34,8 @@ are added or updated. To take a version off the site, name it: `site-refresh --r
 lesson history). A tile's known-problems count is kept when its run isn't here to count again.
 
 **The tiles hold versions from POC 1.0.0 on** (owner, 2026-11-13, #82): the runs before it (v1, up to 0.26.1) were
-taken off the site and are in the lesson history.
+taken off the site and are in the lesson history. `site-add` and `site-refresh` only take version 2 runs
+(`plan_version: 2` in `lesson.json`), so an old run left in `output/` can't come back.
 
 ## Known problems
 

@@ -16,10 +16,12 @@ import provenance  # noqa: E402
 import site_lessons  # noqa: E402
 
 
-def run(output: Path, name: str, version: str, made_with: str = "render", kind: str = "hands-off") -> Path:
+def run(output: Path, name: str, version: str, made_with: str = "render", kind: str = "hands-off",
+        plan_version: int | None = 2) -> Path:
     d = output / name
     d.mkdir(parents=True)
     data = {"gesso": {"version": version, "commit": "abc1234", "published": "2026-11-12"},
+            **({"plan_version": plan_version} if plan_version else {}),
             "stages": [{"id": "a", "image": "a.png", "made_with": made_with},
                        {"id": "finish", "image": "f.png", "made_with": "render"}]}
     (d / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
@@ -60,6 +62,16 @@ class SiteVersionTests(unittest.TestCase):
         self.assertEqual([v["id"] for v in versions], ["20261111-142734"])
         self.assertIn("skipped balloon_skill_20261112-084806", out.getvalue())
         self.assertIn("lesson-standalone.html", out.getvalue())
+
+    def test_a_v1_run_left_in_output_never_goes_back_on_the_site(self):  # #82: the tiles hold 1.0.0 on
+        run(self.output, "balloon_skill_20261112-120000", "POC 0.26.1", "composite:from-finish", plan_version=None)
+        versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
+        self.assertNotIn("20261112-120000", [v["id"] for v in versions])
+        self.assertFalse((self.site / "lessons" / "lavender" / "v" / "20261112-120000").exists())
+        v1 = run(self.output, "sky_skill_20261112-130000", "POC 0.26.1", plan_version=None)
+        self.assertIsNone(site_lessons.newest_hands_off("sky", self.output))
+        with self.assertRaises(ValueError):
+            site_lessons.add(v1, "sky", self.site)
 
     def test_tile_has_a_pick_list_with_the_current_version_selected(self):
         versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
