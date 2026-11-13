@@ -161,6 +161,10 @@ with the date.
 - **How to do a stroke is written once and checked, not written fresh each lesson (2026-11-12).** One card per
   stroke (and a few basics cards), built from the research file with sources, read by the owner before it counts
   as checked. Same rule as technique: from cited research, never from the model's memory.
+  **Changed 2026-11-13 (owner's call):** a lesson may show a card written for what's being painted (the same
+  technique in the subject's words, and pictures from this painting), marked as not checked, when it helps.
+  Owner: "I would be good with untested text and images showing up if they're helpful." The checked cards stay
+  the source of the technique: a per-lesson card changes the words and pictures, not the technique (#96).
 - **Pipeline v2 is POC 1.0.0 (2026-11-12, owner's call).** The major number goes up when v2 replaces v1: with the
   first sealed v2 lesson after the gate passes, not before. Until then the v2 tools sit beside v1 and the version
   stays on 0.26.x.
