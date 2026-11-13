@@ -1,83 +1,25 @@
 [
   {
-    "slug": "lavender-balloon",
-    "title": "A striped hot-air balloon in a sunset sky over rows of lavender that lead to the",
-    "subject": "A striped hot-air balloon in a sunset sky over rows of lavender that lead to the setting sun, with a lone tree on a golden hill",
-    "steps": 21,
-    "canvas": "14 x 11 in",
-    "tubes": 11,
-    "version": "POC 1.0.0",
-    "published": "2026-11-13",
-    "source": "balloon-lavender_skill_20261113-041226",
-    "versions": [
-      {
-        "id": "20261113-041226",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 21,
-        "href": "lessons/lavender-balloon/",
-        "current": true
-      },
-      {
-        "id": "20261111-142734",
-        "version": "POC 0.20.0",
-        "when": "2026-11-11 14:27",
-        "guessed": false,
-        "kind": "",
-        "steps": 12,
-        "href": "lessons/lavender-balloon/v/20261111-142734/",
-        "current": false
-      }
-    ],
-    "known": 5
-  },
-  {
-    "slug": "chickadee",
-    "title": "A black-capped chickadee perched on a curved autumn branch",
-    "subject": "A black-capped chickadee perched on a curved autumn branch, with four orange and yellow leaves, in a misty blue and orange forest",
-    "steps": 17,
-    "canvas": "14 x 11 in",
-    "tubes": 10,
-    "version": "POC 1.0.0",
-    "published": "2026-11-13",
-    "source": "chickadee_skill_20261113-041241",
-    "versions": [
-      {
-        "id": "20261113-041241",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/",
-        "current": true
-      },
-      {
-        "id": "20261112-100444",
-        "version": "POC 0.25.0",
-        "when": "2026-11-12 10:04",
-        "guessed": false,
-        "kind": "",
-        "steps": 11,
-        "href": "lessons/chickadee/v/20261112-100444/",
-        "current": false
-      }
-    ],
-    "known": 5
-  },
-  {
     "slug": "red-sailboat",
     "title": "A small red sailboat",
-    "subject": "A small red sailboat with white sails on turquoise water at sunset, a purple hill on the left, a pale sun low over the horizon with a gold path on the water",
-    "steps": 17,
+    "subject": "A small red sailboat with white sails on teal water at sunset: a purple-to-orange sky, a pale sun low over a purple hill on the left, a gold sun path on the water, and the boat's broken reflection",
+    "steps": 16,
     "canvas": "14 x 11 in",
     "tubes": 5,
-    "version": "POC 1.0.0",
+    "version": "POC 1.0.1",
     "published": "2026-11-13",
-    "source": "red-sailboat_skill_20261113-041240",
+    "source": "red-sailboat_skill_20261113-130625",
     "versions": [
+      {
+        "id": "20261113-130625",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 16,
+        "href": "lessons/red-sailboat/",
+        "current": true
+      },
       {
         "id": "20261113-041240",
         "version": "POC 1.0.0",
@@ -85,8 +27,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 17,
-        "href": "lessons/red-sailboat/",
-        "current": true
+        "href": "lessons/red-sailboat/v/20261113-041240/",
+        "current": false
       },
       {
         "id": "20261112-120423",
@@ -106,6 +48,94 @@
         "kind": "",
         "steps": 10,
         "href": "lessons/red-sailboat/v/20261112-100455/",
+        "current": false
+      }
+    ],
+    "known": 2
+  },
+  {
+    "slug": "chickadee",
+    "title": "A black-capped chickadee perched on a curved autumn branch",
+    "subject": "A black-capped chickadee perched on a curved autumn branch, with four orange and gold leaves, in a misty blue-gray and orange forest with a low sun",
+    "steps": 19,
+    "canvas": "14 x 11 in",
+    "tubes": 10,
+    "version": "POC 1.0.1",
+    "published": "2026-11-13",
+    "source": "chickadee_skill_20261113-130614",
+    "versions": [
+      {
+        "id": "20261113-130614",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 19,
+        "href": "lessons/chickadee/",
+        "current": true
+      },
+      {
+        "id": "20261113-041241",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-041241/",
+        "current": false
+      },
+      {
+        "id": "20261112-100444",
+        "version": "POC 0.25.0",
+        "when": "2026-11-12 10:04",
+        "guessed": false,
+        "kind": "",
+        "steps": 11,
+        "href": "lessons/chickadee/v/20261112-100444/",
+        "current": false
+      }
+    ],
+    "known": 5
+  },
+  {
+    "slug": "lavender-balloon",
+    "title": "A striped hot air balloon over rows of lavender at sunset",
+    "subject": "A striped hot air balloon over rows of lavender at sunset, with a lone tree on a golden hill",
+    "steps": 23,
+    "canvas": "14 x 11 in",
+    "tubes": 11,
+    "version": "POC 1.0.1",
+    "published": "2026-11-13",
+    "source": "balloon-lavender_skill_20261113-130631",
+    "versions": [
+      {
+        "id": "20261113-130631",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 23,
+        "href": "lessons/lavender-balloon/",
+        "current": true
+      },
+      {
+        "id": "20261113-041226",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/lavender-balloon/v/20261113-041226/",
+        "current": false
+      },
+      {
+        "id": "20261111-142734",
+        "version": "POC 0.20.0",
+        "when": "2026-11-11 14:27",
+        "guessed": false,
+        "kind": "",
+        "steps": 12,
+        "href": "lessons/lavender-balloon/v/20261111-142734/",
         "current": false
       }
     ],

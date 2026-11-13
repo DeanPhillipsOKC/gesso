@@ -12,7 +12,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   under a thing is now taken from clean paint away from that thing's rim, a sky or water is carried on row by row
   from its own clean rows, and a flat coat no longer stays where another part will cross.
 - `build-steps` and `check` measure it: a part that plainly shows before its step is a failure, and one that shows
-  faintly is a note. The three lessons on the site were made before this and still show it.
+  faintly is a note. The three lessons on the site are 1.0.1 runs (2026-11-13, hands-off); the 1.0.0 gate runs
+  stay in each tile's version list.
 - `site-refresh` and `site-add` only add versions to the lessons site (#83). A listed version stays even when its run
   folder isn't on this machine, and `site-add` keeps the old default as a version; `site-refresh --remove` takes one
   off by name.
