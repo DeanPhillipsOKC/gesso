@@ -1,6 +1,6 @@
 id: soil-rows
 name: Soil strips between rows
-for: Bare soil or a dirt track between crop or flower rows, running back to one point on the horizon.
+for: "Bare soil or a dirt track between crop or flower rows, running back to one point on the horizon, when the near soil is wide enough to be its own part. Thin far strips are flower-rows' own optional soil step instead; don't paint the same soil with both."
 examples: [soil between lavender rows, a dirt track between vine rows, furrows in a ploughed field]
 kinds: [marks, area]
 medium: acrylic

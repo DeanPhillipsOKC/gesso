@@ -58,6 +58,7 @@ class LibraryTests(unittest.TestCase):
             # every line cites the research or the technique file, or says plainly that it goes past them
             self.assertTrue(all("docs/research" in x or "techniques/" in x or x.startswith("general practice")
                                 for x in e_["sources"]), e_["id"])
+            self.assertTrue(any("docs/research" in x for x in e_["sources"]), e_["id"])  # never practice alone
             self.assertIs(e_["checked"], False)  # the owner checks them
 
     def test_a_broken_element_is_reported(self):
@@ -241,6 +242,21 @@ class PlanTests(unittest.TestCase):
             clash.write_text(yaml.safe_dump({**draft, "id": "foliage"}), encoding="utf-8")
             p["parts"][3]["element"] = "foliage"
             self.assertTrue(any("library element's id" in x for x in el.plan_problems(p, lesson=lesson)))
+
+    def test_a_draft_later_added_to_the_library_as_it_was_is_no_clash(self):
+        p = plan("chickadee")
+        with tempfile.TemporaryDirectory() as tmp:
+            lesson = Path(tmp)
+            (lesson / "elements").mkdir()
+            same = {k: v for k, v in el.library()["foliage"].items() if not k.startswith("_")}
+            same.update(drafted=True, filed="https://github.com/DeanPhillipsOKC/gesso/issues/999")
+            (lesson / "elements" / "foliage.yaml").write_text(yaml.safe_dump(same), encoding="utf-8")
+            self.assertEqual(el.plan_problems(p, lesson=lesson), [])
+            same["rules"] = ["changed since"]
+            (lesson / "elements" / "foliage.yaml").write_text(yaml.safe_dump(same), encoding="utf-8")
+            out = el.plan_problems(p, lesson=lesson)
+            self.assertEqual(len(out), 1)
+            self.assertIn("library element's id", out[0])
 
     def test_an_elements_mistake_is_the_watch_line_and_picks_are_listed(self):
         marked = el.step_elements(plan("lavender-balloon"), el.library())

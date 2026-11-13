@@ -68,8 +68,19 @@ def known(lesson: Path | None = None) -> dict[str, dict]:
     """The library, plus what this lesson drafted (a draft can't take a library id: problems says so)."""
     out = library()
     for k, v in (drafted(lesson) if lesson else {}).items():
-        out[k] = {**out[k], "_draft_clash": True} if k in out else v
+        if k in out and not same_as_library(v, out[k]):
+            out[k] = {**out[k], "_draft_clash": True}
+        elif k not in out:
+            out[k] = v
     return out
+
+
+def same_as_library(draft: dict, lib: dict) -> bool:
+    """A lesson's draft that has since been added to the library as it was (only drafted and filed taken off):
+    the lesson's parts use the library element, and the draft is no clash and no leftover."""
+    def core(e: dict) -> dict:
+        return {k: v for k, v in e.items() if not k.startswith("_") and k not in ("drafted", "filed")}
+    return core(draft) == core(lib)
 
 
 def _list(x) -> list:
@@ -256,6 +267,7 @@ def plan_problems(plan: dict, elements: dict[str, dict] | None = None, lesson: P
             out.append(f"{pid}: element {eid!r} isn't in techniques/elements or the lesson's elements/ folder")
             continue
         if el.get("_draft_clash"):
+            used_drafts.add(eid)  # the part does use the lesson's draft; the clash is the only problem
             out.append(f"{pid}: elements/{eid}.yaml in the lesson has a library element's id. Give the draft its own id.")
         if el.get("drafted"):
             used_drafts.add(eid)
@@ -272,7 +284,8 @@ def plan_problems(plan: dict, elements: dict[str, dict] | None = None, lesson: P
     if lesson is not None:
         drafts = drafted(lesson)
         out += problems(drafts, draft=True)
-        for eid in sorted(set(drafts) - used_drafts):
+        lib = library()
+        for eid in sorted(set(drafts) - used_drafts - {k for k, d in drafts.items() if k in lib and same_as_library(d, lib[k])}):
             out.append(f"elements/{eid}.yaml was drafted but no part uses it. Delete it, or name it on the part it was "
                        "drafted for.")
         for eid in sorted(used_drafts):
