@@ -37,7 +37,8 @@ specks as render noise.
    - `wrong_result`: an instruction whose stroke wouldn't give what the picture shows, judged by
      `stroke_results`. Example: X strokes alone for a glassy, even gradient.
    - `vague`: an instruction a beginner couldn't act on, like "add some highlights" with no where, what color,
-     or which brush. A sky or gradient whose colors aren't named in order in the
+     or which brush. An instruction that only points at a `values` table ("blend as in the table") is vague: the
+     table adds to the words, it doesn't replace them. A sky or gradient whose colors aren't named in order in the
      instruction is vague too.
    - `flat`: the text gives one color or one kind of mark for an area where the picture shows several values or
      a texture (a tree crown with a sunlit side and a shadow side, a rock with highlights, water with ripples, a

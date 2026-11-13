@@ -254,14 +254,13 @@ def add_render(sub) -> None:
 # Lesson files (#10): plan.json in, step images and lesson.html out
 # ---------------------------------------------------------------------------
 #
-# <lesson>/plan.json     written by the skill: the spike's LessonPlan fields plus "photo" and "technique" paths
-#                        (relative to the repo) and "quality"
-# <lesson>/99_finish.png the finished painting; every step copies from it
-# <lesson>/00_canvas.png plain white canvas (made on first use)
-# <lesson>/NN_<id>.png   step images, NN from 01
-# <lesson>/text.json     written by the skill: {"steps": [{stage_id, what_to_do, mixes, watch_out, paint_notes,
-#                        made_with, reason, brushes: [{brush, use}], strokes: [{name, how}]}]}
-# <lesson>/review.json   optional, written by the skill: {"finish_issues": [...], "review_issues": [...]}
+# <lesson>/plan.json     written by the skill: "plan_version": 2, parts, paints, stages, plus "photo" and
+#                        "technique" paths (relative to the repo); docs/design/pipeline-v2.md section 5
+# <lesson>/99_finish.png the finished painting; every step is cut from it
+# <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is a copy of the finish)
+# <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, summary, tip, lines: [{kind, text,
+#                        edited}], brushes: [{brush, use}], made_with, reason}]}; design section 10
+# <lesson>/review.json   written by the skill: {"finish_issues": [...], "text_issues": [...]}
 
 
 def load_plan(lesson: Path):
@@ -386,6 +385,8 @@ def mix_tool(a: argparse.Namespace) -> dict:
     """Compute the paint recipes for a lesson, so the skill can see them before writing the step text."""
     lesson = Path(a.lesson)
     raw, plan, technique = load_plan(lesson)
+    if not (lesson / "99_finish.png").exists():
+        raise Refused(f"no finished painting at {lesson / '99_finish.png'}; make it first")
     mixes = compute_mixes(lesson, plan, technique)
     return {"json": str(lesson / "mixes.json"), "cost_usd": 0.0,
             "paints": [{"name": n, "recipe": m["text"], "target": m["target_hex"], "mixed": m["mixed_hex"],
@@ -1206,8 +1207,8 @@ def check_tool(a: argparse.Namespace) -> dict:
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
     if not plan2.is_v2(lesson):
-        raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); a version 1 lesson is "
-                      "checked by publish --final")
+        raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); version 1 lessons "
+                      "can't be checked any more (#82); make the lesson again with /paint-lesson")
     r = checks.run(lesson)
     # `problems` is `failures` under the name every other v2 tool prints (the skill: "every tool prints problems")
     return {"problems": r["failures"], "failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],

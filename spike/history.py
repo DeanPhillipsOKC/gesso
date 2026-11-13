@@ -37,6 +37,7 @@ def home(history: Path | None = None) -> Path:
 
 
 RUN_TIME = re.compile(r"_(\d{8})-(\d{6})$")
+# long_steps is only in v1 runs' records (publish stopped reporting it, #82); kept so old records still compare
 CHECKS = ["long_steps", "long_instructions", "paints_not_listed", "unreachable_paints", "texture_jumps",
           "duplicate_recipes", "undocumented_diagrams"]
 

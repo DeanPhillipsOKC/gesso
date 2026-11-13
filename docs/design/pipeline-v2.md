@@ -53,6 +53,8 @@ The chickadee's bird is 9 small steps where v1 had 3.
 
 ## 3. What stays, what changes, what goes
 
+(History: the v1 files named here were removed in #82; what stayed moved into `.claude/skills/paint-lesson/`.)
+
 | | v1 | v2 |
 |---|---|---|
 | Photo check, crop, canvas fit, beginner version | skill `steps/0-setup.md` | **stays as is** |
@@ -742,6 +744,9 @@ recorded: split the step in the plan and run `build-steps` again.
 
 ## 13. Version 2 lessons through `publish` (issue 3 of 8)
 
+(Written while v1 was still in the repo. Since #82 `publish` takes only a version 2 plan; the `lesson.json` keys
+below are still what its readers use.)
+
 `load_plan` validates against the version 1 model (`LessonPlan` in `spike/run.py`), and `publish`, `mix`,
 `seal_problems`, `step_paths`, `step-pairs`, the page, the history, the embed, and the notes all read version 1
 fields. The rule for version 2: **`lesson.json` keeps every key those readers use, with the same types, and adds
@@ -846,7 +851,9 @@ going back to V1"). Removed:
 
 Kept on purpose: `step_review.py` (`step-pairs`, the text review's sheets), `construct.py` (diagrams), all of
 `lesson_page.py` (the page shell `publish` renders a version 2 lesson with; its few version 1 branches no longer
-run), and the lesson history, which keeps every v1 run.
+run), `lesson_notes.py`'s display of v1 notes (`throwaways`, a throwaway step's `made_with`; out of scope here, and
+harmless with no v1 lesson published), and the lesson history, which keeps every v1 run. Since the review of #124,
+`site-add` and `site-refresh` take only version 2 runs, so an old run in `output/` can't come back on a tile.
 
 ## 15. Rules for whoever builds this
 
