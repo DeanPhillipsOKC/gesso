@@ -1,4 +1,4 @@
-# Step 8: notes (`notes.json`)
+# Step 8b: notes (`notes.json`)
 
 The page's "How this lesson was made" folds show your reasoning. You've been keeping notes as you go; make them
 complete now. Plain words, a sentence or two each:
@@ -13,9 +13,6 @@ complete now. Plain words, a sentence or two each:
  "filters": [{"label": "Reference", "tool": "simplify", "settings": "meanshift, strength 3",
               "image": "trials/simp3_ms.png", "why": "what you wanted to see", "result": "what you saw",
               "verdict": "kept | dropped"}],
- "throwaways": [{"script": "filters/sky_only.py", "for": "...", "steps": ["sky-glow"], "tries": 1,
-                 "outcome": "what happened", "verdict": "kept | seeded a render | dropped",
-                 "images": ["filters/01_sky-glow_filter.png"]}],
  "photo_prep": {"subject": "...", "found": "what else was in the image, or 'just the picture'",
                 "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."},
  "canvas_fit": {"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...", "lost": "..."},
@@ -27,12 +24,15 @@ complete now. Plain words, a sentence or two each:
                                                "checked": "how the pieces compare with the step image",
                                                "source": "beginner check | owner feedback, <date>"}},
                     "no_diagram": {"<step id>": "why the picture and words are enough"}},
- "long_steps_kept": {"<step id>": "why this step stays over the word budget"},
- "learned": ["what you'd do differently next time, and anything the research didn't cover"]}
+ "merged_parts": {"<part id>": "why it was dropped and which part carries its paint"},
+ "learned": ["what you'd do differently next time, anything the cards, the research, or this skill didn't
+             cover, and any drafted line you had to rewrite (which card, which subject)"]}
 ```
 
-- `read`, `technique`, `order`, `steps`, and `beginner_check` are required; every step appears in `steps` and in
+- `read`, `technique`, `order`, `steps`, and `beginner_check` are required; every step id appears in `steps` (why this step, and why now) and in
   either `beginner_check.diagrams` or `beginner_check.no_diagram`. The seal checks this.
 - `canvas_fit` only with `--canvas`; `beginner_version` whether you made one or not.
-- List every filter you looked at, kept or not, with its image path relative to the lesson.
+- List every filter you looked at, kept or not, with its image path relative to the lesson. Step pictures aren't
+  filters: they're cut from the finish, so they get no `filters` entry.
+- `merged_parts` is an empty object when no part was dropped in step 2c.
 - Every technique in `techniques/` you didn't pick goes in `considered`.

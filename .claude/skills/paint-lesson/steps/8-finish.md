@@ -1,19 +1,13 @@
 # Step 8: diagrams, notes, seal, report
 
 ## 8a. Construction diagrams
-Follow `../paint-lesson/steps/7-diagrams.md` as written: go through every step as someone who has never painted
+Follow `steps/diagrams.md`: go through every step as someone who has never painted
 and give a `construct` diagram to each step that blocks in a shaped object. It goes on the step's entry in
 `text.json`. The Where picture and the paint map already show where and which paint, so a diagram is for **how to
 build the shape**, nothing else. `publish`, then `preview-diagrams` to look at them.
 
 ## 8b. Notes
-Follow `../paint-lesson/steps/8-notes.md` for `notes.json` (its schema wins over anything step 0 said about field
-names), with these differences:
-- no `filters` entries for step pictures and no `throwaways` (there are none);
-- add `"merged_parts": {"<part id>": "why"}` for any part dropped in step 2c (an empty object if none);
-- `steps` still has one entry per step id: why this step, and why now;
-- `learned`: anything the cards, the research, or this skill didn't cover, and any drafted line you had to rewrite
-  (which card, which subject), so the card can be improved.
+Follow `steps/notes.md` for `notes.json` (its schema wins over anything step 0 said about field names).
 
 ## 8b2. Drafted element techniques
 Each file in `<lesson>/elements/` was filed in step 2b. If you changed a draft since, comment the new version on its

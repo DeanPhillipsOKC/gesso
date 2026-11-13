@@ -27,8 +27,17 @@ def hands_off(run: Path) -> bool:
     return of(run, data)["kind"] == "hands-off"
 
 
+def is_v2(run: Path) -> bool:
+    """Whether a run was made by pipeline v2. The site holds versions from POC 1.0.0 on (owner, 2026-11-13, #82):
+    an older run left in output/ stays in the lesson history and never goes back on a tile."""
+    data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
+    return data.get("plan_version") == 2
+
+
 def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
     data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
+    if not is_v2(lesson):
+        raise ValueError(f"{lesson.name} was made by pipeline v1; the site holds versions from POC 1.0.0 on (#82)")
     if not hands_off(lesson):  # owner, 2026-11-12: the site shows what the tool makes on its own
         from provenance import of
         raise ValueError(f"{lesson.name} isn't hands-off ({of(lesson, data)['kind']}); only lessons the skill made and "
@@ -85,18 +94,12 @@ def kind(data: dict) -> str:
 
 
 def standalone(run: Path) -> str:
-    """The run's self-contained page, or one built from its saved lesson.json for runs from before those existed
-    (nothing is rerun: same pictures, text, and recipes)."""
+    """The run's self-contained page. A run with none (from before publish wrote one) can't be shown: the error says
+    so, and add_versions skips the run with that message. Since #82 no page is rebuilt from an old lesson.json."""
     page_file = run / "lesson-standalone.html"
-    if page_file.exists():
-        return page_file.read_text(encoding="utf-8")
-    import yaml
-    from lesson_page import page
-    data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
-    raw = json.loads((run / "plan.json").read_text(encoding="utf-8")) if (run / "plan.json").exists() else {}
-    technique = yaml.safe_load((ROOT / (raw.get("technique") or "techniques/acrylic-paint-along-beginner.yaml"))
-                               .read_text(encoding="utf-8"))
-    return page(data, technique, run, embed=True, standalone=True)
+    if not page_file.exists():
+        raise FileNotFoundError(f"no lesson-standalone.html in {run.name}; only runs published with one can be shown")
+    return page_file.read_text(encoding="utf-8")
 
 
 def add_versions(site: Path, slug: str, current: str, output: Path, listed: list[dict] | None = None,
@@ -119,8 +122,8 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
             versions[v["id"]] = dict(v)
     for run in sorted(output.glob(f"{photo}_skill_*")):
         rid = run.name.split("_skill_")[-1]
-        if rid in remove or not (run / "lesson.json").exists():
-            continue
+        if rid in remove or not (run / "lesson.json").exists() or not is_v2(run):
+            continue  # a v1 run stays in the lesson history only (#82)
         if not hands_off(run):
             if rid in versions:
                 print(f"kept {run.name} on the site though it's no longer hands-off; site-refresh --remove {rid} "
@@ -149,10 +152,11 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
 
 def known_problems_for(site: Path, x: dict, output: Path) -> int:
     """Refresh the known-problems section on the lesson's page and every version's page. Returns how many the
-    current one has (left as they are, plus open issues), for its tile."""
+    current one has (left as they are, plus open issues), for its tile. With the current run's folder not on this
+    machine (output/ isn't in git), the tile keeps the count it had."""
     from known_problems import refresh_page
     photo = x["source"].split("_skill_")[0]
-    count = 0
+    count = x.get("known", 0)
     for v in x.get("versions") or []:
         page = site / v["href"] / "index.html"
         run = output / f"{photo}_skill_{v['id']}"
@@ -167,7 +171,7 @@ def newest_hands_off(photo: str, output: Path, remove: tuple[str, ...] = ()) -> 
     """The newest sealed, hands-off run of a picture in `output` that can be shown, or None."""
     for run in sorted(output.glob(f"{photo}_skill_*"), reverse=True):
         if (run.name.split("_skill_")[-1] not in remove and (run / "lesson.json").exists()
-                and (run / "lesson-standalone.html").exists() and hands_off(run)):
+                and (run / "lesson-standalone.html").exists() and is_v2(run) and hands_off(run)):
             return run
     return None
 

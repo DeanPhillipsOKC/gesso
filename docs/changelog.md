@@ -6,6 +6,16 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.3.1 (2026-11-13)
+Nothing a lesson shows changes. Pipeline v1 is removed (#82): the owner passed the v2 gate and won't go back to v1.
+- `/paint-lesson` runs pipeline v2 (it was `/paint-lesson-v2` until now). The v1 skill and its tools are gone:
+  `lock-steps`, `carry-forward`, `finish-from-step`, `split-texture`, `render-step`, `from-finish`, the throwaway
+  filters, the v1 spike in `run.py`, and `publish` for a version 1 plan (it's refused with what to do instead).
+- The lessons site's tiles hold versions from POC 1.0.0 on. The 13 versions before it (one 0.20.0, two 0.25.0, one
+  0.26.0, nine 0.26.1) were taken off the site; they stay in the lesson history with every other run.
+- `site-refresh` keeps a tile's known-problems count when its run isn't on the machine (a fresh checkout has no
+  `output/`); before, it set the count to 0.
+
 ## POC 1.3.0 (2026-11-13)
 - The top of a lesson page is shorter, and the steps start much higher (#94). Right after the finished painting,
   "Tubes to get out" lists each tube with its color, in the order the steps first need it ("first in step 2"), so

@@ -32,7 +32,6 @@ from run import IMAGE_MODEL, ROOT, Ledger, edit_image, png_bytes, size_for  # no
 CACHE_DIR = ROOT / "output" / ".render-cache"
 DEFAULT_MAX_COST = 1.00  # dollars of renders per lesson
 DEFAULT_MAX_REDOS = 2  # renders per step after the first
-STEP_WORDS = 110  # a step's instructions past this many words get listed in publish's long_steps
 INSTRUCTION_WORDS = 40  # one instruction past this many words gets listed in publish's long_instructions
 QUALITIES = ["low", "medium", "high", "xhigh", "max"]
 # Worst cost per render seen in the spike's 290 renders (2026-10-19), used before a lesson has its own.
@@ -255,34 +254,34 @@ def add_render(sub) -> None:
 # Lesson files (#10): plan.json in, step images and lesson.html out
 # ---------------------------------------------------------------------------
 #
-# <lesson>/plan.json     written by the skill: the spike's LessonPlan fields plus "photo" and "technique" paths
-#                        (relative to the repo) and "quality"
-# <lesson>/99_finish.png the finished painting; every step copies from it
-# <lesson>/00_canvas.png plain white canvas (made on first use)
-# <lesson>/NN_<id>.png   step images, NN from 01
-# <lesson>/text.json     written by the skill: {"steps": [{stage_id, what_to_do, mixes, watch_out, paint_notes,
-#                        made_with, reason, brushes: [{brush, use}], strokes: [{name, how}]}]}
-# <lesson>/review.json   optional, written by the skill: {"finish_issues": [...], "review_issues": [...]}
+# <lesson>/plan.json     written by the skill: "plan_version": 2, parts, paints, stages, plus "photo" and
+#                        "technique" paths (relative to the repo); docs/design/pipeline-v2.md section 5
+# <lesson>/99_finish.png the finished painting; every step is cut from it
+# <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is a copy of the finish)
+# <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, summary, tip, lines: [{kind, text,
+#                        edited}], brushes: [{brush, use}], made_with, reason}]}; design section 10
+# <lesson>/review.json   written by the skill: {"finish_issues": [...], "text_issues": [...]}
 
 
 def load_plan(lesson: Path):
-    """(plan.json as written, the plan as a version 1 LessonPlan, the technique). A version 2 plan is checked with
-    plan2.problems and seen as version 1 through publish2.as_v1, so mix, publish, and the seal read either."""
+    """(plan.json as written, the plan as the LessonPlan model mix, publish, and the seal read, the technique). The
+    plan is checked with plan2.problems and seen through publish2.as_v1 (design section 13). A version 1 plan is
+    refused: that pipeline was removed (#82)."""
     import yaml
     import plan2
-    from run import LessonPlan
+    import publish2
 
     raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
+    if not plan2.is_v2(lesson):
+        raise Refused("plan.json isn't a version 2 plan (no \"plan_version\": 2). Version 1 lessons can't be published "
+                      "or mixed any more (#82); make the lesson again with /paint-lesson.")
     technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
     if raw.get("palette"):  # the painter's own tubes (palettes/<name>.yaml) instead of the technique's five
         technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
-    if plan2.is_v2(lesson):
-        import publish2
-        wrong = plan2.problems(raw)
-        if wrong:
-            raise Refused("fix plan.json first: " + " | ".join(wrong))
-        return raw, publish2.as_v1(raw), technique
-    return raw, LessonPlan.model_validate(raw), technique
+    wrong = plan2.problems(raw)
+    if wrong:
+        raise Refused("fix plan.json first: " + " | ".join(wrong))
+    return raw, publish2.as_v1(raw), technique
 
 
 def load_palette(name: str) -> tuple[list[str], str]:
@@ -298,69 +297,8 @@ def load_palette(name: str) -> tuple[list[str], str]:
 
 
 def step_paths(lesson: Path, plan) -> list[Path]:
-    """NN_<id>.png for every step. In version 1 the last step is the finish itself; in version 2 build-steps writes
-    the last step as its own copy of the finish."""
-    import plan2
-
-    paths = [lesson / f"{i + 1:02d}_{s.id}.png" for i, s in enumerate(plan.steps)]
-    if not plan2.is_v2(lesson):
-        paths[-1] = lesson / "99_finish.png"
-    return paths
-
-
-def render_step(a: argparse.Namespace, client=None) -> dict:
-    """Render planned steps with the spike's step prompt, all at once (parallel) or each from the next (anchored)."""
-    from concurrent.futures import ThreadPoolExecutor
-
-    from PIL import Image
-
-    from run import planned_prompt
-
-    lesson = Path(a.lesson)
-    raw, plan, technique = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    finish = lesson / "99_finish.png"
-    if not finish.exists():
-        raise Refused(f"no finished painting at {finish}; make it first")
-    unknown = [x for x in a.steps if x not in ids]
-    if unknown:
-        raise Refused(f"unknown step ids {unknown}; plan has {ids}")
-    if ids[-1] in a.steps:
-        raise Refused(f"'{ids[-1]}' is the last step, which is the finished painting itself")
-    if a.fix and len(a.steps) != 1:
-        raise Refused("--fix applies to one step at a time")
-    canvas = lesson / "00_canvas.png"
-    if not canvas.exists():
-        Image.new("RGB", Image.open(finish).size, (246, 245, 240)).save(canvas)
-    paths = step_paths(lesson, plan)
-    budget = Budget(lesson, a.max_cost, a.max_redos)
-
-    def one(step_id: str) -> dict:
-        i = ids.index(step_id)
-        s = plan.steps[i]
-        later = paths[i + 1]
-        anchored = a.mode == "anchored" and later != finish
-        if anchored and not later.exists():
-            return {"step": s.id, "refused": f"anchored mode needs the next step's image first: {later.name}"}
-        base = later if anchored else finish
-        inputs = ([base] if s.covers_canvas else [base, canvas]) + ([finish] if anchored else [])
-        prompt = planned_prompt(technique, s, anchored, [t.paints for t in plan.steps[: i + 1]],
-                                [t.paints for t in plan.steps[i + 1:]], a.fix or "")
-        try:
-            return render_one(budget, s.id, inputs, prompt, paths[i], a.quality, a.why_not_filter, None, a.fresh, client)
-        except Refused as e:
-            return {"step": s.id, "refused": str(e)}
-
-    if not (a.why_not_filter or "").strip():
-        raise Refused("--why-not-filter is required: say why no filter or composite can make these steps.")
-    order = sorted(a.steps, key=ids.index, reverse=True)  # latest first, so anchored steps can chain
-    if a.mode == "parallel":
-        with ThreadPoolExecutor(max_workers=6) as pool:
-            results = list(pool.map(one, order))
-    else:
-        results = [one(x) for x in order]
-    led = budget.ledger
-    return {"steps": results, "lesson_total_usd": led.total_cost, "budget_left_usd": round(a.max_cost - led.total_cost, 4)}
+    """NN_<id>.png for every step. build-steps writes the last step as its own copy of the finish."""
+    return [lesson / f"{i + 1:02d}_{s.id}.png" for i, s in enumerate(plan.steps)]
 
 
 def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
@@ -376,17 +314,14 @@ def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
     return out
 
 
-def paints_not_listed(stages: list[dict], paints: dict, word: bool = True) -> list[dict]:
-    """Paints a step's instructions or values table name that aren't in its colors, so their recipe never shows.
-    Version 1 matched a name between two backspace characters (a "\\b" lost in an rf-string), so it never found one
-    in the text; it keeps that (word=False) so a version 1 lesson publishes and seals as before."""
-    edge = r"\b" if word else "\x08"
+def paints_not_listed(stages: list[dict], paints: dict) -> list[dict]:
+    """Paints a step's instructions or values table name that aren't in its colors, so their recipe never shows."""
 
     def said(n: str, text: str) -> bool:
-        if word:  # "Sea turquoise" inside "Light sea turquoise" is the other paint, not this one
-            for longer in sorted((m for m in paints if m != n and n.lower() in m.lower()), key=len, reverse=True):
-                text = re.sub(re.escape(longer), " ", text, flags=re.I)
-        return bool(re.search(edge + re.escape(n) + edge, text, re.I))
+        # "Sea turquoise" inside "Light sea turquoise" is the other paint, not this one
+        for longer in sorted((m for m in paints if m != n and n.lower() in m.lower()), key=len, reverse=True):
+            text = re.sub(re.escape(longer), " ", text, flags=re.I)
+        return bool(re.search(r"\b" + re.escape(n) + r"\b", text, re.I))
 
     return [{"id": st["id"], "paint": n} for st in stages for n in paints
             if n not in {c["name"] for c in st["colors"]}
@@ -425,8 +360,8 @@ def tubes_used(palette: list[str], paints) -> list[str]:
 
 
 def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
-    """Solve every paint's recipe from the palette tubes against its swatch (#22), and write <lesson>/mixes.json.
-    The swatches must already be snapped to the finish (sample_swatches)."""
+    """Solve every paint's recipe from the palette tubes against its measured color (#22), and write
+    <lesson>/mixes.json."""
     import mixing
 
     tubes = technique.get("palette", [])
@@ -448,16 +383,10 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
 
 def mix_tool(a: argparse.Namespace) -> dict:
     """Compute the paint recipes for a lesson, so the skill can see them before writing the step text."""
-    import plan2
-    from run import sample_swatches
-
     lesson = Path(a.lesson)
     raw, plan, technique = load_plan(lesson)
-    finish = lesson / "99_finish.png"
-    if not finish.exists():
-        raise Refused(f"no finished painting at {finish}; the swatches are sampled from it")
-    if not plan2.is_v2(lesson):  # a version 2 paint's hex is already measured from the finish
-        sample_swatches(plan, finish)
+    if not (lesson / "99_finish.png").exists():
+        raise Refused(f"no finished painting at {lesson / '99_finish.png'}; make it first")
     mixes = compute_mixes(lesson, plan, technique)
     return {"json": str(lesson / "mixes.json"), "cost_usd": 0.0,
             "paints": [{"name": n, "recipe": m["text"], "target": m["target_hex"], "mixed": m["mixed_hex"],
@@ -472,16 +401,13 @@ NOTES_REQUIRED = ("read", "technique", "order", "steps", "beginner_check")
 def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict) -> list[str]:
     """What stops a lesson being sealed hands-off: the rules the skill asks for, checked instead of remembered
     (two hands-off runs, 2026-11-12, each let a small rule slip late in a long run).
-    A version 2 lesson has no image review and no regions, and no word limit on a step (design section 13)."""
-    import plan2
-
-    v2 = plan2.is_v2(lesson)
+    There's no image review, no regions, and no word limit on a step (design section 13)."""
     out = []
     ids = [s.id for s in plan.steps]
-    review_step = "step 7b" if v2 else "step 6b"  # the v2 skill's text review is its step 7b
+    review_step = "step 7b"  # the skill's text review
     if not (lesson / "review.json").exists():
-        out.append("review.json is missing (" + ("step 7b" if v2 else "steps 2, 5, 6b") + ")")
-    for key in ("finish_issues", "text_issues") if v2 else ("finish_issues", "review_issues", "text_issues"):
+        out.append("review.json is missing (step 7b)")
+    for key in ("finish_issues", "text_issues"):
         if key not in review:
             out.append(f"review.json has no {key} (an empty list if there were none)")
     if not (lesson / "trials" / "review" / "review.json").exists():
@@ -503,22 +429,15 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         if t is None:
             out.append(f"text.json has no step {sid}")
             continue
-        # version 2 text is its lines; its strokes come from the plan's stroke and the cards
-        for key in ("summary", "lines", "brushes", "made_with") if v2 else ("summary", "brushes", "strokes", "made_with"):
-            if not t.get(key) and not (key == "strokes" and sid == ids[-1]):
+        # the text is its lines; its strokes come from the plan's stroke and the cards
+        for key in ("summary", "lines", "brushes", "made_with"):
+            if not t.get(key):
                 out.append(f"{sid}: text.json has no {key}")
-    for s in plan.steps:
-        if not s.regions and not v2:
-            out.append(f"{s.id}: no regions in plan.json")
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
         if checks.get(key):
             out.append(f"{key}: {checks[key]}")
     if checks.get("missing_aids"):
         out.append("aids/aids.json is missing or was made for other steps: run step-aids, then publish --final again")
-    kept = notes.get("long_steps_kept") or {}
-    long = [x for x in checks.get("long_steps") or [] if x["id"] not in kept]  # (publish doesn't list them for version 2)
-    if long:
-        out.append(f"long_steps not cut or explained in notes.long_steps_kept: {long}")
     noted = " ".join(n for t in text.values() for n in (t.get("paint_notes") or [])).lower()
     for name in checks.get("unreachable_paints") or []:
         if name.lower() not in noted:
@@ -527,35 +446,33 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
 
 
 CHECKED = ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions",
-           "missing_aids", "unreachable_paints")  # publish's counts that `check` reports for a version 2 lesson
+           "missing_aids", "unreachable_paints")  # publish's counts that `check` also reports
 
 
 def publish(a: argparse.Namespace) -> dict:
     """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
-    import plan2
+    import checks
+    import elements
     import publish2
     from lesson_page import page
-    from run import CLAUDE_MODEL, sample_swatches
+    from run import CLAUDE_MODEL
 
     lesson = Path(a.lesson)
-    v2 = plan2.is_v2(lesson)
     raw, plan, technique = load_plan(lesson)
     paths = step_paths(lesson, plan)
     missing = [p.name for p in paths if not p.exists()]
     if missing:
-        raise Refused(f"missing step images: {missing}" + (f". Run build-steps --lesson {lesson}." if v2 else ""))
-    if not v2:  # a version 2 paint's hex is already measured from the finish
-        sample_swatches(plan, paths[-1])
+        raise Refused(f"missing step images: {missing}. Run build-steps --lesson {lesson}.")
     mixes = compute_mixes(lesson, plan, technique)
     text_path = lesson / "text.json"
     text = {t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]} if text_path.exists() else {}
     review_path = lesson / "review.json"
     review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
-    notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters, throwaways
+    notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
     led = LessonLedger(lesson)
 
-    extras = publish2.paint_extras(raw) if v2 else {}  # a version 2 paint keeps its id and parts beside the v1 keys
+    extras = publish2.paint_extras(raw)  # a paint keeps its id and parts beside the LessonPlan keys
 
     def paint_dict(p) -> dict:
         d = {**extras.get(p.name, {}), **p.model_dump()}
@@ -571,23 +488,9 @@ def publish(a: argparse.Namespace) -> dict:
     if photo.exists() and not photo_copy.exists():
         shutil.copyfile(photo, photo_copy)
 
-    def txt(s, key, default):
-        return text[s.id].get(key, default) if s.id in text else default
-
     view = canvas_view(lesson, [p.name for p in paths])
     prune_canvas_view(lesson, [p.name for p in paths])
-    stages = [
-        {
-            "id": s.id, "name": s.name, "image": view.get(paths[i].name, paths[i].name), "paints": s.paints, "looks_like": s.looks_like,
-            "steps": txt(s, "what_to_do", s.how), "mixes": txt(s, "mixes", []),
-            "colors": [paints[c] for c in s.colors if c in paints],
-            "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
-            "brushes": s.brushes, "dry_time": technique["dry_time"],
-            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""), "summary": txt(s, "summary", ""), "values": txt(s, "values", []),
-            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
-        }
-        for i, s in enumerate(plan.steps)
-    ] if not v2 else publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
+    stages = publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
     from version import stamp
     old = lesson / "lesson.json"
     from version import with_made
@@ -607,15 +510,13 @@ def publish(a: argparse.Namespace) -> dict:
         "palette_name": technique.get("palette_name", ""),
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
+        # beside the keys every reader of lesson.json uses: the plan's stages, for the page's headings, and the aids
+        "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
-    if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings, and the step aids
-        lesson_data.update(plan_version=2, groups=publish2.groups(raw), aids=publish2.attach_aids(lesson, stages))
-        import elements
-
-        if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
-            lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
-        if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
-            lesson_data["review_context"] = review["review_context"]
+    if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
+        lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
+    if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
+        lesson_data["review_context"] = review["review_context"]
     import provenance
     lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
@@ -625,7 +526,7 @@ def publish(a: argparse.Namespace) -> dict:
     # one self-contained HTML document (images inlined), for the lessons site or to send as a file
     standalone = page(lesson_data, technique, lesson, embed=True, standalone=True)
     (lesson / "lesson-standalone.html").write_text(standalone, encoding="utf-8")
-    if v2 and len(standalone.encode("utf-8")) > publish2.MAX_PAGE_BYTES:
+    if len(standalone.encode("utf-8")) > publish2.MAX_PAGE_BYTES:
         raise Refused(f"the page is {len(standalone.encode('utf-8')) / 1e6:.1f} MB, over the {publish2.MAX_PAGE_BYTES / 1e6:g} MB "
                       "a phone should load. Merge small steps in the plan, or lower aids.CLOSE_UP so fewer steps get a "
                       "close-up, then run build-steps, step-aids, and publish again.")
@@ -637,11 +538,6 @@ def publish(a: argparse.Namespace) -> dict:
         k = st["made_with"].split(":")[0]
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
-    if v2:
-        import checks
-        jumps = checks.texture_jumps(lesson, raw)
-    else:
-        jumps = texture_jumps(lesson, paths)
     result = {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed,
             "gesso": lesson_data["gesso"], "provenance": lesson_data["provenance"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
@@ -649,33 +545,26 @@ def publish(a: argparse.Namespace) -> dict:
             # a diagram the page can't explain: the skill's beginner check didn't write down why
             "undocumented_diagrams": undocumented_diagrams(stages, notes),
             "unreachable_paints": [n for n, m in mixes.items() if not m["reachable"]],
-            # steps whose instructions run past the word budget in the skill (about 100 words)
-            # (not checked for version 2: no word limit on a step, design section 10)
-            "long_steps": [{"id": st["id"], "words": n} for st in stages
-                           if (n := sum(len(x.split()) for x in st["steps"])) > STEP_WORDS and not v2],
-            # paints an instruction or values table names that aren't in the step's colors, so their recipe never shows
-            "paints_not_listed": paints_not_listed(stages, paints, word=v2),
+            # (no word limit on a step, design section 10, so no long_steps)
+            # paints an instruction names that aren't in the step's colors, so their recipe never shows
+            "paints_not_listed": paints_not_listed(stages, paints),
             # paints whose computed recipes come out the same (or mix within Delta E 3): two names, one color
             "duplicate_recipes": duplicate_recipes(mixes),
-            # steps that turn a big area from flat to textured at once: split them with split-texture (version 2:
-            # the same list check reports, which leaves out flat coats)
-            "texture_jumps": jumps,
+            # steps that finish a big area from flat to textured at once: the same list check reports
+            "texture_jumps": checks.texture_jumps(lesson, raw),
             # single instructions past the skill's budget (about 35 words): usually two moves to split
             "long_instructions": [{"id": st["id"], "n": k + 1, "words": len(x.split())} for st in stages
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
-            "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
-    if v2:  # the step's teaching pictures (step-aids), and the page's size
-        result.update(missing_aids=not lesson_data.get("aids"), page_mb=round(len(standalone.encode("utf-8")) / 1e6, 2))
-        import checks
-        found = checks.run(lesson, text)  # every measured check in one list (design section 12)
-        result.update(check=found["failures"], check_notes=found["notes"])
+            "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost,
+            # the steps' teaching pictures (step-aids), and the page's size
+            "missing_aids": not lesson_data.get("aids"), "page_mb": round(len(standalone.encode("utf-8")) / 1e6, 2)}
+    found = checks.run(lesson, text)  # every measured check in one list (design section 12)
+    result.update(check=found["failures"], check_notes=found["notes"])
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
-        if v2:  # what check already reports (in its own words), left out of the seal's list so it isn't said twice
-            problems = seal_problems(lesson, plan, text, review, notes,
-                                     {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
-        else:
-            problems = seal_problems(lesson, plan, text, review, notes, result)
+        # what check already reports (in its own words) is left out of the seal's list so it isn't said twice
+        problems = seal_problems(lesson, plan, text, review, notes,
+                                 {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
         if problems:
             raise Refused("not sealed; fix these and run publish --final again: " + " | ".join(problems))
         provenance.seal(lesson, lesson_data)
@@ -777,242 +666,6 @@ def fit_canvas(a: argparse.Namespace) -> dict:
     return {**{k: v for k, v in info.items() if k != "why"}, "advice": advice, "cost_usd": 0.0}
 
 
-def insert_steps(lesson: Path, before_id: str, new_steps: list[dict], images: list) -> list[str]:
-    """Insert planned steps (with their pictures) before `before_id`, renumbering every step image after them, and
-    their raw copies and lock record, so splitting a step is one call (#41)."""
-    from PIL import Image
-
-    raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
-    _, plan, _ = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    if before_id not in ids:
-        raise Refused(f"unknown step {before_id}; plan has {ids}")
-    if before_id == ids[-1]:
-        raise Refused("can't insert before the finish this way; split the step before it")
-    old = step_paths(lesson, plan)
-    at = ids.index(before_id)
-    raw["steps"][at:at] = new_steps
-    raw_dir, state_path = lesson / "trials" / "raw", lesson / "trials" / "raw" / "locked.json"
-    state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
-    # rename from the last step backward so nothing is overwritten
-    moves = []
-    for i in range(len(old) - 2, at - 1, -1):  # every planned step image from `at` on, not the finish
-        src = old[i]
-        dst = lesson / f"{i + 1 + len(new_steps):02d}_{plan.steps[i].id}.png"
-        moves.append((src, dst))
-    for src, dst in moves:
-        for folder in (lesson, raw_dir):
-            a_, b_ = folder / src.name, folder / dst.name
-            if a_.exists():
-                a_.replace(b_)
-        if src.name in state:
-            state[dst.name] = state.pop(src.name)
-    names = []
-    for k, (step, img) in enumerate(zip(new_steps, images)):
-        path = lesson / f"{at + 1 + k:02d}_{step['id']}.png"
-        Image.fromarray(img).save(path)
-        names.append(path.name)
-    if state:
-        state_path.write_text(json.dumps(state, indent=1), encoding="utf-8")
-    (lesson / "plan.json").write_text(json.dumps(raw, indent=2, ensure_ascii=False), encoding="utf-8")
-    return names
-
-
-def split_texture(a: argparse.Namespace) -> dict:
-    """Free in-between passes for a step that jumps from flat to textured: its new marks arrive darkest first."""
-    import numpy as np
-    from PIL import Image
-
-    import passes
-
-    lesson = Path(a.lesson)
-    raw, plan, _ = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    if a.step not in ids or ids.index(a.step) == 0:
-        raise Refused(f"pick a step after the first; plan has {ids}")
-    paths = step_paths(lesson, plan)
-    i = ids.index(a.step)
-    before = np.asarray(Image.open(paths[i - 1]).convert("RGB"))
-    after = np.asarray(Image.open(paths[i]).convert("RGB").resize(before.shape[1::-1]))
-    mids = passes.value_passes(before, after, len(a.ids) + 1)
-    target = raw["steps"][i]
-    n = len(a.ids) + 1
-    which = ["the darkest", "the mid-dark", "the middle", "the lighter"]
-    new = [{**{k: target[k] for k in ("brushes", "regions", "protect") if k in target},
-            # its own pass, not a copy of the parent's: the skill writes its colors and text from its picture
-            "colors": [], "paints": f"{which[min(k, 3)]} marks of: {target.get('paints', '')}",
-            "id": sid, "name": name, "looks_like": f"pass {k + 1} of {n}: {which[min(k, 3)]} marks only, over the base",
-            "covers_canvas": target.get("covers_canvas", False), "how": [], "watch_out": []}
-           for k, (sid, name) in enumerate(zip(a.ids, a.names))]
-    names = insert_steps(lesson, a.step, new, mids)
-    chain = [before] + mids + [after]
-    return {"inserted": names, "before": a.step, "cost_usd": 0.0,
-            "texture_jumps": [round(passes.texture_jump(x, y), 3) for x, y in zip(chain, chain[1:])],
-            "next": "give each new step its colors in plan.json and its own text in text.json, from its picture (only "
-                    "the marks it adds, darkest first); trim the original step's text to only what it still adds; then "
-                    "lock-steps, publish, step-pairs"}
-
-
-def carry_forward(a: argparse.Namespace) -> dict:
-    """Copy a later step's pixels inside boxes onto an earlier step, so a subject's shape and markings match from
-    the step that paints them on. Free (chickadee, 2026-11-11: the head step's cap and cheek band differed from the
-    feather step's; the head step was made from the feather step's head on the body step's plain bird)."""
-    import cv2
-    import numpy as np
-    from PIL import Image
-
-    lesson = Path(a.lesson)
-    _, plan, _ = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    for sid in (a.source, a.target):
-        if sid not in ids:
-            raise Refused(f"unknown step {sid}; plan has {ids}")
-    if ids.index(a.source) <= ids.index(a.target):
-        raise Refused("--from must be a later step than --to")
-    paths = step_paths(lesson, plan)
-    to_path, from_path = paths[ids.index(a.target)], paths[ids.index(a.source)]
-    dst = np.asarray(Image.open(to_path).convert("RGB")).astype(np.float32)
-    src = np.asarray(Image.open(from_path).convert("RGB").resize(dst.shape[1::-1])).astype(np.float32)
-    h, w = dst.shape[:2]
-    mask = np.zeros((h, w), np.float32)
-    for x0, y0, x1, y1 in a.box:
-        mask[int(y0 * h):int(y1 * h), int(x0 * w):int(x1 * w)] = 1
-    mask = cv2.GaussianBlur(mask, (0, 0), 3)[..., None]
-    Image.fromarray(np.clip(dst * (1 - mask) + src * mask, 0, 255).astype(np.uint8)).save(to_path)
-    LessonLedger(lesson).append({"tool": "filter", "filter": "carry-forward", "step": a.target, "why": a.why,
-                                 "input": str(from_path), "out": str(to_path), "settings": {"box": a.box}, "cost_usd": 0.0})
-    return {"out": str(to_path), "from": a.source, "cost_usd": 0.0,
-            "next": "lock-steps, then publish and step-pairs, and look at the subject across its steps"}
-
-
-def finish_from_step(a: argparse.Namespace, client=None) -> dict:
-    """Rebuild the finished painting from the last step, adding only what the last step paints, so the subject
-    can't change shape at the very end (chickadee, 2026-11-11: the finish drew the bird smaller and more upright
-    than every step before it). The old finish is kept in trials/."""
-    lesson = Path(a.lesson)
-    _, plan, technique = load_plan(lesson)
-    paths = step_paths(lesson, plan)
-    base = paths[-2]
-    if not base.exists():
-        raise Refused(f"missing {base.name}")
-    finish = paths[-1]
-    keep = lesson / "trials" / f"99_finish_before_{time.strftime('%H%M%S')}.png"
-    keep.parent.mkdir(parents=True, exist_ok=True)
-    if finish.exists():
-        shutil.copyfile(finish, keep)
-    prompt = (f"This is a nearly finished acrylic painting. Add only: {a.add}. Change nothing else: keep every "
-              f"shape, size, position, color, and brushstroke exactly as it is. {technique.get('framing', '')}")
-    budget = Budget(lesson, a.max_cost, a.max_redos)
-    out = lesson / "trials" / "finish_from_step.png"
-    r = render_one(budget, "finish", [base], prompt, out, a.quality, a.why_not_filter, None, False, client)
-    from PIL import Image
-
-    Image.open(out).convert("RGB").resize(Image.open(base).size).save(finish)
-    return {**r, "finish": str(finish), "previous_finish": str(keep),
-            "next": "read the new finish against the last step: only the listed details added. Then sample swatches "
-                    "again (mix), lock-steps, publish, step-pairs"}
-
-
-def from_finish_tool(a: argparse.Namespace) -> dict:
-    """Every step picture cut from the finished painting (#8): no renders, nothing can drift. Copies the lesson to a
-    new run folder first, so the rendered lesson stays as it was and both show in the lesson history."""
-    import datetime as dt
-    import numpy as np
-    from PIL import Image
-    from from_finish import build
-
-    src = Path(a.lesson)
-    if a.in_place:
-        # the skill's own step 6a, inside its run: the same lesson, so it can still be sealed hands-off
-        if (src / "sealed.json").exists():
-            raise Refused("this lesson is sealed; a change now would mark it edited. Make a new run, or a recut "
-                          "without --in-place.")
-        dst = src
-    else:
-        stem = src.name.split("_skill_")[0]
-        dst = src.parent / f"{stem}_skill_{dt.datetime.now():%Y%m%d-%H%M%S}"
-        skip = {"trials", "versions", "embed", "canvas"}
-        shutil.copytree(src, dst, ignore=lambda d, names: [n for n in names if Path(d) == src and n in skip])
-        from provenance import derive
-        derive(dst, src, f"from-finish{' --steps ' + ' '.join(a.steps) if a.steps else ''}: {a.why}")
-    raw, plan, technique = load_plan(dst)
-    paths = step_paths(dst, plan)
-    hexes = {p.name: p.hex for p in plan.paints}
-    steps = [{"id": s.id, "regions": [list(b) for b in (s.regions or [])], "colors": [hexes[c] for c in s.colors if c in hexes]}
-             for s in plan.steps]
-    finish = np.array(Image.open(paths[-1]).convert("RGB"))
-    raw_dir = dst / "trials" / "rendered"
-    raw_dir.mkdir(parents=True, exist_ok=True)
-    pictures, owner = build(finish, steps)
-    chosen = set(a.steps or [s["id"] for s in steps])
-    unknown = chosen - {s["id"] for s in steps}
-    if unknown:
-        raise Refused(f"no such steps: {sorted(unknown)}")
-    from from_finish import box_mask
-    previous = None
-    for k, (path, pic) in enumerate(zip(paths, pictures)):
-        if path.exists():
-            shutil.copyfile(path, raw_dir / path.name)
-        if steps[k]["id"] not in chosen:
-            previous = np.array(Image.open(path).convert("RGB")) if path.exists() else pic
-            continue
-        if a.steps and previous is not None and k < len(steps) - 1:
-            # hybrid: the cut picture inside the step's regions, the step before it (rendered) everywhere else
-            inside = box_mask(pic.shape[:2], steps[k]["regions"])[..., None]
-            pic = np.where(inside, pic, previous)
-        Image.fromarray(pic).save(path)
-        previous = pic
-    text_path = dst / "text.json"
-    if text_path.exists():
-        text = json.loads(text_path.read_text(encoding="utf-8"))
-        for t in text["steps"]:
-            if t["stage_id"] != plan.steps[-1].id and t["stage_id"] in chosen:
-                t["made_with"], t["reason"] = "composite:from-finish", "cut from the finished painting (#8)"
-        text_path.write_text(json.dumps(text, indent=2), encoding="utf-8")
-    for name in ("lesson.json", "lesson.html", "lesson-artifact.html", "lesson-standalone.html") if dst != src else ():
-        (dst / name).unlink(missing_ok=True)  # a new lesson: stamped with this version, not the one it came from
-    led = LessonLedger(dst)
-    with led.locked():
-        # keep what this lesson still uses (the finish and the prep pictures); the step renders aren't used
-        if dst != src:  # a recut keeps only the renders it still uses; in place, the run's own ledger stays whole
-            steps_only = {s.id for s in plan.steps[:-1]} & chosen
-            led.calls = [c for c in led.calls if c.get("step") not in steps_only]
-        led.calls.append({"tool": "filter", "filter": "from-finish", "step": "", "why": a.why, "input": str(paths[-1]),
-                          "out": str(dst), "settings": {"from": src.name}, "cost_usd": 0.0})
-        led.save()
-    return {"lesson": str(dst), "from": src.name, "steps": len(paths),
-            "owned_share": {s["id"]: round(float((owner == k).mean()), 3) for k, s in enumerate(steps)}, "cost_usd": 0.0}
-
-
-def lock_steps(a: argparse.Namespace) -> dict:
-    """Keep finished areas and areas a step doesn't paint from changing (#30). Free."""
-    import lock as lk
-
-    lesson = Path(a.lesson)
-    raw, plan, technique = load_plan(lesson)
-    paths = step_paths(lesson, plan)
-    missing = [p.name for p in paths if not p.exists()]
-    if missing:
-        raise Refused(f"missing step images: {missing}")
-    from run import sample_swatches
-    sample_swatches(plan, paths[-1])  # the step paints' real colors, from the finish
-    hexes = {p.name: p.hex for p in plan.paints}
-
-    def rgb(h: str) -> tuple[int, int, int]:
-        return tuple(int(h.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
-
-    regions = [s.regions for s in plan.steps[:-1]]
-    protects = [s.protect for s in plan.steps[:-1]]
-    colors = [[rgb(hexes[c]) for c in s.colors if c in hexes] for s in plan.steps[:-1]]
-    report = lk.lock(lesson, paths[:-1], paths[-1], lesson / "00_canvas.png", regions, protects, colors,
-                     plan.steps[-1].regions)
-    LessonLedger(lesson).append({"tool": "filter", "filter": "lock-steps", "step": "", "why": a.why or "lock finished areas",
-                                 "input": str(lesson), "out": str(lesson), "settings": {"put_back": report}, "cost_usd": 0.0})
-    return {"put_back": report, "steps_without_regions": [s.id for s in plan.steps if not s.regions],
-            "backward_pass": "done" if "backward" in report else "skipped: every step, the last one too, needs regions",
-            "raw": str(lesson / "trials" / "raw"), "cost_usd": 0.0}
-
-
 def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
     """Step pictures cropped to the canvas box, in <lesson>/canvas/, for the page, the embed, and the review.
     Renders stay in the model's frame (later steps are rendered from them); only what the painter sees is cropped."""
@@ -1038,7 +691,7 @@ def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
 
 
 def prune_canvas_view(lesson: Path, keep: list[str]) -> list[str]:
-    """Drop crops of step images that no longer exist (after split-texture renumbers steps)."""
+    """Drop crops of step images that no longer exist (after the plan's steps change)."""
     out = lesson / "canvas"
     if not out.exists():
         return []
@@ -1049,21 +702,6 @@ def prune_canvas_view(lesson: Path, keep: list[str]) -> list[str]:
 
 
 def add_lesson_tools(sub) -> None:
-    p = sub.add_parser(
-        "render-step", help="PAID. Render planned steps from <lesson>/plan.json with the spike's step prompt.",
-        description="Render one or more planned steps, each copying from the finished painting (parallel) or from the "
-                    "next step and the finish (anchored). Same reason, caps, ledger, and cache as render.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--steps", nargs="+", required=True, help="step ids from plan.json (not the last one)")
-    p.add_argument("--mode", choices=["parallel", "anchored"], default="parallel")
-    p.add_argument("--fix", help="redo instruction for one step, from the review")
-    p.add_argument("--why-not-filter", help="required: why no filter or composite can make these steps")
-    p.add_argument("--quality", choices=QUALITIES, default="low")
-    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST)
-    p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS)
-    p.add_argument("--fresh", action="store_true")
-    p.set_defaults(func=render_step)
-
     p = sub.add_parser("publish", help="Free. Build lesson.json, lesson.html, and lesson-artifact.html once every step image exists.",
                        description="Snap paint swatches to the finish, merge plan.json, text.json, review.json, notes.json, and "
                                    "the ledger, and write lesson.json, lesson.html, and lesson-artifact.html (images inlined, "
@@ -1132,59 +770,6 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--score", type=int)
     p.add_argument("--note", default="", help="what the owner said, in their words")
     p.set_defaults(func=lambda a: {**__import__("history").rate(a.run, a.score, a.note), "cost_usd": 0.0})
-    p = sub.add_parser("from-finish", help="Free. Cut every step picture from the finished painting, in a copy of the lesson (#8).",
-                       description="Copies the lesson to a new run folder, then builds each step from 99_finish.png: each pixel "
-                                   "goes to the step whose region and paints fit it, earlier steps paint straight through "
-                                   "where later ones go, the first of several steps over one area is a flat coat and the "
-                                   "rest go on darkest first. The rendered steps are kept in trials/rendered/. Publish after.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--steps", nargs="+", help="only these steps (the rest stay rendered): best for a group of passes "
-                                           "over one area, like lavender rows and their dab passes")
-    p.add_argument("--in-place", action="store_true",
-                   help="change this lesson instead of a copy: the skill's own step 6a, before the seal")
-    p.add_argument("--why", required=True)
-    p.set_defaults(func=from_finish_tool)
-    p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
-                       description="For a subject that changes shape between steps: copies the later step's pixels inside the "
-                                   "boxes onto the earlier step, with a soft edge. Lock again afterwards.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--from", dest="source", required=True, help="the later step id, whose shape is right")
-    p.add_argument("--to", dest="target", required=True, help="the earlier step id to correct")
-    p.add_argument("--box", type=float, nargs=4, action="append", required=True, metavar=("X0", "Y0", "X1", "Y1"),
-                   help="0-1 box to copy; repeat for more")
-    p.add_argument("--why", required=True)
-    p.set_defaults(func=carry_forward)
-
-    p = sub.add_parser("finish-from-step", help="PAID. Rebuild the finished painting from the last step, adding only its details.",
-                       description="When the finish changes the subject's shape compared with the steps before it: renders "
-                                   "a new finish from the last step with only the listed details added. Keeps the old one.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--add", required=True, help="what the last step adds, e.g. 'the eye, beak, and feet; leaf veins'")
-    p.add_argument("--why-not-filter", required=True)
-    p.add_argument("--quality", choices=QUALITIES, default="high")
-    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST)
-    p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS)
-    p.set_defaults(func=finish_from_step)
-
-    p = sub.add_parser("split-texture", help="Free. Split a step that jumps from flat to textured into passes, darkest marks first.",
-                       description="Makes in-between pictures from the step before and the step itself (its new paint arriving "
-                                   "darkest first: dark marks on the flat base, then mid, then the rest), inserts them as "
-                                   "steps before it in plan.json, and renumbers the step images. Use when publish or step-pairs "
-                                   "reports a texture jump.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--step", required=True, help="the step that jumps")
-    p.add_argument("--ids", nargs="+", required=True, help="ids for the new in-between steps, in order")
-    p.add_argument("--names", nargs="+", required=True, help="their names, e.g. 'Dab the dark lavender'")
-    p.set_defaults(func=split_texture)
-
-    p = sub.add_parser("lock-steps", help="Free. Put back changes a step makes outside where it paints, or to finished areas (#30).",
-                       description="After the step renders and their review: for each step in order, any change outside its "
-                                   "plan.json `regions`, or to an area that already looks like the finish, goes back to the "
-                                   "previous step's pixels. Raw renders are kept in trials/raw/.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--why", help="what you're locking for (logged)")
-    p.set_defaults(func=lock_steps)
-
     p = sub.add_parser("canvas-view", help="Free. Crop images to the painter's canvas (after fit-canvas), into <lesson>/canvas/.",
                        description="Renders stay in the model's frame; the painter sees the canvas. Measure positions for the "
                                    "step text on these crops (e.g. grid on canvas/99_finish.png), not on the frame.")
@@ -1622,8 +1207,8 @@ def check_tool(a: argparse.Namespace) -> dict:
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
     if not plan2.is_v2(lesson):
-        raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); a version 1 lesson is "
-                      "checked by publish --final")
+        raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); version 1 lessons "
+                      "can't be checked any more (#82); make the lesson again with /paint-lesson")
     r = checks.run(lesson)
     # `problems` is `failures` under the name every other v2 tool prints (the skill: "every tool prints problems")
     return {"problems": r["failures"], "failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],
@@ -1825,7 +1410,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "render-step", "finish-from-step", "background") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "background") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2

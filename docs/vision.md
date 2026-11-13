@@ -56,36 +56,30 @@ not the other way around.
 It will be slow, maybe several minutes per lesson. That's fine. It shows progress as stages
 finish, and a finished lesson is saved so it never has to be made twice.
 
-### The proof of concept today: the paint-lesson skill (2026-11-10)
+### The proof of concept today: the paint-lesson skill, pipeline v2 (2026-11-13)
 
 Until the app exists, lessons are made by a Claude Code skill, `/paint-lesson <photo>`
-(`.claude/skills/paint-lesson/SKILL.md`), with image tools in `spike/tools.py`. It follows the steps above
-with these differences (`docs/decisions.md`, 2026-11-10):
+(`.claude/skills/paint-lesson/SKILL.md`), with free tools in `spike/tools.py`. It runs pipeline v2
+(`docs/design/pipeline-v2.md`; the owner passed its gate on 2026-11-13, POC 1.0.0):
 
-- **Claude Code does the thinking.** Planning, the finish check, the step review (in a fresh subagent, so
-  nothing grades its own work), and the step text all run in the session, with no API calls.
-- **Filters first, renders last.** The simplified reference, value study, and palette come from free local
-  filters. Each image takes the first tool that works: a filter, a composite of the finish (#8), a throwaway
-  filter script (#11), a render seeded by one of those, then a plain render. Every render gives its reason and
-  stays under a dollar cap per lesson and a redo cap per step, and repeats come from a cache for free.
-- **Every step says how to paint it.** Each step recommends its brushes and the named strokes to use (X stroke,
-  press and lift, dry brushing, ...), and the lesson opens with the tubes, brushes, and mixed paints.
-- **The lesson is a private Claude artifact**: photo, finish, paints, and each step's picture, instructions,
-  brushes, and strokes, readable on a phone at the easel. Problems the review couldn't fix show on their step.
+- **The finish is rendered once, and every step is cut from it.** Claude lists the picture's parts back to
+  front; a local outline model finds each part's exact shape; `build-steps` lays the parts on a white canvas in
+  painting order, a flat coat and then one pass per paint. Nothing can drift between steps, splitting a step is
+  free, and a lesson is 12 to 24 small steps in 4 to 9 stages. The only other renders are, when needed, a
+  beginner version, a canvas extend, and one background picture.
+- **Paints are measured, not guessed.** Each part's colors come from the finish, merged toward 10 mixes, and
+  every recipe is computed from the palette's tubes.
+- **Teaching pictures and text come from data.** Each step gets a Where outline, a close-up and a paint map where
+  they help, and a hand-checked stroke card. `draft-text` writes the lines that are data; Claude adds what only
+  this photo needs. `check` measures everything it can, and a text review runs once in a fresh context.
+- **Sealed lessons go on the lessons site** (`docs/lessons-site.md`), and every run is kept in the lesson
+  history.
 
-First three lessons (paint-along, low quality steps, high quality finish): trees 6 steps $0.28, pumpkin patch
-10 steps $0.34, sleeping cat 9 steps $0.39, all image cost. The spike's lessons on the trees photo cost about
-$0.40, half of it Claude API calls. So far filters make the reference and the painter's studies, while the
-paint-along steps themselves are still renders; compositing (#8) is the next big saving.
-
-### Next: pipeline v2 (2026-11-12)
-
-The skill above renders every step, and most of a run goes on repairing what the image model moved between
-renders. Pipeline v2 renders the finish once and cuts every step from it with free tools, so steps can't drift,
-can be as small as a beginner needs, and come with pictures of where to paint and which paint goes where. The
-design, what's built, and what's left: `docs/design/pipeline-v2.md`. The first part is in the repo
-(`outline`, `build-steps`; `docs/spikes/outlines.md`): three lessons' step pictures, 14 to 19 steps each, with no
-renders beyond the finish, in about 20 seconds.
+Before v2, the same skill ran pipeline v1 (2026-11-10 to 2026-11-12, up to POC 0.26.1): it rendered every
+step, then spent most of a run repairing what the image model moved between renders (image reviews, redos, a
+lock, throwaway filter scripts). Its lessons cost $0.28 to $0.51 and took over 20 minutes. v1 was removed on
+2026-11-13 (#82); its runs stay in the lesson history, and `docs/skill-history.md` keeps why its rules were what
+they were.
 
 ## What each step includes
 

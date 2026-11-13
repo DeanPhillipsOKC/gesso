@@ -14,7 +14,8 @@ Words used here:
 - **stage**: a group of steps that paint one thing ("The chickadee"). What the lesson's contents list shows.
 - **step**: one small move: one brush, one kind of stroke, one to three paints.
 - **render**: a paid call to the image model. Everything else is a free tool run where the lesson is made.
-- **v1**: the pipeline up to POC 0.26.1 (one render per step).
+- **v1**: the pipeline up to POC 0.26.1 (one render per step). Removed on 2026-11-13 (#82, section 14): where this
+  file says v1 must keep working, or that a version 1 lesson does something, that's history.
 
 ## 1. Why change
 
@@ -52,6 +53,8 @@ The chickadee's bird is 9 small steps where v1 had 3.
 
 ## 3. What stays, what changes, what goes
 
+(History: the v1 files named here were removed in #82; what stayed moved into `.claude/skills/paint-lesson/`.)
+
 | | v1 | v2 |
 |---|---|---|
 | Photo check, crop, canvas fit, beginner version | skill `steps/0-setup.md` | **stays as is** |
@@ -72,7 +75,7 @@ background picture (section 7). Nothing else is rendered.
 
 **Nothing in v1 is deleted until the gate in section 14 passes.** v2 is new files and new subcommands next to
 v1. Version 1 lessons, their pages, and `site/history/` must keep working: run the whole test suite on every
-issue.
+issue. (The gate passed on 2026-11-13 and v1 was removed, #82; `site/history/` still keeps every v1 run.)
 
 ## 4. The run, start to end
 
@@ -741,6 +744,9 @@ recorded: split the step in the plan and run `build-steps` again.
 
 ## 13. Version 2 lessons through `publish` (issue 3 of 8)
 
+(Written while v1 was still in the repo. Since #82 `publish` takes only a version 2 plan; the `lesson.json` keys
+below are still what its readers use.)
+
 `load_plan` validates against the version 1 model (`LessonPlan` in `spike/run.py`), and `publish`, `mix`,
 `seal_problems`, `step_paths`, `step-pairs`, the page, the history, the embed, and the notes all read version 1
 fields. The rule for version 2: **`lesson.json` keeps every key those readers use, with the same types, and adds
@@ -799,7 +805,8 @@ One issue per row, in this order. Don't start one before the ones it needs are c
 | 5 | Stroke cards and basics cards (#67) | | **done**, 2026-11-12; the owner still has to read and check them |
 | 6 | Teaching pictures and the lesson page (#68) | 3, 5 | |
 | 7 | Step text from data, and measured checks in place of the reviews (#51) | 3, 4, 5, 6 | |
-| 8 | The v2 skill, three hands-off runs, and the gate (#69) | all | needs a key and the source photos; the owner scores |
+| 8 | The v2 skill, three hands-off runs, and the gate (#69) | all | **done**, 2026-11-13: the owner passed it (POC 1.0.0) |
+| 9 | Remove v1 (#82) | 8 | **done**, 2026-11-13 (below) |
 
 Issues 3, 4, and 5 don't depend on each other. Issues 3 to 7 need no API key and no model files: the three
 fixtures (`spike/tests/fixtures/`: finish, plan, and saved outlines for each) are enough, and
@@ -826,6 +833,27 @@ If the gate passes: remove `lock.py`, `from_finish`'s tool (keep the functions `
 the v1 skill steps for rendering, review, and lock, and their tests. If a merged or dropped part's stage scores
 below v1's: keep v2 and write up which kind of part failed; the fallback to try next is one render for that stage,
 pasted only inside its part. If it fails more widely: stop and report to the owner.
+
+**Done, 2026-11-13 (#82, POC 1.3.1).** The owner passed the gate and chose to fail forward ("I don't see us ever
+going back to V1"). Removed:
+- the v1 skill; the v2 skill is now `.claude/skills/paint-lesson/` (`/paint-lesson`), with the v1 files it still
+  used (setup, reference and finish, diagrams, notes, the step review) moved into it;
+- `lock.py` and `lock-steps`; `carry-forward`, `finish-from-step`, `split-texture`, `render-step`, and `from-finish`,
+  with the code only they used (`from_finish.py` keeps `CANVAS`, `lab`, `hex_lab`, `_fill_from`, `continue_paint`,
+  and `flat_paint`; `passes.py` keeps `texture_jump`, which `check` uses);
+- the v1 publish path: `publish`, `mix`, and the seal take only a version 2 plan, since neither the site nor the
+  history calls `publish`; `test_publish_v1.py`, `test_lesson_tools.py`, and the v1 lesson fixture with them
+  (`fixtures/expected/v1-lesson.json` stays: `test_publish_v2` checks lesson.json keeps every key its readers use);
+- the v1 spike in `run.py` (it keeps the image client, the ledger, and the plan models `publish2.as_v1` builds),
+  and with it the `anthropic` package;
+- the site's versions from before POC 1.0.0 (`site-refresh --remove`), and `site_lessons.standalone`'s fallback that
+  built a page from an old run's `lesson.json`.
+
+Kept on purpose: `step_review.py` (`step-pairs`, the text review's sheets), `construct.py` (diagrams), all of
+`lesson_page.py` (the page shell `publish` renders a version 2 lesson with; its few version 1 branches no longer
+run), `lesson_notes.py`'s display of v1 notes (`throwaways`, a throwaway step's `made_with`; out of scope here, and
+harmless with no v1 lesson published), and the lesson history, which keeps every v1 run. Since the review of #124,
+`site-add` and `site-refresh` take only version 2 runs, so an old run in `output/` can't come back on a tile.
 
 ## 15. Rules for whoever builds this
 
@@ -899,6 +927,7 @@ Opus, hands-off, on the final skill and tools, from 900 px copies of the three s
 - **Planned twice from scratch** (the two Opus runs of each picture): the same stages in the same order, 17 against
   17, 17 against 17, and 24 against 21 steps; different finishes, so pictures aren't comparable pixel for pixel.
 - **The owner's score:** not given yet. The gate isn't passed until it is, and nothing of v1 is removed before.
+  (Given on 2026-11-13: the gate passed, POC 1.0.0, and v1 was removed in #82.)
 
 ## 16. Known risks
 

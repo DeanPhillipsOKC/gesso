@@ -1,4 +1,4 @@
-# Step 7: beginner check and construction diagrams
+# Step 8a: beginner check and construction diagrams
 
 A step image shows the canvas after the step, not how to get there. Go through every step as someone who has
 never painted, with only that step's picture and words, and ask: **could I start this?** Nobody else will notice
@@ -50,5 +50,5 @@ Look at your diagrams before moving on: **`publish` first** (the preview reads `
 diagram shows only after a publish), then `preview-diagrams --lesson <lesson>` draws each next to its step image
 into `<lesson>/trials/diagrams.png` to Read.
 
-Write what you noticed and decided into `notes.json` as `beginner_check` (step 8). `publish` lists any diagram
+Write what you noticed and decided into `notes.json` as `beginner_check` (step 8b). `publish` lists any diagram
 without a note in `undocumented_diagrams`.

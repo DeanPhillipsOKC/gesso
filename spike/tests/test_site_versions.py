@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import sys
 import tempfile
@@ -14,10 +16,12 @@ import provenance  # noqa: E402
 import site_lessons  # noqa: E402
 
 
-def run(output: Path, name: str, version: str, made_with: str = "render", kind: str = "hands-off") -> Path:
+def run(output: Path, name: str, version: str, made_with: str = "render", kind: str = "hands-off",
+        plan_version: int | None = 2) -> Path:
     d = output / name
     d.mkdir(parents=True)
     data = {"gesso": {"version": version, "commit": "abc1234", "published": "2026-11-12"},
+            **({"plan_version": plan_version} if plan_version else {}),
             "stages": [{"id": "a", "image": "a.png", "made_with": made_with},
                        {"id": "finish", "image": "f.png", "made_with": "render"}]}
     (d / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
@@ -50,6 +54,25 @@ class SiteVersionTests(unittest.TestCase):
         site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
         self.assertEqual(page.read_text(encoding="utf-8"), "kept")
 
+    def test_a_run_without_its_standalone_page_is_skipped_with_a_message(self):  # #82: no page rebuilt from lesson.json
+        (self.output / "balloon_skill_20261112-084806" / "lesson-standalone.html").unlink()
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
+        self.assertEqual([v["id"] for v in versions], ["20261111-142734"])
+        self.assertIn("skipped balloon_skill_20261112-084806", out.getvalue())
+        self.assertIn("lesson-standalone.html", out.getvalue())
+
+    def test_a_v1_run_left_in_output_never_goes_back_on_the_site(self):  # #82: the tiles hold 1.0.0 on
+        run(self.output, "balloon_skill_20261112-120000", "POC 0.26.1", "composite:from-finish", plan_version=None)
+        versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
+        self.assertNotIn("20261112-120000", [v["id"] for v in versions])
+        self.assertFalse((self.site / "lessons" / "lavender" / "v" / "20261112-120000").exists())
+        v1 = run(self.output, "sky_skill_20261112-130000", "POC 0.26.1", plan_version=None)
+        self.assertIsNone(site_lessons.newest_hands_off("sky", self.output))
+        with self.assertRaises(ValueError):
+            site_lessons.add(v1, "sky", self.site)
+
     def test_tile_has_a_pick_list_with_the_current_version_selected(self):
         versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
         html = site_lessons.card({"slug": "lavender", "title": "Balloon", "steps": 2, "canvas": "", "tubes": 0,
@@ -69,7 +92,7 @@ class SiteVersionTests(unittest.TestCase):
                    "steps": 2, "href": "lessons/lavender/v/20261111-142734/", "current": False}]
         (self.site / "lessons.json").write_text(json.dumps([{"slug": "lavender", "title": "Balloon", "steps": 2,
                                                              "canvas": "", "tubes": 0, "source": "balloon_skill_20261112-084806",
-                                                             "versions": listed}]), encoding="utf-8")
+                                                             "versions": listed, "known": 3}]), encoding="utf-8")
         empty = self.site.parent / "empty-output"
         empty.mkdir()
         self.assertEqual(site_lessons.refresh(self.site, empty), {"lavender": 2})
@@ -81,6 +104,7 @@ class SiteVersionTests(unittest.TestCase):
         entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
         self.assertEqual([v["id"] for v in entry["versions"]], ["20261112-084806"])
         self.assertFalse((lesson / "v" / "20261111-142734").exists())
+        self.assertEqual(entry["known"], 3)  # the run isn't here to count them again, so the tile keeps its count
 
     def test_site_add_over_a_default_keeps_the_old_default_as_a_version(self):  # #83
         from unittest import mock
