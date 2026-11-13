@@ -9,6 +9,7 @@ import base64
 import contextlib
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -155,7 +156,7 @@ class OpenAIClientTests(unittest.TestCase):
     """#89: in a cloud session the proxy supplies the OpenAI key, so a missing OPENAI_API_KEY is fine."""
 
     def _env(self, **values):
-        env = {k: v for k, v in __import__("os").environ.items()
+        env = {k: v for k, v in os.environ.items()
                if k not in ("OPENAI_API_KEY", "HTTPS_PROXY", "https_proxy")}
         env.update(values)
         return mock.patch.dict("os.environ", env, clear=True)
@@ -164,6 +165,13 @@ class OpenAIClientTests(unittest.TestCase):
         import run
 
         with self._env(HTTPS_PROXY="http://proxy.example:8080"):
+            client = run.openai_client()
+        self.assertEqual(client.api_key, run.PROXY_KEY_PLACEHOLDER)
+
+    def test_lowercase_proxy_without_key_builds_a_client(self):
+        import run
+
+        with self._env(https_proxy="http://proxy.example:8080"):
             client = run.openai_client()
         self.assertEqual(client.api_key, run.PROXY_KEY_PLACEHOLDER)
 
