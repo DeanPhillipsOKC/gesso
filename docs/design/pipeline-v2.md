@@ -755,6 +755,31 @@ Still open after these runs: time (17 to 27 minutes, against a 15-minute target;
 6 to 10 of them); no agent could start a fresh reviewer, so every text review was done in the same session; small
 things (an eye, a beak) can't be parts; three stroke cards are missing (#71).
 
+## 15b. The gate runs (2026-11-13)
+
+Opus, hands-off, on the final skill and tools, from 900 px copies of the three source pictures. All three sealed.
+
+| Measure | v1 | Target | Red sailboat | Chickadee | Lavender balloon |
+|---|---|---|---|---|---|
+| Renders | 13 to 21 | finish + 3 at most | 1 (finish from the cache) | 2 | 3 |
+| Start to seal | 21 to 27 min | 15 min | 16 min | 16.6 min | 20 min |
+| Steps (stages) | 10 to 12 | 12 to 24 (4 to 9) | 17 (6) | 17 (6) | 21 (6) |
+| Base mixes | up to 16 | aim for 10 | 12 | 12 | 15 |
+| Drift, shape, split-edge problems | 5 on the chickadee | 0 | 0 | 0 | 0 |
+| Same finish and plan, built twice | differs | identical | identical (tested) | identical | identical |
+
+- **Met:** renders, steps, drift, and the same-bytes rule. Image cost was a fifth to a third of v1's on every run.
+- **Not met:** time, by 1 to 5 minutes. The check-and-review step is 3 to 8 of them. Sonnet ran the same skill in
+  9 to 16.5 minutes with weaker plans.
+- **Not met:** a text review in a fresh context. The runs were made by agents that can't start another, so each
+  reviewed its own text and each page says so. A run started by the owner can start one.
+- **Left on the sealed pages:** outline leaks on the chickadee's branch; on the lavender, soil bits painted on
+  bare canvas for eleven steps. The second is fixed in the tool (`outline.drop_islands`) and checked by rebuilding
+  that lesson's plan; the sealed lesson itself still has it.
+- **Planned twice from scratch** (the two Opus runs of each picture): the same stages in the same order, 17 against
+  17, 17 against 17, and 24 against 21 steps; different finishes, so pictures aren't comparable pixel for pixel.
+- **The owner's score:** not given yet. The gate isn't passed until it is, and nothing of v1 is removed before.
+
 ## 16. Known risks
 
 | Risk | What limits it |

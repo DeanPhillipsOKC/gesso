@@ -1,0 +1,142 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261113-041240",
+  "started": "2026-11-13 04:12",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "e651f0f85b7479d8",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 0.26.1",
+        "commit": "a2a6d61",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 0.26.1",
+        "commit": "a2a6d61",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T04:28:24"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 17,
+        "words": 2187,
+        "tubes": 5,
+        "cost_usd": 0.018,
+        "minutes": 0.2,
+        "paid_renders": 1,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 12.5,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 1,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun-disk",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hill",
+          "name": "Paint the purple hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "far-shore",
+          "name": "Paint the far shoreline",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sea-base",
+          "name": "Lay in the sea",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sea-light",
+          "name": "Add the lighter ripple bands",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sea-glints",
+          "name": "Add the faint warm glints",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "path-dusky",
+          "name": "Lay the dusky gold path",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "path-bright",
+          "name": "Add the bright gold dashes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sails",
+          "name": "Paint the two sails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull-base",
+          "name": "Paint the red hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull-deck",
+          "name": "Add the light deck line",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mast",
+          "name": "Line in the mast and boom",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-gray",
+          "name": "Pull down the gray reflection",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-light",
+          "name": "Pull down the light of the sails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-red",
+          "name": "Pull down the red of the hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-mast",
+          "name": "Zigzag the mast's reflection",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

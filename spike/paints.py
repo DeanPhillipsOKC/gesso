@@ -406,7 +406,8 @@ def _existing(plan: dict, order: list[str]) -> tuple[list[dict], list[dict]]:
     return records, removed
 
 
-def _entries(records: list[dict], plan: dict, order: list[str], white, dark, dark_name: str) -> tuple[list[dict], dict]:
+def _entries(records: list[dict], plan: dict, order: list[str], white, dark, dark_name: str,
+             keep_all_names: bool = False) -> tuple[list[dict], dict]:
     """The plan's paints from measured records: a paint that barely moved (SAME) keeps its hex and spot exactly, and
     one that moved less than KEEP_NAME keeps its name and used_for. Returns (paints, what changed)."""
     changed, kept, kept_names = [], [], {}
@@ -421,7 +422,9 @@ def _entries(records: list[dict], plan: dict, order: list[str], white, dark, dar
         else:
             changed.append({"id": r["id"], "from": o["hex"], "to": r["hex"], "delta_e": round(de, 1),
                             "name_kept": de < KEEP_NAME and bool(o.get("name"))})
-        if de < KEEP_NAME and (o.get("name") or o.get("used_for")):
+        # (`add` keeps every name: it gives a part one more color, and the part's other paints shifting to make
+        # room for it are still the paints the steps and tips already call by name)
+        if (keep_all_names or de < KEEP_NAME) and (o.get("name") or o.get("used_for")):
             kept_names[r["id"]] = r["id"]
     mark_tints(records, order, white, dark, dark_name)
     used = _used(plan)
@@ -563,7 +566,7 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
     if new_id is None:  # nothing changes: the plan's paints as they are
         for r in records:
             r["hex"], r["sample_x"], r["sample_y"] = r["old"]["hex"], r["old"].get("sample_x"), r["old"].get("sample_y")
-    paints, what = _entries(records, plan, order, white, dark, dark_name)
+    paints, what = _entries(records, plan, order, white, dark, dark_name, keep_all_names=True)
     if removed:  # add touches no other part, so a paint whose part is gone stays until paints runs again
         paints += [c for c in plan.get("paints") or [] if c.get("id") in {x["id"] for x in removed}]
     used = set(_used(plan))

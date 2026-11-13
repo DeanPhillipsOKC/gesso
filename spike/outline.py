@@ -205,6 +205,54 @@ def drop_specks(owner: np.ndarray, floor: float = SPECK) -> np.ndarray:
     return fill_from_nearest(owner, loose)
 
 
+ISLAND = 0.02  # a stray piece of an area smaller than this share of the picture, inside another part, joins that part
+ISLAND_INSIDE = 0.6  # how much of the piece's edge must be against that one other part
+
+
+def drop_islands(owner: np.ndarray, parts: list[dict]) -> np.ndarray:
+    """A small piece of an area (with whatever is painted on it) that sits apart from the area's main body, mostly
+    inside one other area, goes to that area. Pixels nothing claimed fall to the backdrop, so bits of soil between
+    lavender rows became "sky", the sky's clouds then took them by color, and the sky's first step painted them
+    on bare canvas for eleven steps (2026-11-13). An area's family is the area and everything with it as its
+    root; marks and objects with no area under them are left alone: several separate pieces is what they are."""
+    h, w = owner.shape
+    out = owner.copy()
+    small = ISLAND * h * w
+    ring = np.ones((5, 5), np.uint8)
+    index = {p["id"]: i for i, p in enumerate(parts)}
+    root = []
+    for i, p in enumerate(parts):
+        while p.get("parent") in index:
+            i = index[p["parent"]]
+            p = parts[i]
+        root.append(i)
+    root = np.array(root)
+    is_area = np.array([parts[r]["kind"] == "area" for r in root])
+    for k, p in enumerate(parts):
+        if p["kind"] != "area" or p.get("parent"):
+            continue
+        family = root[out] == k
+        n, lab_, stats, _ = cv2.connectedComponentsWithStats(family.astype(np.uint8), connectivity=8)
+        if n <= 2:
+            continue
+        main = 1 + int(stats[1:, cv2.CC_STAT_AREA].argmax())
+        for i in range(1, n):
+            if i == main or stats[i, cv2.CC_STAT_AREA] >= small:
+                continue
+            piece = lab_ == i
+            edge = (cv2.dilate(piece.astype(np.uint8), ring) > 0) & ~piece
+            # only into another area: a gap of sky between twigs or under a bird's tail is still sky, and the
+            # branch must not take it. The area's own marks count with it (soil paths on a field).
+            around = root[out[edge]]
+            around = around[(around != k) & is_area[around]]
+            if not around.size:
+                continue
+            ids, counts = np.unique(around, return_counts=True)
+            if counts.max() >= ISLAND_INSIDE * edge.sum():
+                out[piece] = ids[counts.argmax()]
+    return out
+
+
 def fill_from_nearest(owner: np.ndarray, holes: np.ndarray) -> np.ndarray:
     """The `holes` pixels take the owner of the nearest pixel that isn't a hole."""
     if not holes.any() or holes.all():
@@ -296,7 +344,7 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
         row["claimed"] = round(float(claim.mean()), 4)
         stats.append(row)
     owner = fill_from_nearest(owner, owner < 0)
-    owner = drop_specks(owner)
+    owner = drop_islands(drop_specks(owner), parts)
     masks = {p["id"]: owner == k for k, p in enumerate(parts)}
     for row, measured in zip(stats, owner_stats(parts, owner)):
         row.update(measured)
