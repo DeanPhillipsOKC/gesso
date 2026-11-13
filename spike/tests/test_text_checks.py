@@ -539,7 +539,9 @@ class TextToolTests(unittest.TestCase):
         self.assertTrue(tools.history_wanted(lesson))  # with GESSO_HISTORY set, as the other tests do
 
     def test_check_refuses_a_version_1_lesson(self):
-        code, r = run_tool("check", "--lesson", str(tools.ROOT / "spike" / "tests" / "fixtures" / "v1-lesson"))
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "plan.json").write_text(json.dumps({"steps": []}), encoding="utf-8")
+            code, r = run_tool("check", "--lesson", d)
         self.assertEqual(code, 2)
         self.assertIn("version 2", r["refused"])
 

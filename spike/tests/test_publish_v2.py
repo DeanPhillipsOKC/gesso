@@ -328,14 +328,6 @@ class PublishV2Tests(unittest.TestCase):
             self.assertEqual(html.count("Mark halves and quarters on tape"), 1)
             self.assertEqual(html.count('class="transfer"'), 1)
 
-    def test_a_version_1_page_has_no_stage_headings(self):
-        from lesson_page import page
-        import yaml
-        technique = yaml.safe_load((tools.ROOT / "techniques/acrylic-paint-along-beginner.yaml").read_text(encoding="utf-8"))
-        html = page(V1, technique, FIX / "v1-lesson")
-        self.assertNotIn('class="group"', html)
-        self.assertNotIn("h2.group", html)
-
     # --- text, drafts, and the seal ---
 
     def test_text_fills_a_step_a_step_without_it_is_a_draft_and_the_seal_needs_text(self):
@@ -492,6 +484,71 @@ class PublishV2Tests(unittest.TestCase):
         self.assertEqual(site_lessons.kind(self.data("chickadee")), "steps cut from the finish")
 
     # --- refusals ---
+
+    def diagram_lesson(self, second: dict) -> tuple[Path, list[str]]:
+        """A copy of the sailboat with a diagram on its first step and `second` on its second."""
+        lesson = self.copy("red-sailboat")
+        ids = [st["id"] for st in self.data("red-sailboat")["stages"]]
+        shape = {"stages": [{"caption": "An oval", "add": [{"ellipse": [50, 50, 20, 30]}]}]}
+        (lesson / "text.json").write_text(json.dumps({"steps": [
+            {"stage_id": ids[0], "construct": shape}, {"stage_id": ids[1], "construct": second}]}), encoding="utf-8")
+        return lesson, ids
+
+    def test_publish_explains_diagrams_and_flags_unexplained_ones(self):  # from the version 1 tests (#82)
+        lesson, ids = self.diagram_lesson({"stages": [{"caption": "A box", "add": [{"rect": [10, 10, 50, 40]}]}]})
+        (lesson / "notes.json").write_text(json.dumps({"beginner_check": {
+            "summary": "One shaped object.", "no_diagram": {},
+            "diagrams": {ids[0]: {"noticed": "The lumpy outline.", "pieces": "An oval first.", "source": "beginner check"}}}}),
+            encoding="utf-8")
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        self.assertEqual(r["diagrams"], 2)
+        self.assertEqual(r["undocumented_diagrams"], [ids[1]])
+        html = (lesson / "lesson-artifact.html").read_text(encoding="utf-8")
+        for text in ("The lumpy outline.", "An oval first."):
+            self.assertIn(text, html)
+
+    def test_preview_diagrams_needs_publish_then_draws_each_one(self):  # from the version 1 tests (#82)
+        lesson, _ = self.diagram_lesson({"stages": [{"add": [{"path": "not a path"}]}]})
+        (lesson / "lesson.json").unlink()
+        code, r = run_tool("preview-diagrams", "--lesson", str(lesson))
+        self.assertEqual(code, 2)  # no lesson.json yet
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        code, r = run_tool("preview-diagrams", "--lesson", str(lesson))
+        self.assertEqual(code, 0)
+        self.assertEqual(r["diagrams"], 2)
+        html = Path(r["html"]).read_text(encoding="utf-8")
+        self.assertIn("An oval", html)
+        self.assertIn("This spec is broken", html)
+
+    def test_preview_with_no_diagrams_says_why(self):
+        code, r = run_tool("preview-diagrams", "--lesson", str(self.lessons["chickadee"]))
+        self.assertIn("No diagrams in lesson.json", r["note"])
+
+    def test_publish_crops_steps_to_the_canvas(self):  # from the version 1 tests (#82)
+        lesson = self.copy("chickadee")
+        code, r = run_tool("fit-canvas", str(lesson / "99_finish.png"), "--lesson", str(lesson), "--canvas", "11x14",
+                           "--why", "test")
+        self.assertEqual(code, 0, r)
+        self.assertTrue((lesson / "canvas.json").exists())
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
+        w, h = data["canvas"]["w_in"], data["canvas"]["h_in"]
+        self.assertEqual(sorted([w, h]), [11, 14])  # turned to the picture's shape
+        for st in data["stages"]:
+            self.assertTrue((lesson / st["image"]).exists())
+        self.assertIn(f"{w:g} x {h:g} in", (lesson / "lesson.html").read_text(encoding="utf-8"))
+
+    def test_a_version_1_plan_is_refused(self):  # the version 1 pipeline was removed (#82)
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "plan.json").write_text(json.dumps({"technique": "techniques/acrylic-paint-along-beginner.yaml",
+                                                         "steps": []}), encoding="utf-8")
+            for tool in ("publish", "mix"):
+                code, r = run_tool(tool, "--lesson", d)
+                self.assertEqual(code, 2)
+                self.assertIn("version 2", r["refused"])
 
     def test_publish_before_build_steps_says_to_run_it(self):
         with tempfile.TemporaryDirectory() as d:

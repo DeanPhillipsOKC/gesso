@@ -32,7 +32,6 @@ from run import IMAGE_MODEL, ROOT, Ledger, edit_image, png_bytes, size_for  # no
 CACHE_DIR = ROOT / "output" / ".render-cache"
 DEFAULT_MAX_COST = 1.00  # dollars of renders per lesson
 DEFAULT_MAX_REDOS = 2  # renders per step after the first
-STEP_WORDS = 110  # a step's instructions past this many words get listed in publish's long_steps
 INSTRUCTION_WORDS = 40  # one instruction past this many words gets listed in publish's long_instructions
 QUALITIES = ["low", "medium", "high", "xhigh", "max"]
 # Worst cost per render seen in the spike's 290 renders (2026-10-19), used before a lesson has its own.
@@ -266,23 +265,24 @@ def add_render(sub) -> None:
 
 
 def load_plan(lesson: Path):
-    """(plan.json as written, the plan as a version 1 LessonPlan, the technique). A version 2 plan is checked with
-    plan2.problems and seen as version 1 through publish2.as_v1, so mix, publish, and the seal read either."""
+    """(plan.json as written, the plan as the LessonPlan model mix, publish, and the seal read, the technique). The
+    plan is checked with plan2.problems and seen through publish2.as_v1 (design section 13). A version 1 plan is
+    refused: that pipeline was removed (#82)."""
     import yaml
     import plan2
-    from run import LessonPlan
+    import publish2
 
     raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
+    if not plan2.is_v2(lesson):
+        raise Refused("plan.json isn't a version 2 plan (no \"plan_version\": 2). Version 1 lessons can't be published "
+                      "or mixed any more (#82); make the lesson again with /paint-lesson.")
     technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
     if raw.get("palette"):  # the painter's own tubes (palettes/<name>.yaml) instead of the technique's five
         technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
-    if plan2.is_v2(lesson):
-        import publish2
-        wrong = plan2.problems(raw)
-        if wrong:
-            raise Refused("fix plan.json first: " + " | ".join(wrong))
-        return raw, publish2.as_v1(raw), technique
-    return raw, LessonPlan.model_validate(raw), technique
+    wrong = plan2.problems(raw)
+    if wrong:
+        raise Refused("fix plan.json first: " + " | ".join(wrong))
+    return raw, publish2.as_v1(raw), technique
 
 
 def load_palette(name: str) -> tuple[list[str], str]:
@@ -298,14 +298,8 @@ def load_palette(name: str) -> tuple[list[str], str]:
 
 
 def step_paths(lesson: Path, plan) -> list[Path]:
-    """NN_<id>.png for every step. In version 1 the last step is the finish itself; in version 2 build-steps writes
-    the last step as its own copy of the finish."""
-    import plan2
-
-    paths = [lesson / f"{i + 1:02d}_{s.id}.png" for i, s in enumerate(plan.steps)]
-    if not plan2.is_v2(lesson):
-        paths[-1] = lesson / "99_finish.png"
-    return paths
+    """NN_<id>.png for every step. build-steps writes the last step as its own copy of the finish."""
+    return [lesson / f"{i + 1:02d}_{s.id}.png" for i, s in enumerate(plan.steps)]
 
 
 def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
@@ -321,17 +315,14 @@ def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
     return out
 
 
-def paints_not_listed(stages: list[dict], paints: dict, word: bool = True) -> list[dict]:
-    """Paints a step's instructions or values table name that aren't in its colors, so their recipe never shows.
-    Version 1 matched a name between two backspace characters (a "\\b" lost in an rf-string), so it never found one
-    in the text; it keeps that (word=False) so a version 1 lesson publishes and seals as before."""
-    edge = r"\b" if word else "\x08"
+def paints_not_listed(stages: list[dict], paints: dict) -> list[dict]:
+    """Paints a step's instructions or values table name that aren't in its colors, so their recipe never shows."""
 
     def said(n: str, text: str) -> bool:
-        if word:  # "Sea turquoise" inside "Light sea turquoise" is the other paint, not this one
-            for longer in sorted((m for m in paints if m != n and n.lower() in m.lower()), key=len, reverse=True):
-                text = re.sub(re.escape(longer), " ", text, flags=re.I)
-        return bool(re.search(edge + re.escape(n) + edge, text, re.I))
+        # "Sea turquoise" inside "Light sea turquoise" is the other paint, not this one
+        for longer in sorted((m for m in paints if m != n and n.lower() in m.lower()), key=len, reverse=True):
+            text = re.sub(re.escape(longer), " ", text, flags=re.I)
+        return bool(re.search(r"\b" + re.escape(n) + r"\b", text, re.I))
 
     return [{"id": st["id"], "paint": n} for st in stages for n in paints
             if n not in {c["name"] for c in st["colors"]}
@@ -370,8 +361,8 @@ def tubes_used(palette: list[str], paints) -> list[str]:
 
 
 def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
-    """Solve every paint's recipe from the palette tubes against its swatch (#22), and write <lesson>/mixes.json.
-    The swatches must already be snapped to the finish (sample_swatches)."""
+    """Solve every paint's recipe from the palette tubes against its measured color (#22), and write
+    <lesson>/mixes.json."""
     import mixing
 
     tubes = technique.get("palette", [])
@@ -393,16 +384,8 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
 
 def mix_tool(a: argparse.Namespace) -> dict:
     """Compute the paint recipes for a lesson, so the skill can see them before writing the step text."""
-    import plan2
-    from run import sample_swatches
-
     lesson = Path(a.lesson)
     raw, plan, technique = load_plan(lesson)
-    finish = lesson / "99_finish.png"
-    if not finish.exists():
-        raise Refused(f"no finished painting at {finish}; the swatches are sampled from it")
-    if not plan2.is_v2(lesson):  # a version 2 paint's hex is already measured from the finish
-        sample_swatches(plan, finish)
     mixes = compute_mixes(lesson, plan, technique)
     return {"json": str(lesson / "mixes.json"), "cost_usd": 0.0,
             "paints": [{"name": n, "recipe": m["text"], "target": m["target_hex"], "mixed": m["mixed_hex"],
@@ -417,16 +400,13 @@ NOTES_REQUIRED = ("read", "technique", "order", "steps", "beginner_check")
 def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict) -> list[str]:
     """What stops a lesson being sealed hands-off: the rules the skill asks for, checked instead of remembered
     (two hands-off runs, 2026-11-12, each let a small rule slip late in a long run).
-    A version 2 lesson has no image review and no regions, and no word limit on a step (design section 13)."""
-    import plan2
-
-    v2 = plan2.is_v2(lesson)
+    There's no image review, no regions, and no word limit on a step (design section 13)."""
     out = []
     ids = [s.id for s in plan.steps]
-    review_step = "step 7b" if v2 else "step 6b"  # the v2 skill's text review is its step 7b
+    review_step = "step 7b"  # the skill's text review
     if not (lesson / "review.json").exists():
-        out.append("review.json is missing (" + ("step 7b" if v2 else "steps 2, 5, 6b") + ")")
-    for key in ("finish_issues", "text_issues") if v2 else ("finish_issues", "review_issues", "text_issues"):
+        out.append("review.json is missing (step 7b)")
+    for key in ("finish_issues", "text_issues"):
         if key not in review:
             out.append(f"review.json has no {key} (an empty list if there were none)")
     if not (lesson / "trials" / "review" / "review.json").exists():
@@ -448,22 +428,15 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         if t is None:
             out.append(f"text.json has no step {sid}")
             continue
-        # version 2 text is its lines; its strokes come from the plan's stroke and the cards
-        for key in ("summary", "lines", "brushes", "made_with") if v2 else ("summary", "brushes", "strokes", "made_with"):
-            if not t.get(key) and not (key == "strokes" and sid == ids[-1]):
+        # the text is its lines; its strokes come from the plan's stroke and the cards
+        for key in ("summary", "lines", "brushes", "made_with"):
+            if not t.get(key):
                 out.append(f"{sid}: text.json has no {key}")
-    for s in plan.steps:
-        if not s.regions and not v2:
-            out.append(f"{s.id}: no regions in plan.json")
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
         if checks.get(key):
             out.append(f"{key}: {checks[key]}")
     if checks.get("missing_aids"):
         out.append("aids/aids.json is missing or was made for other steps: run step-aids, then publish --final again")
-    kept = notes.get("long_steps_kept") or {}
-    long = [x for x in checks.get("long_steps") or [] if x["id"] not in kept]  # (publish doesn't list them for version 2)
-    if long:
-        out.append(f"long_steps not cut or explained in notes.long_steps_kept: {long}")
     noted = " ".join(n for t in text.values() for n in (t.get("paint_notes") or [])).lower()
     for name in checks.get("unreachable_paints") or []:
         if name.lower() not in noted:
@@ -472,35 +445,33 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
 
 
 CHECKED = ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions",
-           "missing_aids", "unreachable_paints")  # publish's counts that `check` reports for a version 2 lesson
+           "missing_aids", "unreachable_paints")  # publish's counts that `check` also reports
 
 
 def publish(a: argparse.Namespace) -> dict:
     """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
-    import plan2
+    import checks
+    import elements
     import publish2
     from lesson_page import page
-    from run import CLAUDE_MODEL, sample_swatches
+    from run import CLAUDE_MODEL
 
     lesson = Path(a.lesson)
-    v2 = plan2.is_v2(lesson)
     raw, plan, technique = load_plan(lesson)
     paths = step_paths(lesson, plan)
     missing = [p.name for p in paths if not p.exists()]
     if missing:
-        raise Refused(f"missing step images: {missing}" + (f". Run build-steps --lesson {lesson}." if v2 else ""))
-    if not v2:  # a version 2 paint's hex is already measured from the finish
-        sample_swatches(plan, paths[-1])
+        raise Refused(f"missing step images: {missing}. Run build-steps --lesson {lesson}.")
     mixes = compute_mixes(lesson, plan, technique)
     text_path = lesson / "text.json"
     text = {t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]} if text_path.exists() else {}
     review_path = lesson / "review.json"
     review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
-    notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters, throwaways
+    notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
     led = LessonLedger(lesson)
 
-    extras = publish2.paint_extras(raw) if v2 else {}  # a version 2 paint keeps its id and parts beside the v1 keys
+    extras = publish2.paint_extras(raw)  # a paint keeps its id and parts beside the LessonPlan keys
 
     def paint_dict(p) -> dict:
         d = {**extras.get(p.name, {}), **p.model_dump()}
@@ -516,23 +487,9 @@ def publish(a: argparse.Namespace) -> dict:
     if photo.exists() and not photo_copy.exists():
         shutil.copyfile(photo, photo_copy)
 
-    def txt(s, key, default):
-        return text[s.id].get(key, default) if s.id in text else default
-
     view = canvas_view(lesson, [p.name for p in paths])
     prune_canvas_view(lesson, [p.name for p in paths])
-    stages = [
-        {
-            "id": s.id, "name": s.name, "image": view.get(paths[i].name, paths[i].name), "paints": s.paints, "looks_like": s.looks_like,
-            "steps": txt(s, "what_to_do", s.how), "mixes": txt(s, "mixes", []),
-            "colors": [paints[c] for c in s.colors if c in paints],
-            "paint_notes": txt(s, "paint_notes", []), "watch_out": txt(s, "watch_out", s.watch_out),
-            "brushes": s.brushes, "dry_time": technique["dry_time"],
-            "made_with": txt(s, "made_with", "render"), "reason": txt(s, "reason", ""), "summary": txt(s, "summary", ""), "values": txt(s, "values", []),
-            "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
-        }
-        for i, s in enumerate(plan.steps)
-    ] if not v2 else publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
+    stages = publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
     from version import stamp
     old = lesson / "lesson.json"
     from version import with_made
@@ -552,15 +509,13 @@ def publish(a: argparse.Namespace) -> dict:
         "palette_name": technique.get("palette_name", ""),
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
+        # beside the keys every reader of lesson.json uses: the plan's stages, for the page's headings, and the aids
+        "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
-    if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings, and the step aids
-        lesson_data.update(plan_version=2, groups=publish2.groups(raw), aids=publish2.attach_aids(lesson, stages))
-        import elements
-
-        if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
-            lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
-        if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
-            lesson_data["review_context"] = review["review_context"]
+    if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
+        lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
+    if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
+        lesson_data["review_context"] = review["review_context"]
     import provenance
     lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
@@ -570,7 +525,7 @@ def publish(a: argparse.Namespace) -> dict:
     # one self-contained HTML document (images inlined), for the lessons site or to send as a file
     standalone = page(lesson_data, technique, lesson, embed=True, standalone=True)
     (lesson / "lesson-standalone.html").write_text(standalone, encoding="utf-8")
-    if v2 and len(standalone.encode("utf-8")) > publish2.MAX_PAGE_BYTES:
+    if len(standalone.encode("utf-8")) > publish2.MAX_PAGE_BYTES:
         raise Refused(f"the page is {len(standalone.encode('utf-8')) / 1e6:.1f} MB, over the {publish2.MAX_PAGE_BYTES / 1e6:g} MB "
                       "a phone should load. Merge small steps in the plan, or lower aids.CLOSE_UP so fewer steps get a "
                       "close-up, then run build-steps, step-aids, and publish again.")
@@ -582,11 +537,6 @@ def publish(a: argparse.Namespace) -> dict:
         k = st["made_with"].split(":")[0]
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
-    if v2:
-        import checks
-        jumps = checks.texture_jumps(lesson, raw)
-    else:
-        jumps = texture_jumps(lesson, paths)
     result = {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed,
             "gesso": lesson_data["gesso"], "provenance": lesson_data["provenance"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
@@ -594,33 +544,26 @@ def publish(a: argparse.Namespace) -> dict:
             # a diagram the page can't explain: the skill's beginner check didn't write down why
             "undocumented_diagrams": undocumented_diagrams(stages, notes),
             "unreachable_paints": [n for n, m in mixes.items() if not m["reachable"]],
-            # steps whose instructions run past the word budget in the skill (about 100 words)
-            # (not checked for version 2: no word limit on a step, design section 10)
-            "long_steps": [{"id": st["id"], "words": n} for st in stages
-                           if (n := sum(len(x.split()) for x in st["steps"])) > STEP_WORDS and not v2],
-            # paints an instruction or values table names that aren't in the step's colors, so their recipe never shows
-            "paints_not_listed": paints_not_listed(stages, paints, word=v2),
+            # (no word limit on a step, design section 10, so no long_steps)
+            # paints an instruction names that aren't in the step's colors, so their recipe never shows
+            "paints_not_listed": paints_not_listed(stages, paints),
             # paints whose computed recipes come out the same (or mix within Delta E 3): two names, one color
             "duplicate_recipes": duplicate_recipes(mixes),
-            # steps that turn a big area from flat to textured at once (version 2:
-            # the same list check reports, which leaves out flat coats)
-            "texture_jumps": jumps,
+            # steps that finish a big area from flat to textured at once: the same list check reports
+            "texture_jumps": checks.texture_jumps(lesson, raw),
             # single instructions past the skill's budget (about 35 words): usually two moves to split
             "long_instructions": [{"id": st["id"], "n": k + 1, "words": len(x.split())} for st in stages
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
-            "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
-    if v2:  # the step's teaching pictures (step-aids), and the page's size
-        result.update(missing_aids=not lesson_data.get("aids"), page_mb=round(len(standalone.encode("utf-8")) / 1e6, 2))
-        import checks
-        found = checks.run(lesson, text)  # every measured check in one list (design section 12)
-        result.update(check=found["failures"], check_notes=found["notes"])
+            "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost,
+            # the steps' teaching pictures (step-aids), and the page's size
+            "missing_aids": not lesson_data.get("aids"), "page_mb": round(len(standalone.encode("utf-8")) / 1e6, 2)}
+    found = checks.run(lesson, text)  # every measured check in one list (design section 12)
+    result.update(check=found["failures"], check_notes=found["notes"])
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
-        if v2:  # what check already reports (in its own words), left out of the seal's list so it isn't said twice
-            problems = seal_problems(lesson, plan, text, review, notes,
-                                     {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
-        else:
-            problems = seal_problems(lesson, plan, text, review, notes, result)
+        # what check already reports (in its own words) is left out of the seal's list so it isn't said twice
+        problems = seal_problems(lesson, plan, text, review, notes,
+                                 {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
         if problems:
             raise Refused("not sealed; fix these and run publish --final again: " + " | ".join(problems))
         provenance.seal(lesson, lesson_data)
