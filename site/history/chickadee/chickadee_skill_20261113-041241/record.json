@@ -4,12 +4,12 @@
   "started": "2026-11-13 04:12",
   "publishes": [
     {
-      "n": 1,
-      "digest": "e2b9b28b9a968f14",
-      "strip": "strip-1.jpg",
+      "n": 2,
+      "digest": "a40d8cd314741881",
+      "strip": "strip-2.jpg",
       "published_with": {
         "version": "POC 0.26.1",
-        "commit": "a2a6d61",
+        "commit": "2a60f15",
         "dirty": false,
         "published": "2026-11-13"
       },
@@ -19,8 +19,8 @@
         "published": "2026-11-13"
       },
       "provenance": {
-        "kind": "unsealed",
-        "note": "not finished by the skill, or from before seals"
+        "kind": "hands-off",
+        "sealed": "2026-11-13T04:28:55"
       },
       "palette": "The owner's paints",
       "technique": "acrylic-paint-along-beginner",
@@ -31,15 +31,15 @@
       },
       "metrics": {
         "steps": 17,
-        "words": 2344,
+        "words": 2353,
         "tubes": 10,
         "cost_usd": 0.085,
         "minutes": 0.7,
         "paid_renders": 2,
         "redos": 0,
         "review_problems": 0,
-        "text_problems": 0,
-        "minutes_total": 10.5,
+        "text_problems": 8,
+        "minutes_total": 13.9,
         "checks": {
           "long_steps": 0,
           "long_instructions": 0,
@@ -47,7 +47,7 @@
           "unreachable_paints": 0,
           "texture_jumps": 0,
           "duplicate_recipes": 0,
-          "undocumented_diagrams": 0
+          "undocumented_diagrams": 5
         }
       },
       "steps": [
