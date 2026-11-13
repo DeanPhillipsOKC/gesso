@@ -4,6 +4,9 @@
 judges before the plan? The code is `spike/experiments/issue52.py`. It is experiment code: no lesson tool, the
 skill, or a test was changed.
 
+**The owner's calls (2026-11-13):** build the busy measure (#109); drop the painting-order tool
+(`docs/decisions.md`).
+
 **Answers, short:**
 
 | Judged by Claude today | Can a tool do it? | Recommendation |

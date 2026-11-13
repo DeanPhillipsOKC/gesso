@@ -177,6 +177,11 @@ with the date.
 - **The gate passed; v2 is the pipeline (2026-11-13, owner's call).** "The pics look good. Publish them as
   1.0.0." The three gate runs are the site's default lessons and carry the 1.0.0 name, with the commit that made
   them. Two targets were missed and accepted: time (16 to 20 minutes against 15) and a fresh-context text review.
+- **No painting-order tool; a busy measure helps Claude judge (2026-11-13, owner's call, after the spike for #52).**
+  Claude keeps choosing the painting order when it lists the parts. A depth model only confirmed it in 18 plans
+  and got a close subject wrong on its own (`docs/spikes/tools-before-plan.md`); owner: "Drop the painting order
+  tool". Don't re-propose one unless a lesson ships with parts in the wrong order. The fine-texture measure from
+  the same spike gets built as an aid Claude reads, not a gate (#109).
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
