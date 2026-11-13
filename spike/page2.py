@@ -91,6 +91,7 @@ ul.tubelist b{overflow-wrap:anywhere}
 ul.tubelist a{color:var(--ultramarine)}
 ul.tubelist .small{display:block;line-height:1.3}
 details.allpaints .paints{margin-top:.25rem}
+details.aid>summary h2.foldh{font:inherit;margin:0;grid-column:2}
 .p-cut{background:var(--r-filter);color:var(--gesso)}.t-cut{color:var(--r-filter)}
 """
 
@@ -389,7 +390,9 @@ def paints_fold(count: int, paint_cards: str) -> str:
     body = ('<p class="small">You don\'t have to mix them all at the start: each step lists the paints it uses with '
             'their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>'
             f'<div class="paints">{paint_cards}</div>')
-    return f'<section id="paints">{fold("Your paints", hint, body, cls="allpaints")}</section>'
+    # The title stays an h2 inside the summary, so "Your paints" is still a heading to jump to.
+    return (f'<section id="paints"><details class="aid allpaints"><summary><h2 class="foldh">Your paints</h2>'
+            f'<span class="small">{e(hint)}</span></summary><div class="aid-body">{body}</div></details></section>')
 
 
 def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> str:
@@ -417,6 +420,8 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
                f'that first uses it.</p><ul class="strokes">{tries}</ul></div>') if tries else ""
     basics = "".join(fold(c["name"], "" if c.get("checked") else "not checked yet", cards.basic_html(c))
                      for c in sorted(cards.basics().values(), key=lambda c: c["id"] != "set-up"))  # setting up first
-    placing = fold("Placing shapes with tape marks and a transfer outline", "optional", tape + transfer, cls="placing")
+    # Folded at the owner's word (#94), but the steps still say where things go by the tape marks, so the hint says so.
+    placing = fold("Placing shapes with tape marks and a transfer outline",
+                   "optional, but the steps say where things go by these tape marks", tape + transfer, cls="placing")
     return (f'<section class="start" id="start"><h2>Before you start</h2>{placing}{strokes}'
             f'<div><h3>The basics</h3><div class="basics">{basics}</div></div></section>')

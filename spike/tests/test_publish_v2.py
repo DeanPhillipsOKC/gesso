@@ -17,6 +17,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from html import escape as html_escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -276,36 +277,51 @@ class PublishV2Tests(unittest.TestCase):
         self.assertNotIn("first in", page2.tubes_first(lesson, ["Titanium white"]))
 
     def test_the_tubes_are_not_also_in_the_kit_and_the_kit_has_no_masking_tape(self):
+        def kit_of(html: str) -> str:
+            return html[html.index('<div class="kit">'):html.index("</section>", html.index('<div class="kit">'))]
         for name in NAMES:
             data = self.data(name)
-            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
-            kit = html[html.index('<div class="kit">'):html.index("</section>", html.index('<div class="kit">'))]
+            kit = kit_of((self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8"))
             self.assertNotIn('<p class="label">Tubes</p>', kit)
             for t in data["tubes"]:
                 self.assertNotIn(f"<li>{t}</li>", kit, name)
-            self.assertNotIn("masking tape", kit.lower(), name)
+        # The fixtures have no canvas.json, and the tape only ever came with a canvas: give one a canvas to check it.
+        lesson = self.copy("red-sailboat")
+        (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 14.0, "h_in": 11.0,
+                                                                   "orientation": "landscape"},
+                                                     "canvas_box": [0.0, 0.0, 1.0, 1.0]}), encoding="utf-8")
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        kit = kit_of((lesson / "lesson-standalone.html").read_text(encoding="utf-8"))
+        self.assertIn("A 14 x 11 in canvas, landscape (hang it that way).", kit)
+        self.assertNotIn("masking tape", kit.lower())
 
     def test_your_paints_is_closed_with_its_summary_and_the_cards_unchanged_inside(self):
         for name in NAMES:
             data = self.data(name)
             html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
             n = len(data["photo_read"]["mixes"])
-            m = re.search(r'<section id="paints"><details class="aid allpaints"><summary>Your paints <span class=small>'
+            m = re.search(r'<section id="paints"><details class="aid allpaints"><summary><h2 class="foldh">Your paints</h2>'
+                          r'<span class="small">'
                           rf'All {n} paints and their recipes\. Each step lists the ones it needs, so you can mix as you go'
                           r'</span></summary>(.*?)</details></section>', html, re.S)
             self.assertTrue(m, name)
             inside = m.group(1)
             self.assertEqual(inside.count('<div class="paint">'), n)
-            for p in data["photo_read"]["mixes"]:
-                self.assertIn(f'<span class="blob" style="background:{p["hex"]}"></span><div><b>{p["name"]}</b>', inside)
-            self.assertNotIn("<h2>Your paints</h2>", html)
+            for p in data["photo_read"]["mixes"]:  # each card whole: swatch, name, recipe, what it's for, first step
+                card = inside[inside.index(f'<span class="blob" style="background:{p["hex"]}"></span><div><b>{p["name"]}</b>'):]
+                card = card[:card.index('</div></div>')]
+                self.assertIn(f'<span class="recipe">{html_escape(p["recipe"])}</span>', card)
+                self.assertIn(html_escape(p.get("used_for", "")), card)
+                self.assertIn("First needed in step", card)
 
     def test_tape_marks_and_the_transfer_outline_sit_in_one_closed_fold(self):
         for name in NAMES:
             html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
             start = html[html.index('id="start"'):]
             m = re.search(r'<details class="aid placing"><summary>Placing shapes with tape marks and a transfer outline '
-                          r'<span class=small>optional</span></summary>(.*?)</details>', start, re.S)
+                          r'<span class=small>optional, but the steps say where things go by these tape marks</span>'
+                          r'</summary>(.*?)</details>', start, re.S)
             self.assertTrue(m, name)
             self.assertIn("Mark halves and quarters on tape", m.group(1))
             self.assertIn("The transfer outline", m.group(1))
