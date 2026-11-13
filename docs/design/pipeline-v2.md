@@ -445,10 +445,17 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
   first screen tells the painter to mark the halves and quarters on tape along the canvas's edges (chalk on the
   canvas would be painted over by the sky).
 - **Close-up** (a step whose area is under 20% of the picture): before and after, cropped to the area with a
-  margin, with a finer grid.
+  margin, with a finer grid. Built (#68): not when the area reaches across more than half the canvas's long side
+  (scattered marks such as a sun path, a long branch), since the crop would be hardly closer; it starts open when the area is under 3%.
 - **Paint map** (every `flat`, `pass`, and `blend` step with 2 or more paints, and the first step of each part):
   the part filled with flat patches, one per paint, numbered, with a legend in painting order. It replaces the
-  hand-written `values` table.
+  hand-written `values` table. Built (#68): the first step's map shows all of the part's paints over the whole part;
+  a part with only one paint gets no map (it would be the Where outline again). A blend's paints are numbered top
+  to bottom.
+- **Where, in words** (`aids.where_words`, built in #68, for `draft-text` to use): "Inside the outlined area", then
+  for a band across the canvas the edges it reaches and where its other ends are, and for a thing its nearer top or
+  bottom, its nearer side, and its size, in inches on the painter's canvas (to the half inch, the quarter under
+  2 in), or against the halves and quarters on the tape when there's no canvas size.
 - **Transfer outline** (once per lesson): the outlines of the `object` parts with no parent, as lines on the
   quarter grid at the canvas's shape. The stage that starts an object opens with an optional line: "Lightly chalk
   its outline first." (Owner, 2026-11-12: whatever helps beginners most. The paint-along stays sketch-free

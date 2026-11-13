@@ -485,6 +485,8 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
         if checks.get(key):
             out.append(f"{key}: {checks[key]}")
+    if checks.get("missing_aids"):
+        out.append("aids/aids.json is missing or was made for other steps: run step-aids, then publish --final again")
     kept = notes.get("long_steps_kept") or {}
     long = [x for x in checks.get("long_steps") or [] if x["id"] not in kept]  # (publish doesn't list them for version 2)
     if long:
@@ -574,8 +576,8 @@ def publish(a: argparse.Namespace) -> dict:
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
-    if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings
-        lesson_data.update(plan_version=2, groups=publish2.groups(raw))
+    if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings, and the step aids
+        lesson_data.update(plan_version=2, groups=publish2.groups(raw), aids=publish2.attach_aids(lesson, stages))
     import provenance
     lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
@@ -583,8 +585,12 @@ def publish(a: argparse.Namespace) -> dict:
     artifact = lesson / "lesson-artifact.html"
     artifact.write_text(page(lesson_data, technique, lesson, embed=True), encoding="utf-8")
     # one self-contained HTML document (images inlined), for the lessons site or to send as a file
-    (lesson / "lesson-standalone.html").write_text(page(lesson_data, technique, lesson, embed=True, standalone=True),
-                                                 encoding="utf-8")
+    standalone = page(lesson_data, technique, lesson, embed=True, standalone=True)
+    (lesson / "lesson-standalone.html").write_text(standalone, encoding="utf-8")
+    if v2 and len(standalone.encode("utf-8")) > publish2.MAX_PAGE_BYTES:
+        raise Refused(f"the page is {len(standalone.encode('utf-8')) / 1e6:.1f} MB, over the {publish2.MAX_PAGE_BYTES / 1e6:g} MB "
+                      "a phone should load. Merge small steps in the plan, or lower aids.CLOSE_UP so fewer steps get a "
+                      "close-up, then run build-steps, step-aids, and publish again.")
     from lesson_embed import export
     embed = export(lesson_data, technique, lesson)  # one folder a blog post or another page can show as a walkthrough
 
@@ -619,6 +625,8 @@ def publish(a: argparse.Namespace) -> dict:
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
+    if v2:  # the step's teaching pictures (step-aids), and the page's size
+        result.update(missing_aids=not lesson_data.get("aids"), page_mb=round(len(standalone.encode("utf-8")) / 1e6, 2))
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
         problems = seal_problems(lesson, plan, text, review, notes, result)
         if problems:
@@ -1415,7 +1423,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
         raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
     plate = lesson / "98_background.png"
     background = load(plate, max_side=100_000) if plate.exists() else None
-    pictures, rows = bs.build(finish, plan, owner, background)
+    pictures, rows, _ = bs.build(finish, plan, owner, background)
     steps = bs.flat_steps(plan)
     for old in lesson.glob("[0-9][0-9]_*.png"):
         if not old.name.startswith(("00_", "98_", "99_")):
@@ -1437,6 +1445,43 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
             "objects_share": front, "background": plate.name if background is not None else None,
             "needs_background": background is None and front > bs.NEEDS_BACKGROUND,
             "advice": advice, "cost_usd": 0.0}
+
+
+def step_aids_tool(a: argparse.Namespace) -> dict:
+    """Write aids/: every step's teaching pictures (where its paint goes, a close-up, a paint map) and the transfer
+    outline, from the outlines, the plan, and the step pictures. No renders, the same bytes every run."""
+    import aids
+    import build_steps as bs
+    import numpy as np
+    from filters import load
+
+    lesson = Path(a.lesson)
+    plan, finish = _v2(lesson)
+    owner = _read_owner(lesson, plan)
+    if owner.shape != finish.shape[:2]:
+        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
+    steps = bs.flat_steps(plan)
+    names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
+    missing = [n for n in names if not (lesson / n).exists()]
+    if missing:
+        raise Refused(f"missing step pictures {missing}: run build-steps --lesson {lesson} first")
+    plate = lesson / "98_background.png"
+    built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
+    pictures = [load(lesson / n, max_side=100_000) for n in names]
+    stale = [n for n, p, b in zip(names, pictures, built) if p.shape != b.shape or not np.array_equal(p, b)]
+    if stale:
+        raise Refused(f"the step pictures don't match the plan ({stale[0]} first): run build-steps --lesson {lesson} again")
+    info_path = lesson / "canvas.json"
+    info = json.loads(info_path.read_text(encoding="utf-8")) if info_path.exists() else {}
+    view = canvas_view(lesson, names)
+    data = aids.make(plan, pictures, masks, owner, info.get("canvas_box"), info.get("canvas"), lesson / "aids",
+                     [view.get(n, n) for n in names])
+    (lesson / "aids" / "aids.json").write_text(json.dumps(data, indent=1), encoding="utf-8")
+    rows = data["steps"]
+    return {"aids": str(lesson / "aids" / "aids.json"), "steps": len(rows),
+            "closeups": sum(1 for r in rows if r.get("closeup")), "maps": sum(1 for r in rows if r.get("map")),
+            "transfer": bool(data["transfer"]),
+            "advice": "Run publish to put them on the page. Run this again whenever build-steps runs.", "cost_usd": 0.0}
 
 
 GRAY = (128, 128, 128)  # the bands around a finish that isn't the image model's shape
@@ -1556,6 +1601,13 @@ def add_v2_tools(sub) -> None:
                                    "what's behind objects when it exists.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=build_steps_tool)
+    p = sub.add_parser("step-aids", help="Free. v2: every step's teaching pictures (where, close-up, paint map) and the transfer outline.",
+                       description="Run after build-steps. Writes aids/aids.json and its pictures: each step's painted "
+                                   "area as an outline for the page, a close-up of small areas, a paint map where a step "
+                                   "or part has 2 or more paints, the position in words (inches on the canvas from "
+                                   "canvas.json, or the quarter marks without one), and aids/transfer.png.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=step_aids_tool)
 
 
 def build_parser() -> argparse.ArgumentParser:
