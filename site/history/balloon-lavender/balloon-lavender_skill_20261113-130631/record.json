@@ -4,12 +4,12 @@
   "started": "2026-11-13 13:06",
   "publishes": [
     {
-      "n": 1,
-      "digest": "fcdff2accd741e0f",
-      "strip": "strip-1.jpg",
+      "n": 2,
+      "digest": "5d3f1f2262e39773",
+      "strip": "strip-2.jpg",
       "published_with": {
         "version": "POC 1.0.1",
-        "commit": "193a3b2",
+        "commit": "2df6975",
         "dirty": false,
         "published": "2026-11-13"
       },
@@ -19,8 +19,8 @@
         "published": "2026-11-13"
       },
       "provenance": {
-        "kind": "unsealed",
-        "note": "not finished by the skill, or from before seals"
+        "kind": "hands-off",
+        "sealed": "2026-11-13T13:27:01"
       },
       "palette": "The owner's paints",
       "technique": "acrylic-paint-along-beginner",
@@ -30,16 +30,16 @@
         "orientation": "landscape"
       },
       "metrics": {
-        "steps": 24,
-        "words": 3267,
+        "steps": 23,
+        "words": 3139,
         "tubes": 11,
         "cost_usd": 0.109,
         "minutes": 1.5,
         "paid_renders": 3,
         "redos": 0,
         "review_problems": 0,
-        "text_problems": 0,
-        "minutes_total": 10.9,
+        "text_problems": 6,
+        "minutes_total": 16.9,
         "checks": {
           "long_steps": 0,
           "long_instructions": 0,
@@ -47,7 +47,7 @@
           "unreachable_paints": 0,
           "texture_jumps": 0,
           "duplicate_recipes": 0,
-          "undocumented_diagrams": 0
+          "undocumented_diagrams": 5
         }
       },
       "steps": [
@@ -94,11 +94,6 @@
         {
           "id": "bushes-dark",
           "name": "Dab the dark bushes",
-          "made_with": "composite:from-finish"
-        },
-        {
-          "id": "bushes-light",
-          "name": "Dab olive on the bush tops",
           "made_with": "composite:from-finish"
         },
         {
