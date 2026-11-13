@@ -414,6 +414,14 @@ class TextToolTests(unittest.TestCase):
         self.assertIn("path-again: changes almost nothing", " ".join(out))
         self.assertIn("path-again: no drafted lines in text.json. Run draft-text.", out)
 
+    def test_a_paint_name_inside_a_longer_paint_name_is_not_that_paint(self):
+        paints = {"Sea turquoise": {}, "Light sea turquoise": {}, "Hull red": {}}
+        stage = {"id": "sea-light", "colors": [{"name": "Light sea turquoise"}], "values": [],
+                 "steps": ["Streak Light sea turquoise across the water."]}
+        self.assertEqual(tools.paints_not_listed([stage], paints), [])
+        stage["steps"] = ["Streak Light sea turquoise, then a little Sea turquoise, and dot Hull red."]
+        self.assertEqual([x["paint"] for x in tools.paints_not_listed([stage], paints)], ["Sea turquoise", "Hull red"])
+
     def test_a_texture_jump_is_for_a_whole_part_in_one_step_not_for_a_coat_or_a_pass(self):
         for name in NAMES:  # the fixtures' passes and coats cover a lot at once, and that's how texture is taught
             self.assertFalse(any(": turns " in f for f in self.results[(name, "check")]["failures"]), name)
