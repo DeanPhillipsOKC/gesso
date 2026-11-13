@@ -99,6 +99,14 @@ Built today: `outline`, `part-colors` (the measuring half of `paints`), `build-s
 
 Steps 3 to 8 can loop: change the plan, run `outline` and `build-steps` again. Both are free and take seconds.
 
+**Changed 2026-11-13, from three real runs.** Steps 3 to 5 need only what comes before them: `outline` and
+`part-colors` check only the parts (`plan2.parts_problems`), and `paints` measures with no stages (section 9), so
+a plan has `parts` at step 3, `paints` after step 5, and `stages` from step 6. Before, `outline` refused a plan
+without stages and paints, and all three runs invented placeholder steps to get past it. After step 6, rerun
+`paints` only when `outline` changed the parts; it keeps what the steps use. `paints --add <part>` (section 9)
+gives one part one more color, to split a pass in two. `check` prints `problems` (and, as before, `failures`, the
+same list), like every other tool.
+
 ## 5. The plan file (`plan.json`, version 2)
 
 `spike/plan2.py` loads it and lists what's wrong with it (`plan2.problems`). Fields not listed keep their v1
@@ -172,8 +180,9 @@ pixel both claim.
 ### Paints
 
 One entry per paint: `id`, `hex` (measured, section 9), `sample_x`/`sample_y` (a spot of it in the finish),
-`parts` (every part a step uses it on), and from Claude `name` and `used_for`. Steps refer to paints by `id`.
-`plan2.problems` checks `id` and `hex` today; issue 4 adds the rest.
+`parts` (every part it's measured in and every part a step uses it on), and from Claude `name` and `used_for`.
+`"added": true` marks a paint `paints --add` made: no later run merges it (2026-11-13). Steps refer to paints by
+`id`. `plan2.problems` checks `id` and `hex` today; issue 4 adds the rest.
 
 ### Stages and steps
 
@@ -217,6 +226,20 @@ prints `problems`.
 A child of kind `marks` or `thin` only takes pixels its parent's family already had. `outline.problems` reports: nothing outlined; model confidence under 0.80; an object filling under 15% or over 98%
 of its box; an object in more than 3 pieces per box. Each says what to change.
 
+**Changed 2026-11-13, from three real runs:**
+- `outline` and `part-colors` check only the parts (`plan2.parts_problems`), so they run on a plan with no paints
+  or stages yet. Before, they demanded both, and every run invented placeholder steps and paints to get past it.
+- A `marks` or `thin` part whose parent is `marks` or `thin` is refused by `plan2.parts_problems`. It outlined
+  nothing, silently: a marks parent owns only pixels of its own colors, and the child, a different color, finds
+  none of them to take (the sailboat's mast reflection, child of the reflection, failed two rounds this way). Give
+  it the parent's parent, or no parent, and list it after. Refusing is smaller than a new family rule, and gives the
+  same outline the grandparent would.
+- `outline.problems` also reports an `area` whose filled outline (with it, its children, and the box's sides on the
+  picture's edge, gaps narrower than about 4% of the long side closed) encloses more than 3% of the picture that
+  went to an `area` or `object` behind it, with a spot in it and the two fixes: `points_in` there, or a `marks` child
+  of the area for what's there. The lavender's earth paths went to the sky that way. A marks part listed before the
+  area took its pixels on purpose and isn't counted.
+
 Claude Reads `parts/preview.jpg` once and fixes what's visibly wrong, at most 2 rounds per part. What goes wrong
 and the fix, from the spike:
 
@@ -245,11 +268,17 @@ that sky. Three cases:
    than 60% of the picture), with brush texture borrowed from beside the gap. Built; good wherever it was tried.
 2. **Behind objects, when they're small:** the same fill, per part, with the gap divided between the parts behind
    along each row so a horizon carries straight on. An object's soft rim (0.8% of the long side) is cleared with
-   it and comes back when the object is painted. Built; can't be seen on the sailboat or the lavender (objects are
-   8% of each picture).
+   it and comes back when the object is painted. Built. It looked fine on the fixture sailboat and lavender
+   (objects are 8% of each picture), but not on the real runs of 2026-11-13 (below): only tiny objects get it now.
 3. **Behind objects, when they're big** (33% on the chickadee): the fill is soft and patchy. `build-steps` reports
-   `objects_share` and asks for a background picture above 15% (`NEEDS_BACKGROUND`; a number between the two
-   cases seen, to be tuned).
+   `objects_share` and asks for a background picture above **2%** (`NEEDS_BACKGROUND`).
+
+**Changed 2026-11-13: the background render is wanted far more often.** `NEEDS_BACKGROUND` was 15%, a number
+between the two fixture cases. It was found wrong in three real runs on 2026-11-13: in two of them objects covered
+about 8% of the picture, and a blurred ghost of the boat, and of the balloon and the tree, showed in every step
+before they were painted. The earlier fixture comparison that showed "no visible difference" at 7 to 8% (below) did
+not hold on fresh finishes. The render costs about 2 cents, so it's now asked for whenever objects cover more than
+2% of the picture: in practice, whenever the picture has an object in front.
 
 **The background picture** (`98_background.png`, tool `background`, built: issue 2 of 8). One low-quality render
 of the finish with everything in front removed. The tool writes the prompt from the plan (the names of the front
@@ -260,8 +289,8 @@ outlines and rims are taken, matched to the color around the hole, so the render
 else. Marks the render shows behind an object (foliage behind the bird) are found there by the same color rule.
 
 Tried on the three fixtures (`docs/spikes/outlines.md`): $0.018 and 13 seconds each; clean on the chickadee; no
-visible gain on the two pictures where objects are 7 to 8% of the picture. So it's run only when `build-steps`
-prints `"needs_background": true`.
+visible gain on the two pictures where objects are 7 to 8% of the picture (the real runs of 2026-11-13 showed
+otherwise; see above). It's run when `build-steps` prints `"needs_background": true`.
 
 `build_steps.background_problems` checks the render: it reports when more than 25% of the scene away from the
 objects changed (the three real renders changed 0.0 to 0.3%), or when the objects are still there. One redo at
@@ -296,8 +325,9 @@ distances are `mixing.delta_e` (CIEDE2000) throughout.
 The limit is on **mixes a beginner has to work out**, and the fixtures show why that needs care: written by hand
 with a paint per step they have 16, 20, and 22 paints. Most of those are a part's own lighter and darker
 versions (bark dark, mid, light). So:
-1. **Colors per part:** as many as its steps name; with no steps yet, the fewest (1 to 4) that leave the part's
-   average color error under Delta E 8. A part with one paint gets a color it really has (below), not its average.
+1. **Colors per part:** the fewest (1 to 4) that leave the part's average color error under Delta E 8 (was: as many
+   as its steps name; changed 2026-11-13, below). A part with one paint gets a color it really has (below), not its
+   average.
 2. **Tints and shades don't count as mixes.** Within a part, a paint is a *tint* of the part's main paint (the
    one covering most of it) when that paint plus white, in some proportion, lands within Delta E 8 of it by
    `mixing.py`'s model, and a *shade* when the main paint plus the palette's darkest tube does. It's listed as
@@ -308,7 +338,8 @@ versions (bark dark, mid, light). So:
    (**10** for the beginner paint-along; owner, 2026-11-12) is a target, not a cap. While the lesson has more base
    mixes than that, merge the two closest into one paint shared by both parts, preferring pairs in different parts.
    If the only pairs left are in one part, merge them, merge the two steps that used them into one, and say so in
-   the output. **Never merge two paints more than Delta E 12 apart** (`MAX_MERGE`): that loses a color the painter
+   the output (no longer: since 2026-11-13 a paint a step uses is never merged away, below). **Never merge two
+   paints more than Delta E 12 apart** (`MAX_MERGE`): that loses a color the painter
    can see (a red hull blocked in brown). When the ceiling stops the merging above the target, `paints` says so,
    with each paint's nearest neighbor and how far ("Hull 1 stays: nearest is reflection-1, 16.3 away").
    That's a finished result, not a problem: `plan2.problems` reports going over the target only while two base
@@ -356,6 +387,38 @@ computes recipes as today.
 
 So a beginner lesson aims for 10 and lands at 10 to 14: the owner's rule (2026-11-12) is "aim for 10, but never
 lose a visible color".
+
+**Changed 2026-11-13: `paints` no longer churns.** In the three real runs, `paints` needed steps first (it measured
+"as many colors per part as its steps name"), and every run re-merged from scratch: one run had its paints renamed
+three times, and a fix for a texture jump failed three times because each rerun merged away the paint the new pass
+had just been given. Now (`paints.measure`, `paints.add`):
+- **A paint is measured in every part its `parts` lists.** A part listed by k paints is clustered into k colors
+  and each paint takes one (an optimal match to its current hex); a paint in several parts is their colors averaged
+  in Lab, weighted by how much of the picture each covers. That's also how a merge is measured.
+- **First measurement** (the plan has no paints): each part gets the fewest colors (1 to 4) that leave its average
+  error under Delta E 8, tints and shades are marked, and the paints merge toward `max_mixes` under the rules above
+  (a same-part merge measures that part again with one color fewer). No steps needed; ids `<part>-<n>`, darkest
+  first. Its `problems` don't list the missing stages.
+- **Again** (the plan has paints; run it after `outline` changed the parts): every paint is measured again and
+  keeps its `id`; its `name` and `used_for` when it moved under Delta E 3 (`KEEP_NAME`); and its `hex` and spot
+  exactly when it moved under Delta E 1 (`SAME`), so running `paints` on its own result changes nothing (true of
+  all three fixture plans, which didn't need re-saving). A part with no paint gets its fewest colors with the next
+  free ids. A paint whose parts are all gone is removed, and the output names the steps that still use it. Steps
+  are never changed. It prints what changed, what was kept, what's new, and what was removed.
+- **Merging, from now on:** a paint a step uses is never merged away (it may take in a paint no step uses, keeping
+  its id), and a paint `--add` made never merges. So `step_merges` is gone: steps are Claude's to choose.
+- **`paints --add <part>`** gives one part one more color: the part is clustered into one more color than it has
+  paints, its paints keep the clusters nearest them (a paint only this part has moves to its cluster; a shared one
+  doesn't), and the color left over is a new paint, `<part>-<next free n>`, with `"added": true`. Nothing merges and
+  no other part changes. When the left-over color is within Delta E 8 (`TINT`) of one of the part's paints, or is
+  only a blend along the part's edges (fewer than 10% of its pixels near it), nothing is added and `problems` says
+  so. It's how a pass is split in two, and how a part that took in a dropped part gets that part's color. Going over
+  `max_mixes` this way is allowed and reported in `over_target`, never a problem.
+- **The over-target rule** (`plan2.problems`) now reports going over `max_mixes` only while two base paints could
+  still merge by `paints`' own rules: neither is an accent or `added`, they're at most Delta E 12 apart, and at most
+  one of them is used by a step. The task asked for "not two paints used by different steps of the same part"; that
+  would still flag two step-used paints in different parts, which `paints` must not merge, so "run paints again"
+  would loop. The rule matches what the tool will do instead, which covers the split pass too.
 
 ## 10. Teaching content
 
@@ -517,6 +580,15 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 
 `publish` runs `check`; `publish --final` won't seal a version 2 lesson while anything fails. Version 1 lessons
 seal by the old rules.
+
+**Changed 2026-11-13, from three real runs:** `check` prints `problems` (the same list as `failures`, kept for
+`publish`), as every other v2 tool does. For version 2, `publish`'s own `texture_jumps` is `check`'s list
+(`checks.texture_jumps`, no `flat` step), where it had listed a flat coat at 0.118 that `check` rightly leaves out.
+The seal's messages name the v2 skill's step 7b for the text review, not v1's 6b. When `review.json` says
+`"review_context": "same"` (the skill couldn't start a fresh reviewer), `publish` keeps it in `lesson.json` and
+`known_problems.left` adds "The text review was done by the same session that wrote the text, not a fresh one." to
+the lesson's Known problems. And the notes on the page (`lesson_notes.behind`) show a note of any shape (a string,
+a list, or a dict) as text: `publish` crashed when `beginner_version` was a list.
 
 **Built (#51): `spike/checks.py`, `check --lesson`, and `publish` (its result's `check` and `check_notes`).**
 Decided while building it:

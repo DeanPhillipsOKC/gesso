@@ -155,6 +155,19 @@ def paint_names(plan: dict) -> list[str]:
     return out
 
 
+def texture_jumps(lesson: Path, plan: dict) -> list[dict]:
+    """tools.texture_jumps over a version 2 lesson's step pictures, except on a `flat` step: a flat coat is flat by
+    construction, and what's measured there is the new edge (the chickadee branch coat's 13%), not texture. `check`
+    and `publish` both report this list for version 2."""
+    import build_steps as bs
+    import tools
+
+    steps = bs.flat_steps(plan)
+    flat = {s["id"] for s in steps if s.get("show") == "flat"}
+    paths = [lesson / f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
+    return [j for j in tools.texture_jumps(lesson, paths) if j["step"] not in flat]
+
+
 def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     """Every check on a version 2 lesson. `text` is text.json's steps by id (read from the lesson when None),
     `built` is build()'s result when the caller already has it."""
@@ -205,10 +218,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
                           if not np.array_equal(load(lesson / n, max_side=100_000), p)), None)
             if stale:
                 failures.append(f"{stale} doesn't match the plan: run build-steps, then step-aids, again")
-            flat = {s["id"] for s in steps if s.get("show") == "flat"}
-            for j in tools.texture_jumps(lesson, [lesson / n for n in names]):
-                if j["step"] in flat:  # flat paint by construction: what's measured is the new edge (a branch's), not texture
-                    continue
+            for j in texture_jumps(lesson, plan):
                 failures.append(f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one "
                                 "step. Add one more pass before it (a darker paint first), then build-steps.")
         canvas_box, canvas = _canvas(lesson)

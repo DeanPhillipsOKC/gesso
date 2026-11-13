@@ -112,6 +112,29 @@ class OutlineTests(unittest.TestCase):
         for word in ("unsure", "fills only", "pieces"):
             self.assertIn(word, text)
 
+    def test_a_gap_in_an_area_that_fell_to_a_part_behind_it_is_reported(self):
+        # a field over the bottom half, with two earth paths running down to the bottom edge that went to the sky
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, {"id": "field", "kind": "area", "box": [0, 0.5, 1, 1]},
+                 {"id": "rows", "kind": "marks", "parent": "field", "box": [0, 0.5, 1, 1], "colors_in": ["#00ff00"],
+                  "colors_out": ["#ff0000"]}]
+        owner = np.zeros((100, 200), np.int32)
+        owner[50:] = 1
+        owner[60:, 40:60] = 2  # rows painted on the field count as the field
+        owner[52:, 90:100] = 0
+        owner[52:, 140:150] = 0
+        stats = [{"confidence": None, **s} for s in ol.owner_stats(parts, owner)]
+        text = " | ".join(ol.problems(parts, stats))
+        self.assertIn("field: 5% of the picture inside its outline went to sky", text)
+        self.assertIn("add points_in there", text)
+        self.assertIn("marks part with parent field", text)
+        self.assertGreater(stats[1]["hole_at"][1], 0.5)
+        owner[52:, 90:100] = owner[52:, 140:150] = 2  # the paths as a marks child of the field: nothing to tell
+        self.assertEqual(ol.problems(parts, [{"confidence": None, **s} for s in ol.owner_stats(parts, owner)]), [])
+        owner[:, :] = 1
+        owner[:50] = 0
+        owner[:70, 90:110] = 0  # a notch open at the top, wider than a gap: the field's shape, not a hole
+        self.assertLess(ol.owner_stats(parts, owner)[1]["hole"], 0.002)  # only the notch's rounded corners
+
     @unittest.skipUnless(all((ol.MODELS / n).exists() for n in ol.FILES), "the outline model files aren't in models/")
     def test_the_model_gives_the_saved_outlines(self):
         sam = ol.Sam()
@@ -214,8 +237,8 @@ class LimitTests(unittest.TestCase):
     """The rules of design section 9, each on a few made-up paints."""
     WHITE, DARK = (255, 255, 255), mixing.tube_rgb("Ultramarine blue")
 
-    def limit(self, ps, stages, n, order):
-        return paints.limit(ps, stages, n, order, self.WHITE, self.DARK, "Ultramarine blue")
+    def limit(self, ps, n, order, fixed=frozenset(), held=frozenset()):
+        return paints.limit(ps, n, order, self.WHITE, self.DARK, "Ultramarine blue", fixed, held)
 
     def test_a_lighter_or_darker_version_of_the_main_paint_is_a_tint_or_shade(self):
         main = "#1d677a"
@@ -231,40 +254,28 @@ class LimitTests(unittest.TestCase):
         ps = [paint("sky-1", "#4a6fb0", sky=0.5), paint("sky-2", "#e08a40", sky=0.2),
               paint("sky-3", "#2a7a3a", sky=0.1), paint("sky-4", "#2c7244", sky=0.1),  # the closest pair: one part
               paint("hill-1", "#d88a48", hill=0.1), paint("sun-1", "#fbe9b0", sun=0.01)]
-        stages = [{"id": "s", "steps": [
-            {"id": "sky", "part": "sky", "show": "blend", "paints": ["sky-1", "sky-2", "sky-3", "sky-4"]},
-            {"id": "hill", "part": "hill", "show": "full", "paints": ["hill-1"]}]}]
-        merges, step_merges = self.limit(ps, stages, 5, ["sky", "hill", "sun"])
+        merges = self.limit(ps, 5, ["sky", "hill", "sun"])
         self.assertEqual(len(merges), 1)
         self.assertFalse(merges[0]["same_part"])
-        self.assertEqual(step_merges, [])
         shared = next(p for p in ps if "hill" in p["shares"])
         self.assertEqual(shared["id"], "sky-2")  # the paint covering more keeps its id
         self.assertEqual(set(shared["shares"]), {"sky", "hill"})  # one paint for both parts
-        self.assertEqual(stages[0]["steps"][1]["paints"], ["sky-2"])  # the hill's step points at it
+        self.assertEqual((merges[0]["id"], merges[0]["into"]), ("hill-1", "sky-2"))
 
-    def test_two_paints_of_one_part_merging_merge_their_steps(self):
+    def test_a_paint_a_step_uses_is_never_merged_away_but_can_take_one_in(self):
         ps = [paint("bark-1", "#5e3928", bark=0.5), paint("bark-2", "#2a7a3a", bark=0.2),
               paint("bark-3", "#2c7244", bark=0.1), paint("sun-1", "#fbe9b0", sun=0.01)]
-        steps = [{"id": "coat", "part": "bark", "show": "flat", "paints": ["bark-1"]},
-                 {"id": "moss", "part": "bark", "show": "pass", "paints": ["bark-2"]},
-                 {"id": "moss-dark", "part": "bark", "show": "pass", "paints": ["bark-3"]}]
-        stages = [{"id": "s", "steps": steps}]
-        merges, step_merges = self.limit(ps, stages, 3, ["bark", "sun"])
+        self.assertEqual(self.limit(copy.deepcopy(ps), 3, ["bark", "sun"], fixed={"bark-2", "bark-3"}), [])  # both used
+        merges = self.limit(ps, 3, ["bark", "sun"], fixed={"bark-3"})  # bark-2 covers more, but a step uses bark-3
+        self.assertEqual((merges[0]["id"], merges[0]["into"]), ("bark-2", "bark-3"))
         self.assertTrue(merges[0]["same_part"])
-        self.assertEqual(step_merges, [{"kept": "moss", "dropped": "moss-dark", "part": "bark"}])
-        self.assertEqual([s["id"] for s in stages[0]["steps"]], ["coat", "moss"])
-        self.assertEqual(len(stages[0]["steps"][1]["paints"]), 1)
 
-    def test_a_coat_merged_with_the_parts_last_step_finishes_the_part(self):
+    def test_a_paint_paints_add_made_never_merges(self):
         ps = [paint("leaf-1", "#2a7a3a", leaf=0.2), paint("leaf-2", "#4a6a18", leaf=0.2),  # 10 apart, not a shade
               paint("sky-1", "#4a6fb0", sky=0.5), paint("sun-1", "#fbe9b0", sun=0.01)]
-        stages = [{"id": "s", "steps": [{"id": "sky", "part": "sky", "show": "full", "paints": ["sky-1"]},
-                                        {"id": "sun", "part": "sun", "show": "full", "paints": ["sun-1"]},
-                                        {"id": "leaf-coat", "part": "leaf", "show": "flat", "paints": ["leaf-1"]},
-                                        {"id": "leaf-red", "part": "leaf", "show": "pass", "paints": ["leaf-2"]}]}]
-        self.limit(ps, stages, 3, ["sky", "sun", "leaf"])
-        self.assertEqual([(s["id"], s["show"]) for s in stages[0]["steps"]][2:], [("leaf-coat", "full")])
+        self.assertEqual(self.limit(copy.deepcopy(ps), 3, ["sky", "sun", "leaf"], held={"leaf-2"}), [])
+        self.assertEqual(len(self.limit(ps, 3, ["sky", "sun", "leaf"])), 1)
+        self.assertEqual(paints.mergeable([p for p in ps if p["id"] != "sun-1"], set(), held={"leaf-1"}), [])
 
     def test_an_accent_is_never_merged_away(self):
         ps = [paint("sky-1", "#f08a50", sky=0.4), paint("sky-2", "#e07c86", sky=0.3),
@@ -272,7 +283,7 @@ class LimitTests(unittest.TestCase):
               paint("hull-1", "#2c7f3a", hull=0.003),  # the only green
               paint("sea-1", "#1d4f8a", sea=0.3), paint("sea-2", "#28609a", sea=0.1)]
         self.assertEqual(paints.accents(ps) & {"sun-1", "hull-1"}, {"sun-1", "hull-1"})
-        self.limit(ps, [], 3, ["sky", "sun", "hull", "sea"])
+        self.limit(ps, 3, ["sky", "sun", "hull", "sea"])
         self.assertEqual({p["id"] for p in ps} & {"sun-1", "hull-1"}, {"sun-1", "hull-1"})
         self.assertEqual(next(p for p in ps if p["id"] == "sun-1")["hex"], "#fbe9b0")  # and its color didn't move
 
@@ -281,7 +292,7 @@ class LimitTests(unittest.TestCase):
               paint("sea-1", "#1d677a", sea=0.3), paint("sea-2", "#2a7088", sea=0.1),
               paint("sun-1", "#fbe9b0", sun=0.003)]
         self.assertGreater(mixing.delta_e("#952821", "#765353"), paints.MAX_MERGE)
-        merges, _ = self.limit(ps, [], 2, ["hull", "refl", "sea", "sun"])
+        merges = self.limit(ps, 2, ["hull", "refl", "sea", "sun"])
         self.assertEqual({p["id"] for p in ps} & {"hull-1", "refl-1"}, {"hull-1", "refl-1"})  # the red stays
         self.assertTrue(all(m["delta_e"] <= paints.MAX_MERGE for m in merges))
         self.assertEqual(paints.mergeable([p for p in ps if not p.get("of")], paints.accents(ps)), [])
@@ -291,7 +302,7 @@ class LimitTests(unittest.TestCase):
 
     def test_merging_stops_when_only_accents_are_left(self):
         ps = [paint("a-1", "#fbe9b0", a=0.1), paint("b-1", "#2c7f3a", b=0.1), paint("c-1", "#c03030", c=0.1)]
-        merges, _ = self.limit(ps, [], 1, ["a", "b", "c"])
+        merges = self.limit(ps, 1, ["a", "b", "c"])
         self.assertEqual(merges, [])
         self.assertEqual(len(ps), 3)
 
@@ -308,17 +319,60 @@ class MeasureTests(unittest.TestCase):
 
     def test_names_are_kept_only_where_the_color_barely_moved(self):
         img, plan, owner = self.scene_lesson()
+        before = copy.deepcopy(plan)
         r = paints.measure(img, plan, owner, None)
+        self.assertFalse(r["first"])
         names = {p["id"]: p.get("name") for p in r["paints"]}
-        self.assertEqual(names["sky-1"], "Sky blue")
-        self.assertEqual(names["ball-1"], "Ball red")
-        self.assertIsNone(names["ground-1"])  # moved a long way: Claude names it again
-        self.assertEqual([s["paints"] for s in bs.flat_steps({"stages": r["stages"]})],
-                         [["sky-1"], ["dabs-1"], ["ground-1"], ["ball-1"], ["ball-1"]])
+        # the grass moved a long way and the dabs (small, with soft edges) 3.1: Claude names them again
+        self.assertEqual(names, {"blue": "Sky blue", "orange": None, "green": None, "red": "Ball red"})
+        self.assertEqual({(c["id"], c["name_kept"]) for c in r["changed"]},
+                         {("orange", False), ("green", False), ("red", True)})
+        self.assertEqual(r["kept"], ["blue"])
+        self.assertEqual(plan, before)  # the plan, and its steps, aren't changed
         for p in r["paints"]:
             self.assertTrue({"sample_x", "sample_y", "parts", "hex"} <= set(p))
+        self.assertEqual(next(p for p in r["paints"] if p["id"] == "green")["parts"], ["ground"])  # from its step
 
-    def test_the_fixtures_reach_the_target_or_have_nothing_left_to_merge_the_same_every_run(self):
+    def test_a_first_measurement_needs_no_steps_and_running_again_changes_nothing(self):
+        img, parts, given = scene()
+        _, owner, _ = ol.outline(img, parts, given=given)
+        plan = {"plan_version": 2, "parts": parts}
+        r = paints.measure(img, plan, owner, 10)
+        self.assertTrue(r["first"])
+        self.assertEqual([(p["id"], p["parts"]) for p in r["paints"]],
+                         [("sky-1", ["sky"]), ("dabs-1", ["dabs"]), ("ground-1", ["ground"]), ("ball-1", ["ball"])])
+        plan["paints"] = r["paints"]
+        self.assertEqual(plan2.problems(plan, {"max_mixes": 10}), [plan2.NO_STAGES])  # the only thing left: stages
+        for p in plan["paints"]:
+            p["name"], p["used_for"] = p["id"].title(), "x"
+        again = paints.measure(img, plan, owner, 10)
+        self.assertEqual((again["first"], again["paints"], again["changed"], again["merges"]),
+                         (False, plan["paints"], [], []))
+
+    def test_running_again_keeps_every_id_and_drops_a_paint_whose_part_is_gone(self):
+        img, parts, given = scene()
+        _, owner, _ = ol.outline(img, parts, given=given)
+        plan = scene_plan(parts)
+        plan["paints"] = paints.measure(img, {"plan_version": 2, "parts": parts}, owner, 10)["paints"]
+        for st in plan["stages"]:
+            for s in st["steps"]:
+                s["paints"] = [f"{s['part']}-1"]
+        # the dabs are dropped (their pixels go back to the sky) and a hill is added in front of the ground
+        parts2 = [p for p in parts if p["id"] != "dabs"] + [{"id": "hill", "kind": "area", "box": [0, 0.6, 0.3, 1]}]
+        owner2 = np.where(owner == 1, 0, np.where(owner > 1, owner - 1, owner))
+        owner2[90:, :40] = 3
+        img2 = img.copy()
+        img2[90:, :40] = (150, 120, 60)
+        plan2_ = dict(plan, parts=parts2)
+        r = paints.measure(img2, plan2_, owner2, 10)
+        self.assertEqual([x["id"] for x in r["removed"]], ["dabs-1"])
+        self.assertEqual(r["removed"][0]["steps"], ["dabs"])  # the step that still names it is listed
+        self.assertEqual(r["new"], ["hill-1"])
+        self.assertEqual([p["id"] for p in r["paints"]], ["sky-1", "ground-1", "ball-1", "hill-1"])
+        self.assertEqual(r["kept"], ["ground-1", "ball-1"])  # the sky, with the dabs' pixels, moved a little
+        self.assertEqual([c["id"] for c in r["changed"]], ["sky-1"])
+
+    def test_the_fixtures_are_the_tools_own_result_and_nothing_a_step_uses_is_merged(self):
         dark = mixing.tube_rgb("Ultramarine blue")
         for name in NAMES:
             finish, plan, owner = fixture(name)
@@ -328,12 +382,61 @@ class MeasureTests(unittest.TestCase):
                 self.assertEqual(paints.mergeable(bases, set(a["accents"])), [], name)
                 self.assertEqual(len(a["over_target"]), len(bases), name)
             self.assertEqual(a, paints.measure(finish, plan, owner, 10, dark=dark, dark_name="Ultramarine blue"), name)
-            # the fixture plans are the tool's own result, and running it again changes no paint or step. Only a
-            # spot can move: the chickadee's foliage, two paints merged into one, is measured as one color next time
-            def no_spot(ps):
-                return [{k: v for k, v in p.items() if k not in ("sample_x", "sample_y")} for p in ps]
-            self.assertEqual((no_spot(a["paints"]), a["stages"]), (no_spot(plan["paints"]), plan["stages"]), name)
+            # running paints on the fixture plans (its own result) changes no paint, not even a spot
+            self.assertEqual((a["paints"], a["changed"], a["merges"]), (plan["paints"], [], []), name)
             self.assertIn("sun-1", a["accents"], name)  # the sun is never merged away
+            # far over the target, still nothing a step uses is merged away or moved to another step
+            b = paints.measure(finish, plan, owner, 3, dark=dark, dark_name="Ultramarine blue")
+            self.assertEqual((b["paints"], b["merges"]), (plan["paints"], []), name)
+            self.assertTrue(all(o["used"] for o in b["over_target"]), name)
+
+    def test_a_first_measurement_of_the_fixtures_reaches_the_target_or_stops_at_the_ceiling(self):
+        dark = mixing.tube_rgb("Ultramarine blue")
+        for name in NAMES:
+            finish, plan, owner = fixture(name)
+            fresh = {k: v for k, v in plan.items() if k not in ("paints", "stages")}
+            a = paints.measure(finish, fresh, owner, 10, dark=dark, dark_name="Ultramarine blue")
+            self.assertTrue(a["first"], name)
+            bases = paints.base_mixes(a["paints"])
+            if len(bases) > 10:
+                self.assertEqual(paints.mergeable([p for p in a["paints"] if not p.get("of")], set(a["accents"])), [])
+            self.assertEqual(plan2.problems(dict(fresh, paints=a["paints"]), {"max_mixes": 10}), [plan2.NO_STAGES])
+            again = paints.measure(finish, dict(fresh, paints=a["paints"]), owner, 10, dark=dark,
+                                   dark_name="Ultramarine blue")
+            self.assertEqual((again["paints"], again["merges"]), (a["paints"], []), name)
+
+
+class AddTests(unittest.TestCase):
+    def test_add_gives_one_part_one_more_color_and_touches_nothing_else(self):
+        finish, plan, owner = fixture("red-sailboat")
+        r = paints.add(finish, plan, owner, "hill", 10, dark=mixing.tube_rgb("Ultramarine blue"),
+                       dark_name="Ultramarine blue")  # the fixture's darkest tube, which its shades are marked with
+        self.assertEqual(r["problems"], [])
+        new = next(p for p in r["paints"] if p["id"] == r["added"])
+        self.assertEqual((r["added"], new["parts"], new["added"]), ("hill-2", ["hill"], True))  # the next free id
+        others = {c["id"]: c for c in plan["paints"] if "hill" not in c["parts"]}
+        self.assertEqual([p for p in r["paints"] if p["id"] in others], list(others.values()))  # nothing else moved
+        self.assertEqual(r["merges"], [])
+        self.assertEqual(len(r["paints"]), len(plan["paints"]) + 1)
+        self.assertEqual([(c["id"], c["name_kept"]) for c in r["changed"]], [("hill-1", True)])  # its nearest color
+        added = dict(plan, paints=r["paints"])
+        self.assertEqual(plan2.problems(added, {"max_mixes": 10}), [])  # over the target through --add is allowed
+        again = paints.measure(finish, added, owner, 10)  # and a later run keeps it
+        self.assertEqual((again["merges"], [p["id"] for p in again["paints"]]), ([], [p["id"] for p in r["paints"]]))
+
+    def test_add_says_so_when_a_part_has_no_other_distinct_color(self):
+        rng = np.random.default_rng(3)
+        img = np.clip(np.array([40, 90, 200]) + rng.normal(0, 6, (60, 80, 3)), 0, 255).astype(np.uint8)  # one blue
+        owner = np.zeros((60, 80), np.int32)
+        plan = {"plan_version": 2, "parts": [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}]}
+        plan["paints"] = paints.measure(img, plan, owner, 10)["paints"]
+        r = paints.add(img, plan, owner, "sky", 10)
+        self.assertIsNone(r["added"])
+        self.assertIn("sky: its pixels don't hold another distinct color: the next one measured", r["problems"][0])
+        self.assertIn("from sky-1", r["problems"][0])
+        self.assertEqual(r["paints"], plan["paints"])
+        with self.assertRaises(ValueError):
+            paints.add(img, plan, owner, "moon", 10)
 
 
 class PlanTests(unittest.TestCase):
@@ -359,15 +462,46 @@ class PlanTests(unittest.TestCase):
         self.breaks(lambda p: p["paints"][0].pop("sample_x"), "no sample_x/sample_y")
         self.breaks(lambda p: p["paints"][1].update(of="sky-9", plus="white"), "which isn't in paints")
 
+    def test_the_parts_are_checked_alone_before_there_are_paints_or_stages(self):
+        plan = {k: v for k, v in fixture("red-sailboat")[1].items() if k not in ("paints", "stages")}
+        self.assertEqual(plan2.parts_problems(plan), [])
+        self.assertIn("no stages with steps", " | ".join(plan2.problems(plan)))
+        broken = copy.deepcopy(plan)
+        broken["parts"][4].pop("points_in")
+        self.assertIn("needs points_in", " | ".join(plan2.parts_problems(broken)))
+
+    def test_a_marks_or_thin_part_on_a_marks_part_is_refused_with_what_to_do(self):
+        plan = copy.deepcopy(fixture("red-sailboat")[1])
+        self.assertEqual(plan["parts"][4]["parent"], "water")
+        plan["parts"].append({"id": "glints", "kind": "marks", "parent": "sun-path", "box": [0.2, 0.6, 0.5, 0.9],
+                              "points_in": [[0.4, 0.7]], "points_out": [[0.3, 0.8]]})
+        text = " | ".join(plan2.parts_problems(plan))
+        self.assertIn("glints: a marks part can't have the marks part sun-path as its parent: it would outline nothing. "
+                      "List it after sun-path and give it 'water' as its parent", text)
+        plan["parts"][-1]["parent"] = "water"
+        self.assertEqual(plan2.parts_problems(plan), [])
+        self.assertIsNone(plan["parts"][8].get("parent"))  # the reflection has none: its child is told to have none
+        plan["parts"].append({"id": "mast-reflection", "kind": "thin", "parent": "reflection", "width": 0.01,
+                              "paths": [[[0.8, 0.65], [0.8, 0.9]]], "points_in": [[0.8, 0.7]], "points_out": [[0.7, 0.8]]})
+        self.assertIn("mast-reflection: a thin part can't have the marks part reflection as its parent: it would outline "
+                      "nothing. List it after reflection and give it no parent.", " | ".join(plan2.parts_problems(plan)))
+
     def test_over_the_target_is_told_only_when_paints_could_still_merge(self):
         plan = copy.deepcopy(fixture("red-sailboat")[1])
         bases = [c for c in plan["paints"] if not c.get("of")]
         self.assertGreater(len(bases), 10)
         self.assertEqual(plan2.problems(plan, {"max_mixes": 10}), [])  # over, but nothing close enough is left
-        bases[1]["hex"] = mixing.rgb_hex(np.clip(np.array(mixing.hex_rgb(bases[2]["hex"])) + 4, 0, 255))
+        a, b = bases[1], bases[2]
+        a["hex"] = mixing.rgb_hex(np.clip(np.array(mixing.hex_rgb(b["hex"])) + 4, 0, 255))
+        self.assertEqual(plan2.problems(plan, {"max_mixes": 10}), [])  # both used by steps: paints won't merge them
+        spare = dict(a, id="spare")  # the same color, but no step uses it: paints would merge it away
+        plan["paints"].append(spare)
         text = " | ".join(plan2.problems(plan, {"max_mixes": 10}))
-        self.assertIn(f"{bases[1]['id']} and {bases[2]['id']}", text)
+        self.assertIn("spare", text)
         self.assertIn("Run paints again", text)
+        spare["added"] = True  # one paints --add made (a pass split in two) never merges
+        self.assertEqual(plan2.problems(plan, {"max_mixes": 10}), [])
+        spare.pop("added")
         self.assertEqual(plan2.problems(plan, {"max_mixes": 20}), [])  # under the target: fine either way
 
     def test_a_version_1_plan_is_not_mistaken_for_version_2(self):
@@ -411,7 +545,31 @@ class ToolTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "chickadee")))
             self.assertGreater(r["objects_share"], bs.NEEDS_BACKGROUND)
-            self.assertIn("background render", r["advice"])
+            self.assertTrue(r["needs_background"])
+            self.assertIn("Run background (one render", r["advice"])
+        with tempfile.TemporaryDirectory() as d:  # objects at about 8% show a ghost too (three real runs, 2026-11-13)
+            r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "red-sailboat")))
+            self.assertLess(r["objects_share"], 0.15)
+            self.assertTrue(r["needs_background"])
+        self.assertEqual(bs.NEEDS_BACKGROUND, 0.02)
+
+    def test_outline_and_part_colors_run_on_a_plan_with_parts_only(self):
+        from unittest import mock
+
+        img, parts, _ = scene()
+        with tempfile.TemporaryDirectory() as d:
+            lesson = Path(d)
+            plan = {"plan_version": 2, "parts": parts[:2]}  # the backdrop and marks on it: no model needed
+            (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
+            Image.fromarray(img).save(lesson / "99_finish.png")
+            with mock.patch.object(ol, "Sam", lambda: None):
+                r = self.run_tool("outline", "--lesson", str(lesson))
+            self.assertEqual(r["problems"], [])
+            self.assertTrue((lesson / "parts" / "owner.png").exists())
+            self.assertEqual(set(self.run_tool("part-colors", "--lesson", str(lesson))["colors"]), {"sky", "dabs"})
+            plan["parts"][1].pop("colors_in")
+            (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
+            self.assertIn("needs points_in or colors_in", self.run_tool("outline", "--lesson", str(lesson))["refused"])
 
     def test_part_colors_lists_every_part(self):
         with tempfile.TemporaryDirectory() as d:
@@ -433,7 +591,29 @@ class ToolTests(unittest.TestCase):
             self.assertTrue((lesson / "trials" / "paints.jpg").exists())
             written = plan2.load(lesson)
             self.assertEqual(written["paints"], plan["paints"])  # the same paints the fixture holds, still unnamed
+            self.assertEqual(written["stages"], plan["stages"])
             self.assertEqual(plan2.problems(written), [])
+            self.assertFalse(r["first"])
+            self.assertEqual((r["merged"], r["changed"], r["removed"]), ([], [], []))
+
+    def test_paints_first_needs_no_stages_and_add_splits_a_part(self):
+        with tempfile.TemporaryDirectory() as d:
+            lesson = self.lesson(d)
+            plan = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
+            parts_only = {k: v for k, v in plan.items() if k not in ("paints", "stages")}
+            (lesson / "plan.json").write_text(json.dumps(parts_only), encoding="utf-8")
+            r = self.run_tool("paints", "--lesson", str(lesson))
+            self.assertTrue(r["first"])
+            self.assertEqual(r["problems"], [])  # no stages yet is not a problem here
+            self.assertIn("First measurement", r["advice"])
+            (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")  # the fixture, with its steps
+            r = self.run_tool("paints", "--lesson", str(lesson), "--add", "hill")
+            self.assertEqual((r["added"], r["problems"], r["merged"]), ("hill-2", [], []))
+            written = plan2.load(lesson)
+            self.assertEqual(written["stages"], plan["stages"])  # the step is Claude's to point at it
+            self.assertTrue(next(c for c in written["paints"] if c["id"] == "hill-2")["added"])
+            r = self.run_tool("paints", "--lesson", str(lesson), "--add", "moon")
+            self.assertIn("isn't one of the plan's parts", r["refused"])
 
     def test_a_version_1_lesson_is_refused_with_a_reason(self):
         with tempfile.TemporaryDirectory() as d:

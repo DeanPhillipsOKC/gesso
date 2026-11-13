@@ -298,6 +298,27 @@ class PublishV2Tests(unittest.TestCase):
         text[ids[3]].pop("lines")
         self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [f"{ids[3]}: text.json has no lines"])
         self.assertIn("review.json has no text_issues", " ".join(tools.seal_problems(lesson, plan, text, {}, notes, {})))
+        shutil.rmtree(lesson / "trials" / "review")
+        (lesson / "review.json").unlink(missing_ok=True)
+        said = " | ".join(tools.seal_problems(lesson, plan, text, review, notes, {}))
+        self.assertIn("the text review (step 7b) hasn't run", said)  # the v2 skill's step, not v1's 6b
+        self.assertIn("review.json is missing (step 7b)", said)
+        self.assertNotIn("6b", said)
+
+    def test_a_review_by_the_session_that_wrote_the_text_is_a_known_problem(self):
+        import known_problems
+        lesson = self.copy("red-sailboat")
+        (lesson / "review.json").write_text(json.dumps({"finish_issues": [], "text_issues": [], "review_context": "same"}),
+                                            encoding="utf-8")
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual(data["review_context"], "same")
+        self.assertIn({"step": None, "name": "", "problem": "The text review was done by the same session that wrote "
+                       "the text, not a fresh one."}, known_problems.left(data))
+        self.assertIn("same session that wrote the text", known_problems.section(known_problems.left(data), []))
+        self.assertEqual(known_problems.left({**data, "review_context": "fresh"}), [])
+        self.assertEqual(known_problems.left({**data, "plan_version": None}), [])  # version 1 lessons: unchanged
 
     # --- every other reader of lesson.json ---
 
@@ -343,6 +364,25 @@ class PublishV2Tests(unittest.TestCase):
             html = (lesson / "lesson-artifact.html").read_text(encoding="utf-8")
             self.assertIn('id="behind"', html)  # lesson_notes: behind the easel
             self.assertIn("Total, 0 renders", html)
+
+    def test_notes_in_any_shape_never_stop_a_publish(self):
+        # the lavender balloon's beginner_version came back as a list, and publish crashed (2026-11-13)
+        lesson = self.copy("lavender-balloon")
+        ids = [s["id"] for st in fixture("lavender-balloon")[1]["stages"] for s in st["steps"]]
+        notes = {"beginner_version": ["Dropped the village", "Merged the mountains"], "photo_prep": ["cropped"],
+                 "canvas_fit": "fitted to 16 x 20", "technique": "the paint-along", "read": ["a balloon", "lavender"],
+                 "order": {"first": "the sky"}, "steps": ["x"], "beginner_check": "no step needs a diagram",
+                 "learned": "outline paths as marks", "filters": ["blur"], "throwaways": "none"}
+        (lesson / "notes.json").write_text(json.dumps(notes), encoding="utf-8")
+        (lesson / "review.json").write_text(json.dumps({"finish_issues": "none", "text_issues": ["one"]}), encoding="utf-8")
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        html = (lesson / "lesson.html").read_text(encoding="utf-8")
+        self.assertIn("Dropped the village; Merged the mountains", html)
+        self.assertIn("outline paths as marks", html)
+        code, r = run_tool("publish", "--lesson", str(lesson), "--final")
+        self.assertIn("beginner_check must be a dict", r["refused"])  # a seal problem that says what to change
+        self.assertTrue(ids)
 
     def test_a_sealed_version_2_lesson_goes_on_the_site(self):
         import provenance

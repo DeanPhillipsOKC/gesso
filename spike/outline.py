@@ -39,6 +39,8 @@ SPECK = 0.0005  # pieces of a part smaller than this share of the picture go to 
 MARGIN = 0.0  # Lab units a marks pixel must be nearer its own colors than the colors behind it
 SEED_WINDOW = 0.006  # half the side of the patch a point's color is read from, as a share of the long side
 BAND = 1.6  # a thin part may reach this many times its stated width from its path
+HOLE = 0.03  # an area enclosing more than this share of the picture that went to a part behind it is told
+HOLE_BRIDGE = 0.02  # gaps in an area's outline narrower than about twice this (of the long side) count as closed
 
 
 class NoModel(RuntimeError):
@@ -311,9 +313,50 @@ def owner_stats(parts: list[dict], owner: np.ndarray) -> list[dict]:
         n, _, st, _ = cv2.connectedComponentsWithStats(m.astype(np.uint8), connectivity=8)
         big = int((st[1:, cv2.CC_STAT_AREA] >= max(4, SPECK * h * w * 4)).sum()) if n > 1 else 0
         inbox = box_mask((h, w), boxes_of(p))
-        out.append({"share": round(float(m.mean()), 4), "pieces": big,
-                    "box_fill": round(float((m & inbox).sum() / max(inbox.sum(), 1)), 3)})
+        row = {"share": round(float(m.mean()), 4), "pieces": big,
+               "box_fill": round(float((m & inbox).sum() / max(inbox.sum(), 1)), 3)}
+        if p.get("kind") == "area":
+            row.update(hole(parts, owner, k, inbox))
+        out.append(row)
     return out
+
+
+def hole(parts: list[dict], owner: np.ndarray, k: int, inbox: np.ndarray) -> dict:
+    """What of an area's box lies inside its filled outline but went to an earlier area or object (behind it): earth
+    paths between lavender rows that went to the sky (2026-11-13). The box's sides on the picture's edge count as the
+    area's own, so a gap that runs out to the edge is still enclosed. Returns {"hole", "hole_from", "hole_at"}:
+    its share of the picture, the earlier part owning most of it, and a spot (0-1) in its biggest piece."""
+    h, w = owner.shape
+    family = {parts[k]["id"]}  # the area and everything painted on it (the lavender's blooms)
+    for p in parts[k + 1:]:
+        if p.get("parent") in family:
+            family.add(p["id"])
+    m = np.isin(owner, [j for j, p in enumerate(parts) if p["id"] in family]).astype(np.uint8)
+    x0, y0, x1, y1 = (int(round(v)) for v in (inbox.any(0).argmax(), inbox.any(1).argmax(),
+                                              w - inbox.any(0)[::-1].argmax(), h - inbox.any(1)[::-1].argmax()))
+    pad = np.pad(m, 1)
+    rows, cols = slice(y0 + 1, y1 + 1), slice(x0 + 1, x1 + 1)  # the box's span, in the padded picture
+    for side, on_edge in (((rows, 0), x0 == 0), ((rows, -1), x1 == w), ((0, cols), y0 == 0), ((-1, cols), y1 == h)):
+        if on_edge:
+            pad[side] = 1
+    r = max(1, int(HOLE_BRIDGE * max(h, w)))  # paths that run out to the area's far edge are closed off there
+    pad = cv2.morphologyEx(pad, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1)))
+    filled = pad.copy()
+    contours, _ = cv2.findContours(pad, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    cv2.drawContours(filled, contours, -1, 1, cv2.FILLED)
+    # only what fell to an area or object behind (the backdrop takes whatever nobody claimed); a marks or thin part
+    # listed before this area took its pixels by its own colors, on purpose
+    fell = np.isin(owner, [j for j in range(k) if parts[j].get("kind") in ("area", "object")])
+    gap = (filled[1:-1, 1:-1] > 0) & (m == 0) & inbox & fell
+    if not gap.any():
+        return {"hole": 0.0}
+    behind = np.bincount(owner[gap], minlength=len(parts))
+    n, lab_, st, _ = cv2.connectedComponentsWithStats(gap.astype(np.uint8), connectivity=8)
+    biggest = 1 + int(st[1:, cv2.CC_STAT_AREA].argmax())
+    dist = cv2.distanceTransform(np.pad((lab_ == biggest).astype(np.uint8), 1), cv2.DIST_L2, 3)[1:-1, 1:-1]
+    y, x = np.unravel_index(int(dist.argmax()), dist.shape)  # its fattest point, away from the picture's edge
+    return {"hole": round(float(gap.mean()), 4), "hole_from": parts[int(behind.argmax())]["id"],
+            "hole_at": [round(float(x / w), 3), round(float(y / h), 3)]}
 
 
 def grow(box: list[float], by: float) -> list[float]:
@@ -338,6 +381,11 @@ def problems(parts: list[dict], stats: list[dict]) -> list[str]:
                 out.append(f"{p['id']}: fills its whole box, so it probably took the background. Loosen the box.")
             if s["pieces"] > 3 * n_boxes:
                 out.append(f"{p['id']}: came back in {s['pieces']} pieces. Use one box per thing, or make it marks.")
+        if p["kind"] == "area" and (s.get("hole") or 0) > HOLE:
+            x, y = s["hole_at"]
+            out.append(f"{p['id']}: {s['hole']:.0%} of the picture inside its outline went to {s['hole_from']}, which "
+                       f"is behind it (around x {x}, y {y}). If that's {p['id']}, add points_in there; if it's "
+                       f"something on {p['id']}, make it a marks part with parent {p['id']}.")
     return out
 
 
