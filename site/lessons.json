@@ -284,5 +284,29 @@
       }
     ],
     "known": 4
+  },
+  {
+    "slug": "snow-lantern",
+    "title": "A brass lantern glowing on a snowy wooden fence post at night",
+    "subject": "A brass lantern glowing on a snowy wooden fence post at night",
+    "steps": 21,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
+    "published": "2026-11-13",
+    "source": "snow-lantern_skill_20261113-175843",
+    "versions": [
+      {
+        "id": "20261113-175843",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/snow-lantern/",
+        "current": true
+      }
+    ],
+    "known": 5
   }
 ]
