@@ -110,10 +110,13 @@ def _card_brush_kinds(card: dict) -> set[str]:
 
 
 def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canvas_box: list[float] | None = None,
-          canvas: dict | None = None, known: dict | None = None) -> list[dict]:
+          canvas: dict | None = None, known: dict | None = None, lesson=None) -> list[dict]:
     """text.json's entries for every step, drafted. `pictures` and `masks` are build_steps.build's (in the frame);
     `canvas_box` and `canvas` are canvas.json's (where the painter's canvas sits in the frame, and its size)."""
     known = cards.strokes() if known is None else known
+    import elements as els
+
+    picked = els.step_elements(plan, els.known(lesson))
     steps = bs.flat_steps(plan)
     parts = {p["id"]: p for p in plan["parts"]}
     stage_name = {st["id"]: st.get("name") or st["id"] for st in plan["stages"]}
@@ -221,9 +224,10 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
                     lines.append({"kind": "coats", "text": COATS.format(paint=names[c]), "edited": False})
                     break
 
-        # watch: the card's first mistake; the rest stay on the card
-        if card and card.get("mistakes"):
-            m = card["mistakes"][0]
+        # watch: the element technique's mistake for this step when it has one (#12), else the card's first mistake;
+        # the rest stay on the card
+        m = (picked.get(s["id"]) or {}).get("mistake") or (card["mistakes"][0] if card and card.get("mistakes") else None)
+        if m:
             text = f"Watch out: {m['mistake'].strip()}" + (f" {m['why'].strip()}" if m.get("why") else "")
             lines += split(text + f" Fix: {_lower_first(m['fix'])}", "watch")
 

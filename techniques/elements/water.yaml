@@ -1,0 +1,37 @@
+id: water
+name: Open water
+for: "A lake, the sea, a river: the water's surface under the sky."
+examples: [a calm lake, the sea at sunset, a river]
+kinds: [area]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Lay in the water
+    show: [flat, blend]
+    strokes: [horizontal-strokes, side-to-side-blend]
+    value: dark
+    does: The water's base in loose left and right strokes, a few darker streaks left in for ripples.
+  - name: Streak in the lighter water
+    show: [pass, full]
+    strokes: [horizontal-strokes, dry-brush]
+    value: light
+    optional: true
+    repeat: true
+    does: The sky's light reflected in the water, in horizontal strokes, once the base is dry.
+  - name: Dash in the ripples
+    show: [pass, full]
+    strokes: [horizontal-dashes]
+    optional: true
+    does: Thin horizontal dashes, short and close near the horizon, longer and wider apart lower down.
+    mistake:
+      mistake: Ripple lines the same length everywhere.
+      why: The water looks like a flat wall.
+      fix: Short and close near the horizon, longer and wider apart lower down.
+rules:
+  - Finish and dry everything above the water first.
+  - Horizontal strokes for the water and every ripple.
+  - Keep the water's color temperature matched to the sky.
+sources:
+  - docs/research/acrylic-paint-along.md, section 8, Water reflections
+  - docs/research/acrylic-paint-along.md, For Gesso, Water reflections 1, 2, and 8
+checked: false

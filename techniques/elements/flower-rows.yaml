@@ -1,0 +1,61 @@
+id: flower-rows
+name: Flower rows and flower masses in a field
+for: Rows or masses of small flowers over a field.
+examples: [lavender rows, a poppy field, lupines, a wildflower meadow]
+kinds: [area, marks]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Lay in the field under the flowers
+    show: [flat, blend]
+    strokes: [horizontal-strokes, side-to-side-blend]
+    value: dark
+    does: The whole field in its dark color (lighter at the back where the picture is), so no canvas shows. Let it dry before any flower goes on.
+    mistake:
+      mistake: Cutting the background in around each flower.
+      why: Painting around flowers leaves messy halos and gaps.
+      fix: Paint the whole field first, let it dry, then paint the flowers over it.
+  - name: Pull in the soil between the rows
+    show: [pass]
+    strokes: [toward-vanishing-point, horizontal-strokes]
+    optional: true
+    does: Thin warm strips between the near rows, aimed at one point on the horizon.
+  - name: Pull up the stems and leaves
+    show: [pass]
+    strokes: [liner, press-and-lift, thick-to-thin]
+    value: dark
+    optional: true
+    does: Thin stems and narrow leaves in a very dark green, where the flower has them (lupines, poppies).
+  - name: Stamp the dark of the blooms
+    show: [pass]
+    strokes: [stamp, dotted-column, far-dots, petal-clusters]
+    value: dark
+    does: The darkest flower color over every row or clump.
+    mistake:
+      mistake: The same size and spacing everywhere.
+      why: It reads as wallpaper, with no depth.
+      fix: Smaller, tighter, and lighter at the back; bigger and wider-spaced in front.
+  - name: Stamp the middle value
+    show: [pass]
+    strokes: [stamp, dotted-column, far-dots, petal-clusters]
+    value: mid
+    does: The same color plus white over most of the dark, but not all of it.
+    mistake:
+      mistake: Covering all of the dark.
+      why: The rows go flat, one value, with no depth.
+      fix: Leave the dark showing at the bottom of each row and between the marks.
+  - name: Tip the tops with light
+    show: [pass, full]
+    strokes: [stamp, dotted-column, far-dots, petal-clusters, dotting]
+    value: light
+    does: A small amount of a much lighter mix, on the top or lit side only. Far rows get none.
+rules:
+  - Paint the field first and let it dry. Never paint around the flowers.
+  - Dark bloom base, then the mid value over most of it, then light tips on the lit top only. Each pass covers less than the last, and says which dark stays showing.
+  - One mark per flower type for the whole lesson (stamps for lavender rows).
+  - Three distance bands. Back rows tiny, close together, paler. Middle rows bigger and wider apart. Front rows largest.
+  - Rows aim at one point on the horizon, narrow at the back and wide in front.
+sources:
+  - docs/research/acrylic-paint-along.md, section 7, Flower masses and clumps in a field
+  - docs/research/acrylic-paint-along.md, For Gesso, Flower masses
+checked: false

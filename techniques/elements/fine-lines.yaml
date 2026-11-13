@@ -1,0 +1,31 @@
+id: fine-lines
+name: Fine lines
+for: "Thin lines painted with a liner: a mast, rigging, a bird's legs, a rail, stems."
+examples: [a mast and boom, a bird's legs and toes, fence wires]
+kinds: [thin, marks, object]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Line it in
+    show: [flat, full]
+    strokes: [liner, thick-to-thin]
+    value: dark
+    does: The line in paint thinned to flow like ink, brush upright, light steady pressure, over dry paint.
+    mistake:
+      mistake: Lines that feather or spread.
+      why: Laid into a wet layer underneath.
+      fix: Let the area underneath dry first.
+  - name: Catch the light on the lines
+    show: [pass, full]
+    strokes: [liner]
+    value: light
+    optional: true
+    does: A lighter line along the side facing the light.
+rules:
+  - Thin the paint with water until it flows, and reload often.
+  - Only over dry paint.
+sources:
+  - docs/research/acrylic-paint-along.md, section 2, Liner work
+  - docs/research/acrylic-paint-along.md, For Gesso, Layering and drying 3
+  - "docs/research/acrylic-paint-along.md, section 4, The core pattern, for the light line. Liner work itself says nothing about a light line."
+checked: false

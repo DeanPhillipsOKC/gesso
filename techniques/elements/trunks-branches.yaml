@@ -1,0 +1,33 @@
+id: trunks-branches
+name: Trunks and branches
+for: A tree trunk, branches, twigs, or far trunks in a wood.
+examples: [the branch a bird sits on, a lone tree's trunk, misty far trunks]
+kinds: [thin, marks, object]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Pull the trunk and branches
+    show: [flat, pass, full]
+    strokes: [thick-to-thin, liner, press-and-lift, dry-brush]
+    value: dark
+    does: The dark of the wood, in thin flowing paint, thick at the trunk and tapering, in the direction the tree grows.
+    mistake:
+      mistake: Branches that look like stiff sticks.
+      why: Every branch the same width and straight.
+      fix: Start thick at the trunk and taper. Let branches fork in different directions and overlap.
+  - name: Catch the light on the bark
+    show: [pass, full]
+    strokes: [dry-brush, thick-to-thin, liner]
+    value: light
+    optional: true
+    repeat: true
+    does: A lighter mix dragged along the side facing the light, so the dark shows on the shadow side.
+rules:
+  - Paint in the direction the tree grows, thick at the trunk and tapering out.
+  - Liner and thin lines only over dry paint, or they spread.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Trees
+  - docs/research/acrylic-paint-along.md, section 2, Thick-to-thin stroke with a flat or angle
+  - docs/research/acrylic-paint-along.md, section 2, Liner work
+  - docs/research/acrylic-paint-along.md, section 2, Dry brushing
+checked: false

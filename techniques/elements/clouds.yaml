@@ -1,0 +1,37 @@
+id: clouds
+name: Clouds
+for: Clouds, mist, or haze painted on a sky that's already there.
+examples: [puffy clouds, sunset cloud streaks, low mist]
+kinds: [marks, area, object]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Lay in the cloud shapes
+    show: [flat, pass, full]
+    strokes: [small-circles, dry-brush]
+    value: dark
+    does: The cloud's base color, flat-bottomed with a bumpy, rounded top, dry-brushed so it stays soft.
+    mistake:
+      mistake: Hard, solid clouds.
+      why: Too much paint on the brush.
+      fix: Wipe the brush nearly dry and use small circles with the tip, so the sky shows through the edges.
+  - name: Light the tops of the clouds
+    show: [pass, full]
+    strokes: [small-circles, dry-brush]
+    value: mid
+    optional: true
+    does: A lighter mix only on the top edges that face the light. The dark stays in the middle and at the bottom.
+  - name: Touch the brightest edges
+    show: [pass, full]
+    strokes: [small-circles, dry-brush]
+    value: light
+    optional: true
+    does: A tiny amount of almost pure white on the outermost lit edge.
+rules:
+  - Flat bottoms, rounded higher tops.
+  - Leave the darker base in the middle and at the bottom of each cloud; that's what makes it look round.
+  - Clouds near the horizon are smaller, closer together, softer, and get fewer light layers.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Clouds
+  - docs/research/acrylic-paint-along.md, section 2, Swirls and circular strokes
+checked: false

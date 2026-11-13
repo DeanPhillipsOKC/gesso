@@ -1,0 +1,42 @@
+id: shaped-object
+name: A shaped object built from pieces
+for: A thing with a clear shape that isn't round, built from simple pieces, then shaded and lit.
+examples: [a sail, a boat's hull, a bird's body, a leaf, a house]
+kinds: [object, marks]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Block in the shape
+    show: [flat, full]
+    strokes: [build-from-pieces, curved-strokes, press-and-lift]
+    value: mid
+    does: The whole shape in its main color, built from one simple shape first, then the rest in pieces.
+  - name: Shade the shadow side
+    show: [pass, full]
+    strokes: [curved-strokes, press-and-lift, dry-brush, build-from-pieces, liner]
+    value: dark
+    optional: true
+    repeat: true
+    does: A darker mix on the side away from the light, and the darkest lines and markings.
+  - name: Light the lit side
+    show: [pass, full]
+    strokes: [curved-strokes, press-and-lift, dry-brush, build-from-pieces, liner]
+    value: light
+    optional: true
+    repeat: true
+    does: A lighter mix on the side facing the light, covering less than the base.
+  - name: Add the small details
+    show: [pass, full]
+    strokes: [liner, dotting, press-and-lift, dry-brush]
+    optional: true
+    repeat: true
+    does: The last small marks on the object, once the layers under them are dry.
+rules:
+  - Start with one simple shape (an oval, a circle, a rectangle), then add the rest in curved pieces.
+  - Base, then shadow and mid values, then highlights, then details.
+  - Keep every highlight on the side the light comes from.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, The core pattern
+  - docs/research/acrylic-paint-along.md, For Gesso, Step structure 2
+  - techniques/acrylic-paint-along-beginner.yaml, v2_rules (build each shaped object from simple pieces)
+checked: false

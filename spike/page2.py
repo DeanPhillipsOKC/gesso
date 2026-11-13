@@ -254,6 +254,10 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
     lines = s.get("lines") or []
     do = f'<ol class="do">{"".join(f"<li>{e(x["text"])}</li>" for x in lines)}</ol>' if lines else ""
     tip = f'<p class="tip"><b>Tip:</b> {e(s["tip"])}</p>' if s.get("tip") else ""
+    el = s.get("element") or {}
+    if el.get("drafted"):  # a technique drafted for this lesson, not in the hand-checked library yet (#12)
+        tip += (f'<p class="strokelink">Technique: {e(el.get("name", ""))} '
+                '<span class="unchecked">Technique not checked yet</span></p>')
     folds = "".join([closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed), stroke_folds(lesson, i, known),
                      fold("Diagram", "how to build the shape", diagram) if diagram else ""])
     return f"""

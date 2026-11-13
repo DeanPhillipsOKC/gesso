@@ -26,6 +26,15 @@ paints inside **one** part, with one stroke and one brush.
 | `blend` | the same as `full` | colors blended wet in one go (a sunset sky). May use more than 3 paints |
 
 ## How to build a part's steps
+- **A part's steps follow its element** (step 2b), in the element's order: one plan step per element step, an
+  `optional` one may be left out, and a `repeat` one may be two or more steps in a row (one per stripe, one per
+  paint). Each step's `show` and `stroke` must be among the ones its element step lists, and its paints must keep
+  the element's values in order (a `light` step lighter than a `dark` one). Use the element step's `name` as the
+  start of yours, made specific ("Stamp the deep violet rows"). The element's `rules` are what the tips say for
+  this part. `elements --lesson <lesson>` shows which element step each of your steps landed on, and what doesn't
+  fit; `check` reports the same.
+- If a part's steps can't follow its element without painting it wrong, the pick was wrong: pick another, or draft
+  one (step 2b). Don't bend the steps to pass.
 - **A sky, or any background blended wet, is one `blend` step** with all its paints, never a flat coat and
   passes: a blend cut into passes comes out as ragged patches nobody could paint. Clouds, glow, and haze that sit
   on it as their own parts get their own steps after it.

@@ -1,0 +1,38 @@
+id: foliage
+name: Leafy foliage, bushes, and tree canopies
+for: "Leaves in a mass: a tree's canopy, bushes, hedges, a far tree line."
+examples: [a lone tree's canopy, hedgerows, hazy autumn woods]
+kinds: [marks, object, area]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Dab the dark foliage
+    show: [flat, pass, full]
+    strokes: [dabbing, fan-tapping, dry-brush, press-and-lift]
+    value: dark
+    does: The darkest green (or the foliage's darkest color) tapped over the whole mass, with gaps.
+    mistake:
+      mistake: Blobs instead of dots.
+      why: The brush is too wet or holds too much paint.
+      fix: Wipe most of the paint off on a paper towel and tap again.
+  - name: Dab the middle leaves
+    show: [pass, full]
+    strokes: [dabbing, fan-tapping, dry-brush, press-and-lift]
+    value: mid
+    optional: true
+    repeat: true
+    does: A lighter mix over most of the mass, more on the side facing the light, leaving the dark showing.
+  - name: Dab the sunlit leaves
+    show: [pass, full]
+    strokes: [dabbing, fan-tapping, dry-brush, press-and-lift]
+    value: light
+    optional: true
+    does: A few light taps on the side facing the light only.
+rules:
+  - Darkest first, then mid, then a few light taps on the lit side. Each covers less than the one before.
+  - Far trees are smaller, lighter, cooler, with less detail than near ones.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Trees
+  - docs/research/acrylic-paint-along.md, section 2, Dabbing and stippling
+  - docs/research/acrylic-paint-along.md, section 4, The core pattern
+checked: false

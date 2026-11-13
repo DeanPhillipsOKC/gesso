@@ -1,0 +1,26 @@
+id: sky-blend
+name: Blended sky or gradient
+for: A sky, or any background that goes smoothly from one color to another, blended wet in one go.
+examples: [sunset sky, clear blue sky, misty background]
+kinds: [area]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Blend the sky
+    show: [blend]
+    strokes: [side-to-side-blend, x-stroke, wet-blend]
+    does: All of the sky's paints, laid in bands and blended wet into each other, straight past where the land will go.
+    mistake:
+      mistake: Blending after the paint has started to drag.
+      why: Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks.
+      fix: Stop as soon as it drags. Let it dry, then blend a new thin layer on top.
+rules:
+  - One step, all the sky's paints, worked fast. Stop blending as soon as the paint starts to drag.
+  - Run the sky past the horizon and behind everything in front of it. Never stop it at a hill line.
+  - Lay the colors in bands in the order the picture has them, then stroke back over each join while wet.
+sources:
+  - docs/research/acrylic-paint-along.md, section 2, Long horizontal stroke (sky and water blending)
+  - docs/research/acrylic-paint-along.md, section 2, X stroke, criss-cross, slip-slap
+  - docs/research/acrylic-paint-along.md, section 2, Wet-on-wet blending
+  - docs/research/acrylic-paint-along.md, For Gesso, Layering and drying 1 and 4
+checked: false

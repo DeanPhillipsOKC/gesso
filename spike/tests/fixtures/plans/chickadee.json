@@ -2,6 +2,7 @@
  "plan_version": 2,
  "photo": "spike/tests/fixtures/finishes/chickadee.jpg",
  "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "Paint-along, back to front: a sunset scene with a bird in front, the beginner approach with v2 rules.",
  "subject": "A black-capped chickadee on an autumn branch",
  "focal_point": "the bird's head",
  "light": "the setting sun, upper right",
@@ -15,7 +16,9 @@
     0,
     1,
     1
-   ]
+   ],
+   "element": "sky-blend",
+   "element_why": "A soft misty gradient with no hard edges, blended wet in one go."
   },
   {
    "id": "sun",
@@ -27,7 +30,9 @@
     0.08,
     0.72,
     0.2
-   ]
+   ],
+   "element": "simple-shape",
+   "element_why": "A small round glow, one color: one move."
   },
   {
    "id": "trunks",
@@ -79,7 +84,9 @@
      0.99,
      0.85
     ]
-   ]
+   ],
+   "element": "trunks-branches",
+   "element_why": "Far trunks: dry-brushed verticals, no light pass at this distance."
   },
   {
    "id": "foliage",
@@ -175,7 +182,9 @@
      0.75,
      0.6
     ]
-   ]
+   ],
+   "element": "foliage",
+   "element_why": "Hazy autumn leaves as dabbed marks on the sky."
   },
   {
    "id": "branch",
@@ -393,7 +402,9 @@
      0.5,
      0.75
     ]
-   ]
+   ],
+   "element": "trunks-branches",
+   "element_why": "The near branch: dark first, then light dragged along its top."
   },
   {
    "id": "leaves",
@@ -424,7 +435,9 @@
      0.81,
      1.0
     ]
-   ]
+   ],
+   "element": "shaped-object",
+   "element_why": "Four leaves with clear edges, built from pieces, then lit."
   },
   {
    "id": "bird",
@@ -435,7 +448,9 @@
     0.1,
     0.61,
     0.64
-   ]
+   ],
+   "element": "shaped-object",
+   "element_why": "The bird is a shaped object: block in the body, then light the chest."
   },
   {
    "id": "bird-wing",
@@ -475,7 +490,9 @@
      0.4,
      0.52
     ]
-   ]
+   ],
+   "element": "shaped-object",
+   "element_why": "Wing and tail: a mid block-in, dark stripes, then light edges."
   },
   {
    "id": "bird-head",
@@ -515,7 +532,9 @@
      0.33,
      0.36
     ]
-   ]
+   ],
+   "element": "shaped-object",
+   "element_why": "The black cap and bib, one dark shape."
   },
   {
    "id": "bird-cheek",
@@ -555,7 +574,9 @@
      0.33,
      0.36
     ]
-   ]
+   ],
+   "element": "simple-shape",
+   "element_why": "The white cheek is flat: one move."
   },
   {
    "id": "bird-face",
@@ -603,7 +624,9 @@
      0.485,
      0.222
     ]
-   ]
+   ],
+   "element": "fine-lines",
+   "element_why": "Eye and beak are a few small liner marks."
   },
   {
    "id": "bird-feet",
@@ -664,7 +687,9 @@
      0.47,
      0.565
     ]
-   ]
+   ],
+   "element": "fine-lines",
+   "element_why": "Thin legs and toes over the branch, liner work."
   }
  ],
  "paints": [

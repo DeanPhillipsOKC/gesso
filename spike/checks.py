@@ -194,6 +194,10 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     failures += strokes_and_brushes(plan, known)
     failures += paint_names(plan)
     failures += cards.problems(known)
+    import elements
+
+    failures += elements.problems()
+    failures += elements.plan_problems(plan, lesson=lesson)
 
     built = built if built is not None else build(lesson, plan)
     steps = bs.flat_steps(plan)
@@ -226,7 +230,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
                 failures.append(f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one "
                                 "step. Make it two or more steps: a flat coat in the part's main paint, then a pass per paint (run paints --add for the part if it has only one), then build-steps.")
         canvas_box, canvas = _canvas(lesson)
-        drafted = {d["stage_id"]: d["lines"] for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known)}
+        drafted = {d["stage_id"]: d["lines"] for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson)}
     text_path = lesson / "text.json"
     if text is None:
         text = ({t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]}
@@ -244,7 +248,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     # what publish counts: paints a line names but the step doesn't list, recipes, diagrams, the step aids
     by_name = {n: {"name": n, "hex": c["hex"]} for c in plan.get("paints") or []
                for n in [publish2.paint_names(plan)[c["id"]]]}
-    stages = publish2.stages(plan, text, by_name, names, {"dry_time": technique.get("dry_time", "")})
+    stages = publish2.stages(plan, text, by_name, names, {"dry_time": technique.get("dry_time", "")}, lesson)
     for x in tools.paints_not_listed(stages, by_name):
         failures.append(f"{x['id']}: its text names {x['paint']}, which isn't one of its paints, so its recipe isn't "
                         "shown. Add the paint to the step in plan.json, or don't name it.")

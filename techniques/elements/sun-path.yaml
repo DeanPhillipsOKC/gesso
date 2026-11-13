@@ -1,0 +1,31 @@
+id: sun-path
+name: A sun or moon path on water
+for: The bright path of light on water under a low sun or moon.
+examples: [a sunset path on the sea, a moon path on a lake]
+kinds: [marks]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Lay the first layer of the path
+    show: [flat, pass, full]
+    strokes: [horizontal-dashes, horizontal-strokes, pull-down]
+    value: dark
+    does: The path's first, darker light, narrow under the sun and wider toward the bottom of the canvas.
+  - name: Brighten the middle of the path
+    show: [pass, full]
+    strokes: [horizontal-dashes, horizontal-strokes, pull-down]
+    value: light
+    does: A second, lighter and smaller layer down the middle, once the first is dry.
+  - name: Add a few sparkles
+    show: [pass, full]
+    strokes: [sparkle]
+    value: light
+    optional: true
+    does: A few tiny sparkles beside the brightest part of the path, once everything is dry.
+rules:
+  - Narrow under the light and wider toward the bottom of the canvas, brightest in the middle.
+  - Two layers, the second lighter and smaller, with a dry wait between.
+sources:
+  - docs/research/acrylic-paint-along.md, section 8, Stroke direction
+  - docs/research/acrylic-paint-along.md, For Gesso, Water reflections 7 and 10
+checked: false

@@ -1,0 +1,19 @@
+id: simple-shape
+name: A small flat shape in one move
+for: A small part that's one color, or one soft gradient, in the picture, painted in a single step.
+examples: [a sun or moon disk, a white cheek patch, a far rooftop]
+kinds: [object, marks, area]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Paint the shape
+    show: [full]
+    strokes: [small-circles, build-from-pieces, dotting, press-and-lift, curved-strokes, liner]
+    does: The whole small shape in its paint, built from one simple shape.
+rules:
+  - Only for a part that's flat in the picture. A part with a lit side and a shadow side gets shaped-object or round-object.
+  - Build the shape from one simple shape (a circle, an oval, a rectangle), then tidy its edge.
+sources:
+  - techniques/acrylic-paint-along-beginner.yaml, v2_rules (one flat mix only where the picture is flat; build each shaped object from simple pieces)
+  - docs/research/acrylic-paint-along.md, For Gesso, Values and texture 1
+checked: false

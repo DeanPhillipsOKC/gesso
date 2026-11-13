@@ -146,8 +146,11 @@ class DraftTests(unittest.TestCase):
         self.assertNotIn("mix", kinds(by_id(drafted)["bird-feet"]))  # its second use: the page says "from step 5"
 
     def test_how_result_and_watch_out_are_the_cards_own_words(self):
+        import elements
+
         known = cards.strokes()
         for name, (plan, _, _, drafted) in self.built.items():
+            picked = elements.step_elements(plan, elements.library())
             for s, d in zip(bs.flat_steps(plan), drafted):
                 card = known[s["stroke"]]
                 how = " ".join(x["text"] for x in d["lines"] if x["kind"] == "how")
@@ -158,7 +161,10 @@ class DraftTests(unittest.TestCase):
                 result = [x["text"] for x in d["lines"] if x["kind"] == "result"]
                 self.assertEqual(result[0][len("It should leave "):].lower(), card["result"].lower())
                 watch = " ".join(x["text"] for x in d["lines"] if x["kind"] == "watch")
-                if card.get("mistakes"):
+                own = (picked.get(s["id"]) or {}).get("mistake")  # the element step's mistake comes first (#12)
+                if own:
+                    self.assertIn(own["mistake"], watch)
+                elif card.get("mistakes"):
                     self.assertIn(card["mistakes"][0]["mistake"], watch)
                 else:
                     self.assertEqual(watch, "")
@@ -352,7 +358,10 @@ class TextToolTests(unittest.TestCase):
     # Real findings on the fixtures, reported by check rather than hidden (see the issue's close-out):
     # the sailboat's lighter water and the lavender's mid dabs each turn over 10% of the picture from flat to
     # textured in one step, and the lavender's balloon teal can't be mixed from the five tubes with no paint note.
-    KNOWN = {"chickadee": [], "red-sailboat": [], "lavender-balloon": ["paint Balloon teal can't be mixed"]}
+    # The lavender fixture's rows and balloon don't follow their element techniques (#12; see
+    # test_elements.PlanTests.test_the_fixture_findings).
+    KNOWN = {"chickadee": [], "red-sailboat": [],
+             "lavender-balloon": ["lavender: ", "balloon: ", "paint Balloon teal can't be mixed"]}
 
     def test_after_draft_text_check_leaves_only_summary_and_tip_and_the_known_findings(self):
         for name in NAMES:

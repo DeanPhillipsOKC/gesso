@@ -1,0 +1,39 @@
+id: far-hills
+name: Far hills and mountains
+for: Hills, mountain ranges, or a far shore, painted as big simple shapes with no texture.
+examples: [distant mountains, rolling hills, a far shoreline]
+kinds: [area]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Lay in the hills
+    show: [flat, full]
+    strokes: [horizontal-strokes, curved-strokes]
+    value: mid
+    does: The whole range in its main color, as a few big shapes. Farther ranges have more white and a little more blue.
+  - name: Shade the side away from the light
+    show: [pass]
+    strokes: [dry-brush, horizontal-strokes, curved-strokes]
+    value: dark
+    optional: true
+    does: A darker mix on the slopes away from the light, still soft and simple.
+  - name: Light the side facing the sun
+    show: [pass, full]
+    strokes: [dry-brush, horizontal-strokes, curved-strokes]
+    value: light
+    optional: true
+    does: A lighter mix on the slopes that face the light, leaving the shadow side as it is.
+    mistake:
+      mistake: Too much detail on far hills.
+      why: Beginners tend to over-detail them; far forms are simpler, softer, and lower in contrast.
+      fix: Keep them as a few big shapes with a light side and a shadow side, soft edges, no texture.
+rules:
+  - Farther ranges are lighter, bluer or grayer, lower in contrast, and softer-edged. Each nearer range is darker and more saturated.
+  - Paint back to front so nearer ranges overlap farther ones.
+  - No texture strokes on distant land.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Mountains and hills
+  - docs/research/acrylic-paint-along.md, section 4, Edges
+  - docs/research/acrylic-paint-along.md, For Gesso, Values and texture 3 and 4
+  - "techniques/acrylic-paint-along-beginner.yaml, brush_moves and v2_rules: the strokes. The research names none for hills; horizontal strokes for ground and dry brushing for soft light are brush_moves, and curved strokes follow the form."
+checked: false
