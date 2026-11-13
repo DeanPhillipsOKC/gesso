@@ -317,8 +317,8 @@ def _grid_inches(canvas: dict | None) -> str:
     from aids import _inches
     w, h = _inches(float(canvas["w_in"]) / 4, 0.125), _inches(float(canvas["h_in"]) / 4, 0.125)
     size = f'{float(canvas["w_in"]):g} x {float(canvas["h_in"]):g} in'
-    return (f" On your {size} canvas the grid's lines are every {w}." if w == h else
-            f" On your {size} canvas the grid's lines are {w} apart across and {h} apart down.")
+    return (f" On your {size} canvas the grid lines are every {w}." if w == h else
+            f" On your {size} canvas the grid lines are {w} apart across and {h} apart down.")
 
 
 def _palette_colors(palette_name: str) -> dict[str, tuple[int, int, int]]:

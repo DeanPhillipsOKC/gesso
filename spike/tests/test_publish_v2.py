@@ -317,7 +317,7 @@ class PublishV2Tests(unittest.TestCase):
                           r'<span class=small>optional</span></summary>(.*?)</details>', start, re.S)
             self.assertTrue(m, name)
             self.assertIn("The transfer outline", m.group(1))
-            self.assertIn("On your 14 x 11 in canvas the grid's lines are 3 1/2 in apart across and 2 3/4 in apart "
+            self.assertIn("On your 14 x 11 in canvas the grid lines are 3 1/2 in apart across and 2 3/4 in apart "
                           "down.", m.group(1))
             self.assertIn("measuring from the edges with a ruler", m.group(1))
             self.assertNotIn('class="tape"', html)
