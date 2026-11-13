@@ -1,6 +1,8 @@
 """Fit a picture to the painter's canvas before the lesson is planned (owner, 2026-11-11).
 
     fit(image, "11x14", focus=(fx, fy), keep=(x0, y0, x1, y1), orientation="auto") -> dict
+    default_size(aspect, orientation="auto")  -> "11x14": the standard size closest to a picture's shape
+    lesson_canvas(lesson)                     -> canvas.json's contents; a lesson with none gets the default size
 
 A canvas has a shape, and the lesson should match it: if you only have square canvases, you shouldn't have to
 imagine how a wide picture fits. Two shapes matter:
@@ -20,7 +22,10 @@ same render (they're cropped away, so they only need to continue the scene plaus
 
 from __future__ import annotations
 
+import json
+import math
 import re
+from pathlib import Path
 
 from PIL import Image
 
@@ -48,6 +53,59 @@ def orient(w: float, h: float, picture_aspect: float, orientation: str = "auto")
     if short == long_:
         return w, h
     return (long_, short) if picture_aspect >= 1 else (short, long_)
+
+
+# Every version 2 lesson has a canvas size, so its steps say where in inches (#122, owner 2026-11-13: "Rewrite the
+# steps in inches"). Without --canvas the lesson takes the standard size closest to the picture's shape.
+STANDARD = ["8x10", "9x12", "11x14", "12x16", "16x20"]
+DEFAULT = "11x14"  # when two sizes fit equally well (within SAME of the best shape), 11x14 wins, else the nearer size
+
+
+def default_size(aspect: float, orientation: str = "auto") -> str:
+    """The standard canvas closest to a picture's shape, as a size spec ("11x14"). Sizes whose shape is within SAME of
+    the best fit equally well: then 11x14 when it's one of them, else the one closest to it in area (a 3:2 picture
+    fits 9x12 and 12x16 exactly as well, and gets 12x16)."""
+    def off(spec: str) -> float:
+        w, h = orient(*parse(spec), aspect, orientation)
+        return abs(math.log(aspect / (w / h)))
+    best = min(off(s) for s in STANDARD)
+    fits = [s for s in STANDARD if off(s) - best <= math.log(1 + SAME)]
+    if DEFAULT in fits:
+        return DEFAULT
+    area = math.prod(parse(DEFAULT))
+    return min(fits, key=lambda s: abs(math.prod(parse(s)) - area))
+
+
+class NoCanvas(ValueError):
+    """A version 2 lesson with no canvas size, and none the tools can pick without changing the picture."""
+
+
+def lesson_canvas(lesson: Path) -> dict:
+    """canvas.json's contents. A lesson without one (it skipped fit-canvas, like the test fixtures) gets the standard
+    size closest to its finish's shape, recorded with "chosen": "default", when that size has the finish's shape
+    (within SAME), so nothing is cropped. Otherwise it's refused: cropping a finished picture would cut parts the
+    plan already has, so the canvas is fitted before the finish (skill step 0b2)."""
+    lesson = Path(lesson)
+    path = lesson / "canvas.json"
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    finish = lesson / "99_finish.png"
+    fix = (f"Run fit-canvas <photo> --lesson {lesson} before the finish (without --canvas it picks the standard size "
+           "closest to the photo's shape).")
+    if not finish.exists():
+        raise NoCanvas(f"no canvas size: {path} is missing and there's no 99_finish.png to fit one to. {fix}")
+    with Image.open(finish) as im:
+        W, H = im.size
+    spec = default_size(W / H)
+    w, h = orient(*parse(spec), W / H)
+    if abs((W / H) / (w / h) - 1) > SAME:
+        raise NoCanvas(f"no canvas size: {path} is missing, and the finish ({W} x {H}) isn't the shape of a standard "
+                       f"canvas (the nearest is {w:g} x {h:g} in), so the steps can't say where in inches. {fix}")
+    canvas = {"w_in": w, "h_in": h, "orientation": "square" if w == h else ("landscape" if w > h else "portrait")}
+    info = {"canvas": canvas, "chosen": "default", "mode": "none", "lost_share": 0.0, "canvas_box": [0.0, 0.0, 1.0, 1.0],
+            "why": "no --canvas: the standard size closest to the finish's shape", "grid_note": grid_note(canvas)}
+    path.write_text(json.dumps(info, indent=2), encoding="utf-8")
+    return info
 
 
 def frame_for(aspect: float) -> tuple[int, int]:

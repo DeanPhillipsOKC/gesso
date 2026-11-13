@@ -586,7 +586,7 @@ checked: false
 |---|---|
 | "Let the \<stage\> dry." | this step's area overlaps paint from an earlier step that isn't part of the same `blend` |
 | "Rinse well first." | this step's first paint is far in color (Delta E over 40) from the last step's, or is the lightest so far |
-| Where | the part's outline: "inside the outlined area", plus two or three anchor points in inches from the canvas edges for an object ("its top is about 2 in from the top edge, 6 in from the left"). **No percentages in the text.** With no canvas size, quarters of the picture |
+| Where | the part's outline: "inside the outlined area", plus two or three anchor points in inches from the canvas edges for an object ("its top is about 2 in from the top edge, 6 in from the left"). **No percentages in the text**, and no tape marks (#122): every lesson has a canvas size |
 | Paints, in order | the step's `paints`, darkest first; for a `blend`, in order of position (top to bottom, or out from the light) |
 | "Mix once for steps X to Y; cover it between." | the same paint is used in later steps |
 | Brush, load, consistency, motion | the step's `brush` and its stroke card |
@@ -603,7 +603,7 @@ checked: false
   dryer on low speeds it up". Not "the same blend": a blend is one step, so only earlier steps count.
 - *Rinse*: "the lightest so far" is the step's first paint being lighter (Lab L) than every paint before it; the
   first step never rinses. The wording is the clean-brush card's.
-- *Where*: `aids.where_words` as is, except an area that touches all four edges is "the whole canvas" only when it
+- *Where*: `aids.where_words` as is (inches only since #122), except an area that touches all four edges is "the whole canvas" only when it
   covers 90% of it (`aids.WHOLE`): the chickadee's branch touches all four and was called the whole canvas.
 - *Paints*: a blend's paints are ordered top to bottom by where each lands in the step picture. "Out from the light"
   isn't built: nothing in the plan says where the light is in a form a tool can read.
@@ -650,9 +650,8 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 ### Teaching pictures (`step-aids`; issue 6 of 8), all free and all from the outlines
 
 - **Where** (every step): the picture before this step, dimmed, with this step's area outlined. Drawn on the page
-  as an SVG outline over the previous step's picture, so it adds no image. A light grid of quarters over it; the
-  first screen tells the painter to mark the halves and quarters on tape along the canvas's edges (chalk on the
-  canvas would be painted over by the sky).
+  as an SVG outline over the previous step's picture, so it adds no image. A light grid of quarters over it, as a
+  visual guide only: it isn't labelled and nothing refers to it (#122; the tape marks it once matched are gone).
 - **Close-up** (a step whose area is under 20% of the picture): before and after, cropped to the area with a
   margin, with a finer grid. Built (#68): not when the area reaches across more than half the canvas's long side
   (scattered marks such as a sun path, a long branch), since the crop would be hardly closer; it starts open when the area is under 3%.
@@ -664,12 +663,24 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 - **Where, in words** (`aids.where_words`, built in #68, for `draft-text` to use): "Inside the outlined area", then
   for a band across the canvas the edges it reaches and where its other ends are, and for a thing its nearer top or
   bottom, its nearer side, and its size, in inches on the painter's canvas (to the half inch, the quarter under
-  2 in), or against the halves and quarters on the tape when there's no canvas size.
+  2 in). It refuses a call with no canvas size (#122).
 - **Transfer outline** (once per lesson): the outlines of the `object` parts with no parent, as lines on the
-  quarter grid at the canvas's shape. The stage that starts an object opens with an optional line: "Lightly chalk
+  quarter grid at the canvas's shape. The page says how far apart the grid's lines are in inches on the painter's
+  canvas, and the chalk line says to place it by measuring from the edges with a ruler. The stage that starts an object opens with an optional line: "Lightly chalk
   its outline first." (Owner, 2026-11-12: whatever helps beginners most. The paint-along stays sketch-free
   otherwise.)
 - Construction diagrams (`construct`) stay, written by Claude.
+
+**Changed 2026-11-13 (#122): every lesson has a canvas size, and the steps say where in inches only.** Most runs had
+no `--canvas`, so their Where lines placed things by tape marks ("a little above the 3/4 mark on the side tape"), and
+#94 had folded the tape setup away as optional. Owner: "Rewrite the steps in inches." So `fit-canvas` without
+`--canvas` picks the standard size closest to the photo's shape (`canvas.default_size`: 8x10, 9x12, 11x14, 12x16,
+16x20, either way up; sizes within 3% of the best shape fit equally well, and then 11x14 wins, else the size nearest
+it in area, so a 3:2 picture gets 12x16) and records `"chosen": "default"`; the v2 skill always runs it. A lesson
+with no `canvas.json` (the test fixtures) gets the default when its finish already has a standard shape
+(`canvas.lesson_canvas`); otherwise `step-aids`, `draft-text`, `check`, and `publish` refuse it, naming the missing
+file, since cropping a finished picture would cut parts the plan has. `where_words`' tape path (`MARKS_ACROSS`,
+`MARKS_DOWN`, `_near_mark`) is gone.
 
 ## 11. The page (issue 6 of 8)
 
@@ -680,8 +691,11 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 - The top of the page (#94): the photo and the finish, then "Tubes to get out" (each tube with its color, in the
   order the steps first need it, "first in step N"), then "What you need" (brushes and the rest, no tubes). "Your
   paints", every paint and its recipe, is folded closed: each step lists its own, and painters mix as they go.
-- "Before you start": the basics cards, the quarter marks and the transfer outline (together in one closed fold,
-  since they're optional), the lesson's strokes to try on scrap paper.
+- "Before you start": the basics cards, the transfer outline (in a closed fold marked optional, placed by inches),
+  the lesson's strokes to try on scrap paper. The tape-marking card is gone (#122): the steps say where in inches,
+  and "What you need" lists a ruler and the canvas size, with "Using another size? Scale every measurement."
+- Close-ups say how far apart their dotted lines are in inches ("The dotted lines are every 1 3/4 in across and
+  1 3/8 in down").
 - One self-contained HTML page per lesson, as now. Pages are 2.3 to 2.9 MB at 10 to 12 steps today; `publish`
   fails a version 2 page over 8 MB (step pictures at up to 900 px, close-ups at up to 600 px).
 - Version 1 lessons render exactly as before.
@@ -692,7 +706,7 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 - `v2_step_range` and `v2_stage_range` from the technique; more top-level parts than `detail_budget.max_parts`;
 - a stroke with no card; a brush `spike/brushes.py` doesn't know;
 - `texture_jumps`, as today: no step turns more than 10% of the picture from flat to textured (fix: one more pass);
-- a percentage in step text; a line over 40 words;
+- a percentage in step text, or a tape mark (#122: "Say where in inches from an edge."); a line over 40 words;
 - the ones that stay: `paints_not_listed`, `duplicate_recipes`, `unreachable_paints`, `undocumented_diagrams`;
 - (`max_mixes`, and a step whose paint doesn't list its part, are in `plan2.problems` from issue 4; the 8 MB
   page limit is in `publish` from issue 6; `check` reports them all in one list.)

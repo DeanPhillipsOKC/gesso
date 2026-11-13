@@ -125,26 +125,10 @@ def _inches(x: float, step: float | None = None) -> str:
     step = step or (0.25 if x < 2 else 0.5)
     q = round(x / step) * step
     whole, frac = int(q), q - int(q)
-    f = {0.25: "1/4", 0.5: "1/2", 0.75: "3/4"}.get(round(frac, 2), "")
+    f = {0.125: "1/8", 0.25: "1/4", 0.375: "3/8", 0.5: "1/2", 0.625: "5/8", 0.75: "3/4", 0.875: "7/8"}.get(round(frac, 3), "")
     if not whole:
         return f"{f or '0'} in"
     return f"{whole} {f} in" if f else f"{whole} in"
-
-
-MARKS_ACROSS = ["the left edge", "the 1/4 mark on the top tape", "the middle mark on the top tape",
-                "the 3/4 mark on the top tape", "the right edge"]
-MARKS_DOWN = ["the top edge", "the 1/4 mark on the side tape", "the middle mark on the side tape",
-              "the 3/4 mark on the side tape", "the bottom edge"]
-
-
-def _near_mark(v: float, names: list[str], before: str, past: str) -> str:
-    """Where a share of the canvas falls among the halves and quarters marked on the tape."""
-    k = v * 4
-    n = round(k)
-    if abs(k - n) <= 0.15:
-        return f"at {names[n]}"
-    lo = int(np.floor(k))
-    return f"{past} {names[lo]}" if k - lo < 0.5 else f"{before} {names[lo + 1]}"
 
 
 EDGE_SHARE = 0.02  # an area within this share of the canvas's edge reaches the edge
@@ -154,33 +138,29 @@ WHOLE = 0.9  # an area covering this share of the canvas is "the whole canvas" (
 
 def where_words(area: np.ndarray, canvas: dict | None) -> str:
     """Where a step's area is, for the painter to find on the canvas: the outline, plus two or three anchor points
-    in inches from the canvas's edges, or, with no canvas size, against the halves and quarters marked on the tape.
-    `area` is a mask already cropped to the canvas. No percentages."""
+    in inches from the canvas's edges. `area` is a mask already cropped to the canvas. No percentages, and no tape
+    marks (#122): every version 2 lesson has a canvas size, so a call without one is refused."""
+    if not canvas:
+        raise ValueError("where_words needs the canvas size: canvas.json is missing. Run fit-canvas (it picks a "
+                         "standard size when none is given).")
     if not area.any():
         return "Inside the outlined area."
     h, w = area.shape
     ys, xs = np.nonzero(area)
     x0, x1, y0, y1 = xs.min() / w, (xs.max() + 1) / w, ys.min() / h, (ys.max() + 1) / h
     left, right, top, bottom = x0 < EDGE_SHARE, x1 > 1 - EDGE_SHARE, y0 < EDGE_SHARE, y1 > 1 - EDGE_SHARE
-    if canvas:
-        cw, ch = float(canvas["w_in"]), float(canvas["h_in"])
+    cw, ch = float(canvas["w_in"]), float(canvas["h_in"])
 
-        def across(v, from_right):
-            return f"{_inches((1 - v) * cw)} from the right edge" if from_right else f"{_inches(v * cw)} from the left edge"
+    def across(v, from_right):
+        return f"{_inches((1 - v) * cw)} from the right edge" if from_right else f"{_inches(v * cw)} from the left edge"
 
-        def down(v, from_bottom):
-            return f"{_inches((1 - v) * ch)} from the bottom edge" if from_bottom else f"{_inches(v * ch)} from the top edge"
-    else:
-        def across(v, from_right):
-            return _near_mark(v, MARKS_ACROSS, "a little left of", "a little right of")
-
-        def down(v, from_bottom):
-            return _near_mark(v, MARKS_DOWN, "a little above", "a little below")
+    def down(v, from_bottom):
+        return f"{_inches((1 - v) * ch)} from the bottom edge" if from_bottom else f"{_inches(v * ch)} from the top edge"
 
     if left and right and top and bottom:  # a branch can reach all four edges and still be a thin shape
         return ("Inside the outlined area: the whole canvas." if area.mean() >= WHOLE else
                 "Inside the outlined area. It reaches all four edges of the canvas.")
-    about = "about " if canvas else ""
+    about = "about "
 
     def ends(lead: str, near: tuple[bool, bool], names: tuple[str, str], at: tuple[float, float], say) -> str:
         """A band all the way across (or top to bottom): the edges it reaches, then where its other ends are."""
@@ -203,11 +183,11 @@ def where_words(area: np.ndarray, canvas: dict | None) -> str:
     def place(v: float, flag: bool, say, edge: str) -> str:
         if min(v, 1 - v) < EDGE_SHARE:
             return f"at the {edge} edge"
-        return about + say(v, flag) if canvas else say(v, False)
+        return about + say(v, flag)
 
     v_say = place(v_edge[1], from_bottom, down, "bottom" if from_bottom else "top")
     h_say = place(h_edge[1], from_right, across, "right" if from_right else "left")
-    size = f"; it's about {_inches((x1 - x0) * cw)} wide and {_inches((y1 - y0) * ch)} tall" if canvas else ""
+    size = f"; it's about {_inches((x1 - x0) * cw)} wide and {_inches((y1 - y0) * ch)} tall"
     return f"Inside the outlined area. Its {v_edge[0]} is {v_say}, and its {h_edge[0]} is {h_say}{size}."
 
 

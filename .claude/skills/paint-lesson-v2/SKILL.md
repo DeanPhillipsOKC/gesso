@@ -16,7 +16,8 @@ you start that step**, even if you read it earlier. Don't read ahead.
 
 ## Arguments
 - `<photo>` (required)
-- `--canvas WxH` (optional, inches, e.g. `11x14`) with `--orientation portrait|landscape`
+- `--canvas WxH` (optional, inches, e.g. `11x14`) with `--orientation portrait|landscape`. Without it the lesson
+  still gets a canvas size (step 0b2), so every step says where in inches
 - `--technique <file>` (optional): force the whole-painting approach (a file in `techniques/` with version 2 keys:
   `v2_step_range`, `v2_rules`). Without it, choose the approach that fits the picture and the level and say why in
   `technique_why`. Today only `acrylic-paint-along-beginner.yaml` has version 2 keys.
@@ -66,6 +67,10 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 | 8. Diagrams, notes, seal, report | `steps/8-finish.md` | the sealed lesson |
 
 Steps 0 and 1 are the v1 skill's files, with these differences:
+- **step 0b2 always runs**, with or without `--canvas`: without it, `fit-canvas` (no `--canvas`) picks the
+  standard size closest to the photo's shape (8x10, 9x12, 11x14, 12x16, or 16x20, 11x14 when two fit as well) and
+  records `"chosen": "default"` in `canvas.json`. The steps say where in inches from the canvas edges, never by
+  tape marks or percentages, and the v2 tools refuse a lesson with no canvas size;
 - every filter run with `--lesson` needs `--why "<what you want it to show you>"`;
 - `notes.json`'s `beginner_version` is a dict: `{"made": true|false, "found": "...", "list": "...", "why": "..."}`;
 - with `--palette`, name the painter's tube colors in the finish prompt in place of the technique's five;

@@ -29,6 +29,7 @@ import tools  # noqa: E402
 
 FIX = Path(__file__).resolve().parent / "fixtures"
 NAMES = ["chickadee", "lavender-balloon", "red-sailboat"]
+CANVAS = {"w_in": 14.0, "h_in": 11.0, "orientation": "landscape"}  # the fixtures (1000 x 786) have the shape of 14 x 11 in
 
 
 def fixture(name: str):

@@ -29,7 +29,7 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
 'just the picture'", "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."}`. Start
 `notes.json` now and add to it as you go; the full schema is in step 8.
 
-## 0b2. Fit the picture to the canvas (only with `--canvas`)
+## 0b2. Fit the picture to the canvas (only with `--canvas`; the v2 skill always runs it, see its SKILL.md)
 1. Decide the subject's box and the focal point (0-1 from the top left). The subject is what the picture is
    about (the balloon, the boat and its reflection), not the whole scene.
 2. `fit-canvas <photo> --lesson <lesson> --canvas <WxH> [--orientation ...] --focus X Y --keep X0 Y0 X1 Y1 --why
