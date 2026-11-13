@@ -16,6 +16,8 @@ The backlog lives in GitHub Issues: https://github.com/DeanPhillipsOKC/gesso/iss
   reason in a comment.
 - **`human`:** only the owner can do it (accounts, money, decisions, devices). Scored like any
   other issue, with effort meaning the owner's time.
+- **`model:<name>`** (e.g. `model:fable`): the owner wants that Claude model to work the issue. A session on
+  another model doesn't pick it; if asked to, it says which model the label names first.
 - **Rough issues are fine.** An issue with no labels stays invisible to agents until
   `refine-backlog` turns it into a spec (Problem / Scope / Out of scope / Acceptance) and scores it.
 - **Picking the next item:** highest ROI first, then highest value, then oldest.
