@@ -445,8 +445,8 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
   first screen tells the painter to mark the halves and quarters on tape along the canvas's edges (chalk on the
   canvas would be painted over by the sky).
 - **Close-up** (a step whose area is under 20% of the picture): before and after, cropped to the area with a
-  margin, with a finer grid. Built (#68): not when the area is spread over more than 60% of the canvas's long side
-  (scattered marks such as a sun path), since the crop would be no closer; it starts open when the area is under 3%.
+  margin, with a finer grid. Built (#68): not when the area reaches across more than half the canvas's long side
+  (scattered marks such as a sun path, a long branch), since the crop would be hardly closer; it starts open when the area is under 3%.
 - **Paint map** (every `flat`, `pass`, and `blend` step with 2 or more paints, and the first step of each part):
   the part filled with flat patches, one per paint, numbered, with a legend in painting order. It replaces the
   hand-written `values` table. Built (#68): the first step's map shows all of the part's paints over the whole part;

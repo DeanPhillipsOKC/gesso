@@ -35,7 +35,8 @@ from from_finish import CANVAS, hex_lab
 
 VIEW = 1000  # the page's picture coordinates: this many units along the canvas's long side
 CLOSE_UP = 0.2  # a step whose area is under this share of the canvas gets a close-up
-CLOSE_SPAN = 0.6  # but not when the area is spread so wide (scattered marks) that the close-up would be no closer
+CLOSE_SPAN = 0.5  # but not when the area reaches across more than this share of the canvas's long side (scattered
+# marks, a long branch): the close-up would be hardly closer than the step picture
 CLOSE_PX = 600  # close-ups are at most this many pixels on their long side
 CLOSE_MIN = 0.22  # a close-up shows at least this share of the canvas's long side each way, so it isn't all blur
 CLOSE_MARGIN = 0.35  # and a margin of this share of the area's own size around it
@@ -208,6 +209,12 @@ def where_words(area: np.ndarray, canvas: dict | None) -> str:
 
 
 # --- Close-ups ---
+
+
+def _span(area_view: np.ndarray) -> int:
+    """How far the area reaches along its longer direction, in page units."""
+    ys, xs = np.nonzero(area_view)
+    return int(max(xs.max() - xs.min(), ys.max() - ys.min())) + 1
 
 
 def close_box(area_view: np.ndarray) -> list[int]:
@@ -388,8 +395,9 @@ def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner:
         row = {"id": s["id"], "image": images[i], "area": round(share, 4),
                "path": outline_path(area, size), "where_words": where_words(area, canvas)}
         stem = f"{i + 1:02d}_{s['id']}"
-        box = close_box(view_mask(area, size)) if area.any() and share < CLOSE_UP else None
-        if box and max(box[2] - box[0], box[3] - box[1]) <= CLOSE_SPAN * VIEW:
+        vm = view_mask(area, size) if area.any() and share < CLOSE_UP else None
+        if vm is not None and vm.any() and _span(vm) <= CLOSE_SPAN * VIEW:
+            box = close_box(vm)
             before = crop_view(pics[i - 1] if i else blank, box, size, CLOSE_PX)
             after = crop_view(pics[i], box, size, CLOSE_PX)
             save_jpeg(before, out / f"{stem}_before.jpg")
