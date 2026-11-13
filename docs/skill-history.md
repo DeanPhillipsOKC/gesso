@@ -3,6 +3,13 @@
 The skill (`.claude/skills/paint-lesson/`) keeps only the rules, so a run reads short, current instructions at
 each step. This is where the runs that taught each rule are kept. Add to it when a run teaches something new.
 
+**Pipeline v1 and v2.** Most entries below come from pipeline v1 (2026-11-10 to 2026-11-12), when the skill rendered
+every step. On 2026-11-13 the v2 skill (until then a separate skill) passed the gate and became `/paint-lesson`, and v1
+was removed (#82): its plan, render, review, lock, and publish steps, and `lock-steps`, `carry-forward`,
+`finish-from-step`, `split-texture`, `render-step`, `from-finish`, and the throwaway filters. The v1 lessons stay
+in the lesson history. Entries about those tools are history now; the rules that carried over (setup, the
+reference and finish, the beginner version, diagrams, notes, the text review, the seal) are still the skill's.
+
 ## Photo and canvas
 - **Crop screenshots first** (2026-11-11): the owner sent a shop page with the painting in the middle.
 - **Fit the canvas** (2026-11-11): the owner paints mostly on 11x14, some 24x30 and 10x10, and the lesson should

@@ -6,7 +6,7 @@ animations and interactive pieces work like on any web page. No Claude account i
 
 - `site/` in this repo is the whole site: `index.html` (the list), `lessons/<slug>/index.html` and `thumb.jpg`,
   `lessons.json` (the list's data), and `_headers` (keeps it out of search engines).
-- **Every sealed hands-off run goes on the site** (owner, 2026-11-13; `docs/decisions.md`): the v2 skill's last step
+- **Every sealed hands-off run goes on the site** (owner, 2026-11-13; `docs/decisions.md`): the skill's last step
   adds it (step 8c), as a version on its picture's tile, or as a new tile for a new picture. Modified runs stay in
   the history only; the tools refuse them.
 - Adding a lesson by hand: `publish` it, then `python spike/tools.py site-add --lesson <lesson folder> --slug <name>`, then
@@ -21,8 +21,8 @@ only for if that ever changes; Zero Trust asks for a card even on its free plan.
 
 Each tile's pick list holds every kept run of that picture (the run folders in `output/` named after it), newest
 first, with the current one selected. Opening another version opens the lesson exactly as that run made it: its
-page is written once to `lessons/<slug>/v/<run time>/` and never rewritten (runs from before self-contained pages
-are built from their saved `lesson.json`, nothing rerun). After a new run of a picture that's on the site, run
+page is written once to `lessons/<slug>/v/<run time>/` from the run's `lesson-standalone.html` and never
+rewritten (a run without one is skipped with a message). After a new run of a picture that's on the site, run
 `python spike/tools.py site-refresh` and commit `site/`. It makes each tile open its newest hands-off run (owner,
 2026-11-13: "Should use newest untouched run"); the old default's page is kept at
 `lessons/<slug>/v/<its run time>/` and stays in the list. `site-add` makes a tile for a new picture. Setting a
@@ -31,7 +31,10 @@ default by hand with `site-add` lasts only until the next `site-refresh`.
 A refresh only adds (#83). `output/` isn't in git, so a fresh checkout has none of the older runs: a version already
 in `lessons.json` whose page is under `site/` stays whether or not its run folder is here. Runs found in `output/`
 are added or updated. To take a version off the site, name it: `site-refresh --remove <run time>` (it stays in the
-lesson history).
+lesson history). A tile's known-problems count is kept when its run isn't here to count again.
+
+**The tiles hold versions from POC 1.0.0 on** (owner, 2026-11-13, #82): the runs before it (v1, up to 0.26.1) were
+taken off the site and are in the lesson history.
 
 ## Known problems
 

@@ -4,8 +4,8 @@
                                                     one mask per step: the pixels it lays paint on)
 
 No renders. Each step paints inside one part's outline (spike/outline.py), so a step can't move, reshape, or
-recolor anything else, and the last picture is the finish. That removes what the image reviews, the redos, and
-lock-steps existed to repair.
+recolor anything else, and the last picture is the finish. That removes what v1's image reviews, redos, and
+lock existed to repair (v1 was removed in #82).
 
 How a step is drawn, by its `show`:
 - "flat":  the part as flat color in the step's paints (a base coat or block-in), no texture;

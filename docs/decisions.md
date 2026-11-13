@@ -157,6 +157,9 @@ with the date.
     this photo needs and corrects the draft against the pictures.
   v1 stays in the repo, and nothing is removed, until three hands-off v2 lessons pass the gate in the design and
   the owner agrees.
+  **Done 2026-11-13 (owner's call, #82):** the gate passed, and v1 was removed rather than kept as a fallback ("I
+  don't see us ever going back to V1"). The site's versions from before POC 1.0.0 went too; every run stays in the
+  lesson history.
 - **Don't raise the image model's quality (2026-11-12, owner's call).** Higher settings made no clear difference to
   how well a lesson teaches, and the cost wasn't sustainable. Fix a problem with tools or the plan, not a dearer
   render.
