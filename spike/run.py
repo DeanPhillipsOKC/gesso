@@ -27,6 +27,7 @@ import argparse
 import base64
 import io
 import json
+import os
 import shutil
 import time
 from datetime import datetime
@@ -187,12 +188,23 @@ def image_block(path: Path) -> dict:
 # ---------------------------------------------------------------------------
 
 
+# The OpenAI SDK won't build a client without a key. In a cloud session the network proxy adds the
+# real key to every request to api.openai.com, so a placeholder is enough to get the request out (#89).
+PROXY_KEY_PLACEHOLDER = "sk-proxy-supplies-the-key"
+
+
+def openai_client():
+    from openai import OpenAI
+
+    if not os.environ.get("OPENAI_API_KEY") and (os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")):
+        return OpenAI(api_key=PROXY_KEY_PLACEHOLDER)
+    return OpenAI()
+
+
 def edit_image(step: str, inputs: list[Path], prompt: str, out: Path, size: str, quality: str, ledger: Ledger,
                client=None) -> Path:
     if client is None:
-        from openai import OpenAI
-
-        client = OpenAI()
+        client = openai_client()
 
     files = [(p.name, png_bytes(p), "image/png") for p in inputs]
     started = time.time()
