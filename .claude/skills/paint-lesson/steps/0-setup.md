@@ -44,7 +44,8 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
    and step images stay in the model's frame; `publish` crops every step to the canvas for the painter.
 5. Keep two coordinate systems apart: `looks_like` and render prompts describe the frame; the step text describes
    the canvas. Before writing text, run `canvas-view 99_finish.png --lesson <lesson>` and measure on
-   `canvas/99_finish.png` with `grid --percent`.
+   `canvas/99_finish.png` with `grid --percent`. (Version 2: those shares are for the plan only; the step text says
+   where in inches, from `draft-text`, never in percentages or by tape marks.)
 6. Record `canvas_fit` in `notes.json`: `{"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...", "lost":
    "the right 15% of empty water"}`.
 
@@ -53,7 +54,7 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
   (24x30 is 720), add 3, and textures can be a size smaller.
 - Biggest brush: a 3/4 inch flat on a 10x10, a 1 inch flat on an 11x14, a 2 inch flat or wide house brush on a
   24x30 (rounds a size or two up).
-- The page says how many inches each 10% is. Inches in the text are fine for sizes ("about 2 inches wide").
+- Version 1: the page says how many inches each 10% is. (Version 2 gives inches outright.) Inches in the text are fine for sizes ("about 2 inches wide").
 
 ## 0c. Is it beginner-sized? (`00_beginner.png`)
 Every step is copied backward from the finish, so whatever detail the finish has, some step has to paint. For the

@@ -155,6 +155,9 @@ class WhereWordsTests(unittest.TestCase):
         thin = aids.where_words(self.area([0.4, 0.2, 0.405, 0.6], (1100, 1400)), {"w_in": 14, "h_in": 11})
         self.assertIn("it's under 1/4 in wide and about 4 1/2 in tall", thin)
         self.assertNotIn(" 0 in", thin)
+        eighth = np.zeros((1024, 1024), bool)
+        eighth[500:510, 500:516] = True  # exactly 1/8 in across on 8 x 8 in, which rounds to 0
+        self.assertIn("it's under 1/4 in wide and under 1/4 in tall", aids.where_words(eighth, {"w_in": 8, "h_in": 8}))
         with self.assertRaisesRegex(ValueError, "canvas.json"):
             aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), None)
 

@@ -188,7 +188,7 @@ def where_words(area: np.ndarray, canvas: dict | None) -> str:
     v_say = place(v_edge[1], from_bottom, down, "bottom" if from_bottom else "top")
     h_say = place(h_edge[1], from_right, across, "right" if from_right else "left")
     def length(x: float) -> str:  # a mast or an eye light is narrower than the ruler's quarter inch (review of #122)
-        return "under 1/4 in" if x < 0.125 else f"about {_inches(x)}"
+        return "under 1/4 in" if _inches(x) == "0 in" else f"about {_inches(x)}"  # 1/8 in rounds to 0
     wide, tall = length((x1 - x0) * cw), length((y1 - y0) * ch)
     if wide.startswith("about") and tall.startswith("about"):
         tall = tall.removeprefix("about ")  # "about 3 in wide and 2 in tall", as before

@@ -315,6 +315,8 @@ class CheckPartsTests(unittest.TestCase):
         self.assertIn("its summary places things by tape marks", out)
         self.assertIn("its line 1 places things by tape marks", out)
         self.assertIn("its paint note 1 places things by tape marks", out)
+        for said in ("Stop at the 1/4 mark on your tape.", "Line it up with the tape.", "Paint to the middle of the tape."):
+            self.assertTrue(checks.text_problems(plan, {**text, sid: {**ok, "tip": said}}, None), said)
         for fine in ("Taper each branch to a point.", "Masking tape along the horizon gives a crisp edge."):
             self.assertEqual(checks.text_problems(plan, {**text, sid: {**ok, "tip": fine}}, None), [], fine)
         pct = {**ok, "tip": "At 30% across."}

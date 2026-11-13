@@ -21,7 +21,8 @@ import numpy as np
 PERCENT = re.compile(r"\d\s*%|\bper\s?cent\b", re.I)
 # #122: steps say where in inches; the tape marks are gone. Only placing by tape is flagged, so a real tip such as
 # "masking tape gives a crisp horizon" isn't (review of #122).
-TAPE = re.compile(r"\btape marks?\b|\b(?:top|side|edge)'?s? tape\b|\bmark(?:ed)? on (?:the )?tape\b", re.I)
+TAPE = re.compile(r"\btape marks?\b|\b(?:top|side|edge)'?s? tape\b|\bmark\w*\b[^.]{0,20}\btape\b|\btape\b[^.]{0,20}\bmark"
+                  r"|\b(?:middle|half|quarter|line it up with|along) (?:of |on )?(?:the |your )?tape\b", re.I)
 SUMMARY_CHARS = 90
 
 
