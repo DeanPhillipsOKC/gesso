@@ -101,14 +101,14 @@ def step_why(lesson: dict, s: dict, is_last: bool) -> str:
         extra = " · cached" if c.get("cached") else ""
         timeline.append((2 * n, f'<li><span class="head">{tag(kind, f"{name} {n}")}{e(c.get("quality", ""))} quality · '
                                 f'{money(c.get("cost_usd", 0))}{extra}</span><span>{e(c.get("reason", ""))}</span></li>'))
-    for x in lesson.get("review_issues", []):
-        if x.get("step_id") == s["id"]:
+    for x in _items(lesson.get("review_issues")):
+        if isinstance(x, dict) and x.get("step_id") == s["id"]:
             r = int(x.get("round") or 1)
             timeline.append((2 * r + 1, f'<li><span class="head">{tag("review", f"Review round {r}")}'
                                         f'{e(x.get("action") or "redone")}</span><span>{e(x.get("problem", ""))}</span></li>'))
     trail += [h for _, h in sorted(timeline, key=lambda t: t[0])]
 
-    why_now = notes.get("steps", {}).get(s["id"], "")
+    why_now = _text(_mapping(notes.get("steps")).get(s["id"], ""))
     reason = s.get("reason", "")
     body = "".join([
         f"<p><b>Why this step, now:</b> {e(why_now)}</p>" if why_now else "",
@@ -125,19 +125,52 @@ def step_why(lesson: dict, s: dict, is_last: bool) -> str:
 
 
 def diagrams_of(notes: dict) -> dict:
-    return (notes.get("beginner_check") or {}).get("diagrams") or {}
+    return _mapping(_mapping(notes.get("beginner_check")).get("diagrams"))
 
 
 def diagram_why(notes: dict, s: dict) -> str:
     """Why this step got a construction diagram (or why the beginner check decided it didn't need one)."""
-    check = notes.get("beginner_check") or {}
-    d = diagrams_of(notes).get(s["id"])
+    check = _mapping(notes.get("beginner_check"))
+    d = _fields(diagrams_of(notes).get(s["id"]), "noticed")
     if d and s.get("construct"):
         rows = [("Why a diagram", d.get("noticed")), ("How it broke the shape down", d.get("pieces")),
                 ("Checked against the picture", d.get("checked")), ("Where this came from", d.get("source"))]
-        return '<div class="diag">' + "".join(f"<p><b>{k}:</b> {e(v)}</p>" for k, v in rows if v) + "</div>"
-    skip = (check.get("no_diagram") or {}).get(s["id"])
+        return '<div class="diag">' + "".join(f"<p><b>{k}:</b> {e(_text(v))}</p>" for k, v in rows if v) + "</div>"
+    skip = _text(_mapping(check.get("no_diagram")).get(s["id"]))
     return f"<p><b>No diagram:</b> {e(skip)}</p>" if skip else ""
+
+
+def _text(v) -> str:
+    """Any note as plain text. notes.json is written by hand during a run, and a lesson must never fail to publish
+    over the shape of a note (the lavender balloon's beginner_version was a list, 2026-11-13)."""
+    if v is None or v is False:
+        return ""
+    if isinstance(v, str):
+        return v
+    if isinstance(v, (list, tuple)):
+        return "; ".join(t for t in (_text(x) for x in v) if t)
+    if isinstance(v, dict):
+        return "; ".join(f"{k}: {t}" for k, t in ((k, _text(x)) for k, x in v.items()) if t)
+    return str(v)
+
+
+def _fields(v, key: str) -> dict:
+    """A note that should be a dict of fields: a string or a list stands for its `key` field."""
+    if isinstance(v, dict):
+        return v
+    return {key: v} if v else {}
+
+
+def _mapping(v) -> dict:
+    """A note that should map step ids to text (steps, no_diagram, diagrams): anything else maps nothing."""
+    return v if isinstance(v, dict) else {}
+
+
+def _items(v) -> list:
+    """A note that should be a list: a single entry stands for a list of one."""
+    if isinstance(v, list):
+        return v
+    return [v] if v else []
 
 
 def fold(title: str, hint: str, body: str) -> str:
@@ -148,8 +181,8 @@ def fold(title: str, hint: str, body: str) -> str:
 def all_filters(lesson: dict) -> list[dict]:
     """Filters from notes.json, plus any the ledger logged that the notes don't mention."""
     notes = lesson.get("notes") or {}
-    out = list(notes.get("filters", []))
-    seen = {Path(f.get("image", "")).name for f in out}
+    out = [f for f in _items(notes.get("filters")) if isinstance(f, dict)]
+    seen = {Path(_text(f.get("image"))).name for f in out}
     for c in lesson.get("calls", []):
         name = Path(c.get("out", "")).name
         if c.get("tool") == "filter" and name not in seen:
@@ -171,9 +204,9 @@ def ladder(lesson: dict, filters: list[dict]) -> str:
     tried = {k: [] for k, _, _ in rungs(lesson)}
     for s in stages:
         ended[rung_of(s.get("made_with", ""), v2)].append(s["id"])
-    for t in notes.get("throwaways", []):
-        for sid in t.get("steps", []):
-            if sid in num and sid not in ended["throw"] and sid not in tried["throw"]:
+    for t in _items(notes.get("throwaways")):
+        for sid in _items(_fields(t, "script").get("steps")):
+            if isinstance(sid, str) and sid in num and sid not in ended["throw"] and sid not in tried["throw"]:
                 tried["throw"].append(sid)
     for c in lesson.get("calls", []):
         sid = last_id if c.get("step") == "finish" else c.get("step")
@@ -187,7 +220,7 @@ def ladder(lesson: dict, filters: list[dict]) -> str:
 
     rows = []
     for key, name, cost in rungs(lesson):
-        chips = [f'<span class="pip p-filter">{e(f.get("label") or f.get("tool", ""))}</span>'
+        chips = [f'<span class="pip p-filter">{e(_text(f.get("label") or f.get("tool", "")))}</span>'
                  for f in filters if key == "filter" and f.get("verdict") == "kept"]
         chips += [pip(sid, key) for sid in ended[key]] + [pip(sid, key, "tried") for sid in sorted(tried[key], key=num.get)]
         empty = '<span class="pip none">not needed</span>'
@@ -217,38 +250,40 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
     # How Claude read the photo
     read = lesson["photo_read"]
     comps = "".join(f"<li>{e(c)}</li>" for c in read.get("components", []))
-    prep = notes.get("photo_prep") or {}
-    if isinstance(prep, str):  # a run wrote a sentence instead of the dict (sailboat, 2026-11-12)
-        prep = {"found": prep}
+    # notes.json is written by hand during a run: a note in an unexpected shape (a sentence or a list where a dict
+    # was meant: sailboat 2026-11-12, lavender balloon 2026-11-13) is shown as text, never a failed publish
+    prep = _fields(notes.get("photo_prep"), "found")
     prep_html = ('<div class="diag"><p class="label">Before starting</p>' + "".join(
-        f"<p><b>{k}:</b> {e(prep[f])}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
-                                                        ("Done", "action"), ("Why", "why")) if prep.get(f)) + "</div>"
-                 ) if prep else ""
-    cf = notes.get("canvas_fit") or {}
+        f"<p><b>{k}:</b> {e(_text(prep[f]))}</p>" for k, f in (("Subject", "subject"), ("Found in the image", "found"),
+                                                               ("Done", "action"), ("Why", "why")) if prep.get(f))
+                 + "</div>") if prep else ""
+    cf = _fields(notes.get("canvas_fit"), "mode")
     if cf:
         prep_html += ('<div class="diag"><p class="label">Fitted to your canvas</p>' + "".join(
-            f"<p><b>{k}:</b> {e(cf[f])}</p>" for k, f in (("Canvas", "canvas"), ("Done", "mode"), ("Left out", "lost"),
-                                                          ("Why", "why")) if cf.get(f)) + "</div>")
-    bv = notes.get("beginner_version") or {}
+            f"<p><b>{k}:</b> {e(_text(cf[f]))}</p>" for k, f in (("Canvas", "canvas"), ("Done", "mode"),
+                                                                 ("Left out", "lost"), ("Why", "why")) if cf.get(f))
+            + "</div>")
+    bv = _fields(notes.get("beginner_version"), "list")
     bv_html = ('<div class="diag"><p class="label">Beginner version</p>' + "".join(
-        f"<p><b>{k}:</b> {e(bv[f])}</p>" for k, f in (("What made it too busy", "found"), ("Changed", "list"),
-                                                      ("Why", "why")) if bv.get(f)) + "</div>") if bv else ""
+        f"<p><b>{k}:</b> {e(_text(bv[f]))}</p>" for k, f in (("What made it too busy", "found"), ("Changed", "list"),
+                                                             ("Why", "why")) if bv.get(f)) + "</div>") if bv else ""
     parts.append(fold("How Claude read your photo", "subject, light, layers", "".join([
         prep_html,
         bv_html,
-        f"<p>{e(notes['read'])}</p>" if notes.get("read") else "",
+        f"<p>{e(_text(notes['read']))}</p>" if notes.get("read") else "",
         f"<p><b>Subject:</b> {e(read['subject'])}<br><b>Focal point:</b> {e(read['focal_point'])}<br>"
         f"<b>Light:</b> {e(read['light'])}</p>",
         f'<div><p class="label">What it saw, back to front</p><ol>{comps}</ol></div>' if comps else ""])))
 
     # Technique
-    t = notes.get("technique") or {}
+    t = _fields(notes.get("technique"), "why")
     if t:
         cards = [f'<div class="card chosen"><span class="stamp keep">Chosen</span><b>{e(technique.get("name", ""))}</b>'
-                 f'<span class="small">{e(technique.get("summary", ""))}</span><p>{e(t.get("why", ""))}</p></div>']
-        cards += [f'<div class="card"><span class="stamp">Passed on</span><b>{e(c.get("name") or c.get("id", ""))}</b>'
-                  f'<p>{e(c.get("why_not", ""))}</p></div>' for c in t.get("considered", [])]
-        how = f'<p class="small">{e(t["how_chosen"])}</p>' if t.get("how_chosen") else ""
+                 f'<span class="small">{e(technique.get("summary", ""))}</span><p>{e(_text(t.get("why")))}</p></div>']
+        considered = [_fields(c, "name") for c in _items(t.get("considered"))]
+        cards += [f'<div class="card"><span class="stamp">Passed on</span><b>{e(_text(c.get("name") or c.get("id")))}</b>'
+                  f'<p>{e(_text(c.get("why_not")))}</p></div>' for c in considered]
+        how = f'<p class="small">{e(_text(t["how_chosen"]))}</p>' if t.get("how_chosen") else ""
         parts.append(fold("Why this technique", technique.get("name", ""), f'{how}<div class="pick">{"".join(cards)}</div>'))
 
     # Paint recipes: worked out by the mixer, compared with the ones written by eye
@@ -275,15 +310,17 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
 
     # Step order, as a storyboard
     if notes.get("order") or notes.get("steps"):
+        why_step = _mapping(notes.get("steps"))
         board = "".join(
             f'<li><img src="{thumbs[i]}"{sizes[i]} alt="" loading="lazy"><div><b>{i + 1}. {e(s["name"])}</b>'
-            f'<p class="small">{e(notes.get("steps", {}).get(s["id"], ""))}</p></div></li>' for i, s in enumerate(stages))
-        order = f"<p>{e(notes['order'])}</p>" if notes.get("order") else ""
+            f'<p class="small">{e(_text(why_step.get(s["id"], "")))}</p></div></li>' for i, s in enumerate(stages))
+        order = f"<p>{e(_text(notes['order']))}</p>" if notes.get("order") else ""
         parts.append(fold("Why the steps go in this order", f"{len(stages)} steps", f'{order}<ol class="board">{board}</ol>'))
 
     # Filters, as a contact sheet
     figs = []
     for f in filters:
+        f = {k: _text(v) for k, v in f.items()}
         path = find_image(folder, f.get("image", ""))
         if not path:
             continue
@@ -299,45 +336,52 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
 
     # Throwaway filters
     cards = []
-    for t in notes.get("throwaways", []):
-        imgs = [p for p in (find_image(folder, x) for x in t.get("images", [])) if p]
+    for t in _items(notes.get("throwaways")):
+        t = _fields(t, "script")
+        imgs = [p for p in (find_image(folder, x) for x in _items(t.get("images")) if isinstance(x, str)) if p]
         sheet = "".join(f'<figure><img src="{src_for(folder, p, embed, 420)}"{dims(p)} alt="Throwaway filter output" loading="lazy">'
                         f"<code>{e(p.name)}</code></figure>" for p in imgs)
-        steps_txt = ", ".join(f"step {num[x]}" for x in t.get("steps", []) if x in num)
-        verdict = t.get("verdict", "")
+        steps_txt = ", ".join(f"step {num[x]}" for x in _items(t.get("steps")) if isinstance(x, str) and x in num)
+        verdict = _text(t.get("verdict"))
         cards.append(
             f'<div class="card"><span class="stamp{" keep" if verdict in ("kept", "seeded a render") else ""}">{e(verdict)}</span>'
-            f'<b class="mono">{e(t.get("script", ""))}</b>'
-            f'<p><b>For:</b> {e(t.get("for", ""))}{f" ({steps_txt})" if steps_txt else ""}</p>'
-            f'<p><b>What happened:</b> {e(t.get("outcome", ""))}</p>'
-            + (f'<p class="small">{e(str(t["tries"]))} of 2 tries used</p>' if t.get("tries") else "")
+            f'<b class="mono">{e(_text(t.get("script")))}</b>'
+            f'<p><b>For:</b> {e(_text(t.get("for")))}{f" ({steps_txt})" if steps_txt else ""}</p>'
+            f'<p><b>What happened:</b> {e(_text(t.get("outcome")))}</p>'
+            + (f'<p class="small">{e(_text(t["tries"]))} of 2 tries used</p>' if t.get("tries") else "")
             + (f'<div class="sheet">{sheet}</div>' if sheet else "") + "</div>")
     if cards:
         parts.append(fold("Throwaway filters it wrote", "small scripts for this photo only", "".join(cards)))
 
     # Beginner check: which steps got construction diagrams, and why
-    check = notes.get("beginner_check") or {}
-    drawn = [(st, diagrams_of(notes)[st["id"]]) for st in stages
+    check = _fields(notes.get("beginner_check"), "summary")
+    drawn = [(st, _fields(diagrams_of(notes)[st["id"]], "noticed")) for st in stages
              if st["id"] in diagrams_of(notes) and st.get("construct")]
     if check or drawn:
         rows = []
         for st, d in drawn:
             n = num[st["id"]]
-            rows.append(f'<li><a href="#step-{n}"><b>Step {n}: {e(st["name"])}</b></a> {tag("diagram", d.get("source") or "beginner check")}'
-                        f'<p><b>Noticed:</b> {e(d.get("noticed", ""))}</p><p><b>Pieces:</b> {e(d.get("pieces", ""))}</p></li>')
-        skipped = "".join(f'<li><b>Step {num[k]}:</b> {e(v)}</li>' for k, v in (check.get("no_diagram") or {}).items()
-                          if k in num)
+            rows.append(f'<li><a href="#step-{n}"><b>Step {n}: {e(st["name"])}</b></a> '
+                        f'{tag("diagram", _text(d.get("source")) or "beginner check")}'
+                        f'<p><b>Noticed:</b> {e(_text(d.get("noticed")))}</p><p><b>Pieces:</b> {e(_text(d.get("pieces")))}</p></li>')
+        skipped = "".join(f'<li><b>Step {num[k]}:</b> {e(_text(v))}</li>'
+                          for k, v in _mapping(check.get("no_diagram")).items() if k in num)
         parts.append(fold("Where Claude drew diagrams", f"{len(drawn)} steps, free", "".join([
-            f"<p>{e(check['summary'])}</p>" if check.get("summary") else "",
+            f"<p>{e(_text(check['summary']))}</p>" if check.get("summary") else "",
             f'<ul class="plain diaglist">{"".join(rows)}</ul>' if rows else "<p>No step needed one.</p>",
             f'<div><p class="label">Looked at and left without one</p><ul>{skipped}</ul></div>' if skipped else ""])))
 
     # Review
-    rev = [f'<li>{tag("review", "Finish check")} {e(x)}</li>' for x in lesson.get("finish_issues", [])]
-    for x in sorted(lesson.get("review_issues", []), key=lambda r: (r.get("round", 0), num.get(r.get("step_id"), 0))):
+    rev = [f'<li>{tag("review", "Finish check")} {e(_text(x))}</li>' for x in _items(lesson.get("finish_issues"))]
+
+    def issues(key: str) -> list[dict]:
+        return [{k: (v if k == "round" and isinstance(v, (int, float)) else _text(v)) for k, v in _fields(x, "problem").items()}
+                for x in _items(lesson.get(key))]
+    for x in sorted(issues("review_issues"), key=lambda r: (r.get("round") if isinstance(r.get("round"), (int, float)) else 0,
+                                                            num.get(r.get("step_id"), 0))):
         rev.append(f'<li>{tag("review", "Round " + str(x.get("round", "")))} <b>Step {num.get(x.get("step_id"), "?")}:</b> '
                    f'{e(x.get("problem", ""))} <span class="mono">({e(x.get("action") or "redone")})</span></li>')
-    for x in sorted(lesson.get("text_issues", []), key=lambda r: num.get(r.get("step_id"), 0)):
+    for x in sorted(issues("text_issues"), key=lambda r: num.get(r.get("step_id"), 0)):
         rev.append(f'<li>{tag("review", "Text check: " + x.get("kind", ""))} <b>Step {num.get(x.get("step_id"), "?")}:</b> '
                    f'{e(x.get("problem", ""))} <span class="mono">({e(x.get("action") or "fixed")})</span></li>')
     if rev:
@@ -371,7 +415,7 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
 
     if notes.get("learned"):
         parts.append(fold("What Claude would do differently", "for the next lesson",
-                          f'<ul>{"".join(f"<li>{e(x)}</li>" for x in notes["learned"])}</ul>'))
+                          f'<ul>{"".join(f"<li>{e(_text(x))}</li>" for x in _items(notes["learned"]))}</ul>'))
 
     return f"""
   <section class="behind" id="behind" aria-labelledby="behind-h">

@@ -17,6 +17,7 @@ SHOWS = ("flat", "pass", "full", "blend")
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 MAX_PAINTS = 3  # paints in one step, except a blend
+NO_STAGES = "the plan has no stages with steps"  # all that's wrong with a plan between `paints` and its stages
 
 
 def load(lesson: Path) -> dict:
@@ -82,7 +83,9 @@ def parts_problems(plan: dict) -> list[str]:
 
 def problems(plan: dict, technique: dict | None = None) -> list[str]:
     """What's wrong with a version 2 plan: its parts (parts_problems), its paints, and its stages and steps. With the
-    technique, also more base mixes than its `max_mixes` while two could still merge."""
+    technique, also more base mixes than its `max_mixes` while two could still merge by `paints`' rules: neither
+    is an accent or was made by `paints --add`, they're at most paints.MAX_MERGE apart, and at most one of them is
+    a paint a step uses (that one is never merged away). Two paints a pass was split into stay apart."""
     out = parts_problems(plan)
     if out == ["the plan has no parts"]:
         return out
@@ -106,14 +109,17 @@ def problems(plan: dict, technique: dict | None = None) -> list[str]:
         import paints as measured  # only here: it needs OpenCV, and the rest of this file doesn't
 
         everything = [c for c in paints.values() if HEX.match(c.get("hex", ""))]
-        pairs = measured.mergeable(bases, measured.accents(everything))
+        # what `paints` would still merge: never a paint a step uses into another, never one `paints --add` made
+        used = {c for s in steps(plan) for c in s.get("paints") or []}
+        added = {c["id"] for c in everything if c.get("added")}
+        pairs = measured.mergeable(bases, measured.accents(everything), used, added)
         if pairs:  # over the target with nothing close enough left to merge is allowed (design section 9)
             de, a, b = min((measured.mixing.delta_e(a["hex"], b["hex"]), a["id"], b["id"]) for a, b in pairs)
             out.append(f"{len(bases)} paints to mix, above the technique's target of {target}, and {a} and {b} are only "
                        f"Delta E {de:.1f} apart, close enough to merge. Run paints again.")
     all_steps = steps(plan)
     if not all_steps:
-        return out + ["the plan has no stages with steps"]
+        return out + [NO_STAGES]
     ids: set[str] = set()
     by_part: dict[str, list[dict]] = {}
     for s in all_steps:

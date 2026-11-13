@@ -389,8 +389,9 @@ def paints_not_listed(stages: list[dict], paints: dict, word: bool = True) -> li
 
 def undocumented_diagrams(stages: list[dict], notes: dict) -> list[str]:
     """Steps with a diagram the skill's beginner check didn't explain."""
+    check = notes.get("beginner_check") or {}
     return [st["id"] for st in stages if st["construct"] and st["id"] not in
-            ((notes.get("beginner_check") or {}).get("diagrams") or {})]
+            ((check.get("diagrams") or {}) if isinstance(check, dict) else {})]
 
 
 def texture_jumps(lesson: Path, paths: list[Path]) -> list[dict]:
@@ -471,17 +472,21 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     v2 = plan2.is_v2(lesson)
     out = []
     ids = [s.id for s in plan.steps]
+    review_step = "step 7b" if v2 else "step 6b"  # the v2 skill's text review is its step 7b
     if not (lesson / "review.json").exists():
-        out.append("review.json is missing (steps 2, 5, 6b)")
+        out.append("review.json is missing (" + ("step 7b" if v2 else "steps 2, 5, 6b") + ")")
     for key in ("finish_issues", "text_issues") if v2 else ("finish_issues", "review_issues", "text_issues"):
         if key not in review:
             out.append(f"review.json has no {key} (an empty list if there were none)")
     if not (lesson / "trials" / "review" / "review.json").exists():
-        out.append("the text review (step 6b) hasn't run: no trials/review/review.json")
+        out.append(f"the text review ({review_step}) hasn't run: no trials/review/review.json")
     for key in NOTES_REQUIRED:
         if not notes.get(key):
             out.append(f"notes.json is missing {key} (step 8)")
     bc = notes.get("beginner_check") or {}
+    if not isinstance(bc, dict):  # a note in another shape is shown on the page as text, but can't be checked
+        out.append("notes.json beginner_check must be a dict with summary, diagrams, and no_diagram (step 8)")
+        bc = {"no_diagram": {sid: "" for sid in ids}}
     seen = set(bc.get("diagrams") or {}) | set(bc.get("no_diagram") or {})
     for sid in ids:
         if sid not in (notes.get("steps") or {}):
@@ -599,6 +604,8 @@ def publish(a: argparse.Namespace) -> dict:
     }
     if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings, and the step aids
         lesson_data.update(plan_version=2, groups=publish2.groups(raw), aids=publish2.attach_aids(lesson, stages))
+        if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
+            lesson_data["review_context"] = review["review_context"]
     import provenance
     lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
@@ -620,6 +627,11 @@ def publish(a: argparse.Namespace) -> dict:
         k = st["made_with"].split(":")[0]
         by_source[k] = by_source.get(k, 0) + 1
     renders = [c for c in led.calls if c.get("tool") == "render"]
+    if v2:
+        import checks
+        jumps = checks.texture_jumps(lesson, raw)
+    else:
+        jumps = texture_jumps(lesson, paths)
     result = {"html": str(lesson / "lesson.html"), "artifact": str(artifact),
             "artifact_mb": round(artifact.stat().st_size / 1e6, 2), "embed": embed,
             "gesso": lesson_data["gesso"], "provenance": lesson_data["provenance"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
@@ -635,8 +647,9 @@ def publish(a: argparse.Namespace) -> dict:
             "paints_not_listed": paints_not_listed(stages, paints, word=v2),
             # paints whose computed recipes come out the same (or mix within Delta E 3): two names, one color
             "duplicate_recipes": duplicate_recipes(mixes),
-            # steps that turn a big area from flat to textured at once: split them with split-texture
-            "texture_jumps": texture_jumps(lesson, paths),
+            # steps that turn a big area from flat to textured at once: split them with split-texture (version 2:
+            # the same list check reports, which leaves out flat coats)
+            "texture_jumps": jumps,
             # single instructions past the skill's budget (about 35 words): usually two moves to split
             "long_instructions": [{"id": st["id"], "n": k + 1, "words": len(x.split())} for st in stages
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
@@ -1403,33 +1416,57 @@ def paints_tool(a: argparse.Namespace) -> dict:
     except mixing.UnknownTube as e:
         raise Refused(str(e))
     max_mixes = technique.get("max_mixes")
-    r = paints.measure(finish, plan, owner, max_mixes, white, mixing.tube_rgb(dark) if dark else (20, 20, 22),
-                       dark or "black")
-    plan["paints"], plan["stages"] = r["paints"], r["stages"]
+    tubes = (white, mixing.tube_rgb(dark) if dark else (20, 20, 22), dark or "black")
+    if a.add:
+        try:
+            r = paints.add(finish, plan, owner, a.add, max_mixes, *tubes)
+        except ValueError as e:
+            raise Refused(str(e))
+    else:
+        r = paints.measure(finish, plan, owner, max_mixes, *tubes)
+    plan["paints"] = r["paints"]  # never the steps: which paints a step uses is Claude's to choose
     (lesson / "plan.json").write_text(json.dumps(plan, indent=1) + "\n", encoding="utf-8")
     (lesson / "trials").mkdir(exist_ok=True)
     sheet = lesson / "trials" / "paints.jpg"
     Image.fromarray(paints.swatch_sheet(finish, plan["parts"], r["paints"], r["shares"])).save(sheet, quality=90)
-    merged = [f"{', '.join(m['parts'])}: {m['hex']}" + (f" ({', '.join(m['was'])})" if m["was"] else "")
+    names = {p["id"]: p.get("name") or p["id"] for p in r["paints"]}
+    merged = [f"{', '.join(m['parts'])}: {m['hex']}" + (f" ({m['id']})" if m.get("id") else "")
               + f" merged into {m['into']}, {m['delta_e']} apart" + (", in the same part" if m["same_part"] else "")
               for m in r["merges"]]
-    steps = [f"{m['part']}: {m['dropped']} merged into {m['kept']}, because their paints merged" for m in r["step_merges"]]
-    names = {p["id"]: p.get("name") or p["id"] for p in r["paints"]}
+    changed = [f"{c['id']} moved Delta E {c['delta_e']} ({c['from']} to {c['to']})"
+               + ("; it keeps its name" if c["name_kept"] else "; name it again (and its used_for)")
+               for c in r["changed"]]
+    removed = [f"{x['id']} removed: its parts ({', '.join(x['parts']) or 'none'}) are gone"
+               + (f"; steps that still name it: {', '.join(x['steps'])}. Point them at another paint." if x["steps"] else "")
+               for x in r["removed"]]
     bases = paints.base_mixes(r["paints"])
     over = []
     if r["over_target"]:
-        over = [f"{len(bases)} base mixes, above the target of {max_mixes}: every pair left is an accent or more than "
-                f"Delta E {paints.MAX_MERGE:g} apart, and merging it would lose a color the painter can see. That's "
+        over = [f"{len(bases)} base mixes, above the target of {max_mixes}. Every pair left is an accent, a paint a "
+                f"step uses, a paint paints --add made, or more than Delta E {paints.MAX_MERGE:g} apart. That's "
                 "allowed; don't raise max_mixes or merge by hand."]
-        over += [f"{names[o['id']]} stays" + (" (an accent)" if o["accent"] else "") + f": nearest is "
-                 f"{names[o['nearest']]}, {o['delta_e']} away" for o in r["over_target"]]
-    return {"paints": [{k: p[k] for k in ("id", "name", "hex", "of", "plus", "parts") if k in p} for p in r["paints"]],
-            "base_mixes": len(bases), "max_mixes": max_mixes, "merged": merged, "steps_merged": steps,
+        over += [f"{names[o['id']]} stays" + "".join(f" ({why})" for why, on in (("an accent", o["accent"]),
+                 ("a step uses it", o["used"]), ("added", o["added"])) if on)
+                 + f": nearest is {names[o['nearest']]}, {o['delta_e']} away" for o in r["over_target"]]
+    problems = plan2.problems(plan, technique)
+    if not plan2.steps(plan):  # paints runs before the stages are written: that's not a problem yet
+        problems = [p for p in problems if p != plan2.NO_STAGES]
+    problems = r.get("problems", []) + problems
+    if r["first"]:
+        advice = ("First measurement. Read the sheet. Name each paint and say what it's for; then write the stages, "
+                  "each step choosing from these paints. Run paints again only after outline changes the parts.")
+    elif a.add:
+        advice = (f"Point the step that should use {r['added']} at it (split a pass in two: darker paint first), name "
+                  "it, then run build-steps." if r["added"] else "Nothing was added: see problems.")
+    else:
+        advice = ("Measured again: every paint kept its id; no paint a step uses was merged or moved to another step. "
+                  "Name any paint that lost its name, give each new paint a step, then run build-steps.")
+    return {"paints": [{k: p[k] for k in ("id", "name", "hex", "of", "plus", "parts", "added") if k in p}
+                       for p in r["paints"]],
+            "first": r["first"], "base_mixes": len(bases), "max_mixes": max_mixes, "merged": merged,
+            "changed": changed, "kept": r["kept"], "new": r["new"], "removed": removed, "added": r.get("added"),
             "accents": r["accents"], "kept_names": r["kept_names"], "sheet": str(sheet), "over_target": over,
-            "problems": plan2.problems(plan, technique),
-            "advice": "Read the sheet. Name each paint and say what it's for (a paint that kept its name moved under "
-                      f"Delta E {paints.KEEP_NAME:g}); then run build-steps and check no step lost its paint.",
-            "cost_usd": 0.0}
+            "problems": problems, "advice": advice, "cost_usd": 0.0}
 
 
 def _v2_parts_only(lesson: Path):
@@ -1569,7 +1606,8 @@ def check_tool(a: argparse.Namespace) -> dict:
         raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); a version 1 lesson is "
                       "checked by publish --final")
     r = checks.run(lesson)
-    return {"failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],
+    # `problems` is `failures` under the name every other v2 tool prints (the skill: "every tool prints problems")
+    return {"problems": r["failures"], "failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],
             "advice": "Fix each failure as it says, then run check again. publish --final won't seal while any is left.",
             "cost_usd": 0.0}
 
@@ -1664,12 +1702,17 @@ def add_v2_tools(sub) -> None:
     p.add_argument("--colors", type=int, default=3, help="colors per part (default 3)")
     p.set_defaults(func=part_colors_tool)
     p = sub.add_parser("paints", help="Free. v2: measure the plan's paints from the finish and merge them toward max_mixes.",
-                       description="Run after outline. Writes plan.json's paints (ids <part>-<n>, darkest first; a tint "
-                                   "or shade of a part's main paint gets \"of\" and \"plus\" and doesn't count), merges the "
-                                   "closest toward the technique's max_mixes (never two far apart: it says what kept it "
-                                   "over), points the steps at them (two steps of one part become one when their paints "
-                                   "merge), and writes trials/paints.jpg.")
+                       description="Run after outline; no stages needed. First run (no paints yet): each part gets the "
+                                   "fewest colors that fit (ids <part>-<n>, darkest first; a tint or shade of a part's "
+                                   "main paint gets \"of\" and \"plus\" and doesn't count), merged toward the technique's "
+                                   "max_mixes (never two far apart: it says what kept it over). Run again after outline "
+                                   "changes: every paint is measured again and keeps its id (and its name when it moved "
+                                   "under Delta E 3); a paint a step uses is never merged; a paint whose part is gone is "
+                                   "removed. Never changes the steps. --add <part>: one more measured color for that "
+                                   "part, nothing merged. Writes trials/paints.jpg.")
     p.add_argument("--lesson", required=True)
+    p.add_argument("--add", metavar="PART", help="give this part one more measured color (to split a pass, or for a "
+                                                  "dropped part it now carries); never merges anything")
     p.set_defaults(func=paints_tool)
     p = sub.add_parser("background", help="PAID, one render. v2: the finish with the objects taken out, for what's behind them.",
                        description="Run when build-steps prints \"needs_background\": true. Writes 98_background.png; "
