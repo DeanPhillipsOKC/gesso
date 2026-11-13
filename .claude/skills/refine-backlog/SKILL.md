@@ -9,7 +9,8 @@ Turns rough issues into specs an agent can build without guessing. The backlog i
 `DeanPhillipsOKC/gesso`; the conventions are in `docs/backlog.md`.
 
 **Use the REST API.** `gh issue` and `gh label` go through GraphQL, which cloud sessions can't reach. Every command
-below is `gh api` with `REPO=DeanPhillipsOKC/gesso`.
+below is `gh api`. Shell variables don't carry over between commands, so start each one with
+`REPO=DeanPhillipsOKC/gesso;` (an empty `$REPO` gives a 404 on `repos//issues`).
 
 Before you start, read `docs/backlog.md`, `docs/decisions.md`, and `docs/vision.md` if you haven't this session.
 Read `docs/design/pipeline-v2.md` (all of it) before refining any pipeline v2 issue, and `docs/lessons-site.md`
@@ -43,8 +44,10 @@ For each issue, oldest first:
    ```
 2. **Check it against the code and docs.** Find what it touches: the tools in `spike/` (`tools.py` and the modules it
    calls), the skills in `.claude/skills/`, `techniques/`, `palettes/`, and `site/`. For a bug, work out the root
-   cause where you can (which condition, which function, which input) and cite `path:line`. You may run free tools
-   and the tests in `spike/tests/` on fixtures to confirm a cause. **Never run anything that costs money** (an image
+   cause where you can (which condition, which function, which input) and cite `path:line`. You may run the tests in
+   `spike/tests/`, and free tools on a copy of the fixtures in your scratchpad, to confirm a cause. Never run a tool
+   that writes to `site/`, `output/`, or the lesson history (`site-add`, `site-refresh`, `history-backfill`,
+   `history-rate`, `provenance-mark`). **Never run anything that costs money** (an image
    render or any other paid API call) while refining; say in the spec what a paid run would check instead. If a
    claim is wrong or already fixed (check `docs/changelog.md`), note that.
 3. **Dedupe** against every issue, open or closed:
@@ -132,7 +135,7 @@ and remove stale ones with `gh api -X DELETE "repos/$REPO/issues/<N>/labels/<nam
 - `effort:N` and `value:N` on the Fibonacci scale (1, 2, 3, 5, 8, 13). Score them yourself; never ask the owner.
   Effort is implementation size including tests. Value is combined product and technical worth, weighted toward
   lessons a beginner can actually paint from.
-- Exactly one kind: `feature`, `bug`, `tooling`, or `spike`.
+- One kind: `feature`, `bug`, `tooling`, or `spike`. If the issue already has a second kind, leave it.
 - `status:needs-review` if a decision is still open; `status:blocked` plus a comment giving the reason if it's
   waiting on something outside the code (an account, money, a photo from the owner).
 - `human` if only the owner can do it (accounts, money, decisions, reading cards, painting), **plus** effort and
@@ -156,7 +159,9 @@ the surviving issue as a comment, then comment "Duplicate of #<N>" on the duplic
 ## 5. Report
 
 Start with the one-line status, then a short summary: each issue refined (`#N title` with its effort, value, ROI,
-and kind), anything labeled needs-review or blocked and why, duplicates closed, and what's now the next item. Pick it
+and kind), anything labeled needs-review or blocked and why, duplicates closed, and what's now the next item. If the
+owner made a product or working-rule decision while answering, list it under **Needs you** with the date and offer
+to add it to `docs/decisions.md` as separate work after this run, since that's where agents check before proposing. Pick it
 by `docs/backlog.md`'s rule (highest ROI, then highest value, then oldest), skipping `human`, `status:blocked`,
 `status:needs-review`, and issues with no scores:
 
@@ -173,8 +178,9 @@ Mention it when the top item has a `model:<name>` label naming a different model
 
 ## Hard rules
 
-- Never implement, commit, or push anything. This skill only edits issues (and, if the owner approves a mockup,
-  writes it under `docs/design/`; committing that is a normal docs pull request).
+- Never implement, commit, push, or open a pull request. This skill only edits issues. A mockup the owner approves
+  is written under `docs/design/` and left uncommitted; tell the owner, and commit it only as separate work after
+  the run.
 - Never run a paid render or other paid API call.
 - Never drop anything from a report: the original always goes in the `<details>` block.
 - Never invent product decisions. Ask, or record the question and label `status:needs-review`.

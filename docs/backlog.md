@@ -22,4 +22,5 @@ The backlog lives in GitHub Issues: https://github.com/DeanPhillipsOKC/gesso/iss
   `/refine-backlog` (`.claude/skills/refine-backlog/`) turns it into a spec (Problem / Scope / Out of scope /
   Acceptance) and scores it.
 - **Picking the next item:** highest ROI first, then highest value, then oldest.
-- **Dedupe before filing:** `gh issue list --state all --search "<keywords>"`.
+- **Dedupe before filing:** `gh api -X GET search/issues -f q="repo:DeanPhillipsOKC/gesso is:issue <keywords>"`
+  (`gh issue` uses GraphQL, which cloud sessions can't reach).
