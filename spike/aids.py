@@ -35,6 +35,7 @@ from from_finish import CANVAS, hex_lab
 
 VIEW = 1000  # the page's picture coordinates: this many units along the canvas's long side
 CLOSE_UP = 0.2  # a step whose area is under this share of the canvas gets a close-up
+CLOSE_SPAN = 0.6  # but not when the area is spread so wide (scattered marks) that the close-up would be no closer
 CLOSE_PX = 600  # close-ups are at most this many pixels on their long side
 CLOSE_MIN = 0.22  # a close-up shows at least this share of the canvas's long side each way, so it isn't all blur
 CLOSE_MARGIN = 0.35  # and a margin of this share of the area's own size around it
@@ -118,9 +119,9 @@ def path_mask(path: str, size: tuple[int, int]) -> np.ndarray:
 # --- Where, in words ---
 
 
-def _inches(x: float) -> str:
-    """A length to the nearest half inch (quarter under 2 in), as a painter would read a ruler."""
-    step = 0.25 if x < 2 else 0.5
+def _inches(x: float, step: float | None = None) -> str:
+    """A length to the nearest half inch (quarter under 2 in, or `step`), as a painter would read a ruler."""
+    step = step or (0.25 if x < 2 else 0.5)
     q = round(x / step) * step
     whole, frac = int(q), q - int(q)
     f = {0.25: "1/4", 0.5: "1/2", 0.75: "3/4"}.get(round(frac, 2), "")
@@ -194,12 +195,16 @@ def where_words(area: np.ndarray, canvas: dict | None) -> str:
     from_bottom, from_right = cy > 0.5, cx > 0.5
     v_edge = ("bottom", y1) if from_bottom else ("top", y0)
     h_edge = ("right side", x1) if from_right else ("left side", x0)
-    if canvas:
-        size = f"; it's about {_inches((x1 - x0) * cw)} wide and {_inches((y1 - y0) * ch)} tall"
-        return (f"Inside the outlined area. Its {v_edge[0]} is about {down(v_edge[1], from_bottom)}, and its "
-                f"{h_edge[0]} about {across(h_edge[1], from_right)}{size}.")
-    return (f"Inside the outlined area. Its {v_edge[0]} is {down(v_edge[1], False)}, and its {h_edge[0]} is "
-            f"{across(h_edge[1], False)}.")
+
+    def place(v: float, flag: bool, say, edge: str) -> str:
+        if min(v, 1 - v) < EDGE_SHARE:
+            return f"at the {edge} edge"
+        return about + say(v, flag) if canvas else say(v, False)
+
+    v_say = place(v_edge[1], from_bottom, down, "bottom" if from_bottom else "top")
+    h_say = place(h_edge[1], from_right, across, "right" if from_right else "left")
+    size = f"; it's about {_inches((x1 - x0) * cw)} wide and {_inches((y1 - y0) * ch)} tall" if canvas else ""
+    return f"Inside the outlined area. Its {v_edge[0]} is {v_say}, and its {h_edge[0]} is {h_say}{size}."
 
 
 # --- Close-ups ---
@@ -326,9 +331,9 @@ def transfer_png(owner_canvas: np.ndarray, parts: list[dict], path: Path) -> lis
             continue
         cv2.polylines(img, contours, True, 40, line, cv2.LINE_AA)
         n = len(shown) + 1
-        x, y, bw, bh = cv2.boundingRect(np.vstack(contours))
-        tx, ty = min(tw - 22, x + bw + 6), max(20, y + 18)
-        cv2.putText(img, str(n), (tx, ty), cv2.FONT_HERSHEY_SIMPLEX, 0.7, 40, 2, cv2.LINE_AA)
+        dist = cv2.distanceTransform(np.pad(small, 1), cv2.DIST_L2, 5)[1:-1, 1:-1]
+        y, x = np.unravel_index(int(dist.argmax()), dist.shape)  # the number goes deep inside the shape
+        cv2.putText(img, str(n), (int(x) - 8, int(y) + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, 40, 2, cv2.LINE_AA)
         shown.append({"n": n, "part": p["id"], "name": p.get("name") or p["id"]})
     buf = io.BytesIO()
     Image.fromarray(img).save(buf, format="PNG", optimize=True)
@@ -383,8 +388,8 @@ def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner:
         row = {"id": s["id"], "image": images[i], "area": round(share, 4),
                "path": outline_path(area, size), "where_words": where_words(area, canvas)}
         stem = f"{i + 1:02d}_{s['id']}"
-        if area.any() and share < CLOSE_UP:
-            box = close_box(view_mask(area, size))
+        box = close_box(view_mask(area, size)) if area.any() and share < CLOSE_UP else None
+        if box and max(box[2] - box[0], box[3] - box[1]) <= CLOSE_SPAN * VIEW:
             before = crop_view(pics[i - 1] if i else blank, box, size, CLOSE_PX)
             after = crop_view(pics[i], box, size, CLOSE_PX)
             save_jpeg(before, out / f"{stem}_before.jpg")

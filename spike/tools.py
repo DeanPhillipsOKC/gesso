@@ -485,6 +485,8 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
         if checks.get(key):
             out.append(f"{key}: {checks[key]}")
+    if checks.get("missing_aids"):
+        out.append("aids/aids.json is missing or was made for other steps: run step-aids, then publish --final again")
     kept = notes.get("long_steps_kept") or {}
     long = [x for x in checks.get("long_steps") or [] if x["id"] not in kept]  # (publish doesn't list them for version 2)
     if long:
@@ -574,8 +576,8 @@ def publish(a: argparse.Namespace) -> dict:
         "notes": notes, "stages": stages, "calls": led.calls, "total_cost_usd": led.total_cost,
         "total_seconds": round(sum(c.get("seconds", 0) for c in led.calls), 1),
     }
-    if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings
-        lesson_data.update(plan_version=2, groups=publish2.groups(raw))
+    if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings, and the step aids
+        lesson_data.update(plan_version=2, groups=publish2.groups(raw), aids=publish2.attach_aids(lesson, stages))
     import provenance
     lesson_data["provenance"] = provenance.of(lesson, lesson_data)
     (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
@@ -583,8 +585,12 @@ def publish(a: argparse.Namespace) -> dict:
     artifact = lesson / "lesson-artifact.html"
     artifact.write_text(page(lesson_data, technique, lesson, embed=True), encoding="utf-8")
     # one self-contained HTML document (images inlined), for the lessons site or to send as a file
-    (lesson / "lesson-standalone.html").write_text(page(lesson_data, technique, lesson, embed=True, standalone=True),
-                                                 encoding="utf-8")
+    standalone = page(lesson_data, technique, lesson, embed=True, standalone=True)
+    (lesson / "lesson-standalone.html").write_text(standalone, encoding="utf-8")
+    if v2 and len(standalone.encode("utf-8")) > publish2.MAX_PAGE_BYTES:
+        raise Refused(f"the page is {len(standalone.encode('utf-8')) / 1e6:.1f} MB, over the {publish2.MAX_PAGE_BYTES / 1e6:g} MB "
+                      "a phone should load. Merge small steps in the plan, or lower aids.CLOSE_UP so fewer steps get a "
+                      "close-up, then run build-steps, step-aids, and publish again.")
     from lesson_embed import export
     embed = export(lesson_data, technique, lesson)  # one folder a blog post or another page can show as a walkthrough
 
@@ -619,6 +625,8 @@ def publish(a: argparse.Namespace) -> dict:
                                   for k, x in enumerate(st["steps"]) if len(x.split()) > INSTRUCTION_WORDS],
             "paid_renders": sum(1 for c in renders if not c.get("cached")),
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
+    if v2:  # the step's teaching pictures (step-aids), and the page's size
+        result.update(missing_aids=not lesson_data.get("aids"), page_mb=round(len(standalone.encode("utf-8")) / 1e6, 2))
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
         problems = seal_problems(lesson, plan, text, review, notes, result)
         if problems:

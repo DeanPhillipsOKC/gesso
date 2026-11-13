@@ -21,11 +21,18 @@ RUNGS = [  # the skill's tool order, cheapest first: (key, name, cost)
     ("seeded", "Seeded render", "paid, started from a filter"),
     ("render", "Render", "paid, image model"),
 ]
-RUNG_NAME = {k: n for k, n, _ in RUNGS}
+CUT = ("cut", "Cut from the finish", "free, inside the part's outline")  # version 2: no step is rendered
+RUNG_NAME = {k: n for k, n, _ in [CUT, *RUNGS]}
 
 
-def rung_of(made_with: str) -> str:
+def rungs(lesson: dict) -> list[tuple[str, str, str]]:
+    return [CUT, *RUNGS] if lesson.get("plan_version") == 2 else RUNGS
+
+
+def rung_of(made_with: str, v2: bool = False) -> str:
     m = (made_with or "render").lower()
+    if v2 and m.startswith("composite:from-finish"):  # a version 2 step, cut from the one rendered finish
+        return "cut"
     if "render" in m and "throwaway" in m:
         return "seeded"
     if m.startswith("throwaway"):
@@ -78,7 +85,7 @@ def step_why(lesson: dict, s: dict, is_last: bool) -> str:
     notes = lesson.get("notes") or {}
     calls = stage_calls(lesson, s["id"], is_last)
     renders = [c for c in calls if c.get("tool") == "render"]
-    rung = rung_of(s.get("made_with", ""))
+    rung = rung_of(s.get("made_with", ""), lesson.get("plan_version") == 2)
     paid = sum(c.get("cost_usd", 0) for c in renders)
     tries = f" · {len(renders)} {'try' if len(renders) == 1 else 'tries'} · {money(paid)}" if renders else " · free"
 
@@ -159,10 +166,11 @@ def ladder(lesson: dict, filters: list[dict]) -> str:
     stages = lesson["stages"]
     num = {s["id"]: i + 1 for i, s in enumerate(stages)}
     last_id = stages[-1]["id"]
-    ended = {k: [] for k, _, _ in RUNGS}
-    tried = {k: [] for k, _, _ in RUNGS}
+    v2 = lesson.get("plan_version") == 2
+    ended = {k: [] for k, _, _ in rungs(lesson)}
+    tried = {k: [] for k, _, _ in rungs(lesson)}
     for s in stages:
-        ended[rung_of(s.get("made_with", ""))].append(s["id"])
+        ended[rung_of(s.get("made_with", ""), v2)].append(s["id"])
     for t in notes.get("throwaways", []):
         for sid in t.get("steps", []):
             if sid in num and sid not in ended["throw"] and sid not in tried["throw"]:
@@ -178,13 +186,17 @@ def ladder(lesson: dict, filters: list[dict]) -> str:
                 f'{" (tried first)" if cls else ""}">{n}</a>')
 
     rows = []
-    for key, name, cost in RUNGS:
+    for key, name, cost in rungs(lesson):
         chips = [f'<span class="pip p-filter">{e(f.get("label") or f.get("tool", ""))}</span>'
                  for f in filters if key == "filter" and f.get("verdict") == "kept"]
         chips += [pip(sid, key) for sid in ended[key]] + [pip(sid, key, "tried") for sid in sorted(tried[key], key=num.get)]
         empty = '<span class="pip none">not needed</span>'
         rows.append(f'<div class="rung"><div class="rname"><b>{name}</b><span>{cost}</span></div>'
                     f'<div class="rchips">{"".join(chips) or empty}</div></div>')
+    if v2:
+        return (f'<div class="ladder" role="group" aria-label="Which tool made each picture">{"".join(rows)}'
+                '<p class="small">Numbers are steps. Every step is cut from the one finished painting, inside the '
+                "outline of the part it paints, so no step picture was rendered.</p></div>")
     return (f'<div class="ladder" role="group" aria-label="Which tool made each picture">{"".join(rows)}'
             '<p class="small">Numbers are steps. A dashed, struck-through number was tried on that rung first and '
             "didn't hold up. Claude starts at the top and pays for a render only when nothing free will do.</p></div>")

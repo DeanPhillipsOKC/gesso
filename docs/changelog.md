@@ -8,6 +8,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 
 ## Pipeline v2 (in progress)
 - Version 2 lessons go through `publish`, `mix`, the seal, the page (stage headings), and the history (#65).
+- Teaching pictures (`step-aids`) and the version 2 lesson page: each step's Where outline over the picture before
+  it, close-ups, paint maps, stroke cards, "Before you start" with the tape marks and the transfer outline (#68).
 
 ## POC 0.26.1 (2026-11-12)
 - The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's
