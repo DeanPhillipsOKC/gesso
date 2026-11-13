@@ -125,6 +125,17 @@ class MatchTests(unittest.TestCase):
         self.assertEqual(len(wrong), 1)
         self.assertIn("missing that one", wrong[0])
 
+    def test_a_pass_lands_on_the_step_whose_value_it_has_not_on_a_detail_step(self):
+        ball = el.library()["round-object"]
+        steps = [step("base", "flat", "curved-strokes", ["b"]), step("s0", "pass", "curved-strokes", ["s"]),
+                 step("light", "pass", "curved-strokes", ["l"])]
+        self.assertEqual(el.match(steps, ball, {"b": 60.0, "s": 70.0, "l": 85.0}), ([0, 1, 3], []))
+        shaped = el.library()["shaped-object"]
+        one = [step("base", "flat", "build-from-pieces", ["b"]), step("shade", "pass", "press-and-lift", ["d"])]
+        self.assertEqual(el.match(one, shaped, {"b": 60.0, "d": 30.0})[0], [0, 1])
+        two = one + [step("shade2", "pass", "press-and-lift", ["e"])]
+        self.assertEqual(el.match(two, shaped, {"b": 60.0, "d": 30.0, "e": 20.0})[0], [0, 1, 1])
+
     def test_a_ripple_pass_is_the_ripple_step_and_shows_its_mistake(self):
         water = el.library()["water"]
         steps = [step("base", "flat", "horizontal-strokes", ["d"]), step("light", "pass", "horizontal-strokes", ["l"]),

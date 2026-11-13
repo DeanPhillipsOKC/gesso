@@ -544,9 +544,10 @@ checked: false
   one may be skipped, a `repeat` one may take several. Each step's `show` and `stroke` must be among its element
   step's. Several fits can be possible (a shade pass and a light pass can use the same strokes), so the fit kept is
   the one whose values agree best with the paints: a step on a `light` element step may not be more than 3 Lab
-  lightness units (`VALUE_SLACK`) darker than one on a `dark` step, and `mid` sits between. On a tie, the fit that
-  uses the most of the element's steps, then the latest ones (a ripple pass is the ripple step, not one more pass
-  of lighter water). `check`, `draft-text`, and the page all use this same fit (`elements.plan_lightness`). The
+  lightness units (`VALUE_SLACK`) darker than one on a `dark` step, and `mid` sits between. On a tie, the fit with the
+  fewest steps on element steps that have no value (sections, shine, details), so a shade or light pass lands where
+  its value is checked and its watch-out applies; then the first. Adjacent element steps that could take the same
+  pass are kept apart by their strokes (water's lighter-water step takes no ripple dashes). `check`, `draft-text`, and the page all use this same fit (`elements.plan_lightness`). The
   value check is a loose aid, not a proof of order: a step that lands on an element step with no value (a shine, a
   detail) isn't compared. So the plan still chooses the paints and how many passes, not another way to paint the
   thing.

@@ -174,10 +174,11 @@ def match(steps: list[dict], element: dict, lightness: dict[str, float] | None =
                             "Change the steps to follow it, or pick another element (tools.py elements lists them)."]
     # of the fits, the one whose values agree best with the paints (a pass on the shade slot or the light slot
     # can use the same strokes: the paint says which it is); the first such fit, so the same plan gives the same fit
-    # among fits that agree as well, the one that uses the most of the element's steps, then the latest ones: a ripple
-    # pass after a lighter-water pass is the ripple step, not one more lighter-water pass (review of #111)
-    scored = [(len(_value_problems(steps, slots, f, lightness, eid)) if lightness else 0, -len(set(f)), [-k for k in f],
-               n_, f) for n_, f in enumerate(fits_all)]
+    # among fits that agree as well, the one with the fewest steps on element steps that have no value (sections,
+    # shine, details), so a shade or light pass lands where its value is checked and its watch-out applies; then the
+    # first (review of #111)
+    scored = [(len(_value_problems(steps, slots, f, lightness, eid)) if lightness else 0,
+               sum(1 for k in f if _value_rank(slots[k]) is None), n_, f) for n_, f in enumerate(fits_all)]
     *_, best = min(scored)
     where: list[int | None] = list(best)
     return where, (_value_problems(steps, slots, best, lightness, eid) if lightness else [])
