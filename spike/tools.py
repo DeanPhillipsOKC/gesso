@@ -598,14 +598,14 @@ BROWSERS = [r"C:\Program Files\Google\Chrome\Application\chrome.exe",
 def preview_diagrams(a: argparse.Namespace) -> dict:
     """Draw every construction diagram next to its step image, as HTML and (with Chrome or Edge) a PNG to Read."""
     import subprocess
-    from construct import strip
+    from construct import lookup, strip
     from lesson_page import STYLE, image_src
 
     lesson = Path(a.lesson)
     data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8")) if (lesson / "lesson.json").exists() else None
     if not data:
         raise Refused("run publish first: the preview reads lesson.json")
-    paints = {m["name"]: m["hex"] for m in data["photo_read"]["mixes"]}
+    paints = lookup(data["photo_read"]["mixes"])
     rows = []
     for i, st in enumerate(data["stages"], 1):
         html = strip(st.get("construct"), paints, st["id"])

@@ -8,7 +8,7 @@ arrows for the brush's direction.
 Spec (coordinates are a 100 x 100 box, y down):
 
     {"title": "Build each pumpkin from simple pieces",
-     "paint": "Pumpkin orange",                      # default fill, a paint name from the plan (or a #hex)
+     "paint": "Pumpkin orange",                      # default fill, a paint's name or id from the plan (or a #hex)
      "stages": [
        {"caption": "A center oval",
         "add": [{"ellipse": [50, 55, 13, 20]}]},
@@ -49,6 +49,39 @@ def _path(d: str) -> str:
     if not isinstance(d, str) or not PATH_OK.match(d):
         raise BadSpec(f"bad path data: {str(d)[:40]!r}")
     return d
+
+
+def lookup(paints: list[dict]) -> dict[str, str]:
+    """{name or id: hex} for a lesson's paints, the map strip() and problems() take. A diagram may name a paint by
+    either; a diagram given ids drew every shape gray before this (#91)."""
+    out = {p["id"]: p["hex"] for p in paints if p.get("id") and p.get("hex")}
+    out.update({p["name"]: p["hex"] for p in paints if p.get("name") and p.get("hex")})
+    return out
+
+
+def _kind(shape: dict) -> str:
+    return next((k for k in ("ellipse", "circle", "rect", "path", "line") if k in shape), "shape")
+
+
+def problems(spec: dict | None, paints: dict[str, str], where: str) -> list[str]:
+    """Shapes whose paint is no paint's name or id in `paints` and no #hex: they would draw gray. Empty for a missing
+    spec; a spec that doesn't draw at all is strip()'s to report."""
+    out: list[str] = []
+    if not spec or not isinstance(spec.get("stages"), list):
+        return out
+    default = spec.get("paint") or ""
+    title = spec.get("title") or "its diagram"
+    for k, stage in enumerate(spec["stages"]):
+        for n, shape in enumerate((stage or {}).get("add") or []):
+            if not isinstance(shape, dict):
+                continue
+            name = shape.get("paint") or default
+            if isinstance(name, str) and (name in paints or HEX_OK.match(name)):
+                continue
+            what = f"paint {name!r}" if name else "no paint"
+            out.append(f"{where}: diagram {title!r}, panel {k + 1}, shape {n + 1} ({_kind(shape)}) has {what}, "
+                       "so it draws gray. Use a paint's name or id from the plan, or a #hex.")
+    return out
 
 
 def _fill(shape: dict, default: str, paints: dict[str, str]) -> str:

@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from construct import strip  # noqa: E402
+from construct import lookup, problems, strip  # noqa: E402
 
 PAINTS = {"Pumpkin orange": "#e8862a", "Rib brown": "#9a4a1c"}
 PUMPKIN = {
@@ -63,6 +63,28 @@ class ConstructTests(unittest.TestCase):
                                           {"circle": [20, 20, 5], "paint": "#123456"}]}]}, PAINTS, "x")
         self.assertIn("var(--muted)", html)
         self.assertIn("#123456", html)
+
+    def test_a_paint_id_draws_in_that_paint(self):  # #91
+        paints = lookup([{"id": "c1", "name": "Pumpkin orange", "hex": "#e8862a"}])
+        html = strip({"paint": "c1", "stages": [{"add": [{"circle": [50, 50, 10]},
+                                                         {"line": "M 0 0 L 9 9", "paint": "c1"}]}]}, paints, "x")
+        self.assertEqual(html.count("#e8862a"), 2)
+        self.assertNotIn("var(--muted)", html)
+        self.assertEqual(problems({"paint": "c1", "stages": [{"add": [{"circle": [50, 50, 10]}]}]}, paints, "s1"), [])
+
+    def test_an_unknown_paint_is_listed_in_problems(self):  # #91
+        spec = {"title": "Build the balloon", "stages": [
+            {"add": [{"circle": [50, 50, 10], "paint": "Pumpkin orange"}]},
+            {"add": [{"ellipse": [50, 50, 10, 12], "paint": "Mystery"}, {"line": "M 0 0 L 9 9"},
+                     {"rect": [0, 0, 5, 5], "paint": "#123456"}]}]}
+        out = problems(spec, PAINTS, "s3")
+        self.assertEqual(len(out), 2)
+        self.assertIn("s3", out[0])
+        self.assertIn("Build the balloon", out[0])
+        self.assertIn("panel 2, shape 1 (ellipse)", out[0])
+        self.assertIn("'Mystery'", out[0])
+        self.assertIn("panel 2, shape 2 (line) has no paint", out[1])
+        self.assertEqual(problems(None, PAINTS, "s3"), [])
 
 
 if __name__ == "__main__":

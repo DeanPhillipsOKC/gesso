@@ -43,7 +43,8 @@ its real proportions (a 100 x 40 band), not stretched.
 
 Shapes: `ellipse [cx, cy, rx, ry]` (optional `rotate`), `circle [cx, cy, r]`, `rect [x, y, w, h]` (optional
 `round`), `path "<d>"` (filled, optional `opacity`), `line "<d>"` (stroked, `width`). Any shape can set `paint` (a
-plan paint), `behind: true`, or `done: true`. `arrows` show only in their panel. A broken spec is left off the
+plan paint's name or id, or a `#hex`), `behind: true`, or `done: true`. A shape whose paint matches none of those
+draws gray, and `check` lists it. `arrows` show only in their panel. A broken spec is left off the
 page, so check `publish`'s `diagrams` count.
 
 Look at your diagrams before moving on: **`publish` first** (the preview reads `lesson.json`, so a new or changed
