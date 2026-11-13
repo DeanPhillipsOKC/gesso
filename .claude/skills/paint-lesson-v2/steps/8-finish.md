@@ -29,15 +29,26 @@ private). It's a page this run just generated from your own text and pictures; i
 this and say so in the report.
 
 **Put it on the lessons site** (owner, 2026-11-13: every sealed hands-off run goes there). Only after the seal, and
-only if nothing changed after it:
-- the picture already has a tile (its slug is in `site/lessons.json`, e.g. `lavender-balloon` for
-  `balloon-lavender`): `site-refresh`. It adds this run as a version and leaves the tile's default alone;
-- a new picture: `site-add --lesson <lesson> --slug <photo stem>`. That makes its tile.
-Both refuse a run that isn't hands-off; don't work around that. Then, unless whoever started you said they'll handle
-it, commit `site/` (the lesson pages and `site/history/`) on a new branch off `origin/main`, push it, and open a pull
-request named for the run; the repo's pull request rules (`docs/decisions.md`, How we work) take it from there. If
-other runs share your checkout and are writing to `site/` too, don't commit: say so in the report and leave it to
-whoever started you.
+only if nothing changed after it. Skip this, and say why in the report, when any of these holds:
+- **The photo isn't one the public site may show.** Every lesson page shows the source photo, and the site and repo
+  are public. Go on only when the photo is in `photos/site/`, or whoever started you said it's AI-made or the
+  owner's to share, and it shows no people, homes, or anything personal (`docs/decisions.md`, "Photos stay private").
+- **The checkout isn't clean and current.** First run `git fetch origin main`. Then `git status --porcelain site/`
+  must be empty and `git rev-parse HEAD` must equal `origin/main`, or you must be able to get there with
+  `git switch -c lesson-<run folder> origin/main` without forcing anything. A stale `site/lessons.json` would drop
+  tiles and versions added since. Never force a checkout or a merge to get past this.
+- **Other runs share your checkout** and are writing to `site/` too.
+
+Then, on that new branch:
+- The picture already has a tile when an entry in `site/lessons.json` has a `source`, or a version `id`, from a run
+  of the same photo stem (`<photo stem>_skill_...`); the tile's slug may differ (`lavender-balloon` for
+  `balloon-lavender`). If so, run `site-refresh`. It adds this run as a version and leaves the tile's default alone.
+  It also adds any other hands-off runs it finds in `output/`. That's the rule too; name them in the pull request.
+- If it's a new picture, run `site-add --lesson <lesson> --slug <photo stem>`, which makes its tile. Never run
+  `site-add` for a picture that has a tile: it would change the tile's default.
+- Both tools refuse a run that isn't hands-off; don't work around that.
+- Commit `site/` (the lesson pages and `site/history/`), push, and open a pull request named for the run. The repo's
+  pull request rules (`docs/decisions.md`, How we work) take it from there.
 
 ## 8d. Report to the owner
 Start with anything that needs them:

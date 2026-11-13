@@ -126,7 +126,9 @@ with the date.
   it. A run that needed changing is kept only in the history. Owner: "I would like the default to be anytime a
   complete lesson is generated, we capture it on the main site, unless we need to modify it, then we don't capture
   it there, only in the history record. The only things that show up on the main page should be unmodified runs
-  from the tool end to end." Which version a tile opens by default is still the owner's pick (`site-add`).
+  from the tool end to end. If it would make things easier and less confusing, we could capture everything, even
+  modified runs, but give them a sticker that says modified." Claude took the first way: the site tools already
+  refuse a modified run, and the history already marks one with a ribbon.
 
 - **The repo is public (2026-11-12, owner's call).** It was private only by default ("meant as a portfolio piece
   later"); an audit found no secrets, personal details, or real photos in its history. Public, the issue links on
