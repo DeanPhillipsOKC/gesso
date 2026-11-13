@@ -190,9 +190,16 @@ with the date.
   subscription instead of paying for API calls, with filters and renders as command-line tools.
   The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
-- **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works
-  mostly from a phone and was merging without a full review, so the wait only slowed things down. Once the
-  tests pass, Claude merges and tells the owner what went in (a merge to `main` deploys the lessons site). Still
-  wait for the owner on anything labeled `human` and on any change to a decision in this file other than the
-  owner's own words. This ends with the proof of concept: production code gets a different process (owner: "When
-  we get into production code it'll be different, but for now I'd like to keep things moving along").
+- **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works mostly
+  from a phone and was merging without a full review, so the wait only slowed things down. Once the tests pass and the
+  adversarial review (below) has signed off, Claude merges and tells the owner what went in (a merge to `main` deploys
+  the lessons site). Still wait for the owner on anything labeled `human` and on any change to a decision in this file
+  other than the owner's own words. This ends with the proof of concept: production code gets a different process
+  (owner: "When we get into production code it'll be different, but for now I'd like to keep things moving along").
+- **Every pull request gets an adversarial review before it merges (2026-11-13, owner's call; adds to "Claude merges
+  its own pull requests").** Once a pull request is open, Claude has an Opus model review it adversarially and post
+  its findings as comments on the pull request, each rated high, medium, or low. Medium and high findings block the
+  merge: Claude fixes each one (or answers it on the pull request when it disagrees), and the reviewer looks again
+  until it signs off on every one. If nothing is medium or higher, there's no second review. Either way, Claude fixes
+  the low findings it agrees with and merges once the tests pass and nothing blocks (owner: "If there are medium or
+  high findings those are blockers").
