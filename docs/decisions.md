@@ -182,6 +182,10 @@ with the date.
   and got a close subject wrong on its own (`docs/spikes/tools-before-plan.md`); owner: "Drop the painting order
   tool". Don't re-propose one unless a lesson ships with parts in the wrong order. The fine-texture measure from
   the same spike gets built as an aid Claude reads, not a gate (#109).
+- **The beginner version stays a render (2026-11-13, owner's call, after the spike for #52).** Six painterly filters
+  were tried in its place. One strong enough to drop a village also drops the sun and the balloon's basket, and
+  blurred stalks don't become dabs (`docs/spikes/tools-before-plan.md`). The render costs about 2.4 cents, only on a
+  busy picture. Owner: "Keep the paid beginner render". Don't re-propose a filter for it.
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
