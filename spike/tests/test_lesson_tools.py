@@ -1,4 +1,4 @@
-"""Tests for render-step and publish (#10), with a fake image client.
+"""Tests for publish (#10) on a version 1 lesson.
 
     python -m unittest discover spike/tests
 """
@@ -11,9 +11,7 @@ import json
 import os
 import sys
 import tempfile
-import threading
 import unittest
-from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -54,68 +52,19 @@ class LessonToolTests(unittest.TestCase):
     def tearDown(self):
         tools.CACHE_DIR = self.cache
 
+    def paint_steps(self):
+        """The two step pictures before the finish, as render-step used to leave them."""
+        for name, color in (("01_sky.png", (120, 160, 230)), ("02_hill.png", (90, 130, 90))):
+            Image.new("RGB", (40, 60), color).save(self.lesson / name)
+
     def run_tool(self, *argv):
         out = io.StringIO()
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(io.StringIO()):
             code = tools.main(list(argv), client=self.client)
         return code, json.loads(out.getvalue().strip().splitlines()[-1])
 
-    def test_parallel_renders_each_step_and_makes_canvas(self):
-        code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill",
-                                "--why-not-filter", "no filter removes later parts yet")
-        self.assertEqual(code, 0)
-        self.assertEqual(self.client.images.calls, 2)
-        self.assertTrue((self.lesson / "01_sky.png").exists())
-        self.assertTrue((self.lesson / "02_hill.png").exists())
-        self.assertTrue((self.lesson / "00_canvas.png").exists())
-
-    def test_requires_reason(self):
-        code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky")
-        self.assertEqual(code, 2)
-        self.assertEqual(self.client.images.calls, 0)
-
-    def test_last_step_and_unknown_ids_refuse(self):
-        for ids in (["tree"], ["nope"]):
-            code, _ = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", *ids, "--why-not-filter", "x")
-            self.assertEqual(code, 2)
-        self.assertEqual(self.client.images.calls, 0)
-
-    def test_parallel_cap_is_shared(self):
-        # $0.10 fits one low render (estimated $0.07) but not two at once. The renders must really overlap: if
-        # the first finished before the second reserved, the ledger would hold its actual cost (about $0.025),
-        # the second would fit, and the test failed on a slow or loaded run. So hold every render until both
-        # steps have tried to reserve.
-        both_reserved = threading.Event()
-        tries, tries_lock = [0], threading.Lock()
-        real_reserve = tools.Budget.reserve
-
-        def reserve(budget, step_id, quality):
-            try:
-                return real_reserve(budget, step_id, quality)
-            finally:
-                with tries_lock:
-                    tries[0] += 1
-                    if tries[0] == 2:
-                        both_reserved.set()
-
-        self.client.images.before_edit = lambda: both_reserved.wait(30)
-        with mock.patch.object(tools.Budget, "reserve", reserve):
-            code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill",
-                                    "--why-not-filter", "x", "--max-cost", "0.10")
-        self.assertEqual(code, 0)
-        self.assertEqual(self.client.images.calls, 1)
-        self.assertEqual(sum(1 for s in r["steps"] if "refused" in s), 1)
-
-    def test_anchored_needs_next_step(self):
-        code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "--mode", "anchored",
-                                "--why-not-filter", "x")
-        self.assertIn("refused", r["steps"][0])
-        code, r = self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--mode", "anchored",
-                                "--why-not-filter", "x")
-        self.assertTrue(all("refused" not in s for s in r["steps"]))  # hill first (from the finish), then sky from hill
-
     def test_publish_builds_html_with_sources(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Blend the sky"], "mixes": [], "watch_out": [], "paint_notes": [],
                            "made_with": "render", "reason": "x"},
                           {"stage_id": "hill", "what_to_do": ["Block the hill"], "mixes": [], "watch_out": [], "paint_notes": [],
@@ -126,10 +75,10 @@ class LessonToolTests(unittest.TestCase):
         html = (self.lesson / "lesson.html").read_text(encoding="utf-8")
         self.assertIn("Blend the sky", html)
         self.assertEqual(r["steps_by_source"], {"render": 2, "filter": 1})
-        self.assertEqual(r["paid_renders"], 2)
+        self.assertEqual(r["paid_renders"], 0)  # the step pictures were written, not rendered
 
     def test_publish_exports_a_walkthrough_embed(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         text = {"steps": [{"stage_id": "sky", "summary": "Paint the sky.", "what_to_do": ["Blend it. Then wait."]},
                           {"stage_id": "hill", "what_to_do": ["Block the hill in one go. Keep it flat."]}]}
         (self.lesson / "text.json").write_text(json.dumps(text))
@@ -149,7 +98,7 @@ class LessonToolTests(unittest.TestCase):
             self.assertTrue((self.lesson / "embed" / s["thumb"]).exists())
 
     def test_publish_shows_text_check_issues(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         (self.lesson / "review.json").write_text(json.dumps({"text_issues": [
             {"step_id": "hill", "kind": "flat", "problem": "One green for a two-tone hill", "fix": "x", "action": "fixed"}]}))
         self.run_tool("publish", "--lesson", str(self.lesson))
@@ -158,7 +107,7 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn("One green for a two-tone hill", html)
 
     def test_publish_lists_paints_named_but_not_listed(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         plan = json.loads((self.lesson / "plan.json").read_text())
         plan["paints"].append({"name": "Coral cloud", "recipe": "red and white", "hex": "#e88070", "used_for": "clouds",
                                "sample_x": 0.5, "sample_y": 0.5})
@@ -174,7 +123,7 @@ class LessonToolTests(unittest.TestCase):
         import yaml
         import mixing
         self.addCleanup(mixing.CUSTOM.clear)  # registered tubes are process-wide; don't leak into other tests
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         plan = json.loads((self.lesson / "plan.json").read_text())
         plan["palette"] = "owner"
         (self.lesson / "plan.json").write_text(json.dumps(plan))
@@ -189,7 +138,7 @@ class LessonToolTests(unittest.TestCase):
 
     def test_site_add_copies_the_standalone_page_and_lists_it(self):
         import site_lessons
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         self.run_tool("publish", "--lesson", str(self.lesson))
         page = (self.lesson / "lesson-standalone.html").read_text(encoding="utf-8")
         self.assertTrue(page.startswith("<!doctype html>") and "data:image/jpeg;base64," in page)
@@ -217,7 +166,7 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(r["provenance"]["kind"], "edited")  # changed after the seal
 
     def test_values_table_shows_depth(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [
             {"value": "dark", "paint": "Sky blue", "where": "the top"}, {"value": "light", "paint": "Glow", "where": "low"}]}]}
         (self.lesson / "text.json").write_text(json.dumps(text))
@@ -229,7 +178,7 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(data["steps"][0]["values"][0]["value"], "dark")
 
     def test_publish_lists_long_steps(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["word " * 120]}, {"stage_id": "hill", "what_to_do": ["Short."]}]}
         (self.lesson / "text.json").write_text(json.dumps(text))
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
@@ -237,13 +186,13 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(r["long_instructions"], [{"id": "sky", "n": 1, "words": 120}])
 
     def test_preview_with_no_diagrams_says_why(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         self.run_tool("publish", "--lesson", str(self.lesson))
         code, r = self.run_tool("preview-diagrams", "--lesson", str(self.lesson))
         self.assertIn("No diagrams in lesson.json", r["note"])
 
     def test_publish_crops_steps_to_the_canvas(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         code, r = self.run_tool("fit-canvas", str(self.lesson / "99_finish.png"), "--lesson", str(self.lesson),
                                 "--canvas", "11x14", "--why", "test")
         self.assertEqual(code, 0)
@@ -262,7 +211,7 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertEqual(r["paints"][0]["your_recipe"], "white and blue")
         self.assertIn("ultramarine", r["paints"][0]["recipe"])
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         self.run_tool("publish", "--lesson", str(self.lesson))
         data = json.loads((self.lesson / "lesson.json").read_text(encoding="utf-8"))
         sky = data["photo_read"]["mixes"][0]
@@ -275,7 +224,7 @@ class LessonToolTests(unittest.TestCase):
         self.assertIn("How the paint recipes were worked out", html)
 
     def test_publish_shows_the_reasoning_folded_away(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "no mask yet")
+        self.paint_steps()
         notes = {"read": "Mostly sky.", "order": "Back to front.", "steps": {"sky": "The sky is behind everything."},
                  "technique": {"why": "Simple layers.", "considered": [{"name": "Block in", "why_not": "Too few values."}]},
                  "filters": [{"label": "Reference", "tool": "simplify", "image": "00_canvas.png", "why": "flatten it",
@@ -288,13 +237,13 @@ class LessonToolTests(unittest.TestCase):
         self.assertEqual(code, 0)
         html = (self.lesson / "lesson-artifact.html").read_text(encoding="utf-8")
         self.assertIn('id="behind"', html)
-        for text in ("The sky is behind everything.", "Too few values.", "no mask yet", "Composite the sky.", "A smudge."):
+        for text in ("The sky is behind everything.", "Too few values.", "Composite the sky.", "A smudge."):
             self.assertIn(text, html)
-        self.assertEqual(html.count('<details class="why">'), 2)  # sky and hill; the finish has nothing logged
+        self.assertEqual(html.count('<details class="why">'), 1)  # sky; nothing was logged for the others
         self.assertNotIn("<details open", html)  # nothing unfolds on its own
 
     def test_publish_explains_diagrams_and_flags_unexplained_ones(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         shape = {"stages": [{"caption": "An oval", "add": [{"ellipse": [50, 50, 20, 30]}]}]}
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Blend"], "construct": shape},
                           {"stage_id": "hill", "what_to_do": ["Block"], "construct": shape}]}
@@ -315,7 +264,7 @@ class LessonToolTests(unittest.TestCase):
     def test_preview_diagrams_needs_publish_then_draws_each_one(self):
         code, r = self.run_tool("preview-diagrams", "--lesson", str(self.lesson))
         self.assertEqual(code, 2)  # no lesson.json yet
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
+        self.paint_steps()
         shape = {"stages": [{"caption": "An oval", "add": [{"ellipse": [50, 50, 20, 30]}]}]}
         broken = {"stages": [{"add": [{"path": "not a path"}]}]}
         (self.lesson / "text.json").write_text(json.dumps({"steps": [

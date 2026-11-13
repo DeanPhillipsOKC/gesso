@@ -308,61 +308,6 @@ def step_paths(lesson: Path, plan) -> list[Path]:
     return paths
 
 
-def render_step(a: argparse.Namespace, client=None) -> dict:
-    """Render planned steps with the spike's step prompt, all at once (parallel) or each from the next (anchored)."""
-    from concurrent.futures import ThreadPoolExecutor
-
-    from PIL import Image
-
-    from run import planned_prompt
-
-    lesson = Path(a.lesson)
-    raw, plan, technique = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    finish = lesson / "99_finish.png"
-    if not finish.exists():
-        raise Refused(f"no finished painting at {finish}; make it first")
-    unknown = [x for x in a.steps if x not in ids]
-    if unknown:
-        raise Refused(f"unknown step ids {unknown}; plan has {ids}")
-    if ids[-1] in a.steps:
-        raise Refused(f"'{ids[-1]}' is the last step, which is the finished painting itself")
-    if a.fix and len(a.steps) != 1:
-        raise Refused("--fix applies to one step at a time")
-    canvas = lesson / "00_canvas.png"
-    if not canvas.exists():
-        Image.new("RGB", Image.open(finish).size, (246, 245, 240)).save(canvas)
-    paths = step_paths(lesson, plan)
-    budget = Budget(lesson, a.max_cost, a.max_redos)
-
-    def one(step_id: str) -> dict:
-        i = ids.index(step_id)
-        s = plan.steps[i]
-        later = paths[i + 1]
-        anchored = a.mode == "anchored" and later != finish
-        if anchored and not later.exists():
-            return {"step": s.id, "refused": f"anchored mode needs the next step's image first: {later.name}"}
-        base = later if anchored else finish
-        inputs = ([base] if s.covers_canvas else [base, canvas]) + ([finish] if anchored else [])
-        prompt = planned_prompt(technique, s, anchored, [t.paints for t in plan.steps[: i + 1]],
-                                [t.paints for t in plan.steps[i + 1:]], a.fix or "")
-        try:
-            return render_one(budget, s.id, inputs, prompt, paths[i], a.quality, a.why_not_filter, None, a.fresh, client)
-        except Refused as e:
-            return {"step": s.id, "refused": str(e)}
-
-    if not (a.why_not_filter or "").strip():
-        raise Refused("--why-not-filter is required: say why no filter or composite can make these steps.")
-    order = sorted(a.steps, key=ids.index, reverse=True)  # latest first, so anchored steps can chain
-    if a.mode == "parallel":
-        with ThreadPoolExecutor(max_workers=6) as pool:
-            results = list(pool.map(one, order))
-    else:
-        results = [one(x) for x in order]
-    led = budget.ledger
-    return {"steps": results, "lesson_total_usd": led.total_cost, "budget_left_usd": round(a.max_cost - led.total_cost, 4)}
-
-
 def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
     import mixing
 
@@ -813,21 +758,6 @@ def prune_canvas_view(lesson: Path, keep: list[str]) -> list[str]:
 
 
 def add_lesson_tools(sub) -> None:
-    p = sub.add_parser(
-        "render-step", help="PAID. Render planned steps from <lesson>/plan.json with the spike's step prompt.",
-        description="Render one or more planned steps, each copying from the finished painting (parallel) or from the "
-                    "next step and the finish (anchored). Same reason, caps, ledger, and cache as render.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--steps", nargs="+", required=True, help="step ids from plan.json (not the last one)")
-    p.add_argument("--mode", choices=["parallel", "anchored"], default="parallel")
-    p.add_argument("--fix", help="redo instruction for one step, from the review")
-    p.add_argument("--why-not-filter", help="required: why no filter or composite can make these steps")
-    p.add_argument("--quality", choices=QUALITIES, default="low")
-    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST)
-    p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS)
-    p.add_argument("--fresh", action="store_true")
-    p.set_defaults(func=render_step)
-
     p = sub.add_parser("publish", help="Free. Build lesson.json, lesson.html, and lesson-artifact.html once every step image exists.",
                        description="Snap paint swatches to the finish, merge plan.json, text.json, review.json, notes.json, and "
                                    "the ledger, and write lesson.json, lesson.html, and lesson-artifact.html (images inlined, "
@@ -1536,7 +1466,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "render-step", "background") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "background") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2
