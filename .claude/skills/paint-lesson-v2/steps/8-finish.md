@@ -52,9 +52,12 @@ Otherwise, in this order, never forcing anything:
    run `site-add --lesson <lesson> --slug <photo stem>`, which makes its tile. Never run `site-add` for a picture
    that has a tile: it would change the tile's default. Both tools refuse a run that isn't hands-off; don't work
    around that.
-6. Commit `site/`, push the branch, and open a pull request named for the run. The repo's pull request rules
+6. Unless whoever started you said they'll handle it (say, to put several runs in one pull request): commit
+   `site/`, push the branch, and open a pull request named for the run. The repo's pull request rules
    (`docs/decisions.md`, How we work) take it from there.
-7. `git switch main`, so the next run doesn't start on this branch.
+7. `git switch -`, back to the branch you started on, so the next run doesn't start on this one.
+If step 4, 5, or 6 fails (a tool error, a refused push), stop there: leave the branch and `site/` as they are, and
+put the failure and the branch name in the report for whoever started you.
 
 ## 8d. Report to the owner
 Start with anything that needs them:
