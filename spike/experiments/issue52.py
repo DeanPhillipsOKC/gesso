@@ -187,6 +187,7 @@ def nearness(rgb: np.ndarray) -> np.ndarray:
     import onnxruntime as ort
     if _depth_session is None:
         _depth_session = ort.InferenceSession(str(DEPTH_MODEL), providers=["CPUExecutionProvider"])
+    # The model's export takes 518 x 518 only, so the picture is squashed to a square (not tried: padding it).
     x = cv2.resize(rgb, (518, 518), interpolation=cv2.INTER_CUBIC).astype(np.float32) / 255
     x = (x - [0.485, 0.456, 0.406]) / [0.229, 0.224, 0.225]
     out = _depth_session.run(None, {"l_x_": x.transpose(2, 0, 1)[None].astype(np.float32)})[0][0]
@@ -243,14 +244,22 @@ def touching(a: np.ndarray, b: np.ndarray) -> bool:
     return bool((cv2.dilate(a.astype(np.uint8), k) & b.astype(np.uint8)).sum() > 0.002 * max(a.shape))
 
 
+def mark_front(rows: list[dict]) -> None:
+    """The design's back and front (pipeline-v2 section 5): the first object or thin part in the list, and
+    everything listed after it, is in front. This split is read from Claude's list, not measured."""
+    first = next((n for n, r in enumerate(rows) if r["kind"] in ("object", "thin")), len(rows))
+    for n, r in enumerate(rows):
+        r["front"] = n >= first
+
+
 def propose(rows: list[dict], rule: str) -> list[str]:
     """An order for the top-level parts, back to front."""
-    if rule == "position":  # what ends higher up the picture is farther away
+    if rule == "position":  # sorted by where each part ends, top of the picture first
         key = lambda r: (r["bottom"], r["near"])
     elif rule == "depth":
         key = lambda r: (r["near"], r["bottom"])
-    else:  # depth+kind: the design's rule (the whole background first, then the objects), depth inside each
-        key = lambda r: (r["kind"] in ("object", "thin"), r["near"], r["bottom"])
+    else:  # depth+split: Claude's split into behind and in front, and depth inside each
+        key = lambda r: (r["front"], r["near"], r["bottom"])
     return [r["id"] for r in sorted(rows, key=key)]
 
 
@@ -330,9 +339,10 @@ def cmd_order(args) -> None:
         near = nearness(finish)
         rows = top_level(parts, owner)
         measure_parts(rows, near)
+        mark_front(rows)
         res = {"lesson": name, "claude": [r["id"] for r in rows],
                "measured": {r["id"]: [r["kind"], round(r["bottom"], 2), round(r["near"], 2)] for r in rows}}
-        for rule in ("position", "depth", "depth+kind"):
+        for rule in ("position", "depth", "depth+split"):
             order = propose(rows, rule)
             res[rule] = {"order": order, **agreement(rows, order)}
         res["overlap_conflicts"] = overlap_conflicts(rows)
