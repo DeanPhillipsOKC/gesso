@@ -58,6 +58,54 @@ class SiteVersionTests(unittest.TestCase):
         self.assertIn('value="lessons/lavender/" data-steps="2" selected>POC 0.20.0', html)
         self.assertIn("· current", html)
 
+    def test_refresh_keeps_listed_versions_when_output_is_empty(self):  # #83: a fresh checkout has no output/
+        lesson = self.site / "lessons" / "lavender"
+        (lesson / "v" / "20261111-142734").mkdir(parents=True)
+        (lesson / "index.html").write_text("default", encoding="utf-8")
+        (lesson / "v" / "20261111-142734" / "index.html").write_text("old", encoding="utf-8")
+        listed = [{"id": "20261112-084806", "version": "POC 0.24.0", "when": "x", "guessed": False, "kind": "",
+                   "steps": 2, "href": "lessons/lavender/", "current": True},
+                  {"id": "20261111-142734", "version": "POC 0.20.0", "when": "y", "guessed": False, "kind": "",
+                   "steps": 2, "href": "lessons/lavender/v/20261111-142734/", "current": False}]
+        (self.site / "lessons.json").write_text(json.dumps([{"slug": "lavender", "title": "Balloon", "steps": 2,
+                                                             "canvas": "", "tubes": 0, "source": "balloon_skill_20261112-084806",
+                                                             "versions": listed}]), encoding="utf-8")
+        empty = self.site.parent / "empty-output"
+        empty.mkdir()
+        self.assertEqual(site_lessons.refresh(self.site, empty), {"lavender": 2})
+        entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+        self.assertEqual([v["id"] for v in entry["versions"]], ["20261112-084806", "20261111-142734"])
+        self.assertEqual((lesson / "v" / "20261111-142734" / "index.html").read_text(encoding="utf-8"), "old")
+        self.assertEqual((lesson / "index.html").read_text(encoding="utf-8"), "default")
+        site_lessons.refresh(self.site, empty, remove=("20261111-142734",))  # only taken off when named
+        entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+        self.assertEqual([v["id"] for v in entry["versions"]], ["20261112-084806"])
+        self.assertFalse((lesson / "v" / "20261111-142734").exists())
+
+    def test_site_add_over_a_default_keeps_the_old_default_as_a_version(self):  # #83
+        from unittest import mock
+        from PIL import Image
+        first = self.output / "balloon_skill_20261111-142734"
+        later = self.output / "balloon_skill_20261112-084806"
+        for d in (first, later):
+            data = json.loads((d / "lesson.json").read_text(encoding="utf-8"))
+            data["photo_read"] = {"subject": "Balloon"}
+            (d / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
+            Image.new("RGB", (8, 8)).save(d / "f.png")
+            (d / "sealed.json").unlink()
+            provenance.seal(d, data)
+        with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
+            site_lessons.add(first, "lavender", self.site)
+            elsewhere = self.site.parent / "only-new"  # the old default's run folder isn't on this machine
+            elsewhere.mkdir()
+            later = later.rename(elsewhere / later.name)
+            site_lessons.add(later, "lavender", self.site)
+        entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+        self.assertEqual([(v["id"], v["current"]) for v in entry["versions"]],
+                         [("20261112-084806", True), ("20261111-142734", False)])
+        lesson = self.site / "lessons" / "lavender"
+        self.assertIn(first.name, (lesson / "v" / "20261111-142734" / "index.html").read_text(encoding="utf-8"))
+        self.assertIn(later.name, (lesson / "index.html").read_text(encoding="utf-8"))
 
 if __name__ == "__main__":
     unittest.main()
