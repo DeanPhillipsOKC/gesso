@@ -1,0 +1,172 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261113-031314",
+  "started": "2026-11-13 03:13",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "af102d35670feaa9",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.26.1",
+        "commit": "f5884d9",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 0.26.1",
+        "commit": "f5884d9",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T03:29:29"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 23,
+        "words": 3187,
+        "tubes": 10,
+        "cost_usd": 0.108,
+        "minutes": 1.0,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 12.1,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-base",
+          "name": "Blend the blue sky across the top",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sky-glow",
+          "name": "Blend the rose and orange glow below",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-base",
+          "name": "Dab the coral clouds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-glow",
+          "name": "Light the cloud edges with orange",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Dab in the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-base",
+          "name": "Block in the balloon in rust red",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-blue",
+          "name": "Add the blue stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-orange",
+          "name": "Add the orange and gold stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-basket",
+          "name": "Paint the basket brown",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "far-hills",
+          "name": "Paint the far purple hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "gold-base",
+          "name": "Paint the shaded olive hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "gold-mid",
+          "name": "Dry-brush golden light on the hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bushes-base",
+          "name": "Dab the dark green bushes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bushes-mid",
+          "name": "Dab olive green on the lit side",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bushes-light",
+          "name": "Tap sunlit gold on the tops",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-base",
+          "name": "Dab the oak in deep green",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-mid",
+          "name": "Dab olive green on the lit side",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-light",
+          "name": "Tap golden light on the top",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-base",
+          "name": "Stamp the rows in deep violet",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-base",
+          "name": "Paint the paths rust red",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-shade",
+          "name": "Shade the paths with brown",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-mid",
+          "name": "Stamp lavender purple over the rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-tips",
+          "name": "Dot orchid tips on the lit tops",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

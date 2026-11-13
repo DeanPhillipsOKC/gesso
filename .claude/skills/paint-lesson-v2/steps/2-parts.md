@@ -23,7 +23,8 @@ look like).
 | `thin` | long and narrow: a branch, a mast, a rail | `paths` (points along its middle, one list per limb), `width`, and the color fields below |
 | `marks` | paint with no single edge: clouds, mist, foliage clumps, a sun path, a reflection, a bird's black cap | `box` or `boxes`, and the color fields below |
 
-- Every part: `"id"` (a lowercase slug), `"name"` (how the page will say it: "The chickadee", "Far misty trunks").
+- Every part: `"id"` (a lowercase slug: letters, digits, and hyphens, no underscores), `"name"` (how the page will
+  say it: "The chickadee", "Far misty trunks").
 - Boxes are `[x0, y0, x1, y1]` as shares of the width and height, measured, 2 to 3% loose. For `marks`, **tight**:
   color is all that separates a mark from anything the same color in its box.
 - **Color fields** for `marks` and `thin`: `points_in` (5 to 8 spots on the part, one per shade of it) and
@@ -38,14 +39,19 @@ look like).
 - `"covers"` on an `area`: boxes saying how far its paint runs under what comes next, so a sky runs past the
   horizon. The technique's rule: a background is painted straight through, never stopped at a hill line.
 - Keep parts with no parent within the technique's `detail_budget.max_parts`.
+- **Too small to be a part:** anything under about a quarter of one percent of the picture (an eye, a beak, a
+  basket's ropes) can't be outlined. Don't list it. The step that paints the thing it sits on mentions it in its
+  tip ("dot the eye in last, with the tip of the brush").
+- An `area` counts as background wherever you list it (a field in front of a tree is still ground). Objects, thin
+  parts, and marks listed after the first object are what the background picture (step 5b) takes out.
 - **Try a pass before a part** for what's just one more color on a part (a deck line on a hull, light streaks on
   water): that's a pass in step 4, and costs nothing here. Make it a `marks` child only when `outline` says the
   area left a hole there (soil paths between lavender rows that the field's outline didn't take).
 
 ## 2b. Outline them
 `outline --lesson <lesson>`, then **Read `parts/preview.jpg`**. Every part should be tinted where the part really
-is, and `problems` should be empty. Fix what's wrong and run it again: at most 2 fix rounds per part. If a round
-made a part worse, put its entry back the way it was; that doesn't count as a round.
+is, and `problems` should be empty. Fix what's wrong and run it again: at most 2 fix rounds per part, and at most 5 runs of `outline` in this step however they go. If a round made a
+part worse, put its entry back the way it was.
 
 | Seen in the preview | Fix |
 |---|---|
@@ -55,11 +61,13 @@ made a part worse, put its entry back the way it was; that doesn't count as a ro
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | run `part-colors` and give `colors_in` / `colors_out` as hex; or drop the part and use a pass |
 | An object took background, or came back in pieces | tighten or loosen its box; one box per thing |
-| An area left a hole that went to a part behind it (water around a hull went to the sky) | add `points_in` in the hole; or make what's there a `marks` child of the area |
+| An area left a hole that went to a part behind it (water around a hull went to the sky; soil paths in a field) | add `points_in` in the hole so the area takes it. If what's in the hole should be its own steps (soil paths), then also list it after the area as an `area` or `marks` part with that area as its `parent` |
 | A faint trace of an object shows in step pictures before its own step (seen in step 5) | its outline is too tight: loosen its box, or add `points_in` on the trace |
 
 **If a small part still won't come apart after 2 rounds, drop it**: take it out of `parts`, and let the part it sat
-on carry it. In step 4 that part gets one more paint for it (`paints --add <part id>`) and one more pass. Record
+on carry it. In step 4 that part gets one more paint for it (`paints --add <part id>`) and one more pass; if
+`--add` finds no separate color, the thing is too small or too close in color to teach as its own step, so name it
+in a tip instead. Record
 it in `notes.json` under `merged_parts`: `{"<part id>": "why it wouldn't outline, and which part carries it"}`.
 A main part can't be dropped (the branch, the field): keep its best outline, and record what's still wrong with
 it in `notes.json` (`learned`) and later in `review.json` as `left`.

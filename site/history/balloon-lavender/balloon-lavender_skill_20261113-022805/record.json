@@ -1,0 +1,177 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261113-022805",
+  "started": "2026-11-13 02:28",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "69a20fac8f10fb99",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 0.26.1",
+        "commit": "647fb55",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 0.26.1",
+        "commit": "647fb55",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T02:52:37"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 24,
+        "words": 3142,
+        "tubes": 10,
+        "cost_usd": 0.109,
+        "minutes": 1.5,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 10,
+        "minutes_total": 21.8,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 2
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-base",
+          "name": "Block in the pink clouds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-light",
+          "name": "Light the cloud edges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "far-hills",
+          "name": "Paint the violet far hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "golden-hill",
+          "name": "Paint the golden hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "low-hills",
+          "name": "Shade the low navy hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bushes-dark",
+          "name": "Dab the dark bushes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bushes-light",
+          "name": "Dab the olive tops of the bushes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-dark",
+          "name": "Build the tree's dark crown and trunk",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-mid",
+          "name": "Dab olive leaves on the tree",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-light",
+          "name": "Dab golden light on the tree",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-shape",
+          "name": "Block in the balloon",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-terracotta",
+          "name": "Paint the red-orange stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-red",
+          "name": "Paint the red stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-blue",
+          "name": "Paint the blue stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-basket",
+          "name": "Paint the basket and ropes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-base",
+          "name": "Lay in the dark lavender rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-shade",
+          "name": "Paint the soil paths",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-light",
+          "name": "Light the soil paths",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-dark",
+          "name": "Stamp the dark lavender rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-mid",
+          "name": "Block in the violet lavender rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-marks",
+          "name": "Stamp violet marks along the rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-light",
+          "name": "Stamp the lilac tips",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

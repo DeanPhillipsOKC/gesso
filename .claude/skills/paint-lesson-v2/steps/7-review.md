@@ -7,7 +7,8 @@ pass**: each trip back through the tools costs minutes. The usual ones:
 
 | It says | Fix |
 |---|---|
-| a step turns too much from flat to textured | `paints --add <its part>`, name the new paint, give it a pass of its own before or after this one (darker first), then 5a on. If `--add` says there's no other color, make the texture its own `marks` child part with a `flat` step first |
+| a `full` step turns too much of the picture from bare to textured | that part is finished in one step. Make it a `flat` coat and a pass per paint (`paints --add <its part>` if it has only one), then 5a on |
+| more base mixes than the target and two are close enough to merge | run `paints --lesson <lesson>` again; never delete a paint by hand |
 | step or stage count out of range | step 4: split the biggest steps, or merge stages |
 | a stroke has no card, or the brush isn't one its card names | step 4: use a card's stroke and one of its brushes |
 | a paint can't be mixed from these tubes | step 6b: a `paint_notes` line on a step that uses it |

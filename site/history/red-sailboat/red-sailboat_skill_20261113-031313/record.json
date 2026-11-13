@@ -1,0 +1,132 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261113-031313",
+  "started": "2026-11-13 03:13",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "826a27c28e6499ec",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.26.1",
+        "commit": "f5884d9",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 0.26.1",
+        "commit": "f5884d9",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T03:22:18"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 15,
+        "words": 1987,
+        "tubes": 5,
+        "cost_usd": 0.084,
+        "minutes": 0.7,
+        "paid_renders": 2,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 5.5,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 1,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-base",
+          "name": "Brush on the orange sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sky-coral",
+          "name": "Blend in the coral band",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sky-violet",
+          "name": "Blend in the violet top",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun-disc",
+          "name": "Dab in the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hill-body",
+          "name": "Paint the hill and shoreline",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sea-base",
+          "name": "Lay in the deep teal sea",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sea-soft",
+          "name": "Dash in the soft gray-green patches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "glitter-dim",
+          "name": "Dash the dim gold glints",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "glitter-bright",
+          "name": "Dash the bright glints",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "boat-hull",
+          "name": "Paint the red hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "boat-sail",
+          "name": "Paint the white sails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "boat-mast",
+          "name": "Line in the mast",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-base",
+          "name": "Pull down the soft blue-gray",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-hull",
+          "name": "Pull down the red",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-sail",
+          "name": "Pull down the white",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

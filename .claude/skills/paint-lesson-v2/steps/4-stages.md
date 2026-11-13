@@ -26,6 +26,9 @@ paints inside **one** part, with one stroke and one brush.
 | `blend` | the same as `full` | colors blended wet in one go (a sunset sky). May use more than 3 paints |
 
 ## How to build a part's steps
+- **A sky, or any background blended wet, is one `blend` step** with all its paints, never a flat coat and
+  passes: a blend cut into passes comes out as ragged patches nobody could paint. Clouds, glow, and haze that sit
+  on it as their own parts get their own steps after it.
 - Follow the research's core pattern (section 4): the whole shape in a darker or middle value (`flat`), then the
   lighter value on the lit side (`pass`), then the lightest on a small area (`pass`). Each covers less than the one
   before. A part's last step shows everything of it that's left.

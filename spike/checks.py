@@ -156,16 +156,19 @@ def paint_names(plan: dict) -> list[str]:
 
 
 def texture_jumps(lesson: Path, plan: dict) -> list[dict]:
-    """tools.texture_jumps over a version 2 lesson's step pictures, except on a `flat` step: a flat coat is flat by
-    construction, and what's measured there is the new edge (the chickadee branch coat's 13%), not texture. `check`
-    and `publish` both report this list for version 2."""
+    """tools.texture_jumps over a version 2 lesson's step pictures, for `full` steps only: a part that goes from
+    bare canvas to finished texture in one step. A `blend` is one wet move by definition. A `flat` coat is flat by construction (what's measured
+    there is its new edge), and a `pass` is one paint in one stroke, which is how a texture is taught: a dab pass
+    over a whole lavender field is one move however much of the picture it covers. Holding passes to the 10% rule
+    sent three of the first six hands-off runs round the tools three times each with no clean fix (2026-11-13).
+    `check` and `publish` both report this list for version 2."""
     import build_steps as bs
     import tools
 
     steps = bs.flat_steps(plan)
-    flat = {s["id"] for s in steps if s.get("show") == "flat"}
+    whole = {s["id"] for s in steps if s.get("show", "full") == "full"}
     paths = [lesson / f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
-    return [j for j in tools.texture_jumps(lesson, paths) if j["step"] not in flat]
+    return [j for j in tools.texture_jumps(lesson, paths) if j["step"] in whole]
 
 
 def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
@@ -220,7 +223,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
                 failures.append(f"{stale} doesn't match the plan: run build-steps, then step-aids, again")
             for j in texture_jumps(lesson, plan):
                 failures.append(f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one "
-                                "step. Add one more pass before it (a darker paint first), then build-steps.")
+                                "step. Make it two or more steps: a flat coat in the part's main paint, then a pass per paint (run paints --add for the part if it has only one), then build-steps.")
         canvas_box, canvas = _canvas(lesson)
         drafted = {d["stage_id"]: d["lines"] for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known)}
     text_path = lesson / "text.json"
