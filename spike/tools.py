@@ -1347,7 +1347,7 @@ def outline_tool(a: argparse.Namespace) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
-    plan, finish = _v2(lesson)
+    plan, finish = _v2_parts_only(lesson)  # outline runs before there are paints or stages (design section 4)
     try:
         masks, owner, stats = ol.outline(finish, plan["parts"], ol.Sam())
     except ol.NoModel as e:
@@ -1433,14 +1433,20 @@ def paints_tool(a: argparse.Namespace) -> dict:
 
 
 def _v2_parts_only(lesson: Path):
-    """Like _v2, for the tools that run before the plan has paints and steps."""
+    """Like _v2, for the tools that run before the plan has paints and steps (outline, part-colors, paints): only
+    the parts must be right."""
     import plan2
     from filters import load
 
+    if not (lesson / "plan.json").exists():
+        raise Refused(f"no plan.json in {lesson}")
     try:
         plan = plan2.load(lesson)
-    except (ValueError, FileNotFoundError) as e:
+    except ValueError as e:
         raise Refused(str(e))
+    wrong = plan2.parts_problems(plan)
+    if wrong:
+        raise Refused("fix plan.json's parts first: " + " | ".join(wrong))
     finish = lesson / "99_finish.png"
     if not finish.exists():
         raise Refused(f"no 99_finish.png in {lesson}")

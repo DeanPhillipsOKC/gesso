@@ -39,8 +39,9 @@ def _boxes_ok(boxes) -> bool:
     return all(len(b) == 4 and 0 <= b[0] < b[2] <= 1 and 0 <= b[1] < b[3] <= 1 for b in boxes)
 
 
-def problems(plan: dict, technique: dict | None = None) -> list[str]:
-    """What's wrong with a version 2 plan. With the technique, also more base mixes than its `max_mixes`."""
+def parts_problems(plan: dict) -> list[str]:
+    """What's wrong with the plan's parts alone: all `outline` and `part-colors` need, before there are paints or
+    stages. `problems` includes these."""
     out: list[str] = []
     parts = plan.get("parts") or []
     if not parts:
@@ -67,7 +68,25 @@ def problems(plan: dict, technique: dict | None = None) -> list[str]:
                     out.append(f"{pid}: a {p['kind']} part needs points_{side} or colors_{side} ({what})")
         if p.get("kind") == "thin" and not (p.get("paths") or p.get("path")):
             out.append(f"{pid}: a thin part needs paths: points along its middle")
+        parent = seen.get(p.get("parent") or "")
+        if parent and p.get("kind") in ("marks", "thin") and parent.get("kind") in ("marks", "thin"):
+            # a marks or thin child only takes pixels its parent's family owns, and a marks or thin parent owns only
+            # pixels of its own colors, so the child finds nothing (the sailboat's mast reflection, 2026-11-13)
+            instead = (f"give it {parent['parent']!r} as its parent (what {parent['id']} sits on)" if parent.get("parent")
+                       else "give it no parent")
+            out.append(f"{pid}: a {p['kind']} part can't have the {parent['kind']} part {parent['id']} as its parent: "
+                       f"it would outline nothing. List it after {parent['id']} and {instead}.")
         seen[pid] = p
+    return out
+
+
+def problems(plan: dict, technique: dict | None = None) -> list[str]:
+    """What's wrong with a version 2 plan: its parts (parts_problems), its paints, and its stages and steps. With the
+    technique, also more base mixes than its `max_mixes` while two could still merge."""
+    out = parts_problems(plan)
+    if out == ["the plan has no parts"]:
+        return out
+    seen = {p.get("id", ""): p for p in plan.get("parts") or []}
     paints: dict[str, dict] = {}
     for c in plan.get("paints") or []:
         if c.get("id") in paints:

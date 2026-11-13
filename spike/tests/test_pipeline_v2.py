@@ -112,6 +112,29 @@ class OutlineTests(unittest.TestCase):
         for word in ("unsure", "fills only", "pieces"):
             self.assertIn(word, text)
 
+    def test_a_gap_in_an_area_that_fell_to_a_part_behind_it_is_reported(self):
+        # a field over the bottom half, with two earth paths running down to the bottom edge that went to the sky
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, {"id": "field", "kind": "area", "box": [0, 0.5, 1, 1]},
+                 {"id": "rows", "kind": "marks", "parent": "field", "box": [0, 0.5, 1, 1], "colors_in": ["#00ff00"],
+                  "colors_out": ["#ff0000"]}]
+        owner = np.zeros((100, 200), np.int32)
+        owner[50:] = 1
+        owner[60:, 40:60] = 2  # rows painted on the field count as the field
+        owner[52:, 90:100] = 0
+        owner[52:, 140:150] = 0
+        stats = [{"confidence": None, **s} for s in ol.owner_stats(parts, owner)]
+        text = " | ".join(ol.problems(parts, stats))
+        self.assertIn("field: 5% of the picture inside its outline went to sky", text)
+        self.assertIn("add points_in there", text)
+        self.assertIn("marks part with parent field", text)
+        self.assertGreater(stats[1]["hole_at"][1], 0.5)
+        owner[52:, 90:100] = owner[52:, 140:150] = 2  # the paths as a marks child of the field: nothing to tell
+        self.assertEqual(ol.problems(parts, [{"confidence": None, **s} for s in ol.owner_stats(parts, owner)]), [])
+        owner[:, :] = 1
+        owner[:50] = 0
+        owner[:70, 90:110] = 0  # a notch open at the top, wider than a gap: the field's shape, not a hole
+        self.assertLess(ol.owner_stats(parts, owner)[1]["hole"], 0.002)  # only the notch's rounded corners
+
     @unittest.skipUnless(all((ol.MODELS / n).exists() for n in ol.FILES), "the outline model files aren't in models/")
     def test_the_model_gives_the_saved_outlines(self):
         sam = ol.Sam()
@@ -359,6 +382,30 @@ class PlanTests(unittest.TestCase):
         self.breaks(lambda p: p["paints"][0].pop("sample_x"), "no sample_x/sample_y")
         self.breaks(lambda p: p["paints"][1].update(of="sky-9", plus="white"), "which isn't in paints")
 
+    def test_the_parts_are_checked_alone_before_there_are_paints_or_stages(self):
+        plan = {k: v for k, v in fixture("red-sailboat")[1].items() if k not in ("paints", "stages")}
+        self.assertEqual(plan2.parts_problems(plan), [])
+        self.assertIn("no stages with steps", " | ".join(plan2.problems(plan)))
+        broken = copy.deepcopy(plan)
+        broken["parts"][4].pop("points_in")
+        self.assertIn("needs points_in", " | ".join(plan2.parts_problems(broken)))
+
+    def test_a_marks_or_thin_part_on_a_marks_part_is_refused_with_what_to_do(self):
+        plan = copy.deepcopy(fixture("red-sailboat")[1])
+        self.assertEqual(plan["parts"][4]["parent"], "water")
+        plan["parts"].append({"id": "glints", "kind": "marks", "parent": "sun-path", "box": [0.2, 0.6, 0.5, 0.9],
+                              "points_in": [[0.4, 0.7]], "points_out": [[0.3, 0.8]]})
+        text = " | ".join(plan2.parts_problems(plan))
+        self.assertIn("glints: a marks part can't have the marks part sun-path as its parent: it would outline nothing. "
+                      "List it after sun-path and give it 'water' as its parent", text)
+        plan["parts"][-1]["parent"] = "water"
+        self.assertEqual(plan2.parts_problems(plan), [])
+        self.assertIsNone(plan["parts"][8].get("parent"))  # the reflection has none: its child is told to have none
+        plan["parts"].append({"id": "mast-reflection", "kind": "thin", "parent": "reflection", "width": 0.01,
+                              "paths": [[[0.8, 0.65], [0.8, 0.9]]], "points_in": [[0.8, 0.7]], "points_out": [[0.7, 0.8]]})
+        self.assertIn("mast-reflection: a thin part can't have the marks part reflection as its parent: it would outline "
+                      "nothing. List it after reflection and give it no parent.", " | ".join(plan2.parts_problems(plan)))
+
     def test_over_the_target_is_told_only_when_paints_could_still_merge(self):
         plan = copy.deepcopy(fixture("red-sailboat")[1])
         bases = [c for c in plan["paints"] if not c.get("of")]
@@ -412,6 +459,24 @@ class ToolTests(unittest.TestCase):
             r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "chickadee")))
             self.assertGreater(r["objects_share"], bs.NEEDS_BACKGROUND)
             self.assertIn("background render", r["advice"])
+
+    def test_outline_and_part_colors_run_on_a_plan_with_parts_only(self):
+        from unittest import mock
+
+        img, parts, _ = scene()
+        with tempfile.TemporaryDirectory() as d:
+            lesson = Path(d)
+            plan = {"plan_version": 2, "parts": parts[:2]}  # the backdrop and marks on it: no model needed
+            (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
+            Image.fromarray(img).save(lesson / "99_finish.png")
+            with mock.patch.object(ol, "Sam", lambda: None):
+                r = self.run_tool("outline", "--lesson", str(lesson))
+            self.assertEqual(r["problems"], [])
+            self.assertTrue((lesson / "parts" / "owner.png").exists())
+            self.assertEqual(set(self.run_tool("part-colors", "--lesson", str(lesson))["colors"]), {"sky", "dabs"})
+            plan["parts"][1].pop("colors_in")
+            (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
+            self.assertIn("needs points_in or colors_in", self.run_tool("outline", "--lesson", str(lesson))["refused"])
 
     def test_part_colors_lists_every_part(self):
         with tempfile.TemporaryDirectory() as d:
