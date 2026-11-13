@@ -36,6 +36,8 @@ CLOSE = 0.03  # gaps this wide in an object (a bird's feet across a branch) are 
 # painted, with objects at about 8%. The render costs about 2 cents (design section 7).
 NEEDS_BACKGROUND = 0.02
 ROWS = 0.9  # how much of a wide part's carried-on paint follows its rows (bands) rather than its edges
+MATCH = 0.02  # how far around a hole a background picture is matched to the finish, as a share of the long side
+MATCH_MAX = 40  # RGB levels: a bigger difference than this beside a hole isn't tone, it's something else
 TEXTURE = 0.7  # how much brush texture carried-on paint borrows from beside the gap
 FEATHER = 0.8  # pixels of softening at a painted edge, inward only
 SMOOTH = 5  # median filter on which-paint-is-nearest, so a pass arrives as marks, not as single pixels
@@ -69,11 +71,14 @@ def _family(parts: list[dict], k: int) -> list[int]:
 
 
 def back_parts(parts: list[dict]) -> np.ndarray:
-    """True for the parts behind every object: those whose root comes before the first object or thin part.
-    From the first object on, parts sit in front, and are cut from the finish itself."""
+    """True for the parts behind every object. An area (sky, hill, field, water) is always behind, wherever it's
+    listed: a lavender field listed after the tree is still ground, and the background render must not take it out
+    (it did, and invented a meadow, 2026-11-13). Marks with no parent are behind until the first object or thin
+    part is listed, and in front after it (a reflection). Objects and thin parts are in front. A child is wherever
+    its root is."""
     roots = _roots(parts)
     first = next((i for i, p in enumerate(parts) if not p.get("parent") and p["kind"] not in BACK), len(parts))
-    return np.array([r < first for r in roots])
+    return np.array([parts[r]["kind"] == "area" or (parts[r]["kind"] == "marks" and r < first) for r in roots])
 
 
 def halo(mask: np.ndarray) -> np.ndarray:
@@ -93,9 +98,15 @@ def make_background(finish: np.ndarray, front: np.ndarray, given: np.ndarray | N
         if given.shape[:2] != finish.shape[:2]:
             given = cv2.resize(given, (finish.shape[1], finish.shape[0]), interpolation=cv2.INTER_AREA)
         fill = given.astype(np.float32)
-        ring = (cv2.dilate(grown.astype(np.uint8), np.ones((25, 25), np.uint8)) > 0) & ~grown
-        if ring.any():  # a render comes back a touch warmer or cooler: match it to the paint around the hole
-            fill = fill + (finish[ring].astype(np.float32).mean(0) - fill[ring].mean(0))
+        # A render comes back a touch warmer, cooler, or lighter, and differently in the sky than in the water. So
+        # it's matched to the finish locally: how far the two differ around each hole is carried into the hole and
+        # taken off. (One shift for the whole picture left a tinted sail-shaped patch in the sky, 2026-11-13.)
+        off = finish.astype(np.float32) - fill
+        # only where the two nearly agree: a big difference beside a hole is a leftover of the object (a hull's red
+        # glow on the water), not a shift in tone, and carried into the hole it tinted the whole patch
+        alike = ~grown & (np.abs(off).max(2) < MATCH_MAX)
+        near, support = ff._fill_from(off * alike[..., None], alike, MATCH * max(front.shape))
+        fill = fill + near * np.minimum(support * 4, 1.0)[..., None]
     else:
         fill = ff.continue_paint(finish, ~grown)
     out[grown] = np.clip(fill, 0, 255).astype(np.uint8)[grown]
@@ -175,6 +186,8 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
                 paints_of[s["part"]].append(c)
 
     content: dict[int, np.ndarray] = {}
+    own: dict[int, np.ndarray] = {}  # each part's own pixels: not its children's places, not what's under the next edge
+    coated = np.zeros(len(parts), bool)
     area: dict[int, np.ndarray] = {}
     family: dict[int, list[int]] = {}
     nearest: dict[int, np.ndarray] = {}
@@ -215,6 +228,7 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
             fill = fill + borrowed_texture(base, mine, carried)
             c[carried] = np.clip(fill, 0, 255).astype(np.uint8)[carried]
         content[k] = c
+        own[k] = mine
         names = paints_of.get(p["id"]) or []
         if names:
             L = ol.lab(cv2.GaussianBlur(c, (0, 0), 1.0))
@@ -242,11 +256,17 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         if show == "flat":
             lay = ff.flat_paint(content[k], area[k], [hexes[n] for n in s["paints"]])
             where = target
+            coated[k] = True
         elif show == "pass" and last_of[s["part"]] != i:
             pick = np.isin(nearest[k], [names.index(n) for n in s["paints"]])
             lay, where = content[k], target & pick
         else:  # full, blend, or the part's last step: everything of the part that's left
             lay, where = content[k], target
+        if coated[k] and show != "flat":
+            # Over a flat coat, a pass paints the part's own marks. Where its children will go (streaks on water,
+            # foliage on a sky) the coat stays as it is until the child's step: a painter doesn't touch it, and a
+            # carried-across fill there showed as a blurred patch in every step in between (2026-11-13).
+            where = where & own[k]
         before = canvas.copy()
         rim = np.zeros((h, w), bool)
         if not is_back[k] and not started[k]:
@@ -256,7 +276,7 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         canvas = _lay(canvas, lay, where)
         started[k] = True
         changed = np.abs(canvas - before).max(2) > 6
-        rows.append({"id": s["id"], "part": s["part"], "show": show,
+        rows.append({"id": s["id"], "part": s["part"], "show": show, "last": last_of[s["part"]] == i,
                      "area": round(float(area[k].mean()), 4), "painted": round(float(where.mean()), 4),
                      "changed": round(float(changed.mean()), 4),
                      "outside": round(float((changed & ~rim & ~cv2.dilate(area[k].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)).mean()), 5)})
@@ -295,6 +315,18 @@ def borrowed_texture(img: np.ndarray, src: np.ndarray, gap: np.ndarray) -> np.nd
         ok[ok] = src[ys[ok], sx[ok]]
         out[ys[ok], xs[ok]] = detail[ys[ok], sx[ok]]
         todo &= ~ok
+    if todo.any() and src.any():
+        # too big a gap to borrow from beside it (a sky under a spread of foliage): tile the marks from the widest
+        # patch of the part's own paint, so the fill still reads as brushed paint and not as a blur
+        dist = cv2.distanceTransform(src.astype(np.uint8), cv2.DIST_L2, 3)
+        cy, cx = np.unravel_index(int(dist.argmax()), dist.shape)
+        r = int(dist[cy, cx] / 1.5)
+        tile = detail[max(0, cy - r):cy + r, max(0, cx - r):cx + r]
+        if min(tile.shape[:2]) >= 8:
+            tile = np.concatenate([tile, tile[:, ::-1]], axis=1)  # mirrored, so the tiles meet without a seam
+            tile = np.concatenate([tile, tile[::-1]], axis=0)
+            th, tw = tile.shape[:2]
+            out[ys[todo], xs[todo]] = tile[ys[todo] % th, xs[todo] % tw]
     return out * TEXTURE
 
 
@@ -323,7 +355,8 @@ def problems(plan: dict, rows: list[dict]) -> list[str]:
     for r in rows:
         if r["outside"] > 0.0005:
             out.append(f"{r['id']}: changed {r['outside']:.2%} of the picture outside its part. That's a bug in build-steps; report it.")
-        if r["changed"] < 0.25 * r["painted"] or r["painted"] == 0:
+        # (not a part's last step: it shows whatever is left, which is rightly little when the light tips go last)
+        if (r["changed"] < 0.25 * r["painted"] and not r.get("last")) or r["painted"] == 0:
             out.append(f"{r['id']}: changes almost nothing. Its paints don't match the part's colors here, or an earlier "
                        "step already showed it. Merge it into a neighbor or fix its paints.")
     if rows and rows[-1]["final_gap"] > 0.02:

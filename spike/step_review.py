@@ -101,7 +101,7 @@ def packet(lesson: Path) -> dict:
             "n": i + 1, "id": s["id"], "name": s["name"], "sheet": str(path),
             "changed_share": round(float(mask.mean()), 3),
             "texture_jump": round(__import__("passes").texture_jump(before, after), 3),
-            "what_to_do": s.get("steps", []), "strokes": s.get("strokes", []),
+            "what_to_do": s.get("steps", []) + ([s["tip"]] if s.get("tip") else []), "strokes": s.get("strokes", []),
             "brushes": [b["brush"] for b in s.get("brush_list", [])],
             "paints": [{"name": c["name"], "recipe": c.get("recipe", "")} for c in s.get("colors", [])],
             "watch_out": s.get("watch_out", []), "values": s.get("values", []),

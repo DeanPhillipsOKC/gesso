@@ -218,9 +218,16 @@ def mark_tints(paints: list[dict], part_order: list[str], white: tuple, dark: tu
     (a shade), within TINT. A part's main paint (the one covering most of it) is never a tint."""
     mains = {pid: _main_of(paints, pid) for pid in part_order}
     main_ids = {m["id"] for m in mains.values() if m}
+    ids = {p["id"] for p in paints}
     for p in paints:
+        was = p.get("old") or {}
         p.pop("of", None)
         p.pop("plus", None)
+        if was.get("of") in ids and was.get("plus"):
+            # once a tint, always a tint while its main paint exists: adding a color to a part can change which
+            # paint covers most of it, and that must not turn "plus white" back into a mix of its own
+            p["of"], p["plus"] = was["of"], was["plus"]
+            continue
         if p["id"] in main_ids:
             continue
         for pid in sorted(p["shares"], key=part_order.index):

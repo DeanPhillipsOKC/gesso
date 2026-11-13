@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import numpy as np  # noqa: E402
 import yaml  # noqa: E402
+import tools  # noqa: E402
 from PIL import Image  # noqa: E402
 
 import aids  # noqa: E402
@@ -351,8 +352,7 @@ class TextToolTests(unittest.TestCase):
     # Real findings on the fixtures, reported by check rather than hidden (see the issue's close-out):
     # the sailboat's lighter water and the lavender's mid dabs each turn over 10% of the picture from flat to
     # textured in one step, and the lavender's balloon teal can't be mixed from the five tubes with no paint note.
-    KNOWN = {"chickadee": [], "red-sailboat": ["water-light: turns"],
-             "lavender-balloon": ["lavender-mid: turns", "paint Balloon teal can't be mixed"]}
+    KNOWN = {"chickadee": [], "red-sailboat": [], "lavender-balloon": ["paint Balloon teal can't be mixed"]}
 
     def test_after_draft_text_check_leaves_only_summary_and_tip_and_the_known_findings(self):
         for name in NAMES:
@@ -414,11 +414,19 @@ class TextToolTests(unittest.TestCase):
         self.assertIn("path-again: changes almost nothing", " ".join(out))
         self.assertIn("path-again: no drafted lines in text.json. Run draft-text.", out)
 
-    def test_a_texture_jump_names_the_step_and_a_flat_coat_is_not_one(self):
-        out = self.results[("red-sailboat", "check")]["failures"]
-        self.assertTrue(any(f.startswith("water-light: turns 12% of the picture from flat to textured") and
-                            "Add one more pass" in f for f in out), out)
-        self.assertFalse(any(f.startswith("branch-dark: turns") for f in self.results[("chickadee", "check")]["failures"]))
+    def test_a_texture_jump_is_for_a_whole_part_in_one_step_not_for_a_coat_or_a_pass(self):
+        for name in NAMES:  # the fixtures' passes and coats cover a lot at once, and that's how texture is taught
+            self.assertFalse(any(": turns " in f for f in self.results[(name, "check")]["failures"]), name)
+        plan = {"stages": [{"id": "s", "steps": [{"id": "coat", "part": "p", "show": "flat"},
+                                                 {"id": "dabs", "part": "p", "show": "pass"},
+                                                 {"id": "all", "part": "q", "show": "full"},
+                                                 {"id": "sky", "part": "r", "show": "blend"}]}]}
+        jumps = [{"step": i, "share": 0.2} for i in ("coat", "dabs", "all", "sky")]
+        old, tools.texture_jumps = tools.texture_jumps, lambda lesson, paths: jumps
+        try:
+            self.assertEqual([j["step"] for j in checks.texture_jumps(Path("."), plan)], ["all"])
+        finally:
+            tools.texture_jumps = old
 
     def test_publish_reports_the_same_texture_jumps_as_check(self):
         lesson = self.copy("chickadee")
@@ -495,7 +503,6 @@ class TextToolTests(unittest.TestCase):
         code, r = run_tool("publish", "--lesson", str(lesson), "--final")
         self.assertEqual(code, 2)
         self.assertIn("sun: no tip in text.json", r["refused"])
-        self.assertIn("water-light: turns", r["refused"])  # a real finding blocks the seal too
         self.assertEqual(r["refused"].count("texture_jumps"), 0)  # said once, in check's words
 
     def test_publish_outside_output_leaves_the_history_alone(self):
