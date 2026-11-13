@@ -6,7 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
-## Pipeline v2 (in progress)
+## POC 1.0.0 (2026-11-13)
+Pipeline v2: the finished painting is rendered once and every step picture is cut from it. The owner passed the
+gate on 2026-11-13 ("The pics look good. Publish them as 1.0.0"). The first three 1.0.0 lessons on the site (red
+sailboat, chickadee, lavender balloon) are the gate runs themselves. They were made at commit `a2a6d61`, just
+before the number changed, and carry the 1.0.0 name at the owner's word; the commit on each page says exactly
+which code made it. The lavender run predates the fix for stray pieces of an area, and lists that fault under
+Known problems. The v1 skill and tools are still in the repo until their removal (#69).
 - Version 2 lessons go through `publish`, `mix`, the seal, the page (stage headings), and the history (#65).
 - `paints` measures a version 2 lesson's paints from the finish, marks tints and shades of a part's main paint, and
   merges the rest toward the technique's `max_mixes` (10 for the beginner paint-along), never an accent and never
