@@ -21,9 +21,9 @@ its outlines), plus the three fixture plans and outlines in `spike/tests/fixture
 What Claude chose in those runs:
 - **Busy check:** lavender balloon, too busy, 5 runs of 5. Chickadee and sailboat, fine as they are, 5 of 5 each.
 - **Beginner version:** rendered for the lavender in all 5 runs ($0.024 and 17 seconds in the latest, 130631).
+- **Painting order:** the order of `parts` in each plan.
 
 "The latest run" below means the 13:06 runs (130631, 130614, 130625), the ones the pictures come from.
-- **Painting order:** the order of `parts` in each plan.
 
 ## 1. Busy check
 
