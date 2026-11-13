@@ -134,6 +134,10 @@ with the date.
   `docs/spikes/outlines.md`). This replaces three earlier decisions where they conflict:
   - "The image model renders the plan" (2026-10-19): it renders the finish, and when needed the beginner version,
     the canvas extend, and one background picture. No step is rendered.
+    **Loosened 2026-11-13 (owner's call):** a step may be re-rendered (an image-model edit of that one step) when
+    the free tools give a bad result and nothing better works. Owner: "If we need to do a re-render for a step
+    because the free technique is producing bad results, I'm not opposed to it, but if there's a better way
+    that's fine too." Free fixes first; a re-render is the fallback, recorded in the ledger with its cost (#100).
   - "Filters first" (2026-11-10): there's no per-step ladder of filter, composite, throwaway script, render, and
     no throwaway filter scripts or filter requests (#11 closed).
   - "Claude writes the final instructions from the rendered images" (2026-10-19): the lines that are data (paints,
