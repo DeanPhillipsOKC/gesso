@@ -706,7 +706,9 @@
   },
   {
    "id": "foliage-1",
+   "name": "Foliage rust",
    "hex": "#d19166",
+   "used_for": "the hazy foliage, the bird's body, and the light on the bark",
    "sample_x": 0.621,
    "sample_y": 0.449,
    "parts": [
@@ -779,7 +781,9 @@
   },
   {
    "id": "bird-head-1",
+   "name": "Chickadee black",
    "hex": "#3e383c",
+   "used_for": "the cap and bib, and the wing stripes",
    "sample_x": 0.466,
    "sample_y": 0.155,
    "parts": [
@@ -800,7 +804,9 @@
   },
   {
    "id": "bird-face-1",
+   "name": "Charcoal gray",
    "hex": "#6a6672",
+   "used_for": "the eye and beak",
    "sample_x": 0.526,
    "sample_y": 0.186,
    "parts": [
@@ -879,7 +885,7 @@
      "paints": [
       "branch-1"
      ],
-     "stroke": "press-and-lift",
+     "stroke": "thick-to-thin",
      "brush": "1/2 inch flat"
     },
     {
@@ -902,7 +908,7 @@
       "foliage-1"
      ],
      "stroke": "dry-brush",
-     "brush": "#4 round"
+     "brush": "1/2 inch flat"
     }
    ]
   },

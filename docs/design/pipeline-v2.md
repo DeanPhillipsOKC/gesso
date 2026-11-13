@@ -417,6 +417,36 @@ place on the page.
 | "Step back and look." | the last step of each stage |
 | "Lightly chalk its outline first." (optional) | the first step of an `object` part with no parent |
 
+**Built (#51): `spike/draft_text.py`, `draft-text --lesson`.** What it decided, row by row, from the fixtures:
+- *Dry*: an earlier step's painted area covers 2% or more of this step's (`OVERLAP`; below that it's feathered
+  edges). It names the two most recent such steps, each by its stage's name, or by its part's name when it's in this
+  step's stage ("Let the black cap and bib dry", not "the chickadee" again), and adds the let-it-dry card's "A hair
+  dryer on low speeds it up". Not "the same blend": a blend is one step, so only earlier steps count.
+- *Rinse*: "the lightest so far" is the step's first paint being lighter (Lab L) than every paint before it; the
+  first step never rinses. The wording is the clean-brush card's.
+- *Where*: `aids.where_words` as is, except an area that touches all four edges is "the whole canvas" only when it
+  covers 90% of it (`aids.WHOLE`): the chickadee's branch touches all four and was called the whole canvas.
+- *Paints*: a blend's paints are ordered top to bottom by where each lands in the step picture. "Out from the light"
+  isn't built: nothing in the plan says where the light is in a form a tool can read.
+- *Mix*: on a paint's first use only, naming every later step ("for this step and steps 4, 7 and 10; cover it
+  between them"); later uses rely on the page's "from step N, mix more if it has dried".
+- *Brush, load, consistency, motion*: "Brush: <brush>. Load: <card load>", then the card's motion. **No card has a
+  `consistency` field**; where the research gives one, the card's `load` already says it ("Wet and creamy"), so
+  there's no separate consistency line. Cards with no `load` (9) or no `motion` (4) give no line for it.
+- *Result*: "It should leave" plus the card's `result`; and, measured, "Leave what step N painted showing around these
+  marks" when more than 10% of the part's earlier paint is unchanged after the step (the technique's rule: "each step
+  ends by saying ... what should still show through").
+- *Coats*: per paint, its lightness against the median lightness of the picture before the step where that paint
+  lands. The light-over-dark card's words.
+- *Watch out*: the card's first mistake with its why and fix. Cards with no `mistakes` (8 of 28) give none.
+- *Step back*: the ugly-stage card's "Step back, squint, or take a photo ..." line.
+- Card text longer than 40 words is split between sentences. The words around the data are constants at the top of
+  `draft_text.py`, each naming the card or rule it comes from.
+- Claude corrects a line by changing it and setting `"edited": true`; an edited line keeps its slot (the nth line of
+  its kind) on every later `draft-text`, and an edited line with empty text takes the drafted line out (the page
+  skips it). `draft-text` also never touches `summary`, `tip`, `construct`, `paint_notes`, or brushes Claude wrote
+  for the same brush. It needs the step masks, so it runs `build_steps.build` itself (about 5 seconds).
+
 Claude then writes, per step, `summary` (under 90 characters) and `tip`: one to three sentences only this
 photo needs (which way the strokes run on this hill, which side the light is on, what to leave showing). Claude
 reads each drafted line against the step picture and corrects any that reads wrong. `draft-text` never overwrites
@@ -487,6 +517,31 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 
 `publish` runs `check`; `publish --final` won't seal a version 2 lesson while anything fails. Version 1 lessons
 seal by the old rules.
+
+**Built (#51): `spike/checks.py`, `check --lesson`, and `publish` (its result's `check` and `check_notes`).**
+Decided while building it:
+- `check` also reports what's left for Claude, so the list is the whole to-do: a step with no `summary` (or one over
+  90 characters) or no `tip`, a step with no name, a paint with no `name` or `used_for`, a step with no drafted
+  lines, and drafted lines that no longer match the plan and pictures ("run draft-text again"). The acceptance
+  "draft-text then check leaves only name, summary, and tip" depends on these.
+- *Strokes and brushes*: besides a stroke with no card and an unknown brush, a brush whose kind isn't one the card
+  names (press-and-lift with a flat; the card says round). Added because the drafted text would say "Brush: 1/2 inch
+  flat" and then "press so the belly spreads". It found 4 fixture steps; they were fixed in the plans (chickadee
+  branch-dark to thick-to-thin, branch-light to a 1/2 inch flat; lavender clouds to small-circles, paths to
+  toward-vanishing-point).
+- *Texture jumps*: `texture_jumps` as today, but not on a `flat` step. A flat coat is flat by construction; what's
+  measured there is the new edge, not texture (the chickadee's branch coat measured 13% from the branch's edges
+  alone). It still fires on the fixtures where a pass really goes from flat to marks: **the sailboat's
+  `water-light` (12%) and the lavender's `lavender-mid` (23%)**. Those are left for issue 8's plans to fix (another
+  pass), not hidden by a higher threshold.
+- *Outlines*: from `parts/stats.json`; a lesson with only `parts/owner.png` (the fixtures) is measured from it by
+  `outline.owner_stats`, with no model confidence, and `check` says so in its notes.
+- *`paints_not_listed`* matches a paint's name as a whole word. Version 1's regex had a literal backspace where
+  `\b` was meant, so it never matched instruction text; version 1 keeps that, so its lessons seal as before.
+- *Unreachable paints*: a failure until a step's `paint_notes` names the paint, as the seal already required (the
+  lavender's balloon teal needs one). `mixes.json` missing or for other paints is a failure ("run mix").
+- `publish --final` for version 2 lists the seal's own needs (reviews, notes) plus `check`'s failures; the publish
+  counts `check` already reports aren't listed twice.
 
 The fresh-context text review (`step-review.md`) stays, once per lesson, on the `step-pairs` sheets. For version
 2 its kinds `drift`, `shape_change`, and `split_edge` go (they can't happen). `too_much` is now fixed, not

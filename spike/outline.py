@@ -295,16 +295,25 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
         stats.append(row)
     owner = fill_from_nearest(owner, owner < 0)
     owner = drop_specks(owner)
-    masks = {}
+    masks = {p["id"]: owner == k for k, p in enumerate(parts)}
+    for row, measured in zip(stats, owner_stats(parts, owner)):
+        row.update(measured)
+    return masks, owner, stats
+
+
+def owner_stats(parts: list[dict], owner: np.ndarray) -> list[dict]:
+    """What the outline checks measure on the final outlines: each part's share of the picture, its pieces, and how
+    much of its box it fills. `check` uses it for a lesson with parts/owner.png but no parts/stats.json."""
+    h, w = owner.shape
+    out = []
     for k, p in enumerate(parts):
         m = owner == k
-        masks[p["id"]] = m
         n, _, st, _ = cv2.connectedComponentsWithStats(m.astype(np.uint8), connectivity=8)
         big = int((st[1:, cv2.CC_STAT_AREA] >= max(4, SPECK * h * w * 4)).sum()) if n > 1 else 0
         inbox = box_mask((h, w), boxes_of(p))
-        stats[k].update(share=round(float(m.mean()), 4), pieces=big,
-                        box_fill=round(float((m & inbox).sum() / max(inbox.sum(), 1)), 3))
-    return masks, owner, stats
+        out.append({"share": round(float(m.mean()), 4), "pieces": big,
+                    "box_fill": round(float((m & inbox).sum() / max(inbox.sum(), 1)), 3)})
+    return out
 
 
 def grow(box: list[float], by: float) -> list[float]:
