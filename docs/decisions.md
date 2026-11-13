@@ -180,3 +180,9 @@ with the date.
   subscription instead of paying for API calls, with filters and renders as command-line tools.
   The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
+- **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works
+  mostly from a phone and was merging without a full review, so the wait only slowed things down. Once the
+  tests pass, Claude merges and tells the owner what went in (a merge to `main` deploys the lessons site). Still
+  wait for the owner on anything labeled `human` and on any change to a decision in this file other than the
+  owner's own words. This ends with the proof of concept: production code gets a different process (owner: "When
+  we get into production code it'll be different, but for now I'd like to keep things moving along").
