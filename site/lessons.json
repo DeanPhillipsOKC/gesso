@@ -1,24 +1,24 @@
 [
   {
     "slug": "lavender-balloon",
-    "title": "A striped hot-air balloon floating over a lavender field at sunset",
-    "subject": "A striped hot-air balloon floating over a lavender field at sunset, with soft violet mountains, golden hills, and one big tree on the right.",
-    "steps": 12,
+    "title": "A striped hot-air balloon in a sunset sky over rows of lavender that lead to the",
+    "subject": "A striped hot-air balloon in a sunset sky over rows of lavender that lead to the setting sun, with a lone tree on a golden hill",
+    "steps": 21,
     "canvas": "14 x 11 in",
-    "tubes": 12,
-    "version": "POC 0.20.0",
-    "published": "2026-11-11",
-    "source": "balloon-lavender_skill_20261111-142734",
+    "tubes": 11,
+    "version": "POC 1.0.0",
+    "published": "2026-11-13",
+    "source": "balloon-lavender_skill_20261113-041226",
     "versions": [
       {
         "id": "20261113-041226",
-        "version": "POC 0.26.1",
+        "version": "POC 1.0.0",
         "when": "2026-11-13 04:12",
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 21,
-        "href": "lessons/lavender-balloon/v/20261113-041226/",
-        "current": false
+        "href": "lessons/lavender-balloon/",
+        "current": true
       },
       {
         "id": "20261111-142734",
@@ -27,32 +27,32 @@
         "guessed": false,
         "kind": "",
         "steps": 12,
-        "href": "lessons/lavender-balloon/",
-        "current": true
+        "href": "lessons/lavender-balloon/v/20261111-142734/",
+        "current": false
       }
     ],
-    "known": 7
+    "known": 5
   },
   {
     "slug": "chickadee",
-    "title": "A round black-capped chickadee perched on an arching autumn branch",
-    "subject": "A round black-capped chickadee perched on an arching autumn branch, with four gold and red-orange leaves, in front of a misty forest at sunset.",
-    "steps": 11,
+    "title": "A black-capped chickadee perched on a curved autumn branch",
+    "subject": "A black-capped chickadee perched on a curved autumn branch, with four orange and yellow leaves, in a misty blue and orange forest",
+    "steps": 17,
     "canvas": "14 x 11 in",
-    "tubes": 14,
-    "version": "POC 0.25.0",
-    "published": "2026-11-12",
-    "source": "chickadee_skill_20261112-100444",
+    "tubes": 10,
+    "version": "POC 1.0.0",
+    "published": "2026-11-13",
+    "source": "chickadee_skill_20261113-041241",
     "versions": [
       {
         "id": "20261113-041241",
-        "version": "POC 0.26.1",
+        "version": "POC 1.0.0",
         "when": "2026-11-13 04:12",
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 17,
-        "href": "lessons/chickadee/v/20261113-041241/",
-        "current": false
+        "href": "lessons/chickadee/",
+        "current": true
       },
       {
         "id": "20261112-100444",
@@ -61,8 +61,8 @@
         "guessed": false,
         "kind": "",
         "steps": 11,
-        "href": "lessons/chickadee/",
-        "current": true
+        "href": "lessons/chickadee/v/20261112-100444/",
+        "current": false
       }
     ],
     "known": 5
@@ -70,23 +70,23 @@
   {
     "slug": "red-sailboat",
     "title": "A small red sailboat",
-    "subject": "A small red sailboat with white sails on calm teal water at sunset, with the low sun and its golden path on the water and a purple hill on the far shore.",
-    "steps": 10,
+    "subject": "A small red sailboat with white sails on turquoise water at sunset, a purple hill on the left, a pale sun low over the horizon with a gold path on the water",
+    "steps": 17,
     "canvas": "14 x 11 in",
     "tubes": 5,
-    "version": "POC 0.25.0",
-    "published": "2026-11-12",
-    "source": "red-sailboat_skill_20261112-100455",
+    "version": "POC 1.0.0",
+    "published": "2026-11-13",
+    "source": "red-sailboat_skill_20261113-041240",
     "versions": [
       {
         "id": "20261113-041240",
-        "version": "POC 0.26.1",
+        "version": "POC 1.0.0",
         "when": "2026-11-13 04:12",
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 17,
-        "href": "lessons/red-sailboat/v/20261113-041240/",
-        "current": false
+        "href": "lessons/red-sailboat/",
+        "current": true
       },
       {
         "id": "20261112-120423",
@@ -105,10 +105,10 @@
         "guessed": false,
         "kind": "",
         "steps": 10,
-        "href": "lessons/red-sailboat/",
-        "current": true
+        "href": "lessons/red-sailboat/v/20261112-100455/",
+        "current": false
       }
     ],
-    "known": 4
+    "known": 2
   }
 ]
