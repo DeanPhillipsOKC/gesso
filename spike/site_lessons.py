@@ -38,6 +38,15 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
         raise FileNotFoundError(f"{page} is missing; run publish first")
     out = site / "lessons" / slug
     out.mkdir(parents=True, exist_ok=True)
+    manifest = site / "lessons.json"
+    lessons = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else []
+    before = next((x for x in lessons if x["slug"] == slug), {})
+    old = before.get("source", "")
+    if old and old != lesson.name and (out / "index.html").exists():  # #83: the old default stays as a version
+        keep = out / "v" / old.split("_skill_")[-1] / "index.html"
+        if not keep.exists():
+            keep.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(out / "index.html", keep)
     shutil.copyfile(page, out / "index.html")
     finish = lesson / data["stages"][-1]["image"]
     thumb = ImageOps.exif_transpose(Image.open(finish)).convert("RGB")
@@ -56,10 +65,8 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
         "published": ((data.get("gesso") or {}).get("made") or data.get("gesso") or {}).get("published", ""),
         "source": lesson.name,
     }
-    entry["versions"] = add_versions(site, slug, lesson.name, lesson.parent)
+    entry["versions"] = add_versions(site, slug, lesson.name, lesson.parent, before.get("versions"))
     entry["known"] = known_problems_for(site, entry, lesson.parent)
-    manifest = site / "lessons.json"
-    lessons = json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else []
     lessons = [x for x in lessons if x["slug"] != slug] + [entry]
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
     build_index(site, lessons)
@@ -89,23 +96,38 @@ def standalone(run: Path) -> str:
     return page(data, technique, run, embed=True, standalone=True)
 
 
-def add_versions(site: Path, slug: str, current: str, output: Path) -> list[dict]:
+def add_versions(site: Path, slug: str, current: str, output: Path, listed: list[dict] | None = None,
+                 remove: tuple[str, ...] = ()) -> list[dict]:
     """Every kept run of the same picture as a version of the lesson (owner, 2026-11-12: pick a version on the
     tile and open it). Each one's page goes to lessons/<slug>/v/<run time>/ once and is never rewritten, so a
-    version stays exactly what it was. The current one is the lesson's own page."""
+    version stays exactly what it was. The current one is the lesson's own page.
+
+    Only adds (#83): a version already `listed` whose page is on the site stays, whether or not its run folder is in
+    `output` (which isn't in git, so a fresh checkout has none of the older runs). Runs found in `output` are added
+    or updated. A version leaves the list only when named in `remove`."""
     from history import run_time, stamp_at
     photo = current.split("_skill_")[0]
-    versions = []
+    current_id = current.split("_skill_")[-1]
+    lesson_dir = site / "lessons" / slug
+    versions: dict[str, dict] = {}
+    for v in listed or []:
+        page = lesson_dir / ("index.html" if v["id"] == current_id else f"v/{v['id']}/index.html")
+        if v["id"] not in remove and page.exists():
+            versions[v["id"]] = dict(v)
     for run in sorted(output.glob(f"{photo}_skill_*")):
-        if not (run / "lesson.json").exists() or not hands_off(run):
+        rid = run.name.split("_skill_")[-1]
+        if rid in remove or not (run / "lesson.json").exists():
+            continue
+        if not hands_off(run):
+            if rid in versions:
+                print(f"kept {run.name} on the site though it's no longer hands-off; site-refresh --remove {rid} "
+                      "takes it off")
             continue  # recuts and edited runs stay in the lesson history only
         data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
         g = data.get("gesso") or {}
         made = g.get("made") or g or stamp_at(run.name) or {}
-        rid = run.name.split("_skill_")[1]
-        href = f"lessons/{slug}/" if run.name == current else f"lessons/{slug}/v/{rid}/"
         if run.name != current:
-            out = site / "lessons" / slug / "v" / rid / "index.html"
+            out = lesson_dir / "v" / rid / "index.html"
             if not out.exists():
                 try:
                     html = standalone(run)
@@ -114,10 +136,12 @@ def add_versions(site: Path, slug: str, current: str, output: Path) -> list[dict
                     continue
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_text(html, encoding="utf-8")
-        versions.append({"id": rid, "version": made.get("version", "before stamps"), "when": run_time(run.name),
-                         "guessed": bool(made.get("guessed")), "kind": kind(data), "steps": len(data["stages"]),
-                         "href": href, "current": run.name == current})
-    return sorted(versions, key=lambda v: v["id"], reverse=True)
+        versions[rid] = {"id": rid, "version": made.get("version", "before stamps"), "when": run_time(run.name),
+                         "guessed": bool(made.get("guessed")), "kind": kind(data), "steps": len(data["stages"])}
+    for rid, v in versions.items():
+        v["href"] = f"lessons/{slug}/" if rid == current_id else f"lessons/{slug}/v/{rid}/"
+        v["current"] = rid == current_id
+    return sorted(versions.values(), key=lambda v: v["id"], reverse=True)
 
 
 def known_problems_for(site: Path, x: dict, output: Path) -> int:
@@ -136,15 +160,17 @@ def known_problems_for(site: Path, x: dict, output: Path) -> int:
     return count
 
 
-def refresh(site: Path = SITE, output: Path = ROOT / "output") -> dict:
-    """Pick up new runs of every lesson on the site as versions, and rebuild the list."""
+def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str, ...] = ()) -> dict:
+    """Pick up new runs of every lesson on the site as versions, and rebuild the list. It only adds (#83): a version
+    leaves a tile, and its page the site, only when its run time is named in `remove` (it stays in the history)."""
     manifest = site / "lessons.json"
     lessons = json.loads(manifest.read_text(encoding="utf-8"))
     for x in lessons:
-        x["versions"] = add_versions(site, x["slug"], x["source"], output)
-        keep = {v["id"] for v in x["versions"]}
-        for page in (site / "lessons" / x["slug"] / "v").glob("*") if (site / "lessons" / x["slug"] / "v").exists() else []:
-            if page.name not in keep:  # no longer hands-off, or never was: off the site, still in the history
+        gone = tuple(r for r in remove if r != x["source"].split("_skill_")[-1])  # never the default's own page
+        x["versions"] = add_versions(site, x["slug"], x["source"], output, x.get("versions"), gone)
+        for rid in gone:
+            page = site / "lessons" / x["slug"] / "v" / rid
+            if page.is_dir():
                 shutil.rmtree(page)
         x["known"] = known_problems_for(site, x, output)
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")

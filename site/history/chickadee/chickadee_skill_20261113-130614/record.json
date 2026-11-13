@@ -1,0 +1,152 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261113-130614",
+  "started": "2026-11-13 13:06",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "33a2e9b75812d249",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 1.0.1",
+        "commit": "b9c53a4",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 1.0.1",
+        "commit": "2df6975",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T13:32:00"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 19,
+        "words": 2729,
+        "tubes": 10,
+        "cost_usd": 0.151,
+        "minutes": 1.7,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 9,
+        "minutes_total": 23.8,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 5
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the misty sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunks",
+          "name": "Pull down the far trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "foliage",
+          "name": "Dab the hazy autumn foliage",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-dark",
+          "name": "Paint the branch and trunk dark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-mid",
+          "name": "Drag bark tan along the branch",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-light",
+          "name": "Catch the sunlight on the bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-cool",
+          "name": "Add the cool gray on the bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-gold",
+          "name": "Block in the four leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-red",
+          "name": "Paint the red in the leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-body",
+          "name": "Block in the body",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-wing",
+          "name": "Block in the wing and tail",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-chest",
+          "name": "Light the chest",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "wing-dark",
+          "name": "Stripe the wing feathers",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-cap",
+          "name": "Paint the black cap and bib",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-cheek",
+          "name": "Paint the white cheek",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cap-edge",
+          "name": "Soften the cap's edges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "feet-dark",
+          "name": "Paint the legs and toes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "feet-light",
+          "name": "Catch the light on the toes",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
