@@ -196,3 +196,8 @@ with the date.
   wait for the owner on anything labeled `human` and on any change to a decision in this file other than the
   owner's own words. This ends with the proof of concept: production code gets a different process (owner: "When
   we get into production code it'll be different, but for now I'd like to keep things moving along").
+- **Every pull request gets an adversarial review before it merges (2026-11-13, owner's call).** Once a pull request
+  is open, Claude has an Opus model review it adversarially and post its findings as comments on the pull request,
+  each rated high, medium, or low. Medium and high findings block the merge: Claude fixes them, and the reviewer
+  looks again until it signs off on every one. If nothing is medium or higher, there's no second review. Claude
+  fixes the low findings it agrees with and merges once the tests pass.
