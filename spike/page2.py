@@ -159,7 +159,8 @@ def switch(lesson: dict, i: int) -> str:
     a = lesson["stages"][i].get("aids") or {}
     if not a:  # no step-aids yet: the canvas after the step, as version 1 shows it
         return f'<figure>{result_view(lesson, i)}</figure>'
-    words = f'<p class="where-words"><b>Where:</b> {e(a["where_words"])}</p>' if a.get("where_words") else ""
+    said = any(x.get("kind") == "where" for x in lesson["stages"][i].get("lines") or [])  # drafted text says it
+    words = f'<p class="where-words"><b>Where:</b> {e(a["where_words"])}</p>' if a.get("where_words") and not said else ""
     return (f'<div class="sw"><input type="radio" class="sw-w" name="v{n}" id="v{n}w" checked>'
             f'<input type="radio" class="sw-r" name="v{n}" id="v{n}r">'
             f'<div class="sw-tabs"><label class="lw" for="v{n}w">Where</label><label class="lr" for="v{n}r">Result</label></div>'

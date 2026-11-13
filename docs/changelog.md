@@ -13,6 +13,11 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   two colors a painter can tell apart (#66).
 - Teaching pictures (`step-aids`) and the version 2 lesson page: each step's Where outline over the picture before
   it, close-ups, paint maps, stroke cards, "Before you start" with the tape marks and the transfer outline (#68).
+- `draft-text` drafts every step's lines from data (dry, rinse, where, paints in order, mix once, brush and load and
+  motion from the stroke card, what it leaves, coats, watch out, step back), and `check` gathers every measured
+  check in one list that `publish --final` must clear for a version 2 lesson (#51). `publish` records a lesson in
+  `site/history/` only when its folder is under `output/` (or `GESSO_HISTORY` is set), so a scratch or test publish
+  no longer writes into the real history.
 
 ## POC 0.26.1 (2026-11-12)
 - The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's
