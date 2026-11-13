@@ -211,6 +211,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
                          "outline model's confidence")
         failures += ol.problems(plan["parts"], stats)
         failures += bs.problems(plan, rows)
+        notes += bs.faint_ghosts(plan, rows)
         missing = [n for n in names if not (lesson / n).exists()]
         if missing:
             failures.append(f"missing step pictures {missing[:3]}{' ...' if len(missing) > 3 else ''}: run build-steps")

@@ -11,6 +11,11 @@ nothing else should change.
   `paints` and another pass.
 - **Something looks wrong in an outline** (a part painted where it isn't, or a faint trace of an object before
   its own step): go back to step 2b, then `paints`, then here.
+- **A part "already shows ... before it's painted"** (in `problems`), or `advice` lists parts to look for: find the
+  step on the sheet and the part in `parts/preview.jpg`. If the outline misses some of the part (a foot's toes left
+  to the branch, a cloud outside the clouds' boxes), fix it in step 2b: what an outline leaves out is painted with
+  the part behind. A part painted on another that shows in its parent's block-in coat is fine. If a part with no
+  parent still shows after 2 rounds, drop it and paint it as a pass of the part behind, as step 2b says.
 
 ## 5b. The background picture, only when asked
 If `build-steps` printed `"needs_background": true` (it does whenever there are objects in front of the

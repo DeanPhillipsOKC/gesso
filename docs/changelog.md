@@ -6,6 +6,14 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.0.1 (2026-11-13)
+- Things no longer show before their step (#84: clouds, a ridge, and bands of hill color in the lavender's first
+  sky step; hills under the sailboat's sky; the chickadee's feet as dark patches on the branch). What's painted
+  under a thing is now taken from clean paint away from that thing's rim, a sky or water is carried on row by row
+  from its own clean rows, and a flat coat no longer stays where another part will cross.
+- `build-steps` and `check` measure it: a part that plainly shows before its step is a failure, and one that shows
+  faintly is a note. The three lessons on the site were made before this and still show it.
+
 ## POC 1.0.0 (2026-11-13)
 Pipeline v2: the finished painting is rendered once and every step picture is cut from it. The owner passed the
 gate on 2026-11-13 ("The pics look good. Publish them as 1.0.0"). The first three 1.0.0 lessons on the site (red
