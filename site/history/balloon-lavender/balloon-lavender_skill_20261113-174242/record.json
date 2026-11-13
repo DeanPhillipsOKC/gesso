@@ -1,0 +1,173 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261113-174242",
+  "started": "2026-11-13 17:42",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "289e665f20dd4fd1",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 1.1.0",
+        "commit": "bd9571d",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 1.1.0",
+        "commit": "bd9571d",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T18:03:18"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 24,
+        "words": 3441,
+        "tubes": 5,
+        "cost_usd": 0.102,
+        "minutes": 1.0,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 13,
+        "minutes_total": 17.1,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 3
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the sky from blue to gold",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-base",
+          "name": "Lay in the rose cloud shapes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-light",
+          "name": "Light the cloud edges with coral",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hills",
+          "name": "Lay in the blue hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "fields-base",
+          "name": "Lay in the golden fields",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "fields-dark",
+          "name": "Darken the green dips of the fields",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-base",
+          "name": "Lay in the deep violet field",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-far-soil",
+          "name": "Pull in the far soil between the rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-base",
+          "name": "Pull in the near soil strips",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-light",
+          "name": "Catch the light down the near soil",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-dark",
+          "name": "Stamp the dark of the lavender rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-mid",
+          "name": "Stamp the blue violet over the rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-light",
+          "name": "Tip the rows with light lavender",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunk-base",
+          "name": "Pull the trunk and branches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunk-light",
+          "name": "Catch the light on the bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "canopy-dark",
+          "name": "Dab the dark leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "canopy-mid",
+          "name": "Dab the olive middle leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "canopy-light",
+          "name": "Dab the sunlit gold leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-shape",
+          "name": "Build the balloon shape in red",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-blue",
+          "name": "Paint the blue violet stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-teal",
+          "name": "Paint the teal stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-light",
+          "name": "Light the side facing the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-basket",
+          "name": "Paint the basket and ropes",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

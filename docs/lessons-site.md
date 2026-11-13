@@ -6,7 +6,10 @@ animations and interactive pieces work like on any web page. No Claude account i
 
 - `site/` in this repo is the whole site: `index.html` (the list), `lessons/<slug>/index.html` and `thumb.jpg`,
   `lessons.json` (the list's data), and `_headers` (keeps it out of search engines).
-- Adding a lesson: `publish` it, then `python spike/tools.py site-add --lesson <lesson folder> --slug <name>`, then
+- **Every sealed hands-off run goes on the site** (owner, 2026-11-13; `docs/decisions.md`): the v2 skill's last step
+  adds it (step 8c), as a version on its picture's tile, or as a new tile for a new picture. Modified runs stay in
+  the history only; the tools refuse them.
+- Adding a lesson by hand: `publish` it, then `python spike/tools.py site-add --lesson <lesson folder> --slug <name>`, then
   commit and push `site/`. Cloudflare Pages deploys every push to `main`.
 - Who can open it is set in Cloudflare Access (below), never in this repo. Don't put anyone's email here.
 

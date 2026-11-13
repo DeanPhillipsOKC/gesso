@@ -11,6 +11,16 @@
     "source": "red-sailboat_skill_20261113-130625",
     "versions": [
       {
+        "id": "20261113-174242",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/red-sailboat/v/20261113-174242/",
+        "current": false
+      },
+      {
         "id": "20261113-130625",
         "version": "POC 1.0.1",
         "when": "2026-11-13 13:06",
@@ -28,6 +38,36 @@
         "kind": "steps cut from the finish",
         "steps": 17,
         "href": "lessons/red-sailboat/v/20261113-041240/",
+        "current": false
+      },
+      {
+        "id": "20261113-031313",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 15,
+        "href": "lessons/red-sailboat/v/20261113-031313/",
+        "current": false
+      },
+      {
+        "id": "20261113-022736",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:27",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-022736/",
+        "current": false
+      },
+      {
+        "id": "20261113-011140",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 19,
+        "href": "lessons/red-sailboat/v/20261113-011140/",
         "current": false
       },
       {
@@ -51,7 +91,7 @@
         "current": false
       }
     ],
-    "known": 3
+    "known": 2
   },
   {
     "slug": "chickadee",
@@ -64,6 +104,16 @@
     "published": "2026-11-13",
     "source": "chickadee_skill_20261113-130614",
     "versions": [
+      {
+        "id": "20261113-174245",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-174245/",
+        "current": false
+      },
       {
         "id": "20261113-130614",
         "version": "POC 1.0.1",
@@ -82,6 +132,36 @@
         "kind": "steps cut from the finish",
         "steps": 17,
         "href": "lessons/chickadee/v/20261113-041241/",
+        "current": false
+      },
+      {
+        "id": "20261113-031315",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/chickadee/v/20261113-031315/",
+        "current": false
+      },
+      {
+        "id": "20261113-022752",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:27",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-022752/",
+        "current": false
+      },
+      {
+        "id": "20261113-011141",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 20,
+        "href": "lessons/chickadee/v/20261113-011141/",
         "current": false
       },
       {
@@ -109,6 +189,16 @@
     "source": "balloon-lavender_skill_20261113-130631",
     "versions": [
       {
+        "id": "20261113-174242",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-174242/",
+        "current": false
+      },
+      {
         "id": "20261113-130631",
         "version": "POC 1.0.1",
         "when": "2026-11-13 13:06",
@@ -129,6 +219,36 @@
         "current": false
       },
       {
+        "id": "20261113-031314",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 23,
+        "href": "lessons/lavender-balloon/v/20261113-031314/",
+        "current": false
+      },
+      {
+        "id": "20261113-022805",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:28",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-022805/",
+        "current": false
+      },
+      {
+        "id": "20261113-011147",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-011147/",
+        "current": false
+      },
+      {
         "id": "20261111-142734",
         "version": "POC 0.20.0",
         "when": "2026-11-11 14:27",
@@ -137,6 +257,54 @@
         "steps": 12,
         "href": "lessons/lavender-balloon/v/20261111-142734/",
         "current": false
+      }
+    ],
+    "known": 4
+  },
+  {
+    "slug": "sleeping-cat",
+    "title": "A gray tabby cat asleep",
+    "subject": "A gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden sill",
+    "steps": 13,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
+    "published": "2026-11-13",
+    "source": "sleeping-cat_skill_20261113-175836",
+    "versions": [
+      {
+        "id": "20261113-175836",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 13,
+        "href": "lessons/sleeping-cat/",
+        "current": true
+      }
+    ],
+    "known": 4
+  },
+  {
+    "slug": "snow-lantern",
+    "title": "A brass lantern glowing on a snowy wooden fence post at night",
+    "subject": "A brass lantern glowing on a snowy wooden fence post at night",
+    "steps": 21,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
+    "published": "2026-11-13",
+    "source": "snow-lantern_skill_20261113-175843",
+    "versions": [
+      {
+        "id": "20261113-175843",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/snow-lantern/",
+        "current": true
       }
     ],
     "known": 5
