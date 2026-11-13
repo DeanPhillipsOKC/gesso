@@ -1,7 +1,8 @@
 """The paints a lesson asks for, measured from the finish and kept to a few mixes (pipeline v2, design section 9).
 
     part_colors(finish, mask, k) -> [{"hex", "share", "x", "y"}], darkest first
-    measure(finish, plan, owner, ...) -> the plan's paints and steps, measured, with tints marked and merged to the limit
+    measure(finish, plan, owner, ...) -> the plan's paints, measured, with tints marked and merged toward the limit
+    add(finish, plan, owner, part, ...) -> the plan's paints with one more measured color for one part
 
 Claude used to name a lesson's paints and guess where each one sits, and a hand-written plan has a paint per step:
 16 to 22 paints, more than a beginner should mix (the limit is 10, docs/decisions.md 2026-11-12). Measured, the
@@ -10,10 +11,17 @@ painted. Then:
 - a lighter or darker version of a part's main paint is that paint plus white (or plus the darkest tube): one
   puddle, lightened or darkened, the way a teacher has a beginner work. It keeps its own step and doesn't count;
 - the rest are merged, closest first, toward `max_mixes`, preferring pairs in different parts, but never two
-  paints more than MAX_MERGE apart: a lesson ends above the target rather than lose a color the painter can see.
-  Two paints of one part merging means the two steps that used them become one;
+  paints more than MAX_MERGE apart: a lesson ends above the target rather than lose a color the painter can see;
 - an accent (the lightest paint, or the only paint of its hue) is never merged.
 Distances are mixing.delta_e (CIEDE2000) throughout.
+
+A paint is measured in every part its `parts` lists: a part listed by k paints is clustered into k colors, each
+paint takes one (the nearest by an optimal match), and a paint in several parts is their colors averaged in Lab,
+weighted by how much of the picture each covers. The first measurement (the plan has no paints yet, so no steps
+are needed) gives each part the fewest colors that fit and merges toward the target. Every later run keeps what
+the plan already has (2026-11-13: re-merging from scratch on every run renamed paints three times in one run, and
+merged away a paint a step had just been given): it re-measures, keeps every id, never merges away a paint a step
+uses or one `add` made, and drops only a paint whose parts are all gone.
 """
 
 from __future__ import annotations
@@ -36,6 +44,8 @@ TINT = mixing.REACHABLE  # main paint plus white (or the dark tube) this close t
 HUE_FAMILY = 40.0  # degrees of hue between paints of different families
 CHROMA = 15.0  # a paint with less chroma than this (Lab) is a gray, of no hue family
 KEEP_NAME = 3.0  # a paint that moved less than this keeps the name and used_for it was given
+SAME = 1.0  # a re-measured paint that moved less than this keeps its hex and spot exactly: a rerun changes nothing
+MATCH_EXACT = 7  # paints matched to a part's colors by trying every order up to this many; nearest first above it
 MAX_MERGE = 12.0  # paints further apart than this are never merged: it loses a color the painter can see
 FRACTIONS = [i / 40 for i in range(1, 40)]  # shares of white (or the dark tube) tried for a tint (or shade)
 
@@ -183,14 +193,19 @@ def _weight(p: dict) -> float:
     return sum(p["shares"].values())
 
 
-def _merged_hex(a: dict, b: dict) -> str:
-    """The two paints' colors averaged in Lab, weighted by how much of the picture each covers."""
-    wa, wb = _weight(a), _weight(b)
-    lab = [(np.array(cv2.cvtColor(np.array([[mixing.hex_rgb(p["hex"])]], np.float32) / 255.0, cv2.COLOR_RGB2LAB)[0, 0]))
-           for p in (a, b)]
-    mean = (lab[0] * wa + lab[1] * wb) / max(wa + wb, 1e-9)
+def _mean_hex(colors: list[tuple[str, float]]) -> str:
+    """Colors averaged in Lab, weighted (by how much of the picture each covers)."""
+    lab = [np.array(cv2.cvtColor(np.array([[mixing.hex_rgb(h)]], np.float32) / 255.0, cv2.COLOR_RGB2LAB)[0, 0])
+           for h, _ in colors]
+    weights = [w for _, w in colors]
+    mean = sum(x * w for x, w in zip(lab, weights)) / max(sum(weights), 1e-9)
     rgb = cv2.cvtColor(mean.reshape(1, 1, 3).astype(np.float32), cv2.COLOR_LAB2RGB)[0, 0]
     return mixing.rgb_hex(np.clip(np.round(rgb * 255), 0, 255).astype(int))
+
+
+def _merged_hex(a: dict, b: dict) -> str:
+    """The two paints' colors averaged in Lab, weighted by how much of the picture each covers."""
+    return _mean_hex([(a["hex"], _weight(a)), (b["hex"], _weight(b))])
 
 
 def _main_of(paints: list[dict], part: str) -> dict | None:
@@ -219,37 +234,19 @@ def mark_tints(paints: list[dict], part_order: list[str], white: tuple, dark: tu
                 break
 
 
-def _steps(stages: list[dict]) -> list[dict]:
-    return [s for st in stages for s in st["steps"]]
-
-
-def _merge_steps(stages: list[dict], part: str, a: str, b: str) -> dict | None:
-    """When paints a and b of one part merge, the two steps of that part that used them become one: the first
-    keeps its id, name, and place, and takes the other's paints. None when one step already uses both."""
-    mine = [s for s in _steps(stages) if s["part"] == part]
-    sa = [s for s in mine if a in s["paints"]]
-    sb = [s for s in mine if b in s["paints"]]
-    if not sa or not sb or set(map(id, sa)) & set(map(id, sb)):
-        return None
-    first, second = sorted([sa[0], sb[0]], key=lambda s: mine.index(s))
-    for c in second["paints"]:
-        if c not in first["paints"]:
-            first["paints"].append(c)
-    if second is mine[-1] and first.get("show") == "flat":
-        first["show"] = "full"  # the coat is now the part's last step, and a last step finishes the part
-    for st in stages:
-        st["steps"] = [s for s in st["steps"] if s is not second]
-    return {"kept": first["id"], "dropped": second["id"], "part": part}
-
-
-def mergeable(bases: list[dict], keep: set[str]) -> list[tuple[dict, dict]]:
-    """Pairs of base paints that may still merge: neither is an accent, and they're at most MAX_MERGE apart."""
+def mergeable(bases: list[dict], keep: set[str], fixed: set[str] = frozenset(),
+              held: set[str] = frozenset()) -> list[tuple[dict, dict]]:
+    """Pairs of base paints that may still merge: neither is an accent (`keep`) or a paint `add` made (`held`), at
+    most one is used by a step (`fixed`: it takes the other in; a paint a step uses is never merged away), and
+    they're at most MAX_MERGE apart."""
     return [(a, b) for a, b in itertools.combinations(bases, 2)
-            if a["id"] not in keep and b["id"] not in keep and mixing.delta_e(a["hex"], b["hex"]) <= MAX_MERGE]
+            if not {a["id"], b["id"]} & (set(keep) | set(held)) and not {a["id"], b["id"]} <= set(fixed)
+            and mixing.delta_e(a["hex"], b["hex"]) <= MAX_MERGE]
 
 
-def over_target(paints: list[dict]) -> list[dict]:
-    """Why each base paint is still its own mix: its nearest other base paint and how far it is, nearest first."""
+def over_target(paints: list[dict], fixed: set[str] = frozenset(), held: set[str] = frozenset()) -> list[dict]:
+    """Why each base paint is still its own mix: its nearest other base paint and how far it is, nearest first, and
+    whether it's an accent, used by a step, or made by `add`."""
     bases = [p for p in paints if not p.get("of")]
     keep = accents(paints)
     out = []
@@ -259,142 +256,318 @@ def over_target(paints: list[dict]) -> list[dict]:
             continue
         near = min(others, key=lambda q: (mixing.delta_e(p["hex"], q["hex"]), q["id"]))
         out.append({"id": p["id"], "nearest": near["id"], "delta_e": round(mixing.delta_e(p["hex"], near["hex"]), 1),
-                    "accent": p["id"] in keep})
+                    "accent": p["id"] in keep, "used": p["id"] in fixed, "added": p["id"] in held})
     return sorted(out, key=lambda o: (o["delta_e"], o["id"]))
 
 
-def limit(paints: list[dict], stages: list[dict], max_mixes: int | None, part_order: list[str],
-          white: tuple, dark: tuple, dark_name: str) -> tuple[list[dict], list[dict]]:
+def limit(paints: list[dict], max_mixes: int | None, part_order: list[str], white: tuple, dark: tuple,
+          dark_name: str, fixed: set[str] = frozenset(), held: set[str] = frozenset(), settle=None) -> list[dict]:
     """Merge base paints (not tints or shades), closest first, toward max_mixes. Pairs in different parts go
-    first; two paints of one part merge only when no other pair is left, and then their steps become one. Accents
-    are never merged, and neither are two paints more than MAX_MERGE apart: that loses a color the painter can see,
-    so a lesson may end above max_mixes. Changes paints and stages in place; returns (merges, step merges)."""
-    merges, step_merges = [], []
+    first; two paints of one part merge only when no other pair is left. Accents are never merged, and neither are
+    two paints more than MAX_MERGE apart: that loses a color the painter can see, so a lesson may end above
+    max_mixes. A paint a step uses (`fixed`) is never merged away, and a paint `add` made (`held`) never merges.
+    The merged paint keeps the id of the one covering more (or the one a step uses), and is measured again by
+    `settle(paints)` when given (else the two colors averaged). Changes paints in place; returns the merges."""
+    merges = []
     while True:
         mark_tints(paints, part_order, white, dark, dark_name)
         bases = [p for p in paints if not p.get("of")]
         if max_mixes is None or len(bases) <= max_mixes:
             break
-        pairs = mergeable(bases, accents(paints))
+        pairs = mergeable(bases, accents(paints), fixed, held)
         if not pairs:
             break
         cross = [(a, b) for a, b in pairs if not set(a["shares"]) & set(b["shares"])]
         a, b = min(cross or pairs, key=lambda ab: (mixing.delta_e(ab[0]["hex"], ab[1]["hex"]), ab[0]["id"], ab[1]["id"]))
-        if (_weight(b), b["id"]) > (_weight(a), a["id"]):
-            a, b = b, a  # the paint covering more of the picture keeps its id and spot
-        record = {"into": a["id"], "parts": sorted(b["shares"], key=part_order.index), "was": [o for _, o in b["origins"]],
-                  "hex": b["hex"], "delta_e": round(mixing.delta_e(a["hex"], b["hex"]), 1), "same_part": not cross}
-        for part in sorted(set(a["shares"]) & set(b["shares"]), key=part_order.index):
-            sm = _merge_steps(stages, part, a["id"], b["id"])
-            if sm:
-                step_merges.append(sm)
+        if b["id"] in fixed or (a["id"] not in fixed and (_weight(b), b["id"]) > (_weight(a), a["id"])):
+            a, b = b, a  # the paint a step uses, or else the one covering more of the picture, keeps its id
+        merges.append({"into": a["id"], "id": b["id"], "parts": sorted(b["shares"], key=part_order.index),
+                       "hex": b["hex"], "delta_e": round(mixing.delta_e(a["hex"], b["hex"]), 1), "same_part": not cross})
         a["hex"] = _merged_hex(a, b)
         for pid, share in b["shares"].items():
             a["shares"][pid] = a["shares"].get(pid, 0.0) + share
-        a["origins"] += b["origins"]
+        if "members" in a:
+            a["members"] = [q for q in part_order if q in a["members"] or q in b["members"]]
         a["absorbed"] = a.get("absorbed", []) + [b["id"]] + b.get("absorbed", [])
         paints.remove(b)
-        for s in _steps(stages):
-            s["paints"] = list(dict.fromkeys(a["id"] if c == b["id"] else c for c in s["paints"]))
-        merges.append(record)
-    return merges, step_merges
+        if settle:
+            settle(paints)
+    return merges
 
 
 def _has_hex(paint: dict) -> bool:
     return bool(re.match(r"^#[0-9a-fA-F]{6}$", paint.get("hex") or ""))
 
 
+def _match(have: list[str], colors: list[str]) -> list[int]:
+    """Which of `colors` each of `have` takes, one each (len(have) <= len(colors)), for the least total Delta E.
+    Every order is tried up to MATCH_EXACT; above that, the closest pairs first."""
+    cost = [[mixing.delta_e(h, c) for c in colors] for h in have]
+    if len(colors) <= MATCH_EXACT:
+        return list(min(itertools.permutations(range(len(colors)), len(have)),
+                        key=lambda perm: (sum(cost[i][j] for i, j in enumerate(perm)), perm)))
+    out, taken = [None] * len(have), set()
+    for d, i, j in sorted((cost[i][j], i, j) for i in range(len(have)) for j in range(len(colors))):
+        if out[i] is None and j not in taken:
+            out[i] = j
+            taken.add(j)
+    return out
+
+
+class _Measure:
+    """Each part's colors, measured once per number of colors, and a lesson's paints measured from them."""
+
+    def __init__(self, finish: np.ndarray, plan: dict, owner: np.ndarray):
+        self.finish, self.owner = finish, owner
+        self.order = [p["id"] for p in plan["parts"]]
+        self.area = {pid: float((owner == k).mean()) for k, pid in enumerate(self.order)}
+        self.cache: dict[tuple[str, int | None], list[dict]] = {}
+
+    def colors(self, pid: str, k: int | None = None) -> list[dict]:
+        """The part's k colors (part_paints), or with k None the fewest that fit."""
+        if (pid, k) not in self.cache:
+            self.cache[(pid, k)] = part_paints(self.finish, self.owner == self.order.index(pid), k)
+        return self.cache[(pid, k)]
+
+    def settle(self, paints: list[dict]) -> None:
+        """Measure every paint from the parts it's in (`members`): a part in k paints is clustered into k colors and
+        each paint takes one (matched to its current hex); a paint in several parts is their colors averaged,
+        weighted by how much of the picture each covers. Sets hex, shares, and the sample spot (in the part it
+        covers most of)."""
+        got: dict[int, dict[str, dict]] = {id(p): {} for p in paints}
+        for pid in self.order:
+            mine = [p for p in paints if pid in p["members"]]
+            colors = self.colors(pid, len(mine)) if mine else []
+            if len(colors) < len(mine):  # the part has no pixels left: its paints keep what they had
+                continue
+            for p, j in zip(mine, _match([p["hex"] for p in mine], [c["hex"] for c in colors])):
+                got[id(p)][pid] = colors[j]
+        for p in paints:
+            here = got[id(p)]
+            if not here:
+                p["shares"] = {pid: 0.0 for pid in p["members"]}
+                continue
+            p["shares"] = {pid: c["share"] * self.area[pid] for pid, c in here.items()}
+            p["hex"] = here[next(iter(here))]["hex"] if len(here) == 1 else \
+                _mean_hex([(c["hex"], p["shares"][pid]) for pid, c in here.items()])
+            spot = here[max(here, key=lambda q: (p["shares"][q], -self.order.index(q)))]
+            p["sample_x"], p["sample_y"] = spot["x"], spot["y"]
+
+
+def _number(pid: str) -> tuple[str, int]:
+    head, _, tail = pid.rpartition("-")
+    return (head, int(tail)) if tail.isdigit() else (pid, 0)
+
+
+def _next_id(part: str, taken: set[str]) -> str:
+    n = 1
+    while f"{part}-{n}" in taken:
+        n += 1
+    return f"{part}-{n}"
+
+
+def _used(plan: dict) -> dict[str, list[str]]:
+    """Each paint id a step names, and the parts those steps paint."""
+    out: dict[str, list[str]] = {}
+    for st in plan.get("stages") or []:
+        for s in st.get("steps") or []:
+            for c in s.get("paints") or []:
+                if s.get("part") not in out.setdefault(c, []):
+                    out[c].append(s.get("part"))
+    return out
+
+
+def _steps_using(plan: dict, paint_id: str) -> list[str]:
+    return [s["id"] for st in plan.get("stages") or [] for s in st.get("steps") or [] if paint_id in (s.get("paints") or [])]
+
+
+def _existing(plan: dict, order: list[str]) -> tuple[list[dict], list[dict]]:
+    """The plan's paints as records to measure again (in every part their `parts` or a step puts them in), and the
+    paints whose parts are all gone, with the steps that still name them."""
+    used = _used(plan)
+    records, removed = [], []
+    for c in plan.get("paints") or []:
+        if not c.get("id") or not _has_hex(c):
+            continue
+        listed = list(c.get("parts") or []) + used.get(c["id"], [])
+        members = [q for q in order if q in listed]
+        if not members:
+            removed.append({"id": c["id"], "parts": list(dict.fromkeys(listed)), "steps": _steps_using(plan, c["id"])})
+            continue
+        records.append({"id": c["id"], "members": members, "hex": c["hex"], "old": c, "shares": {},
+                        "sample_x": c.get("sample_x"), "sample_y": c.get("sample_y")})
+    return records, removed
+
+
+def _entries(records: list[dict], plan: dict, order: list[str], white, dark, dark_name: str) -> tuple[list[dict], dict]:
+    """The plan's paints from measured records: a paint that barely moved (SAME) keeps its hex and spot exactly, and
+    one that moved less than KEEP_NAME keeps its name and used_for. Returns (paints, what changed)."""
+    changed, kept, kept_names = [], [], {}
+    for r in records:
+        o = r.get("old")
+        if o is None:
+            continue
+        de = mixing.delta_e(o["hex"], r["hex"])
+        if de < SAME:
+            r["hex"], r["sample_x"], r["sample_y"] = o["hex"], o.get("sample_x", r["sample_x"]), o.get("sample_y", r["sample_y"])
+            kept.append(r["id"])
+        else:
+            changed.append({"id": r["id"], "from": o["hex"], "to": r["hex"], "delta_e": round(de, 1),
+                            "name_kept": de < KEEP_NAME and bool(o.get("name"))})
+        if de < KEEP_NAME and (o.get("name") or o.get("used_for")):
+            kept_names[r["id"]] = r["id"]
+    mark_tints(records, order, white, dark, dark_name)
+    used = _used(plan)
+
+    def home(r):  # a shared paint belongs to the part it covers most of
+        return max(r["members"], key=lambda q: (r["shares"].get(q, 0.0), -order.index(q)))
+
+    out = []
+    for r in sorted(records, key=lambda r: (order.index(home(r)), _number(r["id"]))):
+        entry = {"id": r["id"]}
+        if r["id"] in kept_names:
+            entry.update({k: r["old"][k] for k in ("name", "used_for") if r["old"].get(k)})
+        entry["hex"] = r["hex"]
+        if r.get("of"):
+            entry["of"], entry["plus"] = r["of"], r["plus"]
+        entry["sample_x"], entry["sample_y"] = r["sample_x"], r["sample_y"]
+        entry["parts"] = [q for q in order if q in r["members"] or q in used.get(r["id"], [])]
+        if r.get("added") or (r.get("old") or {}).get("added"):
+            entry["added"] = True
+        out.append(entry)
+    return out, {"changed": changed, "kept": kept, "kept_names": kept_names}
+
+
 def measure(finish: np.ndarray, plan: dict, owner: np.ndarray, max_mixes: int | None,
             white: tuple = (255, 255, 255), dark: tuple = (20, 20, 22), dark_name: str = "black") -> dict:
-    """The plan's paints measured from the finish, tints and shades marked, merged to max_mixes, with ids
-    <part id>-<n> darkest first, and its steps pointed at them. A part gets as many colors as its steps name (each
-    named paint goes to the measured color nearest the hex it had), or with no steps the fewest that fit.
-    Returns {"paints", "stages", "merges", "step_merges", "accents", "shares", "kept_names"}; `plan` isn't changed."""
-    parts = plan["parts"]
-    order = [p["id"] for p in parts]
-    stages = [dict(st, steps=[dict(s, paints=list(s.get("paints") or [])) for s in st.get("steps") or []])
-              for st in plan.get("stages") or []]
-    old = {c["id"]: c for c in plan.get("paints") or [] if c.get("id")}
-    paints: list[dict] = []
-    rename: dict[tuple[str, str], str] = {}  # (part, a step's paint id) -> the measured paint's id
-    for k, part in enumerate(parts):
-        pid = part["id"]
-        mask = owner == k
-        area = float(mask.mean())
-        named = list(dict.fromkeys(c for s in _steps(stages) if s["part"] == pid for c in s["paints"]))
-        colors = part_paints(finish, mask, len(named) if named else None)
-        mine = [{"id": f"{pid}-{n + 1}", "hex": c["hex"], "sample_x": c["x"], "sample_y": c["y"],
-                 "shares": {pid: c["share"] * area}, "origins": []} for n, c in enumerate(colors)]
-        if named and mine:
-            def cost(perm):
-                return sum(mixing.delta_e(old[n]["hex"], mine[j]["hex"]) for n, j in zip(named, perm)
-                           if n in old and _has_hex(old[n]))
-            best = min(itertools.permutations(range(len(mine)), len(named)), key=lambda perm: (cost(perm), perm))
-            for n, j in zip(named, best):
-                rename[(pid, n)] = mine[j]["id"]
-                if n in old:
-                    mine[j]["origins"].append((pid, n))
-        elif mine:  # no steps yet: a paint already listed for this part is matched to its nearest measured color
-            for o in old.values():
-                if pid in (o.get("parts") or []) and _has_hex(o):
-                    near = min(mine, key=lambda m: mixing.delta_e(o["hex"], m["hex"]))
-                    near["origins"].append((pid, o["id"]))
-        paints += mine
-    for s in _steps(stages):
-        s["paints"] = list(dict.fromkeys(rename.get((s["part"], c), c) for c in s["paints"]))
+    """The plan's paints, measured from the finish, tints and shades marked, merged toward max_mixes. `plan` isn't
+    changed, and neither are its steps: a step's paints are Claude's to choose.
 
-    merges, step_merges = limit(paints, stages, max_mixes, order, white, dark, dark_name)
+    First measurement (the plan has no paints): each part gets the fewest colors (1 to MAX_COLORS) that leave its
+    average error under MAX_ERROR, and the paints merge toward max_mixes; ids are <part id>-<n>, darkest first. No
+    steps are needed.
 
-    def home(p):  # a shared paint belongs to the part it covers most of
-        return max(p["shares"], key=lambda q: (p["shares"][q], -order.index(q)))
+    Again (the plan has paints, and `outline` changed): every paint is measured again in its parts and keeps its id,
+    and its name and used_for when it moved less than KEEP_NAME. A part with no paint yet gets its fewest colors,
+    with the next free ids. Only paints no step uses (and not made by `add`) may merge; a paint whose parts are all
+    gone is removed, and the steps that name it are listed.
 
-    final: dict[str, str] = {}  # ids: <home part>-<n>, darkest first
+    Returns {"paints", "merges", "accents", "shares", "kept_names", "over_target", "first", "changed", "kept",
+    "new", "removed"}."""
+    m = _Measure(finish, plan, owner)
+    order = m.order
+    records, removed = _existing(plan, order)
+    first = not records and not removed
+    used = set(_used(plan))
+    held = {r["id"] for r in records if r["old"].get("added")}
+    fixed = {r["id"] for r in records} & used
+    taken = {r["id"] for r in records} | {x["id"] for x in removed}
+    new = []
     for pid in order:
-        for n, p in enumerate(sorted((p for p in paints if home(p) == pid), key=lambda p: (lightness(p["hex"]), p["id"]))):
-            for old_id in [p["id"]] + p.get("absorbed", []):
-                final[old_id] = f"{pid}-{n + 1}"
-    for s in _steps(stages):
-        s["paints"] = list(dict.fromkeys(final.get(c, c) for c in s["paints"]))
-    stages = [st for st in stages if st["steps"]]
-    for m in merges:
-        m["into"] = final[m["into"]]
-    for p in paints:
-        if p.get("of"):
-            p["of"] = final[p["of"]]
-    for p in paints:
-        p["id"] = final[p["id"]]
+        if any(pid in r["members"] for r in records):
+            continue
+        for c in m.colors(pid):
+            rid = _next_id(pid, taken)
+            taken.add(rid)
+            records.append({"id": rid, "members": [pid], "hex": c["hex"], "shares": {}, "sample_x": c["x"],
+                            "sample_y": c["y"]})
+            new.append(rid)
+    m.settle(records)
+    merges = limit(records, max_mixes, order, white, dark, dark_name, fixed, held, m.settle)
+    if first:  # ids <home part>-<n>, darkest first
+        def home(r):
+            return max(r["members"], key=lambda q: (r["shares"].get(q, 0.0), -order.index(q)))
+        final = {}
+        for pid in order:
+            mine = sorted((r for r in records if home(r) == pid), key=lambda r: (lightness(r["hex"]), r["id"]))
+            for n, r in enumerate(mine):
+                for was in [r["id"]] + r.get("absorbed", []):
+                    final[was] = f"{pid}-{n + 1}"
+        for r in records:
+            r["id"] = final[r["id"]]
+        for x in merges:  # a first measurement's merges, by the paint each color ended in
+            x["into"] = final[x["into"]]
+            x.pop("id")
+        new = [r["id"] for r in records]
+    else:
+        new = [i for i in new if any(r["id"] == i for r in records)]
+    paints, what = _entries(records, plan, order, white, dark, dark_name)
+    shares = {r["id"]: {q: round(v, 4) for q, v in sorted(r["shares"].items(), key=lambda kv: order.index(kv[0]))}
+              for r in records}
+    over = (over_target(paints, fixed, held) if max_mixes is not None and len(base_mixes(paints)) > max_mixes else [])
+    return {"paints": paints, "merges": merges, "accents": sorted(accents(paints)), "shares": shares,
+            "kept_names": what["kept_names"], "over_target": over, "first": first, "changed": what["changed"],
+            "kept": what["kept"], "new": new, "removed": removed}
 
-    # a paint that moved less than KEEP_NAME from a paint it came from keeps that paint's name and used_for: one
-    # from the part it mostly covers first, then the nearest
-    claims = sorted((part != home(p), mixing.delta_e(p["hex"], old[o]["hex"]), p["id"], o)
-                    for p in paints for part, o in p["origins"] if _has_hex(old[o]))
-    kept_names: dict[str, str] = {}
-    for _, de, pid, o in claims:
-        if de < KEEP_NAME and pid not in kept_names and o not in kept_names.values():
-            kept_names[pid] = o
 
-    used: dict[str, list[str]] = {}
-    for s in _steps(stages):
-        for c in s["paints"]:
-            if s["part"] not in used.setdefault(c, []):
-                used[c].append(s["part"])
-    out = []
-    for p in sorted(paints, key=lambda p: (order.index(home(p)), p["id"])):
-        entry = {"id": p["id"]}
-        if p["id"] in kept_names:
-            o = old[kept_names[p["id"]]]
-            entry.update({k: o[k] for k in ("name", "used_for") if o.get(k)})
-        entry["hex"] = p["hex"]
-        if p.get("of"):
-            entry["of"], entry["plus"] = p["of"], p["plus"]
-        entry["sample_x"], entry["sample_y"] = p["sample_x"], p["sample_y"]
-        entry["parts"] = sorted(used.get(p["id"]) or list(p["shares"]), key=order.index)
-        out.append(entry)
-    shares = {p["id"]: {q: round(v, 4) for q, v in sorted(p["shares"].items(), key=lambda kv: order.index(kv[0]))}
-              for p in paints}
-    over = over_target(out) if max_mixes is not None and len(base_mixes(out)) > max_mixes else []
-    return {"paints": out, "stages": stages, "merges": merges, "step_merges": step_merges,
-            "accents": sorted(accents(out)), "shares": shares, "kept_names": kept_names, "over_target": over}
+def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes: int | None,
+        white: tuple = (255, 255, 255), dark: tuple = (20, 20, 22), dark_name: str = "black") -> dict:
+    """One more measured color for one part: the part is clustered into one more color than it has paints, its
+    paints keep the clusters nearest them (a paint only this part has moves to its cluster), and the color left
+    over is a new paint with the next free id and "added": true, so no later run merges it. Nothing is merged and
+    no other part is touched. When the left-over color is within TINT of one of the part's paints, the part has no
+    other distinct color: nothing is added, and `problems` says so.
+
+    Returns measure()'s keys (with "added": the new paint's id or None) and "problems"."""
+    m = _Measure(finish, plan, owner)
+    order = m.order
+    if part not in order:
+        raise ValueError(f"{part!r} isn't one of the plan's parts ({', '.join(order)})")
+    records, removed = _existing(plan, order)
+    mine = [r for r in records if part in r["members"]]
+    colors = m.colors(part, len(mine) + 1)
+    problems, new_id = [], None
+    for r in records:  # nothing else is measured again: shares only, for tints and the swatch sheet
+        r["shares"] = {q: 0.0 for q in r["members"]}
+    for q in order:
+        here = [r for r in records if q in r["members"]]
+        if not here:
+            continue
+        cs = m.colors(q, len(here))
+        if len(cs) >= len(here):
+            for r, j in zip(here, _match([r["hex"] for r in here], [c["hex"] for c in cs])):
+                r["shares"][q] = cs[j]["share"] * m.area[q]
+    if len(colors) < len(mine) + 1:
+        problems.append(f"{part}: has no pixels to measure. Check its outline (run outline) before adding a paint.")
+    else:
+        took = _match([r["hex"] for r in mine], [c["hex"] for c in colors])
+        j_left = next(j for j in range(len(colors)) if j not in took)
+        left = colors[j_left]
+        near = min(mine, key=lambda r: mixing.delta_e(left["hex"], r["hex"])) if mine else None
+        de = mixing.delta_e(left["hex"], near["hex"]) if near else None
+        sample = _sample(m.finish, m.owner == order.index(part))
+        d = _distances(sample, colors)
+        theirs = d[d.argmin(1) == j_left, j_left]
+        if near is not None and de <= TINT:
+            problems.append(f"{part}: its pixels don't hold another distinct color: the next one measured, "
+                            f"{left['hex']}, is only Delta E {de:.1f} from {near['id']} ({near['hex']}). Nothing was "
+                            "added. Split the pass by place instead, or let one step carry both.")
+        elif not theirs.size or (theirs < MAX_ERROR).mean() < REAL:
+            problems.append(f"{part}: its pixels don't hold another distinct color: the next one measured, "
+                            f"{left['hex']}, is a blend along its edges, not a color it has. Nothing was added.")
+        else:
+            for r, j in zip(mine, took):
+                r["shares"][part] = colors[j]["share"] * m.area[part]
+                if r["members"] == [part]:  # only this part's paints follow its new colors
+                    r["hex"], r["sample_x"], r["sample_y"] = colors[j]["hex"], colors[j]["x"], colors[j]["y"]
+            new_id = _next_id(part, {r["id"] for r in records} | {x["id"] for x in removed})
+            records.append({"id": new_id, "members": [part], "hex": left["hex"], "added": True,
+                            "shares": {part: left["share"] * m.area[part]}, "sample_x": left["x"], "sample_y": left["y"]})
+    if new_id is None:  # nothing changes: the plan's paints as they are
+        for r in records:
+            r["hex"], r["sample_x"], r["sample_y"] = r["old"]["hex"], r["old"].get("sample_x"), r["old"].get("sample_y")
+    paints, what = _entries(records, plan, order, white, dark, dark_name)
+    if removed:  # add touches no other part, so a paint whose part is gone stays until paints runs again
+        paints += [c for c in plan.get("paints") or [] if c.get("id") in {x["id"] for x in removed}]
+    used = set(_used(plan))
+    held = {p["id"] for p in paints if p.get("added")}
+    over = (over_target(paints, used & {p["id"] for p in paints}, held)
+            if max_mixes is not None and len(base_mixes(paints)) > max_mixes else [])
+    shares = {r["id"]: {q: round(v, 4) for q, v in r["shares"].items()} for r in records}
+    return {"paints": paints, "merges": [], "accents": sorted(accents(paints)), "shares": shares,
+            "kept_names": what["kept_names"], "over_target": over, "first": False, "changed": what["changed"],
+            "kept": what["kept"], "new": [new_id] if new_id else [], "removed": [], "added": new_id,
+            "problems": problems}
 
 
 def base_mixes(paints: list[dict]) -> list[str]:

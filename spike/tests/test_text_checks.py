@@ -357,6 +357,7 @@ class TextToolTests(unittest.TestCase):
     def test_after_draft_text_check_leaves_only_summary_and_tip_and_the_known_findings(self):
         for name in NAMES:
             r = self.results[(name, "check")]
+            self.assertEqual(r["problems"], r["failures"])  # "every tool prints problems"; failures stays for publish
             plan = fixture(name)[1]
             n = len(bs.flat_steps(plan))
             rest = [f for f in r["failures"] if not re.match(r"^[a-z0-9-]+: no (summary|tip) in text.json", f)]
@@ -418,6 +419,17 @@ class TextToolTests(unittest.TestCase):
         self.assertTrue(any(f.startswith("water-light: turns 12% of the picture from flat to textured") and
                             "Add one more pass" in f for f in out), out)
         self.assertFalse(any(f.startswith("branch-dark: turns") for f in self.results[("chickadee", "check")]["failures"]))
+
+    def test_publish_reports_the_same_texture_jumps_as_check(self):
+        lesson = self.copy("chickadee")
+        plan = fixture("chickadee")[1]
+        steps = bs.flat_steps(plan)
+        every = tools.texture_jumps(lesson, [lesson / f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)])
+        self.assertIn("branch-dark", [j["step"] for j in every])  # a flat coat measures its new edge, not texture
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        self.assertEqual(r["texture_jumps"], checks.texture_jumps(lesson, plan))
+        self.assertNotIn("branch-dark", [j["step"] for j in r["texture_jumps"]])
 
     def test_what_publish_counts_is_in_the_list(self):
         lesson = self.copy("chickadee")

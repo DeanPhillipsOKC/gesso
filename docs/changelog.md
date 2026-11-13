@@ -18,6 +18,11 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   check in one list that `publish --final` must clear for a version 2 lesson (#51). `publish` records a lesson in
   `site/history/` only when its folder is under `output/` (or `GESSO_HISTORY` is set), so a scratch or test publish
   no longer writes into the real history.
+- Fixes from three real v2 runs (2026-11-13): `outline` and `part-colors` need only the parts; `paints` measures
+  with no steps, keeps every id on a rerun, never merges a paint a step uses, and `paints --add <part>` adds one
+  color; the background render is asked for above 2% objects; an area's hole that fell behind it, and a marks part
+  on a marks part, are reported; `publish` tolerates odd notes, matches `check`'s texture jumps, names step 7b, and
+  lists a same-session text review under Known problems; `check` prints `problems`.
 
 ## POC 0.26.1 (2026-11-12)
 - The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's

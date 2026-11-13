@@ -25,10 +25,17 @@ START, END = "<!--known-problems-->", "<!--/known-problems-->"
 GH_PATHS = [r"C:\Program Files\GitHub CLI\gh.exe", "/c/Program Files/GitHub CLI/gh.exe"]
 
 
+SAME_CONTEXT = "The text review was done by the same session that wrote the text, not a fresh one."
+
+
 def left(data: dict) -> list[dict]:
-    """[{"step": n, "name": ..., "problem": ...}] for each problem a review found and the run left as it is."""
+    """[{"step": n, "name": ..., "problem": ...}] for each problem a review found and the run left as it is. For a
+    version 2 lesson whose review.json says "review_context": "same" (the skill couldn't start a fresh reviewer),
+    that too: a review by the writer misses what the writer takes for granted."""
     index = {s["id"]: (i + 1, s.get("name", s["id"])) for i, s in enumerate(data.get("stages") or [])}
     out = []
+    if data.get("plan_version") == 2 and data.get("review_context") == "same":
+        out.append({"step": None, "name": "", "problem": SAME_CONTEXT})
     for key in ("review_issues", "text_issues"):
         for x in data.get(key) or []:
             if not isinstance(x, dict) or not str(x.get("action", "")).lower().startswith(("left", "flag")):
