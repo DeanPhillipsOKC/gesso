@@ -521,7 +521,7 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
         r["shares"] = {q: 0.0 for q in r["members"]}
     for q in order:
         here = [r for r in records if q in r["members"]]
-        if q == part or not here:
+        if not here:
             continue
         cs = m.colors(q, len(here))
         if len(cs) >= len(here):
