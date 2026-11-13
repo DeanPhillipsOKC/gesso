@@ -107,5 +107,33 @@ class SiteVersionTests(unittest.TestCase):
         self.assertIn(first.name, (lesson / "v" / "20261111-142734" / "index.html").read_text(encoding="utf-8"))
         self.assertIn(later.name, (lesson / "index.html").read_text(encoding="utf-8"))
 
+    def test_refresh_makes_the_newest_hands_off_run_the_default(self):  # owner, 2026-11-13
+        from unittest import mock
+        from PIL import Image
+        runs = [self.output / "balloon_skill_20261111-142734", self.output / "balloon_skill_20261112-084806"]
+        for d in runs:
+            data = json.loads((d / "lesson.json").read_text(encoding="utf-8"))
+            data["photo_read"] = {"subject": "Balloon"}
+            (d / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
+            Image.new("RGB", (8, 8)).save(d / "f.png")
+            (d / "sealed.json").unlink()
+            provenance.seal(d, data)
+        with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
+            site_lessons.add(runs[0], "lavender", self.site)
+            site_lessons.refresh(self.site, self.output)
+        entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+        # the newer hands-off run is the default; the recut and the unsealed runs after it are passed over
+        self.assertEqual(entry["source"], "balloon_skill_20261112-084806")
+        self.assertEqual([(v["id"], v["current"]) for v in entry["versions"]],
+                         [("20261112-084806", True), ("20261111-142734", False)])
+        lesson = self.site / "lessons" / "lavender"
+        self.assertIn(runs[1].name, (lesson / "index.html").read_text(encoding="utf-8"))
+        self.assertIn(runs[0].name, (lesson / "v" / "20261111-142734" / "index.html").read_text(encoding="utf-8"))
+        with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
+            site_lessons.refresh(self.site, self.output)  # again: nothing changes
+        self.assertEqual(json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]["source"],
+                         "balloon_skill_20261112-084806")
+
+
 if __name__ == "__main__":
     unittest.main()

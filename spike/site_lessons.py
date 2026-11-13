@@ -160,10 +160,26 @@ def known_problems_for(site: Path, x: dict, output: Path) -> int:
     return count
 
 
+def newest_hands_off(photo: str, output: Path, remove: tuple[str, ...] = ()) -> Path | None:
+    """The newest sealed, hands-off run of a picture in `output` that can be shown, or None."""
+    for run in sorted(output.glob(f"{photo}_skill_*"), reverse=True):
+        if (run.name.split("_skill_")[-1] not in remove and (run / "lesson.json").exists()
+                and (run / "lesson-standalone.html").exists() and hands_off(run)):
+            return run
+    return None
+
+
 def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str, ...] = ()) -> dict:
-    """Pick up new runs of every lesson on the site as versions, and rebuild the list. It only adds (#83): a version
-    leaves a tile, and its page the site, only when its run time is named in `remove` (it stays in the history)."""
+    """Pick up new runs of every lesson on the site as versions, make each tile open its newest hands-off run (owner,
+    2026-11-13: "Should use newest untouched run"), and rebuild the list. It only adds (#83): a version leaves a
+    tile, and its page the site, only when its run time is named in `remove` (it stays in the history)."""
     manifest = site / "lessons.json"
+    lessons = json.loads(manifest.read_text(encoding="utf-8"))
+    for x in list(lessons):
+        photo = x["source"].split("_skill_")[0]
+        newest = newest_hands_off(photo, output, remove)
+        if newest is not None and newest.name > f"{photo}_skill_{x['source'].split('_skill_')[-1]}":
+            add(newest, x["slug"], site)  # the old default stays as a version (#83)
     lessons = json.loads(manifest.read_text(encoding="utf-8"))
     for x in lessons:
         gone = tuple(r for r in remove if r != x["source"].split("_skill_")[-1])  # never the default's own page

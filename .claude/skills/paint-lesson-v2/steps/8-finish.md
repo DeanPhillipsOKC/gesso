@@ -47,11 +47,11 @@ Otherwise, in this order, never forcing anything:
    `$PY -c "import sys; sys.path.insert(0, 'spike'); import history; history.build_page()"`.
 5. The picture already has a tile when an entry in `site/lessons.json` has a `source` that starts with
    `<photo stem>_skill_` (the tile's slug may differ: `lavender-balloon` for `balloon-lavender`). Then run
-   `site-refresh`: it adds this run as a version and leaves the tile's default alone. It also adds any other
-   hands-off runs it finds in `output/`, which is the rule too; name them in the pull request. For a new picture,
-   run `site-add --lesson <lesson> --slug <photo stem>`, which makes its tile. Never run `site-add` for a picture
-   that has a tile: it would change the tile's default. Both tools refuse a run that isn't hands-off; don't work
-   around that.
+   `site-refresh`: it adds this run, and makes it what the tile opens, since it's the newest hands-off run (owner,
+   2026-11-13); the old default stays as a version. It also adds any other hands-off runs it finds in `output/`,
+   which is the rule too; name them in the pull request. For a new picture, run
+   `site-add --lesson <lesson> --slug <photo stem>`, which makes its tile. Both tools refuse a run that isn't
+   hands-off; don't work around that.
 6. Unless whoever started you said they'll handle it (say, to put several runs in one pull request): commit
    `site/`, push the branch, and open a pull request named for the run. The repo's pull request rules
    (`docs/decisions.md`, How we work) take it from there.

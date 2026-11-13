@@ -1,14 +1,62 @@
 [
   {
+    "slug": "sleeping-cat",
+    "title": "A gray tabby cat asleep",
+    "subject": "A gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden sill",
+    "steps": 13,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
+    "published": "2026-11-13",
+    "source": "sleeping-cat_skill_20261113-175836",
+    "versions": [
+      {
+        "id": "20261113-175836",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 13,
+        "href": "lessons/sleeping-cat/",
+        "current": true
+      }
+    ],
+    "known": 4
+  },
+  {
+    "slug": "snow-lantern",
+    "title": "A brass lantern glowing on a snowy wooden fence post at night",
+    "subject": "A brass lantern glowing on a snowy wooden fence post at night",
+    "steps": 21,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
+    "published": "2026-11-13",
+    "source": "snow-lantern_skill_20261113-175843",
+    "versions": [
+      {
+        "id": "20261113-175843",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/snow-lantern/",
+        "current": true
+      }
+    ],
+    "known": 5
+  },
+  {
     "slug": "red-sailboat",
     "title": "A small red sailboat",
-    "subject": "A small red sailboat with white sails on teal water at sunset: a purple-to-orange sky, a pale sun low over a purple hill on the left, a gold sun path on the water, and the boat's broken reflection",
-    "steps": 16,
-    "canvas": "14 x 11 in",
+    "subject": "A small red sailboat with white sails on teal water at sunset",
+    "steps": 18,
+    "canvas": "",
     "tubes": 5,
-    "version": "POC 1.0.1",
+    "version": "POC 1.1.0",
     "published": "2026-11-13",
-    "source": "red-sailboat_skill_20261113-130625",
+    "source": "red-sailboat_skill_20261113-174242",
     "versions": [
       {
         "id": "20261113-174242",
@@ -17,8 +65,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 18,
-        "href": "lessons/red-sailboat/v/20261113-174242/",
-        "current": false
+        "href": "lessons/red-sailboat/",
+        "current": true
       },
       {
         "id": "20261113-130625",
@@ -27,8 +75,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 16,
-        "href": "lessons/red-sailboat/",
-        "current": true
+        "href": "lessons/red-sailboat/v/20261113-130625/",
+        "current": false
       },
       {
         "id": "20261113-041240",
@@ -96,13 +144,13 @@
   {
     "slug": "chickadee",
     "title": "A black-capped chickadee perched on a curved autumn branch",
-    "subject": "A black-capped chickadee perched on a curved autumn branch, with four orange and gold leaves, in a misty blue-gray and orange forest with a low sun",
-    "steps": 19,
-    "canvas": "14 x 11 in",
-    "tubes": 10,
-    "version": "POC 1.0.1",
+    "subject": "A black-capped chickadee perched on a curved autumn branch",
+    "steps": 17,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
     "published": "2026-11-13",
-    "source": "chickadee_skill_20261113-130614",
+    "source": "chickadee_skill_20261113-174245",
     "versions": [
       {
         "id": "20261113-174245",
@@ -111,8 +159,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 17,
-        "href": "lessons/chickadee/v/20261113-174245/",
-        "current": false
+        "href": "lessons/chickadee/",
+        "current": true
       },
       {
         "id": "20261113-130614",
@@ -121,8 +169,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 19,
-        "href": "lessons/chickadee/",
-        "current": true
+        "href": "lessons/chickadee/v/20261113-130614/",
+        "current": false
       },
       {
         "id": "20261113-041241",
@@ -175,18 +223,18 @@
         "current": false
       }
     ],
-    "known": 7
+    "known": 5
   },
   {
     "slug": "lavender-balloon",
-    "title": "A striped hot air balloon over rows of lavender at sunset",
-    "subject": "A striped hot air balloon over rows of lavender at sunset, with a lone tree on a golden hill",
-    "steps": 23,
-    "canvas": "14 x 11 in",
-    "tubes": 11,
-    "version": "POC 1.0.1",
+    "title": "A striped hot air balloon over a lavender field at sunset",
+    "subject": "A striped hot air balloon over a lavender field at sunset",
+    "steps": 24,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
     "published": "2026-11-13",
-    "source": "balloon-lavender_skill_20261113-130631",
+    "source": "balloon-lavender_skill_20261113-174242",
     "versions": [
       {
         "id": "20261113-174242",
@@ -195,8 +243,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261113-174242/",
-        "current": false
+        "href": "lessons/lavender-balloon/",
+        "current": true
       },
       {
         "id": "20261113-130631",
@@ -205,8 +253,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 23,
-        "href": "lessons/lavender-balloon/",
-        "current": true
+        "href": "lessons/lavender-balloon/v/20261113-130631/",
+        "current": false
       },
       {
         "id": "20261113-041226",
@@ -259,54 +307,6 @@
         "current": false
       }
     ],
-    "known": 4
-  },
-  {
-    "slug": "sleeping-cat",
-    "title": "A gray tabby cat asleep",
-    "subject": "A gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden sill",
-    "steps": 13,
-    "canvas": "",
-    "tubes": 5,
-    "version": "POC 1.1.0",
-    "published": "2026-11-13",
-    "source": "sleeping-cat_skill_20261113-175836",
-    "versions": [
-      {
-        "id": "20261113-175836",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:58",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 13,
-        "href": "lessons/sleeping-cat/",
-        "current": true
-      }
-    ],
-    "known": 4
-  },
-  {
-    "slug": "snow-lantern",
-    "title": "A brass lantern glowing on a snowy wooden fence post at night",
-    "subject": "A brass lantern glowing on a snowy wooden fence post at night",
-    "steps": 21,
-    "canvas": "",
-    "tubes": 5,
-    "version": "POC 1.1.0",
-    "published": "2026-11-13",
-    "source": "snow-lantern_skill_20261113-175843",
-    "versions": [
-      {
-        "id": "20261113-175843",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:58",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 21,
-        "href": "lessons/snow-lantern/",
-        "current": true
-      }
-    ],
-    "known": 5
+    "known": 6
   }
 ]
