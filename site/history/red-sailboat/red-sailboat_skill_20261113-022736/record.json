@@ -1,0 +1,142 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261113-022736",
+  "started": "2026-11-13 02:27",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "965705c898f11941",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.26.1",
+        "commit": "647fb55",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 0.26.1",
+        "commit": "647fb55",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T02:44:29"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 17,
+        "words": 2297,
+        "tubes": 5,
+        "cost_usd": 0.084,
+        "minutes": 0.7,
+        "paid_renders": 2,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 12.5,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "land",
+          "name": "Paint the hill and far shore",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "water-base",
+          "name": "Lay in the deep teal water",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "water-dark",
+          "name": "Work dark streaks into the water",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "streaks",
+          "name": "Streak the mid teal across the water",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull",
+          "name": "Block in the red hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sail",
+          "name": "Paint the white sail",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull-rim",
+          "name": "Line the deck rim",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mast",
+          "name": "Paint the mast and boom",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun-path-base",
+          "name": "Dash in the dull gold path",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun-path-bright",
+          "name": "Dash the bright gold on top",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-gray",
+          "name": "Pull down the sail's gray reflection",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-white",
+          "name": "Pull down the white of the sail",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-red",
+          "name": "Pull down the red of the hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-mast",
+          "name": "Zigzag the mast's reflection",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "ripples",
+          "name": "Dash the light ripples",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
