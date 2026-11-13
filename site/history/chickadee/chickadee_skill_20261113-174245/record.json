@@ -1,0 +1,138 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261113-174245",
+  "started": "2026-11-13 17:42",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "60f8058da07b510e",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 1.1.0",
+        "commit": "bd9571d",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 1.1.0",
+        "commit": "bd9571d",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T18:03:23"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 17,
+        "words": 2393,
+        "tubes": 5,
+        "cost_usd": 0.131,
+        "minutes": 1.7,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 7,
+        "minutes_total": 17.8,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 5
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the misty sky from gray to gold",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the pale sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunks",
+          "name": "Pull the far misty trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "foliage",
+          "name": "Dab the dark hazy foliage",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-dark",
+          "name": "Pull the trunk and branch in dark bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-tan",
+          "name": "Dry-brush the light onto the bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-base",
+          "name": "Block in the four leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-light",
+          "name": "Light the sun side of the leaves in gold",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-base",
+          "name": "Block in the body in warm apricot",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-shade",
+          "name": "Shade the belly in tan",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-feathers",
+          "name": "Flick in the pale chest feathers",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "wing-base",
+          "name": "Block in the wing and tail in slate gray",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "wing-dark",
+          "name": "Shade the dark wing stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "wing-light",
+          "name": "Light the pale feather edges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cap",
+          "name": "Paint the black cap and bib",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cheek",
+          "name": "Paint the white cheek",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "feet",
+          "name": "Line in the legs and feet",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
