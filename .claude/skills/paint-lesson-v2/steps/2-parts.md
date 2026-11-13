@@ -66,8 +66,20 @@ the lesson paints each kind of thing the way the research says, every run.
    cards (`ls techniques/strokes`), never a stroke written out. Build it from the research file where it can
    (`docs/research/acrylic-paint-along.md`; say which sections in `sources`) and from the closest library element;
    where you go past them, say so in `sources` ("general practice: the research has no section on fur"). The lesson
-   marks that part's steps "technique not checked yet". Step 8 files it for the owner.
-4. Never edit a library element during a run. If one is close but wrong for this picture, draft your own with a new id.
+   marks that part's steps "technique not checked yet".
+4. **File it for the owner now**, while you draft it (`check` won't pass while a draft the plan uses has no
+   `filed`):
+   - Search: `gh api -X GET search/issues -f q="repo:DeanPhillipsOKC/gesso is:issue is:open element technique <what it's for>"`.
+   - An open issue already asks for this technique (an earlier run of this photo filed it): put its url in `filed`,
+     and comment on it only when your draft's steps differ from the one there (say how, and name this lesson folder).
+   - Otherwise file one: title "Element technique: <name>", labels `feature` and `status:needs-review`, and in the
+     body what it's for, why no library element fit, the draft's YAML, which lines came from the research and which
+     didn't, and the lesson folder: `gh api repos/DeanPhillipsOKC/gesso/issues -f title=... -f body=...
+     -f "labels[]=feature" -f "labels[]=status:needs-review"`. Put the new issue's url in `filed`.
+   - If GitHub can't be reached, say so in `notes.json` (`learned`) and in the report, and stop before the seal.
+   - A draft you stop using (you picked a library element after all) is deleted from `elements/`; `check` reports
+     one left over.
+5. Never edit a library element during a run. If one is close but wrong for this picture, draft your own with a new id.
 
 ## 2c. Outline them
 `outline --lesson <lesson>`, then **Read `parts/preview.jpg`**. Every part should be tinted where the part really

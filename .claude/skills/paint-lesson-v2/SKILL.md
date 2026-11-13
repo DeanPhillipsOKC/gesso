@@ -35,7 +35,7 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
    output file by hand to make a problem go away.
 4. **Technique comes from the technique file, the research file, the element techniques, and the cards**
    (`techniques/elements/`, `techniques/strokes/`, `techniques/basics/`), not from memory. Every part follows an
-   element technique; when none fits, you draft one in the lesson folder and file it for the owner (steps 2b, 8b2).
+   element technique; when none fits, you draft one in the lesson folder and file it for the owner (step 2b).
    When you rely on something they don't cover, say so in `notes.json` under `learned`.
 5. **One move per step.** One brush, one stroke, one to three paints. If a step needs "then", it's two steps.
 6. **Don't flip a card's or an element's `checked`.** The owner does that after painting from it.

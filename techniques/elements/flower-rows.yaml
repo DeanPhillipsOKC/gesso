@@ -7,10 +7,10 @@ medium: acrylic
 levels: [beginner]
 steps:
   - name: Lay in the field under the flowers
-    show: [flat]
+    show: [flat, blend]
     strokes: [horizontal-strokes, side-to-side-blend]
     value: dark
-    does: The whole field flat in its dark color, so no canvas shows. Let it dry before any flower goes on.
+    does: The whole field in its dark color (lighter at the back where the picture is), so no canvas shows. Let it dry before any flower goes on.
     mistake:
       mistake: Cutting the background in around each flower.
       why: Painting around flowers leaves messy halos and gaps.
@@ -20,6 +20,12 @@ steps:
     strokes: [toward-vanishing-point, horizontal-strokes]
     optional: true
     does: Thin warm strips between the near rows, aimed at one point on the horizon.
+  - name: Pull up the stems and leaves
+    show: [pass]
+    strokes: [liner, press-and-lift, thick-to-thin]
+    value: dark
+    optional: true
+    does: Thin stems and narrow leaves in a very dark green, where the flower has them (lupines, poppies).
   - name: Stamp the dark of the blooms
     show: [pass]
     strokes: [stamp, dotted-column, far-dots, petal-clusters]

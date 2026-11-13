@@ -543,18 +543,25 @@ checked: false
 - **The fit** (`elements.match`): a part's steps, in plan order, take the element's steps in order; an `optional`
   one may be skipped, a `repeat` one may take several. Each step's `show` and `stroke` must be among its element
   step's. Several fits can be possible (a shade pass and a light pass can use the same strokes), so the fit kept is
-  the first, in a fixed order, whose values agree best with the paints: a step on a `light` element step may not be
-  more than 3 Lab lightness units (`VALUE_SLACK`) darker than one on a `dark` step, and `mid` sits between. So the
-  plan still chooses the paints and how many passes, not another way to paint the thing.
+  the one whose values agree best with the paints: a step on a `light` element step may not be more than 3 Lab
+  lightness units (`VALUE_SLACK`) darker than one on a `dark` step, and `mid` sits between. On a tie, the fit that
+  uses the most of the element's steps, then the latest ones (a ripple pass is the ripple step, not one more pass
+  of lighter water). `check`, `draft-text`, and the page all use this same fit (`elements.plan_lightness`). The
+  value check is a loose aid, not a proof of order: a step that lands on an element step with no value (a shine, a
+  detail) isn't compared. So the plan still chooses the paints and how many passes, not another way to paint the
+  thing.
 - **`check`** (`elements.plan_problems`): no `technique_why`; a part with no `element` or no `element_why`; an
   element that doesn't exist or is for another kind of part; steps that don't follow it (the message lists its steps
   in order); values out of order (it names the element step the darker paint landed on and says the part may be
   missing that step); a drafted element that's broken, marked checked, uses a library id, or isn't filed yet.
 - **Drafting.** When nothing fits (fur, skin, glass, a night sky), the run writes `<lesson>/elements/<id>.yaml`
   with `drafted: true`, `checked: false`, and `sources` saying what came from the research and what didn't. The
-  lesson page marks that part's steps "Technique not checked yet". Before the seal the run files it as an issue
-  (`feature`, `status:needs-review`; search first and comment on a match) and puts the url in `filed`; `check`
-  won't pass while a used draft has none. The owner moves a good one into the library.
+  lesson page marks that part's steps "Technique not checked yet". The run files it as an issue when it drafts it
+  (skill step 2b: `feature`, `status:needs-review`; an open issue for the same technique, say from an earlier run of
+  the photo, is reused and commented on only when the draft differs) and puts the url in `filed`; `check` won't
+  pass while a used draft has none, and reports a draft no part uses. The owner moves a good one into the library.
+  Library elements aren't flagged on the page while `checked: false`, unlike cards: every step would carry the flag
+  until the owner's review; `elements --out` is that review.
 - **What the lesson takes from it.** `draft-text`'s watch-out line is the element step's `mistake` when it has one,
   else the card's first mistake. `lesson.json` gains `technique_picks` (`technique_why`, and per part its element,
   why, and what it left out) for the owner's review, and each step an `element` (`element`, `name`, `checked`,
@@ -562,8 +569,8 @@ checked: false
 - **On the fixtures and the gate runs:** the chickadee and sailboat fixtures and all three gate runs' lavender,
   chickadee, and sailboat parts follow their elements. Found by it: the gate run's balloon has stripes but no lit
   side (research section 4 gives a balloon one main highlight); the lavender fixture's rows are dabbed with one
-  bloom pass (research section 7: stamps, dark then mid then light), and its fields are shaded darker in front of
-  the research's lighter foreground texture. Those are left in the fixture as findings, as `texture_jumps` were.
+  bloom pass (research section 7: stamps, dark then mid then light), and its balloon goes straight to the stripes.
+  Those are left in the fixture as findings, as `texture_jumps` were.
 - Not covered by the research, so not in the library yet: fur, feathers, skin, glass and metal, a night sky and glow.
   A run drafts them; a research pass for each would let them in checked.
 

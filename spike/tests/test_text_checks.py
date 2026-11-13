@@ -358,10 +358,10 @@ class TextToolTests(unittest.TestCase):
     # Real findings on the fixtures, reported by check rather than hidden (see the issue's close-out):
     # the sailboat's lighter water and the lavender's mid dabs each turn over 10% of the picture from flat to
     # textured in one step, and the lavender's balloon teal can't be mixed from the five tubes with no paint note.
-    # The lavender fixture's fields, rows, and balloon don't follow their element techniques (#12; see
+    # The lavender fixture's rows and balloon don't follow their element techniques (#12; see
     # test_elements.PlanTests.test_the_fixture_findings).
     KNOWN = {"chickadee": [], "red-sailboat": [],
-             "lavender-balloon": ["fields: ", "lavender: ", "balloon: ", "paint Balloon teal can't be mixed"]}
+             "lavender-balloon": ["lavender: ", "balloon: ", "paint Balloon teal can't be mixed"]}
 
     def test_after_draft_text_check_leaves_only_summary_and_tip_and_the_known_findings(self):
         for name in NAMES:

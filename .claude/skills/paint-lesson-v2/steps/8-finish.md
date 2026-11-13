@@ -15,17 +15,9 @@ names), with these differences:
 - `learned`: anything the cards, the research, or this skill didn't cover, and any drafted line you had to rewrite
   (which card, which subject), so the card can be improved.
 
-## 8b2. File each drafted element technique
-For each file in `<lesson>/elements/` (step 2b), before the seal:
-1. Search first: `gh api -X GET search/issues -f q="repo:DeanPhillipsOKC/gesso is:issue element technique <what it's for>"`.
-   If an open issue already asks for this technique, comment on it with your draft and this lesson's folder name.
-2. Otherwise file one: title "Element technique: <name>", labels `feature` and `status:needs-review`, and in the
-   body what it's for, why no library element fit, the draft's YAML, which parts of it came from the research and
-   which didn't, and the lesson folder. Use `gh api repos/DeanPhillipsOKC/gesso/issues -f title=... -f body=...
-   -f "labels[]=feature" -f "labels[]=status:needs-review"`.
-3. Put the issue's url in the draft as `filed: <url>`. `check` refuses to seal while a draft used by the plan has
-   no `filed`.
-If you can't reach GitHub, say so in the report, leave `filed` empty, and stop before the seal: the owner decides.
+## 8b2. Drafted element techniques
+Each file in `<lesson>/elements/` was filed in step 2b. If you changed a draft since, comment the new version on its
+issue. `check` has already confirmed every used draft has `filed`.
 
 ## 8c. Seal
 `publish --lesson <lesson> --final`. It runs `check` and refuses with a list until it's clean. Fix what it lists

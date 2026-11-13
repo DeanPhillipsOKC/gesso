@@ -68,9 +68,7 @@ def known(lesson: Path | None = None) -> dict[str, dict]:
     """The library, plus what this lesson drafted (a draft can't take a library id: problems says so)."""
     out = library()
     for k, v in (drafted(lesson) if lesson else {}).items():
-        out.setdefault(k, {**v, "_draft_clash": False})
-        if out[k] is not v and not out[k].get("drafted"):
-            out[k] = {**out[k], "_draft_clash": True}
+        out[k] = {**out[k], "_draft_clash": True} if k in out else v
     return out
 
 
@@ -176,9 +174,11 @@ def match(steps: list[dict], element: dict, lightness: dict[str, float] | None =
                             "Change the steps to follow it, or pick another element (tools.py elements lists them)."]
     # of the fits, the one whose values agree best with the paints (a pass on the shade slot or the light slot
     # can use the same strokes: the paint says which it is); the first such fit, so the same plan gives the same fit
-    scored = [(len(_value_problems(steps, slots, f, lightness, eid)) if lightness else 0, n_, f)
-              for n_, f in enumerate(fits_all)]
-    _, _, best = min(scored)
+    # among fits that agree as well, the one that uses the most of the element's steps, then the latest ones: a ripple
+    # pass after a lighter-water pass is the ripple step, not one more lighter-water pass (review of #111)
+    scored = [(len(_value_problems(steps, slots, f, lightness, eid)) if lightness else 0, -len(set(f)), [-k for k in f],
+               n_, f) for n_, f in enumerate(fits_all)]
+    *_, best = min(scored)
     where: list[int | None] = list(best)
     return where, (_value_problems(steps, slots, best, lightness, eid) if lightness else [])
 
@@ -237,12 +237,7 @@ def plan_problems(plan: dict, elements: dict[str, dict] | None = None, lesson: P
     out: list[str] = []
     if not (plan.get("technique_why") or "").strip():
         out.append("no technique_why: one line on why this approach fits the picture and the level")
-    hexes = {c["id"]: c["hex"] for c in plan.get("paints") or [] if c.get("hex")}
-    lightness = None
-    if hexes:
-        import mixing
-
-        lightness = {k: mixing._lab(mixing.hex_rgb(h))[0] for k, h in hexes.items()}
+    lightness = plan_lightness(plan)
     by_part: dict[str, list[dict]] = {}
     for st in plan.get("stages") or []:
         for s in st.get("steps") or []:
@@ -276,17 +271,32 @@ def plan_problems(plan: dict, elements: dict[str, dict] | None = None, lesson: P
     if lesson is not None:
         drafts = drafted(lesson)
         out += problems(drafts, draft=True)
+        for eid in sorted(set(drafts) - used_drafts):
+            out.append(f"elements/{eid}.yaml was drafted but no part uses it. Delete it, or name it on the part it was "
+                       "drafted for.")
         for eid in sorted(used_drafts):
             if not (drafts.get(eid) or {}).get("filed"):
                 out.append(f"elements/{eid}.yaml was drafted for this lesson and isn't filed for the owner yet. File it "
-                           "as an issue (search first; comment on a matching one), then put its url in filed.")
+                           "now, as step 2b says (search first; reuse a matching issue), and put its url in filed.")
     return out
+
+
+def plan_lightness(plan: dict) -> dict[str, float] | None:
+    """{paint id: Lab lightness} from the plan's measured paints, or None before there are any. Every caller of
+    match on a plan uses it, so check, draft-text, and the page see the same fit."""
+    hexes = {c["id"]: c["hex"] for c in plan.get("paints") or [] if c.get("hex")}
+    if not hexes:
+        return None
+    import mixing
+
+    return {k: mixing._lab(mixing.hex_rgb(h))[0] for k, h in hexes.items()}
 
 
 def step_elements(plan: dict, elements: dict[str, dict]) -> dict[str, dict]:
     """{step id: {"element", "name", "checked", "drafted", "slot", "mistake"}} for every step whose part names an
     element that exists: what the page and draft-text show."""
     out: dict[str, dict] = {}
+    lightness = plan_lightness(plan)
     by_part: dict[str, list[dict]] = {}
     for st in plan.get("stages") or []:
         for s in st.get("steps") or []:
@@ -296,7 +306,7 @@ def step_elements(plan: dict, elements: dict[str, dict]) -> dict[str, dict]:
         if not el:
             continue
         steps = by_part.get(p["id"]) or []
-        where, _ = match(steps, el)
+        where, _ = match(steps, el, lightness)
         slots = el.get("steps") or []
         for s, k in zip(steps, where):
             slot = slots[k] if k is not None else {}

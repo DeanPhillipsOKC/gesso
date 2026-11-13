@@ -87,9 +87,9 @@ class MatchTests(unittest.TestCase):
     rows = el.library()["flower-rows"]
 
     def test_lavender_rows_fit_with_and_without_the_optional_paths(self):
-        self.assertEqual(el.match(ROWS, self.rows, LIGHT), ([0, 1, 2, 3, 4], []))
+        self.assertEqual(el.match(ROWS, self.rows, LIGHT), ([0, 1, 3, 4, 5], []))
         where, wrong = el.match([ROWS[0]] + ROWS[2:], self.rows, LIGHT)
-        self.assertEqual((where, wrong), ([0, 2, 3, 4], []))
+        self.assertEqual((where, wrong), ([0, 3, 4, 5], []))
 
     def test_a_missing_pass_or_another_stroke_is_refused_with_the_recipe(self):
         _, wrong = el.match(ROWS[:3] + ROWS[4:], self.rows)  # no mid pass
@@ -116,14 +116,35 @@ class MatchTests(unittest.TestCase):
         L = {"gold": 60.0, "red": 45.0, "blue": 35.0, "dark": 20.0, "pale": 85.0}
         where, wrong = el.match(steps, ball, L)
         self.assertEqual(wrong, [])
-        # the stripes repeat the sections step; the shade has no value of its own to tell it from one more section,
-        # and the first fit that agrees is kept; the pale paint is the light step
-        self.assertEqual(where, [0, 1, 1, 1, 3])
+        # the stripes repeat the sections step; the shade goes on the shade step (the fit using the most of the
+        # element's steps), so its value is checked too; the pale paint is the light step
+        self.assertEqual(where, [0, 1, 1, 2, 3])
         # stripes and no lit side (the gate run's balloon): a stripe has to be the light step, it's darker than the
         # base, and the message says the part is missing a step
         _, wrong = el.match(steps[:3], ball, L)
         self.assertEqual(len(wrong), 1)
         self.assertIn("missing that one", wrong[0])
+
+    def test_a_ripple_pass_is_the_ripple_step_and_shows_its_mistake(self):
+        water = el.library()["water"]
+        steps = [step("base", "flat", "horizontal-strokes", ["d"]), step("light", "pass", "horizontal-strokes", ["l"]),
+                 step("rip", "pass", "horizontal-dashes", ["l"])]
+        self.assertEqual(el.match(steps, water, {"d": 30.0, "l": 70.0})[0], [0, 1, 2])
+        p = {"parts": [{"id": "water", "kind": "area", "element": "water"}],
+             "paints": [{"id": "d", "hex": "#123456"}, {"id": "l", "hex": "#a0c0e0"}],
+             "stages": [{"id": "w", "steps": [{**s, "part": "water"} for s in steps]}]}
+        marked = el.step_elements(p, el.library())
+        self.assertEqual(marked["rip"]["mistake"]["mistake"], "Ripple lines the same length everywhere.")
+
+    def test_check_and_the_page_use_the_same_fit(self):
+        for name in NAMES:
+            p = plan(name)
+            light = el.plan_lightness(p)
+            marked = el.step_elements(p, el.library())
+            for part in p["parts"]:
+                steps = [s for st in p["stages"] for s in st["steps"] if s["part"] == part["id"]]
+                where, _ = el.match(steps, el.library()[part["element"]], light)
+                self.assertEqual([marked[s["id"]]["slot"] for s in steps], where, (name, part["id"]))
 
     def test_the_same_plan_gives_the_same_fit(self):
         a = el.match(ROWS, self.rows, LIGHT)
@@ -142,12 +163,12 @@ class PlanTests(unittest.TestCase):
 
     def test_the_fixture_findings(self):
         """The chickadee and sailboat follow their elements. The lavender fixture doesn't, as the owner found
-        (#12): its rows are dabbed, not stamped, with no separate dark bloom pass; its fields are shaded darker
-        where the research lightens the foreground; its balloon goes straight to the stripes and basket."""
+        (#12): its rows are dabbed, not stamped, with no separate dark bloom pass; its balloon goes straight to the
+        stripes and basket. Its fields, a coat then a darker front, follow field-grass."""
         self.assertEqual(el.plan_problems(plan("chickadee"), el.library()), [])
         self.assertEqual(el.plan_problems(plan("red-sailboat"), el.library()), [])
         out = el.plan_problems(plan("lavender-balloon"), el.library())
-        self.assertEqual([x.split(":")[0] for x in out], ["fields", "lavender", "balloon"])
+        self.assertEqual([x.split(":")[0] for x in out], ["lavender", "balloon"])
 
     def test_no_element_no_reason_wrong_kind_and_unknown(self):
         p = plan("red-sailboat")
@@ -182,6 +203,20 @@ class PlanTests(unittest.TestCase):
             marked = el.step_elements(p, el.known(lesson))
             self.assertTrue(marked["bird-body"]["drafted"])
             self.assertFalse(marked["sky-blend"]["drafted"])
+            # a draft no part uses is reported
+            (lesson / "elements" / "spare.yaml").write_text(yaml.safe_dump({**draft, "id": "spare"}), encoding="utf-8")
+            self.assertTrue(any("spare.yaml was drafted but no part uses it" in x for x in el.plan_problems(p, lesson=lesson)))
+            (lesson / "elements" / "spare.yaml").unlink()
+            # a new id missing drafted: true is told so, not blamed on an id clash
+            nodraft = {**draft, "id": "scales"}
+            nodraft.pop("drafted")
+            (lesson / "elements" / "scales.yaml").write_text(yaml.safe_dump(nodraft), encoding="utf-8")
+            p["parts"][5]["element"] = "scales"  # the leaves
+            out = el.plan_problems(p, lesson=lesson)
+            self.assertTrue(any("needs drafted: true" in x for x in out))
+            self.assertFalse(any("library element's id" in x for x in out))
+            (lesson / "elements" / "scales.yaml").unlink()
+            p["parts"][5]["element"] = "shaped-object"
             # a draft can't take a library id
             clash = lesson / "elements" / "foliage.yaml"
             clash.write_text(yaml.safe_dump({**draft, "id": "foliage"}), encoding="utf-8")

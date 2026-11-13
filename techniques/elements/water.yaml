@@ -13,7 +13,7 @@ steps:
     does: The water's base in loose left and right strokes, a few darker streaks left in for ripples.
   - name: Streak in the lighter water
     show: [pass, full]
-    strokes: [horizontal-strokes, horizontal-dashes, dry-brush]
+    strokes: [horizontal-strokes, dry-brush]
     value: light
     optional: true
     repeat: true

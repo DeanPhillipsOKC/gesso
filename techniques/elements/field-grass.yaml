@@ -11,6 +11,12 @@ steps:
     strokes: [horizontal-strokes, side-to-side-blend, x-stroke]
     value: dark
     does: The whole field as a base, lighter and cooler at the back, darker and greener at the front.
+  - name: Darken the front of the field
+    show: [pass]
+    strokes: [horizontal-strokes, dry-brush]
+    value: dark
+    optional: true
+    does: A darker, greener mix over the front of the field, so it's lighter at the back and darker in front.
   - name: Add the grass texture
     show: [pass, full]
     strokes: [flicking, fan-tapping, dry-brush, horizontal-strokes]
