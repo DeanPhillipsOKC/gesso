@@ -41,6 +41,36 @@
         "current": false
       },
       {
+        "id": "20261113-031313",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 15,
+        "href": "lessons/red-sailboat/v/20261113-031313/",
+        "current": false
+      },
+      {
+        "id": "20261113-022736",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:27",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-022736/",
+        "current": false
+      },
+      {
+        "id": "20261113-011140",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 19,
+        "href": "lessons/red-sailboat/v/20261113-011140/",
+        "current": false
+      },
+      {
         "id": "20261112-120423",
         "version": "POC 0.26.0",
         "when": "2026-11-12 12:04",
@@ -105,6 +135,36 @@
         "current": false
       },
       {
+        "id": "20261113-031315",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/chickadee/v/20261113-031315/",
+        "current": false
+      },
+      {
+        "id": "20261113-022752",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:27",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-022752/",
+        "current": false
+      },
+      {
+        "id": "20261113-011141",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 20,
+        "href": "lessons/chickadee/v/20261113-011141/",
+        "current": false
+      },
+      {
         "id": "20261112-100444",
         "version": "POC 0.25.0",
         "when": "2026-11-12 10:04",
@@ -156,6 +216,36 @@
         "kind": "steps cut from the finish",
         "steps": 21,
         "href": "lessons/lavender-balloon/v/20261113-041226/",
+        "current": false
+      },
+      {
+        "id": "20261113-031314",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 23,
+        "href": "lessons/lavender-balloon/v/20261113-031314/",
+        "current": false
+      },
+      {
+        "id": "20261113-022805",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:28",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-022805/",
+        "current": false
+      },
+      {
+        "id": "20261113-011147",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-011147/",
         "current": false
       },
       {

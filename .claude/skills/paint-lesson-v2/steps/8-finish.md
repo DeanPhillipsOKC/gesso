@@ -26,7 +26,18 @@ and run it again. After the seal, change nothing.
 Unless whoever started you said they'll handle it, publish `lesson-artifact.html` with the Artifact tool when it's
 available (copy it to the scratchpad as `<photo stem>-lesson.html`, `icon: "paint"`, a one-sentence `description`,
 private). It's a page this run just generated from your own text and pictures; if the tool won't take it, skip
-this and say so in the report. Don't run `site-add` or `site-refresh`; the owner decides what goes on the site.
+this and say so in the report.
+
+**Put it on the lessons site** (owner, 2026-11-13: every sealed hands-off run goes there). Only after the seal, and
+only if nothing changed after it:
+- the picture already has a tile (its slug is in `site/lessons.json`, e.g. `lavender-balloon` for
+  `balloon-lavender`): `site-refresh`. It adds this run as a version and leaves the tile's default alone;
+- a new picture: `site-add --lesson <lesson> --slug <photo stem>`. That makes its tile.
+Both refuse a run that isn't hands-off; don't work around that. Then, unless whoever started you said they'll handle
+it, commit `site/` (the lesson pages and `site/history/`) on a new branch off `origin/main`, push it, and open a pull
+request named for the run; the repo's pull request rules (`docs/decisions.md`, How we work) take it from there. If
+other runs share your checkout and are writing to `site/` too, don't commit: say so in the report and leave it to
+whoever started you.
 
 ## 8d. Report to the owner
 Start with anything that needs them:

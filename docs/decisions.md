@@ -121,6 +121,12 @@ with the date.
   After a tool fix, the site's lessons are rerun from their photos, never rebuilt from an old run's saved finish or
   plan (2026-11-13, owner: "I don't trust intermediate fixes because I'm only interested in things that actually
   fix the tool"). Don't plan or file a no-render rebuild of an old run.
+  **Every hands-off run goes on the site (2026-11-13, owner's call).** A sealed hands-off lesson is added to the
+  site as soon as it's made, as a version on its picture's tile (a new picture gets a new tile); nobody has to pick
+  it. A run that needed changing is kept only in the history. Owner: "I would like the default to be anytime a
+  complete lesson is generated, we capture it on the main site, unless we need to modify it, then we don't capture
+  it there, only in the history record. The only things that show up on the main page should be unmodified runs
+  from the tool end to end." Which version a tile opens by default is still the owner's pick (`site-add`).
 
 - **The repo is public (2026-11-12, owner's call).** It was private only by default ("meant as a portfolio piece
   later"); an audit found no secrets, personal details, or real photos in its history. Public, the issue links on
