@@ -129,6 +129,8 @@ with the date.
   from the tool end to end. If it would make things easier and less confusing, we could capture everything, even
   modified runs, but give them a sticker that says modified." Claude took the first way: the site tools already
   refuse a modified run, and the history already marks one with a ribbon.
+  **A tile opens its newest untouched run (2026-11-13, owner's call).** Owner: "Should use newest untouched run."
+  `site-refresh` makes each tile's newest hands-off run its default; the older ones stay as versions.
 
 - **The repo is public (2026-11-12, owner's call).** It was private only by default ("meant as a portfolio piece
   later"); an audit found no secrets, personal details, or real photos in its history. Public, the issue links on

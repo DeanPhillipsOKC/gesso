@@ -1109,11 +1109,13 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--lesson", required=True)
     p.add_argument("--slug", required=True, help="the lesson's address on the site, e.g. lavender-balloon")
     p.set_defaults(func=lambda a: {**__import__("site_lessons").add(Path(a.lesson), a.slug), "cost_usd": 0.0})
-    p = sub.add_parser("site-refresh", help="Free. Add new runs of the site's lessons as versions on their tiles.",
+    p = sub.add_parser("site-refresh", help="Free. Add new runs of the site's lessons as versions, and open each tile on its newest hands-off run.",
                        description="For every lesson on the site, each kept run of the same picture in output/ becomes a "
                                    "version in the tile's pick list (its page goes to lessons/<slug>/v/<run>/ once, never "
-                                   "rewritten). It only adds: versions already listed stay even when their run folder "
-                                   "isn't in output/, unless named in --remove. Commit and push site/ after.")
+                                   "rewritten). Each tile then opens its newest hands-off run (owner, 2026-11-13); the old "
+                                   "default stays as a version. It never drops a version: those already listed stay even "
+                                   "when their run folder isn't in output/, unless named in --remove. Commit and push "
+                                   "site/ after.")
     p.add_argument("--remove", nargs="+", default=[], metavar="RUN_TIME",
                    help="take these versions off the site by run time (e.g. 20261112-100455); they stay in the history")
     p.set_defaults(func=lambda a: {"versions": __import__("site_lessons").refresh(remove=tuple(a.remove)),

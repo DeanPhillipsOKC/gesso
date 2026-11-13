@@ -48,6 +48,9 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
             keep.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(out / "index.html", keep)
     shutil.copyfile(page, out / "index.html")
+    dup = out / "v" / lesson.name.split("_skill_")[-1]
+    if dup.is_dir():  # its old version page: the tile page is it now, and a later add() keeps the live page instead
+        shutil.rmtree(dup)
     finish = lesson / data["stages"][-1]["image"]
     thumb = ImageOps.exif_transpose(Image.open(finish)).convert("RGB")
     thumb.thumbnail((640, 640))
@@ -160,10 +163,26 @@ def known_problems_for(site: Path, x: dict, output: Path) -> int:
     return count
 
 
+def newest_hands_off(photo: str, output: Path, remove: tuple[str, ...] = ()) -> Path | None:
+    """The newest sealed, hands-off run of a picture in `output` that can be shown, or None."""
+    for run in sorted(output.glob(f"{photo}_skill_*"), reverse=True):
+        if (run.name.split("_skill_")[-1] not in remove and (run / "lesson.json").exists()
+                and (run / "lesson-standalone.html").exists() and hands_off(run)):
+            return run
+    return None
+
+
 def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str, ...] = ()) -> dict:
-    """Pick up new runs of every lesson on the site as versions, and rebuild the list. It only adds (#83): a version
-    leaves a tile, and its page the site, only when its run time is named in `remove` (it stays in the history)."""
+    """Pick up new runs of every lesson on the site as versions, make each tile open its newest hands-off run (owner,
+    2026-11-13: "Should use newest untouched run"), and rebuild the list. It only adds (#83): a version leaves a
+    tile, and its page the site, only when its run time is named in `remove` (it stays in the history)."""
     manifest = site / "lessons.json"
+    lessons = json.loads(manifest.read_text(encoding="utf-8"))
+    for x in list(lessons):
+        photo = x["source"].split("_skill_")[0]
+        newest = newest_hands_off(photo, output, remove)
+        if newest is not None and newest.name > f"{photo}_skill_{x['source'].split('_skill_')[-1]}":
+            add(newest, x["slug"], site)  # the old default stays as a version (#83)
     lessons = json.loads(manifest.read_text(encoding="utf-8"))
     for x in lessons:
         gone = tuple(r for r in remove if r != x["source"].split("_skill_")[-1])  # never the default's own page
@@ -255,7 +274,8 @@ window.addEventListener('pageshow', () => document.querySelectorAll('.card selec
 
 
 def build_index(site: Path, lessons: list[dict]) -> Path:
-    cards = "".join(card(x) for x in sorted(lessons, key=lambda x: x.get("published", ""), reverse=True))
+    cards = "".join(card(x) for x in sorted(lessons, key=lambda x: (x.get("published", ""), x.get("slug", "")),
+                                            reverse=True))
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">

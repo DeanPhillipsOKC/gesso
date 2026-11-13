@@ -23,8 +23,10 @@ Each tile's pick list holds every kept run of that picture (the run folders in `
 first, with the current one selected. Opening another version opens the lesson exactly as that run made it: its
 page is written once to `lessons/<slug>/v/<run time>/` and never rewritten (runs from before self-contained pages
 are built from their saved `lesson.json`, nothing rerun). After a new run of a picture that's on the site, run
-`python spike/tools.py site-refresh` and commit `site/`. To make a new run the default, `site-add` it; the old
-default's page is kept at `lessons/<slug>/v/<its run time>/` and stays in the list.
+`python spike/tools.py site-refresh` and commit `site/`. It makes each tile open its newest hands-off run (owner,
+2026-11-13: "Should use newest untouched run"); the old default's page is kept at
+`lessons/<slug>/v/<its run time>/` and stays in the list. `site-add` makes a tile for a new picture. Setting a
+default by hand with `site-add` lasts only until the next `site-refresh`.
 
 A refresh only adds (#83). `output/` isn't in git, so a fresh checkout has none of the older runs: a version already
 in `lessons.json` whose page is under `site/` stays whether or not its run folder is here. Runs found in `output/`
