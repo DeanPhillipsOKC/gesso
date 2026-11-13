@@ -659,9 +659,22 @@ def publish(a: argparse.Namespace) -> dict:
         lesson_data["provenance"] = result["provenance"] = provenance.of(lesson, lesson_data)
         (lesson / "lesson.json").write_text(json.dumps(lesson_data, indent=2), encoding="utf-8")
     # every publish that changes the lesson is kept, with its version (site/history/, owner, 2026-11-12)
-    from history import record
-    result["history"] = record(lesson, lesson_data, result)
+    # ... but only a real run's: a scratch or test folder published from elsewhere wrote into the real site/history/.
+    # GESSO_HISTORY (tests set it to a temp folder) records anywhere.
+    if history_wanted(lesson):
+        from history import record
+        result["history"] = record(lesson, lesson_data, result)
+    else:
+        result["history"] = "skipped: not under output/"
     return result
+
+
+def history_wanted(lesson: Path) -> bool:
+    """Whether publish records this lesson in the lesson history: a run under the repo's output/ folder, or anything
+    when GESSO_HISTORY points the history somewhere else."""
+    if os.environ.get("GESSO_HISTORY"):
+        return True
+    return (ROOT / "output").resolve() in Path(lesson).resolve().parents
 
 
 BROWSERS = [r"C:\Program Files\Google\Chrome\Application\chrome.exe",

@@ -95,7 +95,8 @@ class DraftTests(unittest.TestCase):
     def test_let_it_dry_follows_the_paint_underneath(self):
         d = by_id(self.built["chickadee"][3])
         self.assertNotIn("dry", kinds(d["sky-blend"]))  # nothing under the first step
-        self.assertEqual(d["sun"]["lines"][0]["text"], dt.DRY.format(what="the misty sky"))  # another stage: its name
+        self.assertEqual(d["sun"]["lines"][0]["text"], dt.DRY.format(what="the misty sunset sky"))  # this stage: the part
+        self.assertEqual(d["trunks"]["lines"][0]["text"], dt.DRY.format(what="the misty sky"))  # another stage: its name
         self.assertIn("the black cap and bib", d["bird-cheek"]["lines"][0]["text"])  # inside a stage: the part's name
         self.assertIn("the branch", d["bird-feet"]["lines"][0]["text"])  # the feet cross the branch and the bird
         self.assertIn("the chickadee", d["bird-feet"]["lines"][0]["text"])
@@ -478,11 +479,28 @@ class TextToolTests(unittest.TestCase):
         self.assertEqual(sun["stroke_cards"], ["small-circles"])
         html = (lesson / "lesson.html").read_text(encoding="utf-8")
         self.assertIn(f"<li>{sun['lines'][0]['text']}</li>", html)
+        self.assertNotIn('class="where-words"', html)  # the drafted where line says it; not twice
         code, r = run_tool("publish", "--lesson", str(lesson), "--final")
         self.assertEqual(code, 2)
         self.assertIn("sun: no tip in text.json", r["refused"])
         self.assertIn("water-light: turns", r["refused"])  # a real finding blocks the seal too
         self.assertEqual(r["refused"].count("texture_jumps"), 0)  # said once, in check's words
+
+    def test_publish_outside_output_leaves_the_history_alone(self):
+        import history
+        lesson = self.copy("chickadee")
+        old_env, old_home = os.environ.pop("GESSO_HISTORY"), history.HISTORY
+        history.HISTORY = self.root / "real-history"  # where it would have gone, had it recorded
+        try:
+            self.assertFalse(tools.history_wanted(lesson))
+            self.assertTrue(tools.history_wanted(tools.ROOT / "output" / "x_skill_20261113-090000"))
+            code, r = run_tool("publish", "--lesson", str(lesson))
+        finally:
+            os.environ["GESSO_HISTORY"], history.HISTORY = old_env, old_home
+        self.assertEqual(code, 0, r)
+        self.assertEqual(r["history"], "skipped: not under output/")
+        self.assertFalse((self.root / "real-history").exists())
+        self.assertTrue(tools.history_wanted(lesson))  # with GESSO_HISTORY set, as the other tests do
 
     def test_check_refuses_a_version_1_lesson(self):
         code, r = run_tool("check", "--lesson", str(tools.ROOT / "spike" / "tests" / "fixtures" / "v1-lesson"))

@@ -38,7 +38,8 @@ markers, so the lesson's pictures and text, and its hands-off seal, are untouche
 records each publish that changed the pictures or text, with a strip of every step and the version, commit, cost,
 redos, review fixes, and check flags. Each run shows the changelog entries since the run before it, which is where
 to look when a lesson got worse. Tick two runs to compare them. The full lessons stay local in
-`<lesson>/versions/<n>/`.
+`<lesson>/versions/<n>/`. Only runs under `output/` are recorded: a publish of a scratch or test folder says
+`"history": "skipped: not under output/"` (tests point `GESSO_HISTORY` at a temp folder to record anyway).
 
 - Record the owner's opinion of a run: `python spike/tools.py history-rate --run <output folder>[#n] --score 1-5
   --note "<their words>"`.
