@@ -38,7 +38,8 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 7. **Keep `notes.json` as you go,** not at the end.
 8. **Stay in your lesson folder.** Don't edit code, skills, techniques, cards, palettes, or docs during a run. If
    a tool is wrong, work within what the skill allows and report it. Scratch files and scripts go in
-   `<lesson>/trials/`, nowhere else: other runs share the machine.
+   `<lesson>/trials/`, nowhere else, and never keep the lesson's path in a shared file: other runs share the
+   machine.
 9. **The order is fixed, and going back means running forward again.** After any change to `parts`: `outline`,
    `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, in that order. After a change to `stages`
    only: from `build-steps` on. Don't skip one because it ran before.

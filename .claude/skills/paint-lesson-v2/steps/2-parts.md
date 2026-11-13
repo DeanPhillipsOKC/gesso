@@ -23,7 +23,8 @@ look like).
 | `thin` | long and narrow: a branch, a mast, a rail | `paths` (points along its middle, one list per limb), `width`, and the color fields below |
 | `marks` | paint with no single edge: clouds, mist, foliage clumps, a sun path, a reflection, a bird's black cap | `box` or `boxes`, and the color fields below |
 
-- Every part: `"id"` (a lowercase slug), `"name"` (how the page will say it: "The chickadee", "Far misty trunks").
+- Every part: `"id"` (a lowercase slug: letters, digits, and hyphens, no underscores), `"name"` (how the page will
+  say it: "The chickadee", "Far misty trunks").
 - Boxes are `[x0, y0, x1, y1]` as shares of the width and height, measured, 2 to 3% loose. For `marks`, **tight**:
   color is all that separates a mark from anything the same color in its box.
 - **Color fields** for `marks` and `thin`: `points_in` (5 to 8 spots on the part, one per shade of it) and
@@ -60,7 +61,7 @@ part worse, put its entry back the way it was.
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | run `part-colors` and give `colors_in` / `colors_out` as hex; or drop the part and use a pass |
 | An object took background, or came back in pieces | tighten or loosen its box; one box per thing |
-| An area left a hole that went to a part behind it (water around a hull went to the sky) | add `points_in` in the hole; or make what's there a `marks` child of the area |
+| An area left a hole that went to a part behind it (water around a hull went to the sky; soil paths in a field) | add `points_in` in the hole so the area takes it. If what's in the hole should be its own steps (soil paths), then also list it after the area as an `area` or `marks` part with that area as its `parent` |
 | A faint trace of an object shows in step pictures before its own step (seen in step 5) | its outline is too tight: loosen its box, or add `points_in` on the trace |
 
 **If a small part still won't come apart after 2 rounds, drop it**: take it out of `parts`, and let the part it sat
