@@ -43,7 +43,7 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
     before = next((x for x in lessons if x["slug"] == slug), {})
     old = before.get("source", "")
     if old and old != lesson.name and (out / "index.html").exists():  # #83: the old default stays as a version
-        keep = out / "v" / old.split("_skill_")[1] / "index.html"
+        keep = out / "v" / old.split("_skill_")[-1] / "index.html"
         if not keep.exists():
             keep.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(out / "index.html", keep)
@@ -107,7 +107,7 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
     or updated. A version leaves the list only when named in `remove`."""
     from history import run_time, stamp_at
     photo = current.split("_skill_")[0]
-    current_id = current.split("_skill_")[1]
+    current_id = current.split("_skill_")[-1]
     lesson_dir = site / "lessons" / slug
     versions: dict[str, dict] = {}
     for v in listed or []:
@@ -115,7 +115,7 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
         if v["id"] not in remove and page.exists():
             versions[v["id"]] = dict(v)
     for run in sorted(output.glob(f"{photo}_skill_*")):
-        rid = run.name.split("_skill_")[1]
+        rid = run.name.split("_skill_")[-1]
         if rid in remove or not (run / "lesson.json").exists():
             continue
         if not hands_off(run):
@@ -166,7 +166,7 @@ def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str
     manifest = site / "lessons.json"
     lessons = json.loads(manifest.read_text(encoding="utf-8"))
     for x in lessons:
-        gone = tuple(r for r in remove if r != x["source"].split("_skill_")[1])  # never the default's own page
+        gone = tuple(r for r in remove if r != x["source"].split("_skill_")[-1])  # never the default's own page
         x["versions"] = add_versions(site, x["slug"], x["source"], output, x.get("versions"), gone)
         for rid in gone:
             page = site / "lessons" / x["slug"] / "v" / rid
