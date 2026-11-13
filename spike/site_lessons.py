@@ -149,10 +149,11 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
 
 def known_problems_for(site: Path, x: dict, output: Path) -> int:
     """Refresh the known-problems section on the lesson's page and every version's page. Returns how many the
-    current one has (left as they are, plus open issues), for its tile."""
+    current one has (left as they are, plus open issues), for its tile. With the current run's folder not on this
+    machine (output/ isn't in git), the tile keeps the count it had."""
     from known_problems import refresh_page
     photo = x["source"].split("_skill_")[0]
-    count = 0
+    count = x.get("known", 0)
     for v in x.get("versions") or []:
         page = site / v["href"] / "index.html"
         run = output / f"{photo}_skill_{v['id']}"

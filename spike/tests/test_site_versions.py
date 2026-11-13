@@ -69,7 +69,7 @@ class SiteVersionTests(unittest.TestCase):
                    "steps": 2, "href": "lessons/lavender/v/20261111-142734/", "current": False}]
         (self.site / "lessons.json").write_text(json.dumps([{"slug": "lavender", "title": "Balloon", "steps": 2,
                                                              "canvas": "", "tubes": 0, "source": "balloon_skill_20261112-084806",
-                                                             "versions": listed}]), encoding="utf-8")
+                                                             "versions": listed, "known": 3}]), encoding="utf-8")
         empty = self.site.parent / "empty-output"
         empty.mkdir()
         self.assertEqual(site_lessons.refresh(self.site, empty), {"lavender": 2})
@@ -81,6 +81,7 @@ class SiteVersionTests(unittest.TestCase):
         entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
         self.assertEqual([v["id"] for v in entry["versions"]], ["20261112-084806"])
         self.assertFalse((lesson / "v" / "20261111-142734").exists())
+        self.assertEqual(entry["known"], 3)  # the run isn't here to count them again, so the tile keeps its count
 
     def test_site_add_over_a_default_keeps_the_old_default_as_a_version(self):  # #83
         from unittest import mock
