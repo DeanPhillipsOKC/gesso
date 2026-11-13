@@ -2,6 +2,7 @@
  "plan_version": 2,
  "photo": "spike/tests/fixtures/finishes/lavender-balloon.jpg",
  "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "Paint-along, back to front: a wide landscape with a balloon in front, the beginner approach with v2 rules.",
  "subject": "A hot air balloon over lavender fields at sunset",
  "focal_point": "the balloon",
  "light": "the setting sun, low center",
@@ -23,7 +24,9 @@
      1,
      0.52
     ]
-   ]
+   ],
+   "element": "sky-blend",
+   "element_why": "A sunset gradient, blended wet."
   },
   {
    "id": "clouds",
@@ -107,7 +110,9 @@
      0.6,
      0.42
     ]
-   ]
+   ],
+   "element": "clouds",
+   "element_why": "Clouds painted on the dry sky, base then lit tops."
   },
   {
    "id": "sun",
@@ -119,7 +124,9 @@
     0.37,
     0.41,
     0.45
-   ]
+   ],
+   "element": "simple-shape",
+   "element_why": "A small bright disk: one move."
   },
   {
    "id": "mountains",
@@ -130,7 +137,9 @@
     0.36,
     1,
     0.54
-   ]
+   ],
+   "element": "far-hills",
+   "element_why": "Distant mountains: one flat cool shape, no texture."
   },
   {
    "id": "fields",
@@ -141,7 +150,9 @@
     0.44,
     1,
     0.64
-   ]
+   ],
+   "element": "field-grass",
+   "element_why": "Gold fields: a base, then texture only in front."
   },
   {
    "id": "hedges",
@@ -205,7 +216,9 @@
      0.8,
      0.52
     ]
-   ]
+   ],
+   "element": "foliage",
+   "element_why": "Hedges are dabbed foliage."
   },
   {
    "id": "lavender",
@@ -216,7 +229,9 @@
     0.6,
     1,
     1
-   ]
+   ],
+   "element": "flower-rows",
+   "element_why": "Lavender rows: the field flat first, then dark, mid, and light stamps."
   },
   {
    "id": "tree",
@@ -227,7 +242,9 @@
     0.21,
     1,
     0.49
-   ]
+   ],
+   "element": "foliage",
+   "element_why": "A lone leafy tree: dark canopy, then mid and light dabs."
   },
   {
    "id": "trunk",
@@ -267,7 +284,9 @@
      0.9,
      0.28
     ]
-   ]
+   ],
+   "element": "trunks-branches",
+   "element_why": "A short trunk under the canopy."
   },
   {
    "id": "balloon",
@@ -278,7 +297,9 @@
     0.03,
     0.3,
     0.34
-   ]
+   ],
+   "element": "round-object",
+   "element_why": "The balloon is round: block it in, stripes, then the lit side."
   }
  ],
  "paints": [

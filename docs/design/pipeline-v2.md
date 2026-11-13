@@ -176,6 +176,9 @@ pixel both claim.
   earth paths, a hull's deck line), give the part a paint for it and a pass in that paint. That worked where
   outlining it as marks failed.
 - The technique's `detail_budget.max_parts` counts parts with no parent; a `boxes` part counts once.
+- **`element`** and **`element_why`** (every part, added 2026-11-13, #12): the element technique the part's steps
+  follow, and one line on why it fits. `element_left_out` (optional) says what it leaves out for a beginner. The
+  plan's `technique_why` says why the approach fits. Section 10.
 
 ### Paints
 
@@ -509,6 +512,61 @@ much water, keeping a mix wet between steps, fixing a mistake (let it dry, paint
 drying darker, stepping back. The technique file's `rules` already say most of these; the cards give them a
 place on the page.
 
+### Element techniques (#12, built 2026-11-13: `spike/elements.py`, `elements`)
+
+`techniques/elements/<id>.yaml`: how a kind of part is painted, step by step, as fixed data the plan follows. The
+owner asked for it after the lavender rows came out blocked in on one run and not on the next (comment on #12,
+2026-11-12): the lavender is always flat rows, then dark, mid, and light stamps. 15 to start, every line from
+`docs/research/acrylic-paint-along.md` (sections 2, 4, 7, 8, and For Gesso) or the technique file, with sources:
+sky-blend, clouds, simple-shape, far-hills, field-grass, foliage, pines, trunks-branches, round-object,
+shaped-object, flower-rows, water, reflection, sun-path, fine-lines. `checked: false` until the owner reads them
+(`elements --out <file>` writes one page of them all).
+
+```yaml
+id: flower-rows
+kinds: [area, marks]            # the part kinds it's for
+steps:                          # the part's steps, in order
+  - name: Lay in the field under the flowers
+    show: [flat]                # the shows this step may use
+    strokes: [horizontal-strokes, side-to-side-blend]   # stroke card ids: how to do it stays on the card
+    value: dark                 # dark, mid, or light: checked against the step's paints
+    mistake: {mistake: ..., why: ..., fix: ...}        # the step's watch-out line, in place of the card's
+  - name: Pull in the soil between the rows
+    optional: true              # may be left out
+  - name: Stamp the dark of the blooms ...
+    repeat: true                # (on others) may be two or more steps in a row: one per stripe, one per paint
+rules: [...]                    # what the tips say for this part
+sources: [...]
+checked: false
+```
+
+- **The fit** (`elements.match`): a part's steps, in plan order, take the element's steps in order; an `optional`
+  one may be skipped, a `repeat` one may take several. Each step's `show` and `stroke` must be among its element
+  step's. Several fits can be possible (a shade pass and a light pass can use the same strokes), so the fit kept is
+  the first, in a fixed order, whose values agree best with the paints: a step on a `light` element step may not be
+  more than 3 Lab lightness units (`VALUE_SLACK`) darker than one on a `dark` step, and `mid` sits between. So the
+  plan still chooses the paints and how many passes, not another way to paint the thing.
+- **`check`** (`elements.plan_problems`): no `technique_why`; a part with no `element` or no `element_why`; an
+  element that doesn't exist or is for another kind of part; steps that don't follow it (the message lists its steps
+  in order); values out of order (it names the element step the darker paint landed on and says the part may be
+  missing that step); a drafted element that's broken, marked checked, uses a library id, or isn't filed yet.
+- **Drafting.** When nothing fits (fur, skin, glass, a night sky), the run writes `<lesson>/elements/<id>.yaml`
+  with `drafted: true`, `checked: false`, and `sources` saying what came from the research and what didn't. The
+  lesson page marks that part's steps "Technique not checked yet". Before the seal the run files it as an issue
+  (`feature`, `status:needs-review`; search first and comment on a match) and puts the url in `filed`; `check`
+  won't pass while a used draft has none. The owner moves a good one into the library.
+- **What the lesson takes from it.** `draft-text`'s watch-out line is the element step's `mistake` when it has one,
+  else the card's first mistake. `lesson.json` gains `technique_picks` (`technique_why`, and per part its element,
+  why, and what it left out) for the owner's review, and each step an `element` (`element`, `name`, `checked`,
+  `drafted`).
+- **On the fixtures and the gate runs:** the chickadee and sailboat fixtures and all three gate runs' lavender,
+  chickadee, and sailboat parts follow their elements. Found by it: the gate run's balloon has stripes but no lit
+  side (research section 4 gives a balloon one main highlight); the lavender fixture's rows are dabbed with one
+  bloom pass (research section 7: stamps, dark then mid then light), and its fields are shaded darker in front of
+  the research's lighter foreground texture. Those are left in the fixture as findings, as `texture_jumps` were.
+- Not covered by the research, so not in the library yet: fur, feathers, skin, glass and metal, a night sky and glow.
+  A run drafts them; a research pass for each would let them in checked.
+
 ### Step text (`draft-text`, then Claude; issue 7 of 8)
 
 `draft-text` writes into `text.json` every line that is data. Per step:
@@ -523,7 +581,7 @@ place on the page.
 | Brush, load, consistency, motion | the step's `brush` and its stroke card |
 | What it should look like after | the stroke card's `result` |
 | "Two or three thin coats." | the paint is lighter than what it goes over by more than 30 in lightness (the technique's light-over-dark rule) |
-| Watch out | the stroke card's first `mistake`; the rest stay in the card |
+| Watch out | the element step's `mistake` when it has one (#12), else the stroke card's first `mistake`; the rest stay in the card |
 | "Step back and look." | the last step of each stage |
 | "Lightly chalk its outline first." (optional) | the first step of an `object` part with no parent |
 

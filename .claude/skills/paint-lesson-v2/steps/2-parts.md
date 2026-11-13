@@ -10,6 +10,7 @@ look like).
 2. Start `plan.json`:
    ```json
    {"plan_version": 2, "photo": "<the photo as step 0 left it>", "technique": "techniques/acrylic-paint-along-beginner.yaml",
+    "technique_why": "one line: why this approach fits the picture and the painter's level",
     "subject": "...", "focal_point": "...", "light": "where the light comes from, in words",
     "parts": [], "paints": [], "stages": []}
    ```
@@ -48,7 +49,27 @@ look like).
   water): that's a pass in step 4, and costs nothing here. Make it a `marks` child only when `outline` says the
   area left a hole there (soil paths between lavender rows that the field's outline didn't take).
 
-## 2b. Outline them
+## 2b. Pick each part's element technique
+An element technique (`techniques/elements/`) is how that kind of thing is painted, step by step: a sky blended
+wet, foliage dabbed dark to light, lavender rows laid flat then stamped dark, mid, and light. Step 4 follows it, so
+the lesson paints each kind of thing the way the research says, every run.
+
+1. `elements` (no `--lesson`) lists them: what each is for, which part kinds, and its steps in order.
+2. On every part, add `"element": "<id>"` and `"element_why"`: one line on why it fits this part at this level
+   ("Far trunks: dry-brushed verticals, no light pass at this distance"). Pick by what the thing is and how the
+   finish shows it, not by its name: a flat white cheek is `simple-shape`, a bird's body with a lit chest is
+   `shaped-object`. When you leave something out for a beginner (fur texture, the far rows' tips), say what in
+   `"element_left_out"`.
+3. **When nothing in the library fits a part** (fur, skin, glass, metal, a night sky, feathers worth their own
+   strokes), draft one in `<lesson>/elements/<new id>.yaml`, the same shape as a library file (`id`, `name`, `for`,
+   `kinds`, `medium`, `levels`, `steps`, `sources`), with `drafted: true` and `checked: false`. Its steps name stroke
+   cards (`ls techniques/strokes`), never a stroke written out. Build it from the research file where it can
+   (`docs/research/acrylic-paint-along.md`; say which sections in `sources`) and from the closest library element;
+   where you go past them, say so in `sources` ("general practice: the research has no section on fur"). The lesson
+   marks that part's steps "technique not checked yet". Step 8 files it for the owner.
+4. Never edit a library element during a run. If one is close but wrong for this picture, draft your own with a new id.
+
+## 2c. Outline them
 `outline --lesson <lesson>`, then **Read `parts/preview.jpg`**. Every part should be tinted where the part really
 is, and `problems` should be empty. Fix what's wrong and run it again: at most 2 fix rounds per part, and at most 5 runs of `outline` in this step however they go. If a round made a
 part worse, put its entry back the way it was.

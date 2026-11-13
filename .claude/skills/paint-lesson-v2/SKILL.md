@@ -17,6 +17,9 @@ you start that step**, even if you read it earlier. Don't read ahead.
 ## Arguments
 - `<photo>` (required)
 - `--canvas WxH` (optional, inches, e.g. `11x14`) with `--orientation portrait|landscape`
+- `--technique <file>` (optional): force the whole-painting approach (a file in `techniques/` with version 2 keys:
+  `v2_step_range`, `v2_rules`). Without it, choose the approach that fits the picture and the level and say why in
+  `technique_why`. Today only `acrylic-paint-along-beginner.yaml` has version 2 keys.
 - `--palette <name>` (optional): the painter's own tubes from `palettes/<name>.yaml`. Put `"palette": "<name>"` in
   plan.json.
 
@@ -30,13 +33,15 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 3. **Every tool prints `problems`.** An empty list means go on. Otherwise each one says what to change: change it
    and run the tool again. The tools are free and take seconds, so loop until they're clean. Never edit a tool's
    output file by hand to make a problem go away.
-4. **Technique comes from the technique file, the research file, and the cards** (`techniques/strokes/`,
-   `techniques/basics/`), not from memory. When you rely on something they don't cover, say so in `notes.json`
-   under `learned`.
+4. **Technique comes from the technique file, the research file, the element techniques, and the cards**
+   (`techniques/elements/`, `techniques/strokes/`, `techniques/basics/`), not from memory. Every part follows an
+   element technique; when none fits, you draft one in the lesson folder and file it for the owner (steps 2b, 8b2).
+   When you rely on something they don't cover, say so in `notes.json` under `learned`.
 5. **One move per step.** One brush, one stroke, one to three paints. If a step needs "then", it's two steps.
-6. **Don't flip a card's `checked`.** The owner does that after painting from it.
+6. **Don't flip a card's or an element's `checked`.** The owner does that after painting from it.
 7. **Keep `notes.json` as you go,** not at the end.
-8. **Stay in your lesson folder.** Don't edit code, skills, techniques, cards, palettes, or docs during a run. If
+8. **Stay in your lesson folder.** Don't edit code, skills, techniques, elements, cards, palettes, or docs during a
+   run (a drafted element goes in `<lesson>/elements/`). If
    a tool is wrong, work within what the skill allows and report it. Scratch files and scripts go in
    `<lesson>/trials/`, nowhere else, and never keep the lesson's path in a shared file: other runs share the
    machine.
@@ -52,7 +57,7 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 |---|---|---|
 | 0. Set up, check the photo, fit the canvas, beginner version | `../paint-lesson/steps/0-setup.md` | lesson folder, `00_*.png` |
 | 1. Reference and finished painting | `../paint-lesson/steps/1-reference-finish.md` | `00_reference.png`, `99_finish.png` |
-| 2. Parts and outlines | `steps/2-parts.md` | `plan.json` (parts), `parts/` |
+| 2. Parts, their element techniques, and outlines | `steps/2-parts.md` | `plan.json` (parts), `parts/`, `elements/` when one is drafted |
 | 3. Paints | `steps/3-paints.md` | `plan.json` (paints) |
 | 4. Stages and steps | `steps/4-stages.md` | `plan.json` (stages) |
 | 5. Step pictures and teaching pictures | `steps/5-pictures.md` | `NN_<id>.png`, `aids/` |

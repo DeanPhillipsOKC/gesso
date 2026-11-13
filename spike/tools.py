@@ -587,7 +587,7 @@ def publish(a: argparse.Namespace) -> dict:
             "brush_list": txt(s, "brushes", []), "strokes": txt(s, "strokes", []), "construct": txt(s, "construct", {}),
         }
         for i, s in enumerate(plan.steps)
-    ] if not v2 else publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique)
+    ] if not v2 else publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
     from version import stamp
     old = lesson / "lesson.json"
     from version import with_made
@@ -610,6 +610,10 @@ def publish(a: argparse.Namespace) -> dict:
     }
     if v2:  # new keys beside the version 1 ones: the plan's stages, for the page's headings, and the step aids
         lesson_data.update(plan_version=2, groups=publish2.groups(raw), aids=publish2.attach_aids(lesson, stages))
+        import elements
+
+        if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
+            lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
         if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
             lesson_data["review_context"] = review["review_context"]
     import provenance
@@ -1592,7 +1596,7 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
         raise Refused("parts/owner.png doesn't match 99_finish.png or the plan: run outline again")
     _, pictures, _, masks = built
     canvas_box, canvas = checks._canvas(lesson)
-    drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas)
+    drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas, lesson=lesson)
     path = lesson / "text.json"
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
     text = draft_text.merge(old, drafted)
@@ -1701,7 +1705,42 @@ def cards_tool(a: argparse.Namespace) -> dict:
             "unchecked": sorted(k for k, c in {**s, **b}.items() if not c.get("checked")), "cost_usd": 0.0}
 
 
+def elements_tool(a: argparse.Namespace) -> dict:
+    """The element techniques (#12): the library to pick from, and with --lesson, how the plan's picks fit."""
+    import elements
+
+    lesson = Path(a.lesson) if a.lesson else None
+    lib = elements.known(lesson)
+    out = {"elements": [{"id": k, "name": el.get("name"), "for": el.get("for"), "kinds": el.get("kinds"),
+                         "steps": [f"{x.get('name')} ({'/'.join(elements._list(x.get('show')))}: "
+                                   f"{', '.join(elements._list(x.get('strokes')))}"
+                                   f"{', optional' if x.get('optional') else ''}{', may repeat' if x.get('repeat') else ''})"
+                                   for x in el.get("steps") or []],
+                         **({"drafted": True} if el.get("drafted") else {})}
+                        for k, el in lib.items()],
+           "problems": elements.problems(elements.library()), "cost_usd": 0.0}
+    if a.out:
+        path = Path(a.out)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(elements.page(), encoding="utf-8")
+        out["out"] = str(path)
+    if lesson:
+        plan, _ = _v2(lesson)
+        out["picks"] = elements.picks(plan)
+        out["problems"] += elements.plan_problems(plan, lesson=lesson)
+    return out
+
+
 def add_v2_tools(sub) -> None:
+    p = sub.add_parser("elements", help="Free. v2: the element techniques to pick per part, and how the plan's picks fit.",
+                       description="Lists techniques/elements (and a lesson's drafted ones): what each is for, which part "
+                                   "kinds, and its steps in order with the shows and stroke cards each may use. With "
+                                   "--lesson, also every part's pick and what doesn't fit (a part with no element, steps "
+                                   "that don't follow theirs, a drafted one not filed yet). --out writes one page of "
+                                   "them all for the owner to check.")
+    p.add_argument("--lesson")
+    p.add_argument("--out")
+    p.set_defaults(func=elements_tool)
     p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
                        description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
                                    "parts/preview.jpg (the finish with each part tinted and labeled). Downloads the outline "

@@ -1,0 +1,32 @@
+id: field-grass
+name: Fields and grass
+for: A field, meadow, lawn, or grassy ground.
+examples: [a green meadow, golden fields, a grassy bank]
+kinds: [area, marks]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Lay in the field
+    show: [flat, blend]
+    strokes: [horizontal-strokes, side-to-side-blend, x-stroke]
+    value: dark
+    does: The whole field as a base, lighter and cooler at the back, darker and greener at the front.
+  - name: Add the grass texture
+    show: [pass, full]
+    strokes: [flicking, fan-tapping, dry-brush, horizontal-strokes]
+    value: light
+    optional: true
+    repeat: true
+    does: Lighter marks over the dark base, in the foreground only, so the dark shows between them. One pass per paint, darkest first.
+    mistake:
+      mistake: Texture all the way to the horizon.
+      why: Texture belongs near the viewer; on the far field it flattens the distance.
+      fix: Keep the far field nearly flat, and put the flicks and taps only in front.
+rules:
+  - Keep the far field nearly flat. Texture and detail go only near the viewer.
+  - Flick upward from the base of the grass, lighter greens over the dark base, fewer as you go up.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Fields and grass
+  - docs/research/acrylic-paint-along.md, section 2, Flicking (grass, fur)
+  - docs/research/acrylic-paint-along.md, For Gesso, Values and texture 4
+checked: false

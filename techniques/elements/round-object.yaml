@@ -1,0 +1,48 @@
+id: round-object
+name: A round object
+for: A round thing with a lit side and a shadow side.
+examples: [a pumpkin, a balloon, an apple, a ball]
+kinds: [object]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Build the shape
+    show: [flat]
+    strokes: [build-from-pieces, curved-strokes]
+    value: mid
+    does: The whole shape in its base color, built from one center shape and curved pieces on each side.
+  - name: Paint the sections
+    show: [pass]
+    strokes: [curved-strokes, build-from-pieces]
+    optional: true
+    repeat: true
+    does: Each section or stripe in its own color, every stroke curving around the form.
+  - name: Shade the dark side
+    show: [pass]
+    strokes: [curved-strokes, dry-brush]
+    value: dark
+    optional: true
+    does: A darker crescent on the side away from the light, and in the grooves between sections.
+  - name: Light the side facing the light
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: light
+    does: A lighter mix in curved strokes on the lit side, near the top of each section. The bottom quarter stays dark.
+    mistake:
+      mistake: The object looks flat.
+      why: One flat color all over, or the light spread over the whole shape.
+      fix: Keep the light to the side facing it and leave the far side and the bottom dark.
+  - name: Add the shine and small details
+    show: [pass, full]
+    strokes: [dotting, press-and-lift, build-from-pieces, curved-strokes, liner]
+    optional: true
+    does: A small near-white shine toward the light, and any small details that sit on the object.
+rules:
+  - Stroke direction follows the form, curving around it.
+  - "At least three values from one base: a mid base, a darker side, a smaller light side, each covering less than the last."
+  - "A balloon has one main highlight: a curved light patch toward the light, a darker crescent on the far side, and a small near-white shine."
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Round objects (pumpkins, balloons, fruit)
+  - docs/research/acrylic-paint-along.md, section 4, The core pattern
+  - techniques/acrylic-paint-along-beginner.yaml, v2_rules (build each shaped object from simple pieces)
+checked: false

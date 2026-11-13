@@ -10,12 +10,12 @@ nothing else should change.
 - **A step adds too much at once** (a flat shape becomes finished in one step): give the part another paint from
   `paints` and another pass.
 - **Something looks wrong in an outline** (a part painted where it isn't, or a faint trace of an object before
-  its own step): go back to step 2b, then `paints`, then here.
+  its own step): go back to step 2c, then `paints`, then here.
 - **A part "already shows ... before it's painted"** (in `problems`), or `advice` lists parts to look for: find the
   step on the sheet and the part in `parts/preview.jpg`. If the outline misses some of the part (a foot's toes left
-  to the branch, a cloud outside the clouds' boxes), fix it in step 2b: what an outline leaves out is painted with
+  to the branch, a cloud outside the clouds' boxes), fix it in step 2c: what an outline leaves out is painted with
   the part behind. A part painted on another that shows in its parent's block-in coat is fine. If a part with no
-  parent still shows after 2 rounds, drop it and paint it as a pass of the part behind, as step 2b says.
+  parent still shows after 2 rounds, drop it and paint it as a pass of the part behind, as step 2c says.
 
 ## 5b. The background picture, only when asked
 If `build-steps` printed `"needs_background": true` (it does whenever there are objects in front of the
@@ -27,7 +27,7 @@ objects before their own steps.
   --redo --max-cost 0.40` once. If that fails too, delete `98_background.png`, run `build-steps` again, and record
   it in `review.json` as `{"step_id": "<first step>", "problem": "what's behind the objects is a rough fill until
   they're painted", "action": "left: the background render failed twice"}` under `text_issues`.
-- If a trace still shows after a clean background render, it's an outline that's too tight (step 2b's table),
+- If a trace still shows after a clean background render, it's an outline that's too tight (step 2c's table),
   not the render.
 - Don't run it when `needs_background` is false: there's nothing in front to take out.
 

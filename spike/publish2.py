@@ -81,12 +81,15 @@ def groups(plan: dict) -> list[dict]:
     return [{"id": st["id"], "name": _name(st), "steps": [s["id"] for s in st["steps"]]} for st in plan["stages"]]
 
 
-def stages(plan: dict, text: dict[str, dict], paints: dict[str, dict], images: list[str], technique: dict) -> list[dict]:
+def stages(plan: dict, text: dict[str, dict], paints: dict[str, dict], images: list[str], technique: dict,
+           lesson=None) -> list[dict]:
     """lesson.json's stages for a version 2 lesson (the table in design section 13). `text` is text.json's steps by
     id, `paints` lesson.json's paint dicts by name, `images` each step's picture as the page shows it."""
     import cards
+    import elements
 
     known = cards.strokes()
+    picked = elements.step_elements(plan, elements.known(lesson))
     names = paint_names(plan)
     parts = {p["id"]: p for p in plan["parts"]}
     out = []
@@ -115,4 +118,7 @@ def stages(plan: dict, text: dict[str, dict], paints: dict[str, dict], images: l
             "lines": lines, "tip": t.get("tip", ""), "stroke_cards": [c for c in ids if c in known],
             "part": s["part"], "show": s.get("show", "full"), "group": group,
         })
+        el = picked.get(s["id"])
+        if el:  # the part's element technique (#12); a drafted one is marked on the page as not checked yet
+            out[-1]["element"] = {k: el[k] for k in ("element", "name", "checked", "drafted")}
     return out

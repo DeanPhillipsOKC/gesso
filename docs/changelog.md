@@ -6,6 +6,16 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.1.0 (2026-11-13)
+- Every part follows an element technique (#12): how that kind of thing is painted, step by step, from the
+  research file (`techniques/elements/`, 15 to start: skies, clouds, far hills, fields, foliage, pines, trunks and
+  branches, round and shaped objects, flower rows, water, reflections, the sun path, fine lines). The plan names
+  one per part with a reason, its steps follow it in order, and `check` says when they don't. The lavender rows
+  are always laid flat, then stamped dark, mid, and light.
+- A part nothing in the library fits gets a technique drafted for that lesson, marked "Technique not checked
+  yet" on its steps, and filed for the owner to check.
+- A step's watch-out line comes from its element technique when the element has one for that step.
+
 ## POC 1.0.1 (2026-11-13)
 - Things no longer show before their step (#84: clouds, a ridge, and bands of hill color in the lavender's first
   sky step; hills under the sailboat's sky; the chickadee's feet as dark patches on the branch). What's painted

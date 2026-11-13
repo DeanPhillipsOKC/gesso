@@ -1,0 +1,30 @@
+id: pines
+name: Pine and fir trees
+for: Pines, firs, and other evergreens.
+examples: [a row of pines, a lone fir on a hill]
+kinds: [object, marks]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Stamp the dark pines
+    show: [flat, pass, full]
+    strokes: [fan-tapping]
+    value: dark
+    does: Each tree stamped with a fan brush from the top down, pressing harder lower down so it widens.
+    mistake:
+      mistake: A heavy, solid top.
+      why: Too much pressure or paint at the start of the tree.
+      fix: Add fine branches with a small round instead of more fan marks.
+  - name: Tap the light side of the pines
+    show: [pass, full]
+    strokes: [fan-tapping, dabbing]
+    value: light
+    optional: true
+    does: A lighter green tapped on the side facing the light, leaving the dark showing.
+rules:
+  - Stamp from the top of the tree down, pressing harder as you go so the tree widens.
+  - Far pines are smaller, lighter, cooler, and simpler.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Trees
+  - docs/research/acrylic-paint-along.md, section 2, Tapping or stamping with a fan brush
+checked: false

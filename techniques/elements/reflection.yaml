@@ -1,0 +1,35 @@
+id: reflection
+name: A reflection in water
+for: The reflection of a tree, a boat, a shore, or a post in water.
+examples: [a boat's reflection, trees reflected in a lake]
+kinds: [marks]
+medium: acrylic
+levels: [beginner]
+steps:
+  - name: Pull down the reflection
+    show: [flat, pass, full]
+    strokes: [pull-down, zigzag, dry-brush]
+    does: The object's colors pulled straight down from the waterline with a wiped, nearly dry brush, softer than the object.
+    mistake:
+      mistake: The reflection as sharp and detailed as the object.
+      why: It looks like a mirror or a second picture.
+      fix: Fewer details, softer edges, a thin dry brush.
+  - name: Pull down its other colors
+    show: [pass, full]
+    strokes: [pull-down, zigzag, dry-brush]
+    optional: true
+    repeat: true
+    does: Each of the object's other colors pulled down under it, a little darker for light things and lighter for dark ones.
+  - name: Cross it with ripples
+    show: [pass, full]
+    strokes: [horizontal-dashes]
+    optional: true
+    does: Thin horizontal dashes of the water color across the dry reflection.
+rules:
+  - The reflection sits straight under its object, starting at the waterline.
+  - Lights reflect a little darker and darks a little lighter, never the same mix as the object.
+  - Vertical strokes for upright things, zigzags for masts and posts, horizontal dashes over them once dry.
+sources:
+  - docs/research/acrylic-paint-along.md, section 8, Water reflections
+  - docs/research/acrylic-paint-along.md, For Gesso, Water reflections 3 to 6
+checked: false

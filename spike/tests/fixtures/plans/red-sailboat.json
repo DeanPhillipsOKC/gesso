@@ -2,6 +2,7 @@
  "plan_version": 2,
  "photo": "spike/tests/fixtures/finishes/red-sailboat.jpg",
  "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "Paint-along, back to front: sky, then water, then the boat, the beginner approach with v2 rules.",
  "subject": "A red sailboat on teal water at sunset",
  "focal_point": "the sailboat",
  "light": "the setting sun on the horizon, center",
@@ -23,7 +24,9 @@
      1,
      0.56
     ]
-   ]
+   ],
+   "element": "sky-blend",
+   "element_why": "A sunset gradient, blended wet."
   },
   {
    "id": "sun",
@@ -35,7 +38,9 @@
     0.38,
     0.52,
     0.465
-   ]
+   ],
+   "element": "simple-shape",
+   "element_why": "A small bright disk: one move."
   },
   {
    "id": "hill",
@@ -46,7 +51,9 @@
     0.39,
     1,
     0.545
-   ]
+   ],
+   "element": "far-hills",
+   "element_why": "A far hill and shore as one flat shape."
   },
   {
    "id": "water",
@@ -57,7 +64,9 @@
     0.52,
     1,
     1
-   ]
+   ],
+   "element": "water",
+   "element_why": "Open water: a horizontal base, then lighter streaks."
   },
   {
    "id": "sun-path",
@@ -129,7 +138,9 @@
      0.62,
      0.7
     ]
-   ]
+   ],
+   "element": "sun-path",
+   "element_why": "The path of light under the sun, in two layers."
   },
   {
    "id": "sail",
@@ -140,7 +151,9 @@
     0.27,
     0.91,
     0.58
-   ]
+   ],
+   "element": "shaped-object",
+   "element_why": "The sail is a flat shape built from pieces, then shaded."
   },
   {
    "id": "hull",
@@ -151,7 +164,9 @@
     0.565,
     0.94,
     0.64
-   ]
+   ],
+   "element": "shaped-object",
+   "element_why": "The hull: block it in red, then the deck line."
   },
   {
    "id": "mast",
@@ -201,7 +216,9 @@
      0.83,
      0.32
     ]
-   ]
+   ],
+   "element": "fine-lines",
+   "element_why": "The mast is one liner line."
   },
   {
    "id": "reflection",
@@ -264,7 +281,9 @@
      0.93,
      0.68
     ]
-   ]
+   ],
+   "element": "reflection",
+   "element_why": "The boat reflected under itself, zigzagged by the ripples."
   }
  ],
  "paints": [
