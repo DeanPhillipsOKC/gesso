@@ -1,0 +1,147 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261113-031315",
+  "started": "2026-11-13 03:13",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "18d235bc1cb3c39a",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 0.26.1",
+        "commit": "f5884d9",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 0.26.1",
+        "commit": "f5884d9",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T03:27:05"
+      },
+      "palette": "The owner's paints",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 14.0,
+        "h_in": 11.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 18,
+        "words": 2389,
+        "tubes": 11,
+        "cost_usd": 0.151,
+        "minutes": 1.1,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 10.1,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-base",
+          "name": "Cover the canvas with misty lavender-gray",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sky-rose",
+          "name": "Scrub in the dusty rose patches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sky-glow",
+          "name": "Glow gold around the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Dab in the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunks",
+          "name": "Pull down the far trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "foliage-base",
+          "name": "Dab the hazy orange foliage",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "foliage-gold",
+          "name": "Dab gold over the foliage",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-base",
+          "name": "Paint the dark bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-light",
+          "name": "Dry brush the sunlit bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-gold",
+          "name": "Press in the golden leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-red",
+          "name": "Press in the red leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-body",
+          "name": "Block in the round tan body",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-chest",
+          "name": "Light the cream chest",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-wing",
+          "name": "Paint the wing and tail gray",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-wing-dark",
+          "name": "Darken the wing feathers",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-head",
+          "name": "Dab the black cap and bib",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-cheek",
+          "name": "Press in the white cheek",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-feet",
+          "name": "Draw the legs and feet",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
