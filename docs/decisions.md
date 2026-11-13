@@ -161,6 +161,9 @@ with the date.
 - **Pipeline v2 is POC 1.0.0 (2026-11-12, owner's call).** The major number goes up when v2 replaces v1: with the
   first sealed v2 lesson after the gate passes, not before. Until then the v2 tools sit beside v1 and the version
   stays on 0.26.x.
+- **The gate passed; v2 is the pipeline (2026-11-13, owner's call).** "The pics look good. Publish them as
+  1.0.0." The three gate runs are the site's default lessons and carry the 1.0.0 name, with the commit that made
+  them. Two targets were missed and accepted: time (16 to 20 minutes against 15) and a fresh-context text review.
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
