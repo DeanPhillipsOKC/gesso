@@ -129,6 +129,7 @@ class SiteVersionTests(unittest.TestCase):
         lesson = self.site / "lessons" / "lavender"
         self.assertIn(runs[1].name, (lesson / "index.html").read_text(encoding="utf-8"))
         self.assertIn(runs[0].name, (lesson / "v" / "20261111-142734" / "index.html").read_text(encoding="utf-8"))
+        self.assertFalse((lesson / "v" / "20261112-084806").exists())  # no copy of the tile's own page
         with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
             site_lessons.refresh(self.site, self.output)  # again: nothing changes
         self.assertEqual(json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]["source"],

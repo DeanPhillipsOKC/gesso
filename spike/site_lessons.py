@@ -48,6 +48,9 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
             keep.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(out / "index.html", keep)
     shutil.copyfile(page, out / "index.html")
+    dup = out / "v" / lesson.name.split("_skill_")[-1]
+    if dup.is_dir():  # its old version page: the tile page is it now, and a later add() keeps the live page instead
+        shutil.rmtree(dup)
     finish = lesson / data["stages"][-1]["image"]
     thumb = ImageOps.exif_transpose(Image.open(finish)).convert("RGB")
     thumb.thumbnail((640, 640))
@@ -271,7 +274,8 @@ window.addEventListener('pageshow', () => document.querySelectorAll('.card selec
 
 
 def build_index(site: Path, lessons: list[dict]) -> Path:
-    cards = "".join(card(x) for x in sorted(lessons, key=lambda x: x.get("published", ""), reverse=True))
+    cards = "".join(card(x) for x in sorted(lessons, key=lambda x: (x.get("published", ""), x.get("slug", "")),
+                                            reverse=True))
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
