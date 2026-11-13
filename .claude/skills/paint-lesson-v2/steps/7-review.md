@@ -1,13 +1,13 @@
 # Step 7: check, and the text review in a fresh context
 
 ## 7a. Check
-`check --lesson <lesson>`. Fix every item in `problems` the way it says, at the step it belongs to, and run the
-tools after that step again in order (`outline`, `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`,
-`check`). The usual ones:
+`check --lesson <lesson>`. Fix every item in `problems` the way it says, at the skill step it belongs to, then run
+the tools after that point again in order (SKILL.md rule 9). **Collect every problem first and fix them in one
+pass**: each trip back through the tools costs minutes. The usual ones:
 
 | It says | Fix |
 |---|---|
-| a step turns too much from flat to textured | step 4: split that pass into two (darker paint first), then 5a on |
+| a step turns too much from flat to textured | `paints --add <its part>`, name the new paint, give it a pass of its own before or after this one (darker first), then 5a on. If `--add` says there's no other color, make the texture its own `marks` child part with a `flat` step first |
 | step or stage count out of range | step 4: split the biggest steps, or merge stages |
 | a stroke has no card, or the brush isn't one its card names | step 4: use a card's stroke and one of its brushes |
 | a paint can't be mixed from these tubes | step 6b: a `paint_notes` line on a step that uses it |
@@ -15,7 +15,7 @@ tools after that step again in order (`outline`, `paints`, `build-steps`, `step-
 | a step has no summary or tip | step 6b |
 | the drafted lines are out of date | `draft-text` again |
 
-`check_notes` are things to know, not failures.
+`notes` are things to know, not failures.
 
 ## 7b. Text review in a fresh context
 You wrote the text, so you'll miss what you take for granted.
@@ -24,6 +24,10 @@ You wrote the text, so you'll miss what you take for granted.
    `.claude/skills/paint-lesson/step-review.md` for the lesson folder (it has a note for version 2 lessons), use
    only `trials/review/packet.json` and its sheets, write `trials/review/review.json`, and use the project's
    `.venv` Python if it needs to crop or zoom. Don't pass it your reasoning or the plan.
+   **If you have no Agent tool,** do the review yourself, last, as strictly as you can: Read `step-review.md`
+   fresh, then **every** sheet (not a sample), and write `trials/review/review.json` as it says. Then put
+   `"review_context": "same"` at the top level of `<lesson>/review.json` (step 4 below), so the lesson page says
+   the review wasn't a fresh one.
 3. Route each problem by its `kind`:
    - `missing`, `vague`, `wrong_result`, `flat`, `layering`: check it against the sheet. If it holds, fix the tip
      or the line in `text.json` (mark an edited line `"edited": true`). If the fix is really "this is two steps",

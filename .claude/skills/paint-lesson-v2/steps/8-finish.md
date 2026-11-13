@@ -7,7 +7,8 @@ and give a `construct` diagram to each step that blocks in a shaped object. It g
 build the shape**, nothing else. `publish`, then `preview-diagrams` to look at them.
 
 ## 8b. Notes
-Follow `../paint-lesson/steps/8-notes.md` for `notes.json`, with these differences:
+Follow `../paint-lesson/steps/8-notes.md` for `notes.json` (its schema wins over anything step 0 said about field
+names), with these differences:
 - no `filters` entries for step pictures and no `throwaways` (there are none);
 - add `"merged_parts": {"<part id>": "why"}` for any part dropped in step 2b (an empty object if none);
 - `steps` still has one entry per step id: why this step, and why now;
@@ -20,7 +21,8 @@ and run it again. After the seal, change nothing.
 
 Unless whoever started you said they'll handle it, publish `lesson-artifact.html` with the Artifact tool when it's
 available (copy it to the scratchpad as `<photo stem>-lesson.html`, `icon: "paint"`, a one-sentence `description`,
-private). Don't run `site-add` or `site-refresh`; the owner decides what goes on the site.
+private). It's a page this run just generated from your own text and pictures; if the tool won't take it, skip
+this and say so in the report. Don't run `site-add` or `site-refresh`; the owner decides what goes on the site.
 
 ## 8d. Report to the owner
 Start with anything that needs them:

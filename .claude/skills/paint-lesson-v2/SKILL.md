@@ -37,8 +37,12 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 6. **Don't flip a card's `checked`.** The owner does that after painting from it.
 7. **Keep `notes.json` as you go,** not at the end.
 8. **Stay in your lesson folder.** Don't edit code, skills, techniques, cards, palettes, or docs during a run. If
-   a tool is wrong, work within what the skill allows and report it.
-9. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses until `check` is clean.
+   a tool is wrong, work within what the skill allows and report it. Scratch files and scripts go in
+   `<lesson>/trials/`, nowhere else: other runs share the machine.
+9. **The order is fixed, and going back means running forward again.** After any change to `parts`: `outline`,
+   `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, in that order. After a change to `stages`
+   only: from `build-steps` on. Don't skip one because it ran before.
+10. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses until `check` is clean.
    After the seal, change nothing.
 
 ## Steps
@@ -55,6 +59,12 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 | 7. Check, and the text review in a fresh context | `steps/7-review.md` | `review.json` |
 | 8. Diagrams, notes, seal, report | `steps/8-finish.md` | the sealed lesson |
 
-Steps 0 and 1 are the v1 skill's files, with these differences: the lesson folder is
-`output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/` as there (the history and the site find runs by that name); ignore anything they say about a tool order, `render-step`, regions,
-or `plan_lesson`; pass `--max-cost 0.40` to their renders.
+Steps 0 and 1 are the v1 skill's files, with these differences:
+- every filter run with `--lesson` needs `--why "<what you want it to show you>"`;
+- `notes.json`'s `beginner_version` is a dict: `{"made": true|false, "found": "...", "list": "...", "why": "..."}`;
+- with `--palette`, name the painter's tube colors in the finish prompt in place of the technique's five;
+- the finish is rendered at `--quality high` (it's the one picture everything is cut from);
+- the lesson folder is `output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/` as there (the history and the site find
+  runs by that name);
+- ignore anything they say about a tool order, `render-step`, regions, or `plan_lesson`;
+- pass `--max-cost 0.40` to their renders.
