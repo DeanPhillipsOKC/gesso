@@ -508,6 +508,17 @@ class PublishV2Tests(unittest.TestCase):
         for text in ("The lumpy outline.", "An oval first."):
             self.assertIn(text, html)
 
+    def test_a_diagram_given_a_paint_id_draws_in_that_paint_on_the_page(self):  # #91
+        paint = json.loads((self.lessons["red-sailboat"] / "plan.json").read_text(encoding="utf-8"))["paints"][0]
+        lesson, _ = self.diagram_lesson({"paint": paint["id"], "stages": [{"add": [{"rect": [10, 10, 50, 40]}]}]})
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        html = (lesson / "lesson-artifact.html").read_text(encoding="utf-8")
+        rects = re.findall(r'<rect x="10.0" y="10.0"[^>]*>', html)
+        self.assertTrue(rects)
+        for rect in rects:
+            self.assertIn(f'fill="{paint["hex"]}"', rect)
+
     def test_preview_diagrams_needs_publish_then_draws_each_one(self):  # from the version 1 tests (#82)
         lesson, _ = self.diagram_lesson({"stages": [{"add": [{"path": "not a path"}]}]})
         (lesson / "lesson.json").unlink()

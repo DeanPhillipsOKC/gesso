@@ -6,6 +6,11 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.3.2 (2026-11-13)
+- A construction diagram can give a paint by its id as well as its name (#91). Before, a diagram given paint ids
+  drew every shape gray. A shape whose paint is no paint's name or id, or a #hex, is now one of `check`'s problems,
+  naming the step, the diagram, the panel and the shape, instead of drawing gray with nothing said.
+
 ## POC 1.3.1 (2026-11-13)
 Nothing a lesson shows changes. Pipeline v1 is removed (#82): the owner passed the v2 gate and won't go back to v1.
 - `/paint-lesson` runs pipeline v2 (it was `/paint-lesson-v2` until now). The v1 skill and its tools are gone:

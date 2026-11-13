@@ -249,6 +249,13 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     by_name = {n: {"name": n, "hex": c["hex"]} for c in plan.get("paints") or []
                for n in [publish2.paint_names(plan)[c["id"]]]}
     stages = publish2.stages(plan, text, by_name, names, {"dry_time": technique.get("dry_time", "")}, lesson)
+    import construct
+
+    named = publish2.paint_names(plan)
+    diagram_paints = construct.lookup([{"id": c["id"], "name": named[c["id"]], "hex": c["hex"]}
+                                       for c in plan.get("paints") or []])
+    for st in stages:
+        failures += construct.problems(st.get("construct"), diagram_paints, st["id"])
     for x in tools.paints_not_listed(stages, by_name):
         failures.append(f"{x['id']}: its text names {x['paint']}, which isn't one of its paints, so its recipe isn't "
                         "shown. Add the paint to the step in plan.json, or don't name it.")

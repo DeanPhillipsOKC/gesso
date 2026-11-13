@@ -212,6 +212,8 @@ with the date.
   subscription instead of paying for API calls, with filters and renders as command-line tools.
   The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
+- **Every piece of work gets a pull request (2026-11-13, owner's call).** When work on an issue is done and pushed,
+  Claude opens a pull request without asking (owner: "Always want a pull request. No need to ask").
 - **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works mostly
   from a phone and was merging without a full review, so the wait only slowed things down. Once the tests pass and the
   adversarial review (below) has signed off, Claude merges and tells the owner what went in (a merge to `main` deploys
