@@ -853,34 +853,6 @@ def split_texture(a: argparse.Namespace) -> dict:
                     "lock-steps, publish, step-pairs"}
 
 
-def finish_from_step(a: argparse.Namespace, client=None) -> dict:
-    """Rebuild the finished painting from the last step, adding only what the last step paints, so the subject
-    can't change shape at the very end (chickadee, 2026-11-11: the finish drew the bird smaller and more upright
-    than every step before it). The old finish is kept in trials/."""
-    lesson = Path(a.lesson)
-    _, plan, technique = load_plan(lesson)
-    paths = step_paths(lesson, plan)
-    base = paths[-2]
-    if not base.exists():
-        raise Refused(f"missing {base.name}")
-    finish = paths[-1]
-    keep = lesson / "trials" / f"99_finish_before_{time.strftime('%H%M%S')}.png"
-    keep.parent.mkdir(parents=True, exist_ok=True)
-    if finish.exists():
-        shutil.copyfile(finish, keep)
-    prompt = (f"This is a nearly finished acrylic painting. Add only: {a.add}. Change nothing else: keep every "
-              f"shape, size, position, color, and brushstroke exactly as it is. {technique.get('framing', '')}")
-    budget = Budget(lesson, a.max_cost, a.max_redos)
-    out = lesson / "trials" / "finish_from_step.png"
-    r = render_one(budget, "finish", [base], prompt, out, a.quality, a.why_not_filter, None, False, client)
-    from PIL import Image
-
-    Image.open(out).convert("RGB").resize(Image.open(base).size).save(finish)
-    return {**r, "finish": str(finish), "previous_finish": str(keep),
-            "next": "read the new finish against the last step: only the listed details added. Then sample swatches "
-                    "again (mix), lock-steps, publish, step-pairs"}
-
-
 def from_finish_tool(a: argparse.Namespace) -> dict:
     """Every step picture cut from the finished painting (#8): no renders, nothing can drift. Copies the lesson to a
     new run folder first, so the rendered lesson stays as it was and both show in the lesson history."""
@@ -1083,17 +1055,6 @@ def add_lesson_tools(sub) -> None:
                    help="change this lesson instead of a copy: the skill's own step 6a, before the seal")
     p.add_argument("--why", required=True)
     p.set_defaults(func=from_finish_tool)
-    p = sub.add_parser("finish-from-step", help="PAID. Rebuild the finished painting from the last step, adding only its details.",
-                       description="When the finish changes the subject's shape compared with the steps before it: renders "
-                                   "a new finish from the last step with only the listed details added. Keeps the old one.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--add", required=True, help="what the last step adds, e.g. 'the eye, beak, and feet; leaf veins'")
-    p.add_argument("--why-not-filter", required=True)
-    p.add_argument("--quality", choices=QUALITIES, default="high")
-    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST)
-    p.add_argument("--max-redos", type=int, default=DEFAULT_MAX_REDOS)
-    p.set_defaults(func=finish_from_step)
-
     p = sub.add_parser("split-texture", help="Free. Split a step that jumps from flat to textured into passes, darkest marks first.",
                        description="Makes in-between pictures from the step before and the step itself (its new paint arriving "
                                    "darkest first: dark marks on the flat base, then mid, then the rest), inserts them as "
@@ -1745,7 +1706,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "render-step", "finish-from-step", "background") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "render-step", "background") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2

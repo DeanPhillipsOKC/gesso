@@ -239,14 +239,6 @@ class LessonToolTests(unittest.TestCase):
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(r["provenance"]["kind"], "edited")  # changed after the seal
 
-    def test_finish_from_step_keeps_the_old_finish(self):
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
-        code, r = self.run_tool("finish-from-step", "--lesson", str(self.lesson), "--add", "the stars",
-                                "--why-not-filter", "stars must be painted", "--quality", "low")
-        self.assertEqual(code, 0)
-        self.assertTrue(Path(r["previous_finish"]).exists())
-        self.assertEqual(self.client.images.calls, 3)
-
     def test_values_table_shows_depth(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         text = {"steps": [{"stage_id": "sky", "what_to_do": ["Paint the sky."], "values": [
