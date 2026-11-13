@@ -1,0 +1,49 @@
+id: snow
+name: Snow on the ground and on things
+for: "Snow drifts and banks on the ground, or snow resting on posts, rails, and branches: a shadow blue base in curved strokes, then lighter tops where the light hits, and any warm light falling on it."
+examples: [rolling snow drifts, a snowbank, snow caps on a fence post or rail, snow along a branch]
+kinds: [area, marks]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Lay in the snow in its shadow color
+    show: [flat, full]
+    strokes: [curved-strokes, horizontal-strokes]
+    value: mid
+    does: The whole snow shape in a blue or blue-violet shadow color, never pure white, in long strokes that curve over each drift or along the top of the thing it rests on.
+    mistake:
+      mistake: Painting snow pure white.
+      why: White snow with no shadow color looks flat, and leaves nowhere lighter to go.
+      fix: Start with the shadow blue, and save the whitest paint for the tops facing the light.
+  - name: Shade the hollows
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: dark
+    optional: true
+    does: A darker blue in the dips between drifts and under each bank's overhang, following the curve.
+  - name: Light the tops of the drifts
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: light
+    repeat: true
+    does: A lighter, whiter mix along the top edge of each drift or cap on the side facing the light, covering less than the base and leaving the blue showing below.
+  - name: Lay the warm light on the snow
+    show: [pass, full]
+    strokes: [dry-brush, scumbling, curved-strokes]
+    value: light
+    optional: true
+    repeat: true
+    does: Where a lamp, fire, or low sun lights the snow, a warm orange or gold in loose curved strokes over the dry blue, strongest nearest the light and broken toward its edges.
+rules:
+  - Snow is never pure white over a big area. The base is a shadow blue; white is only for the tops facing the light.
+  - Strokes curve over each drift or along each cap, never straight up and down.
+  - Far snow is smoother and paler; near drifts get the strokes and the strongest light and dark.
+  - Every lighter pass goes on a dry layer and covers less than the one before.
+sources:
+  - "docs/research/acrylic-paint-along.md, section 4, The core pattern (dark base, then mid, then small light)"
+  - "docs/research/acrylic-paint-along.md, section 4, Mountains and hills (farther is paler and softer) and Fields and grass (texture only in front)"
+  - "docs/research/acrylic-paint-along.md, section 2, Dry brushing and Scumbling (light over dark, the dark showing through)"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Values and texture 1, 3, and 5 (three values, distance, stroke follows the form)"
+  - "techniques/elements/far-hills.yaml and field-grass.yaml (lay in, shade, light; texture only in front)"
+  - "general practice: the research has no section on snow; a shadow-blue base instead of white, and the warm-light pass over snow, go past it"

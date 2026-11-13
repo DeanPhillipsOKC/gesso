@@ -1,0 +1,48 @@
+id: feathered-body
+name: A feathered bird's body
+for: "A small bird's body whose feathers show as short strokes: the round chest and belly, built as a shape, then feathered dark to light."
+examples: [a chickadee's buff chest, a robin's breast, a sparrow's body]
+kinds: [object]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Block in the body
+    show: [flat, full]
+    strokes: [build-from-pieces, curved-strokes]
+    value: mid
+    does: The whole body in its main mid color, one oval for the body first, then the head and tail in curved pieces, strokes curving around the form.
+  - name: Shade the side away from the light
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: dark
+    optional: true
+    does: A darker mix of the body color curved along the belly and the side away from the light, leaving the mid on the lit side.
+  - name: Flick in the feathers
+    show: [pass, full]
+    strokes: [flicking, dry-brush]
+    value: light
+    repeat: true
+    does: Short, light-loaded flicks of a lighter mix, each starting inside the body and lifting off in the direction the feathers lie (down and back from the head), more on the lit side, leaving the darker base showing between them.
+    mistake:
+      mistake: The feathers turn into a flat smooth patch.
+      why: Too much paint on the brush, or the strokes are blended together.
+      fix: Wipe the brush nearly dry, make each flick short and separate, and let it dry before adding more.
+  - name: Light the edge facing the light
+    show: [pass, full]
+    strokes: [flicking, dry-brush]
+    value: light
+    optional: true
+    does: A few of the lightest flicks only on the outer edge that faces the light, covering less than the feather pass.
+rules:
+  - Block in the shape first, then the shadow, then feathers, then the lightest edge. Each covers less than the one before.
+  - Feather strokes follow the way the feathers lie, from the head down and back toward the tail; never across.
+  - Feathers go on a dry base, so the dark shows between them.
+  - Keep every lit edge on the side the light comes from.
+sources:
+  - "docs/research/acrylic-paint-along.md, section 4, The core pattern (dark base, then mid, then small light)"
+  - "docs/research/acrylic-paint-along.md, section 2, Flicking (grass, fur): short tapered marks, light load, dark base first; the research marks this entry lower confidence"
+  - "docs/research/acrylic-paint-along.md, section 2, Dry brushing"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Values and texture 5 (stroke direction follows the form)"
+  - "techniques/elements/shaped-object.yaml (the block-in from pieces, shade, light order)"
+  - "general practice: the research has no section on feathers or birds; using flicks for feathers, and their direction (head down and back toward the tail), go past it"

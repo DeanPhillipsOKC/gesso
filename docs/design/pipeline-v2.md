@@ -572,8 +572,11 @@ checked: false
   side (research section 4 gives a balloon one main highlight); the lavender fixture's rows are dabbed with one
   bloom pass (research section 7: stamps, dark then mid then light), and its balloon goes straight to the stripes.
   Those are left in the fixture as findings, as `texture_jumps` were.
-- Not covered by the research, so not in the library yet: fur, feathers, skin, glass and metal, a night sky and glow.
-  A run drafts them; a research pass for each would let them in checked.
+- **Added from the first runs (2026-11-13, owner: "The techniques look fine"):** the six the reference runs drafted
+  and filed (#112 to #117): feathered-body, soil-rows, night-sky, snow, glowing-light, furry-animal. Each says in
+  `sources` which lines go past the research ("general practice: ..."); a research pass for fur, feathers, snow,
+  night skies, and light sources would back those lines. Still `checked: false` until the owner paints from them.
+  Skin, and glass and metal on their own, aren't covered yet; a run drafts them.
 
 ### Step text (`draft-text`, then Claude; issue 7 of 8)
 

@@ -1,0 +1,48 @@
+id: glowing-light
+name: A glowing light in a frame
+for: "A light you see glowing through glass or paper (a lantern, a lit window, a candle jar): warm color at the edges, brightest at the core, then the dark frame and metal painted over the dry glow."
+examples: [a lit lantern, a glowing window, a candle in a jar]
+kinds: [object]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Block in the glowing glass
+    show: [flat, full]
+    strokes: [build-from-pieces, curved-strokes]
+    value: mid
+    does: The whole glass shape in a warm orange, one simple shape first, strokes curving around it.
+  - name: Glow the middle
+    show: [pass, full]
+    strokes: [small-circles, wet-blend]
+    value: light
+    repeat: true
+    does: A lighter yellow in small circles in the middle of the glass, blended softly into the orange while wet, leaving the orange at the edges.
+  - name: Light the core
+    show: [pass, full]
+    strokes: [small-circles, dotting]
+    value: light
+    optional: true
+    does: The palest yellow, almost white, in a small spot at the very center of the glow, before the frame goes on.
+  - name: Paint the frame and metal
+    show: [pass, full]
+    strokes: [build-from-pieces, curved-strokes, liner, thick-to-thin]
+    value: dark
+    repeat: true
+    does: Once the glow is dry, the metal top, base, and bars in their own color, built from simple pieces; bars as single liner strokes that curve with the glass.
+  - name: Shine on the metal
+    show: [pass, full]
+    strokes: [dry-brush, liner, curved-strokes]
+    value: light
+    optional: true
+    does: A lighter, warmer mix on the metal edges that face the glow, small and broken.
+rules:
+  - Glow first, frame second. The bars go over the dry glow, never painted around.
+  - The light comes from inside, so the brightest value is the core and the metal is lit on the edges that face the glow.
+  - Each lighter layer covers less than the one before; the core is the smallest and lightest spot.
+sources:
+  - "docs/research/acrylic-paint-along.md, section 4, The core pattern (each layer covers less than the last)"
+  - "docs/research/acrylic-paint-along.md, section 2, Swirls and circular strokes (circular strokes outward from a light) and Wet-on-wet blending"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Layering and drying 3 (a dry layer before liner lines and a contrasting color)"
+  - "techniques/elements/shaped-object.yaml (build from pieces, then shade, light, details) and round-object.yaml (the shine last)"
+  - "general practice: the research has no section on light sources, glass, or metal; painting the glow before the frame, the core as the lightest value, and metal lit by the glow go past it"

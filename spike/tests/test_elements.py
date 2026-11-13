@@ -55,7 +55,9 @@ class LibraryTests(unittest.TestCase):
         for e_ in lib.values():
             for s in e_["steps"]:
                 self.assertTrue(set(s["strokes"]) <= cards, (e_["id"], s["strokes"]))
-            self.assertTrue(all("docs/research" in x or "techniques/" in x for x in e_["sources"]), e_["id"])
+            # every line cites the research or the technique file, or says plainly that it goes past them
+            self.assertTrue(all("docs/research" in x or "techniques/" in x or x.startswith("general practice")
+                                for x in e_["sources"]), e_["id"])
             self.assertIs(e_["checked"], False)  # the owner checks them
 
     def test_a_broken_element_is_reported(self):
@@ -202,14 +204,14 @@ class PlanTests(unittest.TestCase):
 
     def test_a_drafted_element_counts_once_filed(self):
         p = plan("chickadee")
-        p["parts"][6]["element"] = "feathered-body"  # the bird
+        p["parts"][6]["element"] = "scaled-body"  # the bird
         with tempfile.TemporaryDirectory() as tmp:
             lesson = Path(tmp)
             (lesson / "elements").mkdir()
             draft = {k: v for k, v in el.library()["shaped-object"].items() if not k.startswith("_")}
-            draft.update(id="feathered-body", name="A feathered body", drafted=True, checked=False,
-                         sources=["general painting practice; the research has no section on feathers"])
-            path = lesson / "elements" / "feathered-body.yaml"
+            draft.update(id="scaled-body", name="A scaled body", drafted=True, checked=False,
+                         sources=["general painting practice; the research has no section on scales"])
+            path = lesson / "elements" / "scaled-body.yaml"
             path.write_text(yaml.safe_dump(draft), encoding="utf-8")
             out = el.plan_problems(p, lesson=lesson)
             self.assertEqual(len(out), 1)
