@@ -853,38 +853,6 @@ def split_texture(a: argparse.Namespace) -> dict:
                     "lock-steps, publish, step-pairs"}
 
 
-def carry_forward(a: argparse.Namespace) -> dict:
-    """Copy a later step's pixels inside boxes onto an earlier step, so a subject's shape and markings match from
-    the step that paints them on. Free (chickadee, 2026-11-11: the head step's cap and cheek band differed from the
-    feather step's; the head step was made from the feather step's head on the body step's plain bird)."""
-    import cv2
-    import numpy as np
-    from PIL import Image
-
-    lesson = Path(a.lesson)
-    _, plan, _ = load_plan(lesson)
-    ids = [s.id for s in plan.steps]
-    for sid in (a.source, a.target):
-        if sid not in ids:
-            raise Refused(f"unknown step {sid}; plan has {ids}")
-    if ids.index(a.source) <= ids.index(a.target):
-        raise Refused("--from must be a later step than --to")
-    paths = step_paths(lesson, plan)
-    to_path, from_path = paths[ids.index(a.target)], paths[ids.index(a.source)]
-    dst = np.asarray(Image.open(to_path).convert("RGB")).astype(np.float32)
-    src = np.asarray(Image.open(from_path).convert("RGB").resize(dst.shape[1::-1])).astype(np.float32)
-    h, w = dst.shape[:2]
-    mask = np.zeros((h, w), np.float32)
-    for x0, y0, x1, y1 in a.box:
-        mask[int(y0 * h):int(y1 * h), int(x0 * w):int(x1 * w)] = 1
-    mask = cv2.GaussianBlur(mask, (0, 0), 3)[..., None]
-    Image.fromarray(np.clip(dst * (1 - mask) + src * mask, 0, 255).astype(np.uint8)).save(to_path)
-    LessonLedger(lesson).append({"tool": "filter", "filter": "carry-forward", "step": a.target, "why": a.why,
-                                 "input": str(from_path), "out": str(to_path), "settings": {"box": a.box}, "cost_usd": 0.0})
-    return {"out": str(to_path), "from": a.source, "cost_usd": 0.0,
-            "next": "lock-steps, then publish and step-pairs, and look at the subject across its steps"}
-
-
 def finish_from_step(a: argparse.Namespace, client=None) -> dict:
     """Rebuild the finished painting from the last step, adding only what the last step paints, so the subject
     can't change shape at the very end (chickadee, 2026-11-11: the finish drew the bird smaller and more upright
@@ -1115,17 +1083,6 @@ def add_lesson_tools(sub) -> None:
                    help="change this lesson instead of a copy: the skill's own step 6a, before the seal")
     p.add_argument("--why", required=True)
     p.set_defaults(func=from_finish_tool)
-    p = sub.add_parser("carry-forward", help="Free. Copy a later step's subject (in boxes) onto an earlier step so its shape matches.",
-                       description="For a subject that changes shape between steps: copies the later step's pixels inside the "
-                                   "boxes onto the earlier step, with a soft edge. Lock again afterwards.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--from", dest="source", required=True, help="the later step id, whose shape is right")
-    p.add_argument("--to", dest="target", required=True, help="the earlier step id to correct")
-    p.add_argument("--box", type=float, nargs=4, action="append", required=True, metavar=("X0", "Y0", "X1", "Y1"),
-                   help="0-1 box to copy; repeat for more")
-    p.add_argument("--why", required=True)
-    p.set_defaults(func=carry_forward)
-
     p = sub.add_parser("finish-from-step", help="PAID. Rebuild the finished painting from the last step, adding only its details.",
                        description="When the finish changes the subject's shape compared with the steps before it: renders "
                                    "a new finish from the last step with only the listed details added. Keeps the old one.")

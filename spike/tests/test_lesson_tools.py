@@ -239,21 +239,6 @@ class LessonToolTests(unittest.TestCase):
         code, r = self.run_tool("publish", "--lesson", str(self.lesson))
         self.assertEqual(r["provenance"]["kind"], "edited")  # changed after the seal
 
-    def test_carry_forward_copies_the_later_subject_onto_the_earlier_step(self):
-        import numpy as np
-        self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
-        Image.new("RGB", (40, 60), (10, 10, 10)).save(self.lesson / "02_hill.png")  # the later step: a black cap
-        Image.new("RGB", (40, 60), (200, 200, 200)).save(self.lesson / "01_sky.png")
-        code, r = self.run_tool("carry-forward", "--lesson", str(self.lesson), "--from", "hill", "--to", "sky",
-                                "--box", "0", "0", "0.5", "0.5", "--why", "match the cap")
-        self.assertEqual(code, 0)
-        out = np.asarray(Image.open(self.lesson / "01_sky.png"))
-        self.assertLess(out[5, 5].max(), 40)  # copied
-        self.assertGreater(out[55, 35].min(), 180)  # left alone
-        code, r = self.run_tool("carry-forward", "--lesson", str(self.lesson), "--from", "sky", "--to", "hill",
-                                "--box", "0", "0", "1", "1", "--why", "x")
-        self.assertEqual(code, 2)  # --from must be later
-
     def test_finish_from_step_keeps_the_old_finish(self):
         self.run_tool("render-step", "--lesson", str(self.lesson), "--steps", "sky", "hill", "--why-not-filter", "x")
         code, r = self.run_tool("finish-from-step", "--lesson", str(self.lesson), "--add", "the stars",
