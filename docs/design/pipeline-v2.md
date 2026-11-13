@@ -677,8 +677,11 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
   is marked as a good place to stop. (No times: the research has no per-step durations to build them from.)
 - A step, top to bottom: the picture with a Where / Result switch; the numbered lines and the tip when
   `text.json` has them (issue 7 writes them; until then the step's name); the paints with recipes; then folds: close-up, paint map, stroke card (open the first time a lesson uses it), diagram.
-- "Before you start": the basics cards, the quarter marks, the transfer outline, the lesson's strokes to try on
-  scrap paper.
+- The top of the page (#94): the photo and the finish, then "Tubes to get out" (each tube with its color, in the
+  order the steps first need it, "first in step N"), then "What you need" (brushes and the rest, no tubes). "Your
+  paints", every paint and its recipe, is folded closed: each step lists its own, and painters mix as they go.
+- "Before you start": the basics cards, the quarter marks and the transfer outline (together in one closed fold,
+  since they're optional), the lesson's strokes to try on scrap paper.
 - One self-contained HTML page per lesson, as now. Pages are 2.3 to 2.9 MB at 10 to 12 steps today; `publish`
   fails a version 2 page over 8 MB (step pictures at up to 900 px, close-ups at up to 600 px).
 - Version 1 lessons render exactly as before.

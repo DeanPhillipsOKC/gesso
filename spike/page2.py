@@ -3,7 +3,9 @@ calls these for a lesson.json with "plan_version": 2; a version 1 page never rea
 
     sprite(lesson, folder, embed)           -> every step picture once, for the Where and Result views to share
     contents(lesson)                        -> the stages, each with its step count
-    before_you_start(lesson, folder, embed) -> basics cards, the tape marks, the transfer outline, strokes to try
+    tubes_first(lesson, tubes)              -> the tubes to get out, in the order the steps first need them
+    paints_fold(count, cards)               -> every paint and its recipe, folded away (each step lists its own)
+    before_you_start(lesson, folder, embed) -> basics cards, the tape marks and transfer outline (folded), strokes to try
     step(lesson, i, parts)                  -> one step: the Where / Result switch, its lines, paints, and folds
 
 A step's Where view is the picture before it with this step's area outlined (aids/aids.json, from step-aids),
@@ -80,6 +82,16 @@ nav.toc li span{color:var(--muted);font-size:.9rem}
 .transfer{display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:1rem;align-items:start}
 ul.strokes{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
 @media (max-width: 760px){.tape,.transfer{grid-template-columns:1fr}.tape svg{max-width:16rem}}
+/* The tubes to get out first, as a checklist in the order the steps need them (#94). */
+ul.tubelist{list-style:none;margin:0;padding:0;display:grid;gap:.5rem 1.25rem;
+  grid-template-columns:repeat(auto-fill, minmax(min(100%, 15rem), 1fr))}
+ul.tubelist li{display:grid;grid-template-columns:1.6rem 1fr;gap:.6rem;align-items:center;min-width:0}
+ul.tubelist .swatch{width:1.6rem;height:1.6rem;border-radius:4px;border:1px solid var(--rule)}
+ul.tubelist b{overflow-wrap:anywhere}
+ul.tubelist a{color:var(--ultramarine)}
+ul.tubelist .small{display:block;line-height:1.3}
+details.allpaints .paints{margin-top:.25rem}
+details.aid>summary h2.foldh{font:inherit;margin:0;grid-column:2}
 .p-cut{background:var(--r-filter);color:var(--gesso)}.t-cut{color:var(--r-filter)}
 """
 
@@ -312,6 +324,77 @@ def _measure(canvas: dict | None) -> str:
             f"down the side {_inches(h / 4, 0.25)} apart.")
 
 
+def _palette_colors(palette_name: str) -> dict[str, tuple[int, int, int]]:
+    """{tube name: rgb} from the palettes/*.yaml whose title is this lesson's palette_name ({} for the teaching five)."""
+    if not palette_name:
+        return {}
+    import yaml
+    for path in sorted((Path(__file__).resolve().parent.parent / "palettes").glob("*.yaml")):
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        if data.get("name") == palette_name:
+            return {t["name"]: tuple(int(v) for v in t["rgb"]) for t in data.get("tubes") or []}
+    return {}
+
+
+def tube_hex(name: str, own: dict) -> str:
+    """A tube's swatch color: the painter's palette file first, then the mixer's pigment colors; '' if unknown."""
+    import mixing
+    rgb = own.get(name)
+    if rgb is None:
+        try:
+            rgb = mixing.tube_rgb(name)
+        except mixing.UnknownTube:
+            return ""
+    return mixing.rgb_hex(rgb)
+
+
+def tube_order(lesson: dict, tubes: list[str]) -> list[tuple[str, int | None]]:
+    """[(tube, first step (1-based) whose paints use it)], in that order. A tube no step's paint uses is left out,
+    unless no paint says which tubes it's mixed from: then every tube is listed, with no step."""
+    first: dict[str, int] = {}
+    for i, s in enumerate(lesson["stages"]):
+        for c in s.get("colors") or []:
+            for t, amount in ((c.get("mix") or {}).get("parts") or {}).items():
+                if amount:
+                    first.setdefault(t, i + 1)
+    if not first:
+        return [(t, None) for t in tubes]
+    known = [t for t in tubes if t in first] + [t for t in first if t not in tubes]
+    return sorted(((t, first[t]) for t in known), key=lambda x: x[1])  # stable: the palette's order within a step
+
+
+def tubes_first(lesson: dict, tubes: list[str]) -> str:
+    """The tubes to get out before starting, each with its color, in the order the steps first need them (#94)."""
+    order = tube_order(lesson, tubes)
+    if not order:
+        return ""
+    own = _palette_colors(lesson.get("palette_name") or "")
+    rows = []
+    for t, n in order:
+        h = tube_hex(t, own)
+        swatch = (f'<span class="swatch" style="background:{h}"></span>' if h
+                  else '<span class="swatch" aria-hidden="true"></span>')
+        when = f'<span class="small">first in <a href="#step-{n}">step {n}</a></span>' if n else ""
+        rows.append(f"<li>{swatch}<span><b>{e(t)}</b>{when}</span></li>")
+    return (f'<section class="tubes" id="tubes"><h2>Tubes to get out</h2><p class="small">Get these out of the box '
+            f'before you start. Every paint in the lesson is mixed from them; squeeze out a little of each when its '
+            f'step comes up.</p>'
+            f'<ul class="tubelist">{"".join(rows)}</ul></section>')
+
+
+def paints_fold(count: int, paint_cards: str) -> str:
+    """Every paint and its recipe, folded away: each step lists the ones it needs, so nobody mixes them all at the
+    start and lets them dry (#94). Opening it shows the same cards as before."""
+    hint = (f"All {count} paint{'s' if count != 1 else ''} and their recipes. Each step lists the ones it needs, so you "
+            "can mix as you go")
+    body = ('<p class="small">You don\'t have to mix them all at the start: each step lists the paints it uses with '
+            'their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>'
+            f'<div class="paints">{paint_cards}</div>')
+    # The title stays an h2 inside the summary, so "Your paints" is still a heading to jump to.
+    return (f'<section id="paints"><details class="aid allpaints"><summary><h2 class="foldh">Your paints</h2>'
+            f'<span class="small">{e(hint)}</span></summary><div class="aid-body">{body}</div></details></section>')
+
+
 def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> str:
     aids = lesson.get("aids") or {}
     tape = (f'<div class="tape">{_tape_svg()}<div><h3>Mark halves and quarters on tape</h3><p>Run a strip of masking tape '
@@ -337,5 +420,8 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
                f'that first uses it.</p><ul class="strokes">{tries}</ul></div>') if tries else ""
     basics = "".join(fold(c["name"], "" if c.get("checked") else "not checked yet", cards.basic_html(c))
                      for c in sorted(cards.basics().values(), key=lambda c: c["id"] != "set-up"))  # setting up first
-    return (f'<section class="start" id="start"><h2>Before you start</h2>{tape}{transfer}{strokes}'
+    # Folded at the owner's word (#94), but the steps still say where things go by the tape marks, so the hint says so.
+    placing = fold("Placing shapes with tape marks and a transfer outline",
+                   "optional, but the steps say where things go by these tape marks", tape + transfer, cls="placing")
+    return (f'<section class="start" id="start"><h2>Before you start</h2>{placing}{strokes}'
             f'<div><h3>The basics</h3><div class="basics">{basics}</div></div></section>')

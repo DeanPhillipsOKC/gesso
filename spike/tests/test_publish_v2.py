@@ -17,6 +17,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from html import escape as html_escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -234,6 +235,98 @@ class PublishV2Tests(unittest.TestCase):
             publish2.MAX_PAGE_BYTES = old
         self.assertEqual(code, 2)
         self.assertIn("MB", r["refused"])
+
+    # --- the top of the page: tubes first, the rest folded (#94) ---
+
+    def test_the_tubes_come_first_one_swatch_each_in_first_use_order(self):
+        for name in NAMES:
+            data = self.data(name)
+            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
+            self.assertLess(html.index('id="tubes"'), html.index("<h2>What you need</h2>"), name)
+            self.assertLess(html.index("Where you'll end up"), html.index('id="tubes"'), name)
+            block = html[html.index('<ul class="tubelist">'):]
+            block = block[:block.index("</ul>")]
+            want = []  # the first step whose paints use each tube, worked out here from lesson.json
+            for i, s in enumerate(data["stages"]):
+                for c in s["colors"]:
+                    for t, amount in c["mix"]["parts"].items():
+                        if amount and t not in [x for x, _ in want]:
+                            want.append((t, i + 1))
+            self.assertTrue(want, name)
+            pal = data["tubes"]  # within one step, the palette's order
+            want.sort(key=lambda x: (x[1], pal.index(x[0]) if x[0] in pal else len(pal)))
+            shown = re.findall(r'<li><span class="swatch" style="background:(#[0-9a-f]{6})"></span><span><b>([^<]+)</b>'
+                               r'<span class="small">first in <a href="#step-(\d+)">step \d+</a>', block)
+            self.assertEqual([(t, int(n)) for _, t, n in shown], want, name)
+            self.assertEqual(block.count("<li>"), len(want))
+            self.assertEqual(len({h for h, _, _ in shown}), len(want), f"{name}: one swatch color per tube")
+
+    def test_a_painters_own_tube_takes_its_color_from_their_palette_file(self):
+        import page2
+        own = page2._palette_colors("The owner's paints")
+        self.assertEqual(page2.tube_hex("Dark ultramarine", own), "#140a46")
+        self.assertEqual(page2.tube_hex("Burnt sienna", {}), "#7b4800")
+        self.assertEqual(page2.tube_hex("Unobtainium", {}), "")
+        self.assertEqual(page2._palette_colors(""), {})
+
+    def test_with_no_mix_data_every_tube_is_listed_with_no_step(self):
+        import page2
+        lesson = {"stages": [{"colors": [{"name": "Sky"}]}]}
+        self.assertEqual(page2.tube_order(lesson, ["Titanium white", "Burnt sienna"]),
+                         [("Titanium white", None), ("Burnt sienna", None)])
+        self.assertNotIn("first in", page2.tubes_first(lesson, ["Titanium white"]))
+
+    def test_the_tubes_are_not_also_in_the_kit_and_the_kit_has_no_masking_tape(self):
+        def kit_of(html: str) -> str:
+            return html[html.index('<div class="kit">'):html.index("</section>", html.index('<div class="kit">'))]
+        for name in NAMES:
+            data = self.data(name)
+            kit = kit_of((self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8"))
+            self.assertNotIn('<p class="label">Tubes</p>', kit)
+            for t in data["tubes"]:
+                self.assertNotIn(f"<li>{t}</li>", kit, name)
+        # The fixtures have no canvas.json, and the tape only ever came with a canvas: give one a canvas to check it.
+        lesson = self.copy("red-sailboat")
+        (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 14.0, "h_in": 11.0,
+                                                                   "orientation": "landscape"},
+                                                     "canvas_box": [0.0, 0.0, 1.0, 1.0]}), encoding="utf-8")
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        kit = kit_of((lesson / "lesson-standalone.html").read_text(encoding="utf-8"))
+        self.assertIn("A 14 x 11 in canvas, landscape (hang it that way).", kit)
+        self.assertNotIn("masking tape", kit.lower())
+
+    def test_your_paints_is_closed_with_its_summary_and_the_cards_unchanged_inside(self):
+        for name in NAMES:
+            data = self.data(name)
+            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
+            n = len(data["photo_read"]["mixes"])
+            m = re.search(r'<section id="paints"><details class="aid allpaints"><summary><h2 class="foldh">Your paints</h2>'
+                          r'<span class="small">'
+                          rf'All {n} paints and their recipes\. Each step lists the ones it needs, so you can mix as you go'
+                          r'</span></summary>(.*?)</details></section>', html, re.S)
+            self.assertTrue(m, name)
+            inside = m.group(1)
+            self.assertEqual(inside.count('<div class="paint">'), n)
+            for p in data["photo_read"]["mixes"]:  # each card whole: swatch, name, recipe, what it's for, first step
+                card = inside[inside.index(f'<span class="blob" style="background:{p["hex"]}"></span><div><b>{p["name"]}</b>'):]
+                card = card[:card.index('</div></div>')]
+                self.assertIn(f'<span class="recipe">{html_escape(p["recipe"])}</span>', card)
+                self.assertIn(html_escape(p.get("used_for", "")), card)
+                self.assertIn("First needed in step", card)
+
+    def test_tape_marks_and_the_transfer_outline_sit_in_one_closed_fold(self):
+        for name in NAMES:
+            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
+            start = html[html.index('id="start"'):]
+            m = re.search(r'<details class="aid placing"><summary>Placing shapes with tape marks and a transfer outline '
+                          r'<span class=small>optional, but the steps say where things go by these tape marks</span>'
+                          r'</summary>(.*?)</details>', start, re.S)
+            self.assertTrue(m, name)
+            self.assertIn("Mark halves and quarters on tape", m.group(1))
+            self.assertIn("The transfer outline", m.group(1))
+            self.assertEqual(html.count("Mark halves and quarters on tape"), 1)
+            self.assertEqual(html.count('class="transfer"'), 1)
 
     def test_a_version_1_page_has_no_stage_headings(self):
         from lesson_page import page

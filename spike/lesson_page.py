@@ -276,7 +276,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     v2 = lesson.get("plan_version") == 2
     canvas_item = (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
                    + ("" if cv["orientation"] == "square" else " (hang it that way)")
-                   + ", and masking tape to mark halves and quarters along its edges.") if v2 and cv else (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
+                   + ".") if v2 and cv else (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
                    + ("" if cv["orientation"] == "square" else " (hang it that way)") +
                    f'. Positions in the steps are percentages across and down: each 10% is {cv["w_in"] / 10:g} in '
                    f'across and {cv["h_in"] / 10:g} in down.') if cv else "White canvas or canvas board"
@@ -313,10 +313,15 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
         f'<li class="brush">{picture(b)}<div><b>{e(b)}</b>' + (f": {e(u)}" if u else "")
         + (f'<span class="small">{e(describe(b))}</span>' if describe(b) else "") + "</div></li>"
         for b, u in brushes.items())
-    kit = (f'<div><p class="label">Tubes</p><ul>{items(tubes)}</ul></div>'
+    # Version 2 lists the tubes first, on their own (page2.tubes_first), so the kit leaves them out (#94).
+    kit = ("" if v2 else f'<div><p class="label">Tubes</p><ul>{items(tubes)}</ul></div>') + (
            f'<div><p class="label">Brushes</p><ul>{brush_items}</ul></div>'
            f'<div><p class="label">Also</p><ul><li>{e(canvas_item)}</li><li>Water jar and paper towel</li>'
            f'<li>Palette or paper plate for mixing</li></ul></div>')
+    paints_html = (v2_part("paints_fold", len(paints), paint_cards) if v2 else
+                   f'''<section><h2>Your paints</h2><p class="small">Every paint in the lesson. You don't have to mix them all at the start: each step lists
+    the paints it uses with their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>
+    <div class="paints">{paint_cards}</div></section>''')
     sizes = [dims(folder / s["image"]) for s in stages]
     strip = "".join(f'<a href="#step-{i + 1}"><img src="{thumbs[i]}"{sizes[i]} alt="" loading="lazy">Step {i + 1}</a>'
                     for i in range(len(stages)))
@@ -403,10 +408,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     {f'<figure><img src="{photo}"{dims(folder / lesson["photo_file"])} alt="The original photo"><figcaption>Your photo</figcaption></figure>' if photo else ''}
     <figure><img src="{finish}"{sizes[-1]} alt="The finished painting"><figcaption>Where you'll end up</figcaption></figure>
   </div>
-  <section><h2>What you need</h2><div class="kit">{kit}</div></section>
-  <section><h2>Your paints</h2><p class="small">Every paint in the lesson. You don't have to mix them all at the start: each step lists
-    the paints it uses with their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>
-    <div class="paints">{paint_cards}</div></section>
+  {v2_part("tubes_first", lesson, tubes) + chr(10) + "  " if v2 else ""}<section><h2>What you need</h2><div class="kit">{kit}</div></section>
+  {paints_html}
   {v2_part("before_you_start", lesson, folder, embed) if v2 else ""}<section><h2>The steps</h2>{v2_part("contents", lesson) if v2 else ""}<nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}
   {behind(lesson, technique, folder, embed, thumbs, sizes)}

@@ -6,6 +6,14 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.3.0 (2026-11-13)
+- The top of a lesson page is shorter, and the steps start much higher (#94). Right after the finished painting,
+  "Tubes to get out" lists each tube with its color, in the order the steps first need it ("first in step 2"), so
+  it works as a checklist. "What you need" no longer lists the tubes. "Your paints", every paint and its recipe,
+  is folded closed, because each step already lists the paints it needs and mixing them all at the start leaves
+  them drying on the plate. In "Before you start", the tape marks and the transfer outline sit in one closed fold
+  marked optional, and the masking tape moved there from the canvas line. Version 1 pages are unchanged.
+
 ## POC 1.2.0 (2026-11-13)
 - Six more element techniques in the library, drafted by the first 1.1.0 runs and approved by the owner: a feathered
   bird's body, soil strips between rows, a night sky with stars, snow, a glowing light in a frame, and a furry animal
