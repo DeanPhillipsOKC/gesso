@@ -17,6 +17,8 @@ python -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
 pip install -r spike/requirements.txt
 # put OPENAI_API_KEY and ANTHROPIC_API_KEY in .env (see .env.example)
+# (if HTTPS_PROXY is set and the proxy supplies the OpenAI key, as in a cloud session, OPENAI_API_KEY can stay unset;
+#  a proxy that doesn't supply it gives a 401 "Incorrect API key" instead of "Missing credentials")
 python spike/run.py photos/your-photo.jpg                 # low quality (default while experimenting)
 python spike/run.py photos/your-photo.jpg --quality max   # best images, about 5x the cost
 ```
