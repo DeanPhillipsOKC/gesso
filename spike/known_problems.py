@@ -56,14 +56,21 @@ def filed(run: str) -> list[dict] | None:
     if not exe:
         return None
     try:
-        out = subprocess.run([exe, "issue", "list", "--repo", REPO, "--state", "all", "--search", f'"{run}" in:body',
-                              "--json", "number,title,state,url", "--limit", "20"],
+        # the REST search, not `gh issue list`: that one needs GraphQL, which cloud sessions can't reach
+        out = subprocess.run([exe, "api", "-X", "GET", "search/issues", "-f",
+                              f'q=repo:{REPO} is:issue "{run}" in:body', "-f", "per_page=20"],
                              capture_output=True, text=True, timeout=30)
     except (OSError, subprocess.SubprocessError):
         return None
     if out.returncode != 0:
         return None
-    return sorted(json.loads(out.stdout or "[]"), key=lambda i: (i["state"] != "OPEN", i["number"]))
+    try:
+        items = json.loads(out.stdout or "{}").get("items") or []
+    except ValueError:
+        return None
+    issues = [{"number": i["number"], "title": i["title"], "state": i["state"].upper(), "url": i["html_url"]}
+              for i in items]
+    return sorted(issues, key=lambda i: (i["state"] != "OPEN", i["number"]))
 
 
 SECTION_STYLE = """<style>
@@ -110,8 +117,9 @@ def refresh_page(page: Path, run_dir: Path) -> dict:
     problems, issues = left(data), filed(run_dir.name)
     html = page.read_text(encoding="utf-8")
     if issues is None:
-        if START in html:
-            return {"page": str(page), "skipped": "GitHub not available"}
+        if START in html:  # keep the page's issue list; the count of what's left still holds
+            return {"page": str(page), "skipped": "GitHub not available", "left": len(problems),
+                    "issues_open": re.findall(r'<span class="state">open</span><a href="[^"]*">#(\d+)', html)}
         issues = []
     new = inject(html, section(problems, issues))
     if new != html:

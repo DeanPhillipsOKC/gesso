@@ -39,6 +39,34 @@ class KnownProblemsTests(unittest.TestCase):
         self.assertNotIn("Known problems", twice)
         self.assertEqual(twice.count(kp.START), 1)
 
+    def test_filed_uses_the_rest_search(self):  # `gh issue list` needs GraphQL, which cloud sessions can't reach
+        import json
+        import subprocess
+        from unittest import mock
+        reply = {"items": [{"number": 40, "title": "Old bug", "state": "closed", "html_url": "https://example.test/40"},
+                           {"number": 56, "title": "Lock leaves patches", "state": "open",
+                            "html_url": "https://example.test/56"}]}
+        done = subprocess.CompletedProcess([], 0, json.dumps(reply), "")
+        with mock.patch.object(kp, "gh", return_value="gh"), \
+                mock.patch.object(kp.subprocess, "run", return_value=done) as run:
+            self.assertEqual(kp.filed("sky_skill_1"), ISSUES)
+        self.assertEqual(run.call_args[0][0][:4], ["gh", "api", "-X", "GET"])
+        self.assertIn('"sky_skill_1" in:body', " ".join(run.call_args[0][0]))
+
+    def test_page_keeps_its_count_when_github_cant_be_asked(self):
+        import json
+        import tempfile
+        from unittest import mock
+        d = Path(tempfile.mkdtemp())
+        (d / "lesson.json").write_text(json.dumps(DATA), encoding="utf-8")
+        page = d / "index.html"
+        page.write_text(kp.inject("<body></body>", kp.section(kp.left(DATA), ISSUES)), encoding="utf-8")
+        before = page.read_text(encoding="utf-8")
+        with mock.patch.object(kp, "filed", return_value=None):
+            r = kp.refresh_page(page, d)
+        self.assertEqual((r["left"], r["issues_open"]), (2, ["56"]))
+        self.assertEqual(page.read_text(encoding="utf-8"), before)
+
 
 if __name__ == "__main__":
     unittest.main()

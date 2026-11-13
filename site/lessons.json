@@ -51,7 +51,7 @@
         "current": false
       }
     ],
-    "known": 2
+    "known": 3
   },
   {
     "slug": "chickadee",
@@ -95,7 +95,7 @@
         "current": false
       }
     ],
-    "known": 5
+    "known": 7
   },
   {
     "slug": "lavender-balloon",
@@ -139,6 +139,6 @@
         "current": false
       }
     ],
-    "known": 2
+    "known": 5
   }
 ]
