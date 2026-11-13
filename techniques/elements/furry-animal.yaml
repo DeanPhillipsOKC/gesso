@@ -1,0 +1,62 @@
+id: furry-animal
+name: A furry animal with markings
+for: "A short-haired animal whose fur shows as short strokes and whose coat has markings: a cat, a dog, a rabbit. Built as a shape, shaded, given its pale patches and markings, then fur flicked over it and the face last."
+examples: [a sleeping tabby cat, a short-haired dog, a rabbit]
+kinds: [object]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Block in the animal
+    show: [flat, full]
+    strokes: [build-from-pieces, curved-strokes]
+    value: mid
+    does: The whole animal in its main mid fur color. One big oval for the body first, then the head as a circle, the ears as triangles, and the tail and legs as curved pieces, every stroke following the way the fur lies.
+  - name: Shade the side away from the light
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: dark
+    optional: true
+    does: A darker mix of the fur color curved along the belly, under the head, and the side away from the light, leaving the mid showing on the lit side.
+  - name: Paint the pale patches
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: light
+    optional: true
+    does: White or pale fur (a chest, a muzzle, paws) over the dry base, in 2 to 3 thin coats with drying between, strokes following the fur.
+  - name: Paint the markings
+    show: [pass, full]
+    strokes: [thick-to-thin, curved-strokes, press-and-lift]
+    optional: true
+    repeat: true
+    does: Stripes, spots, or the inside of the ears in their own color, on a dry layer, each mark curving around the body so it looks round. One color per step.
+  - name: Flick in the fur
+    show: [pass, full]
+    strokes: [flicking, dry-brush]
+    value: light
+    repeat: true
+    does: Short, light-loaded flicks of a lighter fur mix over the dry base and the edges of the markings, each lifting off in the direction the fur lies, more on the side facing the light, leaving the darker fur showing between them.
+    mistake:
+      mistake: The fur turns into a flat, smooth patch, or the stripes lose their edges.
+      why: Too much paint on the brush, or the flicks are blended together.
+      fix: Wipe the brush nearly dry, make each flick short and separate, and let it dry before adding more.
+  - name: Add the face and small details
+    show: [pass, full]
+    strokes: [liner, dotting, press-and-lift]
+    optional: true
+    repeat: true
+    does: The eyes, nose, mouth, and whiskers, on a dry layer, one color per step. Whiskers are a few liner lines of paint thinned to ink, pulled out from the muzzle and lifted off.
+rules:
+  - Block in the shape first, then the shadow, the pale patches, the markings, the fur, and the face. Each light pass covers less than the one before.
+  - Every stroke follows the way the fur lies (along the body's curve, out from the face); markings curve around the body.
+  - Markings, fur flicks, and the face go on a dry layer, so the colors stay clean and the dark shows between flicks.
+  - White over gray needs 2 to 3 thin coats with drying between.
+  - Keep every lit edge on the side the light comes from.
+sources:
+  - "docs/research/acrylic-paint-along.md, section 4, The core pattern (dark base, then mid, then small light, each covering less)"
+  - "docs/research/acrylic-paint-along.md, section 2, Flicking (grass, fur): short tapered marks, light load, dark base first; the research marks this entry lower confidence"
+  - "docs/research/acrylic-paint-along.md, section 2, Dry brushing; Thick-to-thin stroke with a flat or angle; Liner work"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Layering and drying 3 and 5 (dry layer before lines and a contrasting color; light over dark needs 2 to 3 coats)"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Values and texture 5 (stroke direction follows the form)"
+  - "techniques/elements/shaped-object.yaml (block in from pieces, shade, light, details)"
+  - "general practice: the research has no section on animals or fur beyond naming fur under Flicking; the fur direction, markings as their own pass, and the face and whiskers last go past it"

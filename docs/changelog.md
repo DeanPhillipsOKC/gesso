@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.2.0 (2026-11-13)
+- Six more element techniques in the library, drafted by the first 1.1.0 runs and approved by the owner: a feathered
+  bird's body, soil strips between rows, a night sky with stars, snow, a glowing light in a frame, and a furry animal
+  (#112 to #117). Lessons with these parts use them as library techniques, no longer marked "technique not checked
+  yet" on their steps.
+
 ## POC 1.1.0 (2026-11-13)
 - Every part follows an element technique (#12): how that kind of thing is painted, step by step, from the
   research file (`techniques/elements/`, 15 to start: skies, clouds, far hills, fields, foliage, pines, trunks and

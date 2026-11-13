@@ -1,0 +1,40 @@
+id: soil-rows
+name: Soil strips between rows
+for: "Bare soil or a dirt track between crop or flower rows, running back to one point on the horizon, when the near soil is wide enough to be its own part. Thin far strips are flower-rows' own optional soil step instead; don't paint the same soil with both."
+examples: [soil between lavender rows, a dirt track between vine rows, furrows in a ploughed field]
+kinds: [marks, area]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Pull in the soil strips
+    show: [flat, pass]
+    strokes: [toward-vanishing-point, horizontal-strokes]
+    value: mid
+    does: Each strip in a warm orange-brown, pulled along its row line toward the dot on the horizon, wide in front and thin at the back, over the dry field.
+    mistake:
+      mistake: Strips run parallel, or stay the same width all the way back.
+      why: Without the dot and the fanned lines, the strips don't converge and the ground stands up like a wall.
+      fix: Mark the dot first, follow the faint lines from it, and let each strip narrow to a thread near the dot.
+  - name: Shade the edges by the rows
+    show: [pass]
+    strokes: [dry-brush, toward-vanishing-point]
+    value: dark
+    optional: true
+    does: A darker brown dry-brushed along the edges where the rows lean over the soil, so the strip looks sunk between them. The middle stays warm.
+  - name: Catch the light down the middle
+    show: [pass, full]
+    strokes: [dry-brush, toward-vanishing-point]
+    value: light
+    optional: true
+    does: A lighter, warmer orange dry-brushed down the middle of the near strips only, where the low sun hits. The far strips stay plain.
+rules:
+  - Strips aim at the same dot as the rows; narrow and tight at the back, wide in front.
+  - Warm ochre or orange, not gray; a thin strip is enough far back.
+  - Far strips get no shading or light; texture and contrast only near the viewer.
+sources:
+  - docs/research/acrylic-paint-along.md, section 7, Rows in perspective (thin warm strips of ochre or orange between rows; rows aim at one point, wide in front)
+  - docs/research/acrylic-paint-along.md, For Gesso, Flower masses 7 and 9 (fan of lines from one dot; optional warm strip between near rows)
+  - techniques/elements/flower-rows.yaml, step "Pull in the soil between the rows" (the closest library element)
+  - docs/research/acrylic-paint-along.md, section 4, The core pattern (dark, mid, light, each covering less) and For Gesso, Values and texture 3 and 4 (no texture far away)
+  - "general practice, not in the research: shading the soil's edges where the rows overhang it, and a lighter strip down the middle of the near soil. The research covers only a single warm strip."

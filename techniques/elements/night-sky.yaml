@@ -1,0 +1,39 @@
+id: night-sky
+name: Night sky with stars
+for: "A dark night sky, deepest at the top and a little lighter toward the horizon, blended wet in one go, with stars dotted or spattered on once it's dry."
+examples: [a starry winter sky, a moonlit sky over a field, a night sky behind a lit window]
+kinds: [area]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Blend the night sky
+    show: [blend]
+    strokes: [side-to-side-blend, x-stroke, wet-blend]
+    does: The darkest blue across the top, a slightly lighter blue toward the horizon, blended wet into each other and run straight past where the land and trees will go. Around a moon, the strokes curve in loose circles.
+    mistake:
+      mistake: Blending after the paint has started to drag.
+      why: Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks.
+      fix: Stop as soon as it drags. Let it dry, then blend a new thin layer on top.
+  - name: Dot in the stars
+    show: [pass, full]
+    strokes: [dotting, splatter]
+    value: light
+    optional: true
+    does: Small separate stars in a pale paint over the dry sky, more of them high up and fewer near the horizon, different sizes, never in rows.
+    mistake:
+      mistake: Stars land in even rows or big blobs.
+      why: Dots placed in a pattern, or spatter paint too wet.
+      fix: Wipe a bad star off at once with a damp swab, or cover it with sky color once dry. Vary the spacing and size.
+rules:
+  - Dark at the top, lighter toward the horizon, blended wet in one step.
+  - Run the sky past the horizon and behind everything in front of it. Never stop it at a hill or tree line.
+  - Stars go on only once the sky is dry, and only a few dozen; let the spatter dry before the next step.
+  - When the stars are too small to measure as their own paint, leave out the star step and say how to dot them in the blend step's tip.
+sources:
+  - "docs/research/acrylic-paint-along.md, section 2, Long horizontal stroke and X stroke (the sky blend), Wet-on-wet blending"
+  - "docs/research/acrylic-paint-along.md, section 2, Swirls and circular strokes (circular strokes around a sun or moon)"
+  - "docs/research/acrylic-paint-along.md, section 2, Splatter (stars, snow) and Dotting (stars)"
+  - "docs/research/acrylic-paint-along.md, section 1, Step order and Pacing (the pumpkin tutorial ends with stars; let star spatter dry)"
+  - "techniques/elements/sky-blend.yaml (the one-step wet blend, run past the horizon)"
+  - "general practice: the research has no section on night skies as such; dark at the top and lighter toward the horizon, more stars high up than low, and only a few dozen stars, go past it"
