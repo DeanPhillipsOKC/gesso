@@ -217,6 +217,20 @@ prints `problems`.
 A child of kind `marks` or `thin` only takes pixels its parent's family already had. `outline.problems` reports: nothing outlined; model confidence under 0.80; an object filling under 15% or over 98%
 of its box; an object in more than 3 pieces per box. Each says what to change.
 
+**Changed 2026-11-13, from three real runs:**
+- `outline` and `part-colors` check only the parts (`plan2.parts_problems`), so they run on a plan with no paints
+  or stages yet. Before, they demanded both, and every run invented placeholder steps and paints to get past it.
+- A `marks` or `thin` part whose parent is `marks` or `thin` is refused by `plan2.parts_problems`. It outlined
+  nothing, silently: a marks parent owns only pixels of its own colors, and the child, a different color, finds
+  none of them to take (the sailboat's mast reflection, child of the reflection, failed two rounds this way). Give
+  it the parent's parent, or no parent, and list it after. Refusing is smaller than a new family rule, and gives the
+  same outline the grandparent would.
+- `outline.problems` also reports an `area` whose filled outline (with it, its children, and the box's sides on the
+  picture's edge, gaps narrower than about 4% of the long side closed) encloses more than 3% of the picture that
+  went to an `area` or `object` behind it, with a spot in it and the two fixes: `points_in` there, or a `marks` child
+  of the area for what's there. The lavender's earth paths went to the sky that way. A marks part listed before the
+  area took its pixels on purpose and isn't counted.
+
 Claude Reads `parts/preview.jpg` once and fixes what's visibly wrong, at most 2 rounds per part. What goes wrong
 and the fix, from the spike:
 
@@ -245,11 +259,17 @@ that sky. Three cases:
    than 60% of the picture), with brush texture borrowed from beside the gap. Built; good wherever it was tried.
 2. **Behind objects, when they're small:** the same fill, per part, with the gap divided between the parts behind
    along each row so a horizon carries straight on. An object's soft rim (0.8% of the long side) is cleared with
-   it and comes back when the object is painted. Built; can't be seen on the sailboat or the lavender (objects are
-   8% of each picture).
+   it and comes back when the object is painted. Built. It looked fine on the fixture sailboat and lavender
+   (objects are 8% of each picture), but not on the real runs of 2026-11-13 (below): only tiny objects get it now.
 3. **Behind objects, when they're big** (33% on the chickadee): the fill is soft and patchy. `build-steps` reports
-   `objects_share` and asks for a background picture above 15% (`NEEDS_BACKGROUND`; a number between the two
-   cases seen, to be tuned).
+   `objects_share` and asks for a background picture above **2%** (`NEEDS_BACKGROUND`).
+
+**Changed 2026-11-13: the background render is wanted far more often.** `NEEDS_BACKGROUND` was 15%, a number
+between the two fixture cases. It was found wrong in three real runs on 2026-11-13: in two of them objects covered
+about 8% of the picture, and a blurred ghost of the boat, and of the balloon and the tree, showed in every step
+before they were painted. The earlier fixture comparison that showed "no visible difference" at 7 to 8% (below) did
+not hold on fresh finishes. The render costs about 2 cents, so it's now asked for whenever objects cover more than
+2% of the picture: in practice, whenever the picture has an object in front.
 
 **The background picture** (`98_background.png`, tool `background`, built: issue 2 of 8). One low-quality render
 of the finish with everything in front removed. The tool writes the prompt from the plan (the names of the front
@@ -260,8 +280,8 @@ outlines and rims are taken, matched to the color around the hole, so the render
 else. Marks the render shows behind an object (foliage behind the bird) are found there by the same color rule.
 
 Tried on the three fixtures (`docs/spikes/outlines.md`): $0.018 and 13 seconds each; clean on the chickadee; no
-visible gain on the two pictures where objects are 7 to 8% of the picture. So it's run only when `build-steps`
-prints `"needs_background": true`.
+visible gain on the two pictures where objects are 7 to 8% of the picture (the real runs of 2026-11-13 showed
+otherwise; see above). It's run when `build-steps` prints `"needs_background": true`.
 
 `build_steps.background_problems` checks the render: it reports when more than 25% of the scene away from the
 objects changed (the three real renders changed 0.0 to 0.3%), or when the objects are still there. One redo at

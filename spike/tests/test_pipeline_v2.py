@@ -458,7 +458,13 @@ class ToolTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "chickadee")))
             self.assertGreater(r["objects_share"], bs.NEEDS_BACKGROUND)
-            self.assertIn("background render", r["advice"])
+            self.assertTrue(r["needs_background"])
+            self.assertIn("Run background (one render", r["advice"])
+        with tempfile.TemporaryDirectory() as d:  # objects at about 8% show a ghost too (three real runs, 2026-11-13)
+            r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "red-sailboat")))
+            self.assertLess(r["objects_share"], 0.15)
+            self.assertTrue(r["needs_background"])
+        self.assertEqual(bs.NEEDS_BACKGROUND, 0.02)
 
     def test_outline_and_part_colors_run_on_a_plan_with_parts_only(self):
         from unittest import mock

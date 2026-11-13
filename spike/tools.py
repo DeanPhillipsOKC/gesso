@@ -1483,7 +1483,8 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     advice = "Read the sheet. Every step should add one thing; nothing else should change."
     if background is None and front > bs.NEEDS_BACKGROUND:
         advice += (f" Objects cover {front:.0%} of the picture and there's no 98_background.png, so what's behind them "
-                   "is a rough fill until they're painted. One background render fixes that (design section 7).")
+                   "is a rough fill until they're painted: a blurred ghost of them shows in every step before their "
+                   "own. Run background (one render, about 2 cents), then build-steps again (design section 7).")
     return {"steps": names, "sheet": str(sheet), "rows": rows, "problems": bs.problems(plan, rows),
             "objects_share": front, "background": plate.name if background is not None else None,
             "needs_background": background is None and front > bs.NEEDS_BACKGROUND,

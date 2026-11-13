@@ -31,7 +31,10 @@ import outline as ol
 UNDERLAP = 0.012  # how far a part's paint runs under the next part's edge, as a share of the long side
 HALO = 0.008  # how far past an object's outline its edge is cleared from the background, as a share of the long side
 CLOSE = 0.03  # gaps this wide in an object (a bird's feet across a branch) are painted straight through
-NEEDS_BACKGROUND = 0.15  # objects covering more of the picture than this want a background picture, not a fill
+# objects covering more of the picture than this want a background picture, not a fill. Was 0.15; three real runs
+# (2026-11-13) showed a blurred ghost of the boat, and of the balloon and tree, in every step before they were
+# painted, with objects at about 8%. The render costs about 2 cents (design section 7).
+NEEDS_BACKGROUND = 0.02
 ROWS = 0.9  # how much of a wide part's carried-on paint follows its rows (bands) rather than its edges
 TEXTURE = 0.7  # how much brush texture carried-on paint borrows from beside the gap
 FEATHER = 0.8  # pixels of softening at a painted edge, inward only
