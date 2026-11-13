@@ -118,6 +118,9 @@ with the date.
   made it and sealed it (`publish --final`) and nothing changed after. The skill's own fixes (step review redos,
   split-texture) count as the tool; recuts, hand composites, relocks, and text edits after the seal don't. Those
   runs stay in the lesson history, marked with a ribbon. A lesson that needs a fix gets a fixed tool and a new run.
+  After a tool fix, the site's lessons are rerun from their photos, never rebuilt from an old run's saved finish or
+  plan (2026-11-13, owner: "I don't trust intermediate fixes because I'm only interested in things that actually
+  fix the tool"). Don't plan or file a no-render rebuild of an old run.
 
 - **The repo is public (2026-11-12, owner's call).** It was private only by default ("meant as a portfolio piece
   later"); an audit found no secrets, personal details, or real photos in its history. Public, the issue links on
