@@ -1,14 +1,18 @@
 # Step 0: set up, check the photo, fit the canvas, beginner version
 
 ## 0. Set up
-- Lesson folder: `output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/`. Pass it as `--lesson` to every tool.
+- Lesson folder: `output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/` (the history and the site find runs by that
+  name). Pass it as `--lesson` to every tool.
+- Every filter run with `--lesson` needs `--why "<what you want it to show you>"`. Pass `--max-cost 0.40` to every
+  render.
 - The tools also write `ledger.json` (every render and filter run), `00_canvas.png`, and filter outputs there. Put
   trial outputs you won't use under `<lesson>/trials/` with `--out`.
 - Read `docs/decisions.md`.
-- Technique: if the owner named one, use it. Otherwise read every file in `techniques/` and pick the one that fits
-  this photo and level. Record why, and every technique you passed on, in `notes.json` (`technique`).
-- Read the technique YAML: `rules`, `brush_moves`, `palette`, `step_range`, `ground`, `framing`, `simplify`,
-  `finish`, `detail_budget`, `beginner_version`.
+- Technique: if the owner named one (`--technique`), use it. Otherwise read every file in `techniques/` with
+  version 2 keys (`v2_step_range`, `v2_rules`) and pick the one that fits this photo and level. Record why, and
+  every technique you passed on, in `notes.json` (`technique`), and say why in plan.json's `technique_why`.
+- Read the technique YAML: `v2_rules`, `brush_moves`, `palette`, `v2_step_range`, `v2_stage_range`, `max_mixes`,
+  `ground`, `framing`, `simplify`, `finish`, `detail_budget`, `beginner_version`.
 - Read `docs/research/acrylic-paint-along.md`: at least sections 4 (depth and texture), 5 (beginner mistakes), and
   "For Gesso".
 
@@ -27,7 +31,7 @@ photo input). Crop only what's clearly not part of the scene; don't recompose a 
 
 Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": "what else was in the image, or
 'just the picture'", "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."}`. Start
-`notes.json` now and add to it as you go; the full schema is in step 8.
+`notes.json` now and add to it as you go; the full schema is in `steps/notes.md` (step 8b).
 
 ## 0b2. Fit the picture to the canvas (only with `--canvas`)
 1. Decide the subject's box and the focal point (0-1 from the top left). The subject is what the picture is
@@ -62,13 +66,14 @@ technique's level (`detail_budget`), answer:
 - **More parts** at different distances than `detail_budget.max_parts`?
 
 If any answer is yes, make a beginner version first and make the rest of the lesson from it:
-`render --step beginner --inputs <photo> --quality medium --out <lesson>/00_beginner.png --why-not-filter "<why no
+`render --step beginner --inputs <photo> --quality medium --max-cost 0.40 --out <lesson>/00_beginner.png --why-not-filter "<why no
 filter can drop and merge these>" --prompt "<beginner_version.prompt> <your list> <framing>"`.
 Your list names what to drop ("remove the village"), merge ("the clouds become three big soft masses"), and turn
 into a repeated mark ("the lavender becomes rows of loose purple dabs, darker at the base, no single stalks").
 Keep the composition, subject, light, and mood. Read the result: everything the picture is recognized by is
 there, nothing on your list survived. One redo at most. From here on, "the photo" means `00_beginner.png`.
 
-Record the answers and the list in `notes.json` as `beginner_version`, and put `00_beginner.png` in
+Record the answers and the list in `notes.json` as `beginner_version`, a dict: `{"made": true|false, "found":
+"...", "list": "...", "why": "..."}`, and put `00_beginner.png` in
 `notes.filters` with `"label": "Beginner version"`, `"tool": "render"`, `"verdict": "kept"`. If every answer is
 no, skip it and say so.

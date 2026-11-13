@@ -1,4 +1,4 @@
-# Step review: would the text get a beginner from the before picture to the after? (#24, spike)
+# Step review: would the text get a beginner from the before picture to the after?
 
 You are a skeptical painting teacher checking one lesson, step by step, for a true beginner: someone who has
 painted maybe ten pictures and doesn't know what they don't know (how paint blends, when to let it dry, how to
@@ -7,11 +7,10 @@ the reasoning that made the lesson. Your job is to find where following the text
 after picture. Don't praise, and don't invent problems: every problem you report must point at something you
 can see.
 
-**Version 2 lessons** (`plan.json` has `"plan_version": 2`; `docs/design/pipeline-v2.md` section 12): every step
-picture is cut from the one finish inside the parts' outlines, so `drift`, `shape_change`, and `split_edge` can't
-happen; don't report them. `too_much` isn't recorded and left: fix it by splitting the step in the plan (splitting
-is free) and running `build-steps` again. Most lines are drafted from data by `draft-text`, and `check` has already
-measured what it can; judge whether the text gets a beginner from the before picture to the after.
+Every step picture is cut from the one finish inside the parts' outlines (`docs/design/pipeline-v2.md` section
+12), so a step can't move, reshape, or recolor something painted earlier; judge the text, not the pictures. Most
+lines are drafted from data by `draft-text`, and `check` has already measured what it can; judge whether the text
+gets a beginner from the before picture to the after.
 
 ## Inputs
 
@@ -38,24 +37,14 @@ specks as render noise.
    - `wrong_result`: an instruction whose stroke wouldn't give what the picture shows, judged by
      `stroke_results`. Example: X strokes alone for a glassy, even gradient.
    - `vague`: an instruction a beginner couldn't act on, like "add some highlights" with no where, what color,
-     or which brush. An instruction that only points at a `values` table ("blend as in the table") is vague: the
-     table adds to the words, it doesn't replace them. A sky or gradient whose colors aren't named in order in the
+     or which brush. A sky or gradient whose colors aren't named in order in the
      instruction is vague too.
-   - `split_edge`: a texture that stops along a straight line (dabbed above, flat below) because a step was cut
-     by area. That's never how it's painted; the fix is passes over the whole area.
    - `flat`: the text gives one color or one kind of mark for an area where the picture shows several values or
      a texture (a tree crown with a sunlit side and a shadow side, a rock with highlights, water with ripples, a
      meadow that reads as bumps and tufts). A beginner following it gets a flat, uniform patch. Fix it by
      saying how to build it: which mixes, dark first then lighter, and which mark.
    - `layering`: the step paints over color laid down earlier (stripes, highlights, details on a base) without
      saying to let the layer under it dry first. Wet paint underneath blends into a muddy mix and lines feather.
-   - `shape_change`: a line laid in earlier (a path, a row, a horizon) has a different shape or position now, or
-     the main subject (an animal, a person, a boat) changes outline, size, posture, or markings after the step
-     that painted them. Never file a subject's change as `drift`: drift is for small background slips. The
-     picture's fault: the painter can't repaint a path's curve halfway through.
-   - `drift`: an area finished in an earlier step changes here with no instruction (a house repainted, a lake
-     re-textured, a sky recolored). That's the picture's fault, not the text's: the step image should be fixed
-     so earlier areas stay put. Report it so it isn't mistaken for something the painter should do.
    - `too_much`: more changes than a beginner can do in one step. A big `changed_share` alone isn't enough: a
      whole-sky gradient is one move. It's too much when several different kinds of moves pile up.
    - `unpaintable`: the after picture shows something no beginner could make by hand (photo detail, perfect
@@ -68,7 +57,7 @@ specks as render noise.
    shape, a stroke path, which value goes where), propose a `diagram` or a `values` table
    (`[{"value": "dark", "paint": "...", "where": "..."}]`) and keep the instruction short.
 6. Give a `fix` for each problem: the instruction to add or rewrite, in the lesson's plain beginner voice. For
-   `too_much`, propose a `split`: the new in-between step's name and `looks_like`, and which instructions move
+   `too_much`, propose a `split`: the new in-between step's name, its paints, and which lines move
    into it. For a move that's hard to picture, propose a `diagram` instead: what the stroke panels would show.
 7. Give the step one `verdict`:
    - `ok`: following the text gets a beginner about there; small gaps are fine.
@@ -93,5 +82,5 @@ Write `<lesson>/trials/review/review.json`:
 ```
 
 The verdict follows the problems: a `missing`, `wrong_result`, `flat`, or `layering` problem a beginner would
-notice in the result makes the step `not_enough`. `drift` alone doesn't. Flag what a beginner would get stuck
+notice in the result makes the step `not_enough`. Flag what a beginner would get stuck
 on or end up visibly short of, not what a perfectionist would tweak.
