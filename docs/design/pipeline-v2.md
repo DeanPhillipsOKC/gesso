@@ -733,6 +733,28 @@ pasted only inside its part. If it fails more widely: stop and report to the own
 - Each issue covers a few tightly linked things on purpose (a tool, its checks, and its place on the page). That's
   an exception to "one issue per item" in `docs/backlog.md`, made so that each issue leaves something that works.
 
+## 15a. What the first six hands-off runs changed (2026-11-13)
+
+Three runs with the strongest model and three with Opus, on the three test pictures, all sealed. What they
+changed in the tools, beyond the fixes already described in sections 6, 7, and 9:
+- **The background picture is matched to the finish around each hole** (`build_steps.make_background`), not by
+  one shift for the whole picture: a render's sky and water come back off by different amounts, and one shift left
+  a tinted sail-shaped patch in the sky. Pixels where the two differ a lot aren't used for matching: they're a
+  leftover of the object.
+- **Over a flat coat, a pass leaves its children's places as the coat** until the child's own step. A carried
+  fill there showed as a blurred patch in every step in between.
+- **An area is always behind**, wherever it's listed (`build_steps.back_parts`). A lavender field listed after
+  the tree was taken out by the background render.
+- **The texture rule is for a `full` step only** (`checks.texture_jumps`): a part finished in one step. A coat is
+  flat by construction, and a pass is one paint in one stroke, which is how texture is taught. Holding passes to
+  it cost three runs about 8 minutes each with no clean fix.
+- **A part's last step may add little** (`build_steps.problems`): light tips go last.
+- **A tint stays a tint** when `paints --add` gives its part another color.
+
+Still open after these runs: time (17 to 27 minutes, against a 15-minute target; the checking and review step is
+6 to 10 of them); no agent could start a fresh reviewer, so every text review was done in the same session; small
+things (an eye, a beak) can't be parts; three stroke cards are missing (#71).
+
 ## 16. Known risks
 
 | Risk | What limits it |
