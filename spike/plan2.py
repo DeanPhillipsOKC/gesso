@@ -39,7 +39,8 @@ def _boxes_ok(boxes) -> bool:
     return all(len(b) == 4 and 0 <= b[0] < b[2] <= 1 and 0 <= b[1] < b[3] <= 1 for b in boxes)
 
 
-def problems(plan: dict) -> list[str]:
+def problems(plan: dict, technique: dict | None = None) -> list[str]:
+    """What's wrong with a version 2 plan. With the technique, also more base mixes than its `max_mixes`."""
     out: list[str] = []
     parts = plan.get("parts") or []
     if not parts:
@@ -73,7 +74,24 @@ def problems(plan: dict) -> list[str]:
             out.append(f"paint {c.get('id')}: two paints have this id")
         if not HEX.match(c.get("hex", "")):
             out.append(f"paint {c.get('id')}: hex must look like #a1b2c3")
+        if c.get("sample_x") is None or c.get("sample_y") is None:
+            out.append(f"paint {c.get('id')}: no sample_x/sample_y (a spot of it in the finish). Run paints, which "
+                       "measures them.")
         paints[c.get("id")] = c
+    for c in paints.values():
+        if c.get("of") and c["of"] not in paints:
+            out.append(f"paint {c.get('id')}: it's a tint or shade of {c['of']!r}, which isn't in paints")
+    bases = [c for c in paints.values() if not c.get("of") and HEX.match(c.get("hex", ""))]
+    target = (technique or {}).get("max_mixes")
+    if target is not None and len(bases) > target:
+        import paints as measured  # only here: it needs OpenCV, and the rest of this file doesn't
+
+        everything = [c for c in paints.values() if HEX.match(c.get("hex", ""))]
+        pairs = measured.mergeable(bases, measured.accents(everything))
+        if pairs:  # over the target with nothing close enough left to merge is allowed (design section 9)
+            de, a, b = min((measured.mixing.delta_e(a["hex"], b["hex"]), a["id"], b["id"]) for a, b in pairs)
+            out.append(f"{len(bases)} paints to mix, above the technique's target of {target}, and {a} and {b} are only "
+                       f"Delta E {de:.1f} apart, close enough to merge. Run paints again.")
     all_steps = steps(plan)
     if not all_steps:
         return out + ["the plan has no stages with steps"]
@@ -96,6 +114,9 @@ def problems(plan: dict) -> list[str]:
         for c in used:
             if c not in paints:
                 out.append(f"{sid}: paint {c!r} isn't in paints")
+            elif s["part"] not in (paints[c].get("parts") or []):
+                out.append(f"{sid}: paints {s['part']} with {c}, but {c}'s parts don't list {s['part']}. Add it to "
+                           f"its parts, or use one of {s['part']}'s own paints.")
         if not used:
             out.append(f"{sid}: name the paints this step uses")
         if len(used) > MAX_PAINTS and show != "blend":

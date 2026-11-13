@@ -669,226 +669,143 @@
  ],
  "paints": [
   {
-   "id": "mist",
+   "id": "sky-1",
    "name": "Misty blue-gray",
-   "hex": "#9294a1",
-   "parts": [
-    "sky"
-   ],
    "used_for": "misty sunset sky",
-   "sample_x": 0.791,
-   "sample_y": 0.66
+   "hex": "#8d8e9b",
+   "sample_x": 0.092,
+   "sample_y": 0.999,
+   "parts": [
+    "sky",
+    "trunks",
+    "bird-wing"
+   ]
   },
   {
-   "id": "dusk",
-   "name": "Dusty rose",
-   "hex": "#b99882",
-   "parts": [
-    "sky"
-   ],
-   "used_for": "misty sunset sky",
-   "sample_x": 0.707,
-   "sample_y": 0.757
-  },
-  {
-   "id": "glow",
+   "id": "sky-2",
    "name": "Sunset gold",
-   "hex": "#efb166",
-   "parts": [
-    "sky"
-   ],
    "used_for": "misty sunset sky",
+   "hex": "#f1b059",
    "sample_x": 0.597,
-   "sample_y": 0.158
+   "sample_y": 0.158,
+   "parts": [
+    "sky",
+    "leaves"
+   ]
   },
   {
-   "id": "sun",
+   "id": "sun-1",
    "name": "Sun cream",
-   "hex": "#fae8b1",
+   "used_for": "the sun",
+   "hex": "#fbe6ab",
+   "sample_x": 0.671,
+   "sample_y": 0.142,
    "parts": [
     "sun"
-   ],
-   "used_for": "the sun",
-   "sample_x": 0.657,
-   "sample_y": 0.13
+   ]
   },
   {
-   "id": "trunk",
-   "name": "Mist gray",
-   "hex": "#7a7e8f",
+   "id": "foliage-1",
+   "hex": "#d19166",
+   "sample_x": 0.621,
+   "sample_y": 0.449,
    "parts": [
-    "trunks"
-   ],
-   "used_for": "far misty trunks",
-   "sample_x": 0.888,
-   "sample_y": 0.684
+    "sky",
+    "foliage",
+    "branch",
+    "leaves",
+    "bird"
+   ]
   },
   {
-   "id": "rust",
-   "name": "Foliage rust",
-   "hex": "#c58165",
-   "parts": [
-    "foliage"
-   ],
-   "used_for": "hazy foliage",
-   "sample_x": 0.188,
-   "sample_y": 0.931
-  },
-  {
-   "id": "orange",
-   "name": "Foliage orange",
-   "hex": "#e78b50",
-   "parts": [
-    "foliage"
-   ],
-   "used_for": "hazy foliage",
-   "sample_x": 0.718,
-   "sample_y": 0.355
-  },
-  {
-   "id": "bark",
+   "id": "branch-1",
    "name": "Bark brown",
-   "hex": "#5e3928",
-   "parts": [
-    "branch"
-   ],
    "used_for": "the branch",
-   "sample_x": 0.046,
-   "sample_y": 0.553
+   "hex": "#5e3a2a",
+   "sample_x": 0.0,
+   "sample_y": 0.794,
+   "parts": [
+    "branch",
+    "bird-feet"
+   ]
   },
   {
-   "id": "bark-mid",
+   "id": "branch-2",
    "name": "Bark tan",
-   "hex": "#935f43",
+   "used_for": "the branch",
+   "hex": "#956043",
+   "sample_x": 0.095,
+   "sample_y": 0.724,
    "parts": [
     "branch"
-   ],
-   "used_for": "the branch",
-   "sample_x": 0.111,
-   "sample_y": 0.729
+   ]
   },
   {
-   "id": "bark-light",
-   "name": "Bark light",
-   "hex": "#ca864e",
-   "parts": [
-    "branch"
-   ],
-   "used_for": "the branch",
-   "sample_x": 0.082,
-   "sample_y": 0.715
-  },
-  {
-   "id": "leaf-red",
+   "id": "leaves-1",
    "name": "Leaf red",
+   "used_for": "the four leaves",
    "hex": "#d74e26",
+   "sample_x": 0.704,
+   "sample_y": 0.846,
    "parts": [
     "leaves"
-   ],
-   "used_for": "the four leaves",
-   "sample_x": 0.182,
-   "sample_y": 0.256
+   ]
   },
   {
-   "id": "leaf-orange",
-   "name": "Leaf orange",
-   "hex": "#f1881a",
-   "parts": [
-    "leaves"
-   ],
-   "used_for": "the four leaves",
-   "sample_x": 0.263,
-   "sample_y": 0.0
-  },
-  {
-   "id": "leaf-gold",
-   "name": "Leaf gold",
-   "hex": "#f8a821",
-   "parts": [
-    "leaves"
-   ],
-   "used_for": "the four leaves",
-   "sample_x": 0.582,
-   "sample_y": 0.85
-  },
-  {
-   "id": "buff",
-   "name": "Belly buff",
-   "hex": "#d7995e",
-   "parts": [
-    "bird"
-   ],
-   "used_for": "the chickadee",
-   "sample_x": 0.418,
-   "sample_y": 0.455
-  },
-  {
-   "id": "cream",
+   "id": "bird-1",
    "name": "Chest cream",
-   "hex": "#ecd3bc",
+   "used_for": "the chickadee",
+   "hex": "#e4ccb8",
+   "of": "foliage-1",
+   "plus": "white",
+   "sample_x": 0.555,
+   "sample_y": 0.361,
    "parts": [
     "bird"
-   ],
-   "used_for": "the chickadee",
-   "sample_x": 0.552,
-   "sample_y": 0.375
+   ]
   },
   {
-   "id": "wing",
-   "name": "Wing gray",
-   "hex": "#7f7983",
+   "id": "bird-wing-1",
+   "name": "Feather edge gray",
+   "used_for": "wing and tail",
+   "hex": "#aca1a2",
+   "of": "sky-1",
+   "plus": "white",
+   "sample_x": 0.339,
+   "sample_y": 0.349,
    "parts": [
     "bird-wing"
-   ],
-   "used_for": "wing and tail",
-   "sample_x": 0.367,
-   "sample_y": 0.299
+   ]
   },
   {
-   "id": "wing-dark",
-   "name": "Charcoal",
-   "hex": "#4d4549",
+   "id": "bird-head-1",
+   "hex": "#3e383c",
+   "sample_x": 0.466,
+   "sample_y": 0.155,
    "parts": [
     "bird-wing",
-    "bird-feet"
-   ],
-   "used_for": "wing and tail, legs and feet",
-   "sample_x": 0.362,
-   "sample_y": 0.398
+    "bird-head"
+   ]
   },
   {
-   "id": "wing-light",
-   "name": "Feather edge gray",
-   "hex": "#aca1a2",
-   "parts": [
-    "bird-wing"
-   ],
-   "used_for": "wing and tail",
-   "sample_x": 0.34,
-   "sample_y": 0.347
-  },
-  {
-   "id": "black",
-   "name": "Chickadee black",
-   "hex": "#282529",
-   "parts": [
-    "bird-head",
-    "bird-face"
-   ],
-   "used_for": "black cap and bib, eye and beak",
-   "sample_x": 0.531,
-   "sample_y": 0.279
-  },
-  {
-   "id": "white",
+   "id": "bird-cheek-1",
    "name": "Cheek white",
-   "hex": "#eedccd",
+   "used_for": "white cheek",
+   "hex": "#e8d7c9",
+   "sample_x": 0.436,
+   "sample_y": 0.256,
    "parts": [
     "bird-cheek"
-   ],
-   "used_for": "white cheek",
-   "sample_x": 0.453,
-   "sample_y": 0.268
+   ]
+  },
+  {
+   "id": "bird-face-1",
+   "hex": "#6a6672",
+   "sample_x": 0.526,
+   "sample_y": 0.186,
+   "parts": [
+    "bird-face"
+   ]
   }
  ],
  "stages": [
@@ -902,9 +819,9 @@
      "part": "sky",
      "show": "blend",
      "paints": [
-      "mist",
-      "dusk",
-      "glow"
+      "sky-1",
+      "foliage-1",
+      "sky-2"
      ],
      "stroke": "x-stroke",
      "brush": "1 inch flat"
@@ -915,7 +832,7 @@
      "part": "sun",
      "show": "full",
      "paints": [
-      "sun"
+      "sun-1"
      ],
      "stroke": "small-circles",
      "brush": "#6 round"
@@ -932,7 +849,7 @@
      "part": "trunks",
      "show": "full",
      "paints": [
-      "trunk"
+      "sky-1"
      ],
      "stroke": "dry-brush",
      "brush": "3/4 inch flat"
@@ -943,18 +860,7 @@
      "part": "foliage",
      "show": "pass",
      "paints": [
-      "rust"
-     ],
-     "stroke": "dabbing",
-     "brush": "old stiff flat"
-    },
-    {
-     "id": "foliage-orange",
-     "name": "Dab the orange light",
-     "part": "foliage",
-     "show": "pass",
-     "paints": [
-      "orange"
+      "foliage-1"
      ],
      "stroke": "dabbing",
      "brush": "old stiff flat"
@@ -971,7 +877,7 @@
      "part": "branch",
      "show": "flat",
      "paints": [
-      "bark"
+      "branch-1"
      ],
      "stroke": "press-and-lift",
      "brush": "1/2 inch flat"
@@ -982,7 +888,7 @@
      "part": "branch",
      "show": "pass",
      "paints": [
-      "bark-mid"
+      "branch-2"
      ],
      "stroke": "dry-brush",
      "brush": "1/2 inch flat"
@@ -993,7 +899,7 @@
      "part": "branch",
      "show": "pass",
      "paints": [
-      "bark-light"
+      "foliage-1"
      ],
      "stroke": "dry-brush",
      "brush": "#4 round"
@@ -1010,8 +916,8 @@
      "part": "leaves",
      "show": "flat",
      "paints": [
-      "leaf-red",
-      "leaf-orange"
+      "leaves-1",
+      "foliage-1"
      ],
      "stroke": "build-from-pieces",
      "brush": "#8 round"
@@ -1022,7 +928,7 @@
      "part": "leaves",
      "show": "pass",
      "paints": [
-      "leaf-gold"
+      "sky-2"
      ],
      "stroke": "press-and-lift",
      "brush": "#4 round"
@@ -1039,7 +945,7 @@
      "part": "bird",
      "show": "flat",
      "paints": [
-      "buff"
+      "foliage-1"
      ],
      "stroke": "build-from-pieces",
      "brush": "1/2 inch filbert"
@@ -1050,7 +956,7 @@
      "part": "bird-wing",
      "show": "flat",
      "paints": [
-      "wing"
+      "sky-1"
      ],
      "stroke": "build-from-pieces",
      "brush": "#6 round"
@@ -1061,7 +967,7 @@
      "part": "bird-head",
      "show": "full",
      "paints": [
-      "black"
+      "bird-head-1"
      ],
      "stroke": "build-from-pieces",
      "brush": "#6 round"
@@ -1072,7 +978,7 @@
      "part": "bird-cheek",
      "show": "full",
      "paints": [
-      "white"
+      "bird-cheek-1"
      ],
      "stroke": "build-from-pieces",
      "brush": "#6 round"
@@ -1083,7 +989,7 @@
      "part": "bird",
      "show": "pass",
      "paints": [
-      "cream"
+      "bird-1"
      ],
      "stroke": "curved-strokes",
      "brush": "#6 round"
@@ -1094,7 +1000,7 @@
      "part": "bird-wing",
      "show": "pass",
      "paints": [
-      "wing-dark"
+      "bird-head-1"
      ],
      "stroke": "press-and-lift",
      "brush": "#2 round"
@@ -1105,7 +1011,7 @@
      "part": "bird-wing",
      "show": "pass",
      "paints": [
-      "wing-light"
+      "bird-wing-1"
      ],
      "stroke": "press-and-lift",
      "brush": "#2 round"
@@ -1116,7 +1022,7 @@
      "part": "bird-face",
      "show": "full",
      "paints": [
-      "black"
+      "bird-face-1"
      ],
      "stroke": "liner",
      "brush": "liner"
@@ -1127,7 +1033,7 @@
      "part": "bird-feet",
      "show": "full",
      "paints": [
-      "wing-dark"
+      "branch-1"
      ],
      "stroke": "liner",
      "brush": "liner"

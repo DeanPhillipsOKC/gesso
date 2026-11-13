@@ -152,7 +152,9 @@ with the date.
 - **At most 10 mixes in a beginner lesson (2026-11-12, owner's call).** Paints are measured from the finish and
   the closest are merged to the limit, even if the finish loses a little color nuance. An accent (a sun, an eye
   light) is never merged away. A lighter or darker version of a part's main paint ("plus white") isn't counted as
-  a mix of its own (owner confirmed, 2026-11-12).
+  a mix of its own (owner confirmed, 2026-11-12). The owner confirmed on 2026-11-12 that 10 is a target: two paints
+  far enough apart for a painter to see the difference (Delta E 12) are never merged, so the three test lessons
+  land at 10 (chickadee), 13 (red sailboat), and 14 (lavender balloon).
 - **How to do a stroke is written once and checked, not written fresh each lesson (2026-11-12).** One card per
   stroke (and a few basics cards), built from the research file with sources, read by the owner before it counts
   as checked. Same rule as technique: from cited research, never from the model's memory.
