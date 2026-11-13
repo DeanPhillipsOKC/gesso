@@ -148,6 +148,8 @@ def _near_mark(v: float, names: list[str], before: str, past: str) -> str:
 
 
 EDGE_SHARE = 0.02  # an area within this share of the canvas's edge reaches the edge
+WHOLE = 0.9  # an area covering this share of the canvas is "the whole canvas" (the chickadee's branch reaches all four
+# edges but covers 18%: it was called the whole canvas until #51)
 
 
 def where_words(area: np.ndarray, canvas: dict | None) -> str:
@@ -175,8 +177,9 @@ def where_words(area: np.ndarray, canvas: dict | None) -> str:
         def down(v, from_bottom):
             return _near_mark(v, MARKS_DOWN, "a little above", "a little below")
 
-    if left and right and top and bottom:
-        return "Inside the outlined area: the whole canvas."
+    if left and right and top and bottom:  # a branch can reach all four edges and still be a thin shape
+        return ("Inside the outlined area: the whole canvas." if area.mean() >= WHOLE else
+                "Inside the outlined area. It reaches all four edges of the canvas.")
     about = "about " if canvas else ""
 
     def ends(lead: str, near: tuple[bool, bool], names: tuple[str, str], at: tuple[float, float], say) -> str:

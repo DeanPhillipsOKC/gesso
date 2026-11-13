@@ -270,7 +270,7 @@
  "paints": [
   {
    "id": "sky-1",
-   "name": "Sky 1",
+   "name": "Sky violet",
    "used_for": "sunset sky",
    "hex": "#956eb0",
    "sample_x": 0.809,
@@ -281,7 +281,7 @@
   },
   {
    "id": "sky-2",
-   "name": "Sky 2",
+   "name": "Sky pink",
    "used_for": "sunset sky",
    "hex": "#e07c86",
    "sample_x": 0.382,
@@ -292,7 +292,7 @@
   },
   {
    "id": "sky-3",
-   "name": "Sky 3",
+   "name": "Sky orange",
    "used_for": "sunset sky",
    "hex": "#fa8c57",
    "sample_x": 0.591,
@@ -303,7 +303,7 @@
   },
   {
    "id": "sun-1",
-   "name": "Sun 1",
+   "name": "Sun yellow",
    "used_for": "the sun",
    "hex": "#f9d77e",
    "sample_x": 0.482,
@@ -314,7 +314,7 @@
   },
   {
    "id": "hill-1",
-   "name": "Hill 1",
+   "name": "Hill blue",
    "used_for": "far hill and shore",
    "hex": "#4c4d85",
    "sample_x": 0.138,
@@ -325,8 +325,8 @@
   },
   {
    "id": "water-1",
-   "name": "Water 1",
-   "used_for": "the water",
+   "name": "Deep teal",
+   "used_for": "the water and the sail's shade",
    "hex": "#1e677a",
    "sample_x": 0.179,
    "sample_y": 0.999,
@@ -337,7 +337,7 @@
   },
   {
    "id": "water-2",
-   "name": "Water 2",
+   "name": "Light teal",
    "used_for": "the water",
    "hex": "#528383",
    "sample_x": 0.247,
@@ -348,7 +348,7 @@
   },
   {
    "id": "sun-path-1",
-   "name": "Sun path 1",
+   "name": "Path olive",
    "used_for": "the sun path",
    "hex": "#90896b",
    "of": "sun-path-2",
@@ -361,7 +361,7 @@
   },
   {
    "id": "sun-path-2",
-   "name": "Sun path 2",
+   "name": "Path gold",
    "used_for": "the sun path",
    "hex": "#e2a259",
    "sample_x": 0.48,
@@ -372,7 +372,7 @@
   },
   {
    "id": "sail-1",
-   "name": "Sail 2",
+   "name": "Sail cream",
    "used_for": "the sail",
    "hex": "#dfccb9",
    "sample_x": 0.853,
@@ -383,7 +383,7 @@
   },
   {
    "id": "hull-1",
-   "name": "Hull 1",
+   "name": "Hull red",
    "used_for": "the hull",
    "hex": "#952821",
    "sample_x": 0.745,
@@ -394,8 +394,8 @@
   },
   {
    "id": "hull-2",
-   "name": "Hull 2",
-   "used_for": "the hull",
+   "name": "Deck gray",
+   "used_for": "the deck line",
    "hex": "#67696e",
    "sample_x": 0.772,
    "sample_y": 0.581,
@@ -405,7 +405,9 @@
   },
   {
    "id": "reflection-1",
+   "name": "Reflection brown",
    "hex": "#765353",
+   "used_for": "the mast and the reflection",
    "sample_x": 0.761,
    "sample_y": 0.654,
    "parts": [
@@ -415,7 +417,7 @@
   },
   {
    "id": "reflection-2",
-   "name": "Reflection 2",
+   "name": "Reflection gray",
    "used_for": "the reflection",
    "hex": "#87999b",
    "sample_x": 0.774,

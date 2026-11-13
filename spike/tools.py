@@ -376,6 +376,23 @@ def duplicate_recipes(mixes: dict[str, dict]) -> list[list[str]]:
     return out
 
 
+def paints_not_listed(stages: list[dict], paints: dict, word: bool = True) -> list[dict]:
+    """Paints a step's instructions or values table name that aren't in its colors, so their recipe never shows.
+    Version 1 matched a name between two backspace characters (a "\\b" lost in an rf-string), so it never found one
+    in the text; it keeps that (word=False) so a version 1 lesson publishes and seals as before."""
+    edge = r"\b" if word else "\x08"
+    return [{"id": st["id"], "paint": n} for st in stages for n in paints
+            if n not in {c["name"] for c in st["colors"]}
+            and (re.search(edge + re.escape(n) + edge, " ".join(st["steps"]), re.I)
+                 or any(v.get("paint") == n for v in st.get("values", [])))]
+
+
+def undocumented_diagrams(stages: list[dict], notes: dict) -> list[str]:
+    """Steps with a diagram the skill's beginner check didn't explain."""
+    return [st["id"] for st in stages if st["construct"] and st["id"] not in
+            ((notes.get("beginner_check") or {}).get("diagrams") or {})]
+
+
 def texture_jumps(lesson: Path, paths: list[Path]) -> list[dict]:
     import numpy as np
     from PIL import Image
@@ -498,6 +515,10 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     return out
 
 
+CHECKED = ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions",
+           "missing_aids", "unreachable_paints")  # publish's counts that `check` reports for a version 2 lesson
+
+
 def publish(a: argparse.Namespace) -> dict:
     """Build lesson.json and lesson.html from plan.json, text.json, the images, and the ledger."""
     import plan2
@@ -604,18 +625,14 @@ def publish(a: argparse.Namespace) -> dict:
             "gesso": lesson_data["gesso"], "provenance": lesson_data["provenance"], "previous_version": previous, "steps": len(stages), "steps_by_source": by_source,
             "diagrams": sum(1 for st in stages if st["construct"]),
             # a diagram the page can't explain: the skill's beginner check didn't write down why
-            "undocumented_diagrams": [st["id"] for st in stages if st["construct"] and st["id"] not in
-                                      ((notes.get("beginner_check") or {}).get("diagrams") or {})],
+            "undocumented_diagrams": undocumented_diagrams(stages, notes),
             "unreachable_paints": [n for n, m in mixes.items() if not m["reachable"]],
             # steps whose instructions run past the word budget in the skill (about 100 words)
             # (not checked for version 2: no word limit on a step, design section 10)
             "long_steps": [{"id": st["id"], "words": n} for st in stages
                            if (n := sum(len(x.split()) for x in st["steps"])) > STEP_WORDS and not v2],
             # paints an instruction or values table names that aren't in the step's colors, so their recipe never shows
-            "paints_not_listed": [{"id": st["id"], "paint": n} for st in stages for n in paints
-                                  if n not in {c["name"] for c in st["colors"]}
-                                  and (re.search(rf"{re.escape(n)}", " ".join(st["steps"]), re.I)
-                                       or any(v.get("paint") == n for v in st.get("values", [])))],
+            "paints_not_listed": paints_not_listed(stages, paints, word=v2),
             # paints whose computed recipes come out the same (or mix within Delta E 3): two names, one color
             "duplicate_recipes": duplicate_recipes(mixes),
             # steps that turn a big area from flat to textured at once: split them with split-texture
@@ -627,8 +644,15 @@ def publish(a: argparse.Namespace) -> dict:
             "cached_renders": sum(1 for c in renders if c.get("cached")), "image_cost_usd": led.total_cost}
     if v2:  # the step's teaching pictures (step-aids), and the page's size
         result.update(missing_aids=not lesson_data.get("aids"), page_mb=round(len(standalone.encode("utf-8")) / 1e6, 2))
+        import checks
+        found = checks.run(lesson, text)  # every measured check in one list (design section 12)
+        result.update(check=found["failures"], check_notes=found["notes"])
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
-        problems = seal_problems(lesson, plan, text, review, notes, result)
+        if v2:  # what check already reports (in its own words), left out of the seal's list so it isn't said twice
+            problems = seal_problems(lesson, plan, text, review, notes,
+                                     {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
+        else:
+            problems = seal_problems(lesson, plan, text, review, notes, result)
         if problems:
             raise Refused("not sealed; fix these and run publish --final again: " + " | ".join(problems))
         provenance.seal(lesson, lesson_data)
@@ -1484,6 +1508,52 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
             "advice": "Run publish to put them on the page. Run this again whenever build-steps runs.", "cost_usd": 0.0}
 
 
+def draft_text_tool(a: argparse.Namespace) -> dict:
+    """Write text.json's lines for every step from data: the plan, the step masks, the outlines, the paints, the
+    technique, and the cards. Keeps every summary, tip, and edited line Claude wrote. Design section 10."""
+    import checks
+    import draft_text
+
+    lesson = Path(a.lesson)
+    plan, _ = _v2(lesson)
+    _read_owner(lesson, plan)
+    built = checks.build(lesson, plan)
+    if built is None:
+        raise Refused("parts/owner.png doesn't match 99_finish.png or the plan: run outline again")
+    _, pictures, _, masks = built
+    canvas_box, canvas = checks._canvas(lesson)
+    drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas)
+    path = lesson / "text.json"
+    old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+    text = draft_text.merge(old, drafted)
+    path.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
+    todo = [f"{t['stage_id']}: " + " and ".join(k for k in draft_text.KEEP if not (t.get(k) or "").strip())
+            for t in text["steps"] if any(not (t.get(k) or "").strip() for k in draft_text.KEEP)]
+    return {"text": str(path), "steps": len(text["steps"]), "lines": sum(len(t["lines"]) for t in text["steps"]),
+            "edited_kept": sum(1 for t in text["steps"] for x in t["lines"] if x.get("edited")),
+            "for_claude": todo, "left_out": draft_text.left_out(plan),
+            "advice": "Read each step's lines against its picture. Write its summary (under 90 characters) and tip (one "
+                      "to three sentences only this photo needs). Correct a drafted line in place and mark it "
+                      "\"edited\": true; draft-text keeps it. Then run check.", "cost_usd": 0.0}
+
+
+def check_tool(a: argparse.Namespace) -> dict:
+    """Every measured check on a version 2 lesson, each failure saying what to change. Design section 12."""
+    import checks
+    import plan2
+
+    lesson = Path(a.lesson)
+    if not (lesson / "plan.json").exists():
+        raise Refused(f"no plan.json in {lesson}")
+    if not plan2.is_v2(lesson):
+        raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); a version 1 lesson is "
+                      "checked by publish --final")
+    r = checks.run(lesson)
+    return {"failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],
+            "advice": "Fix each failure as it says, then run check again. publish --final won't seal while any is left.",
+            "cost_usd": 0.0}
+
+
 GRAY = (128, 128, 128)  # the bands around a finish that isn't the image model's shape
 
 
@@ -1608,6 +1678,20 @@ def add_v2_tools(sub) -> None:
                                    "canvas.json, or the quarter marks without one), and aids/transfer.png.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=step_aids_tool)
+    p = sub.add_parser("draft-text", help="Free. v2: draft every step's lines in text.json from the plan, outlines, paints, and cards.",
+                       description="Run after build-steps (and step-aids). Writes text.json's lines for every step: let "
+                                   "it dry, rinse, the optional chalk outline, where, the paints in order, mix once, the "
+                                   "brush, load, and motion, what it should leave, two or three coats, watch out, and "
+                                   "step back. Never overwrites a summary, a tip, or a line marked \"edited\": true.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=draft_text_tool)
+    p = sub.add_parser("check", help="Free. v2: every measured check (plan, outlines, steps, cards, text, recipes), each saying what to change.",
+                       description="Gathers the plan, outline, step picture, and card checks, the step and stage counts, "
+                                   "strokes and brushes, texture jumps, the text (percentages, long lines, missing "
+                                   "summaries and tips, stale drafts), and what publish counts. publish runs it; "
+                                   "publish --final won't seal a version 2 lesson while anything fails.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=check_tool)
 
 
 def build_parser() -> argparse.ArgumentParser:

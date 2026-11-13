@@ -7,6 +7,12 @@ the reasoning that made the lesson. Your job is to find where following the text
 after picture. Don't praise, and don't invent problems: every problem you report must point at something you
 can see.
 
+**Version 2 lessons** (`plan.json` has `"plan_version": 2`; `docs/design/pipeline-v2.md` section 12): every step
+picture is cut from the one finish inside the parts' outlines, so `drift`, `shape_change`, and `split_edge` can't
+happen; don't report them. `too_much` isn't recorded and left: fix it by splitting the step in the plan (splitting
+is free) and running `build-steps` again. Most lines are drafted from data by `draft-text`, and `check` has already
+measured what it can; judge whether the text gets a beginner from the before picture to the after.
+
 ## Inputs
 
 `<lesson>/trials/review/packet.json` (made by `python spike/tools.py step-pairs --lesson <lesson>`):

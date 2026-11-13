@@ -284,7 +284,7 @@
  "paints": [
   {
    "id": "sky-1",
-   "name": "Sky 1",
+   "name": "Sky blue",
    "used_for": "sunset sky",
    "hex": "#8fa3d1",
    "sample_x": 0.062,
@@ -295,8 +295,8 @@
   },
   {
    "id": "sky-2",
-   "name": "Sky 2",
-   "used_for": "sunset sky",
+   "name": "Sunset gold",
+   "used_for": "the sunset glow, the gold fields, and sunlit leaves",
    "hex": "#eca33e",
    "sample_x": 0.405,
    "sample_y": 0.352,
@@ -309,7 +309,7 @@
   },
   {
    "id": "clouds-1",
-   "name": "Clouds 1",
+   "name": "Coral red",
    "used_for": "coral clouds",
    "hex": "#e65d5b",
    "sample_x": 0.728,
@@ -320,7 +320,7 @@
   },
   {
    "id": "clouds-2",
-   "name": "Clouds 2",
+   "name": "Cloud orange",
    "used_for": "coral clouds",
    "hex": "#f97a41",
    "sample_x": 0.625,
@@ -331,7 +331,7 @@
   },
   {
    "id": "sun-1",
-   "name": "Sun 1",
+   "name": "Sun cream",
    "used_for": "the sun",
    "hex": "#f9e098",
    "sample_x": 0.376,
@@ -342,8 +342,8 @@
   },
   {
    "id": "fields-1",
-   "name": "Fields 1",
-   "used_for": "gold fields",
+   "name": "Field olive",
+   "used_for": "the shade on the gold fields",
    "hex": "#9d8436",
    "of": "sky-2",
    "plus": "Ultramarine blue",
@@ -355,8 +355,8 @@
   },
   {
    "id": "hedges-1",
-   "name": "Hedges 1",
-   "used_for": "hedges",
+   "name": "Hedge green",
+   "used_for": "the hedges and the tree's shadows",
    "hex": "#414e4a",
    "sample_x": 0.023,
    "sample_y": 0.576,
@@ -367,8 +367,8 @@
   },
   {
    "id": "lavender-1",
-   "name": "Lavender 1",
-   "used_for": "lavender rows",
+   "name": "Lavender shadow",
+   "used_for": "the dark rows",
    "hex": "#3c405c",
    "sample_x": 0.999,
    "sample_y": 0.999,
@@ -378,8 +378,8 @@
   },
   {
    "id": "lavender-2",
-   "name": "Lavender 2",
-   "used_for": "lavender rows",
+   "name": "Lavender violet",
+   "used_for": "the mountains and the lavender",
    "hex": "#5c54ab",
    "sample_x": 0.394,
    "sample_y": 0.999,
@@ -390,8 +390,8 @@
   },
   {
    "id": "lavender-3",
-   "name": "Lavender 3",
-   "used_for": "lavender rows",
+   "name": "Earth brown",
+   "used_for": "the paths between the rows",
    "hex": "#b46b43",
    "sample_x": 0.308,
    "sample_y": 0.999,
@@ -401,8 +401,8 @@
   },
   {
    "id": "lavender-4",
-   "name": "Lavender 4",
-   "used_for": "lavender rows",
+   "name": "Light lavender",
+   "used_for": "the light tips",
    "hex": "#a670c2",
    "sample_x": 0.551,
    "sample_y": 0.819,
@@ -412,8 +412,8 @@
   },
   {
    "id": "tree-1",
-   "name": "Tree 2",
-   "used_for": "the tree",
+   "name": "Tree olive",
+   "used_for": "the tree's mid greens",
    "hex": "#6a6838",
    "sample_x": 0.843,
    "sample_y": 0.28,
@@ -423,7 +423,9 @@
   },
   {
    "id": "balloon-1",
+   "name": "Basket brown",
    "hex": "#734c3f",
+   "used_for": "the trunk, the basket, and the balloon's dark stripes",
    "sample_x": 0.2,
    "sample_y": 0.275,
    "parts": [
@@ -433,8 +435,8 @@
   },
   {
    "id": "balloon-2",
-   "name": "Balloon 2",
-   "used_for": "the balloon",
+   "name": "Balloon teal",
+   "used_for": "the balloon's teal stripes",
    "hex": "#34627f",
    "sample_x": 0.186,
    "sample_y": 0.093,
@@ -444,7 +446,7 @@
   },
   {
    "id": "balloon-3",
-   "name": "Balloon 3",
+   "name": "Balloon red",
    "used_for": "the balloon",
    "hex": "#cd3d27",
    "sample_x": 0.218,
@@ -479,7 +481,7 @@
      "paints": [
       "clouds-1"
      ],
-     "stroke": "dabbing",
+     "stroke": "small-circles",
      "brush": "3/4 inch flat"
     },
     {
@@ -490,7 +492,7 @@
      "paints": [
       "clouds-2"
      ],
-     "stroke": "dabbing",
+     "stroke": "small-circles",
      "brush": "3/4 inch flat"
     },
     {
@@ -579,7 +581,7 @@
      "paints": [
       "lavender-3"
      ],
-     "stroke": "press-and-lift",
+     "stroke": "toward-vanishing-point",
      "brush": "1/2 inch flat"
     },
     {
