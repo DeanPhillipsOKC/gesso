@@ -260,5 +260,29 @@
       }
     ],
     "known": 4
+  },
+  {
+    "slug": "sleeping-cat",
+    "title": "A gray tabby cat asleep",
+    "subject": "A gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden sill",
+    "steps": 13,
+    "canvas": "",
+    "tubes": 5,
+    "version": "POC 1.1.0",
+    "published": "2026-11-13",
+    "source": "sleeping-cat_skill_20261113-175836",
+    "versions": [
+      {
+        "id": "20261113-175836",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 13,
+        "href": "lessons/sleeping-cat/",
+        "current": true
+      }
+    ],
+    "known": 4
   }
 ]

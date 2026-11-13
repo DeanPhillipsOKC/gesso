@@ -1,0 +1,118 @@
+{
+  "photo": "sleeping-cat",
+  "run": "sleeping-cat_skill_20261113-175836",
+  "started": "2026-11-13 17:58",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "6cb204c79d08440c",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 1.1.0",
+        "commit": "bd9571d",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 1.1.0",
+        "commit": "bd9571d",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T18:15:33"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": null,
+      "metrics": {
+        "steps": 13,
+        "words": 1816,
+        "tubes": 5,
+        "cost_usd": 0.071,
+        "minutes": 1.1,
+        "paid_renders": 2,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 12.5,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "wall-blend",
+          "name": "Blend the blue wall",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sill-blend",
+          "name": "Blend the wooden sill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "window-base",
+          "name": "Block in the window",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "window-leaves",
+          "name": "Light the window with leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "window-frame",
+          "name": "Light the window frame bars",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blanket-base",
+          "name": "Block in the blanket's two rolls",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blanket-shade",
+          "name": "Shade the blanket's folds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blanket-knit",
+          "name": "Light the knit stitches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-block",
+          "name": "Block in the cat",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-white",
+          "name": "Paint the pale chest, muzzle, and paws",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-ears",
+          "name": "Paint the pink ears and nose",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-stripes",
+          "name": "Paint the tabby stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-fur",
+          "name": "Flick in the light fur",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
