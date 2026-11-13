@@ -11,6 +11,16 @@
     "source": "balloon-lavender_skill_20261111-142734",
     "versions": [
       {
+        "id": "20261113-041226",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/lavender-balloon/v/20261113-041226/",
+        "current": false
+      },
+      {
         "id": "20261111-142734",
         "version": "POC 0.20.0",
         "when": "2026-11-11 14:27",
@@ -35,6 +45,16 @@
     "source": "chickadee_skill_20261112-100444",
     "versions": [
       {
+        "id": "20261113-041241",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-041241/",
+        "current": false
+      },
+      {
         "id": "20261112-100444",
         "version": "POC 0.25.0",
         "when": "2026-11-12 10:04",
@@ -58,6 +78,16 @@
     "published": "2026-11-12",
     "source": "red-sailboat_skill_20261112-100455",
     "versions": [
+      {
+        "id": "20261113-041240",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-041240/",
+        "current": false
+      },
       {
         "id": "20261112-120423",
         "version": "POC 0.26.0",
