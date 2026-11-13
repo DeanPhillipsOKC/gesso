@@ -9,7 +9,7 @@ steps:
   - name: Lay in the field
     show: [flat, blend]
     strokes: [horizontal-strokes, side-to-side-blend, x-stroke]
-    value: dark
+    value: mid
     does: The whole field as a base, lighter and cooler at the back, darker and greener at the front.
   - name: Darken the front of the field
     show: [pass]

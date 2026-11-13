@@ -136,6 +136,12 @@ class MatchTests(unittest.TestCase):
         two = one + [step("shade2", "pass", "press-and-lift", ["e"])]
         self.assertEqual(el.match(two, shaped, {"b": 60.0, "d": 30.0, "e": 20.0})[0], [0, 1, 1])
 
+    def test_a_light_grass_pass_is_texture_and_a_dark_one_darkens_the_front(self):
+        grass = el.library()["field-grass"]
+        coat = step("coat", "flat", "horizontal-strokes", ["c"])
+        self.assertEqual(el.match([coat, step("t", "pass", "dry-brush", ["l"])], grass, {"c": 60.0, "l": 80.0})[0], [0, 2])
+        self.assertEqual(el.match([coat, step("d", "pass", "dry-brush", ["d"])], grass, {"c": 60.0, "d": 40.0})[0], [0, 1])
+
     def test_a_ripple_pass_is_the_ripple_step_and_shows_its_mistake(self):
         water = el.library()["water"]
         steps = [step("base", "flat", "horizontal-strokes", ["d"]), step("light", "pass", "horizontal-strokes", ["l"]),
