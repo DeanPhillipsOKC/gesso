@@ -208,6 +208,80 @@ class BuildStepsTests(unittest.TestCase):
         self.assertTrue((with_plate[2][~near_ball] == without[2][~near_ball]).all())  # nothing else moved
         self.assertFalse((with_plate[2][near_ball] == without[2][near_ball]).all())
 
+    def test_a_rim_of_a_later_part_waits_for_that_part(self):
+        # an orange cloud whose outline is 2 pixels inside its paint: the ring left over is the sky's by the outline
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:] = (110, 150, 220)
+        img[30:60, 60:100] = (240, 150, 60)
+        cloud = np.zeros((120, 160), bool)
+        cloud[32:58, 62:98] = True
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "cloud", "kind": "area", "box": [0.3, 0.2, 0.7, 0.6]}]
+        _, owner, _ = ol.outline(img, parts, given={"cloud": cloud})
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "orange", "hex": "#f0963c"}],
+                "stages": [{"id": "all", "steps": [{"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                                                   {"id": "cloud", "part": "cloud", "show": "full", "paints": ["orange"]}]}]}
+        (sky, done), rows, _ = bs.build(img, plan, owner)
+        for y, x in ((31, 80), (45, 61), (58, 80)):  # the ring: orange in the finish, the sky's by the outline
+            self.assertGreater(int(sky[y, x, 2]), int(sky[y, x, 0]) + 40, f"the sky step shows the cloud at {y},{x}")
+        self.assertTrue((done == img).all())
+        self.assertEqual(bs.problems(plan, rows), [])
+        self.assertEqual(rows[1]["outside"], 0.0)  # the ring coming back with the cloud isn't a change outside it
+
+    def test_a_coat_does_not_stay_where_another_part_will_cross(self):
+        # a light bar with a dark peg across it, the bar started as a dark flat coat: by the bar's last step the
+        # peg's place is the bar's light paint, not a peg-shaped patch of the coat
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:] = (110, 150, 220)
+        img[50:70, 10:150] = (230, 190, 150)
+        bar = np.zeros((120, 160), bool)
+        bar[50:70, 10:150] = True
+        peg = np.zeros((120, 160), bool)
+        peg[52:68, 77:83] = True
+        img[peg] = (40, 40, 60)
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "bar", "kind": "object", "box": [0, 0.4, 1, 0.6]},
+                 {"id": "peg", "kind": "object", "box": [0.45, 0.4, 0.55, 0.6]}]
+        _, owner, _ = ol.outline(img, parts, given={"bar": bar & ~peg, "peg": peg})
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "dark", "hex": "#5a3214"},
+                           {"id": "light", "hex": "#e6be96"}, {"id": "peg", "hex": "#28283c"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "bar-coat", "part": "bar", "show": "flat", "paints": ["dark"]},
+                    {"id": "bar-light", "part": "bar", "show": "pass", "paints": ["light"]},
+                    {"id": "peg", "part": "peg", "show": "full", "paints": ["peg"]}]}]}
+        pictures, rows, _ = bs.build(img, plan, owner)
+        self.assertLess(int(pictures[1][60, 80, 0]), 120)  # the coat
+        self.assertGreater(int(pictures[2][60, 80, 0]), 180)  # then the bar's own light, straight through
+        self.assertTrue((pictures[3] == img).all())
+
+    def test_a_part_that_shows_before_its_step_is_reported(self):
+        img, parts, given = scene()
+        _, owner, _ = ol.outline(img, parts, given=given)
+        plan = scene_plan(parts)
+        pictures, rows, painted = bs.build(img, plan, owner)
+        self.assertEqual([r["ghosts"] for r in rows], [[], [], [], [], []])
+        ghost = [p.copy() for p in pictures]
+        ghost[2][given["ball"]] = (120, 40, 40)  # a dull ball in the picture before the ball's steps
+        found = bs.ghosts(img, parts, owner, bs.flat_steps(plan), ghost, painted)
+        self.assertEqual([g["part"] for g in found[2]], ["ball"])
+        self.assertGreater(found[2][0]["edge"], 0.5)
+        rows[2]["ghosts"] = found[2]
+        said = bs.problems(plan, rows)
+        self.assertEqual(len(said), 1)
+        self.assertIn("ball", said[0])
+        self.assertIn("before it's painted", said[0])
+        self.assertEqual(bs.faint_ghosts(plan, rows), [])  # not said twice
+
+    def test_a_part_painted_on_another_that_shows_early_is_a_note_not_a_failure(self):
+        plan = {"parts": [{"id": "tree", "kind": "object"}, {"id": "trunk", "kind": "marks", "parent": "tree"}]}
+        rows = [{"id": "tree-coat", "painted": 0.1, "changed": 0.1, "outside": 0.0, "final_gap": 0.0,
+                 "ghosts": [{"part": "trunk", "edge": 0.48, "faint": 0.51}]}]
+        self.assertEqual(bs.problems(plan, rows), [])
+        self.assertIn("trunk", bs.faint_ghosts(plan, rows)[0])
+
     def test_a_step_that_adds_nothing_is_reported(self):
         rows = [{"id": "x", "painted": 0.1, "changed": 0.001, "outside": 0.0, "final_gap": 0.0}]
         self.assertIn("changes almost nothing", bs.problems({}, rows)[0])

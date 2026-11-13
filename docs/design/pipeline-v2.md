@@ -299,6 +299,37 @@ passes `--max-cost 0.40` to every render (the default stays $1.00 for v1).
 
 What's behind a thing is only on screen until the thing is painted. The bar is "doesn't look wrong".
 
+**Changed 2026-11-13 (#84): what's under a thing no longer draws the thing.** The owner found things showing
+before their steps on all three 1.0.0 lessons: clouds, the mountains' ridge, and bands of hill color in the
+lavender's first sky step; hills under the sailboat's sky; the chickadee's feet as two dark patches on the branch
+ten steps early. The outlines were right. The fill wasn't, in three ways, each fixed in `build_steps.prepare`:
+
+- *The fill was taken from the gap's edge, and the edge is the rim of what's missing* (a cloud's glow, a foot's
+  shadow). Now a part's paint within 0.8% of the long side (`RIM`) of any part painted later counts as that part's
+  rim. The fill comes from the part's clean paint only. The rim itself shows the fill until the part it belongs to
+  starts, and comes back with it, as an object's rim already did. A stray piece of the part (one with less than 15%
+  of the clean paint of its biggest piece) goes the same way, whole.
+- *A wide area was carried under the horizon along its rows from whatever in each row was filed under it*, which
+  below a ridge is slivers of ridge. Now a wide area behind (a sky, water, a field) is carried by
+  `build_steps.blend_paint`: each row in the median color of its clean paint, softened up and down, with rows that
+  have too little (under 4% of the width, or where the area and what's on it fill under 30% of the row) carried on
+  from the nearest row that has enough, and the area's local color (a glow by the sun) reaching 3% of the long side
+  in from clean paint. The same fill goes under its own clouds and foliage. A long thin thing in front (a branch)
+  isn't a wide area and keeps the fill from its edges, with its brush marks carried over at full strength.
+- *After a flat coat, a part's passes skipped every pixel that wasn't its own*, so where another part would cross
+  it (feet on a branch) the coat stayed as a patch in that part's shape. Now they skip only its own children's
+  places, which is what the rule was for.
+
+Before and after, from the gate runs' own plans and outlines:
+[lavender](../spikes/ghosts-lavender.jpg), [sailboat](../spikes/ghosts-red-sailboat.jpg),
+[chickadee](../spikes/ghosts-chickadee.jpg), [the feet](../spikes/ghosts-chickadee-feet.jpg).
+
+Not fixed by this, because they are outline faults and the fill can't know: a cloud outside the clouds' boxes is
+the sky's and is painted with it (the lavender's has a strip of them between its two cloud boxes); and where
+the branch is closed over a gap (`CLOSE`), a little bark stands above it where the ankles go. The lavender gate
+run's outlines predate `drop_islands`, so its two stray pieces of soil are still the sky's and now show in the
+sky's color until the field is painted; outlined again with today's tool they're gone.
+
 ## 8. Step pictures (`build-steps`, built: `spike/build_steps.py`)
 
 `build-steps --lesson <lesson>` writes `NN_<step id>.png` for every step (NN counts across all stages from 01)
@@ -313,6 +344,22 @@ then set to the finish itself; how far the built one was from it is reported as 
 a step that changes almost nothing; a last picture more than 2% away from the finish.
 
 By construction a step can't move, reshape, or recolor another part. There is nothing to review, redo, or lock.
+
+**Added 2026-11-13 (#84): the ghost check.** A step can still show a part early, through what's painted under it
+(section 7). `build_steps.ghosts` measures that: for each part, along the stretches of its edge where the finish
+really has an edge (the two sides differ by 8 Lab units or more) and the step has paint on both sides, how much of
+that difference the picture already shows before the part's first step. Each step's row carries `ghosts`:
+`[{"part", "edge", "faint"}]`, the share of the edge showing 40% of the difference or more (`edge`) and 25% or more
+(`faint`).
+- `build_steps.problems` reports a part with no parent whose `edge` reaches 0.3, with the first step it shows in.
+  On the gate runs before the fix that was every fault the owner listed that has a hard edge (0.35 to 0.91);
+  after it, nothing is over 0.23.
+- `build_steps.faint_ghosts` lists what's worth a look and isn't a failure: a part whose `faint` reaches 0.33 (the
+  lavender's clouds were 0.36 and the chickadee's foliage 0.42 under their skies before the fix; nothing is over
+  0.30 after), and a part painted on another that shows at all. That last kind is often meant (a tree's two-paint
+  block-in shows where the trunk goes) and sometimes an outline that misses a little (the chickadee fixture's eye
+  and beak sit in the head's outline). `build-steps` puts the list in its `advice`, and `check` in its `notes`.
+The numbers come from three pictures and will need moving as more are run.
 
 ## 9. Paints (`paints`, built: `spike/paints.py`)
 
@@ -578,7 +625,8 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 - (`max_mixes`, and a step whose paint doesn't list its part, are in `plan2.problems` from issue 4; the 8 MB
   page limit is in `publish` from issue 6; `check` reports them all in one list.)
 
-`publish` runs `check`; `publish --final` won't seal a version 2 lesson while anything fails. Version 1 lessons
+`publish` runs `check`; `publish --final` won't seal a version 2 lesson while anything fails. Since #84 that
+includes a part that plainly shows before its step (section 8, the ghost check); a faint one is a note. Version 1 lessons
 seal by the old rules.
 
 **Changed 2026-11-13, from three real runs:** `check` prints `problems` (the same list as `failures`, kept for
