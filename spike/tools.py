@@ -381,10 +381,16 @@ def paints_not_listed(stages: list[dict], paints: dict, word: bool = True) -> li
     Version 1 matched a name between two backspace characters (a "\\b" lost in an rf-string), so it never found one
     in the text; it keeps that (word=False) so a version 1 lesson publishes and seals as before."""
     edge = r"\b" if word else "\x08"
+
+    def said(n: str, text: str) -> bool:
+        if word:  # "Sea turquoise" inside "Light sea turquoise" is the other paint, not this one
+            for longer in sorted((m for m in paints if m != n and n.lower() in m.lower()), key=len, reverse=True):
+                text = re.sub(re.escape(longer), " ", text, flags=re.I)
+        return bool(re.search(edge + re.escape(n) + edge, text, re.I))
+
     return [{"id": st["id"], "paint": n} for st in stages for n in paints
             if n not in {c["name"] for c in st["colors"]}
-            and (re.search(edge + re.escape(n) + edge, " ".join(st["steps"]), re.I)
-                 or any(v.get("paint") == n for v in st.get("values", [])))]
+            and (said(n, " ".join(st["steps"])) or any(v.get("paint") == n for v in st.get("values", [])))]
 
 
 def undocumented_diagrams(stages: list[dict], notes: dict) -> list[str]:

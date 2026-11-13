@@ -104,6 +104,27 @@ class OutlineTests(unittest.TestCase):
         out = ol.fill_along_rows(owner, hole)
         self.assertTrue((out[:5] == 0).all() and (out[5:] == 1).all())  # the horizon runs straight on
 
+    def test_a_stray_piece_of_an_area_inside_another_part_joins_it(self):
+        parts = [{"id": "sky", "kind": "area"}, {"id": "field", "kind": "area"}, {"id": "dots", "kind": "marks"}]
+        owner = np.zeros((100, 100), np.int32)
+        owner[50:] = 1
+        owner[70:75, 20:28] = 0   # a bit of "sky" inside the field: nothing claimed it, so the backdrop got it
+        parts.append({"id": "clouds", "kind": "marks", "parent": "sky"})
+        owner[60:64, 70:76] = 3   # and a bit of the sky's clouds down there too, taken by color
+        owner[20:24, 40:50] = 3   # a real cloud, in the sky
+        owner[10:14, 10:14] = 2   # marks stay where they are, however small
+        owner[80:84, 60:64] = 2
+        out = ol.drop_islands(owner, parts)
+        self.assertTrue((out[70:75, 20:28] == 1).all())
+        self.assertTrue((out[60:64, 70:76] == 1).all())
+        self.assertTrue((out[20:24, 40:50] == 3).all())
+        self.assertTrue(np.isin(out[:50], (0, 2, 3)).all())  # the sky's main body is untouched
+        parts.append({"id": "branch", "kind": "thin"})
+        owner[30:40, 60:80] = 4
+        owner[33:36, 65:70] = 0  # a gap of sky inside the branch stays sky
+        self.assertTrue((ol.drop_islands(owner, parts)[33:36, 65:70] == 0).all())
+        self.assertEqual(int((out == 2).sum()), 32)
+
     def test_a_missing_or_shattered_object_is_reported(self):
         parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, {"id": "bird", "kind": "object", "box": [0.2, 0.2, 0.6, 0.6]}]
         stats = [{"id": "sky", "share": 0.9, "confidence": None, "pieces": 1, "box_fill": 0.9},
