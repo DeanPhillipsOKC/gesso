@@ -12,7 +12,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   12x16, or 16x20; 11x14 when two fit as well) and "What you need" names it, with "Using another size? Scale every
   measurement" and a ruler. The tape-marking card is gone from "Before you start"; the transfer outline stays in its
   closed fold, marked optional, and is placed by measuring from the edges. Close-ups give their grid in inches. `check`
-  flags any step text that mentions tape. Version 1 pages are unchanged.
+  flags step text that places things by tape marks. A photo whose subject won't survive the crop to the default size
+  gets the canvas-extend render, as with `--canvas`. Version 1 pages are unchanged.
 
 ## POC 1.3.0 (2026-11-13)
 - The top of a lesson page is shorter, and the steps start much higher (#94). Right after the finished painting,

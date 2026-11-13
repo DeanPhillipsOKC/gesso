@@ -19,7 +19,9 @@ from pathlib import Path
 import numpy as np
 
 PERCENT = re.compile(r"\d\s*%|\bper\s?cent\b", re.I)
-TAPE = re.compile(r"\btape\b", re.I)  # #122: steps say where in inches; the tape marks are gone
+# #122: steps say where in inches; the tape marks are gone. Only placing by tape is flagged, so a real tip such as
+# "masking tape gives a crisp horizon" isn't (review of #122).
+TAPE = re.compile(r"\btape marks?\b|\b(?:top|side|edge)'?s? tape\b|\bmark(?:ed)? on (?:the )?tape\b", re.I)
 SUMMARY_CHARS = 90
 
 
@@ -135,7 +137,8 @@ def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] 
                 out.append(f"{sid}: no tip in text.json. Write one to three sentences only this photo needs (which way "
                            "the strokes run here, which side the light is on, what to leave showing).")
             for where, words in [("summary", t.get("summary") or ""), ("tip", t.get("tip") or "")] + \
-                                [(f"line {n + 1}", x.get("text") or "") for n, x in enumerate(t["lines"])]:
+                                [(f"line {n + 1}", x.get("text") or "") for n, x in enumerate(t["lines"])] + \
+                                [(f"paint note {n + 1}", x) for n, x in enumerate(t.get("paint_notes") or [])]:
                 if PERCENT.search(words):
                     out.append(f"{sid}: its {where} gives a percentage. Say where by the outline, or in inches from "
                                "an edge.")

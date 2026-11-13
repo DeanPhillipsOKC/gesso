@@ -70,7 +70,8 @@ Steps 0 and 1 are the v1 skill's files, with these differences:
 - **step 0b2 always runs**, with or without `--canvas`: without it, `fit-canvas` (no `--canvas`) picks the
   standard size closest to the photo's shape (8x10, 9x12, 11x14, 12x16, or 16x20, 11x14 when two fit as well) and
   records `"chosen": "default"` in `canvas.json`. The steps say where in inches from the canvas edges, never by
-  tape marks or percentages, and the v2 tools refuse a lesson with no canvas size;
+  tape marks or percentages. The v2 tools refuse a lesson with no `canvas.json` unless its finish already has a
+  standard canvas's shape (only the test fixtures do);
 - every filter run with `--lesson` needs `--why "<what you want it to show you>"`;
 - `notes.json`'s `beginner_version` is a dict: `{"made": true|false, "found": "...", "list": "...", "why": "..."}`;
 - with `--palette`, name the painter's tube colors in the finish prompt in place of the technique's five;

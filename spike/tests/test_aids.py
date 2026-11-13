@@ -151,6 +151,10 @@ class WhereWordsTests(unittest.TestCase):
         self.assertNotIn("tape", words)
         self.assertNotIn("mark", words)
         self.assertFalse(hasattr(aids, "MARKS_ACROSS") or hasattr(aids, "MARKS_DOWN") or hasattr(aids, "_near_mark"))
+        # a mast or an eye light is narrower than a quarter inch: never "0 in" (review of #122)
+        thin = aids.where_words(self.area([0.4, 0.2, 0.405, 0.6], (1100, 1400)), {"w_in": 14, "h_in": 11})
+        self.assertIn("it's under 1/4 in wide and about 4 1/2 in tall", thin)
+        self.assertNotIn(" 0 in", thin)
         with self.assertRaisesRegex(ValueError, "canvas.json"):
             aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), None)
 

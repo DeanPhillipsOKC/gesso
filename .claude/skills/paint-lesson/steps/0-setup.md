@@ -32,10 +32,12 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
 ## 0b2. Fit the picture to the canvas (only with `--canvas`; the v2 skill always runs it, see its SKILL.md)
 1. Decide the subject's box and the focal point (0-1 from the top left). The subject is what the picture is
    about (the balloon, the boat and its reflection), not the whole scene.
-2. `fit-canvas <photo> --lesson <lesson> --canvas <WxH> [--orientation ...] --focus X Y --keep X0 Y0 X1 Y1 --why
+2. `fit-canvas <photo> --lesson <lesson> [--canvas <WxH>] [--orientation ...] --focus X Y --keep X0 Y0 X1 Y1 --why
    "<subject and what must stay>"`. It picks the cheapest fit: `none` (same shape), `crop` (free, subject whole,
    at most about a third lost), or `extend` (the picture sits on the canvas with gray edges). It places the canvas
    in the image model's nearest frame (square, 3:2, or 2:3), with gray bands outside it when the shapes differ.
+   With no `--canvas` (v2 only) it uses the standard size closest to the photo's shape, so a photo whose subject
+   won't survive that crop gets the extend render.
 3. If `needs_render` is true, run the render command in its `advice` once. Read the result: nothing painted
    changed, the edges continue the scene, nothing new appeared. Redo once at most.
 4. From here on, "the photo" is `00_canvas_fit.png` (or `00_canvas_frame.png` when no render was needed). Renders

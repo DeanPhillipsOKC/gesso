@@ -706,7 +706,8 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - `v2_step_range` and `v2_stage_range` from the technique; more top-level parts than `detail_budget.max_parts`;
 - a stroke with no card; a brush `spike/brushes.py` doesn't know;
 - `texture_jumps`, as today: no step turns more than 10% of the picture from flat to textured (fix: one more pass);
-- a percentage in step text, or a tape mark (#122: "Say where in inches from an edge."); a line over 40 words;
+- a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
+  inches from an edge."); a line over 40 words;
 - the ones that stay: `paints_not_listed`, `duplicate_recipes`, `unreachable_paints`, `undocumented_diagrams`;
 - (`max_mixes`, and a step whose paint doesn't list its part, are in `plan2.problems` from issue 4; the 8 MB
   page limit is in `publish` from issue 6; `check` reports them all in one list.)

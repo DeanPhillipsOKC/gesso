@@ -33,6 +33,6 @@ complete now. Plain words, a sentence or two each:
 
 - `read`, `technique`, `order`, `steps`, and `beginner_check` are required; every step appears in `steps` and in
   either `beginner_check.diagrams` or `beginner_check.no_diagram`. The seal checks this.
-- `canvas_fit` only with `--canvas`; `beginner_version` whether you made one or not.
+- `canvas_fit` only with `--canvas` (version 2: always, since every v2 lesson is fitted to a canvas); `beginner_version` whether you made one or not.
 - List every filter you looked at, kept or not, with its image path relative to the lesson.
 - Every technique in `techniques/` you didn't pick goes in `considered`.

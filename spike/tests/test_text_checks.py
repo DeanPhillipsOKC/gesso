@@ -309,12 +309,14 @@ class CheckPartsTests(unittest.TestCase):
         self.assertEqual(checks.text_problems(plan, {**text, sid: tip}, None),
                          [f"{sid}: its tip places things by tape marks, and the painter has no tape. Say where in inches "
                           "from an edge."])
-        line = {**ok, "summary": "Paint to the tape.", "lines": [{"kind": "where", "text": "Below the side Tape's middle."}]}
+        line = {**ok, "summary": "Paint down to the tape marks.", "paint_notes": ["Mix it by the middle of the side Tape."],
+                "lines": [{"kind": "where", "text": "Below the middle mark on the top tape."}]}
         out = " ".join(checks.text_problems(plan, {**text, sid: line}, None))
         self.assertIn("its summary places things by tape marks", out)
         self.assertIn("its line 1 places things by tape marks", out)
-        taper = {**ok, "tip": "Taper each branch to a point."}  # a word with "tape" in it isn't a tape mark
-        self.assertEqual(checks.text_problems(plan, {**text, sid: taper}, None), [])
+        self.assertIn("its paint note 1 places things by tape marks", out)
+        for fine in ("Taper each branch to a point.", "Masking tape along the horizon gives a crisp edge."):
+            self.assertEqual(checks.text_problems(plan, {**text, sid: {**ok, "tip": fine}}, None), [], fine)
         pct = {**ok, "tip": "At 30% across."}
         self.assertNotIn("tape", " ".join(checks.text_problems(plan, {**text, sid: pct}, None)))
 
