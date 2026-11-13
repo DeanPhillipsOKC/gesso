@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import sys
 import tempfile
@@ -49,6 +51,15 @@ class SiteVersionTests(unittest.TestCase):
         page.write_text("kept", encoding="utf-8")
         site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
         self.assertEqual(page.read_text(encoding="utf-8"), "kept")
+
+    def test_a_run_without_its_standalone_page_is_skipped_with_a_message(self):  # #82: no page rebuilt from lesson.json
+        (self.output / "balloon_skill_20261112-084806" / "lesson-standalone.html").unlink()
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
+        self.assertEqual([v["id"] for v in versions], ["20261111-142734"])
+        self.assertIn("skipped balloon_skill_20261112-084806", out.getvalue())
+        self.assertIn("lesson-standalone.html", out.getvalue())
 
     def test_tile_has_a_pick_list_with_the_current_version_selected(self):
         versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)

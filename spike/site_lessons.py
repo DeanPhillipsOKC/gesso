@@ -85,18 +85,12 @@ def kind(data: dict) -> str:
 
 
 def standalone(run: Path) -> str:
-    """The run's self-contained page, or one built from its saved lesson.json for runs from before those existed
-    (nothing is rerun: same pictures, text, and recipes)."""
+    """The run's self-contained page. A run with none (from before publish wrote one) can't be shown: the error says
+    so, and add_versions skips the run with that message. Since #82 no page is rebuilt from an old lesson.json."""
     page_file = run / "lesson-standalone.html"
-    if page_file.exists():
-        return page_file.read_text(encoding="utf-8")
-    import yaml
-    from lesson_page import page
-    data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
-    raw = json.loads((run / "plan.json").read_text(encoding="utf-8")) if (run / "plan.json").exists() else {}
-    technique = yaml.safe_load((ROOT / (raw.get("technique") or "techniques/acrylic-paint-along-beginner.yaml"))
-                               .read_text(encoding="utf-8"))
-    return page(data, technique, run, embed=True, standalone=True)
+    if not page_file.exists():
+        raise FileNotFoundError(f"no lesson-standalone.html in {run.name}; only runs published with one can be shown")
+    return page_file.read_text(encoding="utf-8")
 
 
 def add_versions(site: Path, slug: str, current: str, output: Path, listed: list[dict] | None = None,
