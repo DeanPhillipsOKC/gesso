@@ -67,12 +67,14 @@ def problems(spec: dict | None, paints: dict[str, str], where: str) -> list[str]
     """Shapes whose paint is no paint's name or id in `paints` and no #hex: they would draw gray. Empty for a missing
     spec; a spec that doesn't draw at all is strip()'s to report."""
     out: list[str] = []
-    if not spec or not isinstance(spec.get("stages"), list):
+    if not isinstance(spec, dict) or not isinstance(spec.get("stages"), list):
         return out
     default = spec.get("paint") or ""
     title = spec.get("title") or "its diagram"
     for k, stage in enumerate(spec["stages"]):
-        for n, shape in enumerate((stage or {}).get("add") or []):
+        # a stage or shape of the wrong type is a spec that doesn't draw: strip() reports that, this mustn't crash
+        add = stage.get("add") if isinstance(stage, dict) else None
+        for n, shape in enumerate(add if isinstance(add, list) else []):
             if not isinstance(shape, dict):
                 continue
             name = shape.get("paint") or default
@@ -124,11 +126,11 @@ def shape_svg(shape: dict, fill: str, new: bool) -> str:
 def strip(spec: dict, paints: dict[str, str], uid: str) -> str:
     """The whole diagram as HTML: a titled row of numbered panels. Returns "" for a missing or broken spec, so a
     bad diagram never breaks the lesson page."""
-    if not spec or not spec.get("stages"):
+    if not isinstance(spec, dict) or not spec.get("stages"):
         return ""
     try:
         return _strip(spec, paints, uid)
-    except (BadSpec, KeyError, TypeError, ValueError):
+    except (BadSpec, AttributeError, KeyError, TypeError, ValueError):
         return ""
 
 

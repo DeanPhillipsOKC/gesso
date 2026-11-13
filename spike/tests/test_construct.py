@@ -86,6 +86,12 @@ class ConstructTests(unittest.TestCase):
         self.assertIn("panel 2, shape 2 (line) has no paint", out[1])
         self.assertEqual(problems(None, PAINTS, "s3"), [])
 
+    def test_a_broken_spec_draws_nothing_and_problems_never_crashes(self):  # review of #127
+        for bad in ({"stages": [{"add": 5}]}, {"stages": [{"add": True}]}, {"stages": ["A center oval"]},
+                    {"stages": [None, {"add": [7, "x"]}]}, {"stages": 3}, "a string", ["a list"]):
+            self.assertEqual(strip(bad, PAINTS, "x"), "", bad)
+            self.assertEqual(problems(bad, PAINTS, "s1"), [], bad)
+
 
 if __name__ == "__main__":
     unittest.main()
