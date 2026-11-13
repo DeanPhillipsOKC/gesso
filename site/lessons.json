@@ -21,7 +21,7 @@
         "current": true
       }
     ],
-    "known": 4
+    "known": 3
   },
   {
     "slug": "snow-lantern",
@@ -43,100 +43,6 @@
         "steps": 21,
         "href": "lessons/snow-lantern/",
         "current": true
-      }
-    ],
-    "known": 5
-  },
-  {
-    "slug": "red-sailboat",
-    "title": "A small red sailboat",
-    "subject": "A small red sailboat with white sails on teal water at sunset",
-    "steps": 18,
-    "canvas": "",
-    "tubes": 5,
-    "version": "POC 1.1.0",
-    "published": "2026-11-13",
-    "source": "red-sailboat_skill_20261113-174242",
-    "versions": [
-      {
-        "id": "20261113-174242",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:42",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 18,
-        "href": "lessons/red-sailboat/",
-        "current": true
-      },
-      {
-        "id": "20261113-130625",
-        "version": "POC 1.0.1",
-        "when": "2026-11-13 13:06",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 16,
-        "href": "lessons/red-sailboat/v/20261113-130625/",
-        "current": false
-      },
-      {
-        "id": "20261113-041240",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/red-sailboat/v/20261113-041240/",
-        "current": false
-      },
-      {
-        "id": "20261113-031313",
-        "version": "POC 0.26.1",
-        "when": "2026-11-13 03:13",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 15,
-        "href": "lessons/red-sailboat/v/20261113-031313/",
-        "current": false
-      },
-      {
-        "id": "20261113-022736",
-        "version": "POC 0.26.1",
-        "when": "2026-11-13 02:27",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/red-sailboat/v/20261113-022736/",
-        "current": false
-      },
-      {
-        "id": "20261113-011140",
-        "version": "POC 0.26.1",
-        "when": "2026-11-13 01:11",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 19,
-        "href": "lessons/red-sailboat/v/20261113-011140/",
-        "current": false
-      },
-      {
-        "id": "20261112-120423",
-        "version": "POC 0.26.0",
-        "when": "2026-11-12 12:04",
-        "guessed": false,
-        "kind": "",
-        "steps": 10,
-        "href": "lessons/red-sailboat/v/20261112-120423/",
-        "current": false
-      },
-      {
-        "id": "20261112-100455",
-        "version": "POC 0.25.0",
-        "when": "2026-11-12 10:04",
-        "guessed": false,
-        "kind": "",
-        "steps": 10,
-        "href": "lessons/red-sailboat/v/20261112-100455/",
-        "current": false
       }
     ],
     "known": 2
@@ -223,7 +129,7 @@
         "current": false
       }
     ],
-    "known": 5
+    "known": 4
   },
   {
     "slug": "lavender-balloon",
@@ -307,6 +213,110 @@
         "current": false
       }
     ],
-    "known": 6
+    "known": 5
+  },
+  {
+    "slug": "red-sailboat",
+    "title": "A small red sailboat",
+    "subject": "A small red sailboat with a white sail on teal water at sunset",
+    "steps": 17,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 1.4.0",
+    "published": "2026-11-13",
+    "source": "red-sailboat_skill_20261113-212457",
+    "versions": [
+      {
+        "id": "20261113-212457",
+        "version": "POC 1.4.0",
+        "when": "2026-11-13 21:24",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/",
+        "current": true
+      },
+      {
+        "id": "20261113-174242",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/red-sailboat/v/20261113-174242/",
+        "current": false
+      },
+      {
+        "id": "20261113-130625",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 16,
+        "href": "lessons/red-sailboat/v/20261113-130625/",
+        "current": false
+      },
+      {
+        "id": "20261113-041240",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-041240/",
+        "current": false
+      },
+      {
+        "id": "20261113-031313",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 03:13",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 15,
+        "href": "lessons/red-sailboat/v/20261113-031313/",
+        "current": false
+      },
+      {
+        "id": "20261113-022736",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 02:27",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-022736/",
+        "current": false
+      },
+      {
+        "id": "20261113-011140",
+        "version": "POC 0.26.1",
+        "when": "2026-11-13 01:11",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 19,
+        "href": "lessons/red-sailboat/v/20261113-011140/",
+        "current": false
+      },
+      {
+        "id": "20261112-120423",
+        "version": "POC 0.26.0",
+        "when": "2026-11-12 12:04",
+        "guessed": false,
+        "kind": "",
+        "steps": 10,
+        "href": "lessons/red-sailboat/v/20261112-120423/",
+        "current": false
+      },
+      {
+        "id": "20261112-100455",
+        "version": "POC 0.25.0",
+        "when": "2026-11-12 10:04",
+        "guessed": false,
+        "kind": "",
+        "steps": 10,
+        "href": "lessons/red-sailboat/v/20261112-100455/",
+        "current": false
+      }
+    ],
+    "known": 2
   }
 ]
