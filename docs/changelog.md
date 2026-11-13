@@ -11,6 +11,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 - `paints` measures a version 2 lesson's paints from the finish, marks tints and shades of a part's main paint, and
   merges the rest toward the technique's `max_mixes` (10 for the beginner paint-along), never an accent and never
   two colors a painter can tell apart (#66).
+- Teaching pictures (`step-aids`) and the version 2 lesson page: each step's Where outline over the picture before
+  it, close-ups, paint maps, stroke cards, "Before you start" with the tape marks and the transfer outline (#68).
 
 ## POC 0.26.1 (2026-11-12)
 - The lock's backward pass no longer tints a clean step with something a later step paints (#56: the sun path's

@@ -55,6 +55,28 @@ def paint_extras(plan: dict) -> dict[str, dict]:
     return {names[c["id"]]: {k: v for k, v in c.items() if k not in ("name", "hex")} for c in plan.get("paints") or []}
 
 
+MAX_PAGE_BYTES = 8_000_000  # publish fails a version 2 page bigger than this (design section 11)
+
+
+def attach_aids(lesson, stages: list[dict]) -> dict:
+    """Put each step's teaching pictures (aids/aids.json, from step-aids) on its lesson.json stage as `aids`, and
+    return what the whole lesson shares (the page's picture size, the transfer outline). With no aids yet, or aids
+    made for other steps, every step gets an empty `aids` and the page shows the step pictures alone."""
+    import json
+    from pathlib import Path
+
+    path = Path(lesson) / "aids" / "aids.json"
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    rows = {r["id"]: r for r in data.get("steps") or []}
+    fits = [r.get("id") for r in data.get("steps") or []] == [s["id"] for s in stages]
+    for s in stages:
+        r = rows.get(s["id"]) if fits else None
+        s["aids"] = {k: v for k, v in r.items() if k not in ("id", "image")} if r else {}
+    if not fits:
+        return {}
+    return {"view": data["view"], "canvas_box": data.get("canvas_box"), "transfer": data.get("transfer")}
+
+
 def groups(plan: dict) -> list[dict]:
     return [{"id": st["id"], "name": _name(st), "steps": [s["id"] for s in st["steps"]]} for st in plan["stages"]]
 

@@ -61,7 +61,7 @@ class PublishV2Tests(unittest.TestCase):
         cls.lessons, cls.results = {}, {}
         for name in NAMES:
             lesson = make_lesson(cls.root, name)
-            for tool in ("build-steps", "mix", "publish"):
+            for tool in ("build-steps", "step-aids", "mix", "publish"):
                 code, r = run_tool(tool, "--lesson", str(lesson))
                 assert code == 0, (name, tool, r)
                 cls.results[(name, tool)] = r
@@ -170,6 +170,71 @@ class PublishV2Tests(unittest.TestCase):
                         at = html.index(f'id="step-{num[sid]}"')
                         self.assertTrue(heads[k] < at < heads[k + 1], f"{name}: step {sid} isn't under {g['id']}")
 
+    def test_every_step_shows_where_its_paint_goes_and_its_folds(self):
+        import cards
+        known = cards.strokes()
+        for name in NAMES:
+            data = self.data(name)
+            stages = data["stages"]
+            self.assertEqual(set(data["aids"]), {"view", "canvas_box", "transfer"})
+            self.assertTrue(all(s["aids"]["path"] and s["aids"]["where_words"] for s in stages), name)
+            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
+            self.assertEqual(html.count('<div class="sw">'), len(stages))
+            self.assertEqual(html.count('<image id="pic-'), len(stages))  # each step picture once, shared by its views
+            for i in range(1, len(stages)):
+                self.assertIn(f'<use href="#pic-{i}"/>', html)
+            self.assertNotIn("percentages", html)
+            self.assertNotRegex(" ".join(s["aids"]["where_words"] for s in stages), r"%|percent")
+            self.assertEqual(html.count("Close-up</summary>") + html.count("Close-up <span"),
+                             sum(1 for s in stages if s["aids"].get("closeup")))
+            self.assertEqual(html.count('aria-label="Paint map"'), sum(1 for s in stages if s["aids"].get("map")))
+            used = {c for s in stages for c in s["stroke_cards"]}
+            for c in used:  # a stroke's card is open once, where it's first used; later steps link back to it
+                self.assertEqual(html.count(f"id='stroke-{c}'"), 1, f"{name} {c}")
+                if not known[c].get("checked"):
+                    self.assertIn("Not checked yet", html)
+            self.assertEqual(html.count('class="stop"'), len(data["groups"]))
+            self.assertIn('id="start"', html)
+            self.assertIn("Mark halves and quarters on tape", html)
+            self.assertEqual(html.count("class='card' id='basic-"), len(cards.basics()))
+            self.assertIn("The transfer outline", html)
+            self.assertIn('<nav class="toc"', html)
+            # self-contained: every picture inlined, nothing fetched but the fonts
+            refs = re.findall(r'(?:src|href)="([^"#][^"]*)"', html)
+            self.assertEqual([r for r in refs if not r.startswith(("data:", "https://"))], [], name)
+            self.assertLess(self.results[(name, "publish")]["page_mb"], 8)
+            self.assertFalse(self.results[(name, "publish")]["missing_aids"])
+
+    def test_a_version_2_step_is_labelled_cut_from_the_finish_not_a_render(self):
+        for name in NAMES:
+            html = (self.lessons[name] / "lesson.html").read_text(encoding="utf-8")
+            self.assertEqual(html.count("How this picture was made"), len(self.data(name)["stages"]))
+            self.assertNotIn('<span class="tag t-render">Render', html)
+            self.assertIn('<span class="tag t-cut">Cut from the finish · free</span>', html)
+
+    def test_without_step_aids_the_page_still_works_and_the_seal_asks_for_them(self):
+        lesson = self.copy("red-sailboat")
+        shutil.rmtree(lesson / "aids")
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        self.assertTrue(r["missing_aids"])
+        data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual({json.dumps(s["aids"]) for s in data["stages"]}, {"{}"})
+        self.assertNotIn('class="sw"', (lesson / "lesson.html").read_text(encoding="utf-8"))
+        raw, plan, _ = tools.load_plan(lesson)
+        self.assertIn("run step-aids", " ".join(tools.seal_problems(lesson, plan, {}, {}, {}, r)))
+
+    def test_a_version_2_page_over_8_mb_is_refused(self):
+        import publish2
+        lesson = self.copy("red-sailboat")
+        old, publish2.MAX_PAGE_BYTES = publish2.MAX_PAGE_BYTES, 1_000_000
+        try:
+            code, r = run_tool("publish", "--lesson", str(lesson))
+        finally:
+            publish2.MAX_PAGE_BYTES = old
+        self.assertEqual(code, 2)
+        self.assertIn("MB", r["refused"])
+
     def test_a_version_1_page_has_no_stage_headings(self):
         from lesson_page import page
         import yaml
@@ -213,7 +278,8 @@ class PublishV2Tests(unittest.TestCase):
         self.assertEqual(sun["steps"], ["Paint the sun"])
         self.assertTrue(sun["colors"])
         html = (lesson / "lesson.html").read_text(encoding="utf-8")
-        self.assertIn("Long strokes side to side.", html)
+        self.assertIn("<li>Long strokes side to side.</li>", html)
+        self.assertIn("<b>Tip:</b> Keep the horizon glow lightest.", html)
         self.assertEqual(len(ids), len(data["stages"]))
 
     def test_the_seal_for_version_2_needs_text_and_two_reviews_not_regions(self):

@@ -227,6 +227,26 @@ def title_for(lesson: dict, folder: Path | None = None) -> str:
     return f"{' '.join(words).title() or 'Painting'} Lesson"
 
 
+def tint_of(p: dict, paints: list[dict]) -> str:
+    """A version 2 tint or shade ("of" another paint, "plus" white or the dark tube): "Sky plus white". Empty for
+    any other paint, so a version 1 page is unchanged."""
+    if not p.get("of"):
+        return ""
+    main = next((q["name"] for q in paints if q.get("id") == p["of"]), p["of"])
+    return f'<span class="small">({e(main)} plus {e(p.get("plus") or "white")})</span> '
+
+
+def v2_part(name: str, *args):
+    """A piece of a version 2 page from page2.py (its style, the sprite, contents, before you start)."""
+    import page2
+    if name == "STYLE":
+        return page2.STYLE
+    if name == "before_you_start":
+        import cards
+        return page2.before_you_start(*args, cards.strokes())
+    return getattr(page2, name)(*args)
+
+
 def items(xs, cls="") -> str:
     return "".join(f"<li{f' class={cls}' if cls else ''}>{e(x)}</li>" for x in xs)
 
@@ -253,15 +273,18 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
             brushes.setdefault(b["brush"], b.get("use", ""))
     tubes = lesson.get("tubes") or technique.get("palette", [])
     cv = lesson.get("canvas") or {}
+    v2 = lesson.get("plan_version") == 2
     canvas_item = (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
+                   + ("" if cv["orientation"] == "square" else " (hang it that way)")
+                   + ", and masking tape to mark halves and quarters along its edges.") if v2 and cv else (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
                    + ("" if cv["orientation"] == "square" else " (hang it that way)") +
                    f'. Positions in the steps are percentages across and down: each 10% is {cv["w_in"] / 10:g} in '
                    f'across and {cv["h_in"] / 10:g} in down.') if cv else "White canvas or canvas board"
 
     photo = image_src(folder, lesson["photo_file"], embed) if lesson.get("photo_file") else ""
     finish = image_src(folder, stages[-1]["image"], embed)
-    imgs = [image_src(folder, s["image"], embed, 1000) for s in stages]
-    thumbs = [image_src(folder, s["image"], embed, 200) for s in stages] if embed else imgs
+    imgs = [image_src(folder, s["image"], embed, 1000) for s in stages] if not v2 else []  # v2: once, in the sprite
+    thumbs = [image_src(folder, s["image"], embed, 200) for s in stages] if embed or v2 else imgs
 
     # The step each paint is first needed in. Beginners mix as they go, since acrylics dry on the palette.
     first: dict[str, int] = {}
@@ -281,6 +304,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
 
     paint_cards = "".join(
         f'<div class="paint"><span class="blob" style="background:{e(p["hex"])}"></span><div><b>{e(p["name"])}</b>'
+        f'{" " + tint_of(p, paints) if p.get("of") else ""}'
         f'<span class="recipe">{e(p["recipe"])}</span><br><span class="small">{e(p.get("used_for", ""))}'
         f'{" · " + when(p["name"]) if when(p["name"]) else ""}</span>{closest(p)}</div></div>'
         for p in paints)
@@ -316,7 +340,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
         used = [by_name[c["name"]] for c in s.get("colors", []) if c["name"] in by_name]
         fresh = [p for p in used if first.get(p["name"]) == i + 1]
         mix_rows = "".join(
-            f'<li><span class="blob" style="background:{e(p["hex"])}"></span><div><b>{e(p["name"])}</b> '
+            f'<li><span class="blob" style="background:{e(p["hex"])}"></span><div><b>{e(p["name"])}</b> {tint_of(p, paints)}'
             + ('<span class="new">new</span>' if first.get(p["name"]) == i + 1 else
                f'<span class="small">from step {first.get(p["name"])}, mix more if it has dried</span>')
             + f'<span class="recipe">{e(p["recipe"])}</span>{closest(p)}</div></li>' for p in used)
@@ -336,6 +360,16 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
         watch = "".join(f'<p class="watch">Watch out: {e(w)}</p>' for w in s.get("watch_out", []))
         flags = "".join(f'<p class="flag">Heads up, this picture is a little off: {e(x)} Paint what the steps say.</p>'
                         for x in left.get(s["id"], []))
+        if v2:
+            import cards
+            import page2
+            steps_html.append(page2.step(lesson, i, folder, embed, cards.strokes(), mixes + flags, chips,
+                                         step_why(lesson, s, i == len(stages) - 1),
+                                         build_strip(s.get('construct'), {n: p['hex'] for n, p in by_name.items()}, s['id'])))
+            ends = next((g for g in lesson.get("groups") or [] if g.get("steps") and g["steps"][-1] == s["id"]), None)
+            if ends:
+                steps_html.append(page2.stop(ends))
+            continue
         steps_html.append(f"""
 <article class="step" id="step-{i + 1}">
   <figure><img src="{imgs[i]}"{sizes[i]} alt="The canvas after step {i + 1}: {e(s['name'])}" loading="lazy"></figure>
@@ -355,9 +389,9 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
 </article>""")
 
     head = (f'<title>{e(title_for(lesson, folder))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
-            f'{FONTS}\n<style>{STYLE}{GROUP_STYLE if group_at else ""}</style>')
+            f'{FONTS}\n<style>{STYLE}{GROUP_STYLE if group_at else ""}{v2_part("STYLE") if v2 else ""}</style>')
     body = f"""
-<div class="wrap">
+<div class="wrap">{v2_part("sprite", lesson, folder, embed) if v2 else ""}
   <header>
     <p class="eyebrow">Acrylic paint-along · {e(technique.get('level', 'beginner'))}</p>
     <h1>{e(read['subject'])}</h1>
@@ -373,7 +407,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
   <section><h2>Your paints</h2><p class="small">Every paint in the lesson. You don't have to mix them all at the start: each step lists
     the paints it uses with their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>
     <div class="paints">{paint_cards}</div></section>
-  <section><h2>The steps</h2><nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
+  {v2_part("before_you_start", lesson, folder, embed) if v2 else ""}<section><h2>The steps</h2>{v2_part("contents", lesson) if v2 else ""}<nav class="strip" aria-label="Jump to a step">{strip}</nav></section>
   {''.join(steps_html)}
   {behind(lesson, technique, folder, embed, thumbs, sizes)}
   {f'<footer class="made">Made with {e(made_line(lesson["gesso"]))}</footer>' if lesson.get("gesso") else ""}
