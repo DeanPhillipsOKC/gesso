@@ -141,14 +141,45 @@ def background_problems(finish: np.ndarray, background: np.ndarray, front: np.nd
     return out, numbers
 
 
-def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, front: np.ndarray) -> np.ndarray:
+def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarray, front: np.ndarray) -> None:
+    """With a real picture of what's behind the objects, each gap is divided by what that picture shows: a pixel
+    goes to the area around the gap whose color there is nearest. Dividing along rows alone gave a hull sitting on
+    the horizon to the sky, and the sky's first step then painted a hull-shaped patch of sea (2026-11-13)."""
+    h, w = owner.shape
+    r = max(3, int(0.02 * max(h, w)))
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))
+    roots = np.array(_roots(parts))
+    area_root = np.array([parts[q]["kind"] == "area" for q in roots])
+    n, labels = cv2.connectedComponents(front.astype(np.uint8), connectivity=8)
+    for i in range(1, n):
+        gap = labels == i
+        ring = (cv2.dilate(gap.astype(np.uint8), kernel) > 0) & ~front
+        around = roots[owner[ring]]
+        cands = [int(c) for c in np.unique(around) if area_root[c] and (around == c).sum() >= 20]
+        if len(cands) < 2:
+            continue
+        ring_root = np.full((h, w), -1)
+        ring_root[ring] = around
+        means = np.array([np.median(L[ring_root == c], axis=0) for c in cands])
+        d = np.sqrt(((L[gap][:, None, :] - means[None]) ** 2).sum(2))
+        pick = np.zeros((h, w), np.uint8)
+        pick[gap] = d.argmin(1).astype(np.uint8)
+        pick = cv2.medianBlur(pick, 2 * max(1, r // 4) + 1)
+        out[gap] = np.array(cands)[pick[gap]]
+
+
+def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, front: np.ndarray,
+               real: bool = False) -> np.ndarray:
     """Who owns each pixel once the objects are taken out: the parts behind, carried across the gaps the objects
-    left, and any marks (clouds, foliage) the background picture shows there."""
+    left, and any marks (clouds, foliage) the background picture shows there. `real`: the background is a picture
+    of what's really behind the objects (a render), not a fill."""
     if not front.any():
         return owner
     out = ol.fill_along_rows(owner, front)
     is_back = back_parts(parts)
     L = ol.lab(cv2.GaussianBlur(background, (0, 0), 1.2))
+    if real:
+        by_color(parts, owner, out, L, halo(front))  # the cleared rim around each object is part of its gap
     index = {p["id"]: i for i, p in enumerate(parts)}
     for k, p in enumerate(parts):
         if p["kind"] != "marks" or not is_back[k]:
@@ -176,7 +207,7 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     real_background = background is not None
     front_grown = halo(front) if front.any() else front
     base_back = make_background(finish, front, background)
-    own_back = back_owner(parts, owner, base_back, front)
+    own_back = back_owner(parts, owner, base_back, front, real=background is not None)
 
     last_of = {s["part"]: i for i, s in enumerate(steps)}
     paints_of: dict[str, list[str]] = {}
