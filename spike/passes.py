@@ -15,7 +15,22 @@ from __future__ import annotations
 import cv2
 import numpy as np
 
-from lock import CHANGED, _dist, _lab, _texture
+CHANGED = 14.0  # Lab distance over which a step changed the area (the step review's change map uses the same)
+
+
+def _lab(rgb: np.ndarray, sigma: float = 3) -> np.ndarray:
+    return cv2.cvtColor(cv2.GaussianBlur(rgb, (0, 0), sigma), cv2.COLOR_RGB2LAB).astype(np.float32)
+
+
+def _texture(rgb: np.ndarray) -> np.ndarray:
+    """Local detail: how much lightness varies around each pixel. Flat paint is low, dabs and strokes are high."""
+    L = cv2.cvtColor(rgb, cv2.COLOR_RGB2LAB)[:, :, 0].astype(np.float32)
+    mean = cv2.GaussianBlur(L, (0, 0), 4)
+    return np.sqrt(np.maximum(cv2.GaussianBlur(L * L, (0, 0), 4) - mean * mean, 0))
+
+
+def _dist(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    return np.sqrt(((a - b) ** 2).sum(axis=2))
 
 FLAT = 6.0  # local texture under which paint reads as flat
 TEXTURED = 10.0  # how much texture a step has to add to count as going from flat to textured

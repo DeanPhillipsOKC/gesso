@@ -984,35 +984,6 @@ def from_finish_tool(a: argparse.Namespace) -> dict:
             "owned_share": {s["id"]: round(float((owner == k).mean()), 3) for k, s in enumerate(steps)}, "cost_usd": 0.0}
 
 
-def lock_steps(a: argparse.Namespace) -> dict:
-    """Keep finished areas and areas a step doesn't paint from changing (#30). Free."""
-    import lock as lk
-
-    lesson = Path(a.lesson)
-    raw, plan, technique = load_plan(lesson)
-    paths = step_paths(lesson, plan)
-    missing = [p.name for p in paths if not p.exists()]
-    if missing:
-        raise Refused(f"missing step images: {missing}")
-    from run import sample_swatches
-    sample_swatches(plan, paths[-1])  # the step paints' real colors, from the finish
-    hexes = {p.name: p.hex for p in plan.paints}
-
-    def rgb(h: str) -> tuple[int, int, int]:
-        return tuple(int(h.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
-
-    regions = [s.regions for s in plan.steps[:-1]]
-    protects = [s.protect for s in plan.steps[:-1]]
-    colors = [[rgb(hexes[c]) for c in s.colors if c in hexes] for s in plan.steps[:-1]]
-    report = lk.lock(lesson, paths[:-1], paths[-1], lesson / "00_canvas.png", regions, protects, colors,
-                     plan.steps[-1].regions)
-    LessonLedger(lesson).append({"tool": "filter", "filter": "lock-steps", "step": "", "why": a.why or "lock finished areas",
-                                 "input": str(lesson), "out": str(lesson), "settings": {"put_back": report}, "cost_usd": 0.0})
-    return {"put_back": report, "steps_without_regions": [s.id for s in plan.steps if not s.regions],
-            "backward_pass": "done" if "backward" in report else "skipped: every step, the last one too, needs regions",
-            "raw": str(lesson / "trials" / "raw"), "cost_usd": 0.0}
-
-
 def canvas_view(lesson: Path, names: list[str]) -> dict[str, str]:
     """Step pictures cropped to the canvas box, in <lesson>/canvas/, for the page, the embed, and the review.
     Renders stay in the model's frame (later steps are rendered from them); only what the painter sees is cropped."""
@@ -1176,14 +1147,6 @@ def add_lesson_tools(sub) -> None:
     p.add_argument("--ids", nargs="+", required=True, help="ids for the new in-between steps, in order")
     p.add_argument("--names", nargs="+", required=True, help="their names, e.g. 'Dab the dark lavender'")
     p.set_defaults(func=split_texture)
-
-    p = sub.add_parser("lock-steps", help="Free. Put back changes a step makes outside where it paints, or to finished areas (#30).",
-                       description="After the step renders and their review: for each step in order, any change outside its "
-                                   "plan.json `regions`, or to an area that already looks like the finish, goes back to the "
-                                   "previous step's pixels. Raw renders are kept in trials/raw/.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--why", help="what you're locking for (logged)")
-    p.set_defaults(func=lock_steps)
 
     p = sub.add_parser("canvas-view", help="Free. Crop images to the painter's canvas (after fit-canvas), into <lesson>/canvas/.",
                        description="Renders stay in the model's frame; the painter sees the canvas. Measure positions for the "
