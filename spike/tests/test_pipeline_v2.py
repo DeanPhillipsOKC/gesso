@@ -378,6 +378,161 @@ class BuildStepsTests(unittest.TestCase):
         self.assertTrue((with_plate[2][~near_ball] == without[2][~near_ball]).all())  # nothing else moved
         self.assertFalse((with_plate[2][near_ball] == without[2][near_ball]).all())
 
+    def tree_scene(self):
+        """A sky over a golden hill, a tree standing on the hill with its canopy in the sky, and a background picture
+        with golden cloud streaks behind the canopy: the same color as the hill, far above it (#139)."""
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:60] = (110, 150, 220)
+        img[60:] = (200, 160, 60)
+        plate = img.copy()
+        plate[20:27, 62:98] = (205, 158, 62)  # the streaks, only behind the canopy
+        yy, xx = np.mgrid[:120, :160]
+        tree = (((yy - 35) ** 2 + (xx - 80) ** 2) < 22 ** 2) | ((yy >= 50) & (yy < 95) & (xx >= 76) & (xx < 84))
+        img[tree] = (40, 80, 40)
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "hill", "kind": "area", "box": [0, 0.45, 1, 1]},
+                 {"id": "tree", "kind": "object", "box": [0.3, 0.08, 0.7, 0.82]}]
+        hill = np.zeros((120, 160), bool)
+        hill[60:] = True
+        _, owner, _ = ol.outline(img, parts, given={"hill": hill & ~tree, "tree": tree})
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "gold", "hex": "#c8a03c"},
+                           {"id": "green", "hex": "#285028"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "hill", "part": "hill", "show": "full", "paints": ["gold"]},
+                    {"id": "tree", "part": "tree", "show": "full", "paints": ["green"]}]}]}
+        return img, plate, owner, plan, tree
+
+    def test_what_is_behind_an_object_goes_only_to_a_part_in_those_rows(self):  # #139
+        img, plate, owner, plan, tree = self.tree_scene()
+        front = ~bs.back_parts(plan["parts"])[owner]
+        back = bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True)
+        self.assertTrue((back[20:27, 70:90] == 0).all())  # the streaks stay the sky's
+        self.assertTrue((back[70:95, 76:84] == 1).all())  # the hill still runs on behind the trunk
+        self.assertTrue((back[30:45, 62:98] == 0).all())
+        pictures, rows, painted = bs.build(img, plan, owner, background=plate)
+        self.assertFalse(painted[1][:50].any())  # the hill's step paints nothing in the sky
+        sky = pictures[0][20:27, 70:90].reshape(-1, 3).astype(int)
+        self.assertTrue((sky[:, 2] > sky[:, 0] + 60).all())  # the sky carries its own blue over hill-colored streaks
+        doubt = np.zeros(owner.shape, bool)
+        bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True, doubt=doubt)
+        self.assertTrue(doubt[20:27, 70:90].all())
+        self.assertFalse(doubt[:15].any() or doubt[30:45].any())  # the rest behind the canopy is the render's sky
+        self.assertEqual([r["far"] for r in rows], [0.0, 0.0, 0.0])
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def test_marks_behind_an_object_clear_the_doubt_and_arent_held_to_rows(self):  # #139
+        img, plate, owner, plan, tree = self.tree_scene()
+        plan["parts"].insert(1, {"id": "streaks", "kind": "marks", "parent": "sky", "box": [0, 0, 1, 0.45],
+                                 "colors_in": ["#cd9e3e"], "colors_out": ["#6e96dc"]})
+        plan["stages"][0]["steps"].insert(1, {"id": "streaks", "part": "streaks", "show": "full", "paints": ["gold"]})
+        owner = np.where(owner >= 1, owner + 1, owner)  # the parts after the sky moved down one
+        front = ~bs.back_parts(plan["parts"])[owner]
+        doubt = np.zeros(owner.shape, bool)
+        back = bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True,
+                             doubt=doubt)
+        self.assertTrue((back[21:26, 70:90] == 1).all())  # the render's streaks are the streaks' own
+        self.assertFalse(doubt[21:26, 70:90].any())  # so they're shown as the render has them
+        pictures, rows, _ = bs.build(img, plan, owner, background=plate)
+        self.assertEqual(bs.problems(plan, rows), [])  # marks found behind the tree aren't far from anything
+
+    def test_rows_no_area_reaches_are_divided_by_color_and_not_in_doubt(self):  # #139
+        # a bridge across the whole picture, taller than the reach, over the horizon: sky above, water below
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:50] = (110, 150, 220)
+        img[50:] = (30, 60, 120)
+        plate = img.copy()
+        bridge = np.zeros((120, 160), bool)
+        bridge[40:80] = True
+        img[bridge] = (90, 60, 40)
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "water", "kind": "area", "box": [0, 0.4, 1, 1]},
+                 {"id": "bridge", "kind": "object", "box": [0, 0.3, 1, 0.7]}]
+        water = np.zeros((120, 160), bool)
+        water[50:] = True
+        _, owner, _ = ol.outline(img, parts, given={"water": water & ~bridge, "bridge": bridge})
+        front = ~bs.back_parts(parts)[owner]
+        doubt = np.zeros(owner.shape, bool)
+        back = bs.back_owner(parts, owner, bs.make_background(img, front, plate), front, real=True, doubt=doubt)
+        self.assertTrue((back[:50] == 0).all())
+        self.assertTrue((back[50:] == 1).all())  # the water runs up behind the bridge to the horizon
+        self.assertFalse(doubt.any())
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "navy", "hex": "#1e3c78"},
+                           {"id": "brown", "hex": "#5a3c28"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "water", "part": "water", "show": "full", "paints": ["navy"]},
+                    {"id": "bridge", "part": "bridge", "show": "full", "paints": ["brown"]}]}]}
+        _, rows, _ = bs.build(img, plan, owner, background=plate)
+        self.assertEqual([r["far"] for r in rows], [0.0, 0.0, 0.0])  # rows no area had aren't far from either
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def canopy_scene(self, streaks):
+        """A canopy across the whole picture, with hill-colored streaks behind it in rows `streaks`."""
+        img, plate, owner, plan, tree = self.tree_scene()
+        img[:60], img[60:] = (110, 150, 220), (200, 160, 60)
+        plate = img.copy()
+        plate[streaks[0]:streaks[1], 20:140] = (205, 158, 62)
+        yy, xx = np.mgrid[:120, :160]
+        tree = ((yy >= 12) & (yy < 64)) | ((yy >= 64) & (yy < 95) & (xx >= 76) & (xx < 84))
+        img[tree] = (40, 80, 40)
+        hill = np.zeros((120, 160), bool)
+        hill[60:] = True
+        _, owner, _ = ol.outline(img, plan["parts"], given={"hill": hill & ~tree, "tree": tree})
+        front = ~bs.back_parts(plan["parts"])[owner]
+        return img, plate, owner, plan, bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate),
+                                                      front, real=True)
+
+    def test_a_color_band_across_the_middle_but_not_joined_to_its_area_stays_mostly_with_the_other(self):  # #139
+        # streaks crossing the band's middle (rows 30-42) and streaks just below it (36-39), with clean sky between
+        # them and the horizon: none of them reaches the sky's half; what's on the hill's half of the middle stays
+        # the hill's, a known limit (design section 7)
+        for streaks, most in (((30, 42), 500), ((36, 39), 150)):
+            img, plate, owner, plan, back = self.canopy_scene(streaks)
+            self.assertFalse((back[:36] == 1).any(), streaks)
+            self.assertLessEqual(int((back[:58] == 1).sum()), most, streaks)
+            _, rows, _ = bs.build(img, plan, owner, background=plate)
+            self.assertEqual(bs.problems(plan, rows), [], streaks)
+        img, plate, owner, plan, back = self.canopy_scene((0, 0))  # no streaks: nothing of the hill up there
+        self.assertFalse((back[:58] == 1).any())
+
+    def test_a_color_band_cut_off_from_its_area_behind_a_full_width_object_stays_with_the_other(self):  # #139
+        # a canopy across the whole picture, with hill-colored streaks behind it well up in the sky's half
+        img, plate, owner, plan, tree = self.tree_scene()
+        img[:60], img[60:] = (110, 150, 220), (200, 160, 60)
+        plate = img.copy()
+        plate[27:33, 20:140] = (205, 158, 62)
+        yy, xx = np.mgrid[:120, :160]
+        tree = ((yy >= 12) & (yy < 64)) | ((yy >= 64) & (yy < 95) & (xx >= 76) & (xx < 84))
+        img[tree] = (40, 80, 40)
+        hill = np.zeros((120, 160), bool)
+        hill[60:] = True
+        _, owner, _ = ol.outline(img, plan["parts"], given={"hill": hill & ~tree, "tree": tree})
+        front = ~bs.back_parts(plan["parts"])[owner]
+        doubt = np.zeros(owner.shape, bool)
+        back = bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True,
+                             doubt=doubt)
+        self.assertTrue((back[:34] == 0).all())  # the streaks stay the sky's
+        self.assertTrue(doubt[28:32, 22:138].all())  # and the sky carries its own paint over them
+        _, rows, painted = bs.build(img, plan, owner, background=plate)
+        self.assertFalse(painted[1][:34].any())
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def test_a_part_painting_far_outside_its_own_rows_is_reported(self):  # #139
+        img, plate, owner, plan, tree = self.tree_scene()
+        old, bs.ROWS_REACH = bs.ROWS_REACH, 10.0  # any row, by color alone: what build-steps did before #139
+        try:
+            _, rows, painted = bs.build(img, plan, owner, background=plate)
+        finally:
+            bs.ROWS_REACH = old
+        self.assertTrue(painted[1][20:27, 70:90].any())  # the streaks went to the hill
+        self.assertGreater(rows[1]["far"], bs.FAR_SHARE)
+        said = [p for p in bs.problems(plan, rows) if "above or below" in p]
+        self.assertEqual(len(said), 1)
+        self.assertTrue(said[0].startswith("hill: paints"))
+
     def test_a_rim_of_a_later_part_waits_for_that_part(self):
         # an orange cloud whose outline is 2 pixels inside its paint: the ring left over is the sky's by the outline
         img = np.zeros((120, 160, 3), np.uint8)

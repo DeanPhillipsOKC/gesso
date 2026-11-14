@@ -133,6 +133,9 @@ def make_background(finish: np.ndarray, front: np.ndarray, given: np.ndarray | N
     return out
 
 
+ROWS_REACH = 0.03  # behind an object, an area takes rows this far (share of the height) past the rows it has beside it
+FAR_ROWS = 0.05  # a back part's paint this far (share of the height) above or below its own outline's rows is reported
+FAR_SHARE = 0.001  # ... when it's more than this share of the picture
 CHANGED = 45  # RGB levels a background picture may differ from the finish before a pixel counts as changed
 CHANGED_SHARE = 0.25  # more of the scene changed than this, away from the objects, and the render didn't keep it
 
@@ -161,12 +164,19 @@ def background_problems(finish: np.ndarray, background: np.ndarray, front: np.nd
     return out, numbers
 
 
-def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarray, front: np.ndarray) -> None:
+def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarray, front: np.ndarray,
+             doubt: np.ndarray | None = None, opened: np.ndarray | None = None) -> None:
     """With a real picture of what's behind the objects, each gap is divided by what that picture shows: a pixel
     goes to the area around the gap whose color there is nearest. Dividing along rows alone gave a hull sitting on
-    the horizon to the sky, and the sky's first step then painted a hull-shaped patch of sea (2026-11-13)."""
+    the horizon to the sky, and the sky's first step then painted a hull-shaped patch of sea (2026-11-13).
+
+    An area takes only pixels in the rows it has beside the gap, give or take ROWS_REACH of the height, so a color
+    match far from it doesn't count (#139). A pixel whose color is nearest a part that doesn't have its rows is set
+    in `doubt`: the picture there doesn't look like the part that owns it (a hill's top hidden behind the tree, or
+    cloud streaks the hill's color), so the owner's own paint is carried over it instead (build's `prepare`)."""
     h, w = owner.shape
     r = max(3, int(0.02 * max(h, w)))
+    reach = max(2, int(ROWS_REACH * h))
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))
     roots = np.array(_roots(parts))
     area_root = np.array([parts[q]["kind"] == "area" for q in roots])
@@ -182,24 +192,91 @@ def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarra
         ring_root[ring] = around
         means = np.array([np.median(L[ring_root == c], axis=0) for c in cands])
         d = np.sqrt(((L[gap][:, None, :] - means[None]) ** 2).sum(2))
+        # A part only takes the rows it has around the gap (and a little more, for an edge hidden by the object):
+        # orange cloud streaks behind a tree's canopy matched the golden hill at the tree's foot, and the hill's
+        # first step painted them in the sky (#139).
+        # The rows are taken over the whole ring, not per side or per column: an area whose edge slopes steeply
+        # behind a wide object can still reach rows it only has on the other side.
+        ys = np.nonzero(gap)[0]
+        spans = [(lambda rr: (rr.min(), rr.max()))(np.flatnonzero((ring_root == c).any(1))) for c in cands]
+        allowed = np.zeros(d.shape, bool)
+        for j, (lo, hi) in enumerate(spans):
+            allowed[:, j] = (ys >= lo - reach) & (ys <= hi + reach)
+        # Rows no area reaches: an object across the whole picture, taller than the reach (a bridge, a wall, a
+        # canopy). Each band of them goes to the nearest area above it and the nearest below, split where the
+        # render's colors meet: a color reaches past the band's middle only where it joins its own area's side
+        # (water running up behind a bridge to the horizon), not as a band of its own (hill-colored streaks up in
+        # the sky behind a canopy).
+        none = ~allowed.any(1)
+        bands = []
+        for y0, y1 in _runs(np.unique(ys[none])):
+            above = [j for j, (lo, hi) in enumerate(spans) if hi + reach < y0]
+            below = [j for j, (lo, hi) in enumerate(spans) if lo - reach > y1]
+            up = max(above, key=lambda j: spans[j][1]) if above else None
+            down = min(below, key=lambda j: spans[j][0]) if below else None
+            sel = none & (ys >= y0) & (ys <= y1)
+            for j in (up, down):
+                if j is not None:
+                    allowed[sel, j] = True
+            bands.append((y0, y1, up, down, sel))
+        if doubt is not None:
+            unsure = ~allowed[np.arange(len(ys)), d.argmin(1)]
+            doubt[gap] = doubt[gap] | unsure
+        d[~allowed] = np.inf
+        first = d.argmin(1)
         pick = np.zeros((h, w), np.uint8)
-        pick[gap] = d.argmin(1).astype(np.uint8)
+        pick[gap] = first.astype(np.uint8)
         pick = cv2.medianBlur(pick, 2 * max(1, r // 4) + 1)
-        out[gap] = np.array(cands)[pick[gap]]
+        got = pick[gap].astype(np.int64)
+        got = np.where(allowed[np.arange(len(got)), got], got, first)  # smoothing mustn't carry a part out of its rows
+        xs = np.nonzero(gap)[1]
+        for y0, y1, up, down, sel in bands:
+            if up is None or down is None:
+                continue
+            mid = (y0 + y1) / 2
+            for j, other, far_side, edge in ((up, down, ys > mid, y0), (down, up, ys < mid, y1)):
+                # pixels of j's color on the other area's side of the middle stay j's only if their patch reaches
+                # the band's edge row on j's side: joined to j's own rows, not a streak floating in the band
+                mine = np.zeros((h, w), np.uint8)
+                mine[ys[sel & (got == j)], xs[sel & (got == j)]] = 1
+                n_, lab_ = cv2.connectedComponents(mine, connectivity=8)
+                joined = np.zeros(n_, bool)
+                at_edge = sel & (got == j) & (ys == edge)
+                joined[np.unique(lab_[ys[at_edge], xs[at_edge]])] = True
+                joined[0] = False
+                cut = sel & (got == j) & far_side & ~joined[lab_[ys, xs]]
+                got[cut] = other
+                if doubt is not None:
+                    doubt[ys[cut], xs[cut]] = True
+        if opened is not None:
+            opened[gap] = opened[gap] | none
+        out[gap] = np.array(cands)[got]
+
+
+def _runs(values: np.ndarray) -> list[tuple[int, int]]:
+    """Runs of consecutive integers in a sorted array, as (first, last)."""
+    if not len(values):
+        return []
+    breaks = np.flatnonzero(np.diff(values) > 1)
+    starts = np.r_[values[0], values[breaks + 1]]
+    ends = np.r_[values[breaks], values[-1]]
+    return [(int(a), int(b)) for a, b in zip(starts, ends)]
 
 
 def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, front: np.ndarray,
-               real: bool = False) -> np.ndarray:
+               real: bool = False, doubt: np.ndarray | None = None,
+               opened: np.ndarray | None = None) -> np.ndarray:
     """Who owns each pixel once the objects are taken out: the parts behind, carried across the gaps the objects
     left, and any marks (clouds, foliage) the background picture shows there. `real`: the background is a picture
-    of what's really behind the objects (a render), not a fill."""
+    of what's really behind the objects (a render), not a fill. `doubt`, when given, is set where the render's
+    color there belongs to no part in those rows, and `opened` where no area had the rows (see by_color)."""
     if not front.any():
         return owner
     out = ol.fill_along_rows(owner, front)
     is_back = back_parts(parts)
     L = ol.lab(cv2.GaussianBlur(background, (0, 0), 1.2))
     if real:
-        by_color(parts, owner, out, L, halo(front))  # the cleared rim around each object is part of its gap
+        by_color(parts, owner, out, L, halo(front), doubt, opened)  # the cleared rim around each object is part of its gap
     index = {p["id"]: i for i, p in enumerate(parts)}
     for k, p in enumerate(parts):
         if p["kind"] != "marks" or not is_back[k]:
@@ -207,7 +284,10 @@ def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, fro
         inside = front & ol.box_mask(owner.shape, ol.boxes_of(p))
         if p.get("parent"):
             inside &= np.isin(out, _family(parts, index[p["parent"]]))
-        out[ol.marks(L, p, inside)] = k
+        found = ol.marks(L, p, inside)
+        out[found] = k
+        if doubt is not None:
+            doubt &= ~found  # marks the render shows there (clouds) are what's there
     return out
 
 
@@ -257,7 +337,8 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     real_background = background is not None
     front_grown = halo(front) if front.any() else front
     base_back = make_background(finish, front, background)
-    own_back = back_owner(parts, owner, base_back, front, real=background is not None)
+    doubt, opened = np.zeros((h, w), bool), np.zeros((h, w), bool)
+    own_back = back_owner(parts, owner, base_back, front, real=background is not None, doubt=doubt, opened=opened)
 
     last_of = {s["part"]: i for i, s in enumerate(steps)}
     paints_of: dict[str, list[str]] = {}
@@ -273,6 +354,7 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     nearest: dict[int, np.ndarray] = {}
     base_of: dict[int, np.ndarray] = {}
     kids: dict[int, np.ndarray] = {}
+    far: dict[int, np.ndarray] = {}  # an area's paint behind the objects far above or below its own outline's rows
     rim_group: dict[int, np.ndarray] = {}  # for a part's rim pixels, the later part whose rim it is; -1 elsewhere
     detailed: dict[int, np.ndarray] = {}  # where a part has laid more than a flat coat so far
     top = np.full((h, w), -1, np.int32)  # the part whose paint is on top at each pixel
@@ -297,6 +379,8 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         mine = own_map == k
         if is_back[k] and not real_background:
             mine &= ~front_grown  # with no picture of what's behind the objects, carry this part's own paint across
+        elif is_back[k]:
+            mine &= ~doubt  # what the render shows there isn't this part's: carry its own paint across (#139)
         whole = np.isin(own_map, fam)
         in_front = own_map > k  # parts painted later; children are handled as family
         if p.get("covers"):
@@ -312,6 +396,13 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         if is_back[k]:
             hidden &= is_back[own_map]  # behind an object, base_back already holds what's there
         area[k] = whole | hidden
+        seen = np.flatnonzero(np.isin(owner, fam).any(1))
+        far[k] = np.zeros((h, w), bool)
+        if len(seen) and p["kind"] == "area":  # marks found behind an object (a cloud) aren't held to rows
+            m, ys_ = int(FAR_ROWS * h), np.arange(h)
+            # rows behind an object that no area had are split between the nearest areas above and below, and
+            # aren't far from either
+            far[k] = whole & ((ys_ < seen.min() - m) | (ys_ > seen.max() + m))[:, None] & ~opened
         c = base.copy()
         # This part's paint right beside a part painted later is that part's rim: a cloud's glow on the sky, a
         # foot's shadow on the branch. Carried into the gap it drew the cloud and the foot before their steps
@@ -415,6 +506,7 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         rows.append({"id": s["id"], "part": s["part"], "show": show, "last": last_of[s["part"]] == i,
                      "area": round(float(area[k].mean()), 4), "painted": round(float(where.mean()), 4),
                      "changed": round(float(changed.mean()), 4),
+                     "far": round(float((where & far[k]).mean()), 5),
                      "outside": round(float((changed & ~rim & ~cv2.dilate(area[k].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)).mean()), 5)})
         pictures.append(np.clip(canvas, 0, 255).astype(np.uint8))
         painted.append(where | rim)
@@ -615,6 +707,10 @@ def problems(plan: dict, rows: list[dict]) -> list[str]:
     for r in rows:
         if r["outside"] > 0.0005:
             out.append(f"{r['id']}: changed {r['outside']:.2%} of the picture outside its part. That's a bug in build-steps; report it.")
+        if r.get("far", 0) > FAR_SHARE:
+            out.append(f"{r['id']}: paints {r['far']:.2%} of the picture behind the objects more than {FAR_ROWS:.0%} of "
+                       "the height above or below its part's own outline. That's the split of what's behind the objects "
+                       "going wrong (a bug in build-steps); look at the step in trials/steps.jpg and report it.")
         # (not a part's last step: it shows whatever is left, which is rightly little when the light tips go last)
         if (r["changed"] < 0.25 * r["painted"] and not r.get("last")) or r["painted"] == 0:
             out.append(f"{r['id']}: changes almost nothing. Its paints don't match the part's colors here, or an earlier "

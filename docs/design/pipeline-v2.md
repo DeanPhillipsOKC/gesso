@@ -370,6 +370,31 @@ passes `--max-cost 0.40` to every render (the default stays $1.00 for v1).
 
 What's behind a thing is only on screen until the thing is painted. The bar is "doesn't look wrong".
 
+**Changed 2026-11-14 (#139): behind an object, an area takes only its own rows.** With a background picture, each
+gap is divided among the areas around it by the color the picture shows there (`build_steps.by_color`; dividing
+along rows alone gave a hull on the horizon to the sky). In the hands-off lavender run
+`balloon-lavender_skill_20261114-075951` (POC 1.8.0) the orange cloud streaks behind the tree's canopy matched the
+golden hill at the tree's foot, so the hill's paint went up into the sky: hill-colored patches in the sky where the
+tree goes, the far hills' purple dashes there, and the golden hill's Where line "top at the top edge". Now an area
+takes a pixel of the gap only in the rows it has around the gap, give or take 3% of the height (`ROWS_REACH`, for
+an edge the object hides). A pixel whose color is nearest an area that doesn't reach its row stays with the area
+that does, and that area's own paint is carried over it (like the free fill), not the render's pixel: the
+picture there looks like no part of that row (cloud streaks the hill's color, or a hill top hidden behind the
+tree), and showing it drew a patch. Marks the render shows there (clouds) are still found by their color rule, and
+show as the render has them. Rows no area reaches (behind a bridge, a wall, or a canopy across the whole picture,
+taller than the reach) go to the nearest area above them and the nearest below. Each pixel there takes whichever
+of the two is nearer in color; then, on the far side of the band's middle row from an area, a patch of that area's
+color stays the area's only if it reaches the band's edge row on the area's own side (water running up behind a
+bridge from the bottom of the band to the horizon). Any other patch on the far side goes to the other area, which
+carries its own paint over it: hill-colored streaks up in the sky's half behind a canopy stay the sky's. Those rows
+aren't counted by the `far` check (section 8). Limits: an area's rows are taken over the whole ring around the
+object, not per side or per column, so an area whose edge slopes steeply behind a wide object can still reach rows
+it has only on the other side; and in such a band, a patch of one area's color on that area's own side of the
+middle stays the area's even when it doesn't reach the edge, so streaks of hill color just below the middle, with
+clean sky between them and the horizon, are still the hill's (about 480 pixels of a 120 x 160 test scene). The
+three fixtures, given a stand-in background, and the hands-off chickadee run's real one, build the same pictures
+outside the gaps; that run builds the same pictures everywhere.
+
 **Changed 2026-11-13 (#84): what's under a thing no longer draws the thing.** The owner found things showing
 before their steps on all three 1.0.0 lessons: clouds, the mountains' ridge, and bands of hill color in the
 lavender's first sky step; hills under the sailboat's sky; the chickadee's feet as two dark patches on the branch
@@ -412,7 +437,12 @@ part, its children's places until they're painted, and what's carried under the 
 then set to the finish itself; how far the built one was from it is reported as `final_gap`.
 
 `build_steps.problems` reports: a step that changed something outside its part (a bug; it has never happened);
-a step that changes almost nothing; a last picture more than 2% away from the finish.
+a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
+more than 0.1% of the picture (`FAR_SHARE`) behind the objects more than 5% of the height (`FAR_ROWS`) above or
+below its part's own outline's rows, for an `area` part. Each step's row carries that share as `far` (0 for other
+kinds: marks found behind an object, a cloud, aren't held to rows; and 0 in rows behind an object that no area
+had, which section 7 splits between the nearest areas above and below). Since #139 the split behind the objects can't
+do that for an area (section 7), so it's reported as a bug in `build-steps`, like the first.
 
 By construction a step can't move, reshape, or recolor another part. There is nothing to review, redo, or lock.
 
