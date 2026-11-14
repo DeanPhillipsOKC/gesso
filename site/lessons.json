@@ -48,50 +48,6 @@
     "known": 2
   },
   {
-    "slug": "chickadee",
-    "title": "A black-capped chickadee perched on a curved autumn branch",
-    "subject": "A black-capped chickadee perched on a curved autumn branch",
-    "steps": 17,
-    "canvas": "",
-    "tubes": 5,
-    "version": "POC 1.1.0",
-    "published": "2026-11-13",
-    "source": "chickadee_skill_20261113-174245",
-    "versions": [
-      {
-        "id": "20261113-174245",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:42",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/",
-        "current": true
-      },
-      {
-        "id": "20261113-130614",
-        "version": "POC 1.0.1",
-        "when": "2026-11-13 13:06",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 19,
-        "href": "lessons/chickadee/v/20261113-130614/",
-        "current": false
-      },
-      {
-        "id": "20261113-041241",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/v/20261113-041241/",
-        "current": false
-      }
-    ],
-    "known": 4
-  },
-  {
     "slug": "lavender-balloon",
     "title": "A striped hot air balloon over a lavender field at sunset",
     "subject": "A striped hot air balloon over a lavender field at sunset",
@@ -188,5 +144,59 @@
       }
     ],
     "known": 3
+  },
+  {
+    "slug": "chickadee",
+    "title": "A black-capped chickadee perched on a curved branch among autumn leaves",
+    "subject": "A black-capped chickadee perched on a curved branch among autumn leaves",
+    "steps": 18,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 1.5.0",
+    "published": "2026-11-14",
+    "source": "chickadee_skill_20261114-015433",
+    "versions": [
+      {
+        "id": "20261114-015433",
+        "version": "POC 1.5.0",
+        "when": "2026-11-14 01:54",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/chickadee/",
+        "current": true
+      },
+      {
+        "id": "20261113-174245",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-174245/",
+        "current": false
+      },
+      {
+        "id": "20261113-130614",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 19,
+        "href": "lessons/chickadee/v/20261113-130614/",
+        "current": false
+      },
+      {
+        "id": "20261113-041241",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-041241/",
+        "current": false
+      }
+    ],
+    "known": 2
   }
 ]
