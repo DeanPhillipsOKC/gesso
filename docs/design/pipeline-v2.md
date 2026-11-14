@@ -714,7 +714,12 @@ checked: false
   (`aids.main_area`). A piece under 1% of the area (`aids.STRAY`) is small; a small piece more than 4% of the canvas's
   long side (`aids.STRAY_NEAR`) from the rest of the area is a stray speck and left out. A small piece nearer than
   that is one of the part's marks and counts, and so does one near a mark already counted, so a row of dabs or the far
-  rows of lavender are kept whatever they add up to. When every piece is small (sparkles), all of it counts. The
+  rows of lavender are kept whatever they add up to. Only a mark of at least 0.1% of the area (`aids.STRAY_MARK`)
+  carries the chain on: a smaller piece counts when it's near what's kept, but nothing is measured from it, so a
+  trail of specks can't pull the box across the canvas (second review of PR #143: one 3.6% apart had carried a body's
+  box 7 in to the edge, and slivers along the lavender fixture's horizon stretched its `paths` from 8 1/2 to 9 1/2 in).
+  It's two distance passes over the picture however long the chain, about 0.2 s at 2800 px. When every piece is
+  small (sparkles), all of it counts. The
   first build of this used a share instead (small pieces counted when they made 10% of the area); the review of PR
   #143 showed it was a cliff: far specks came back at 10%, and dabs beside the body were dropped just under it.
   On the sealed `chickadee_skill_20261113-130614`, two specks by the trunk (6% and 12% of the long side from the
@@ -723,7 +728,7 @@ checked: false
   isn't kept). On the lavender run the far deep violet rows sit 2 to 6% from the main rows, each near
   another, and are all kept. `past_words` compares the main pieces too, so a speck of the outline isn't a reason to
   explain it. What it changes on the fixtures: the lavender's `paths` no longer reaches the left edge and 12 in wide
-  (1 3/4 in from the right edge, 9 1/2 in wide); the chickadee's `wing-dark` starts 4 in down, not 3; the sailboat's
+  (1 3/4 in from the right edge, 8 1/2 in wide); the chickadee's `wing-dark` starts 4 in down, not 3; the sailboat's
   `path-dark` loses "reaches onto the water", which came from a speck; and the chickadee's `foliage-rust`, which
   reached all four edges only by far specks, reads top to bottom from 2 in off the left edge, with the outline's
   reach under the branch and onto the sky now explained. The outline on the Where picture still shows every piece.

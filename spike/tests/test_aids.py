@@ -10,6 +10,7 @@ import json
 import re
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -192,6 +193,33 @@ class WhereWordsTests(unittest.TestCase):
             words = aids.where_words(body, canvas)
             self.assertEqual(words, aids.where_words(marks, canvas), n)
             self.assertIn("Its top is about 2 1/2 in from the top edge", words)  # the dabs, at 240 of 1100 px
+
+    def test_a_trail_of_specks_doesnt_carry_the_box_away(self):
+        # second review of #143: 2 x 2 specks 50 px apart (3.6% of the long side) ran a body's box 7 in to the left
+        # edge. Specks that small count only beside a mark; they don't carry the chain on.
+        canvas = {"w_in": 14, "h_in": 11}
+        body = np.zeros((1100, 1400), bool)
+        body[300:440, 550:690] = True
+        body[370:372, 500:502] = True  # 48 px from the body, within STRAY_NEAR (56 px): it counts
+        beside = aids.where_words(body, canvas)
+        for x in range(450, 0, -50):  # and the trail on from it to the left edge doesn't
+            body[370:372, x:x + 2] = True
+        self.assertEqual(aids.main_area(body).sum(), 140 * 140 + 4)
+        self.assertEqual(aids.where_words(body, canvas), beside)
+        self.assertIn("about 5 in from the left edge", beside)
+
+    def test_a_long_chain_is_quick(self):
+        # second review of #143: one distance pass per mark added took 2.1 s for 25 dabs at 2800 px
+        body = np.zeros((2200, 2800), bool)
+        body[600:880, 1100:1380] = True
+        for k in range(12):  # 25 dabs in two rows out from the body, 2 to 3% of the long side apart
+            body[700:724, 1000 - 90 * k:1024 - 90 * k] = True
+        for k in range(13):
+            body[700:724, 1440 + 100 * k:1464 + 100 * k] = True
+        start = time.perf_counter()
+        kept = aids.main_area(body)
+        self.assertLess(time.perf_counter() - start, 1.0)  # about 0.2 s on 4 cores
+        self.assertTrue((kept == body).all())  # every dab is on the chain
 
     def test_a_part_of_only_small_pieces_is_measured_whole(self):
         # sparkles: every piece is under 1% of the area, so there's nothing to call the rest of the part

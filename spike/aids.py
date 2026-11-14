@@ -139,33 +139,46 @@ STRAY_NEAR = 0.04  # and a small piece farther than this share of the canvas's l
 # stray speck: the Where words leave it out (#90). Near, it's one of the part's marks (a dab beside the body, a far
 # row of lavender) and counts, through a chain of marks too. Two specks of the chickadee's body by the trunk, 6% and
 # 12% of the long side from it, put its line "at the left edge, 8 1/2 in wide", where its page's outline gives 1 3/4 in
-# from the edge and about 7 in. The far rows of a sealed lavender run sit 2 to 6% from the next row, each within 4% of
-# another. `outline.drop_islands` gives an area's strays to the part around them; this is the same idea for any part,
-# measured against the part itself.
+# from the edge and about 7 in. The far rows of a sealed lavender run sit 2 to 6% from the main rows, each within 4%
+# of another. `outline.drop_islands` gives an area's strays to the part around them; this is the same idea for any
+# part, measured against the part itself.
+STRAY_MARK = 0.001  # only a mark of at least this share of the area carries the chain on; a smaller piece counts when
+# it's near the rest, but nothing is measured from it. A trail of specks 3.6% apart had pulled a body's box 7 in to
+# the canvas's edge, and slivers along the lavender fixture's horizon stretched its paths from 8 1/2 to 9 1/2 in
+# (second review of PR #143).
 
 
 def main_area(area: np.ndarray) -> np.ndarray:
-    """The area without its stray specks, for measuring where it is: the pieces of at least STRAY of it, and every
-    small piece within STRAY_NEAR of those or of a small piece already kept. All of it when every piece is small
-    (sparkles): then there's nothing to measure the specks against."""
+    """The area without its stray specks, for measuring where it is: the pieces of at least STRAY of it, every mark
+    of at least STRAY_MARK joined to those by a chain of such marks each within STRAY_NEAR of the next, and every
+    smaller piece within STRAY_NEAR of what that keeps. All of it when every piece is small (sparkles): then there's
+    nothing to measure the specks against. Two distance passes over the picture, however long the chain."""
     n, labels, stats, _ = cv2.connectedComponentsWithStats(area.astype(np.uint8), connectivity=8)
     if n <= 2:
         return area
-    sizes = stats[1:, cv2.CC_STAT_AREA]
-    keep = np.concatenate([[False], sizes >= STRAY * sizes.sum()])
-    if not keep.any():
+    sizes = np.concatenate([[0], stats[1:, cv2.CC_STAT_AREA]])
+    total = sizes.sum()
+    main = sizes >= STRAY * total
+    main[0] = False
+    if not main.any():
         return area
     near = STRAY_NEAR * max(area.shape)
-    while True:
-        kept = keep[labels]
-        d = cv2.distanceTransform((~kept).astype(np.uint8), cv2.DIST_L2, 5)
-        closest = np.full(n, np.inf, np.float32)
-        np.minimum.at(closest, labels.ravel(), d.ravel())
-        add = ~keep & (closest <= near)
-        add[0] = False
-        if not add.any():
-            return kept
-        keep |= add
+    # marks within `near` of each other touch once each is grown by half of it: a chain is one grown piece
+    marks = sizes >= STRAY_MARK * total
+    marks[0] = False
+    grown = cv2.distanceTransform((~marks[labels]).astype(np.uint8), cv2.DIST_L2, 5) <= near / 2
+    _, chains = cv2.connectedComponents(grown.astype(np.uint8), connectivity=8)
+    on_main = np.zeros(chains.max() + 1, bool)
+    on_main[np.unique(chains[main[labels]])] = True
+    keep = main.copy()
+    keep[np.unique(labels[on_main[chains] & grown])] = True  # grown covers every mark, so this is the chained marks
+    keep &= marks | main
+    kept = keep[labels]
+    # a smaller piece counts when any of it is near what's kept
+    close = cv2.distanceTransform((~kept).astype(np.uint8), cv2.DIST_L2, 5) <= near
+    keep |= np.bincount(labels[close], minlength=n).astype(bool)
+    keep[0] = False
+    return keep[labels]
 
 
 def where_words(area: np.ndarray, canvas: dict | None) -> str:

@@ -140,7 +140,7 @@ class DraftTests(unittest.TestCase):
         # the fixtures' own specks (review of #143): the lavender's paths reached the left edge, 12 in wide, and the
         # sailboat's sun path was "explained" as reaching onto the water, both by specks
         paths = " ".join(x["text"] for x in by_id(self.built["lavender-balloon"][3])["paths"]["lines"] if x["kind"] == "where")
-        self.assertIn("its right side is about 1 3/4 in from the right edge; it's about 9 1/2 in wide", paths)
+        self.assertIn("its right side is about 1 3/4 in from the right edge; it's about 8 1/2 in wide", paths)
         sun_path = " ".join(x["text"] for x in by_id(self.built["red-sailboat"][3])["path-dark"]["lines"])
         self.assertNotIn("reaches onto the water", sun_path)
 

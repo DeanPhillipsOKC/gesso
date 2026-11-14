@@ -9,7 +9,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 ## POC 1.10.0 (2026-11-14)
 - A step's Where line leaves out stray specks of its part (part of #90): a piece under 1% of the part, more than
   about half an inch (4% of the canvas's long side) from the rest of it. Small marks near the part, such as dabs or
-  the far rows of lavender, still count. On `chickadee_skill_20261113-130614` two specks by the trunk put the bird's
+  the far rows of lavender, still count, and a chain of them; a trail of tiny specks doesn't (the lavender fixture's
+  soil paths were 12 in wide, reaching the left edge, and are now 8 1/2 in). On `chickadee_skill_20261113-130614` two specks by the trunk put the bird's
   body "at the left edge, 8 1/2 in wide"; from that page's outline it now reads 1 3/4 in from the left edge, about
   7 in wide. The drawn outline doesn't change.
 - A Where line no longer explains an outline that reaches past it only by a speck (the sailboat fixture's sun path
