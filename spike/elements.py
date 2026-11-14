@@ -235,7 +235,7 @@ def _shows_allowed(i: int, n: int) -> tuple[str, ...]:
     last, and a pass or flat in between (PR #142 review: flat was left out of the middle). A pass first is only for a
     marks or thin part, which match doesn't know, so it isn't offered."""
     if i == 0:
-        return ("flat", "full", "blend") if n == 1 else ("flat",)
+        return ("full", "blend") if n == 1 else ("flat",)
     return ("pass", "full", "blend") if i == n - 1 else ("pass", "flat")
 
 

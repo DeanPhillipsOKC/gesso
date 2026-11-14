@@ -54,7 +54,7 @@ LEAVE_SHOWING = "Leave what {steps} painted showing around these marks, as in th
 PAST = 0.5  # inches on the painter's canvas
 PAST_COVERS = "Paint a little past its {sides}, under where {what} will go."  # a part painted past its edge (`covers`)
 PAST_BEHIND = "The outline also runs under where {what} will go: paint straight through there."  # back to front
-PAST_OVER = "The outline also runs onto {what}, painted already: carry this paint over there too, as the step's picture shows."  # over an earlier part (PR #142 review)
+PAST_OVER = "The outline also reaches onto {what}, painted already: there, only soften this paint into {its} edge and leave {it} showing."  # over an earlier part (PR #142 review): its rim laid back, not covered
 PAST_NAMES = 2  # name at most this many parts
 
 
@@ -122,8 +122,9 @@ def past_words(part: dict, seen: np.ndarray, painted: np.ndarray, owner: np.ndar
     """Why a step's outline (`painted`) reaches past the place its Where words give (`seen`, what the finish shows
     of it), when it does by PAST inches or more: "" otherwise. All three masks are cropped to the canvas; `later` is
     {part index: name} of the parts not painted yet, which the extra paint goes under (#126), and `earlier` the same
-    for parts already painted (not the step's own part or its children), which the extra paint goes over: an outline
-    that reaches past the words is never left unexplained (PR #142 review)."""
+    for parts already painted (not the step's own part or its children), whose rim the extra paint only lays back in
+    their own color (the water's coat on the hill's foot): the painter softens into that edge and leaves the part
+    showing. An outline that reaches past the words is never left unexplained (PR #142 review)."""
     if not seen.any() or not painted.any():
         return ""
     h, w = seen.shape
@@ -156,7 +157,8 @@ def past_words(part: dict, seen: np.ndarray, painted: np.ndarray, owner: np.ndar
         out.append(PAST_COVERS.format(sides=_and(sides), what=what) if part.get("covers")
                    else PAST_BEHIND.format(what=what))
     if over:
-        out.append(PAST_OVER.format(what=_and([_the(earlier[q]) for q in over])))
+        out.append(PAST_OVER.format(what=_and([_the(earlier[q]) for q in over]), its="their" if len(over) > 1 else "its",
+                                    it="them" if len(over) > 1 else "it"))
     return " ".join(out)
 
 

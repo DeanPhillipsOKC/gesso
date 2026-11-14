@@ -165,7 +165,7 @@ class MatchTests(unittest.TestCase):
 
     def test_the_shows_offered_are_the_ones_plan2_allows(self):
         # a middle step may be flat or a pass; only the last may be full or blend, and never flat (PR #142 review)
-        self.assertEqual(el._shows_allowed(0, 1), ("flat", "full", "blend"))
+        self.assertEqual(el._shows_allowed(0, 1), ("full", "blend"))  # a part's only step is its last
         self.assertEqual(el._shows_allowed(0, 3), ("flat",))
         self.assertEqual(el._shows_allowed(1, 3), ("pass", "flat"))
         self.assertEqual(el._shows_allowed(2, 3), ("pass", "full", "blend"))

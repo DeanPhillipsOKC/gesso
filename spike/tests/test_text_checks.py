@@ -217,9 +217,10 @@ class DraftTests(unittest.TestCase):
         for step in ("water-coat", "water-light"):
             water = self.where_line("red-sailboat", step)
             self.assertLessEqual(abs(inches_down(water, "top") - water_top), 0.5, water)
-        # the coat's outline reaches 1 1/2 in up over the hill painted before it: the line says why (PR #142 review)
-        self.assertIn("The outline also runs onto the far hill and shore, painted already",
-                      self.where_line("red-sailboat", "water-coat"))
+        # the coat's outline reaches 1 1/2 in up the hill's foot, which it only lays back in the hill's color: the
+        # line says so, and doesn't tell the painter to cover the hill (PR #142 review)
+        self.assertIn("The outline also reaches onto the far hill and shore, painted already: there, only soften this "
+                      "paint into its edge and leave it showing.", self.where_line("red-sailboat", "water-coat"))
         # an object is placed by its own outline, not its soft rim or the paint run under the hill
         self.assertIn("about 3/4 in wide and 3/4 in tall", self.where_line("red-sailboat", "sun"))
 
@@ -278,8 +279,8 @@ class VisibleTests(unittest.TestCase):
         self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas), "")
         self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas,
                                        {0: "The sky"}),
-                         "The outline also runs onto the sky, painted already: carry this paint over there too, "
-                         "as the step's picture shows.")
+                         "The outline also reaches onto the sky, painted already: there, only soften this paint "
+                         "into its edge and leave it showing.")
 
 
 class MergeTests(unittest.TestCase):

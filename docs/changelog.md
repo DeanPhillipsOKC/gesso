@@ -9,8 +9,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 ## POC 1.9.0 (2026-11-14)
 - A step's Where line places what the finished painting shows, not paint a later part covers (#126). A sky painted
   past the horizon gives the visible horizon and adds "paint a little past its bottom, under where ... will go", and
-  an outline that runs behind an object not painted yet says to paint straight through there; one that runs onto a
-  part painted already says to carry the paint over there, as the step's picture shows. On the red sailboat
+  an outline that runs behind an object not painted yet says to paint straight through there; one that reaches onto a
+  part painted already says to soften into that part's edge and leave it showing. On the red sailboat
   fixture the water's top read "4 1/2 in from the top" where it starts about 5.9 in down; it now reads 5 in from
   the bottom. The drawn outline doesn't change.
 - `elements` and `check`: when a step's paint clashes on value only because its show put it on the wrong element
