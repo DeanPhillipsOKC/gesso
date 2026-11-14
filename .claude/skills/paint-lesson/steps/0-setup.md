@@ -66,7 +66,7 @@ Every step is copied backward from the finish, so whatever detail the finish has
 First measure it: `busy <photo> --lesson <lesson>` (the fitted photo, `00_canvas_frame.png` or `00_canvas_fit.png`).
 It prints `fine_texture`, the share of the canvas that is fine texture (hundreds of small items), and writes
 `busy/<name>.jpg`, the photo faded with those places outlined. Read the picture. From the spike for #52: the lavender
-photo is 10.3% (the outlines sit on the stalks), the chickadee 0.4%, the sailboat 0.0%. It's not a threshold: you
+photo is about 10% (10.3% and 11.1% on two crops; the outlines sit on the stalks), the chickadee 0.4%, the sailboat 0.0%. It's not a threshold: you
 still decide. It doesn't see tiny separate things (it put one tile on the lavender's village) or count parts, so
 answer those by looking. It records the number in `notes.json` (`beginner_version.busy`) itself.
 It knows the photo,
@@ -89,7 +89,7 @@ subject, light, and mood.
 
 Then `busy <lesson>/00_beginner.png --lesson <lesson>` and read the result: everything the picture is recognized by
 is there, nothing on your list survived, and fine texture came down from the photo's (`came_down`; the lavender went
-from 10.3% to 0.2% and under). If it didn't come down, or something on your list is still there, that's a reason
+from about 10% to 0.2% and under). If it didn't come down, or something on your list is still there, that's a reason
 for the redo: name the places still outlined in `busy/00_beginner.jpg`. One redo at most (run `busy` on it again).
 From here on, "the photo" means `00_beginner.png`.
 
