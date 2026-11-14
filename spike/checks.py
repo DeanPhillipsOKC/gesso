@@ -265,7 +265,8 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
             built = None  # nothing to draft against: the lines can't be compared
         else:
             drafted = {d["stage_id"]: d["lines"]
-                       for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson)}
+                       for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson,
+                                                        owner=owner)}
     text_path = lesson / "text.json"
     if text is None:
         text = ({t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]}

@@ -1,6 +1,6 @@
 """Every step's lines drafted from data (pipeline v2, docs/design/pipeline-v2.md section 10, "Step text").
 
-    draft(plan, pictures, masks, canvas_box, canvas) -> one text.json entry per step: its drafted lines, brushes, cards
+    draft(plan, pictures, masks, canvas_box, canvas, owner=) -> one text.json entry per step: its lines, brushes, cards
     merge(old, drafted)                               -> text.json's contents: the draft, with what Claude wrote kept
     left_out(plan)                                    -> {step id: the table's lines this step can't have, and why}
 
@@ -49,6 +49,13 @@ CHALK = ("Optional: lightly chalk its outline first, from the transfer outline i
 COATS = "{paint} is much lighter than what it goes over: expect two or three thin coats, letting each dry."  # light-over-dark
 STEP_BACK = "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."  # ugly-stage
 LEAVE_SHOWING = "Leave what {steps} painted showing around these marks, as in the Result picture."  # technique rules
+# #126: the Where words place what the finished painting shows of the step; the outline is everything it paints.
+# Where the outline reaches past those words by PAST inches or more, the line says why.
+PAST = 0.5  # inches on the painter's canvas
+PAST_COVERS = "Paint a little past its {sides}, under where {what} will go."  # a part painted past its edge (`covers`)
+PAST_BEHIND = "The outline also runs under where {what} will go: paint straight through there."  # back to front
+PAST_OVER = "The outline also reaches onto {what}, painted already: there, only soften this paint into {its} edge and leave {it} showing."  # over an earlier part (PR #142 review): its rim laid back, not covered
+PAST_NAMES = 2  # name at most this many parts
 
 
 def _the(name: str) -> str:
@@ -110,10 +117,56 @@ def _card_brush_kinds(card: dict) -> set[str]:
     return {k for b in card.get("brushes") or [] if (k := brushes.kind(b))}
 
 
+def past_words(part: dict, seen: np.ndarray, painted: np.ndarray, owner: np.ndarray, later: dict[int, str],
+               canvas: dict, earlier: dict[int, str] | None = None) -> str:
+    """Why a step's outline (`painted`) reaches past the place its Where words give (`seen`, what the finish shows
+    of it), when it does by PAST inches or more: "" otherwise. All three masks are cropped to the canvas; `later` is
+    {part index: name} of the parts not painted yet, which the extra paint goes under (#126), and `earlier` the same
+    for parts already painted (not the step's own part or its children), whose rim the extra paint only lays back in
+    their own color (the water's coat on the hill's foot): the painter softens into that edge and leaves the part
+    showing. An outline that reaches past the words is never left unexplained (PR #142 review)."""
+    if not seen.any() or not painted.any():
+        return ""
+    h, w = seen.shape
+    cw, ch = float(canvas["w_in"]), float(canvas["h_in"])
+
+    def box(m):
+        ys, xs = np.nonzero(m)
+        return xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
+
+    sx0, sx1, sy0, sy1 = box(seen)
+    px0, px1, py0, py1 = box(painted)
+    sides = [name for name, d in (("top", (sy0 - py0) / h * ch), ("bottom", (py1 - sy1) / h * ch),
+                                  ("left side", (sx0 - px0) / w * cw), ("right side", (px1 - sx1) / w * cw))
+             if d >= PAST]
+    if not sides:
+        return ""
+    yy, xx = np.mgrid[0:h, 0:w]
+    beyond = painted & ~seen & ~((xx >= sx0) & (xx < sx1) & (yy >= sy0) & (yy < sy1))  # what pushed the box out
+    earlier = earlier or {}
+    counts = np.bincount(owner[beyond].ravel(), minlength=max([*later, *earlier], default=0) + 1) \
+        if beyond.any() else np.zeros(1, int)
+
+    def most(names):
+        return sorted((q for q in names if q < len(counts) and counts[q]), key=lambda q: (-counts[q], q))[:PAST_NAMES]
+
+    under, over = most(later), most(earlier)
+    out = []
+    if under:
+        what = _and([_the(later[q]) for q in under])
+        out.append(PAST_COVERS.format(sides=_and(sides), what=what) if part.get("covers")
+                   else PAST_BEHIND.format(what=what))
+    if over:
+        out.append(PAST_OVER.format(what=_and([_the(earlier[q]) for q in over]), its="their" if len(over) > 1 else "its",
+                                    it="them" if len(over) > 1 else "it"))
+    return " ".join(out)
+
+
 def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canvas_box: list[float] | None = None,
-          canvas: dict | None = None, known: dict | None = None, lesson=None) -> list[dict]:
-    """text.json's entries for every step, drafted. `pictures` and `masks` are build_steps.build's (in the frame);
-    `canvas_box` and `canvas` are canvas.json's (where the painter's canvas sits in the frame, and its size)."""
+          canvas: dict | None = None, known: dict | None = None, lesson=None, *, owner: np.ndarray) -> list[dict]:
+    """text.json's entries for every step, drafted. `pictures` and `masks` are build_steps.build's (in the frame),
+    and `owner` the outlines they were built from (parts/owner.png); `canvas_box` and `canvas` are canvas.json's
+    (where the painter's canvas sits in the frame, and its size)."""
     known = cards.strokes() if known is None else known
     import elements as els
 
@@ -131,6 +184,8 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
     for i, s in enumerate(steps):
         for c in s.get("paints") or []:
             uses.setdefault(c, []).append(i)
+    seen = bs.visible(plan, owner, masks)
+    owner_c = aids.to_canvas(owner, canvas_box)
     blank = np.empty_like(pictures[0])
     blank[:] = bs.ff.CANVAS
     out = []
@@ -171,8 +226,16 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
         if part["kind"] == "object" and not part.get("parent") and first_of_part[s["part"]] == i:
             lines.append({"kind": "chalk", "text": CHALK, "edited": False})
 
-        # where: the step's area on the canvas, from its outline
-        lines += split(aids.where_words(aids.to_canvas(mask, canvas_box), canvas), "where")
+        # where: what the finish shows of the step's area, on the canvas (#126: not the paint a later part covers);
+        # and, when the outline reaches well past that, why
+        seen_c, painted_c = aids.to_canvas(seen[i], canvas_box), aids.to_canvas(mask, canvas_box)
+        later = {q: p.get("name") or p["id"] for q, p in enumerate(plan["parts"]) if first_of_part.get(p["id"], -1) > i}
+        own = set(bs._family(plan["parts"], next(q for q, p in enumerate(plan["parts"]) if p["id"] == s["part"])))
+        earlier = {q: p.get("name") or p["id"] for q, p in enumerate(plan["parts"])
+                   if q not in own and -1 < first_of_part.get(p["id"], i) < i}
+        where_text = aids.where_words(seen_c, canvas)
+        past = past_words(part, seen_c, painted_c, owner_c, later, canvas, earlier) if canvas else ""
+        lines += split(f"{where_text} {past}" if past else where_text, "where")
 
         # paints, in the order they go on
         if order:

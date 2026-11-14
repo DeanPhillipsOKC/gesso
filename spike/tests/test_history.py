@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -45,6 +47,47 @@ class HistoryTests(unittest.TestCase):
         self.assertEqual(rec["publishes"][0]["metrics"]["checks"]["long_steps"], 1)
         self.assertEqual(rec["publishes"][0]["metrics"]["redos"], 1)
         self.assertTrue((self.home / "balloon-lavender" / folder.name / "strip-2.jpg").exists())
+
+    def test_a_seal_with_the_drafts_pictures_takes_the_seals_numbers(self):
+        """#135: the draft's entry kept its text_problems and minutes_total when the seal changed only the text."""
+        folder, data = lesson(self.tmp, "chickadee_skill_20261114-022601", "POC 1.6.0")
+        started = dt.datetime(2026, 11, 14, 2, 26, 1)
+
+        def publish(at_minutes: float) -> dict:
+            (folder / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
+            t = (started + dt.timedelta(minutes=at_minutes)).timestamp()
+            os.utime(folder / "lesson.json", (t, t))
+            return history.record(folder, data, {"long_instructions": []}, self.home)
+
+        data["provenance"] = {"kind": "unsealed", "note": "not finished by the skill, or from before seals"}
+        data["stages"][0]["summary"] = "Draft summary"
+        self.assertTrue(publish(12.6)["recorded"])
+        # the text review and a summary change; the step pictures, lines, and paints don't
+        data["text_issues"] = [{"step": "s1", "kind": "wording"}] * 6
+        data["stages"][0]["summary"] = "Sealed summary"
+        data["provenance"] = {"kind": "hands-off", "sealed": "2026-11-14T02:43:55"}
+        sealed = publish(17.9)
+        self.assertFalse(sealed["recorded"])
+        self.assertTrue(sealed["refreshed"])
+        path = self.home / "chickadee" / folder.name / "record.json"
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(len(rec["publishes"]), 1)
+        entry = rec["publishes"][0]
+        self.assertEqual(entry["metrics"]["text_problems"], 6)
+        self.assertEqual(entry["metrics"]["minutes_total"], 17.9)
+        self.assertEqual(entry["provenance"]["kind"], "hands-off")
+        self.assertTrue((path.parent / entry["strip"]).exists())
+        kept = json.loads((folder / "versions" / "1" / "lesson.json").read_text(encoding="utf-8"))
+        self.assertEqual(kept["stages"][0]["summary"], "Sealed summary")  # the kept lesson is the sealed one
+        self.assertIn("7 review fixes", (self.home / "index.html").read_text(encoding="utf-8"))  # 1 step + 6 text
+        # the same sealed lesson published again records nothing, and doesn't move its time
+        before = path.read_text(encoding="utf-8")
+        again = publish(30)
+        self.assertFalse(again["recorded"])
+        self.assertNotIn("refreshed", again)
+        self.assertEqual(path.read_text(encoding="utf-8"), before)
+        self.assertNotIn("refreshed", history.record(folder, data, None, self.home))  # a backfill keeps the checks
+        self.assertEqual(path.read_text(encoding="utf-8"), before)
 
     def test_page_lists_what_changed_between_runs(self):
         a, da = lesson(self.tmp, "balloon-lavender_skill_20261111-083555", "POC 0.13.0")
