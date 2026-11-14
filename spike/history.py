@@ -1,7 +1,9 @@
 """Lesson history: every publish is kept, so a lesson that got worse can be traced to the version that did it.
 
     record(lesson, data, checks) -> adds a publish to site/history/<photo>/<run>/ (record.json + strip-<n>.jpg) and
-                                    keeps the full lesson in <lesson>/versions/<n>/; skips a publish that changed nothing
+                                    keeps the full lesson in <lesson>/versions/<n>/; skips a publish that changed nothing,
+                                    and one with the same pictures and text but new numbers or provenance (a seal after
+                                    its draft) refreshes the last entry instead of adding one (#135)
     backfill(output) -> records every finished run already in output/ (their last publish only)
     build_page() -> site/history/index.html: each photo's runs, newest first, with what changed in between
 
@@ -164,34 +166,65 @@ def record(lesson: Path, data: dict, checks: dict | None = None, history: Path |
             path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
             build_page(history)
     if rec["publishes"] and rec["publishes"][-1]["digest"] == d:
-        last = rec["publishes"][-1]  # same pictures and text, but its provenance can still change (a seal, a mark)
-        if data.get("provenance") and last.get("provenance") != data["provenance"]:
-            last["provenance"] = data["provenance"]
+        # Same step pictures, lines, and paints. But a seal can follow its draft with only the text review, summaries,
+        # tips, or time changed (#135), so the entry takes this publish's numbers, stamp, and provenance when they
+        # differ. A republish of the same lesson changes none of them (minutes_total aside) and is left alone.
+        last = rec["publishes"][-1]
+        fresh = _entry(lesson, data, checks, last["n"], d, stamp_override)
+        if checks is None and "checks" in (last.get("metrics") or {}):  # a backfill has no checks: keep the publish's
+            fresh["metrics"]["checks"] = last["metrics"]["checks"]
+        prov = data.get("provenance")
+        if (prov and last.get("provenance") != prov) or _numbers(last.get("metrics")) != _numbers(fresh["metrics"]):
+            if not prov:
+                fresh["provenance"] = last.get("provenance") or fresh["provenance"]
+            fresh["strip"] = last.get("strip") or fresh["strip"]
+            last.update(fresh)
+            if not (folder / last["strip"]).exists():  # the pictures are the same; only a lost strip is redrawn
+                strip(lesson, data, folder / last["strip"])
             path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
-            build_page(history)
+            _keep(lesson, last["n"])
+            return {"recorded": False, "refreshed": True, "run": run, "publish": last["n"],
+                    "reason": "same pictures and text as the last publish; it now has this publish's numbers, stamp, "
+                              "and provenance", "page": str(build_page(history))}
         return {"recorded": False, "reason": "nothing changed since the last publish", "run": run}
     n = max((p["n"] for p in rec["publishes"]), default=0) + 1
+    entry = _entry(lesson, data, checks, n, d, stamp_override)
+    strip(lesson, data, folder / entry["strip"])
+    rec["publishes"].append(entry)
+    folder.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
+    _keep(lesson, n)
+    return {"recorded": True, "run": run, "publish": n, "page": str(build_page(history))}
+
+
+def _entry(lesson: Path, data: dict, checks: dict | None, n: int, d: str, stamp_override: dict | None) -> dict:
+    """One publish as record.json keeps it."""
     g, made = _stamp(data)
     if stamp_override:
         g, made = stamp_override, stamp_override
-    strip(lesson, data, folder / f"strip-{n}.jpg")
-    rec["publishes"].append({
+    return {
         "n": n, "digest": d, "strip": f"strip-{n}.jpg",
         "published_with": {k: g.get(k) for k in ("version", "commit", "dirty", "published")},
         "made_with": made, "provenance": data.get("provenance") or {"kind": "unsealed"},
         "palette": data.get("palette_name") or "", "technique": data.get("technique", ""),
-        "canvas": data.get("canvas"), "metrics": metrics(data, checks, run, published_at(lesson)),
+        "canvas": data.get("canvas"), "metrics": metrics(data, checks, lesson.name, published_at(lesson)),
         "steps": [{"id": s["id"], "name": s.get("name", ""), "made_with": s.get("made_with", "")}
                   for s in data.get("stages") or []],
-    })
-    folder.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
-    keep = lesson / "versions" / str(n)  # the whole lesson, locally, to open or diff later
+    }
+
+
+def _numbers(m: dict | None) -> dict:
+    """A publish's metrics without the clock: republishing the same lesson moves only minutes_total."""
+    return {k: v for k, v in (m or {}).items() if k != "minutes_total"}
+
+
+def _keep(lesson: Path, n: int) -> None:
+    """The whole lesson, locally, in <lesson>/versions/<n>/, to open or diff later."""
+    keep = lesson / "versions" / str(n)
     keep.mkdir(parents=True, exist_ok=True)
     for name in ("lesson.json", "lesson-standalone.html", "plan.json", "text.json"):
         if (lesson / name).exists():
             shutil.copyfile(lesson / name, keep / name)
-    return {"recorded": True, "run": run, "publish": n, "page": str(build_page(history))}
 
 
 def _git(*args: str) -> str:
