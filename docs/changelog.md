@@ -6,6 +6,14 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.6.0 (2026-11-14)
+- Thin parts (a branch, a mast, a boom) are outlined by a larger outline model, SAM-HQ ViT-L, instead of by color
+  (#129): one box around the part's paths with the plan's points, then limb by limb for any limb that missed, kept to
+  the part's band and checked against its colors. The chickadee's branch comes back clean, in one piece with its
+  twigs, without the misty background stuck to it, and the sailboat's mast straight and even. Areas and objects keep
+  today's model. A small thing with a clear edge (a bird's feet) is now an object, not marks, so the feet no longer
+  take a slab of branch.
+
 ## POC 1.5.0 (2026-11-14)
 - "Before you start" holds only the basics every painter needs before the first stroke (#95): setting up, keeping
   colors clean, how much water, and keeping paint wet, as open cards under "Getting started", with fixing a mistake

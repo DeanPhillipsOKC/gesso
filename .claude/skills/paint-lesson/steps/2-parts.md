@@ -20,16 +20,24 @@ look like).
 | `kind` | For | Needs |
 |---|---|---|
 | `area` | a big region with a visible edge: sky, hill, field, water. The farthest one usually has box `[0, 0, 1, 1]`: it takes whatever nothing else claims | `box` |
-| `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun. Several of the same (four leaves) are one part with `boxes` | `box` or `boxes` |
-| `thin` | long and narrow: a branch, a mast, a rail | `paths` (points along its middle, one list per limb), `width`, and the color fields below |
-| `marks` | paint with no single edge: clouds, mist, foliage clumps, a sun path, a reflection, a bird's black cap | `box` or `boxes`, and the color fields below |
+| `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun. Several of the same (four leaves) are one part with `boxes`. **A small thing with a clear edge is an object too**, not marks: a bird's feet, a buoy | `box` or `boxes` |
+| `thin` | long and narrow, with a clear edge: a branch, a mast, a boom, a rail | `paths` (points along its middle, **one list per limb**, twigs and a boom included), `width`, and the color fields below |
+| `marks` | paint with no single edge: clouds, mist, misty trunks, foliage clumps, a sun path, a reflection, a bird's black cap | `box` or `boxes`, and the color fields below |
+
+How each is outlined: an `area` or `object` by the outline model from its box; a `thin` part by a larger outline
+model, from a box around its paths with its `points_in` and `points_out`, then limb by limb for any path that
+missed, all kept to a band around the paths; `marks` by color alone (the color rule). So a thin part's `paths` must
+follow every limb you want painted, and its `points_out` should sit on what's right beside it (the sky between
+twigs, foliage next to the branch). Soft things (misty trunks, clouds, sun paths, reflections, foliage) stay
+`marks`: the model returns them as one solid shape, or drops a faint one.
 
 - Every part: `"id"` (a lowercase slug: letters, digits, and hyphens, no underscores), `"name"` (how the page will
   say it: "The chickadee", "Far misty trunks").
 - Boxes are `[x0, y0, x1, y1]` as shares of the width and height, measured, 2 to 3% loose. For `marks`, **tight**:
   color is all that separates a mark from anything the same color in its box.
 - **Color fields** for `marks` and `thin`: `points_in` (5 to 8 spots on the part, one per shade of it) and
-  `points_out` (5 to 8 spots on what's behind and around it, one per color there).
+  `points_out` (5 to 8 spots on what's behind and around it, one per color there). A thin part's limbs are also
+  checked against them, so they matter there too.
 - An `area` or `object` with one box takes `points_in` / `points_out` too: spots the outline must include or
   leave out. Use them only to fix an outline after seeing the preview.
 - `"parent": "<id>"` when the part is painted on another part and stays inside it (clouds on the sky, the cap on the
@@ -90,7 +98,8 @@ part worse, put its entry back the way it was.
 |---|---|
 | A marks part took something else the same color | tighten its box; add a `points_out` on the thing it took |
 | A marks part missed some of itself | add a `points_in` there, one per shade |
-| A thin part is broken or missing an end | add a path along the missing limb; add `points_in` on its light and dark sides; raise `width` |
+| A thin part is broken or missing an end | add a path along the missing limb (each path is asked for on its own when the first answer misses it); add `points_in` on its light and dark sides; raise `width` |
+| A thin part took what lies beside it (foliage between close limbs, sky by a mast) | add `points_out` on what it took; lower `width` if its band is wider than the thing |
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | run `part-colors` and give `colors_in` / `colors_out` as hex; or drop the part and use a pass |
 | An object took background, or came back in pieces | tighten or loosen its box; one box per thing |

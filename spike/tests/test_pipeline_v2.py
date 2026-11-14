@@ -91,6 +91,54 @@ class OutlineTests(unittest.TestCase):
         with self.assertRaises(ol.NoModel):
             ol.outline(img, parts)
 
+    def test_a_thin_part_needs_its_model_or_a_given_outline(self):
+        img, parts, given = scene()
+        parts.append({"id": "pole", "kind": "thin", "width": 0.04, "paths": [[[0.9, 0.1], [0.9, 0.9]]],
+                      "colors_in": ["#000000"], "colors_out": ["#6e96dc"]})
+        with self.assertRaises(ol.NoModel):
+            ol.outline(img, parts, given=given)
+        pole = np.zeros(img.shape[:2], bool)
+        pole[:, 120:160] = True  # wider than the band: only the band is kept
+        masks, _, stats = ol.outline(img, parts, given={**given, "pole": pole})
+        self.assertEqual(stats[-1]["how"], "given")
+        self.assertTrue(masks["pole"][60, 144])
+        self.assertFalse(masks["pole"][60, 120:130].any())
+
+    def test_a_thin_part_is_asked_for_whole_then_limb_by_limb_for_what_that_missed(self):
+        # a trunk (dark) with a twig off to the right; the stand-in model answers the whole part with the trunk only,
+        # and a limb's own prompt with the twig plus a patch of sky beside it, which the color rule keeps out
+        img = np.full((100, 100, 3), (110, 150, 220), np.uint8)
+        img[10:90, 20:26] = (60, 40, 20)
+        img[48:52, 26:80] = (60, 40, 20)
+        L = ol.lab(img)
+        part = {"id": "tree", "kind": "thin", "width": 0.06, "paths": [[[0.23, 0.1], [0.23, 0.9]], [[0.26, 0.5], [0.8, 0.5]]],
+                "points_in": [[0.23, 0.3]], "points_out": [[0.6, 0.2]]}
+        asked = []
+
+        class Model:
+            def mask(self, box, points_in=(), points_out=()):
+                asked.append(box)
+                m = np.zeros((100, 100), bool)
+                if len(asked) == 1:
+                    m[10:90, 20:26] = True
+                else:
+                    m[46:54, 26:80] = True  # the twig, and sky on both sides of it
+                return m, 0.9
+
+        inside = ol.band((100, 100), part)
+        claim, got = ol.thin(Model(), L, part, inside)
+        self.assertEqual(got["limbs"], [1])
+        self.assertEqual(len(asked), 2)
+        self.assertTrue(claim[50, 60] and claim[50, 22])
+        self.assertFalse(claim[46, 60] or claim[53, 60])  # the sky the limb's answer took
+        self.assertAlmostEqual(ol.covered(claim, part["paths"][1], 0.06), 1.0)
+
+        class Nothing:
+            def mask(self, *a, **k):
+                return np.zeros((100, 100), bool), 0.1
+
+        self.assertFalse(ol.thin(Nothing(), L, part, inside)[0].any())
+
     def test_gaps_behind_an_object_follow_their_rows(self):
         owner = np.zeros((10, 12), np.int32)
         owner[5:] = 1  # a horizon at row 5
@@ -157,13 +205,19 @@ class OutlineTests(unittest.TestCase):
 class ModelTests(unittest.TestCase):
     @unittest.skipUnless(all((ol.MODELS / n).exists() for n in ol.FILES), "the outline model files aren't in models/")
     def test_the_model_gives_the_saved_outlines(self):
-        sam = ol.Sam()
+        sam, hq = ol.Sam(), ol.Sam(ol.HQ_L)
         for name in NAMES:
             finish, plan, saved = fixture(name)
-            sam.emb = None
-            _, owner, stats = ol.outline(finish, plan["parts"], sam)
+            sam.emb = hq.emb = None
+            _, owner, stats = ol.outline(finish, plan["parts"], sam, thin_sam=hq)
             self.assertGreater((owner == saved).mean(), 0.995, name)
             self.assertEqual(ol.problems(plan["parts"], stats), [], name)
+            if name == "chickadee":  # the same finish and plan give the same outlines twice (#129)
+                sam.emb = hq.emb = None
+                self.assertTrue((ol.outline(finish, plan["parts"], sam, thin_sam=hq)[1] == owner).all())
+                branch = next(s for s in stats if s["id"] == "branch")
+                self.assertTrue(branch["how"].startswith("model"), branch)
+                self.assertEqual(branch["pieces"], 1, branch)  # in one piece, twigs included
 
 
 @lessons.slow
@@ -678,7 +732,7 @@ class ToolTests(unittest.TestCase):
             plan = {"plan_version": 2, "parts": parts[:2]}  # the backdrop and marks on it: no model needed
             (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
             Image.fromarray(img).save(lesson / "99_finish.png")
-            with mock.patch.object(ol, "Sam", lambda: None):
+            with mock.patch.object(ol, "Sam", lambda *a: None):
                 r = self.run_tool("outline", "--lesson", str(lesson))
             self.assertEqual(r["problems"], [])
             self.assertTrue((lesson / "parts" / "owner.png").exists())

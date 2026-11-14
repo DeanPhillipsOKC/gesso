@@ -631,62 +631,12 @@
   {
    "id": "bird-feet",
    "name": "Legs and feet",
-   "kind": "marks",
-   "boxes": [
-    [
-     0.385,
-     0.53,
-     0.56,
-     0.645
-    ]
-   ],
-   "points_in": [
-    [
-     0.42,
-     0.585
-    ],
-    [
-     0.53,
-     0.585
-    ],
-    [
-     0.41,
-     0.55
-    ],
-    [
-     0.5,
-     0.555
-    ]
-   ],
-   "points_out": [
-    [
-     0.45,
-     0.45
-    ],
-    [
-     0.5,
-     0.5
-    ],
-    [
-     0.5,
-     0.62
-    ],
-    [
-     0.47,
-     0.6
-    ],
-    [
-     0.36,
-     0.6
-    ],
-    [
-     0.58,
-     0.6
-    ],
-    [
-     0.47,
-     0.565
-    ]
+   "kind": "object",
+   "box": [
+    0.385,
+    0.53,
+    0.56,
+    0.645
    ],
    "element": "fine-lines",
    "element_why": "Thin legs and toes over the branch, liner work."
@@ -732,8 +682,8 @@
   {
    "id": "foliage-1",
    "name": "Foliage rust",
-   "hex": "#d19166",
    "used_for": "the hazy foliage, the bird's body, and the light on the bark",
+   "hex": "#d19166",
    "sample_x": 0.621,
    "sample_y": 0.449,
    "parts": [
@@ -760,9 +710,9 @@
    "id": "branch-2",
    "name": "Bark tan",
    "used_for": "the branch",
-   "hex": "#956043",
-   "sample_x": 0.095,
-   "sample_y": 0.724,
+   "hex": "#996649",
+   "sample_x": 0.097,
+   "sample_y": 0.723,
    "parts": [
     "branch"
    ]
@@ -807,8 +757,8 @@
   {
    "id": "bird-head-1",
    "name": "Chickadee black",
-   "hex": "#3e383c",
    "used_for": "the cap and bib, and the wing stripes",
+   "hex": "#3e383c",
    "sample_x": 0.466,
    "sample_y": 0.155,
    "parts": [
@@ -830,8 +780,8 @@
   {
    "id": "bird-face-1",
    "name": "Charcoal gray",
-   "hex": "#6a6672",
    "used_for": "the eye and beak",
+   "hex": "#6a6672",
    "sample_x": 0.526,
    "sample_y": 0.186,
    "parts": [
