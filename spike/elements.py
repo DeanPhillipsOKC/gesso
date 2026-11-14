@@ -140,10 +140,13 @@ def _value_rank(slot: dict) -> int | None:
     return VALUES.get(slot.get("value") or "")
 
 
-def match(steps: list[dict], element: dict, lightness: dict[str, float] | None = None) -> tuple[list[int | None], list[str]]:
+def match(steps: list[dict], element: dict, lightness: dict[str, float] | None = None,
+          reshow_hint: bool = True) -> tuple[list[int | None], list[str]]:
     """Fit a part's steps, in order, to its element's steps. Returns which element step (0-based) each plan step
     fits, and what doesn't fit, each saying what to change. `lightness` (paint id -> Lab L) checks the values:
-    a step on a lighter element step must not be darker than one on a darker element step."""
+    a step on a lighter element step must not be darker than one on a darker element step. When that's only because
+    a step's show put it on the wrong element step, and another show fits its paints, the message names that show
+    (#140); `reshow_hint=False` leaves that out (it's how the other shows are tried)."""
     slots = element.get("steps") or []
     shows = [_list(s.get("show")) for s in slots]
     strokes = [_list(s.get("strokes")) for s in slots]
@@ -188,16 +191,32 @@ def match(steps: list[dict], element: dict, lightness: dict[str, float] | None =
     # among fits that agree as well, the one with the fewest steps on element steps that have no value (sections,
     # shine, details), so a shade or light pass lands where its value is checked and its watch-out applies; then the
     # first (review of #111)
-    scored = [(len(_value_problems(steps, slots, f, lightness, eid)) if lightness else 0,
+    scored = [(len(_value_clashes(steps, slots, f, lightness)) if lightness else 0,
                sum(1 for k in f if _value_rank(slots[k]) is None), n_, f) for n_, f in enumerate(fits_all)]
     *_, best = min(scored)
     where: list[int | None] = list(best)
-    return where, (_value_problems(steps, slots, best, lightness, eid) if lightness else [])
+    if not lightness:
+        return where, []
+    out = []
+    for light, slot, dark, ll, dl in _value_clashes(steps, slots, best, lightness):
+        said = (f"{light['id']} is where the {eid} technique's step \"{slot.get('name')}\" ({slot.get('value')}) "
+                f"goes, but its paint is darker than {dark['id']}'s (lightness {ll:.0f} against {dl:.0f}).")
+        reshow = _better_show(steps, element, lightness, light, dark) if reshow_hint else None
+        if reshow:
+            who, show, to = reshow
+            out.append(f"{said} It's {who['id']}'s show that's wrong, not the paints: with show {show} it lands on "
+                       f"the technique's step \"{to.get('name')}\" ({to.get('value')}), which its paints fit. "
+                       f"Change {who['id']}'s show from {who.get('show', 'full')} to {show}, and keep its paints.")
+        else:
+            out.append(f"{said} If {light['id']} is a different step, the part is missing that one: add "
+                       "it (paints --add gives the part a lighter or darker color). Or swap the two steps' paints.")
+    return where, out
 
 
-def _value_problems(steps, slots, where, lightness, eid) -> list[str]:
-    """A step on a lighter element step whose paint is darker than one on a darker element step."""
-    out: list[str] = []
+def _value_clashes(steps, slots, where, lightness) -> list[tuple]:
+    """Each step on a lighter element step whose paint is darker than one on a darker element step, as
+    (that step, its element step, the step on the darker element step, their lightnesses)."""
+    out: list[tuple] = []
     ranked = [(steps[i], _value_rank(slots[k]), _step_lightness(steps[i], lightness))
               for i, k in enumerate(where) if k is not None and _value_rank(slots[k]) is not None]
     for a in range(len(ranked)):
@@ -207,12 +226,32 @@ def _value_problems(steps, slots, where, lightness, eid) -> list[str]:
                 continue
             dark, light = ((sa, la), (sb, lb)) if ra < rb else ((sb, lb), (sa, la))
             if light[1] < dark[1] - VALUE_SLACK:
-                slot = slots[where[steps.index(light[0])]]
-                out.append(f"{light[0]['id']} is where the {eid} technique's step \"{slot.get('name')}\" ({slot.get('value')}) "
-                           f"goes, but its paint is darker than {dark[0]['id']}'s (lightness {light[1]:.0f} against "
-                           f"{dark[1]:.0f}). If {light[0]['id']} is a different step, the part is missing that one: add "
-                           "it (paints --add gives the part a lighter or darker color). Or swap the two steps' paints.")
+                out.append((light[0], slots[where[steps.index(light[0])]], dark[0], light[1], dark[1]))
     return out
+
+
+def _shows_allowed(i: int, n: int) -> tuple[str, ...]:
+    """The shows step i of a part's n steps may take under plan2's rules: a coat first, a full or blend only last,
+    a pass in between. A pass first is only for a marks or thin part, which match doesn't know, so it isn't offered."""
+    if i == 0:
+        return ("flat", "full", "blend") if n == 1 else ("flat",)
+    return ("pass", "full", "blend") if i == n - 1 else ("pass",)
+
+
+def _better_show(steps, element, lightness, light, dark):
+    """When a value clash is only the show's fault (#140): the show put a step on an element step whose value its
+    paints don't have, and another show fits the part's steps with every value in order. Returns (the step, that
+    show, the element step it then lands on), or None. The step on the lighter element step is tried first."""
+    for who in (light, dark):
+        i = next(j for j, s in enumerate(steps) if s is who)
+        for show in _shows_allowed(i, len(steps)):
+            if show == who.get("show", "full"):
+                continue
+            changed = [dict(s, show=show) if j == i else s for j, s in enumerate(steps)]
+            where, wrong = match(changed, element, lightness, reshow_hint=False)
+            if where[i] is not None and not wrong:
+                return who, show, (element.get("steps") or [])[where[i]]
+    return None
 
 
 def _first_misfit(steps, slots, fits) -> dict | None:

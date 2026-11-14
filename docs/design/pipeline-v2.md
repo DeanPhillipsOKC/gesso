@@ -641,7 +641,9 @@ checked: false
 - **`check`** (`elements.plan_problems`): no `technique_why`; a part with no `element` or no `element_why`; an
   element that doesn't exist or is for another kind of part; steps that don't follow it (the message lists its steps
   in order); values out of order (it names the element step the darker paint landed on and says the part may be
-  missing that step); a drafted element that's broken, marked checked, uses a library id, or isn't filed yet.
+  missing that step, or, when another show puts the step on an element step its paints fit with every value in
+  order, that the show is wrong and which show to use: a "Darken" step set to `full` lands on field-grass's light
+  texture step, and `pass` is the fix, #140); a drafted element that's broken, marked checked, uses a library id, or isn't filed yet.
 - **Drafting.** When nothing fits (fur, skin, glass, a night sky), the run writes `<lesson>/elements/<id>.yaml`
   with `drafted: true`, `checked: false`, and `sources` saying what came from the research and what didn't. The
   lesson page marks that part's steps "Technique not checked yet". The run files it as an issue when it drafts it
