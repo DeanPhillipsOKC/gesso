@@ -380,10 +380,15 @@ an edge the object hides). A pixel whose color is nearest an area that doesn't r
 that does, and that area's own paint is carried over it (like the free fill), not the render's pixel: the
 picture there looks like no part of that row (cloud streaks the hill's color, or a hill top hidden behind the
 tree), and showing it drew a patch. Marks the render shows there (clouds) are still found by their color rule, and
-show as the render has them. Rows no area reaches (the middle of a bridge or a wall across the picture, taller than
-the reach) are divided by color alone, as before. The limit: an area's rows are taken over the whole ring around
-the object, not per side or per column, so an area whose edge slopes steeply behind a wide object can still reach
-rows it has only on the other side. The
+show as the render has them. Rows no area reaches (behind a bridge, a wall, or a canopy across the whole picture,
+taller than the reach) go to the nearest area above them and the nearest below, split where the render's colors
+meet: a color reaches past the band's middle only where it joins its own area's side (water running up behind a
+bridge to the horizon), not as a band of its own (hill-colored streaks up in the sky's half behind a canopy, which
+stay the sky's, with the sky's paint carried over them). Those rows aren't counted by the `far` check (section 8).
+Limits: an area's rows are taken over the whole ring around the object, not per side or per column, so an area
+whose edge slopes steeply behind a wide object can still reach rows it has only on the other side; and behind a
+full-width object, a band of the lower area's color that touches the band's middle and joins the lower side still
+goes to that area, even when it's really a cloud in the sky. The
 three fixtures, given a stand-in background, and the hands-off chickadee run's real one, build the same pictures
 outside the gaps; that run builds the same pictures everywhere.
 
@@ -432,7 +437,8 @@ then set to the finish itself; how far the built one was from it is reported as 
 a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
 more than 0.1% of the picture (`FAR_SHARE`) behind the objects more than 5% of the height (`FAR_ROWS`) above or
 below its part's own outline's rows, for an `area` part. Each step's row carries that share as `far` (0 for other
-kinds: marks found behind an object, a cloud, aren't held to rows). Since #139 the split behind the objects can't
+kinds: marks found behind an object, a cloud, aren't held to rows; and 0 in rows behind an object that no area
+had, which section 7 splits between the nearest areas above and below). Since #139 the split behind the objects can't
 do that for an area (section 7), so it's reported as a bug in `build-steps`, like the first.
 
 By construction a step can't move, reshape, or recolor another part. There is nothing to review, redo, or lock.

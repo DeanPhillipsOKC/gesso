@@ -456,8 +456,40 @@ class BuildStepsTests(unittest.TestCase):
         doubt = np.zeros(owner.shape, bool)
         back = bs.back_owner(parts, owner, bs.make_background(img, front, plate), front, real=True, doubt=doubt)
         self.assertTrue((back[:50] == 0).all())
-        self.assertTrue((back[50:] == 1).all())
+        self.assertTrue((back[50:] == 1).all())  # the water runs up behind the bridge to the horizon
         self.assertFalse(doubt.any())
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "navy", "hex": "#1e3c78"},
+                           {"id": "brown", "hex": "#5a3c28"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "water", "part": "water", "show": "full", "paints": ["navy"]},
+                    {"id": "bridge", "part": "bridge", "show": "full", "paints": ["brown"]}]}]}
+        _, rows, _ = bs.build(img, plan, owner, background=plate)
+        self.assertEqual([r["far"] for r in rows], [0.0, 0.0, 0.0])  # rows no area had aren't far from either
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def test_a_color_band_cut_off_from_its_area_behind_a_full_width_object_stays_with_the_other(self):  # #139
+        # a canopy across the whole picture, with hill-colored streaks behind it well up in the sky's half
+        img, plate, owner, plan, tree = self.tree_scene()
+        img[:60], img[60:] = (110, 150, 220), (200, 160, 60)
+        plate = img.copy()
+        plate[27:33, 20:140] = (205, 158, 62)
+        yy, xx = np.mgrid[:120, :160]
+        tree = ((yy >= 12) & (yy < 64)) | ((yy >= 64) & (yy < 95) & (xx >= 76) & (xx < 84))
+        img[tree] = (40, 80, 40)
+        hill = np.zeros((120, 160), bool)
+        hill[60:] = True
+        _, owner, _ = ol.outline(img, plan["parts"], given={"hill": hill & ~tree, "tree": tree})
+        front = ~bs.back_parts(plan["parts"])[owner]
+        doubt = np.zeros(owner.shape, bool)
+        back = bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True,
+                             doubt=doubt)
+        self.assertTrue((back[:34] == 0).all())  # the streaks stay the sky's
+        self.assertTrue(doubt[28:32, 22:138].all())  # and the sky carries its own paint over them
+        _, rows, painted = bs.build(img, plan, owner, background=plate)
+        self.assertFalse(painted[1][:34].any())
+        self.assertEqual(bs.problems(plan, rows), [])
 
     def test_a_part_painting_far_outside_its_own_rows_is_reported(self):  # #139
         img, plate, owner, plan, tree = self.tree_scene()
