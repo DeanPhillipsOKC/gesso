@@ -17,10 +17,9 @@ from __future__ import annotations
 from html import escape as e
 from pathlib import Path
 
-import yaml
-
 import brushes
 import construct
+import yaml_files
 
 ROOT = Path(__file__).resolve().parent.parent
 STROKES = ROOT / "techniques" / "strokes"
@@ -34,7 +33,7 @@ TEXT_FIELDS = (("load", "Load"), ("motion", "Motion"), ("result", "What it leave
 def _load(folder: Path) -> dict[str, dict]:
     out = {}
     for path in sorted(folder.glob("*.yaml")):
-        card = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        card = yaml_files.read(path) or {}
         card["_file"] = str(path.relative_to(ROOT))
         out[card.get("id", path.stem)] = card
     return out
@@ -49,7 +48,7 @@ def basics() -> dict[str, dict]:
 
 
 def stroke_results(technique: Path = TECHNIQUE) -> list[str]:
-    return [r["stroke"] for r in yaml.safe_load(technique.read_text(encoding="utf-8")).get("stroke_results") or []]
+    return [r["stroke"] for r in yaml_files.read(technique).get("stroke_results") or []]
 
 
 def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, results: list[str] | None = None) -> list[str]:

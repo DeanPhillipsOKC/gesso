@@ -28,7 +28,7 @@ from itertools import islice
 from html import escape as e
 from pathlib import Path
 
-import yaml
+import yaml_files
 
 ROOT = Path(__file__).resolve().parent.parent
 ELEMENTS = ROOT / "techniques" / "elements"
@@ -46,7 +46,7 @@ MAX_FITS = 5000  # ways to fit a part's steps to its element looked at; a real p
 def _read(folder: Path, base: Path) -> dict[str, dict]:
     out = {}
     for path in sorted(Path(folder).glob("*.yaml")):
-        el = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        el = yaml_files.read(path) or {}
         try:
             el["_file"] = str(path.relative_to(base))
         except ValueError:

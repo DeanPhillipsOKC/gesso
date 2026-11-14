@@ -22,6 +22,7 @@ from PIL import Image  # noqa: E402
 
 import aids  # noqa: E402
 import build_steps as bs  # noqa: E402
+import lessons  # noqa: E402
 import tools  # noqa: E402
 from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
 
@@ -35,14 +36,17 @@ def run_tool(*argv) -> tuple[int, dict]:
     return code, json.loads(out.getvalue().strip().splitlines()[-1])
 
 
+@lessons.slow
 class AidsTests(unittest.TestCase):
+    whole = True  # tests/suite.py runs it as one job: its setUpClass makes every fixture's aids
+
     @classmethod
     def setUpClass(cls):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.built = {}
         for name in NAMES:
-            finish, plan, owner = fixture(name)
-            pictures, _, masks = bs.build(finish, plan, owner)
+            owner = fixture(name)[2]
+            plan, pictures, _, masks = lessons.built(name)
             names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(bs.flat_steps(plan))]
             out = Path(cls.tmp.name) / name / "aids"
             data = aids.make(plan, pictures, masks, owner, None, CANVAS, out, names)
@@ -170,29 +174,23 @@ class WhereWordsTests(unittest.TestCase):
         self.assertIn("about 3 in wide and 2 in tall", words)  # 60 of 180 px across 9 in; 40 of 160 px down 8 in
 
 
+@lessons.slow
 class StepAidsToolTests(unittest.TestCase):
-    def lesson(self, d: str, name: str = "red-sailboat") -> Path:
-        finish, plan, owner = fixture(name)
-        lesson = Path(d)
-        (lesson / "parts").mkdir()
-        (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
-        Image.fromarray(finish).save(lesson / "99_finish.png")
-        Image.fromarray(owner.astype(np.uint8)).save(lesson / "parts" / "owner.png")
-        return lesson
+    def lesson(self, d: str, stage: str) -> Path:
+        return lessons.lesson("red-sailboat", stage, Path(d))  # built once per run and shared (tests/lessons.py)
 
     def test_step_aids_before_build_steps_is_refused(self):
         with tempfile.TemporaryDirectory() as d:
-            code, r = run_tool("step-aids", "--lesson", str(self.lesson(d)))
+            code, r = run_tool("step-aids", "--lesson", str(self.lesson(d, "outlined")))
             self.assertEqual(code, 2)
             self.assertIn("run build-steps", r["refused"])
 
     def test_a_canvas_cropped_from_the_frame_gives_canvas_pictures_and_inches(self):
         with tempfile.TemporaryDirectory() as d:
-            lesson = self.lesson(d)
+            lesson = self.lesson(d, "aided")  # build-steps doesn't read canvas.json; step-aids does
             box = [0.1, 0.05, 0.9, 0.95]
             (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 10, "h_in": 8.5, "orientation": "landscape"},
                                                             "canvas_box": box}), encoding="utf-8")
-            self.assertEqual(run_tool("build-steps", "--lesson", str(lesson))[0], 0)
             code, r = run_tool("step-aids", "--lesson", str(lesson))
             self.assertEqual(code, 0, r)
             data = json.loads((lesson / "aids" / "aids.json").read_text(encoding="utf-8"))
@@ -211,8 +209,7 @@ class StepAidsToolTests(unittest.TestCase):
 
     def test_step_pictures_that_dont_match_the_plan_are_refused(self):
         with tempfile.TemporaryDirectory() as d:
-            lesson = self.lesson(d)
-            run_tool("build-steps", "--lesson", str(lesson))
+            lesson = self.lesson(d, "aided")
             first = sorted(lesson.glob("01_*.png"))[0]
             with Image.open(first) as img:
                 size = img.size

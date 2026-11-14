@@ -25,4 +25,5 @@ Then, in Claude Code: `/paint-lesson photos/your-photo.jpg` (optionally `--canva
 (`.claude/skills/paint-lesson/`) writes a folder under `output/` with every picture, `lesson.json`, and a
 self-contained `lesson-standalone.html`. The tools it runs are `python spike/tools.py <tool> --help`.
 
-Tests: `cd spike && python -m unittest discover tests` (no network, no API key).
+Tests: `python spike/tests/suite.py --quick` after a change, `python spike/tests/suite.py` before a merge (no network,
+no API key; see `docs/testing.md`).

@@ -1,8 +1,8 @@
 """Version 2 lessons through build-steps, mix, publish, the seal, the page, and every reader of lesson.json
 (issue #65, docs/design/pipeline-v2.md section 13).
 
-Each fixture (fixtures/plans, finishes, owners) is built into a lesson folder once, as `build-steps`, `mix`, and
-`publish` would leave it; no renders, no network, no model files.
+Each fixture (fixtures/plans, finishes, owners) is built into a lesson folder once per test run, as `build-steps`,
+`step-aids`, `mix`, and `publish` would leave it (tests/lessons.py); no renders, no network, no model files.
 """
 
 from __future__ import annotations
@@ -27,6 +27,7 @@ import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
 import history  # noqa: E402
+import lessons  # noqa: E402
 import tools  # noqa: E402
 from test_pipeline_v2 import NAMES, fixture  # noqa: E402
 
@@ -41,17 +42,7 @@ def run_tool(*argv) -> tuple[int, dict]:
     return code, json.loads(out.getvalue().strip().splitlines()[-1])
 
 
-def make_lesson(folder: Path, name: str) -> Path:
-    """A version 2 lesson folder from a fixture, as outline would leave it (fixture plan, finish, saved outlines)."""
-    finish, plan, owner = fixture(name)
-    lesson = folder / f"{name}_skill_20261112-090000"
-    (lesson / "parts").mkdir(parents=True)
-    (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
-    Image.fromarray(finish).save(lesson / "99_finish.png")
-    Image.fromarray(owner.astype(np.uint8)).save(lesson / "parts" / "owner.png")
-    return lesson
-
-
+@lessons.slow
 class PublishV2Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -60,13 +51,10 @@ class PublishV2Tests(unittest.TestCase):
         cls.old_history = os.environ.get("GESSO_HISTORY")
         os.environ["GESSO_HISTORY"] = str(cls.root / "history")
         cls.lessons, cls.results = {}, {}
-        for name in NAMES:
-            lesson = make_lesson(cls.root, name)
-            for tool in ("build-steps", "step-aids", "mix", "publish"):
-                code, r = run_tool(tool, "--lesson", str(lesson))
-                assert code == 0, (name, tool, r)
+        for name in NAMES:  # built once per run and shared (tests/lessons.py); a copy each, to read
+            cls.lessons[name] = lessons.lesson(name, "published", cls.root)
+            for tool, r in lessons.results(name, "published").items():
                 cls.results[(name, tool)] = r
-            cls.lessons[name] = lesson
 
     @classmethod
     def tearDownClass(cls):
@@ -423,17 +411,17 @@ class PublishV2Tests(unittest.TestCase):
     def test_history_records_a_version_2_run_like_any_run_with_minutes_total(self):
         for name in NAMES:
             lesson = self.lessons[name]
-            rec = json.loads((self.root / "history" / name / lesson.name / "record.json").read_text(encoding="utf-8"))
+            home = lessons.history(name)  # where the shared build's publish recorded it
+            rec = json.loads((home / name / lesson.name / "record.json").read_text(encoding="utf-8"))
             p = rec["publishes"][-1]
             self.assertEqual(p["metrics"]["steps"], len(self.data(name)["stages"]))
             self.assertEqual(p["metrics"]["paid_renders"], 0)
             self.assertGreater(p["metrics"]["minutes_total"], 0)  # from 09:00 on 2026-11-12, the folder's time
             self.assertEqual(p["metrics"]["checks"]["long_steps"], 0)
-            self.assertTrue((self.root / "history" / name / lesson.name / p["strip"]).exists())
+            self.assertTrue((home / name / lesson.name / p["strip"]).exists())
             self.assertEqual({s["made_with"] for s in p["steps"]}, {"composite:from-finish"})
             self.assertEqual(history.digest(lesson, self.data(name)), p["digest"])
-        page = (self.root / "history" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("min start to publish", page)
+            self.assertIn("min start to publish", (home / "index.html").read_text(encoding="utf-8"))
 
     def test_minutes_total_is_from_the_folder_time_and_left_out_without_one(self):
         at = dt.datetime(2026, 11, 12, 9, 21, 30)
@@ -576,7 +564,7 @@ class PublishV2Tests(unittest.TestCase):
 
     def test_publish_before_build_steps_says_to_run_it(self):
         with tempfile.TemporaryDirectory() as d:
-            lesson = make_lesson(Path(d), "red-sailboat")
+            lesson = lessons.lesson("red-sailboat", "outlined", Path(d))
             code, r = run_tool("publish", "--lesson", str(lesson))
             self.assertEqual(code, 2)
             self.assertIn("Run build-steps", r["refused"])
