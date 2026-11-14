@@ -228,6 +228,9 @@ class OutlineTests(unittest.TestCase):
         part = {"id": "pole", "name": "Pole", "kind": "thin", "width": 0.02, "paths": [[[0.5, 0.1], [0.5, 0.9]], []],
                 "points_in": [[0.5, 0.5]], "points_out": [[0.4, 0.5]]}
         self.assertTrue(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
+        for bad in ([[]], [[0.5]], [["a", 0.5]]):
+            part["paths"][1] = bad
+            self.assertTrue(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
         part["paths"].pop()
         self.assertFalse(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
 
