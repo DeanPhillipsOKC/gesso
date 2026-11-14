@@ -54,7 +54,8 @@ LEAVE_SHOWING = "Leave what {steps} painted showing around these marks, as in th
 PAST = 0.5  # inches on the painter's canvas
 PAST_COVERS = "Paint a little past its {sides}, under where {what} will go."  # a part painted past its edge (`covers`)
 PAST_BEHIND = "The outline also runs under where {what} will go: paint straight through there."  # back to front
-PAST_NAMES = 2  # name at most this many later parts
+PAST_OVER = "The outline also runs onto {what}, painted already: carry this paint over there too, as the step's picture shows."  # over an earlier part (PR #142 review)
+PAST_NAMES = 2  # name at most this many parts
 
 
 def _the(name: str) -> str:
@@ -117,10 +118,12 @@ def _card_brush_kinds(card: dict) -> set[str]:
 
 
 def past_words(part: dict, seen: np.ndarray, painted: np.ndarray, owner: np.ndarray, later: dict[int, str],
-               canvas: dict) -> str:
+               canvas: dict, earlier: dict[int, str] | None = None) -> str:
     """Why a step's outline (`painted`) reaches past the place its Where words give (`seen`, what the finish shows
     of it), when it does by PAST inches or more: "" otherwise. All three masks are cropped to the canvas; `later` is
-    {part index: name} of the parts not painted yet, which the extra paint goes under (#126)."""
+    {part index: name} of the parts not painted yet, which the extra paint goes under (#126), and `earlier` the same
+    for parts already painted (not the step's own part or its children), which the extra paint goes over: an outline
+    that reaches past the words is never left unexplained (PR #142 review)."""
     if not seen.any() or not painted.any():
         return ""
     h, w = seen.shape
@@ -139,14 +142,22 @@ def past_words(part: dict, seen: np.ndarray, painted: np.ndarray, owner: np.ndar
         return ""
     yy, xx = np.mgrid[0:h, 0:w]
     beyond = painted & ~seen & ~((xx >= sx0) & (xx < sx1) & (yy >= sy0) & (yy < sy1))  # what pushed the box out
-    counts = np.bincount(owner[beyond].ravel(), minlength=max(later, default=0) + 1) if beyond.any() else []
-    under = sorted((q for q in later if q < len(counts) and counts[q]), key=lambda q: (-counts[q], q))[:PAST_NAMES]
-    if not under:
-        return ""
-    what = _and([_the(later[q]) for q in under])
-    if part.get("covers"):
-        return PAST_COVERS.format(sides=_and(sides), what=what)
-    return PAST_BEHIND.format(what=what)
+    earlier = earlier or {}
+    counts = np.bincount(owner[beyond].ravel(), minlength=max([*later, *earlier], default=0) + 1) \
+        if beyond.any() else np.zeros(1, int)
+
+    def most(names):
+        return sorted((q for q in names if q < len(counts) and counts[q]), key=lambda q: (-counts[q], q))[:PAST_NAMES]
+
+    under, over = most(later), most(earlier)
+    out = []
+    if under:
+        what = _and([_the(later[q]) for q in under])
+        out.append(PAST_COVERS.format(sides=_and(sides), what=what) if part.get("covers")
+                   else PAST_BEHIND.format(what=what))
+    if over:
+        out.append(PAST_OVER.format(what=_and([_the(earlier[q]) for q in over])))
+    return " ".join(out)
 
 
 def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canvas_box: list[float] | None = None,
@@ -217,8 +228,11 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
         # and, when the outline reaches well past that, why
         seen_c, painted_c = aids.to_canvas(seen[i], canvas_box), aids.to_canvas(mask, canvas_box)
         later = {q: p.get("name") or p["id"] for q, p in enumerate(plan["parts"]) if first_of_part.get(p["id"], -1) > i}
+        own = set(bs._family(plan["parts"], next(q for q, p in enumerate(plan["parts"]) if p["id"] == s["part"])))
+        earlier = {q: p.get("name") or p["id"] for q, p in enumerate(plan["parts"])
+                   if q not in own and -1 < first_of_part.get(p["id"], i) < i}
         where_text = aids.where_words(seen_c, canvas)
-        past = past_words(part, seen_c, painted_c, owner_c, later, canvas) if canvas else ""
+        past = past_words(part, seen_c, painted_c, owner_c, later, canvas, earlier) if canvas else ""
         lines += split(f"{where_text} {past}" if past else where_text, "where")
 
         # paints, in the order they go on

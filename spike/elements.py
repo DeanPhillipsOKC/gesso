@@ -231,11 +231,12 @@ def _value_clashes(steps, slots, where, lightness) -> list[tuple]:
 
 
 def _shows_allowed(i: int, n: int) -> tuple[str, ...]:
-    """The shows step i of a part's n steps may take under plan2's rules: a coat first, a full or blend only last,
-    a pass in between. A pass first is only for a marks or thin part, which match doesn't know, so it isn't offered."""
+    """The shows step i of a part's n steps may take under plan2's rules: never flat last, a full or blend only
+    last, and a pass or flat in between (PR #142 review: flat was left out of the middle). A pass first is only for a
+    marks or thin part, which match doesn't know, so it isn't offered."""
     if i == 0:
         return ("flat", "full", "blend") if n == 1 else ("flat",)
-    return ("pass", "full", "blend") if i == n - 1 else ("pass",)
+    return ("pass", "full", "blend") if i == n - 1 else ("pass", "flat")
 
 
 def _better_show(steps, element, lightness, light, dark):

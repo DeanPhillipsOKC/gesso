@@ -704,7 +704,10 @@ checked: false
   painted area: back to front, the painter does paint there. Where the outline reaches 1/2 in (`draft_text.PAST`) or
   more past the words on a side, and a part not painted yet is what covers it, the line says why: a part with
   `covers` adds "Paint a little past its bottom, under where the hill and the water will go.", any other "The
-  outline also runs under where the boat will go: paint straight through there." (at most two parts named). On the
+  outline also runs under where the boat will go: paint straight through there." (at most two parts named). When
+  what pushes the outline out is a part painted already (the water's coat laid over the hill's foot), it adds "The
+  outline also runs onto the far hill and shore, painted already: carry this paint over there too, as the step's
+  picture shows.", so an outline past its words is never left unexplained (PR #142 review). On the
   sailboat fixture (14 x 11 in) the sky's bottom moved from 5 to 5 1/2 in from the bottom edge and the water's top
   from 4 1/2 in from the top to 5 in from the bottom, each within 1/4 in of the horizon in the outlines. Stray
   specks of a part still widen its box (#90).

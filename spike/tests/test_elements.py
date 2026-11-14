@@ -163,6 +163,13 @@ class MatchTests(unittest.TestCase):
             # and the named show does fit, with nothing left to say
             self.assertEqual(el.match([coat, dict(darken, show="pass")], e_, L), ([0, 1], []))
 
+    def test_the_shows_offered_are_the_ones_plan2_allows(self):
+        # a middle step may be flat or a pass; only the last may be full or blend, and never flat (PR #142 review)
+        self.assertEqual(el._shows_allowed(0, 1), ("flat", "full", "blend"))
+        self.assertEqual(el._shows_allowed(0, 3), ("flat",))
+        self.assertEqual(el._shows_allowed(1, 3), ("pass", "flat"))
+        self.assertEqual(el._shows_allowed(2, 3), ("pass", "full", "blend"))
+
     def test_a_clash_no_show_can_fix_still_points_at_the_paints(self):
         _, wrong = el.match(ROWS, self.rows, {**LIGHT, "mid": 10.0})
         self.assertIn("swap the two steps' paints", wrong[0])
