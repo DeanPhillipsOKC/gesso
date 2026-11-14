@@ -3,8 +3,8 @@
 2026-11-14. Follows `outline-probe.md` and `outlines.md`. The code is `spike/experiments/issue85.py`; nothing in
 the pipeline changed.
 
-**Answer: swap the local model for SAM-HQ ViT-L, and ask it for thin parts with a box and the plan's points. No
-hosted model looks needed, though none was run.** The chickadee's branch, the worst outline on the site, comes out
+**Answer: swap the local model for SAM-HQ ViT-L, and ask it for thin parts with a box and the plan's points, then
+limb by limb for what that misses. No hosted model looks needed, though none was run.** The chickadee's branch, the worst outline on the site, comes out
 clean and in one piece on the gate run, twigs included (345 MB, 4 seconds more per picture, free). Much of the gain is not the
 model at all: the pipeline never asks the model for a thin part, because the probe of 2026-11-12 asked with one
 box and no points and got the background back. Given the points the plan already has, even today's ViT-B returns a
@@ -163,7 +163,8 @@ every tool gives the same output for the same input (the two recommended models 
    results. SAM ViT-L is the runner-up. ViT-H costs 6 more seconds a picture for nothing that showed.
 2. **Ask the model for thin parts**, inside the band the pipeline already draws, with both prompts: one box
    around the part's paths with the plan's points for the body, and per limb for a path that result doesn't cover
-   (a boom, a twig). The build issue has to build and test that join; it wasn't tried here. Keep the color rule as
+   (a boom, a twig). The build issue has to build and test that join; it wasn't tried here, and it could bring
+   back the foliage per limb takes at the gate run's left edge, where the single box covers that path only in part. Keep the color rule as
    the fallback when the model returns nothing.
 3. **This prompt change alone, with today's ViT-B, is already a clear gain** if the swap is ever unwanted: three
    pieces and no blobs above the branch, against seven with blobs.
