@@ -134,6 +134,9 @@ def record(lesson: Path, role: str, numbers: dict) -> dict:
 
 def run(path: Path, lesson: Path, role: str | None = None) -> dict:
     """Measure one picture of a lesson, write where its texture is to busy/<name>.jpg, and record the numbers."""
+    if not role and path.resolve().parent != lesson.resolve():
+        raise ValueError(f"{path} isn't in the lesson folder itself, so its name doesn't say what it is (a trial copy?): "
+                         "measure the lesson's own file, or say which it stands for with --as photo|beginner|finish")
     role = role or role_of(path)
     rgb, measured = canvas_part(filters.load(path), lesson)
     rgb = to_work(rgb)

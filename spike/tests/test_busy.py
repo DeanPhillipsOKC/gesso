@@ -202,6 +202,13 @@ class LessonTests(unittest.TestCase):
         self.assertEqual((code, r["role"], r["came_down"]), (0, "beginner", True))
         self.assertEqual(self.notes()["beginner_version"]["busy"]["photo"], photo)
 
+    def test_a_trial_copy_with_a_lessons_name_isnt_taken_for_the_lessons_file(self):
+        (self.lesson / "trials").mkdir()
+        trial = filters.save(calm(), self.lesson / "trials" / "00_beginner.png")
+        with self.assertRaisesRegex(ValueError, "isn't in the lesson folder itself"):
+            busy.run(trial, self.lesson)
+        self.assertEqual(busy.run(trial, self.lesson, "beginner")["role"], "beginner")
+
     def test_a_beginner_number_with_no_photo_number_asks_for_the_photo(self):
         self.frame("00_beginner.png", calm())
         r = busy.run(self.lesson / "00_beginner.png", self.lesson)
