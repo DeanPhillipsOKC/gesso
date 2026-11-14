@@ -15,27 +15,22 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
 import build_steps as bs  # noqa: E402
 import cards  # noqa: E402
+import lessons  # noqa: E402
 import mixing  # noqa: E402
 import outline as ol  # noqa: E402
 import paints  # noqa: E402
 import plan2  # noqa: E402
 import tools  # noqa: E402
+from lessons import NAMES, fixture  # noqa: E402,F401
 
 FIX = Path(__file__).resolve().parent / "fixtures"
-NAMES = ["chickadee", "lavender-balloon", "red-sailboat"]
-
-
-def fixture(name: str):
-    finish = np.array(Image.open(FIX / "finishes" / f"{name}.jpg").convert("RGB"))
-    plan = json.loads((FIX / "plans" / f"{name}.json").read_text(encoding="utf-8"))
-    owner = np.array(Image.open(FIX / "owners" / f"{name}.png")).astype(np.int32)
-    return finish, plan, owner
 
 
 def scene():
@@ -156,6 +151,9 @@ class OutlineTests(unittest.TestCase):
         owner[:70, 90:110] = 0  # a notch open at the top, wider than a gap: the field's shape, not a hole
         self.assertLess(ol.owner_stats(parts, owner)[1]["hole"], 0.002)  # only the notch's rounded corners
 
+
+@lessons.slow
+class ModelTests(unittest.TestCase):
     @unittest.skipUnless(all((ol.MODELS / n).exists() for n in ol.FILES), "the outline model files aren't in models/")
     def test_the_model_gives_the_saved_outlines(self):
         sam = ol.Sam()
@@ -167,11 +165,12 @@ class OutlineTests(unittest.TestCase):
             self.assertEqual(ol.problems(plan["parts"], stats), [], name)
 
 
-class BuildStepsTests(unittest.TestCase):
+@lessons.slow
+class FixtureBuildTests(unittest.TestCase):
     def test_the_fixture_lessons_build_clean(self):
         for name in NAMES:
-            finish, plan, owner = fixture(name)
-            pictures, rows, _ = bs.build(finish, plan, owner)
+            finish = fixture(name)[0]
+            plan, pictures, rows, _ = lessons.built(name)  # built once per run and shared (tests/lessons.py)
             self.assertEqual(len(pictures), len(bs.flat_steps(plan)), name)
             self.assertTrue((pictures[-1] == finish).all(), name)
             self.assertEqual(bs.problems(plan, rows), [], name)
@@ -180,10 +179,37 @@ class BuildStepsTests(unittest.TestCase):
                 self.assertEqual(r["outside"], 0.0, f"{name} {r['id']} changed something outside its part")
 
     def test_the_same_inputs_give_the_same_pictures(self):
+        # the shared build (often made in another worker process) against a fresh one here, past build's memo
         finish, plan, owner = fixture("red-sailboat")
-        a, _, _ = bs.build(finish, plan, owner)
-        b, _, _ = bs.build(finish, plan, owner)
+        a = lessons.built("red-sailboat")[1]
+        b, _, _ = bs._build(finish, plan, owner)
+        self.assertEqual(len(a), len(b))
         self.assertTrue(all((x == y).all() for x, y in zip(a, b)))
+
+
+class BuildStepsTests(unittest.TestCase):
+    def test_the_same_inputs_again_give_a_copy_and_anything_else_builds_anew(self):  # build's memo (#87)
+        img, parts, given = scene()
+        _, owner, _ = ol.outline(img, parts, given=given)
+        plan = scene_plan(parts)
+        a, rows, painted = bs.build(img, plan, owner)
+        a[0][:] = 0  # a caller changing what it got back
+        rows[0]["id"], painted[0][:] = "changed", False
+        b, rows, painted = bs.build(img, plan, owner)
+        self.assertFalse((b[0] == 0).all())
+        self.assertEqual((rows[0]["id"], bool(painted[0].any())), ("sky", True))
+        key = bs._key(img, plan, owner, None)
+        moved = owner.copy()
+        moved[0, 0] = 3
+        other = copy.deepcopy(plan)
+        other["stages"][0]["steps"][0]["show"] = "flat"
+        self.assertEqual(len({key, bs._key(img, other, owner, None), bs._key(img, plan, moved, None),
+                              bs._key(img, plan, owner, img)}), 4)
+        old, bs.HALO = bs.HALO, bs.HALO * 2  # a tuned number is part of the key too
+        try:
+            self.assertNotEqual(bs._key(img, plan, owner, None), key)
+        finally:
+            bs.HALO = old
 
     def test_back_to_front_on_a_small_scene(self):
         img, parts, given = scene()
@@ -607,15 +633,11 @@ class PlanTests(unittest.TestCase):
                 plan2.load(Path(d))
 
 
+@lessons.slow
 class ToolTests(unittest.TestCase):
     def lesson(self, d: str, name: str = "red-sailboat") -> Path:
-        finish, plan, owner = fixture(name)
-        lesson = Path(d)
-        (lesson / "parts").mkdir()
-        (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
-        Image.fromarray(finish).save(lesson / "99_finish.png")
-        Image.fromarray(owner.astype(np.uint8)).save(lesson / "parts" / "owner.png")
-        return lesson
+        """A fixture lesson as outline leaves it (tests/lessons.py; its build is already in build_steps' memo)."""
+        return lessons.lesson(name, "outlined", Path(d))
 
     def run_tool(self, *argv) -> dict:
         import contextlib
@@ -637,15 +659,13 @@ class ToolTests(unittest.TestCase):
             self.assertEqual(r["cost_usd"], 0.0)
 
     def test_build_steps_says_when_a_background_picture_is_wanted(self):
-        with tempfile.TemporaryDirectory() as d:
-            r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "chickadee")))
-            self.assertGreater(r["objects_share"], bs.NEEDS_BACKGROUND)
-            self.assertTrue(r["needs_background"])
-            self.assertIn("Run background (one render", r["advice"])
-        with tempfile.TemporaryDirectory() as d:  # objects at about 8% show a ghost too (three real runs, 2026-11-13)
-            r = self.run_tool("build-steps", "--lesson", str(self.lesson(d, "red-sailboat")))
-            self.assertLess(r["objects_share"], 0.15)
-            self.assertTrue(r["needs_background"])
+        r = lessons.results("chickadee", "aided")["build-steps"]  # what build-steps printed on the shared build
+        self.assertGreater(r["objects_share"], bs.NEEDS_BACKGROUND)
+        self.assertTrue(r["needs_background"])
+        self.assertIn("Run background (one render", r["advice"])
+        r = lessons.results("red-sailboat", "aided")["build-steps"]  # objects at about 8% show a ghost too (three real runs, 2026-11-13)
+        self.assertLess(r["objects_share"], 0.15)
+        self.assertTrue(r["needs_background"])
         self.assertEqual(bs.NEEDS_BACKGROUND, 0.02)
 
     def test_outline_and_part_colors_run_on_a_plan_with_parts_only(self):
@@ -794,7 +814,7 @@ class CardTests(unittest.TestCase):
         results = ["Dry brush (x)"]
         good = {"id": "dry-brush", "stroke_result": "Dry brush (x)", "name": "Dry brush", "result": "Broken marks.",
                 "sources": ["research, section 2"], "checked": False, "brushes": ["flat"],
-                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10]}]}]}}
+                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10], "paint": "#8a6a4a"}]}]}}
         self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])
         for change, expect in (({"sources": []}, "no sources"), ({"result": ""}, "no result"),
                                ({"stroke_result": "Made up"}, "isn't an entry"), ({"brushes": ["spoon"]}, "can draw"),

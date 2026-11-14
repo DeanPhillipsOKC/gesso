@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.3.3 (2026-11-14)
+Nothing a lesson shows changes. The tests are fast again (#87), and publish is faster.
+- publish parses the stroke cards and element files once instead of about 60 times a lesson (that was about half
+  its time), and when several tools run in one process the step pictures are built once.
+- `python spike/tests/suite.py --quick` runs the quick set after a change, and `python spike/tests/suite.py` the full
+  suite on every core before a merge (docs/testing.md).
+
 ## POC 1.3.2 (2026-11-13)
 - A construction diagram can give a paint by its id as well as its name (#91). Before, a diagram given paint ids
   drew every shape gray. A shape whose paint is no paint's name or id, or a #hex, is now one of `check`'s problems,

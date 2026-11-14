@@ -14,6 +14,7 @@ Project knowledge lives under `docs/`. Read it before making changes:
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).
 - `docs/lessons-site.md`: the lessons site (site/) and its Cloudflare setup.
 - `docs/changelog.md`: what each Gesso version added. Lessons are stamped with the version that made them.
+- `docs/testing.md`: which tests to run when (the quick set after every change, the full suite before a merge).
 - **GitHub Issues** (https://github.com/DeanPhillipsOKC/gesso/issues, via the `gh` CLI) is the
   backlog. Check open issues before starting new work. Issues labeled `human` aren't yours to do.
 

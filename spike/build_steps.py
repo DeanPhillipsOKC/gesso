@@ -22,6 +22,10 @@ Painting goes back to front, so a part is painted straight through where things 
 
 from __future__ import annotations
 
+import copy
+import hashlib
+import json
+
 import cv2
 import numpy as np
 
@@ -207,11 +211,39 @@ def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, fro
     return out
 
 
+_built: dict[str, tuple] = {}  # the last few builds in this process, by what went in (see build)
+KEEP_BUILDS = 4
+
+
+def _key(finish: np.ndarray, plan: dict, owner: np.ndarray, background: np.ndarray | None) -> str:
+    h = hashlib.sha1(json.dumps(plan, sort_keys=True, default=str).encode())
+    for a in (finish, owner, background):
+        h.update(b"-" if a is None else f"{a.shape}{a.dtype}".encode() + np.ascontiguousarray(a).tobytes())
+    h.update(repr(sorted((k, v) for k, v in globals().items()
+                         if k.isupper() and isinstance(v, (int, float, str, tuple)))).encode())
+    return h.hexdigest()
+
+
 def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
           background: np.ndarray | None = None) -> tuple[list[np.ndarray], list[dict], list[np.ndarray]]:
     """(each step's picture, each step's numbers, each step's painted area). The painted area is the pixels the
     step lays paint on, plus an object's rim on the step that brings the object back: what the step-aids outline
-    on the page."""
+    on the page.
+
+    The same inputs in one process give back a copy of the last answer instead of building again: build-steps,
+    step-aids, draft-text, check, and publish each build the steps, and the tests run them in one process (#87).
+    From the command line each tool is its own process, so nothing changes there."""
+    key = _key(finish, plan, owner, background)
+    if key not in _built:
+        _built[key] = _build(finish, plan, owner, background)
+        while len(_built) > KEEP_BUILDS:
+            _built.pop(next(iter(_built)))
+    pictures, rows, painted = _built[key]
+    return [p.copy() for p in pictures], copy.deepcopy(rows), [m.copy() for m in painted]
+
+
+def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
+           background: np.ndarray | None = None) -> tuple[list[np.ndarray], list[dict], list[np.ndarray]]:
     parts, steps = plan["parts"], flat_steps(plan)
     index = {p["id"]: i for i, p in enumerate(parts)}
     hexes = {p["id"]: p["hex"] for p in plan["paints"]}
