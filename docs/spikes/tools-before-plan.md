@@ -5,7 +5,8 @@ judges before the plan? The code is `spike/experiments/issue52.py`. It is experi
 skill, or a test was changed.
 
 **The owner's calls (2026-11-13):** build the busy measure (#109); drop the painting-order tool
-(`docs/decisions.md`).
+(`docs/decisions.md`). **Built 2026-11-14 (#109, POC 1.8.0):** the `busy` tool (`spike/busy.py`), run at step 0c, on
+the beginner version, and on the finish; it gives the numbers in section 1 exactly.
 
 **Answers, short:**
 

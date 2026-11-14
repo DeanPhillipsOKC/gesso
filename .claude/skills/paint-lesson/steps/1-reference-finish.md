@@ -33,6 +33,12 @@ and mind:
   different shape is fine);
 - with a beginner version, anything on your drop or merge list came back.
 
+With a beginner version, also run `busy <lesson>/99_finish.png --lesson <lesson>`: fine texture has to stay below
+the photo's (`came_down`). If it didn't, flag it, naming where `busy/99_finish.jpg` outlines it. With no beginner
+version, skip this: a calm picture's finish measures a little more than its photo from brush marks, and nothing
+compares it.
+
 If anything is flagged, render once more with `--inputs <finish> <photo>` and a prompt listing the fixes
 ("Repaint it with these fixes so it matches the second image: ... Keep everything else the same"). Save the
-flagged list for `review.json` as `finish_issues`.
+flagged list for `review.json` as `finish_issues`. With a beginner version, run `busy` on the new `99_finish.png`
+too, so the number recorded is the finish the lesson uses.
