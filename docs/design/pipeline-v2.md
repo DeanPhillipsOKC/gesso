@@ -302,19 +302,23 @@ Also from #129:
   (overlap), and no part is reported by `outline.problems`. One thing is worse: the lavender fixture's far strip
   of hedge at the left edge is filed under the mountains it touches, where ViT-B left it to the hedges.
 - A thin part with no model loaded is refused (`NoModel`), like an object; tests hand `outline` a stand-in model.
-- **The first hands-off run** (`chickadee_skill_20261114-015433`, from the photo, sealed in 14 minutes, 2 renders,
-  $0.08): three runs of `outline` at 26, 16, and 15 seconds, and no fix round for the branch or the feet (one each
-  for the bird and the trunks, and one on the wing that was put back). The branch came back in one piece on the
-  first try, with its twigs and both leaf stems; the feet as two clean shapes from one box. Left on it: a small
-  knob where each leaf stem meets its leaf, and two small spikes on the bough where the feet sit. `stats.json`
-  says the feet are in 0 pieces: each foot is under the size `owner_stats` counts as a piece (0.2% of the
-  picture). Nothing reads that as a fault, but the count is wrong for a part this small.
+- **The hands-off runs** (the chickadee, from the photo, both sealed):
+  - `chickadee_skill_20261114-015433`: 14 minutes, 2 renders, $0.08. Three runs of `outline` at 26, 16, and 15
+    seconds; no fix round for the branch or the feet (one each for the bird and the trunks, and one on the wing
+    that was put back). Made before main's POC 1.5.0 (#95) was merged in, so it's in the history, not on the site.
+  - `chickadee_skill_20261114-022723` (POC 1.6.0, on the site): 12.9 minutes, 2 renders, $0.08. One run of
+    `outline`, 14 seconds, `problems` empty, no fix round for any part. The branch: 8 paths, `color_agrees` 0.92.
+  - On both, the branch came back in one piece on the first try, with its twigs and leaf stems and nothing stuck
+    to it; the feet as two clean shapes. Left on both: a small knob where each leaf stem meets its leaf, and small
+    bumps on the bough where the feet sit. `stats.json` says the feet are in 0 pieces: each foot is under the size
+    `owner_stats` counts as a piece (0.2% of the picture). Nothing reads that as a fault, but the count is wrong
+    for a part this small.
 
 The model: Segment Anything in High Quality (SAM-HQ) ViT-L, quantized encoder, ONNX, 345 MB, downloaded once to
 `models/` (git-ignored) from X-AnyLabeling's release with each file's SHA-256 checked. `onnxruntime`, no PyTorch.
 About 8 seconds to read a picture on 4 cores and 0.1 seconds a prompt: 8 to 13 seconds of outlining on a real
 finish, about 4 more than ViT-B took. The `outline` command as a whole, with loading the model and writing its
-files, took 15 to 26 seconds in the first hands-off run. Same finish and plan, same bytes, run twice (checked on the three fixtures
+files, took 14 to 26 seconds in the hands-off runs. Same finish and plan, same bytes, run twice (checked on the three fixtures
 and two gate runs).
 
 ## 7. What's behind things (built, except the render)
