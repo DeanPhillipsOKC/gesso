@@ -69,6 +69,12 @@ def parts_problems(plan: dict) -> list[str]:
                     out.append(f"{pid}: a {p['kind']} part needs points_{side} or colors_{side} ({what})")
         if p.get("kind") == "thin" and not (p.get("paths") or p.get("path")):
             out.append(f"{pid}: a thin part needs paths: points along its middle")
+        elif p.get("kind") == "thin" and not all(
+                isinstance(path, list) and path and all(isinstance(q, (list, tuple)) and len(q) == 2
+                                                        and all(isinstance(v, (int, float)) for v in q) for q in path)
+                for path in (p.get("paths") or [p.get("path")])):
+            out.append(f"{pid}: a thin part has an empty path or a point that isn't [x, y]: each path lists points "
+                       "along one limb")
         parent = seen.get(p.get("parent") or "")
         if parent and p.get("kind") in ("marks", "thin") and parent.get("kind") in ("marks", "thin"):
             # a marks or thin child only takes pixels its parent's family owns (or nobody does), and a marks or thin

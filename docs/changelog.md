@@ -6,6 +6,18 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.6.1 (2026-11-14)
+Fixes to the thin-part outlines (#129, from PR #133's review):
+- `outline` tells a thin part the model is unsure of to add points and a path per limb, not to tighten a box it
+  doesn't have.
+- A plan with an empty path, or a point that isn't `[x, y]`, in a thin part's `paths` is refused with what to fix,
+  where `outline` crashed on it.
+- The skill's fix table says what to do when a branch takes the top of a leaf its stem runs into: end that path short
+  of the leaf.
+- In the lesson history, `chickadee_skill_20261114-022627` says POC 1.6.0 but was made by another build of #129
+  (PR #133, commit ff98b7b): limbs asked only for a path the first answer missed, and SAM ViT-B kept for areas and
+  objects. The 1.6.0 lines below describe the build that merged (#132), not that run.
+
 ## POC 1.6.0 (2026-11-14)
 - Thin parts (a branch, a mast and its boom, a rail) get clean outlines (#129). They used to be found by color
   alone, which left blobs of misty background stuck to the chickadee's branch (#100) and a lumpy mast with a boom

@@ -102,6 +102,7 @@ part worse, put its entry back the way it was.
 | A marks part missed some of itself | add a `points_in` there, one per shade |
 | A thin part is missing a limb or an end | add a path along the missing limb; raise `width` if its band cuts the limb off |
 | A thin part took what lies beside it (foliage between twigs, a strip of sail) | add a `points_out` there, one per color; lower `width` |
+| A thin part took the end of the thing a path runs into (the top of a leaf at the end of its stem) | end that path short of the thing, and add a `points_out` on it |
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | run `part-colors` and give `colors_in` / `colors_out` as hex; or drop the part and use a pass |
 | An object took background, or came back in pieces | tighten or loosen its box; one box per thing |
