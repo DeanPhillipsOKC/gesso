@@ -60,10 +60,11 @@ class DraftTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.built = {}
+        cls.built, cls.owners = {}, {}
         for name in NAMES:
             plan, pictures, _, masks = lessons.built(name)
-            cls.built[name] = (plan, pictures, masks, dt.draft(plan, pictures, masks, None, CANVAS))
+            cls.owners[name] = lessons.fixture(name)[2]
+            cls.built[name] = (plan, pictures, masks, dt.draft(plan, pictures, masks, None, CANVAS, owner=cls.owners[name]))
 
     def test_every_step_has_lines_in_the_tables_order_none_long_none_with_percentages(self):
         rank = {k: n for n, k in enumerate(dt.KINDS)}
@@ -83,7 +84,8 @@ class DraftTests(unittest.TestCase):
 
     def test_the_same_input_gives_the_same_lines(self):
         plan, pictures, masks, drafted = self.built["chickadee"]
-        self.assertEqual(json.dumps(dt.draft(plan, pictures, masks, None, CANVAS)), json.dumps(drafted))
+        self.assertEqual(json.dumps(dt.draft(plan, pictures, masks, None, CANVAS,
+                                                  owner=self.owners["chickadee"])), json.dumps(drafted))
 
     def test_let_it_dry_follows_the_paint_underneath(self):
         d = by_id(self.built["chickadee"][3])
@@ -112,8 +114,9 @@ class DraftTests(unittest.TestCase):
 
     def test_where_is_the_outline_in_words_inches_with_a_canvas(self):
         plan, pictures, masks, drafted = self.built["chickadee"]
-        for d, m in zip(drafted, masks):
-            self.assertEqual(" ".join(x["text"] for x in d["lines"] if x["kind"] == "where"), aids.where_words(m, CANVAS))
+        for d, m in zip(drafted, bs.visible(plan, self.owners["chickadee"], masks)):
+            self.assertTrue(" ".join(x["text"] for x in d["lines"] if x["kind"] == "where").startswith(
+                aids.where_words(m, CANVAS)))  # what the finish shows of it, then why the outline is bigger if it is
         sized = by_id(drafted)
         where = next(x["text"] for x in sized["bird-body"]["lines"] if x["kind"] == "where")
         self.assertRegex(where, r"\d in from the (top|left) edge")
@@ -123,7 +126,7 @@ class DraftTests(unittest.TestCase):
         plan = self.built["red-sailboat"][0]
         d = by_id(self.built["red-sailboat"][3])
         names = publish2.paint_names(plan)
-        self.assertEqual(d["sky-blend"]["lines"][1]["text"],
+        self.assertEqual(next(x["text"] for x in d["sky-blend"]["lines"] if x["kind"] == "paints"),
                          f"Paints, top to bottom: {names['sky-1']}, {names['sky-2']}, then {names['sky-3']}.")
         leaves = by_id(self.built["chickadee"][3])["leaves-shape"]
         names = publish2.paint_names(self.built["chickadee"][0])
@@ -185,6 +188,90 @@ class DraftTests(unittest.TestCase):
         lines = dt.split(text, "how")
         self.assertEqual(len(lines), 2)
         self.assertTrue(all(len(x["text"].split()) <= dt.MAX_WORDS and x["text"].endswith(".") for x in lines))
+
+    def where_line(self, name: str, step: str) -> str:
+        d = by_id(self.built[name][3])[step]
+        return " ".join(x["text"] for x in d["lines"] if x["kind"] == "where")
+
+    def test_where_gives_the_visible_horizon_not_the_paint_under_later_parts(self):
+        # #126: the sky is painted past the horizon on purpose (covers), the water's coat lays the hill's rim back,
+        # and both used to be measured whole, so the inches were off. On a 14 x 11 canvas the lines must place the
+        # horizon the finished painting shows, within 1/2 in.
+        plan, _, _, _ = self.built["red-sailboat"]
+        owner = self.owners["red-sailboat"]
+        idx = {p["id"]: i for i, p in enumerate(plan["parts"])}
+        h = owner.shape[0]
+        sky_rows = np.flatnonzero(np.isin(owner, bs._family(plan["parts"], idx["sky"])).any(1))
+        water_rows = np.flatnonzero(np.isin(owner, bs._family(plan["parts"], idx["water"])).any(1))
+        sky_bottom, water_top = (sky_rows.max() + 1) / h * CANVAS["h_in"], water_rows.min() / h * CANVAS["h_in"]
+
+        def inches_down(line: str, what: str) -> float:
+            m = re.search(rf"Its {what} is about (\d+)(?: (\d)/(\d))? in from the (top|bottom) edge", line)
+            self.assertIsNotNone(m, line)
+            v = int(m[1]) + (int(m[2]) / int(m[3]) if m[2] else 0)
+            return v if m[4] == "top" else CANVAS["h_in"] - v
+
+        sky = self.where_line("red-sailboat", "sky-blend")
+        self.assertLessEqual(abs(inches_down(sky, "bottom") - sky_bottom), 0.5, sky)
+        self.assertIn("Paint a little past its bottom, under where the far hill and shore, and the water will go.", sky)
+        for step in ("water-coat", "water-light"):
+            water = self.where_line("red-sailboat", step)
+            self.assertLessEqual(abs(inches_down(water, "top") - water_top), 0.5, water)
+        # an object is placed by its own outline, not its soft rim or the paint run under the hill
+        self.assertIn("about 3/4 in wide and 3/4 in tall", self.where_line("red-sailboat", "sun"))
+
+
+class VisibleTests(unittest.TestCase):
+    """build_steps.visible and draft_text.past_words on a made-up scene (#126)."""
+
+    def scene(self):
+        parts = [{"id": "sky", "name": "The sky", "kind": "area", "box": [0, 0, 1, 0.6], "covers": [[0, 0, 1, 0.8]]},
+                 {"id": "sun", "name": "The sun", "kind": "object", "parent": "sky", "box": [0.1, 0.1, 0.2, 0.2]},
+                 {"id": "water", "name": "The water", "kind": "area", "box": [0, 0.5, 1, 1]},
+                 {"id": "boat", "name": "The boat", "kind": "object", "box": [0.6, 0.2, 0.8, 0.7]}]
+        plan = {"parts": parts, "stages": [{"id": "all", "steps": [
+            {"id": "sky", "part": "sky"}, {"id": "sun", "part": "sun"}, {"id": "water", "part": "water"},
+            {"id": "boat", "part": "boat"}]}]}
+        owner = np.zeros((100, 140), np.int32)
+        owner[10:20, 14:28] = 1  # the sun, on the sky
+        owner[50:] = 2
+        owner[20:70, 84:112] = 3  # the boat, in front of both
+        return plan, owner
+
+    def test_the_visible_part_leaves_out_paint_a_later_part_covers(self):
+        plan, owner = self.scene()
+        sky = np.zeros_like(owner, bool)
+        sky[:80] = True  # the covers overrun, under the water and the boat
+        sun = owner == 1
+        nothing = np.zeros_like(sky)
+        seen = bs.visible(plan, owner, [sky, sun, owner >= 2, nothing])
+        self.assertTrue(np.array_equal(seen[0], (owner <= 1)))  # the sun's place counts until the sun is painted
+        self.assertTrue(np.array_equal(seen[1], sun))
+        self.assertTrue(np.array_equal(seen[2], owner == 2))  # not the boat it's painted behind
+        self.assertFalse(seen[3].any())  # nothing painted: nothing seen
+
+    def test_the_line_says_why_the_outline_reaches_further(self):
+        plan, owner = self.scene()
+        canvas = {"w_in": 14, "h_in": 10}
+        sky_part, water_part = plan["parts"][0], plan["parts"][2]
+        later = {2: "The water", 3: "The boat"}
+        painted = np.zeros_like(owner, bool)
+        painted[:80] = True
+        seen = painted & (owner <= 1)
+        self.assertEqual(dt.past_words(sky_part, seen, painted, owner, later, canvas),
+                         "Paint a little past its bottom, under where the water and the boat will go.")
+        # behind an object, with no covers: the painter paints straight through where the boat goes
+        painted = (owner == 2) | (owner == 3)
+        self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas),
+                         "The outline also runs under where the boat will go: paint straight through there.")
+        # under 1/2 in further (the usual run under the next part's edge) says nothing
+        painted = owner == 2
+        painted[47:50, :80] = True  # 3 rows of 100 on a 10 in canvas: 0.3 in
+        self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas), "")
+        # paint over an earlier part (a hill's rim laid back) isn't paint a later part covers: no reason to give
+        painted = owner == 2
+        painted[30:50, :80] = True
+        self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas), "")
 
 
 class MergeTests(unittest.TestCase):

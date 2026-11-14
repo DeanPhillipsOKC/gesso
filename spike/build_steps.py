@@ -427,6 +427,22 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     return pictures, rows, painted
 
 
+def visible(plan: dict, owner: np.ndarray, painted: list[np.ndarray]) -> list[np.ndarray]:
+    """Of each step's painted area (build's third value), what the finished painting still shows: the pixels its
+    part, or a child of its part, owns in the outlines. Paint carried under a later part (behind the boat, under the
+    next part's edge, a `covers` overrun) is left out, and so is an object's soft rim. A child's place counts until
+    the child is painted: by then the painted area already leaves it out. The Where words measure this (#126); the
+    outline on the page stays the painted area, since the painter does paint there. A step whose part shows
+    nowhere keeps its painted area."""
+    parts = plan["parts"]
+    index = {p["id"]: i for i, p in enumerate(parts)}
+    out = []
+    for s, m in zip(flat_steps(plan), painted):
+        seen = m & np.isin(owner, _family(parts, index[s["part"]]))
+        out.append(seen if seen.any() else m.copy())
+    return out
+
+
 def main_pieces(mine: np.ndarray, clean: np.ndarray) -> np.ndarray:
     """`clean` without the part's stray pieces: a piece of the part counts when its clean paint is at least
     MAIN_PIECE of the biggest piece's. A sliver filed under the sky down between the hill and the tree gave every
