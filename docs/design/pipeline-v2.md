@@ -709,17 +709,27 @@ checked: false
   outline also reaches onto the far hill and shore, painted already: there, only soften this paint into its edge and
   leave it showing.", since that paint only lays the part's rim back in its own color, so an outline past its words is never left unexplained (PR #142 review). On the
   sailboat fixture (14 x 11 in) the sky's bottom moved from 5 to 5 1/2 in from the bottom edge and the water's top
-  from 4 1/2 in from the top to 5 in from the bottom, each within 1/4 in of the horizon in the outlines. 
+  from 4 1/2 in from the top to 5 in from the bottom, each within 1/4 in of the horizon in the outlines.
   **Changed 2026-11-14 (#90): stray specks don't move the words.** They're measured from the area's main pieces
-  (`aids.main_area`): a piece under 1% of the area (`aids.STRAY`) is a stray speck and left out, unless the small
-  pieces together are 10% of the area or more (`aids.STRAY_TOTAL`: a part made of many small marks, a sun path or
-  lavender rows, is measured whole). Two specks by the trunk had put a real run's chickadee body (`chickadee_skill_
-  20261113-130614`) "at the left edge, 8 1/2 in wide"; from its page's outline the line now reads 1 3/4 in from the
-  left edge, about 7 in wide (the hand edit said 6 1/2). `past_words` compares the main pieces too, so a speck of the
-  outline isn't a reason to explain it. The outline on the Where picture still shows every piece. Not fixed by it: on
-  `balloon-lavender_skill_20261113-130631` the mountains' painted area has a piece up in the sky, 17% of it and
-  reaching the top edge; it's not a speck, and how much of it the mountains' outline owns (what the words measure
-  since #126) can't be told from the sealed page.
+  (`aids.main_area`). A piece under 1% of the area (`aids.STRAY`) is small; a small piece more than 4% of the canvas's
+  long side (`aids.STRAY_NEAR`) from the rest of the area is a stray speck and left out. A small piece nearer than
+  that is one of the part's marks and counts, and so does one near a mark already counted, so a row of dabs or the far
+  rows of lavender are kept whatever they add up to. When every piece is small (sparkles), all of it counts. The
+  first build of this used a share instead (small pieces counted when they made 10% of the area); the review of PR
+  #143 showed it was a cliff: far specks came back at 10%, and dabs beside the body were dropped just under it.
+  On the sealed `chickadee_skill_20261113-130614`, two specks by the trunk (6% and 12% of the long side from the
+  body) put the body "at the left edge, 8 1/2 in wide"; from its page's outline the line now reads 1 3/4 in from the
+  left edge, about 7 in wide (the run's hand edit said 6 1/2; draft-text wasn't run on the run itself, whose folder
+  isn't kept). On the lavender run the far deep violet rows sit 2 to 6% from the main rows, each near
+  another, and are all kept. `past_words` compares the main pieces too, so a speck of the outline isn't a reason to
+  explain it. What it changes on the fixtures: the lavender's `paths` no longer reaches the left edge and 12 in wide
+  (1 3/4 in from the right edge, 9 1/2 in wide); the chickadee's `wing-dark` starts 4 in down, not 3; the sailboat's
+  `path-dark` loses "reaches onto the water", which came from a speck; and the chickadee's `foliage-rust`, which
+  reached all four edges only by far specks, reads top to bottom from 2 in off the left edge, with the outline's
+  reach under the branch and onto the sky now explained. The outline on the Where picture still shows every piece.
+  **Not fixed by it:** on `balloon-lavender_skill_20261113-130631` the mountains' painted area has a piece up in
+  the sky, 17% of it and reaching the top edge. It's not a speck, and how much of it the mountains' outline owns
+  (what the words measure since #126) can't be told from the sealed page; #90 stays open for it.
 - *Paints*: a blend's paints are ordered top to bottom by where each lands in the step picture. "Out from the light"
   isn't built: nothing in the plan says where the light is in a form a tool can read.
 - *Mix*: on a paint's first use only, naming every later step ("for this step and steps 4, 7 and 10; cover it

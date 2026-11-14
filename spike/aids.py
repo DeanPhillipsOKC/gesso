@@ -134,25 +134,38 @@ def _inches(x: float, step: float | None = None) -> str:
 EDGE_SHARE = 0.02  # an area within this share of the canvas's edge reaches the edge
 WHOLE = 0.9  # an area covering this share of the canvas is "the whole canvas" (the chickadee's branch reaches all four
 # edges but covers 18%: it was called the whole canvas until #51)
-STRAY = 0.01  # a piece of the area smaller than this share of the whole area is a stray speck: the Where words leave it
-# out (#90). Two specks by the trunk put the chickadee's body "at the left edge, 8 1/2 in wide" (it's 6 1/2 in, 1 3/4 in
-# from the edge); a few under the sky put the lavender's mountains "from the top edge". `outline.drop_islands` gives an
-# area's strays to the part around them; this is the same idea for any part, measured against the part itself.
-STRAY_TOTAL = 0.1  # unless the small pieces add up to this share of the area or more: then the part is many small
-# marks (sparkles, foliage dabs, lavender rows), and its place is where all of them are
+STRAY = 0.01  # a piece of the area smaller than this share of the whole area is small (#90)
+STRAY_NEAR = 0.04  # and a small piece farther than this share of the canvas's long side from the rest of the area is a
+# stray speck: the Where words leave it out (#90). Near, it's one of the part's marks (a dab beside the body, a far
+# row of lavender) and counts, through a chain of marks too. Two specks of the chickadee's body by the trunk, 6% and
+# 12% of the long side from it, put its line "at the left edge, 8 1/2 in wide", where its page's outline gives 1 3/4 in
+# from the edge and about 7 in. The far rows of a sealed lavender run sit 2 to 6% from the next row, each within 4% of
+# another. `outline.drop_islands` gives an area's strays to the part around them; this is the same idea for any part,
+# measured against the part itself.
 
 
 def main_area(area: np.ndarray) -> np.ndarray:
-    """The area without its stray specks (STRAY), for measuring where it is. All of it when the small pieces are
-    much of it (STRAY_TOTAL), or when nothing else is left."""
+    """The area without its stray specks, for measuring where it is: the pieces of at least STRAY of it, and every
+    small piece within STRAY_NEAR of those or of a small piece already kept. All of it when every piece is small
+    (sparkles): then there's nothing to measure the specks against."""
     n, labels, stats, _ = cv2.connectedComponentsWithStats(area.astype(np.uint8), connectivity=8)
     if n <= 2:
         return area
     sizes = stats[1:, cv2.CC_STAT_AREA]
-    small = sizes < STRAY * sizes.sum()
-    if small.all() or sizes[small].sum() >= STRAY_TOTAL * sizes.sum():
+    keep = np.concatenate([[False], sizes >= STRAY * sizes.sum()])
+    if not keep.any():
         return area
-    return np.isin(labels, 1 + np.flatnonzero(~small))
+    near = STRAY_NEAR * max(area.shape)
+    while True:
+        kept = keep[labels]
+        d = cv2.distanceTransform((~kept).astype(np.uint8), cv2.DIST_L2, 5)
+        closest = np.full(n, np.inf, np.float32)
+        np.minimum.at(closest, labels.ravel(), d.ravel())
+        add = ~keep & (closest <= near)
+        add[0] = False
+        if not add.any():
+            return kept
+        keep |= add
 
 
 def where_words(area: np.ndarray, canvas: dict | None) -> str:

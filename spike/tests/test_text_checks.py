@@ -137,6 +137,12 @@ class DraftTests(unittest.TestCase):
         where = lambda entries: [x["text"] for x in by_id(entries)["bird-body"]["lines"] if x["kind"] == "where"]
         self.assertEqual(where(dt.draft(plan, pictures, specked, None, CANVAS, owner=owner)), where(drafted))
         self.assertNotIn("at the left edge", " ".join(where(drafted)))
+        # the fixtures' own specks (review of #143): the lavender's paths reached the left edge, 12 in wide, and the
+        # sailboat's sun path was "explained" as reaching onto the water, both by specks
+        paths = " ".join(x["text"] for x in by_id(self.built["lavender-balloon"][3])["paths"]["lines"] if x["kind"] == "where")
+        self.assertIn("its right side is about 1 3/4 in from the right edge; it's about 9 1/2 in wide", paths)
+        sun_path = " ".join(x["text"] for x in by_id(self.built["red-sailboat"][3])["path-dark"]["lines"])
+        self.assertNotIn("reaches onto the water", sun_path)
 
     def test_paints_go_darkest_first_and_a_blend_top_to_bottom(self):
         plan = self.built["red-sailboat"][0]
@@ -297,6 +303,18 @@ class VisibleTests(unittest.TestCase):
                                        {0: "The sky"}),
                          "The outline also reaches onto the sky, painted already: there, only soften this paint "
                          "into its edge and leave it showing.")
+
+    def test_a_stray_speck_of_the_outline_isnt_explained(self):
+        # #90: the words leave a part's stray specks out, so the outline's own specks don't count as reaching past
+        # them: a 2 x 2 speck of the water's outline up on the boat says nothing; a real piece there still does
+        plan, owner = self.scene()
+        canvas, water_part = {"w_in": 14, "h_in": 10}, plan["parts"][2]
+        painted = owner == 2
+        painted[22:24, 90:92] = True  # on the boat, 2 1/2 in above the water: under 1% of the outline
+        self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas), "")
+        painted[22:40, 86:110] = True  # 432 px of 6000: a piece of the outline, not a speck
+        self.assertEqual(dt.past_words(water_part, owner == 2, painted, owner, {3: "The boat"}, canvas),
+                         "The outline also runs under where the boat will go: paint straight through there.")
 
 
 class MergeTests(unittest.TestCase):

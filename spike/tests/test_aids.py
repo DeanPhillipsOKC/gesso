@@ -176,19 +176,31 @@ class WhereWordsTests(unittest.TestCase):
         self.assertEqual(aids.where_words(specked, canvas), alone)
         self.assertEqual(aids.main_area(specked).sum(), body.sum())
 
-    def test_a_part_of_many_small_marks_is_measured_whole(self):
-        # sparkles or dabs: every piece is small, or the small ones are much of it, and each is the part
+    def test_small_marks_near_the_part_count_and_far_specks_dont_whatever_they_add_up_to(self):
+        # review of #143: a 10% rule for "many small marks" measured the far specks again at 10% and dropped the
+        # marks beside the body under it. Each small piece is judged by how near it is to the rest of the part.
         canvas = {"w_in": 14, "h_in": 11}
-        dabs = np.zeros((1100, 1400), bool)
-        for x in range(50, 1350, 100):
-            dabs[600:610, x:x + 10] = True
-        self.assertEqual(aids.main_area(dabs).sum(), dabs.sum())
-        self.assertIn("it's about 12 in wide", aids.where_words(dabs, canvas))  # from the first dab to the last
-        main = self.area([0.4, 0.27, 0.5, 0.4], (1100, 1400))  # 1.5% of the canvas
-        for x in range(0, 1400, 70):  # twenty specks, each under 1% of the area, together over 10% of it
-            main[1000:1012, x:x + 12] = True
-        self.assertTrue((aids.main_area(main) == main).all())
-        self.assertIn("its bottom is about", aids.where_words(main, canvas).lower())
+        for n in (14, 15):  # the small pieces, specks included, are 9.6% and 10.2% of the area: either side of 10%
+            body = np.zeros((1100, 1400), bool)
+            body[300:440, 550:690] = True  # 140 x 140 px
+            for k in range(n):  # a row of 12 x 12 dabs 48 px above it, 40 px apart: each under 1% of the area
+                body[240:252, 400 + 40 * k:412 + 40 * k] = True
+            marks = body.copy()
+            body[500:506, 0:6] = True  # a speck at the left edge
+            body[1090:1096, 1390:1396] = True  # and one in the bottom right corner
+            self.assertTrue((aids.main_area(body) == marks).all(), n)
+            words = aids.where_words(body, canvas)
+            self.assertEqual(words, aids.where_words(marks, canvas), n)
+            self.assertIn("Its top is about 2 1/2 in from the top edge", words)  # the dabs, at 240 of 1100 px
+
+    def test_a_part_of_only_small_pieces_is_measured_whole(self):
+        # sparkles: every piece is under 1% of the area, so there's nothing to call the rest of the part
+        dots = np.zeros((1100, 1400), bool)
+        for k in range(150):
+            x, y = 20 + 9 * k, 200 + (k % 30) * 20
+            dots[y:y + 4, x:x + 4] = True
+        self.assertTrue((aids.main_area(dots) == dots).all())
+        self.assertIn("it's about 13 1/2 in wide", aids.where_words(dots, {"w_in": 14, "h_in": 11}))
 
     def test_inches_are_measured_on_the_canvas_not_the_frame(self):
         frame = np.zeros((200, 300), bool)
