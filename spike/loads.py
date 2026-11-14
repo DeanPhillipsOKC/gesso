@@ -36,9 +36,9 @@ def text(load: dict | None) -> str:
     """A stroke card's load as one line: "Creamy paint, a full load." then its note. "" for no load."""
     if not isinstance(load, dict):
         return ""
-    t, a = THICKNESS.get(load.get("thickness") or ""), AMOUNT.get(load.get("amount") or "")
+    t, a = THICKNESS.get(str(load.get("thickness") or "")), AMOUNT.get(str(load.get("amount") or ""))
     head = f"{t}, {a}." if t and a else f"{t}." if t else f"{a[0].upper()}{a[1:]}." if a else ""
-    return " ".join(x for x in (head, (load.get("note") or "").strip()) if x)
+    return " ".join(x for x in (head, str(load.get("note") or "").strip()) if x)
 
 
 def problems(load, where: str) -> list[str]:
@@ -50,12 +50,14 @@ def problems(load, where: str) -> list[str]:
         return [f"{where}: load must be thickness ({', '.join(THICKNESS)}), amount ({', '.join(AMOUNT)}), and an "
                 "optional note, not free text"]
     out = [f"{where}: load has {k!r}; it takes only {', '.join(KEYS)}" for k in load if k not in KEYS]
-    if load.get("thickness") is not None and load["thickness"] not in THICKNESS:
+    if load.get("thickness") is not None and (not isinstance(load["thickness"], str) or load["thickness"] not in THICKNESS):
         out.append(f"{where}: load thickness {load['thickness']!r} isn't one of {', '.join(THICKNESS)}")
-    if load.get("amount") is not None and load["amount"] not in AMOUNT:
+    if load.get("amount") is not None and (not isinstance(load["amount"], str) or load["amount"] not in AMOUNT):
         out.append(f"{where}: load amount {load['amount']!r} isn't one of {', '.join(AMOUNT)}")
     if not any(load.get(k) for k in KEYS):
         out.append(f"{where}: load is empty")
+    if load.get("note") is not None and not isinstance(load["note"], str):
+        out.append(f"{where}: load note must be text")
     if (m := OTHER_WORDS.search(str(load.get("note") or ""))):
         out.append(f"{where}: load note says {m.group(0)!r}; say how thick and how much with thickness and amount only")
     return out
@@ -143,7 +145,7 @@ def _term(words: str) -> str:
     return next(t for t, (_, w) in TERMS.items() if w.lower() == low or w.split()[0].lower() == low)
 
 
-def linked(text_: str) -> str:
+def linked(text_: str, pictures: bool = True) -> str:
     """The line as HTML: its load words linked to the paint-load card, and the two small pictures right after them, so
     the painter doesn't scroll back to the card. The pictures go under the line, big enough to read on a phone. A line with no load comes back escaped and nothing else."""
     out = e(text_)
@@ -162,6 +164,8 @@ def linked(text_: str) -> str:
             body += ", " + link(m.group("a"))
     else:
         body = link(m.group("a2"))
+    if not pictures:  # a stroke card's Load row: its step's line just above already shows them
+        return f'{out[:m.start()]}{body}.{out[m.end():]}'
     pics = "".join(picture(t, "small") for t in terms)
     return f'{out[:m.start()]}{body}.{out[m.end():]}<span class="loadpics">{pics}</span>'
 

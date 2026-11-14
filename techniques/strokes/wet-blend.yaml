@@ -5,8 +5,7 @@ brushes:
 - flat
 - wash brush
 load:
-  amount: light
-  note: Less paint often blends better. If the paint starts to drag, add a tiny bit of water to the brush.
+  note: Don't put too much paint on the brush. Less paint often blends better. If the paint starts to drag, add a tiny bit of water to the brush.
 motion: Work fast, in one area, while both colors are still wet.
 result: A soft transition, only where both paints were still wet.
 then: Stop when the paint drags; streaks can stay.

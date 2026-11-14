@@ -211,7 +211,7 @@ def unplaced(stages: list[dict], basic_cards: dict | None = None) -> list[str]:
 def stroke_html(card: dict, uid: str = "") -> str:
     """One stroke card as HTML: the lesson page and the owner's review page both use it."""
     def field(key: str) -> str:  # the load with its words linked to the paint-load card and its pictures (#99)
-        return loads.linked(loads.text(card[key])) if key == "load" else e(str(card[key]))
+        return loads.linked(loads.text(card[key]), pictures=False) if key == "load" else e(str(card[key]))
 
     rows = "".join(f"<p><b>{label}.</b> {field(key)}</p>" for key, label in TEXT_FIELDS if card.get(key))
     tools = [*(card.get("brushes") or []), *(card.get("tools") or [])]

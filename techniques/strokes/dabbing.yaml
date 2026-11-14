@@ -9,7 +9,6 @@ brushes:
 tools:
 - a sponge, for soft patches
 load:
-  thickness: thick
   amount: light
   note: 'No water on the brush: a wet one makes blobs.'
 motion: Tap with the tip of the brush. The more you tap one spot, the more solid it gets.

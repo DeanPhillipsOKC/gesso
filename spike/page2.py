@@ -79,6 +79,7 @@ nav.toc ol{margin:0;padding-left:1.4rem;display:grid;gap:.35rem}
 nav.toc li span{color:var(--muted);font-size:.9rem}
 .start{display:grid;gap:1rem}
 .start .basics{display:grid;gap:.5rem;grid-template-columns:repeat(auto-fill, minmax(min(100%, 18rem), 1fr));align-items:start}
+.start .basics #basic-paint-load{grid-column:1/-1}
 .transfer{display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:1rem;align-items:start}
 ul.strokes{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
 @media (max-width: 760px){.transfer{grid-template-columns:1fr}}

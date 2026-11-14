@@ -5,7 +5,6 @@ brushes:
 - flat
 - old stiff flat (catches the canvas weave best)
 load:
-  thickness: thick
   amount: dry
   note: Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.
 motion: Light pressure, skimming the surface.

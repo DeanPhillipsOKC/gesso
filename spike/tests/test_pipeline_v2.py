@@ -1024,7 +1024,8 @@ class CardTests(unittest.TestCase):
                              ({"amount": "heaps"}, "isn't one of"), ({"thickness": "creamy", "how": "x"}, "takes only"),
                              ({}, "is empty"), ({"amount": "light", "note": "Creamy, not runny."}, "says 'Creamy'"),
                              ({"thickness": "thin", "note": "Thin it with water until inky."}, "says 'Thin'"),
-                             ({"note": "Don't overload the brush."}, "says 'overload'")):
+                             ({"note": "Don't overload the brush."}, "says 'overload'"),
+                             ({"thickness": ["creamy"]}, "isn't one of"), ({"note": ["x"]}, "must be text")):
             got = " | ".join(cards.problems({good["id"]: {**good, "load": load}}, {}, results))
             self.assertIn(expect, got, load)
 
@@ -1068,7 +1069,8 @@ class CardTests(unittest.TestCase):
             self.assertEqual(loads.linked(plain), plain.replace("'", "&#x27;"))
         self.assertIn("&lt;b&gt;", loads.linked("Load: Thin paint. <b>"))  # still escaped
         card = cards.stroke_html(cards.strokes()["press-and-lift"])
-        self.assertEqual(card.count('class="loadpic sm"'), 2)  # the stroke card's Load row too
+        self.assertEqual(card.count('class="loadword"'), 2)  # the stroke card's Load row links its words too,
+        self.assertNotIn('class="loadpic', card)              # without the pictures its step's line already shows
 
     def test_an_unchecked_card_says_so_and_the_page_holds_every_card(self):
         page = cards.page()
