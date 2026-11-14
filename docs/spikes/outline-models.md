@@ -5,7 +5,7 @@ the pipeline changed.
 
 **Answer: swap the local model for SAM-HQ ViT-L, and ask it for thin parts with a box and the plan's points. No
 hosted model looks needed, though none was run.** The chickadee's branch, the worst outline on the site, comes out
-clean and in one piece, twigs included (345 MB, 4 seconds more per picture, free). Much of the gain is not the
+clean and in one piece on the gate run, twigs included (345 MB, 4 seconds more per picture, free). Much of the gain is not the
 model at all: the pipeline never asks the model for a thin part, because the probe of 2026-11-12 asked with one
 box and no points and got the background back. Given the points the plan already has, even today's ViT-B returns a
 far better branch than the color rule, and it outlines the mast and the feet better too.
@@ -65,15 +65,19 @@ the pictures show.
 - One box and no points, the probe's way: SAM and SAM 2.1 return most of the picture at nearly every size (63 to
   87% of it; the branch is 13%). SAM-HQ returns the branch with background attached, in 3 to 15 pieces. This is
   what "the model fails on thin parts" was based on.
-- One box + points: SAM-HQ ViT-L returns one clean piece on both pictures with every twig on the gate run. It is
-  the cleanest branch in the run. Its faults are small: a sliver at one foot, and one thin twig missed on the
-  fixture. ViT-L is as clean but drops the long right twig on both pictures. ViT-B gives three pieces on the gate
-  run: no blobs above the branch, a patch of foliage at the left edge, and only a scrap of the right twig.
+- One box + points: SAM-HQ ViT-L returns one clean piece on both pictures. On the gate run it has every twig and
+  is the cleanest branch in the run, with a sliver at one foot its only fault. On the fixture it loses three
+  limbs: the long right twig, the small twig at the top left, and the leaf stem. ViT-L is as clean, loses the
+  same three on the fixture, and drops the long right twig on the gate run too. ViT-B gives three pieces on the
+  gate run (no blobs above the branch, a patch of foliage at the left edge, a scrap of the right twig) and keeps
+  more of the fixture's twigs than either larger model.
 - Per limb: ViT-L and SAM-HQ ViT-L keep every twig and leaf stem, but on the gate run both take a wedge of
   orange foliage at the left edge, where three of the plan's paths run close together (it's the dark block at the
   bottom left of step 5 above). ViT-B per limb is clean on the fixture and the worst of all on the gate run (nine
   pieces).
-- So for a branch, one box + points is the better prompt, and SAM-HQ is the model that keeps the twigs with it.
+- So neither prompt is enough alone for a branch. The single box gives the clean body with no stray foliage but
+  can lose thin limbs; per limb keeps every limb but can take what lies between close paths. Joining them (the
+  single box, then per limb only for a path the first result doesn't cover) wasn't tried.
 
 **The mast.** Top: the gate run (a mast and a boom). Bottom: the fixture (a mast).
 
@@ -81,9 +85,8 @@ the pictures show.
 
 Every model returns a straight mast of even width; the color rule's is ragged, with a lump at the foot and a boom
 twice too thick. The boom is where the prompts differ: with one box + points ViT-B drops it and the two larger
-models draw it too thin, while per limb every model, today's included, gets mast and boom right. So a mast with a
-boom wants the per-limb prompt, and a branch wants the single box. Which to use when isn't settled by two scenes:
-the build issue has to try both, or join them.
+models draw it too thin, while per limb every model, today's included, gets mast and boom right. The boom is the same kind of loss as the
+fixture's twigs: a limb the single box misses and per limb keeps.
 
 **The feet.** Top: the gate run. Bottom: the fixture.
 
@@ -154,13 +157,14 @@ Checked against `docs/decisions.md`: tools over inference (a free local tool), c
 quality (it costs nothing and looks better), the outline model runs only where a lesson is made (still true), and
 every tool gives the same output for the same input (the two recommended models repeated exactly; see the table).
 
-1. **Swap the local model for SAM-HQ ViT-L.** 345 MB once, 4 seconds more per picture, no cost. It's the only
-   model that returned the whole branch, twigs included, from the simple prompt, and SAM-HQ is the one with
-   published thin-object results. SAM ViT-L is the runner-up. ViT-H costs 6 more seconds a picture for nothing
-   that showed.
-2. **Ask the model for thin parts**, inside the band the pipeline already draws: one box around the part's paths
-   with the plan's points for a branch; per limb where that misses a limb (the boom). The build issue settles the
-   rule on more pictures. Keep the color rule as the fallback when the model returns nothing.
+1. **Swap the local model for SAM-HQ ViT-L.** 345 MB once, 4 seconds more per picture, no cost. On the gate run
+   it's the only model that returned the whole branch, twigs included, from the single box; on the fixture it and
+   ViT-L lose the same limbs, so there the two are level. SAM-HQ is also the one with published thin-object
+   results. SAM ViT-L is the runner-up. ViT-H costs 6 more seconds a picture for nothing that showed.
+2. **Ask the model for thin parts**, inside the band the pipeline already draws, with both prompts: one box
+   around the part's paths with the plan's points for the body, and per limb for a path that result doesn't cover
+   (a boom, a twig). The build issue has to build and test that join; it wasn't tried here. Keep the color rule as
+   the fallback when the model returns nothing.
 3. **This prompt change alone, with today's ViT-B, is already a clear gain** if the swap is ever unwanted: three
    pieces and no blobs above the branch, against seven with blobs.
 4. **A small thing with a clear edge is an `object`, not `marks`**: the feet. That's a change to the skill's
@@ -182,8 +186,8 @@ aren't needed for this case.
 - On the gate run the recommended model loses the short left trunk if the trunks are ever moved to it.
 - The ONNX files are other people's exports of the published weights. The build issue pins each by SHA-256, as
   today's are.
-- Small faults are left with the recommended model on the branch: a sliver at one foot, and a thin twig missed on
-  the fixture.
+- Small faults are left with the recommended model on the branch: a sliver at one foot on the gate run, and
+  three limbs lost on the fixture with the single box.
 - Hosted prices and behavior are from search results, not from running anything.
 
 ## To run it again

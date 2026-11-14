@@ -263,9 +263,10 @@ way to teach it; a wrong outline is not. Don't render a step to get around it.
 
 **Found 2026-11-14 (spike for #85, `docs/spikes/outline-models.md`), not built yet:** "the model fails on thin
 parts" came from asking it with one box and no points. Given a box around the part's paths and the plan's own
-points, kept inside the band, SAM-HQ ViT-L (345 MB, 4 seconds more a picture) returns the chickadee's branch clean
-and in one piece with its twigs, and even ViT-B returns a far better branch than the color rule. A mast with a
-boom came out best asked limb by limb, and the feet come back clean from one box as an `object`. Misty trunks did
+points, kept inside the band, SAM-HQ ViT-L (345 MB, 4 seconds more a picture) returns the chickadee gate run's
+branch clean and in one piece with its twigs, and even ViT-B returns a far better branch than the color rule. That
+prompt can lose a thin limb (twigs on the fixture, a mast's boom); asking limb by limb keeps them but can take what
+lies between close paths. The feet come back clean from one box as an `object`. Misty trunks did
 not improve. Until the build issue (#129) lands, the table above is still what the tool does.
 
 The model: Segment Anything ViT-B, quantized ONNX, 108 MB, downloaded once to `models/` (git-ignored) with its
