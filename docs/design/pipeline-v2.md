@@ -692,6 +692,13 @@ checked: false
   first step never rinses. The wording is the clean-brush card's.
 - *Where*: `aids.where_words` as is (inches only since #122), except an area that touches all four edges is "the whole canvas" only when it
   covers 90% of it (`aids.WHOLE`): the chickadee's branch touches all four and was called the whole canvas.
+  Measured from the area's main pieces (#90, `aids.main_area`): a piece under 1% of the area (`aids.STRAY`) is a stray
+  speck and left out, unless the small pieces together are 10% of the area or more (`aids.STRAY_TOTAL`: a part made of
+  many small marks, a sun path or lavender rows, is measured whole). Two specks by the trunk had put a real run's
+  chickadee body "at the left edge, 8 1/2 in wide" (it's about 6 1/2 in, 1 3/4 in from the edge). The outline on the
+  Where picture still shows every piece. Not fixed by it: on a real lavender run the mountains' outline took a piece of
+  the sky (17% of the part, reaching the top edge), so the line says "from the top edge"; that's an outline fault,
+  not a speck, and the line matches the outline the page draws.
 - *Paints*: a blend's paints are ordered top to bottom by where each lands in the step picture. "Out from the light"
   isn't built: nothing in the plan says where the light is in a form a tool can read.
 - *Mix*: on a paint's first use only, naming every later step ("for this step and steps 4, 7 and 10; cover it
@@ -754,7 +761,7 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 - **Where, in words** (`aids.where_words`, built in #68, for `draft-text` to use): "Inside the outlined area", then
   for a band across the canvas the edges it reaches and where its other ends are, and for a thing its nearer top or
   bottom, its nearer side, and its size, in inches on the painter's canvas (to the half inch, the quarter under
-  2 in). It refuses a call with no canvas size (#122).
+  2 in), measured without the area's stray specks (#90, `aids.main_area`). It refuses a call with no canvas size (#122).
 - **Transfer outline** (once per lesson): the outlines of the `object` parts with no parent, as lines on the
   quarter grid at the canvas's shape. The page says how far apart the grid's lines are in inches on the painter's
   canvas, and the chalk line says to place it by measuring from the edges with a ruler. The stage that starts an object opens with an optional line: "Lightly chalk

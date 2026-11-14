@@ -134,19 +134,39 @@ def _inches(x: float, step: float | None = None) -> str:
 EDGE_SHARE = 0.02  # an area within this share of the canvas's edge reaches the edge
 WHOLE = 0.9  # an area covering this share of the canvas is "the whole canvas" (the chickadee's branch reaches all four
 # edges but covers 18%: it was called the whole canvas until #51)
+STRAY = 0.01  # a piece of the area smaller than this share of the whole area is a stray speck: the Where words leave it
+# out (#90). Two specks by the trunk put the chickadee's body "at the left edge, 8 1/2 in wide" (it's 6 1/2 in, 1 3/4 in
+# from the edge); a few under the sky put the lavender's mountains "from the top edge". `outline.drop_islands` gives an
+# area's strays to the part around them; this is the same idea for any part, measured against the part itself.
+STRAY_TOTAL = 0.1  # unless the small pieces add up to this share of the area or more: then the part is many small
+# marks (sparkles, foliage dabs, lavender rows), and its place is where all of them are
+
+
+def main_area(area: np.ndarray) -> np.ndarray:
+    """The area without its stray specks (STRAY), for measuring where it is. All of it when the small pieces are
+    much of it (STRAY_TOTAL), or when nothing else is left."""
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(area.astype(np.uint8), connectivity=8)
+    if n <= 2:
+        return area
+    sizes = stats[1:, cv2.CC_STAT_AREA]
+    small = sizes < STRAY * sizes.sum()
+    if small.all() or sizes[small].sum() >= STRAY_TOTAL * sizes.sum():
+        return area
+    return np.isin(labels, 1 + np.flatnonzero(~small))
 
 
 def where_words(area: np.ndarray, canvas: dict | None) -> str:
     """Where a step's area is, for the painter to find on the canvas: the outline, plus two or three anchor points
     in inches from the canvas's edges. `area` is a mask already cropped to the canvas. No percentages, and no tape
-    marks (#122): every version 2 lesson has a canvas size, so a call without one is refused."""
+    marks (#122): every version 2 lesson has a canvas size, so a call without one is refused. Measured from the
+    area's main pieces: a stray speck far off doesn't move it (`main_area`, #90)."""
     if not canvas:
         raise ValueError("where_words needs the canvas size: canvas.json is missing. Run fit-canvas (it picks a "
                          "standard size when none is given).")
     if not area.any():
         return "Inside the outlined area."
     h, w = area.shape
-    ys, xs = np.nonzero(area)
+    ys, xs = np.nonzero(main_area(area))
     x0, x1, y0, y1 = xs.min() / w, (xs.max() + 1) / w, ys.min() / h, (ys.max() + 1) / h
     left, right, top, bottom = x0 < EDGE_SHARE, x1 > 1 - EDGE_SHARE, y0 < EDGE_SHARE, y1 > 1 - EDGE_SHARE
     cw, ch = float(canvas["w_in"]), float(canvas["h_in"])

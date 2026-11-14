@@ -119,6 +119,18 @@ class DraftTests(unittest.TestCase):
         self.assertRegex(where, r"\d in from the (top|left) edge")
         self.assertNotIn("the whole canvas", " ".join(x["text"] for x in sized["branch-dark"]["lines"]))  # thin, all 4 edges
 
+    def test_where_leaves_out_stray_specks_far_from_the_part(self):
+        # #90: two specks by the trunk put the chickadee's body "at the left edge, 8 1/2 in wide"
+        plan, pictures, masks, drafted = self.built["chickadee"]
+        i = [s["id"] for s in bs.flat_steps(plan)].index("bird-body")
+        specked = [m.copy() for m in masks]
+        h, w = specked[i].shape
+        specked[i][h // 2:h // 2 + 3, :3] = True  # at the left edge
+        specked[i][h - 4:h - 1, w // 2:w // 2 + 3] = True  # at the bottom
+        where = lambda entries: [x["text"] for x in by_id(entries)["bird-body"]["lines"] if x["kind"] == "where"]
+        self.assertEqual(where(dt.draft(plan, pictures, specked, None, CANVAS)), where(drafted))
+        self.assertNotIn("at the left edge", " ".join(where(drafted)))
+
     def test_paints_go_darkest_first_and_a_blend_top_to_bottom(self):
         plan = self.built["red-sailboat"][0]
         d = by_id(self.built["red-sailboat"][3])

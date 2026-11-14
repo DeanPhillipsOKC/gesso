@@ -165,6 +165,31 @@ class WhereWordsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "canvas.json"):
             aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), None)
 
+    def test_stray_specks_far_away_dont_move_it(self):
+        # #90: two specks by the trunk put the chickadee's body at the left edge and 8 1/2 in wide
+        canvas = {"w_in": 14, "h_in": 11}
+        body = self.area([0.4, 0.27, 0.5, 0.4], (1100, 1400))
+        alone = aids.where_words(body, canvas)
+        specked = body.copy()
+        specked[500:506, 0:6] = True  # at the left edge, far below
+        specked[1080:1086, 1380:1386] = True  # in the bottom right corner
+        self.assertEqual(aids.where_words(specked, canvas), alone)
+        self.assertEqual(aids.main_area(specked).sum(), body.sum())
+
+    def test_a_part_of_many_small_marks_is_measured_whole(self):
+        # sparkles or dabs: every piece is small, or the small ones are much of it, and each is the part
+        canvas = {"w_in": 14, "h_in": 11}
+        dabs = np.zeros((1100, 1400), bool)
+        for x in range(50, 1350, 100):
+            dabs[600:610, x:x + 10] = True
+        self.assertEqual(aids.main_area(dabs).sum(), dabs.sum())
+        self.assertIn("it's about 12 in wide", aids.where_words(dabs, canvas))  # from the first dab to the last
+        main = self.area([0.4, 0.27, 0.5, 0.4], (1100, 1400))  # 1.5% of the canvas
+        for x in range(0, 1400, 70):  # twenty specks, each under 1% of the area, together over 10% of it
+            main[1000:1012, x:x + 12] = True
+        self.assertTrue((aids.main_area(main) == main).all())
+        self.assertIn("its bottom is about", aids.where_words(main, canvas).lower())
+
     def test_inches_are_measured_on_the_canvas_not_the_frame(self):
         frame = np.zeros((200, 300), bool)
         box = [0.2, 0.1, 0.8, 0.9]  # the canvas is a crop of the image model's frame
