@@ -795,8 +795,8 @@ class CardTests(unittest.TestCase):
         results = ["Dry brush (x)"]
         good = {"id": "dry-brush", "stroke_result": "Dry brush (x)", "name": "Dry brush", "result": "Broken marks.",
                 "sources": ["research, section 2"], "checked": False, "brushes": ["flat"],
-                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10]}]}]}}
-        self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])
+                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10], "paint": "#2f3b2a"}]}]}}
+        self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])  # #127: a shape needs its paint
         for change, expect in (({"sources": []}, "no sources"), ({"result": ""}, "no result"),
                                ({"stroke_result": "Made up"}, "isn't an entry"), ({"brushes": ["spoon"]}, "can draw"),
                                ({"diagram": {"stages": [{"add": [{"blob": 1}]}]}}, "doesn't draw"),
