@@ -6,6 +6,16 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.9.1 (2026-11-14)
+- Behind an object, an area takes only the rows it has beside it (#139). With a background picture, what's behind
+  an object was split among the areas around it by color alone, so in `balloon-lavender_skill_20261114-075951`
+  the orange cloud streaks behind the tree went to the golden hill at its foot: hill-colored patches and the far
+  hills' purple dashes showed in the sky where the tree goes, and the hill's Where line put its top at the top
+  edge. Now a color match out of an area's reach doesn't count, and the part that owns the row carries its own
+  paint there.
+- `build-steps` and `check` report a step that paints behind the objects far above or below its part's own
+  outline, as a bug in `build-steps`.
+
 ## POC 1.9.0 (2026-11-14)
 - A step's Where line places what the finished painting shows, not paint a later part covers (#126). A sky painted
   past the horizon gives the visible horizon and adds "paint a little past its bottom, under where ... will go", and
