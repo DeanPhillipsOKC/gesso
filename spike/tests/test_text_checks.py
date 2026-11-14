@@ -21,7 +21,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import numpy as np  # noqa: E402
 import yaml  # noqa: E402
-import tools  # noqa: E402
 from PIL import Image  # noqa: E402
 
 import aids  # noqa: E402
@@ -29,6 +28,7 @@ import build_steps as bs  # noqa: E402
 import cards  # noqa: E402
 import checks  # noqa: E402
 import draft_text as dt  # noqa: E402
+import lessons  # noqa: E402
 import publish2  # noqa: E402
 import tools  # noqa: E402
 from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
@@ -44,16 +44,6 @@ def run_tool(*argv) -> tuple[int, dict]:
     return code, json.loads(out.getvalue().strip().splitlines()[-1])
 
 
-def make_lesson(folder: Path, name: str, plan: dict | None = None) -> Path:
-    finish, fplan, owner = fixture(name)
-    lesson = folder / f"{name}_skill_20261113-090000"
-    (lesson / "parts").mkdir(parents=True)
-    (lesson / "plan.json").write_text(json.dumps(plan or fplan), encoding="utf-8")
-    Image.fromarray(finish).save(lesson / "99_finish.png")
-    Image.fromarray(owner.astype(np.uint8)).save(lesson / "parts" / "owner.png")
-    return lesson
-
-
 def by_id(entries: list[dict]) -> dict[str, dict]:
     return {e["stage_id"]: e for e in entries}
 
@@ -62,15 +52,16 @@ def kinds(entry: dict) -> list[str]:
     return [x["kind"] for x in entry["lines"]]
 
 
+@lessons.slow
 class DraftTests(unittest.TestCase):
     """draft_text.draft on the three fixtures, built once."""
+    whole = True  # tests/suite.py runs it as one job: its setUpClass drafts every fixture's text
 
     @classmethod
     def setUpClass(cls):
         cls.built = {}
         for name in NAMES:
-            finish, plan, owner = fixture(name)
-            pictures, _, masks = bs.build(finish, plan, owner)
+            plan, pictures, _, masks = lessons.built(name)
             cls.built[name] = (plan, pictures, masks, dt.draft(plan, pictures, masks, None, CANVAS))
 
     def test_every_step_has_lines_in_the_tables_order_none_long_none_with_percentages(self):
@@ -333,6 +324,7 @@ class CheckPartsTests(unittest.TestCase):
         self.assertIn("one move per step", changed[0][1])
 
 
+@lessons.slow
 class TextToolTests(unittest.TestCase):
     """build-steps, step-aids, mix, draft-text, and check on the three fixtures, as the skill runs them."""
 
@@ -343,13 +335,10 @@ class TextToolTests(unittest.TestCase):
         cls.old_history = os.environ.get("GESSO_HISTORY")
         os.environ["GESSO_HISTORY"] = str(cls.root / "history")
         cls.lessons, cls.results = {}, {}
-        for name in NAMES:
-            lesson = make_lesson(cls.root / "base", name)
-            for tool in ("build-steps", "step-aids", "mix", "draft-text", "check"):
-                code, r = run_tool(tool, "--lesson", str(lesson))
-                assert code == 0, (name, tool, r)
+        for name in NAMES:  # built once per run and shared (tests/lessons.py)
+            cls.lessons[name] = lessons.lesson(name, "checked", cls.root / "base")
+            for tool, r in lessons.results(name, "checked").items():
                 cls.results[(name, tool)] = r
-            cls.lessons[name] = lesson
 
     @classmethod
     def tearDownClass(cls):
