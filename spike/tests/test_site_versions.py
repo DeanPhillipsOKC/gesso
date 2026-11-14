@@ -160,7 +160,8 @@ class SiteVersionTests(unittest.TestCase):
         listed = [{"id": "20261112-084806", "version": "POC 1.4.0", "when": "x", "guessed": False, "kind": "",
                    "steps": 5, "href": "lessons/lavender/", "current": True},
                   {"id": "20261111-142734", "version": "POC 1.0.0", "when": "y", "guessed": False, "kind": "",
-                   "steps": 3, "href": "lessons/lavender/v/20261111-142734/", "current": False}]
+                   "steps": 3, "href": "lessons/lavender/v/20261111-142734/", "current": False,
+                   "published": "2026-11-11"}]  # a field the entry holds is taken
         tiles = [{"slug": "lavender", "title": "Balloon", "steps": 5, "canvas": "", "tubes": 0, "version": "POC 1.4.0",
                   "source": "balloon_skill_20261112-084806", "versions": listed, "known": 0},
                  {"slug": "gone", "title": "Gone", "steps": 2, "canvas": "", "tubes": 0,
@@ -173,13 +174,16 @@ class SiteVersionTests(unittest.TestCase):
                                                              "gone_skill_20261113-010101": "y"}), encoding="utf-8")
         empty = self.site.parent / "empty-output"
         empty.mkdir()
-        with contextlib.redirect_stdout(io.StringIO()):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
             self.assertEqual(site_lessons.refresh(self.site, empty), {"lavender": 1})
+        self.assertIn("the tile's thumbnail, title, subject, canvas, tubes, known are still the old "
+                      "default's until site-add balloon_skill_20261111-142734", out.getvalue())
         entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))
         self.assertEqual(len(entry), 1)  # no version of "gone" was left, so its tile went
         self.assertFalse((self.site / "lessons" / "gone").exists())
-        self.assertEqual((entry[0]["source"], entry[0]["version"], entry[0]["steps"]),
-                         ("balloon_skill_20261111-142734", "POC 1.0.0", 3))
+        self.assertEqual((entry[0]["source"], entry[0]["version"], entry[0]["steps"], entry[0]["published"]),
+                         ("balloon_skill_20261111-142734", "POC 1.0.0", 3, "2026-11-11"))
         self.assertEqual([(v["id"], v["current"], v["href"]) for v in entry[0]["versions"]],
                          [("20261111-142734", True, "lessons/lavender/")])
         self.assertEqual((lesson / "index.html").read_text(encoding="utf-8"), "older")
@@ -197,6 +201,7 @@ class SiteVersionTests(unittest.TestCase):
         self.assertFalse((self.site / "lessons" / "lavender" / "v" / "20261112-084806").exists())
 
     def test_kept_off_json_must_be_an_object_of_run_names(self):  # PR #145's review
+        site_lessons._warned.discard("20261112-084806")
         path = self.site / "kept-off.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(["balloon_skill_20261112-084806"]), encoding="utf-8")
@@ -207,6 +212,10 @@ class SiteVersionTests(unittest.TestCase):
         with contextlib.redirect_stdout(out):
             self.assertEqual(site_lessons.kept_off_ids(self.site, "balloon"), ())
         self.assertIn("'20261112-084806' isn't a run folder name", out.getvalue())
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            site_lessons.kept_off_ids(self.site, "balloon")
+        self.assertEqual(out.getvalue(), "")  # once per run, not every time the list is read
 
     def test_the_repos_kept_off_list_names_the_runs_the_docs_keep_off(self):  # docs/design/pipeline-v2.md, section 6
         off = site_lessons.kept_off()

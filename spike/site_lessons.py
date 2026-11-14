@@ -54,6 +54,7 @@ def on_site_era(run: Path) -> bool:
 
 
 RUN_NAME = re.compile(r"^.+_skill_\d{8}-\d{6}$")
+_warned: set[str] = set()  # bad kept-off keys already warned about in this process
 
 
 def kept_off(site: Path = SITE) -> dict[str, str]:
@@ -68,7 +69,8 @@ def kept_off(site: Path = SITE) -> dict[str, str]:
         raise ValueError(f"{path} must be an object of run folder name to why, e.g. "
                          '{"chickadee_skill_20261114-015433": "made before POC 1.5.0 was merged in"}')
     for name in off:
-        if not RUN_NAME.match(name):
+        if not RUN_NAME.match(name) and name not in _warned:
+            _warned.add(name)
             print(f"warning: {path.name}: {name!r} isn't a run folder name (<photo>_skill_<YYYYMMDD-HHMMSS>), so it "
                   "keeps nothing off")
     return off
@@ -230,11 +232,15 @@ def newest_hands_off(photo: str, output: Path, remove: tuple[str, ...] = (), sit
     return None
 
 
+TILE_FIELDS = ("title", "subject", "canvas", "tubes", "published", "known")  # a tile's fields beyond version, steps
+
+
 def replace_default(site: Path, x: dict, output: Path, remove: tuple[str, ...] = ()) -> None:
     """A tile whose default is kept off (#141) opens its newest version left: the newest hands-off run in `output`
     (through add, which writes its page and thumbnail), or else the newest listed version whose page is on the site
-    (its page becomes the tile's, but the thumbnail stays the old default's: `site-add` that run where its folder is
-    to replace it). With no version left, the tile goes. Its run stays in the lesson history either way."""
+    (its page becomes the tile's and its version and steps the tile's; the thumbnail, and the tile's other fields its
+    entry doesn't hold, stay the old default's, and the message names them: `site-add` that run where its folder is
+    to replace them). With no version left, the tile goes. Its run stays in the lesson history either way."""
     photo = x["source"].split("_skill_")[0]
     skip = set(remove) | set(kept_off_ids(site, photo))
     lesson_dir = site / "lessons" / x["slug"]
@@ -256,11 +262,15 @@ def replace_default(site: Path, x: dict, output: Path, remove: tuple[str, ...] =
         page = lesson_dir / "v" / best["id"] / "index.html"
         shutil.copyfile(page, lesson_dir / "index.html")
         shutil.rmtree(page.parent)
+        # a version's entry holds its version and steps; the tile's other fields come from its run's lesson.json
+        stale = ["thumbnail"] + [f for f in TILE_FIELDS if f not in best]
         for y in lessons:
             if y["slug"] == x["slug"]:
-                y.update(source=f"{photo}_skill_{best['id']}", version=best["version"], steps=best["steps"])
-        print(f"{x['slug']}: {x['source']} is kept off; the tile opens {best['id']} now. Its run folder isn't "
-              f"here, so the thumbnail is still the old default's: site-add {photo}_skill_{best['id']} where it is")
+                y.update(source=f"{photo}_skill_{best['id']}", version=best["version"], steps=best["steps"],
+                         **{f: best[f] for f in TILE_FIELDS if f in best})
+        print(f"{x['slug']}: {x['source']} is kept off; the tile opens {best['id']} now. Its run folder isn't here, "
+              f"so the tile's {', '.join(stale)} are still the old default's until site-add "
+              f"{photo}_skill_{best['id']} is run where it is")
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
 
 

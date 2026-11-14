@@ -39,9 +39,10 @@ lesson history). A tile's known-problems count is kept when its run isn't here t
 a key that isn't a run folder name gets a warning. `site-add` refuses a listed run, and `site-add` and
 `site-refresh` never add one, take one off its tile, and delete its page, so nobody has to pass `--remove` on every
 refresh. When the listed run is a tile's default, `site-refresh` opens the tile on its newest version left: the
-newest hands-off run in `output/`, or else the newest listed version whose page is on the site (then the thumbnail
-stays the old one's until that run is `site-add`ed where its folder is). With no version left, the tile goes. It
-holds `chickadee_skill_20261114-015433` (made before main's POC 1.5.0 was merged in) and
+newest hands-off run in `output/`, or else the newest listed version whose page is on the site (it brings its
+version and step count; the thumbnail and the tile's other facts, such as its known-problems count, stay the old
+default's, and the message names them, until that run is `site-add`ed where its folder is). With no version left,
+the tile goes. It holds `chickadee_skill_20261114-015433` (made before main's POC 1.5.0 was merged in) and
 `chickadee_skill_20261114-022627` (made by PR #133's other build of #129), which `docs/design/pipeline-v2.md`
 section 6 keeps in the history only. `--remove` is still the way to take a version off once; add the run to the
 list when it should never come back.
