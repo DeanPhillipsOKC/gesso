@@ -277,7 +277,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     v2 = lesson.get("plan_version") == 2
     canvas_item = (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
                    + ("" if cv["orientation"] == "square" else " (hang it that way)")
-                   + ".") if v2 and cv else (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
+                   + ". Using another size? Scale every measurement.") if v2 and cv else (f'A {cv["w_in"]:g} x {cv["h_in"]:g} in canvas, {cv["orientation"]}'
                    + ("" if cv["orientation"] == "square" else " (hang it that way)") +
                    f'. Positions in the steps are percentages across and down: each 10% is {cv["w_in"] / 10:g} in '
                    f'across and {cv["h_in"] / 10:g} in down.') if cv else "White canvas or canvas board"
@@ -317,8 +317,9 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     # Version 2 lists the tubes first, on their own (page2.tubes_first), so the kit leaves them out (#94).
     kit = ("" if v2 else f'<div><p class="label">Tubes</p><ul>{items(tubes)}</ul></div>') + (
            f'<div><p class="label">Brushes</p><ul>{brush_items}</ul></div>'
-           f'<div><p class="label">Also</p><ul><li>{e(canvas_item)}</li><li>Water jar and paper towel</li>'
-           f'<li>Palette or paper plate for mixing</li></ul></div>')
+           f'<div><p class="label">Also</p><ul><li>{e(canvas_item)}</li>'
+           + ("<li>A ruler</li>" if v2 else "")  # the steps say where in inches (#122)
+           + '<li>Water jar and paper towel</li><li>Palette or paper plate for mixing</li></ul></div>')
     paints_html = (v2_part("paints_fold", len(paints), paint_cards) if v2 else
                    f'''<section><h2>Your paints</h2><p class="small">Every paint in the lesson. You don't have to mix them all at the start: each step lists
     the paints it uses with their recipes, so you can mix a little as you go before it dries. Parts are by volume.</p>

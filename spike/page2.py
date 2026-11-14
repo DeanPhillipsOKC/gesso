@@ -5,7 +5,7 @@ calls these for a lesson.json with "plan_version": 2; a version 1 page never rea
     contents(lesson)                        -> the stages, each with its step count
     tubes_first(lesson, tubes)              -> the tubes to get out, in the order the steps first need them
     paints_fold(count, cards)               -> every paint and its recipe, folded away (each step lists its own)
-    before_you_start(lesson, folder, embed) -> basics cards, the tape marks and transfer outline (folded), strokes to try
+    before_you_start(lesson, folder, embed) -> basics cards, the transfer outline (folded), strokes to try
     step(lesson, i, parts)                  -> one step: the Where / Result switch, its lines, paints, and folds
 
 A step's Where view is the picture before it with this step's area outlined (aids/aids.json, from step-aids),
@@ -77,11 +77,9 @@ nav.toc ol{margin:0;padding-left:1.4rem;display:grid;gap:.35rem}
 nav.toc li span{color:var(--muted);font-size:.9rem}
 .start{display:grid;gap:1rem}
 .start .basics{display:grid;gap:.5rem;grid-template-columns:repeat(auto-fill, minmax(min(100%, 18rem), 1fr));align-items:start}
-.tape{display:grid;grid-template-columns:minmax(0, 14rem) 1fr;gap:1rem;align-items:center}
-.tape svg{width:100%;height:auto}
 .transfer{display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:1rem;align-items:start}
 ul.strokes{margin:0;padding-left:1.2rem;display:grid;gap:.4rem}
-@media (max-width: 760px){.tape,.transfer{grid-template-columns:1fr}.tape svg{max-width:16rem}}
+@media (max-width: 760px){.transfer{grid-template-columns:1fr}}
 /* The tubes to get out first, as a checklist in the order the steps need them (#94). */
 ul.tubelist{list-style:none;margin:0;padding:0;display:grid;gap:.5rem 1.25rem;
   grid-template-columns:repeat(auto-fill, minmax(min(100%, 15rem), 1fr))}
@@ -139,8 +137,8 @@ def _outline(path: str) -> str:
 
 
 def where_view(lesson: dict, i: int) -> str:
-    """The picture before step i (0-based), dimmed except where this step paints, the area outlined, and the
-    quarter grid that matches the tape on the canvas's edges."""
+    """The picture before step i (0-based), dimmed except where this step paints, the area outlined, and a light
+    quarter grid as a visual guide (unlabelled: the steps say where in inches, #122)."""
     w, h = view_of(lesson)
     a = lesson["stages"][i].get("aids") or {}
     path = a.get("path", "")
@@ -199,7 +197,7 @@ def closeup(lesson: dict, i: int, folder: Path, embed: bool) -> str:
                 f'href="{aid_src(folder, src, embed)}"/>{_grid(w, h, 8, x0, y0, x1, y1)}'
                 f'{_outline(path) if line else ""}</svg><figcaption>{label}</figcaption></figure>')
     body = (f'<div class="twin">{fig(c["before"], "Before", True)}{fig(c["after"], "After", False)}</div>'
-            '<p class="small">The dotted lines are eighths of the canvas: halfway between the tape marks.</p>')
+            f'<p class="small">{e(_eighths(lesson.get("canvas")))}</p>')
     small = (lesson["stages"][i].get("aids") or {}).get("area", 1) < OPEN_CLOSE_UP
     return fold("Close-up", "before and after", body, open_=small)
 
@@ -303,25 +301,24 @@ def contents(lesson: dict) -> str:
     return f'<nav class="toc" aria-label="Stages"><ol>{"".join(rows)}</ol></nav>' if rows else ""
 
 
-def _tape_svg() -> str:
-    """A canvas with tape along its top and left edges, the halves and quarters marked."""
-    marks = "".join(f'<path d="M{20 + k * 45} 6v12"/><path d="M6 {24 + k * 35}h12"/>' for k in (1, 3))
-    halves = '<path d="M110 2v18" stroke-width="3"/><path d="M2 94h18" stroke-width="3"/>'
-    return ('<svg viewBox="0 0 210 170" role="img" aria-label="Tape along the top and the side of the canvas, marked '
-            'at the middle and the quarters"><rect x="20" y="24" width="180" height="140" fill="#fff" stroke="#9aa3b2"/>'
-            '<rect x="20" y="4" width="180" height="16" fill="#e9dcb8"/><rect x="2" y="24" width="16" height="140" fill="#e9dcb8"/>'
-            f'<g stroke="#1d2430" stroke-width="2">{marks}{halves}</g>'
-            '<g stroke="#1d2430" stroke-opacity=".35" stroke-dasharray="4 4">'
-            '<path d="M65 24v140M110 24v140M155 24v140M20 59h180M20 94h180M20 129h180"/></g></svg>')
+def _eighths(canvas: dict | None) -> str:
+    """The close-up's caption: how far apart its dotted lines (eighths of the canvas) are, in inches (#122)."""
+    if not canvas:
+        return "The dotted lines are eighths of the canvas."
+    from aids import _inches
+    w, h = _inches(float(canvas["w_in"]) / 8, 0.125), _inches(float(canvas["h_in"]) / 8, 0.125)
+    return f"The dotted lines are every {w}." if w == h else f"The dotted lines are every {w} across and {h} down."
 
 
-def _measure(canvas: dict | None) -> str:
+def _grid_inches(canvas: dict | None) -> str:
+    """How far apart the transfer outline's quarter lines are on the painter's canvas, to measure with a ruler."""
     if not canvas:
         return ""
     from aids import _inches
-    w, h = float(canvas["w_in"]), float(canvas["h_in"])
-    return (f" On your {w:g} x {h:g} in canvas the marks across the top are {_inches(w / 4, 0.25)} apart and the marks "
-            f"down the side {_inches(h / 4, 0.25)} apart.")
+    w, h = _inches(float(canvas["w_in"]) / 4, 0.125), _inches(float(canvas["h_in"]) / 4, 0.125)
+    size = f'{float(canvas["w_in"]):g} x {float(canvas["h_in"]):g} in'
+    return (f" On your {size} canvas the grid lines are every {w}." if w == h else
+            f" On your {size} canvas the grid lines are {w} apart across and {h} apart down.")
 
 
 def _palette_colors(palette_name: str) -> dict[str, tuple[int, int, int]]:
@@ -397,20 +394,15 @@ def paints_fold(count: int, paint_cards: str) -> str:
 
 def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> str:
     aids = lesson.get("aids") or {}
-    tape = (f'<div class="tape">{_tape_svg()}<div><h3>Mark halves and quarters on tape</h3><p>Run a strip of masking tape '
-            f'along the top edge of the canvas and one down a side, and mark the middle and the quarters on each.'
-            f'{e(_measure(lesson.get("canvas")))} Every step\'s Where picture has the same lines, so you can find its '
-            'place on your canvas. (Chalk lines on the canvas would be painted over by the first coat; the tape stays.)'
-            '</p></div></div>')
     t = aids.get("transfer")
     transfer = ""
     if t and (folder / t["image"]).exists():
         names = "; ".join(f'{x["n"]} {x["name"]}' for x in t["parts"])
         transfer = (f'<div class="transfer"><figure><img src="{aid_src(folder, t["image"], embed)}" alt="Outlines of the '
                     f'main shapes on the quarter grid" loading="lazy"></figure><div><h3>The transfer outline (optional)</h3>'
-                    f'<p>The outlines of the main shapes, on the same quarter grid as your tape: {e(names)}. Before the '
-                    'stage that starts one, you can lightly chalk its outline on the canvas, using the tape marks to '
-                    'place it.</p></div></div>')
+                    f'<p>The outlines of the main shapes, on a grid of quarters: {e(names)}.'
+                    f'{e(_grid_inches(lesson.get("canvas")))} Before the stage that starts one, you can lightly chalk '
+                    'its outline on the canvas, measuring from the edges with a ruler.</p></div></div>')
     first = first_uses(lesson)
     tries = "".join(
         f'<li><a href="#stroke-{e(c)}">{e(known[c]["name"])}</a>, first in step {i + 1}.'
@@ -420,8 +412,7 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
                f'that first uses it.</p><ul class="strokes">{tries}</ul></div>') if tries else ""
     basics = "".join(fold(c["name"], "" if c.get("checked") else "not checked yet", cards.basic_html(c))
                      for c in sorted(cards.basics().values(), key=lambda c: c["id"] != "set-up"))  # setting up first
-    # Folded at the owner's word (#94), but the steps still say where things go by the tape marks, so the hint says so.
-    placing = fold("Placing shapes with tape marks and a transfer outline",
-                   "optional, but the steps say where things go by these tape marks", tape + transfer, cls="placing")
+    # Folded and optional at the owner's word (#94). The steps say where in inches, so nothing here is needed (#122).
+    placing = fold("Placing shapes with a transfer outline", "optional", transfer, cls="placing") if transfer else ""
     return (f'<section class="start" id="start"><h2>Before you start</h2>{placing}{strokes}'
             f'<div><h3>The basics</h3><div class="basics">{basics}</div></div></section>')

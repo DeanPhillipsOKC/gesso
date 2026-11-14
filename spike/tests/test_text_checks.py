@@ -31,7 +31,7 @@ import draft_text as dt  # noqa: E402
 import lessons  # noqa: E402
 import publish2  # noqa: E402
 import tools  # noqa: E402
-from test_pipeline_v2 import NAMES, fixture  # noqa: E402
+from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
 
 TECHNIQUE = yaml.safe_load((tools.ROOT / "techniques" / "acrylic-paint-along-beginner.yaml").read_text(encoding="utf-8"))
 PERCENT = re.compile(r"%|percent", re.I)
@@ -62,7 +62,7 @@ class DraftTests(unittest.TestCase):
         cls.built = {}
         for name in NAMES:
             plan, pictures, _, masks = lessons.built(name)
-            cls.built[name] = (plan, pictures, masks, dt.draft(plan, pictures, masks))
+            cls.built[name] = (plan, pictures, masks, dt.draft(plan, pictures, masks, None, CANVAS))
 
     def test_every_step_has_lines_in_the_tables_order_none_long_none_with_percentages(self):
         rank = {k: n for n, k in enumerate(dt.KINDS)}
@@ -82,7 +82,7 @@ class DraftTests(unittest.TestCase):
 
     def test_the_same_input_gives_the_same_lines(self):
         plan, pictures, masks, drafted = self.built["chickadee"]
-        self.assertEqual(json.dumps(dt.draft(plan, pictures, masks)), json.dumps(drafted))
+        self.assertEqual(json.dumps(dt.draft(plan, pictures, masks, None, CANVAS)), json.dumps(drafted))
 
     def test_let_it_dry_follows_the_paint_underneath(self):
         d = by_id(self.built["chickadee"][3])
@@ -112,9 +112,8 @@ class DraftTests(unittest.TestCase):
     def test_where_is_the_outline_in_words_inches_with_a_canvas(self):
         plan, pictures, masks, drafted = self.built["chickadee"]
         for d, m in zip(drafted, masks):
-            self.assertEqual(" ".join(x["text"] for x in d["lines"] if x["kind"] == "where"), aids.where_words(m, None))
-        canvas = {"w_in": 14, "h_in": 11}
-        sized = by_id(dt.draft(plan, pictures, masks, None, canvas))
+            self.assertEqual(" ".join(x["text"] for x in d["lines"] if x["kind"] == "where"), aids.where_words(m, CANVAS))
+        sized = by_id(drafted)
         where = next(x["text"] for x in sized["bird-body"]["lines"] if x["kind"] == "where")
         self.assertRegex(where, r"\d in from the (top|left) edge")
         self.assertNotIn("the whole canvas", " ".join(x["text"] for x in sized["branch-dark"]["lines"]))  # thin, all 4 edges
@@ -289,6 +288,30 @@ class CheckPartsTests(unittest.TestCase):
         self.assertIn(f"{sid}: no drafted lines in text.json. Run draft-text.", checks.text_problems(plan, missing, None))
         plan["stages"][0]["steps"][0].pop("name")
         self.assertIn("no name in plan.json", checks.text_problems(plan, text, None)[0])
+
+    def test_a_tape_mark_in_a_tip_summary_or_line_is_a_problem(self):
+        # #122: the painter has no tape; steps say where in inches from an edge.
+        plan = self.plan()
+        sid = plan["stages"][0]["steps"][0]["id"]
+        ok = {"summary": "Blend the sky.", "tip": "Keep the glow low.",
+              "lines": [{"kind": "where", "text": "Inside.", "edited": False}]}
+        text = {s["id"]: dict(ok) for st in plan["stages"] for s in st["steps"]}
+        tip = {**ok, "tip": "Stop the glow at the 3/4 mark on the top tape."}
+        self.assertEqual(checks.text_problems(plan, {**text, sid: tip}, None),
+                         [f"{sid}: its tip places things by tape marks, and the painter has no tape. Say where in inches "
+                          "from an edge."])
+        line = {**ok, "summary": "Paint down to the tape marks.", "paint_notes": ["Mix it by the middle of the side Tape."],
+                "lines": [{"kind": "where", "text": "Below the middle mark on the top tape."}]}
+        out = " ".join(checks.text_problems(plan, {**text, sid: line}, None))
+        self.assertIn("its summary places things by tape marks", out)
+        self.assertIn("its line 1 places things by tape marks", out)
+        self.assertIn("its paint note 1 places things by tape marks", out)
+        for said in ("Stop at the 1/4 mark on your tape.", "Line it up with the tape.", "Paint to the middle of the tape."):
+            self.assertTrue(checks.text_problems(plan, {**text, sid: {**ok, "tip": said}}, None), said)
+        for fine in ("Taper each branch to a point.", "Masking tape along the horizon gives a crisp edge."):
+            self.assertEqual(checks.text_problems(plan, {**text, sid: {**ok, "tip": fine}}, None), [], fine)
+        pct = {**ok, "tip": "At 30% across."}
+        self.assertNotIn("tape", " ".join(checks.text_problems(plan, {**text, sid: pct}, None)))
 
     def test_the_technique_has_version_2_keys_and_version_1_keeps_its_own(self):
         self.assertEqual((TECHNIQUE["v2_step_range"], TECHNIQUE["v2_stage_range"], TECHNIQUE["max_mixes"]),

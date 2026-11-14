@@ -33,20 +33,23 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
 'just the picture'", "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."}`. Start
 `notes.json` now and add to it as you go; the full schema is in `steps/notes.md` (step 8b).
 
-## 0b2. Fit the picture to the canvas (only with `--canvas`)
+## 0b2. Fit the picture to the canvas (always, with or without `--canvas`)
 1. Decide the subject's box and the focal point (0-1 from the top left). The subject is what the picture is
    about (the balloon, the boat and its reflection), not the whole scene.
-2. `fit-canvas <photo> --lesson <lesson> --canvas <WxH> [--orientation ...] --focus X Y --keep X0 Y0 X1 Y1 --why
+2. `fit-canvas <photo> --lesson <lesson> [--canvas <WxH>] [--orientation ...] --focus X Y --keep X0 Y0 X1 Y1 --why
    "<subject and what must stay>"`. It picks the cheapest fit: `none` (same shape), `crop` (free, subject whole,
    at most about a third lost), or `extend` (the picture sits on the canvas with gray edges). It places the canvas
    in the image model's nearest frame (square, 3:2, or 2:3), with gray bands outside it when the shapes differ.
+   With no `--canvas` it uses the standard size closest to the photo's shape, so a photo whose subject
+   won't survive that crop gets the extend render.
 3. If `needs_render` is true, run the render command in its `advice` once. Read the result: nothing painted
    changed, the edges continue the scene, nothing new appeared. Redo once at most.
 4. From here on, "the photo" is `00_canvas_fit.png` (or `00_canvas_frame.png` when no render was needed). Renders
    and step images stay in the model's frame; `publish` crops every step to the canvas for the painter.
 5. Keep two coordinate systems apart: `looks_like` and render prompts describe the frame; the step text describes
    the canvas. Before writing text, run `canvas-view 99_finish.png --lesson <lesson>` and measure on
-   `canvas/99_finish.png` with `grid --percent`.
+   `canvas/99_finish.png` with `grid --percent`. (Those shares are for the plan only; the step text says where in
+   inches, from `draft-text`, never in percentages or by tape marks.)
 6. Record `canvas_fit` in `notes.json`: `{"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...", "lost":
    "the right 15% of empty water"}`.
 
@@ -55,7 +58,7 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
   (24x30 is 720), add 3, and textures can be a size smaller.
 - Biggest brush: a 3/4 inch flat on a 10x10, a 1 inch flat on an 11x14, a 2 inch flat or wide house brush on a
   24x30 (rounds a size or two up).
-- The page says how many inches each 10% is. Inches in the text are fine for sizes ("about 2 inches wide").
+- The steps give positions and sizes in inches ("about 2 inches wide").
 
 ## 0c. Is it beginner-sized? (`00_beginner.png`)
 Every step is copied backward from the finish, so whatever detail the finish has, some step has to paint. For the

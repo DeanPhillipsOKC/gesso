@@ -498,7 +498,7 @@ def publish(a: argparse.Namespace) -> dict:
     previous = old_stamp.get("version", "before stamps") if old_stamp is not None else None
     lesson_data = {
         "gesso": with_made(stamp(), old_stamp or None),
-        "canvas": (json.loads((lesson / "canvas.json").read_text(encoding="utf-8")) if (lesson / "canvas.json").exists() else {}).get("canvas"),
+        "canvas": _v2_canvas(lesson)[1],
         "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
@@ -646,17 +646,21 @@ def fit_canvas(a: argparse.Namespace) -> dict:
     src = Path(a.input)
     if not src.exists():
         raise Refused(f"input image not found: {src}")
+    img = ImageOps.exif_transpose(Image.open(src))
+    # No --canvas: the standard size closest to the photo's shape, so every lesson can say where in inches (#122).
+    size = a.canvas or cv.default_size(img.width / img.height, a.orientation)
     try:
-        r = cv.fit(ImageOps.exif_transpose(Image.open(src)), a.canvas, tuple(a.focus), tuple(a.keep) if a.keep else None,
-                   a.orientation)
+        r = cv.fit(img, size, tuple(a.focus), tuple(a.keep) if a.keep else None, a.orientation)
     except ValueError as err:
         raise Refused(str(err)) from err
     out = lesson / "00_canvas_frame.png"
     r.pop("frame").save(out)
-    info = {**r, "input": str(src), "frame": str(out), "why": a.why, "grid_note": cv.grid_note(r["canvas"])}
+    info = {**r, "chosen": "given" if a.canvas else "default", "input": str(src), "frame": str(out), "why": a.why,
+            "grid_note": cv.grid_note(r["canvas"])}
     (lesson / "canvas.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
     LessonLedger(lesson).append({"tool": "filter", "filter": "fit-canvas", "step": "", "why": a.why, "input": str(src),
-                                 "out": str(out), "settings": {"canvas": a.canvas, "mode": r["mode"]}, "cost_usd": 0.0})
+                                 "out": str(out), "settings": {"canvas": size, "chosen": info["chosen"], "mode": r["mode"]},
+                                 "cost_usd": 0.0})
     advice = ("The frame is the photo as is: use it as the photo." if not r["needs_render"] else
               "Render once to fill the flat gray areas, then use the result as the photo: "
               f"render --step canvas --inputs {out} --quality medium --out {lesson / '00_canvas_fit.png'} "
@@ -727,12 +731,14 @@ def add_lesson_tools(sub) -> None:
     p.set_defaults(func=mix_tool)
 
     p = sub.add_parser("fit-canvas", help="Free. Fit the photo to the painter's canvas size: crop, or set up an extend render.",
-                       description="Before planning: fits the photo to a canvas (e.g. 11x14, either way up; 10x10) and to "
+                       description="Before planning: fits the photo to a canvas (e.g. 11x14, either way up; 10x10; or, with "
+                                   "no --canvas, the standard size closest to its shape) and to "
                                    "the image model's nearest frame. Writes <lesson>/00_canvas_frame.png and canvas.json. "
                                    "When needs_render is true, render it once to fill the gray areas (see the skill, 0b2).")
     p.add_argument("input")
     p.add_argument("--lesson", required=True)
-    p.add_argument("--canvas", required=True, help="width x height in inches, e.g. 11x14")
+    p.add_argument("--canvas", help="width x height in inches, e.g. 11x14. Left out: the standard size (8x10, 9x12, "
+                                    "11x14, 12x16, 16x20) closest to the photo's shape, recorded as \"chosen\": \"default\"")
     p.add_argument("--orientation", choices=["auto", "portrait", "landscape"], default="auto")
     p.add_argument("--focus", type=float, nargs=2, metavar=("X", "Y"), default=[0.5, 0.5],
                    help="the focal point, 0-1 from the top left")
@@ -1132,6 +1138,17 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
             "advice": advice, "cost_usd": 0.0}
 
 
+def _v2_canvas(lesson: Path) -> tuple[list | None, dict]:
+    """A version 2 lesson's canvas box and size: canvas.json, or the default size picked now (#122)."""
+    import canvas as cv
+    import checks
+
+    try:
+        return checks._canvas(lesson)
+    except cv.NoCanvas as err:
+        raise Refused(str(err)) from err
+
+
 def step_aids_tool(a: argparse.Namespace) -> dict:
     """Write aids/: every step's teaching pictures (where its paint goes, a close-up, a paint map) and the transfer
     outline, from the outlines, the plan, and the step pictures. No renders, the same bytes every run."""
@@ -1156,11 +1173,9 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
     stale = [n for n, p, b in zip(names, pictures, built) if p.shape != b.shape or not np.array_equal(p, b)]
     if stale:
         raise Refused(f"the step pictures don't match the plan ({stale[0]} first): run build-steps --lesson {lesson} again")
-    info_path = lesson / "canvas.json"
-    info = json.loads(info_path.read_text(encoding="utf-8")) if info_path.exists() else {}
+    canvas_box, canvas = _v2_canvas(lesson)
     view = canvas_view(lesson, names)
-    data = aids.make(plan, pictures, masks, owner, info.get("canvas_box"), info.get("canvas"), lesson / "aids",
-                     [view.get(n, n) for n in names])
+    data = aids.make(plan, pictures, masks, owner, canvas_box, canvas, lesson / "aids", [view.get(n, n) for n in names])
     (lesson / "aids" / "aids.json").write_text(json.dumps(data, indent=1), encoding="utf-8")
     rows = data["steps"]
     return {"aids": str(lesson / "aids" / "aids.json"), "steps": len(rows),
@@ -1182,7 +1197,7 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
     if built is None:
         raise Refused("parts/owner.png doesn't match 99_finish.png or the plan: run outline again")
     _, pictures, _, masks = built
-    canvas_box, canvas = checks._canvas(lesson)
+    canvas_box, canvas = _v2_canvas(lesson)
     drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas, lesson=lesson)
     path = lesson / "text.json"
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
@@ -1377,7 +1392,8 @@ def add_v2_tools(sub) -> None:
                        description="Run after build-steps. Writes aids/aids.json and its pictures: each step's painted "
                                    "area as an outline for the page, a close-up of small areas, a paint map where a step "
                                    "or part has 2 or more paints, the position in words (inches on the canvas from "
-                                   "canvas.json, or the quarter marks without one), and aids/transfer.png.")
+                                   "canvas.json; a lesson with none gets the standard size closest to the finish's "
+                                   "shape, or is refused), and aids/transfer.png.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=step_aids_tool)
     p = sub.add_parser("draft-text", help="Free. v2: draft every step's lines in text.json from the plan, outlines, paints, and cards.",

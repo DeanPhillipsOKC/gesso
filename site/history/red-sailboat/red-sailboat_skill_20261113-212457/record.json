@@ -1,0 +1,142 @@
+{
+  "photo": "red-sailboat",
+  "run": "red-sailboat_skill_20261113-212457",
+  "started": "2026-11-13 21:24",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "dcfdbea7bc44370d",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 1.4.0",
+        "commit": "226e955",
+        "dirty": false,
+        "published": "2026-11-13"
+      },
+      "made_with": {
+        "version": "POC 1.4.0",
+        "commit": "226e955",
+        "published": "2026-11-13"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-13T21:45:37"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 17,
+        "words": 2404,
+        "tubes": 5,
+        "cost_usd": 0.018,
+        "minutes": 0.2,
+        "paid_renders": 1,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 8,
+        "minutes_total": 17.6,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 1,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 2
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the sunset sky, violet to orange",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hill",
+          "name": "Lay in the far hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "far-shore",
+          "name": "Lay in the shore behind the boat",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "water-base",
+          "name": "Lay in the teal water",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "water-streaks",
+          "name": "Streak in the lighter water",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "path-gold",
+          "name": "Lay the first layer of the sun path",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "path-bright",
+          "name": "Brighten the middle of the sun path",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull-base",
+          "name": "Block in the red hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull-shade",
+          "name": "Shade the right half of the hull",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "hull-rim",
+          "name": "Light the hull's top rim",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sails",
+          "name": "Block in the white sails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mast-line",
+          "name": "Line in the mast and boom",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mast-light",
+          "name": "Catch the light on the mast",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-red",
+          "name": "Pull down the hull's reflection",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-gray",
+          "name": "Pull down the sail's shadow reflection",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "refl-white",
+          "name": "Pull down the sail's light",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

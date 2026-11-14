@@ -31,6 +31,7 @@ import tools  # noqa: E402
 from lessons import NAMES, fixture  # noqa: E402,F401
 
 FIX = Path(__file__).resolve().parent / "fixtures"
+CANVAS = {"w_in": 14.0, "h_in": 11.0, "orientation": "landscape"}  # the fixtures (1000 x 786) have the shape of 14 x 11 in
 
 
 def scene():
@@ -814,8 +815,8 @@ class CardTests(unittest.TestCase):
         results = ["Dry brush (x)"]
         good = {"id": "dry-brush", "stroke_result": "Dry brush (x)", "name": "Dry brush", "result": "Broken marks.",
                 "sources": ["research, section 2"], "checked": False, "brushes": ["flat"],
-                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10], "paint": "#8a6a4a"}]}]}}
-        self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])
+                "diagram": {"stages": [{"caption": "a", "add": [{"circle": [50, 50, 10], "paint": "#2f3b2a"}]}]}}
+        self.assertEqual(cards.problems({"dry-brush": good}, {}, results), [])  # #127: a shape needs its paint
         for change, expect in (({"sources": []}, "no sources"), ({"result": ""}, "no result"),
                                ({"stroke_result": "Made up"}, "isn't an entry"), ({"brushes": ["spoon"]}, "can draw"),
                                ({"diagram": {"stages": [{"add": [{"blob": 1}]}]}}, "doesn't draw"),

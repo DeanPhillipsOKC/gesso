@@ -83,7 +83,7 @@ class PublishV2Tests(unittest.TestCase):
             self.assertEqual(data["plan_version"], 2)
             for key, value in V1.items():
                 self.assertIn(key, data, f"{name}: lesson.json lost {key}")
-                if value is not None and not (key == "canvas" and data[key] is None):  # no canvas.json in a fixture
+                if value is not None:
                     want = (int, float) if isinstance(value, (int, float)) else type(value)  # an empty ledger sums to 0
                     self.assertIsInstance(data[key], want, f"{name}: {key}")
             for key in ("subject", "focal_point", "light", "components", "mixes"):
@@ -184,7 +184,6 @@ class PublishV2Tests(unittest.TestCase):
                     self.assertIn("Not checked yet", html)
             self.assertEqual(html.count('class="stop"'), len(data["groups"]))
             self.assertIn('id="start"', html)
-            self.assertIn("Mark halves and quarters on tape", html)
             self.assertEqual(html.count("class='card' id='basic-"), len(cards.basics()))
             self.assertIn("The transfer outline", html)
             self.assertIn('<nav class="toc"', html)
@@ -264,7 +263,7 @@ class PublishV2Tests(unittest.TestCase):
                          [("Titanium white", None), ("Burnt sienna", None)])
         self.assertNotIn("first in", page2.tubes_first(lesson, ["Titanium white"]))
 
-    def test_the_tubes_are_not_also_in_the_kit_and_the_kit_has_no_masking_tape(self):
+    def test_the_tubes_are_not_also_in_the_kit_and_the_kit_has_a_ruler_and_no_tape(self):
         def kit_of(html: str) -> str:
             return html[html.index('<div class="kit">'):html.index("</section>", html.index('<div class="kit">'))]
         for name in NAMES:
@@ -273,16 +272,11 @@ class PublishV2Tests(unittest.TestCase):
             self.assertNotIn('<p class="label">Tubes</p>', kit)
             for t in data["tubes"]:
                 self.assertNotIn(f"<li>{t}</li>", kit, name)
-        # The fixtures have no canvas.json, and the tape only ever came with a canvas: give one a canvas to check it.
-        lesson = self.copy("red-sailboat")
-        (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 14.0, "h_in": 11.0,
-                                                                   "orientation": "landscape"},
-                                                     "canvas_box": [0.0, 0.0, 1.0, 1.0]}), encoding="utf-8")
-        code, r = run_tool("publish", "--lesson", str(lesson))
-        self.assertEqual(code, 0, r)
-        kit = kit_of((lesson / "lesson-standalone.html").read_text(encoding="utf-8"))
-        self.assertIn("A 14 x 11 in canvas, landscape (hang it that way).", kit)
-        self.assertNotIn("masking tape", kit.lower())
+            # #122: every lesson has a canvas size (the fixtures get the default), and the steps measure in inches
+            self.assertIn("<li>A 14 x 11 in canvas, landscape (hang it that way). Using another size? Scale every "
+                          "measurement.</li>", kit, name)
+            self.assertIn("<li>A ruler</li>", kit, name)
+            self.assertNotIn("tape", kit.lower(), name)
 
     def test_your_paints_is_closed_with_its_summary_and_the_cards_unchanged_inside(self):
         for name in NAMES:
@@ -303,18 +297,37 @@ class PublishV2Tests(unittest.TestCase):
                 self.assertIn(html_escape(p.get("used_for", "")), card)
                 self.assertIn("First needed in step", card)
 
-    def test_tape_marks_and_the_transfer_outline_sit_in_one_closed_fold(self):
+    def test_the_transfer_outline_sits_alone_in_a_closed_optional_fold_placed_by_inches(self):
         for name in NAMES:
             html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
             start = html[html.index('id="start"'):]
-            m = re.search(r'<details class="aid placing"><summary>Placing shapes with tape marks and a transfer outline '
-                          r'<span class=small>optional, but the steps say where things go by these tape marks</span>'
-                          r'</summary>(.*?)</details>', start, re.S)
+            m = re.search(r'<details class="aid placing"><summary>Placing shapes with a transfer outline '
+                          r'<span class=small>optional</span></summary>(.*?)</details>', start, re.S)
             self.assertTrue(m, name)
-            self.assertIn("Mark halves and quarters on tape", m.group(1))
             self.assertIn("The transfer outline", m.group(1))
-            self.assertEqual(html.count("Mark halves and quarters on tape"), 1)
+            self.assertIn("On your 14 x 11 in canvas the grid lines are 3 1/2 in apart across and 2 3/4 in apart "
+                          "down.", m.group(1))
+            self.assertIn("measuring from the edges with a ruler", m.group(1))
+            self.assertNotIn('class="tape"', html)
             self.assertEqual(html.count('class="transfer"'), 1)
+
+    def test_a_lesson_published_without_a_canvas_gets_the_default_size_for_its_shape(self):
+        # #122: the fixtures have no canvas.json and no --canvas. 1000 x 786 is the shape of 14 x 11 in.
+        for name in NAMES:
+            info = json.loads((self.lessons[name] / "canvas.json").read_text(encoding="utf-8"))
+            self.assertEqual(info["chosen"], "default", name)
+            self.assertEqual(info["canvas"], {"w_in": 14.0, "h_in": 11.0, "orientation": "landscape"}, name)
+            self.assertEqual(info["canvas_box"], [0.0, 0.0, 1.0, 1.0], name)  # the shape fits: nothing is cropped
+            self.assertEqual(self.data(name)["canvas"], info["canvas"], name)
+
+    def test_no_tape_anywhere_on_a_version_2_page_and_close_ups_give_inches(self):
+        for name in NAMES:
+            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
+            self.assertNotRegex(html, r"(?i)\btape\b", name)
+            stages = self.data(name)["stages"]
+            if any(s["aids"].get("closeup") for s in stages):
+                self.assertIn("The dotted lines are every 1 3/4 in across and 1 3/8 in down.", html, name)
+            self.assertNotIn("halfway between", html)
 
     # --- text, drafts, and the seal ---
 
