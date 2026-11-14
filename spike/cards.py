@@ -86,7 +86,7 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
         for key in BASIC_NEEDS:
             if c.get(key) in (None, "", []):
                 out.append(f"{f}: no {key}")
-        if c.get("when") and c["when"] not in WHEN:
+        if c.get("when") and (not isinstance(c["when"], str) or c["when"] not in WHEN):
             out.append(f"{f}: when {c['when']!r} isn't one of {', '.join(WHEN)}")
         if c.get("fold") and c.get("when") != "start":
             out.append(f"{f}: only a start card can be folded")
@@ -105,9 +105,9 @@ WHEN = {
     "first_tint": "the first step using a tint or shade of another paint",
     "first_big_coat": "the first coat (flat, full, or blend) over a big area",
     "first_light_value": "the first pass lighter than everything its part had before",
-    "midway": "the first stage that starts halfway through the lesson or later",
+    "midway": "the stage start nearest the halfway step, never the first or last step",
 }
-NEEDED = ("first_layer", "midway")  # every lesson of two steps or more has these: a card for one must find its step
+NEEDED = ("first_layer",)  # nearly every lesson has this moment: check notes a lesson where its card finds no step
 BIG_COAT = 0.15  # a coat over at least this share of the canvas (aids area) is a big area
 COATS = ("flat", "full", "blend")
 
@@ -151,8 +151,8 @@ def moment(when: str, stages: list[dict]) -> int | None:
         if len(stages) < 2:
             return None
         half = len(stages) // 2
-        starts = [i for i, s in enumerate(stages) if i == 0 or s.get("group") != stages[i - 1].get("group")]
-        return next((i for i in starts if i >= half), half)
+        starts = [i for i in range(1, len(stages) - 1) if stages[i].get("group") != stages[i - 1].get("group")]
+        return min(starts, key=lambda i: (abs(i - half), i)) if starts else half  # one stage: the halfway step
     return None
 
 
@@ -162,6 +162,8 @@ def places(stages: list[dict], basic_cards: dict | None = None) -> dict[str, int
     out: dict[str, int | str] = {}
     for cid, c in basic_cards.items():
         when = c.get("when")
+        if not isinstance(when, str):
+            continue  # cards.problems reports it
         if when == "start":
             out[cid] = "start"
         elif when in WHEN and (i := moment(when, stages)) is not None:
@@ -170,13 +172,14 @@ def places(stages: list[dict], basic_cards: dict | None = None) -> dict[str, int
 
 
 def unplaced(stages: list[dict], basic_cards: dict | None = None) -> list[str]:
-    """`check`'s problems: a basics card this lesson should show (its moment comes in every lesson) with no step for it."""
+    """`check`'s notes: a basics card nearly every lesson shows (NEEDED) with no step for it. A note, not a failure: a
+    lesson whose parts never overlap is fine, and only loses the card."""
     basic_cards = basics() if basic_cards is None else basic_cards
     if len(stages) < 2:
         return []
     got = places(stages, basic_cards)
-    return [f"basics card {cid} shows at {WHEN[c['when']]}, and no step is that, so its card isn't shown. Check the "
-            "steps' show and paints in plan.json, then run draft-text again."
+    return [f"basics card {cid} shows at {WHEN[c['when']]}, and no step is that, so the page doesn't show it. If a "
+            "step does paint over earlier paint, run draft-text again."
             for cid, c in basic_cards.items() if c.get("when") in NEEDED and cid not in got]
 
 

@@ -527,10 +527,11 @@ lesson.json's stages alone (show, part, stage, paints, drafted lines, aids area)
 | `first_tint` | lighter-darker | the first using a paint that's a tint or shade of another (`of`) |
 | `first_big_coat` | dries-darker | the first `flat`, `full`, or `blend` step over 15% of the canvas (the first coat with no step aids) |
 | `first_light_value` | one-light | the first pass lighter than every paint its part had before |
-| `midway` | ugly-stage | the first step of the first stage that starts halfway through or later |
+| `midway` | ugly-stage | the stage start nearest the halfway step (the earlier on a tie), never the first or last step; in a one-stage lesson, the halfway step |
 
-`cards.problems` flags a basics card with no `when` or one not in the table; `check` flags a lesson of two steps
-or more with no step for `first_layer` or `midway`, which every such lesson has.
+`cards.problems` flags a basics card with no `when` or one not in the table. `check` notes (doesn't fail) a lesson
+of two steps or more with no step for `first_layer`: nearly every lesson paints over earlier paint, but one whose
+parts never overlap is fine and only loses the card. The page works out the places once per lesson.
 
 ### Element techniques (#12, built 2026-11-13: `spike/elements.py`, `elements`)
 
@@ -725,8 +726,8 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 
 `spike/checks.py` gathers `plan2.problems`, `outline.problems`, `build_steps.problems` (all built) and adds:
 - `v2_step_range` and `v2_stage_range` from the technique; more top-level parts than `detail_budget.max_parts`;
-- a stroke with no card; a brush `spike/brushes.py` doesn't know; a basics card that every lesson shows (let it dry,
-  the ugly stage) with no step to show in (#95);
+- a stroke with no card; a brush `spike/brushes.py` doesn't know;
+- a note (not a failure) when the let-it-dry basics card finds no step to show in (#95);
 - `texture_jumps`, as today: no step turns more than 10% of the picture from flat to textured (fix: one more pass);
 - a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
   inches from an edge."); a line over 40 words;

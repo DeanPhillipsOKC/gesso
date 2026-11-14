@@ -12,8 +12,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   folded as "If something goes wrong". The other six basics cards are open in the step where they first matter: let
   each layer dry where paint first goes over paint, colors dry darker at the first big coat, light over dark at the
   first coats line, lighter or darker at the first tint, one light direction at the first lighter pass, and the ugly
-  stage at the first stage past halfway. Each shows once; a card whose moment never comes isn't shown. `check` flags
-  a lesson with no step for let it dry or the ugly stage.
+  stage at the stage start nearest halfway (never the last step). Each shows once; a card whose moment never comes
+  isn't shown. `check` notes a lesson with no step for let it dry.
 
 ## POC 1.4.1 (2026-11-14)
 Nothing a lesson shows changes. The tests are fast again (#87), and publish is faster.

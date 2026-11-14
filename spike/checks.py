@@ -264,7 +264,8 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
                      + "; ".join(f"{sid}: {', '.join(g)}" for sid, g in gaps.items()))
 
     # what publish counts: paints a line names but the step doesn't list, recipes, diagrams, the step aids
-    by_name = {n: {"name": n, "hex": c["hex"], **({"of": c["of"]} if c.get("of") else {})} for c in plan.get("paints") or []
+    extras = publish2.paint_extras(plan)  # what publish puts on each paint (of, plus, parts...), so the page agrees
+    by_name = {n: {**extras.get(n, {}), "name": n, "hex": c["hex"]} for c in plan.get("paints") or []
                for n in [publish2.paint_names(plan)[c["id"]]]}
     stages = publish2.stages(plan, text, by_name, names, {"dry_time": technique.get("dry_time", "")}, lesson)
     import construct
@@ -300,7 +301,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     else:  # the area each step covers: where the page puts the colors-dry-darker card (#95)
         for st, r in zip(stages, aids_rows):
             st["aids"] = {"area": r["area"]} if "area" in r else {}
-    failures += cards.unplaced(stages)
+    notes += cards.unplaced(stages)
     page = lesson / "lesson-standalone.html"
     if page.exists() and page.stat().st_size > publish2.MAX_PAGE_BYTES:
         failures.append(f"the page is {page.stat().st_size / 1e6:.1f} MB, over {publish2.MAX_PAGE_BYTES / 1e6:g} MB. "

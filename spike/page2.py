@@ -255,7 +255,7 @@ def stroke_folds(lesson: dict, i: int, known: dict) -> str:
 
 
 def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: str, chips: str, why: str,
-         diagram: str) -> str:
+         diagram: str, basics_at: dict | None = None) -> str:
     """One step of a version 2 lesson: the picture with its Where / Result switch, then what to do, its paints and
     brushes, and the folds (basics card, close-up, paint map, stroke card, diagram)."""
     s = lesson["stages"][i]
@@ -269,7 +269,7 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
     if el.get("drafted"):  # a technique drafted for this lesson, not in the hand-checked library yet (#12)
         tip += (f'<p class="strokelink">Technique: {e(el.get("name", ""))} '
                 '<span class="unchecked">Technique not checked yet</span></p>')
-    folds = "".join([step_basics(lesson, i), closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed), stroke_folds(lesson, i, known),
+    folds = "".join([step_basics(lesson, i, basics_at), closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed), stroke_folds(lesson, i, known),
                      fold("Diagram", "how to build the shape", diagram) if diagram else ""])
     return f"""
 <article class="step" id="step-{i + 1}">
@@ -412,11 +412,12 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
     strokes = (f'<div><h3>Strokes to try on scrap paper first</h3><p class="small">Each one\'s card is open in the step '
                f'that first uses it.</p><ul class="strokes">{tries}</ul></div>') if tries else ""
     basics = start_basics()
+    in_steps = any(at != "start" for at in cards.places(lesson["stages"]).values())
+    later = '<p class="small">The other basics are in the steps where they matter.</p>' if in_steps else ""
     # Folded and optional at the owner's word (#94). The steps say where in inches, so nothing here is needed (#122).
     placing = fold("Placing shapes with a transfer outline", "optional", transfer, cls="placing") if transfer else ""
     return (f'<section class="start" id="start"><h2>Before you start</h2>{placing}{strokes}'
-            f'<div><h3>Getting started</h3><p class="small">The other basics are in the steps where they matter.</p>'
-            f'<div class="basics">{basics}</div></div></section>')
+            f'<div><h3>Getting started</h3>{later}<div class="basics">{basics}</div></div></section>')
 
 
 def _unchecked(card: dict) -> str:
@@ -428,15 +429,18 @@ def start_basics() -> str:
     under its own title, last."""
     start = [c for c in cards.basics().values() if c.get("when") == "start"]
     start.sort(key=lambda c: (bool(c.get("fold")), c["id"] != "set-up"))
-    return "".join(fold(c["fold"], c["name"], cards.basic_html(c), cls="basic") if c.get("fold") else cards.basic_html(c)
+    return "".join(fold(c["fold"], _unchecked(c), cards.basic_html(c), cls="basic") if c.get("fold") else cards.basic_html(c)
                    for c in start)
 
 
-def step_basics(lesson: dict, i: int) -> str:
-    """The basics cards whose moment is this step (cards.places), open: each shows once in a lesson (#95)."""
+def step_basics(lesson: dict, i: int, basics_at: dict | None = None) -> str:
+    """The basics cards whose moment is this step, open: each shows once in a lesson (#95). `basics_at` is
+    cards.places for the lesson, worked out once by the caller (it's the same for every step)."""
     known = cards.basics()
-    here = [cid for cid, at in cards.places(lesson["stages"], known).items() if at == i]
+    basics_at = cards.places(lesson["stages"], known) if basics_at is None else basics_at
+    here = [cid for cid, at in basics_at.items() if at == i and cid in known]
     order = list(cards.WHEN)
     here.sort(key=lambda cid: order.index(known[cid]["when"]))
-    return "".join(fold(f"Basics: {known[c]['name']}", _unchecked(known[c]), cards.basic_html(known[c]), open_=True,
+    # no hint: the open card shows its own "not checked yet"
+    return "".join(fold(f"Basics: {known[c]['name']}", "", cards.basic_html(known[c]), open_=True,
                         cls="basic") for c in here)

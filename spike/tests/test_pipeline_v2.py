@@ -842,14 +842,14 @@ class CardTests(unittest.TestCase):
                     "aids": {} if area is None else {"area": area}}
         stages = [st("sun", "full", "sky", ["#f0e080"], area=0.02),                       # 1: small
                   st("sky", "blend", "sky", ["#5070c0", "#a0b0e0"], area=0.6),           # 2: the first big coat
-                  st("hill", "flat", "land", ["#204020"], ["dry"], area=0.2),             # 3: over the sky
+                  st("hill", "flat", "land", ["#204020"], ["dry"], area=0.2),             # 3: over the sky; the stage start nearest halfway
                   st("hill", "pass", "land", ["#103010"], ["dry"]),                       # 4: darker, not a light value
                   st("hill", "pass", "land", ["#60a060"], ["dry"], of=True),              # 5: lighter, and a tint
-                  st("tree", "flat", "tree", ["#302010"], ["dry"]),                       # 6: first stage past halfway
+                  st("tree", "flat", "tree", ["#302010"], ["dry"]),                       # 6: a later stage start
                   st("tree", "pass", "tree", ["#c0c0a0"], ["dry", "coats"])]              # 7: a coats line
         got = cards.places(stages)
         self.assertEqual({c: at for c, at in got.items() if at != "start"},
-                         {"dries-darker": 1, "let-it-dry": 2, "one-light": 4, "lighter-darker": 4, "ugly-stage": 5,
+                         {"dries-darker": 1, "let-it-dry": 2, "one-light": 4, "lighter-darker": 4, "ugly-stage": 2,
                           "light-over-dark": 6})
         self.assertEqual(cards.unplaced(stages), [])
         # no coats line, no tint, no lighter pass: those cards don't show at all
@@ -859,11 +859,31 @@ class CardTests(unittest.TestCase):
         self.assertFalse({"light-over-dark", "lighter-darker", "one-light"} & set(got))
         # with no step aids, the first coat stands in for the first big one
         self.assertEqual(cards.places([{**s, "aids": {}} for s in stages])["dries-darker"], 0)
-        # nothing painted over anything: check names the card that has nowhere to go
+        # nothing painted over anything: check notes the card that has nowhere to go
         bare = [st("a", "full", "g1", ["#ffffff"]), st("b", "full", "g2", ["#000000"])]
         self.assertEqual(len(cards.unplaced(bare)), 1)
         self.assertIn("let-it-dry", cards.unplaced(bare)[0])
         self.assertEqual(cards.unplaced(bare[:1]), [])  # one step: nothing is expected
+
+    def test_the_ugly_stage_is_the_stage_start_nearest_halfway_never_the_last_step(self):
+        def lesson(starts, n):
+            group = 0
+            out = []
+            for i in range(n):
+                group += i in starts and i > 0
+                out.append({"group": f"g{group}", "show": "full", "colors": []})
+            return out
+        self.assertEqual(cards.moment("midway", lesson({0, 2, 9}, 10)), 2)    # not step 10 of 10
+        self.assertEqual(cards.moment("midway", lesson({0, 9}, 10)), 5)       # only a last-step start: halfway
+        self.assertEqual(cards.moment("midway", lesson({0}, 10)), 5)          # one stage: halfway
+        self.assertEqual(cards.moment("midway", lesson({0, 4, 6}, 10)), 4)    # a tie goes to the earlier one
+        self.assertIsNone(cards.moment("midway", lesson({0}, 1)))
+
+    def test_a_when_that_isnt_a_word_is_a_problem_not_a_crash(self):
+        good = {"id": "x", "name": "X", "lines": ["a"], "sources": ["s"], "checked": False}
+        for when in (["start"], {"step": 3}):
+            self.assertIn("isn't one of", " | ".join(cards.problems({}, {"x": {**good, "when": when}}, [])))
+            self.assertEqual(cards.places([], {"x": {**good, "when": when}}), {})
 
     def test_an_unchecked_card_says_so_and_the_page_holds_every_card(self):
         page = cards.page()
