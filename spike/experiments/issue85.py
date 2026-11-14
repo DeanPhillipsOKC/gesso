@@ -410,19 +410,23 @@ def stack(images: list[np.ndarray], out: str) -> None:
     save(np.vstack([np.pad(i, ((0, 8), (0, w - i.shape[1]), (0, 0)), constant_values=255) for i in images]), out)
 
 
-THIN = "per-limb@band"  # the prompt that worked for a thin part: one box and the points along it per limb
+# The two prompts that worked for a thin part, both kept inside its band:
+ONE = "box+points@band"  # one box around all its paths, with the plan's points_in and points_out
+THIN = "per-limb@band"  # per limb: a box around that path and points along it
 
 
 def sheets() -> None:
     """The pictures docs/spikes/outline-models.md shows. Top row of each: the gate run; bottom: the fixture."""
     names = [("SAM ViT-B (today's model)", "sam-b"), ("SAM ViT-L", "sam-l"), ("SAM-HQ ViT-L", "hq-l"),
              ("SAM 2.1 Large", "sam2.1-l")]
-    branch = [("the pipeline today (color rule)", "pipeline"), ("ViT-B, one box (the 2026-11-12 probe)", "sam-b__box")] \
-        + [(f"{n}, per limb", f"{m}__{THIN}") for n, m in names]
-    stack([sheet(pic, "branch", branch, None, 3, 520) for pic in ("chickadee-gate", "chickadee-fixture")],
+    three = names[:3]
+    both = [(f"{n.split(' (')[0]}, {text}", f"{m}__{rec}") for n, m in three
+            for text, rec in (("one box + points", ONE), ("per limb", THIN))]
+    branch = [("the pipeline today (color rule)", "pipeline"), ("ViT-B, one box, no points (the probe)", "sam-b__box")] + both
+    stack([sheet(pic, "branch", branch, None, 4, 420) for pic in ("chickadee-gate", "chickadee-fixture")],
           "outline-models-branch.jpg")
-    mast = [("finish", "finish"), ("pipeline today", "pipeline")] + [(n.split(" (")[0], f"{m}__{THIN}") for n, m in names] \
-        + [("SAM-HQ ViT-H", f"hq-h__{THIN}"), ("SAM 2.1 Small", f"sam2.1-s__{THIN}")]
+    mast = [("finish", "finish"), ("pipeline today", "pipeline")] \
+        + [(t.replace("SAM-HQ ViT-L", "HQ-L").replace("SAM ", "").replace("one box + points", "box + points"), f) for t, f in both]
     stack([sheet("sailboat-gate", "mast", mast, [0.66, 0.2, 0.9, 0.66], 8, 230),
            sheet("sailboat-fixture", "mast", mast, [0.7, 0.2, 0.94, 0.66], 8, 230)], "outline-models-mast.jpg")
     trunks = [("finish", "finish"), ("pipeline today", "pipeline")] \
@@ -447,11 +451,13 @@ def sheets() -> None:
     save(np.hstack([np.pad(t, ((0, h - t.shape[0]), (0, 0), (0, 0)), constant_values=255) for t in tiles]),
          "outline-models-matte.jpg")
     steps = []
-    for text, model in [("step 5 today", None)] + [(f"step 5, branch and feet from {n}", m) for n, m in names[:3]]:
-        swaps = {"branch": f"{model}__{THIN}", "bird-feet": f"{model}__box"} if model else {}
+    for text, model, rec in [("step 5 today", None, None)] + [(f"{n.split(' (')[0]}, {t}", m, r) for n, m in three
+                                                              for t, r in (("one box + points", ONE), ("per limb", THIN))]:
+        swaps = {"branch": f"{model}__{rec}", "bird-feet": f"{model}__box"} if model else {}
         pic = rebuilt_step("chickadee-gate", swaps, "branch-dark")
-        steps.append(label(cv2.resize(pic, (768, 512), interpolation=cv2.INTER_AREA), text))
-    save(np.vstack([np.hstack(steps[:2]), np.hstack(steps[2:])]), "outline-models-step5.jpg")
+        steps.append(label(cv2.resize(pic, (600, 400), interpolation=cv2.INTER_AREA), text))
+    steps.insert(1, np.full_like(steps[0], 255))
+    save(np.vstack([np.hstack(steps[i:i + 2]) for i in range(0, 8, 2)]), "outline-models-step5.jpg")
 
 
 def rebuilt_step(pic: str, swaps: dict[str, str], step_id: str) -> np.ndarray:
