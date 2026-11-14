@@ -7,6 +7,8 @@ nothing else should change.
 - `problems` not empty: fix the plan as each says and run it again.
 - **A step "changes almost nothing":** its paints aren't the part's colors there, or an earlier step already
   showed it. Merge it into its neighbor, or give it the right paint.
+- **A step "paints ... behind the objects" far above or below its part** (#139): a bug in `build-steps`, as the
+  message says. `check` fails on it, so the lesson can't seal: stop and report it, with the step and the sheet.
 - **A step adds too much at once** (a flat shape becomes finished in one step): give the part another paint from
   `paints` and another pass.
 - **Something looks wrong in an outline** (a part painted where it isn't, or a faint trace of an object before

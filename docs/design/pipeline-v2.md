@@ -369,6 +369,20 @@ passes `--max-cost 0.40` to every render (the default stays $1.00 for v1).
 
 What's behind a thing is only on screen until the thing is painted. The bar is "doesn't look wrong".
 
+**Changed 2026-11-14 (#139): behind an object, an area takes only its own rows.** With a background picture, each
+gap is divided among the areas around it by the color the picture shows there (`build_steps.by_color`; dividing
+along rows alone gave a hull on the horizon to the sky). In the hands-off lavender run
+`balloon-lavender_skill_20261114-075951` (POC 1.8.0) the orange cloud streaks behind the tree's canopy matched the
+golden hill at the tree's foot, so the hill's paint went up into the sky: hill-colored patches in the sky where the
+tree goes, the far hills' purple dashes there, and the golden hill's Where line "top at the top edge". Now an area
+takes a pixel of the gap only in the rows it has around the gap, give or take 3% of the height (`ROWS_REACH`, for
+an edge the object hides). A pixel whose color is nearest an area that doesn't reach its row stays with the part the
+row gives it, and that part's own paint is carried over it (like the free fill), not the render's pixel: the
+picture there looks like no part of that row (cloud streaks the hill's color, or a hill top hidden behind the
+tree), and showing it drew a patch. Marks the render shows there (clouds) are still found by their color rule. The
+three fixtures, given a stand-in background, and the hands-off chickadee run's real one, build the same pictures
+outside the gaps; that run builds the same pictures everywhere.
+
 **Changed 2026-11-13 (#84): what's under a thing no longer draws the thing.** The owner found things showing
 before their steps on all three 1.0.0 lessons: clouds, the mountains' ridge, and bands of hill color in the
 lavender's first sky step; hills under the sailboat's sky; the chickadee's feet as two dark patches on the branch
@@ -411,7 +425,10 @@ part, its children's places until they're painted, and what's carried under the 
 then set to the finish itself; how far the built one was from it is reported as `final_gap`.
 
 `build_steps.problems` reports: a step that changed something outside its part (a bug; it has never happened);
-a step that changes almost nothing; a last picture more than 2% away from the finish.
+a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
+more than 0.1% of the picture (`FAR_SHARE`) behind the objects more than 5% of the height (`FAR_ROWS`) above or
+below its part's own outline's rows. Each step's row carries that share as `far`. Since #139 the split behind the
+objects can't do that (section 7), so it's reported as a bug in `build-steps`, like the first.
 
 By construction a step can't move, reshape, or recolor another part. There is nothing to review, redo, or lock.
 

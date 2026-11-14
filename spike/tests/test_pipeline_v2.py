@@ -378,6 +378,63 @@ class BuildStepsTests(unittest.TestCase):
         self.assertTrue((with_plate[2][~near_ball] == without[2][~near_ball]).all())  # nothing else moved
         self.assertFalse((with_plate[2][near_ball] == without[2][near_ball]).all())
 
+    def tree_scene(self):
+        """A sky over a golden hill, a tree standing on the hill with its canopy in the sky, and a background picture
+        with golden cloud streaks behind the canopy: the same color as the hill, far above it (#139)."""
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:60] = (110, 150, 220)
+        img[60:] = (200, 160, 60)
+        plate = img.copy()
+        plate[20:27, 62:98] = (205, 158, 62)  # the streaks, only behind the canopy
+        yy, xx = np.mgrid[:120, :160]
+        tree = (((yy - 35) ** 2 + (xx - 80) ** 2) < 22 ** 2) | ((yy >= 50) & (yy < 95) & (xx >= 76) & (xx < 84))
+        img[tree] = (40, 80, 40)
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "hill", "kind": "area", "box": [0, 0.45, 1, 1]},
+                 {"id": "tree", "kind": "object", "box": [0.3, 0.08, 0.7, 0.82]}]
+        hill = np.zeros((120, 160), bool)
+        hill[60:] = True
+        _, owner, _ = ol.outline(img, parts, given={"hill": hill & ~tree, "tree": tree})
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "gold", "hex": "#c8a03c"},
+                           {"id": "green", "hex": "#285028"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "hill", "part": "hill", "show": "full", "paints": ["gold"]},
+                    {"id": "tree", "part": "tree", "show": "full", "paints": ["green"]}]}]}
+        return img, plate, owner, plan, tree
+
+    def test_what_is_behind_an_object_goes_only_to_a_part_in_those_rows(self):  # #139
+        img, plate, owner, plan, tree = self.tree_scene()
+        front = ~bs.back_parts(plan["parts"])[owner]
+        back = bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True)
+        self.assertTrue((back[20:27, 70:90] == 0).all())  # the streaks stay the sky's
+        self.assertTrue((back[70:95, 76:84] == 1).all())  # the hill still runs on behind the trunk
+        self.assertTrue((back[30:45, 62:98] == 0).all())
+        pictures, rows, painted = bs.build(img, plan, owner, background=plate)
+        self.assertFalse(painted[1][:50].any())  # the hill's step paints nothing in the sky
+        sky = pictures[0][20:27, 70:90].reshape(-1, 3).astype(int)
+        self.assertTrue((sky[:, 2] > sky[:, 0] + 60).all())  # the sky carries its own blue over hill-colored streaks
+        doubt = np.zeros(owner.shape, bool)
+        bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True, doubt=doubt)
+        self.assertTrue(doubt[20:27, 70:90].all())
+        self.assertFalse(doubt[:15].any() or doubt[30:45].any())  # the rest behind the canopy is the render's sky
+        self.assertEqual([r["far"] for r in rows], [0.0, 0.0, 0.0])
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def test_a_part_painting_far_outside_its_own_rows_is_reported(self):  # #139
+        img, plate, owner, plan, tree = self.tree_scene()
+        old, bs.ROWS_REACH = bs.ROWS_REACH, 10.0  # any row, by color alone: what build-steps did before #139
+        try:
+            _, rows, painted = bs.build(img, plan, owner, background=plate)
+        finally:
+            bs.ROWS_REACH = old
+        self.assertTrue(painted[1][20:27, 70:90].any())  # the streaks went to the hill
+        self.assertGreater(rows[1]["far"], bs.FAR_SHARE)
+        said = [p for p in bs.problems(plan, rows) if "above or below" in p]
+        self.assertEqual(len(said), 1)
+        self.assertTrue(said[0].startswith("hill: paints"))
+
     def test_a_rim_of_a_later_part_waits_for_that_part(self):
         # an orange cloud whose outline is 2 pixels inside its paint: the ring left over is the sky's by the outline
         img = np.zeros((120, 160, 3), np.uint8)
