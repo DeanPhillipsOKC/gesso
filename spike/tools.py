@@ -1214,9 +1214,9 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
     built = checks.build(lesson, plan)
     if built is None:
         raise Refused("parts/owner.png doesn't match 99_finish.png or the plan: run outline again")
-    _, pictures, _, masks = built
+    owner, pictures, _, masks = built
     canvas_box, canvas = _v2_canvas(lesson)
-    drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas, lesson=lesson)
+    drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas, lesson=lesson, owner=owner)
     path = lesson / "text.json"
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
     text = draft_text.merge(old, drafted)

@@ -61,7 +61,10 @@ markers, so the lesson's pictures and text, and its hands-off seal, are untouche
 `site/history/` (live at `/history/`, linked from the list's footer) keeps every run of every picture: `publish`
 records each publish that changed the pictures or text, with a strip of every step and the version, commit, cost,
 redos, review fixes, and check flags. Each run shows the changelog entries since the run before it, which is where
-to look when a lesson got worse. Tick two runs to compare them. The full lessons stay local in
+to look when a lesson got worse. Tick two runs to compare them. A publish with the same step pictures, lines, and
+paints as the last one adds no entry, but when its numbers or provenance differ (a seal after its draft, with only
+the text review, summaries, or time changed) the last entry takes them, with its stamp, so a sealed run shows the
+sealed lesson's numbers (#135). The full lessons stay local in
 `<lesson>/versions/<n>/`. Only runs under `output/` are recorded: a publish of a scratch or test folder says
 `"history": "skipped: not under output/"` (tests point `GESSO_HISTORY` at a temp folder to record anyway).
 
