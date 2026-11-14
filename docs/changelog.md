@@ -6,6 +6,14 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.9.1 (2026-11-14)
+- `site-refresh` no longer puts runs from before POC 1.0.0 back on the tiles (#141). It took any version 2 plan,
+  and the POC 0.26.1 runs of 2026-11-13 were version 2 plans already; `site-add` and `site-refresh` now also want
+  the version that made the run to be POC 1.0.0 or later. Lessons themselves don't change.
+- `site/kept-off.json` keeps named runs off the site for good, each with why: `site-add` refuses them and
+  `site-refresh` never adds one (or takes it off a tile), so `--remove` isn't needed on every refresh. It holds
+  `chickadee_skill_20261114-015433` and `chickadee_skill_20261114-022627`, which stay in the lesson history only.
+
 ## POC 1.9.0 (2026-11-14)
 - A step's Where line places what the finished painting shows, not paint a later part covers (#126). A sky painted
   past the horizon gives the visible horizon and adds "paint a little past its bottom, under where ... will go", and
