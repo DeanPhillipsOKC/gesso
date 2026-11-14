@@ -710,8 +710,32 @@ checked: false
   outline also reaches onto the far hill and shore, painted already: there, only soften this paint into its edge and
   leave it showing.", since that paint only lays the part's rim back in its own color, so an outline past its words is never left unexplained (PR #142 review). On the
   sailboat fixture (14 x 11 in) the sky's bottom moved from 5 to 5 1/2 in from the bottom edge and the water's top
-  from 4 1/2 in from the top to 5 in from the bottom, each within 1/4 in of the horizon in the outlines. Stray
-  specks of a part still widen its box (#90).
+  from 4 1/2 in from the top to 5 in from the bottom, each within 1/4 in of the horizon in the outlines.
+  **Changed 2026-11-14 (#90): stray specks don't move the words.** They're measured from the area's main pieces
+  (`aids.main_area`). A piece under 1% of the area (`aids.STRAY`) is small; a small piece more than 4% of the canvas's
+  long side (`aids.STRAY_NEAR`) from the rest of the area is a stray speck and left out. A small piece nearer than
+  that is one of the part's marks and counts, and so does one near a mark already counted, so a row of dabs or the far
+  rows of lavender are kept whatever they add up to. Only a mark of at least 0.1% of the area (`aids.STRAY_MARK`)
+  carries the chain on: a smaller piece counts when it's near what's kept, but nothing is measured from it, so a
+  trail of specks can't pull the box across the canvas (second review of PR #143: one 3.6% apart had carried a body's
+  box 7 in to the edge, and slivers along the lavender fixture's horizon stretched its `paths` from 8 1/2 to 9 1/2 in).
+  It's two distance passes over the picture however long the chain, about 0.2 s at 2800 px. When every piece is
+  small (sparkles), all of it counts. The
+  first build of this used a share instead (small pieces counted when they made 10% of the area); the review of PR
+  #143 showed it was a cliff: far specks came back at 10%, and dabs beside the body were dropped just under it.
+  On the sealed `chickadee_skill_20261113-130614`, two specks by the trunk (6% and 12% of the long side from the
+  body) put the body "at the left edge, 8 1/2 in wide"; from its page's outline the line now reads 1 3/4 in from the
+  left edge, about 7 in wide (the run's hand edit said 6 1/2; draft-text wasn't run on the run itself, whose folder
+  isn't kept). On the lavender run the far deep violet rows sit 2 to 6% from the main rows, each near
+  another, and are all kept. `past_words` compares the main pieces too, so a speck of the outline isn't a reason to
+  explain it. What it changes on the fixtures: the lavender's `paths` no longer reaches the left edge and 12 in wide
+  (1 3/4 in from the right edge, 8 1/2 in wide); the chickadee's `wing-dark` starts 4 in down, not 3; the sailboat's
+  `path-dark` loses "reaches onto the water", which came from a speck; and the chickadee's `foliage-rust`, which
+  reached all four edges only by far specks, reads top to bottom from 2 in off the left edge, with the outline's
+  reach under the branch and onto the sky now explained. The outline on the Where picture still shows every piece.
+  **Not fixed by it:** on `balloon-lavender_skill_20261113-130631` the mountains' painted area has a piece up in
+  the sky, 17% of it and reaching the top edge. It's not a speck, and how much of it the mountains' outline owns
+  (what the words measure since #126) can't be told from the sealed page; #90 stays open for it.
 - *Paints*: a blend's paints are ordered top to bottom by where each lands in the step picture. "Out from the light"
   isn't built: nothing in the plan says where the light is in a form a tool can read.
 - *Mix*: on a paint's first use only, naming every later step ("for this step and steps 4, 7 and 10; cover it
@@ -774,7 +798,7 @@ issue: how far a pea, a grape, and a walnut of paint go), the page says "mix mor
 - **Where, in words** (`aids.where_words`, built in #68, for `draft-text` to use): "Inside the outlined area", then
   for a band across the canvas the edges it reaches and where its other ends are, and for a thing its nearer top or
   bottom, its nearer side, and its size, in inches on the painter's canvas (to the half inch, the quarter under
-  2 in). It refuses a call with no canvas size (#122).
+  2 in), measured without the area's stray specks (#90, `aids.main_area`). It refuses a call with no canvas size (#122).
 - **Transfer outline** (once per lesson): the outlines of the `object` parts with no parent, as lines on the
   quarter grid at the canvas's shape. The page says how far apart the grid's lines are in inches on the painter's
   canvas, and the chalk line says to place it by measuring from the edges with a ruler. The stage that starts an object opens with an optional line: "Lightly chalk
