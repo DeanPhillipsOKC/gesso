@@ -5,7 +5,7 @@ pictures its published lesson page holds (site/lessons/chickadee/v/20261113-1306
 tree:
 
     python spike/experiments/issue100.py free     # no cost: cleanups and today's tool -> output/spike100/
-    python spike/experiments/issue100.py paid     # about $0.20: image-model mask edits and step re-renders
+    python spike/experiments/issue100.py paid     # about $0.15: image-model mask edits and step re-renders
     python spike/experiments/issue100.py sheets   # the pictures and numbers docs/spikes/thin-outlines.md shows
 
 That run's plan and full-size finish weren't kept (output/ is local), so the branch's paths and points below were
@@ -385,6 +385,19 @@ def shift(a: np.ndarray, b: np.ndarray, where: np.ndarray) -> float:
     return round(float(np.hypot(dx, dy)), 2)
 
 
+def best_shift(mask: np.ndarray, ref: np.ndarray, most: int = 20) -> dict:
+    """The whole-picture shift (pixels) that lines a mask up best with the reference, and the overlap (shared over
+    either) before and after it: how much of a mask's error is only that it sits in the wrong place."""
+    def overlap(m):
+        return float((m & ref).sum() / max((m | ref).sum(), 1))
+    best = (overlap(mask), 0, 0)
+    for dy in range(-most, most + 1):
+        for dx in range(-most, most + 1):
+            m = np.roll(np.roll(mask, dy, 0), dx, 1)
+            best = max(best, (overlap(m), dx, dy))
+    return {"overlap": round(overlap(mask), 2), "overlap_shifted": round(best[0], 2), "shift_px": [best[1], best[2]]}
+
+
 def sheets(_a) -> None:
     brown = np.array(json.loads((OUT / "brown.json").read_text()), np.uint8)
     step4 = np.array(Image.open(OUT / "chickadee-step4.png"))
@@ -397,6 +410,7 @@ def sheets(_a) -> None:
     for key, text in names:
         m = load_mask(OUT / f"chickadee-{key}.png")
         numbers[f"chickadee {key}"] = against(m, ref)
+        numbers[f"chickadee {key}"].update(best_shift(m, ref))
         tiles.append(label(block_in(step4, m, brown), text))
     far = ~cv2.dilate((ref | load_mask(OUT / "chickadee-color-rule.png")).astype(np.uint8), disc(12)).astype(bool)
     for i in (1, 2):
@@ -440,6 +454,7 @@ def sheets(_a) -> None:
                       ("tool", "2 Today's tool"), ("mask-edit-1", "3 Image model")):
         m = load_mask(OUT / f"mast-{key}.png")
         numbers[f"mast {key}"] = against(m, ref)
+        numbers[f"mast {key}"].update(best_shift(m, ref))
         t = finish.copy()
         t[m] = (40, 230, 60)
         tiles.append(label(cv2.resize(t[y0:y1, x0:x1], None, fx=3, fy=3, interpolation=cv2.INTER_NEAREST), text))

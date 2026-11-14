@@ -50,8 +50,8 @@ of the branch's size.
 | 4 Step re-rendered, run 1 | 5% | 10% | 1 | 12 s | $0.030 | nearly: the two runs overlap 93% |
 | 4 Step re-rendered, run 2 | 6% | 6% | 1 | 13 s | $0.030 | |
 
-The tool's 8.2 seconds is almost all reading the picture, which a lesson already pays once for its other parts;
-the branch's own prompts take about a second.
+The tool's 8.2 seconds includes reading the picture, which a lesson already pays once for its other parts
+(about 7.6 seconds of it, going by `outline-models.md`; not timed apart here).
 
 ## What it showed
 
@@ -59,8 +59,9 @@ the branch's own prompts take about a second.
 the lumps above the branch and around the leaf stems are as thick as the branch itself, so nothing that keeps the
 branch removes them (34% still stuck on, against 40%). It also bridges the two right twigs with a web. Along the
 paths does better (26%) and tidies the right twigs, but the lump under the bird is a quarter of the branch long,
-so the "usual" width there is the lump's. Taking the usual width over a longer stretch was tried: it still left
-the lumps, and what it lost rose from 9% to 14% as it cut into the trunk where the trunk widens. The cleanup can't tell mist the branch's color from
+so the "usual" width there is the lump's. Taking the usual width over a longer stretch was tried once (a third of the picture's width in place of an
+eighth; not kept in the script): it still left the lumps, and what it lost rose from 9% to 14% as it cut into the
+trunk where the trunk widens. The cleanup can't tell mist the branch's color from
 branch; that takes something that sees the picture. Run on today's outline instead, the path cleanup changes under 2% of
 it: there's nothing left for it to do.
 
@@ -69,17 +70,20 @@ the bird's feet, which the lesson paints on top later. This is the same result #
 plan (`outline-models-join.jpg`), from paths written fresh here, which is some evidence it doesn't depend on a
 lucky plan.
 
-**The image-model mask is a drawing of a branch, not this branch's outline.** Both runs returned a smooth, tidy
-silhouette, and neither lines up: the branch is redrawn thinner and lower, the trunk narrower (21% of the real
-branch is outside it). Run 2 also added all four leaves, though the prompt asked for the branch. The two runs
-overlap 54%. An outline that's off by a few pixels is worse than a ragged one in this pipeline, because every
+**The image-model mask comes back in the wrong place, and redrawn.** Both runs returned a smooth, tidy
+silhouette, and neither lines up: the branch is thinner and sits 9 to 18 pixels too high, the trunk is narrower
+(21% of the real branch is outside it). Part of that is a plain shift of the whole mask, which a free step could
+undo: slid 2 pixels across and 9 down, run 1's overlap with today's tool goes from 0.68 to 0.77, a little better
+than the path cleanup's 0.72 and still well short of clean. The rest is the redrawing. Run 2 also added all four
+leaves, though the prompt asked for the branch (0.47, and 0.50 slid). The two runs overlap each other 54%. An outline that's off by a few pixels is worse than a ragged one in this pipeline, because every
 later step cuts the finish inside it: the branch's light step would show a sliver of mist along one edge and miss
 bark along the other.
 
 ![The outlines drawn on the finish in white: today's tool, the two image-model masks, and a re-render](thin-outlines-lined-up.jpg)
 
-**The re-render gives a good-looking step, a little off the real branch.** The background came back unchanged (it
-differs from step 4 by 3 levels in 255, about what JPEG does, and hasn't moved), the blobs are gone, and the two
+**The re-render gives a good-looking step, a little off the real branch.** The background came back nearly
+unchanged (it differs from step 4 by 3 levels in 255 on average, a faint repainting too small to see, and hasn't
+moved), the blobs are gone, and the two
 runs agree 93%. But the branch is again the model's version: smooth where the real one has knots, and it drops the
 leaf stems and one twig. In a lesson, step 5 would show a slightly different branch from the one step 6 then
 paints inside the real outline, so about 5% of the brown would vanish between the two steps and 6 to 10% of the
@@ -92,10 +96,11 @@ paint map and the later steps that are cut inside it stay wrong too.
 
 The same story, smaller. The color rule's mast is ragged with a lump at the foot. By shape rounds the lump and
 keeps it; along the path trims the top and keeps it. Today's tool returns a straight, even mast. The image-model
-mask is a perfect bar about one mast-width to the right of the mast (39% of the mast outside it).
+mask is a perfect bar 3 pixels to the right of the mast, about half its width (39% of the mast outside it). Slid
+back, it's as good as the color rule's (overlap 0.86 against 0.85), and no better.
 
 **The lavender's tree** was never a thin part: it's an `object`, and its outline is already clean. The shape
-cleanup changes under 1% of it. Nothing to fix.
+cleanup changes about 1% of it. Nothing to fix.
 
 ![The lavender's tree: the finish, today's outline, and the shape cleanup](thin-outlines-tree.jpg)
 
@@ -120,7 +125,8 @@ quality.
 2. **Don't build the free cleanup.** Alone it doesn't fix the branch (so no build issue, per the issue's
    acceptance), and on top of today's tool it has nothing to do.
 3. **Don't use the image model to make outlines.** It doesn't line up and doesn't repeat, and a misplaced outline
-   damages every later step.
+   damages every later step. Sliding its mask back into place would help, and at best brings it level with the
+   free color rule, for 3 cents a try.
 4. **A step re-render stays an allowed fallback, unbuilt.** It works as a picture and is cheap. If a lesson ever
    has a block-in the outline tool can't get clean in its fix rounds, a re-render of that one step is a fair last
    move, knowing the shape will be slightly the model's. No lesson needs it now, so there's nothing to file.
@@ -130,7 +136,8 @@ quality.
 - One branch and one mast. The owner's question was about this branch; other thin, soft-edged things (reeds,
   rigging, fence wire) weren't tried.
 - The reference outline is today's tool, checked by eye. The numbers say how far each way is from it, not from a
-  true outline, and they flatter the tool by construction. The pictures are the evidence.
+  true outline, and they flatter the tool by construction. The two notches at the bird's feet count against any
+  way that fills them. The pictures are the evidence.
 - The pictures are the page's 900-pixel JPEGs, not the 1536-pixel finish a run works on. The image model was given
   them on a 1536 x 1024 page with gray bars at the sides; a full-size finish needs no bars, and the masks might
   line up a little better without them.
