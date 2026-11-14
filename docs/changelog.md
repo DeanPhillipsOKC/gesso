@@ -6,6 +6,20 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.9.0 (2026-11-14)
+- A step's Where line places what the finished painting shows, not paint a later part covers (#126). A sky painted
+  past the horizon gives the visible horizon and adds "paint a little past its bottom, under where ... will go", and
+  an outline that runs behind an object not painted yet says to paint straight through there. On the red sailboat
+  fixture the water's top read "4 1/2 in from the top" where it starts about 5.9 in down; it now reads 5 in from
+  the bottom. The drawn outline doesn't change.
+- `elements` and `check`: when a step's paint clashes on value only because its show put it on the wrong element
+  step (a "Darken" step set to `full` lands on the light texture step), the message says to change the show and
+  names the one to use, instead of pointing at the paints (#140).
+- A sealed run's history entry shows the sealed lesson's numbers (#135). When the seal has the same step pictures,
+  lines, and paints as its draft publish, its entry now takes the seal's metrics, version stamp, and provenance
+  instead of keeping the draft's. On `chickadee_skill_20261114-022627` the entry said 0 text problems and 12.6
+  minutes where the sealed lesson had 6 and 17.9. Publishing the same lesson again still records nothing.
+
 ## POC 1.8.1 (2026-11-14)
 - `check` fails on a paint no step uses, naming it and saying to take it out of `paints` or use it in a step (#136),
   so a lesson can't seal with a mix in "Your paints" the painter never uses. On `chickadee_skill_20261114-022627`,
