@@ -316,8 +316,8 @@ Also from #129:
     `owner_stats` counts as a piece (0.2% of the picture). Nothing reads that as a fault, but the count is wrong
     for a part this small.
   - `chickadee_skill_20261114-022627` (made by PR #133's parallel build of this issue, which asked limbs only for a
-    path the first answer missed and kept areas and objects on ViT-B; in the history, not on the site, kept off by `site/kept-off.json`): 17.9
-    minutes, 3 renders, $0.15. Five runs of `outline` at about 16 seconds; one fix round on the branch. The branch in
+    path the first answer missed and kept areas and objects on ViT-B; in the history, not on the site, kept off by
+    `site/kept-off.json`): 17.9 minutes, 3 renders, $0.15. Five runs of `outline` at about 16 seconds; one fix round on the branch. The branch in
     one piece from the first answer, no blobs. There the leaf-stem knob was the top of each leaf, a dark pod in the
     branch's block-in until the leaves were painted two steps later: the fix table's "end the path short of it" row
     (POC 1.6.1) is for this.

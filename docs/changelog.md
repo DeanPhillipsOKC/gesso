@@ -11,8 +11,9 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   and the POC 0.26.1 runs of 2026-11-13 were version 2 plans already; `site-add` and `site-refresh` now also want
   the version that made the run to be POC 1.0.0 or later. Lessons themselves don't change.
 - `site/kept-off.json` keeps named runs off the site for good, each with why: `site-add` refuses them and
-  `site-refresh` never adds one (or takes it off a tile), so `--remove` isn't needed on every refresh. It holds
-  `chickadee_skill_20261114-015433` and `chickadee_skill_20261114-022627`, which stay in the lesson history only.
+  `site-refresh` never adds one (or takes it off a tile; a tile whose default is listed opens its newest version
+  left), so `--remove` isn't needed on every refresh. It holds `chickadee_skill_20261114-015433` and
+  `chickadee_skill_20261114-022627`, which stay in the lesson history only.
 
 ## POC 1.10.0 (2026-11-14)
 - A step's Where line leaves out stray specks of its part (part of #90): a piece under 1% of the part, more than

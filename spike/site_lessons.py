@@ -43,20 +43,35 @@ def version_tuple(version: str) -> tuple[int, ...] | None:
     return tuple(int(n) for n in m.groups()) if m else None
 
 
-def is_v2(run: Path) -> bool:
+def on_site_era(run: Path) -> bool:
     """Whether a run is from the site's era: a pipeline v2 plan made with POC 1.0.0 or later. The site holds
     versions from POC 1.0.0 on (owner, 2026-11-13, #82): an older run left in output/ stays in the lesson history
-    and never goes back on a tile. plan_version 2 alone isn't enough: the POC 0.26.1 runs were v2 plans too (#141)."""
+    and never goes back on a tile. A v2 plan alone (plan2.is_v2) isn't enough: the POC 0.26.1 runs were v2 plans too
+    (#141). A run with no version stamp is refused; every v2 run is stamped."""
     data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
     made = version_tuple(made_version(data))
     return data.get("plan_version") == 2 and made is not None and made >= FIRST_ON_SITE
 
 
+RUN_NAME = re.compile(r"^.+_skill_\d{8}-\d{6}$")
+
+
 def kept_off(site: Path = SITE) -> dict[str, str]:
-    """Runs kept off the site for good (#141), by run folder name, each with why: site/kept-off.json. They stay in
-    the lesson history; `site-add` refuses them and `site-refresh` never adds them, nor keeps one listed."""
+    """Runs kept off the site for good (#141), by run folder name, each with why: site/kept-off.json, an object of
+    {"<photo>_skill_<run time>": "why"}. They stay in the lesson history; `site-add` refuses them, and `site-refresh`
+    never adds one and takes one off its tile (a kept-off default hands the tile to the newest version left)."""
     path = site / "kept-off.json"
-    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    if not path.exists():
+        return {}
+    off = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(off, dict) or not all(isinstance(k, str) and isinstance(v, str) for k, v in off.items()):
+        raise ValueError(f"{path} must be an object of run folder name to why, e.g. "
+                         '{"chickadee_skill_20261114-015433": "made before POC 1.5.0 was merged in"}')
+    for name in off:
+        if not RUN_NAME.match(name):
+            print(f"warning: {path.name}: {name!r} isn't a run folder name (<photo>_skill_<YYYYMMDD-HHMMSS>), so it "
+                  "keeps nothing off")
+    return off
 
 
 def kept_off_ids(site: Path, photo: str) -> tuple[str, ...]:
@@ -66,10 +81,10 @@ def kept_off_ids(site: Path, photo: str) -> tuple[str, ...]:
 
 def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
     data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
-    if not is_v2(lesson):
+    if not on_site_era(lesson):
         raise ValueError(f"{lesson.name} was made with {made_version(data) or 'no version stamp'}"
-                         f"{'' if data.get('plan_version') == 2 else ' by pipeline v1'}; the site holds versions from "
-                         "POC 1.0.0 on (#82)")
+                         f"{'' if data.get('plan_version') == 2 else ' by pipeline v1'}; the site holds versions "
+                         "from POC 1.0.0 on (#82)")
     if lesson.name in kept_off(site):
         raise ValueError(f"{lesson.name} is kept off the site (site/kept-off.json: {kept_off(site)[lesson.name]})")
     if not hands_off(lesson):  # owner, 2026-11-12: the site shows what the tool makes on its own
@@ -112,6 +127,9 @@ def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
         "source": lesson.name,
     }
     entry["versions"] = add_versions(site, slug, lesson.name, lesson.parent, before.get("versions"))
+    for rid in kept_off_ids(site, lesson.name.split("_skill_")[0]):  # their pages go too (an old default kept off)
+        if (out / "v" / rid).is_dir():
+            shutil.rmtree(out / "v" / rid)
     entry["known"] = known_problems_for(site, entry, lesson.parent)
     lessons = [x for x in lessons if x["slug"] != slug] + [entry]
     manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
@@ -145,7 +163,7 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
     Only adds (#83): a version already `listed` whose page is on the site stays, whether or not its run folder is in
     `output` (which isn't in git, so a fresh checkout has none of the older runs). Runs found in `output` are added
     or updated. A version leaves the list only when named in `remove` or in site/kept-off.json (#141)."""
-    from history import run_time, stamp_at
+    from history import run_time
     photo = current.split("_skill_")[0]
     remove = tuple(remove) + kept_off_ids(site, photo)
     current_id = current.split("_skill_")[-1]
@@ -157,7 +175,7 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
             versions[v["id"]] = dict(v)
     for run in sorted(output.glob(f"{photo}_skill_*")):
         rid = run.name.split("_skill_")[-1]
-        if rid in remove or not (run / "lesson.json").exists() or not is_v2(run):
+        if rid in remove or not (run / "lesson.json").exists() or not on_site_era(run):
             continue  # a run from before POC 1.0.0 stays in the lesson history only (#82, #141)
         if not hands_off(run):
             if rid in versions:
@@ -166,7 +184,7 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
             continue  # recuts and edited runs stay in the lesson history only
         data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
         g = data.get("gesso") or {}
-        made = g.get("made") or g or stamp_at(run.name) or {}
+        made = g.get("made") or g  # on_site_era refused any run without a stamp, so no guess from its date
         if run.name != current:
             out = lesson_dir / "v" / rid / "index.html"
             if not out.exists():
@@ -177,7 +195,7 @@ def add_versions(site: Path, slug: str, current: str, output: Path, listed: list
                     continue
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_text(html, encoding="utf-8")
-        versions[rid] = {"id": rid, "version": made.get("version", "before stamps"), "when": run_time(run.name),
+        versions[rid] = {"id": rid, "version": made["version"], "when": run_time(run.name),
                          "guessed": bool(made.get("guessed")), "kind": kind(data), "steps": len(data["stages"])}
     for rid, v in versions.items():
         v["href"] = f"lessons/{slug}/" if rid == current_id else f"lessons/{slug}/v/{rid}/"
@@ -207,9 +225,43 @@ def newest_hands_off(photo: str, output: Path, remove: tuple[str, ...] = (), sit
     remove = tuple(remove) + kept_off_ids(site, photo)
     for run in sorted(output.glob(f"{photo}_skill_*"), reverse=True):
         if (run.name.split("_skill_")[-1] not in remove and (run / "lesson.json").exists()
-                and (run / "lesson-standalone.html").exists() and is_v2(run) and hands_off(run)):
+                and (run / "lesson-standalone.html").exists() and on_site_era(run) and hands_off(run)):
             return run
     return None
+
+
+def replace_default(site: Path, x: dict, output: Path, remove: tuple[str, ...] = ()) -> None:
+    """A tile whose default is kept off (#141) opens its newest version left: the newest hands-off run in `output`
+    (through add, which writes its page and thumbnail), or else the newest listed version whose page is on the site
+    (its page becomes the tile's, but the thumbnail stays the old default's: `site-add` that run where its folder is
+    to replace it). With no version left, the tile goes. Its run stays in the lesson history either way."""
+    photo = x["source"].split("_skill_")[0]
+    skip = set(remove) | set(kept_off_ids(site, photo))
+    lesson_dir = site / "lessons" / x["slug"]
+    listed = [v for v in x.get("versions") or []
+              if v["id"] not in skip and (lesson_dir / "v" / v["id"] / "index.html").exists()]
+    best = max(listed, key=lambda v: v["id"], default=None)
+    run = newest_hands_off(photo, output, remove, site)
+    manifest = site / "lessons.json"
+    if run is not None and (best is None or run.name.split("_skill_")[-1] >= best["id"]):
+        add(run, x["slug"], site)
+        print(f"{x['slug']}: {x['source']} is kept off; the tile opens {run.name} now")
+        return
+    lessons = json.loads(manifest.read_text(encoding="utf-8"))
+    if best is None:
+        shutil.rmtree(lesson_dir, ignore_errors=True)
+        lessons = [y for y in lessons if y["slug"] != x["slug"]]
+        print(f"{x['slug']}: {x['source']} is kept off and no other version is left, so the tile is gone")
+    else:
+        page = lesson_dir / "v" / best["id"] / "index.html"
+        shutil.copyfile(page, lesson_dir / "index.html")
+        shutil.rmtree(page.parent)
+        for y in lessons:
+            if y["slug"] == x["slug"]:
+                y.update(source=f"{photo}_skill_{best['id']}", version=best["version"], steps=best["steps"])
+        print(f"{x['slug']}: {x['source']} is kept off; the tile opens {best['id']} now. Its run folder isn't "
+              f"here, so the thumbnail is still the old default's: site-add {photo}_skill_{best['id']} where it is")
+    manifest.write_text(json.dumps(lessons, indent=2), encoding="utf-8")
 
 
 def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str, ...] = ()) -> dict:
@@ -218,8 +270,12 @@ def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str
     tile, and its page the site, only when its run time is named in `remove` or its run in site/kept-off.json (#141);
     it stays in the history."""
     manifest = site / "lessons.json"
-    lessons = json.loads(manifest.read_text(encoding="utf-8"))
-    for x in list(lessons):
+    off = kept_off(site)
+    for slug in [x["slug"] for x in json.loads(manifest.read_text(encoding="utf-8"))]:
+        x = next(x for x in json.loads(manifest.read_text(encoding="utf-8")) if x["slug"] == slug)
+        if x["source"] in off:
+            replace_default(site, x, output, remove)
+            continue
         photo = x["source"].split("_skill_")[0]
         newest = newest_hands_off(photo, output, remove, site)
         if newest is not None and newest.name > f"{photo}_skill_{x['source'].split('_skill_')[-1]}":
