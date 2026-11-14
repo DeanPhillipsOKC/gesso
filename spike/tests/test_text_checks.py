@@ -485,6 +485,9 @@ class TextToolTests(unittest.TestCase):
         names = publish2.paint_names(fixture("chickadee")[1])
         text["steps"][0]["lines"].append({"kind": "how", "text": f"Add a touch of {names['leaves-1']}.", "edited": True})
         text["steps"][1]["construct"] = {"title": "x", "stages": []}
+        # a diagram may give a paint's id; one that's no paint's name, id or hex is listed (#91)
+        text["steps"][2]["construct"] = {"title": "y", "paint": "leaves-1", "stages": [
+            {"add": [{"circle": [50, 50, 10]}, {"circle": [20, 20, 5], "paint": "Mystery"}]}]}
         self.write_text(lesson, text)
         mixes = json.loads((lesson / "mixes.json").read_text(encoding="utf-8"))
         a, b = names["sky-1"], names["sky-2"]
@@ -504,6 +507,10 @@ class TextToolTests(unittest.TestCase):
         self.assertIn("sun: has a diagram that notes.json's beginner_check.diagrams doesn't explain", " ".join(out))
         self.assertIn("aids/aids.json is missing or was made for other steps: run step-aids", out)
         self.assertIn("the page is 0.0 MB, over 0.001 MB", " ".join(out))
+        third = text["steps"][2]["stage_id"]
+        gray = [x for x in out if "draws gray" in x]
+        self.assertEqual(gray, [f"{third}: diagram 'y', panel 1, shape 2 (circle) has paint 'Mystery', so it draws "
+                                "gray. Use a paint's name or id from the plan, or a #hex."])
         os.remove(lesson / "mixes.json")
         self.assertIn("mixes.json is missing or was made for other paints: run mix", checks.run(lesson)["failures"])
 
@@ -562,7 +569,9 @@ class TextToolTests(unittest.TestCase):
         self.assertTrue(tools.history_wanted(lesson))  # with GESSO_HISTORY set, as the other tests do
 
     def test_check_refuses_a_version_1_lesson(self):
-        code, r = run_tool("check", "--lesson", str(tools.ROOT / "spike" / "tests" / "fixtures" / "v1-lesson"))
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "plan.json").write_text(json.dumps({"steps": []}), encoding="utf-8")
+            code, r = run_tool("check", "--lesson", d)
         self.assertEqual(code, 2)
         self.assertIn("version 2", r["refused"])
 

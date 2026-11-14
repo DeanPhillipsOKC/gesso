@@ -253,7 +253,7 @@ def items(xs, cls="") -> str:
 
 def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, standalone: bool = False) -> str:
     """embed: images inlined (one file). standalone with embed: also a full HTML document, for the lessons site."""
-    from construct import strip as build_strip
+    from construct import lookup, strip as build_strip
     from lesson_notes import behind, step_why
     from version import line, made_line
     read = lesson["photo_read"]
@@ -265,6 +265,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
             left.setdefault(x["step_id"], []).append(x["problem"])
     paints = read.get("mixes", [])
     by_name = {p["name"]: p for p in paints}
+    diagram_paints = lookup(paints)  # a diagram may name a paint or give its id
 
     # Everything the painter needs before starting, gathered from the steps.
     brushes: dict[str, str] = {}
@@ -371,7 +372,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
             import page2
             steps_html.append(page2.step(lesson, i, folder, embed, cards.strokes(), mixes + flags, chips,
                                          step_why(lesson, s, i == len(stages) - 1),
-                                         build_strip(s.get('construct'), {n: p['hex'] for n, p in by_name.items()}, s['id'])))
+                                         build_strip(s.get('construct'), diagram_paints, s['id'])))
             ends = next((g for g in lesson.get("groups") or [] if g.get("steps") and g["steps"][-1] == s["id"]), None)
             if ends:
                 steps_html.append(page2.stop(ends))
@@ -391,7 +392,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
     <p class="small">Drying: {e(s.get('dry_time', ''))}</p>
     {step_why(lesson, s, i == len(stages) - 1)}
   </div>
-  {build_strip(s.get('construct'), {n: p['hex'] for n, p in by_name.items()}, s['id'])}
+  {build_strip(s.get('construct'), diagram_paints, s['id'])}
 </article>""")
 
     head = (f'<title>{e(title_for(lesson, folder))}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'

@@ -22,7 +22,7 @@ pass**: each trip back through the tools costs minutes. The usual ones:
 You wrote the text, so you'll miss what you take for granted.
 1. `publish --lesson <lesson>` (a draft), then `step-pairs --lesson <lesson>`.
 2. Start a subagent (Agent tool, general-purpose) with only this: follow
-   `.claude/skills/paint-lesson/step-review.md` for the lesson folder (it has a note for version 2 lessons), use
+   `.claude/skills/paint-lesson/step-review.md` for the lesson folder, use
    only `trials/review/packet.json` and its sheets, write `trials/review/review.json`, and use the project's
    `.venv` Python if it needs to crop or zoom. Don't pass it your reasoning or the plan.
    **If you have no Agent tool,** do the review yourself, last, as strictly as you can: Read `step-review.md`

@@ -6,8 +6,8 @@
 
 Owner, 2026-11-12: "Ideally the site would only contain lessons legitimately created by the tool and not corrected
 by tweaks. Once we move from POC to app, we won't have the ability to make tweaks and adjustments like that, so the
-tool really should be able to stand on its own." The skill's own fixes (step review redos, split-texture) count as
-the tool. Anything done to a lesson after the skill seals it, a recut, a hand composite, text trimmed in a
+tool really should be able to stand on its own." The skill's own fixes (its text review, a step split in the plan) count
+as the tool. Anything done to a lesson after the skill seals it, a recut, a hand composite, text trimmed in a
 conversation, doesn't. Only hands-off lessons go on the lessons site; everything stays in the lesson history.
 """
 

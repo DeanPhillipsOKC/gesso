@@ -157,6 +157,9 @@ with the date.
     this photo needs and corrects the draft against the pictures.
   v1 stays in the repo, and nothing is removed, until three hands-off v2 lessons pass the gate in the design and
   the owner agrees.
+  **Done 2026-11-13 (owner's call, #82):** the gate passed, and v1 was removed rather than kept as a fallback ("I
+  don't see us ever going back to V1"). The site's versions from before POC 1.0.0 went too; every run stays in the
+  lesson history.
 - **Don't raise the image model's quality (2026-11-12, owner's call).** Higher settings made no clear difference to
   how well a lesson teaches, and the cost wasn't sustainable. Fix a problem with tools or the plan, not a dearer
   render.
@@ -209,6 +212,8 @@ with the date.
   subscription instead of paying for API calls, with filters and renders as command-line tools.
   The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
+- **Every piece of work gets a pull request (2026-11-13, owner's call).** When work on an issue is done and pushed,
+  Claude opens a pull request without asking (owner: "Always want a pull request. No need to ask").
 - **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works mostly
   from a phone and was merging without a full review, so the wait only slowed things down. Once the tests pass and the
   adversarial review (below) has signed off, Claude merges and tells the owner what went in (a merge to `main` deploys

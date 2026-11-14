@@ -1,4 +1,4 @@
-# Step 7: beginner check and construction diagrams
+# Step 8a: beginner check and construction diagrams
 
 A step image shows the canvas after the step, not how to get there. Go through every step as someone who has
 never painted, with only that step's picture and words, and ask: **could I start this?** Nobody else will notice
@@ -43,12 +43,13 @@ its real proportions (a 100 x 40 band), not stretched.
 
 Shapes: `ellipse [cx, cy, rx, ry]` (optional `rotate`), `circle [cx, cy, r]`, `rect [x, y, w, h]` (optional
 `round`), `path "<d>"` (filled, optional `opacity`), `line "<d>"` (stroked, `width`). Any shape can set `paint` (a
-plan paint), `behind: true`, or `done: true`. `arrows` show only in their panel. A broken spec is left off the
+plan paint's name or id, or a `#hex`), `behind: true`, or `done: true`. A shape whose paint matches none of those
+draws gray, and `check` lists it. `arrows` show only in their panel. A broken spec is left off the
 page, so check `publish`'s `diagrams` count.
 
 Look at your diagrams before moving on: **`publish` first** (the preview reads `lesson.json`, so a new or changed
 diagram shows only after a publish), then `preview-diagrams --lesson <lesson>` draws each next to its step image
 into `<lesson>/trials/diagrams.png` to Read.
 
-Write what you noticed and decided into `notes.json` as `beginner_check` (step 8). `publish` lists any diagram
+Write what you noticed and decided into `notes.json` as `beginner_check` (step 8b). `publish` lists any diagram
 without a note in `undocumented_diagrams`.

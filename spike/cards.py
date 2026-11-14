@@ -73,6 +73,7 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
                 out.append(f"{f}: brush {b!r} isn't one spike/brushes.py can draw")
         if c.get("diagram") and not construct.strip(c["diagram"], {}, f"card-{cid}"):
             out.append(f"{f}: its diagram doesn't draw (see spike/construct.py for the format)")
+        out += construct.problems(c.get("diagram"), {}, f)  # a card has no plan paints: #hex only
         if not c.get("diagram"):
             out.append(f"{f}: no diagram")
         for m in c.get("mistakes") or []:

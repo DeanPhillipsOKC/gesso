@@ -13,7 +13,22 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   measurement" and a ruler. The tape-marking card is gone from "Before you start"; the transfer outline stays in its
   closed fold, marked optional, and is placed by measuring from the edges. Close-ups give their grid in inches. `check`
   flags step text that places things by tape marks. A photo whose subject won't survive the crop to the default size
-  gets the canvas-extend render, as with `--canvas`. Version 1 pages are unchanged.
+  gets the canvas-extend render, as with `--canvas`.
+
+## POC 1.3.2 (2026-11-13)
+- A construction diagram can give a paint by its id as well as its name (#91). Before, a diagram given paint ids
+  drew every shape gray. A shape whose paint is no paint's name or id, or a #hex, is now one of `check`'s problems,
+  naming the step, the diagram, the panel and the shape, instead of drawing gray with nothing said.
+
+## POC 1.3.1 (2026-11-13)
+Nothing a lesson shows changes. Pipeline v1 is removed (#82): the owner passed the v2 gate and won't go back to v1.
+- `/paint-lesson` runs pipeline v2 (it was `/paint-lesson-v2` until now). The v1 skill and its tools are gone:
+  `lock-steps`, `carry-forward`, `finish-from-step`, `split-texture`, `render-step`, `from-finish`, the throwaway
+  filters, the v1 spike in `run.py`, and `publish` for a version 1 plan (it's refused with what to do instead).
+- The lessons site's tiles hold versions from POC 1.0.0 on. The 13 versions before it (one 0.20.0, two 0.25.0, one
+  0.26.0, nine 0.26.1) were taken off the site; they stay in the lesson history with every other run.
+- `site-refresh` keeps a tile's known-problems count when its run isn't on the machine (a fresh checkout has no
+  `output/`); before, it set the count to 0.
 
 ## POC 1.3.0 (2026-11-13)
 - The top of a lesson page is shorter, and the steps start much higher (#94). Right after the finished painting,
