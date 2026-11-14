@@ -312,8 +312,9 @@ Also from #129:
 
 The model: Segment Anything in High Quality (SAM-HQ) ViT-L, quantized encoder, ONNX, 345 MB, downloaded once to
 `models/` (git-ignored) from X-AnyLabeling's release with each file's SHA-256 checked. `onnxruntime`, no PyTorch.
-About 8 seconds to read a picture on 4 cores and 0.1 seconds a prompt: 8 to 13 seconds for `outline` on a real
-finish, about 4 more than ViT-B took. Same finish and plan, same bytes, run twice (checked on the three fixtures
+About 8 seconds to read a picture on 4 cores and 0.1 seconds a prompt: 8 to 13 seconds of outlining on a real
+finish, about 4 more than ViT-B took. The `outline` command as a whole, with loading the model and writing its
+files, took 15 to 26 seconds in the first hands-off run. Same finish and plan, same bytes, run twice (checked on the three fixtures
 and two gate runs).
 
 ## 7. What's behind things (built, except the render)

@@ -34,7 +34,7 @@ look like).
   your points) and once per path (points along that path). So give **one path per limb**: the trunk, each bough,
   each twig, a leaf's stem, a mast and its boom. `width` is the part's widest thickness as a share of the
   picture's width (a bough 12% of the width across at its base: `0.12`); nothing farther than that from a path is
-  taken. A limb with no path of its own can be lost. Put `points_in` on the thick body,
+  taken (the band reaches 0.8 of `width` to each side of a path). A limb with no path of its own can be lost. Put `points_in` on the thick body,
   and `points_out` on everything that touches it or lies between two limbs (foliage between twigs, the sail
   beside a mast): the color fields decide what a limb's outline keeps.
 - **`marks` or `object`?** If you could cut the thing out with scissors (feet, a leaf, a sun), it's an `object`

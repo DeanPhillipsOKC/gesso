@@ -204,7 +204,8 @@ The gate run's step 5, from its own finish and plan, before and after:
 
 Small faults left: on one run (`chickadee_skill_20261113-130614`) a few specks of foliage at the left edge, where
 a per-limb wedge and the color rule overlap; and on two sailboats whose plan runs the boom's path along the deck
-line, the outline takes the deck line with it. Outlining takes 8 to 13 seconds on a real finish.
+line, the outline takes the deck line with it. Outlining takes 8 to 13 seconds on a real finish; the `outline` command as a whole, with loading the model and
+writing its files, took 15 to 26 seconds in the hands-off run.
 
 The swap also changed one thing nobody asked for: SAM-HQ outlines an area without the marks on it (the lavender
 fixture's fields without their hedges), so a `marks` child found no parent pixels to take. A child now also takes
