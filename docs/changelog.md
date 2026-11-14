@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.9.1 (2026-11-14)
+- A step's Where line leaves out stray specks of its part (#90): a piece under 1% of the area doesn't move the
+  measurements, unless the small pieces add up to a tenth of it (a part made of many small marks is measured whole).
+  On `chickadee_skill_20261113-130614` two specks by the trunk put the bird's body "at the left edge, 8 1/2 in wide";
+  from that page's outline it now reads 1 3/4 in from the left edge, about 7 in wide. The drawn outline doesn't change.
+
 ## POC 1.9.0 (2026-11-14)
 - A step's Where line places what the finished painting shows, not paint a later part covers (#126). A sky painted
   past the horizon gives the visible horizon and adds "paint a little past its bottom, under where ... will go", and
