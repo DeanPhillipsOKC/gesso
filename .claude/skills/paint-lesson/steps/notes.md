@@ -31,7 +31,7 @@ complete now. Plain words, a sentence or two each:
 
 - `read`, `technique`, `order`, `steps`, and `beginner_check` are required; every step id appears in `steps` (why this step, and why now) and in
   either `beginner_check.diagrams` or `beginner_check.no_diagram`. The seal checks this.
-- `canvas_fit` only with `--canvas`; `beginner_version` whether you made one or not.
+- `canvas_fit` always (every lesson is fitted to a canvas, `--canvas` or not); `beginner_version` whether you made one or not.
 - List every filter you looked at, kept or not, with its image path relative to the lesson. Step pictures aren't
   filters: they're cut from the finish, so they get no `filters` entry.
 - `merged_parts` is an empty object when no part was dropped in step 2c.

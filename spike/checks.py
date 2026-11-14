@@ -19,6 +19,10 @@ from pathlib import Path
 import numpy as np
 
 PERCENT = re.compile(r"\d\s*%|\bper\s?cent\b", re.I)
+# #122: steps say where in inches; the tape marks are gone. Only placing by tape is flagged, so a real tip such as
+# "masking tape gives a crisp horizon" isn't (review of #122).
+TAPE = re.compile(r"\btape marks?\b|\b(?:top|side|edge)'?s? tape\b|\bmark\w*\b[^.]{0,20}\btape\b|\btape\b[^.]{0,20}\bmark"
+                  r"|\b(?:middle|half|quarter|line it up with|along) (?:of |on )?(?:the |your )?tape\b", re.I)
 SUMMARY_CHARS = 90
 
 
@@ -53,10 +57,13 @@ def build(lesson: Path, plan: dict):
     return owner, pictures, rows, masks
 
 
-def _canvas(lesson: Path) -> tuple[list | None, dict | None]:
-    path = lesson / "canvas.json"
-    info = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
-    return info.get("canvas_box"), info.get("canvas")
+def _canvas(lesson: Path) -> tuple[list | None, dict]:
+    """canvas.json's canvas box and size. A lesson with none gets the default size (canvas.lesson_canvas), or
+    canvas.NoCanvas is raised: every version 2 step says where in inches (#122)."""
+    import canvas as cv
+
+    info = cv.lesson_canvas(lesson)
+    return info.get("canvas_box"), info["canvas"]
 
 
 def counts(plan: dict, technique: dict) -> list[str]:
@@ -131,10 +138,14 @@ def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] 
                 out.append(f"{sid}: no tip in text.json. Write one to three sentences only this photo needs (which way "
                            "the strokes run here, which side the light is on, what to leave showing).")
             for where, words in [("summary", t.get("summary") or ""), ("tip", t.get("tip") or "")] + \
-                                [(f"line {n + 1}", x.get("text") or "") for n, x in enumerate(t["lines"])]:
+                                [(f"line {n + 1}", x.get("text") or "") for n, x in enumerate(t["lines"])] + \
+                                [(f"paint note {n + 1}", x) for n, x in enumerate(t.get("paint_notes") or [])]:
                 if PERCENT.search(words):
-                    out.append(f"{sid}: its {where} gives a percentage. Say where by the outline, the tape marks, or "
-                               "inches from an edge.")
+                    out.append(f"{sid}: its {where} gives a percentage. Say where by the outline, or in inches from "
+                               "an edge.")
+                if TAPE.search(words):
+                    out.append(f"{sid}: its {where} places things by tape marks, and the painter has no tape. Say where "
+                               "in inches from an edge.")
             for n, x in enumerate(t["lines"]):
                 if len((x.get("text") or "").split()) > 40:
                     out.append(f"{sid}: line {n + 1} is {len(x['text'].split())} words. A long line is two moves: "
@@ -229,8 +240,15 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
             for j in texture_jumps(lesson, plan):
                 failures.append(f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one "
                                 "step. Make it two or more steps: a flat coat in the part's main paint, then a pass per paint (run paints --add for the part if it has only one), then build-steps.")
-        canvas_box, canvas = _canvas(lesson)
-        drafted = {d["stage_id"]: d["lines"] for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson)}
+        import canvas as cv
+        try:
+            canvas_box, canvas = _canvas(lesson)
+        except cv.NoCanvas as err:
+            failures.append(str(err))
+            built = None  # nothing to draft against: the lines can't be compared
+        else:
+            drafted = {d["stage_id"]: d["lines"]
+                       for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson)}
     text_path = lesson / "text.json"
     if text is None:
         text = ({t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]}

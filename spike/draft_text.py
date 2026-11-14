@@ -43,8 +43,8 @@ DRY_NAMES = 2  # "let ... dry" names at most this many things
 DRY = "Let {what} dry to the touch first. A hair dryer on low speeds it up."  # basics card let-it-dry
 RINSE = "Rinse the brush well first. Dirty water tints every color with the last one."  # basics card clean-brush
 RINSE_LIGHT = "Rinse the brush fully first: this is the lightest paint yet."  # basics card clean-brush
-CHALK = ("Optional: lightly chalk its outline first, from the transfer outline in Before you start, placed with the "
-         "tape marks.")  # design section 10, transfer outline
+CHALK = ("Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from "
+         "the canvas edges with a ruler.")  # design section 10, transfer outline; inches, not tape marks (#122)
 COATS = "{paint} is much lighter than what it goes over: expect two or three thin coats, letting each dry."  # light-over-dark
 STEP_BACK = "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."  # ugly-stage
 LEAVE_SHOWING = "Leave what {steps} painted showing around these marks, as in the Result picture."  # technique rules

@@ -23,7 +23,7 @@ from PIL import Image  # noqa: E402
 import aids  # noqa: E402
 import build_steps as bs  # noqa: E402
 import tools  # noqa: E402
-from test_pipeline_v2 import NAMES, fixture  # noqa: E402
+from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
 
 PERCENT = re.compile(r"%|percent", re.I)
 
@@ -45,7 +45,7 @@ class AidsTests(unittest.TestCase):
             pictures, _, masks = bs.build(finish, plan, owner)
             names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(bs.flat_steps(plan))]
             out = Path(cls.tmp.name) / name / "aids"
-            data = aids.make(plan, pictures, masks, owner, None, None, out, names)
+            data = aids.make(plan, pictures, masks, owner, None, CANVAS, out, names)
             cls.built[name] = (plan, owner, pictures, masks, data, out)
 
     @classmethod
@@ -123,7 +123,7 @@ class AidsTests(unittest.TestCase):
         plan, owner, pictures, masks, data, out = self.built["red-sailboat"]
         again = out.parent / "again" / "aids"
         names = [r["image"] for r in data["steps"]]
-        self.assertEqual(aids.make(plan, pictures, masks, owner, None, None, again, names), data)
+        self.assertEqual(aids.make(plan, pictures, masks, owner, None, CANVAS, again, names), data)
         for f in sorted(out.iterdir()):
             self.assertEqual(f.read_bytes(), (again / f.name).read_bytes(), f.name)
 
@@ -143,11 +143,23 @@ class WhereWordsTests(unittest.TestCase):
         self.assertEqual(sky, "Inside the outlined area, all the way across from the top edge. Its bottom is about "
                               "5 in from the bottom edge.")
 
-    def test_quarters_of_the_picture_with_no_canvas_size(self):
-        words = aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), None)
-        self.assertEqual(words, "Inside the outlined area. Its top is at the 1/4 mark on the side tape, and its left "
-                                "side is a little left of the middle mark on the top tape.")
-        self.assertNotIn(" in ", words)
+    def test_with_a_canvas_only_inches_and_with_none_refused(self):
+        # #122: the tape-mark path is gone. With a canvas size every anchor is inches; without one it's refused.
+        words = aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), {"w_in": 14, "h_in": 11})
+        self.assertEqual(words, "Inside the outlined area. Its top is about 3 in from the top edge, and its left side "
+                                "is about 5 1/2 in from the left edge; it's about 1 1/2 in wide and 1 1/2 in tall.")
+        self.assertNotIn("tape", words)
+        self.assertNotIn("mark", words)
+        self.assertFalse(hasattr(aids, "MARKS_ACROSS") or hasattr(aids, "MARKS_DOWN") or hasattr(aids, "_near_mark"))
+        # a mast or an eye light is narrower than a quarter inch: never "0 in" (review of #122)
+        thin = aids.where_words(self.area([0.4, 0.2, 0.405, 0.6], (1100, 1400)), {"w_in": 14, "h_in": 11})
+        self.assertIn("it's under 1/4 in wide and about 4 1/2 in tall", thin)
+        self.assertNotIn(" 0 in", thin)
+        eighth = np.zeros((1024, 1024), bool)
+        eighth[500:510, 500:516] = True  # exactly 1/8 in across on 8 x 8 in, which rounds to 0
+        self.assertIn("it's under 1/4 in wide and under 1/4 in tall", aids.where_words(eighth, {"w_in": 8, "h_in": 8}))
+        with self.assertRaisesRegex(ValueError, "canvas.json"):
+            aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), None)
 
     def test_inches_are_measured_on_the_canvas_not_the_frame(self):
         frame = np.zeros((200, 300), bool)

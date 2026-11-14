@@ -16,7 +16,12 @@ you start that step**, even if you read it earlier. Don't read ahead.
 
 ## Arguments
 - `<photo>` (required)
-- `--canvas WxH` (optional, inches, e.g. `11x14`) with `--orientation portrait|landscape`
+- `--canvas WxH` (optional, inches, e.g. `11x14`) with `--orientation portrait|landscape`. Without it, step 0b2
+  still fits the photo to a canvas: `fit-canvas` with no `--canvas` picks the standard size closest to the photo's
+  shape (8x10, 9x12, 11x14, 12x16, or 16x20, 11x14 when two fit as well) and records `"chosen": "default"` in
+  `canvas.json`. Every step says where in inches from the canvas edges, never by tape marks or percentages. The
+  tools refuse a lesson with no `canvas.json` unless its finish already has a standard canvas's shape (only the
+  test fixtures do)
 - `--technique <file>` (optional): force the whole-painting approach (a file in `techniques/` with version 2 keys:
   `v2_step_range`, `v2_rules`). Without it, choose the approach that fits the picture and the level and say why in
   `technique_why`. Today only `acrylic-paint-along-beginner.yaml` has version 2 keys.

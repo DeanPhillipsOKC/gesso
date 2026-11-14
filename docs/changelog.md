@@ -6,6 +6,15 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.4.0 (2026-11-13)
+- Every step says where in inches from the canvas edges, never by tape marks (#122). Every lesson now has a canvas
+  size: without `--canvas`, the lesson takes the standard size closest to the picture's shape (8x10, 9x12, 11x14,
+  12x16, or 16x20; 11x14 when two fit as well) and "What you need" names it, with "Using another size? Scale every
+  measurement" and a ruler. The tape-marking card is gone from "Before you start"; the transfer outline stays in its
+  closed fold, marked optional, and is placed by measuring from the edges. Close-ups give their grid in inches. `check`
+  flags step text that places things by tape marks. A photo whose subject won't survive the crop to the default size
+  gets the canvas-extend render, as with `--canvas`.
+
 ## POC 1.3.2 (2026-11-13)
 - A construction diagram can give a paint by its id as well as its name (#91). Before, a diagram given paint ids
   drew every shape gray. A shape whose paint is no paint's name or id, or a #hex, is now one of `check`'s problems,
