@@ -260,6 +260,23 @@ class CheckPartsTests(unittest.TestCase):
         self.assertIn("hill: stroke press-and-lift is done with a round brush (its card), not a flat", out[2])
         self.assertIn("water-coat: no stroke", out[3])
 
+    def test_a_paint_no_step_uses(self):
+        for name in ("chickadee", "lavender-balloon", "red-sailboat"):
+            self.assertEqual(checks.unused_paints(self.plan(name)), [], name)
+        plan = self.plan("chickadee")
+        plan["paints"].append({**plan["paints"][0], "id": "bird-9", "added": True, "of": None})
+        out = checks.unused_paints(plan)
+        self.assertEqual(len(out), 1)
+        self.assertIn("paint bird-9: no step uses it. Take it out of paints in plan.json, or add it to the step", out[0])
+
+    def test_a_base_only_its_tint_uses_counts_as_used(self):
+        plan = self.plan("chickadee")
+        used = plan["stages"][0]["steps"][0]["paints"][0]
+        base = {**next(c for c in plan["paints"] if c["id"] == used), "id": "base-9", "of": None}
+        plan["paints"].append(base)
+        next(c for c in plan["paints"] if c["id"] == used)["of"] = "base-9"
+        self.assertEqual(checks.unused_paints(plan), [])
+
     def test_unnamed_paints(self):
         self.assertEqual(checks.paint_names(self.plan()), [])
         plan = self.plan()

@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.8.1 (2026-11-14)
+- `check` fails on a paint no step uses, naming it and saying to take it out of `paints` or use it in a step (#136),
+  so a lesson can't seal with a mix in "Your paints" the painter never uses. On `chickadee_skill_20261114-022627`,
+  `bird-2` (made by `paints --add bird` for a shade pass that was then dropped) stayed in the lesson. A base that
+  only a used tint or shade is made from counts as used.
+
 ## POC 1.8.0 (2026-11-14)
 - A `busy` tool measures how much of a picture is fine texture (#109): the share of the canvas covered by hundreds
   of small items, like lavender stalks. It writes a picture of where that texture is, and records the number in the
