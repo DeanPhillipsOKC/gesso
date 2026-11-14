@@ -306,7 +306,8 @@ Also from #129:
 - **The hands-off runs** (the chickadee, from the photo, both sealed):
   - `chickadee_skill_20261114-015433`: 14 minutes, 2 renders, $0.08. Three runs of `outline` at 26, 16, and 15
     seconds; no fix round for the branch or the feet (one each for the bird and the trunks, and one on the wing
-    that was put back). Made before main's POC 1.5.0 (#95) was merged in, so it's in the history, not on the site.
+    that was put back). Made before main's POC 1.5.0 (#95) was merged in, so it's in the history, not on the site
+    (`site/kept-off.json` keeps it off, #141).
   - `chickadee_skill_20261114-022723` (POC 1.6.0, on the site): 12.9 minutes, 2 renders, $0.08. One run of
     `outline`, 14 seconds, `problems` empty, no fix round for any part. The branch: 8 paths, `color_agrees` 0.92.
   - On both, the branch came back in one piece on the first try, with its twigs and leaf stems and nothing stuck
@@ -315,8 +316,8 @@ Also from #129:
     `owner_stats` counts as a piece (0.2% of the picture). Nothing reads that as a fault, but the count is wrong
     for a part this small.
   - `chickadee_skill_20261114-022627` (made by PR #133's parallel build of this issue, which asked limbs only for a
-    path the first answer missed and kept areas and objects on ViT-B; in the history, not on the site): 17.9
-    minutes, 3 renders, $0.15. Five runs of `outline` at about 16 seconds; one fix round on the branch. The branch in
+    path the first answer missed and kept areas and objects on ViT-B; in the history, not on the site, kept off by
+    `site/kept-off.json`): 17.9 minutes, 3 renders, $0.15. Five runs of `outline` at about 16 seconds; one fix round on the branch. The branch in
     one piece from the first answer, no blobs. There the leaf-stem knob was the top of each leaf, a dark pod in the
     branch's block-in until the leaves were painted two steps later: the fix table's "end the path short of it" row
     (POC 1.6.1) is for this.
