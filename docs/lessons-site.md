@@ -5,7 +5,8 @@ phone or tablet while painting. Each lesson is one self-contained HTML page (eve
 animations and interactive pieces work like on any web page. No Claude account is needed to view it.
 
 - `site/` in this repo is the whole site: `index.html` (the list), `lessons/<slug>/index.html` and `thumb.jpg`,
-  `lessons.json` (the list's data), and `_headers` (keeps it out of search engines).
+  `lessons.json` (the list's data), `_headers` (keeps it out of search engines), and `kept-off.json` (runs kept off
+  the tiles, below). Everything in `site/` is served, `kept-off.json` too; it holds only run names and reasons.
 - **Every sealed hands-off run goes on the site** (owner, 2026-11-13; `docs/decisions.md`): the skill's last step
   adds it (step 8c), as a version on its picture's tile, or as a new tile for a new picture. Modified runs stay in
   the history only; the tools refuse them.
@@ -33,9 +34,24 @@ in `lessons.json` whose page is under `site/` stays whether or not its run folde
 are added or updated. To take a version off the site, name it: `site-refresh --remove <run time>` (it stays in the
 lesson history). A tile's known-problems count is kept when its run isn't here to count again.
 
+**Runs kept off for good** are listed in `site/kept-off.json`, an object of run folder name to why, e.g.
+`{"chickadee_skill_20261114-015433": "made before POC 1.5.0 was merged in"}` (#141). Another shape is an error, and
+a key that isn't a run folder name gets a warning. `site-add` refuses a listed run, and `site-add` and
+`site-refresh` never add one, take one off its tile, and delete its page, so nobody has to pass `--remove` on every
+refresh. When the listed run is a tile's default, `site-refresh` opens the tile on its newest version left: the
+newest hands-off run in `output/`, or else the newest listed version whose page is on the site (it brings its
+version and step count; the thumbnail and the tile's other facts, such as its known-problems count, stay the old
+default's, and the message names them, until that run is `site-add`ed where its folder is). With no version left,
+the tile goes. It holds `chickadee_skill_20261114-015433` (made before main's POC 1.5.0 was merged in) and
+`chickadee_skill_20261114-022627` (made by PR #133's other build of #129), which `docs/design/pipeline-v2.md`
+section 6 keeps in the history only. `--remove` is still the way to take a version off once; add the run to the
+list when it should never come back.
+
 **The tiles hold versions from POC 1.0.0 on** (owner, 2026-11-13, #82): the runs before it (v1, up to 0.26.1) were
 taken off the site and are in the lesson history. `site-add` and `site-refresh` only take version 2 runs
-(`plan_version: 2` in `lesson.json`), so an old run left in `output/` can't come back.
+(`plan_version: 2` in `lesson.json`) made with POC 1.0.0 or later (the version that made it, `gesso.made.version`,
+not a later republish's), so an old run left in `output/` can't come back. The version check matters (#141): the
+POC 0.26.1 runs of 2026-11-13 were already version 2 plans. A run with no version stamp isn't taken.
 
 ## Known problems
 
