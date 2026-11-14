@@ -662,7 +662,7 @@
    "id": "sky-2",
    "name": "Sunset gold",
    "used_for": "misty sunset sky",
-   "hex": "#f2ab50",
+   "hex": "#f2af57",
    "sample_x": 0.597,
    "sample_y": 0.159,
    "parts": [
@@ -685,7 +685,7 @@
    "id": "foliage-1",
    "name": "Foliage rust",
    "used_for": "the hazy foliage, the bird's body, and the light on the bark",
-   "hex": "#d38f66",
+   "hex": "#d39266",
    "sample_x": 0.259,
    "sample_y": 0.999,
    "parts": [
@@ -721,14 +721,14 @@
   },
   {
    "id": "leaves-1",
-   "name": "Leaf red",
-   "used_for": "the four leaves",
-   "hex": "#c04023",
-   "sample_x": 0.69,
-   "sample_y": 0.826,
+   "hex": "#d54d25",
+   "sample_x": 0.703,
+   "sample_y": 0.846,
    "parts": [
     "leaves"
-   ]
+   ],
+   "name": "Leaf red",
+   "used_for": "the four leaves"
   },
   {
    "id": "bird-1",

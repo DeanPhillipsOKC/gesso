@@ -40,7 +40,8 @@ SPECK = 0.0005  # pieces of a part smaller than this share of the picture go to 
 MARGIN = 0.0  # Lab units a marks pixel must be nearer its own colors than the colors behind it
 SEED_WINDOW = 0.006  # half the side of the patch a point's color is read from, as a share of the long side
 BAND = 1.6  # a thin part may reach this many times its stated width from its path
-LIMB_STEP = 0.06  # points along a limb for its own prompt, this share of the picture apart
+LIMB_STEP = 0.06  # points along a limb for its own prompt, this share of the picture's width apart
+THIN_AGREES = 0.5  # a thin part the color rule agrees with on less than this share of its outline is told
 HOLE = 0.03  # an area enclosing more than this share of the picture that went to a part behind it is told
 HOLE_BRIDGE = 0.02  # gaps in an area's outline narrower than about twice this (of the long side) count as closed
 
@@ -196,17 +197,24 @@ def band(shape: tuple[int, int], part: dict) -> np.ndarray:
     return m > 0
 
 
-def path_box(paths: list, width: float) -> list[float]:
-    """A box around paths, grown by the part's width."""
+def path_box(paths: list, width: float, shape: tuple[int, int]) -> list[float]:
+    """A box around paths, grown by the part's width. `width` is a share of the picture's width, so the box grows by
+    the same distance up and down as it does to the sides, whatever the picture's shape."""
+    h, w = shape
     pts = np.array([p for path in paths for p in path], float)
-    x0, y0, x1, y1 = pts[:, 0].min() - width, pts[:, 1].min() - width, pts[:, 0].max() + width, pts[:, 1].max() + width
+    up = width * w / h
+    x0, y0, x1, y1 = pts[:, 0].min() - width, pts[:, 1].min() - up, pts[:, 0].max() + width, pts[:, 1].max() + up
     return [float(max(0, x0)), float(max(0, y0)), float(min(1, x1)), float(min(1, y1))]
 
 
-def path_points(path: list, step: float = LIMB_STEP) -> list[list[float]]:
-    """Points along a path, about `step` of the picture apart, ends included."""
+def path_points(path: list, shape: tuple[int, int], step: float = LIMB_STEP) -> list[list[float]]:
+    """Points along a path, about `step` of the picture's width apart, ends included. A path of one point is that
+    point."""
+    h, w = shape
     p = np.array(path, float)
-    seg = np.sqrt((np.diff(p, axis=0) ** 2).sum(1))
+    if len(p) < 2:
+        return [[float(v) for v in q] for q in p]
+    seg = np.sqrt(((np.diff(p, axis=0) * [1.0, h / w]) ** 2).sum(1))  # lengths as shares of the width
     ends = np.cumsum(seg)
     out = []
     for d in np.linspace(0, float(seg.sum()), max(2, int(seg.sum() / step) + 1)):
@@ -230,26 +238,24 @@ def thin(sam: "Sam", L: np.ndarray, part: dict, inside: np.ndarray) -> tuple[np.
        (foliage between twigs), so of a limb's outline only the pixels the color rule agrees with are added.
 
     The rule was settled on 18 thin parts (docs/spikes/outline-models.md, "The join"). When the model returns
-    nothing, the color rule alone, as before #129. Returns the outline, the model's confidence in the whole-part
+    nothing (or only specks), the color rule alone, as before #129. Returns the outline, the model's confidence in the whole-part
     prompt, and what was done, for stats.json."""
     h, w = inside.shape
     paths, width = part.get("paths") or [part["path"]], part.get("width", 0.05)
     pin, pout = part.get("points_in") or [], part.get("points_out") or []
-    box = path_box(paths, width)
-    whole, conf = sam.mask(box, pin or [q for path in paths for q in path_points(path)], within(pout, box))
+    by_color = marks(L, part, inside)  # refuses a part with no colors for either side, naming what's missing
+    box = path_box(paths, width, (h, w))
+    whole, conf = sam.mask(box, pin or [q for path in paths for q in path_points(path, (h, w))], within(pout, box))
     claim = whole & inside
-    by_color = marks(L, part, inside) if has_colors(part) else inside
     for path in paths:
-        b = path_box([path], width)
-        limb, _ = sam.mask(b, path_points(path), within(pout, b))
+        b = path_box([path], width, (h, w))
+        limb, _ = sam.mask(b, path_points(path, (h, w)), within(pout, b))
         claim = claim | (limb & band((h, w), {"id": part["id"], "paths": [path], "width": width}) & by_color)
-    if not claim.any() and has_colors(part):
-        return by_color, None, {"thin_by": "color rule"}
-    return claim, conf, {"thin_by": "model"}
-
-
-def has_colors(part: dict) -> bool:
-    return all(part.get(f"points_{s}") or part.get(f"colors_{s}") for s in ("in", "out"))
+    claim = keep_pieces(claim)
+    if not claim.any():  # nothing, or only specks
+        return keep_pieces(by_color), None, {"thin_by": "color rule"}
+    # how much of the outline the color rule agrees with: low when the model returned what's behind the part
+    return claim, conf, {"thin_by": "model", "color_agrees": round(float((claim & by_color).sum() / claim.sum()), 3)}
 
 
 def drop_specks(owner: np.ndarray, floor: float = SPECK) -> np.ndarray:
@@ -413,7 +419,6 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
                 if sam.emb is None:
                     sam.embed(finish)
                 claim, conf, how = thin(sam, L, p, inside)
-                claim = keep_pieces(claim)
                 row.update(how)
                 row["confidence"] = None if conf is None else round(conf, 3)
         else:
@@ -509,6 +514,10 @@ def problems(parts: list[dict], stats: list[dict]) -> list[str]:
                 out.append(f"{p['id']}: fills its whole box, so it probably took the background. Loosen the box.")
             if s["pieces"] > 3 * n_boxes:
                 out.append(f"{p['id']}: came back in {s['pieces']} pieces. Use one box per thing, or make it marks.")
+        if p["kind"] == "thin" and s.get("color_agrees") is not None and s["color_agrees"] < THIN_AGREES:
+            out.append(f"{p['id']}: only {s['color_agrees']:.0%} of its outline has the part's own colors, so the model "
+                       f"likely took what's behind it. Put points_in on the part and points_out on what it took, or "
+                       f"lower width.")
         if p["kind"] == "area" and (s.get("hole") or 0) > HOLE:
             x, y = s["hole_at"]
             out.append(f"{p['id']}: {s['hole']:.0%} of the picture inside its outline went to {s['hole_from']}, which "

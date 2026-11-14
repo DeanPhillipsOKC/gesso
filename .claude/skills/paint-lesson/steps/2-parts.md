@@ -32,7 +32,9 @@ look like).
   `points_out` (5 to 8 spots on what's behind and around it, one per color there).
 - **A `thin` part is found by the outline model**, asked once for the whole part (a box around all its paths, with
   your points) and once per path (points along that path). So give **one path per limb**: the trunk, each bough,
-  each twig, a mast and its boom. A limb with no path of its own can be lost. Put `points_in` on the thick body,
+  each twig, a leaf's stem, a mast and its boom. `width` is the part's widest thickness as a share of the
+  picture's width (a bough 12% of the width across at its base: `0.12`); nothing farther than that from a path is
+  taken. A limb with no path of its own can be lost. Put `points_in` on the thick body,
   and `points_out` on everything that touches it or lies between two limbs (foliage between twigs, the sail
   beside a mast): the color fields decide what a limb's outline keeps.
 - **`marks` or `object`?** If you could cut the thing out with scissors (feet, a leaf, a sun), it's an `object`

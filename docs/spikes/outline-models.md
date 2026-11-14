@@ -193,7 +193,8 @@ fixtures' two (7 branches, 8 masts, a lantern's bracket and hook, a tree trunk),
   so the color rule turns it down. The two rules fail in different places (the model between close paths, the
   color rule on mist the branch's color), and what both accept is clean.
 
-Left: the color rule, as before. Right: what's built.
+Left: the color rule, as before. Right: what's built. The sheet also has the branch from this issue's own
+hands-off run (`chickadee 1114-015433`), whose plan was written for the new tool.
 
 ![Every thin part, before and after](outline-models-join.jpg)
 

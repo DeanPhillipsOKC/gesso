@@ -268,7 +268,7 @@ way to teach it; a wrong outline is not. Don't render a step to get around it.
 model, and the model is SAM-HQ ViT-L.** "The model fails on thin parts" came from asking it with one box and no
 points. `outline.thin` asks twice and joins the answers, all inside the band around the part's `paths`:
 
-1. *The whole part:* one box around all its paths (grown by `width`), with the plan's `points_in` and the
+1. *The whole part:* one box around all its paths (grown by `width`, the same distance every way), with the plan's `points_in` and the
    `points_out` inside the box. This gives the body clean and in one piece, but can lose a limb or draw it too thin
    (a twig, a mast's boom).
 2. *Every limb:* one prompt per path, with a box around that path and points along it (every 6% of the picture,
@@ -276,8 +276,11 @@ points. `outline.thin` asks twice and joins the answers, all inside the band aro
    close together it can take what lies between them. So of a limb's outline only the pixels the color rule agrees
    with (nearer the part's colors than the colors behind it) are added.
 
-Pieces under 0.05% of the picture are dropped. When the model returns nothing, the part is the color rule's alone,
-as before, and `parts/stats.json` says which (`thin_by`: `model` or `color rule`). The rule was settled on 18 thin
+Pieces under 0.05% of the picture are dropped. When that leaves nothing, the part is the color rule's alone, as
+before, and `parts/stats.json` says which (`thin_by`: `model` or `color rule`). It also carries `color_agrees`,
+the share of the outline the color rule agrees with: 0.81 to 0.96 on every branch, mast, bracket, and hook tried,
+0.55 on a tree trunk the model drew fatter than its paint. `outline.problems` reports a thin part under 0.5
+(`THIN_AGREES`): the model took what's behind the part, which is how the 2026-11-12 probe failed. The rule was settled on 18 thin
 parts: the 16 in the saved runs and the fixtures' two (7 branches, 8 masts, a lantern's bracket and hook, a tree
 trunk). "The whole part first, then a limb only where its path isn't covered" was tried first and left three of
 the eight booms as a hairline, because a hairline covers the path. The join the spike feared (the gate run's
@@ -299,6 +302,13 @@ Also from #129:
   (overlap), and no part is reported by `outline.problems`. One thing is worse: the lavender fixture's far strip
   of hedge at the left edge is filed under the mountains it touches, where ViT-B left it to the hedges.
 - A thin part with no model loaded is refused (`NoModel`), like an object; tests hand `outline` a stand-in model.
+- **The first hands-off run** (`chickadee_skill_20261114-015433`, from the photo, sealed in 14 minutes, 2 renders,
+  $0.08): three runs of `outline` at 26, 16, and 15 seconds, and no fix round for the branch or the feet (one each
+  for the bird and the trunks, and one on the wing that was put back). The branch came back in one piece on the
+  first try, with its twigs and both leaf stems; the feet as two clean shapes from one box. Left on it: a small
+  knob where each leaf stem meets its leaf, and two small spikes on the bough where the feet sit. `stats.json`
+  says the feet are in 0 pieces: each foot is under the size `owner_stats` counts as a piece (0.2% of the
+  picture). Nothing reads that as a fault, but the count is wrong for a part this small.
 
 The model: Segment Anything in High Quality (SAM-HQ) ViT-L, quantized encoder, ONNX, 345 MB, downloaded once to
 `models/` (git-ignored) from X-AnyLabeling's release with each file's SHA-256 checked. `onnxruntime`, no PyTorch.
