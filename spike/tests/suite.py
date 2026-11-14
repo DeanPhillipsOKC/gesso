@@ -79,7 +79,12 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
     start = time.time()
     picked = [(c, slow) for c, slow in _classes(a.only) if not (a.quick and slow)]
-    if not picked:  # a typo, or a slow class under --quick: say so rather than pass with nothing run
+    every = [c for c, _ in _classes([])] + [c for c, _ in _classes(a.only)]
+    unmatched = [o for o in a.only if not any(c == o or c.startswith(o + ".") or c.split(".")[0] == o for c in every)]
+    if unmatched:  # a typo: say so, even when the other names matched
+        print("no tests match " + " ".join(unmatched))
+        return 2
+    if not picked:  # a slow class under --quick: say so rather than pass with nothing run
         print("no tests match " + (" ".join(a.only) or "the quick set") + (" (slow classes are left out of --quick)"
                                                                            if a.quick else ""))
         return 2
