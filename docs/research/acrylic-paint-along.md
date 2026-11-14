@@ -68,6 +68,24 @@ The same order shows up across sources:
 
 Each entry covers what the stroke leaves on the canvas, which brush to use, how much paint and water, and how to fix or soften it afterward.
 
+### Paint thickness and how much is on the brush
+
+Added 2026-11-14 (#99). Tutorials say "creamy", "thinned", "a light load" or "fairly dry" without saying what they mean, and two different things get mixed up under "load". One is **how thick the paint is**. The other is **how much of it is on the brush**. Creamy paint can be a full load or a light one. A search on 2026-11-13 and 2026-11-14 found no single standard for either. The pages couldn't be fetched from the research session, so the claims below come from search-index excerpts, as the footnotes say.
+
+How thick the paint is (consistency):
+
+- **Thick:** straight from the tube, with no water. Heavy-body acrylic is described as thick, like soft butter. It holds a peak on the palette, covers what's under it, and keeps the brush marks[^62][^63][^64].
+- **Creamy:** like heavy cream or soft yogurt. Soft-body acrylic is described this way: it spreads smoothly, covers, and its brush marks soften. It doesn't run[^62][^63][^64]. Stiff tube paint gets there with a touch of water. Double loading uses "a touch of water" to help the paint flow[^14].
+- **Thin:** watered until it flows like ink. Fluid acrylics and inks sit at this end. It's see-through, so what's under it shows[^62][^64]. Thinning with water weakens the color[^62]. Liner work and splatter use it[^18][^16]. Keep water to about half the mix or less (section 3).
+
+How much is on the brush:
+
+- **A full load:** pull the brush through the paint and press it lightly once, so the paint goes up into the belly of the bristles, not just the surface. It's for solid strokes, covering, and fewer passes[^65]. Press and lift uses it: "loaded well into the belly"[^32].
+- **A light load:** only the tip in the paint, with the belly fairly clean. If the brush picked up too much, wipe some off on a paper towel. It's for small marks and detail with rounds and liners[^65][^16].
+- **Wiped nearly dry:** load, then wipe the brush on a paper towel until only a little paint is left. It should feel dry and hard to apply, and it leaves broken marks. Dry brushing uses it[^13][^17], and so do reflections pulled down into water (section 8).
+
+For Gesso: these six terms are the only words a stroke card uses for its load, one for how thick and one for how much where the research gives both. A beginner basics card explains and shows each of them.
+
 ### Long horizontal stroke (sky and water blending)
 
 - **Leaves:** Smooth bands of color that soften where they meet.
@@ -535,7 +553,7 @@ Rules a lesson generator should follow. These assume standard (not slow-drying) 
 1. Write 6 to 12 steps for a full picture. Use 3 to 5 for a single object or skill drill. Each step does one job in one area of the canvas.
 2. Order: background, then middle ground, then foreground. Within each object: base shape, then shadow and mid values, then highlights, then details. Fine details, outlines, splatter and dots come last.
 3. Give each step a short title naming the goal ("Paint the base of the far hills"), then the instruction, then at most one or two tips.
-4. Every step names: the brush (type and rough size), the mix (colors and rough parts), the paint load (wet and creamy, thin and flowing, or nearly dry), the stroke, the direction, and where on the canvas.
+4. Every step names: the brush (type and rough size), the mix (colors and rough parts), the paint load (how thick: thick, creamy or thin; and how much: a full load, a light load or wiped nearly dry; see section 2, Paint thickness and how much is on the brush), the stroke, the direction, and where on the canvas.
 5. Say what the step should look like when done, including what should still be showing ("leave the darker gray visible in the middle").
 6. Start the lesson by stating the light direction and keep every highlight on that side.
 7. Include a reassurance line at most once or twice per lesson ("yours will look different, and that's fine"), and name the ugly stage once, around the middle.
@@ -700,3 +718,7 @@ Rules a lesson generator should follow. These assume standard (not slow-drying) 
 - The Art Sherpa's teaching is mostly video. A transcript pass on two or three of her beginner lessons would add phrasing and pacing data from the most-watched paint-along instructor.
 - No controlled research was found on paint-along formats specifically (close-ups, step length, learner outcomes).
 - Sections 7 and 8: no paint maker had a technical page on flower fields or water reflections (Golden, Liquitex, Winsor & Newton and Daler-Rowney searches came up empty), so these lean on instructor tutorials. Three reflection sources are watercolor ([^58], [^59], [^60]) and were used only for principles, not handling. Painters Online (Wendy Jelbert, Terry Harrison) and Kevin Hayler's water guide refused the fetcher and are worth a retry. No written source covered flicked spikes as a separate flower mark, so that stroke result is left out.
+[^62]: Jackson's Art, "Consistencies of Acrylic Paint" (Painters Online, Ask Jackson's) and "A guide to acrylic painting": heavy body like soft butter, soft body like heavy cream, fluid toward ink; thinning weakens color. Search-index excerpts. https://www.painters-online.co.uk/ask-jacksons/consistencies-of-acrylic-paint/ and https://www.jacksonsart.com/a-guide-to-acrylic-painting
+[^63]: SAA, "Introduction to acrylic paints": heavy body holds brush marks, soft body is smoother. Search-index excerpt. https://www.saa.co.uk/knowledge-hub/acrylic/introduction-to-acrylic-paints/
+[^64]: Liquitex, "Choosing the right acrylic paint": heavy body, soft body (like yogurt), fluid and ink, from thickest to most liquid. Search-index excerpt. https://www.liquitex.com/row/choosing-the-right-acrylic-paint
+[^65]: Cursa, "Acrylic Painting Basics: Brush Handling, Stroke Types, and Edges": a full load spreads paint through the belly for opaque strokes and fills; a tip load keeps the belly clean, for detail with rounds and liners. [^16]'s page also says to load just the tip and wipe extra off on a paper towel (search-index excerpt). Search-index excerpt. https://cursa.app/en/page/acrylic-painting-basics-brush-handling-stroke-types-and-edges

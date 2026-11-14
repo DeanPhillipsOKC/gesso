@@ -198,7 +198,7 @@ class PublishV2Tests(unittest.TestCase):
         import page2
         known = cards.basics()
         start = {c for c, k in known.items() if k["when"] == "start"}
-        self.assertEqual(start, {"set-up", "clean-brush", "water", "keep-paint-wet", "fix-a-mistake"})
+        self.assertEqual(start, {"set-up", "clean-brush", "water", "keep-paint-wet", "fix-a-mistake", "paint-load"})
         for name in NAMES:
             stages = self.data(name)["stages"]
             html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")

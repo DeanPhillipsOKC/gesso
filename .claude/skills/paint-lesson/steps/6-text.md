@@ -31,6 +31,10 @@ each rib of a pumpkin" on a bird's chest; the small-circles card mentions clouds
 teaches** (the motion, the load), and add `"edited": true` to the line so `draft-text` leaves it alone. To drop a
 line that doesn't apply, set its `text` to `""` and `"edited": true`.
 
+Keep the load words exactly as drafted ("Load: Creamy paint, a full load."): the page links them to the paint-load
+card and shows their pictures only in that form (#99). In a tip, say how thick and how much only with the card's
+words (thick, creamy, or thin paint; a full load, a light load, or wiped nearly dry).
+
 Don't add technique the cards and research don't have. Don't shorten a line to save space: there's no word limit
 on a step, only on a line (40 words; a longer line is two moves, so split it).
 

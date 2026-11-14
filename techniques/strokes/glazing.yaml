@@ -3,7 +3,8 @@ stroke_result: Glazing (transparent color thinned with medium, over dry paint)
 name: Glazing
 brushes:
 - soft flat
-load: A small amount of a see-through color thinned with glazing medium. Water doesn't work as well.
+load:
+  note: A little see-through color mixed into glazing medium. Water doesn't work as well.
 result: A see-through tint over what's underneath.
 then: If it's too dark, paint a lighter opaque color over it.
 note: Needs glazing medium and see-through paints that most beginners don't own. Rarely used at beginner level.

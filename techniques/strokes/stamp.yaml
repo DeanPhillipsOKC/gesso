@@ -3,7 +3,8 @@ stroke_result: Stamp with the brush end (bright or flat, creamy load, straight d
 name: Stamp
 brushes:
 - '#12 bright'
-load: Wet and creamy.
+load:
+  thickness: creamy
 motion: Stamp straight down with the end of the brush. A strip of stamps makes a lavender or crop row.
 result: A short, blunt block of color.
 then: Stamp a lighter mix over the same row without covering all of it. Wipe the brush, don't rinse it, between

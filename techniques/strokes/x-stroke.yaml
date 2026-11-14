@@ -6,7 +6,8 @@ also_called:
 - slip-slap
 brushes:
 - flat
-load: One or two colors on the brush. How much of each is on it controls the blend.
+load:
+  note: One or two colors on the brush. How much of each is on it controls the blend.
 motion: Short strokes that cross each other in two directions, like overlapping X shapes.
 result: A soft, slightly textured blended fill with visible criss-cross marks.
 then: For a smooth, even gradient, go over it while wet with lighter, longer side-to-side strokes. Or leave it as
