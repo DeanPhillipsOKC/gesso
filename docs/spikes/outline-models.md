@@ -3,7 +3,7 @@
 2026-11-14. Follows `outline-probe.md` and `outlines.md`. The code is `spike/experiments/issue85.py`; nothing in
 the pipeline changed.
 
-**Answer: swap the local model for SAM-HQ ViT-L, and ask it for thin parts with a box and the plan's points, then
+**Built in #129 (see "The join, as built" below).** Answer: swap the local model for SAM-HQ ViT-L, and ask it for thin parts with a box and the plan's points, then
 limb by limb for what that misses. No hosted model looks needed, though none was run.** The chickadee's branch, the worst outline on the site, comes out
 clean and in one piece on the gate run, twigs included (345 MB, 4 seconds more per picture, free). Much of the gain is not the
 model at all: the pipeline never asks the model for a thin part, because the probe of 2026-11-12 asked with one
@@ -177,6 +177,37 @@ every tool gives the same output for the same input (the two recommended models 
 
 For #100: its option 2 (a better outline model) fixes its step 5, so the image-model edit and the re-render
 aren't needed for this case.
+
+## The join, as built (#129, 2026-11-14)
+
+The build issue tried both prompts on every thin part there is: the 16 in the saved runs in `output/` and the
+fixtures' two (7 branches, 8 masts, a lantern's bracket and hook, a tree trunk), with SAM-HQ ViT-L.
+
+- **First try, the rule recommended above** (the single box, then per limb only for a path the result leaves
+  mostly uncovered, added only beside the stretch still missing): clean on all seven branches, the gate run's
+  included, but three of the eight booms stayed a hairline. A hairline covers the path, so the limb was never
+  asked for.
+- **What's built** (`outline.thin`): the single box, joined with every limb's own outline, each limb kept inside
+  its own path's band and only where the color rule agrees. Every boom comes back at its real width, the branches
+  are the same as with the first rule, and the gate run's foliage wedge doesn't come back: it's foliage-colored,
+  so the color rule turns it down. The two rules fail in different places (the model between close paths, the
+  color rule on mist the branch's color), and what both accept is clean.
+
+Left: the color rule, as before. Right: what's built.
+
+![Every thin part, before and after](outline-models-join.jpg)
+
+The gate run's step 5, from its own finish and plan, before and after:
+
+![Step 5 before and after](outline-models-join-step5.jpg)
+
+Small faults left: on one run (`chickadee_skill_20261113-130614`) a few specks of foliage at the left edge, where
+a per-limb wedge and the color rule overlap; and on two sailboats whose plan runs the boom's path along the deck
+line, the outline takes the deck line with it. Outlining takes 8 to 13 seconds on a real finish.
+
+The swap also changed one thing nobody asked for: SAM-HQ outlines an area without the marks on it (the lavender
+fixture's fields without their hedges), so a `marks` child found no parent pixels to take. A child now also takes
+pixels nothing has claimed (design section 6).
 
 ## What isn't known
 

@@ -6,6 +6,18 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.5.0 (2026-11-14)
+- Thin parts (a branch, a mast and its boom, a rail) get clean outlines (#129). They used to be found by color
+  alone, which left blobs of misty background stuck to the chickadee's branch (#100) and a lumpy mast with a boom
+  twice too thick. Now the outline model finds them: asked once for the whole part and once for each limb, with
+  the color rule checking each limb. On all 18 thin parts in the saved runs and fixtures the part comes back in
+  one piece with its twigs (docs/spikes/outline-models-join.jpg).
+- The outline model is SAM-HQ ViT-L in place of SAM ViT-B: a 345 MB download the first time, and about 4 seconds
+  more per `outline`. Still free, local, and the same bytes for the same finish and plan.
+- A small thing with a clear edge (a bird's feet) is planned as an `object`, not `marks`, so it no longer takes a
+  slab of what it sits on. Mist, clouds, reflections, and foliage stay `marks`.
+- Marks painted on an area are still found when the model outlines the area without them (hedges on a field).
+
 ## POC 1.4.1 (2026-11-14)
 Nothing a lesson shows changes. The tests are fast again (#87), and publish is faster.
 - publish parses the stroke cards and element files once instead of about 60 times a lesson (that was about half
