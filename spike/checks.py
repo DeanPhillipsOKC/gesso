@@ -166,6 +166,22 @@ def paint_names(plan: dict) -> list[str]:
     return out
 
 
+def unused_paints(plan: dict) -> list[str]:
+    """#136: a paint no step uses, such as one `paints --add` made for a step that was dropped. `paints` never
+    merges an added paint, so nothing else would clear it, and the painter would see a mix they never use. A paint
+    a used tint or shade is made from (its `of`) counts as used."""
+    import plan2
+
+    used = {c for s in plan2.steps(plan) for c in s.get("paints") or []}
+    of = {c.get("id"): c.get("of") for c in plan.get("paints") or []}
+    for c in list(used):
+        while of.get(c) and of[c] not in used:
+            c = of[c]
+            used.add(c)
+    return [f"paint {c['id']}: no step uses it. Take it out of paints in plan.json, or add it to the step that "
+            "should use it." for c in plan.get("paints") or [] if c.get("id") not in used]
+
+
 def texture_jumps(lesson: Path, plan: dict) -> list[dict]:
     """tools.texture_jumps over a version 2 lesson's step pictures, for `full` steps only: a part that goes from
     bare canvas to finished texture in one step. A `blend` is one wet move by definition. A `flat` coat is flat by construction (what's measured
@@ -204,6 +220,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     known = cards.strokes()
     failures += strokes_and_brushes(plan, known)
     failures += paint_names(plan)
+    failures += unused_paints(plan)
     failures += cards.problems(known)
     import elements
 

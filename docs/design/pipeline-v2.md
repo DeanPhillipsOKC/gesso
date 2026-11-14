@@ -796,6 +796,9 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
   inches from an edge."); a line over 40 words;
 - the ones that stay: `paints_not_listed`, `duplicate_recipes`, `unreachable_paints`, `undocumented_diagrams`;
+- a paint no step uses (#136: "Take it out of paints in plan.json, or add it to the step that should use it."). A
+  paint a used tint or shade is made from (its `of`) counts as used. `paints` never merges a paint `--add` made, so
+  one left behind when its step was dropped stayed in "Your paints" with nothing else to clear it;
 - (`max_mixes`, and a step whose paint doesn't list its part, are in `plan2.problems` from issue 4; the 8 MB
   page limit is in `publish` from issue 6; `check` reports them all in one list.)
 
