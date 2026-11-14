@@ -152,9 +152,9 @@ pixel both claim.
 | `kind` | For | How its outline is found | Needs |
 |---|---|---|---|
 | `area` | a big region with a visible edge: sky, hill, field, water | the outline model, from its box. An area with no parent whose box covers 90% or more of the picture is the backdrop: no model, it claims everything, and every later part takes its share back. List it first | `box` |
-| `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun, and a small one too (a bird's feet, #129) | the outline model, from its box, or one box per thing (`boxes`) for several of the same (four leaves) | `box` or `boxes` |
-| `thin` | long and narrow with a clear edge: a branch, a mast, a boom, a rail | the thin-part model (SAM-HQ ViT-L) from a box around its `paths` and its points, then limb by limb for a path that missed, inside a band around the paths (section 6); the color rule when the model finds nothing | `paths` (one per limb), `width`, `points_in`/`colors_in`, `points_out`/`colors_out` |
-| `marks` | paint with no single edge: clouds, mist, misty trunks, foliage clumps, a sun path, sparkles, a reflection, a bird's black cap | the color rule, inside its box | `box` or `boxes`, `points_in`/`colors_in`, `points_out`/`colors_out` |
+| `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun. Small things with a clear edge too (a bird's feet), not `marks` (#129) | the outline model, from its box, or one box per thing (`boxes`) for several of the same (four leaves) | `box` or `boxes` |
+| `thin` | long and narrow: a branch, a mast, a rail | the outline model, asked for the whole part and then limb by limb, inside a band around its `paths`; the color rule checks each limb, and stands in when the model finds nothing (section 6, #129) | `paths`, `width`, `points_in`/`colors_in`, `points_out`/`colors_out` |
+| `marks` | paint with no single edge: clouds, mist, foliage clumps, a sun path, sparkles, a reflection, a bird's black cap | the color rule, inside its box | `box` or `boxes`, `points_in`/`colors_in`, `points_out`/`colors_out` |
 
 - **Boxes** are `[x0, y0, x1, y1]`, shares of width and height, measured with `grid --percent`, 2 to 3% loose
   for the model. For `marks` they must be **tight**: color is all that separates a mark from anything the same
@@ -164,7 +164,8 @@ pixel both claim.
   covering every color on both sides). When a point can't be trusted to land on the paint (a narrow path,
   sparkles), give colors outright: `colors_in` / `colors_out` as hex, read from `part-colors`.
 - **`parent`**: the part is painted on another part (clouds on the sky, the cap on the bird). A `marks` or `thin`
-  child only takes pixels its parent (or the parent's other children) had; an `area` or `object` child is kept
+  child only takes pixels its parent (or the parent's other children) had, or that nothing has claimed yet
+  (section 6, #129); an `area` or `object` child is kept
   inside its own box. A child comes after its parent in the list. Don't give a parent to something that reaches outside it: the
   bird's feet cross the branch, so they're a part of their own after the bird, not a child.
 - **`covers`** (optional, `area` only): boxes where the painter lays this part's paint past its visible edge, so
@@ -229,7 +230,8 @@ prints `problems`.
 2. Pixels nobody claimed go to the nearest part.
 3. Pieces smaller than 0.05% of the picture go to whatever surrounds them.
 
-A child of kind `marks` or `thin` only takes pixels its parent's family already had. `outline.problems` reports: nothing outlined; model confidence under 0.80; an object filling under 15% or over 98%
+A child of kind `marks` or `thin` only takes pixels its parent's family already had, or that nothing has claimed
+yet (#129, below). `outline.problems` reports: nothing outlined; model confidence under 0.80; an object filling under 15% or over 98%
 of its box; an object in more than 3 pieces per box. Each says what to change.
 
 **Changed 2026-11-13, from three real runs:**
@@ -253,8 +255,9 @@ and the fix, from the spike:
 |---|---|
 | A marks part took something else the same color | tighten its box; add `points_out` on the thing it took |
 | A marks part missed some of itself | add `points_in` there, one per shade |
-| A thin part is broken or missing an end | add a path along the missing limb (a path the first answer misses is asked for on its own); add `points_in` on its light and dark sides; raise `width` |
-| A thin part took what lies beside it (the top of a leaf its stem runs into) | add `points_out` on what it took; end a path short of the thing it runs into; lower `width` |
+| A thin part is missing a limb or an end | add a path along the missing limb (each path gets its own prompt); raise `width` if the band cuts it off |
+| A thin part took what lies beside it | add `points_out` there; give `colors_out` for it from `part-colors`; lower `width` |
+| A thin part took the end of what a path runs into (a leaf's top at the end of its stem) | end the path short of it; add `points_out` on it |
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | give `colors_in`/`colors_out` from `part-colors`; or drop the part and use a pass |
 
@@ -262,63 +265,68 @@ and the fix, from the spike:
 more pass. Record it in `notes.json` under `merged_parts` with the reason. A pass in the right paint is a correct
 way to teach it; a wrong outline is not. Don't render a step to get around it.
 
-**Changed 2026-11-14 (#129, from the spike for #85, `docs/spikes/outline-models.md`): thin parts go to a model.**
-"The model fails on thin parts" came from asking it with one box and no points. `outline` now asks SAM-HQ ViT-L
-(`outline.thin`), everything kept inside the band it already drew around the paths and to the part's parent's
-family:
-1. **One box + points:** a box around all the part's paths, grown by `width`, with its `points_in` and the
-   `points_out` inside that box. On the spike's pictures this gave the body clean, with none of the misty background
-   the color rule stuck to the chickadee's branch, but it can lose a thin limb (three on the chickadee fixture, a
-   sailboat's boom).
-2. **Then per limb, only for what that missed:** a path counts as missed when fewer than 80% of the points along it
-   (`LIMB_COVERED`) have some of the answer within half the part's width. Each missed path is asked for on its own (a
-   box around it, points along it every 3% of the picture, the `points_out` in its box), and what that adds is kept
-   to the path's own band **and to pixels the color rule gives the part**. Asked limb by limb with nothing to check
-   it against, the model took a wedge of foliage at the gate run's left edge, where three paths run close together;
-   the color rule is the check, and the clean body from 1 keeps the color rule's own blobs out.
-3. Pieces under 0.05% of the picture go. When nothing is left, the color rule outlines the part, as before, and its
-   `stats.json` row carries no confidence (the review of #129: a model's low confidence on a part it didn't outline
-   failed `check`).
+**Changed 2026-11-14 (#129, after the spike for #85, `docs/spikes/outline-models.md`): thin parts come from the
+model, and the model is SAM-HQ ViT-L.** "The model fails on thin parts" came from asking it with one box and no
+points. `outline.thin` asks twice and joins the answers, all inside the band around the part's `paths`:
 
-Limbs are asked for even when the first answer is empty. A thin part with `colors_in` and no `points_in` is asked
-with points along its paths instead; on the fixture's branch, with its points turned into colors, that gave nearly the same
-branch (confidence 0.887 against 0.94, IoU 0.98), but the skill still asks for points on thin parts. `confidence` is
-the first answer's, or the limbs' lowest when the first answer was empty. A thin part's low-confidence problem says to add points, not to change a
-box it doesn't have.
+1. *The whole part:* one box around all its paths (grown by `width`, the same distance every way), with the plan's `points_in` and the
+   `points_out` inside the box. This gives the body clean and in one piece, but can lose a limb or draw it too thin
+   (a twig, a mast's boom).
+2. *Every limb:* one prompt per path, with a box around that path and points along it (every 6% of the picture,
+   `LIMB_STEP`), kept inside that path's own band. This keeps each limb at its real width, but where paths run
+   close together it can take what lies between them. So of a limb's outline only the pixels the color rule agrees
+   with (nearer the part's colors than the colors behind it) are added.
 
-`parts/stats.json` says per thin part how it was done (`how`: `model`, `model and limbs`, or the color rule) and
-which paths were asked for alone (`limbs`); `confidence` is the first answer's. On the chickadee fixture the branch
-comes back in one piece with every twig and leaf stem (three limbs asked alone); on the sailboat fixture the mast is
-straight and even from the first answer. With the feet an `object` (below), the fixture's feet come back as two
-clean feet where the color rule took a slab of branch.
+Pieces under 0.05% of the picture are dropped. When that leaves nothing, the part is the color rule's alone, as
+before, and `parts/stats.json` says which (`thin_by`: `model` or `color rule`). It also carries `color_agrees`,
+the share of the outline the color rule agrees with: 0.81 to 0.96 on every branch, mast, bracket, and hook tried,
+0.55 on a tree trunk the model drew fatter than its paint. `outline.problems` reports a thin part under 0.5
+(`THIN_AGREES`): the model took what's behind the part, which is how the 2026-11-12 probe failed. The rule was settled on 18 thin
+parts: the 16 in the saved runs and the fixtures' two (7 branches, 8 masts, a lantern's bracket and hook, a tree
+trunk). "The whole part first, then a limb only where its path isn't covered" was tried first and left three of
+the eight booms as a hairline, because a hairline covers the path. The join the spike feared (the gate run's
+foliage wedge coming back) doesn't happen: the wedge is foliage-colored, and the color rule turns it down.
+[Before and after, all 18](../spikes/outline-models-join.jpg);
+[the gate run's step 5](../spikes/outline-models-join-step5.jpg).
 
-**The first hands-off run with it** (chickadee, POC 1.6.0, `chickadee_skill_20261114-022627`, a fresh finish):
-the branch came back in one piece from the first answer alone (`how`: `model`, no limbs asked alone, confidence
-0.895), with the trunk, both right-hand twigs, the top-left twig and both leaf stems, and no background stuck to it;
-its block-in step shows no blobs. `outline` took about 16 seconds a run (5 runs, the step's cap; one fix round on the
-branch, a path along the trunk's lit rim). The run drew the feet as an `object`, one box per foot. One new fault:
-where a leaf-stem path runs into its leaf, the branch took the top of the leaf, so the branch's block-in shows a dark
-pod on each of the two leaf stems until the leaves are painted two steps later. The run sealed in 18 minutes, with
-that left under Known problems. Not checked: the gate run of 2026-11-13 named in the issue, and the two sailboat
-gate runs; their folders lived only in the spike's machine, so the per-limb check against the wedge at the gate
-run's left edge is tested only on a made-up scene (`test_a_thin_part_is_asked_for_whole_then_limb_by_limb...`).
+Also from #129:
+- **A small thing with a clear edge is an `object` with a box**, not `marks`: a bird's feet come back as two clean
+  feet from one box, where the color rule took a slab of the branch under them. The chickadee fixture's feet are
+  an `object` now. Misty trunks, clouds, sun paths, reflections, and foliage stay `marks` on the color rule: the
+  larger models dropped a trunk the color rule finds, and they return one solid shape where the steps paint marks.
+- **A `marks` or `thin` child also takes pixels nothing has claimed yet.** SAM-HQ outlines an area more exactly
+  than ViT-B did: the lavender fixture's fields came back without the hedges on them, so the hedges (a `marks`
+  child of the fields) found none of the fields' pixels to take and outlined nothing. Pixels nobody claimed would
+  go to the nearest part anyway; a child whose color they are takes them first. A plan with a backdrop has no
+  unclaimed pixels, so nothing changes there.
+- **What the swap changed on the fixtures' other parts:** clear-edged parts agree with ViT-B's to 95% or more
+  (overlap), and no part is reported by `outline.problems`. One thing is worse: the lavender fixture's far strip
+  of hedge at the left edge is filed under the mountains it touches, where ViT-B left it to the hedges.
+- A thin part with no model loaded is refused (`NoModel`), like an object; tests hand `outline` a stand-in model.
+- **The hands-off runs** (the chickadee, from the photo, both sealed):
+  - `chickadee_skill_20261114-015433`: 14 minutes, 2 renders, $0.08. Three runs of `outline` at 26, 16, and 15
+    seconds; no fix round for the branch or the feet (one each for the bird and the trunks, and one on the wing
+    that was put back). Made before main's POC 1.5.0 (#95) was merged in, so it's in the history, not on the site.
+  - `chickadee_skill_20261114-022723` (POC 1.6.0, on the site): 12.9 minutes, 2 renders, $0.08. One run of
+    `outline`, 14 seconds, `problems` empty, no fix round for any part. The branch: 8 paths, `color_agrees` 0.92.
+  - On both, the branch came back in one piece on the first try, with its twigs and leaf stems and nothing stuck
+    to it; the feet as two clean shapes. Left on both: a small knob where each leaf stem meets its leaf, and small
+    bumps on the bough where the feet sit. `stats.json` says the feet are in 0 pieces: each foot is under the size
+    `owner_stats` counts as a piece (0.2% of the picture). Nothing reads that as a fault, but the count is wrong
+    for a part this small.
+  - `chickadee_skill_20261114-022627` (made by PR #133's parallel build of this issue, which asked limbs only for a
+    path the first answer missed and kept areas and objects on ViT-B; in the history, not on the site): 17.9
+    minutes, 3 renders, $0.15. Five runs of `outline` at about 16 seconds; one fix round on the branch. The branch in
+    one piece from the first answer, no blobs. There the leaf-stem knob was the top of each leaf, a dark pod in the
+    branch's block-in until the leaves were painted two steps later: the fix table's "end the path short of it" row
+    (POC 1.6.1) is for this.
 
-**Areas and objects stay on ViT-B.** The issue asked to swap the one model for SAM-HQ ViT-L. Tried on the fixtures,
-SAM-HQ ViT-L is level on objects but left the lavender fixture's dark hedge rows out of the fields under them (the
-mountains took them, and the hedges, a `marks` child of the fields, outlined nothing); with the hedges' points added
-it outlined only the hedges. ViT-B gets the fields right from the box alone. So `outline` runs both: ViT-B for areas
-and objects, exactly as before, and SAM-HQ ViT-L only for a plan with a thin part, loaded only then (about 8 seconds
-more a picture). Not tried: SAM-HQ ViT-L for objects only.
-
-**Guidance (skill step 2):** a small thing with a clear edge is an `object` with a box, not `marks` (a bird's
-feet; the chickadee fixture's feet were changed that way). A thin part lists one path per limb, boom and twigs
-included. Misty trunks, clouds, sun paths, reflections, and foliage stay `marks` on the color rule: the larger
-models dropped a short trunk the color rule finds, and return soft paint as one solid shape.
-
-The models, each downloaded once to `models/` (git-ignored) with its SHA-256 checked, run with `onnxruntime` on CPU,
-no PyTorch: Segment Anything ViT-B, quantized, 108 MB, about 4 seconds a picture on 4 cores (rembg's export); and
-SAM-HQ ViT-L, the encoder quantized, 345 MB, about 8 seconds (X-AnyLabeling's export, whose decoder also takes the
-encoder's middle layers). Both give the same outlines twice on one machine (tested).
+The model: Segment Anything in High Quality (SAM-HQ) ViT-L, quantized encoder, ONNX, 345 MB, downloaded once to
+`models/` (git-ignored) from X-AnyLabeling's release with each file's SHA-256 checked. `onnxruntime`, no PyTorch.
+About 8 seconds to read a picture on 4 cores and 0.1 seconds a prompt: 8 to 13 seconds of outlining on a real
+finish, about 4 more than ViT-B took. The `outline` command as a whole, with loading the model and writing its
+files, took 14 to 26 seconds in the hands-off runs. Same finish and plan, same bytes, run twice (checked on the three fixtures
+and two gate runs).
 
 ## 7. What's behind things (built, except the render)
 
@@ -1030,4 +1038,4 @@ Opus, hands-off, on the final skill and tools, from 900 px copies of the three s
 | The finish is more detailed than a beginner can paint, and v2 copies it faithfully. | Unchanged from v1: the beginner version and `detail_budget`. Not made worse. |
 | 12 to 24 steps is a long session, and mixes dry between steps. | Stages with stopping points; "mix once for steps X to Y"; steps on the same paint kept next to each other. |
 | Paints measured by clustering lose a small accent or give muddy averages. | The accent rule (section 9); the owner's score at the gate. |
-| The outline models are 108 MB, and 345 MB more for thin parts, and run only where the lesson is made. | Viewing a lesson needs nothing: the site is static pages. An app would need a hosted model later; out of scope for the POC. |
+| The outline model is 345 MB and runs only where the lesson is made. | Viewing a lesson needs nothing: the site is static pages. An app would need a hosted model later; out of scope for the POC. |

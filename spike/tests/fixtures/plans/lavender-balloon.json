@@ -378,9 +378,9 @@
    "id": "hedges-1",
    "name": "Hedge green",
    "used_for": "the hedges and the tree's shadows",
-   "hex": "#424e48",
-   "sample_x": 0.023,
-   "sample_y": 0.576,
+   "hex": "#4c5248",
+   "sample_x": 0.263,
+   "sample_y": 0.585,
    "parts": [
     "hedges",
     "tree"
@@ -446,7 +446,7 @@
    "id": "balloon-1",
    "name": "Basket brown",
    "used_for": "the trunk, the basket, and the balloon's dark stripes",
-   "hex": "#734c3f",
+   "hex": "#754e3f",
    "sample_x": 0.2,
    "sample_y": 0.275,
    "parts": [

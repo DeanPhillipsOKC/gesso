@@ -69,6 +69,37 @@ def scene_plan(parts):
                     {"id": "ball-done", "part": "ball", "show": "pass", "paints": ["red"]}]}]}
 
 
+def twig_part():
+    return {"id": "twigs", "kind": "thin", "width": 0.1,
+            "paths": [[[0.125, 0.5], [0.875, 0.5]], [[0.51, 0.15], [0.51, 0.5]]],
+            "points_in": [[0.3, 0.5], [0.7, 0.5]], "points_out": [[0.2, 0.9], [0.56, 0.2]],
+            "colors_in": ["#5a3c28"], "colors_out": ["#6e96dc", "#f0963c"]}
+
+
+def twig_scene():
+    """A brown bar across a blue sky with one twig standing on it, and an orange patch beside the twig."""
+    img = np.zeros((100, 160, 3), np.uint8)
+    img[:] = (110, 150, 220)
+    bar, twig, blob = (np.zeros((100, 160), bool) for _ in range(3))
+    bar[47:54, 20:140] = True
+    twig[16:47, 79:84] = True
+    blob[24:40, 85:92] = True
+    img[bar | twig] = (90, 60, 40)
+    img[blob] = (240, 150, 60)
+    return img, twig_part(), bar, twig, blob
+
+
+class FakeSam:
+    """Stands in for outline.Sam: answers each prompt from its box, and keeps what it was asked."""
+
+    def __init__(self, answer):
+        self.answer, self.asked, self.emb = answer, [], "embedded"
+
+    def mask(self, box=None, points_in=(), points_out=()):
+        self.asked.append({"box": box, "points_in": list(points_in), "points_out": list(points_out)})
+        return self.answer(box), 0.9
+
+
 class OutlineTests(unittest.TestCase):
     def test_every_pixel_has_one_owner_and_later_parts_win(self):
         img, parts, given = scene()
@@ -91,109 +122,114 @@ class OutlineTests(unittest.TestCase):
         with self.assertRaises(ol.NoModel):
             ol.outline(img, parts)
 
-    def test_a_thin_part_needs_its_model_or_a_given_outline(self):
+    def test_a_thin_part_needs_the_model_too(self):  # #129: thin parts are the model's, not the color rule's
         img, parts, given = scene()
-        parts.append({"id": "pole", "kind": "thin", "width": 0.04, "paths": [[[0.9, 0.1], [0.9, 0.9]]],
-                      "colors_in": ["#000000"], "colors_out": ["#6e96dc"]})
+        parts.append(twig_part())
         with self.assertRaises(ol.NoModel):
             ol.outline(img, parts, given=given)
-        pole = np.zeros(img.shape[:2], bool)
-        pole[:, 120:160] = True  # wider than the band: only the band is kept
-        masks, _, stats = ol.outline(img, parts, given={**given, "pole": pole})
-        self.assertEqual(stats[-1]["how"], "given")
-        self.assertTrue(masks["pole"][60, 144])
-        self.assertFalse(masks["pole"][60, 120:130].any())
 
-    def test_a_thin_part_is_asked_for_whole_then_limb_by_limb_for_what_that_missed(self):
-        # a trunk (dark) with a twig off to the right; the stand-in model answers the whole part with the trunk only,
-        # and a limb's own prompt with the twig plus a patch of sky beside it, which the color rule keeps out
-        img = np.full((100, 100, 3), (110, 150, 220), np.uint8)
-        img[10:90, 20:26] = (60, 40, 20)
-        img[48:52, 26:80] = (60, 40, 20)
-        L = ol.lab(img)
-        part = {"id": "tree", "kind": "thin", "width": 0.06, "paths": [[[0.23, 0.1], [0.23, 0.9]], [[0.26, 0.5], [0.8, 0.5]]],
-                "points_in": [[0.23, 0.3]], "points_out": [[0.6, 0.2]]}
-        asked = []
-
-        class Model:
-            def mask(self, box, points_in=(), points_out=()):
-                asked.append(box)
-                m = np.zeros((100, 100), bool)
-                if len(asked) == 1:
-                    m[10:90, 20:26] = True
-                else:
-                    m[46:54, 26:80] = True  # the twig, and sky on both sides of it
-                return m, 0.9
-
-        inside = ol.band((100, 100), part)
-        claim, got = ol.thin(Model(), L, part, inside)
-        self.assertEqual(got["limbs"], [1])
-        self.assertEqual(len(asked), 2)
-        self.assertTrue(claim[50, 60] and claim[50, 22])
-        self.assertFalse(claim[46, 60] or claim[53, 60])  # the sky the limb's answer took
-        self.assertAlmostEqual(ol.covered(claim, part["paths"][1], 0.06), 1.0)
-
-        class Nothing:
-            def mask(self, *a, **k):
-                return np.zeros((100, 100), bool), 0.1
-
-        self.assertFalse(ol.thin(Nothing(), L, part, inside)[0].any())
-
-        # colors only, no points_in: asked with points along the paths; an empty first answer and limbs that found
-        # the part report the limbs' confidence
-        seen = []
-
-        class Limbs:
-            def mask(self, box, points_in=(), points_out=()):
-                seen.append(list(points_in))
-                m = np.zeros((100, 100), bool)
-                if len(seen) > 1:
-                    m[10:90, 20:26] = m[48:52, 26:80] = True
-                return m, 0.2 if len(seen) == 1 else 0.9
-
-        colors_only = {k: v for k, v in part.items() if k != "points_in"}
-        colors_only["colors_in"] = ["#3c2814"]
-        claim, got = ol.thin(Limbs(), L, colors_only, inside)
-        self.assertEqual(seen[0], [q for path in part["paths"] for q in ol.along(path, ol.THIN_STEP)])
-        self.assertEqual((got["limbs"], got["confidence"]), ([0, 1], 0.9))
-        self.assertTrue(claim[50, 22] and claim[50, 60])
-
-    def test_outline_embeds_the_thin_model_once_and_falls_back_to_the_color_rule(self):
-        img, parts, given = scene()
-        img[:, 142:148] = (0, 0, 0)  # a black pole down the right side
-        parts.append({"id": "pole", "kind": "thin", "width": 0.04, "paths": [[[0.906, 0.05], [0.906, 0.95]]],
-                      "points_in": [[0.906, 0.3]], "colors_out": ["#6e96dc", "#3c8c46"]})
-
-        class Model:
-            def __init__(self, answer, conf):
-                self.answer, self.conf, self.emb, self.embeds = answer, conf, None, 0
-
-            def embed(self, rgb):
-                self.emb, self.embeds = True, self.embeds + 1
-
-            def mask(self, box, points_in=(), points_out=()):
-                return self.answer.copy(), self.conf
-
-        pole = np.zeros(img.shape[:2], bool)
-        pole[:, 142:148] = True
-        m = Model(pole, 0.95)
-        masks, _, stats = ol.outline(img, parts, given=given, thin_sam=m)
-        self.assertEqual((m.embeds, stats[-1]["how"], stats[-1]["limbs"]), (1, "model", []))
-        self.assertTrue(masks["pole"][60, 145])
-        m = Model(np.zeros_like(pole), 0.1)  # finds nothing: the color rule outlines it, and nothing is "unsure"
-        masks, _, stats = ol.outline(img, parts, given=given, thin_sam=m)
-        self.assertEqual(stats[-1]["how"], "color rule (the model found nothing)")
-        self.assertIsNone(stats[-1]["confidence"])
-        self.assertTrue(masks["pole"][60, 145])
+    def test_a_thin_part_is_the_whole_part_prompt_joined_with_each_limb_the_color_rule_agrees_with(self):
+        img, part, bar, twig, blob = twig_scene()
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, part]
+        whole_box = ol.path_box(part["paths"], part["width"], img.shape[:2])
+        sam = FakeSam(lambda box: bar if box == whole_box else (twig | blob if box[2] < 0.7 else bar))
+        masks, _, stats = ol.outline(img, parts, sam)
+        got = masks["twigs"]
+        self.assertTrue(got[50, 80] and got[30, 81])  # the body, and the limb the whole-part prompt lost
+        self.assertFalse(got[30, 90])  # what the limb's prompt took from between: not the part's color
+        self.assertGreater((got & (bar | twig)).sum(), 0.9 * (bar | twig).sum())
+        self.assertEqual((stats[1]["thin_by"], stats[1]["confidence"]), ("model", 0.9))
+        self.assertGreater(stats[1]["color_agrees"], 0.9)
         self.assertEqual(ol.problems(parts, stats), [])
-        stats[-1]["confidence"] = 0.5
-        self.assertIn("points_out right beside it", ol.problems(parts, stats)[0])
-        self.assertNotIn("box", ol.problems(parts, stats)[0])
+        self.assertEqual(len(sam.asked), 3)  # the whole part, then each of its two limbs
+        self.assertEqual(sam.asked[0]["points_in"], part["points_in"])
+        self.assertEqual(sam.asked[2]["points_in"][0], part["paths"][1][0])  # a limb: points along its own path
+        self.assertEqual(sam.asked[2]["points_out"], [[0.56, 0.2]])  # and only the points behind it in its box
+        # nothing reaches past the band around the paths, whatever the model returns
+        wide = FakeSam(lambda box: np.ones(img.shape[:2], bool))
+        masks, _, stats = ol.outline(img, parts, wide)
+        self.assertFalse(masks["twigs"][5, 5])
+        # and a model that returned what's behind the part is told, not taken on trust
+        self.assertLess(stats[1]["color_agrees"], 0.5)
+        self.assertIn("twigs: only", " ".join(ol.problems(parts, stats)))
+
+    def test_a_limb_is_kept_to_the_band_around_its_own_path(self):
+        img, part, bar, twig, _ = twig_scene()
+        img[60:64, 30:60] = (90, 60, 40)  # more of the part's color under the bar's far end: in the bar's band only
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, part]
+        whole_box = ol.path_box(part["paths"], part["width"], img.shape[:2])
+        everything = np.ones(img.shape[:2], bool)
+        sam = FakeSam(lambda box: bar if box == whole_box else (everything if box[2] < 0.7 else bar))
+        masks, _, _ = ol.outline(img, parts, sam)
+        self.assertTrue(masks["twigs"][30, 81])
+        self.assertFalse(masks["twigs"][62, 40])  # the twig's prompt returned it, but it's not beside the twig
+
+    def test_the_path_helpers(self):
+        self.assertEqual(ol.path_points([[0.3, 0.4]], (100, 200)), [[0.3, 0.4]])  # one point: no crash
+        pts = ol.path_points([[0.1, 0.5], [0.4, 0.5]], (100, 200))
+        self.assertEqual((pts[0], pts[-1], len(pts)), ([0.1, 0.5], [0.4, 0.5], 6))
+        self.assertEqual(len(ol.path_points([[0.5, 0.1], [0.5, 0.4]], (100, 200))), 3)  # half as long on the canvas
+        # the box grows by the same distance every way: 0.1 of the width is 0.2 of this picture's height
+        self.assertEqual([round(v, 6) for v in ol.path_box([[[0.3, 0.5], [0.6, 0.5]]], 0.1, (100, 200))], [0.2, 0.3, 0.7, 0.7])
+        self.assertEqual(ol.path_box([[[0.05, 0.05], [0.95, 0.95]]], 0.1, (100, 200)), [0.0, 0.0, 1.0, 1.0])
+        self.assertEqual(ol.within([[0.1, 0.1], [0.5, 0.5]], [0.4, 0.4, 0.6, 0.6]), [[0.5, 0.5]])
+        m = np.zeros((100, 100), bool)
+        m[10:30, 10:30] = True
+        m[60:62, 60:62] = True  # 4 pixels: under 0.05% of the picture
+        self.assertEqual(int(ol.keep_pieces(m).sum()), 400)
+
+    def test_a_thin_part_of_one_point_or_missing_a_sides_colors_doesnt_crash(self):
+        img, part, bar, twig, _ = twig_scene()
+        part["paths"].append([[0.3, 0.3]])
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, part]
+        ol.outline(img, parts, FakeSam(lambda box: bar))
+        for key in ("points_out", "colors_out"):
+            part.pop(key)
+        with self.assertRaisesRegex(ValueError, "twigs: a thin part needs points_out or colors_out"):
+            ol.outline(img, parts, FakeSam(lambda box: bar))
+
+    def test_a_thin_part_the_model_cant_find_falls_back_to_the_color_rule(self):
+        img, part, bar, twig, _ = twig_scene()
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]}, part]
+        speck = np.zeros(img.shape[:2], bool)
+        speck[50, 80] = True
+        for answer in (np.zeros(img.shape[:2], bool), speck):  # nothing, or only a speck
+            masks, _, stats = ol.outline(img, parts, FakeSam(lambda box: answer))
+            self.assertTrue(masks["twigs"][50, 80] and masks["twigs"][30, 81])
+            self.assertEqual((stats[1]["thin_by"], stats[1]["confidence"]), ("color rule", None))
+
+    def test_a_marks_child_also_takes_what_nothing_has_claimed(self):
+        # SAM-HQ leaves a hedge out of the field it sits on, where ViT-B took it in: the hedge is still the field's
+        img, parts, given = scene()
+        parts[0]["box"] = [0, 0, 1, 0.6]  # no backdrop, so the dabs' pixels can be nobody's
+        dabs = np.zeros(img.shape[:2], bool)
+        for x in (20, 100, 130):
+            dabs[15:27, x:x + 14] = True
+        sky = np.zeros(img.shape[:2], bool)
+        sky[:70] = True
+        masks, _, _ = ol.outline(img, parts, given={**given, "sky": sky & ~dabs})
+        self.assertGreater((masks["dabs"] & dabs).sum(), 0.7 * dabs.sum())
+
+    def test_the_model_files_are_pinned(self):
+        self.assertEqual(len(ol.FILES), 2)
+        for name, sha in ol.FILES.items():
+            self.assertRegex(sha, r"^[0-9a-f]{64}$", name)
+
+    def test_a_thin_part_the_model_is_unsure_of_is_told_to_add_points_not_to_tighten_a_box(self):
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "pole", "kind": "thin", "width": 0.02, "paths": [[[0.5, 0.1], [0.5, 0.9]]]}]
+        stats = [{"id": "sky", "share": 0.9, "confidence": None, "pieces": 1, "box_fill": 0.9},
+                 {"id": "pole", "share": 0.02, "confidence": 0.5, "pieces": 1, "box_fill": 0.02}]
+        text = " ".join(ol.problems(parts, stats))
+        self.assertIn("points_out right beside it", text)
+        self.assertNotIn("box", text)
 
     def test_a_thin_part_with_an_empty_path_is_refused(self):
         part = {"id": "pole", "name": "Pole", "kind": "thin", "width": 0.02, "paths": [[[0.5, 0.1], [0.5, 0.9]], []],
                 "points_in": [[0.5, 0.5]], "points_out": [[0.4, 0.5]]}
         self.assertTrue(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
+        part["paths"].pop()
+        self.assertFalse(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
 
     def test_gaps_behind_an_object_follow_their_rows(self):
         owner = np.zeros((10, 12), np.int32)
@@ -261,19 +297,13 @@ class OutlineTests(unittest.TestCase):
 class ModelTests(unittest.TestCase):
     @unittest.skipUnless(all((ol.MODELS / n).exists() for n in ol.FILES), "the outline model files aren't in models/")
     def test_the_model_gives_the_saved_outlines(self):
-        sam, hq = ol.Sam(), ol.Sam(ol.HQ_L)
+        sam = ol.Sam()
         for name in NAMES:
             finish, plan, saved = fixture(name)
-            sam.emb = hq.emb = None
-            _, owner, stats = ol.outline(finish, plan["parts"], sam, thin_sam=hq)
+            sam.emb = None
+            _, owner, stats = ol.outline(finish, plan["parts"], sam)
             self.assertGreater((owner == saved).mean(), 0.995, name)
             self.assertEqual(ol.problems(plan["parts"], stats), [], name)
-            if name == "chickadee":  # the same finish and plan give the same outlines twice (#129)
-                sam.emb = hq.emb = None
-                self.assertTrue((ol.outline(finish, plan["parts"], sam, thin_sam=hq)[1] == owner).all())
-                branch = next(s for s in stats if s["id"] == "branch")
-                self.assertTrue(branch["how"].startswith("model"), branch)
-                self.assertEqual(branch["pieces"], 1, branch)  # in one piece, twigs included
 
 
 @lessons.slow
@@ -788,7 +818,7 @@ class ToolTests(unittest.TestCase):
             plan = {"plan_version": 2, "parts": parts[:2]}  # the backdrop and marks on it: no model needed
             (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
             Image.fromarray(img).save(lesson / "99_finish.png")
-            with mock.patch.object(ol, "Sam", lambda *a: None):
+            with mock.patch.object(ol, "Sam", lambda: None):
                 r = self.run_tool("outline", "--lesson", str(lesson))
             self.assertEqual(r["problems"], [])
             self.assertTrue((lesson / "parts" / "owner.png").exists())

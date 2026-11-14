@@ -969,7 +969,7 @@ def outline_tool(a: argparse.Namespace) -> dict:
     lesson = Path(a.lesson)
     plan, finish = _v2_parts_only(lesson)  # outline runs before there are paints or stages (design section 4)
     try:
-        masks, owner, stats = ol.outline(finish, plan["parts"], ol.Sam(), thin_sam=ol.Sam(ol.HQ_L))
+        masks, owner, stats = ol.outline(finish, plan["parts"], ol.Sam())
     except ol.NoModel as e:
         raise Refused(str(e))
     except ValueError as e:
@@ -1346,8 +1346,7 @@ def add_v2_tools(sub) -> None:
     p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
                        description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
                                    "parts/preview.jpg (the finish with each part tinted and labeled). Downloads the outline "
-                                   "models to models/ the first time: 108 MB, and 345 MB more for a plan with a "
-                                   "thin part.")
+                                   "model (345 MB) to models/ the first time.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=outline_tool)
     p = sub.add_parser("part-colors", help="Free. v2: each part's main colors, measured inside its outline.",

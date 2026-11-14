@@ -6,13 +6,26 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.6.1 (2026-11-14)
+Fixes to the thin-part outlines (#129, from PR #133's review):
+- `outline` tells a thin part the model is unsure of to add points and a path per limb, not to tighten a box it
+  doesn't have.
+- A plan with an empty path in a thin part's `paths` is refused with what to fix, where `outline` crashed on it.
+- The skill's fix table says what to do when a branch takes the top of a leaf its stem runs into: end that path short
+  of the leaf.
+
 ## POC 1.6.0 (2026-11-14)
-- Thin parts (a branch, a mast, a boom) are outlined by a larger outline model, SAM-HQ ViT-L, instead of by color
-  (#129): one box around the part's paths with the plan's points, then limb by limb for any limb that missed, kept to
-  the part's band and checked against its colors. The chickadee's branch comes back clean, in one piece with its
-  twigs, without the misty background stuck to it, and the sailboat's mast straight and even. Areas and objects keep
-  today's model. A small thing with a clear edge (a bird's feet) is now an object, not marks, so the feet no longer
-  take a slab of branch.
+- Thin parts (a branch, a mast and its boom, a rail) get clean outlines (#129). They used to be found by color
+  alone, which left blobs of misty background stuck to the chickadee's branch (#100) and a lumpy mast with a boom
+  twice too thick. Now the outline model finds them: asked once for the whole part and once for each limb, with
+  the color rule checking each limb. Tried on all 18 thin parts in the saved runs and fixtures: every branch keeps its twigs and every mast its
+  boom, with small faults left on three (a few specks of foliage on one branch; on two sailboats the boom takes
+  the deck line its path runs along). Before and after: docs/spikes/outline-models-join.jpg.
+- The outline model is SAM-HQ ViT-L in place of SAM ViT-B: a 345 MB download the first time, and about 4 seconds
+  more per `outline`. Still free, local, and the same bytes for the same finish and plan.
+- A small thing with a clear edge (a bird's feet) is planned as an `object`, not `marks`, so it no longer takes a
+  slab of what it sits on. Mist, clouds, reflections, and foliage stay `marks`.
+- Marks painted on an area are still found when the model outlines the area without them (hedges on a field).
 
 ## POC 1.5.0 (2026-11-14)
 - "Before you start" holds only the basics every painter needs before the first stroke (#95): setting up, keeping

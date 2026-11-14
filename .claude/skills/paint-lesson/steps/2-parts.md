@@ -20,25 +20,26 @@ look like).
 | `kind` | For | Needs |
 |---|---|---|
 | `area` | a big region with a visible edge: sky, hill, field, water. The farthest one usually has box `[0, 0, 1, 1]`: it takes whatever nothing else claims | `box` |
-| `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun. Several of the same (four leaves) are one part with `boxes`. **A small thing with a clear edge is an object too**, not marks: a bird's feet, a buoy | `box` or `boxes` |
-| `thin` | long and narrow, with a clear edge: a branch, a mast, a boom, a rail | `paths` (points along its middle, **one list per limb**, twigs and a boom included), `width`, and the color fields below |
+| `object` | a compact thing with a clear edge: a bird, a sail, a balloon, a leaf, the sun. **Small things with a clear edge too: a bird's feet.** Several of the same (four leaves) are one part with `boxes` | `box` or `boxes` |
+| `thin` | long and narrow: a branch, a mast, a rail | `paths` (points along its middle, one list per limb), `width`, and the color fields below |
 | `marks` | paint with no single edge: clouds, mist, misty trunks, foliage clumps, a sun path, a reflection, a bird's black cap | `box` or `boxes`, and the color fields below |
-
-How each is outlined: an `area` or `object` by the outline model from its box; a `thin` part by a larger outline
-model, from a box around its paths with its `points_in` and `points_out`, then limb by limb for any path that
-missed, all kept to a band around the paths; `marks` by color alone (the color rule). So a thin part's `paths` must
-follow every limb you want painted, and its `points_out` should sit on what's right beside it (the sky between
-twigs, foliage next to the branch). Soft things (misty trunks, clouds, sun paths, reflections, foliage) stay
-`marks`: the model returns them as one solid shape, or drops a faint one.
 
 - Every part: `"id"` (a lowercase slug: letters, digits, and hyphens, no underscores), `"name"` (how the page will
   say it: "The chickadee", "Far misty trunks").
 - Boxes are `[x0, y0, x1, y1]` as shares of the width and height, measured, 2 to 3% loose. For `marks`, **tight**:
   color is all that separates a mark from anything the same color in its box.
 - **Color fields** for `marks` and `thin`: `points_in` (5 to 8 spots on the part, one per shade of it) and
-  `points_out` (5 to 8 spots on what's behind and around it, one per color there). A thin part's limbs are also
-  checked against them, so they matter there too. Give a thin part `points_in`, not only `colors_in`: the outline
-  model is asked with them.
+  `points_out` (5 to 8 spots on what's behind and around it, one per color there).
+- **A `thin` part is found by the outline model**, asked once for the whole part (a box around all its paths, with
+  your points) and once per path (points along that path). So give **one path per limb**: the trunk, each bough,
+  each twig, a leaf's stem, a mast and its boom. `width` is the part's widest thickness as a share of the
+  picture's width (a bough 12% of the width across at its base: `0.12`); nothing farther than that from a path is
+  taken (the band reaches 0.8 of `width` to each side of a path). A limb with no path of its own can be lost. Put `points_in` on the thick body,
+  and `points_out` on everything that touches it or lies between two limbs (foliage between twigs, the sail
+  beside a mast): the color fields decide what a limb's outline keeps.
+- **`marks` or `object`?** If you could cut the thing out with scissors (feet, a leaf, a sun), it's an `object`
+  with a box, however small. If it's soft, scattered, or see-through (mist, trunks in haze, clouds, a sun path, a
+  reflection, foliage), it's `marks`.
 - An `area` or `object` with one box takes `points_in` / `points_out` too: spots the outline must include or
   leave out. Use them only to fix an outline after seeing the preview.
 - `"parent": "<id>"` when the part is painted on another part and stays inside it (clouds on the sky, the cap on the
@@ -99,8 +100,9 @@ part worse, put its entry back the way it was.
 |---|---|
 | A marks part took something else the same color | tighten its box; add a `points_out` on the thing it took |
 | A marks part missed some of itself | add a `points_in` there, one per shade |
-| A thin part is broken or missing an end | add a path along the missing limb (each path is asked for on its own when the first answer misses it); add `points_in` on its light and dark sides; raise `width` |
-| A thin part took what lies beside it (foliage between close limbs, sky by a mast, the top of a leaf its stem runs into) | add `points_out` on what it took; end a path short of the thing it runs into; lower `width` if its band is wider than the thing |
+| A thin part is missing a limb or an end | add a path along the missing limb; raise `width` if its band cuts the limb off |
+| A thin part took what lies beside it (foliage between twigs, a strip of sail) | add a `points_out` there, one per color; lower `width` |
+| A thin part took the end of the thing a path runs into (the top of a leaf at the end of its stem) | end that path short of the thing, and add a `points_out` on it |
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | run `part-colors` and give `colors_in` / `colors_out` as hex; or drop the part and use a pass |
 | An object took background, or came back in pieces | tighten or loosen its box; one box per thing |

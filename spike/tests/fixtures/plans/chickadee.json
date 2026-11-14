@@ -632,14 +632,16 @@
    "id": "bird-feet",
    "name": "Legs and feet",
    "kind": "object",
-   "box": [
-    0.385,
-    0.53,
-    0.56,
-    0.645
+   "boxes": [
+    [
+     0.385,
+     0.53,
+     0.56,
+     0.645
+    ]
    ],
    "element": "fine-lines",
-   "element_why": "Thin legs and toes over the branch, liner work."
+   "element_why": "Thin legs and toes over the branch, liner work. Clear-edged, so an object with a box (#129)."
   }
  ],
  "paints": [
@@ -660,9 +662,9 @@
    "id": "sky-2",
    "name": "Sunset gold",
    "used_for": "misty sunset sky",
-   "hex": "#f1b059",
+   "hex": "#f2af57",
    "sample_x": 0.597,
-   "sample_y": 0.158,
+   "sample_y": 0.159,
    "parts": [
     "sky",
     "leaves"
@@ -683,9 +685,9 @@
    "id": "foliage-1",
    "name": "Foliage rust",
    "used_for": "the hazy foliage, the bird's body, and the light on the bark",
-   "hex": "#d19166",
-   "sample_x": 0.621,
-   "sample_y": 0.449,
+   "hex": "#d39266",
+   "sample_x": 0.259,
+   "sample_y": 0.999,
    "parts": [
     "sky",
     "foliage",
@@ -719,14 +721,14 @@
   },
   {
    "id": "leaves-1",
-   "name": "Leaf red",
-   "used_for": "the four leaves",
-   "hex": "#d74e26",
-   "sample_x": 0.704,
+   "hex": "#d54d25",
+   "sample_x": 0.703,
    "sample_y": 0.846,
    "parts": [
     "leaves"
-   ]
+   ],
+   "name": "Leaf red",
+   "used_for": "the four leaves"
   },
   {
    "id": "bird-1",
