@@ -33,9 +33,18 @@ in `lessons.json` whose page is under `site/` stays whether or not its run folde
 are added or updated. To take a version off the site, name it: `site-refresh --remove <run time>` (it stays in the
 lesson history). A tile's known-problems count is kept when its run isn't here to count again.
 
+**Runs kept off for good** are listed in `site/kept-off.json`, by run folder name, each with why (#141). `site-add`
+refuses them, and `site-refresh` never adds one, takes one off a tile if it's listed there, and deletes its page, so
+nobody has to pass `--remove` on every refresh. It holds `chickadee_skill_20261114-015433` (made before main's POC
+1.5.0 was merged in) and `chickadee_skill_20261114-022627` (made by PR #133's other build of #129), which
+`docs/design/pipeline-v2.md` section 6 keeps in the history only. `--remove` is still the way to take a version off
+once; add the run to the list when it should never come back.
+
 **The tiles hold versions from POC 1.0.0 on** (owner, 2026-11-13, #82): the runs before it (v1, up to 0.26.1) were
 taken off the site and are in the lesson history. `site-add` and `site-refresh` only take version 2 runs
-(`plan_version: 2` in `lesson.json`), so an old run left in `output/` can't come back.
+(`plan_version: 2` in `lesson.json`) made with POC 1.0.0 or later (the version that made it, `gesso.made.version`,
+not a later republish's), so an old run left in `output/` can't come back. The version check matters (#141): the
+POC 0.26.1 runs of 2026-11-13 were already version 2 plans. A run with no version stamp isn't taken.
 
 ## Known problems
 

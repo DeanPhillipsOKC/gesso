@@ -37,15 +37,15 @@ class SiteVersionTests(unittest.TestCase):
     def setUp(self):
         tmp = Path(tempfile.mkdtemp())
         self.site, self.output = tmp / "site", tmp / "output"
-        run(self.output, "balloon_skill_20261111-142734", "POC 0.20.0")
-        run(self.output, "balloon_skill_20261112-084806", "POC 0.24.0", "composite:from-finish")
-        run(self.output, "other_skill_20261112-090000", "POC 0.24.0")
-        run(self.output, "balloon_skill_20261112-100000", "POC 0.24.0", "composite:from-finish", "recut")
-        run(self.output, "balloon_skill_20261112-110000", "POC 0.24.0", kind="unsealed")
+        run(self.output, "balloon_skill_20261111-142734", "POC 1.0.0")
+        run(self.output, "balloon_skill_20261112-084806", "POC 1.4.0", "composite:from-finish")
+        run(self.output, "other_skill_20261112-090000", "POC 1.4.0")
+        run(self.output, "balloon_skill_20261112-100000", "POC 1.4.0", "composite:from-finish", "recut")
+        run(self.output, "balloon_skill_20261112-110000", "POC 1.4.0", kind="unsealed")
 
     def test_every_run_of_the_picture_is_a_version_and_pages_are_never_rewritten(self):
         versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
-        self.assertEqual([v["version"] for v in versions], ["POC 0.24.0", "POC 0.20.0"])  # newest first, same picture
+        self.assertEqual([v["version"] for v in versions], ["POC 1.4.0", "POC 1.0.0"])  # newest first, same picture
         self.assertEqual([v["current"] for v in versions], [False, True])
         self.assertEqual(versions[1]["href"], "lessons/lavender/")
         self.assertEqual(versions[0]["kind"], "steps cut from the finish")
@@ -73,12 +73,94 @@ class SiteVersionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             site_lessons.add(v1, "sky", self.site)
 
+    def test_a_v2_run_from_before_poc_1_0_0_never_goes_back_on_the_site(self):  # #141: the 0.26.1 runs were v2 plans
+        old = run(self.output, "balloon_skill_20261113-011100", "POC 0.26.1", "composite:from-finish")
+        self.assertFalse(site_lessons.is_v2(old))
+        republished = run(self.output, "balloon_skill_20261113-022000", "POC 1.8.1", "composite:from-finish")
+        data = json.loads((republished / "lesson.json").read_text(encoding="utf-8"))
+        data["gesso"]["made"] = {"version": "POC 0.26.1", "commit": "abc1234", "published": "2026-11-13"}
+        (republished / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
+        (republished / "sealed.json").unlink()
+        provenance.seal(republished, data)
+        self.assertFalse(site_lessons.is_v2(republished))  # the version that made it counts, not the republish
+        unstamped = run(self.output, "balloon_skill_20261113-031300", "")
+        self.assertFalse(site_lessons.is_v2(unstamped))
+        self.assertTrue(site_lessons.is_v2(self.output / "balloon_skill_20261111-142734"))  # POC 1.0.0 itself
+        versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
+        self.assertEqual([v["id"] for v in versions], ["20261112-084806", "20261111-142734"])
+        self.assertIsNone(site_lessons.newest_hands_off("sky", self.output))
+        sky = run(self.output, "sky_skill_20261113-011100", "POC 0.26.1")
+        self.assertIsNone(site_lessons.newest_hands_off("sky", self.output, site=self.site))
+        with self.assertRaisesRegex(ValueError, "POC 0.26.1"):
+            site_lessons.add(sky, "sky", self.site)
+
+    def test_refresh_with_no_arguments_adds_none_of_the_0_26_1_runs(self):  # #141's acceptance
+        from unittest import mock
+        first = self.addable(self.output / "balloon_skill_20261111-142734")
+        self.addable(self.output / "balloon_skill_20261112-084806")
+        for name in ("balloon_skill_20261113-011100", "balloon_skill_20261113-022700", "balloon_skill_20261113-031300"):
+            self.addable(run(self.output, name, "POC 0.26.1", "composite:from-finish"))
+        with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
+            site_lessons.add(first, "lavender", self.site)
+            site_lessons.refresh(self.site, self.output)
+        entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+        self.assertEqual(entry["source"], "balloon_skill_20261112-084806")  # the newest 1.x run, not a 0.26.1 one
+        self.assertEqual([v["id"] for v in entry["versions"]], ["20261112-084806", "20261111-142734"])
+        self.assertEqual(sorted(p.name for p in (self.site / "lessons" / "lavender" / "v").iterdir()),
+                         ["20261111-142734"])
+
+    def test_a_run_kept_off_stays_off_without_remove(self):  # #141: site/kept-off.json
+        from unittest import mock
+        first = self.addable(self.output / "balloon_skill_20261111-142734")
+        later = self.addable(self.output / "balloon_skill_20261112-084806")
+        with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
+            site_lessons.add(first, "lavender", self.site)
+            site_lessons.refresh(self.site, self.output)  # 084806 goes on, as the default
+            other = self.addable(run(self.output, "balloon_skill_20261113-015433", "POC 1.4.0"))
+            site_lessons.refresh(self.site, self.output)
+            entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+            self.assertEqual(entry["source"], other.name)
+            # keep 084806 off for good: it leaves the tile and its page goes, and later refreshes don't bring it back
+            (self.site / "kept-off.json").write_text(json.dumps({later.name: "made from another branch"}),
+                                                     encoding="utf-8")
+            site_lessons.refresh(self.site, self.output)
+            site_lessons.refresh(self.site, self.output)
+        entry = json.loads((self.site / "lessons.json").read_text(encoding="utf-8"))[0]
+        self.assertEqual([v["id"] for v in entry["versions"]], ["20261113-015433", "20261111-142734"])
+        self.assertFalse((self.site / "lessons" / "lavender" / "v" / "20261112-084806").exists())
+        self.assertEqual(site_lessons.kept_off(self.site), {later.name: "made from another branch"})
+        with self.assertRaisesRegex(ValueError, "kept off the site"):
+            site_lessons.add(later, "lavender", self.site)
+        (self.site / "kept-off.json").write_text(json.dumps({other.name: "x"}), encoding="utf-8")
+        self.assertEqual(site_lessons.newest_hands_off("balloon", self.output, site=self.site).name, later.name)
+
+    def test_the_repos_kept_off_list_names_the_runs_the_docs_keep_off(self):  # docs/design/pipeline-v2.md, section 6
+        off = site_lessons.kept_off()
+        self.assertIn("chickadee_skill_20261114-015433", off)
+        self.assertTrue(all(why for why in off.values()))
+        listed = {f'{x["source"].split("_skill_")[0]}_skill_{v["id"]}'
+                  for x in json.loads((site_lessons.SITE / "lessons.json").read_text(encoding="utf-8"))
+                  for v in x["versions"]}
+        self.assertFalse(listed & set(off))
+
+    def addable(self, d: Path) -> Path:
+        """A run site_lessons.add can take: a subject and a finish picture, sealed again."""
+        from PIL import Image
+        data = json.loads((d / "lesson.json").read_text(encoding="utf-8"))
+        data["photo_read"] = {"subject": "Balloon"}
+        (d / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
+        Image.new("RGB", (8, 8)).save(d / "f.png")
+        if (d / "sealed.json").exists():
+            (d / "sealed.json").unlink()
+        provenance.seal(d, data)
+        return d
+
     def test_tile_has_a_pick_list_with_the_current_version_selected(self):
         versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)
         html = site_lessons.card({"slug": "lavender", "title": "Balloon", "steps": 2, "canvas": "", "tubes": 0,
-                                  "version": "POC 0.20.0", "versions": versions})
+                                  "version": "POC 1.0.0", "versions": versions})
         self.assertIn("<select>", html)
-        self.assertIn('value="lessons/lavender/" data-steps="2" selected>POC 0.20.0', html)
+        self.assertIn('value="lessons/lavender/" data-steps="2" selected>POC 1.0.0', html)
         self.assertIn("· current", html)
 
     def test_refresh_keeps_listed_versions_when_output_is_empty(self):  # #83: a fresh checkout has no output/
@@ -86,9 +168,9 @@ class SiteVersionTests(unittest.TestCase):
         (lesson / "v" / "20261111-142734").mkdir(parents=True)
         (lesson / "index.html").write_text("default", encoding="utf-8")
         (lesson / "v" / "20261111-142734" / "index.html").write_text("old", encoding="utf-8")
-        listed = [{"id": "20261112-084806", "version": "POC 0.24.0", "when": "x", "guessed": False, "kind": "",
+        listed = [{"id": "20261112-084806", "version": "POC 1.4.0", "when": "x", "guessed": False, "kind": "",
                    "steps": 2, "href": "lessons/lavender/", "current": True},
-                  {"id": "20261111-142734", "version": "POC 0.20.0", "when": "y", "guessed": False, "kind": "",
+                  {"id": "20261111-142734", "version": "POC 1.0.0", "when": "y", "guessed": False, "kind": "",
                    "steps": 2, "href": "lessons/lavender/v/20261111-142734/", "current": False}]
         (self.site / "lessons.json").write_text(json.dumps([{"slug": "lavender", "title": "Balloon", "steps": 2,
                                                              "canvas": "", "tubes": 0, "source": "balloon_skill_20261112-084806",
