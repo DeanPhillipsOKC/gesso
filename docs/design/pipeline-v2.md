@@ -692,7 +692,7 @@ checked: false
 - *Brush, load, consistency, motion*: "Brush: <brush>. Load: <card load>", then the card's motion. A card's `load`
   is `thickness` (thick, creamy, thin), `amount` (full, light, dry), and an optional `note`, and reads "Creamy paint,
   a full load." then the note (#99, `spike/loads.py`). Each card names only what its research gives: 19 cards have a
-  load, 9 don't, and two of the 19 (x-stroke, wet-blend) have a note only. `cards.problems` refuses another word for how thick or
+  load, 9 don't, and three of the 19 (x-stroke, wet-blend, glazing) have a note only. `cards.problems` refuses another word for how thick or
   how much in a note. On the page, the Load line's words link to the paint-load basics card (`#basic-paint-load`,
   in Before you start), with each term's small picture right after them. The card shows all six terms in two rows,
   a picture and one line each; thin paint points at How much water. Cards with no `motion` (4) give no line for it.

@@ -13,7 +13,8 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   dark line, and one line of how to get there. "Creamy" means how thick the paint is, not how much of it.
 - Every stroke card's load uses only those words ("Creamy paint, a full load", then anything else about loading),
   and `cards` reports a card that uses another. A step's Load line links each word to the card and shows its two
-  small pictures in the line, so the painter doesn't scroll back. The stroke card's own Load row does the same.
+  small pictures under the line, so the painter doesn't scroll back. The stroke card's own Load row links the words
+  too, without repeating the pictures.
 
 ## POC 1.6.0 (2026-11-14)
 - Thin parts (a branch, a mast and its boom, a rail) get clean outlines (#129). They used to be found by color
