@@ -10,8 +10,9 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 - Thin parts (a branch, a mast and its boom, a rail) get clean outlines (#129). They used to be found by color
   alone, which left blobs of misty background stuck to the chickadee's branch (#100) and a lumpy mast with a boom
   twice too thick. Now the outline model finds them: asked once for the whole part and once for each limb, with
-  the color rule checking each limb. On all 18 thin parts in the saved runs and fixtures the part comes back in
-  one piece with its twigs (docs/spikes/outline-models-join.jpg).
+  the color rule checking each limb. Tried on all 18 thin parts in the saved runs and fixtures: every branch keeps its twigs and every mast its
+  boom, with small faults left on three (a few specks of foliage on one branch; on two sailboats the boom takes
+  the deck line its path runs along). Before and after: docs/spikes/outline-models-join.jpg.
 - The outline model is SAM-HQ ViT-L in place of SAM ViT-B: a 345 MB download the first time, and about 4 seconds
   more per `outline`. Still free, local, and the same bytes for the same finish and plan.
 - A small thing with a clear edge (a bird's feet) is planned as an `object`, not `marks`, so it no longer takes a

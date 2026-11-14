@@ -164,7 +164,8 @@ pixel both claim.
   covering every color on both sides). When a point can't be trusted to land on the paint (a narrow path,
   sparkles), give colors outright: `colors_in` / `colors_out` as hex, read from `part-colors`.
 - **`parent`**: the part is painted on another part (clouds on the sky, the cap on the bird). A `marks` or `thin`
-  child only takes pixels its parent (or the parent's other children) had; an `area` or `object` child is kept
+  child only takes pixels its parent (or the parent's other children) had, or that nothing has claimed yet
+  (section 6, #129); an `area` or `object` child is kept
   inside its own box. A child comes after its parent in the list. Don't give a parent to something that reaches outside it: the
   bird's feet cross the branch, so they're a part of their own after the bird, not a child.
 - **`covers`** (optional, `area` only): boxes where the painter lays this part's paint past its visible edge, so
