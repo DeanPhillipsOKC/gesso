@@ -16,6 +16,11 @@ reference and finish, the beginner version, diagrams, notes, the text review, th
   match the real canvas's shape so nobody has to imagine how a wide picture fits.
 - **Beginner version** (2026-11-11): the balloon lesson kept a village of tiny houses, textured clouds, and every
   lavender stalk, and one step jumped from flat purple rows to thousands of stalks.
+- **Measure the texture first** (#109, 2026-11-14): whether a picture was too busy, and whether the beginner version
+  worked, was all judgment. The spike for #52 found one free number that agreed with every run: the share of the
+  canvas that's fine texture (10.3% on the lavender, 0.4% and under on the calm pictures and on every beginner
+  version). `busy` reads it at step 0c and checks the beginner version and finish against it. It's an aid, not a
+  threshold: three pictures can't set one, and it can't see a village.
 
 ## Reference and finish
 - **Mean shift for outlines and small dots**: Kuwahara broke the cat's face apart, and wiped out the stars on the

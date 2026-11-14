@@ -398,6 +398,22 @@ def mix_tool(a: argparse.Namespace) -> dict:
 NOTES_REQUIRED = ("read", "technique", "order", "steps", "beginner_check")
 
 
+def busy_problems(lesson: Path, notes: dict) -> list[str]:
+    """The busy numbers step 0c records (#109): the photo's always, and with a beginner version, its and the
+    finish's. Only that they were measured; no number is a pass or a fail."""
+    bv = notes.get("beginner_version")
+    got = bv.get("busy") if isinstance(bv, dict) and isinstance(bv.get("busy"), dict) else {}
+    want = [("photo", "the photo (the fitted one, 00_canvas_frame.png or 00_canvas_fit.png)")]
+    made = bv.get("made") if isinstance(bv, dict) else None
+    # The notes say whether a beginner version was made; the file stands in only when they don't say (a render that
+    # was looked at and turned down, made: false, may still be on disk)
+    if made is True or (made is None and (lesson / "00_beginner.png").exists()):
+        want += [("beginner", "00_beginner.png"), ("finish", "99_finish.png")]
+    return [f"notes.json beginner_version.busy has no {role} number: run busy {what} --lesson <lesson> (step 0c; it "
+            "records the number itself, so keep beginner_version.busy when you write the notes)"
+            for role, what in want if not isinstance(got.get(role), dict)]
+
+
 def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict) -> list[str]:
     """What stops a lesson being sealed hands-off: the rules the skill asks for, checked instead of remembered
     (two hands-off runs, 2026-11-12, each let a small rule slip late in a long run).
@@ -415,6 +431,7 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     for key in NOTES_REQUIRED:
         if not notes.get(key):
             out.append(f"notes.json is missing {key} (step 8)")
+    out += busy_problems(lesson, notes)
     bc = notes.get("beginner_check") or {}
     if not isinstance(bc, dict):  # a note in another shape is shown on the page as text, but can't be checked
         out.append("notes.json beginner_check must be a dict with summary, diagrams, and no_diagram (step 8)")
@@ -1333,7 +1350,40 @@ def elements_tool(a: argparse.Namespace) -> dict:
     return out
 
 
+def busy_tool(a: argparse.Namespace) -> dict:
+    """How much of a picture is fine texture, and where (#109). An aid for step 0c, not a judge."""
+    import busy
+
+    lesson, path = Path(a.lesson), Path(a.picture)
+    if not lesson.is_dir():
+        raise Refused(f"no lesson folder {lesson}")
+    if not path.exists() and (lesson / path.name).exists():
+        path = lesson / path.name
+    if not path.exists():
+        raise Refused(f"no picture {path}")
+    try:
+        r = busy.run(path, lesson, a.role)
+    except ValueError as e:
+        raise Refused(str(e)) from e
+    return {**r, "problems": [], "cost_usd": 0.0}
+
+
 def add_v2_tools(sub) -> None:
+    p = sub.add_parser("busy", help="Free. How much of a picture is fine texture, and where: for the beginner-sized check.",
+                       description="Measures the canvas part of the picture (canvas.json's canvas_box) at 1000 px on the "
+                                   "long side: fine_texture is the share of 40 px tiles dense with edges (stalks, grass, "
+                                   "leaves), edges the share of edge pixels. Writes busy/<name>.jpg (the texture's tiles "
+                                   "outlined on a faded copy) and records the numbers in notes.json's "
+                                   "beginner_version.busy as photo, beginner (00_beginner.png), or finish (99_finish.png). "
+                                   "With a beginner version, says whether fine texture came down from the photo's. Not a "
+                                   "threshold: it doesn't see tiny separate things or count parts.")
+    p.add_argument("picture", help="the picture: the fitted photo, 00_beginner.png, or 99_finish.png")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--as", dest="role", choices=["photo", "beginner", "finish"],
+                   help="what the picture stands for. Needed for any picture but 00_canvas_frame.png or "
+                        "00_canvas_fit.png (the photo), 00_beginner.png, and 99_finish.png; its number replaces that "
+                        "role's")
+    p.set_defaults(func=busy_tool)
     p = sub.add_parser("elements", help="Free. v2: the element techniques to pick per part, and how the plan's picks fit.",
                        description="Lists techniques/elements (and a lesson's drafted ones): what each is for, which part "
                                    "kinds, and its steps in order with the shows and stroke cards each may use. With "
