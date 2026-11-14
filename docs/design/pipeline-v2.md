@@ -254,7 +254,7 @@ and the fix, from the spike:
 | A marks part took something else the same color | tighten its box; add `points_out` on the thing it took |
 | A marks part missed some of itself | add `points_in` there, one per shade |
 | A thin part is broken or missing an end | add a path along the missing limb (a path the first answer misses is asked for on its own); add `points_in` on its light and dark sides; raise `width` |
-| A thin part took what lies beside it | add `points_out` on what it took; lower `width` |
+| A thin part took what lies beside it (the top of a leaf its stem runs into) | add `points_out` on what it took; end a path short of the thing it runs into; lower `width` |
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | give `colors_in`/`colors_out` from `part-colors`; or drop the part and use a pass |
 
@@ -283,6 +283,17 @@ which paths were asked for alone (`limbs`); `confidence` is the first answer's. 
 comes back in one piece with every twig and leaf stem (three limbs asked alone); on the sailboat fixture the mast is
 straight and even from the first answer. With the feet an `object` (below), the fixture's feet come back as two
 clean feet where the color rule took a slab of branch.
+
+**The first hands-off run with it** (chickadee, POC 1.6.0, `chickadee_skill_20261114-022627`, a fresh finish):
+the branch came back in one piece from the first answer alone (`how`: `model`, no limbs asked alone, confidence
+0.895), with the trunk, both right-hand twigs, the top-left twig and both leaf stems, and no background stuck to it;
+its block-in step shows no blobs. `outline` took about 16 seconds a run (5 runs, the step's cap; one fix round on the
+branch, a path along the trunk's lit rim). The run drew the feet as an `object`, one box per foot. One new fault:
+where a leaf-stem path runs into its leaf, the branch took the top of the leaf, so the branch's block-in shows a dark
+pod on each of the two leaf stems until the leaves are painted two steps later. The run sealed in 18 minutes, with
+that left under Known problems. Not checked: the gate run of 2026-11-13 named in the issue, and the two sailboat
+gate runs; their folders lived only in the spike's machine, so the per-limb check against the wedge at the gate
+run's left edge is tested only on a made-up scene (`test_a_thin_part_is_asked_for_whole_then_limb_by_limb...`).
 
 **Areas and objects stay on ViT-B.** The issue asked to swap the one model for SAM-HQ ViT-L. Tried on the fixtures,
 SAM-HQ ViT-L is level on objects but left the lavender fixture's dark hedge rows out of the fields under them (the

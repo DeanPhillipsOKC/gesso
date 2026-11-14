@@ -99,7 +99,7 @@ part worse, put its entry back the way it was.
 | A marks part took something else the same color | tighten its box; add a `points_out` on the thing it took |
 | A marks part missed some of itself | add a `points_in` there, one per shade |
 | A thin part is broken or missing an end | add a path along the missing limb (each path is asked for on its own when the first answer misses it); add `points_in` on its light and dark sides; raise `width` |
-| A thin part took what lies beside it (foliage between close limbs, sky by a mast) | add `points_out` on what it took; lower `width` if its band is wider than the thing |
+| A thin part took what lies beside it (foliage between close limbs, sky by a mast, the top of a leaf its stem runs into) | add `points_out` on what it took; end a path short of the thing it runs into; lower `width` if its band is wider than the thing |
 | A piece of a thing sits outside its parent | make it a part of its own, listed after, with no parent |
 | A marks part came out as specks, or its points keep missing | run `part-colors` and give `colors_in` / `colors_out` as hex; or drop the part and use a pass |
 | An object took background, or came back in pieces | tighten or loosen its box; one box per thing |
