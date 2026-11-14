@@ -13,7 +13,7 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   hills' purple dashes showed in the sky where the tree goes, and the hill's Where line put its top at the top
   edge. Now a color match out of an area's reach doesn't count, and the part that owns the row carries its own
   paint there.
-- `build-steps` and `check` report a step that paints behind the objects far above or below its part's own
+- `build-steps` and `check` report a step on an area that paints behind the objects far above or below its own
   outline, as a bug in `build-steps`.
 
 ## POC 1.10.0 (2026-11-14)

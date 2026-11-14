@@ -422,6 +422,43 @@ class BuildStepsTests(unittest.TestCase):
         self.assertEqual([r["far"] for r in rows], [0.0, 0.0, 0.0])
         self.assertEqual(bs.problems(plan, rows), [])
 
+    def test_marks_behind_an_object_clear_the_doubt_and_arent_held_to_rows(self):  # #139
+        img, plate, owner, plan, tree = self.tree_scene()
+        plan["parts"].insert(1, {"id": "streaks", "kind": "marks", "parent": "sky", "box": [0, 0, 1, 0.45],
+                                 "colors_in": ["#cd9e3e"], "colors_out": ["#6e96dc"]})
+        plan["stages"][0]["steps"].insert(1, {"id": "streaks", "part": "streaks", "show": "full", "paints": ["gold"]})
+        owner = np.where(owner >= 1, owner + 1, owner)  # the parts after the sky moved down one
+        front = ~bs.back_parts(plan["parts"])[owner]
+        doubt = np.zeros(owner.shape, bool)
+        back = bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate), front, real=True,
+                             doubt=doubt)
+        self.assertTrue((back[21:26, 70:90] == 1).all())  # the render's streaks are the streaks' own
+        self.assertFalse(doubt[21:26, 70:90].any())  # so they're shown as the render has them
+        pictures, rows, _ = bs.build(img, plan, owner, background=plate)
+        self.assertEqual(bs.problems(plan, rows), [])  # marks found behind the tree aren't far from anything
+
+    def test_rows_no_area_reaches_are_divided_by_color_and_not_in_doubt(self):  # #139
+        # a bridge across the whole picture, taller than the reach, over the horizon: sky above, water below
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:50] = (110, 150, 220)
+        img[50:] = (30, 60, 120)
+        plate = img.copy()
+        bridge = np.zeros((120, 160), bool)
+        bridge[40:80] = True
+        img[bridge] = (90, 60, 40)
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "water", "kind": "area", "box": [0, 0.4, 1, 1]},
+                 {"id": "bridge", "kind": "object", "box": [0, 0.3, 1, 0.7]}]
+        water = np.zeros((120, 160), bool)
+        water[50:] = True
+        _, owner, _ = ol.outline(img, parts, given={"water": water & ~bridge, "bridge": bridge})
+        front = ~bs.back_parts(parts)[owner]
+        doubt = np.zeros(owner.shape, bool)
+        back = bs.back_owner(parts, owner, bs.make_background(img, front, plate), front, real=True, doubt=doubt)
+        self.assertTrue((back[:50] == 0).all())
+        self.assertTrue((back[50:] == 1).all())
+        self.assertFalse(doubt.any())
+
     def test_a_part_painting_far_outside_its_own_rows_is_reported(self):  # #139
         img, plate, owner, plan, tree = self.tree_scene()
         old, bs.ROWS_REACH = bs.ROWS_REACH, 10.0  # any row, by color alone: what build-steps did before #139

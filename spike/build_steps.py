@@ -194,12 +194,17 @@ def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarra
         d = np.sqrt(((L[gap][:, None, :] - means[None]) ** 2).sum(2))
         # A part only takes the rows it has around the gap (and a little more, for an edge hidden by the object):
         # orange cloud streaks behind a tree's canopy matched the golden hill at the tree's foot, and the hill's
-        # first step painted them in the sky (#139). Rows no candidate reaches keep their owner along the row.
+        # first step painted them in the sky (#139).
+        # The rows are taken over the whole ring, not per side or per column: an area whose edge slopes steeply
+        # behind a wide object can still reach rows it only has on the other side.
         ys = np.nonzero(gap)[0]
         allowed = np.zeros(d.shape, bool)
         for j, c in enumerate(cands):
             rows_c = np.flatnonzero((ring_root == c).any(1))
             allowed[:, j] = (ys >= rows_c.min() - reach) & (ys <= rows_c.max() + reach)
+        # Rows no area reaches (the middle of a bridge or a wall across the picture, taller than the reach) are
+        # divided by color alone, as before, and nothing there is in doubt.
+        allowed[~allowed.any(1)] = True
         if doubt is not None:
             unsure = ~allowed[np.arange(len(ys)), d.argmin(1)]
             doubt[gap] = doubt[gap] | unsure
@@ -210,10 +215,7 @@ def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarra
         pick = cv2.medianBlur(pick, 2 * max(1, r // 4) + 1)
         got = pick[gap].astype(np.int64)
         got = np.where(allowed[np.arange(len(got)), got], got, first)  # smoothing mustn't carry a part out of its rows
-        keep = allowed.any(1)
-        vals = out[gap]
-        vals[keep] = np.array(cands)[got[keep]]
-        out[gap] = vals
+        out[gap] = np.array(cands)[got]
 
 
 def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, front: np.ndarray,
@@ -306,7 +308,7 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     nearest: dict[int, np.ndarray] = {}
     base_of: dict[int, np.ndarray] = {}
     kids: dict[int, np.ndarray] = {}
-    far: dict[int, np.ndarray] = {}  # a part's paint behind the objects far above or below its own outline's rows
+    far: dict[int, np.ndarray] = {}  # an area's paint behind the objects far above or below its own outline's rows
     rim_group: dict[int, np.ndarray] = {}  # for a part's rim pixels, the later part whose rim it is; -1 elsewhere
     detailed: dict[int, np.ndarray] = {}  # where a part has laid more than a flat coat so far
     top = np.full((h, w), -1, np.int32)  # the part whose paint is on top at each pixel
@@ -350,7 +352,7 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         area[k] = whole | hidden
         seen = np.flatnonzero(np.isin(owner, fam).any(1))
         far[k] = np.zeros((h, w), bool)
-        if len(seen):
+        if len(seen) and p["kind"] == "area":  # marks found behind an object (a cloud) aren't held to rows
             m, ys_ = int(FAR_ROWS * h), np.arange(h)
             far[k] = whole & ((ys_ < seen.min() - m) | (ys_ > seen.max() + m))[:, None]
         c = base.copy()

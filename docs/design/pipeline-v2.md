@@ -376,10 +376,14 @@ along rows alone gave a hull on the horizon to the sky). In the hands-off lavend
 golden hill at the tree's foot, so the hill's paint went up into the sky: hill-colored patches in the sky where the
 tree goes, the far hills' purple dashes there, and the golden hill's Where line "top at the top edge". Now an area
 takes a pixel of the gap only in the rows it has around the gap, give or take 3% of the height (`ROWS_REACH`, for
-an edge the object hides). A pixel whose color is nearest an area that doesn't reach its row stays with the part the
-row gives it, and that part's own paint is carried over it (like the free fill), not the render's pixel: the
+an edge the object hides). A pixel whose color is nearest an area that doesn't reach its row stays with the area
+that does, and that area's own paint is carried over it (like the free fill), not the render's pixel: the
 picture there looks like no part of that row (cloud streaks the hill's color, or a hill top hidden behind the
-tree), and showing it drew a patch. Marks the render shows there (clouds) are still found by their color rule. The
+tree), and showing it drew a patch. Marks the render shows there (clouds) are still found by their color rule, and
+show as the render has them. Rows no area reaches (the middle of a bridge or a wall across the picture, taller than
+the reach) are divided by color alone, as before. The limit: an area's rows are taken over the whole ring around
+the object, not per side or per column, so an area whose edge slopes steeply behind a wide object can still reach
+rows it has only on the other side. The
 three fixtures, given a stand-in background, and the hands-off chickadee run's real one, build the same pictures
 outside the gaps; that run builds the same pictures everywhere.
 
@@ -427,8 +431,9 @@ then set to the finish itself; how far the built one was from it is reported as 
 `build_steps.problems` reports: a step that changed something outside its part (a bug; it has never happened);
 a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
 more than 0.1% of the picture (`FAR_SHARE`) behind the objects more than 5% of the height (`FAR_ROWS`) above or
-below its part's own outline's rows. Each step's row carries that share as `far`. Since #139 the split behind the
-objects can't do that (section 7), so it's reported as a bug in `build-steps`, like the first.
+below its part's own outline's rows, for an `area` part. Each step's row carries that share as `far` (0 for other
+kinds: marks found behind an object, a cloud, aren't held to rows). Since #139 the split behind the objects can't
+do that for an area (section 7), so it's reported as a bug in `build-steps`, like the first.
 
 By construction a step can't move, reshape, or recolor another part. There is nothing to review, redo, or lock.
 
