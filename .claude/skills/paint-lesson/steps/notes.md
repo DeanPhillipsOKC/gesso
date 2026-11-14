@@ -17,7 +17,9 @@ complete now. Plain words, a sentence or two each:
                 "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."},
  "canvas_fit": {"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...", "lost": "..."},
  "beginner_version": {"made": true, "found": "the answers to the four questions",
-                      "list": "what you dropped, merged, and turned into marks", "why": "..."},
+                      "list": "what you dropped, merged, and turned into marks", "why": "...",
+                      "busy": {"photo": {"fine_texture": 0.103, "...": "as the busy tool recorded it, untouched"},
+                               "beginner": {}, "finish": {}}},
  "beginner_check": {"summary": "what the check found overall",
                     "diagrams": {"<step id>": {"noticed": "what made this step need a diagram",
                                                "pieces": "how you broke the shape down, and why",
@@ -32,6 +34,9 @@ complete now. Plain words, a sentence or two each:
 - `read`, `technique`, `order`, `steps`, and `beginner_check` are required; every step id appears in `steps` (why this step, and why now) and in
   either `beginner_check.diagrams` or `beginner_check.no_diagram`. The seal checks this.
 - `canvas_fit` always (every lesson is fitted to a canvas, `--canvas` or not); `beginner_version` whether you made one or not.
+- `beginner_version.busy` is written by the `busy` tool (step 0c), never by hand. The seal wants its `photo` number,
+  and with a beginner version its `beginner` and `finish` numbers too; if you lost them rewriting the notes, run
+  `busy` again.
 - List every filter you looked at, kept or not, with its image path relative to the lesson. Step pictures aren't
   filters: they're cut from the finish, so they get no `filters` entry.
 - `merged_parts` is an empty object when no part was dropped in step 2c.

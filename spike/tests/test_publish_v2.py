@@ -406,6 +406,9 @@ class PublishV2Tests(unittest.TestCase):
         (lesson / "trials" / "review" / "review.json").write_text("{}", encoding="utf-8")
         notes = {"read": "x", "technique": {"why": "x"}, "order": "x", "steps": {sid: "x" for sid in ids},
                  "beginner_check": {"summary": "x", "diagrams": {}, "no_diagram": {sid: "x" for sid in ids}}}
+        self.assertIn("beginner_version.busy has no photo number", " ".join(
+            tools.seal_problems(lesson, plan, text, review, notes, {})))  # #109: step 0c measures the photo
+        notes["beginner_version"] = {"made": False, "busy": {"photo": {"fine_texture": 0.004}}}
         self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [])
         text[ids[3]].pop("lines")
         self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [f"{ids[3]}: text.json has no lines"])

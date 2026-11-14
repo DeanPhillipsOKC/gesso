@@ -140,6 +140,16 @@ def diagram_why(notes: dict, s: dict) -> str:
     return f"<p><b>No diagram:</b> {e(skip)}</p>" if skip else ""
 
 
+def busy_line(busy) -> str:
+    """The busy tool's numbers (#109) as one line: "the photo 10.3%, the beginner version 0.2%, the finish 0.0%"."""
+    if not isinstance(busy, dict):
+        return ""
+    names = (("photo", "the photo"), ("beginner", "the beginner version"), ("finish", "the finish"))
+    got = [f"{name} {busy[k]['fine_texture']:.1%}" for k, name in names
+           if isinstance(busy.get(k), dict) and isinstance(busy[k].get("fine_texture"), (int, float))]
+    return ", ".join(got) + " of the canvas" if got else ""
+
+
 def _text(v) -> str:
     """Any note as plain text. notes.json is written by hand during a run, and a lesson must never fail to publish
     over the shape of a note (the lavender balloon's beginner_version was a list, 2026-11-13)."""
@@ -264,9 +274,11 @@ def behind(lesson: dict, technique: dict, folder: Path, embed: bool, thumbs: lis
                                                                  ("Left out", "lost"), ("Why", "why")) if cf.get(f))
             + "</div>")
     bv = _fields(notes.get("beginner_version"), "list")
+    busy = busy_line(bv.get("busy"))
     bv_html = ('<div class="diag"><p class="label">Beginner version</p>' + "".join(
         f"<p><b>{k}:</b> {e(_text(bv[f]))}</p>" for k, f in (("What made it too busy", "found"), ("Changed", "list"),
-                                                             ("Why", "why")) if bv.get(f)) + "</div>") if bv else ""
+                                                             ("Why", "why")) if bv.get(f))
+               + (f"<p><b>Fine texture measured:</b> {e(busy)}</p>" if busy else "") + "</div>") if bv else ""
     parts.append(fold("How Claude read your photo", "subject, light, layers", "".join([
         prep_html,
         bv_html,
