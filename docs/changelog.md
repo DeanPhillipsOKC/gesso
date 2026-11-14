@@ -6,7 +6,7 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
-## POC 1.9.1 (2026-11-14)
+## POC 1.11.0 (2026-11-14)
 - Behind an object, an area takes only the rows it has beside it (#139). With a background picture, what's behind
   an object was split among the areas around it by color alone, so in `balloon-lavender_skill_20261114-075951`
   the orange cloud streaks behind the tree went to the golden hill at its foot: hill-colored patches and the far
@@ -15,6 +15,19 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   paint there.
 - `build-steps` and `check` report a step that paints behind the objects far above or below its part's own
   outline, as a bug in `build-steps`.
+
+## POC 1.10.0 (2026-11-14)
+- A step's Where line leaves out stray specks of its part (part of #90): a piece under 1% of the part, more than
+  about half an inch (4% of the canvas's long side) from the rest of it. Small marks near the part, such as dabs or
+  the far rows of lavender, still count, and a chain of them; a trail of tiny specks doesn't (the lavender fixture's
+  soil paths were 12 in wide, reaching the left edge, and are now 8 1/2 in). On `chickadee_skill_20261113-130614` two specks by the trunk put the bird's
+  body "at the left edge, 8 1/2 in wide"; from that page's outline it now reads 1 3/4 in from the left edge, about
+  7 in wide. The drawn outline doesn't change.
+- A Where line no longer explains an outline that reaches past it only by a speck (the sailboat fixture's sun path
+  loses "reaches onto the water"). A part that reached all four edges only by far specks (the chickadee fixture's
+  foliage) is placed by its real extent, and the line explains where its outline runs past that.
+- Not fixed: on `balloon-lavender_skill_20261113-130631` the mountains' line still starts "from the top edge",
+  because their area has a large piece up in the sky, not a speck. #90 stays open for it.
 
 ## POC 1.9.0 (2026-11-14)
 - A step's Where line places what the finished painting shows, not paint a later part covers (#126). A sky painted

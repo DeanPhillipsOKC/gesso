@@ -10,6 +10,7 @@ import json
 import re
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -164,6 +165,70 @@ class WhereWordsTests(unittest.TestCase):
         self.assertIn("it's under 1/4 in wide and under 1/4 in tall", aids.where_words(eighth, {"w_in": 8, "h_in": 8}))
         with self.assertRaisesRegex(ValueError, "canvas.json"):
             aids.where_words(self.area([0.4, 0.27, 0.5, 0.4]), None)
+
+    def test_stray_specks_far_away_dont_move_it(self):
+        # #90: two specks by the trunk put the chickadee's body at the left edge and 8 1/2 in wide
+        canvas = {"w_in": 14, "h_in": 11}
+        body = self.area([0.4, 0.27, 0.5, 0.4], (1100, 1400))
+        alone = aids.where_words(body, canvas)
+        specked = body.copy()
+        specked[500:506, 0:6] = True  # at the left edge, far below
+        specked[1080:1086, 1380:1386] = True  # in the bottom right corner
+        self.assertEqual(aids.where_words(specked, canvas), alone)
+        self.assertEqual(aids.main_area(specked).sum(), body.sum())
+
+    def test_small_marks_near_the_part_count_and_far_specks_dont_whatever_they_add_up_to(self):
+        # review of #143: a 10% rule for "many small marks" measured the far specks again at 10% and dropped the
+        # marks beside the body under it. Each small piece is judged by how near it is to the rest of the part.
+        canvas = {"w_in": 14, "h_in": 11}
+        for n in (14, 15):  # the small pieces, specks included, are 9.6% and 10.2% of the area: either side of 10%
+            body = np.zeros((1100, 1400), bool)
+            body[300:440, 550:690] = True  # 140 x 140 px
+            for k in range(n):  # a row of 12 x 12 dabs 48 px above it, 40 px apart: each under 1% of the area
+                body[240:252, 400 + 40 * k:412 + 40 * k] = True
+            marks = body.copy()
+            body[500:506, 0:6] = True  # a speck at the left edge
+            body[1090:1096, 1390:1396] = True  # and one in the bottom right corner
+            self.assertTrue((aids.main_area(body) == marks).all(), n)
+            words = aids.where_words(body, canvas)
+            self.assertEqual(words, aids.where_words(marks, canvas), n)
+            self.assertIn("Its top is about 2 1/2 in from the top edge", words)  # the dabs, at 240 of 1100 px
+
+    def test_a_trail_of_specks_doesnt_carry_the_box_away(self):
+        # second review of #143: 2 x 2 specks 50 px apart (3.6% of the long side) ran a body's box 7 in to the left
+        # edge. Specks that small count only beside a mark; they don't carry the chain on.
+        canvas = {"w_in": 14, "h_in": 11}
+        body = np.zeros((1100, 1400), bool)
+        body[300:440, 550:690] = True
+        body[370:372, 500:502] = True  # 48 px from the body, within STRAY_NEAR (56 px): it counts
+        beside = aids.where_words(body, canvas)
+        for x in range(450, 0, -50):  # and the trail on from it to the left edge doesn't
+            body[370:372, x:x + 2] = True
+        self.assertEqual(aids.main_area(body).sum(), 140 * 140 + 4)
+        self.assertEqual(aids.where_words(body, canvas), beside)
+        self.assertIn("about 5 in from the left edge", beside)
+
+    def test_a_long_chain_is_quick(self):
+        # second review of #143: one distance pass per mark added took 2.1 s for 25 dabs at 2800 px
+        body = np.zeros((2200, 2800), bool)
+        body[600:880, 1100:1380] = True
+        for k in range(12):  # 25 dabs in two rows out from the body, 2 to 3% of the long side apart
+            body[700:724, 1000 - 90 * k:1024 - 90 * k] = True
+        for k in range(13):
+            body[700:724, 1440 + 100 * k:1464 + 100 * k] = True
+        start = time.perf_counter()
+        kept = aids.main_area(body)
+        self.assertLess(time.perf_counter() - start, 1.0)  # about 0.2 s on 4 cores
+        self.assertTrue((kept == body).all())  # every dab is on the chain
+
+    def test_a_part_of_only_small_pieces_is_measured_whole(self):
+        # sparkles: every piece is under 1% of the area, so there's nothing to call the rest of the part
+        dots = np.zeros((1100, 1400), bool)
+        for k in range(150):
+            x, y = 20 + 9 * k, 200 + (k % 30) * 20
+            dots[y:y + 4, x:x + 4] = True
+        self.assertTrue((aids.main_area(dots) == dots).all())
+        self.assertIn("it's about 13 1/2 in wide", aids.where_words(dots, {"w_in": 14, "h_in": 11}))
 
     def test_inches_are_measured_on_the_canvas_not_the_frame(self):
         frame = np.zeros((200, 300), bool)

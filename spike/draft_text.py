@@ -134,7 +134,8 @@ def past_words(part: dict, seen: np.ndarray, painted: np.ndarray, owner: np.ndar
         ys, xs = np.nonzero(m)
         return xs.min(), xs.max() + 1, ys.min(), ys.max() + 1
 
-    sx0, sx1, sy0, sy1 = box(seen)
+    painted = aids.main_area(painted)  # both without stray specks, as the words are measured (#90)
+    sx0, sx1, sy0, sy1 = box(aids.main_area(seen))
     px0, px1, py0, py1 = box(painted)
     sides = [name for name, d in (("top", (sy0 - py0) / h * ch), ("bottom", (py1 - sy1) / h * ch),
                                   ("left side", (sx0 - px0) / w * cw), ("right side", (px1 - sx1) / w * cw))
