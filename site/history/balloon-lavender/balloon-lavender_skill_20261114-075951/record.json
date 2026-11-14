@@ -1,0 +1,177 @@
+{
+  "photo": "balloon-lavender",
+  "run": "balloon-lavender_skill_20261114-075951",
+  "started": "2026-11-14 07:59",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "e315324782110331",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 1.8.0",
+        "commit": "0a1568f",
+        "dirty": false,
+        "published": "2026-11-14"
+      },
+      "made_with": {
+        "version": "POC 1.8.0",
+        "commit": "0a1568f",
+        "published": "2026-11-14"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-14T08:20:44"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 24,
+        "words": 3396,
+        "tubes": 5,
+        "cost_usd": 0.109,
+        "minutes": 1.0,
+        "paid_renders": 3,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 0,
+        "minutes_total": 15.6,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 1,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-coral",
+          "name": "Lay in the coral cloud shapes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "clouds-lit",
+          "name": "Light the tops of the clouds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "far-hills",
+          "name": "Lay in the far purple hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "green-field",
+          "name": "Lay in the green rolling field",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "green-shadow",
+          "name": "Darken the field's shady patches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "golden-hill",
+          "name": "Lay in the golden hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "golden-shadow",
+          "name": "Darken the foot of the golden hill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunk",
+          "name": "Pull up the trunk",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-dark",
+          "name": "Dab the dark leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-mid",
+          "name": "Dab the middle leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tree-lit",
+          "name": "Dab the sunlit leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-shape",
+          "name": "Build the balloon's shape",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-red",
+          "name": "Paint the red stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-blue",
+          "name": "Paint the blue stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-shade",
+          "name": "Shade the dark side and the basket",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "balloon-lit",
+          "name": "Light the side facing the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-field",
+          "name": "Lay in the field under the lavender",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil",
+          "name": "Pull in the soil paths",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "soil-shade",
+          "name": "Shade the path edges by the rows",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-dark",
+          "name": "Stamp the dark violet blooms",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-mid",
+          "name": "Stamp the lavender middle value",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lavender-tips",
+          "name": "Tip the row tops with light lilac",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
