@@ -1,5 +1,6 @@
 id: lighter-darker
 name: Making a color lighter or darker
+when: first_tint
 lines:
 - 'To lighten: add the color to the white a little at a time, not white to the color.'
 - White also dulls a color. Too much turns it chalky.

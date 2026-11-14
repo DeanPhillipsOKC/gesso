@@ -1,5 +1,6 @@
 id: dries-darker
 name: Colors dry darker
+when: first_big_coat
 lines:
 - Acrylic looks lighter when wet than when dry.
 - Before a big area, paint a test swatch and let it dry before judging the mix.

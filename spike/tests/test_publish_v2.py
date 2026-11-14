@@ -184,7 +184,7 @@ class PublishV2Tests(unittest.TestCase):
                     self.assertIn("Not checked yet", html)
             self.assertEqual(html.count('class="stop"'), len(data["groups"]))
             self.assertIn('id="start"', html)
-            self.assertEqual(html.count("class='card' id='basic-"), len(cards.basics()))
+            self.assertEqual(html.count("class='card' id='basic-"), len(cards.places(stages)))  # each placed card once
             self.assertIn("The transfer outline", html)
             self.assertIn('<nav class="toc"', html)
             # self-contained: every picture inlined, nothing fetched but the fonts
@@ -192,6 +192,31 @@ class PublishV2Tests(unittest.TestCase):
             self.assertEqual([r for r in refs if not r.startswith(("data:", "https://"))], [], name)
             self.assertLess(self.results[(name, "publish")]["page_mb"], 8)
             self.assertFalse(self.results[(name, "publish")]["missing_aids"])
+
+    def test_before_you_start_has_only_the_start_basics_and_each_other_card_is_open_in_its_step(self):
+        import cards
+        import page2
+        known = cards.basics()
+        start = {c for c, k in known.items() if k["when"] == "start"}
+        self.assertEqual(start, {"set-up", "clean-brush", "water", "keep-paint-wet", "fix-a-mistake"})
+        for name in NAMES:
+            stages = self.data(name)["stages"]
+            html = (self.lessons[name] / "lesson-standalone.html").read_text(encoding="utf-8")
+            head, rest = html.split('id="start"', 1)[1].split("<h2>The steps</h2>", 1)
+            self.assertEqual({c for c in known if f"id='basic-{c}'" in head}, start, name)
+            self.assertIn("<summary>If something goes wrong <span class=small>Fixing a mistake</span>", head)
+            self.assertNotIn("Basics: ", head)
+            placed = cards.places(stages)
+            self.assertTrue({"let-it-dry", "dries-darker", "ugly-stage"} <= set(placed), name)
+            for c, at in placed.items():
+                self.assertEqual(html.count(f"id='basic-{c}'"), 1, f"{name} {c}")
+                if at == "start":
+                    continue
+                step = rest.split(f'id="step-{at + 1}"', 1)[1].split("</article>", 1)[0]
+                self.assertIn(f'<details class="aid basic" open><summary>Basics: {html_escape(known[c]["name"])}', step)
+            # published with no drafted text: no coats line, so no light-over-dark card anywhere
+            self.assertNotIn("light-over-dark", placed)
+            self.assertNotIn("id='basic-light-over-dark'", html)
 
     def test_a_version_2_step_is_labelled_cut_from_the_finish_not_a_render(self):
         for name in NAMES:

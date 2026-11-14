@@ -825,6 +825,46 @@ class CardTests(unittest.TestCase):
         self.assertIn("no stroke card for", " | ".join(cards.problems({}, {}, results)))
         self.assertIn("no lines", " | ".join(cards.problems({}, {"x": {"id": "x", "name": "X", "sources": ["s"], "checked": False}}, [])))
 
+    def test_every_basics_card_has_a_valid_when_and_a_missing_one_is_a_problem(self):
+        for cid, c in cards.basics().items():
+            self.assertIn(c.get("when"), cards.WHEN, cid)
+        good = {"id": "x", "name": "X", "when": "start", "lines": ["a"], "sources": ["s"], "checked": False}
+        self.assertEqual(cards.problems({}, {"x": good}, []), [])
+        self.assertIn("x: no when", " | ".join(cards.problems({}, {"x": {**good, "when": None}}, [])))
+        self.assertIn("isn't one of", " | ".join(cards.problems({}, {"x": {**good, "when": "someday"}}, [])))
+        self.assertIn("only a start card", " | ".join(cards.problems({}, {"x": {**good, "when": "midway",
+                                                                                 "fold": "F"}}, [])))
+
+    def test_where_each_basics_card_goes_in_a_made_up_lesson(self):
+        def st(part, show, group, hexes, kinds=(), area=None, of=False):
+            return {"part": part, "show": show, "group": group, "lines": [{"kind": k, "text": "t"} for k in kinds],
+                    "colors": [{"hex": h, **({"of": "p"} if of else {})} for h in hexes],
+                    "aids": {} if area is None else {"area": area}}
+        stages = [st("sun", "full", "sky", ["#f0e080"], area=0.02),                       # 1: small
+                  st("sky", "blend", "sky", ["#5070c0", "#a0b0e0"], area=0.6),           # 2: the first big coat
+                  st("hill", "flat", "land", ["#204020"], ["dry"], area=0.2),             # 3: over the sky
+                  st("hill", "pass", "land", ["#103010"], ["dry"]),                       # 4: darker, not a light value
+                  st("hill", "pass", "land", ["#60a060"], ["dry"], of=True),              # 5: lighter, and a tint
+                  st("tree", "flat", "tree", ["#302010"], ["dry"]),                       # 6: first stage past halfway
+                  st("tree", "pass", "tree", ["#c0c0a0"], ["dry", "coats"])]              # 7: a coats line
+        got = cards.places(stages)
+        self.assertEqual({c: at for c, at in got.items() if at != "start"},
+                         {"dries-darker": 1, "let-it-dry": 2, "one-light": 4, "lighter-darker": 4, "ugly-stage": 5,
+                          "light-over-dark": 6})
+        self.assertEqual(cards.unplaced(stages), [])
+        # no coats line, no tint, no lighter pass: those cards don't show at all
+        plain = [{**s, "lines": [x for x in s["lines"] if x["kind"] != "coats"],
+                  "colors": [{"hex": "#101010"}]} for s in stages]
+        got = cards.places(plain)
+        self.assertFalse({"light-over-dark", "lighter-darker", "one-light"} & set(got))
+        # with no step aids, the first coat stands in for the first big one
+        self.assertEqual(cards.places([{**s, "aids": {}} for s in stages])["dries-darker"], 0)
+        # nothing painted over anything: check names the card that has nowhere to go
+        bare = [st("a", "full", "g1", ["#ffffff"]), st("b", "full", "g2", ["#000000"])]
+        self.assertEqual(len(cards.unplaced(bare)), 1)
+        self.assertIn("let-it-dry", cards.unplaced(bare)[0])
+        self.assertEqual(cards.unplaced(bare[:1]), [])  # one step: nothing is expected
+
     def test_an_unchecked_card_says_so_and_the_page_holds_every_card(self):
         page = cards.page()
         for cid in cards.strokes():

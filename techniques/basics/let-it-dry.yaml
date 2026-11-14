@@ -1,5 +1,6 @@
 id: let-it-dry
 name: Let each layer dry
+when: first_layer
 lines:
 - Between steps, the paint underneath should be dry to the touch. A hair dryer on low speeds it up.
 - Painting into half-dry paint drags it up and turns it gooey and muddy.

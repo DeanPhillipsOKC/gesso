@@ -5,7 +5,8 @@ calls these for a lesson.json with "plan_version": 2; a version 1 page never rea
     contents(lesson)                        -> the stages, each with its step count
     tubes_first(lesson, tubes)              -> the tubes to get out, in the order the steps first need them
     paints_fold(count, cards)               -> every paint and its recipe, folded away (each step lists its own)
-    before_you_start(lesson, folder, embed) -> basics cards, the transfer outline (folded), strokes to try
+    before_you_start(lesson, folder, embed) -> the start basics cards, the transfer outline (folded), strokes to try
+    step_basics(lesson, i)                  -> the basics cards whose moment is this step, open (#95)
     step(lesson, i, parts)                  -> one step: the Where / Result switch, its lines, paints, and folds
 
 A step's Where view is the picture before it with this step's area outlined (aids/aids.json, from step-aids),
@@ -60,12 +61,12 @@ ol.legend li{display:flex;align-items:center;gap:.5rem;font-size:.92rem}
   font:700 .78rem/1 var(--mono);flex:none}
 .mapnum circle{fill:#1d2430;stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke}
 .mapnum text{fill:#fff;font:700 15px/1 var(--mono);text-anchor:middle;dominant-baseline:central}
-.aid .card{background:var(--gesso);border:1px solid var(--rule);border-radius:8px;padding:.9rem;display:grid;gap:.45rem;min-width:0}
-.aid .card h3{font-size:1.1rem}
+.aid .card,.start .card{background:var(--gesso);border:1px solid var(--rule);border-radius:8px;padding:.9rem;display:grid;gap:.45rem;min-width:0}
+.aid .card h3,.start .card h3{font-size:1.1rem}
 .aid .card .brushpic{display:inline-block;vertical-align:middle;margin-right:.3rem}
 .aid .panels{grid-template-columns:repeat(auto-fill, minmax(6.5rem, 1fr))}
 .aid .build{padding:.75rem}
-.aid .card ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
+.aid .card ul,.start .card ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
 .aid .card .aka{font:400 .85rem/1.3 var(--body);color:var(--muted)}
 .aid .card .note{color:var(--muted);font-size:.92rem}
 .unchecked{justify-self:start;font:600 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--warn);
@@ -256,7 +257,7 @@ def stroke_folds(lesson: dict, i: int, known: dict) -> str:
 def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: str, chips: str, why: str,
          diagram: str) -> str:
     """One step of a version 2 lesson: the picture with its Where / Result switch, then what to do, its paints and
-    brushes, and the folds (close-up, paint map, stroke card, diagram)."""
+    brushes, and the folds (basics card, close-up, paint map, stroke card, diagram)."""
     s = lesson["stages"][i]
     stages = lesson["stages"]
     group = next((g for g in lesson.get("groups") or [] if s["id"] in g["steps"]), None)
@@ -268,7 +269,7 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
     if el.get("drafted"):  # a technique drafted for this lesson, not in the hand-checked library yet (#12)
         tip += (f'<p class="strokelink">Technique: {e(el.get("name", ""))} '
                 '<span class="unchecked">Technique not checked yet</span></p>')
-    folds = "".join([closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed), stroke_folds(lesson, i, known),
+    folds = "".join([step_basics(lesson, i), closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed), stroke_folds(lesson, i, known),
                      fold("Diagram", "how to build the shape", diagram) if diagram else ""])
     return f"""
 <article class="step" id="step-{i + 1}">
@@ -410,9 +411,32 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
         for c, i in sorted(first.items(), key=lambda x: x[1]) if c in known)
     strokes = (f'<div><h3>Strokes to try on scrap paper first</h3><p class="small">Each one\'s card is open in the step '
                f'that first uses it.</p><ul class="strokes">{tries}</ul></div>') if tries else ""
-    basics = "".join(fold(c["name"], "" if c.get("checked") else "not checked yet", cards.basic_html(c))
-                     for c in sorted(cards.basics().values(), key=lambda c: c["id"] != "set-up"))  # setting up first
+    basics = start_basics()
     # Folded and optional at the owner's word (#94). The steps say where in inches, so nothing here is needed (#122).
     placing = fold("Placing shapes with a transfer outline", "optional", transfer, cls="placing") if transfer else ""
     return (f'<section class="start" id="start"><h2>Before you start</h2>{placing}{strokes}'
-            f'<div><h3>The basics</h3><div class="basics">{basics}</div></div></section>')
+            f'<div><h3>Getting started</h3><p class="small">The other basics are in the steps where they matter.</p>'
+            f'<div class="basics">{basics}</div></div></section>')
+
+
+def _unchecked(card: dict) -> str:
+    return "" if card.get("checked") else "not checked yet"
+
+
+def start_basics() -> str:
+    """The basics cards for the start (#95) as plain cards, setting up first; a folded one (fixing a mistake) closed,
+    under its own title, last."""
+    start = [c for c in cards.basics().values() if c.get("when") == "start"]
+    start.sort(key=lambda c: (bool(c.get("fold")), c["id"] != "set-up"))
+    return "".join(fold(c["fold"], c["name"], cards.basic_html(c), cls="basic") if c.get("fold") else cards.basic_html(c)
+                   for c in start)
+
+
+def step_basics(lesson: dict, i: int) -> str:
+    """The basics cards whose moment is this step (cards.places), open: each shows once in a lesson (#95)."""
+    known = cards.basics()
+    here = [cid for cid, at in cards.places(lesson["stages"], known).items() if at == i]
+    order = list(cards.WHEN)
+    here.sort(key=lambda cid: order.index(known[cid]["when"]))
+    return "".join(fold(f"Basics: {known[c]['name']}", _unchecked(known[c]), cards.basic_html(known[c]), open_=True,
+                        cls="basic") for c in here)
