@@ -1,0 +1,147 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261114-015433",
+  "started": "2026-11-14 01:54",
+  "publishes": [
+    {
+      "n": 2,
+      "digest": "b688795124503456",
+      "strip": "strip-2.jpg",
+      "published_with": {
+        "version": "POC 1.5.0",
+        "commit": "146d7a1",
+        "dirty": false,
+        "published": "2026-11-14"
+      },
+      "made_with": {
+        "version": "POC 1.5.0",
+        "commit": "146d7a1",
+        "published": "2026-11-14"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-14T02:08:27"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 18,
+        "words": 2567,
+        "tubes": 5,
+        "cost_usd": 0.085,
+        "minutes": 0.7,
+        "paid_renders": 2,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 8,
+        "minutes_total": 12.0,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 4
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the blue and gold sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sun",
+          "name": "Paint the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "trunks",
+          "name": "Pull the far misty trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "foliage-dark",
+          "name": "Dab the dusty tan foliage",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "foliage-mid",
+          "name": "Dab the orange leaves over it",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-dark",
+          "name": "Pull the trunk, bough, and twigs in dark brown",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "branch-light",
+          "name": "Catch the light on the bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-block",
+          "name": "Block in the four leaves in gold",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-red",
+          "name": "Shade the leaves with red-orange",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-body",
+          "name": "Block in the body",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-shade",
+          "name": "Shade the belly away from the light",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "wing-block",
+          "name": "Block in the wing and tail",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "wing-dark",
+          "name": "Shade the dark wing feathers",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-head",
+          "name": "Paint the black cap and bib",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-cheek",
+          "name": "Paint the white cheek",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bird-feathers",
+          "name": "Flick in the pale chest feathers",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "feet-line",
+          "name": "Line in the legs and toes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "feet-light",
+          "name": "Catch the light on the legs and toes",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

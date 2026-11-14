@@ -1346,7 +1346,7 @@ def add_v2_tools(sub) -> None:
     p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
                        description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
                                    "parts/preview.jpg (the finish with each part tinted and labeled). Downloads the outline "
-                                   "model (108 MB) to models/ the first time.")
+                                   "model (345 MB) to models/ the first time.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=outline_tool)
     p = sub.add_parser("part-colors", help="Free. v2: each part's main colors, measured inside its outline.",

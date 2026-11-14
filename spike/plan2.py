@@ -71,8 +71,8 @@ def parts_problems(plan: dict) -> list[str]:
             out.append(f"{pid}: a thin part needs paths: points along its middle")
         parent = seen.get(p.get("parent") or "")
         if parent and p.get("kind") in ("marks", "thin") and parent.get("kind") in ("marks", "thin"):
-            # a marks or thin child only takes pixels its parent's family owns, and a marks or thin parent owns only
-            # pixels of its own colors, so the child finds nothing (the sailboat's mast reflection, 2026-11-13)
+            # a marks or thin child only takes pixels its parent's family owns (or nobody does), and a marks or thin
+            # parent owns only pixels of its own colors, so the child finds nothing (the sailboat's mast reflection, 2026-11-13)
             instead = (f"give it {parent['parent']!r} as its parent (what {parent['id']} sits on)" if parent.get("parent")
                        else "give it no parent")
             out.append(f"{pid}: a {p['kind']} part can't have the {parent['kind']} part {parent['id']} as its parent: "

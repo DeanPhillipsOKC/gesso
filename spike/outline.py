@@ -8,12 +8,13 @@ can be cut from the one finish and nothing drifts between steps.
 
 Parts are listed back to front, the order they're painted. How a part's shape is found depends on its kind:
 
-- "area", "object": the Segment Anything model (SAM, quantized ONNX, CPU) from the part's boxes. Clean on anything
+- "area", "object": the outline model (SAM-HQ ViT-L, quantized ONNX, CPU) from the part's boxes. Clean on anything
   with a visible edge (docs/spikes/outline-probe.md). An area whose box is the whole picture is the backdrop: it
   takes every pixel nothing else claims, with no model.
 - "marks": paint with no single edge, on top of another part: clouds, haze, foliage clumps, a sun path, a bird's
   black cap. A pixel is a mark when its color is nearer the part's `points_in` colors than its `points_out` colors.
-- "thin": a branch, a mast, a rail. The marks rule, kept inside a band around the part's `paths`.
+- "thin": a branch, a mast, a rail. The model again, asked for the whole part and for each of its `paths`, kept
+  inside a band around them; the marks rule checks each limb, and stands in when the model finds nothing (#129).
 
 Every pixel then belongs to exactly one part: the latest (nearest the painter) that claims it.
 """
@@ -29,16 +30,18 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 MODELS = ROOT / "models"
-RELEASE = "https://github.com/danielgatis/rembg/releases/download/v0.0.0/"
+RELEASE = "https://github.com/CVHub520/X-AnyLabeling/releases/download/v2.0.0/"
 FILES = {  # name -> SHA-256, so a changed download is refused instead of quietly giving different outlines
-    "vit_b-encoder-quant.onnx": "cf99a3b79eea0ac4f7c9b06cdce5b2763ff41a3f631213c748d497cba233df6a",
-    "vit_b-decoder-quant.onnx": "40b02c2f694bb87b8360bb04ad8aaa84eab9673f4092b4911e0513890812b42e",
+    "sam_hq_vit_l_encoder_quant.onnx": "ffcdd1134e4078b30649a976a4ded694ffb13600bd390b8ac84f363e8d4591d8",
+    "sam_hq_vit_l_decoder.onnx": "77a3697b68d5ce4ae9a76218cff7cbc73aab5f8b01ea570ef8eb6b4380f3e1ac",
 }
 BACKDROP_SHARE = 0.9  # an area whose boxes cover this much of the picture is the backdrop
 SPECK = 0.0005  # pieces of a part smaller than this share of the picture go to whatever surrounds them
 MARGIN = 0.0  # Lab units a marks pixel must be nearer its own colors than the colors behind it
 SEED_WINDOW = 0.006  # half the side of the patch a point's color is read from, as a share of the long side
 BAND = 1.6  # a thin part may reach this many times its stated width from its path
+LIMB_STEP = 0.06  # points along a limb for its own prompt, this share of the picture's width apart
+THIN_AGREES = 0.5  # a thin part the color rule agrees with on less than this share of its outline is told
 HOLE = 0.03  # an area enclosing more than this share of the picture that went to a part behind it is told
 HOLE_BRIDGE = 0.02  # gaps in an area's outline narrower than about twice this (of the long side) count as closed
 
@@ -64,7 +67,9 @@ def box_mask(shape: tuple[int, int], boxes: list) -> np.ndarray:
 
 
 class Sam:
-    """Segment Anything, ViT-B, quantized ONNX. `embed` once per picture (about 5 s on CPU), `mask` per box."""
+    """Segment Anything in High Quality (SAM-HQ), ViT-L, quantized ONNX, CPU. `embed` once per picture (about 8 s
+    on 4 cores), `mask` per prompt (about 0.1 s). It replaced SAM ViT-B in #129: the same outlines on clear-edged
+    parts, and it keeps a branch's twigs (docs/spikes/outline-models.md)."""
 
     def __init__(self, folder: Path = MODELS):
         try:
@@ -72,8 +77,7 @@ class Sam:
         except ImportError as e:  # pragma: no cover
             raise NoModel("onnxruntime isn't installed: pip install -r spike/requirements.txt") from e
         paths = [fetch(name, folder) for name in FILES]
-        # All cores: about 5 s a picture on 4 cores, against 24 s on one. The outlines came out the same, byte for
-        # byte, on repeated runs on one machine (seen in the spike, docs/spikes/outlines.md).
+        # All cores. The outlines came out the same, byte for byte, on repeated runs on one machine.
         self.enc = ort.InferenceSession(str(paths[0]), providers=["CPUExecutionProvider"])
         self.dec = ort.InferenceSession(str(paths[1]), providers=["CPUExecutionProvider"])
         self.emb = None
@@ -82,11 +86,10 @@ class Sam:
         h, w = rgb.shape[:2]
         self.shape, self.scale = (h, w), 1024 / max(h, w)
         self.nh, self.nw = int(h * self.scale + 0.5), int(w * self.scale + 0.5)
+        # this export normalizes and pads inside the model: it takes the resized picture as it is
         x = cv2.resize(rgb, (self.nw, self.nh), interpolation=cv2.INTER_LINEAR).astype(np.float32)
-        x = (x - [123.675, 116.28, 103.53]) / [58.395, 57.12, 57.375]
-        padded = np.zeros((1024, 1024, 3), np.float32)
-        padded[:self.nh, :self.nw] = x
-        self.emb = self.enc.run(None, {"x": padded.transpose(2, 0, 1)[None]})[0]
+        out = self.enc.run(None, {"input_image": x})
+        self.emb, self.interm = out[0], np.stack(out[1:], axis=0)
 
     def mask(self, box=None, points_in=(), points_out=()) -> tuple[np.ndarray, float]:
         """The outline for a box and/or points (all 0-1), and the model's own confidence (0-1)."""
@@ -99,17 +102,20 @@ class Sam:
         else:
             pts.append([0.0, 0.0])
             labels.append(-1.0)
-        _, iou, low = self.dec.run(None, {
+        out = self.dec.run(None, {
             "image_embeddings": self.emb,
+            "interm_embeddings": self.interm,
             "point_coords": (np.array(pts, np.float32) * self.scale)[None],
             "point_labels": np.array(labels, np.float32)[None],
             "mask_input": np.zeros((1, 1, 256, 256), np.float32),
             "has_mask_input": np.zeros(1, np.float32),
             "orig_im_size": np.array([h, w], np.float32)})
-        # `low` covers the padded 1024 square at 256 x 256: enlarge, cut the padding off, then back to the picture.
-        # The decoder's full-size output skips the padding step and comes back stretched for a non-square picture.
-        up = cv2.resize(low[0, 0], (1024, 1024), interpolation=cv2.INTER_LINEAR)[:self.nh, :self.nw]
-        return cv2.resize(up, (w, h), interpolation=cv2.INTER_LINEAR) > 0, float(iou.ravel()[0])
+        out = dict(zip([o.name for o in self.dec.get_outputs()], out))
+        # low_res_masks covers the padded 1024 square at 256 x 256: enlarge, cut the padding off, then back to the
+        # picture. The decoder's full-size output skips the padding step and comes back stretched for a non-square
+        # picture.
+        up = cv2.resize(out["low_res_masks"][0, 0], (1024, 1024), interpolation=cv2.INTER_LINEAR)[:self.nh, :self.nw]
+        return cv2.resize(up, (w, h), interpolation=cv2.INTER_LINEAR) > 0, float(out["iou_predictions"].ravel()[0])
 
 
 def fetch(name: str, folder: Path = MODELS) -> Path:
@@ -191,6 +197,67 @@ def band(shape: tuple[int, int], part: dict) -> np.ndarray:
     return m > 0
 
 
+def path_box(paths: list, width: float, shape: tuple[int, int]) -> list[float]:
+    """A box around paths, grown by the part's width. `width` is a share of the picture's width, so the box grows by
+    the same distance up and down as it does to the sides, whatever the picture's shape."""
+    h, w = shape
+    pts = np.array([p for path in paths for p in path], float)
+    up = width * w / h
+    x0, y0, x1, y1 = pts[:, 0].min() - width, pts[:, 1].min() - up, pts[:, 0].max() + width, pts[:, 1].max() + up
+    return [float(max(0, x0)), float(max(0, y0)), float(min(1, x1)), float(min(1, y1))]
+
+
+def path_points(path: list, shape: tuple[int, int], step: float = LIMB_STEP) -> list[list[float]]:
+    """Points along a path, about `step` of the picture's width apart, ends included. A path of one point is that
+    point."""
+    h, w = shape
+    p = np.array(path, float)
+    if len(p) < 2:
+        return [[float(v) for v in q] for q in p]
+    seg = np.sqrt(((np.diff(p, axis=0) * [1.0, h / w]) ** 2).sum(1))  # lengths as shares of the width
+    ends = np.cumsum(seg)
+    out = []
+    for d in np.linspace(0, float(seg.sum()), max(2, int(seg.sum() / step) + 1)):
+        i = int(min(np.searchsorted(ends, d), len(seg) - 1))
+        t = (d - (ends[i] - seg[i])) / max(seg[i], 1e-9)
+        out.append([float(v) for v in p[i] + (p[i + 1] - p[i]) * min(max(t, 0.0), 1.0)])
+    return out
+
+
+def within(points: list, box: list[float]) -> list:
+    return [p for p in points if box[0] <= p[0] <= box[2] and box[1] <= p[1] <= box[3]]
+
+
+def thin(sam: "Sam", L: np.ndarray, part: dict, inside: np.ndarray) -> tuple[np.ndarray, float | None, dict]:
+    """A thin part from the outline model (#129), kept inside `inside` (its band). Two prompts, joined:
+
+    1. The whole part: one box around all its paths, with the plan's points on it and behind it. This gives the
+       body clean, with nothing stray, but can lose a limb or draw it too thin (a twig, a mast's boom).
+    2. Every limb: a box around that one path with points along it, kept inside that path's own band. This keeps
+       each limb at its real width, but where paths run close together it can take what lies between them
+       (foliage between twigs), so of a limb's outline only the pixels the color rule agrees with are added.
+
+    The rule was settled on 18 thin parts (docs/spikes/outline-models.md, "The join"). When the model returns
+    nothing (or only specks), the color rule alone, as before #129. Returns the outline, the model's confidence in the whole-part
+    prompt, and what was done, for stats.json."""
+    h, w = inside.shape
+    paths, width = part.get("paths") or [part["path"]], part.get("width", 0.05)
+    pin, pout = part.get("points_in") or [], part.get("points_out") or []
+    by_color = marks(L, part, inside)  # refuses a part with no colors for either side, naming what's missing
+    box = path_box(paths, width, (h, w))
+    whole, conf = sam.mask(box, pin or [q for path in paths for q in path_points(path, (h, w))], within(pout, box))
+    claim = whole & inside
+    for path in paths:
+        b = path_box([path], width, (h, w))
+        limb, _ = sam.mask(b, path_points(path, (h, w)), within(pout, b))
+        claim = claim | (limb & band((h, w), {"id": part["id"], "paths": [path], "width": width}) & by_color)
+    claim = keep_pieces(claim)
+    if not claim.any():  # nothing, or only specks
+        return keep_pieces(by_color), None, {"thin_by": "color rule"}
+    # how much of the outline the color rule agrees with: low when the model returned what's behind the part
+    return claim, conf, {"thin_by": "model", "color_agrees": round(float((claim & by_color).sum() / claim.sum()), 3)}
+
+
 def drop_specks(owner: np.ndarray, floor: float = SPECK) -> np.ndarray:
     """Pieces of a part smaller than `floor` of the picture go to the part that surrounds them."""
     h, w = owner.shape
@@ -207,6 +274,13 @@ def drop_specks(owner: np.ndarray, floor: float = SPECK) -> np.ndarray:
 
 ISLAND = 0.02  # a stray piece of an area smaller than this share of the picture, inside another part, joins that part
 ISLAND_INSIDE = 0.6  # how much of the piece's edge must be against that one other part
+
+
+def keep_pieces(mask: np.ndarray, floor: float = SPECK) -> np.ndarray:
+    """The mask without its pieces smaller than `floor` of the picture."""
+    n, lab_, st, _ = cv2.connectedComponentsWithStats(mask.astype(np.uint8), connectivity=8)
+    keep = [i for i in range(1, n) if st[i, cv2.CC_STAT_AREA] >= max(4, floor * mask.size)]
+    return np.isin(lab_, keep)
 
 
 def drop_islands(owner: np.ndarray, parts: list[dict]) -> np.ndarray:
@@ -334,8 +408,19 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
             inside = inbox if p["kind"] == "marks" else band((h, w), p)
             if p.get("parent"):  # marks on a part stay on that part (and on its other children)
                 family = [index[p["parent"]]] + [index[q["id"]] for q in parts[:k] if q.get("parent") == p["parent"]]
-                inside = inside & np.isin(owner, family)
-            claim = marks(L, p, inside)
+                inside = inside & (np.isin(owner, family) | (owner < 0))  # or on what nothing has claimed yet
+            if p["kind"] == "marks":
+                claim = marks(L, p, inside)
+            elif given is not None and p["id"] in given:
+                claim = given[p["id"]] & inside
+            else:
+                if sam is None:
+                    raise NoModel(f"{p['id']}: no outline model loaded and no ready-made outline given")
+                if sam.emb is None:
+                    sam.embed(finish)
+                claim, conf, how = thin(sam, L, p, inside)
+                row.update(how)
+                row["confidence"] = None if conf is None else round(conf, 3)
         else:
             raise ValueError(f"{p['id']}: unknown kind {p['kind']!r}")
         if p.get("parent") and p["kind"] in ("area", "object"):
@@ -429,6 +514,10 @@ def problems(parts: list[dict], stats: list[dict]) -> list[str]:
                 out.append(f"{p['id']}: fills its whole box, so it probably took the background. Loosen the box.")
             if s["pieces"] > 3 * n_boxes:
                 out.append(f"{p['id']}: came back in {s['pieces']} pieces. Use one box per thing, or make it marks.")
+        if p["kind"] == "thin" and s.get("color_agrees") is not None and s["color_agrees"] < THIN_AGREES:
+            out.append(f"{p['id']}: only {s['color_agrees']:.0%} of its outline has the part's own colors, so the model "
+                       f"likely took what's behind it. Put points_in on the part and points_out on what it took, or "
+                       f"lower width.")
         if p["kind"] == "area" and (s.get("hole") or 0) > HOLE:
             x, y = s["hole_at"]
             out.append(f"{p['id']}: {s['hole']:.0%} of the picture inside its outline went to {s['hole_from']}, which "

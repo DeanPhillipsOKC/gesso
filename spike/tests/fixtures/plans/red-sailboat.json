@@ -415,9 +415,9 @@
    "id": "hull-2",
    "name": "Deck gray",
    "used_for": "the deck line",
-   "hex": "#67696e",
-   "sample_x": 0.772,
-   "sample_y": 0.581,
+   "hex": "#656b70",
+   "sample_x": 0.84,
+   "sample_y": 0.589,
    "parts": [
     "hull"
    ]
@@ -425,8 +425,8 @@
   {
    "id": "reflection-1",
    "name": "Reflection brown",
-   "hex": "#765353",
    "used_for": "the mast and the reflection",
+   "hex": "#765353",
    "sample_x": 0.761,
    "sample_y": 0.654,
    "parts": [
