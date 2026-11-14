@@ -568,6 +568,24 @@ much water, keeping a mix wet between steps, fixing a mistake (let it dry, paint
 drying darker, stepping back. The technique file's `rules` already say most of these; the cards give them a
 place on the page.
 
+Each basics card has a `when` (#95): `start` shows it in "Before you start"; any other value puts it open in the
+first step where that moment comes, once a lesson, and nowhere if it never comes. `cards.places` finds the step from
+lesson.json's stages alone (show, part, stage, paints, drafted lines, aids area), so the page and `check` agree:
+
+| `when` | Card | The step |
+|---|---|---|
+| `start` | set-up, clean-brush, water, keep-paint-wet; fix-a-mistake (`fold:`, closed, "If something goes wrong") | Before you start |
+| `first_layer` | let-it-dry | the first with a `dry` line, or a pass on a part with an earlier step |
+| `light_over_dark` | light-over-dark | the first with a `coats` line |
+| `first_tint` | lighter-darker | the first using a paint that's a tint or shade of another (`of`) |
+| `first_big_coat` | dries-darker | the first `flat`, `full`, or `blend` step over 15% of the canvas (the first coat with no step aids) |
+| `first_light_value` | one-light | the first pass lighter than every paint its part had before |
+| `midway` | ugly-stage | the stage start nearest the halfway step (the earlier on a tie), never the first or last step; in a one-stage lesson, the halfway step |
+
+`cards.problems` flags a basics card with no `when` or one not in the table. `check` notes (doesn't fail) a lesson
+of two steps or more with no step for `first_layer`: nearly every lesson paints over earlier paint, but one whose
+parts never overlap is fine and only loses the card. The page works out the places once per lesson.
+
 ### Element techniques (#12, built 2026-11-13: `spike/elements.py`, `elements`)
 
 `techniques/elements/<id>.yaml`: how a kind of part is painted, step by step, as fixed data the plan follows. The
@@ -743,12 +761,13 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - Contents by stage, with each stage's step count. Steps numbered inside a stage and overall. The end of a stage
   is marked as a good place to stop. (No times: the research has no per-step durations to build them from.)
 - A step, top to bottom: the picture with a Where / Result switch; the numbered lines and the tip when
-  `text.json` has them (issue 7 writes them; until then the step's name); the paints with recipes; then folds: close-up, paint map, stroke card (open the first time a lesson uses it), diagram.
+  `text.json` has them (issue 7 writes them; until then the step's name); the paints with recipes; then folds: a basics card where its moment is (#95), close-up, paint map, stroke card (open the first time a lesson uses it), diagram.
 - The top of the page (#94): the photo and the finish, then "Tubes to get out" (each tube with its color, in the
   order the steps first need it, "first in step N"), then "What you need" (brushes and the rest, no tubes). "Your
   paints", every paint and its recipe, is folded closed: each step lists its own, and painters mix as they go.
-- "Before you start": the basics cards, the transfer outline (in a closed fold marked optional, placed by inches),
-  the lesson's strokes to try on scrap paper. The tape-marking card is gone (#122): the steps say where in inches,
+- "Before you start": the transfer outline (in a closed fold marked optional, placed by inches), the lesson's
+  strokes to try on scrap paper, and "Getting started": the `start` basics cards, with fixing a mistake folded as
+  "If something goes wrong". Every other basics card is open in the step where it first matters (#95, section 10). The tape-marking card is gone (#122): the steps say where in inches,
   and "What you need" lists a ruler and the canvas size, with "Using another size? Scale every measurement."
 - Close-ups say how far apart their dotted lines are in inches ("The dotted lines are every 1 3/4 in across and
   1 3/8 in down").
@@ -761,6 +780,7 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 `spike/checks.py` gathers `plan2.problems`, `outline.problems`, `build_steps.problems` (all built) and adds:
 - `v2_step_range` and `v2_stage_range` from the technique; more top-level parts than `detail_budget.max_parts`;
 - a stroke with no card; a brush `spike/brushes.py` doesn't know;
+- a note (not a failure) when the let-it-dry basics card finds no step to show in (#95);
 - `texture_jumps`, as today: no step turns more than 10% of the picture from flat to textured (fix: one more pass);
 - a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
   inches from an edge."); a line over 40 words;

@@ -26,7 +26,7 @@ STROKES = ROOT / "techniques" / "strokes"
 BASICS = ROOT / "techniques" / "basics"
 TECHNIQUE = ROOT / "techniques" / "acrylic-paint-along-beginner.yaml"
 STROKE_NEEDS = ("id", "stroke_result", "name", "result", "sources", "checked")
-BASIC_NEEDS = ("id", "name", "lines", "sources", "checked")
+BASIC_NEEDS = ("id", "name", "when", "lines", "sources", "checked")
 TEXT_FIELDS = (("load", "Load"), ("motion", "Motion"), ("result", "What it leaves"), ("then", "Then"))
 
 
@@ -86,7 +86,101 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
         for key in BASIC_NEEDS:
             if c.get(key) in (None, "", []):
                 out.append(f"{f}: no {key}")
+        if c.get("when") and (not isinstance(c["when"], str) or c["when"] not in WHEN):
+            out.append(f"{f}: when {c['when']!r} isn't one of {', '.join(WHEN)}")
+        if c.get("fold") and c.get("when") != "start":
+            out.append(f"{f}: only a start card can be folded")
     return out
+
+
+# --- Where each basics card shows (#95) -----------------------------------------------------------------------------
+# A basics card shows once: in "Before you start" (`when: start`), or open in the step where it first matters. Every
+# moment is found from what lesson.json's stages already say (show, part, group, paints, lines, aids area), so the
+# page and `check` find the same step, with no image work.
+
+WHEN = {
+    "start": "in Before you start",
+    "first_layer": "the first step that paints over an earlier step's paint (a dry line, or a pass on its own part)",
+    "light_over_dark": "the first step with a coats line: a paint much lighter than what it goes over",
+    "first_tint": "the first step using a tint or shade of another paint",
+    "first_big_coat": "the first coat (flat, full, or blend) over a big area",
+    "first_light_value": "the first pass lighter than everything its part had before",
+    "midway": "the stage start nearest the halfway step, never the first or last step",
+}
+NEEDED = ("first_layer",)  # nearly every lesson has this moment: check notes a lesson where its card finds no step
+BIG_COAT = 0.15  # a coat over at least this share of the canvas (aids area) is a big area
+COATS = ("flat", "full", "blend")
+
+
+def _kinds(s: dict) -> set[str]:
+    return {x.get("kind") for x in s.get("lines") or []}
+
+
+def _lightest(s: dict) -> float | None:
+    import paints
+
+    ls = [paints.lightness(c["hex"]) for c in s.get("colors") or [] if c.get("hex")]
+    return max(ls) if ls else None
+
+
+def moment(when: str, stages: list[dict]) -> int | None:
+    """The step (0-based) where a `when` moment first comes in these lesson.json stages; None when it never does."""
+    def first(test) -> int | None:
+        return next((i for i, s in enumerate(stages) if test(i, s)), None)
+
+    def earlier_own(i: int) -> list[dict]:
+        return [t for t in stages[:i] if t.get("part") == stages[i].get("part")]
+
+    if when == "first_layer":
+        return first(lambda i, s: "dry" in _kinds(s) or (s.get("show") == "pass" and earlier_own(i)))
+    if when == "light_over_dark":
+        return first(lambda i, s: "coats" in _kinds(s))
+    if when == "first_tint":
+        return first(lambda i, s: any(c.get("of") for c in s.get("colors") or []))
+    if when == "first_big_coat":
+        if any("area" in (s.get("aids") or {}) for s in stages):
+            return first(lambda i, s: s.get("show") in COATS and (s.get("aids") or {}).get("area", 0) >= BIG_COAT)
+        return first(lambda i, s: s.get("show") in COATS)  # no step aids yet: the first coat
+    if when == "first_light_value":
+        def lighter(i, s):
+            mine = _lightest(s)
+            before = [x for t in earlier_own(i) if (x := _lightest(t)) is not None]
+            return s.get("show") == "pass" and mine is not None and bool(before) and mine > max(before)
+        return first(lighter)
+    if when == "midway":
+        if len(stages) < 2:
+            return None
+        half = len(stages) // 2
+        starts = [i for i in range(1, len(stages) - 1) if stages[i].get("group") != stages[i - 1].get("group")]
+        return min(starts, key=lambda i: (abs(i - half), i)) if starts else half  # one stage: the halfway step
+    return None
+
+
+def places(stages: list[dict], basic_cards: dict | None = None) -> dict[str, int | str]:
+    """{basics card id: "start", or the step (0-based) it shows in}. A card whose moment never comes is left out."""
+    basic_cards = basics() if basic_cards is None else basic_cards
+    out: dict[str, int | str] = {}
+    for cid, c in basic_cards.items():
+        when = c.get("when")
+        if not isinstance(when, str):
+            continue  # cards.problems reports it
+        if when == "start":
+            out[cid] = "start"
+        elif when in WHEN and (i := moment(when, stages)) is not None:
+            out[cid] = i
+    return out
+
+
+def unplaced(stages: list[dict], basic_cards: dict | None = None) -> list[str]:
+    """`check`'s notes: a basics card nearly every lesson shows (NEEDED) with no step for it. A note, not a failure: a
+    lesson whose parts never overlap is fine, and only loses the card."""
+    basic_cards = basics() if basic_cards is None else basic_cards
+    if len(stages) < 2:
+        return []
+    got = places(stages, basic_cards)
+    return [f"basics card {cid} shows at {WHEN[c['when']]}, and no step is that, so the page doesn't show it. If a "
+            "step does paint over earlier paint, run draft-text again."
+            for cid, c in basic_cards.items() if c.get("when") in NEEDED and cid not in got]
 
 
 def stroke_html(card: dict, uid: str = "") -> str:

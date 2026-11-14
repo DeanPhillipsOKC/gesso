@@ -1,5 +1,6 @@
 id: keep-paint-wet
 name: Keep paint from drying on the palette
+when: start
 lines:
 - Acrylic on a brushstroke stays wet for only a few minutes.
 - 'Mist the palette lightly with a spray bottle now and then. Only lightly: too much water weakens the paint.'
