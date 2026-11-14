@@ -2,7 +2,7 @@
 
     python spike/tests/suite.py            the full suite: before a merge
     python spike/tests/suite.py --quick    the quick set, seconds: after every change
-    python spike/tests/suite.py test_aids test_publish_v2.PublishV2Tests   just these files or classes
+    python spike/tests/suite.py test_aids test_publish_v2.PublishV2Tests   just these files, classes, or tests
 
 Each test class (each test, for a class marked slow) runs in one of a pool of worker processes (one per core, --jobs to change it). The three fixture
 lessons are built once for the whole run, one per worker to start with, into a folder every worker shares
@@ -42,10 +42,12 @@ def _classes(only: list[str]) -> list[tuple[str, bool]]:
                     and unittest.defaultTestLoader.getTestCaseNames(obj)):
                 cid = f"{path.stem}.{name}"
                 slow = bool(getattr(obj, "slow", False))
-                for tid in [f"{cid}.{t}" for t in unittest.defaultTestLoader.getTestCaseNames(obj)] \
-                        if slow and not getattr(obj, "whole", False) else [cid]:
-                    if not only or any(tid == o or tid.startswith(o + ".") for o in only):
-                        out.append((tid, slow))
+                tests = [f"{cid}.{t}" for t in unittest.defaultTestLoader.getTestCaseNames(obj)]
+                split = slow and not getattr(obj, "whole", False)
+                if not only or any(cid == o or cid.startswith(o + ".") or path.stem == o for o in only):
+                    out += [(t, slow) for t in tests] if split else [(cid, slow)]
+                else:  # one test of the class asked for by name
+                    out += [(t, slow) for t in tests if t in only]
     return out
 
 
@@ -77,6 +79,10 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
     start = time.time()
     picked = [(c, slow) for c, slow in _classes(a.only) if not (a.quick and slow)]
+    if not picked:  # a typo, or a slow class under --quick: say so rather than pass with nothing run
+        print("no tests match " + (" ".join(a.only) or "the quick set") + (" (slow classes are left out of --quick)"
+                                                                           if a.quick else ""))
+        return 2
     slow_first = [c for c, slow in picked if slow] + [c for c, slow in picked if not slow]
     cache = tempfile.mkdtemp(prefix="gesso-tests-")
     os.environ["GESSO_TEST_CACHE"] = cache  # the workers inherit it: one shared build of each fixture

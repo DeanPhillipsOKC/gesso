@@ -219,8 +219,9 @@ def _key(finish: np.ndarray, plan: dict, owner: np.ndarray, background: np.ndarr
     h = hashlib.sha1(json.dumps(plan, sort_keys=True, default=str).encode())
     for a in (finish, owner, background):
         h.update(b"-" if a is None else f"{a.shape}{a.dtype}".encode() + np.ascontiguousarray(a).tobytes())
-    h.update(repr(sorted((k, v) for k, v in globals().items()
-                         if k.isupper() and isinstance(v, (int, float, str, tuple)))).encode())
+    for module in (globals(), vars(ff), vars(ol)):  # the tuned numbers build uses, here and in what it calls
+        h.update(repr(sorted((k, v) for k, v in module.items()
+                             if k.isupper() and isinstance(v, (int, float, str, tuple)))).encode())
     return h.hexdigest()
 
 
@@ -232,7 +233,8 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
 
     The same inputs in one process give back a copy of the last answer instead of building again: build-steps,
     step-aids, draft-text, check, and publish each build the steps, and the tests run them in one process (#87).
-    From the command line each tool is its own process, so nothing changes there."""
+    From the command line each tool is its own process, so nothing changes there. A test that patches one of
+    build's functions (not a number) should clear _built first."""
     key = _key(finish, plan, owner, background)
     if key not in _built:
         _built[key] = _build(finish, plan, owner, background)

@@ -7,7 +7,7 @@ The tests are in `spike/tests/` (`unittest`, no network, no API key, no model fi
 | Quick | `python spike/tests/suite.py --quick` | after every change, while working | about 11 seconds |
 | Full | `python spike/tests/suite.py` | before opening or merging a pull request | about 1 1/2 minutes |
 
-Both run from the repo root with the venv's Python. Pass files or classes to run only those
+Both run from the repo root with the venv's Python. Pass files, classes, or single tests to run only those
 (`python spike/tests/suite.py test_aids test_publish_v2.PublishV2Tests`). `--jobs N` sets the number of worker
 processes (one per core by default).
 
@@ -24,7 +24,8 @@ results in about 5 minutes; use it when a test misbehaves only under the runner.
 - **`build_steps.build` remembers its last few answers in a process.** Every tool on a version 2 lesson builds the
   steps (build-steps, step-aids, draft-text, check, and publish through check); with the same inputs in one
   process, the second and later builds are a copy of the first. From the command line each tool is its own
-  process, so nothing changes there.
+  process, so nothing changes there. Its key covers the inputs and the tuned numbers in `build_steps`, `from_finish`,
+  and `outline`; a test that patches one of their functions should clear `build_steps._built` first.
 - **Stroke cards and element files are parsed once per process** (`spike/yaml_files.py`), and again only when a file
   changes. publish used to parse all 28 stroke cards about 60 times.
 - **Classes run in parallel**, one worker per core, the slow ones first.
