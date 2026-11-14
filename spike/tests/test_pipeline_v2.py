@@ -215,6 +215,25 @@ class OutlineTests(unittest.TestCase):
         for name, sha in ol.FILES.items():
             self.assertRegex(sha, r"^[0-9a-f]{64}$", name)
 
+    def test_a_thin_part_the_model_is_unsure_of_is_told_to_add_points_not_to_tighten_a_box(self):
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "pole", "kind": "thin", "width": 0.02, "paths": [[[0.5, 0.1], [0.5, 0.9]]]}]
+        stats = [{"id": "sky", "share": 0.9, "confidence": None, "pieces": 1, "box_fill": 0.9},
+                 {"id": "pole", "share": 0.02, "confidence": 0.5, "pieces": 1, "box_fill": 0.02}]
+        text = " ".join(ol.problems(parts, stats))
+        self.assertIn("points_out right beside it", text)
+        self.assertNotIn("box", text)
+
+    def test_a_thin_part_with_an_empty_path_is_refused(self):
+        part = {"id": "pole", "name": "Pole", "kind": "thin", "width": 0.02, "paths": [[[0.5, 0.1], [0.5, 0.9]], []],
+                "points_in": [[0.5, 0.5]], "points_out": [[0.4, 0.5]]}
+        self.assertTrue(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
+        for bad in ([[]], [[0.5]], [["a", 0.5]]):
+            part["paths"][1] = bad
+            self.assertTrue(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
+        part["paths"].pop()
+        self.assertFalse(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
+
     def test_gaps_behind_an_object_follow_their_rows(self):
         owner = np.zeros((10, 12), np.int32)
         owner[5:] = 1  # a horizon at row 5

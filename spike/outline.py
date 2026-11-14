@@ -504,7 +504,10 @@ def problems(parts: list[dict], stats: list[dict]) -> list[str]:
         if s["share"] == 0:
             out.append(f"{p['id']}: nothing was outlined. Check its box and points against the picture.")
             continue
-        if s["confidence"] is not None and s["confidence"] < 0.80:
+        if s["confidence"] is not None and s["confidence"] < 0.80 and p["kind"] == "thin":  # it has no box to tighten
+            out.append(f"{p['id']}: the outline model is unsure of this thin part (confidence {s['confidence']}). Give "
+                       "it points_in on the part and points_out right beside it, and a path along every limb.")
+        elif s["confidence"] is not None and s["confidence"] < 0.80:
             out.append(f"{p['id']}: the outline model is unsure (confidence {s['confidence']}). Tighten the box, or add "
                        "points_in / points_out.")
         if p["kind"] == "object":
