@@ -299,7 +299,8 @@ def thin(sam: "Sam", L: np.ndarray, part: dict, inside: np.ndarray) -> tuple[np.
     box = paths_box(paths, width)
     one, conf = sam.mask(box, pin, inside_box(pout, box))
     claim = drop_small(one & inside)
-    limbs, colors = [], None
+    first = claim.any()
+    limbs, colors, confs = [], None, []
     for i, path in enumerate(paths):
         if covered(claim, path, width) >= LIMB_COVERED:
             continue
@@ -309,7 +310,10 @@ def thin(sam: "Sam", L: np.ndarray, part: dict, inside: np.ndarray) -> tuple[np.
         lone, c = sam.mask(b, along(path, THIN_STEP), inside_box(pout, b))
         claim |= lone & band((h, w), {**part, "paths": [path]}) & inside & colors
         limbs.append(i)
+        confs.append(c)
     claim = drop_small(claim)
+    if not first:  # the first answer was empty: what's there came from the limbs, so their confidence is what counts
+        conf = min(confs) if confs and claim.any() else conf
     return claim, {"confidence": round(conf, 3), "limbs": limbs}
 
 
@@ -470,6 +474,7 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
                     row["how"] = "model" + (" and limbs" if got["limbs"] else "")
                     if not claim.any():  # the model found nothing in the band: the color rule, as before
                         claim, row["how"], row["confidence"] = None, "color rule (the model found nothing)", None
+                        row["limbs"] = []
                 else:
                     raise NoModel(f"{p['id']}: no thin-part outline model loaded and no ready-made outline given")
             if claim is None:

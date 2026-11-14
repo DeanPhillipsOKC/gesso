@@ -139,6 +139,25 @@ class OutlineTests(unittest.TestCase):
 
         self.assertFalse(ol.thin(Nothing(), L, part, inside)[0].any())
 
+        # colors only, no points_in: asked with points along the paths; an empty first answer and limbs that found
+        # the part report the limbs' confidence
+        seen = []
+
+        class Limbs:
+            def mask(self, box, points_in=(), points_out=()):
+                seen.append(list(points_in))
+                m = np.zeros((100, 100), bool)
+                if len(seen) > 1:
+                    m[10:90, 20:26] = m[48:52, 26:80] = True
+                return m, 0.2 if len(seen) == 1 else 0.9
+
+        colors_only = {k: v for k, v in part.items() if k != "points_in"}
+        colors_only["colors_in"] = ["#3c2814"]
+        claim, got = ol.thin(Limbs(), L, colors_only, inside)
+        self.assertEqual(seen[0], [q for path in part["paths"] for q in ol.along(path, ol.THIN_STEP)])
+        self.assertEqual((got["limbs"], got["confidence"]), ([0, 1], 0.9))
+        self.assertTrue(claim[50, 22] and claim[50, 60])
+
     def test_outline_embeds_the_thin_model_once_and_falls_back_to_the_color_rule(self):
         img, parts, given = scene()
         img[:, 142:148] = (0, 0, 0)  # a black pole down the right side

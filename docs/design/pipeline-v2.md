@@ -281,8 +281,9 @@ family:
    failed `check`).
 
 Limbs are asked for even when the first answer is empty. A thin part with `colors_in` and no `points_in` is asked
-with points along its paths instead; that worked on the fixture's branch at lower confidence (0.48 against 0.94), so
-the skill asks for points on thin parts. A thin part's low-confidence problem says to add points, not to change a
+with points along its paths instead; on the fixture's branch, with its points turned into colors, that gave nearly the same
+branch (confidence 0.887 against 0.94, IoU 0.98), but the skill still asks for points on thin parts. `confidence` is
+the first answer's, or the limbs' lowest when the first answer was empty. A thin part's low-confidence problem says to add points, not to change a
 box it doesn't have.
 
 `parts/stats.json` says per thin part how it was done (`how`: `model`, `model and limbs`, or the color rule) and
