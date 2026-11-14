@@ -3,7 +3,10 @@ stroke_result: Scumbling (loose, scrubby dry-brush strokes, light over dark)
 name: Scumbling
 brushes:
 - old stiff flat
-load: A small amount of paint straight from the tube, on a dry brush. No water or medium.
+load:
+  thickness: thick
+  amount: light
+  note: A dry brush. No water or medium.
 motion: Dry brush, but in loose, scrubby strokes in different directions that follow the shape.
 result: A hazy, broken layer with the dark showing through.
 then: If it covers too much, let it dry and scumble the dark back in.

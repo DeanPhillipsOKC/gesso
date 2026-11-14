@@ -29,6 +29,7 @@ import cards  # noqa: E402
 import checks  # noqa: E402
 import draft_text as dt  # noqa: E402
 import lessons  # noqa: E402
+import loads  # noqa: E402
 import publish2  # noqa: E402
 import tools  # noqa: E402
 from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
@@ -145,9 +146,10 @@ class DraftTests(unittest.TestCase):
                 card = known[s["stroke"]]
                 how = " ".join(x["text"] for x in d["lines"] if x["kind"] == "how")
                 self.assertIn(f"Brush: {s['brush']}.", how)
-                for key in ("load", "motion"):
-                    if card.get(key):
-                        self.assertIn(card[key].strip(), how)
+                if card.get("load"):
+                    self.assertIn(f"Load: {loads.text(card['load'])}", how)  # the fixed terms first (#99)
+                if card.get("motion"):
+                    self.assertIn(card["motion"].strip(), how)
                 result = [x["text"] for x in d["lines"] if x["kind"] == "result"]
                 self.assertEqual(result[0][len("It should leave "):].lower(), card["result"].lower())
                 watch = " ".join(x["text"] for x in d["lines"] if x["kind"] == "watch")
@@ -389,6 +391,33 @@ class TextToolTests(unittest.TestCase):
             d = self.results[(name, "draft-text")]
             self.assertEqual(len(d["for_claude"]), n)
             self.assertEqual(d["cost_usd"], 0.0)
+
+    def test_a_steps_load_line_links_each_term_to_the_card_and_shows_its_two_pictures(self):
+        # #99: published after draft-text, every step whose card names a thickness and an amount links both words to
+        # the paint-load card and shows both pictures in the line; one with only one of them shows one
+        lesson = self.copy("chickadee")
+        self.fill_in(lesson)
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        html = (lesson / "lesson.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count("id='basic-paint-load'"), 1)  # the card, in Before you start
+        plan = fixture("chickadee")[1]
+        known = cards.strokes()
+        seen = 0
+        for i, s in enumerate(bs.flat_steps(plan)):
+            load = known[s["stroke"]].get("load") or {}
+            terms = [t for t in (load.get("thickness"), load.get("amount")) if t]
+            step = html.split(f'id="step-{i + 1}"', 1)[1].split("</article>", 1)[0]
+            line = next(x for x in step.split("<li>") if "Load: " in x) if terms else ""
+            for t in terms:
+                words = loads.TERMS[t][1]
+                self.assertRegex(line, rf'<a class="loadword" href="#basic-paint-load">{words.split()[0] if t in loads.THICKNESS else ""}', s["id"])
+                self.assertIn(loads.LABELS[t], line, s["id"])  # its picture, in the line
+            if terms:
+                self.assertEqual(line.count('class="loadword"'), len(terms), s["id"])
+                self.assertEqual(line.count('class="loadpic sm"'), len(terms), s["id"])
+                seen += len(terms) == 2
+        self.assertGreater(seen, 0)  # the fixture has steps with both
 
     def test_draft_text_twice_gives_the_same_file_and_keeps_what_claude_wrote(self):
         lesson = self.copy("chickadee")

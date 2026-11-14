@@ -19,6 +19,7 @@ from pathlib import Path
 
 import brushes
 import construct
+import loads
 import yaml_files
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -67,6 +68,7 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
         if c.get("stroke_result") and c["stroke_result"] not in results:
             out.append(f"{f}: stroke_result isn't an entry of the technique's stroke_results, word for word")
         covered.add(c.get("stroke_result"))
+        out += loads.problems(c.get("load"), f)  # one vocabulary for how thick and how much (#99)
         for b in c.get("brushes") or []:
             if not brushes.kind(b):
                 out.append(f"{f}: brush {b!r} isn't one spike/brushes.py can draw")
@@ -90,6 +92,29 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
             out.append(f"{f}: when {c['when']!r} isn't one of {', '.join(WHEN)}")
         if c.get("fold") and c.get("when") != "start":
             out.append(f"{f}: only a start card can be folded")
+        if c.get("terms") is not None or cid == loads.CARD:
+            out += _term_problems(c, f, basic_cards)
+    return out
+
+
+def _term_problems(card: dict, f: str, basic_cards: dict) -> list[str]:
+    """The paint-load card (#99): one line and one picture for each of loads.TERMS, each once."""
+    out = []
+    terms = card.get("terms") or []
+    got = [t.get("term") for t in terms if isinstance(t, dict)]
+    for t in loads.TERMS:
+        if got.count(t) != 1:
+            out.append(f"{f}: term {t!r} shows {got.count(t)} times; every load term needs one line and one picture")
+    for t in terms:
+        if not isinstance(t, dict) or t.get("term") not in loads.TERMS:
+            out.append(f"{f}: {t!r} isn't one of the load terms ({', '.join(loads.TERMS)})")
+            continue
+        if not t.get("line"):
+            out.append(f"{f}: term {t['term']!r} has no line")
+        if not loads.picture(t["term"]):
+            out.append(f"{f}: term {t['term']!r} has no picture in spike/loads.py")
+        if t.get("see") and t["see"] not in basic_cards:
+            out.append(f"{f}: term {t['term']!r} points at basics card {t['see']!r}, which doesn't exist")
     return out
 
 
@@ -185,7 +210,10 @@ def unplaced(stages: list[dict], basic_cards: dict | None = None) -> list[str]:
 
 def stroke_html(card: dict, uid: str = "") -> str:
     """One stroke card as HTML: the lesson page and the owner's review page both use it."""
-    rows = "".join(f"<p><b>{label}.</b> {e(str(card[key]))}</p>" for key, label in TEXT_FIELDS if card.get(key))
+    def field(key: str) -> str:  # the load with its words linked to the paint-load card and its pictures (#99)
+        return loads.linked(loads.text(card[key])) if key == "load" else e(str(card[key]))
+
+    rows = "".join(f"<p><b>{label}.</b> {field(key)}</p>" for key, label in TEXT_FIELDS if card.get(key))
     tools = [*(card.get("brushes") or []), *(card.get("tools") or [])]
     pics = "".join(brushes.picture(b, "small") for b in card.get("brushes") or [])
     head = f"<h3>{e(card['name'])}"
@@ -206,14 +234,40 @@ def stroke_html(card: dict, uid: str = "") -> str:
     return f"<section class='card' id='stroke-{e(card['id'])}'>{head}{with_}{rows}{uses}{diagram}{wrong}{extra}</section>"
 
 
-def basic_html(card: dict) -> str:
+TERM_ROWS = (("thickness", "How thick the paint is"), ("amount", "How much is on the brush"))
+
+
+def terms_html(card: dict, basic_cards: dict | None = None) -> str:
+    """The paint-load card's pictures (#99): a row for how thick, a row for how much, each term's picture over its name
+    and one line. A term with `see` points at that basics card (thin paint at How much water)."""
+    by = {t.get("term"): t for t in card.get("terms") or [] if isinstance(t, dict)}
+    if not by:
+        return ""
+    names = {cid: c.get("name", cid) for cid, c in (basics() if basic_cards is None else basic_cards).items()}
+    rows = []
+    for kind, title in TERM_ROWS:
+        figs = []
+        for term, (k, words) in loads.TERMS.items():
+            if k != kind or term not in by:
+                continue
+            t = by[term]
+            see = (f" See <a href='#basic-{e(t['see'])}'>{e(names.get(t['see'], t['see']))}</a>."
+                   if t.get("see") else "")
+            figs.append(f"<figure class='loadterm' id='load-{term}'>{loads.picture(term)}<figcaption><b>"
+                        f"{e(words[0].upper() + words[1:])}.</b> {e(t.get('line', ''))}{see}</figcaption></figure>")
+        rows.append(f"<p class='label'>{e(title)}</p><div class='loadterms'>{''.join(figs)}</div>")
+    return "".join(rows)
+
+
+def basic_html(card: dict, basic_cards: dict | None = None) -> str:
     lines = "".join(f"<li>{e(x)}</li>" for x in card.get("lines") or [])
     flag = "" if card.get("checked") else "<p class='unchecked'>Not checked yet</p>"
-    return f"<section class='card' id='basic-{e(card['id'])}'><h3>{e(card['name'])}</h3>{flag}<ul>{lines}</ul></section>"
+    return (f"<section class='card' id='basic-{e(card['id'])}'><h3>{e(card['name'])}</h3>{flag}<ul>{lines}</ul>"
+            f"{terms_html(card, basic_cards)}</section>")
 
 
 STYLE = """
-:root{--ink:#22262b;--muted:#6b7480;--rule:#d9dde3;--ultramarine:#2b4bbd;--r-seeded:#a0622d;--bg:#fbfaf7}
+:root{--gesso:#fbfaf7;--panel:#f1f2ef;--ink:#22262b;--muted:#6b7480;--rule:#d9dde3;--ultramarine:#2b4bbd;--r-seeded:#a0622d;--bg:#fbfaf7}
 body{font:16px/1.5 system-ui,sans-serif;color:var(--ink);background:var(--bg);max-width:720px;margin:0 auto;padding:16px}
 h1{font-size:1.5rem} h2{margin-top:2rem;border-bottom:1px solid var(--rule)} h3{margin:.2rem 0}
 .card{border:1px solid var(--rule);border-radius:8px;padding:12px 16px;margin:14px 0;background:#fff}
@@ -222,7 +276,7 @@ h1{font-size:1.5rem} h2{margin-top:2rem;border-bottom:1px solid var(--rule)} h3{
 .note{color:var(--muted)} .panels{display:flex;gap:10px;flex-wrap:wrap} .panel{margin:0;width:150px}
 .panel svg{width:150px;height:150px;border:1px solid var(--rule);border-radius:6px;background:#f6f4ee}
 .panel figcaption,.small,.label{font-size:.85rem} .brushpic.sm{height:18px;vertical-align:middle}
-"""
+""" + loads.STYLE
 
 
 def page() -> str:
@@ -242,6 +296,8 @@ def page() -> str:
     for c in s.values():
         missing = [label for key, label in (("brushes", "brush"), ("load", "load"), ("motion", "motion"), ("mistakes", "mistakes"))
                    if not c.get(key) and not (key == "brushes" and c.get("tools"))]
+        if isinstance(c.get("load"), dict):
+            missing += [f"how {w} (load {k})" for k, w in (("thickness", "thick"), ("amount", "much")) if not c["load"].get(k)]
         gaps = f" Not in the research, so left out: {', '.join(missing)}." if missing else ""
         parts.append(stroke_html(c) + f"<p class='src'>{e(c['_file'])}. From: {e('; '.join(c.get('sources') or []))}.{e(gaps)}</p>")
     return "".join(parts)

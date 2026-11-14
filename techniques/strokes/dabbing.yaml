@@ -8,7 +8,10 @@ brushes:
 - old stiff brush (for foliage)
 tools:
 - a sponge, for soft patches
-load: Little paint, fairly dry.
+load:
+  thickness: thick
+  amount: light
+  note: 'No water on the brush: a wet one makes blobs.'
 motion: Tap with the tip of the brush. The more you tap one spot, the more solid it gets.
 result: Dots or dappled patches that get more solid the more you tap.
 then: Tap a lighter mix on the lit side, leaving the darker taps showing underneath.

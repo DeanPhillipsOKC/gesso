@@ -21,6 +21,7 @@ from html import escape as e
 from pathlib import Path
 
 import cards
+import loads
 
 CANVAS = "#faf9f5"  # from_finish.CANVAS: the bare canvas before step 1
 MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}
@@ -92,7 +93,7 @@ ul.tubelist .small{display:block;line-height:1.3}
 details.allpaints .paints{margin-top:.25rem}
 details.aid>summary h2.foldh{font:inherit;margin:0;grid-column:2}
 .p-cut{background:var(--r-filter);color:var(--gesso)}.t-cut{color:var(--r-filter)}
-"""
+""" + loads.STYLE  # the paint-load card's pictures and a step's two small ones (#99)
 
 
 def aid_src(folder: Path, rel: str, embed: bool) -> str:
@@ -263,7 +264,8 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
     group = next((g for g in lesson.get("groups") or [] if s["id"] in g["steps"]), None)
     where_in = (f' · {e(group["name"])}, {group["steps"].index(s["id"]) + 1} of {len(group["steps"])}' if group else "")
     lines = s.get("lines") or []
-    do = f'<ol class="do">{"".join(f"<li>{e(x["text"])}</li>" for x in lines)}</ol>' if lines else ""
+    # a load line's words link to the paint-load card, with their two small pictures (#99)
+    do = f'<ol class="do">{"".join(f"<li>{loads.linked(x["text"])}</li>" for x in lines)}</ol>' if lines else ""
     tip = f'<p class="tip"><b>Tip:</b> {e(s["tip"])}</p>' if s.get("tip") else ""
     el = s.get("element") or {}
     if el.get("drafted"):  # a technique drafted for this lesson, not in the hand-checked library yet (#12)

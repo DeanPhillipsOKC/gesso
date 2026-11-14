@@ -4,8 +4,10 @@ name: Dry brush
 brushes:
 - flat
 - old stiff flat (catches the canvas weave best)
-load: A dry brush, no water. Load only the tip, then wipe most of the paint off on a paper towel. It should feel
-  dry and hard to apply.
+load:
+  thickness: thick
+  amount: dry
+  note: Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.
 motion: Light pressure, skimming the surface.
 result: Feathery, broken, see-through marks that catch the canvas texture. Never a solid area.
 then: Build up in several light passes.

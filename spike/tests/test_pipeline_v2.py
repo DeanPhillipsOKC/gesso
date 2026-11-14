@@ -1009,6 +1009,67 @@ class CardTests(unittest.TestCase):
             self.assertIn("isn't one of", " | ".join(cards.problems({}, {"x": {**good, "when": when}}, [])))
             self.assertEqual(cards.places([], {"x": {**good, "when": when}}), {})
 
+    def test_every_stroke_cards_load_uses_only_the_fixed_terms_and_another_word_is_a_problem(self):
+        import loads
+
+        for cid, c in cards.strokes().items():  # #99: one vocabulary for how thick and how much
+            self.assertEqual(loads.problems(c.get("load"), cid), [], cid)
+            if c.get("load"):
+                self.assertTrue(set(c["load"]) <= set(loads.KEYS), cid)
+        self.assertEqual(loads.text({"thickness": "creamy", "amount": "full"}), "Creamy paint, a full load.")
+        self.assertEqual(loads.text({"amount": "dry", "note": "Reload often."}), "Wiped nearly dry. Reload often.")
+        good = {**cards.strokes()["press-and-lift"]}
+        results = [good["stroke_result"]]
+        for load, expect in (("Wet and creamy.", "not free text"), ({"thickness": "runny"}, "isn't one of"),
+                             ({"amount": "heaps"}, "isn't one of"), ({"thickness": "creamy", "how": "x"}, "takes only"),
+                             ({}, "is empty"), ({"amount": "light", "note": "Creamy, not runny."}, "says 'Creamy'"),
+                             ({"thickness": "thin", "note": "Thin it with water until inky."}, "says 'Thin'"),
+                             ({"note": "Don't overload the brush."}, "says 'overload'")):
+            got = " | ".join(cards.problems({good["id"]: {**good, "load": load}}, {}, results))
+            self.assertIn(expect, got, load)
+
+    def test_the_paint_load_card_has_one_picture_and_one_line_per_term(self):
+        import loads
+
+        card = cards.basics()[loads.CARD]
+        self.assertEqual(card["when"], "start")
+        self.assertEqual(sorted(t["term"] for t in card["terms"]), sorted(loads.TERMS))
+        self.assertTrue(all(t.get("line") for t in card["terms"]))
+        html = cards.basic_html(card)
+        self.assertEqual(html.count('<svg class="loadpic"'), len(loads.TERMS))
+        self.assertEqual(html.count("<figcaption>"), len(loads.TERMS))
+        for t in loads.TERMS:
+            self.assertIn(f"id='load-{t}'", html)
+            self.assertIn(loads.LABELS[t], html)
+        self.assertIn("href='#basic-water'", html)  # thin paint points at How much water
+        # a term missing, twice, unknown, or with no line is a problem
+        terms = card["terms"]
+        for broken, expect in ((terms[1:], "shows 0 times"), (terms + terms[:1], "shows 2 times"),
+                               (terms + [{"term": "goopy", "line": "x"}], "isn't one of the load terms"),
+                               ([{**terms[0], "line": ""}] + terms[1:], "has no line"),
+                               ([{**terms[0], "see": "nowhere"}] + terms[1:], "doesn't exist")):
+            got = " | ".join(cards.problems({}, {**cards.basics(), loads.CARD: {**card, "terms": broken}}, []))
+            self.assertIn(expect, got)
+
+    def test_a_load_line_links_its_terms_and_carries_their_pictures(self):
+        import loads
+
+        html = loads.linked("Brush: #6 round. Load: Creamy paint, a full load. Reload often.")
+        self.assertEqual(html.count('href="#basic-paint-load"'), 2)
+        self.assertEqual(html.count('class="loadpic sm"'), 2)
+        self.assertIn(loads.LABELS["creamy"], html)
+        self.assertIn(loads.LABELS["full"], html)
+        self.assertIn(" Reload often.<span class=\"loadpics\">", html)
+        one = loads.linked("Brush: liner. Load: Wiped nearly dry.")
+        self.assertEqual(one.count('class="loadpic sm"'), 1)
+        self.assertIn(loads.LABELS["dry"], one)
+        # the same words outside a load, or an old free-text load, stay plain text
+        for plain in ("Start thick at the trunk and thin it out.", "Load: Wet and creamy.", "Paint: Creamy white."):
+            self.assertEqual(loads.linked(plain), plain.replace("'", "&#x27;"))
+        self.assertIn("&lt;b&gt;", loads.linked("Load: Thin paint. <b>"))  # still escaped
+        card = cards.stroke_html(cards.strokes()["press-and-lift"])
+        self.assertEqual(card.count('class="loadpic sm"'), 2)  # the stroke card's Load row too
+
     def test_an_unchecked_card_says_so_and_the_page_holds_every_card(self):
         page = cards.page()
         for cid in cards.strokes():

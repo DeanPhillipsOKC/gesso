@@ -24,6 +24,7 @@ import numpy as np
 import aids
 import build_steps as bs
 import cards
+import loads
 import mixing
 import outline as ol
 import paints as measured
@@ -196,7 +197,7 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
         brush = s.get("brush") or ""
         if brush or (card and card.get("load")):
             head = f"Brush: {brush}." if brush else ""
-            load = f"Load: {card['load'].strip()}" if card and card.get("load") else ""
+            load = f"Load: {loads.text(card['load'])}" if card and card.get("load") else ""
             lines += split(" ".join(x for x in (head, load) if x), "how")
         if card and card.get("motion"):
             lines += split(card["motion"], "how")

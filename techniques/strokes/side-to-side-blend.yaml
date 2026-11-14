@@ -4,7 +4,9 @@ name: Side-to-side blend
 brushes:
 - wide flat
 - 3/4 inch wash brush
-load: An even coat, neither thick nor thin.
+load:
+  thickness: creamy
+  note: An even coat.
 motion: Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and
   paint below it. Then stroke back up over the join several times.
 result: Smooth bands of color, with a soft join where two wet colors meet.

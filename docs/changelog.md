@@ -6,6 +6,15 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.7.0 (2026-11-14)
+- A beginner card, "Paint thickness and how much is on the brush" (#99), in Before you start. It explains the six
+  words a lesson uses for loading the brush. How thick: thick, creamy, or thin. How much: a full load, a light load,
+  or wiped nearly dry. Each has a picture of the dab on the palette or the loaded brush, the stroke it leaves over a
+  dark line, and one line of how to get there. "Creamy" means how thick the paint is, not how much of it.
+- Every stroke card's load uses only those words ("Creamy paint, a full load", then anything else about loading),
+  and `cards` reports a card that uses another. A step's Load line links each word to the card and shows its two
+  small pictures in the line, so the painter doesn't scroll back. The stroke card's own Load row does the same.
+
 ## POC 1.6.0 (2026-11-14)
 - Thin parts (a branch, a mast and its boom, a rail) get clean outlines (#129). They used to be found by color
   alone, which left blobs of misty background stuck to the chickadee's branch (#100) and a lumpy mast with a boom

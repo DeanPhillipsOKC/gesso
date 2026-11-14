@@ -5,7 +5,9 @@ brushes:
 - flat
 tools:
 - an old toothbrush
-load: Thinned paint. Too much water gives big drips.
+load:
+  thickness: thin
+  note: Too much water gives big drips.
 motion: Flick the bristles with a finger, or tap the brush on another handle.
 result: Random speckles, for stars or snow.
 then: Let it dry before the next step.

@@ -4,7 +4,8 @@ name: Pull-down
 brushes:
 - '#12 bright'
 - flat
-load: Load the brush, then wipe it until only a little paint is left.
+load:
+  amount: dry
 motion: Stroke straight down, starting just below the thing being reflected.
 result: A soft, streaky, see-through reflection of a tree, boat, or shore.
 then: Once dry, cross it with thin horizontal dashes of the water color.
