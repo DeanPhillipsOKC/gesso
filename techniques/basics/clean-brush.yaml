@@ -1,5 +1,6 @@
 id: clean-brush
 name: Keep your colors clean
+when: start
 lines:
 - Wipe the brush on a rag between colors.
 - Rinse it fully before going into white.

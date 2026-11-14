@@ -1,5 +1,6 @@
 id: set-up
 name: Before you start
+when: start
 lines:
 - 'Two water jars: one to rinse the brush, one kept clean for thinning paint. A big clear jar shows when the rinse
   water is dirty.'

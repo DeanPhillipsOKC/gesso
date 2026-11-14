@@ -1,5 +1,7 @@
 id: fix-a-mistake
 name: Fixing a mistake
+when: start
+fold: If something goes wrong
 lines:
 - Acrylic is forgiving. Let the area dry, then paint over it and try again.
 - Don't keep working a spot that's half dry. Leave it, work somewhere else, and come back.

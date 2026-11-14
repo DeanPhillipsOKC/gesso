@@ -1,5 +1,6 @@
 id: ugly-stage
 name: The ugly stage
+when: midway
 lines:
 - Partway through, every painting looks flat or wrong. That's normal. Keep building.
 - Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.

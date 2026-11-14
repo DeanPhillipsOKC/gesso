@@ -1,5 +1,6 @@
 id: water
 name: How much water
+when: start
 lines:
 - Keep water to about half the mix or less. More than that makes weak, see-through color that can lift when you
   paint over it.
