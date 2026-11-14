@@ -3,7 +3,9 @@ stroke_result: Fan brush tapping (thin paint, spread bristles, middle tips)
 name: Fan brush tapping
 brushes:
 - fan
-load: 'Thin paint: thin it with a little water. Stroke the brush on the palette until the bristles fan out.'
+load:
+  thickness: thin
+  note: Stroke the brush on the palette until the bristles fan out.
 motion: Stamp only the tips, using the middle of the fan, not the side bristles. For a pine, work from the top down
   in a zigzag and press harder as you go down. Short strokes in different directions make grass.
 result: Needle or branch clusters, light at the top and heavier where pressed.

@@ -4,8 +4,9 @@ name: Double load
 brushes:
 - flat
 - angle
-load: One corner of the brush in one color, the other corner in the second. Reload both for each stroke. A touch
-  of water helps the paint flow.
+load:
+  thickness: creamy
+  note: One corner of the brush in one color, the other corner in the second. Reload both for each stroke.
 result: A two-tone stroke that blends partway between the colors.
 then: Reload both colors for each stroke. Don't try to make it fully smooth.
 mistakes:

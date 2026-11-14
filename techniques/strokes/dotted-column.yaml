@@ -3,7 +3,8 @@ stroke_result: Dotted or oval column (round, creamy load, marks angled out from 
 name: Dotted column
 brushes:
 - '#4 round'
-load: Wet and creamy.
+load:
+  thickness: creamy
 motion: 'Small dots or ovals in a column, angled out from the stem: narrow at the top, wider lower down.'
 result: A spike of small marks, narrow at the top and wider at the base (lavender, lupine).
 then: Add a lighter column over it, mostly near the top, leaving the dark showing lower down.

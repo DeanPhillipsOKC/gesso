@@ -4,7 +4,9 @@ name: Dotting
 tools:
 - the handle end of a brush
 - a dotting tool
-load: Dip in fresh paint for each dot or small group. Thicker paint holds a better dot than thin.
+load:
+  thickness: thick
+  note: Dip in fresh paint for each dot or small group.
 result: Round, slightly raised dots.
 then: Wipe a bad dot off while it's wet, or cover it with the background color once dry.
 mistakes:

@@ -4,7 +4,9 @@ name: Liner work
 brushes:
 - liner
 - small round (the tip)
-load: 'Thin the paint with water until it flows like ink: swirl the brush in water, then in the paint. Reload often.'
+load:
+  thickness: thin
+  note: Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.
 motion: Hold the brush upright, with light, steady pressure. For branches, start thick at the trunk and taper. Let
   branches fork in different directions and overlap, and wobble the edges a little.
 result: Thin, flowing lines.

@@ -3,7 +3,9 @@ stroke_result: Flicking (light load, quick upward stroke from the base)
 name: Flicking
 brushes:
 - fan (its edge)
-load: Light paint. Too much makes flat blobs.
+load:
+  amount: light
+  note: Too much paint makes flat blobs.
 motion: A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.
 result: Tapered blades with broken tips, denser at the base.
 then: Flick a lighter green over the dark base, fewer as you go up, so the dark shows between the blades.

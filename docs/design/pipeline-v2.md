@@ -543,7 +543,7 @@ had just been given. Now (`paints.measure`, `paints.add`):
 
 `techniques/strokes/<id>.yaml`: **one card per entry in the technique file's `stroke_results`** (28 today), each
 linked to it by `stroke_result:` so the text review still judges strokes against that table. Built: 28 stroke
-cards and 11 basics cards, `spike/cards.py` (load, check, and draw them), and `tools.py cards --out <file>` (one
+cards and 12 basics cards (the 12th, paint-load, from #99), `spike/cards.py` (load, check, and draw them), and `tools.py cards --out <file>` (one
 page of them all for the owner). A plan's `stroke` is a card's id; `ls techniques/strokes` lists them. There is no
 card for plainly filling a small flat shape, because the research doesn't cover it: use `build-from-pieces`.
 
@@ -552,8 +552,10 @@ id: dabbing
 stroke_result: Dabbing or stippling (round tip or stiff brush, little paint)
 name: Dabbing
 brushes: [old stiff flat, round bristle brush]
-load: Dip only the bristle tips. Tap most of it off on a paper towel.
-consistency: Thick, straight from the mix. No water.
+load:                    # #99: only the paint-load card's terms, from spike/loads.py
+  thickness: thick       # thick | creamy | thin
+  amount: light          # full | light | dry (wiped nearly dry)
+  note: No water on the brush.   # anything else about loading, without other thickness or load words
 motion: Hold the brush upright. Tap straight down and lift. Turn the brush a little between taps.
 result: Ragged spots with gaps. More taps make it more solid.
 then: Stop while the color underneath still shows.
@@ -585,7 +587,7 @@ lesson.json's stages alone (show, part, stage, paints, drafted lines, aids area)
 
 | `when` | Card | The step |
 |---|---|---|
-| `start` | set-up, clean-brush, water, keep-paint-wet; fix-a-mistake (`fold:`, closed, "If something goes wrong") | Before you start |
+| `start` | set-up, clean-brush, water, keep-paint-wet, paint-load; fix-a-mistake (`fold:`, closed, "If something goes wrong") | Before you start |
 | `first_layer` | let-it-dry | the first with a `dry` line, or a pass on a part with an earlier step |
 | `light_over_dark` | light-over-dark | the first with a `coats` line |
 | `first_tint` | lighter-darker | the first using a paint that's a tint or shade of another (`of`) |
@@ -694,9 +696,13 @@ checked: false
   isn't built: nothing in the plan says where the light is in a form a tool can read.
 - *Mix*: on a paint's first use only, naming every later step ("for this step and steps 4, 7 and 10; cover it
   between them"); later uses rely on the page's "from step N, mix more if it has dried".
-- *Brush, load, consistency, motion*: "Brush: <brush>. Load: <card load>", then the card's motion. **No card has a
-  `consistency` field**; where the research gives one, the card's `load` already says it ("Wet and creamy"), so
-  there's no separate consistency line. Cards with no `load` (9) or no `motion` (4) give no line for it.
+- *Brush, load, consistency, motion*: "Brush: <brush>. Load: <card load>", then the card's motion. A card's `load`
+  is `thickness` (thick, creamy, thin), `amount` (full, light, dry), and an optional `note`, and reads "Creamy paint,
+  a full load." then the note (#99, `spike/loads.py`). Each card names only what its research gives: 19 cards have a
+  load, 9 don't, and three of the 19 (x-stroke, wet-blend, glazing) have a note only. `cards.problems` refuses another word for how thick or
+  how much in a note. On the page, the Load line's words link to the paint-load basics card (`#basic-paint-load`,
+  in Before you start), with each term's small picture right after them. The card shows all six terms in two rows,
+  a picture and one line each; thin paint points at How much water. Cards with no `motion` (4) give no line for it.
 - *Result*: "It should leave" plus the card's `result`; and, measured, "Leave what step N painted showing around these
   marks" when more than 10% of the part's earlier paint is unchanged after the step (the technique's rule: "each step
   ends by saying ... what should still show through").

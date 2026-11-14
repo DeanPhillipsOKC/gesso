@@ -7,7 +7,9 @@ also_called:
 - leaf stroke
 brushes:
 - round
-load: Paint loaded well into the belly of the brush, creamy, not runny.
+load:
+  thickness: creamy
+  amount: full
 motion: Touch down with the tip, press so the belly spreads, then pull and lift so the stroke ends on the tip.
 result: A teardrop or comma shape, wide where you pressed and pointed where you lifted.
 then: Tidy the edges with the background color once dry.

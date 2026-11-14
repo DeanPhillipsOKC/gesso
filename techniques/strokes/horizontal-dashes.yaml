@@ -4,7 +4,9 @@ name: Horizontal dashes
 brushes:
 - flat (on its edge)
 - small round
-load: Creamy paint, a light touch.
+load:
+  thickness: creamy
+  amount: light
 motion: Short, level dashes. Small and close together near the horizon, longer and wider apart lower down.
 result: Short, flat, level marks with gaps of the water color between them.
 then: Keep every dash level.

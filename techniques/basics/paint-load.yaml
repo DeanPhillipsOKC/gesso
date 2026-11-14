@@ -1,0 +1,27 @@
+id: paint-load
+name: Paint thickness and how much is on the brush
+when: start
+lines:
+- Each step's Load line says two different things. How thick the paint is, and how much of it is on the brush. Creamy
+  paint can be a full load or a light one.
+terms:
+- term: thick
+  line: Straight from the tube, with no water. It stands up in a peak, covers what's under it, and keeps its brush marks.
+- term: creamy
+  line: Like heavy cream or soft yogurt. Add a touch of water if the paint is stiff. It spreads smoothly and covers, but
+    doesn't run.
+- term: thin
+  line: Watered until it flows like ink. It's see-through, so what's under it shows.
+  see: water
+- term: full
+  line: Pull the brush through the paint and press it lightly once, so the paint goes up into the belly of the
+    bristles. For solid strokes and covering.
+- term: light
+  line: Only the tip in the paint. If you picked up too much, wipe some off on the towel. For small marks and detail.
+- term: dry
+  line: Load, then wipe the brush on a paper towel until only a little paint is left. It feels dry and hard to push,
+    and leaves broken marks.
+sources:
+- docs/research/acrylic-paint-along.md, section 2, Paint thickness and how much is on the brush
+- docs/research/acrylic-paint-along.md, section 3, Painting over wet versus dry layers (about half water at most)
+checked: false
