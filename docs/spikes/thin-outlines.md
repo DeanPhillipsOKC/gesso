@@ -96,7 +96,7 @@ paint map and the later steps that are cut inside it stay wrong too.
 
 The same story, smaller. The color rule's mast is ragged with a lump at the foot. By shape rounds the lump and
 keeps it; along the path trims the top and keeps it. Today's tool returns a straight, even mast. The image-model
-mask is a perfect bar 3 pixels to the right of the mast, about half its width (39% of the mast outside it). Slid
+mask is a perfect bar 3 pixels to the right of the mast, about a third of its width (39% of the mast outside it). Slid
 back, it's as good as the color rule's (overlap 0.86 against 0.85), and no better.
 
 **The lavender's tree** was never a thin part: it's an `object`, and its outline is already clean. The shape
@@ -125,8 +125,8 @@ quality.
 2. **Don't build the free cleanup.** Alone it doesn't fix the branch (so no build issue, per the issue's
    acceptance), and on top of today's tool it has nothing to do.
 3. **Don't use the image model to make outlines.** It doesn't line up and doesn't repeat, and a misplaced outline
-   damages every later step. Sliding its mask back into place would help, and at best brings it level with the
-   free color rule, for 3 cents a try.
+   damages every later step. Sliding its mask back into place would help, and at best makes it a little better than the
+   free cleanups, still well short of today's tool, for 3 cents a try.
 4. **A step re-render stays an allowed fallback, unbuilt.** It works as a picture and is cheap. If a lesson ever
    has a block-in the outline tool can't get clean in its fix rounds, a re-render of that one step is a fair last
    move, knowing the shape will be slightly the model's. No lesson needs it now, so there's nothing to file.
