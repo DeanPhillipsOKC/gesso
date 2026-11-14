@@ -145,6 +145,51 @@ class MatchTests(unittest.TestCase):
         self.assertEqual(el.match([coat, step("t", "pass", "dry-brush", ["l"])], grass, {"c": 60.0, "l": 80.0})[0], [0, 2])
         self.assertEqual(el.match([coat, step("d", "pass", "dry-brush", ["d"])], grass, {"c": 60.0, "d": 40.0})[0], [0, 1])
 
+    def test_a_darken_step_shown_full_is_told_to_change_its_show_not_its_paint(self):
+        # the hands-off lavender run of 2026-11-14 (#140): a "Darken" step with show full can only land on the
+        # light texture step (the dark step is pass only), so its darker paint clashed. The fix is the show.
+        L = {"c": 60.0, "d": 40.0}
+        for eid, coat, darken in (("field-grass", step("coat", "flat", "horizontal-strokes", ["c"]),
+                                   step("darken", "full", "dry-brush", ["d"])),
+                                  ("soil-rows", step("coat", "flat", "toward-vanishing-point", ["c"]),
+                                   step("darken", "full", "dry-brush", ["d"]))):
+            e_ = el.library()[eid]
+            where, wrong = el.match([coat, darken], e_, L)
+            self.assertEqual(where, [0, 2], eid)
+            self.assertEqual(len(wrong), 1, eid)
+            self.assertIn("Change darken's show from full to pass, and keep its paints", wrong[0])
+            self.assertIn(f"\"{e_['steps'][1]['name']}\" (dark)", wrong[0])
+            self.assertNotIn("swap the two steps' paints", wrong[0])
+            # and the named show does fit, with nothing left to say
+            self.assertEqual(el.match([coat, dict(darken, show="pass")], e_, L), ([0, 1], []))
+
+    def test_a_clash_no_show_can_fix_still_points_at_the_paints(self):
+        _, wrong = el.match(ROWS, self.rows, {**LIGHT, "mid": 10.0})
+        self.assertIn("swap the two steps' paints", wrong[0])
+        self.assertNotIn("show", wrong[0])
+        ball = el.library()["round-object"]
+        steps = [step("base", "flat", "build-from-pieces", ["gold"]), step("s0", "pass", "curved-strokes", ["red"])]
+        _, wrong = el.match(steps, ball, {"gold": 60.0, "red": 45.0})
+        self.assertIn("missing that one", wrong[0])
+
+    def test_elements_lesson_says_to_change_the_show_on_the_lavender_plan(self):
+        # the lavender fixture with its fields' darken pass set to show full, as the hands-off run had it
+        p = plan("lavender-balloon")
+        shade = next(s for st in p["stages"] for s in st["steps"] if s["id"] == "fields-shade")
+        with tempfile.TemporaryDirectory() as d:
+            # the tools want the name; the picture isn't read for this, and PIL reads a JPEG by its bytes
+            (Path(d) / "99_finish.png").write_bytes((FIX.parent / "finishes" / "lavender-balloon.jpg").read_bytes())
+            for show in ("pass", "full"):
+                shade["show"] = show
+                (Path(d) / "plan.json").write_text(json.dumps(p), encoding="utf-8")
+                code, out = run_tool("elements", "--lesson", d)
+                self.assertEqual(code, 0, out)
+                said = [x for x in out["problems"] if x.startswith("fields:")]
+                if show == "pass":
+                    self.assertEqual(said, [])
+            self.assertEqual(len(said), 1, out["problems"])
+            self.assertIn("Change fields-shade's show from full to pass, and keep its paints", said[0])
+
     def test_a_ripple_pass_is_the_ripple_step_and_shows_its_mistake(self):
         water = el.library()["water"]
         steps = [step("base", "flat", "horizontal-strokes", ["d"]), step("light", "pass", "horizontal-strokes", ["l"]),
