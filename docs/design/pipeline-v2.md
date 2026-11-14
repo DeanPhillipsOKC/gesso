@@ -641,7 +641,9 @@ checked: false
 - **`check`** (`elements.plan_problems`): no `technique_why`; a part with no `element` or no `element_why`; an
   element that doesn't exist or is for another kind of part; steps that don't follow it (the message lists its steps
   in order); values out of order (it names the element step the darker paint landed on and says the part may be
-  missing that step); a drafted element that's broken, marked checked, uses a library id, or isn't filed yet.
+  missing that step, or, when another show puts the step on an element step its paints fit with every value in
+  order, that the show is wrong and which show to use: a "Darken" step set to `full` lands on field-grass's light
+  texture step, and `pass` is the fix, #140); a drafted element that's broken, marked checked, uses a library id, or isn't filed yet.
 - **Drafting.** When nothing fits (fur, skin, glass, a night sky), the run writes `<lesson>/elements/<id>.yaml`
   with `drafted: true`, `checked: false`, and `sources` saying what came from the research and what didn't. The
   lesson page marks that part's steps "Technique not checked yet". The run files it as an issue when it drafts it
@@ -692,13 +694,32 @@ checked: false
   first step never rinses. The wording is the clean-brush card's.
 - *Where*: `aids.where_words` as is (inches only since #122), except an area that touches all four edges is "the whole canvas" only when it
   covers 90% of it (`aids.WHOLE`): the chickadee's branch touches all four and was called the whole canvas.
-  Measured from the area's main pieces (#90, `aids.main_area`): a piece under 1% of the area (`aids.STRAY`) is a stray
-  speck and left out, unless the small pieces together are 10% of the area or more (`aids.STRAY_TOTAL`: a part made of
-  many small marks, a sun path or lavender rows, is measured whole). Two specks by the trunk had put a real run's
-  chickadee body "at the left edge, 8 1/2 in wide" (it's about 6 1/2 in, 1 3/4 in from the edge). The outline on the
-  Where picture still shows every piece. Not fixed by it: on a real lavender run the mountains' outline took a piece of
-  the sky (17% of the part, reaching the top edge), so the line says "from the top edge"; that's an outline fault,
-  not a speck, and the line matches the outline the page draws.
+  **Changed 2026-11-14 (#126): the words measure what the finished painting shows.** They measured the step's whole
+  painted area, which runs under later parts: a sky's `covers` overrun, paint behind the boat, a part's rim laid back
+  by the next part's coat. A hands-off sailboat run (`red-sailboat_skill_20261113-212457`) rewrote three lines by
+  hand for it: the sky's bottom, the far shore's band, and the water's top, off by up to 1 1/2 in. Now
+  `build_steps.visible` keeps, of each step's painted area, the pixels its part or a child of its part owns in
+  `parts/owner.png` (a child's place counts until the child is painted, since by then the painted area leaves it
+  out), and `where_words` measures that; aids.json's `where_words` does the same. The outline on the page stays the
+  painted area: back to front, the painter does paint there. Where the outline reaches 1/2 in (`draft_text.PAST`) or
+  more past the words on a side, and a part not painted yet is what covers it, the line says why: a part with
+  `covers` adds "Paint a little past its bottom, under where the hill and the water will go.", any other "The
+  outline also runs under where the boat will go: paint straight through there." (at most two parts named). When
+  what pushes the outline out is a part painted already (the water's coat laid over the hill's foot), it adds "The
+  outline also reaches onto the far hill and shore, painted already: there, only soften this paint into its edge and
+  leave it showing.", since that paint only lays the part's rim back in its own color, so an outline past its words is never left unexplained (PR #142 review). On the
+  sailboat fixture (14 x 11 in) the sky's bottom moved from 5 to 5 1/2 in from the bottom edge and the water's top
+  from 4 1/2 in from the top to 5 in from the bottom, each within 1/4 in of the horizon in the outlines. 
+  **Changed 2026-11-14 (#90): stray specks don't move the words.** They're measured from the area's main pieces
+  (`aids.main_area`): a piece under 1% of the area (`aids.STRAY`) is a stray speck and left out, unless the small
+  pieces together are 10% of the area or more (`aids.STRAY_TOTAL`: a part made of many small marks, a sun path or
+  lavender rows, is measured whole). Two specks by the trunk had put a real run's chickadee body (`chickadee_skill_
+  20261113-130614`) "at the left edge, 8 1/2 in wide"; from its page's outline the line now reads 1 3/4 in from the
+  left edge, about 7 in wide (the hand edit said 6 1/2). `past_words` compares the main pieces too, so a speck of the
+  outline isn't a reason to explain it. The outline on the Where picture still shows every piece. Not fixed by it: on
+  `balloon-lavender_skill_20261113-130631` the mountains' painted area has a piece up in the sky, 17% of it and
+  reaching the top edge; it's not a speck, and how much of it the mountains' outline owns (what the words measure
+  since #126) can't be told from the sealed page.
 - *Paints*: a blend's paints are ordered top to bottom by where each lands in the step picture. "Out from the light"
   isn't built: nothing in the plan says where the light is in a form a tool can read.
 - *Mix*: on a paint's first use only, naming every later step ("for this step and steps 4, 7 and 10; cover it

@@ -392,6 +392,7 @@ def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner:
     paints = {c["id"]: c for c in plan.get("paints") or []}
     pics = [to_canvas(p, canvas_box) for p in pictures]
     areas = [to_canvas(m, canvas_box) for m in masks]
+    seen = [to_canvas(m, canvas_box) for m in bs.visible(plan, owner, masks)]  # what the finish shows of it (#126)
     size = view_size(pics[0].shape)
     blank = np.empty_like(pics[0])
     blank[:] = CANVAS
@@ -400,8 +401,9 @@ def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner:
     rows = []
     for i, (s, area) in enumerate(zip(steps, areas)):
         share = float(area.mean())
+        # the outline is everything the step paints; the words place what of it the finished painting shows (#126)
         row = {"id": s["id"], "image": images[i], "area": round(share, 4),
-               "path": outline_path(area, size), "where_words": where_words(area, canvas)}
+               "path": outline_path(area, size), "where_words": where_words(seen[i], canvas)}
         stem = f"{i + 1:02d}_{s['id']}"
         vm = view_mask(area, size) if area.any() and share < CLOSE_UP else None
         if vm is not None and vm.any() and _span(vm) <= CLOSE_SPAN * VIEW:
