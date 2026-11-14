@@ -276,7 +276,14 @@ family:
    to the path's own band **and to pixels the color rule gives the part**. Asked limb by limb with nothing to check
    it against, the model took a wedge of foliage at the gate run's left edge, where three paths run close together;
    the color rule is the check, and the clean body from 1 keeps the color rule's own blobs out.
-3. Pieces under 0.05% of the picture go. When nothing is left, the color rule outlines the part, as before.
+3. Pieces under 0.05% of the picture go. When nothing is left, the color rule outlines the part, as before, and its
+   `stats.json` row carries no confidence (the review of #129: a model's low confidence on a part it didn't outline
+   failed `check`).
+
+Limbs are asked for even when the first answer is empty. A thin part with `colors_in` and no `points_in` is asked
+with points along its paths instead; that worked on the fixture's branch at lower confidence (0.48 against 0.94), so
+the skill asks for points on thin parts. A thin part's low-confidence problem says to add points, not to change a
+box it doesn't have.
 
 `parts/stats.json` says per thin part how it was done (`how`: `model`, `model and limbs`, or the color rule) and
 which paths were asked for alone (`limbs`); `confidence` is the first answer's. On the chickadee fixture the branch

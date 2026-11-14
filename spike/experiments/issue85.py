@@ -463,8 +463,9 @@ def sheets() -> None:
 def rebuilt_step(pic: str, swaps: dict[str, str], step_id: str) -> np.ndarray:
     """One step picture of a gate run, built by the real tools (outline.outline, build_steps.build) with some
     parts' outlines swapped for saved ones (`swaps`: part id -> "<model>__<recipe>[@band]"). A swapped part is
-    handed to `outline` as a ready-made outline, which it takes only for an object, so its kind is changed for
-    this build; nothing else in the plan is."""
+    handed to `outline` as a ready-made outline. Since #129 `outline` takes one for a thin part too, but keeps it to
+    the part's band, so its kind is changed to object for this build; nothing else in the plan is. (Since #129 the
+    unswapped build outlines thin parts with SAM-HQ ViT-L, not the color rule the spike's "today" showed.)"""
     import build_steps as bs
     from filters import load as load_picture
 
@@ -477,7 +478,7 @@ def rebuilt_step(pic: str, swaps: dict[str, str], step_id: str) -> np.ndarray:
         if p["id"] in swaps:
             given[p["id"]] = load(pic, p["id"], swaps[p["id"]]) > 0.5
             p["kind"] = "object"
-    _, owner, _ = ol.outline(rgb, plan["parts"], ol.Sam(), given)
+    _, owner, _ = ol.outline(rgb, plan["parts"], ol.Sam(), given, thin_sam=ol.Sam(ol.HQ_L))
     plate = lesson / "98_background.png"
     pictures, _, _ = bs.build(rgb, plan, owner, load_picture(plate, max_side=100_000) if plate.exists() else None)
     ids = [s["id"] for s in bs.flat_steps(plan)]

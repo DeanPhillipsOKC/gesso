@@ -37,7 +37,8 @@ twigs, foliage next to the branch). Soft things (misty trunks, clouds, sun paths
   color is all that separates a mark from anything the same color in its box.
 - **Color fields** for `marks` and `thin`: `points_in` (5 to 8 spots on the part, one per shade of it) and
   `points_out` (5 to 8 spots on what's behind and around it, one per color there). A thin part's limbs are also
-  checked against them, so they matter there too.
+  checked against them, so they matter there too. Give a thin part `points_in`, not only `colors_in`: the outline
+  model is asked with them.
 - An `area` or `object` with one box takes `points_in` / `points_out` too: spots the outline must include or
   leave out. Use them only to fix an outline after seeing the preview.
 - `"parent": "<id>"` when the part is painted on another part and stays inside it (clouds on the sky, the cap on the

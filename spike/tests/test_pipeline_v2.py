@@ -139,6 +139,43 @@ class OutlineTests(unittest.TestCase):
 
         self.assertFalse(ol.thin(Nothing(), L, part, inside)[0].any())
 
+    def test_outline_embeds_the_thin_model_once_and_falls_back_to_the_color_rule(self):
+        img, parts, given = scene()
+        img[:, 142:148] = (0, 0, 0)  # a black pole down the right side
+        parts.append({"id": "pole", "kind": "thin", "width": 0.04, "paths": [[[0.906, 0.05], [0.906, 0.95]]],
+                      "points_in": [[0.906, 0.3]], "colors_out": ["#6e96dc", "#3c8c46"]})
+
+        class Model:
+            def __init__(self, answer, conf):
+                self.answer, self.conf, self.emb, self.embeds = answer, conf, None, 0
+
+            def embed(self, rgb):
+                self.emb, self.embeds = True, self.embeds + 1
+
+            def mask(self, box, points_in=(), points_out=()):
+                return self.answer.copy(), self.conf
+
+        pole = np.zeros(img.shape[:2], bool)
+        pole[:, 142:148] = True
+        m = Model(pole, 0.95)
+        masks, _, stats = ol.outline(img, parts, given=given, thin_sam=m)
+        self.assertEqual((m.embeds, stats[-1]["how"], stats[-1]["limbs"]), (1, "model", []))
+        self.assertTrue(masks["pole"][60, 145])
+        m = Model(np.zeros_like(pole), 0.1)  # finds nothing: the color rule outlines it, and nothing is "unsure"
+        masks, _, stats = ol.outline(img, parts, given=given, thin_sam=m)
+        self.assertEqual(stats[-1]["how"], "color rule (the model found nothing)")
+        self.assertIsNone(stats[-1]["confidence"])
+        self.assertTrue(masks["pole"][60, 145])
+        self.assertEqual(ol.problems(parts, stats), [])
+        stats[-1]["confidence"] = 0.5
+        self.assertIn("points_out right beside it", ol.problems(parts, stats)[0])
+        self.assertNotIn("box", ol.problems(parts, stats)[0])
+
+    def test_a_thin_part_with_an_empty_path_is_refused(self):
+        part = {"id": "pole", "name": "Pole", "kind": "thin", "width": 0.02, "paths": [[[0.5, 0.1], [0.5, 0.9]], []],
+                "points_in": [[0.5, 0.5]], "points_out": [[0.4, 0.5]]}
+        self.assertTrue(any("empty path" in x for x in plan2.parts_problems({"plan_version": 2, "parts": [part]})))
+
     def test_gaps_behind_an_object_follow_their_rows(self):
         owner = np.zeros((10, 12), np.int32)
         owner[5:] = 1  # a horizon at row 5

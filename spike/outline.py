@@ -290,28 +290,26 @@ def thin(sam: "Sam", L: np.ndarray, part: dict, inside: np.ndarray) -> tuple[np.
     asked for on its own (a box around that path, points along it, the points_out in its box), kept inside that
     path's own band and to pixels whose color is nearer the part's than what's behind it: asked limb by limb, the
     model took a wedge of foliage where three paths ran close together (spike for #85). Pieces under SPECK go.
-    Returns the outline and what was done, for stats.json."""
+    A part with colors_in but no points_in is asked with points along its paths instead. Returns the outline and
+    what was done, for stats.json."""
     h, w = L.shape[:2]
     paths, width = paths_of(part), part.get("width", 0.05)
-    pin = [q for q in (part.get("points_in") or ())]
+    pin = list(part.get("points_in") or ()) or [q for path in paths for q in along(path, THIN_STEP)]
     pout = part.get("points_out") or []
     box = paths_box(paths, width)
     one, conf = sam.mask(box, pin, inside_box(pout, box))
     claim = drop_small(one & inside)
-    limbs = []
-    if claim.any():
-        colors = None
-        for i, path in enumerate(paths):
-            if covered(claim, path, width) >= LIMB_COVERED:
-                continue
-            if colors is None:  # the color rule, as a veto on what a limb's answer adds
-                colors = marks(L, part, inside)
-            b = paths_box([path], width)
-            lone, c = sam.mask(b, along(path, THIN_STEP), inside_box(pout, b))
-            add = lone & band((h, w), {**part, "paths": [path]}) & inside & colors
-            claim |= add
-            limbs.append(i)
-        claim = drop_small(claim)
+    limbs, colors = [], None
+    for i, path in enumerate(paths):
+        if covered(claim, path, width) >= LIMB_COVERED:
+            continue
+        if colors is None:  # the color rule, as a veto on what a limb's answer adds
+            colors = marks(L, part, inside)
+        b = paths_box([path], width)
+        lone, c = sam.mask(b, along(path, THIN_STEP), inside_box(pout, b))
+        claim |= lone & band((h, w), {**part, "paths": [path]}) & inside & colors
+        limbs.append(i)
+    claim = drop_small(claim)
     return claim, {"confidence": round(conf, 3), "limbs": limbs}
 
 
@@ -471,7 +469,7 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
                     row.update(got)
                     row["how"] = "model" + (" and limbs" if got["limbs"] else "")
                     if not claim.any():  # the model found nothing in the band: the color rule, as before
-                        claim, row["how"] = None, "color rule (the model found nothing)"
+                        claim, row["how"], row["confidence"] = None, "color rule (the model found nothing)", None
                 else:
                     raise NoModel(f"{p['id']}: no thin-part outline model loaded and no ready-made outline given")
             if claim is None:
@@ -559,7 +557,10 @@ def problems(parts: list[dict], stats: list[dict]) -> list[str]:
         if s["share"] == 0:
             out.append(f"{p['id']}: nothing was outlined. Check its box and points against the picture.")
             continue
-        if s["confidence"] is not None and s["confidence"] < 0.80:
+        if s["confidence"] is not None and s["confidence"] < 0.80 and p["kind"] == "thin":
+            out.append(f"{p['id']}: the outline model is unsure of this thin part (confidence {s['confidence']}). "
+                       "Give it points_in on the part and points_out right beside it, and a path along every limb.")
+        elif s["confidence"] is not None and s["confidence"] < 0.80:
             out.append(f"{p['id']}: the outline model is unsure (confidence {s['confidence']}). Tighten the box, or add "
                        "points_in / points_out.")
         if p["kind"] == "object":
