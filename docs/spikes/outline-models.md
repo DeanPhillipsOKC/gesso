@@ -68,7 +68,7 @@ the pictures show.
 - One box + points: SAM-HQ ViT-L returns one clean piece on both pictures with every twig on the gate run. It is
   the cleanest branch in the run. Its faults are small: a sliver at one foot, and one thin twig missed on the
   fixture. ViT-L is as clean but drops the long right twig on both pictures. ViT-B gives three pieces on the gate
-  run: no blobs above the branch, a patch of foliage at the left edge, and no right twig.
+  run: no blobs above the branch, a patch of foliage at the left edge, and only a scrap of the right twig.
 - Per limb: ViT-L and SAM-HQ ViT-L keep every twig and leaf stem, but on the gate run both take a wedge of
   orange foliage at the left edge, where three of the plan's paths run close together (it's the dark block at the
   bottom left of step 5 above). ViT-B per limb is clean on the fixture and the worst of all on the gate run (nine
@@ -182,6 +182,8 @@ aren't needed for this case.
 - On the gate run the recommended model loses the short left trunk if the trunks are ever moved to it.
 - The ONNX files are other people's exports of the published weights. The build issue pins each by SHA-256, as
   today's are.
+- Small faults are left with the recommended model on the branch: a sliver at one foot, and a thin twig missed on
+  the fixture.
 - Hosted prices and behavior are from search results, not from running anything.
 
 ## To run it again
