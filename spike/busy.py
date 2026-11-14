@@ -30,7 +30,10 @@ FADE = 0.55  # how far the rest of the picture is faded toward white in the pict
 MARK = (224, 17, 157)  # the tiles' outline, a magenta no painting here uses
 
 ROLES = ("photo", "beginner", "finish")
-ROLE_OF = {"00_beginner.png": "beginner", "99_finish.png": "finish"}
+# The lesson's own files. Any other picture (a redo in trials/, the photo before fit-canvas) needs --as, so its
+# number never lands on the wrong role and replaces the photo's without a word (review of #138).
+ROLE_OF = {"00_canvas_frame.png": "photo", "00_canvas_fit.png": "photo", "00_beginner.png": "beginner",
+           "99_finish.png": "finish"}
 
 
 def edges(rgb: np.ndarray) -> np.ndarray:
@@ -94,7 +97,11 @@ def canvas_part(rgb: np.ndarray, lesson: Path) -> tuple[np.ndarray, str]:
 
 
 def role_of(path: Path) -> str:
-    return ROLE_OF.get(path.name, "photo")
+    """The role a picture's name gives it. Raises ValueError for any other name."""
+    if path.name not in ROLE_OF:
+        raise ValueError(f"{path.name} isn't the fitted photo (00_canvas_frame.png or 00_canvas_fit.png), "
+                         "00_beginner.png, or 99_finish.png: say which it stands for with --as photo|beginner|finish")
+    return ROLE_OF[path.name]
 
 
 def _notes(lesson: Path) -> dict:
@@ -105,7 +112,9 @@ def _notes(lesson: Path) -> dict:
         notes = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as e:
         raise ValueError(f"notes.json isn't valid JSON ({e}); fix it and run busy again") from e
-    return notes if isinstance(notes, dict) else {}
+    if not isinstance(notes, dict):
+        raise ValueError("notes.json isn't a JSON object (steps/notes.md has its shape); fix it and run busy again")
+    return notes
 
 
 def record(lesson: Path, role: str, numbers: dict) -> dict:
@@ -144,7 +153,7 @@ def run(path: Path, lesson: Path, role: str | None = None) -> dict:
     elif not photo:
         result["advice"] = ("There's no photo number to compare with: run busy on the photo (the fitted one, "
                             "00_canvas_frame.png or 00_canvas_fit.png) too.")
-    elif not (lesson / "00_beginner.png").exists():
+    elif role == "finish" and not (lesson / "00_beginner.png").exists():
         # A calm picture's finish measures a little more than its photo, from brush marks (chickadee 0.4% to
         # 1.7%): with no beginner version there's nothing to compare.
         result["advice"] = "No beginner version was made, so there's nothing to compare: the number is only recorded."

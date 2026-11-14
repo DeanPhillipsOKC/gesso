@@ -140,7 +140,7 @@ class LessonTests(unittest.TestCase):
         self.assertEqual(busy.run(path, self.lesson)["fine_texture"], 0.0)
         # A picture not in the frame's shape (a photo before fit-canvas) is measured whole
         whole = filters.save(stalks(), self.lesson / "photo.png")
-        r = busy.run(whole, self.lesson)
+        r = busy.run(whole, self.lesson, "photo")
         self.assertIn("the whole picture", r["measured"])
 
     def test_a_beginner_version_and_finish_must_bring_fine_texture_down(self):
@@ -189,15 +189,58 @@ class LessonTests(unittest.TestCase):
         self.assertRegex(line, r"^the photo \d+\.\d%, the beginner version 0\.0%, the finish 0\.0% of the canvas$")
         self.assertEqual(lesson_notes.busy_line("not measured"), "")
 
+    def test_a_picture_with_another_name_needs_as_and_never_replaces_the_photo_silently(self):
+        self.frame("00_canvas_frame.png", stalks())
+        busy.run(self.lesson / "00_canvas_frame.png", self.lesson)
+        photo = self.notes()["beginner_version"]["busy"]["photo"]
+        redo = self.frame("00_beginner_redo.png", calm())
+        code, r = run_tool("busy", str(redo), "--lesson", str(self.lesson))
+        self.assertEqual(code, 2)
+        self.assertIn("--as photo|beginner|finish", r["refused"])
+        self.assertEqual(self.notes()["beginner_version"]["busy"], {"photo": photo})  # nothing recorded
+        code, r = run_tool("busy", str(redo), "--lesson", str(self.lesson), "--as", "beginner")
+        self.assertEqual((code, r["role"], r["came_down"]), (0, "beginner", True))
+        self.assertEqual(self.notes()["beginner_version"]["busy"]["photo"], photo)
+
+    def test_a_beginner_number_with_no_photo_number_asks_for_the_photo(self):
+        self.frame("00_beginner.png", calm())
+        r = busy.run(self.lesson / "00_beginner.png", self.lesson)
+        self.assertNotIn("came_down", r)
+        self.assertIn("no photo number", r["advice"])
+
+    def test_nothing_left_to_remove_counts_as_came_down(self):
+        self.frame("00_canvas_frame.png", calm())
+        self.frame("00_beginner.png", calm())
+        busy.run(self.lesson / "00_canvas_frame.png", self.lesson)
+        r = busy.run(self.lesson / "00_beginner.png", self.lesson)
+        self.assertEqual((r["fine_texture"], r["photo_fine_texture"], r["came_down"]), (0.0, 0.0, True))
+
+    def test_a_turned_down_beginner_render_left_on_disk_doesnt_hold_up_the_seal(self):
+        self.frame("00_canvas_frame.png", calm())
+        self.frame("00_beginner.png", calm())
+        busy.run(self.lesson / "00_canvas_frame.png", self.lesson)
+        notes = self.notes()
+        self.assertEqual(len(tools.busy_problems(self.lesson, notes)), 2)  # the notes don't say: the file decides
+        notes["beginner_version"]["made"] = False
+        self.assertEqual(tools.busy_problems(self.lesson, notes), [])
+        (self.lesson / "00_beginner.png").unlink()
+        notes["beginner_version"]["made"] = True  # the notes say one was made: it was
+        self.assertEqual(len(tools.busy_problems(self.lesson, notes)), 2)
+
     def test_refusals(self):
         code, r = run_tool("busy", "nope.png", "--lesson", str(self.lesson))
         self.assertEqual(code, 2)
         self.assertIn("no picture", r["refused"])
         filters.save(calm(), self.lesson / "photo.png")
         (self.lesson / "notes.json").write_text("{not json")
-        code, r = run_tool("busy", "photo.png", "--lesson", str(self.lesson))
+        code, r = run_tool("busy", "photo.png", "--lesson", str(self.lesson), "--as", "photo")
         self.assertEqual(code, 2)
         self.assertIn("notes.json isn't valid JSON", r["refused"])
+        (self.lesson / "notes.json").write_text("[1, 2]")
+        code, r = run_tool("busy", "photo.png", "--lesson", str(self.lesson), "--as", "photo")
+        self.assertEqual(code, 2)
+        self.assertIn("isn't a JSON object", r["refused"])
+        self.assertEqual((self.lesson / "notes.json").read_text(), "[1, 2]")  # left as it was
 
 
 if __name__ == "__main__":

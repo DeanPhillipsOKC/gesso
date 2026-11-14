@@ -404,7 +404,10 @@ def busy_problems(lesson: Path, notes: dict) -> list[str]:
     bv = notes.get("beginner_version")
     got = bv.get("busy") if isinstance(bv, dict) and isinstance(bv.get("busy"), dict) else {}
     want = [("photo", "the photo (the fitted one, 00_canvas_frame.png or 00_canvas_fit.png)")]
-    if (lesson / "00_beginner.png").exists():
+    made = bv.get("made") if isinstance(bv, dict) else None
+    # The notes say whether a beginner version was made; the file stands in only when they don't say (a render that
+    # was looked at and turned down, made: false, may still be on disk)
+    if made is True or (made is None and (lesson / "00_beginner.png").exists()):
         want += [("beginner", "00_beginner.png"), ("finish", "99_finish.png")]
     return [f"notes.json beginner_version.busy has no {role} number: run busy {what} --lesson <lesson> (step 0c; it "
             "records the number itself, so keep beginner_version.busy when you write the notes)"
@@ -1377,8 +1380,9 @@ def add_v2_tools(sub) -> None:
     p.add_argument("picture", help="the picture: the fitted photo, 00_beginner.png, or 99_finish.png")
     p.add_argument("--lesson", required=True)
     p.add_argument("--as", dest="role", choices=["photo", "beginner", "finish"],
-                   help="what the picture is (default: from its name; anything but 00_beginner.png and 99_finish.png "
-                        "is the photo)")
+                   help="what the picture stands for. Needed for any picture but 00_canvas_frame.png or "
+                        "00_canvas_fit.png (the photo), 00_beginner.png, and 99_finish.png; its number replaces that "
+                        "role's")
     p.set_defaults(func=busy_tool)
     p = sub.add_parser("elements", help="Free. v2: the element techniques to pick per part, and how the plan's picks fit.",
                        description="Lists techniques/elements (and a lesson's drafted ones): what each is for, which part "

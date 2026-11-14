@@ -40,4 +40,5 @@ compares it.
 
 If anything is flagged, render once more with `--inputs <finish> <photo>` and a prompt listing the fixes
 ("Repaint it with these fixes so it matches the second image: ... Keep everything else the same"). Save the
-flagged list for `review.json` as `finish_issues`.
+flagged list for `review.json` as `finish_issues`. With a beginner version, run `busy` on the new `99_finish.png`
+too, so the number recorded is the finish the lesson uses.

@@ -69,6 +69,9 @@ It prints `fine_texture`, the share of the canvas that is fine texture (hundreds
 photo is 10.3% (the outlines sit on the stalks), the chickadee 0.4%, the sailboat 0.0%. It's not a threshold: you
 still decide. It doesn't see tiny separate things (it put one tile on the lavender's village) or count parts, so
 answer those by looking. It records the number in `notes.json` (`beginner_version.busy`) itself.
+It knows the photo,
+`00_beginner.png`, and `99_finish.png` by name; measure the files the lesson uses, not trial copies (any other
+picture needs `--as photo|beginner|finish`, and its number replaces that one).
 
 For the technique's level (`detail_budget`), answer:
 - **Tiny separate things** that aren't the subject: houses, windows, people, fence posts, a village?
