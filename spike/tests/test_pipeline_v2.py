@@ -469,6 +469,35 @@ class BuildStepsTests(unittest.TestCase):
         self.assertEqual([r["far"] for r in rows], [0.0, 0.0, 0.0])  # rows no area had aren't far from either
         self.assertEqual(bs.problems(plan, rows), [])
 
+    def canopy_scene(self, streaks):
+        """A canopy across the whole picture, with hill-colored streaks behind it in rows `streaks`."""
+        img, plate, owner, plan, tree = self.tree_scene()
+        img[:60], img[60:] = (110, 150, 220), (200, 160, 60)
+        plate = img.copy()
+        plate[streaks[0]:streaks[1], 20:140] = (205, 158, 62)
+        yy, xx = np.mgrid[:120, :160]
+        tree = ((yy >= 12) & (yy < 64)) | ((yy >= 64) & (yy < 95) & (xx >= 76) & (xx < 84))
+        img[tree] = (40, 80, 40)
+        hill = np.zeros((120, 160), bool)
+        hill[60:] = True
+        _, owner, _ = ol.outline(img, plan["parts"], given={"hill": hill & ~tree, "tree": tree})
+        front = ~bs.back_parts(plan["parts"])[owner]
+        return img, plate, owner, plan, bs.back_owner(plan["parts"], owner, bs.make_background(img, front, plate),
+                                                      front, real=True)
+
+    def test_a_color_band_across_the_middle_but_not_joined_to_its_area_stays_mostly_with_the_other(self):  # #139
+        # streaks crossing the band's middle (rows 30-42) and streaks just below it (36-39), with clean sky between
+        # them and the horizon: none of them reaches the sky's half; what's on the hill's half of the middle stays
+        # the hill's, a known limit (design section 7)
+        for streaks, most in (((30, 42), 500), ((36, 39), 150)):
+            img, plate, owner, plan, back = self.canopy_scene(streaks)
+            self.assertFalse((back[:36] == 1).any(), streaks)
+            self.assertLessEqual(int((back[:58] == 1).sum()), most, streaks)
+            _, rows, _ = bs.build(img, plan, owner, background=plate)
+            self.assertEqual(bs.problems(plan, rows), [], streaks)
+        img, plate, owner, plan, back = self.canopy_scene((0, 0))  # no streaks: nothing of the hill up there
+        self.assertFalse((back[:58] == 1).any())
+
     def test_a_color_band_cut_off_from_its_area_behind_a_full_width_object_stays_with_the_other(self):  # #139
         # a canopy across the whole picture, with hill-colored streaks behind it well up in the sky's half
         img, plate, owner, plan, tree = self.tree_scene()

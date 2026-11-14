@@ -234,14 +234,16 @@ def by_color(parts: list[dict], owner: np.ndarray, out: np.ndarray, L: np.ndarra
             if up is None or down is None:
                 continue
             mid = (y0 + y1) / 2
-            for j, other, far_side in ((up, down, ys > mid), (down, up, ys < mid)):
-                # pixels of j's color on the other area's side of the middle stay j's only if they join j's side
+            for j, other, far_side, edge in ((up, down, ys > mid, y0), (down, up, ys < mid, y1)):
+                # pixels of j's color on the other area's side of the middle stay j's only if their patch reaches
+                # the band's edge row on j's side: joined to j's own rows, not a streak floating in the band
                 mine = np.zeros((h, w), np.uint8)
                 mine[ys[sel & (got == j)], xs[sel & (got == j)]] = 1
                 n_, lab_ = cv2.connectedComponents(mine, connectivity=8)
                 joined = np.zeros(n_, bool)
-                near_side = sel & (got == j) & ~far_side
-                joined[np.unique(lab_[ys[near_side], xs[near_side]])] = True
+                at_edge = sel & (got == j) & (ys == edge)
+                joined[np.unique(lab_[ys[at_edge], xs[at_edge]])] = True
+                joined[0] = False
                 cut = sel & (got == j) & far_side & ~joined[lab_[ys, xs]]
                 got[cut] = other
                 if doubt is not None:

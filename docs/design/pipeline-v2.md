@@ -382,14 +382,16 @@ that does, and that area's own paint is carried over it (like the free fill), no
 picture there looks like no part of that row (cloud streaks the hill's color, or a hill top hidden behind the
 tree), and showing it drew a patch. Marks the render shows there (clouds) are still found by their color rule, and
 show as the render has them. Rows no area reaches (behind a bridge, a wall, or a canopy across the whole picture,
-taller than the reach) go to the nearest area above them and the nearest below, split where the render's colors
-meet: a color reaches past the band's middle only where it joins its own area's side (water running up behind a
-bridge to the horizon), not as a band of its own (hill-colored streaks up in the sky's half behind a canopy, which
-stay the sky's, with the sky's paint carried over them). Those rows aren't counted by the `far` check (section 8).
-Limits: an area's rows are taken over the whole ring around the object, not per side or per column, so an area
-whose edge slopes steeply behind a wide object can still reach rows it has only on the other side; and behind a
-full-width object, a band of the lower area's color that touches the band's middle and joins the lower side still
-goes to that area, even when it's really a cloud in the sky. The
+taller than the reach) go to the nearest area above them and the nearest below. Each pixel there takes whichever
+of the two is nearer in color; then, on the far side of the band's middle row from an area, a patch of that area's
+color stays the area's only if it reaches the band's edge row on the area's own side (water running up behind a
+bridge from the bottom of the band to the horizon). Any other patch on the far side goes to the other area, which
+carries its own paint over it: hill-colored streaks up in the sky's half behind a canopy stay the sky's. Those rows
+aren't counted by the `far` check (section 8). Limits: an area's rows are taken over the whole ring around the
+object, not per side or per column, so an area whose edge slopes steeply behind a wide object can still reach rows
+it has only on the other side; and in such a band, a patch of one area's color on that area's own side of the
+middle stays the area's even when it doesn't reach the edge, so streaks of hill color just below the middle, with
+clean sky between them and the horizon, are still the hill's (about 480 pixels of a 120 x 160 test scene). The
 three fixtures, given a stand-in background, and the hands-off chickadee run's real one, build the same pictures
 outside the gaps; that run builds the same pictures everywhere.
 
