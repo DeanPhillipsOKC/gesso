@@ -482,7 +482,8 @@ def publish(a: argparse.Namespace) -> dict:
         raise Refused(f"missing step images: {missing}. Run build-steps --lesson {lesson}.")
     mixes = compute_mixes(lesson, plan, technique)
     text_path = lesson / "text.json"
-    text = {t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]} if text_path.exists() else {}
+    text_all = json.loads(text_path.read_text(encoding="utf-8")) if text_path.exists() else {}
+    text = {t["stage_id"]: t for t in text_all.get("steps") or []}
     review_path = lesson / "review.json"
     review = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
     notes_path = lesson / "notes.json"  # the skill's reasoning: technique, order, filters
@@ -507,7 +508,8 @@ def publish(a: argparse.Namespace) -> dict:
 
     view = canvas_view(lesson, [p.name for p in paths])
     prune_canvas_view(lesson, [p.name for p in paths])
-    stages = publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
+    stages = publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson,
+                             text_all.get("card_text"))
     from version import stamp
     old = lesson / "lesson.json"
     from version import with_made
@@ -1231,6 +1233,38 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
                       "\"edited\": true; draft-text keeps it. Then run check.", "cost_usd": 0.0}
 
 
+def card_adapt_tool(a: argparse.Namespace) -> dict:
+    """Start the cards adapted for this painting (#96): for each card a step opens, a copy of the general card's
+    fields in text.json's card_text, for the run to reword in step 6c. Never overwrites a copy already there."""
+    import build_steps as bs
+    import cards
+    import plan2
+    import publish2
+
+    lesson = Path(a.lesson)
+    if not (lesson / "plan.json").exists():
+        raise Refused(f"no plan.json in {lesson}")
+    if not plan2.is_v2(lesson):
+        raise Refused("card-adapt is for a version 2 lesson (plan.json with \"plan_version\": 2)")
+    plan = plan2.load(lesson)
+    steps = bs.flat_steps(plan)
+    path = lesson / "text.json"
+    text = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"steps": []}
+    r = cards.adapt_lesson(text, steps, cards.strokes())
+    path.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
+    names = publish2.paint_names(plan)
+    by_step = {s["id"]: s for s in steps}
+    todo = [{"at": f"card_text.{x}", "part": by_step[x.split(".")[0]].get("part"),
+             "paints": [names.get(c, c) for c in by_step[x.split(".")[0]].get("paints") or []]}
+            for x in r["added"] + r["kept"]]
+    return {"text": str(path), **r, "cards": todo,
+            "advice": "Edit each copy for this painting (skill step 6c): swap the subject words in every field and the "
+                      "diagram's paints for the step's paints by name, and change the diagram's example shape to this "
+                      "part's where it's wrong. Keep every field, the brush, the mistakes (drop one that can't happen "
+                      "here, add none), and the diagram's stages and arrows. Take out what stale lists. Then run check.",
+            "cost_usd": 0.0}
+
+
 def check_tool(a: argparse.Namespace) -> dict:
     """Every measured check on a version 2 lesson, each failure saying what to change. Design section 12."""
     import checks
@@ -1454,6 +1488,13 @@ def add_v2_tools(sub) -> None:
                                    "step back. Never overwrites a summary, a tip, or a line marked \"edited\": true.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=draft_text_tool)
+    p = sub.add_parser("card-adapt", help="Free. v2: copy each stroke card a step opens into text.json's card_text, to adapt for this painting.",
+                       description="Run after draft-text. For each card a step opens (the first step using it), copies "
+                                   "the general card's motion, result, then, mistakes, and diagram into text.json under "
+                                   "card_text.<step id>.<card id>, with \"from\": the card's id. The run then rewords "
+                                   "each for this painting (skill step 6c). A copy already there is never overwritten.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=card_adapt_tool)
     p = sub.add_parser("check", help="Free. v2: every measured check (plan, outlines, steps, cards, text, recipes), each saying what to change.",
                        description="Gathers the plan, outline, step picture, and card checks, the step and stage counts, "
                                    "strokes and brushes, texture jumps, the text (percentages, long lines, missing "

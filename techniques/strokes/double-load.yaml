@@ -22,19 +22,19 @@ diagram:
       - 20
       - 40
       - 14
-      paint: '#b8a58a'
+      paint: '#b3aea6'
     - rect:
       - 30
       - 34
       - 20
       - 8
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 50
       - 34
       - 20
       - 8
-      paint: '#f4efe4'
+      paint: '#faf8f3'
   - caption: One stroke, two tones
     add:
     - rect:
@@ -42,19 +42,19 @@ diagram:
       - 56
       - 60
       - 10
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 20
       - 66
       - 60
       - 10
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - rect:
       - 20
       - 63
       - 60
       - 6
-      paint: '#a98ad0'
+      paint: '#b9bec4'
     arrows:
     - M 24 86 L 76 86
 sources:

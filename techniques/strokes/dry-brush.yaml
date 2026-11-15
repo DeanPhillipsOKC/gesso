@@ -30,41 +30,41 @@ diagram:
       - 30
       - 80
       - 40
-      paint: '#6b4a34'
+      paint: '#4a5057'
   - caption: Light, broken strokes over it
     add:
     - line: M 14 38 l 22 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 42 36 l 14 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 62 39 l 20 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 20 46 l 12 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 38 47 l 26 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 70 48 l 12 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 14 56 l 18 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 40 58 l 12 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 58 57 l 24 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 26 64 l 20 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     - line: M 54 65 l 14 0
-      paint: '#d9a86a'
+      paint: '#e3e5e7'
       width: 2
     arrows:
     - M 14 22 L 84 22

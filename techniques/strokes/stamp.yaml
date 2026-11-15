@@ -5,10 +5,13 @@ brushes:
 - '#12 bright'
 load:
   thickness: creamy
-motion: Stamp straight down with the end of the brush. A strip of stamps makes a lavender or crop row.
+motion: Stamp straight down with the end of the brush. Stamps side by side make a row.
 result: A short, blunt block of color.
 then: Stamp a lighter mix over the same row without covering all of it. Wipe the brush, don't rinse it, between
   the dark and light passes.
+uses:
+- lavender rows
+- crop rows
 mistakes:
 - mistake: The light pass covered the dark.
   fix: Leave dark showing. Light over dark is what gives the row depth.
@@ -22,37 +25,37 @@ diagram:
       - 44
       - 9
       - 16
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 26
       - 44
       - 9
       - 16
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 38
       - 44
       - 9
       - 16
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 50
       - 44
       - 9
       - 16
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 62
       - 44
       - 9
       - 16
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - rect:
       - 74
       - 44
       - 9
       - 16
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     arrows:
     - M 18 28 L 18 42
   - caption: Lighter stamps over part of them
@@ -62,37 +65,37 @@ diagram:
       - 42
       - 7
       - 9
-      paint: '#a98ad0'
+      paint: '#b9bec4'
     - rect:
       - 30
       - 42
       - 7
       - 9
-      paint: '#a98ad0'
+      paint: '#b9bec4'
     - rect:
       - 41
       - 42
       - 7
       - 9
-      paint: '#a98ad0'
+      paint: '#b9bec4'
     - rect:
       - 55
       - 42
       - 7
       - 9
-      paint: '#a98ad0'
+      paint: '#b9bec4'
     - rect:
       - 65
       - 42
       - 7
       - 9
-      paint: '#a98ad0'
+      paint: '#b9bec4'
     - rect:
       - 77
       - 42
       - 7
       - 9
-      paint: '#a98ad0'
+      paint: '#b9bec4'
 sources:
 - docs/research/acrylic-paint-along.md, section 7, Marks, brushes and paint load
 - docs/research/acrylic-paint-along.md, section 7, Building a clump in passes

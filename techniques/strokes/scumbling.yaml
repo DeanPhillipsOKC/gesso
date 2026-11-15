@@ -25,26 +25,26 @@ diagram:
       - 50
       - 34
       - 22
-      paint: '#5a6078'
+      paint: '#4f555c'
   - caption: Loose scrubby strokes, dark showing through
     add:
     - line: M 26 44 q 8 -8 14 0
-      paint: '#f4efe4'
+      paint: '#faf8f3'
       width: 3
     - line: M 44 40 q 8 8 14 -2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
       width: 3
     - line: M 60 46 q 6 -8 12 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
       width: 3
     - line: M 34 54 q 8 6 14 -2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
       width: 3
     - line: M 52 56 q 8 -6 14 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
       width: 3
     - line: M 40 62 q 6 4 12 -2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
       width: 3
 sources:
 - docs/research/acrylic-paint-along.md, section 2, Scumbling

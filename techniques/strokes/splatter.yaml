@@ -9,8 +9,11 @@ load:
   thickness: thin
   note: Too much water gives big drips.
 motion: Flick the bristles with a finger, or tap the brush on another handle.
-result: Random speckles, for stars or snow.
+result: Random speckles.
 then: Let it dry before the next step.
+uses:
+- stars
+- snow
 mistakes:
 - mistake: Speckles where you don't want them.
   fix: Wipe them right away with a damp cloth or cotton swab.
@@ -24,69 +27,69 @@ diagram:
       - 4
       - 92
       - 92
-      paint: '#27304d'
+      paint: '#6b7178'
       done: true
       round: 4
     - circle:
       - 20
       - 30
       - 1.6
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 34
       - 22
       - 1
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 46
       - 40
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 60
       - 26
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 74
       - 36
       - 1.8
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 28
       - 54
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 52
       - 60
       - 1.5
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 68
       - 56
       - 1
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 82
       - 64
       - 1.6
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 40
       - 74
       - 1.1
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 60
       - 80
       - 1.9
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 22
       - 78
       - 1.3
-      paint: '#f4efe4'
+      paint: '#faf8f3'
 sources:
 - docs/research/acrylic-paint-along.md, section 2, Splatter (stars, snow)
 checked: false
