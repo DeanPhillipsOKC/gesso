@@ -64,7 +64,6 @@ diagram:
       - 68
       - 30
       paint: '#faf8f3'
-      behind: true
 sources:
 - docs/research/acrylic-paint-along.md, section 2, Swirls and circular strokes
 checked: false
