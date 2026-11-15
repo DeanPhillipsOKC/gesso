@@ -21,7 +21,8 @@ pip install -r spike/requirements.txt
 #  a proxy that doesn't supply it gives a 401 "Incorrect API key" instead of "Missing credentials")
 ```
 
-Then, in Claude Code: `/paint-lesson photos/your-photo.jpg` (optionally `--canvas 11x14`). The skill
+Then, in Claude Code: `/paint-lesson photos/your-photo.jpg` (optionally `--canvas 11x14`). Source pictures are
+kept in git in `photos/` (never a personal photo; see `docs/lessons-site.md`), and a run stores a new one there. The skill
 (`.claude/skills/paint-lesson/`) writes a folder under `output/` with every picture, `lesson.json`, and a
 self-contained `lesson-standalone.html`. The tools it runs are `python spike/tools.py <tool> --help`.
 
