@@ -259,7 +259,8 @@ def add_render(sub) -> None:
 # <lesson>/99_finish.png the finished painting; every step is cut from it
 # <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is a copy of the finish)
 # <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, summary, tip, lines: [{kind, text,
-#                        edited}], brushes: [{brush, use}], made_with, reason}]}; design section 10
+#                        edited}], brushes: [{brush, use}], made_with, reason}], card_text: {step id: {card id:
+#                        the card adapted for this painting}}}; design section 10
 # <lesson>/review.json   written by the skill: {"finish_issues": [...], "text_issues": [...]}
 
 

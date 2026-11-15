@@ -51,7 +51,7 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
    `<lesson>/trials/`, nowhere else, and never keep the lesson's path in a shared file: other runs share the
    machine.
 9. **The order is fixed, and going back means running forward again.** After any change to `parts`: `outline`,
-   `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, in that order. After a change to `stages`
+   `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `card-adapt`, `check`, in that order. After a change to `stages`
    only: from `build-steps` on. Don't skip one because it ran before.
 10. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses until `check` is clean.
    After the seal, change nothing.

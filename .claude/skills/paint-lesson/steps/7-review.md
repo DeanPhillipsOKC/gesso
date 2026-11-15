@@ -15,8 +15,10 @@ pass**: each trip back through the tools costs minutes. The usual ones:
 | a line has a percentage, or is over 40 words | step 6: reword it; split a long line |
 | a step has no summary or tip | step 6b |
 | the drafted lines are out of date | `draft-text` again |
+| an adapted card (`card_text.<step>.<card>`) has drifted from its card | step 6c: put back what it names |
 
-`notes` are things to know, not failures.
+`notes` are things to know, not failures. A note that a step opens a card with no adapted copy, or one still word
+for word the general card, means step 6c was skipped for it: adapt it unless the general card already fits.
 
 ## 7b. Text review in a fresh context
 You wrote the text, so you'll miss what you take for granted.
