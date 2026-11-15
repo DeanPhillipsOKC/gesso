@@ -22,6 +22,11 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
   added, an extra mistake, another brush, other diagram stages or arrows), saying what to put back.
 - The drafted step lines take the reworded cards' words, so they no longer name another subject; they're more
   general until the run corrects them.
+- Source pictures are kept in git in `photos/`, one per picture, named by its photo stem (#147), so any session can
+  rerun a lesson from a fresh clone. `photos/private/` stays local, for anything personal. `/paint-lesson` stores a
+  new picture there at the start of a run with the new `store-photo` tool and says to commit it with the run.
+  `site-add` and `site-refresh` warn about each tile whose picture isn't stored and committed. The site still never
+  serves `photos/`.
 
 ## POC 1.11.0 (2026-11-14)
 - Behind an object, an area takes only the rows it has beside it (#139). With a background picture, what's behind
