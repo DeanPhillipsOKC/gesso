@@ -3,9 +3,11 @@
 .env.*
 !.env.example
 
-# Generated lessons and reference photos stay local
+# Generated lessons stay local
 output/
-photos/
+# Source pictures are tracked in photos/ (one per picture, named by its photo stem; #147, docs/lessons-site.md),
+# but never a personal photo: those go in photos/private/, which stays local.
+photos/private/
 .venv/
 __pycache__/
 

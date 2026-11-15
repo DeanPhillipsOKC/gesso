@@ -305,6 +305,25 @@ def refresh(site: Path = SITE, output: Path = ROOT / "output", remove: tuple[str
     return {x["slug"]: len(x["versions"]) for x in lessons}
 
 
+def missing_pictures(site: Path = SITE, photos: Path | None = None) -> list[str]:
+    """One warning per tile whose source picture isn't stored in photos/ (#147), or is there but not committed, so
+    a fresh clone couldn't rerun it. The site's lessons are rerun from their pictures after a tool fix
+    (docs/decisions.md), so a missing one has to be noticed. The pictures are never copied into site/."""
+    import pictures
+    photos = pictures.PHOTOS if photos is None else photos
+    manifest = site / "lessons.json"
+    out = []
+    for x in json.loads(manifest.read_text(encoding="utf-8")) if manifest.exists() else []:
+        stem = x["source"].split("_skill_")[0]
+        have = pictures.stored(stem, photos)
+        if have is None:
+            out.append(f"{x['slug']}: no source picture (photos/{stem}.jpg or .png), so no session can rerun it "
+                       f"from a fresh clone; add it and commit it")
+        elif pictures.committed(have) is False:
+            out.append(f"{x['slug']}: photos/{have.name} isn't committed; commit it so other sessions can rerun it")
+    return out
+
+
 INDEX_STYLE = """
 :root{--bg:#fbfbf8;--card:#f1f2ef;--ink:#1d2430;--muted:#5b6474;--rule:#dcdfe3;--accent:#2944a8;--warn:#b3261e}
 @media (prefers-color-scheme: dark){:root{--bg:#14171c;--card:#1c2027;--ink:#e7e9ee;--muted:#9aa3b2;--rule:#2c323c;--accent:#93a8f4;--warn:#ff8a80;color-scheme:dark}}

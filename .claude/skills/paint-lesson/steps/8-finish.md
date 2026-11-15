@@ -25,7 +25,8 @@ this and say so in the report.
 **Put it on the lessons site** (owner, 2026-11-13: every sealed hands-off run goes there). Only after the seal, and
 only if nothing changed after it. Skip this, and say why in the report, when any of these holds:
 - **The photo isn't one the public site may show.** Every lesson page shows the source photo, and the site and repo
-  are public. Go on only when the photo is in `photos/site/`, or whoever started you said it's AI-made or the
+  are public. Go on only when the picture is stored in `photos/` (step 0, not `photos/private/`) and either git
+  already tracks it there (`git ls-files photos/<its file>`) or whoever started you said it's AI-made or the
   owner's to share, and it shows no people, homes, or anything personal (`docs/decisions.md`, "Photos stay private").
 - **`site/` has changes that aren't this run's.** `publish` always records the run in `site/history/`, so
   `git status --porcelain site/` may list only `site/history/<photo stem>/<run folder>/` and
@@ -47,7 +48,9 @@ Otherwise, in this order, never forcing anything:
    `site-add --lesson <lesson> --slug <photo stem>`, which makes its tile. Both tools refuse a run that isn't
    hands-off; don't work around that.
 6. Unless whoever started you said they'll handle it (say, to put several runs in one pull request): commit
-   `site/`, push the branch, and open a pull request named for the run. The repo's pull request rules
+   `site/`, and the run's picture in `photos/` when `store-photo` said it isn't committed, push the branch, and
+   open a pull request named for the run. `site-add` and `site-refresh` list in `warnings` each tile whose picture
+   isn't stored and committed; name them in the pull request. The repo's pull request rules
    (`docs/decisions.md`, How we work) take it from there.
 7. `git switch -`, back to the branch you started on, so the next run doesn't start on this one.
 If step 4, 5, or 6 fails (a tool error, a refused push), stop there: leave the branch and `site/` as they are, and
@@ -55,6 +58,8 @@ put the failure and the branch name in the report for whoever started you.
 
 ## 8d. Report to the owner
 Start with anything that needs them:
+- the picture to commit, when `store-photo` said it isn't committed yet (its `next`), and that only AI-made
+  pictures or ones the owner has the rights to go in the repo, never a personal photo;
 - problems left as they are (they're on the page under Known problems);
 - anything you'd report as a bug, naming the lesson folder;
 - cards you drafted, or card lines you had to rewrite;
