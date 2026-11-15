@@ -606,6 +606,36 @@ the model's memory (`docs/decisions.md`, 2026-11-11). A card with `checked: fals
 page. A step's `stroke` must name a card; a stroke the library lacks is drafted in the lesson folder, shown as
 not checked, and filed for the owner, the same rule as element techniques (#12).
 
+**Changed 2026-11-14 (#96): the general cards say only the technique, and a lesson adapts each one for what it
+paints.** A card's text and diagram were written for one subject, so on another they read wrong: on the chickadee's
+sun step the small-circles card said the circles "make a cloud's bumpy top edge" and drew cloud bumps on blue. Now:
+- *General cards are generic.* Every card's `motion`, `result`, `then`, and `mistakes` describe only the brush, the
+  motion, and what it leaves; the subject examples moved to `uses` ("Good for: cloud tops, the glow around a sun or
+  moon"). The diagrams are plain marks in grays on a neutral ground. Every source stays. `cards.problems` lists a
+  card whose motion, result, then, or a mistake names a subject from a short list (cloud, sky, sun, moon, tree,
+  branch, grass, pumpkin, flower, water, leaf, bird, and their plurals), and a basics line that does. Water that
+  thins paint or rinses a brush isn't a subject ("Add water.", "no water on the brush"), and on a basics card water
+  never is.
+- *A lesson's own copy.* `card-adapt --lesson` copies, for each card a step opens (the first step using it; later
+  ones link back to it), the card's `motion`, `result`, `then`, `mistakes`, and `diagram` into `text.json`'s
+  `card_text.<step id>.<card id>`, with `"from": "<card id>"`. It never overwrites a copy that's there. The run edits
+  the copy in skill step 6c: the same fields saying the same thing with the subject's words; the same mistakes in
+  order, dropping one that can't happen; the card's diagram with the step's paints by name, the example shape
+  changed to the part's where it's wrong, and the same stages and arrows. The owner's 2026-11-13 decision allows it:
+  a per-lesson card changes the words and pictures, not the technique.
+- *Checks* (`cards.adapted_problems`, run by `check`): a note for a card a step opens with no copy (the page shows
+  the general card) or with one still word for word the card; a failure for a copy that drifted: a field missing or
+  added, more mistakes than the card, a mistake with keys other than mistake/why/fix, a brush the card doesn't use
+  (brush words in its text: liner, fan, "round brush", "#4 round", "1 inch flat", ...), a diagram with another
+  number of stages or arrows in a panel, a diagram paint that's no plan paint, a `from` that isn't the card, and a
+  copy for a step that doesn't open that card. Each says what to put back.
+- *The page:* `publish` puts each step's copies on its lesson.json stage as `card_text`. The open card fold shows the
+  adapted card with "Adapted for this painting from the <name> card, not checked yet", a link to the general card
+  (folded under it) and to its file on GitHub. Either card shows the step's close-up as **Here** beside its diagram
+  (the step-aids "after" crop, cut from the finish; none for a step with no close-up), and, when the run drew a
+  construction diagram for the step or another step of its part, a line pointing at it.
+- The drafted step lines still come from the general card (out of scope for #96); the run corrects them in 6d.
+
 `techniques/basics/<id>.yaml`: short cards for what every beginner needs once, in the same hand-checked way:
 setting up (two water jars, a towel, the palette), rinsing between colors (fully before white or yellow), how
 much water, keeping a mix wet between steps, fixing a mistake (let it dry, paint over), the ugly stage, colors
@@ -799,7 +829,9 @@ what Claude wrote.
 `text.json` for a version 2 lesson: `{"steps": [{"stage_id": "<step id>", "summary", "tip",
 "lines": [{"kind": "dry|rinse|chalk|where|paints|mix|how|result|coats|watch|step-back", "text": "...",
 "edited": false}], "brushes": [{"brush", "use"}], "stroke_cards": ["<card id>"],
-"made_with": "composite:from-finish", "reason": "cut from the finish inside the part's outline"}]}`. The key stays
+"made_with": "composite:from-finish", "reason": "cut from the finish inside the part's outline"}],
+"card_text": {"<step id>": {"<card id>": {"motion", "result", "then", "mistakes", "diagram", "from"}}}}` (`card_text`
+from `card-adapt`, #96; `draft-text` keeps it). The key stays
 `stage_id` because `publish` and the history read it. `made_with` is the value v1 already uses for a step cut
 from the finish, so the receipt, the site, and the history count it as free without changes.
 
@@ -852,7 +884,7 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - Contents by stage, with each stage's step count. Steps numbered inside a stage and overall. The end of a stage
   is marked as a good place to stop. (No times: the research has no per-step durations to build them from.)
 - A step, top to bottom: the picture with a Where / Result switch; the numbered lines and the tip when
-  `text.json` has them (issue 7 writes them; until then the step's name); the paints with recipes; then folds: a basics card where its moment is (#95), close-up, paint map, stroke card (open the first time a lesson uses it), diagram.
+  `text.json` has them (issue 7 writes them; until then the step's name); the paints with recipes; then folds: a basics card where its moment is (#95), close-up, paint map, stroke card (open the first time a lesson uses it; the lesson's adapted copy when it has one, with the step's close-up as "Here", #96), diagram.
 - The top of the page (#94): the photo and the finish, then "Tubes to get out" (each tube with its color, in the
   order the steps first need it, "first in step N"), then "What you need" (brushes and the rest, no tubes). "Your
   paints", every paint and its recipe, is folded closed: each step lists its own, and painters mix as they go.
@@ -872,6 +904,8 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - `v2_step_range` and `v2_stage_range` from the technique; more top-level parts than `detail_budget.max_parts`;
 - a stroke with no card; a brush `spike/brushes.py` doesn't know;
 - a note (not a failure) when the let-it-dry basics card finds no step to show in (#95);
+- a note for a card a step opens with no adapted copy, and a failure for an adapted copy that drifted from its card
+  (#96, section 10);
 - `texture_jumps`, as today: no step turns more than 10% of the picture from flat to textured (fix: one more pass);
 - a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
   inches from an edge."); a line over 40 words;

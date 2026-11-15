@@ -27,7 +27,7 @@ diagram:
       - 28
       - 50
       - 3
-      paint: '#e07a2c'
+      paint: '#6b7178'
   - caption: Press so the brush spreads
     add:
     - ellipse:
@@ -35,13 +35,13 @@ diagram:
       - 50
       - 12
       - 9
-      paint: '#e07a2c'
+      paint: '#6b7178'
     arrows:
     - M 28 34 L 46 34
   - caption: Pull and lift to a point
     add:
     - path: M 46 42 Q 66 44 84 50 Q 66 56 46 58 Z
-      paint: '#e07a2c'
+      paint: '#6b7178'
     arrows:
     - M 50 34 L 84 44
 sources:

@@ -276,6 +276,16 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
         redrafted = {sid: draft_text.merge_lines((text.get(sid) or {}).get("lines") or [], lines)
                      for sid, lines in drafted.items()}
     failures += text_problems(plan, text, redrafted)
+    import construct
+
+    # cards adapted for this painting (#96): a note for a card shown general, a failure for one that drifted
+    card_text = (json.loads(text_path.read_text(encoding="utf-8")).get("card_text") if text_path.exists() else None)
+    named = publish2.paint_names(plan)
+    diagram_paints = construct.lookup([{"id": c["id"], "name": named[c["id"]], "hex": c["hex"]}
+                                       for c in plan.get("paints") or []])
+    bad, later = cards.adapted_problems(card_text, steps, known, diagram_paints)
+    failures += bad
+    notes += later
     gaps = draft_text.left_out(plan, known)
     if gaps:
         notes.append("lines the data can't give (none drafted): "

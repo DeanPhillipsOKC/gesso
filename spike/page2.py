@@ -70,6 +70,10 @@ ol.legend li{display:flex;align-items:center;gap:.5rem;font-size:.92rem}
 .aid .card ul,.start .card ul{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
 .aid .card .aka{font:400 .85rem/1.3 var(--body);color:var(--muted)}
 .aid .card .note{color:var(--muted);font-size:.92rem}
+.cardpics{display:grid;grid-template-columns:minmax(0, 11rem) minmax(0, 1fr);gap:.75rem;align-items:start}
+.cardpics .here{margin:0;display:grid;gap:.35rem;align-content:start}.cardpics .here figcaption{font-size:.85rem}
+.cardpics .here figcaption b{color:var(--ultramarine);margin-right:.25rem}
+@media (max-width: 560px){.cardpics{grid-template-columns:1fr}.cardpics .here{max-width:14rem}}
 .unchecked{justify-self:start;font:600 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--warn);
   border:1px dashed currentColor;border-radius:3px;padding:.25rem .45rem}
 .strokelink{font-size:.92rem}.strokelink a,.toc a,.start a{color:var(--ultramarine)}
@@ -236,7 +240,34 @@ def first_uses(lesson: dict) -> dict[str, int]:
     return out
 
 
-def stroke_folds(lesson: dict, i: int, known: dict) -> str:
+REPO_CARDS = "https://github.com/DeanPhillipsOKC/gesso/blob/main/techniques/strokes/"  # the general cards (public repo)
+
+
+def here_view(lesson: dict, i: int, folder: Path | None, embed: bool) -> str:
+    """The step's close-up (from step-aids, cut from the finish) as "Here": this painting's version of what the card's
+    diagram shows (#96). Empty for a step with no close-up."""
+    c = (lesson["stages"][i].get("aids") or {}).get("closeup")
+    if not c or folder is None:
+        return ""
+    x0, y0, x1, y1 = c["box"]
+    return (f'<figure class="here"><svg class="pic" viewBox="{x0} {y0} {x1 - x0} {y1 - y0}" role="img" '
+            f'aria-label="Here: this step in this painting, up close"><image x="{x0}" y="{y0}" width="{x1 - x0}" '
+            f'height="{y1 - y0}" preserveAspectRatio="none" href="{aid_src(folder, c["after"], embed)}"/></svg>'
+            f'<figcaption><b>Here</b> this step in your painting, up close</figcaption></figure>')
+
+
+def diagram_step(lesson: dict, i: int) -> int | None:
+    """The step (0-based) whose construction diagram shows this step's shape: this step's own, else the first step of
+    the same part that has one. None when the run drew none."""
+    stages = lesson["stages"]
+    if stages[i].get("construct"):
+        return i
+    return next((k for k, t in enumerate(stages) if t.get("construct") and t.get("part") == stages[i].get("part")
+                 and stages[i].get("part")), None)
+
+
+def stroke_folds(lesson: dict, i: int, known: dict, folder: Path | None = None, embed: bool = False,
+                 paints: dict | None = None) -> str:
     s = lesson["stages"][i]
     first = first_uses(lesson)
     out = []
@@ -245,8 +276,29 @@ def stroke_folds(lesson: dict, i: int, known: dict) -> str:
         if not card:
             continue
         if first[c] == i:
-            hint = "how to do it" + ("" if card.get("checked") else ", not checked yet")
-            out.append(fold(f"Stroke: {card['name']}", hint, cards.stroke_html(card, f"{c}-{i + 1}"), open_=True, cls="stroke"))
+            mine = (s.get("card_text") or {}).get(c)
+            if cards.unchanged(card, mine):  # card-adapt's copy, never edited: it's the general card
+                mine = None
+            here = here_view(lesson, i, folder, embed)
+            d = diagram_step(lesson, i)
+            point = ""
+            if d is not None:
+                where = "this step's Diagram, below" if d == i else f'the Diagram in <a href="#step-{d + 1}">step {d + 1}</a>'
+                point = f"<p class='small'>For this shape, see {where}: how to build it from simple pieces.</p>"
+            if mine:  # the card adapted for this painting (#96): its words and diagram, the general card one tap away
+                general = f"general-{c}"
+                banner = (f"<p class='unchecked'>Adapted for this painting from the {e(card['name'])} card, not checked "
+                          f"yet</p><p class='small'><a href='#{general}'>The general {e(card['name'])} card</a> "
+                          f"(<a href='{REPO_CARDS}{e(c)}.yaml'>its file</a>)</p>")
+                body = (cards.stroke_html(cards.adapted(card, mine), f"{c}-{i + 1}", paints, here, banner) + point
+                        + f'<details class="aid general" id="{general}"><summary>The general {e(card["name"])} card'
+                          f'</summary><div class="aid-body">'
+                          f'{cards.stroke_html(card, f"{c}-{i + 1}-general", anchor=general + "-card")}</div></details>')
+                hint = "how to do it here, adapted for this painting, not checked yet"
+            else:
+                body = cards.stroke_html(card, f"{c}-{i + 1}", paints, here) + point
+                hint = "how to do it" + ("" if card.get("checked") else ", not checked yet")
+            out.append(fold(f"Stroke: {card['name']}", hint, body, open_=True, cls="stroke"))
         else:
             out.append(f'<p class="strokelink">Stroke: <a href="#stroke-{e(c)}">{e(card["name"])}</a>, '
                        f'as in step {first[c] + 1}.</p>')
@@ -257,7 +309,7 @@ def stroke_folds(lesson: dict, i: int, known: dict) -> str:
 
 
 def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: str, chips: str, why: str,
-         diagram: str, basics_at: dict | None = None) -> str:
+         diagram: str, basics_at: dict | None = None, paints: dict | None = None) -> str:
     """One step of a version 2 lesson: the picture with its Where / Result switch, then what to do, its paints and
     brushes, and the folds (basics card, close-up, paint map, stroke card, diagram)."""
     s = lesson["stages"][i]
@@ -272,7 +324,8 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
     if el.get("drafted"):  # a technique drafted for this lesson, not in the hand-checked library yet (#12)
         tip += (f'<p class="strokelink">Technique: {e(el.get("name", ""))} '
                 '<span class="unchecked">Technique not checked yet</span></p>')
-    folds = "".join([step_basics(lesson, i, basics_at), closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed), stroke_folds(lesson, i, known),
+    folds = "".join([step_basics(lesson, i, basics_at), closeup(lesson, i, folder, embed), paint_map(lesson, i, folder, embed),
+                     stroke_folds(lesson, i, known, folder, embed, paints),
                      fold("Diagram", "how to build the shape", diagram) if diagram else ""])
     return f"""
 <article class="step" id="step-{i + 1}">

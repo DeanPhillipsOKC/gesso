@@ -5,7 +5,8 @@ brushes:
 - flat
 - wash brush
 load:
-  note: Don't put too much paint on the brush. Less paint often blends better. If the paint starts to drag, add a tiny bit of water to the brush.
+  note: Don't put too much paint on the brush. Less paint often blends better. If the paint starts to drag, add
+    a tiny bit of water to the brush.
 motion: Work fast, in one area, while both colors are still wet.
 result: A soft transition, only where both paints were still wet.
 then: Stop when the paint drags; streaks can stay.
@@ -26,13 +27,13 @@ diagram:
       - 30
       - 40
       - 40
-      paint: '#e8a53a'
+      paint: '#b5bac0'
     - rect:
       - 50
       - 30
       - 40
       - 40
-      paint: '#5b7fc7'
+      paint: '#7d848b'
   - caption: A few light strokes across the join
     add:
     - rect:
@@ -40,7 +41,7 @@ diagram:
       - 30
       - 20
       - 40
-      paint: '#a39a86'
+      paint: '#9da2a8'
       opacity: 0.85
     arrows:
     - M 36 50 L 64 50

@@ -82,9 +82,10 @@ def groups(plan: dict) -> list[dict]:
 
 
 def stages(plan: dict, text: dict[str, dict], paints: dict[str, dict], images: list[str], technique: dict,
-           lesson=None) -> list[dict]:
+           lesson=None, card_text: dict | None = None) -> list[dict]:
     """lesson.json's stages for a version 2 lesson (the table in design section 13). `text` is text.json's steps by
-    id, `paints` lesson.json's paint dicts by name, `images` each step's picture as the page shows it."""
+    id, `paints` lesson.json's paint dicts by name, `images` each step's picture as the page shows it, `card_text`
+    text.json's cards adapted for this painting (#96): each step carries its own, for the page."""
     import cards
     import elements
 
@@ -118,6 +119,9 @@ def stages(plan: dict, text: dict[str, dict], paints: dict[str, dict], images: l
             "lines": lines, "tip": t.get("tip", ""), "stroke_cards": [c for c in ids if c in known],
             "part": s["part"], "show": s.get("show", "full"), "group": group,
         })
+        mine = {c: x for c, x in ((card_text or {}).get(s["id"]) or {}).items() if c in known and isinstance(x, dict)}
+        if mine:
+            out[-1]["card_text"] = mine
         el = picked.get(s["id"])
         if el:  # the part's element technique (#12); a drafted one is marked on the page as not checked yet
             out[-1]["element"] = {k: el[k] for k in ("element", "name", "checked", "drafted")}
