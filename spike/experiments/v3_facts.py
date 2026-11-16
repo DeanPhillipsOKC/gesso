@@ -5,6 +5,7 @@ Not part of the pipeline. Run from the repo root:
     python spike/experiments/v3_facts.py sheet <lesson> [--out facts.json]   the fact sheet, as JSON
     python spike/experiments/v3_facts.py check <lesson> [--strict]           every claim in text.json, checked
     python spike/experiments/v3_facts.py sealed [<lesson> ...]               the checker over sealed lessons
+    python spike/experiments/v3_facts.py mutate [<lesson> ...]               plant faults, count the ones caught
 
 The write-up is docs/spikes/v3-words-from-facts.md. Lesson folders are only read; nothing is written into them.
 
@@ -18,8 +19,10 @@ fact; `TOLERANCE` says how far a claim may be from it.
 
 **The checker** (`check_text`) reads every number and every side or position word in a step's summary, tip, lines,
 and paint notes, sorts each into a claim (or a word that isn't one: a stroke direction, a brush size, a step number,
-a label such as "the left path"), and checks each claim against that step's sheet. A claim fails when no fact on the
-sheet supports it, and says which words, what the sheet says, and where they are. A claim whose subject or
+a label such as "the left path"), and checks each claim against the one fact on that step's sheet it names ("its
+top ... from the top edge" against the top of the step's area, not any value on the sheet). A claim fails when that
+fact doesn't support it, and says which words, what the sheet says, and where they are. `mutate` plants faults in
+the words (lengths moved, sides swapped, edges moved, stripes mirrored) and counts how many the checker catches. A claim whose subject or
 reference it can't find on the sheet is `unresolved`: not a failure unless `strict` (a writer working from the
 sheet would use the sheet's own names, so in the A/B run every claim must resolve).
 """
@@ -62,10 +65,11 @@ SOME_SIDE = 0.15  # "add some along the left side too": at least this share
 
 # How far a claim may be from the fact it's checked against. A Where line rounds a length to the quarter inch under
 # 2 in and the half inch above (aids._inches), so the measured value is within half that step of what it says; a
-# claim gets that and a little slack (a ruler read by eye), and no more.
+# claim gets that and a hair of slack, and no more.
 TOLERANCE = {
-    "inches_under_2": 0.175,  # 1/8 in (half the quarter-inch step) + 0.05 in
-    "inches": 0.3,  # 1/4 in (half the half-inch step) + 0.05 in
+    "inches_under_2": 0.145,  # 1/8 in (half the quarter-inch step) + 0.02 in
+    "inches": 0.27,  # 1/4 in (half the half-inch step) + 0.02 in (with 0.05, a Where line moved 1/2 in passed 9% of
+    # the time: PR #182 review)
     "share": 0.06,  # "a third of the way in": within 0.06 of the canvas's (or the part's) width
 }
 
@@ -107,9 +111,11 @@ def box_fact(mask: np.ndarray, canvas: dict, speckless: bool = True) -> dict | N
     # the top point (a hill's peak, a sail's tip): where its highest rows are, across
     top_rows = m[ys.min():ys.min() + max(1, int(0.01 * h))]
     peak = float(np.nonzero(top_rows.any(0))[0].mean()) / w
+    foot = m[max(ys.min(), ys.max() + 1 - max(1, int(0.05 * (ys.max() + 1 - ys.min())))):ys.max() + 1].any(0)
+    base = max((b - a for a, b in _runs(foot)), default=0) / w  # its widest run across its lowest rows (a trunk's base)
     rows = cv2.blur(m.sum(1).astype(np.float32).reshape(-1, 1), (1, max(1, int(0.02 * h) | 1))).ravel()
     widest = (int(rows.argmax()) / h - y0) / max(y1 - y0, 1e-6)  # how far down the thing it's widest (a balloon: 1/3)
-    return {"widest_down": _r(widest),"left": _r(x0 * cw), "right": _r((1 - x1) * cw), "top": _r(y0 * ch), "bottom": _r((1 - y1) * ch),
+    return {"widest_down": _r(widest), "base_wide": _r(base * cw),"left": _r(x0 * cw), "right": _r((1 - x1) * cw), "top": _r(y0 * ch), "bottom": _r((1 - y1) * ch),
             "wide": _r((x1 - x0) * cw), "tall": _r((y1 - y0) * ch), "cx": _r(xs.mean() / w * cw),
             "cy": _r(ys.mean() / h * ch), "peak_x": _r(peak * cw), "edges": edges, "meets": meets,
             "share": round(float(m.mean()), 4)}
@@ -424,15 +430,21 @@ def canvas_of(lesson: Path, shape) -> tuple[list | None, dict]:
 # marks a number or relation is checked on), the light's direction ("light from the left"), and a side within a
 # thing's own shape on its first step ("the head on its upper right").
 
-NUMW = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve"
+NUMW = ("one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|"
+        "seventeen|eighteen|nineteen|twenty")
 WORDS = {w: k + 1 for k, w in enumerate(NUMW.split("|"))}
+UNICODE_FRACS = {"½": 0.5, "¼": 0.25, "¾": 0.75, "⅓": 1 / 3, "⅔": 2 / 3, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875}
+_UF = "".join(UNICODE_FRACS)
+NUM = (r"\d+-\d+/\d+|\d+\s+\d+/\d+|\d+/\d+|\d*[" + _UF + r"]|\d*\.\d+|\d+|\b(?:" + NUMW +
+       r")(?:\s+and\s+a\s+(?:half|quarter))?")
 LENGTH = re.compile(
     r"(?P<q>\b(?:under|less than|at most|no more than|over|more than|at least)\s+)?"
     r"(?:about\s+|roughly\s+|nearly\s+|almost\s+|only\s+about\s+|only\s+)?"
-    r"(?P<num>\d+\s+\d+/\d+|\d+/\d+|\d+(?:\.\d+)?|\b(?:" + NUMW + r")(?:\s+and\s+a\s+(?:half|quarter))?"
-    r"|\b(?:an|a)\b(?=\s+inch)|\bhalf\s+an|\ba\s+half|\ba\s+quarter(?:\s+of\s+an)?|\bthree[- ]quarters\s+of\s+an"
-    r"|\ba\s+third\s+of\s+an)"
-    r"\s*-?\s*(?P<unit>in\b\.?(?!\s+(?:the|a|an|its|their|each|front|place|half|one|two)\b)|inch(?:es)?\b)"
+    r"(?P<num>" + NUM + r"|\b(?:an|a)\b(?=\s+inch)|\bhalf\s+an|\ba\s+half|\ba\s+quarter(?:\s+of\s+an)?"
+    r"|\bthree[- ]quarters\s+of\s+an|\ba\s+third\s+of\s+an)"
+    r"(?:\s*(?:-|–|to|or)\s*(?P<num2>" + NUM + r"))?"  # a range: "2 to 3 inches", "2-3 in"
+    r"\s*-?\s*(?P<unit>in\b\.?(?!\s+(?:the|a|an|its|their|each|every|this|that|these|those|there|here|front|place|"
+    r"half|one|two)\b)|inch(?:es)?\b)"
     r"(?P<and>\s+and\s+a\s+(?:half|quarter))?", re.I)
 BRUSH = re.compile(r"^\s*(?:wide\s+)?(?:flat|bright|filbert|angle|angled|round|mop|fan|brush|liner|dagger)\b", re.I)
 SIDES = "left|right|top|bottom"
@@ -449,6 +461,7 @@ FRACTION = re.compile(
     r"\b(?P<f>(?:a|one|two|three)[- ](?:third|quarter|fourth)s?|halfway|half way)(?:\s+of\s+the\s+way)?\s+"
     r"(?P<dir>in\b|across|along|down|up|from the (?:left|right|top|bottom)(?: edge)?)", re.I)
 CENTER = re.compile(r"\b(?P<q>just |a little |slightly |a bit |a touch )?(?P<side>left|right) of (?:the )?(?:center|centre|middle)"
+                    r"(?!\s+(?!of\b)[a-z])"  # not "left of the center red stripe": that's a relation to the stripe
                     r"(?: of (?:the )?(?P<of>canvas|painting|[\w-]+(?: [\w-]+)?))?", re.I)
 RELATION = re.compile(r"\b(?P<q>just |right |directly |a little |slightly |straight |well )?"
                       r"(?P<rel>above|below|beneath|to the left of|to the right of|left of|right of|inside|outside|beside|"
@@ -462,7 +475,8 @@ POSITION = re.compile(r"(?<!\bto )(?<!\bdown )\b(?:at|in|on|near)\s+the\s+(?:far
 SIDE_OF = re.compile(r"\b(?:on|along|down|to|at|over|into|up)\s+(?:the\s+|its\s+|their\s+)?(?:(?P<owner>[\w-]+)'s?\s+)?"
                      r"(?P<side>left|right|top|bottom|upper|lower)\s+(?P<what>side|edge|half|end|part)\b"
                      r"(?:\s+of\s+(?:the\s+|each\s+)?(?P<of>[\w-]+))?", re.I)
-LEAVE = re.compile(r"\bleav(?:e|ing)\b|\bshowing\b|\bkeep\b[^.]*\bdark\b", re.I)
+STRIPE = re.compile(r"\b(?:stripes?|lines?|bands?|strips?|bars?|streaks?|dash(?:es)?|rails?)\b", re.I)
+LEAVE = re.compile(r"\bleav(?:e|ing)\b|\bshowing\b", re.I)
 LABEL = re.compile(r"\b(?:the\s+)?(?P<far>far\s+|very\s+)?(?P<label>left|right|center|centre|middle)(?:[- ]?hand|most)?\s+"
                    r"(?!(?:edges?|sides?|of|is|are|and|or|half|end|ends|part|to|corner|third|quarter|in|on|at|from)\b)"
                    r"(?:one|ones|[a-z]+)", re.I)
@@ -489,33 +503,45 @@ PREP = (r"\b(?:of|on|onto|above|below|under|over|to|from|beside|near|behind|into
 GENERIC = {"light", "dark", "deep", "pale", "soft", "warm", "cool", "bright", "muted", "shadow", "sunset", "golden"}
 
 
-def inches(m: re.Match) -> float:
-    """The length a LENGTH match says, in inches."""
-    num = re.sub(r"\s+", " ", m.group("num").lower().strip())
-    if re.fullmatch(r"\d+ \d+/\d+", num):
-        whole, frac = num.split()
-        a, b = frac.split("/")
-        v = int(whole) + int(a) / int(b)
-    elif "/" in num:
+def number(num: str) -> float:
+    """One number as a length says it: "1 1/2", "1-1/2", "1½", ".5", "two", "two and a half", "half an"."""
+    num = re.sub(r"\s+", " ", num.lower().strip())
+    if num and num[-1] in UNICODE_FRACS:
+        return float(int(num[:-1]) if num[:-1] else 0) + UNICODE_FRACS[num[-1]]
+    hit = re.fullmatch(r"(\d+)[ -](\d+)/(\d+)", num)
+    if hit:
+        return int(hit.group(1)) + int(hit.group(2)) / int(hit.group(3))
+    if "/" in num:
         a, b = num.split("/")
-        v = int(a) / int(b)
-    elif re.fullmatch(r"\d+(?:\.\d+)?", num):
-        v = float(num)
-    elif num.split()[0] in WORDS:
-        v = WORDS[num.split()[0]] + (0.5 if "half" in num else 0.25 if "quarter" in num else 0)
-    elif num in ("a", "an"):
-        v = 1.0
-    elif num.startswith("half") or num == "a half":
-        v = 0.5
-    elif num.startswith("a quarter"):
-        v = 0.25
-    elif num.startswith("three"):
-        v = 0.75
-    else:  # a third of an inch
-        v = 1 / 3
+        return int(a) / int(b)
+    if re.fullmatch(r"\d*\.?\d+", num):
+        return float(num)
+    if re.match(r"three[- ]quarters", num):
+        return 0.75
+    if num.split()[0] in WORDS:
+        return WORDS[num.split()[0]] + (0.5 if "half" in num else 0.25 if "quarter" in num else 0)
+    if num in ("a", "an"):
+        return 1.0
+    if num.startswith("half") or num == "a half":
+        return 0.5
+    if num.startswith("a quarter"):
+        return 0.25
+    return 1 / 3  # a third of an inch
+
+
+def span(m: re.Match) -> tuple[float, float]:
+    """The lengths a LENGTH match says, in inches: (lo, hi), the same twice unless it's a range ("2 to 3 in")."""
+    v = number(m.group("num"))
     if m.group("and"):
         v += 0.5 if "half" in m.group("and") else 0.25
-    return float(v)
+    w = number(m.group("num2")) if m.group("num2") else v
+    return min(v, w), max(v, w)
+
+
+def inches(m: re.Match) -> float:
+    """The length a LENGTH match says, in inches (a range's middle)."""
+    lo, hi = span(m)
+    return (lo + hi) / 2
 
 
 def share_of(word: str) -> float:
@@ -681,7 +707,7 @@ class Reader:
             used.append(c["span"])
             # what's left showing (gaps, the paint under) isn't on the sheet: a place said of it can't be checked
             start = max([x.end() for x in re.finditer(r"[,;:]", sentence[:c["span"][0]])], default=0)
-            if c["ok"] is False and LEAVE.search(sentence[start:c["span"][0]]):
+            if c["ok"] is False and (LEAVE.search(sentence[start:c["span"][0]]) or re.match(r"\s*leav", sentence, re.I)):
                 c.update(ok=None, why="said of what's left showing, which the sheet doesn't hold")
             out.append(c)
 
@@ -696,13 +722,20 @@ class Reader:
         for m in EDGE.finditer(sentence):
             if not free(*m.span()):
                 continue
-            if m.group("of") and (m.group("owner") or "").lower() not in ("canvas", "painting"):
-                continue  # the edge of a thing, not of the canvas
             before = sentence[:m.start()]
+            owner = (m.group("owner") or "").lower()
+            # the part's own edge, named as such: "along the far left edge of the balloon", "along its left edge"
+            own_edge = bool(m.group("of") and any(pid in self.family for _a, _b, pid in self.L.mentions(owner))) or \
+                bool(re.search(r"\b(?:its|their)\s+(?:very\s+|far\s+)?$", before, re.I))
+            if m.group("of") and owner not in ("canvas", "painting") and not own_edge:
+                continue  # the edge of another thing, not of the canvas
+            if own_edge and (self.st["first_of_part"] or field.endswith("(where)")):
+                continue  # a thing's first step is at its own edges by definition: no claim
+            before = re.sub(r"\b(?:its|their)\s+((?:very\s+|far\s+)?)$", r"the \1", before)
             if NOT_REACH.search(before):
-                take(self.edges(sentence, field, m, [m.group("side").lower()], False))
+                take(self.edges(sentence, field, m, [m.group("side").lower()], False, own_edge))
             elif REACH_BEFORE.search(before):
-                take(self.edges(sentence, field, m, [m.group("side").lower()], True))
+                take(self.edges(sentence, field, m, [m.group("side").lower()], True, own_edge))
         for m in FRACTION.finditer(sentence):
             if free(*m.span()):
                 take(self.fraction(sentence, field, m))
@@ -736,59 +769,102 @@ class Reader:
     # -- the kinds of claim --
 
     def length(self, sentence, field, m):
-        said = inches(m)
+        """A length is checked against the one fact it names (H2 of the PR #182 review): "its top is 2 in from the
+        top edge" against the top of the thing, "3 in wide" against its width. The thing is the step's area for a
+        Where line; for other words, the part the clause names, or the labeled mark ("the right one"), or the step's
+        area, its part and its marks (one value each). A length that names no axis, edge, or size is unresolved."""
+        lo, hi = span(m)
+        said = (lo + hi) / 2
         after, before = sentence[m.end():m.end() + 40].lower(), sentence[max(0, m.start() - 30):m.start()].lower()
+        start = max([x.end() for x in re.finditer(r"[,;:()]|\b(?:and|then|while)\b", sentence[:m.start()])], default=0)
+        clause = sentence[start:m.start()].lower()
         things, label, who = self.subject(sentence, m.start())
-        if label and who == "this step":
+        where_line = field.endswith("(where)")
+        items = []
+        if where_line:
+            things = [dict(self.st["area"], what="the step's area")] if self.st["area"] else []
+        elif label and who == "this step":
             items = _pick(_items(self.st), label, self._center_x())
-            things = [i.get("box") or i for i in items] or things
-        x, y, w, h = [], [], [], []
-        for t in things:
-            p = _positions(t, self.cw, self.ch)
-            x += p["x"]
-            y += p["y"]
-            w += p["w"]
-            h += p["h"]
-        if who == "this step" and not label:
-            for c in self.st["crossings"]["across"]:
-                x += [c["from"], c["to"], c["mid"]]
-                w.append(c["to"] - c["from"])
-            for c in self.st["crossings"]["down"]:
-                y += [c["from"], c["to"], c["mid"]]
-                h.append(c["to"] - c["from"])
-        gaps = self._gaps(sentence)
-        cue, cands, extra = None, None, 0
+            things = [i["box"] for i in items if "box" in i] or things
+        pieces = [i for i in items if "box" not in i]  # crossings and edge runs: across only
+        # the anchor the clause names: its top, its left side, its middle...
+        anc = re.findall(r"\b(?:its|their|the)\s+(top|bottom|base|left side|right side|left end|right end|left|right|"
+                         r"middle|center|centre|peak)\b(?!\s+(?:canvas\s+)?edge)", clause)
+        anchor = anc[-1].split()[0] if anc else None
+        anchor = {"base": "bottom", "centre": "middle", "center": "middle"}.get(anchor, anchor)
+
+        def coord(t, a, axis):
+            """The thing's coordinate (inches from the left or top edge) for anchor a on an axis."""
+            if "wide" not in t:  # a crossing or an edge run
+                return {"left": t.get("from"), "right": t.get("to"), "middle": t.get("mid")}.get(a) if axis == "x" else None
+            x = {"left": t["left"], "right": self.cw - t["right"], "middle": t["cx"], "peak": t["peak_x"]}
+            y = {"top": t["top"], "bottom": self.ch - t["bottom"], "middle": t["cy"]}
+            return (x if axis == "x" else y).get(a)
+
+        def from_edge(e):
+            axis = "x" if e in ("left", "right") else "y"
+            near = {"left": "left", "right": "right", "top": "top", "bottom": "bottom"}[e]
+            anchors = [anchor] if anchor else [near, "middle"]
+            if not anchor and axis == "x" and re.search(r"\b(?:top|peak|tip)\b", clause):
+                anchors.append("peak")  # "to a soft round top about 2 in in"
+            extra = pieces
+            if not where_line and not label and who == "this step" and axis == "x":
+                extra = pieces + self.st["crossings"]["across"]  # the bars it paints, where they cross the middle row
+            vals = [coord(t, a, axis) for t in things + extra for a in anchors]
+            full = self.cw if axis == "x" else self.ch
+            return [v if e in ("left", "top") else full - v for v in vals if v is not None]
+
+        def sizes(axis):
+            out = [t["wide" if axis == "x" else "tall"] for t in things if "wide" in t]
+            if axis == "x":
+                out += [p["to"] - p["from"] for p in pieces if p.get("to") is not None]
+                if not where_line and not label and who == "this step":  # its width at the part's middle row
+                    out += [c["to"] - c["from"] for c in self.st["crossings"]["across"]]
+                if re.search(r"\bat (?:the|its) (?:bottom|top|base)\b", sentence[m.end():m.end() + 30], re.I):
+                    for t in things:  # its width where it meets an edge, or at its foot
+                        for e in ("bottom", "top"):
+                            out += [r["to"] - r["from"] for r in (t.get("meets") or {}).get(e, [])]
+                        out += [t["base_wide"]] if "base_wide" in t else []
+            elif not where_line and not label and who == "this step" and STRIPE.search(clause):
+                out += [c["to"] - c["from"] for c in self.st["crossings"]["down"]]
+            return out
+
+        cue, cands, extra = None, [], 0
         edge = r"(?:\s+(?:canvas\s+)?edge)?"
         for pat, name, vals in (
-                (r"\s*(?:wide|in width|thick)\b", "wide", lambda: w),
-                (r"\s*(?:tall|high|in height|deep)\b", "tall", lambda: h),
-                (r"\s*(?:across|long|in size|round)\b", "size", lambda: w + h),
-                (r"\s*(?:in\s+)?(?:from|off) the left" + edge, "from the left edge", lambda: x),
-                (r"\s*(?:in\s+)?(?:from|off) the right" + edge, "from the right edge", lambda: [self.cw - v for v in x]),
-                (r"\s*(?:in\s+)?(?:from|below|under|off|down from) the top" + edge, "from the top edge", lambda: y),
+                (r"\s*(?:wide|in width|thick)\b", "wide", lambda: sizes("x")),
+                (r"\s*(?:tall|high|in height|deep)\b", "tall", lambda: sizes("y")),
+                (r"\s*(?:across|long|in size|round)\b", "size", lambda: sizes("x") + sizes("y")),
+                (r"\s*(?:in\s+)?(?:from|off) the left" + edge, "from the left edge", lambda: from_edge("left")),
+                (r"\s*(?:in\s+)?(?:from|off) the right" + edge, "from the right edge", lambda: from_edge("right")),
+                (r"\s*(?:in\s+)?(?:from|below|under|off|down from) the top" + edge, "from the top edge",
+                 lambda: from_edge("top")),
                 (r"\s*(?:in\s+)?(?:from|above|off|up from) the bottom" + edge, "from the bottom edge",
-                 lambda: [self.ch - v for v in y]),
-                (r"\s*apart\b", "apart", lambda: gaps["any"] + w + h),
-                (r"\s*(?:below|under|above|down|up|lower|higher)\b", "down", lambda: h + gaps["down"]),
-                (r"\s*in\b", "in from an edge", lambda: x + [self.cw - v for v in x])):
+                 lambda: from_edge("bottom")),
+                (r"\s*apart\b", "apart", lambda: self._gaps(sentence)["apart"]),
+                (r"\s*(?:below|under|above|down|up|lower|higher)\b", "down",
+                 lambda: sizes("y") + self._gaps(sentence[m.end():])["down"]),
+                (r"\s*in\b", "in from an edge", lambda: from_edge("left") + from_edge("right"))):
             hit = re.match(pat, after)
             if hit:
                 cue, cands, extra = name, vals(), hit.end()
                 break
         if cue is None and re.search(r"\b(?:down|up)\s+(?:only\s+)?(?:about\s+)?$", before):
-            cue, cands = "down", h + gaps["down"]
-        if cue is None:
-            cands = w + h + x + y + [self.cw - v for v in x] + [self.ch - v for v in y] + gaps["any"]
+            cue, cands = "down", sizes("y")
         q = (m.group("q") or "").strip().lower()
-        if q in ("under", "less than", "at most", "no more than"):
-            ok = any(v <= said + tol(said) for v in cands)
+        if cue is None:
+            ok = None  # a length with no axis, edge or size named: nothing on the sheet to check it against
+        elif q in ("under", "less than", "at most", "no more than"):
+            ok = any(v <= hi + tol(hi) for v in cands)
         elif q in ("over", "more than", "at least"):
-            ok = any(v >= said - tol(said) for v in cands)
-        else:
-            ok = any(abs(said - v) <= tol(max(said, v)) for v in cands)  # "about 2 in" is read on the half inch
+            ok = any(v >= lo - tol(lo) for v in cands)
+        else:  # "about 2 in" is read on the half inch; a range anywhere in it
+            ok = any(lo - tol(max(lo, v)) <= v <= hi + tol(max(hi, v)) for v in cands)
+        what = f"{who}" + (f", its {anchor}" if anchor and cue and cue.startswith("from") else "")
         c = self.claim("length", field, sentence, (m.start(), m.end() + extra), ok,
-                       f"{who}: nearest {cue or 'length'} {_fmt(cands, said)}",
-                       "" if ok else f"says {said:g} in" + (f" {cue}" if cue else ""))
+                       f"{what}: nearest {cue or 'length'} {_fmt(cands, said)}" if cue else "no axis, edge or size named",
+                       "" if ok else (f"says {said:g} in" + (f" {cue}" if cue else "") if cue else
+                                      "a length with nothing named to measure it against"))
         # a size of the step's own thing (for `agree`): said in a Where line, or of the step's part by name or as
         # "it", not of one piece of it ("each", "at the bottom", "a bell-shaped glass")
         near = sentence[max(0, m.start() - 40):m.end() + 30]
@@ -803,37 +879,44 @@ class Reader:
         """Distances between things: the step's area and every other part it touches or the sentence names (the
         gaps across and down, and between their top and bottom sides), and between the step's own marks and
         crossings."""
-        named = {pid for _a, _b, pid in self.L.mentions(sentence)}
+        named = {pid for _a, _b, pid in self.L.mentions(sentence)}  # only the parts these words name
         a = self.st["area"]
-        down, anyg = [], []
+        down, apart = [], []
         if a:
             for o in self.st["others"]:
-                if o["touches"] or o["part"] in named:
+                if o["part"] in named:
                     p = self.L.parts[o["part"]]
-                    anyg += [v for v in (o["gap"]["down"], o["gap"]["across"]) if v is not None]
                     down += [v for v in (o["gap"]["down"],) if v is not None]
                     down += [abs(a["top"] - p["top"]), abs(a["bottom"] - p["bottom"]),
                              abs(a["top"] - (self.ch - p["bottom"])), abs((self.ch - a["bottom"]) - p["top"])]
         ms = self.st["marks"]
-        for p, q in zip(ms, ms[1:]):
-            anyg += [abs(q["cx"] - p["cx"])]
-            down += [abs(q["cy"] - p["cy"]), abs(q["top"] - p["top"])]
-        for key, into in (("across", anyg), ("down", down)):
+        for p, q in zip(ms, ms[1:]):  # neighboring marks: middle to middle
+            apart += [abs(q["cx"] - p["cx"]), abs(q["cy"] - p["cy"])]
+            down += [abs(q["cy"] - p["cy"]), abs(q["top"] - p["top"]), abs(q["bottom"] - p["bottom"])]
+        for key in ("across", "down"):
             cs = self.st["crossings"][key]
             for p, q in zip(cs, cs[1:]):
-                into += [q["mid"] - p["mid"], q["from"] - p["to"]]
-        return {"down": down, "any": anyg + down}
+                apart += [q["mid"] - p["mid"], q["from"] - p["to"]]
+                if key == "down":
+                    down += [q["mid"] - p["mid"]]
+        return {"down": down, "apart": apart}
 
     def _center_x(self) -> float:
         p = self.part or self.st["area"]
         return p["left"] + p["wide"] / 2 if p else self.cw / 2
 
-    def edges(self, sentence, field, m, sides, reach):
+    def edges(self, sentence, field, m, sides, reach, own_edge=False):
+        """A canvas edge reached (or not). In a Where line the thing is the step's area alone. The part's own edge
+        (H1 of the PR #182 review) is read only for a pass's words that name it ("its left edge", "the left edge of
+        the balloon") or run a stripe "along the (far) left edge" of an object: never for a Where line, and never
+        as a second chance for words about the canvas."""
         things, _label, who = self.subject(sentence, m.start())
+        if field.endswith("(where)"):
+            things = [dict(self.st["area"], what="the step's area")] if self.st["area"] else []
         has = set()
         for t in things:
             has |= set(t.get("edges") or [])
-        if who == "this step":
+        if who == "this step" and not field.endswith("(where)"):
             for c in self.st["crossings"]["across"]:
                 if c["from"] <= aids.EDGE_SHARE * self.cw:
                     has.add("left")
@@ -841,9 +924,38 @@ class Reader:
                     has.add("right")
         ok = all((s in has) == reach for s in sides)
         part_ok = False
-        # a pass inside a painted part: "along the far left edge" can mean the part's own edge (a balloon's stripe)
-        if not ok and reach and who == "this step" and not self.st["first_of_part"] and self.part \
-                and not re.search(r"\bcanvas\b", sentence, re.I):
+        along = re.search(r"\balong\s+(?:the\s+|its\s+)?(?:very\s+|far\s+)?$", sentence[:m.start()], re.I)
+        part_words = own_edge or (along and self.part and self.part["kind"] != "area"
+                                  and not re.search(r"\bcanvas\b", sentence, re.I))
+        if own_edge:
+            ok = False if reach else None
+        halves = (self.st.get("adds") or {}).get("halves")
+        if own_edge and reach and halves and who == "this step" and not self.st["first_of_part"]:
+            # "down the left edge of the mast": the paint goes on that side of the part (as `side` reads it)
+            share = min(halves[x] for x in sides)
+            ok = share >= MOST_SIDE
+            return self.claim("edge", field, sentence, m, ok,
+                              f"{share:.0%} of the paint it adds is in the {' and '.join(sides)} half of "
+                              f"{self.st['part_name'].lower()}",
+                              "" if ok else f"says the paint goes along its {' and '.join(sides)} edge")
+        clause_start = max([x.end() for x in re.finditer(r"[,;:]|\band\b", sentence[:m.start()])], default=0)
+        anc = re.findall(r"\b(?:its|their)\s+(top|bottom|left|right)\b", sentence[clause_start:m.start()].lower())
+        if anc and reach and len(sides) == 1 and anc[-1] != sides[0]:
+            # "its bottom is at the top edge": that side of the thing, at that edge
+            a, e = anc[-1], sides[0]
+            vals = []
+            for t in things:
+                if "wide" in t and (a in ("top", "bottom")) == (e in ("top", "bottom")):
+                    v = {"top": t["top"], "bottom": self.ch - t["bottom"], "left": t["left"],
+                         "right": self.cw - t["right"]}[a]
+                    full = self.ch if e in ("top", "bottom") else self.cw
+                    vals.append(v if e in ("top", "left") else full - v)
+            ok = bool(vals) and min(vals) <= aids.EDGE_SHARE * (self.ch if e in ("top", "bottom") else self.cw)
+            return self.claim("edge", field, sentence, m, ok,
+                              f"{who}'s {a} is " + ", ".join(f"{v:.2f}" for v in vals) + f" in from the {e} edge",
+                              "" if ok else f"says its {a} is at the {e} edge")
+        if (own_edge or not ok) and part_words and reach and who == "this step" and not self.st["first_of_part"] \
+                and self.part and not field.endswith("(where)"):
             p = self.part
             pieces = [dict(left=k["left"], right=k["right"], top=k["top"], bottom=k["bottom"]) for k in self.st["marks"]]
             pieces += [dict(left=c["from"], right=self.cw - c["to"], top=None, bottom=None)
@@ -911,7 +1023,9 @@ class Reader:
         if inside:  # stripes are read where they cross the part's middle; marks only when nothing crosses it
             pieces = [i for i in _items(self.st) if i["what"].startswith("crossing")] or \
                 [i for i in _items(self.st) if i["what"].startswith("mark")]
-            mids = [i["mid"] for i in _pick(pieces, label, c)]
+            picked = _pick(pieces, label, c) if label else \
+                ([min(pieces, key=lambda i: abs(i["mid"] - c))] if pieces else [])  # M2: the one nearest the middle
+            mids = [i["mid"] for i in picked]
         else:
             mids = [t["cx"] for t in things if "cx" in t]
         ok = any((v < c if side == "left" else v > c) and (not q or abs(v - c) <= JUST * width) for v in mids)
@@ -962,19 +1076,26 @@ class Reader:
         if ref["kind"] == "marks":
             pc = self._center_x()
             adj = 0.05 * (self.part["wide"] if self.part else self.cw)
+            # M2 of the PR #182 review: each reference stripe is judged by this step's stripe nearest it, on one row:
+            # the part's middle row, or else the first band where this step has a stripe near the reference
             found = []
+            reach = 0.15 * (self.part["wide"] if self.part else self.cw)
             mine_rows = [self.st["crossings"]["across"]] + self.st["crossings"].get("bands", [])
-            for k, (refs, mine) in enumerate(zip(ref["rows"], mine_rows)):  # the middle row, then the other bands
+
+            def gap_of(cc, r):
+                return max(0.0, cc["from"] - r["to"], r["from"] - cc["to"])
+
+            for refs, mine in zip(ref["rows"], mine_rows):
+                if not any(gap_of(cc, r) <= reach for r in refs for cc in mine):
+                    continue
                 for r in refs:
-                    for cc in mine:
-                        g = max(0.0, cc["from"] - r["to"], r["from"] - cc["to"])
-                        if near and g > adj:
-                            continue
-                        inward = (cc["mid"] > r["mid"]) == (r["mid"] < pc)
-                        w = {"left of" if cc["mid"] < r["mid"] else "right of", "beside", "next to",
-                             "inside" if inward else "outside"}
-                        if k == 0 or rel in w:
-                            found.append((cc, w))
+                    cc = min(mine, key=lambda x: (gap_of(x, r), abs(x["mid"] - r["mid"])))
+                    if near and gap_of(cc, r) > adj:
+                        continue
+                    inward = (cc["mid"] > r["mid"]) == (r["mid"] < pc)
+                    found.append((cc, {"left of" if cc["mid"] < r["mid"] else "right of", "beside", "next to",
+                                       "inside" if inward else "outside"}))
+                break
             ok = any(rel in w for _c, w in found)
             sheet = (f"{ref['what']} at " + ", ".join(f"{r['from']:g}-{r['to']:g} in" for r in ref["items"])
                      + "; this step's " + ("touching " if near else "") + "stripes: "
@@ -1004,6 +1125,9 @@ class Reader:
         if near and rel in ("left of", "right of") and (g["across"] or 0) > JUST_GAP * self.cw:
             words.discard(rel)
         ok = rel in words
+        if {"above", "below", "left of", "right of"} <= set(fact["this_is"]) and rel in ("above", "below", "left of",
+                                                                                         "right of"):
+            ok = None  # L3: it's all round this thing (the sky round a balloon): a side says nothing checkable
         shown = sorted(words - {"beside", "next to", "outside"})
         sheet = (f"{who} is {', '.join(shown) or 'level with'} {p['name'].lower()}"
                  + (f", {g['down']:g} in apart down" if g["down"] is not None else "")
@@ -1131,7 +1255,126 @@ def say(c: dict) -> str:
             f"sheet: {c['sheet']}")
 
 
-SEALED = sorted(ROOT.glob("output/*_skill_20261116-*"))  # the sealed POC 1.12.x lessons the write-up ran on
+# --- Planted faults: how many the checker catches (the review of PR #182) ---
+#
+# Every measured Where line is right, so a Where line with one fault put in is wrong by construction (bar a thing
+# that's symmetric about the canvas's middle). A tip with one put in is wrong as long as the tip was right to start.
+# A mutant is caught when the sentence has more failed claims than it had before.
+
+SWAP_LR = {"left": "right", "right": "left"}
+SWAP_UD = {"top": "bottom", "bottom": "top", "upper": "lower", "lower": "upper", "above": "below", "below": "above"}
+SWAP_IO = {"inside": "outside", "outside": "inside"}
+SHIFTS = {"length +1 in": 1.0, "length -1 in": -1.0, "length +1/2 in": 0.5, "length -1/2 in": -0.5}
+
+
+def ruler(v: float) -> str:
+    """A length as a Where line says it, to the quarter inch: '1 3/4', '3'."""
+    q = round(v * 4) / 4
+    whole, frac = int(q), q - int(q)
+    f = {0.25: "1/4", 0.5: "1/2", 0.75: "3/4"}.get(round(frac, 2), "")
+    return f"{whole} {f}".strip() if whole else (f or "0")
+
+
+PAIRS = re.compile(r"\b(?:top|bottom|left|right|side|up|down)\s+(?:to|and)\s+(?:top|bottom|left|right|side|up|down)\b",
+                   re.I)
+
+
+def _swap(text: str, table: dict[str, str], only: list[tuple[int, int]] | None = None) -> str:
+    """Each word of the table swapped, except inside "top to bottom" and the like (the same reach either way)."""
+    pat = re.compile(r"\b(" + "|".join(table) + r")\b", re.I)
+    keep = [x.span() for x in PAIRS.finditer(text)]
+
+    def sub(x):
+        if only is not None and not any(a <= x.start() < b for a, b in only):
+            return x.group(0)
+        if any(a <= x.start() < b for a, b in keep):
+            return x.group(0)
+        w = table[x.group(1).lower()]
+        return w.capitalize() if x.group(1)[0].isupper() else w
+    return pat.sub(sub, text)
+
+
+def mutants(sentence: str, claims: list[dict]) -> list[tuple[str, str]]:
+    """(kind, sentence with one fault put in) for a sentence and its claims (Reader.read's, with their spans)."""
+    out = []
+    for m in LENGTH.finditer(sentence):  # every length moved
+        if BRUSH.match(sentence[m.end():]) or m.group("num2"):
+            continue
+        said = inches(m)
+        for kind, d in SHIFTS.items():
+            nv = said + d
+            if nv >= 0.25:
+                end = m.end("and") if m.group("and") else m.end("num")
+                out.append((kind, sentence[:m.start("num")] + ruler(nv) + sentence[end:]))
+    kinds = {c["kind"] for c in claims}
+    if any(re.search(r"\b(?:left|right)\b", c["words"], re.I) for c in claims
+           if c["kind"] in ("center", "relation", "position", "side", "edge", "length")):
+        out.append(("left/right swapped", _swap(sentence, SWAP_LR)))
+    if any(re.search(r"\b(?:top|bottom|upper|lower|above|below)\b", c["words"], re.I) for c in claims
+           if c["kind"] in ("relation", "position", "side", "edge", "fraction", "length")):
+        out.append(("up/down swapped", _swap(sentence, SWAP_UD)))
+    spans = [c["span"] for c in claims if c["kind"] in ("center", "relation")]
+    if spans and re.search(r"\b(?:left|right|inside|outside)\b", " ".join(sentence[a:b] for a, b in spans), re.I):
+        out.append(("stripe or side mirrored", _swap(_swap(sentence, SWAP_IO, spans), SWAP_LR, spans)))
+    if "edge" in kinds:  # an edge reached moved off it, and a distance from an edge moved onto it
+        moved = re.sub(r"\bis at the (left|right|top|bottom) edge\b", r"is about 1 1/2 in from the \1 edge", sentence,
+                       count=1)
+        if moved != sentence:
+            out.append(("edge moved", moved))
+    hit = re.search(r"\bis about (" + NUM + r") in from the (left|right|top|bottom) edge\b", sentence)
+    if hit and number(hit.group(1)) >= 1:
+        out.append(("edge moved", sentence[:hit.start()] + f"is at the {hit.group(2)} edge" + sentence[hit.end():]))
+    return out
+
+
+def mutate(sheet: dict, text: dict, misses: int = 8) -> dict:
+    """The catch rate for each kind of planted fault, in the Where lines and in the other words, beside the
+    false-alarm count on the words as they are: {"where"|"written": {kind: [planted, caught]}, "missed": {kind:
+    [examples]}, "base": {"claims", "flags"}}."""
+    lesson = Lesson(sheet)
+    by_id = {t.get("stage_id"): t for t in text.get("steps") or []}
+    out = {"where": {}, "written": {}, "missed": {}, "base": {"claims": 0, "flags": 0}}
+    for st in sheet["steps"]:
+        r = Reader(lesson, st)
+        for field, words in _fields(by_id.get(st["id"]) or {}):
+            group = "where" if field.endswith("(where)") else "written"
+            for s in sentences(words):
+                base, _rest = r.read(s, field)
+                bad = sum(c["ok"] is False for c in base)
+                out["base"]["claims"] += len(base)
+                out["base"]["flags"] += bad
+                if bad:
+                    continue  # a fault is planted only in words the checker accepts as they are
+                for kind, s2 in mutants(s, base):
+                    if s2 == s:
+                        continue
+                    got, _rest = r.read(s2, field)
+                    caught = sum(c["ok"] is False for c in got) > bad
+                    tally = out[group].setdefault(kind, [0, 0])
+                    tally[0] += 1
+                    tally[1] += caught
+                    if not caught and len(out["missed"].setdefault(f"{group}: {kind}", [])) < misses:
+                        out["missed"][f"{group}: {kind}"].append(f"step {st['n']} ({st['id']}), {field}: {s2}")
+    return out
+
+
+def add_up(results: list[dict]) -> dict:
+    total = {"where": {}, "written": {}, "base": {"claims": 0, "flags": 0}}
+    for r in results:
+        for g in ("where", "written"):
+            for k, (n, c) in r[g].items():
+                t = total[g].setdefault(k, [0, 0])
+                t[0] += n
+                t[1] += c
+        for k in ("claims", "flags"):
+            total["base"][k] += r["base"][k]
+    return total
+
+
+# the sealed POC 1.12.1 lessons the write-up ran on (L5: by name; 153316 is 1.12.0 and doesn't rebuild to its pictures)
+SEALED = [ROOT / "output" / n for n in ("balloon-lavender_skill_20261116-171639", "chickadee_skill_20261116-191619",
+                                        "red-sailboat_skill_20261116-191627", "sleeping-cat_skill_20261116-191623",
+                                        "snow-lantern_skill_20261116-191628")]
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -1146,7 +1389,25 @@ def main(argv: list[str] | None = None) -> int:
     c = sub.add_parser("sealed")
     c.add_argument("lessons", type=Path, nargs="*")
     c.add_argument("--out", type=Path, help="write every claim of every lesson here, as JSON")
+    d = sub.add_parser("mutate", help="plant faults in each lesson's words and count how many the checker catches")
+    d.add_argument("lessons", type=Path, nargs="*")
     args = ap.parse_args(argv)
+    if args.cmd == "mutate":
+        results = []
+        for lesson in args.lessons or SEALED:
+            sheet, _plan = lesson_sheet(lesson)
+            r = mutate(sheet, json.loads((Path(lesson) / "text.json").read_text(encoding="utf-8")))
+            results.append(r)
+            print(Path(lesson).name, json.dumps({k: r[k] for k in ("where", "written", "base")}))
+            for k, v in r["missed"].items():
+                for e in v[:3]:
+                    print(f"  missed {k}: {e[:200]}")
+        total = add_up(results)
+        for g in ("where", "written"):
+            for k, (n, c) in sorted(total[g].items()):
+                print(f"{g:8s} {k:24s} {c}/{n} caught ({c / max(n, 1):.0%})")
+        print(f"unmutated: {total['base']['flags']} flags in {total['base']['claims']} claims")
+        return 0
     if args.cmd == "sheet":
         sheet, _plan = lesson_sheet(args.lesson)
         text = json.dumps(sheet, indent=1)
