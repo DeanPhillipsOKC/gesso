@@ -243,6 +243,9 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
                          "outline model's confidence")
         failures += ol.problems(plan["parts"], stats)
         failures += bs.problems(plan, rows)
+        import paints
+
+        failures += paints.wrong_paints(plan, pictures, masks)  # #154: a step's paint far from what it shows
         notes += bs.faint_ghosts(plan, rows)
         missing = [n for n in names if not (lesson / n).exists()]
         if missing:

@@ -318,6 +318,7 @@ class FixtureBuildTests(unittest.TestCase):
             self.assertEqual(len(pictures), len(bs.flat_steps(plan)), name)
             self.assertTrue((pictures[-1] == finish).all(), name)
             self.assertEqual(bs.problems(plan, rows), [], name)
+            self.assertEqual(paints.wrong_paints(plan, pictures, lessons.built(name)[3]), [], name)  # #154
             self.assertLess(rows[-1]["final_gap"], 0.02, name)  # before the last picture was set to the finish
             for r in rows:
                 self.assertEqual(r["outside"], 0.0, f"{name} {r['id']} changed something outside its part")
@@ -857,6 +858,53 @@ class AddTests(unittest.TestCase):
         self.assertEqual(r["paints"], plan["paints"])
         with self.assertRaises(ValueError):
             paints.add(img, plan, owner, "moon", 10)
+
+
+def striped_scene():
+    """A purple field with a ball in front, red with two blue stripes. The plan paints the stripes in the field's
+    purple: the nearest paint the ball's steps name, but far from the blue the stripe step's picture shows (#154)."""
+    img = np.zeros((120, 160, 3), np.uint8)
+    img[:] = (128, 64, 160)
+    yy, xx = np.mgrid[:120, :160]
+    ball = ((yy - 60) ** 2 + (xx - 80) ** 2) < 40 ** 2
+    img[ball] = (200, 40, 40)
+    stripes = ball & (((xx - 54) % 26) < 9)
+    img[stripes] = (30, 90, 170)
+    owner = np.zeros((120, 160), np.int32)
+    owner[ball] = 1
+    plan = {"plan_version": 2, "parts": [{"id": "field", "kind": "area", "box": [0, 0, 1, 1]},
+                                         {"id": "ball", "kind": "object", "box": [0.2, 0.1, 0.8, 0.9]}],
+            "paints": [{"id": "field-1", "hex": "#8040a0", "parts": ["field", "ball"]},
+                       {"id": "ball-1", "hex": "#c82828", "parts": ["ball"]}],
+            "stages": [{"id": "all", "steps": [
+                {"id": "field", "part": "field", "show": "full", "paints": ["field-1"]},
+                {"id": "ball-coat", "part": "ball", "show": "flat", "paints": ["ball-1"]},
+                {"id": "ball-blue", "part": "ball", "show": "pass", "paints": ["field-1"]},
+                {"id": "ball-red", "part": "ball", "show": "pass", "paints": ["ball-1"]}]}]}
+    return img, plan, owner
+
+
+class StepColorTests(unittest.TestCase):
+    """#154: a step's paint must be near the color its own picture adds."""
+
+    def test_a_stripe_painted_in_a_far_paint_fails_and_passes_once_paints_add_gives_its_color(self):
+        img, plan, owner = striped_scene()
+        pictures, _, masks = bs.build(img, plan, owner)
+        out = paints.wrong_paints(plan, pictures, masks)
+        self.assertEqual(len(out), 1, out)
+        self.assertTrue(out[0].startswith("ball-blue: its picture adds #"), out)
+        self.assertIn("its nearest paint, field-1 (#8040a0), is Delta E", out[0])
+        self.assertIn("paints --add ball", out[0])
+        # paints --add gives the ball its blue: it was matched to the shared purple, which doesn't move to it
+        r = paints.add(img, plan, owner, "ball", 10)
+        self.assertEqual(r["problems"], [])
+        blue = next(p for p in r["paints"] if p["id"] in r["new"] and mixing.delta_e(p["hex"], "#1e5aaa") < 6)
+        self.assertEqual((blue["parts"], blue["added"]), (["ball"], True))
+        fixed = copy.deepcopy(plan)
+        fixed["paints"] = r["paints"]
+        fixed["stages"][0]["steps"][2]["paints"] = [blue["id"]]
+        pictures, _, masks = bs.build(img, fixed, owner)
+        self.assertEqual(paints.wrong_paints(fixed, pictures, masks), [])
 
 
 class PlanTests(unittest.TestCase):

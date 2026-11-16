@@ -17,7 +17,8 @@ before you write any steps.
 
 ## Later in the run
 - **A part needs one more color** (to split a pass in two, or to carry something you dropped in step 2):
-  `paints --add <part id>`. It measures one more color for that part and touches nothing else. Name it. If it says
+  `paints --add <part id>`. It measures one more color for that part and touches nothing else, and also adds any
+  color of the part that no paint in the lesson comes near (each stripe of a striped balloon). Name them. If it says
   the part has no other distinct color, the split isn't there to make: use the paints the part has.
 - **You changed `parts` and ran `outline` again:** run `paints --lesson <lesson>` again. It keeps every paint a
   step uses, and the names of paints whose color barely moved, and prints what changed. Name anything new.
