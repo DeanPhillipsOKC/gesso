@@ -63,6 +63,14 @@ Issue #165 covers all of Wave 0.
   overlapping things). Each has its photo, canvas fit and finish render **frozen**, so an experiment changes
   one thing. Lives in `spike/experiments/bench/`, built on the three-lesson fixtures in `spike/tests/`.
   This is for experiments only; site lessons still rerun from the photo.
+  The three hard pictures (picked by Claude at the owner's request, 2026-11-16; AI-made with the image model at
+  high quality, about 4 cents each):
+  - `photos/highland-cow.jpg`: long shaggy hair over the face, loose strands against the sky, grass blades in
+    front of the legs. Tests soft and furry edges.
+  - `photos/lake-cabin.jpg`: pines, a peak and a cabin mirrored in still water, ripples breaking the reflection,
+    reeds and pebbles in front. Tests reflections and what's behind the reeds.
+  - `photos/birch-grove.jpg`: a dozen thin trunks at different distances, branches crossing each other, mist.
+    Tests many thin overlapping things and the order they're painted in.
 - **S0b. Blind A/B page.** Two lessons side by side, sides shuffled, a short rubric per lesson: step pictures
   look like a real half-done painting; I could paint each step from its words; pictures, paints and words
   agree; overall which would I paint from. About 15 minutes per experiment. Scores saved with the run.
