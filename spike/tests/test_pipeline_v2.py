@@ -17,6 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import cv2  # noqa: E402
 import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
@@ -616,6 +617,72 @@ class BuildStepsTests(unittest.TestCase):
                  {"id": "boat", "kind": "object"}, {"id": "reflection", "kind": "marks"},
                  {"id": "glint", "kind": "marks", "parent": "sky"}]
         self.assertEqual(bs.back_parts(parts).tolist(), [True, True, False, False, True])
+
+    def forked_trunk_scene(self):
+        """An orange sky over a purple mountain band and a golden ground; a tree in front, its crown in the sky and
+        its forked trunk standing on the ground, with sky showing between the forks. The sky's and the mountains'
+        outlines stop short of the trunk, as the model's did on the lavender run, and the trunk is marks on the tree
+        whose points_out are all on the crown (#155)."""
+        h, w = 120, 160
+        img = np.zeros((h, w, 3), np.uint8)
+        img[:60] = (240, 140, 80)
+        img[60:75] = (120, 110, 190)
+        img[75:] = (210, 170, 60)
+        yy, xx = np.mgrid[:h, :w]
+        crown = ((yy - 28) ** 2 + (xx - 80) ** 2) < 18 ** 2
+        trunk = (yy >= 62) & (yy < 95) & (xx >= 76) & (xx < 84)
+        for x_end in (62, 98):  # two forks from the top of the trunk up into the crown
+            for t in np.linspace(0, 1, 60):
+                cy, cx = 62 + (40 - 62) * t, 80 + (x_end - 80) * t
+                trunk |= ((yy - cy) ** 2 + (xx - cx) ** 2) < 3 ** 2
+        img[crown] = (40, 80, 60)
+        img[trunk & ~crown] = (90, 50, 30)
+        tree = crown | trunk
+        # what the model left out around the trunk: everything within 8 px of it, the sky between the forks too
+        near = (cv2.dilate(trunk.astype(np.uint8), np.ones((17, 17), np.uint8)) > 0) & ~tree
+        sky, mountains, ground = np.zeros((h, w), bool), np.zeros((h, w), bool), np.zeros((h, w), bool)
+        sky[:60], mountains[60:75], ground[75:] = True, True, True
+        given = {"sky": sky & ~tree & ~near, "mountains": mountains & ~tree & ~near, "ground": ground & ~tree,
+                 "tree": tree}
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 0.5]},
+                 {"id": "mountains", "kind": "area", "box": [0, 0.5, 1, 0.625]},
+                 {"id": "ground", "kind": "area", "box": [0, 0.625, 1, 1]},
+                 {"id": "tree", "kind": "object", "box": [0.3, 0.05, 0.7, 0.8]},
+                 {"id": "trunk", "kind": "marks", "parent": "tree", "box": [0.35, 0.3, 0.65, 0.8],
+                  "points_in": [[0.5, 0.7], [0.5, 0.6]], "points_out": [[0.5, 0.2], [0.4, 0.25], [0.6, 0.25]]}]
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "orange", "hex": "#f08c50"}, {"id": "purple", "hex": "#786ebe"},
+                           {"id": "gold", "hex": "#d2aa3c"}, {"id": "green", "hex": "#28503c"},
+                           {"id": "bark", "hex": "#5a321e"}],
+                "stages": [{"id": "back", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["orange"]},
+                    {"id": "mountains", "part": "mountains", "show": "full", "paints": ["purple"]},
+                    {"id": "ground", "part": "ground", "show": "full", "paints": ["gold"]}]},
+                    {"id": "tree", "steps": [
+                        {"id": "crown-coat", "part": "tree", "show": "flat", "paints": ["green"]},
+                        {"id": "crown", "part": "tree", "show": "full", "paints": ["green"]},
+                        {"id": "trunk", "part": "trunk", "show": "full", "paints": ["bark"]}]}]}
+        return img, parts, given, plan, crown, trunk
+
+    def test_whats_behind_a_trunk_that_the_outlines_missed_goes_to_the_parts_behind(self):  # #155
+        img, parts, given, plan, crown, trunk = self.forked_trunk_scene()
+        masks, owner, _ = ol.outline(img, parts, given=given)
+        self.assertEqual(owner[50, 80], 0)  # the sky between the forks is the sky's
+        self.assertEqual(owner[68, 70], 1)  # the mountains beside the trunk are the mountains'
+        self.assertTrue(masks["trunk"][80, 80] and masks["trunk"][55, 72])  # the trunk and its forks are still the trunk
+        self.assertLess((masks["trunk"] & ~trunk).sum(), 0.1 * trunk.sum())
+        pictures, rows, painted = bs.build(img, plan, owner)
+        ids = [r["id"] for r in rows]
+        before_tree = pictures[ids.index("ground")].astype(int)
+        coat, trunk_step = ids.index("crown-coat"), ids.index("trunk")
+        # the crown's coat leaves the sky between the forks and the mountains beside the trunk as they were
+        self.assertTrue((np.abs(pictures[coat][50, 78:83].astype(int) - before_tree[50, 78:83]).max() <= 6))
+        self.assertTrue((np.abs(pictures[coat][68, 66:72].astype(int) - before_tree[68, 66:72]).max() <= 6))
+        # and the trunk's step puts back almost nothing the way it was before the tree was started: a few pixels on
+        # the trunk's softened edge, where it was 1,009 (more than the trunk itself) before #155
+        changed = np.abs(pictures[trunk_step].astype(int) - pictures[trunk_step - 1].astype(int)).max(2) > 6
+        back = np.abs(pictures[trunk_step].astype(int) - before_tree).max(2) <= 12
+        self.assertLess(int((changed & back).sum()), 0.05 * trunk.sum())
 
 
 class PaintsTests(unittest.TestCase):

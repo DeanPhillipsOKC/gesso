@@ -183,6 +183,63 @@ def marks(L: np.ndarray, part: dict, inside: np.ndarray) -> np.ndarray:
     return cv2.morphologyEx(m.astype(np.uint8), cv2.MORPH_OPEN, k) > 0
 
 
+GIVE_BACK_RING = 0.01  # how far around a stretch nothing claimed the parts behind are read, as a share of the long side
+GIVE_BACK_FAR = 0.1  # ... and how far at most, for a stretch the thing shuts in (sky between a trunk's forks)
+GIVE_BACK_MIN = 20  # pixels a part behind needs in that ring for its color to count
+
+
+def give_back(L: np.ndarray, parts: list[dict], owner: np.ndarray, k: int, inside: np.ndarray,
+              is_behind: np.ndarray) -> np.ndarray:
+    """Before a marks or thin child of something in front (a trunk on a tree) takes pixels nothing has claimed yet,
+    the parts behind get theirs back. Their outlines can stop short of a thing in front: the lavender run's mountains
+    stopped at the trunk, so the sky and mountains beside it and between its forks were nobody's, and the trunk's
+    color rule, whose `points_out` were all on the crown, took them. The crown's steps then covered them as the
+    trunk's place and the trunk's step put the mountains back with no word about them (#155).
+
+    So each stretch of unclaimed pixels in `inside` is compared with the parts behind around it (each one's median
+    color in a ring, widened up to GIVE_BACK_FAR when the stretch is shut in by the thing itself): a pixel nearer
+    one of those than the part's own colors goes to that part, in `owner`. Returns `inside` without those pixels.
+    Pixels the part's own colors win stay as they were, for the part's own rule to take or leave."""
+    free = inside & (owner < 0)
+    p = parts[k]
+    if not free.any() or not (p.get("points_in") or p.get("colors_in")):
+        return inside
+    h, w = owner.shape
+    own = nearest(L, side_colors(L, p, "in"))
+    behind = np.flatnonzero(is_behind[:k])
+    r0, far = max(2, int(GIVE_BACK_RING * max(h, w))), max(2, int(GIVE_BACK_FAR * max(h, w)))
+    n, lab_, st, _ = cv2.connectedComponentsWithStats(free.astype(np.uint8), connectivity=8)
+    out = inside.copy()
+    for i in range(1, n):
+        x, y, bw, bh = st[i, :4]
+        # Each part behind is read where it's nearest the stretch: in a ring that doubles until GIVE_BACK_FAR, so a
+        # stretch shut in by the thing itself (sky between the forks, under the crown) still finds what's behind.
+        y0, y1, x0, x1 = max(0, y - far), min(h, y + bh + far), max(0, x - far), min(w, x + bw + far)
+        piece = lab_[y0:y1, x0:x1] == i
+        own_c = owner[y0:y1, x0:x1]
+        Lc = L[y0:y1, x0:x1]
+        colors: dict[int, np.ndarray] = {}
+        r = r0
+        while r <= max(far, r0):
+            kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))
+            ring = (cv2.dilate(piece.astype(np.uint8), kernel) > 0) & np.isin(own_c, behind)
+            for j, c in zip(*np.unique(own_c[ring], return_counts=True)):
+                if c >= GIVE_BACK_MIN and int(j) not in colors:
+                    colors[int(j)] = np.median(Lc[ring & (own_c == j)], axis=0)
+            r *= 2
+        if not colors:
+            continue
+        ids = np.array(list(colors))
+        meds = np.array(list(colors.values()))
+        d = np.sqrt(((Lc[piece][:, None, :] - meds[None]) ** 2).sum(2))
+        back = d.min(1) < own[y0:y1, x0:x1][piece]
+        ys, xs = np.nonzero(piece)
+        ys, xs = ys[back] + y0, xs[back] + x0
+        owner[ys, xs] = ids[d.argmin(1)[back]]
+        out[ys, xs] = False
+    return out
+
+
 def band(shape: tuple[int, int], part: dict) -> np.ndarray:
     """Where a thin part may be: within BAND times its width of its paths."""
     h, w = shape
@@ -380,6 +437,8 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
     h, w = finish.shape[:2]
     L = lab(cv2.GaussianBlur(finish, (0, 0), 1.2))
     index = {p["id"]: i for i, p in enumerate(parts)}
+    import build_steps  # here, not at the top: build_steps imports this module
+    is_behind = build_steps.back_parts(parts)
     owner = np.full((h, w), -1, np.int32)
     stats = []
     for k, p in enumerate(parts):
@@ -409,6 +468,8 @@ def outline(finish: np.ndarray, parts: list[dict], sam: Sam | None = None,
             if p.get("parent"):  # marks on a part stay on that part (and on its other children)
                 family = [index[p["parent"]]] + [index[q["id"]] for q in parts[:k] if q.get("parent") == p["parent"]]
                 inside = inside & (np.isin(owner, family) | (owner < 0))  # or on what nothing has claimed yet
+                if not is_behind[k]:  # in front: what the parts behind missed beside it is theirs (#155)
+                    inside = give_back(L, parts, owner, k, inside, is_behind)
             if p["kind"] == "marks":
                 claim = marks(L, p, inside)
             elif given is not None and p["id"] in given:
