@@ -56,6 +56,8 @@ How the layers get made is the open question. That is what the spikes are for.
 
 Nothing else starts until this exists, or v3 repeats v2's pattern.
 
+Issue #165 covers all of Wave 0.
+
 - **S0a. Frozen bench.** 8 pictures: the five on the site (chickadee, red sailboat, lavender balloon,
   sleeping cat, snow lantern) plus three picked to hurt (fur or hair, water with reflections, many thin
   overlapping things). Each has its photo, canvas fit and finish render **frozen**, so an experiment changes
@@ -77,57 +79,57 @@ Nothing else starts until this exists, or v3 repeats v2's pattern.
 Run side by side on the frozen bench. Each is judged on the three checks above, class A and B fault counts,
 and the owner's A/B.
 
-- **S1. Peel.** Ask the image model to un-paint the finish backward: remove the front things, then the next
+- **S1. Peel (#166).** Ask the image model to un-paint the finish backward: remove the front things, then the next
   ones back, and keep only the pixels inside what was removed (the same guard `background_problems` uses
   today). This is v2's one background render made general. Try chained against all-at-once-in-parallel, low
   against medium quality, and gpt-image against one other edit model. Guess: 3 to 5 low renders, about 8
   cents and 20 seconds in parallel.
-- **S2. Layer models.** Models built to split one picture into see-through layers in one call (the
+- **S2. Layer models (#167).** Models built to split one picture into see-through layers in one call (the
   Qwen-Image-Layered kind), and gpt-image's own transparent-background output for a single object. If one
   call gives clean complete layers, S1 isn't needed.
-- **S3. Better edges.** Outlines that follow what Claude means, not where Claude put a box: name-prompted
+- **S3. Better edges (#168).** Outlines that follow what Claude means, not where Claude put a box: name-prompted
   segmenters (the SAM 3 kind) so "the branch" is the prompt, and a matting model for soft and thin edges
   (whiskers, fur, foliage). Also test outlining the photo against outlining the finish. Reuse the
   nine-model harness in `spike/experiments/issue85.py`.
-- **S4. Stages inside a part.** Today a half-done part is a flat coat plus nearest-color passes, which the
+- **S4. Stages inside a part (#169).** Today a half-done part is a flat coat plus nearest-color passes, which the
   design doc itself lists as a risk. Test peeling detail instead of things: the same part "before the
   highlights", "before the texture", "blocked in", pixels locked outside the part. Compare with v2's
   flat/pass on the A/B.
 
 ## Wave 2: wilder bets
 
-- **S5. Paint it for real.** A brush-stroke engine that carries out each step with that step's brush, paints
+- **S5. Paint it for real (#170).** A brush-stroke engine that carries out each step with that step's brush, paints
   and stroke card, aiming at the finish. Then a step picture is exactly what those paints and that stroke
   give, and the last picture is the finish. Risk: it looks computer-made. Fallback use: its output as the
   guide picture for a render in S4.
-- **S6. Paints before picture.** Lock the finish to the lesson's mixes: either push the finished render onto
+- **S6. Paints before picture (#171).** Lock the finish to the lesson's mixes: either push the finished render onto
   the named paints, or hand the render the paint swatches as an input. Measure the share of pixels no step
   names (#158 found 74% on one part) and whether the owner sees any loss.
-- **S7. Plan before pixels.** Claude writes the lesson as a painter would teach it (ground, block-in, middle
+- **S7. Plan before pixels (#172).** Claude writes the lesson as a painter would teach it (ground, block-in, middle
   values, shadows, lights, details; steps that cross parts) from the photo and the element techniques, and
   the layers are made to fit that plan. v2 does the reverse. Measure class F faults and the "could I paint
   it" score.
 
 ## Wave 3: teaching and text
 
-- **S8. Words from facts.** Each step gets a fact sheet from its layer: sides, sizes and distances in inches,
+- **S8. Words from facts (#173).** Each step gets a fact sheet from its layer: sides, sizes and distances in inches,
   the paints, what's next to it. Claude may only use numbers and sides that are on the sheet, and a tool
   checks every one in the text (#159 can't happen). The writer sees the before and after pictures while
   writing. One writer per stage, in parallel.
-- **S9. The student test.** A reviewer who has never seen the plan gets only the before picture and the
+- **S9. The student test (#174).** A reviewer who has never seen the plan gets only the before picture and the
   words, and must say what the after picture will show, or pick it out of four. Where it can't, the words
   are at fault. A dearer form for the bench only: the image model carries out the words on the before
   picture and the result is compared with the real after.
-- **S10. Cards that fit.** Stroke cards and pictures still disagree (dry brush promised, solid coral shown).
+- **S10. Cards that fit (#175).** Stroke cards and pictures still disagree (dry brush promised, solid coral shown).
   If S4 or S5 works, cut each card's example from the lesson's own layer.
 
 ## Speed (runs alongside, after S0d)
 
-- **S11. One engine, not thirty tools.** One long-lived process that holds the plan, knows what depends on
+- **S11. One engine, not thirty tools (#176).** One long-lived process that holds the plan, knows what depends on
   what, and rebuilds only what changed. Today every tool is a new process and `build-steps`, `step-aids`,
   `draft-text`, `check` and `publish` each rebuild every picture; `outline` reloads the model and re-reads
   the picture every time (8 s). Start from the `_built` memo in `spike/build_steps.py` that only tests use.
-- **S12. Fewer trips.** Plan in one pass against a checker that answers in under a second; renders in
+- **S12. Fewer trips (#177).** Plan in one pass against a checker that answers in under a second; renders in
   parallel; text, diagrams and review as parallel subagents. The three checks above should leave far fewer
   problems to loop on, which is where the 3 to 10 minutes of check-and-review goes.
 
@@ -137,7 +139,7 @@ No fixed target. Report the trace before and after.
 
 - Code in `spike/experiments/v3_<name>.py`, a write-up in `docs/spikes/v3-<name>.md` ending in one of
   **adopt, drop, park**, with numbers. Same pattern as `issue52.py`, `issue85.py`, `issue100.py`.
-- One GitHub issue per spike under a "Pipeline v3" parent issue, scored per `docs/backlog.md`. One pull
+- One GitHub issue per spike under the parent issue #164, scored per `docs/backlog.md`. One pull
   request per spike, with the usual adversarial review when it changes code.
 - A spike is dropped when it loses the A/B to the v2 baseline, or breaks one of the three checks on more than
   one bench picture with no clear fix.
