@@ -239,10 +239,10 @@ class DraftTests(unittest.TestCase):
         for step in ("water-coat", "water-light"):
             water = self.where_line("red-sailboat", step)
             self.assertLessEqual(abs(inches_down(water, "top") - water_top), 0.5, water)
-        # the coat's outline reaches 1 1/2 in up the hill's foot, which it only lays back in the hill's color: the
-        # line says so, and doesn't tell the painter to cover the hill (PR #142 review)
-        self.assertIn("The outline also reaches onto the far hill and shore, painted already: there, only soften this "
-                      "paint into its edge and leave it showing.", self.where_line("red-sailboat", "water-coat"))
+        # the coat's outline reached 1 1/2 in up the hill's foot, laying back stray pieces of the hill that the hill's
+        # own step had shown as a fill (PR #142 review gave it a line). Since #153 those pieces are the hill's, painted
+        # with it, so the coat leaves the hill alone and the line doesn't send the painter up it
+        self.assertNotIn("reaches onto the far hill", self.where_line("red-sailboat", "water-coat"))
         # an object is placed by its own outline, not its soft rim or the paint run under the hill
         self.assertIn("about 3/4 in wide and 3/4 in tall", self.where_line("red-sailboat", "sun"))
 

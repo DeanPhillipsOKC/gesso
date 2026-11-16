@@ -6,6 +6,20 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.12.1 (2026-11-16)
+- A later step no longer changes a part that's already finished (#153). A stray piece of a part (a small cloud, one
+  behind the tree, a streak along the ridge) was handed whole to the nearest part painted later, however far away,
+  and showed a carried-on fill until that part's step. In `balloon-lavender_skill_20261116-153316` the clouds
+  changed shape on the mountains' step, with no instruction for it, and a pink ring showed in the clouds where the
+  tree goes in steps 2 to 4. Now a stray goes with a later part only when most of it lies beside that part (a dab
+  of foliage the outline left to the sky); any other stray is painted with its own part, the real paint from its
+  first step on. The same fix keeps the red sailboat's water coat off the hill's foot, which it used to reach
+  1 1/2 in up to lay back the hill's strays (and its Where line said to only soften there).
+- `build-steps` and `check` count an earlier part's rim brought back by a step as a change outside the step's part
+  when it's more than 3% of the long side from the step's painted area, and report it as a bug in `build-steps`.
+  Before, rims weren't counted at all, and the mountains' step above changed 14% of the picture with an area of 8%
+  and reported nothing.
+
 ## POC 1.12.0 (2026-11-15)
 - Stroke cards are written for what's being painted (#96). A card's text and diagram were written for one subject,
   so on the chickadee's sun the small-circles card said the circles "make a cloud's bumpy top edge" and drew cloud
