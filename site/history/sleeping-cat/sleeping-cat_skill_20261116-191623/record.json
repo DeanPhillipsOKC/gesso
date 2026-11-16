@@ -1,0 +1,132 @@
+{
+  "photo": "sleeping-cat",
+  "run": "sleeping-cat_skill_20261116-191623",
+  "started": "2026-11-16 19:16",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "1e76b512fa30035b",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 1.12.1",
+        "commit": "e1fc0a6",
+        "dirty": false,
+        "published": "2026-11-16"
+      },
+      "made_with": {
+        "version": "POC 1.12.1",
+        "commit": "b3d8b0e",
+        "published": "2026-11-16"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-16T19:36:24"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 15,
+        "words": 2436,
+        "tubes": 5,
+        "cost_usd": 0.197,
+        "minutes": 1.8,
+        "paid_renders": 5,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 7,
+        "minutes_total": 20.0,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "wall",
+          "name": "Blend the blue-gray wall",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "window-sky",
+          "name": "Blend the sky in the window",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-dark",
+          "name": "Dab the shadowed leaves outside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "leaves-light",
+          "name": "Dab the sunlit leaves outside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "frame-block",
+          "name": "Block in the window frame",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "frame-light",
+          "name": "Light the white frame",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "sill",
+          "name": "Blend the wood and the sun on the sill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blanket-block",
+          "name": "Block in the folded blanket",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blanket-shade",
+          "name": "Shade the gaps between the knit loops",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blanket-light",
+          "name": "Light the knit loops",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-block",
+          "name": "Block in the curled-up cat",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-pale",
+          "name": "Paint the white muzzle, chest, and paws",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-ears",
+          "name": "Paint the pink ears and nose",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-stripes",
+          "name": "Paint the tabby stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "cat-fur",
+          "name": "Flick in the light fur",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
