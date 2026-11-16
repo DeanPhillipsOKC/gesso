@@ -1,0 +1,43 @@
+{
+  "beginner_version": {
+    "busy": {
+      "beginner": {
+        "edges": 0.0593,
+        "fine_texture": 0.056,
+        "picture": "00_beginner.png",
+        "tiles": 25,
+        "where": "busy/00_beginner.jpg"
+      },
+      "finish": {
+        "edges": 0.0612,
+        "fine_texture": 0.042,
+        "picture": "99_finish.png",
+        "tiles": 19,
+        "where": "busy/99_finish.jpg"
+      },
+      "photo": {
+        "edges": 0.1485,
+        "fine_texture": 0.662,
+        "picture": "00_canvas_fit.png",
+        "tiles": 298,
+        "where": "busy/00_canvas_fit.jpg"
+      }
+    },
+    "found": "Tiny separate things: yes, dozens of thin far trunks, a web of twigs, single yellow leaves. Textures of hundreds of items: yes, the leaf litter across the bottom third and the twig-and-leaf canopy across the top third. Detail inside big shapes: yes, carved birch bark. More parts than 8 at different distances: yes, many layers of trees. busy measured 66% fine texture.",
+    "list": "keep only six big near birches and about five pale far trunks; drop all other thin trunks and the twig web across the top third; canopy across the top third becomes loose gold dabs; far forest one blue-gray haze with a soft blue-green conifer mass on the right; ground across the bottom third becomes loose orange-gold and brown dabs; path a soft lighter band; rock one gray-green shape; bark simple dark dashes and a shaded side; keep the low sun at upper left with soft rays",
+    "made": true,
+    "why": "The photo is far past the beginner detail budget: every step is cut from the finish, so every twig and leaf would have to be painted by some step."
+  },
+  "canvas_fit": {
+    "canvas": "16 x 12 in, landscape",
+    "lost": "nothing; a strip of canopy at the top and leaf-covered ground at the bottom were painted on by the extend render",
+    "mode": "extend",
+    "why": "No canvas was named, so fit-canvas picked the standard size closest to the 3:2 photo (12 x 16). Cropping to 4:3 would have cut into the near birch trunks at both edges, which frame the path, so it extended the picture with one render instead."
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "an autumn birch grove: white birch trunks framing a leaf-covered path that winds back into misty blue forest, low sun glowing in from the upper left, yellow leaves on the branches and the ground",
+    "why": "nothing in the image is outside the scene: no bars, captions, border, or watermark"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "filed_issues": [],
+  "finish_issues": [],
+  "known_problems": [
+    {
+      "name": "Lay in the gold cloud streaks",
+      "problem": "The cloud streaks have orange-pink undersides, but the step has only Pale sunset gold (the orange was merged into it by paints).",
+      "step": 2
+    },
+    {
+      "name": "Flick in the sunlit gold edges",
+      "problem": "The pink nose appears in the gold rim step with no instruction or paint for it.",
+      "step": 13
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the clouds' orange merged into Pale sunset gold when paints measured them; the streaks will come out gold only",
+        "fix": "A warmer underside color.",
+        "kind": "flat",
+        "problem": "The cloud streaks have orange-pink undersides, but the step has only Pale sunset gold (the orange was merged into it by paints).",
+        "step_id": "clouds-streaks"
+      },
+      {
+        "action": "left: paints --add cow found no separate color for the nose (too small and too close to the coat's darks), so it has no paint or step of its own",
+        "fix": "A nose step with its own muted pink.",
+        "kind": "missing",
+        "problem": "The pink nose appears in the gold rim step with no instruction or paint for it.",
+        "step_id": "cow-fur-gold"
+      }
+    ]
+  },
+  "run": "highland-cow_skill_20261116-205600"
+}

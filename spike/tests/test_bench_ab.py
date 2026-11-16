@@ -80,6 +80,19 @@ class ABPageTests(unittest.TestCase):
         # no seed: one from the round's name, recorded
         self.assertEqual(ab_page.plan_round("r", pairs=[(one, two)])["seed"], ab_page._seed_for("r"))
 
+    def test_an_order_seed_shuffles_the_pictures_the_same_way_every_time(self):
+        names = ["chickadee", "red-sailboat", "balloon-lavender", "sleeping-cat", "snow-lantern"]
+        lessons = [published(self.tmp / "o", n, f"{n}_skill_20261116-100000", steps=1) for n in names]
+        order = lambda plan: [r["picture"] for r in plan["pictures"]]  # noqa: E731
+        plain = ab_page.plan_round("r", lessons=list(reversed(lessons)))
+        self.assertEqual(order(plain), names)  # bench order, whatever order they're given in
+        one = ab_page.plan_round("r", lessons=lessons, order_seed=165)
+        self.assertEqual(order(one), order(ab_page.plan_round("r", lessons=list(reversed(lessons)), order_seed=165)))
+        self.assertEqual(sorted(order(one)), sorted(names))
+        self.assertNotEqual({tuple(order(ab_page.plan_round("r", lessons=lessons, order_seed=s))) for s in range(5)},
+                            {tuple(names)})
+        self.assertEqual(ab_page.answer_key(one)["order_seed"], 165)
+
     def test_refuses_mixed_pictures_and_mixed_modes(self):
         one = published(self.tmp / "1", "chickadee", "chickadee_skill_20261116-100000")
         two = published(self.tmp / "2", "red-sailboat", "red-sailboat_skill_20261116-100000")

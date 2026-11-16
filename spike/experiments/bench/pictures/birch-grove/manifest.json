@@ -1,0 +1,84 @@
+{
+  "beginner_version": true,
+  "canvas_render": true,
+  "files": {
+    "00_beginner.png": {
+      "bytes": 2910456,
+      "sha256": "494c2bd9c88110d522d97ecbd68460d0f60a9272c2d53017c931116cc53809d9"
+    },
+    "00_canvas_fit.png": {
+      "bytes": 3822735,
+      "sha256": "c725f6e5793a5a8f3bc5184698d8f6bf13d3504f3e0bb319dcdb12a0e4fdc00f"
+    },
+    "00_canvas_frame.png": {
+      "bytes": 2784256,
+      "sha256": "0a129ed50c86ed7bf34c2e62bb859498d93f6e127317ecf729de3b9db7487b40"
+    },
+    "99_finish.png": {
+      "bytes": 2791297,
+      "sha256": "025158606cae217be0fe779277ab28878e787be4f503d7db916ac34df0222b85"
+    },
+    "canvas.json": {
+      "bytes": 552,
+      "sha256": "7a781574328ab29224655e889dcb03e1ace15c97e622c5ee82866a47c97be967"
+    },
+    "notes0.json": {
+      "bytes": 2511,
+      "sha256": "5bd14babdd566e9d87303f58ca936ec41fd34d4a17711961f6f543e0c28d3eb2"
+    },
+    "photo.jpg": {
+      "bytes": 785449,
+      "sha256": "6ab125f6a6e895660b1333626a9b026d726486e31c5939ed9f98763d19622cca"
+    }
+  },
+  "photo": "photo.jpg",
+  "photo_source": "photos/birch-grove.jpg",
+  "picture": "birch-grove",
+  "plan_photo": "00_beginner.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0229,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "00_canvas_fit.png",
+      "quality": "medium",
+      "seconds": 18.9,
+      "step": "canvas"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0243,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "00_beginner.png",
+      "quality": "medium",
+      "seconds": 20.1,
+      "step": "beginner"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 32.7,
+      "step": "finish"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0666,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 30.9,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "birch-grove_skill_20261116-210750",
+    "sealed_at": "2026-11-16T21:41:54",
+    "version": "POC 1.12.1"
+  }
+}

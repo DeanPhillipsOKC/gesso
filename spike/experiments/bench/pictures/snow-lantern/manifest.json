@@ -1,0 +1,49 @@
+{
+  "beginner_version": false,
+  "canvas_render": false,
+  "files": {
+    "00_canvas_frame.png": {
+      "bytes": 1691730,
+      "sha256": "a7ade42d295b92197bc2578811717fc31d9e130338e4452f227fa89d7977e28b"
+    },
+    "99_finish.png": {
+      "bytes": 3002386,
+      "sha256": "68d7bae2c1f18dcc0fec3ffbfc4aba45c8ef2f60d5bedfb03e473884ef8c6d68"
+    },
+    "canvas.json": {
+      "bytes": 564,
+      "sha256": "91aeb595e59d2843e3ffffe90aca6690037d3c8fe34c5d66a966c6d9a3d5a485"
+    },
+    "notes0.json": {
+      "bytes": 1715,
+      "sha256": "d77e05f55da96f834749f0cc5b29f528110560f6efef54a3d3b11ef50b816e8b"
+    },
+    "photo.jpg": {
+      "bytes": 87464,
+      "sha256": "a7844c28dc5d72bad31b345fffb9be387f51090675ae0a89ab63a41f3abc1b75"
+    }
+  },
+  "photo": "photo.jpg",
+  "photo_source": "photos/snow-lantern.jpg",
+  "picture": "snow-lantern",
+  "plan_photo": "00_canvas_frame.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 29.3,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "snow-lantern_skill_20261116-205524",
+    "sealed_at": "2026-11-16T21:28:27",
+    "version": "POC 1.12.1"
+  }
+}

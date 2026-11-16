@@ -1,0 +1,62 @@
+{
+  "beginner_version": true,
+  "canvas_render": false,
+  "files": {
+    "00_beginner.png": {
+      "bytes": 2698007,
+      "sha256": "ec21b574de9e2d0ad46d3dde1d72041ea1e7994d2a5df6ffd9ada6ac4f735024"
+    },
+    "00_canvas_frame.png": {
+      "bytes": 2337208,
+      "sha256": "77d013ce99dd5c0a513d4b579c11bf8690c6b3b961cf92e1093cc767d421620b"
+    },
+    "99_finish.png": {
+      "bytes": 3234705,
+      "sha256": "1f9a185af6223ef11407ad3431451f2c2b5a3753cfcc6be6458541e721e48aba"
+    },
+    "canvas.json": {
+      "bytes": 644,
+      "sha256": "a01a36ffa846fde1b90abd4bb7cceb1c0b982462245d79161283286c0d3f7df8"
+    },
+    "notes0.json": {
+      "bytes": 2731,
+      "sha256": "93a39fa3011d3ad4f139523c5d2a060f85d824b4bf92b6c9eb7e8d194abec9dd"
+    },
+    "photo.jpg": {
+      "bytes": 478595,
+      "sha256": "67647a5e227ed450745bb62451026d5acd6dec750c633858f427b7c0184f12f3"
+    }
+  },
+  "photo": "photo.jpg",
+  "photo_source": "photos/lake-cabin.jpg",
+  "picture": "lake-cabin",
+  "plan_photo": "00_beginner.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0244,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "00_beginner.png",
+      "quality": "medium",
+      "seconds": 19.0,
+      "step": "beginner"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 31.7,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "lake-cabin_skill_20261116-205703",
+    "sealed_at": "2026-11-16T21:44:09",
+    "version": "POC 1.12.1"
+  }
+}

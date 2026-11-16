@@ -1,0 +1,256 @@
+{
+  "candidates": [
+    {
+      "calls_naming_it": 92,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a973909bade80dc4a.jsonl"
+    },
+    {
+      "calls_naming_it": 3,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 3,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    }
+  ],
+  "file_marks": {
+    "00_beginner.png": {
+      "at": "2026-11-16T21:27:46Z",
+      "phase": 0
+    },
+    "00_canvas_frame.png": {
+      "at": "2026-11-16T21:27:04Z",
+      "phase": 0
+    },
+    "00_reference.png": {
+      "at": "2026-11-16T21:28:27Z",
+      "phase": 1
+    },
+    "99_finish.png": {
+      "at": "2026-11-16T21:29:01Z",
+      "phase": 1
+    },
+    "aids/aids.json": {
+      "at": "2026-11-16T21:45:00Z",
+      "phase": 5
+    },
+    "folder name (local time)": {
+      "at": "20261116-212627",
+      "phase": 0
+    },
+    "mixes.json": {
+      "at": "2026-11-16T21:52:42Z",
+      "phase": 5
+    },
+    "notes.json": {
+      "at": "2026-11-16T21:51:53Z",
+      "phase": 8
+    },
+    "parts/owner.png": {
+      "at": "2026-11-16T21:42:41Z",
+      "phase": 2
+    },
+    "review.json": {
+      "at": "2026-11-16T21:49:34Z",
+      "phase": 7
+    },
+    "sealed.json": {
+      "at": "2026-11-16T21:53:35Z",
+      "phase": 8
+    },
+    "text.json": {
+      "at": "2026-11-16T21:50:32Z",
+      "phase": 6
+    },
+    "trials/review/review.json": {
+      "at": "2026-11-16T21:49:34Z",
+      "phase": 7
+    }
+  },
+  "ledger": {
+    "by_phase": {
+      "0": 18.2,
+      "1": 30.9,
+      "5": 15.2
+    },
+    "cost_usd": 0.1084,
+    "renders": 3,
+    "seconds": 64.3
+  },
+  "lesson": "highland-cow_skill_20261116-212627",
+  "phases": [
+    {
+      "by_tool_s": {
+        "Bash": 27.5,
+        "Read": 0.2,
+        "Skill": 0.4
+      },
+      "calls": 22,
+      "claude_s": 73.8,
+      "name": "set up, photo, canvas, beginner version",
+      "phase": 0,
+      "render_s": 18.2,
+      "renders": 1,
+      "started": "2026-11-16T21:26:23Z",
+      "tool_other_s": 9.7,
+      "tool_printed_s": 20.0,
+      "tool_s": 27.9,
+      "wall_s": 101.7
+    },
+    {
+      "by_tool_s": {
+        "Bash": 42.8,
+        "Read": 0.3
+      },
+      "calls": 8,
+      "claude_s": 30.1,
+      "name": "reference and finish",
+      "phase": 1,
+      "render_s": 30.9,
+      "renders": 1,
+      "started": "2026-11-16T21:28:04Z",
+      "tool_other_s": 12.2,
+      "tool_printed_s": 36.6,
+      "tool_s": 43.1,
+      "wall_s": 73.2
+    },
+    {
+      "by_tool_s": {
+        "Bash": 263.8,
+        "Read": 0.4,
+        "SendMessage": 0.2,
+        "ToolSearch": 0.0
+      },
+      "calls": 25,
+      "claude_s": 155.3,
+      "name": "parts and outlines",
+      "phase": 2,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:29:18Z",
+      "tool_other_s": 264.8,
+      "tool_printed_s": 266.7,
+      "tool_s": 264.8,
+      "wall_s": 420.1
+    },
+    {
+      "by_tool_s": {
+        "Bash": 3.6,
+        "Read": 0.0
+      },
+      "calls": 3,
+      "claude_s": 11.7,
+      "name": "paints",
+      "phase": 3,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:36:18Z",
+      "tool_other_s": 3.6,
+      "tool_printed_s": 2.9,
+      "tool_s": 3.6,
+      "wall_s": 15.3
+    },
+    {
+      "by_tool_s": {
+        "Bash": 4.9
+      },
+      "calls": 5,
+      "claude_s": 68.5,
+      "name": "stages and steps",
+      "phase": 4,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:36:33Z",
+      "tool_other_s": 4.8,
+      "tool_printed_s": 0.0,
+      "tool_s": 4.8,
+      "wall_s": 73.3
+    },
+    {
+      "by_tool_s": {
+        "Bash": 317.8,
+        "Read": 0.4
+      },
+      "calls": 18,
+      "claude_s": 118.8,
+      "name": "step pictures and aids",
+      "phase": 5,
+      "render_s": 15.2,
+      "renders": 1,
+      "started": "2026-11-16T21:37:46Z",
+      "tool_other_s": 303.2,
+      "tool_printed_s": 102.3,
+      "tool_s": 318.4,
+      "wall_s": 437.1
+    },
+    {
+      "by_tool_s": {
+        "Bash": 25.3
+      },
+      "calls": 6,
+      "claude_s": 68.7,
+      "name": "text",
+      "phase": 6,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:45:03Z",
+      "tool_other_s": 25.2,
+      "tool_printed_s": 0.3,
+      "tool_s": 25.2,
+      "wall_s": 94.0
+    },
+    {
+      "by_tool_s": {
+        "Bash": 98.8,
+        "Read": 0.7,
+        "ToolSearch": 0.0
+      },
+      "calls": 22,
+      "claude_s": 106.4,
+      "name": "check and review",
+      "phase": 7,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:46:37Z",
+      "tool_other_s": 99.5,
+      "tool_printed_s": 5.6,
+      "tool_s": 99.5,
+      "wall_s": 205.9
+    },
+    {
+      "by_tool_s": {
+        "Bash": 149.0,
+        "Read": 0.1,
+        "SubagentHandback": 0.1
+      },
+      "calls": 10,
+      "claude_s": 88.4,
+      "name": "diagrams, notes, seal",
+      "phase": 8,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:50:03Z",
+      "tool_other_s": 149.2,
+      "tool_printed_s": 2.7,
+      "tool_s": 149.2,
+      "wall_s": 237.6
+    }
+  ],
+  "phases_from": "step files",
+  "totals": {
+    "calls": 119,
+    "claude_s": 721.7,
+    "render_s": 64.3,
+    "tool_other_s": 872.2,
+    "tool_printed_s": 437.1,
+    "tool_s": 936.5,
+    "wall_s": 1658.2
+  },
+  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a973909bade80dc4a.jsonl",
+  "warnings": [],
+  "window": {
+    "end": "2026-11-16T21:54:01Z",
+    "start": "2026-11-16T21:26:23Z",
+    "wall_s": 1658.2
+  }
+}

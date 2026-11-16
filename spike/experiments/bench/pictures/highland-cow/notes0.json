@@ -1,0 +1,43 @@
+{
+  "beginner_version": {
+    "busy": {
+      "beginner": {
+        "edges": 0.0225,
+        "fine_texture": 0.002,
+        "picture": "00_beginner.png",
+        "tiles": 1,
+        "where": "busy/00_beginner.jpg"
+      },
+      "finish": {
+        "edges": 0.0305,
+        "fine_texture": 0.002,
+        "picture": "99_finish.png",
+        "tiles": 1,
+        "where": "busy/99_finish.jpg"
+      },
+      "photo": {
+        "edges": 0.0457,
+        "fine_texture": 0.131,
+        "picture": "00_canvas_frame.png",
+        "tiles": 59,
+        "where": "busy/00_canvas_frame.jpg"
+      }
+    },
+    "found": "Tiny separate things: yes, small rocks dotted over the left hillside and wispy cloud streaks. Textures of hundreds of items: yes, the tall grass and seed heads across the bottom third (busy outlined most of it, 13.1% of the canvas) and the cow's fur in single strands. Detail inside big shapes: yes, every hair in the fur and fringe. More parts than 8: about at the limit (sky, far hills, loch, hillside, grass, cow body, head and fringe, horns, nose).",
+    "list": "Grass across the bottom third becomes a dark green base with loose upward flicks of olive and pale gold, no blades or seed heads; seed stalks in front of the legs become a few gold flicks; fur becomes broad curved rust and ginger strokes, darker in shadow, gold rim on the lit right and top; fringe becomes a few big curved strokes; rocks on the left hillside removed, slope becomes smooth olive with soft darker patches; wispy clouds become two or three soft streaks; far hills become three flat blue-gray bands; the loch strip stays.",
+    "made": true,
+    "why": "At 13.1% fine texture the photo is busier than the lavender (about 10%); every step is cut from the finish, so single grass blades and hairs would land in one step. The beginner version took it to 0.2%, with the cow, horns, hills, loch and sunset light all still there."
+  },
+  "canvas_fit": {
+    "canvas": "12 x 16 in, portrait",
+    "lost": "about 11%: a thin strip of sky at the top and of grass at the bottom",
+    "mode": "crop",
+    "why": "No --canvas given; fit-canvas picked the standard size closest to the 2:3 photo, and a crop keeps the whole cow, both horns and the grass."
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "A shaggy ginger Highland cow with long upturned horns standing in tall grass on a moor at sunset, backlit from the upper right, with hills, a sliver of loch, and a pale gold sky behind.",
+    "why": "No bars, borders, captions, watermarks, or unrelated scene around the subject; the whole image is the picture."
+  }
+}

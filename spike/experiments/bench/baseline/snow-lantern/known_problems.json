@@ -1,0 +1,54 @@
+{
+  "filed_issues": [],
+  "finish_issues": [],
+  "known_problems": [
+    {
+      "name": "Lay the lantern's bright light on the snow",
+      "problem": "the bright glow step also adds the whole darker and lighter blue drift texture across the snow",
+      "step": 7
+    },
+    {
+      "name": "Pull the dark bracket arm and brace",
+      "problem": "the step picture fills the triangle between the arm and the brace dark, though the bracket is two strips with sky between; the outline took the gap and the outline runs were used up",
+      "step": 12
+    },
+    {
+      "name": "Paint the dark bars and shadows on the brass",
+      "problem": "the last step also deepens the glass edges to a red-orange that no line paints",
+      "step": 20
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the bracket's outline still takes the sky triangle after its fix round (5 outline runs used, two more killed for memory); the tip tells the painter to leave it blue, but the step picture shows it dark",
+        "fix": "tip: leave the triangle between the arm and the brace sky blue",
+        "kind": "wrong_result",
+        "problem": "the step picture fills the triangle between the arm and the brace dark, though the bracket is two strips with sky between; the outline took the gap and the outline runs were used up",
+        "step_id": "bracket-pull"
+      },
+      {
+        "action": "left: can't split; paints --add snow found no other distinct color (next one Delta E 6.8 from Shadow snow blue), so no paint to carry a separate pass",
+        "fix": "split the drift texture into its own pass",
+        "kind": "too_much",
+        "problem": "the bright glow step also adds the whole darker and lighter blue drift texture across the snow",
+        "step_id": "snow-glow"
+      },
+      {
+        "action": "left: the lantern has no paint for the deeper edge orange; it shows only as the last step's remainder",
+        "fix": "a deeper orange pass on the glass edges",
+        "kind": "missing",
+        "problem": "the last step also deepens the glass edges to a red-orange that no line paints",
+        "step_id": "lantern-darks"
+      }
+    ]
+  },
+  "run": "snow-lantern_skill_20261116-205524"
+}

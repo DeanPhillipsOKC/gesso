@@ -1,0 +1,66 @@
+{
+  "filed_issues": [],
+  "finish_issues": [],
+  "known_problems": [
+    {
+      "name": "Shade the mountain's rock and shadow side",
+      "problem": "Steps 3 and 4 show a tiled, mirrored pattern under where the forest goes (the fill under the forest), which no brush makes.",
+      "step": 3
+    },
+    {
+      "name": "Tap the light side of the spruces and bushes",
+      "problem": "Steps 5 and 6 show a smooth, blurred patch where the cabin will go, not brush marks.",
+      "step": 6
+    },
+    {
+      "name": "Streak in the pale lake blue",
+      "problem": "A deeper blue band appears along the bottom edge, darker than any paint in the step.",
+      "step": 12
+    },
+    {
+      "name": "Pull down the sunlit olive in the reflection",
+      "problem": "Some olive streaks at the left edge (x 0-12, y 50-78) are reed blades that the forest reflection's outline took.",
+      "step": 14
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the forest covers it in steps 5 and 6; the fill comes from build-steps",
+        "fix": "none in the text",
+        "kind": "unpaintable",
+        "problem": "Steps 3 and 4 show a tiled, mirrored pattern under where the forest goes (the fill under the forest), which no brush makes.",
+        "step_id": "mountain-shade"
+      },
+      {
+        "action": "left: the cabin is painted on the forest (its outline left a ghost on the background picture, so it was made the forest's child); the cabin covers the patch next",
+        "fix": "none in the text",
+        "kind": "unpaintable",
+        "problem": "Steps 5 and 6 show a smooth, blurred patch where the cabin will go, not brush marks.",
+        "step_id": "forest-light"
+      },
+      {
+        "action": "left: the lake's two paints don't include that deeper blue",
+        "fix": "none: the plan has no paint for it",
+        "kind": "missing",
+        "problem": "A deeper blue band appears along the bottom edge, darker than any paint in the step.",
+        "step_id": "water-light"
+      },
+      {
+        "action": "left: the reeds' outline missed their lighter blades and outline runs were used up",
+        "fix": "none in the text",
+        "kind": "missing",
+        "problem": "Some olive streaks at the left edge (x 0-12, y 50-78) are reed blades that the forest reflection's outline took.",
+        "step_id": "tree-reflection-olive"
+      }
+    ]
+  },
+  "run": "lake-cabin_skill_20261116-205703"
+}

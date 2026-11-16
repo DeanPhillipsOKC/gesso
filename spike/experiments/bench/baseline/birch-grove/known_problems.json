@@ -1,0 +1,63 @@
+{
+  "filed_issues": [
+    {
+      "number": 180,
+      "state": "OPEN",
+      "title": "Element technique: Birch trunks with dark bark marks",
+      "url": "https://github.com/DeanPhillipsOKC/gesso/issues/180"
+    }
+  ],
+  "finish_issues": [
+    "The first finish turned the canopy and floor leaves orange-red instead of the photo's golden yellow-ochre, and the mist a saturated blue; fixed with one repaint."
+  ],
+  "known_problems": [
+    {
+      "name": "Lay in the sun rays",
+      "problem": "A few faint blue-gray far firs appear inside the rays, which Warm cream can't make.",
+      "step": 2
+    },
+    {
+      "name": "Dab the olive shadow leaves",
+      "problem": "The foliage outline took the sun's disk, so the olive coat covers the sun and the sun only comes back as sunlit gold in step 11.",
+      "step": 9
+    },
+    {
+      "name": "Dab the sunlit leaves",
+      "problem": "Blue sky gaps at the top right and a dark bush shadow at the right edge appear in the sunlit leaves step, which Sunlit gold can't make.",
+      "step": 11
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the outline of the rays takes a few faint far firs, and outline runs were used up",
+        "fix": "none: the rays' outline took them",
+        "kind": "missing",
+        "problem": "A few faint blue-gray far firs appear inside the rays, which Warm cream can't make.",
+        "step_id": "sun-rays"
+      },
+      {
+        "action": "left: the foliage outline holds sky gaps and bush shadow, and outline runs were used up",
+        "fix": "none: the foliage outline holds those colors",
+        "kind": "missing",
+        "problem": "Blue sky gaps at the top right and a dark bush shadow at the right edge appear in the sunlit leaves step, which Sunlit gold can't make.",
+        "step_id": "leaves-light"
+      },
+      {
+        "action": "left: the sun wouldn't stay its own part (the background picture already showed it, so its step changed nothing), and the foliage outline took it",
+        "fix": "Tips say to dab around the sun's glow and to make its pale disk with a few sunlit gold taps.",
+        "kind": "layering",
+        "problem": "The foliage outline took the sun's disk, so the olive coat covers the sun and the sun only comes back as sunlit gold in step 11.",
+        "step_id": "leaves-dark"
+      }
+    ]
+  },
+  "run": "birch-grove_skill_20261116-210750"
+}

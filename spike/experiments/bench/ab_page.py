@@ -105,8 +105,10 @@ def _seed_for(round_name: str) -> int:
 
 
 def plan_round(round_name: str, lessons: list[Path] | None = None, pairs: list[tuple[Path, Path]] | None = None,
-               seed: int | None = None) -> dict:
-    """Which lessons go on the page and on which side: {mode, seed, pictures: [{picture, sides: {A: path, B: path}}]}."""
+               seed: int | None = None, order_seed: int | None = None) -> dict:
+    """Which lessons go on the page and on which side: {mode, seed, order_seed, pictures: [{picture, sides: {A: path,
+    B: path}}]}. Pictures go in bench order, or shuffled by order_seed, so a round doesn't always start (and tire) on
+    the same picture."""
     if bool(lessons) == bool(pairs):
         raise ValueError("give --lesson folders (single mode) or --pair folders (pair mode), not both")
     if lessons:
@@ -128,11 +130,14 @@ def plan_round(round_name: str, lessons: list[Path] | None = None, pairs: list[t
     if dup:
         raise ValueError(f"one entry per picture: {dup} came twice")
     rows.sort(key=lambda r: picture_order(r["picture"]))
-    return {"round": round_name, "mode": mode, "seed": seed, "pictures": rows}
+    if order_seed is not None:
+        random.Random(f"order:{order_seed}").shuffle(rows)
+    return {"round": round_name, "mode": mode, "seed": seed, "order_seed": order_seed, "pictures": rows}
 
 
 def answer_key(plan: dict) -> dict:
     return {"format": FORMAT, "round": plan["round"], "mode": plan["mode"], "seed": plan["seed"],
+            "order_seed": plan.get("order_seed"),
             "pictures": [{"picture": r["picture"], "lessons": {s: Path(p).name for s, p in r["sides"].items()}}
                          for r in plan["pictures"]]}
 
@@ -541,6 +546,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--pair", nargs=2, action="append", default=[], metavar=("DIR_1", "DIR_2"),
                    help="pair mode: two lesson folders of one picture (repeat per picture)")
     p.add_argument("--seed", type=int, help="pair mode: the seed for the sides (default: from the round's name)")
+    p.add_argument("--order-seed", type=int, help="shuffle the pictures' order with this seed (default: bench order)")
     p = sub.add_parser("import", help="save a copied scores JSON on the bench (spike/experiments/bench/scores/)")
     p.add_argument("scores")
     p.add_argument("--force", action="store_true")
@@ -549,7 +555,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if a.cmd == "make":
             plan = plan_round(a.round, [Path(x) for x in a.lesson] or None,
-                              [(Path(x), Path(y)) for x, y in a.pair] or None, a.seed)
+                              [(Path(x), Path(y)) for x, y in a.pair] or None, a.seed, a.order_seed)
             out = make(plan, Path(a.out))
         elif a.cmd == "import":
             out = import_scores(Path(a.scores), force=a.force)

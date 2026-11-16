@@ -1,0 +1,265 @@
+{
+  "candidates": [
+    {
+      "calls_naming_it": 92,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl"
+    },
+    {
+      "calls_naming_it": 3,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    },
+    {
+      "calls_naming_it": 2,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a9b5d02e3911432c1.jsonl"
+    }
+  ],
+  "file_marks": {
+    "00_beginner.png": {
+      "at": "2026-11-16T21:09:40Z",
+      "phase": 0
+    },
+    "00_canvas_fit.png": {
+      "at": "2026-11-16T21:09:00Z",
+      "phase": 0
+    },
+    "00_canvas_frame.png": {
+      "at": "2026-11-16T21:08:28Z",
+      "phase": 0
+    },
+    "00_reference.png": {
+      "at": "2026-11-16T21:11:28Z",
+      "phase": 1
+    },
+    "99_finish.png": {
+      "at": "2026-11-16T21:13:03Z",
+      "phase": 1
+    },
+    "aids/aids.json": {
+      "at": "2026-11-16T21:37:25Z",
+      "phase": 5
+    },
+    "folder name (local time)": {
+      "at": "20261116-210750",
+      "phase": 0
+    },
+    "mixes.json": {
+      "at": "2026-11-16T21:41:09Z",
+      "phase": 5
+    },
+    "notes.json": {
+      "at": "2026-11-16T21:40:15Z",
+      "phase": 8
+    },
+    "parts/owner.png": {
+      "at": "2026-11-16T21:30:39Z",
+      "phase": 2
+    },
+    "review.json": {
+      "at": "2026-11-16T21:38:20Z",
+      "phase": 7
+    },
+    "sealed.json": {
+      "at": "2026-11-16T21:41:54Z",
+      "phase": 8
+    },
+    "text.json": {
+      "at": "2026-11-16T21:40:15Z",
+      "phase": 6
+    },
+    "trials/review/review.json": {
+      "at": "2026-11-16T21:38:20Z",
+      "phase": 7
+    }
+  },
+  "ledger": {
+    "by_phase": {
+      "0": 39.0,
+      "1": 63.6,
+      "5": 16.6
+    },
+    "cost_usd": 0.1982,
+    "renders": 5,
+    "seconds": 119.2
+  },
+  "lesson": "birch-grove_skill_20261116-210750",
+  "phases": [
+    {
+      "by_tool_s": {
+        "Bash": 52.2,
+        "Read": 1.8,
+        "Skill": 0.0
+      },
+      "calls": 23,
+      "claude_s": 85.9,
+      "name": "set up, photo, canvas, beginner version",
+      "phase": 0,
+      "render_s": 39.0,
+      "renders": 2,
+      "started": "2026-11-16T21:07:44Z",
+      "tool_other_s": 14.2,
+      "tool_printed_s": 40.4,
+      "tool_s": 53.2,
+      "wall_s": 139.1
+    },
+    {
+      "by_tool_s": {
+        "Bash": 147.6,
+        "Read": 0.7
+      },
+      "calls": 12,
+      "claude_s": 39.9,
+      "name": "reference and finish",
+      "phase": 1,
+      "render_s": 63.6,
+      "renders": 2,
+      "started": "2026-11-16T21:10:03Z",
+      "tool_other_s": 84.8,
+      "tool_printed_s": 135.5,
+      "tool_s": 148.4,
+      "wall_s": 188.3
+    },
+    {
+      "by_tool_s": {
+        "Bash": 74.1,
+        "Read": 0.4
+      },
+      "calls": 9,
+      "claude_s": 93.7,
+      "name": "parts and outlines",
+      "phase": 2,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:13:12Z",
+      "tool_other_s": 74.6,
+      "tool_printed_s": 1.8,
+      "tool_s": 74.6,
+      "wall_s": 168.3
+    },
+    {
+      "by_tool_s": {
+        "Bash": 254.1,
+        "Read": 0.0,
+        "SendMessage": 2.8,
+        "ToolSearch": 0.0
+      },
+      "calls": 22,
+      "claude_s": 126.3,
+      "name": "paints",
+      "phase": 3,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:16:00Z",
+      "tool_other_s": 257.3,
+      "tool_printed_s": 77.9,
+      "tool_s": 257.3,
+      "wall_s": 383.6
+    },
+    {
+      "by_tool_s": {
+        "Bash": 2.9,
+        "Read": 0.0
+      },
+      "calls": 4,
+      "claude_s": 41.8,
+      "name": "stages and steps",
+      "phase": 4,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:22:24Z",
+      "tool_other_s": 2.9,
+      "tool_printed_s": 0.0,
+      "tool_s": 2.9,
+      "wall_s": 44.7
+    },
+    {
+      "by_tool_s": {
+        "Bash": 455.0,
+        "Read": 0.5
+      },
+      "calls": 17,
+      "claude_s": 95.2,
+      "name": "step pictures and aids",
+      "phase": 5,
+      "render_s": 16.6,
+      "renders": 1,
+      "started": "2026-11-16T21:23:08Z",
+      "tool_other_s": 438.9,
+      "tool_printed_s": 58.6,
+      "tool_s": 455.5,
+      "wall_s": 550.7
+    },
+    {
+      "by_tool_s": {
+        "Bash": 30.0,
+        "Read": 0.0
+      },
+      "calls": 8,
+      "claude_s": 80.5,
+      "name": "text",
+      "phase": 6,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:32:19Z",
+      "tool_other_s": 30.0,
+      "tool_printed_s": 27.1,
+      "tool_s": 30.0,
+      "wall_s": 110.5
+    },
+    {
+      "by_tool_s": {
+        "Bash": 179.2,
+        "Read": 2.8
+      },
+      "calls": 20,
+      "claude_s": 94.5,
+      "name": "check and review",
+      "phase": 7,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:34:09Z",
+      "tool_other_s": 181.9,
+      "tool_printed_s": 79.3,
+      "tool_s": 181.9,
+      "wall_s": 276.4
+    },
+    {
+      "by_tool_s": {
+        "Bash": 136.5,
+        "Read": 0.0,
+        "SubagentHandback": 0.2
+      },
+      "calls": 8,
+      "claude_s": 70.4,
+      "name": "diagrams, notes, seal",
+      "phase": 8,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:38:46Z",
+      "tool_other_s": 136.8,
+      "tool_printed_s": 1.6,
+      "tool_s": 136.8,
+      "wall_s": 207.2
+    }
+  ],
+  "phases_from": "step files",
+  "totals": {
+    "calls": 123,
+    "claude_s": 728.2,
+    "render_s": 119.2,
+    "tool_other_s": 1221.4,
+    "tool_printed_s": 422.2,
+    "tool_s": 1340.6,
+    "wall_s": 2068.8
+  },
+  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl",
+  "warnings": [],
+  "window": {
+    "end": "2026-11-16T21:42:13Z",
+    "start": "2026-11-16T21:07:44Z",
+    "wall_s": 2068.8
+  }
+}

@@ -69,11 +69,14 @@ Size: about 5 MB a picture with no extra renders, 7 MB with a canvas extend, mor
 One self-contained HTML page the owner scores on a phone, about 15 minutes for 8 lessons.
 
     # single mode, the baseline: one lesson per picture
-    python spike/experiments/bench/ab_page.py make --round baseline-1.12.1 --out output/bench/ab/baseline.html \
-        --lesson <run 1> --lesson <run 2> ...
+    python spike/experiments/bench/ab_page.py make --round baseline-1.12.1 --order-seed 165 \
+        --out output/bench/ab/baseline.html --lesson <run 1> --lesson <run 2> ...
     # pair mode, an experiment against the baseline: two lessons of one picture per --pair
     python spike/experiments/bench/ab_page.py make --round s1-peel --out output/bench/ab/s1.html \
         --pair <baseline run> <experiment run> ...
+
+Pictures go in bench order, or in an order shuffled by `--order-seed` (recorded in the answer key), so a round
+doesn't always start, and tire, on the same picture.
 
 The page shows one picture at a time (Back and Next at the bottom), the photo as a thumbnail that taps to full
 size, then each lesson one step at a time: the step picture (swipe it, or tap the arrows above or below the words),
@@ -204,21 +207,65 @@ with `GESSO_HISTORY` set aside. Their photos, canvas fits, beginner versions and
 (`known_problems.json`: the review's `left` items, the finish issues, the page's known problems, and any issues
 filed about the run).
 
-Four ran at once (with other sessions on the same 4 cores), so tool time is longer than a run alone would take.
-All four did their text review in the same session that wrote the text (`review_context: same`), not a fresh one.
+The runs went four at a time, with other sessions on the same 4 cores and 16 GB, so tool time is longer than a run
+alone would take. All eight did their text review in the same session that wrote the text
+(`review_context: same`), not a fresh one.
+
+The snow lantern's run had three of its `outline` runs killed for lack of memory (exit 137) under that load. The run
+didn't count them toward the skill's limit on tries. Most of its 13.4 minutes in step 7 is a loop back to the parts
+after the review: outline again (two of the kills fall here), then every tool forward from there. The birch
+grove's run had one `outline` run killed the same way, and the lake cabin's two.
+
+Three runs went past step 2c's limit of 5 `outline` runs: the balloon ran it 7 times, the lake cabin 6 (after
+making the cabin a child of the forest to get `check` clean), and the highland cow 6 (after dropping the front grass
+part and running forward again, as rule 9 says). All three were the model's own call under the unchanged skill, so
+they stay in the baseline; the runs table lists them. Counting `outline` commands in the transcripts, the
+birch grove (8 launches, 1 killed) and the snow lantern (about 9, 2 killed) may have gone past it too; not
+confirmed, since some of those may be reruns after going back from a later step.
+
+Two runs drafted an element technique: the birch grove `elements/birch-trunks.yaml` (#180), the highland cow
+`elements/shaggy-animal.yaml` (#181). Neither is frozen: the bench holds what the skill makes in steps 0 and 1, and
+picking or drafting an element is step 2, which an experiment does again. An experiment that wants the same element
+can read it from the baseline run or its issue.
+
+The highland cow's run noted a possible tool fault: after it dropped the front grass, `build-steps` gave the pixels
+behind the cow to the sky, with `problems` empty and `far` 0. It's the first of its known problems: steps 1 to 10
+show pale blue blotches with dark green centers where the cow will stand.
+
+**An extra run, left out of the baseline.** `highland-cow_skill_20261116-205600` is not the highland cow's baseline:
+the prompt that started it said the element technique would be filed for it, so the run didn't draft one, and its
+element choices weren't the skill's own. The baseline is the rerun, `highland-cow_skill_20261116-212627`. The extra
+run is kept as a record in `spike/experiments/bench/baseline/excluded/highland-cow_skill_20261116-205600/`. Beside
+the rerun it's a first look at how much two runs of one picture differ (one pair, so a hint, not a measure):
+
+| | Extra run (205600) | Baseline (212627) |
+|---|---|---|
+| Element for the cow | none drafted (steered) | drafted `shaggy-animal` (#181) |
+| Steps | 16 | 16 |
+| Cost | $0.11 | $0.11 |
+| Wall, minutes | 30.1 | 27.6 |
+| Claude / tools / renders | 11.1 / 18.0 / 1.1 | 12.0 / 14.5 / 1.1 |
+| Tool calls | 110 | 119 |
+| Slowest step | 7, check and review (7.3) | 2, parts and outlines (7.0) |
+| Problems left | 2 | 2 |
+
+The problems left differ in kind but share one: in both, the gold rim step shows something no step paints (the pink
+nose in 205600; the chin's shadow and the nose's light top in 212627). 205600's other problem is the clouds' orange
+undersides with only a gold paint named; 212627's is the blotches behind the cow above. Each run has its own
+finish render, so the same picture gave a different finish, a different plan, and different faults.
 
 ### Runs
 
-| Picture | Run | Beginner version | Canvas extend | Steps | Cost |
-|---|---|---|---|---|---|
-| chickadee | `chickadee_skill_20261116-203451` | no | no | 18 | $0.15 |
-| red-sailboat | `red-sailboat_skill_20261116-203450` | no | no | 16 | $0.15 |
-| balloon-lavender | `balloon-lavender_skill_20261116-203450` | yes | no | 24 | $0.13 |
-| sleeping-cat | `sleeping-cat_skill_20261116-203502` | no | yes | 16 | $0.21 |
-| snow-lantern | _to fill_ | | | | |
-| highland-cow | _to fill_ | | | | |
-| lake-cabin | _to fill_ | | | | |
-| birch-grove | _to fill_ | | | | |
+| Picture | Run | Beginner version | Canvas extend | Steps | Cost | Skill rules the run went past |
+|---|---|---|---|---|---|---|
+| chickadee | `chickadee_skill_20261116-203451` | no | no | 18 | $0.15 | |
+| red-sailboat | `red-sailboat_skill_20261116-203450` | no | no | 16 | $0.15 | |
+| balloon-lavender | `balloon-lavender_skill_20261116-203450` | yes | no | 24 | $0.13 | `outline` 7 times (step 2c: at most 5) |
+| sleeping-cat | `sleeping-cat_skill_20261116-203502` | no | yes | 16 | $0.21 | |
+| snow-lantern | `snow-lantern_skill_20261116-205524` | no | no | 20 | $0.08 | |
+| highland-cow | `highland-cow_skill_20261116-212627` | yes | no | 16 | $0.11 | `outline` 6 times (step 2c: at most 5) |
+| lake-cabin | `lake-cabin_skill_20261116-205703` | yes | no | 23 | $0.11 | `outline` 6 times (step 2c: at most 5) |
+| birch-grove | `birch-grove_skill_20261116-210750` | yes | yes | 14 | $0.20 | |
 
 ### Fault counts
 
@@ -241,10 +288,10 @@ All four did their text review in the same session that wrote the text (`review_
 | red-sailboat | 22.1 | 10.8 | 9.8 | 1.4 | 98 | 5, step pictures (6.1) |
 | balloon-lavender | 32.7 | 15.2 | 16.1 | 1.5 | 135 | 6, text (10.3) |
 | sleeping-cat | 20.2 | 10.4 | 7.6 | 2.2 | 99 | 8, diagrams, notes, seal (3.7) |
-| snow-lantern | | | | | | |
-| highland-cow | | | | | | |
-| lake-cabin | | | | | | |
-| birch-grove | | | | | | |
+| snow-lantern | 33.5 | 12.0 | 20.8 | 0.7 | 131 | 7, check and review (13.4) |
+| highland-cow | 27.6 | 12.0 | 14.5 | 1.1 | 119 | 2, parts and outlines (7.0) |
+| lake-cabin | 47.5 | 14.0 | 32.3 | 1.2 | 138 | 6, text (12.1) |
+| birch-grove | 34.5 | 12.1 | 20.4 | 2.0 | 123 | 5, step pictures (9.2) |
 
 ### Owner scores
 
