@@ -1095,7 +1095,10 @@ def paints_tool(a: argparse.Namespace) -> dict:
                   "each step choosing from these paints. Run paints again only after outline changes the parts.")
     elif a.add:
         advice = (f"Point the step that should use {r['added']} at it (split a pass in two: darker paint first), name "
-                  "it, then run build-steps." if r["added"] else "Nothing was added: see problems.")
+                  "it, then run build-steps." if len(r["new"]) == 1 else
+                  f"Added {', '.join(r['new'])}: a color for each of the part's colors no paint came within Delta E "
+                  f"{paints.MAX_MERGE:g} of (a stripe each). Point each step at the one its picture shows, name them, "
+                  "then run build-steps." if r["new"] else "Nothing was added: see problems.")
     else:
         advice = ("Measured again: every paint kept its id; no paint a step uses was merged or moved to another step. "
                   "Name any paint that lost its name, give each new paint a step, then run build-steps.")

@@ -51,6 +51,7 @@ ROW_BAND = 0.3  # a wide part and what's painted on it fill at least this much o
 ROW_SOFT = 0.03  # how far a wide part's row colors are softened up and down, as a share of the height
 ROW_MIN = 0.04  # a row needs this share of the picture's width in clean paint to say what color the row is
 MAIN_PIECE = 0.15  # a piece of a part with less clean paint than this share of the biggest piece's is a stray: not a source
+STRAY_NEAR = 0.75  # a stray with this share of it within RIM of a later part is that part's, whole; others stay the part's
 MARKS = 0.008  # the size of brush marks carried across a gap in a thing (not a wide area), as a share of the long side
 NEAR = 0.03  # how far a wide part's local color (a glow by the sun) reaches into a gap before its rows take over
 # The ghost check: before a part's first step, the picture mustn't already show the part's shape.
@@ -136,6 +137,7 @@ def make_background(finish: np.ndarray, front: np.ndarray, given: np.ndarray | N
 ROWS_REACH = 0.03  # behind an object, an area takes rows this far (share of the height) past the rows it has beside it
 FAR_ROWS = 0.05  # a back part's paint this far (share of the height) above or below its own outline's rows is reported
 FAR_SHARE = 0.001  # ... when it's more than this share of the picture
+RIM_REACH = 0.03  # a step's changes this far (share of the long side) past its painted area can only be rims it brings back
 CHANGED = 45  # RGB levels a background picture may differ from the finish before a pixel counts as changed
 CHANGED_SHARE = 0.25  # more of the scene changed than this, away from the objects, and the render didn't keep it
 
@@ -419,9 +421,17 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
             clean = clean & (whole.sum(1) >= ROW_BAND * w)[:, None]
         group = np.full((h, w), -1, np.int32)
         if clean.sum() >= max(50, CLEAN_MIN * mine.sum()):
-            # A stray piece of the part goes the same way, whole: a dab of foliage the outline left to the sky
-            # is the foliage's, and comes with it.
+            # A stray piece of the part goes the same way, whole, when it's a dab beside a later part (most of it
+            # within RIM of one): a dab of foliage the outline left to the sky is the foliage's, and comes with it.
+            # Any other stray (a small cloud up in the sky, one behind the tree, a streak along the ridge) is the
+            # part's own and is painted with it; only its pixels right beside a later part are that part's rim.
+            # Given whole to the nearest later part however far away, the clouds' strays showed a fill through
+            # the clouds' steps and changed to the real paint on the mountains' step, with no instruction (#153).
             rim_k = mine & ~clean
+            n_, pieces = cv2.connectedComponents(rim_k.astype(np.uint8), connectivity=8)
+            dab = np.bincount(pieces[rim_k & near], minlength=n_) >= STRAY_NEAR * np.bincount(pieces[rim_k], minlength=n_)
+            dab[0] = False
+            rim_k &= near | dab[pieces]
             group[rim_k] = group_of(k)[ol.fill_from_nearest(own_map, ~later)[rim_k]]
         else:
             clean, rim_k = mine, np.zeros((h, w), bool)  # a thin part that is all rim: nothing cleaner to go on
@@ -507,7 +517,8 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
                      "area": round(float(area[k].mean()), 4), "painted": round(float(where.mean()), 4),
                      "changed": round(float(changed.mean()), 4),
                      "far": round(float((where & far[k]).mean()), 5),
-                     "outside": round(float((changed & ~rim & ~cv2.dilate(area[k].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)).mean()), 5)})
+                     "outside": round(float((changed & ~cv2.dilate(area[k].astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
+                                             & ~(rim & _grow(area[k], RIM_REACH * long_side))).mean()), 5)})
         pictures.append(np.clip(canvas, 0, 255).astype(np.uint8))
         painted.append(where | rim)
     for r, g in zip(rows, ghosts(finish, parts, owner, steps, pictures, painted)):
@@ -693,6 +704,12 @@ def borrowed_texture(img: np.ndarray, src: np.ndarray, gap: np.ndarray, scale: f
             th, tw = tile.shape[:2]
             out[ys[todo], xs[todo]] = tile[ys[todo] % th, xs[todo] % tw]
     return out * strength
+
+
+def _grow(mask: np.ndarray, r: float) -> np.ndarray:
+    """The mask grown by r pixels."""
+    r = max(1, int(r))
+    return cv2.dilate(mask.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
 
 
 def _is_wide(mask: np.ndarray) -> bool:

@@ -299,6 +299,19 @@ Also from #129:
   child of the fields) found none of the fields' pixels to take and outlined nothing. Pixels nobody claimed would
   go to the nearest part anyway; a child whose color they are takes them first. A plan with a backdrop has no
   unclaimed pixels, so nothing changes there.
+  **Changed 2026-11-16 (#155): but not what's behind a thing in front.** In the hands-off lavender run
+  `balloon-lavender_skill_20261116-153316` the mountains' outline stopped short of the tree's trunk (a `marks` child
+  of the tree, its `points_out` all on the crown), and the trunk's color rule took the mountains and sky beside it
+  and between its forks: orange and purple are nearer bark than crown green. The crown's coat painted over them as
+  the trunk's place, and the trunk step put them back with no word about them (1,339 pixels). Now
+  (`outline.give_back`), before a `marks` or `thin` child of a part in front takes unclaimed pixels, each stretch of
+  them is compared with the parts behind around it, each read as its median color in a ring that widens from 1% to
+  10% of the long side (`GIVE_BACK_RING`, `GIVE_BACK_FAR`) so sky shut in between the forks still finds the sky; a
+  pixel nearer one of those than the child's own colors goes to that part. On that run's finish and plan, the
+  trunk's outline goes from 5,195 to about 4,100 pixels, all of them bark, the crown's coat leaves the mountains
+  beside the trunk alone, and the trunk step puts back no pixel within 6 levels of what it was before the tree.
+  Children of parts behind (the hedges on the fields) are unchanged. Not changed: a parent's steps still paint
+  over the child's own place until its first step (section 5), so the crown's coat still covers the trunk itself.
 - **What the swap changed on the fixtures' other parts:** clear-edged parts agree with ViT-B's to 95% or more
   (overlap), and no part is reported by `outline.problems`. One thing is worse: the lavender fixture's far strip
   of hedge at the left edge is filed under the mountains it touches, where ViT-B left it to the hedges.
@@ -404,7 +417,12 @@ ten steps early. The outlines were right. The fill wasn't, in three ways, each f
   shadow). Now a part's paint within 0.8% of the long side (`RIM`) of any part painted later counts as that part's
   rim. The fill comes from the part's clean paint only. The rim itself shows the fill until the part it belongs to
   starts, and comes back with it, as an object's rim already did. A stray piece of the part (one with less than 15%
-  of the clean paint of its biggest piece) goes the same way, whole.
+  of the clean paint of its biggest piece) goes the same way, whole, when it's a dab beside a later part: at least
+  75% of it (`STRAY_NEAR`) within `RIM` of one. Any other stray is the part's own and is painted with it; only its
+  pixels within `RIM` of a later part wait for that part. (Changed 2026-11-16, #153: every stray went to the
+  nearest later part however far away, so in `balloon-lavender_skill_20261116-153316` the clouds' small pieces,
+  up in the sky and behind the tree, showed a fill through the clouds' steps and changed to the real paint on the
+  mountains' step, with no instruction for it.)
 - *A wide area was carried under the horizon along its rows from whatever in each row was filed under it*, which
   below a ridge is slivers of ridge. Now a wide area behind (a sky, water, a field) is carried by
   `build_steps.blend_paint`: each row in the median color of its clean paint, softened up and down, with rows that
@@ -436,8 +454,11 @@ part, its children's places until they're painted, and what's carried under the 
 (section 5). Edges are softened inward by under a pixel, so nothing outside the area changes. The last picture is
 then set to the finish itself; how far the built one was from it is reported as `final_gap`.
 
-`build_steps.problems` reports: a step that changed something outside its part (a bug; it has never happened);
-a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
+`build_steps.problems` reports: a step that changed something outside its part (`outside`, a bug). The rims a
+step brings back (an object's soft rim, an earlier part's paint beside this part, section 7) count only when they
+lie more than 3% of the long side (`RIM_REACH`) from the step's painted area; before #153 they weren't counted, and
+the lavender's mountains step changed the clouds with `outside` at 0. It also
+reports a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
 more than 0.1% of the picture (`FAR_SHARE`) behind the objects more than 5% of the height (`FAR_ROWS`) above or
 below its part's own outline's rows, for an `area` part. Each step's row carries that share as `far` (0 for other
 kinds: marks found behind an object, a cloud, aren't held to rows; and 0 in rows behind an object that no area
@@ -562,6 +583,13 @@ had just been given. Now (`paints.measure`, `paints.add`):
   only a blend along the part's edges (fewer than 10% of its pixels near it), nothing is added and `problems` says
   so. It's how a pass is split in two, and how a part that took in a dropped part gets that part's color. Going over
   `max_mixes` this way is allowed and reported in `over_target`, never a problem.
+  **Changed 2026-11-16 (#154):** it also adds each other color of the part that ends more than Delta E 12
+  (`MAX_MERGE`) from every paint in the lesson, darkest first, so a striped object gets each stripe's color in one
+  run. A paint the part shares with another part doesn't move to the part's color, so a stripe it was matched to
+  could be a color no paint comes near: the lavender run's balloon (`balloon-lavender_skill_20261116-153316`) had
+  its blue stripes listed in the field's Lavender purple (#235a9a against #6250a8, 14.1 apart) and its teal ones in
+  the hedges' olive. `--add balloon` there now adds the basket's brown, the blue, and the teal. The result's `added`
+  is the first new id; `new` lists them all.
 - **The over-target rule** (`plan2.problems`) now reports going over `max_mixes` only while two base paints could
   still merge by `paints`' own rules: neither is an accent or `added`, they're at most Delta E 12 apart, and at most
   one of them is used by a step. The task asked for "not two paints used by different steps of the same part"; that
@@ -910,6 +938,14 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
   inches from an edge."); a line over 40 words;
 - the ones that stay: `paints_not_listed`, `duplicate_recipes`, `unreachable_paints`, `undocumented_diagrams`;
+- a step whose paints are far from what its own picture shows (#154, `paints.wrong_paints`): for each `pass` step
+  that isn't its part's last, the main color it adds (the largest of 3 colors measured where it changes the picture
+  by more than 15 Lab units, `ADDS`) is more than Delta E 12 (`MAX_MERGE`) from every paint it lists, and under a
+  quarter (`MATCHED`) of what it adds is within 12 of one. It names the step, the color, and its nearest paint, and
+  says to run `paints --add <part>` and point the step at the new paint (or at a paint in the lesson that's within
+  12). A part's last step shows all that's left whatever its paints, so it isn't held to this; nor are `flat`,
+  `full`, and `blend`. On the lavender run it fails the balloon's blue (8% within 12) and green stripes (5%);
+  no fixture step fails (their lowest share is 53%; the run's next lowest, its clouds, 39%);
 - a paint no step uses (#136: "Take it out of paints in plan.json, or add it to the step that should use it."). A
   paint a used tint or shade is made from (its `of`) counts as used. `paints` never merges a paint `--add` made, so
   one left behind when its step was dropped stayed in "Your paints" with nothing else to clear it;

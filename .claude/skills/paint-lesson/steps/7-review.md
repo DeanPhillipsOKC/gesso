@@ -8,6 +8,7 @@ pass**: each trip back through the tools costs minutes. The usual ones:
 | It says | Fix |
 |---|---|
 | a `full` step turns too much of the picture from bare to textured | that part is finished in one step. Make it a `flat` coat and a pass per paint (`paints --add <its part>` if it has only one), then 5a on |
+| a step's picture adds a color far from its paints (blue stripes listed in a purple) | `paints --add <its part>` (it adds every color of the part no paint comes near), then point each step at the paint its picture shows, name the new paints, then 5a on |
 | more base mixes than the target and two are close enough to merge | run `paints --lesson <lesson>` again; never delete a paint by hand |
 | step or stage count out of range | step 4: split the biggest steps, or merge stages |
 | a stroke has no card, or the brush isn't one its card names | step 4: use a card's stroke and one of its brushes |

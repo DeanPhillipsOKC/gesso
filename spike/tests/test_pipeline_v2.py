@@ -17,6 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import cv2  # noqa: E402
 import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
@@ -318,6 +319,7 @@ class FixtureBuildTests(unittest.TestCase):
             self.assertEqual(len(pictures), len(bs.flat_steps(plan)), name)
             self.assertTrue((pictures[-1] == finish).all(), name)
             self.assertEqual(bs.problems(plan, rows), [], name)
+            self.assertEqual(paints.wrong_paints(plan, pictures, lessons.built(name)[3]), [], name)  # #154
             self.assertLess(rows[-1]["final_gap"], 0.02, name)  # before the last picture was set to the finish
             for r in rows:
                 self.assertEqual(r["outside"], 0.0, f"{name} {r['id']} changed something outside its part")
@@ -554,6 +556,60 @@ class BuildStepsTests(unittest.TestCase):
         self.assertEqual(bs.problems(plan, rows), [])
         self.assertEqual(rows[1]["outside"], 0.0)  # the ring coming back with the cloud isn't a change outside it
 
+    def cloud_scene(self):
+        """A sky with one big white cloud and a small pink one up high (a stray piece of the clouds: far less of it
+        than the big one), purple mountains along the bottom, a red ball in front, and a background picture (#153)."""
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:] = (110, 150, 220)
+        img[20:40, 70:140] = (245, 245, 240)  # the big cloud
+        img[8:13, 15:23] = (240, 170, 190)  # the small one, far from the mountains
+        img[85:] = (110, 90, 170)  # the mountains
+        yy, xx = np.mgrid[:120, :160]
+        ball = ((yy - 60) ** 2 + (xx - 40) ** 2) < 10 ** 2
+        plate = img.copy()  # the background picture: the scene with the ball taken out
+        img[ball] = (210, 40, 40)
+        owner = np.zeros((120, 160), np.int32)
+        owner[20:40, 70:140] = 1
+        owner[8:13, 15:23] = 1
+        owner[85:] = 2
+        owner[ball] = 3
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "clouds", "kind": "marks", "parent": "sky", "box": [0, 0, 1, 0.5],
+                  "colors_in": ["#f5f5f0", "#f0aabe"], "colors_out": ["#6e96dc"]},
+                 {"id": "mountains", "kind": "area", "box": [0, 0.7, 1, 1]},
+                 {"id": "ball", "kind": "object", "box": [0.15, 0.4, 0.35, 0.6]}]
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "white", "hex": "#f5f5f0"},
+                           {"id": "pink", "hex": "#f0aabe"}, {"id": "purple", "hex": "#6e5aaa"},
+                           {"id": "red", "hex": "#d22828"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "clouds", "part": "clouds", "show": "full", "paints": ["white", "pink"]},
+                    {"id": "mountains", "part": "mountains", "show": "full", "paints": ["purple"]},
+                    {"id": "ball", "part": "ball", "show": "full", "paints": ["red"]}]}]}
+        return img, plate, owner, plan
+
+    def test_a_later_part_leaves_a_finished_part_alone(self):  # #153
+        img, plate, owner, plan = self.cloud_scene()
+        (sky, clouds, mountains, ball), rows, _ = bs.build(img, plan, owner, background=plate)
+        self.assertTrue((clouds[8:13, 15:23] == img[8:13, 15:23]).all())  # the small cloud comes with the clouds
+        upper = slice(0, 70)  # the sky, well above the mountains' rim
+        self.assertTrue((mountains[upper] == clouds[upper]).all())  # and the mountains' step doesn't touch it
+        self.assertEqual([r["outside"] for r in rows], [0.0] * 4)
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def test_a_step_changing_a_part_far_from_its_own_is_reported(self):  # #153
+        img, plate, owner, plan = self.cloud_scene()
+        old, bs.STRAY_NEAR = bs.STRAY_NEAR, 0.0  # every stray goes to the nearest later part: build-steps before #153
+        try:
+            _, rows, _ = bs.build(img, plan, owner, background=plate)
+        finally:
+            bs.STRAY_NEAR = old
+        self.assertGreater(rows[2]["outside"], 0.0005)  # the small cloud changed on the mountains' step
+        said = [p for p in bs.problems(plan, rows) if "outside its part" in p]
+        self.assertEqual(len(said), 1)
+        self.assertTrue(said[0].startswith("mountains: changed"))
+
     def test_a_coat_does_not_stay_where_another_part_will_cross(self):
         # a light bar with a dark peg across it, the bar started as a dark flat coat: by the bar's last step the
         # peg's place is the bar's light paint, not a peg-shaped patch of the coat
@@ -616,6 +672,72 @@ class BuildStepsTests(unittest.TestCase):
                  {"id": "boat", "kind": "object"}, {"id": "reflection", "kind": "marks"},
                  {"id": "glint", "kind": "marks", "parent": "sky"}]
         self.assertEqual(bs.back_parts(parts).tolist(), [True, True, False, False, True])
+
+    def forked_trunk_scene(self):
+        """An orange sky over a purple mountain band and a golden ground; a tree in front, its crown in the sky and
+        its forked trunk standing on the ground, with sky showing between the forks. The sky's and the mountains'
+        outlines stop short of the trunk, as the model's did on the lavender run, and the trunk is marks on the tree
+        whose points_out are all on the crown (#155)."""
+        h, w = 120, 160
+        img = np.zeros((h, w, 3), np.uint8)
+        img[:60] = (240, 140, 80)
+        img[60:75] = (120, 110, 190)
+        img[75:] = (210, 170, 60)
+        yy, xx = np.mgrid[:h, :w]
+        crown = ((yy - 28) ** 2 + (xx - 80) ** 2) < 18 ** 2
+        trunk = (yy >= 62) & (yy < 95) & (xx >= 76) & (xx < 84)
+        for x_end in (62, 98):  # two forks from the top of the trunk up into the crown
+            for t in np.linspace(0, 1, 60):
+                cy, cx = 62 + (40 - 62) * t, 80 + (x_end - 80) * t
+                trunk |= ((yy - cy) ** 2 + (xx - cx) ** 2) < 3 ** 2
+        img[crown] = (40, 80, 60)
+        img[trunk & ~crown] = (90, 50, 30)
+        tree = crown | trunk
+        # what the model left out around the trunk: everything within 8 px of it, the sky between the forks too
+        near = (cv2.dilate(trunk.astype(np.uint8), np.ones((17, 17), np.uint8)) > 0) & ~tree
+        sky, mountains, ground = np.zeros((h, w), bool), np.zeros((h, w), bool), np.zeros((h, w), bool)
+        sky[:60], mountains[60:75], ground[75:] = True, True, True
+        given = {"sky": sky & ~tree & ~near, "mountains": mountains & ~tree & ~near, "ground": ground & ~tree,
+                 "tree": tree}
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 0.5]},
+                 {"id": "mountains", "kind": "area", "box": [0, 0.5, 1, 0.625]},
+                 {"id": "ground", "kind": "area", "box": [0, 0.625, 1, 1]},
+                 {"id": "tree", "kind": "object", "box": [0.3, 0.05, 0.7, 0.8]},
+                 {"id": "trunk", "kind": "marks", "parent": "tree", "box": [0.35, 0.3, 0.65, 0.8],
+                  "points_in": [[0.5, 0.7], [0.5, 0.6]], "points_out": [[0.5, 0.2], [0.4, 0.25], [0.6, 0.25]]}]
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "orange", "hex": "#f08c50"}, {"id": "purple", "hex": "#786ebe"},
+                           {"id": "gold", "hex": "#d2aa3c"}, {"id": "green", "hex": "#28503c"},
+                           {"id": "bark", "hex": "#5a321e"}],
+                "stages": [{"id": "back", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["orange"]},
+                    {"id": "mountains", "part": "mountains", "show": "full", "paints": ["purple"]},
+                    {"id": "ground", "part": "ground", "show": "full", "paints": ["gold"]}]},
+                    {"id": "tree", "steps": [
+                        {"id": "crown-coat", "part": "tree", "show": "flat", "paints": ["green"]},
+                        {"id": "crown", "part": "tree", "show": "full", "paints": ["green"]},
+                        {"id": "trunk", "part": "trunk", "show": "full", "paints": ["bark"]}]}]}
+        return img, parts, given, plan, crown, trunk
+
+    def test_whats_behind_a_trunk_that_the_outlines_missed_goes_to_the_parts_behind(self):  # #155
+        img, parts, given, plan, crown, trunk = self.forked_trunk_scene()
+        masks, owner, _ = ol.outline(img, parts, given=given)
+        self.assertEqual(owner[50, 80], 0)  # the sky between the forks is the sky's
+        self.assertEqual(owner[68, 70], 1)  # the mountains beside the trunk are the mountains'
+        self.assertTrue(masks["trunk"][80, 80] and masks["trunk"][55, 72])  # the trunk and its forks are still the trunk
+        self.assertLess((masks["trunk"] & ~trunk).sum(), 0.1 * trunk.sum())
+        pictures, rows, painted = bs.build(img, plan, owner)
+        ids = [r["id"] for r in rows]
+        before_tree = pictures[ids.index("ground")].astype(int)
+        coat, trunk_step = ids.index("crown-coat"), ids.index("trunk")
+        # the crown's coat leaves the sky between the forks and the mountains beside the trunk as they were
+        self.assertTrue((np.abs(pictures[coat][50, 78:83].astype(int) - before_tree[50, 78:83]).max() <= 6))
+        self.assertTrue((np.abs(pictures[coat][68, 66:72].astype(int) - before_tree[68, 66:72]).max() <= 6))
+        # and the trunk's step puts back almost nothing the way it was before the tree was started: a few pixels on
+        # the trunk's softened edge, where it was 1,009 (more than the trunk itself) before #155
+        changed = np.abs(pictures[trunk_step].astype(int) - pictures[trunk_step - 1].astype(int)).max(2) > 6
+        back = np.abs(pictures[trunk_step].astype(int) - before_tree).max(2) <= 12
+        self.assertLess(int((changed & back).sum()), 0.05 * trunk.sum())
 
 
 class PaintsTests(unittest.TestCase):
@@ -857,6 +979,53 @@ class AddTests(unittest.TestCase):
         self.assertEqual(r["paints"], plan["paints"])
         with self.assertRaises(ValueError):
             paints.add(img, plan, owner, "moon", 10)
+
+
+def striped_scene():
+    """A purple field with a ball in front, red with two blue stripes. The plan paints the stripes in the field's
+    purple: the nearest paint the ball's steps name, but far from the blue the stripe step's picture shows (#154)."""
+    img = np.zeros((120, 160, 3), np.uint8)
+    img[:] = (128, 64, 160)
+    yy, xx = np.mgrid[:120, :160]
+    ball = ((yy - 60) ** 2 + (xx - 80) ** 2) < 40 ** 2
+    img[ball] = (200, 40, 40)
+    stripes = ball & (((xx - 54) % 26) < 9)
+    img[stripes] = (30, 90, 170)
+    owner = np.zeros((120, 160), np.int32)
+    owner[ball] = 1
+    plan = {"plan_version": 2, "parts": [{"id": "field", "kind": "area", "box": [0, 0, 1, 1]},
+                                         {"id": "ball", "kind": "object", "box": [0.2, 0.1, 0.8, 0.9]}],
+            "paints": [{"id": "field-1", "hex": "#8040a0", "parts": ["field", "ball"]},
+                       {"id": "ball-1", "hex": "#c82828", "parts": ["ball"]}],
+            "stages": [{"id": "all", "steps": [
+                {"id": "field", "part": "field", "show": "full", "paints": ["field-1"]},
+                {"id": "ball-coat", "part": "ball", "show": "flat", "paints": ["ball-1"]},
+                {"id": "ball-blue", "part": "ball", "show": "pass", "paints": ["field-1"]},
+                {"id": "ball-red", "part": "ball", "show": "pass", "paints": ["ball-1"]}]}]}
+    return img, plan, owner
+
+
+class StepColorTests(unittest.TestCase):
+    """#154: a step's paint must be near the color its own picture adds."""
+
+    def test_a_stripe_painted_in_a_far_paint_fails_and_passes_once_paints_add_gives_its_color(self):
+        img, plan, owner = striped_scene()
+        pictures, _, masks = bs.build(img, plan, owner)
+        out = paints.wrong_paints(plan, pictures, masks)
+        self.assertEqual(len(out), 1, out)
+        self.assertTrue(out[0].startswith("ball-blue: its picture adds #"), out)
+        self.assertIn("its nearest paint, field-1 (#8040a0), is Delta E", out[0])
+        self.assertIn("paints --add ball", out[0])
+        # paints --add gives the ball its blue: it was matched to the shared purple, which doesn't move to it
+        r = paints.add(img, plan, owner, "ball", 10)
+        self.assertEqual(r["problems"], [])
+        blue = next(p for p in r["paints"] if p["id"] in r["new"] and mixing.delta_e(p["hex"], "#1e5aaa") < 6)
+        self.assertEqual((blue["parts"], blue["added"]), (["ball"], True))
+        fixed = copy.deepcopy(plan)
+        fixed["paints"] = r["paints"]
+        fixed["stages"][0]["steps"][2]["paints"] = [blue["id"]]
+        pictures, _, masks = bs.build(img, fixed, owner)
+        self.assertEqual(paints.wrong_paints(fixed, pictures, masks), [])
 
 
 class PlanTests(unittest.TestCase):
