@@ -1,0 +1,157 @@
+{
+  "photo": "snow-lantern",
+  "run": "snow-lantern_skill_20261116-191628",
+  "started": "2026-11-16 19:16",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "a3b0c1c2fbff5849",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 1.12.1",
+        "commit": "b3d8b0e",
+        "dirty": false,
+        "published": "2026-11-16"
+      },
+      "made_with": {
+        "version": "POC 1.12.1",
+        "commit": "e751f80",
+        "published": "2026-11-16"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-16T19:33:58"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 20,
+        "words": 3097,
+        "tubes": 5,
+        "cost_usd": 0.085,
+        "minutes": 0.7,
+        "paid_renders": 2,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 5,
+        "minutes_total": 17.5,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "sky-blend",
+          "name": "Blend the deep night sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "moon",
+          "name": "Paint the round moon",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pines",
+          "name": "Stamp the dark pines",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "snow-base",
+          "name": "Lay in the snow in shadow blue",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "snow-tops",
+          "name": "Light the tops of the drifts",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "snow-rose",
+          "name": "Lay the rosy edge of the lantern's light",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "snow-glow",
+          "name": "Lay the lantern's warm light on the snow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "rails-dark",
+          "name": "Pull the dark of the rails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "rails-light",
+          "name": "Catch the light on the rails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "post-dark",
+          "name": "Pull the dark of the post",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "post-light",
+          "name": "Catch the light on the post's grain",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "post-glow",
+          "name": "Catch the lantern's glow on the post",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bracket-dark",
+          "name": "Pull the dark of the arm and brace",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "bracket-light",
+          "name": "Catch the light on the arm",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "caps-base",
+          "name": "Lay in the snow caps in shadow blue",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "caps-light",
+          "name": "Light the tops of the snow caps",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lantern-glass",
+          "name": "Block in the glowing glass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lantern-glow",
+          "name": "Glow the middle of the glass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lantern-core",
+          "name": "Light the core",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lantern-frame",
+          "name": "Paint the brass frame and hook",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
