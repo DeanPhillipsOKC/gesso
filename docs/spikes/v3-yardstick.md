@@ -16,6 +16,14 @@ Four parts, each with its own command:
 
 All commands run from the repo root with `.venv/bin/python`. The tests are `spike/tests/test_bench*.py`.
 
+**Status (2026-11-16).**
+- Done: the bench is frozen for all 8 pictures and builds to the same bytes twice; the 8 v2 baseline runs are made;
+  each has a trace and a fault count by a fresh-context reviewer.
+- Pending: the owner's A/B scores on the baseline, and so any measure of how well the fault counter agrees with
+  the owner. Until those exist, the fault counts are the counter's findings only, not a validated measure, and no
+  spike should be screened on them alone.
+- Not done here: Wave 0's "the owner has scored it" (section 5, Owner scores).
+
 ## 1. The frozen bench
 
 Eight pictures, by photo stem: the five on the site (`chickadee`, `red-sailboat`, `balloon-lavender`,
@@ -126,6 +134,13 @@ In pair mode `lessons` and `scores` have `A` and `B`, `seed` is the number the s
 
 It checks the format and saves `spike/experiments/bench/scores/<round>.json`. It won't overwrite different scores
 for the same round without `--force`.
+
+**The baseline round** (`baseline-1.12.1`, 8 lessons, 147 steps, 10.2 MB at JPEG quality 72, pictures shuffled with
+`--order-seed 165`) is published as a claude.ai artifact, https://claude.ai/artifact/NAyrBrgoeab8sF2jJs6ZG3. On
+the artifact, `saveScores` also writes the scores JSON to the artifact's database (collection `scores`, document id
+the round's name), besides localStorage. Scores come back that way: the coordinator reads that document and runs
+`ab_page.py import` on it. "Copy scores" stays as the fallback. The round's answer key is
+`spike/experiments/bench/scores/baseline-1.12.1.key.json`.
 
 A phone-size screenshot (390 px wide: `NODE_PATH=$(npm root -g) node spike/experiments/bench/ab_screenshot.js <page> <prefix>`, Playwright with Chromium) showed no sideways scroll,
 1-5 buttons about 60 px wide, and the bottom bar always in reach.
@@ -269,16 +284,51 @@ finish render, so the same picture gave a different finish, a different plan, an
 
 ### Fault counts
 
-| Picture | A | B | C | D | E | F | G | H | Total (weighted) | Worst steps |
-|---|---|---|---|---|---|---|---|---|---|---|
-| chickadee | | | | | | | | | | |
-| red-sailboat | | | | | | | | | | |
-| balloon-lavender | | | | | | | | | | |
-| sleeping-cat | | | | | | | | | | |
-| snow-lantern | | | | | | | | | | |
-| highland-cow | | | | | | | | | | |
-| lake-cabin | | | | | | | | | | |
-| birch-grove | | | | | | | | | | |
+One fresh-context reviewer per lesson, each given only `fault_counter.md` and one packet (no key, no plan, no run).
+Each wrote `faults.json`, kept as `spike/experiments/bench/baseline/<picture>/faults.json`. All 8 fit the format
+(`agreement.py` checks it): every step listed, classes and severities valid, ids unique, `same_as` pointing at a
+real fault, and `counts` and `distinct` matching the faults listed.
+
+Each cell is all / distinct: all counts a fault once in every step a painter meets it in; distinct counts it once.
+Weighted is blocker 3, major 2, minor 1, over all. "Run left" is what the run's own same-session review found and
+left as it was (`review.json`, `left` items): the number the lesson page's Known problems shows today.
+
+| Picture | A | B | C | D | E | F | G | H | Total | Weighted | Run left | Worst steps |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| chickadee | 8/5 | 13/5 | 1/1 | 5/5 | 9/9 | 4/3 | 0 | 0 | 40/28 | 66 | 1 | 1, 15, 8 |
+| red-sailboat | 26/9 | 4/3 | 2/2 | 4/4 | 4/4 | 4/1 | 0 | 0 | 44/23 | 84 | 1 | 9, 5, 13 |
+| balloon-lavender | 42/12 | 8/4 | 1/1 | 8/8 | 6/6 | 4/1 | 0 | 0 | 69/32 | 139 | 2 | 7, 3, 8 |
+| sleeping-cat | 51/13 | 18/6 | 4/4 | 5/5 | 5/5 | 4/1 | 0 | 0 | 87/34 | 159 | 3 | 1, 2, 11 |
+| snow-lantern | 24/11 | 8/4 | 3/3 | 3/3 | 0 | 4/3 | 0 | 0 | 42/24 | 60 | 3 | 7, 20, 16 |
+| highland-cow | 22/9 | 0 | 2/2 | 3/3 | 9/9 | 1/1 | 0 | 0 | 37/24 | 70 | 2 | 1, 7, 13 |
+| lake-cabin | 29/12 | 3/3 | 1/1 | 5/5 | 7/6 | 2/1 | 0 | 0 | 47/28 | 77 | 4 | 12, 3, 6 |
+| birch-grove | 35/15 | 17/4 | 0 | 4/4 | 13/11 | 0 | 0 | 0 | 69/34 | 134 | 3 | 1, 9, 11 |
+| all 8 | 237/86 | 71/29 | 14/14 | 37/37 | 53/50 | 23/11 | 0 | 0 | 435/227 | 789 | 19 | |
+
+The counter found 227 distinct faults where the runs' own reviews left 19, about 12 times as many. 19 of the 227 are
+blockers (14 A, 4 B, 1 D). G and H are 0 everywhere: every reviewer said in `not_visible` that the packet can't show
+the site or the run.
+
+**What the counter found most** (distinct faults, sorted by hand from the reviewers' `sees` lines, so the counts are
+approximate). These are the counter's findings, not yet checked against the owner:
+- **Steps that add colors their paints don't name** (class D, often a part's last step): about 25, on all 8 pictures.
+  The step names one paint while most of what it adds is another color (a sail step naming a gray that adds
+  near-white cream; brass bars named "Deep night blue" that the picture paints brass).
+- **Ghosts**, something showing before its step paints it (A): about 24, on 7 pictures. The cow's place, the sun's
+  path, the boat's reflection, and reeds in the water.
+- **Tiled, mirrored patterns** no brush makes (A), the fill behind objects borrowing texture: 12, on 7 of the 8
+  pictures (all but the chickadee), 7 of them blockers. They look like kaleidoscope diamonds, lace, chevrons, or a
+  dot lattice in a sky, a wall, a sail, a hull strip, a mountain.
+- **Load words a beginner isn't told the meaning of** (F): "creamy" and "a light load", 9 times, on 7 pictures.
+- **Pictures with no brush marks**, flat or blurred like a filter (A): about 8, on 6 pictures.
+- **Words ask for texture, and the picture shows one flat, hard-edged shape** (E): about 8, on 5 pictures. Tapped
+  clumps shown as a solid slab, curved pieces shown as a smooth silhouette.
+- **Recipes whose mix doesn't match the swatch** (D): 4, on 4 pictures. "Bark brown" from red and ultramarine with
+  no burnt sienna mixes a violet-maroon; the balloon's "Coral pink" mixes a mauve.
+- **Jumps** from a flat coat to finished detail in one step (A): 4, on 3 pictures.
+
+A step-picture fault the counter met once is usually met again in the following steps, which is why A's all count
+(237) is almost three times its distinct count (86).
 
 ### Trace (minutes)
 
@@ -308,7 +358,9 @@ finish render, so the same picture gave a different finish, a different plan, an
 
 ### Counter against owner
 
-_To fill from `agreement.py`: rho for each group, and worst-step agreement against the 8 of 15 to beat._
+Pending: the owner hasn't scored yet. `agreement.py --packets output/bench/packets/baseline --scores
+spike/experiments/bench/scores/baseline-1.12.1.json` says "not scored yet" for every comparison today. Once the
+scores are in: rho for each group, and worst-step agreement against the 8 of 15 to beat.
 
 ## Known limits
 

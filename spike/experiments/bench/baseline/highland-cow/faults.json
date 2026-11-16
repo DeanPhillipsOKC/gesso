@@ -1,0 +1,429 @@
+{
+ "packet": "p06",
+ "painting": "A shaggy Highland cow standing in tall green-gold grass on a hillside, blue hills and a strip of loch behind, under a gold sunset sky",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "pale sky-blue blobs with dark green-black centers float on the blank canvas where the cow will stand, long before the grass or cow is painted; a dotted pale outline of the cow's head runs around them",
+     "where": "AFTER picture, x 10-72%, y 34-81% (about 1 1/4 to 8 3/4 in from the left, 5 1/2 to 13 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "the sky has a repeating mirrored tile pattern (diamonds and short pale horizontal dashes in a grid), nothing a brush makes",
+     "where": "AFTER picture, whole sky, clearest x 0-50%, y 3-18% (0-6 in from the left, 1/2 to 3 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "minor",
+     "sees": "faint pale cloud streaks already show at the top left before the cloud step",
+     "where": "AFTER picture, x 0-50%, y 0-8% (top 1 1/4 in, left half)",
+     "same_as": null
+    },
+    {
+     "id": "f15",
+     "class": "E",
+     "severity": "major",
+     "sees": "words say a top-to-bottom blend, Sky blue then Sunset gold below it, stroking back over the join; the picture is Sky blue all the way down with only a small hard-edged gold patch at the right edge, no band and no soft join",
+     "where": "lines 2 and 5 vs AFTER picture, gold patch x 92-100%, y 8-14% (1 1/4 to 2 1/4 in down at the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used with nothing on the step saying what creamy means",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "clouds-gray",
+   "faults": [
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "the mirrored tile pattern is still in the lower sky below the clouds",
+     "where": "AFTER picture, x 0-100%, y 17-34% (about 2 3/4 to 5 1/2 in down)",
+     "same_as": "f11"
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold streaks appear in the clouds and the gold patch at the right grows, though this step paints only silver-gray (the tip admits it: gold goes on in step 3)",
+     "where": "AFTER picture, x 0-40%, y 9-15% and x 80-100%, y 3-15% (left streaks about 1 1/2 to 2 1/4 in down; right patch 0-2 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the watch-out's fix says to use small circles with the tip, but the tip says these are long flat sideways streaks, not round puffs",
+     "where": "line 9 vs tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "clouds-gold",
+   "faults": [
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "the mirrored tile pattern is still in the lower sky below the clouds",
+     "where": "AFTER picture, x 0-100%, y 17-34% (about 2 3/4 to 5 1/2 in down)",
+     "same_as": "f11"
+    },
+    {
+     "id": "f19",
+     "class": "E",
+     "severity": "minor",
+     "sees": "says to let 'the gold cloud streaks' dry; step 2 painted silver-gray streaks",
+     "where": "line 1",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "far-hills",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand (now also on top of the new hills, with a dark notch at about 9 1/2 in from the left, 4 1/2 in down)",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "minor",
+     "sees": "faint repeating wavy horizontal lines run across the lower hills like a filter pattern, not brush streaks",
+     "where": "AFTER picture, x 0-100%, y 28-39% (about 4 1/2 to 6 1/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "loch",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the same wavy repeating lines still cross the lower hills",
+     "where": "AFTER picture, x 0-100%, y 28-39%",
+     "same_as": "f20"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "hillside-base",
+   "faults": [
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand (the green is painted around them and darker textured copies of the blobs show through it)",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "hillside-patches",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "the lower hillside band turns from dark green to a flat olive tint with a mirrored kaleidoscope tile pattern; no dry-brush marks there, nothing a brush makes",
+     "where": "AFTER picture, x 0-100%, y 44-63% (about 7 to 10 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "D",
+     "severity": "major",
+     "sees": "step names only Olive gold, but only about a sixth of what it adds is near it; most is dull mid olive-green, gray-green and dark blue-green clumps it never names",
+     "where": "paints vs AFTER picture, hillside x 0-100%, y 19-63%",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 3 says paint on under where the cow will go, but the picture leaves a hard-edged cow-shaped area of flat dark green unpainted",
+     "where": "line 3 vs AFTER picture, x 30-75%, y 28-44% (about 3 3/4 to 9 in from the left, 4 1/2 to 7 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the watch-out says to keep the far field flat and put texture only in front, but this step's whole job is dry-brushed texture on the far hillside",
+     "where": "line 11",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "grass-base",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand (the 'even' dark grass coat leaves them showing)",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f26",
+     "class": "C",
+     "severity": "major",
+     "sees": "says the grass top is about 5 in from the top edge; in the picture the new dark grass starts about 7 in down (at the left) to 8 1/2 in (at the right)",
+     "where": "line 2 vs AFTER picture, top of the new dark area at y 44-53%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "grass-moss",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a few rust-red streaks appear in the grass where the cow's legs will be, before the cow is painted",
+     "where": "AFTER picture, x 34-44%, y 79-84% (about 4 to 5 1/4 in from the left, 12 1/2 to 13 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "grass-olive",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same pale blue blobs with dark centers still show where the cow will stand",
+     "where": "AFTER picture, x 10-72%, y 34-81%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the rust-red streaks are still in the grass where the cow's legs go",
+     "where": "AFTER picture, x 34-44%, y 79-84%",
+     "same_as": "f27"
+    },
+    {
+     "id": "f29",
+     "class": "C",
+     "severity": "major",
+     "sees": "says the blades' top is about 5 in from the top edge; the new blades start about 7 in down",
+     "where": "line 2 vs AFTER picture, top of the blades at y 44%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "cow-block",
+   "faults": [
+    {
+     "id": "f30",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words ask for one simple shape plus curved ( ) pieces leaving distinct segments with gaps or overlaps; the picture is one smooth flat silhouette",
+     "where": "lines 7-8 vs AFTER picture",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "cow-locks",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "major",
+     "sees": "thin glowing gold outline loops trace shapes on the lower body and legs, like contour lines; no brush stroke makes these",
+     "where": "AFTER picture, x 18-40%, y 66-80% (about 2 to 4 3/4 in from the left, 10 1/2 to 12 3/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "cow-rim",
+   "faults": [
+    {
+     "id": "f32",
+     "class": "D",
+     "severity": "major",
+     "sees": "step names only Sunset gold, but about a tenth of what it adds is near it; much of the rest is deep brown and near-black shadow in the coat and face, plus a pinkish-gray nose",
+     "where": "paints vs AFTER picture, cow x 11-75%, y 27-83%",
+     "same_as": null
+    },
+    {
+     "id": "f33",
+     "class": "E",
+     "severity": "major",
+     "sees": "the face is finished in this step (nose modeled in pinkish gray, muzzle, chin shadow, eye area) and the coat gets new dark shadows, but no line asks for any of it",
+     "where": "AFTER picture, face x 55-70%, y 42-55% (about 6 1/2 to 8 1/2 in from the left, 6 3/4 to 8 3/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "horns-block",
+   "faults": [
+    {
+     "id": "f34",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words ask for an oval plus curved ( ) pieces with gaps or overlaps; horns aren't built that way (the tip says thick base tapering to a point), and the picture shows two smooth flat shapes",
+     "where": "lines 6-7 vs tip and AFTER picture",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "horns-shade",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "E",
+     "severity": "major",
+     "sees": "tip says keep the gray showing on top and dark only underneath and at the base; the picture turns nearly the whole of each horn brown, leaving only small gray patches",
+     "where": "tip vs AFTER picture, horns x 27-80%, y 17-35%",
+     "same_as": null
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a hard-edged flat pale patch sits near the left horn's tip, not a brush mark",
+     "where": "AFTER picture, x 27-30%, y 20-24% (about 3 1/2 in from the left, 3 1/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "horns-light",
+   "faults": [
+    {
+     "id": "f37",
+     "class": "D",
+     "severity": "minor",
+     "sees": "step names only Sunset gold, but most of what changes is gray-brown re-shading of the horns; only about a quarter is near Sunset gold",
+     "where": "paints vs AFTER picture, horns x 27-82%, y 17-35%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 22,
+  "B": 0,
+  "C": 2,
+  "D": 3,
+  "E": 9,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 9,
+  "B": 0,
+  "C": 2,
+  "D": 3,
+  "E": 9,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  7,
+  13
+ ],
+ "not_visible": {
+  "G": "The packet can't show the lesson page's layout, links, close-ups, paint maps, the 'Where' picture the step 5 tip refers to, the transfer outline, or the lessons site (tiles, versions, history). Steps are in order 1-16 with every picture present.",
+  "H": "The packet can't show the run itself (render, cutting, check tools, diagrams); no tool notes, placeholders or repeated lines appear in the words."
+ },
+ "summary": "The step pictures carry most of the faults: pale blue blobs with dark centers sit where the cow will stand from step 1 until the cow covers them in step 11, and filter-like mirrored tile patterns show in the sky (steps 1-3) and lower hillside (step 7). The words often don't match the pictures: grass tops placed 2 in too high (steps 8, 10), single-paint steps whose pictures add many unnamed colors (7, 13, 16), and stock shape and blend lines that contradict the picture (1, 11, 14, 15). Step 13 also finishes the face with no words for it."
+}

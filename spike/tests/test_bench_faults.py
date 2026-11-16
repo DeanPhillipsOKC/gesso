@@ -106,6 +106,24 @@ class AgreementTests(unittest.TestCase):
         self.assertEqual((s["recall"], s["precision"], s["owner_worst_in_counter_worst"]), (0.667, 1.0, 2))
         self.assertEqual(r["preference"], "single mode: no preferences to compare")
 
+    def test_the_format_check(self):
+        good = _result(2, {1: [("A", "major")]})
+        good["steps"][0]["faults"][0].update(sees="a ghost", where="AFTER, x 10%", same_as=None)
+        good["steps"][1]["faults"] = [{"id": "f2", "class": "A", "severity": "minor", "sees": "the same ghost",
+                                       "where": "AFTER", "same_as": "f10"}]
+        good.update(counts={"A": 2}, distinct={"A": 1}, not_visible={"G": "", "H": ""}, summary="s")
+        self.assertEqual(agreement.check_faults(good, 2), [])
+        bad = json.loads(json.dumps(good))
+        bad["steps"][1]["faults"][0].update(id="f10", **{"class": "Z", "severity": "awful", "same_as": "nope"})
+        bad["counts"] = {"A": 3}
+        del bad["summary"]
+        problems = agreement.check_faults(bad, 3)
+        for words in ("no summary", "steps should be 1 to 3", "unique", "isn't A to H", "isn't blocker",
+                      "names no fault", "counts"):
+            self.assertTrue(any(words in p for p in problems), (words, problems))
+        r = agreement.agree(self.tmp, None)  # the made-up results here have no sees/where/counts: all reported
+        self.assertTrue(r["lessons"]["a_skill_1"]["faults"]["format_problems"])
+
     def test_spearman(self):
         self.assertEqual(agreement.spearman([1, 2, 3, 4], [10, 20, 30, 40]), 1.0)
         self.assertEqual(agreement.spearman([1, 2, 3, 4], [4, 3, 2, 1]), -1.0)

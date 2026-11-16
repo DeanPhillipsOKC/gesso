@@ -90,6 +90,45 @@ def lesson_faults(result: dict) -> dict:
             "steps": len(result.get("steps") or [])}
 
 
+def check_faults(result: dict, steps: int | None = None) -> list[str]:
+    """Where a faults.json doesn't fit fault_counter.md's format: [] when it does. `steps` is the packet's step count."""
+    out = []
+    for key in ("steps", "lesson_faults", "counts", "distinct", "worst_steps", "not_visible", "summary"):
+        if key not in result:
+            out.append(f"no {key}")
+    rows = result.get("steps") or []
+    ns = [s.get("n") for s in rows]
+    if steps is not None and sorted(n for n in ns if isinstance(n, int)) != list(range(1, steps + 1)):
+        out.append(f"steps should be 1 to {steps}, each once; got {len(ns)}")
+    faults = _faults(result)
+    ids = [f.get("id") for _, f in faults]
+    if len(set(ids)) != len(ids) or None in ids:
+        out.append("fault ids must be present and unique")
+    for n, f in faults:
+        where = f"fault {f.get('id')} (step {n})" if n is not None else f"lesson fault {f.get('id')}"
+        if str(f.get("class", "")).upper() not in CLASSES:
+            out.append(f"{where}: class {f.get('class')!r} isn't A to H")
+        if str(f.get("severity", "")).lower() not in SEVERITY:
+            out.append(f"{where}: severity {f.get('severity')!r} isn't blocker, major or minor")
+        for key in ("sees", "where"):
+            if not f.get(key):
+                out.append(f"{where}: no {key}")
+        if f.get("same_as") not in (None, *ids):
+            out.append(f"{where}: same_as {f.get('same_as')!r} names no fault")
+    count = {c: 0 for c in CLASSES}
+    distinct = {c: 0 for c in CLASSES}
+    for _, f in faults:
+        c = str(f.get("class", "")).upper()
+        if c in count:
+            count[c] += 1
+            distinct[c] += not f.get("same_as")
+    for key, want in (("counts", count), ("distinct", distinct)):
+        got = result.get(key)
+        if isinstance(got, dict) and {c: got.get(c, 0) for c in CLASSES} != want:
+            out.append(f"{key} {got} doesn't match the faults listed ({want})")
+    return out
+
+
 def owner_lessons(scores: dict | None) -> dict[str, dict]:
     """{lesson folder: {real, paintable, agree, mean, worst, would_paint, side, picture, prefer}} from a scores JSON."""
     out = {}
@@ -118,6 +157,10 @@ def agree(packets: Path, scores: dict | None) -> dict:
             missing.append(pid)
             continue
         f = lesson_faults(result)
+        f["distinct_count"] = {c: sum(1 for _, x in _faults(result)
+                                      if str(x.get("class", "")).upper() == c and not x.get("same_as"))
+                               for c in CLASSES}
+        f["format_problems"] = check_faults(result, info.get("steps"))
         o = owner.get(info["lesson"])
         lessons[info["lesson"]] = {"packet": pid, "picture": info["picture"], "faults": f,
                                    "owner": o if o and o["scored"] else NOT_SCORED}
@@ -188,6 +231,9 @@ def table(report: dict) -> str:
     lines.append("steps: " + (s if isinstance(s, str) else
                               f"{s['agree']} of {s['steps']} agree; owner worst {s['owner_worst']}, counter flagged "
                               f"{s['counter_flagged']}, both {s['both']}"))
+    for folder, v in report["lessons"].items():
+        for p in v["faults"].get("format_problems") or []:
+            lines.append(f"format, {v['packet']}: {p}")
     if report["counter_missing"]:
         lines.append(f"no faults.json yet: {', '.join(report['counter_missing'])}")
     return "\n".join(lines)

@@ -1,0 +1,829 @@
+{
+ "packet": "p05",
+ "painting": "a gray tabby cat asleep on a folded mustard knitted blanket on a wooden sill, beside a white window with green leaves, against a pale blue wall",
+ "steps": [
+  {
+   "n": 1,
+   "id": "wall-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole wall; seams at x about 10%, 42%, 75% (1.6, 6.8, 12 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, transition at y 35-45% (4.2-5.4 in down), dark below it",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "a peach, sill-colored slanted patch, the sunlit sill that isn't painted until step 8",
+     "where": "AFTER, x 0-10%, y 54-64% (0-1.5 in from the left, 6.5-7.7 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, x 97-100%, y 36-42% (4.3-5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 says the wall's bottom is about 4 in from the bottom edge, but the picture (and line 2) paints it to the bottom edge",
+     "where": "line 1; AFTER, painted to y 100%",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' is used with nothing on the step to say what creamy means",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "outside-blend",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a peach, sill-colored slanted patch, the sunlit sill that isn't painted until step 8",
+     "where": "AFTER, x 0-10%, y 54-64%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the sky through the window is a mirrored, tiled pattern of repeated horizontal stripes and small square marks, not a blended sky",
+     "where": "AFTER, x 0-18%, y 0-46% (0-2.9 in from the left, 0-5.5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "B",
+     "severity": "major",
+     "sees": "a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f13",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the sky area misses a wall-gray horizontal bar across it and has a stepped notch and ragged right edge",
+     "where": "AFTER, bar at y 18-20% (1.4-1.5 in down) x 0-18%; notch x 7-12%, y 25-45%",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 3 and the tip say the sky is about 1 1/4 in wide; its top part is painted 2.9 in wide",
+     "where": "line 3 and tip; AFTER, x 0-2.9 in, y 0-2.9 in",
+     "same_as": null
+    },
+    {
+     "id": "f15",
+     "class": "D",
+     "severity": "major",
+     "sees": "Soft leaf green is named, but the picture adds no green at all, only blues and whites (median #9ed2f4)",
+     "where": "paints; AFTER, x 0-18%, y 0-46%",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "E",
+     "severity": "major",
+     "sees": "line 5 orders the paints 'top to bottom: Soft leaf green, then Pale sky blue', the opposite of the tip (green low, blue at the top)",
+     "where": "line 5 vs tip",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "E",
+     "severity": "minor",
+     "sees": "white cloud streaks appear in the sky; no line asks for them",
+     "where": "AFTER, x 1-6%, y 3-15%",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "F",
+     "severity": "minor",
+     "sees": "still visible: 'Load: Creamy paint' is used with nothing on the step to say what creamy means",
+     "where": "line 7",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "leaves-dark",
+   "faults": [
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a peach, sill-colored slanted patch, the sunlit sill that isn't painted until step 8",
+     "where": "AFTER, x 0-10%, y 54-64%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f23",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "major",
+     "sees": "the shady leaves are a flat, uniform slab with hard rectangular bars, no tap marks at all",
+     "where": "AFTER, bars x 0-2.9 in at 1.6-1.7 in and 2.7-3.0 in down; slab x 0-1.3 in, 3.3-5.3 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a peach, sill-colored slanted patch, the sunlit sill that isn't painted until step 8",
+     "where": "AFTER, x 0-10%, y 54-64%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f29",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: the shady leaves are a flat, uniform slab with hard rectangular bars, no tap marks at all",
+     "where": "AFTER, rectangular green bars x 1-2.9 in, 1.6-3.0 in down",
+     "same_as": "f24"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "window-block",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a peach, sill-colored slanted patch, the sunlit sill that isn't painted until step 8",
+     "where": "AFTER, x 0-1.2 in, 6.8-7.7 in down, under the rail",
+     "same_as": "f3"
+    },
+    {
+     "id": "f36",
+     "class": "B",
+     "severity": "major",
+     "sees": "the frame is one lumpy block with a scalloped, rounded bottom edge and a bulbous lobe, not straight bars",
+     "where": "AFTER, bottom edge x 1.3-4.4 in, 2.8-4 in down; lobe x 1.2-2.3 in, 4.3-5.6 in down",
+     "same_as": null
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a dark purple scratch and a thin red line on the frame's lower edge that no line paints",
+     "where": "AFTER, x 1.4-3.2 in, 2.1-2.8 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "window-shade",
+   "faults": [
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a peach, sill-colored slanted patch, the sunlit sill that isn't painted until step 8",
+     "where": "AFTER, x 0-10%, y 54-64%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f42",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f43",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: the frame is one lumpy block with a scalloped, rounded bottom edge and a bulbous lobe, not straight bars",
+     "where": "AFTER, x 1.3-4.4 in, 2.8-4 in down",
+     "same_as": "f36"
+    },
+    {
+     "id": "f44",
+     "class": "D",
+     "severity": "major",
+     "sees": "the inner side of the post is painted a dark navy (#5b7094), much darker and bluer than Shadow lavender (#8b8eaf)",
+     "where": "AFTER, x 3.9-4.3 in, 0-2.7 in down",
+     "same_as": null
+    },
+    {
+     "id": "f45",
+     "class": "E",
+     "severity": "minor",
+     "sees": "a lavender vertical bar appears on the window side of the post; the tip says to shade only the side toward the wall",
+     "where": "AFTER, about 2.1 in from the left, 0-3.5 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "sill-block",
+   "faults": [
+    {
+     "id": "f46",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f49",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f50",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a dotted line of yellow and dark specks runs inside the sill along its top edge",
+     "where": "AFTER, x 2-16 in, 7.6-8 in down",
+     "same_as": null
+    },
+    {
+     "id": "f51",
+     "class": "D",
+     "severity": "major",
+     "sees": "Wood brown's recipe (2 red, 1 ultramarine) makes a maroon-purple, not the rust swatch #934025",
+     "where": "paints",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "sill-light",
+   "faults": [
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f53",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f55",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f56",
+     "class": "D",
+     "severity": "major",
+     "sees": "most of what this step adds is dark red-brown wood grain across the front of the sill (median #af5533, darkest #832718), not Sunlit peach; no paint or line names it",
+     "where": "AFTER, y 85-100%, full width",
+     "same_as": null
+    },
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a row of dark triangular sawtooth peaks along the back edge of the sill",
+     "where": "AFTER, x 3-15 in, 7.6-8 in down",
+     "same_as": null
+    },
+    {
+     "id": "f58",
+     "class": "E",
+     "severity": "major",
+     "sees": "line 6 says dry-brush, 'never a solid area', but the sunlit patches in the picture (and the finish) are solid slanted blocks of light",
+     "where": "line 6; AFTER, x 0-1.8 in, 7.6-10 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "blanket-block",
+   "faults": [
+    {
+     "id": "f59",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f60",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f62",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f63",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a thin dark crack line along the blanket's top edge",
+     "where": "AFTER, x 5.5-14.5 in, about 5.6 in down",
+     "same_as": null
+    },
+    {
+     "id": "f64",
+     "class": "C",
+     "severity": "minor",
+     "sees": "the tip puts the blanket's left end about 2 in in from the left edge; it is painted at 1.24-1.4 in",
+     "where": "tip; AFTER, x 1.24-1.4 in, 8-9.3 in down",
+     "same_as": null
+    },
+    {
+     "id": "f65",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 7 expects a blanket of distinct curved rolls with gaps; the picture is one flat shape",
+     "where": "line 7",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "blanket-stitches",
+   "faults": [
+    {
+     "id": "f66",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f67",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f68",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f69",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f70",
+     "class": "B",
+     "severity": "minor",
+     "sees": "still visible: a thin dark crack line along the blanket's top edge",
+     "where": "AFTER, x 5.5-14.5 in, about 5.6 in down",
+     "same_as": "f63"
+    },
+    {
+     "id": "f71",
+     "class": "A",
+     "severity": "major",
+     "sees": "irregular camouflage-like blotches with thin light contour lines, not teardrop stitch marks in rows of V's",
+     "where": "AFTER, x 8-100%, y 52-90%",
+     "same_as": null
+    },
+    {
+     "id": "f72",
+     "class": "F",
+     "severity": "minor",
+     "sees": "still visible: 'Load: Creamy paint' is used with nothing on the step to say what creamy means",
+     "where": "line 4",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "blanket-folds",
+   "faults": [
+    {
+     "id": "f73",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "still visible: the whole wall carries a tiled, mirrored star/kaleidoscope texture with faint straight vertical seams, nothing a brush makes",
+     "where": "AFTER, whole visible wall",
+     "same_as": "f1"
+    },
+    {
+     "id": "f74",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: a soft blurred horizontal band: the lower 60% of the wall turns a darker, more saturated blue (#7a90b5) than the one even Pale blue-gray coat the words ask for and the finish's wall",
+     "where": "AFTER, wall below y 40%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f75",
+     "class": "A",
+     "severity": "minor",
+     "sees": "still visible: a darker blue-gray wedge, the cat's shadow on the wall, before the cat exists",
+     "where": "AFTER, right edge, y 36-42%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f76",
+     "class": "B",
+     "severity": "major",
+     "sees": "still visible: a thin straight light-blue sliver runs out of the window across the wall, far outside the sky's area",
+     "where": "AFTER, x 0-49%, y 47% (5.7 in down, to 7.8 in from the left)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f77",
+     "class": "B",
+     "severity": "minor",
+     "sees": "still visible: a thin dark crack line along the blanket's top edge",
+     "where": "AFTER, x 5.5-14.5 in, about 5.6 in down",
+     "same_as": "f63"
+    },
+    {
+     "id": "f78",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a jump: from blotches to a fully finished knit, every stitch in V rows with highlights, on a step that only asks for dark fold marks",
+     "where": "AFTER, whole blanket, x 8-100%, y 52-90%",
+     "same_as": null
+    },
+    {
+     "id": "f79",
+     "class": "D",
+     "severity": "major",
+     "sees": "most of the color added is bright yellow (median #edac1f, many #feaf16), not Dark ochre (#af5f16)",
+     "where": "paints; AFTER, whole blanket",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "cat-block",
+   "faults": [
+    {
+     "id": "f80",
+     "class": "A",
+     "severity": "major",
+     "sees": "the wall around the cat changes from the smooth, patterned, darker wall to finished brushy wall with a blue shadow at the right; no line mentions the wall",
+     "where": "AFTER, x 40-100%, y 0-50%",
+     "same_as": null
+    },
+    {
+     "id": "f81",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a thin light cream halo along the cat's left outline and dark specks along its back edge",
+     "where": "AFTER, head x 7-12%, y 31-45%; back x 45-80%, y 15-20%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "cat-white",
+   "faults": [
+    {
+     "id": "f82",
+     "class": "A",
+     "severity": "major",
+     "sees": "pink-tan specks inside both ears, before the pink ears step",
+     "where": "AFTER, x 2.0-2.8 in, 4.4-4.9 in down; x 6.0-6.5 in, 2.9-3.2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f83",
+     "class": "A",
+     "severity": "minor",
+     "sees": "tan streaks beside the left eye that are neither white nor asked for",
+     "where": "AFTER, x 3.6-4.7 in, 5.5-6.1 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "cat-stripes",
+   "faults": [
+    {
+     "id": "f84",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: pink-tan specks inside both ears, before the pink ears step",
+     "where": "AFTER, both ears",
+     "same_as": "f82"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "cat-fur",
+   "faults": [
+    {
+     "id": "f85",
+     "class": "A",
+     "severity": "major",
+     "sees": "still visible: pink-tan specks inside both ears, before the pink ears step",
+     "where": "AFTER, both ears",
+     "same_as": "f82"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "cat-pink",
+   "faults": [
+    {
+     "id": "f86",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 2 gives the area as about 15 in wide and 7 in tall for the ears and nose, which span about 4 in by 3 in",
+     "where": "line 2; AFTER, x 1.1-5 in, 1.4-6 in down",
+     "same_as": null
+    },
+    {
+     "id": "f87",
+     "class": "F",
+     "severity": "minor",
+     "sees": "still visible: 'Load: Creamy paint' is used with nothing on the step to say what creamy means",
+     "where": "line 4",
+     "same_as": "f6"
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 51,
+  "B": 18,
+  "C": 4,
+  "D": 5,
+  "E": 5,
+  "F": 4,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 13,
+  "B": 6,
+  "C": 4,
+  "D": 5,
+  "E": 5,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  2,
+  11
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups, diagrams, tiles and version history on the site",
+  "H": "the run itself: render and check tool behavior, diagram coloring, and logs"
+ },
+ "summary": "The early step pictures are not paint: a tiled kaleidoscope texture with vertical seams, a blurred dark band and ghost patches (sunlit sill, wall shadow) cover the wall from step 1, and a stray sky sliver from step 2 all persist until the cat covers them in step 12, where the wall changes with no instruction. Block-ins and detail steps swing between flat or blotchy shapes and sudden finished detail (frame block, blanket stitches to a finished knit in step 11), and several steps' named paints or sizes don't match what the picture adds (no green in the sky step, navy for lavender, bright yellow for dark ochre, wood grain for peach, a 15 in area for the ears)."
+}
