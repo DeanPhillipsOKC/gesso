@@ -172,10 +172,20 @@
     "steps": 24,
     "canvas": "16 x 12 in",
     "tubes": 5,
-    "version": "POC 1.12.0",
+    "version": "POC 1.12.1",
     "published": "2026-11-16",
-    "source": "balloon-lavender_skill_20261116-153316",
+    "source": "balloon-lavender_skill_20261116-171639",
     "versions": [
+      {
+        "id": "20261116-171639",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 17:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/",
+        "current": true
+      },
       {
         "id": "20261116-153316",
         "version": "POC 1.12.0",
@@ -183,8 +193,8 @@
         "guessed": false,
         "kind": "steps cut from the finish",
         "steps": 24,
-        "href": "lessons/lavender-balloon/",
-        "current": true
+        "href": "lessons/lavender-balloon/v/20261116-153316/",
+        "current": false
       },
       {
         "id": "20261114-075951",
@@ -227,6 +237,6 @@
         "current": false
       }
     ],
-    "known": 5
+    "known": 4
   }
 ]
