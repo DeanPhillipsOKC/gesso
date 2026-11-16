@@ -299,6 +299,19 @@ Also from #129:
   child of the fields) found none of the fields' pixels to take and outlined nothing. Pixels nobody claimed would
   go to the nearest part anyway; a child whose color they are takes them first. A plan with a backdrop has no
   unclaimed pixels, so nothing changes there.
+  **Changed 2026-11-16 (#155): but not what's behind a thing in front.** In the hands-off lavender run
+  `balloon-lavender_skill_20261116-153316` the mountains' outline stopped short of the tree's trunk (a `marks` child
+  of the tree, its `points_out` all on the crown), and the trunk's color rule took the mountains and sky beside it
+  and between its forks: orange and purple are nearer bark than crown green. The crown's coat painted over them as
+  the trunk's place, and the trunk step put them back with no word about them (1,339 pixels). Now
+  (`outline.give_back`), before a `marks` or `thin` child of a part in front takes unclaimed pixels, each stretch of
+  them is compared with the parts behind around it, each read as its median color in a ring that widens from 1% to
+  10% of the long side (`GIVE_BACK_RING`, `GIVE_BACK_FAR`) so sky shut in between the forks still finds the sky; a
+  pixel nearer one of those than the child's own colors goes to that part. On that run's finish and plan, the
+  trunk's outline goes from 5,195 to about 4,100 pixels, all of them bark, the crown's coat leaves the mountains
+  beside the trunk alone, and the trunk step puts back no pixel within 6 levels of what it was before the tree.
+  Children of parts behind (the hedges on the fields) are unchanged. Not changed: a parent's steps still paint
+  over the child's own place until its first step (section 5), so the crown's coat still covers the trunk itself.
 - **What the swap changed on the fixtures' other parts:** clear-edged parts agree with ViT-B's to 95% or more
   (overlap), and no part is reported by `outline.problems`. One thing is worse: the lavender fixture's far strip
   of hedge at the left edge is filed under the mountains it touches, where ViT-B left it to the hedges.

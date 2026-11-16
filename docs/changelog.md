@@ -16,6 +16,13 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 - `paints --add <part>` also adds each of the part's colors that no paint in the lesson comes within Delta E 12 of,
   so a striped object gets every stripe's color in one run (a paint shared with another part never moved to the
   stripe it stood for).
+- A trunk no longer takes the sky and mountains beside it and between its forks (#155). The mountains' outline
+  stopped short of the trunk in `balloon-lavender_skill_20261116-153316`, nothing claimed what was left, and the
+  trunk (marks on the tree, with `points_out` only on the crown) took it by color. The crown's coat then painted
+  over that sky and those mountains, and the trunk step put them back with no word about them. Now, before a marks
+  or thin part on something in front takes pixels nothing has claimed, each of them nearer the color of a part
+  behind it than the part's own colors goes to that part, so the crown's steps leave it and the trunk step doesn't
+  repaint it.
 
 ## POC 1.12.0 (2026-11-15)
 - Stroke cards are written for what's being painted (#96). A card's text and diagram were written for one subject,
