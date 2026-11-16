@@ -1,0 +1,58 @@
+{
+  "beginner_version": false,
+  "canvas_render": false,
+  "files": {
+    "00_canvas_frame.png": {
+      "bytes": 1866946,
+      "sha256": "b3c77d49794421e7ac7dbdee29552f9118ca583115a308570d0dfca5a4150ee6"
+    },
+    "99_finish.png": {
+      "bytes": 2656269,
+      "sha256": "422cd3b1e67848347c2a8fd88213d2b2c73991335a2f95b21c716f9e2cd1cf7e"
+    },
+    "canvas.json": {
+      "bytes": 628,
+      "sha256": "2e45e2f5b49e163a44bb75344152c6023eda14b71aa6070e1a7c2190799ef6ec"
+    },
+    "notes0.json": {
+      "bytes": 1750,
+      "sha256": "71b1c6300f5d7dac5079a91d080ae0f5e3eb5886f1bb01308dd277e0bb824f8f"
+    },
+    "photo.jpg": {
+      "bytes": 92888,
+      "sha256": "58c9f9864c6753193c47f11834fc3f4e5d75f83b334093380094102928109a57"
+    }
+  },
+  "photo": "photo.jpg",
+  "photo_source": "photos/chickadee.jpg",
+  "picture": "chickadee",
+  "plan_photo": "00_canvas_frame.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 33.7,
+      "step": "finish"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0665,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 33.9,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "chickadee_skill_20261116-203451",
+    "sealed_at": "2026-11-16T20:55:30",
+    "version": "POC 1.12.1"
+  }
+}

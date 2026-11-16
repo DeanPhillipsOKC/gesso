@@ -1,0 +1,32 @@
+{
+  "filed_issues": [],
+  "finish_issues": [
+    "First finish render: the sky's purple top was broken by red-orange cloud patches instead of the photo's smooth bands, and the water was a saturated blue rather than the photo's softer teal. Rendered once more with those fixes; the second finish is kept."
+  ],
+  "known_problems": [
+    {
+      "name": "Streak in the lighter water",
+      "problem": "A few faint orange glints show among the green streaks at the left, and the step names only Light sea green.",
+      "step": 5
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the step has no orange paint and the glints are faint; the painter will get a slightly plainer water there",
+        "fix": "none",
+        "kind": "missing",
+        "problem": "A few faint orange glints show among the green streaks at the left, and the step names only Light sea green.",
+        "step_id": "water-streaks"
+      }
+    ]
+  },
+  "run": "red-sailboat_skill_20261116-203450"
+}

@@ -80,7 +80,8 @@ size, then each lesson one step at a time: the step picture (swipe it, or tap th
 the stage it belongs to, its name, its paints with swatch and recipe, its brush, its numbered words and tip. Step
 pictures are JPEGs at 720 px on the long side; when the page would pass 11.5 MB, the generator lowers the JPEG
 quality, then the size, and refuses past 480 px (split the round into two pages). Close-ups, paint maps,
-diagrams and stroke cards aren't on it: the rubric scores the steps.
+diagrams and stroke cards aren't on it: the rubric scores the steps. That is a caveat on (b): a step that leans on
+its close-up or stroke card for how to paint it can score lower here than it would on the site.
 
 Per lesson, 1 to 5 each:
 - (a) the step pictures look like a real half-done painting;
@@ -199,15 +200,21 @@ tools, 1.2 of renders (72.4 s, the same as its ledger), 87 tool calls. On the sl
 
 Eight hands-off runs of the unchanged `/paint-lesson` at POC 1.12.1 (commit bb39e54), one per picture, Opus,
 with `GESSO_HISTORY` set aside. Their photos, canvas fits, beginner versions and finishes are the frozen bench.
+`spike/experiments/bench/baseline/<picture>/` holds each run's trace (`trace.json`) and what it left
+(`known_problems.json`: the review's `left` items, the finish issues, the page's known problems, and any issues
+filed about the run).
+
+Four ran at once (with other sessions on the same 4 cores), so tool time is longer than a run alone would take.
+All four did their text review in the same session that wrote the text (`review_context: same`), not a fresh one.
 
 ### Runs
 
 | Picture | Run | Beginner version | Canvas extend | Steps | Cost |
 |---|---|---|---|---|---|
-| chickadee | _to fill_ | | | | |
-| red-sailboat | _to fill_ | | | | |
-| balloon-lavender | _to fill_ | | | | |
-| sleeping-cat | _to fill_ | | | | |
+| chickadee | `chickadee_skill_20261116-203451` | no | no | 18 | $0.15 |
+| red-sailboat | `red-sailboat_skill_20261116-203450` | no | no | 16 | $0.15 |
+| balloon-lavender | `balloon-lavender_skill_20261116-203450` | yes | no | 24 | $0.13 |
+| sleeping-cat | `sleeping-cat_skill_20261116-203502` | no | yes | 16 | $0.21 |
 | snow-lantern | _to fill_ | | | | |
 | highland-cow | _to fill_ | | | | |
 | lake-cabin | _to fill_ | | | | |
@@ -230,10 +237,10 @@ with `GESSO_HISTORY` set aside. Their photos, canvas fits, beginner versions and
 
 | Picture | Wall | Claude | Tools | Renders | Calls | Slowest step |
 |---|---|---|---|---|---|---|
-| chickadee | | | | | | |
-| red-sailboat | | | | | | |
-| balloon-lavender | | | | | | |
-| sleeping-cat | | | | | | |
+| chickadee | 21.0 | 10.0 | 9.7 | 1.4 | 94 | 7, check and review (4.2) |
+| red-sailboat | 22.1 | 10.8 | 9.8 | 1.4 | 98 | 5, step pictures (6.1) |
+| balloon-lavender | 32.7 | 15.2 | 16.1 | 1.5 | 135 | 6, text (10.3) |
+| sleeping-cat | 20.2 | 10.4 | 7.6 | 2.2 | 99 | 8, diagrams, notes, seal (3.7) |
 | snow-lantern | | | | | | |
 | highland-cow | | | | | | |
 | lake-cabin | | | | | | |

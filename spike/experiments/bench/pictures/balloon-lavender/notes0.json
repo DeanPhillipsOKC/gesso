@@ -1,0 +1,43 @@
+{
+  "beginner_version": {
+    "busy": {
+      "beginner": {
+        "edges": 0.0246,
+        "fine_texture": 0.0,
+        "picture": "00_beginner.png",
+        "tiles": 0,
+        "where": "busy/00_beginner.jpg"
+      },
+      "finish": {
+        "edges": 0.0304,
+        "fine_texture": 0.002,
+        "picture": "99_finish.png",
+        "tiles": 1,
+        "where": "busy/99_finish.jpg"
+      },
+      "photo": {
+        "edges": 0.0467,
+        "fine_texture": 0.104,
+        "picture": "00_canvas_frame.png",
+        "tiles": 47,
+        "where": "busy/00_canvas_frame.jpg"
+      }
+    },
+    "found": "Tiny separate things: a village of houses with cypresses in the left middle distance, many small bushes along the hills, a lake glint. Textures of hundreds of items: lavender stalks across the bottom 40% (busy outlined them, 10.4%). Detail inside big shapes: veined, curled clouds. Parts: more than 8 at different distances (sky, clouds, far hills, fields, village, bushes, golden hill, tree, balloon, sun, lavender rows, soil paths).",
+    "list": "Remove the village and every cypress (plain green-gold fields there); merge the small bushes into two or three soft dark green bands; clouds become a few big soft orange and pink masses; far hills become two simple purple layers; remove the lake glint; the tree becomes one rounded crown of dark and mid green dabs; the lavender stalks across the bottom 40% become rows of loose purple dabs, darker at the base and lighter on top, with plain brown soil paths; keep the striped balloon with basket, the round low sun, the golden hill.",
+    "made": true,
+    "why": "The picture had tiny separate things, a texture of hundreds of stalks, and more parts than the technique's detail budget (8). One render, kept: everything on the list went, fine texture fell from 10.4% to 0.0%, and the balloon, basket, sun and tree are all there."
+  },
+  "canvas_fit": {
+    "canvas": "16 x 12 in, landscape (default: the standard size closest to the photo's 3:2 shape)",
+    "lost": "about 7% from the left edge (sky, clouds and a strip of field) and 4% from the right edge (clouds and hill)",
+    "mode": "crop",
+    "why": "fit-canvas picked the free crop: the balloon, sun, tree and lavender rows all stay whole."
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "A striped hot air balloon over a sunset lavender field in Provence: orange and pink clouds, a low sun over far purple hills, a tree on a golden hill at right, a small village with cypresses at left, and lavender rows running toward the viewer.",
+    "why": "An AI-made painting with no app bars, borders, captions, or watermark; everything in it is the scene."
+  }
+}

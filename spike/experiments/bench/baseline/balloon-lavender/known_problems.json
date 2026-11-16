@@ -1,0 +1,42 @@
+{
+  "filed_issues": [],
+  "finish_issues": [],
+  "known_problems": [
+    {
+      "name": "Dab the sunlit bush tops",
+      "problem": "x 20-30, y 48-52: a small patch of the tree line under the far hills turns dark navy in a step about light tops.",
+      "step": 10
+    },
+    {
+      "name": "Dab the tree's sunlit leaves",
+      "problem": "x 83-95, y 35-45: the trunk and boughs turn brown with lit bark; no instruction or paint covers the trunk's brown.",
+      "step": 19
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: a small patch of the far tree line turns dark in the light step; the step has only the light paint",
+        "fix": "None in text: the step's only paint is the light olive gold; the patch is small.",
+        "kind": "missing",
+        "problem": "x 20-30, y 48-52: a small patch of the tree line under the far hills turns dark navy in a step about light tops.",
+        "step_id": "bushes-light"
+      },
+      {
+        "action": "left: the trunk's brown bark shows up in the tree's last step with no paint or line for it (the tree has no brown paint)",
+        "fix": "None in text: the tree has no brown paint (the trunk was carried by the tree part and no brown measured apart from its greens).",
+        "kind": "missing",
+        "problem": "x 83-95, y 35-45: the trunk and boughs turn brown with lit bark; no instruction or paint covers the trunk's brown.",
+        "step_id": "tree-light"
+      }
+    ]
+  },
+  "run": "balloon-lavender_skill_20261116-203450"
+}

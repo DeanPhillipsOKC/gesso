@@ -1,0 +1,80 @@
+{
+  "beginner_version": false,
+  "canvas_render": true,
+  "files": {
+    "00_canvas_fit.png": {
+      "bytes": 2841707,
+      "sha256": "512671f22924623a19b5364706127fe5e7195d899f5be28f3110d1f0fe798a43"
+    },
+    "00_canvas_frame.png": {
+      "bytes": 1493214,
+      "sha256": "9575f45d3a7e6a8124ab50f351abd2dfc20b607a10ee3bae01ead73e9c7bbf03"
+    },
+    "99_finish.png": {
+      "bytes": 2911976,
+      "sha256": "737dc29e8338150d8f108c61f09421cd5f5555afe814eed9d0b4cc8a5c928b5a"
+    },
+    "canvas.json": {
+      "bytes": 514,
+      "sha256": "dd8ece12e0fa034a8424cffc8e28d827af9d453061b4607c47bba84f0df4183f"
+    },
+    "notes0.json": {
+      "bytes": 1951,
+      "sha256": "93c2dea0ae7b79a170c266367e34dac74bbb01eca0aa378c04a3522edce41386"
+    },
+    "photo.jpg": {
+      "bytes": 99529,
+      "sha256": "66c99eb780d381b1ad6847038cdc8602fbcad33214067266a5471e752ae543a9"
+    }
+  },
+  "photo": "photo.jpg",
+  "photo_source": "photos/sleeping-cat.jpg",
+  "picture": "sleeping-cat",
+  "plan_photo": "00_canvas_fit.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0229,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "00_canvas_fit.png",
+      "quality": "medium",
+      "seconds": 16.0,
+      "step": "canvas"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0232,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "00_canvas_fit.png",
+      "quality": "medium",
+      "seconds": 16.5,
+      "step": "canvas"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 33.7,
+      "step": "finish"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0664,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 33.6,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "sleeping-cat_skill_20261116-203502",
+    "sealed_at": "2026-11-16T20:54:33",
+    "version": "POC 1.12.1"
+  }
+}

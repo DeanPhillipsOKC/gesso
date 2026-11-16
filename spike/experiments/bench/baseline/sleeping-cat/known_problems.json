@@ -1,0 +1,55 @@
+{
+  "filed_issues": [],
+  "finish_issues": [
+    "The first finish turned the pale blue-gray wall into a strong saturated blue; rendered once more from that finish and the photo with the wall named pale grayish blue, and the second finish matches the photo."
+  ],
+  "known_problems": [
+    {
+      "name": "Blend the pale blue wall",
+      "problem": "what's behind the objects is a rough fill until they're painted",
+      "step": 1
+    },
+    {
+      "name": "Blend the pale blue wall",
+      "problem": "The rough fill shows a lighter wall over the top 40% with a hard line to a darker blue below, a small pink-brown wedge at the left (x 0-10, y 53-63), and from step 2 a thin pale blue streak at y 47-48; the text asks for one even coat.",
+      "step": 1
+    },
+    {
+      "name": "Shade the deep folds",
+      "problem": "The last blanket step also brightens the knit on the rolled left end (x 8-18, y 53-78) in a lighter yellow that Dark ochre can't make.",
+      "step": 11
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the background render failed twice",
+        "kind": "background",
+        "problem": "what's behind the objects is a rough fill until they're painted",
+        "step_id": "wall-blend"
+      },
+      {
+        "action": "left: rough fill after two failed background renders; covered once the sill, blanket and cat are painted",
+        "fix": "needs a clean background render; the objects cover all of these by step 12",
+        "kind": "unpaintable",
+        "problem": "The rough fill shows a lighter wall over the top 40% with a hard line to a darker blue below, a small pink-brown wedge at the left (x 0-10, y 53-63), and from step 2 a thin pale blue streak at y 47-48; the text asks for one even coat.",
+        "step_id": "wall-blend"
+      },
+      {
+        "action": "left: no distinct lighter paint to give the left end's light stitches their own pass",
+        "fix": "paints --add blanket found no lighter yellow distinct from Mustard yellow (Delta E 4.7), so there's no paint for a separate pass.",
+        "kind": "missing",
+        "problem": "The last blanket step also brightens the knit on the rolled left end (x 8-18, y 53-78) in a lighter yellow that Dark ochre can't make.",
+        "step_id": "blanket-folds"
+      }
+    ]
+  },
+  "run": "sleeping-cat_skill_20261116-203502"
+}

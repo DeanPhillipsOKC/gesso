@@ -1,0 +1,29 @@
+{
+  "beginner_version": {
+    "busy": {
+      "photo": {
+        "edges": 0.0162,
+        "fine_texture": 0.007,
+        "picture": "00_canvas_frame.png",
+        "tiles": 3,
+        "where": "busy/00_canvas_frame.jpg"
+      }
+    },
+    "found": "Tiny separate things: none (no houses, people, posts). Textures of hundreds of items: no; busy measured 0.7% fine texture, three tiles on the wing-tail edge and one foot, which are the bird's own detail, not a field of items. Detail inside big shapes one mark can't make: no; the background is soft blurred foliage masses and trunks, the bark is one repeated short stroke. Parts: about 8 (background glow, sun, far trunks, far foliage, the trunk and branch, the leaves, the bird), within max_parts 8 at this size.",
+    "list": "nothing to drop or merge",
+    "made": false,
+    "why": "Every answer is no, so the lesson is made from the fitted photo, with no beginner render."
+  },
+  "canvas_fit": {
+    "canvas": "16 x 12 in, landscape (default: the standard size closest to the photo's 3:2 shape)",
+    "lost": "about 0.9 in worth (5.6%) of hazy forest off each side, about 11% in all; the far left trunk edge and the right-hand twig tips get a little shorter",
+    "mode": "crop",
+    "why": "No --canvas was given; fit-canvas picked 12x16 landscape, and a crop keeps the whole bird, its feet, the branch and the sun."
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "a black-capped chickadee perched on a curved brown branch, four autumn leaves, a hazy blue-and-orange autumn forest behind with a soft sun at upper right",
+    "why": "An AI-made painting with no bars, borders, captions or frame around it; everything in the image is the scene."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "beginner_version": true,
+  "canvas_render": false,
+  "files": {
+    "00_beginner.png": {
+      "bytes": 2419238,
+      "sha256": "7258b5e93c4aee3a0d4ea1d7b314a120b0c24e32101bf62485728c1f253a3e43"
+    },
+    "00_canvas_frame.png": {
+      "bytes": 2475941,
+      "sha256": "e490c966c7ceffb71bacce7a3e4cb1cff1ef27e2d2e6b7dd034042d492dd97b7"
+    },
+    "99_finish.png": {
+      "bytes": 3165094,
+      "sha256": "862b745d70abd68f0f1b275398a50f17c5ca6747f6b5f7e3db734207d6dfac49"
+    },
+    "canvas.json": {
+      "bytes": 638,
+      "sha256": "6507d4b26300abba9f78b085a364b848baa0b40c453adf974435c39836851168"
+    },
+    "notes0.json": {
+      "bytes": 2719,
+      "sha256": "1c10df22f42636d7361937489f4de76bd39b8aa73fbbfa0a27cbdda41e6f3a46"
+    },
+    "photo.png": {
+      "bytes": 2600039,
+      "sha256": "8bc39d1b978166763d85fcd30834f45735f9e574f086176b76ef5a110498b408"
+    }
+  },
+  "photo": "photo.png",
+  "photo_source": "photos/balloon-lavender.png",
+  "picture": "balloon-lavender",
+  "plan_photo": "00_beginner.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0241,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "00_beginner.png",
+      "quality": "medium",
+      "seconds": 20.5,
+      "step": "beginner"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 36.2,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "balloon-lavender_skill_20261116-203450",
+    "sealed_at": "2026-11-16T21:07:02",
+    "version": "POC 1.12.1"
+  }
+}

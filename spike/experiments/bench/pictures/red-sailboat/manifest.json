@@ -1,0 +1,58 @@
+{
+  "beginner_version": false,
+  "canvas_render": false,
+  "files": {
+    "00_canvas_frame.png": {
+      "bytes": 2179325,
+      "sha256": "e2571618e41e38334b75e7dff8a354e1c2eff89d05006579b383c784f935eb7d"
+    },
+    "99_finish.png": {
+      "bytes": 2627427,
+      "sha256": "4be547f86b39bcb5a9ce4c4302d2da0b6caa84f60a892fb125d454276eb210e8"
+    },
+    "canvas.json": {
+      "bytes": 612,
+      "sha256": "1c3ab16595aad76fe5eaa269304262c53fd6e44a37e31a6038dbba7b7575fced"
+    },
+    "notes0.json": {
+      "bytes": 1667,
+      "sha256": "f0da9f0a7dfba3e2ad4cb4ec281650e0f47fe523b3418ff11d13e01074231205"
+    },
+    "photo.png": {
+      "bytes": 2458371,
+      "sha256": "30f47f263cc197e2687a8d2d90eae098123a525259fb59159580cf0fe5ee7da4"
+    }
+  },
+  "photo": "photo.png",
+  "photo_source": "photos/red-sailboat.png",
+  "picture": "red-sailboat",
+  "plan_photo": "00_canvas_frame.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 36.8,
+      "step": "finish"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0666,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 35.9,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "red-sailboat_skill_20261116-203450",
+    "sealed_at": "2026-11-16T20:56:30",
+    "version": "POC 1.12.1"
+  }
+}
