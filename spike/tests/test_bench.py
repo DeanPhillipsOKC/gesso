@@ -1,0 +1,225 @@
+"""The frozen bench (#165): freeze a sealed run, build lesson folders from it, and get the same bytes every time.
+
+Also holds the made-up lesson folders the other test_bench_* files use (sealed(), published()).
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import shutil
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+sys.path.insert(0, str(HERE.parent / "experiments" / "bench"))
+sys.path.insert(0, str(HERE))
+
+import numpy as np  # noqa: E402
+from PIL import Image  # noqa: E402
+
+import bench  # noqa: E402
+import benchlib  # noqa: E402
+import lessons  # noqa: E402
+
+FIX = HERE / "fixtures"
+RUN = "chickadee_skill_20261112-090000"
+
+
+def sealed(root: Path, name: str = "chickadee", beginner: bool = False, run: str = RUN, full: bool = False) -> Path:
+    """A made-up sealed run of a fixture, laid out as the skill leaves it: <root>/output/<run>/, with its photo at
+    <root>/photos/<name>.jpg (canvas.json's input, relative to the checkout). Small pictures unless `full` (the
+    fixture's own size, for running tools on it)."""
+    lesson = Path(root) / "output" / run
+    lesson.mkdir(parents=True)
+    (Path(root) / "photos").mkdir(exist_ok=True)
+    finish = Image.open(FIX / "finishes" / "chickadee.jpg").convert("RGB")
+    if not full:
+        finish = finish.resize((250, 196))
+    finish.save(Path(root) / "photos" / f"{name}.jpg", quality=90)
+    finish.save(lesson / "99_finish.png")
+    finish.save(lesson / "00_canvas_frame.png")
+    if beginner:
+        finish.resize((125, 98)).resize(finish.size).save(lesson / "00_beginner.png")
+    canvas = {"canvas": {"w_in": 14.0, "h_in": 11.0, "orientation": "landscape"}, "canvas_box": [0.0, 0.0, 1.0, 1.0],
+              "chosen": "default", "mode": "none", "lost_share": 0.0, "needs_render": False,
+              "input": f"photos/{name}.jpg", "frame": f"output/{run}/00_canvas_frame.png", "why": "test"}
+    (lesson / "canvas.json").write_text(json.dumps(canvas), encoding="utf-8")
+    (lesson / "sealed.json").write_text(json.dumps({"at": "2026-11-12T09:30:00", "digest": "x", "version": "POC 1.12.1"}))
+    (lesson / "lesson.json").write_text(json.dumps({
+        "gesso": {"version": "POC 1.12.1", "commit": "bb39e54", "dirty": False,
+                  "made": {"version": "POC 1.12.1", "commit": "bb39e54", "published": "2026-11-12"}},
+        "provenance": {"kind": "hands-off", "sealed": "2026-11-12T09:30:00"}}))
+    calls = [{"tool": "render", "step": "finish", "model": "m", "quality": "high", "out": f"output/{run}/99_finish.png",
+              "seconds": 30.0, "cost_usd": 0.0667, "cached": False},
+             {"tool": "render", "step": "background", "model": "m", "quality": "low",
+              "out": f"output/{run}/trials/background_raw.png", "seconds": 14.0, "cost_usd": 0.0177, "cached": False}]
+    if beginner:
+        calls.insert(0, {"tool": "render", "step": "beginner", "model": "m", "quality": "medium",
+                         "out": f"output/{run}/00_beginner.png", "seconds": 20.0, "cost_usd": 0.024, "cached": False})
+    (lesson / "ledger.json").write_text(json.dumps({"calls": calls, "total_cost_usd": 0.1}))
+    notes = {"photo_prep": {"subject": "a bird"}, "canvas_fit": {"canvas": "14 x 11 in"},
+             "beginner_version": {"made": beginner, "busy": {"photo": {"fine_texture": 0.004}}},
+             "read": "not frozen: written after step 1"}
+    (lesson / "notes.json").write_text(json.dumps(notes))
+    photo = "00_beginner.png" if beginner else "00_canvas_frame.png"
+    (lesson / "plan.json").write_text(json.dumps({"plan_version": 2, "photo": f"output/{run}/{photo}"}))
+    return lesson
+
+
+def published(root: Path, name: str = "chickadee", run: str = RUN, steps: int = 3) -> Path:
+    """A made-up published lesson: lesson.json with a few steps, their canvas pictures, the photo, the finish."""
+    lesson = Path(root) / run
+    (lesson / "canvas").mkdir(parents=True)
+    rng = np.random.default_rng(len(run))
+    stages = []
+    for i in range(steps):
+        img = (rng.random((300, 400, 3)) * 255).astype(np.uint8)
+        Image.fromarray(img).save(lesson / "canvas" / f"{i + 1:02d}_s{i + 1}.png")
+        stages.append({"id": f"s{i + 1}", "name": f"Paint part {i + 1}", "image": f"canvas/{i + 1:02d}_s{i + 1}.png",
+                       "steps": [f"Line one of step {i + 1}.", "Line two."], "tip": "A tip." if i else "",
+                       "brushes": "1 inch flat",
+                       "colors": [{"name": "Warm gold", "hex": "#e8a661", "recipe": "3 parts white, 1 part yellow"}]})
+    data = {"stages": stages, "groups": [{"id": "g", "name": "The sky", "steps": ["s1", "s2"]}],
+            "photo_file": "photo.png"}
+    (lesson / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
+    Image.fromarray((rng.random((300, 400, 3)) * 255).astype(np.uint8)).save(lesson / "photo.png")
+    Image.fromarray((rng.random((300, 400, 3)) * 255).astype(np.uint8)).save(lesson / "99_finish.png")
+    (lesson / "plan.json").write_text(json.dumps({"secret": "the plan"}))
+    (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 16, "h_in": 12}, "canvas_box": [0, 0, 1, 1]}))
+    return lesson
+
+
+class FreezeBuildTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.store = self.tmp / "bench"
+
+    def test_freeze_copies_the_files_byte_for_byte_with_a_manifest(self):
+        run = sealed(self.tmp, beginner=True)
+        out = bench.freeze(run, bench=self.store)
+        dest = self.store / "chickadee"
+        self.assertEqual(out["picture"], "chickadee")
+        for f in ("99_finish.png", "00_canvas_frame.png", "00_beginner.png"):
+            self.assertEqual((dest / f).read_bytes(), (run / f).read_bytes(), f)
+        self.assertEqual((dest / "photo.jpg").read_bytes(), (self.tmp / "photos" / "chickadee.jpg").read_bytes())
+        m = json.loads((dest / "manifest.json").read_text())
+        self.assertEqual(m["source"]["run"], RUN)
+        self.assertEqual(m["source"]["version"], "POC 1.12.1")
+        self.assertEqual(m["source"]["commit"], "bb39e54")
+        self.assertEqual(m["plan_photo"], "00_beginner.png")
+        for f, v in m["files"].items():
+            self.assertEqual(benchlib.sha256(dest / f), v["sha256"], f)
+        # the renders that made frozen files, not the background
+        self.assertEqual([r["step"] for r in m["renders"]], ["beginner", "finish"])
+        canvas = json.loads((dest / "canvas.json").read_text())
+        self.assertEqual((canvas["frame"], canvas["input"]), ("00_canvas_frame.png", "photos/chickadee.jpg"))
+        self.assertNotIn(RUN, (dest / "canvas.json").read_text())
+        notes = json.loads((dest / "notes0.json").read_text())
+        self.assertEqual(sorted(notes), ["beginner_version", "canvas_fit", "photo_prep"])
+
+    def test_building_twice_gives_the_same_bytes(self):
+        bench.freeze(sealed(self.tmp, beginner=True), bench=self.store)
+        one = bench.build("chickadee", self.tmp / "one", "20261116-100000", bench=self.store)
+        two = bench.build("chickadee", self.tmp / "two", "20261117-235959", bench=self.store)
+        h1, h2 = bench.folder_hashes(one), bench.folder_hashes(two)
+        self.assertEqual(h1, h2)
+        self.assertEqual(sorted(h1), ["00_beginner.png", "00_canvas_frame.png", "99_finish.png", "bench.json",
+                                      "canvas.json", "ledger.json", "notes.json"])
+        for f in ("bench.json", "canvas.json", "ledger.json", "notes.json"):
+            text = (one / f).read_text()
+            self.assertNotIn(one.name, text, f)
+            self.assertNotIn(str(self.tmp / "one"), text, f)
+        self.assertTrue((one / "trials").is_dir())
+
+    def test_a_built_folder_is_ready_from_the_parts_step(self):
+        bench.freeze(sealed(self.tmp), bench=self.store)
+        lesson = bench.build("chickadee", self.tmp / "b", "20261116-100000", bench=self.store)
+        info = json.loads((lesson / "bench.json").read_text())
+        self.assertTrue(info["plan_photo"].endswith("chickadee/00_canvas_frame.png"))
+        self.assertTrue(Path(info["plan_photo"]).exists() or (benchlib.ROOT / info["plan_photo"]).exists())
+        ledger = json.loads((lesson / "ledger.json").read_text())
+        self.assertEqual(ledger["total_cost_usd"], 0.0)
+        self.assertEqual([(c["tool"], c["step"], c["cost_usd"]) for c in ledger["calls"]], [("frozen", "finish", 0.0)])
+        self.assertEqual(ledger["calls"][0]["baseline"]["seconds"], 30.0)
+        notes = json.loads((lesson / "notes.json").read_text())
+        self.assertIn("photo", notes["beginner_version"]["busy"])  # what the seal checks
+        self.assertNotIn("read", notes)
+        import tools
+        self.assertEqual(tools.busy_problems(lesson, notes), [])
+
+    def test_refuses_an_unsealed_or_edited_run_and_a_second_freeze(self):
+        run = sealed(self.tmp)
+        (run / "sealed.json").unlink()
+        with self.assertRaises(bench.Refused):
+            bench.freeze(run, bench=self.store)
+        bench.freeze(run, bench=self.store, allow_unsealed=True)
+        with self.assertRaises(bench.Refused):
+            bench.freeze(run, bench=self.store, allow_unsealed=True)
+        bench.freeze(run, bench=self.store, allow_unsealed=True, force=True)
+
+    def test_build_refuses_changed_frozen_files_and_an_existing_folder(self):
+        bench.freeze(sealed(self.tmp), bench=self.store)
+        bench.build("chickadee", self.tmp / "b", "20261116-100000", bench=self.store)
+        with self.assertRaises(bench.Refused):
+            bench.build("chickadee", self.tmp / "b", "20261116-100000", bench=self.store)
+        with open(self.store / "chickadee" / "99_finish.png", "ab") as f:
+            f.write(b"x")
+        self.assertIn("changed", bench.verify(self.store)["chickadee"])
+        with self.assertRaises(bench.Refused):
+            bench.build("chickadee", self.tmp / "c", "20261116-100000", bench=self.store)
+        with self.assertRaises(bench.Refused):
+            bench.build("lake-cabin", self.tmp / "c", bench=self.store)
+
+
+class FrozenBenchTests(unittest.TestCase):
+    """The bench in the repo: every frozen picture matches its manifest and builds to the same bytes twice."""
+
+    def test_the_frozen_bench_builds_the_same_bytes_twice(self):
+        frozen = [p for p in benchlib.PICTURES if (benchlib.PICTURES_DIR / p / "manifest.json").exists()]
+        if not frozen:
+            self.skipTest("no picture frozen yet")
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        self.assertEqual({p: v for p, v in bench.verify().items() if p in frozen}, {p: "ok" for p in frozen})
+        for p in frozen:
+            one = bench.build(p, tmp / "one", "20261116-100000")
+            two = bench.build(p, tmp / "two", "20261116-100001")
+            self.assertEqual(bench.folder_hashes(one), bench.folder_hashes(two), p)
+
+
+@lessons.slow
+class BenchToolsTests(unittest.TestCase):
+    """A built folder takes the v2 tools from the parts step on: the fixture's plan and outlines build its steps."""
+
+    def test_build_steps_runs_on_a_built_folder(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        bench.freeze(sealed(tmp, full=True), bench=tmp / "bench")
+        lesson = bench.build("chickadee", tmp / "b", "20261116-100000", bench=tmp / "bench")
+        info = json.loads((lesson / "bench.json").read_text())
+        plan = json.loads((FIX / "plans" / "chickadee.json").read_text())
+        plan["photo"] = info["plan_photo"]
+        (lesson / "plan.json").write_text(json.dumps(plan))
+        (lesson / "parts").mkdir()
+        shutil.copyfile(FIX / "owners" / "chickadee.png", lesson / "parts" / "owner.png")
+        old = os.environ.get("GESSO_HISTORY")
+        os.environ["GESSO_HISTORY"] = str(tmp / "history")
+        try:
+            code, out = lessons.run_tool("build-steps", "--lesson", str(lesson))
+        finally:
+            if old is None:
+                os.environ.pop("GESSO_HISTORY", None)
+            else:
+                os.environ["GESSO_HISTORY"] = old
+        self.assertEqual(code, 0, out)
+        self.assertEqual(len(out["steps"]), sum(len(st["steps"]) for st in plan["stages"]))
+        self.assertTrue(all((lesson / s).exists() for s in out["steps"]))
+
+
+if __name__ == "__main__":
+    unittest.main()
