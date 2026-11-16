@@ -199,6 +199,20 @@ with the date.
   were tried in its place. One strong enough to drop a village also drops the sun and the balloon's basket, and
   blurred stalks don't become dabs (`docs/spikes/tools-before-plan.md`). The render costs about 2.4 cents, only on a
   busy picture. Owner: "Keep the paid beginner render". Don't re-propose a filter for it.
+- **Pipeline v3 is explored by spikes, and four rules are open to challenge inside them (2026-11-16, owner's call).**
+  v2 has stopped improving: known problems per lesson have stayed at about 2 to 7 from 1.0.0 to 1.12.1, and each fix
+  is followed by the same fault in a new form. The plan is `docs/design/pipeline-v3-plan.md`. The owner's weakest
+  parts of a v2 lesson are the step pictures and the teaching and text. A v3 spike may test, without asking again:
+  more or dearer renders (cost stays low); image and vision models beyond gpt-image and SAM-HQ; steps that cross
+  parts or cover the whole canvas, and parts that overlap as layers; and an image model painting a stage the plan
+  already describes. The plan still comes from technique, never from the image model. Every other decision here
+  stands, and nothing a spike tries becomes the pipeline until its write-up says adopt and the v3 gate passes.
+- **Speed counts where it's free (2026-11-16, owner's call; adds to "Slow is fine").** Quality still beats speed in
+  any trade, and there's no time target. v3 should be clearly faster where that costs no quality.
+- **Experiments run on a frozen bench and are scored blind by the owner (2026-11-16, owner's call).** A fixed set of
+  pictures with their finish renders frozen, so an experiment changes one thing. The owner scores two lessons side
+  by side without knowing which is which, about 15 minutes an experiment. This is for experiments only: site
+  lessons still rerun from the photo after a tool fix.
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
