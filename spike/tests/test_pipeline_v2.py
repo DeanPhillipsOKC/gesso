@@ -556,6 +556,60 @@ class BuildStepsTests(unittest.TestCase):
         self.assertEqual(bs.problems(plan, rows), [])
         self.assertEqual(rows[1]["outside"], 0.0)  # the ring coming back with the cloud isn't a change outside it
 
+    def cloud_scene(self):
+        """A sky with one big white cloud and a small pink one up high (a stray piece of the clouds: far less of it
+        than the big one), purple mountains along the bottom, a red ball in front, and a background picture (#153)."""
+        img = np.zeros((120, 160, 3), np.uint8)
+        img[:] = (110, 150, 220)
+        img[20:40, 70:140] = (245, 245, 240)  # the big cloud
+        img[8:13, 15:23] = (240, 170, 190)  # the small one, far from the mountains
+        img[85:] = (110, 90, 170)  # the mountains
+        yy, xx = np.mgrid[:120, :160]
+        ball = ((yy - 60) ** 2 + (xx - 40) ** 2) < 10 ** 2
+        plate = img.copy()  # the background picture: the scene with the ball taken out
+        img[ball] = (210, 40, 40)
+        owner = np.zeros((120, 160), np.int32)
+        owner[20:40, 70:140] = 1
+        owner[8:13, 15:23] = 1
+        owner[85:] = 2
+        owner[ball] = 3
+        parts = [{"id": "sky", "kind": "area", "box": [0, 0, 1, 1]},
+                 {"id": "clouds", "kind": "marks", "parent": "sky", "box": [0, 0, 1, 0.5],
+                  "colors_in": ["#f5f5f0", "#f0aabe"], "colors_out": ["#6e96dc"]},
+                 {"id": "mountains", "kind": "area", "box": [0, 0.7, 1, 1]},
+                 {"id": "ball", "kind": "object", "box": [0.15, 0.4, 0.35, 0.6]}]
+        plan = {"plan_version": 2, "parts": parts,
+                "paints": [{"id": "blue", "hex": "#6e96dc"}, {"id": "white", "hex": "#f5f5f0"},
+                           {"id": "pink", "hex": "#f0aabe"}, {"id": "purple", "hex": "#6e5aaa"},
+                           {"id": "red", "hex": "#d22828"}],
+                "stages": [{"id": "all", "steps": [
+                    {"id": "sky", "part": "sky", "show": "full", "paints": ["blue"]},
+                    {"id": "clouds", "part": "clouds", "show": "full", "paints": ["white", "pink"]},
+                    {"id": "mountains", "part": "mountains", "show": "full", "paints": ["purple"]},
+                    {"id": "ball", "part": "ball", "show": "full", "paints": ["red"]}]}]}
+        return img, plate, owner, plan
+
+    def test_a_later_part_leaves_a_finished_part_alone(self):  # #153
+        img, plate, owner, plan = self.cloud_scene()
+        (sky, clouds, mountains, ball), rows, _ = bs.build(img, plan, owner, background=plate)
+        self.assertTrue((clouds[8:13, 15:23] == img[8:13, 15:23]).all())  # the small cloud comes with the clouds
+        upper = slice(0, 70)  # the sky, well above the mountains' rim
+        self.assertTrue((mountains[upper] == clouds[upper]).all())  # and the mountains' step doesn't touch it
+        self.assertEqual([r["outside"] for r in rows], [0.0] * 4)
+        self.assertEqual(bs.problems(plan, rows), [])
+
+    def test_a_step_changing_a_part_far_from_its_own_is_reported(self):  # #153
+        img, plate, owner, plan = self.cloud_scene()
+        old, bs.STRAY_NEAR = bs.STRAY_NEAR, 0.0  # every stray goes to the nearest later part: build-steps before #153
+        try:
+            _, rows, _ = bs.build(img, plan, owner, background=plate)
+        finally:
+            bs.STRAY_NEAR = old
+        self.assertGreater(rows[2]["outside"], 0.0005)  # the small cloud changed on the mountains' step
+        said = [p for p in bs.problems(plan, rows) if "outside its part" in p]
+        self.assertEqual(len(said), 1)
+        self.assertTrue(said[0].startswith("mountains: changed"))
+
     def test_a_coat_does_not_stay_where_another_part_will_cross(self):
         # a light bar with a dark peg across it, the bar started as a dark flat coat: by the bar's last step the
         # peg's place is the bar's light paint, not a peg-shaped patch of the coat

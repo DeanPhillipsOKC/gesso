@@ -417,7 +417,12 @@ ten steps early. The outlines were right. The fill wasn't, in three ways, each f
   shadow). Now a part's paint within 0.8% of the long side (`RIM`) of any part painted later counts as that part's
   rim. The fill comes from the part's clean paint only. The rim itself shows the fill until the part it belongs to
   starts, and comes back with it, as an object's rim already did. A stray piece of the part (one with less than 15%
-  of the clean paint of its biggest piece) goes the same way, whole.
+  of the clean paint of its biggest piece) goes the same way, whole, when it's a dab beside a later part: at least
+  75% of it (`STRAY_NEAR`) within `RIM` of one. Any other stray is the part's own and is painted with it; only its
+  pixels within `RIM` of a later part wait for that part. (Changed 2026-11-16, #153: every stray went to the
+  nearest later part however far away, so in `balloon-lavender_skill_20261116-153316` the clouds' small pieces,
+  up in the sky and behind the tree, showed a fill through the clouds' steps and changed to the real paint on the
+  mountains' step, with no instruction for it.)
 - *A wide area was carried under the horizon along its rows from whatever in each row was filed under it*, which
   below a ridge is slivers of ridge. Now a wide area behind (a sky, water, a field) is carried by
   `build_steps.blend_paint`: each row in the median color of its clean paint, softened up and down, with rows that
@@ -449,8 +454,11 @@ part, its children's places until they're painted, and what's carried under the 
 (section 5). Edges are softened inward by under a pixel, so nothing outside the area changes. The last picture is
 then set to the finish itself; how far the built one was from it is reported as `final_gap`.
 
-`build_steps.problems` reports: a step that changed something outside its part (a bug; it has never happened);
-a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
+`build_steps.problems` reports: a step that changed something outside its part (`outside`, a bug). The rims a
+step brings back (an object's soft rim, an earlier part's paint beside this part, section 7) count only when they
+lie more than 3% of the long side (`RIM_REACH`) from the step's painted area; before #153 they weren't counted, and
+the lavender's mountains step changed the clouds with `outside` at 0. It also
+reports a step that changes almost nothing; a last picture more than 2% away from the finish; and (#139) a step that paints
 more than 0.1% of the picture (`FAR_SHARE`) behind the objects more than 5% of the height (`FAR_ROWS`) above or
 below its part's own outline's rows, for an `area` part. Each step's row carries that share as `far` (0 for other
 kinds: marks found behind an object, a cloud, aren't held to rows; and 0 in rows behind an object that no area
