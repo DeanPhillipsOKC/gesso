@@ -518,7 +518,11 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
     no other part is touched. When the left-over color is within TINT of one of the part's paints, the part has no
     other distinct color: nothing is added, and `problems` says so.
 
-    Returns measure()'s keys (with "added": the new paint's id or None) and "problems"."""
+    Each other color of the part that ends more than MAX_MERGE from every paint in the lesson is added as well
+    (#154): a shared paint keeps its own hex, so a stripe it was matched to can be a color no paint comes near. So
+    a striped object gets each stripe's color, darkest first.
+
+    Returns measure()'s keys (with "added": the first new paint's id or None, "new": every new id) and "problems"."""
     m = _Measure(finish, plan, owner)
     order = m.order
     if part not in order:
@@ -526,7 +530,7 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
     records, removed = _existing(plan, order)
     mine = [r for r in records if part in r["members"]]
     colors = m.colors(part, len(mine) + 1)
-    problems, new_id = [], None
+    problems = []
     for r in records:  # nothing else is measured again: shares only, for tints and the swatch sheet
         r["shares"] = {q: 0.0 for q in r["members"]}
     for q in order:
@@ -537,6 +541,7 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
         if len(cs) >= len(here):
             for r, j in zip(here, _match([r["hex"] for r in here], [c["hex"] for c in cs])):
                 r["shares"][q] = cs[j]["share"] * m.area[q]
+    new_ids = []
     if len(colors) < len(mine) + 1:
         problems.append(f"{part}: has no pixels to measure. Check its outline (run outline) before adding a paint.")
     else:
@@ -547,22 +552,45 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
         de = mixing.delta_e(left["hex"], near["hex"]) if near else None
         sample = _sample(m.finish, m.owner == order.index(part))
         d = _distances(sample, colors)
-        theirs = d[d.argmin(1) == j_left, j_left]
+
+        def real(j):  # a color the part has, not a blend along its edges
+            theirs = d[d.argmin(1) == j, j]
+            return bool(theirs.size) and (theirs < MAX_ERROR).mean() >= REAL
+
+        add_j = []
         if near is not None and de <= TINT:
             problems.append(f"{part}: its pixels don't hold another distinct color: the next one measured, "
                             f"{left['hex']}, is only Delta E {de:.1f} from {near['id']} ({near['hex']}). Nothing was "
                             "added. Split the pass by place instead, or let one step carry both.")
-        elif not theirs.size or (theirs < MAX_ERROR).mean() < REAL:
+        elif not real(j_left):
             problems.append(f"{part}: its pixels don't hold another distinct color: the next one measured, "
                             f"{left['hex']}, is a blend along its edges, not a color it has. Nothing was added.")
         else:
+            add_j.append(j_left)
+        # #154: a color the part has that no paint comes near. A paint shared with another part doesn't move to the
+        # part's color (its hex is measured where it covers most), so a striped balloon whose blue stripe took the
+        # lavender field's purple kept a stripe no paint matches. Each such color is added too, so every stripe gets
+        # its own paint.
+        after = [colors[j]["hex"] if r["members"] == [part] else r["hex"] for r, j in zip(mine, took)]
+        others = [r["hex"] for r in records if part not in r["members"]] + after
+        for j, c in enumerate(colors):
+            if j != j_left and real(j) and min(mixing.delta_e(c["hex"], h) for h in others) > MAX_MERGE:
+                add_j.append(j)
+        if add_j:
+            problems = []  # the left-over color wasn't one, but a color no paint matches was added
             for r, j in zip(mine, took):
                 r["shares"][part] = colors[j]["share"] * m.area[part]
                 if r["members"] == [part]:  # only this part's paints follow its new colors
                     r["hex"], r["sample_x"], r["sample_y"] = colors[j]["hex"], colors[j]["x"], colors[j]["y"]
-            new_id = _next_id(part, {r["id"] for r in records} | {x["id"] for x in removed})
-            records.append({"id": new_id, "members": [part], "hex": left["hex"], "added": True,
-                            "shares": {part: left["share"] * m.area[part]}, "sample_x": left["x"], "sample_y": left["y"]})
+            for j in sorted(add_j, key=lambda j: lightness(colors[j]["hex"])):  # darkest first, like every part
+                c = colors[j]
+                nid = _next_id(part, {r["id"] for r in records} | {x["id"] for x in removed})
+                records.append({"id": nid, "members": [part], "hex": c["hex"], "added": True,
+                                "shares": {part: c["share"] * m.area[part]}, "sample_x": c["x"], "sample_y": c["y"]})
+                new_ids.append(nid)
+                if j in took:  # the shared paint that had this color keeps its share elsewhere only
+                    mine[took.index(j)]["shares"][part] = 0.0
+    new_id = new_ids[0] if new_ids else None
     if new_id is None:  # nothing changes: the plan's paints as they are
         for r in records:
             r["hex"], r["sample_x"], r["sample_y"] = r["old"]["hex"], r["old"].get("sample_x"), r["old"].get("sample_y")
@@ -576,8 +604,64 @@ def add(finish: np.ndarray, plan: dict, owner: np.ndarray, part: str, max_mixes:
     shares = {r["id"]: {q: round(v, 4) for q, v in r["shares"].items()} for r in records}
     return {"paints": paints, "merges": [], "accents": sorted(accents(paints)), "shares": shares,
             "kept_names": what["kept_names"], "over_target": over, "first": False, "changed": what["changed"],
-            "kept": what["kept"], "new": [new_id] if new_id else [], "removed": [], "added": new_id,
+            "kept": what["kept"], "new": new_ids, "removed": [], "added": new_id,
             "problems": problems}
+
+
+ADDS = 15.0  # Lab units a pixel must change by in a step for its new color to count as what the step adds
+MATCHED = 0.25  # a step whose paints come within MAX_MERGE of less than this share of what it adds names the wrong paint
+LEAST_ADDED = 0.0005  # a step that adds less than this share of the picture is left to "changes almost nothing"
+
+
+def step_colors(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray]) -> list[dict]:
+    """#154: the main color each `pass` step adds in its own picture (the largest of 3 colors measured where it
+    changes the picture by more than ADDS, inside its painted area), its nearest listed paint, and the share of
+    what it adds within MAX_MERGE of one of its paints. A part's last step is left out (it shows everything of the
+    part that's left, whatever its paints), and so are `flat` (its paint, exactly), `full` and `blend` (the finish,
+    on the part's last step). Rows: {"step", "part", "color", "paint", "delta_e", "matched"}."""
+    import build_steps as bs
+
+    steps = bs.flat_steps(plan)
+    hexes = {c["id"]: c["hex"] for c in plan.get("paints") or [] if _has_hex(c)}
+    last = {s["part"]: i for i, s in enumerate(steps)}
+    out = []
+    before = None
+    for i, (s, pic) in enumerate(zip(steps, pictures)):
+        lab = cv2.cvtColor(pic.astype(np.float32) / 255.0, cv2.COLOR_RGB2LAB)
+        prev, before = (before if before is not None else np.full_like(lab, [100.0, 0.0, 0.0])), lab
+        listed = [c for c in s.get("paints") or [] if c in hexes]
+        if s.get("show") != "pass" or last[s["part"]] == i or not listed or i >= len(masks):
+            continue
+        added = (np.sqrt(((lab - prev) ** 2).sum(2)) > ADDS) & masks[i]
+        if added.mean() < LEAST_ADDED:
+            continue
+        main = max(part_colors(pic, added, 3), key=lambda c: c["share"])
+        near = min(listed, key=lambda c: mixing.delta_e(main["hex"], hexes[c]))
+        d = _distances(_sample(pic, added), [{"hex": hexes[c]} for c in listed]).min(1)
+        out.append({"step": s["id"], "part": s["part"], "color": main["hex"], "paint": near,
+                    "delta_e": round(mixing.delta_e(main["hex"], hexes[near]), 1),
+                    "matched": round(float((d <= MAX_MERGE).mean()), 3)})
+    return out
+
+
+def wrong_paints(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray]) -> list[str]:
+    """#154: a pass step whose paints are all more than MAX_MERGE from the main color its own picture adds, and
+    come that near less than MATCHED of what it adds. The painter would mix a color the picture doesn't show (the
+    lavender run's balloon painted its blue stripes in the field's purple). Each says what to do."""
+    hexes = {c["id"]: c["hex"] for c in plan.get("paints") or [] if _has_hex(c)}
+    out = []
+    for r in step_colors(plan, pictures, masks):
+        if r["delta_e"] <= MAX_MERGE or r["matched"] >= MATCHED:
+            continue
+        best = min(hexes, key=lambda c: mixing.delta_e(r["color"], hexes[c]))
+        d_best = mixing.delta_e(r["color"], hexes[best])
+        other = (f", or point it at {best} ({hexes[best]}, Delta E {d_best:.1f} away)"
+                 if best != r["paint"] and d_best <= MAX_MERGE else "")
+        out.append(f"{r['step']}: its picture adds {r['color']}, but its nearest paint, {r['paint']} "
+                   f"({hexes[r['paint']]}), is Delta E {r['delta_e']:.1f} from it (over {MAX_MERGE:g}), so the painter "
+                   f"would mix a color the picture doesn't show. Give {r['part']} that color with paints --add "
+                   f"{r['part']} and point the step at the new paint{other}; then build-steps.")
+    return out
 
 
 def base_mixes(paints: list[dict]) -> list[str]:

@@ -6,6 +6,17 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.12.1 (2026-11-16)
+- `check` fails a step whose paints are far from the color its own picture adds (#154). In
+  `balloon-lavender_skill_20261116-153316` the balloon's blue stripes were listed in the field's Lavender purple
+  and its teal stripes in the hedges' Olive green, so a painter following the paint lines got violet and olive
+  stripes; nothing caught it. Now a pass step (not a part's last) fails when the main color it adds is more than
+  Delta E 12 from every paint it lists, naming the color and the nearest paint and saying to run
+  `paints --add <part>`.
+- `paints --add <part>` also adds each of the part's colors that no paint in the lesson comes within Delta E 12 of,
+  so a striped object gets every stripe's color in one run (a paint shared with another part never moved to the
+  stripe it stood for).
+
 ## POC 1.12.0 (2026-11-15)
 - Stroke cards are written for what's being painted (#96). A card's text and diagram were written for one subject,
   so on the chickadee's sun the small-circles card said the circles "make a cloud's bumpy top edge" and drew cloud

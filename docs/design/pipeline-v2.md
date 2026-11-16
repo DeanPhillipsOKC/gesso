@@ -562,6 +562,13 @@ had just been given. Now (`paints.measure`, `paints.add`):
   only a blend along the part's edges (fewer than 10% of its pixels near it), nothing is added and `problems` says
   so. It's how a pass is split in two, and how a part that took in a dropped part gets that part's color. Going over
   `max_mixes` this way is allowed and reported in `over_target`, never a problem.
+  **Changed 2026-11-16 (#154):** it also adds each other color of the part that ends more than Delta E 12
+  (`MAX_MERGE`) from every paint in the lesson, darkest first, so a striped object gets each stripe's color in one
+  run. A paint the part shares with another part doesn't move to the part's color, so a stripe it was matched to
+  could be a color no paint comes near: the lavender run's balloon (`balloon-lavender_skill_20261116-153316`) had
+  its blue stripes listed in the field's Lavender purple (#235a9a against #6250a8, 14.1 apart) and its teal ones in
+  the hedges' olive. `--add balloon` there now adds the basket's brown, the blue, and the teal. The result's `added`
+  is the first new id; `new` lists them all.
 - **The over-target rule** (`plan2.problems`) now reports going over `max_mixes` only while two base paints could
   still merge by `paints`' own rules: neither is an accent or `added`, they're at most Delta E 12 apart, and at most
   one of them is used by a step. The task asked for "not two paints used by different steps of the same part"; that
@@ -910,6 +917,14 @@ file, since cropping a finished picture would cut parts the plan has. `where_wor
 - a percentage in step text, or placing by tape marks in a summary, tip, line, or paint note (#122: "Say where in
   inches from an edge."); a line over 40 words;
 - the ones that stay: `paints_not_listed`, `duplicate_recipes`, `unreachable_paints`, `undocumented_diagrams`;
+- a step whose paints are far from what its own picture shows (#154, `paints.wrong_paints`): for each `pass` step
+  that isn't its part's last, the main color it adds (the largest of 3 colors measured where it changes the picture
+  by more than 15 Lab units, `ADDS`) is more than Delta E 12 (`MAX_MERGE`) from every paint it lists, and under a
+  quarter (`MATCHED`) of what it adds is within 12 of one. It names the step, the color, and its nearest paint, and
+  says to run `paints --add <part>` and point the step at the new paint (or at a paint in the lesson that's within
+  12). A part's last step shows all that's left whatever its paints, so it isn't held to this; nor are `flat`,
+  `full`, and `blend`. On the lavender run it fails the balloon's blue (8% within 12) and green stripes (5%);
+  no fixture step fails (their lowest share is 53%; the run's next lowest, its clouds, 39%);
 - a paint no step uses (#136: "Take it out of paints in plan.json, or add it to the step that should use it."). A
   paint a used tint or shade is made from (its `of`) counts as used. `paints` never merges a paint `--add` made, so
   one left behind when its step was dropped stayed in "Your paints" with nothing else to clear it;
