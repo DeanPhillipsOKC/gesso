@@ -14,6 +14,8 @@ filled in from memory (docs/decisions.md, 2026-11-11 and 2026-11-12).
 
 from __future__ import annotations
 
+import copy
+import re
 from html import escape as e
 from pathlib import Path
 
@@ -80,6 +82,11 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
         for m in c.get("mistakes") or []:
             if not m.get("mistake") or not m.get("fix"):
                 out.append(f"{f}: every mistake needs 'mistake' and 'fix'")
+        for key, words in _technique_text(c):
+            named = subjects(words)
+            if named:
+                out.append(f"{f}: its {key} names a subject ({', '.join(named)}). A card is shown on any painting, so "
+                           "say only what the brush does and leaves, and move the example to uses.")
     for r in results:
         if r not in covered:
             out.append(f"no stroke card for the technique's stroke result {r!r}")
@@ -94,6 +101,45 @@ def problems(stroke_cards: dict | None = None, basic_cards: dict | None = None, 
             out.append(f"{f}: only a start card can be folded")
         if c.get("terms") is not None or cid == loads.CARD:
             out += _term_problems(c, f, basic_cards)
+        for n, line in enumerate(c.get("lines") or []):
+            named = subjects(str(line), basics=True)
+            if named:
+                out.append(f"{f}: line {n + 1} names a subject ({', '.join(named)}). A basics card is for every "
+                           "painting: say it without one.")
+    return out
+
+
+# --- Cards say only the technique (#96) -----------------------------------------------------------------------------
+# A card is shown on whatever is being painted, so its motion, result, then, and mistakes name no subject: on the
+# chickadee's sun the small-circles card said it made "a cloud's bumpy top edge". Examples go in `uses`, and a lesson
+# adapts the card's words to its own subject in text.json's card_text (below).
+
+SUBJECT = re.compile(r"\b(clouds?|sky|skies|suns?|moons?|trees?|branch(?:es)?|grass(?:es)?|pumpkins?|flowers?|water|"
+                     r"leaf|leaves|birds?)\b", re.I)
+# water that thins paint or rinses a brush is a material, not a subject: "Add water.", "no water on the brush"
+MATERIAL_WATER = re.compile(r"\b(?:add|adding|no|of|with|little|more|less|much|clean|dirty|rinse)\s+water\b|"
+                            r"\bwater\s+(?:jars?|on the brush|to the brush)\b", re.I)
+
+
+def subjects(text: str, basics: bool = False) -> list[str]:
+    """The subject words (design section 10, #96) a card's text names, lowercased, each once. On a basics card water
+    is always the material (water jars, how much water), never a subject."""
+    text = MATERIAL_WATER.sub(" ", text)
+    out = []
+    for m in SUBJECT.finditer(text):
+        w = m.group(1).lower()
+        if (basics and w == "water") or w in out:
+            continue
+        out.append(w)
+    return out
+
+
+def _technique_text(card: dict) -> list[tuple[str, str]]:
+    """(field, its words) for the fields a card's technique is in: motion, result, then, and each mistake."""
+    out = [(k, str(card[k])) for k in ("motion", "result", "then") if card.get(k)]
+    for n, m in enumerate(card.get("mistakes") or []):
+        if isinstance(m, dict):
+            out.append((f"mistake {n + 1}", " ".join(str(m.get(k) or "") for k in ("mistake", "why", "fix"))))
     return out
 
 
@@ -208,8 +254,177 @@ def unplaced(stages: list[dict], basic_cards: dict | None = None) -> list[str]:
             for cid, c in basic_cards.items() if c.get("when") in NEEDED and cid not in got]
 
 
-def stroke_html(card: dict, uid: str = "") -> str:
-    """One stroke card as HTML: the lesson page and the owner's review page both use it."""
+# --- A card adapted for one painting (#96) --------------------------------------------------------------------------
+# text.json's card_text: {step id: {card id: {motion, result, then, mistakes, diagram, "from": card id}}}. `card-adapt`
+# copies the general card's fields there for each card a step opens (the first step using it); the run then swaps
+# the subject words and paints in step 6, keeping the technique. `adapted_problems` (run by `check`) reports one that
+# drifted from its card: a field missing or added, more mistakes, a different brush, or a diagram with other stages.
+
+ADAPT_FIELDS = ("motion", "result", "then", "mistakes", "diagram")
+MISTAKE_KEYS = ("mistake", "why", "fix")
+# brush words in a card's text, to catch an adapted card that names another brush ("with a fan brush")
+BRUSH_WORDS = re.compile(r"\b(?:liner|rigger|filbert|fan|toothbrush|sponge|palette knife|"
+                         r"(?:flat|round|angle|angled|bright|wash|stiff|soft) brush|#\d+\s+[a-z]+|"
+                         r"\d+(?:/\d+)?\s+inch\s+[a-z]+)\b", re.I)
+
+
+def opened(steps: list[dict], known: dict | None = None) -> list[tuple[str, str]]:
+    """(step id, card id) for every card a lesson opens, in step order: the first step whose stroke is that card.
+    Later steps with the same stroke link back to it, so that's the one step its card is adapted for."""
+    known = strokes() if known is None else known
+    out, seen = [], set()
+    for s in steps:
+        cid = s.get("stroke")
+        if cid in known and cid not in seen:
+            seen.add(cid)
+            out.append((s["id"], cid))
+    return out
+
+
+def adapt(card: dict) -> dict:
+    """A copy of a card's fields that a lesson may reword (ADAPT_FIELDS, the ones it has), with "from": its id."""
+    out = {k: copy.deepcopy(card[k]) for k in ADAPT_FIELDS if card.get(k) not in (None, "", [])}
+    out["from"] = card["id"]
+    return out
+
+
+def adapt_lesson(text: dict, steps: list[dict], known: dict | None = None) -> dict:
+    """Start text.json's card_text: each card a step opens gets a copy of the general card, unless it has one
+    already (an edited copy is never overwritten). Changes `text` in place; returns what it added and kept."""
+    known = strokes() if known is None else known
+    have = text.setdefault("card_text", {})
+    added, kept = [], []
+    for sid, cid in opened(steps, known):
+        mine = have.setdefault(sid, {})
+        if cid in mine:
+            kept.append(f"{sid}.{cid}")
+        else:
+            mine[cid] = adapt(known[cid])
+            added.append(f"{sid}.{cid}")
+    stale = [f"{sid}.{cid}" for sid, row in have.items() for cid in (row or {})
+             if (sid, cid) not in set(opened(steps, known))]
+    return {"added": added, "kept": kept, "stale": stale}
+
+
+def _brush_kinds(text: str) -> set[str]:
+    return {brushes.kind(m.group(0)) or m.group(0).lower() for m in BRUSH_WORDS.finditer(text)}
+
+
+def _all_text(card: dict) -> str:
+    return " ".join(w for _, w in _technique_text(card))
+
+
+def adapted_problems(card_text: dict | None, steps: list[dict], known: dict | None = None,
+                     paints: dict | None = None) -> tuple[list[str], list[str]]:
+    """(failures, notes) for text.json's card_text. A note for each card a step opens with no adapted copy (the page
+    shows the general card, which is never wrong, only less helpful). A failure for an adapted card that has drifted
+    from its card, each saying what to put back. `paints` is construct.lookup of the plan's paints."""
+    known = strokes() if known is None else known
+    card_text = card_text or {}
+    fails, notes = [], []
+    wanted = opened(steps, known)
+    for sid, cid in wanted:
+        if cid not in (card_text.get(sid) or {}):
+            notes.append(f"step {sid} opens the {cid} card with no copy adapted for this painting, so the page shows "
+                         "the general card. Run card-adapt and adapt it (skill step 6c).")
+    if not isinstance(card_text, dict):
+        return ["text.json's card_text isn't a list of steps by id: run card-adapt"], notes
+    for sid, row in card_text.items():
+        for cid, a in (row or {}).items():
+            where = f"card_text.{sid}.{cid}"
+            if (sid, cid) not in wanted:
+                fails.append(f"{where}: step {sid} doesn't open the {cid} card, so the page never shows it. Take it "
+                             "out of text.json (card-adapt lists what's left over after a plan change).")
+                continue
+            card = known[cid]
+            if not isinstance(a, dict):
+                fails.append(f"{where}: isn't a card. Take it out and run card-adapt again.")
+                continue
+            if unchanged(card, a):
+                notes.append(f"{where} is still the general card word for word, so the page shows the general card. "
+                             "Adapt its words and diagram for this painting (skill step 6c).")
+            if a.get("from") != cid:
+                fails.append(f"{where}: its from is {a.get('from')!r}. Put back \"from\": \"{cid}\", the card it's "
+                             "adapted from.")
+            for k in ADAPT_FIELDS:
+                if card.get(k) not in (None, "", []) and k not in a:
+                    fails.append(f"{where}: has no {k}. Put back the {cid} card's {k}, with only its subject words "
+                                 "changed.")
+            for k in a:
+                if k in ("from",):
+                    continue
+                if k == "brushes":
+                    if a[k] != card.get("brushes"):
+                        fails.append(f"{where}: has other brushes ({a[k]}). The card is done with "
+                                     f"{card.get('brushes')}: take brushes out.")
+                    continue
+                if k not in ADAPT_FIELDS or card.get(k) in (None, "", []):
+                    fails.append(f"{where}: has a {k} the {cid} card hasn't. Take it out: an adapted card keeps the "
+                                 "card's technique and adds none.")
+            for k in ("motion", "result", "then"):
+                if k in a and card.get(k) and not (isinstance(a[k], str) and a[k].strip()):
+                    fails.append(f"{where}: its {k} is empty. Put back the card's {k}, with the subject words swapped.")
+            ms = a.get("mistakes")
+            if "mistakes" in a and card.get("mistakes"):
+                if not isinstance(ms, list):
+                    fails.append(f"{where}: mistakes isn't a list. Put back the card's mistakes.")
+                    ms = []
+                if len(ms) > len(card["mistakes"]):
+                    fails.append(f"{where}: has {len(ms)} mistakes; the {cid} card has {len(card['mistakes'])}. Keep the "
+                                 "card's mistakes in order, dropping only one that can't happen here; don't add one.")
+                for n, m in enumerate(ms):
+                    if not isinstance(m, dict) or not m.get("mistake") or not m.get("fix"):
+                        fails.append(f"{where}: mistake {n + 1} needs its mistake and fix, from the card.")
+                    elif set(m) - set(MISTAKE_KEYS):
+                        fails.append(f"{where}: mistake {n + 1} has {', '.join(sorted(set(m) - set(MISTAKE_KEYS)))}. "
+                                     "Keep only mistake, why, and fix.")
+            extra = _brush_kinds(_all_text({k: a.get(k) for k in ("motion", "result", "then", "mistakes")
+                                            if k in a})) - _brush_kinds(_all_text(card)) - {
+                brushes.kind(b) or b for b in [*(card.get("brushes") or []), *(card.get("tools") or [])]}
+            if extra:
+                fails.append(f"{where}: names a brush the {cid} card doesn't use ({', '.join(sorted(extra))}). Put back "
+                             "the card's brush.")
+            if "diagram" in a and card.get("diagram"):
+                fails += _diagram_drift(where, a["diagram"], card["diagram"], paints or {})
+    return fails, notes
+
+
+def _diagram_drift(where: str, mine, card: dict, paints: dict) -> list[str]:
+    stages = mine.get("stages") if isinstance(mine, dict) else None
+    want = card.get("stages") or []
+    if not isinstance(stages, list):
+        return [f"{where}: its diagram has no stages. Put back the card's diagram."]
+    if len(stages) != len(want):
+        return [f"{where}: its diagram has {len(stages)} stages; the card's has {len(want)}. Keep the card's stages, "
+                "each with its arrows, and change only the paints, the example shape, and the captions' words."]
+    out = []
+    for k, (a, b) in enumerate(zip(stages, want)):
+        got = len(a.get("arrows") or []) if isinstance(a, dict) else 0
+        if got != len(b.get("arrows") or []):
+            out.append(f"{where}: its diagram's panel {k + 1} has {got} arrows; the card's has "
+                       f"{len(b.get('arrows') or [])}. Put back the card's arrows.")
+    if not construct.strip(mine, paints, "adapted"):
+        out.append(f"{where}: its diagram doesn't draw (see spike/construct.py for the format).")
+    out += construct.problems(mine, paints, where)
+    return out
+
+
+def unchanged(card: dict, mine) -> bool:
+    """True when an adapted copy still says exactly what the general card does: card-adapt's copy, not edited yet.
+    The page shows the general card for it, without the "adapted" line."""
+    return isinstance(mine, dict) and all(mine.get(k) == card.get(k) for k in ADAPT_FIELDS if k in mine)
+
+
+def adapted(card: dict, mine: dict) -> dict:
+    """The card as a lesson shows it: the general card with the adapted fields in place of its own."""
+    return {**card, **{k: v for k, v in mine.items() if k in ADAPT_FIELDS}}
+
+
+def stroke_html(card: dict, uid: str = "", paints: dict | None = None, here: str = "", banner: str = "",
+                anchor: str | None = None) -> str:
+    """One stroke card as HTML: the lesson page and the owner's review page both use it. On a lesson page `paints`
+    (construct.lookup) lets an adapted diagram name the lesson's paints, `here` is the step's close-up shown beside
+    the diagram, `banner` a line under the title (the adapted card's), and `anchor` the section's id."""
     def field(key: str) -> str:  # the load with its words linked to the paint-load card and its pictures (#99)
         return loads.linked(loads.text(card[key]), pictures=False) if key == "load" else e(str(card[key]))
 
@@ -220,7 +435,9 @@ def stroke_html(card: dict, uid: str = "") -> str:
     if card.get("also_called"):
         head += f" <span class='aka'>also called {e(', '.join(card['also_called']))}</span>"
     head += "</h3>"
-    if not card.get("checked"):
+    if banner:
+        head += banner
+    elif not card.get("checked"):
         head += "<p class='unchecked'>Not checked yet</p>"
     with_ = f"<p><b>With.</b> {pics} {e('; '.join(tools))}</p>" if tools else ""
     uses = f"<p><b>Good for.</b> {e(', '.join(card['uses']))}</p>" if card.get("uses") else ""
@@ -230,8 +447,11 @@ def stroke_html(card: dict, uid: str = "") -> str:
         wrong += f"<li><b>{e(m['mistake'])}</b>{why} <i>{e(m['fix'])}</i></li>"
     wrong = f"<p><b>If it goes wrong.</b></p><ul>{wrong}</ul>" if wrong else ""
     extra = "".join(f"<p class='note'>{e(card[k])}</p>" for k in ("practice", "note") if card.get(k))
-    diagram = construct.strip(card.get("diagram") or {}, {}, f"card-{uid or card['id']}")
-    return f"<section class='card' id='stroke-{e(card['id'])}'>{head}{with_}{rows}{uses}{diagram}{wrong}{extra}</section>"
+    diagram = construct.strip(card.get("diagram") or {}, paints or {}, f"card-{uid or card['id']}")
+    if here:
+        diagram = f"<div class='cardpics'>{here}{diagram}</div>"
+    sid = anchor if anchor is not None else f"stroke-{card['id']}"
+    return f"<section class='card' id='{e(sid)}'>{head}{with_}{rows}{uses}{diagram}{wrong}{extra}</section>"
 
 
 TERM_ROWS = (("thickness", "How thick the paint is"), ("amount", "How much is on the brush"))

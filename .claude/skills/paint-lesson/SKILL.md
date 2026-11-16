@@ -15,7 +15,8 @@ The design behind this is `docs/design/pipeline-v2.md`. You don't need to read i
 you start that step**, even if you read it earlier. Don't read ahead.
 
 ## Arguments
-- `<photo>` (required)
+- `<photo>` (required). Usually `photos/<name>.<ext>`: the site's pictures are kept there in git, so a fresh clone
+  can rerun any of them. Step 0 stores a new picture there (`store-photo`).
 - `--canvas WxH` (optional, inches, e.g. `11x14`) with `--orientation portrait|landscape`. Without it, step 0b2
   still fits the photo to a canvas: `fit-canvas` with no `--canvas` picks the standard size closest to the photo's
   shape (8x10, 9x12, 11x14, 12x16, or 16x20, 11x14 when two fit as well) and records `"chosen": "default"` in
@@ -45,13 +46,13 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 5. **One move per step.** One brush, one stroke, one to three paints. If a step needs "then", it's two steps.
 6. **Don't flip a card's or an element's `checked`.** The owner does that after painting from it.
 7. **Keep `notes.json` as you go,** not at the end.
-8. **Stay in your lesson folder.** Don't edit code, skills, techniques, elements, cards, palettes, or docs during a
+8. **Stay in your lesson folder** (and `photos/`, where step 0's `store-photo` stores the picture). Don't edit code, skills, techniques, elements, cards, palettes, or docs during a
    run (a drafted element goes in `<lesson>/elements/`). If
    a tool is wrong, work within what the skill allows and report it. Scratch files and scripts go in
    `<lesson>/trials/`, nowhere else, and never keep the lesson's path in a shared file: other runs share the
    machine.
 9. **The order is fixed, and going back means running forward again.** After any change to `parts`: `outline`,
-   `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, in that order. After a change to `stages`
+   `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `card-adapt`, `check`, in that order. After a change to `stages`
    only: from `build-steps` on. Don't skip one because it ran before.
 10. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses until `check` is clean.
    After the seal, change nothing.

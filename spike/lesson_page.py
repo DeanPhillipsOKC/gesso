@@ -375,7 +375,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
             import page2
             steps_html.append(page2.step(lesson, i, folder, embed, cards.strokes(), mixes + flags, chips,
                                          step_why(lesson, s, i == len(stages) - 1),
-                                         build_strip(s.get('construct'), diagram_paints, s['id']), basics_at))
+                                         build_strip(s.get('construct'), diagram_paints, s['id']), basics_at,
+                                         diagram_paints))
             ends = next((g for g in lesson.get("groups") or [] if g.get("steps") and g["steps"][-1] == s["id"]), None)
             if ends:
                 steps_html.append(page2.stop(ends))

@@ -3,6 +3,13 @@
 ## 0. Set up
 - Lesson folder: `output/<photo stem>_skill_<YYYYMMDD-HHMMSS>/` (the history and the site find runs by that
   name). Pass it as `--lesson` to every tool.
+- **Store the picture first:** `store-photo <photo>`. Source pictures are kept in git under `photos/`, one per
+  picture, named by the photo stem, so any session can rerun the lesson from a fresh clone (#147). It copies the
+  picture there unless it's already stored (`copied`), and leaves one in `photos/private/` alone. If it lists a
+  problem (another picture already has that name), stop and tell whoever started you: the runs and the site find a
+  picture by its name. When `committed` is false, put its `next` in the report: the owner commits the picture with
+  the run. Say there too that only AI-made pictures or ones the owner has the rights to go in the repo, never a
+  personal photo.
 - Every filter run with `--lesson` needs `--why "<what you want it to show you>"`. Pass `--max-cost 0.40` to every
   render.
 - The tools also write `ledger.json` (every render and filter run), `00_canvas.png`, and filter outputs there. Put
@@ -28,6 +35,10 @@ If any show, `crop <photo> --lesson <lesson> --out <lesson>/photo_cropped.png --
 the output: the whole picture and nothing else. If it's off, measure the edges and pass `--box X0 Y0 X1 Y1`
 (pixels in the original). Use the cropped file as the photo everywhere (plan.json `"photo"`, the finish render's
 photo input). Crop only what's clearly not part of the scene; don't recompose a real photo.
+
+If the picture shows people, a home, or anything else personal, it must never go in the repo (`docs/decisions.md`,
+"Photos stay private"): when `store-photo` copied it, delete that copy from `photos/` now and say so in the report.
+The lesson then stays off the site (step 8c).
 
 Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": "what else was in the image, or
 'just the picture'", "action": "cropped with crop (box [x0, y0, x1, y1]) | none", "why": "..."}`. Start

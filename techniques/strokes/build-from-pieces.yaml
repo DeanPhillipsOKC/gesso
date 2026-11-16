@@ -4,8 +4,10 @@ name: Building from pieces
 motion: Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each
   side, like ( ), smaller toward the edges.
 result: A shape made of distinct curved segments with small gaps or overlaps between them.
-then: Soften where the pieces meet only if the picture shows smooth ribs; otherwise leave the segments visible.
+then: Soften where the pieces meet only if the shape should look smooth; otherwise leave the pieces showing.
 note: A step that uses this comes with its own diagram of the pieces for that shape.
+uses:
+- shaped objects (a pumpkin is a center oval, then curved pieces on each side like ( ))
 diagram:
   title: One simple shape, then the sides
   stages:
@@ -16,7 +18,7 @@ diagram:
       - 55
       - 12
       - 21
-      paint: '#e07a2c'
+      paint: '#6b7178'
     arrows:
     - M 50 36 Q 42 55 50 74
   - caption: A ( ) on each side, tucked behind
@@ -26,14 +28,14 @@ diagram:
       - 57
       - 12
       - 19
-      paint: '#e07a2c'
+      paint: '#6b7178'
       behind: true
     - ellipse:
       - 62
       - 57
       - 12
       - 19
-      paint: '#e07a2c'
+      paint: '#6b7178'
       behind: true
   - caption: Smaller ones at the edges
     add:
@@ -42,14 +44,14 @@ diagram:
       - 59
       - 9
       - 16
-      paint: '#e07a2c'
+      paint: '#6b7178'
       behind: true
     - ellipse:
       - 73
       - 59
       - 9
       - 16
-      paint: '#e07a2c'
+      paint: '#6b7178'
       behind: true
 sources:
 - techniques/acrylic-paint-along-beginner.yaml, rules (build each shaped object from simple pieces) and stroke_results

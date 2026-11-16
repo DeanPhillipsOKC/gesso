@@ -39,13 +39,13 @@ diagram:
   - caption: Rows wide in front, thin at the dot
     add:
     - path: M 50 30 L 8 96 L 24 96 Z
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - path: M 50 30 L 32 96 L 46 96 Z
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - path: M 50 30 L 54 96 L 68 96 Z
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     - path: M 50 30 L 76 96 L 92 96 Z
-      paint: '#4a3a8a'
+      paint: '#3f454c'
     arrows:
     - M 16 92 L 44 40
 sources:

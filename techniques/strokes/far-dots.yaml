@@ -3,215 +3,217 @@ stroke_result: Far flower dots (round tip, small and close together)
 name: Far flower dots
 brushes:
 - round (the tip)
-motion: 'Plain dots with the tip of the brush: small and packed close together far away, bigger and wider apart
-  lower on the canvas.'
-result: A speckled meadow that reads as distant flowers.
-then: Give only the nearest ones petal shapes.
+motion: 'Plain dots with the tip of the brush: small and packed close together for what''s far away, bigger and
+  wider apart lower on the canvas.'
+result: A speckled band that reads as many small things in the distance.
+then: Give only the nearest ones more shape.
+uses:
+- a meadow of distant flowers (the nearest get petal shapes)
 diagram:
   title: Dots that grow toward you
   stages:
-  - caption: Small and close, far away
+  - caption: Small and close at the top
     add:
     - rect:
       - 4
       - 4
       - 92
       - 92
-      paint: '#4f7d3a'
+      paint: '#7d848b'
       done: true
       round: 4
     - circle:
       - 14
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 21
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 28
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 35
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 42
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 49
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 56
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 63
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 70
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 77
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 84
       - 28
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 14
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 21
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 28
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 35
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 42
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 49
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 56
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 63
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 70
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 77
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 84
       - 34
       - 1.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
   - caption: Bigger and wider apart below
     add:
     - circle:
       - 16
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 27
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 38
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 49
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 60
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 71
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 82
       - 46
       - 2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 16
       - 60
       - 3
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 31
       - 60
       - 3
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 46
       - 60
       - 3
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 61
       - 60
       - 3
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 76
       - 60
       - 3
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 16
       - 78
       - 4.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 36
       - 78
       - 4.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 56
       - 78
       - 4.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
     - circle:
       - 76
       - 78
       - 4.2
-      paint: '#f4efe4'
+      paint: '#faf8f3'
 sources:
 - docs/research/acrylic-paint-along.md, section 7, Marks, brushes and paint load
 - docs/research/acrylic-paint-along.md, section 7, Size and detail shrink with distance

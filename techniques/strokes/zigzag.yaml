@@ -5,35 +5,37 @@ brushes:
 - small round
 load:
   amount: light
-motion: A wavy line straight down, for the reflection of anything straight and upright. Ripples bend straight lines.
-result: A wavy vertical line, for the reflection of a mast, post, or plank.
-then: Break it in one or two places with a ripple dash.
+motion: A wavy line straight down, under anything straight and upright. Ripples bend straight lines.
+result: A wavy vertical line.
+then: Break it in one or two places with a short level dash.
+uses:
+- the reflection of a mast, post, or plank in water
 diagram:
-  title: Ripples bend a straight line
+  title: A straight line, bent into a zigzag
   stages:
-  - caption: The straight thing above the water
+  - caption: A straight line above a dry base
     add:
     - rect:
       - 8
       - 44
       - 84
       - 46
-      paint: '#1d677a'
+      paint: '#6b7178'
     - line: M 50 10 L 50 44
-      paint: '#6b4a34'
+      paint: '#4a5057'
       width: 2
-  - caption: Its reflection, as a zigzag
+  - caption: Below it, the same line as a zigzag
     add:
     - line: M 50 46 L 46 52 L 54 58 L 46 64 L 54 70 L 47 76 L 52 82
-      paint: '#6b4a34'
+      paint: '#4a5057'
       width: 1.8
   - caption: Break it with a dash or two
     add:
     - line: M 42 61 l 16 0
-      paint: '#1d677a'
+      paint: '#6b7178'
       width: 2.4
     - line: M 44 73 l 14 0
-      paint: '#1d677a'
+      paint: '#6b7178'
       width: 2.4
 sources:
 - docs/research/acrylic-paint-along.md, section 8, Stroke direction

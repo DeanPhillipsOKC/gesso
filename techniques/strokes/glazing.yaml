@@ -18,15 +18,11 @@ diagram:
       - 30
       - 72
       - 40
-      paint: '#e8a53a'
+      paint: '#b5bac0'
   - caption: A see-through layer over part of it
     add:
-    - rect:
-      - 40
-      - 30
-      - 46
-      - 40
-      paint: '#c0392b'
+    - path: M 40 30 H 86 V 70 H 40 Z
+      paint: '#2d3237'
       opacity: 0.35
     arrows:
     - M 44 22 L 82 22

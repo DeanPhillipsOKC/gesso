@@ -28,7 +28,7 @@ diagram:
       - 14
       - 84
       - 30
-      paint: '#5b7fc7'
+      paint: '#7d848b'
     arrows:
     - M 14 29 L 86 29
   - caption: Next color below it
@@ -38,7 +38,7 @@ diagram:
       - 44
       - 84
       - 30
-      paint: '#e8a53a'
+      paint: '#b5bac0'
     arrows:
     - M 86 59 L 14 59
   - caption: Back up over the join
@@ -48,7 +48,7 @@ diagram:
       - 38
       - 84
       - 12
-      paint: '#a39281'
+      paint: '#9a9fa5'
       opacity: 0.9
     arrows:
     - M 14 44 L 86 44

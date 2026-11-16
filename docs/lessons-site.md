@@ -18,6 +18,28 @@ Live at https://gesso-lessons.pages.dev, deployed from `main`. It's deliberately
 2026-11-11: it's painting lessons, nothing private), just kept out of search engines. The Access steps below are
 only for if that ever changes; Zero Trust asks for a card even on its free plan.
 
+## Source pictures (`photos/`)
+
+Every tile's source picture is kept in git in `photos/`, one file per picture, named by the photo stem its runs
+use (`photos/chickadee.jpg` for `chickadee_skill_<run time>`, `photos/balloon-lavender.<ext>` for the
+`lavender-balloon` tile), so any session can rerun a lesson from a fresh clone: the site's lessons are rerun from
+their pictures after a tool fix (`docs/decisions.md`) (#147). `photos/` was ignored before; it's tracked now,
+rather than a new folder, because `/paint-lesson photos/<name>.<ext>` is how every run is started already.
+
+- `/paint-lesson` stores the picture at the start of a run (`python spike/tools.py store-photo <photo>`): it copies
+  it to `photos/<stem>.<ext>` unless that picture is there, refuses a different picture with a stored picture's
+  name, and says to commit it with the run.
+- Only AI-made pictures or ones the owner has the rights to go there (`docs/decisions.md`, "Photos stay
+  private"). Never a personal photo (people, homes, anything private): keep those in `photos/private/`, which git
+  ignores and `store-photo` leaves alone, or outside the repo. Their lessons can't be rerun elsewhere or go on the
+  site.
+- `site-add` and `site-refresh` print `warnings` naming each tile whose picture isn't in `photos/`, or is there but
+  not committed.
+- **The site never serves `photos/`.** Cloudflare Pages deploys the `site` folder only, with no build command
+  (setup below), and no tool copies a picture into `site/`; a test checks no file in `site/` is one of them. Keep it
+  that way: don't add a build command, move `photos/` under `site/`, or point the build output at the repo root. (A
+  lesson page shows the run's own copy of the photo next to the finish, as before, built into its HTML.)
+
 ## Versions on the tiles
 
 Each tile's pick list holds every kept run of that picture (the run folders in `output/` named after it), newest
@@ -89,7 +111,8 @@ These are Cloudflare dashboard steps; the menus may be worded a little different
 1. In dash.cloudflare.com, go to **Workers & Pages**, then **Create**, then the **Pages** tab, then **Connect to Git**.
 2. Pick GitHub and the `gesso` repo. If it isn't listed, give Cloudflare access to that private repo when GitHub asks.
 3. Project name: `gesso-lessons` (it becomes `gesso-lessons.pages.dev`). Production branch: `main`.
-4. Framework preset: **None**. Build command: leave it empty. Build output directory: `site`.
+4. Framework preset: **None**. Build command: leave it empty. Build output directory: `site` (never the repo
+   root: `photos/` holds the source pictures and must not be served).
 5. **Save and Deploy**. When it finishes, the site is live at the `.pages.dev` address. Don't share it yet: it's
    public until step 2.
 

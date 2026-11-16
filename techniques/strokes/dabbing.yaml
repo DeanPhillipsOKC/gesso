@@ -5,7 +5,7 @@ also_called:
 - stippling
 brushes:
 - round (the tip, for small dots)
-- old stiff brush (for foliage)
+- old stiff brush (for rough patches)
 tools:
 - a sponge, for soft patches
 load:
@@ -14,6 +14,9 @@ load:
 motion: Tap with the tip of the brush. The more you tap one spot, the more solid it gets.
 result: Dots or dappled patches that get more solid the more you tap.
 then: Tap a lighter mix on the lit side, leaving the darker taps showing underneath.
+uses:
+- foliage, with an old stiff brush
+- small dots, with the tip of a round
 mistakes:
 - mistake: Blobs instead of dots.
   why: The brush is too wet or holds too much paint.
@@ -29,69 +32,69 @@ diagram:
       - 30
       - 40
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 44
       - 34
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 58
       - 42
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 38
       - 54
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 52
       - 56
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 66
       - 52
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 46
       - 68
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 60
       - 68
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
     - circle:
       - 32
       - 66
       - 5
-      paint: '#2f3b2a'
+      paint: '#33393f'
   - caption: Lighter taps on the lit side
     add:
     - circle:
       - 46
       - 30
       - 4
-      paint: '#4f7d3a'
+      paint: '#b9bec4'
     - circle:
       - 60
       - 36
       - 4
-      paint: '#4f7d3a'
+      paint: '#b9bec4'
     - circle:
       - 68
       - 46
       - 4
-      paint: '#4f7d3a'
+      paint: '#b9bec4'
     - circle:
       - 54
       - 48
       - 4
-      paint: '#4f7d3a'
+      paint: '#b9bec4'
 sources:
 - docs/research/acrylic-paint-along.md, section 2, Dabbing and stippling
 - docs/research/acrylic-paint-along.md, section 5, Too much paint on the brush

@@ -6,52 +6,58 @@ brushes:
 - flat
 load:
   amount: dry
-motion: Stroke straight down, starting just below the thing being reflected.
-result: A soft, streaky, see-through reflection of a tree, boat, or shore.
-then: Once dry, cross it with thin horizontal dashes of the water color.
-note: Don't be too exact. The water is moving, so a loose reflection looks right.
+motion: Stroke straight down, starting just below the shape above.
+result: Soft, streaky, see-through marks straight down.
+then: Once dry, cross it with thin level dashes of the base color.
+note: Don't be too exact. A loose one looks right.
+uses:
+- the reflection of a tree, a boat, or a shore in moving water
 diagram:
   title: Pull the color straight down
   stages:
-  - caption: The thing above, and dry water
+  - caption: A shape above a dry base
     add:
     - rect:
       - 8
       - 46
       - 84
       - 44
-      paint: '#1d677a'
-    - path: M 40 46 L 50 16 L 60 46 Z
-      paint: '#2f3b2a'
+      paint: '#6b7178'
+    - rect:
+      - 38
+      - 22
+      - 24
+      - 24
+      paint: '#33393f'
   - caption: Thin, dry strokes straight down
     add:
     - line: M 42 48 L 42 66
-      paint: '#2f3b2a'
+      paint: '#33393f'
       width: 1.8
     - line: M 46 48 L 46 74
-      paint: '#2f3b2a'
+      paint: '#33393f'
       width: 1.8
     - line: M 50 48 L 50 80
-      paint: '#2f3b2a'
+      paint: '#33393f'
       width: 1.8
     - line: M 54 48 L 54 72
-      paint: '#2f3b2a'
+      paint: '#33393f'
       width: 1.8
     - line: M 58 48 L 58 64
-      paint: '#2f3b2a'
+      paint: '#33393f'
       width: 1.8
     arrows:
     - M 68 50 L 68 78
-  - caption: Dashes of water color across
+  - caption: Dashes of the base color across
     add:
     - line: M 38 58 l 14 0
-      paint: '#1d677a'
+      paint: '#6b7178'
       width: 2
     - line: M 48 66 l 14 0
-      paint: '#1d677a'
+      paint: '#6b7178'
       width: 2
     - line: M 40 74 l 16 0
-      paint: '#1d677a'
+      paint: '#6b7178'
       width: 2
 sources:
 - docs/research/acrylic-paint-along.md, section 8, Order of painting

@@ -6,6 +6,28 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 1.12.0 (2026-11-15)
+- Stroke cards are written for what's being painted (#96). A card's text and diagram were written for one subject,
+  so on the chickadee's sun the small-circles card said the circles "make a cloud's bumpy top edge" and drew cloud
+  bumps on blue. Now `card-adapt` copies each card a step opens into `text.json`, and the run rewords that copy for
+  this painting in step 6c: the same fields and mistakes, the subject's words, the step's paints, and the part's
+  shape in the diagram. The page shows it with "Adapted for this painting from the ... card, not checked yet" and
+  the general card folded under it.
+- The general cards say only the technique. Every card's motion, result, then, and mistakes were reworded without
+  a subject, and the examples moved to "Good for" (small circles: "cloud tops, the glow around a sun or moon"). The
+  diagrams are plain gray marks on a neutral ground. `cards` lists a card that names a subject again.
+- A stroke card shows the step's close-up as "Here", next to its diagram, and points at the step's construction
+  diagram when the run drew one for that shape.
+- `check` notes a card shown with no adapted copy, and fails a copy that drifted from its card (a field missing or
+  added, an extra mistake, another brush, other diagram stages or arrows), saying what to put back.
+- The drafted step lines take the reworded cards' words, so they no longer name another subject; they're more
+  general until the run corrects them.
+- Source pictures are kept in git in `photos/`, one per picture, named by its photo stem (#147), so any session can
+  rerun a lesson from a fresh clone. `photos/private/` stays local, for anything personal. `/paint-lesson` stores a
+  new picture there at the start of a run with the new `store-photo` tool and says to commit it with the run.
+  `site-add` and `site-refresh` warn about each tile whose picture isn't stored and committed. The site still never
+  serves `photos/`.
+
 ## POC 1.11.0 (2026-11-14)
 - Behind an object, an area takes only the rows it has beside it (#139). With a background picture, what's behind
   an object was split among the areas around it by color alone, so in `balloon-lavender_skill_20261114-075951`
