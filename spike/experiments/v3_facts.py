@@ -1538,6 +1538,22 @@ def start(picture: str) -> Path:
     (lesson / "review.json").write_text(json.dumps({"finish_issues": review.get("finish_issues") or [],
                                                     "text_issues": []}, indent=1) + "\n")
     _tool("draft-text", lesson)
+    packets(lesson)
+    return lesson
+
+
+def packets(lesson: Path, extra: dict[str, dict] | None = None, brief: Path | None = None) -> Path:
+    """The lesson's sheet and one writer's packet per stage under <lesson>/trials/facts/. `extra`: more fields for a
+    step's entry in steps.json, by step id (#210 gives each step the plan's `after` line). `brief`: the writer's
+    brief, when it isn't this spike's."""
+    import shutil
+
+    sys.path.insert(0, str(BENCH))
+    from PIL import Image
+
+    import benchlib
+    import packet
+
     sheet, plan = lesson_sheet(lesson)
     work = lesson / "trials" / "facts"
     work.mkdir(parents=True, exist_ok=True)
@@ -1571,7 +1587,7 @@ def start(picture: str) -> Path:
                           "paints": [names[c] for c in ps.get("paints") or []], "brush": ps.get("brush"),
                           "stroke": ps.get("stroke"), "pair": f"pair-{st['n']:02d}.jpg",
                           "lines": [{"n": j + 1, "kind": x.get("kind"), "text": x.get("text")}
-                                    for j, x in enumerate(t["lines"])]})
+                                    for j, x in enumerate(t["lines"])], **((extra or {}).get(st["id"]) or {})})
             facts += [facts_text(sheet, plan, st), ""]
         (folder / "facts.md").write_text("\n".join(facts), encoding="utf-8")
         (folder / "steps.json").write_text(json.dumps({"stage": k, "light": light, "lesson": outline,
@@ -1582,8 +1598,8 @@ def start(picture: str) -> Path:
                 img = benchlib.crop_canvas(Image.open(lesson / name), box).convert("RGB")
                 img.thumbnail((900, 900))
                 img.save(folder / dst, quality=85)
-        shutil.copy(WRITER, folder / "brief.md")
-    return lesson
+        shutil.copy(brief or WRITER, folder / "brief.md")
+    return work
 
 
 def _apply(text: dict, out: dict) -> list[str]:

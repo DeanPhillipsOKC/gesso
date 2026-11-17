@@ -1,0 +1,57 @@
+{
+ "highland-cow": {
+  "behind": {
+   "sky": [],
+   "clouds": [
+    "sky"
+   ],
+   "mountains": [
+    "sky"
+   ],
+   "loch": [],
+   "hillside": [],
+   "meadow": [],
+   "bushes": [
+    "hillside"
+   ],
+   "cow": [
+    "hillside",
+    "bushes",
+    "meadow"
+   ],
+   "horns": [
+    "sky",
+    "mountains",
+    "hillside"
+   ]
+  },
+  "early": {
+   "meadow": "the plain green meadow, smooth, with no grass blades"
+  },
+  "units": {
+   "4": {
+    "id": "ground",
+    "name": "The hillside and the meadow"
+   },
+   "8": {
+    "id": "coat",
+    "name": "The cow's shaggy coat",
+    "parent": "cow"
+   },
+   "9": {
+    "id": "face",
+    "name": "The cow's face",
+    "parent": "cow"
+   },
+   "10": {
+    "id": "tall-grass",
+    "name": "The tall grass in front",
+    "parent": "ground"
+   }
+  },
+  "parents": {
+   "clouds": "sky",
+   "bushes": "ground"
+  }
+ }
+}
