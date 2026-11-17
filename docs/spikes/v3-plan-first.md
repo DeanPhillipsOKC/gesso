@@ -19,13 +19,13 @@ https://claude.ai/artifact/PrA7Gi1d6pLnQWfndRkZmp). What the plans and the fault
 - **The layers can be made to fit the plan, at a cost in outlines.** The fits carried 67 of the painter's 69 steps.
   But a plan that names more things needs more parts: 1, 2 and 7 new ones. On the birch grove the seven new
   outlines made the step pictures worse than v2's (77 picture faults against 39 and 51).
-- **Teaching faults (class F) didn't move:** 2, 10 and 0, against v2's 1, 7 to 8, and 1 to 2. Nearly all of them on
-  both sides are one fault, a load word ("creamy", "a light load") the step never explains, which comes from the
-  stroke cards and not from the plan.
+- **Teaching faults (class F) show no gain:** 2, 10 and 0, against v2's 1, 7 to 8, and 1 to 2. Most on both sides
+  are one fault, a load word ("creamy", "a light load") the step never explains, which comes from the stroke cards.
+  The cow's two are the plan's own: a paint mixed early and kept covered for many steps.
 - **Weighted faults per step fell on two pictures and held on the third:** down 40% on the cow and 24% on the cat,
   up 4% on the birch grove, against the mean of v2's two counters. Only the cow's is past what two counters differ
   by on one packet (about 30%).
-- **No render was made.** The work is Claude's: a plan writer took 3.5 to 4 minutes, a fit 21 to 23.
+- **No render was made.** The work is Claude's: a plan writer took 3.5 to 4.2 minutes, a fit 21 to 23.
 
 ## 1. What was tried
 
@@ -64,7 +64,7 @@ either was read, was the one fitted.
 
 ## 2. The plans
 
-| Picture | Plan | Steps | Stages | Things | Steps that cross things |
+| Picture | Plan | Steps | Stages | Things, as the writer named them | Steps that cross things |
 |---|---|---|---|---|---|
 | highland cow | plan-first A | 24 | 7 | 9 | 2 |
 | | plan-first B | 23 | 7 | 10 | 1 |
@@ -84,8 +84,7 @@ either was read, was the one fitted.
   baseline ("the cow's face suddenly coming into focus even though the step did not have the right paints or
   instructions").
 - **Sleeping cat.** v2: block in, white, stripes, fur, pink (5 steps). Plan A: block in, shade, white patches,
-  stripes, inner ears, two fur passes, then eyes and mouth, nose, whiskers (10). The sill and the frame get a shade
-  and a light step each.
+  stripes, inner ears, two fur passes, then eyes and mouth, nose, whiskers (10). The sill gets a shade and a light step, and the frame a shade step.
 - **Birch grove.** v2 has seven things. Both plans name the rock, the path or ground, the undergrowth, the branches,
   the sun and the fallen leaves, and give the birches four or five steps (pale trunk, shade, bark marks, branches,
   light) where v2 has three.
@@ -176,6 +175,10 @@ measure 1 is the same.
   `points_in`). `publish` wants a summary on every v2 step. The image account had no credits, so the one
   `background` call (the cat) failed; the baseline cat has no background render either, so the two sides match.
 
+- **One brush the tools don't know.** The cow's plan dots the nostrils with the brush's handle end; the fit used a
+  "#2 round" and said so in the tip. `check` holds a painter's step to one stroke and one brush across its parts,
+  not to the stroke and brush the painter wrote.
+
 `check` ended clean on the cow, with one outline-confidence warning on the birch grove's branches, and with two
 element failures on the cat's face part (no marks element takes a liner pass first).
 
@@ -205,10 +208,15 @@ blocker 3, major 2, minor 1.
 | | v2, counter B | 14 | 51/15 | 16/4 | 0 | 3/3 | 8/7 | 2/2 | 162 | 11.6 |
 | | plan-first | 22 | 77/14 | 14/3 | 2/2 | 2/2 | 8/7 | 0 | 232 | 10.5 |
 
-- **Class F, the measure the plan names for this spike, shows nothing.** 2, 10 and 0 against 1, 7 to 8, and 1 to 2.
-  The cat's 10 are, by that counter's own note, mostly one fault counted on each step that uses a load word it
-  doesn't explain. That text comes from the stroke cards (`draft-text`), the same on both sides. Class F as the
-  brief defines it doesn't see what a plan changes: whether each thing in the picture has a step.
+- **Class F, the measure the plan names for this spike, shows no gain.** 2, 10 and 0 against 1, 7 to 8, and 1 to 2.
+  Nine of the cat's 10 are one fault counted on each step that uses a load word it doesn't explain (the tenth is
+  about coats on the whiskers). That text comes from the stroke cards (`draft-text`), the same on both sides.
+- **The cow's two F faults are the plan's doing.** Golden ochre is mixed in step 1 and wanted again in steps 3, 14,
+  15 and 24, and the ground's three greens are mixed at the lay-in and wanted again fourteen steps later, because
+  the plan paints the tall grass last. Its writer said as much ("the painter will need to mix them again"). A
+  painter's order can pull a mix's uses apart; v2's one-thing-a-stage order keeps them together.
+- **Class F doesn't count what the plan was meant to fix:** whether each thing in the picture has a step. That shows
+  up, when it does, as a step-picture jump in A.
 - **What the plan changed shows in other classes, on the cow.** v2's cow has the "face finished with no paint or
   line for it" fault in A from both counters. On the plan-first cow the face faults are smaller and of another
   kind: the mouth line shows a step early, and the last face step models the whole muzzle in tans and mauves while
@@ -218,7 +226,7 @@ blocker 3, major 2, minor 1.
   more sentences to be wrong, and three of its brown recipes mix toward purple (a `mix` fault, the same kind the
   baseline has).
 - **The birch grove's pictures got worse.** 77 A faults with repeats against 39 and 51, three of them blockers that
-  last a dozen steps: the flat canopy, the block bushes, and the tiled pattern in the backdrop (v2's lesson has
+  last 8, 13 and 14 steps: the flat canopy, the block bushes, and the tiled pattern in the backdrop (v2's lesson has
   that one too). Distinct faults are level (14 against 15), so it's the same number of faults lasting longer, in a
   longer lesson.
 - **Per step, two are lower and one is level:** 2.8 against 4.7, 6.6 against 8.7, 10.5 against 10.2. A lesson with more,
@@ -227,6 +235,9 @@ blocker 3, major 2, minor 1.
   counters' own spread on one packet.
 - One counter per lesson, as the screening rule says. The counter agreed with the owner at rho 0.43 on the baseline
   and at 0.28 on "paintable", so none of this settles the spike.
+
+Not in the table's columns but in its weighted totals: one G fault on the cat (the whiskers step's picture is the
+same as the one before it, section 4) and one H fault on the cow.
 
 The cow's count includes one H fault this spike's fold made (a "Leave what steps ... painted showing" sentence
 printed once per part). The fold now says it once, and the A/B page was rebuilt with that fix after the count.

@@ -213,6 +213,17 @@ class FoldTests(unittest.TestCase):
         self.assertEqual(pf.renumber("Leave what steps 4, 5, and 6 painted showing.", number_of, 5),
                          "Leave what step 4 painted showing.")
         self.assertEqual(pf.renumber("Tap straight down. 3 taps.", number_of, 2), "Tap straight down. 3 taps.")
+        # two places name steps, and one of them folds into this step: the line stays
+        self.assertEqual(pf.renumber("Leave what step 4 painted showing; it comes back in step 6.", number_of, 4),
+                         "Leave what this step painted showing; it comes back in step 5.")
+
+    def test_a_dry_line_about_the_same_move_is_left_out(self):
+        subs = [{"part_name": "The green hillside", "lines": [{"kind": "dry", "text": "Let the sky dry first."}]},
+                {"part_name": "The meadow", "lines": [
+                    {"kind": "dry", "text": "Let the green hillside dry to the touch first."},
+                    {"kind": "note", "text": "A line of a kind draft-text doesn't make."}]}]
+        self.assertEqual([x["text"] for x in pf.fold_lines(subs, {}, 3)],
+                         ["Let the sky dry first.", "A line of a kind draft-text doesn't make."])
 
     def subs(self):
         def line(kind, text):
@@ -252,7 +263,8 @@ class FoldTests(unittest.TestCase):
             Image.new("RGB", (8, 6), (i * 30, 0, 0)).save(lesson / image)
             stages.append({"id": s["id"], "name": s["name"], "image": image, "brushes": s["brush"],
                            "lines": [{"kind": "where", "text": f"Where {s['part']}."},
-                                     {"kind": "how", "text": f"Brush: {s['brush']}."}],
+                                     {"kind": "how", "text": f"Brush: {s['brush']}."},
+                                     {"kind": "result", "text": f"Leave what step {max(i, 1)} painted showing."}],
                            "tip": "Shade both." if s["id"] == "v-shade-rug" else "",
                            "summary": f"Summary of {s['id']}",
                            "colors": [{"name": s["paints"][0], "hex": "#101010", "recipe": "r"}]})
@@ -278,7 +290,10 @@ class FoldTests(unittest.TestCase):
             self.assertEqual([s["group"] for s in steps], ["The big shapes"] * 3 + ["Shadows and lights"] * 2)
             shadows = steps[3]
             self.assertEqual(shadows["name"], "Glaze the shadows")  # the painter's name for it
-            self.assertEqual(shadows["lines"], ["The rug: Where rug.", "The cat: Where cat.", "Brush: 1/2 inch flat."])
+            # v2 steps 3 and 4 are the painter's 3 and this very step: one sentence, about step 3 only
+            self.assertEqual(shadows["lines"], ["The rug: Where rug.", "The cat: Where cat.", "Brush: 1/2 inch flat.",
+                                                "Leave what step 3 painted showing."])
+            self.assertEqual(steps[4]["lines"][-1], "Leave what step 4 painted showing.")  # v2's step 5 is the fourth
             self.assertEqual(shadows["tip"], "Shade both.")
             self.assertEqual([c["name"] for c in shadows["paints"]], ["rug-2"])  # one paint, said once
             self.assertEqual(shadows["brushes"], "1/2 inch flat")
@@ -356,8 +371,7 @@ class DifferTests(unittest.TestCase):
         self.assertEqual(d["a"], {"steps": 5, "stages": 2, "crossing": 1})
 
     def test_a_fitted_plan_has_its_painters_shape(self):
-        names = {"chest": "cat"}  # the fit's extra part is the painter's cat
-        fit = pf.shape(fitted(), names)
+        fit = pf.shape(fitted())  # the chest part says it's the painter's cat
         self.assertEqual([s["things"] for s in fit], [["sky"], ["rug"], ["cat"], ["cat", "rug"], ["cat"]])
         d = pf.differ(pf.shape(painter()), fit)
         self.assertEqual((d["things"], d["order"], d["sequence"], d["moves"]), (1.0, 1.0, 1.0, 1.0))
@@ -366,6 +380,8 @@ class DifferTests(unittest.TestCase):
         v2 = copy.deepcopy(fitted())
         for s in (s for st in v2["stages"] for s in st["steps"]):
             s.pop("of")
+        for p in v2["parts"]:
+            p.pop("thing")
         shape = pf.shape(v2, {"chest": "cat"})
         self.assertEqual(len(shape), 6)
         d = pf.differ(pf.shape(painter()), shape)

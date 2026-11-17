@@ -296,25 +296,27 @@ NUMBERS = re.compile(r"\bsteps? (\d+(?:(?:, and | and |, )\d+)*)")
 def renumber(text: str, number_of: dict[int, int], n: int) -> str:
     """A drafted line with its v2 step numbers turned into the folded lesson's. A number that folds into this very
     step is taken out; a line left naming no step ("Leave what step 4 painted showing" when step 4 is part of this
-    step) is dropped (returns '')."""
+    step) is dropped (returns ''). In a line that names steps in two places, a place left empty reads "this step"."""
     import draft_text
 
-    gone = False
+    kept: list[bool] = []  # per group of step numbers in the line: does it still name a step?
 
     def swap(m: re.Match) -> str:
-        nonlocal gone
         nums = []
         for x in re.findall(r"\d+", m.group(1)):
             k = number_of.get(int(x), int(x))
             if k != n and k not in nums:
                 nums.append(k)
-        if not nums:
-            gone = True
-            return ""
-        return draft_text._steps_words(sorted(nums))
+        kept.append(bool(nums))
+        return draft_text._steps_words(sorted(nums)) if nums else "this step"
 
     out = NUMBERS.sub(swap, text)
-    return "" if gone else out
+    return "" if kept and not any(kept) else out
+
+
+def _bare(name: str) -> str:
+    """'The green hillside' -> 'green hillside': how a drafted line names a part mid-sentence."""
+    return re.sub(r"^the\s+", "", name.strip().lower())
 
 
 def _cap(name: str) -> str:
@@ -349,13 +351,17 @@ def fold_lines(subs: list[dict], number_of: dict[int, int], n: int) -> list[dict
     in the drafted order, a line two parts share said once, and the lines that differ by part (where, paints) led by
     the part's name."""
     out: list[dict] = []
-    for kind in KINDS:
+    other = list(dict.fromkeys(x.get("kind") or "" for sub in subs for x in sub.get("lines") or []
+                               if x.get("kind") not in KINDS))  # a kind draft-text doesn't make: kept, last
+    for kind in list(KINDS) + other:
         rows: list[tuple[str, str]] = []
-        for sub in subs:
+        for i, sub in enumerate(subs):
             for line in sub.get("lines") or []:
-                if line.get("kind") != kind:
+                if (line.get("kind") or "") != kind:
                     continue
                 text = renumber(line.get("text") or "", number_of, n)
+                if kind == "dry" and any(_bare(e["part_name"]) in text.lower() for e in subs[:i]):
+                    continue  # "let the hillside dry" inside the one move that paints the hillside
                 if text and (sub["part_name"], text) not in rows:
                     rows.append((sub["part_name"], text))
         rows = _one_sentence(rows)
@@ -481,7 +487,8 @@ def shape(plan: dict, things: dict[str, str] | None = None) -> list[dict]:
                  "strokes": [s.get("stroke")]} for st in plan["stages"] for s in st["steps"]]
     stage_of = {s["id"]: st["id"] for st in plan.get("stages") or [] for s in st.get("steps") or []}
     if all(s.get("of") for s in plan2.steps(plan)):
-        return [{"id": of, "stage": stage_of[subs[0]["id"]], "things": canon(s["part"] for s in subs),
+        thing = {p["id"]: p.get("thing") or p["id"] for p in plan["parts"]}  # a fitted part says its painter's thing
+        return [{"id": of, "stage": stage_of[subs[0]["id"]], "things": canon(thing[s["part"]] for s in subs),
                  "strokes": sorted({s.get("stroke") for s in subs})} for of, subs in groups_of(plan)]
     return [{"id": s["id"], "stage": stage_of[s["id"]], "things": canon([s["part"]]), "strokes": [s.get("stroke")]}
             for s in plan2.steps(plan)]
@@ -553,8 +560,7 @@ def results(kept: Path = KEPT, runs: Path = RUNS) -> dict:
             plans["v2"] = read(run / "plan.json")
         if (folder / "plan.json").exists():
             plans["fit"] = read(folder / "plan.json")
-        # a fitted plan's parts are the baseline's, plus any it added: the v2 names, then its own
-        names["fit"] = {**(names.get("v2") or {}), **(names.get("fit") or {})}
+        names["fit"] = names.get("painter-a")  # a fitted part says which of plan A's things it is
         shapes = {k: shape(p, names.get(k)) for k, p in plans.items()}
         row = {"plans": {k: {"steps": len(s), "stages": len(dict.fromkeys(x["stage"] for x in s)),
                              "crossing": sum(1 for x in s if len(x["things"]) > 1),

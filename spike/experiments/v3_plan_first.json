@@ -207,7 +207,7 @@
         "crossing": 2,
         "stages": 7,
         "steps": 24,
-        "things": 10
+        "things": 9
       },
       "painter-a": {
         "crossing": 2,
@@ -309,10 +309,10 @@
     },
     "plans": {
       "fit": {
-        "crossing": 1,
+        "crossing": 0,
         "stages": 8,
         "steps": 21,
-        "things": 8
+        "things": 7
       },
       "painter-a": {
         "crossing": 0,
