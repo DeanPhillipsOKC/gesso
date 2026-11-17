@@ -1,0 +1,185 @@
+{
+  "conflicts": [],
+  "format": "gesso-ab-scores/1",
+  "merged_from": [
+    {
+      "device": null,
+      "file": "owner.json",
+      "saved_at": "2026-11-17T08:28:03.638Z"
+    }
+  ],
+  "mode": "single",
+  "pictures": [
+    {
+      "lessons": {
+        "A": "balloon-lavender_skill_20261116-203450"
+      },
+      "note": "",
+      "picture": "balloon-lavender",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 4,
+          "note": "",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [],
+          "would_paint": "yes"
+        }
+      },
+      "tokens": {
+        "A": "balloon-lavender_skill_20261116-203450"
+      }
+    },
+    {
+      "lessons": {
+        "A": "chickadee_skill_20261116-203451"
+      },
+      "note": "",
+      "picture": "chickadee",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 4,
+          "note": "",
+          "paintable": 3,
+          "real": 4,
+          "worst_steps": [],
+          "would_paint": "yes"
+        }
+      },
+      "tokens": {
+        "A": "chickadee_skill_20261116-203451"
+      }
+    },
+    {
+      "lessons": {
+        "A": "lake-cabin_skill_20261116-205703"
+      },
+      "note": "",
+      "picture": "lake-cabin",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 3,
+          "note": "",
+          "paintable": 3,
+          "real": 2,
+          "worst_steps": [],
+          "would_paint": "no"
+        }
+      },
+      "tokens": {
+        "A": "lake-cabin_skill_20261116-205703"
+      }
+    },
+    {
+      "lessons": {
+        "A": "snow-lantern_skill_20261116-205524"
+      },
+      "note": "",
+      "picture": "snow-lantern",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 3,
+          "note": "",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [],
+          "would_paint": "yes"
+        }
+      },
+      "tokens": {
+        "A": "snow-lantern_skill_20261116-205524"
+      }
+    },
+    {
+      "lessons": {
+        "A": "sleeping-cat_skill_20261116-203502"
+      },
+      "note": "",
+      "picture": "sleeping-cat",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 2,
+          "note": "",
+          "paintable": 2,
+          "real": 2,
+          "worst_steps": [],
+          "would_paint": "no"
+        }
+      },
+      "tokens": {
+        "A": "sleeping-cat_skill_20261116-203502"
+      }
+    },
+    {
+      "lessons": {
+        "A": "highland-cow_skill_20261116-212627"
+      },
+      "note": "",
+      "picture": "highland-cow",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 2,
+          "note": "",
+          "paintable": 2,
+          "real": 2,
+          "worst_steps": [],
+          "would_paint": "no"
+        }
+      },
+      "tokens": {
+        "A": "highland-cow_skill_20261116-212627"
+      }
+    },
+    {
+      "lessons": {
+        "A": "red-sailboat_skill_20261116-203450"
+      },
+      "note": "",
+      "picture": "red-sailboat",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 3,
+          "note": "",
+          "paintable": 3,
+          "real": 4,
+          "worst_steps": [],
+          "would_paint": "yes"
+        }
+      },
+      "tokens": {
+        "A": "red-sailboat_skill_20261116-203450"
+      }
+    },
+    {
+      "lessons": {
+        "A": "birch-grove_skill_20261116-210750"
+      },
+      "note": "",
+      "picture": "birch-grove",
+      "prefer": null,
+      "scores": {
+        "A": {
+          "agree": 1,
+          "note": "",
+          "paintable": 2,
+          "real": 1,
+          "worst_steps": [],
+          "would_paint": "no"
+        }
+      },
+      "tokens": {
+        "A": "birch-grove_skill_20261116-210750"
+      }
+    }
+  ],
+  "round": "baseline-1.12.1",
+  "saved_at": "2026-11-17T08:28:03.638Z",
+  "seed": null
+}
