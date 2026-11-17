@@ -23,9 +23,9 @@ All commands run from the repo root with `.venv/bin/python`. The tests are `spik
 - Superseded: the first fault counts, made with a brief whose examples came partly from the bench pictures' own past
   faults (it told the counter where to look). They're kept as `faults-v1.json` beside each picture's new counts, for
   the record only.
-- Pending: the owner's A/B scores on the baseline, and so any measure of how well the counter agrees with the owner.
-  Until both exist, the fault counts are the counter's findings only, not a validated measure, and no spike should
-  be screened on them alone.
+- Done (2026-11-17): the owner scored all 8 baseline lessons (section 5, Owner scores), and the counter was compared
+  with those scores (Counter against owner). It agrees only moderately (rho 0.43 on 8 lessons), so the fault counts
+  still don't screen a spike alone: the owner's A/B stays the deciding measure.
 - Not measured: the noise floor. No v2 lesson has been rebuilt from the bench, so how much two v2 runs from the
   same frozen folder differ is unknown (Limits, at the end).
 
@@ -476,22 +476,64 @@ cabin's did) is tool time. So read the birch grove's 12.1 minutes of Claude time
 
 | Picture | (a) real | (b) paintable | (c) agree | Would paint | Worst steps | Note |
 |---|---|---|---|---|---|---|
-| chickadee | | | | | | |
-| red-sailboat | | | | | | |
-| balloon-lavender | | | | | | |
-| sleeping-cat | | | | | | |
-| snow-lantern | | | | | | |
-| highland-cow | | | | | | |
-| lake-cabin | | | | | | |
-| birch-grove | | | | | | |
+| chickadee | 4 | 3 | 4 | yes | none tapped | |
+| red-sailboat | 4 | 3 | 3 | yes | none tapped | |
+| balloon-lavender | 3 | 3 | 4 | yes | none tapped | |
+| snow-lantern | 3 | 3 | 3 | yes | none tapped | |
+| lake-cabin | 2 | 3 | 3 | no | none tapped | |
+| sleeping-cat | 2 | 2 | 2 | no | none tapped | |
+| highland-cow | 2 | 2 | 2 | no | none tapped | |
+| birch-grove | 1 | 2 | 1 | no | none tapped | |
+
+Scored on the phone page on 2026-11-17 (round `baseline-1.12.1`, single mode), saved in
+`spike/experiments/bench/scores/baseline-1.12.1.json`. The artifact database record and the Copy scores text were the
+same. Every lesson scored 3 or under on (b), "I could paint each step from its words". The owner would paint from the
+four site pictures that score best and from none of the three hard pictures; the sleeping cat, a site picture, is a no
+too.
 
 ### Counter against owner
 
-Pending: the owner hasn't scored yet. `agreement.py --packets spike/experiments/bench/baseline --name faults-a.json
---name faults-b.json --scores spike/experiments/bench/scores/baseline-1.12.1.json` runs on what's committed and says
-"not scored yet" for every comparison today. Once the scores are in: rho for each group, and worst-step agreement
-(with kappa) against the 8 of 15 to beat. Judge it against the counter's own repeatability (section 5): the counter
-can't agree with the owner much better than it agrees with itself.
+`agreement.py --packets spike/experiments/bench/baseline --name faults-a.json --name faults-b.json --scores
+spike/experiments/bench/scores/baseline-1.12.1.json` (the mean of the two counters; weighted faults per step; rho's
+sign turned so that higher means the counter agrees):
+
+| Faults | Against | rho (8 lessons) |
+|---|---|---|
+| all classes | the mean of (a), (b), (c) | 0.43 |
+| A, step pictures | (a) real | 0.52 |
+| C, E, F, placement, text, teaching | (b) paintable | 0.28 |
+| A, C, D, E | (c) agree | 0.53 |
+
+Worst steps: the owner tapped none, so worst-step agreement and kappa can't be measured this round (`unknown`).
+
+| Picture | Weighted faults per step (mean of 2) | Owner mean of (a)–(c) | Would paint |
+|---|---|---|---|
+| birch-grove | 10.2 | 1.3 | no |
+| sleeping-cat | 8.7 | 2.0 | no |
+| balloon-lavender | 7.0 | 3.3 | yes |
+| red-sailboat | 5.3 | 3.3 | yes |
+| highland-cow | 4.7 | 2.0 | no |
+| chickadee | 4.3 | 3.7 | yes |
+| lake-cabin | 4.3 | 2.7 | no |
+| snow-lantern | 2.9 | 3.0 | yes |
+
+What it shows:
+- **The counter finds the worst lessons.** Its two highest, the birch grove and the sleeping cat, are the owner's two
+  lowest.
+- **It misses two lessons the owner won't paint from.** The highland cow and the lake cabin have few faults per step
+  but score 2.0 and 2.7. Whatever the owner dislikes there, the counter doesn't count as a fault, or doesn't weigh
+  enough.
+- **It over-counts one the owner likes.** The lavender balloon has the third most faults per step, but scores 3.3 and
+  is a yes.
+- **(b) is where it agrees least** (0.28). The counter judges words against pictures; the owner judges whether a
+  painter could follow them, and gave every lesson 3 or under.
+- **Eight lessons is few.** A rho of 0.43 on 8 is well within what chance gives, so it's a direction, not a measure.
+  It's also below the counter's agreement with itself (0.95 on weighted faults per step, section 5), so the gap is in
+  what it counts, not in its noise.
+
+So the counter can rank lessons coarsely and flag the worst, but not screen a spike alone. A spike still needs the
+owner's A/B. Two things would help: worst-step taps in the next round (the page has them), which allow the per-step
+comparison and kappa; and a look at what the owner sees in the cow and the cabin that the counter misses.
 
 ## Limits
 
