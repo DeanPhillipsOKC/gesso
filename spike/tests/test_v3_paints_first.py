@@ -131,7 +131,9 @@ class LockTests(unittest.TestCase):
 
     def test_lock_by_step_leaves_no_step_off(self):
         d = scene()
-        finish, _, _ = pf.lock(d, 8.0, by_step=True)
+        finish, _, info = pf.lock(d, 8.0, by_step=True)
+        # what the rounds moved together, from the original finish
+        self.assertEqual(info["moved_far"], pf.finish_loss(d["finish"], finish)["moved_far"])
         got = lesson_numbers(d, finish)
         self.assertEqual(got["summary"]["off_steps"], 0)
         self.assertLessEqual(got["summary"]["off"], 0.02)
@@ -164,15 +166,48 @@ class SwatchAndGradeTests(unittest.TestCase):
         self.assertAlmostEqual(pf.off_finish(d, d["finish"]), 100 / (H * W), places=3)
 
     def test_grade_folders_refuse_the_repository(self):
-        with self.assertRaises(SystemExit):
+        with self.assertRaises(SystemExit) as e:
             pf.grade_folders(["chickadee"], "lock-step-8", pf.ROOT / "output" / "grade")
+        self.assertIn("outside the repository", str(e.exception))
 
-    def test_grade_folders_outside_are_allowed_to_start(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            # no measured variant for a made-up picture: it fails reading, not on where it writes
-            with self.assertRaises(FileNotFoundError):
-                pf.grade_folders(["no-such-picture"], "lock-step-8", Path(tmp))
+    def test_grade_folders_are_blind_balanced_and_keyed(self):
+        """Each picture gets two graders' folders with the sides swapped, no variant name or run folder inside, and
+        a key outside them that names which side is which."""
+        import json
+        from unittest import mock
 
+        with tempfile.TemporaryDirectory() as tmp, tempfile.TemporaryDirectory() as fake_out:
+            out = Path(tmp) / "grade"
+            measured = Path(fake_out)
+            for pic in ("p1", "p2"):
+                (measured / "lock-step-8" / pic).mkdir(parents=True)
+                (measured / "lock-step-8" / pic / "measure.json").write_text(json.dumps(
+                    {"run": f"{pic}_skill_1", "lesson": f"spike/experiments/bench/runs/x/{pic}_skill_1-lock-step-8"}))
+
+            def build_one(lesson, dest):  # what packet.build_one writes that could leak: the lesson's own words
+                dest.mkdir(parents=True)
+                (dest / "lesson.md").write_text("Step 1. Paint the sky.\n")
+                (dest / "source.txt").write_text("from " + ("v2" if "lock" not in str(lesson) else "the other"))
+
+            import packet
+            with mock.patch.object(pf, "OUT", measured), mock.patch.object(packet, "build_one", build_one):
+                key = pf.grade_folders(["p1", "p2"], "lock-step-8", out, seed=3)
+            for pic in ("p1", "p2"):
+                g1, g2 = key["pictures"][pic]["g1"], key["pictures"][pic]["g2"]
+                self.assertEqual({g1["A"], g1["B"]}, {"v2", "lock-step-8"})
+                self.assertEqual((g2["A"], g2["B"]), (g1["B"], g1["A"]))  # the second grader has them swapped
+                for g in ("g1", "g2"):
+                    folder = out / f"{pic}-{g}"
+                    self.assertTrue((folder / "A" / "lesson.md").exists() and (folder / "ab_grader.md").exists())
+                    for f in folder.rglob("*"):
+                        if f.is_file() and f.name != "ab_grader.md":
+                            text = f.read_text()
+                            self.assertNotIn("lock", text)
+                            self.assertNotIn("skill_1", text)
+                    side_of_v2 = "A" if key["pictures"][pic][g]["A"] == "v2" else "B"
+                    self.assertEqual((folder / side_of_v2 / "source.txt").read_text(), "from v2")
+            self.assertTrue((out / "key.json").exists())
+            self.assertFalse(any((out / f"p1-{g}" / "key.json").exists() for g in ("g1", "g2")))
 
 if __name__ == "__main__":
     unittest.main()

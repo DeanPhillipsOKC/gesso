@@ -285,10 +285,9 @@ def lock(d: dict, tol: float, by_step: bool = False, rounds: int = 2) -> tuple[n
         empty = [k for k, v in by_key.items() if k >= n and not v]
         key = np.where(np.isin(key, empty), d["owner"], key)
         finish, info2 = lock_pixels(finish, key, by_key, tol)
-    info2 = {**finish_loss(d["finish"], finish), **info2}
-    info2["moved_mean"] = info2.pop("delta_e_mean")
-    info2.pop("detail", None)
-    return finish, background, {**info2, **info}
+    # what the rounds moved together, from the original finish (the last round's own numbers count only its moves)
+    total = finish_loss(d["finish"], finish)
+    return finish, background, {"moved_mean": total["delta_e_mean"], "moved_far": total["moved_far"], **info}
 
 
 def lesson_copy(d: dict, tag: str, pictures: list[np.ndarray], finish: np.ndarray, variant: str) -> Path:

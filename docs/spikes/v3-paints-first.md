@@ -10,7 +10,8 @@ changed.
   strict form, toward the paints of the step that shows each pixel, leaves 0 to 3 off steps per lesson, where v2 has
   4 to 11. But the blind graders preferred v2 on the highland cow and the birch grove (both graders each), tied on
   the chickadee and the lake cabin, and preferred the lock on none (section 5).
-- **Handing the render the swatches** does nothing: the image model repaints the same picture and ignores the card
+- **Handing the render the swatches** doesn't help: the image model repaints nearly the same picture and doesn't
+  move it toward the card
   (section 4).
 
 The lesson is in what the lock breaks. Where a step names the wrong paint, the lock paints the finish in the wrong
@@ -28,8 +29,9 @@ What the numbers say (8 bench pictures, v2 baseline plans and outlines, section 
   finish moves 1.4 to 5.1 Delta E on average, and 2 to 17% of it moves by more than 12: visible blotches and halos.
 - **Snapped onto the paints** (`lock-0`): 1.2 to 12.5% off, but the finish turns into flat posterized patches (it
   keeps 56 to 87% of its local detail and 66 to 88% of its edges).
-- **Mixes:** the lock can't lower a lesson's mix count. The paints are the plan's, so the count is the plan's (8 to
-  16). Measured again from a locked finish by v2's own `paints`, the count moves by one either way (section 3).
+- **Mixes:** the lock doesn't change a lesson's mix count: the paints, and so the count (8 to 16), are the plan's.
+  Most of the count over 10 isn't the finish's colors at all, but paints `paints --add` gave a part (#154), which
+  never merge: 6 of the balloon's 16, 3 of the cat's 13 (section 3).
 - **Cost:** the lock is free (2 to 9 seconds by part, 23 to 41 by step). The swatch round cost $0.31 for 5 renders.
 
 ## 1. What was tried
@@ -125,12 +127,31 @@ What the lock costs the finish:
 
 ![Highland cow, step 13 (Light the gold rim) and the finish: v2 above, locked by step below](v3-paints-first-cow.jpg)
 
-**Mixes.** The lock leaves the plan's paints as they are, so the mix count is the plan's: 8 to 16, as before. The
-issue's "12 to 16 mixes against a target of 10" is the measured paints merged under the rule that keeps two paints
-more than Delta E 12 apart. A locked finish doesn't change that rule's answer much. `paints` run again from scratch
-on the finish gives (v2's finish, then `lock-8`, then `lock-step-8`): chickadee 10, 10, 10; red sailboat 14, 13, 12;
-balloon 13, 13, 10; cat 10, 11, 10; lantern 10, 11, 11; cow 10, 10, 10; cabin 11, 13, 13; birch 10, 10, 10. Lowering
-the count needs fewer, farther paints in the plan, which the mix rules forbid merging (out of scope here).
+**Mixes.** The lock leaves the plan's paints as they are, so the mix count is the plan's: 8 to 16, as before.
+
+Where the issue's "12 to 16 mixes against a target of 10" comes from: `paints` run from scratch on the v2 finish, with
+the baseline's parts (`remeasured`), gives 10 to 14, and 10 on 5 of the 8 pictures. The runs land higher mostly
+through `paints --add` (#154's fix for a pass whose color no paint has), whose paints never merge:
+
+| Picture | The run's mixes | Of them, `--add` | From scratch: v2 finish | lock-8 | lock-step-8 | lock-0 |
+|---|---|---|---|---|---|---|
+| chickadee | 10 | 2 | 10 | 10 | 10 | 10 |
+| red-sailboat | 15 | 1 | 14 | 13 | 12 | 11 |
+| balloon-lavender | 16 | 6 | 13 | 13 | 10 | 10 |
+| sleeping-cat | 13 | 3 | 10 | 11 | 10 | 10 |
+| snow-lantern | 12 | 2 | 10 | 11 | 11 | 10 |
+| highland-cow | 10 | 0 | 10 | 10 | 10 | 10 |
+| lake-cabin | 13 | 0 | 11 | 13 | 13 | 11 |
+| birch-grove | 8 | 0 | 10 | 10 | 10 | 10 |
+
+- A locked finish measured from scratch lands nearer 10 where the lock is strong: `lock-0` gives 10 or 11 on all 8,
+  `lock-step-8` lowers the sailboat and the balloon. But it can go up too (the cabin, 11 to 13 under both 8 locks):
+  pulling a part's pixels together onto its paints can leave two clusters further apart than the merge ceiling.
+- A from-scratch count isn't a lesson's count: a lesson's paints also carry the steps' `--add` colors and Claude's
+  choices, and from scratch gives 10 where the birch grove's run had 8. Compare these columns with each other, not
+  with the run's.
+- So the paints-first lever on the mix count is the plan: a plan that names its paints before the picture (S7)
+  doesn't need `--add` after it. The lock itself doesn't lower the count.
 
 ## 4. The swatch render
 
@@ -146,7 +167,9 @@ request. Each was $0.06 and 32 to 37 seconds, $0.31 in all.
 | birch-grove | 14.8% / 15.7% | 28.3 / 29.8 | 5 / 7 | 98% |
 
 The model keeps the picture (94 to 99% of its edges), moves it 3.4 to 5.6 Delta E on average, and doesn't move it
-toward the swatches: the finish is as far from its paints as before, or further. Stronger words made it worse. The
+toward the swatches: the share of the finish off its paints rises on three pictures and falls slightly on one
+(the cabin, 11.6 to 10.8%), and the steps' off share falls slightly on one (the cow) and rises on the rest. Stronger
+words made it worse. The
 image model treats a palette card as a reference to look at, not a limit on what it paints. Drop: there is nothing
 to grade, and no form of the request that's likely to change it without a model built to paint from a palette.
 
@@ -189,8 +212,9 @@ None of them mentioned a step whose paints now match its picture better. The fau
 paint names, one of eight fault classes) are smaller to a grader than the ones it adds, which last to the finish.
 The worst faults on both sides are v2's own and stay: the blue blotches behind the cow, the tiled fills, the jumps.
 
-`lock-8`, the gentle form, wasn't graded. By eye its step pictures can't be told from v2's: a round would come out
-"no difference" on the pictures and say nothing about the paints. It halves the off share, but mostly by nudging
+`lock-8`, the gentle form, wasn't graded, and is dropped on the rule's expected outcome, not on a measured one. By
+eye its step pictures can't be told from v2's, so a round would most likely come out "no difference", a tie, which
+doesn't beat v2 under the clear-wins rule (`docs/decisions.md`). It halves the off share, but mostly by nudging
 pixels just inside the line.
 
 ## 6. What it means for v3
