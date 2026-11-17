@@ -463,9 +463,11 @@ FRACTION = re.compile(
 CENTER = re.compile(r"\b(?P<q>just |a little |slightly |a bit |a touch )?(?P<side>left|right) of (?:the )?(?:center|centre|middle)"
                     r"(?!\s+(?!of\b)[a-z])"  # not "left of the center red stripe": that's a relation to the stripe
                     r"(?: of (?:the )?(?P<of>canvas|painting|[\w-]+(?: [\w-]+)?))?", re.I)
+# the reference ends at and/or/then/while/but (N1 of PR #182's second review): in "just outside the left red stripe
+# and one just left of the center red stripe" the second relation is a claim of its own
 RELATION = re.compile(r"\b(?P<q>just |right |directly |a little |slightly |straight |well )?"
                       r"(?P<rel>above|below|beneath|to the left of|to the right of|left of|right of|inside|outside|beside|"
-                      r"next to)\s+(?P<ref>[^,.;:()]+)", re.I)
+                      r"next to)\s+(?P<ref>(?:(?!\b(?:and|or|then|while|but)\b)[^,.;:()])+)", re.I)
 ON_ITS = re.compile(r"\bon\s+(?:its|their|the\s+(?P<ref>[\w\s-]+?)'s?)\s+(?P<side>left|right)\b"
                     r"(?!\s*(?:-hand|side|edge|half|end|part))", re.I)
 POSITION = re.compile(r"(?<!\bto )(?<!\bdown )\b(?:at|in|on|near)\s+the\s+(?:far\s+)?(?P<v>upper|lower|top|bottom)[ -]"
@@ -914,6 +916,9 @@ class Reader:
         if field.endswith("(where)"):
             things = [dict(self.st["area"], what="the step's area")] if self.st["area"] else []
         has = set()
+        if who == "this step" and not field.endswith("(where)") and not self.st["first_of_part"] and self.st["marks"]:
+            things = [dict(k, what=f"mark {n + 1}") for n, k in enumerate(self.st["marks"])]  # N2: a pass's paint is
+            # its marks, not the whole part it's painted on
         for t in things:
             has |= set(t.get("edges") or [])
         if who == "this step" and not field.endswith("(where)"):

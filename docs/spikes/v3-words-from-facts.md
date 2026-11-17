@@ -6,7 +6,7 @@
 
 **Verdict: open.** The fact sheet and the checker are built and tested.
 - **Planted faults:** a fault put into a measured Where line is caught 97 to 100% of the time, depending on the
-  kind. A fault put into Claude's written tips is caught 39 to 94% of the time.
+  kind. A fault put into Claude's written tips is caught 41 to 94% of the time.
 - **#159 on the sealed run it came from:** 5 of #159's 8 items are caught there as text faults, and a sixth (the
   paint) by the sheet. One more is caught only on a made-up scene, and one isn't caught.
 - **The five sealed 1.12.1 lessons:** 9 of 12 distinct flagged faults are real.
@@ -105,10 +105,10 @@ a hair of the rounding point. In tips, faults are planted only in sentences the 
 | length −1 in | 108/108 (100%) | 234/234 (100%) | 10/11 (91%) |
 | length +1/2 in | 124/133 (93%) | 257/265 (97%) | 12/19 (63%) |
 | length −1/2 in | 126/126 (100%) | 250/256 (98%) | 15/16 (94%) |
-| left/right swapped | 34/34 (100%) | 67/67 (100%) | 20/37 (54%) |
+| left/right swapped | 34/34 (100%) | 67/67 (100%) | 20/36 (56%) |
 | up/down swapped | 50/51 (98%) | 97/99 (98%) | 20/44 (45%) |
 | edge moved | 44/44 (100%) | 90/90 (100%) | (none planted) |
-| stripe or side mirrored | | | 7/18 (39%) |
+| stripe or side mirrored | | | 7/17 (41%) |
 | **false alarms on the words as they are** | 0 of 171 claims | 0 of 332 | 14 flags in 124 claims (below) |
 
 The review's run of the first version had Where lines catching 63% of +1 in shifts and 53% of side swaps.
@@ -127,6 +127,14 @@ The review's run of the first version had Where lines catching 63% of +1 in shif
 - **A sentence about the step's whole area,** which reaches both edges.
 
 The full lists are in `mutate`'s output.
+
+**Fixed after the second review:**
+- **Two relations joined by "and" with no comma** ("just outside the left red stripe and one just left of the center
+  red stripe"): the first reference used to run on and swallow the second claim. A reference now ends at and, or,
+  then, while and but, so each relation is checked. The #159 step-22 sentence shape is tested both ways.
+- **A pass's tip about an edge** is now read from the marks the pass adds, not from the whole part it's painted on.
+  Before, "dab the dark marks at the right edge" passed when the dabs were all in the left third, and "keep the dark
+  marks short of the right edge" was a false alarm when it was true.
 
 `FixtureTests` fails if the fixtures' Where-line catch rate drops below these floors:
 - 100% for ±1 in, side swaps and edge moves;
@@ -256,6 +264,6 @@ It waits on #165's v2 baseline for the placement and text fault-count comparison
 - 9 of 12 distinct faults flagged on the sealed lessons are real.
 
 **Not settled:**
-- In tips, planted faults are caught only 39 to 94% of the time, depending on the kind.
+- In tips, planted faults are caught only 41 to 94% of the time, depending on the kind.
 - The main gap is facts for the pieces of a part. If the A/B goes ahead, that's the first thing to add: it would
   also clear the three false alarms.

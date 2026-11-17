@@ -178,6 +178,19 @@ class Fault159Tests(unittest.TestCase):
                            ("Paint one blue stripe inside the center red stripe.", "inside the center red stripe")]:
             got = [c["words"] for c in failed(vf.check_text(other, text(other, {"balloon-blue": tip})))]
             self.assertEqual(got, [words], tip)
+        # two relations joined by "and" with no comma: each is a claim (N1 of the second review)
+        for tip, words, fixed in [
+                ("One goes just outside the left red stripe and one just left of the center red stripe.",
+                 "just left of the center red stripe",
+                 "One goes just outside the left red stripe and one just right of the center red stripe."),
+                ("Paint one stripe just outside the left red stripe and the other just inside the center red stripe.",
+                 "just inside the center red stripe",
+                 "Paint one stripe just outside the left red stripe and the other just outside the center red stripe.")]:
+            got = [c["words"] for c in failed(vf.check_text(other, text(other, {"balloon-blue": tip})))]
+            self.assertEqual(got, [words], tip)
+            r = vf.check_text(other, text(other, {"balloon-blue": fixed}))
+            self.assertEqual(failed(r), [], fixed)
+            self.assertEqual(len([c for c in r["claims"] if c["kind"] == "relation"]), 2, fixed)
 
     def test_far_left_edge_of_the_part_is_not_the_canvas(self):
         """'along the far left edge' on a balloon's stripe means the balloon's edge: not flagged. 'at the left edge'
@@ -274,6 +287,24 @@ class Fault159Tests(unittest.TestCase):
         self.assertIn("right one", bad[0]["sheet"])
         ok = [c for c in r["claims"] if c["id"] == "soil-pull" and c["words"] == "a third of the way in"]
         self.assertEqual([c["ok"] for c in ok], [True])
+
+    def test_a_pass_reaches_the_edges_its_marks_reach(self):
+        """N2 of the second review: on a pass, a tip's edge claim is about the marks it adds, not the whole part."""
+        field = box(0, 7, 16, 12)
+        dabs = field & box(0, 7, 5, 12) & (np.indices(field.shape)[1] % 20 < 6)  # all in the left third
+        sheet = scene([("sky", "Sunset sky", "area", None, box(0, 0, 16, 7)),
+                       ("lavender", "Lavender rows", "area", None, field)],
+                      [("sky", "sky", "flat", ["s"], box(0, 0, 16, 7)),
+                       ("lavender-base", "lavender", "flat", ["v"], field),
+                       ("lavender-dark", "lavender", "pass", ["d"], dabs)],
+                      {"s": ("Sunset orange", "#f08a3c"), "v": ("Lavender purple", "#6250a8"),
+                       "d": ("Shadow violet", "#313a51")})
+        for tip, bad in [("Dab the dark marks at the right edge of the canvas.", ["edge"]),
+                         ("Dab the dark marks all the way across.", ["edge"]),
+                         ("Keep the dark marks short of the right edge.", []),
+                         ("Start the dark marks at the left edge.", [])]:
+            got = [c["kind"] for c in failed(vf.check_text(sheet, text(sheet, {"lavender-dark": tip})), "lavender-dark")]
+            self.assertEqual(got, bad, tip)
 
     def test_same_paint_as_the_coat_under(self):
         paints = {"s": ("Sunset orange", "#f08a3c"), "v": ("Shadow violet", "#313a51")}
