@@ -8,7 +8,7 @@ removed (build_steps.make_background, the guard v2's one background render alrea
     python spike/experiments/v3_peel.py peel highland-cow --mode chained --quality low     # PAID: one render a level
     python spike/experiments/v3_peel.py peel all4 --mode parallel --quality low
     python spike/experiments/v3_peel.py build highland-cow --variant chained-low  # step pictures from the layers
-    python spike/experiments/v3_peel.py table                                     # the write-up's tables
+    python spike/experiments/v3_peel.py results                                   # writes v3_peel.json
 
 Words:
     level     the parts behind everything (areas, and marks listed before the first object) are level 0. A thing in
@@ -19,8 +19,8 @@ Words:
     chained   P[L-1] is made from P[L]: remove level L. One render after another.
     parallel  every P[L] is made from the finish: remove every level above L. All renders at once.
 
-The pictures and the numbers go in spike/experiments/bench/runs/peel/<variant>/<picture>/ (git-ignored); `table`
-reads the peel.json files there. docs/spikes/v3-peel.md has the results.
+The pictures and the numbers go in spike/experiments/bench/runs/peel/<variant>/<picture>/ (git-ignored); `results`
+gathers the peel.json and build.json files there into v3_peel.json. docs/spikes/v3-peel.md has the results.
 """
 
 from __future__ import annotations
@@ -130,6 +130,10 @@ def render(model: str, picture: np.ndarray, prompt: str, folder: Path, name: str
         Image.fromarray(picture).save(src)
         info = RENDERERS[model](src, prompt, raw, quality)
         meta.write_text(json.dumps({**info, "prompt": prompt, "model": model, "quality": quality}, indent=1))
+    kept = json.loads(meta.read_text())
+    if kept["prompt"] != prompt:
+        raise SystemExit(f"{raw} was rendered for a different request (the levels or the parts changed): delete "
+                         f"{raw.name} and {meta.name} to render it again")
     got = np.array(Image.open(raw).convert("RGB"))
     if got.shape != picture.shape:
         got = cv2.resize(got, (picture.shape[1], picture.shape[0]), interpolation=cv2.INTER_AREA)
@@ -188,6 +192,7 @@ def peel(picture: str, mode: str, quality: str, model: str = "gpt-image", runs: 
     P = {top: finish}
     raws: dict[int, np.ndarray] = {}
     rows = []
+    fresh = [L for L in range(top) if not (folder / f"P{L}_raw.png").exists()]  # the renders this run makes
     started = time.time()
 
     def one(L: int, src: np.ndarray, taken: np.ndarray) -> tuple[np.ndarray, dict]:
@@ -226,8 +231,9 @@ def peel(picture: str, mode: str, quality: str, model: str = "gpt-image", runs: 
         L = row["level"]
         Image.fromarray(P[L]).save(folder / f"P{L}.png")
         row.update(edge_left(finish, P[L], level[owner] == L + 1))
-        # Under the levels above L+1, P[L] and P[L+1] are two renders of the same place. Whatever differs there and
-        # isn't level L+1's own paint is a change outside the layer (check 2), before `layers` settles it.
+        # Under the levels above L+1, P[L] and P[L+1] are two renders of the same place. This counts everything that
+        # differs there, level L+1's own paint under them included (the blanket under the cat, which should differ);
+        # build_lesson's same_place_moved leaves that out, once the layers say whose each pixel is.
         under = level[owner] > L + 1
         row["under_share"] = round(float(under.mean()), 4)
         row["under_moved"] = moved(P[L], P[L + 1], under)
@@ -236,15 +242,17 @@ def peel(picture: str, mode: str, quality: str, model: str = "gpt-image", runs: 
               "level_of": {p["id"]: int(v) for p, v in zip(parts, level)},
               "renders": len(rows), "cost_usd": round(sum(r["cost_usd"] for r in rows), 4),
               "render_seconds": round(sum(r["seconds"] for r in rows), 1),
-              "wall_seconds": round(wall if all("cached" not in r for r in rows) else 0.0, 1),
-              # check 1: every layer on, the picture is the finish
-              "stack_gap": moved(P[top], finish, np.ones(owner.shape, bool)),
               "rows": rows}
+    # Wall time for the renders. Chained, they run one after another, so it's their seconds added up (a rerun that
+    # reads some renders from the folder can't time it). All at once, it's this run's clock when every render was
+    # made in this run, else the time recorded when they were.
     old = folder / "peel.json"
-    if old.exists():  # a second run reads the renders from the folder: keep the first run's wall time
-        before = json.loads(old.read_text())
-        if wall < 2:
-            result["wall_seconds"] = before["wall_seconds"]
+    if mode == "chained":
+        result["wall_seconds"] = result["render_seconds"]
+    elif len(fresh) == len(rows):
+        result["wall_seconds"] = round(wall, 1)
+    else:
+        result["wall_seconds"] = json.loads(old.read_text()).get("wall_seconds") if old.exists() else None
     old.write_text(json.dumps(result, indent=1))
     sheet(folder, [P[L] for L in range(top + 1)], [raws.get(L) for L in range(top + 1)])
     return result
@@ -359,7 +367,7 @@ def build(d: dict, P: dict[int, np.ndarray], level: np.ndarray, own: dict[int, n
         names_k = paints_of.get(parts[k]["id"]) or []
         if k not in prep:
             prep[k] = bs._prepare(pre[L], parts, k, names_k, hexes)
-            if is_back[k] and names_k is not None:
+            if is_back[k]:
                 # under the parts behind that were removed, the part's paint is the render's, not v2's fill
                 r = prep[k]
                 fix = (level[owner] > L) & is_back[owner] & r["area"]
@@ -374,7 +382,8 @@ def build(d: dict, P: dict[int, np.ndarray], level: np.ndarray, own: dict[int, n
         blocked = np.zeros((h, w), bool)
         for q in np.flatnonzero(started):
             if q > k or level[q] > L:
-                blocked |= own[int(level[q])] == q
+                # q as it shows at the higher of the two levels: never its place under part k itself
+                blocked |= own[max(L, int(level[q]))] == q
         target = r["area"] & ~blocked
         show = s.get("show", "full")
         if show == "flat":
@@ -458,8 +467,14 @@ def build_lesson(picture: str, variant: str, runs: Path = RUNS, sam=None) -> dic
     started = time.time()
     pictures, rows, _ = build(d, P, level, own)
     build_s = time.time() - started
+    same = []
     for L in range(top):
         Image.fromarray(ol.preview(P[L], parts, own[L])).save(folder / f"owner{L}.jpg", quality=85)
+        # check 2 on the peeled pictures as they come: under the levels above L+1, where the same part owns the
+        # pixel in P[L] and in P[L+1], the two are renders of the same paint. How much of that differs?
+        under = (level[d["owner"]] > L + 1) & (own[L] == own[L + 1])
+        if under.any():
+            same.append({"level": L, "share": round(float(under.mean()), 4), "moved": moved(P[L], P[L + 1], under)})
     lesson = OUT / variant / "lessons" / f"{d['run'].name}"
     if lesson.exists():
         shutil.rmtree(lesson)
@@ -475,7 +490,7 @@ def build_lesson(picture: str, variant: str, runs: Path = RUNS, sam=None) -> dic
             Image.fromarray(img[y0:y1, x0:x1]).save(lesson / "canvas" / name)
     Image.fromarray(bs.contact_sheet(pictures, bs.flat_steps(d["plan"]))).save(folder / "steps.jpg", quality=88)
     result = {"picture": picture, "variant": variant, "lesson": str(lesson.relative_to(ROOT)),
-              "outline_seconds": round(outline_s, 1), "build_seconds": round(build_s, 1),
+              "outline_seconds": round(outline_s, 1), "build_seconds": round(build_s, 1), "same_place_moved": same,
               "peel": ghost_sum(rows), "v2": ghost_sum(baseline_rows(d)), "rows": rows}
     (folder / "build.json").write_text(json.dumps(result, indent=1))
     return result
@@ -496,7 +511,6 @@ def results() -> dict:
         rows = p["rows"]
         row = {"picture": p["picture"], "levels": p["levels"], "renders": p["renders"], "cost_usd": p["cost_usd"],
                "render_seconds": p["render_seconds"], "wall_seconds": p["wall_seconds"],
-               "stack_gap": p["stack_gap"],
                "raw_moved": round(sum(r["raw_moved"] for r in rows) / len(rows), 3),
                "not_removed": max(r["objects_left"] for r in rows),
                "failed_renders": sum(bool(r["render_problems"]) for r in rows),
@@ -506,7 +520,9 @@ def results() -> dict:
         if built.exists():
             b = json.loads(built.read_text())
             row.update({"outline_seconds": b["outline_seconds"], "build_seconds": b["build_seconds"],
-                        "steps": len(b["rows"]), "outside_max": b["peel"]["outside_max"],
+                        "steps": len(b["rows"]),
+                        "same_place_moved": max([x["moved"] for x in b.get("same_place_moved") or []], default=None),
+                        "outside_max": b["peel"]["outside_max"],
                         "final_gap": b["peel"]["final_gap"], "ghost_steps": b["peel"]["steps_with_plain_ghost"],
                         "ghosts_listed": b["peel"]["listed"], "v2_final_gap": b["v2"]["final_gap"],
                         "v2_ghost_steps": b["v2"]["steps_with_plain_ghost"], "v2_ghosts_listed": b["v2"]["listed"]})
@@ -569,13 +585,9 @@ def main() -> None:
         for name in pictures_of(a.picture):
             d = load(name)
             for deep in (False, True):
-              level = levels(d["plan"]["parts"], d["owner"], deep)
-              print(json.dumps({"picture": name, "deep": deep, "levels": int(level.max()),
-                                "level_of": {p["id"]: int(v) for p, v in zip(d["plan"]["parts"], level)}}))
-            continue
-            print(json.dumps({"picture": name, "levels": int(level.max()),
-                              "level_of": {p["id"]: int(v) for p, v in zip(d["plan"]["parts"], level)},
-                              "front_share": round(float((level[d["owner"]] > 0).mean()), 3)}))
+                level = levels(d["plan"]["parts"], d["owner"], deep)
+                print(json.dumps({"picture": name, "deep": deep, "levels": int(level.max()),
+                                  "level_of": {p["id"]: int(v) for p, v in zip(d["plan"]["parts"], level)}}))
     elif a.cmd == "peel":
         for name in pictures_of(a.picture):
             r = peel(name, a.mode, a.quality, a.model, deep=a.deep)

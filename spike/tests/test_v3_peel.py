@@ -97,7 +97,7 @@ class PeelTests(unittest.TestCase):
 
     def test_parallel_peel_keeps_everything_outside_the_hole(self):
         r = vp.peel("made-up", "parallel", "low")
-        self.assertEqual((r["levels"], r["renders"], r["stack_gap"]), (2, 2, 0.0))
+        self.assertEqual((r["levels"], r["renders"]), (2, 2))
         folder = Path(self.tmp.name) / "parallel-low" / "made-up"
         finish, owner = self.d["finish"], self.d["owner"]
         p1 = np.array(Image.open(folder / "P1.png"))
@@ -110,11 +110,20 @@ class PeelTests(unittest.TestCase):
             self.assertEqual(row["render_problems"], [])
             self.assertLess(row["edge"], 0.1)
         self.assertEqual(len(self.calls), 2)
-        vp.peel("made-up", "parallel", "low")  # a second run reads the renders from the folder
+        wall = r["wall_seconds"]
+        again = vp.peel("made-up", "parallel", "low")  # a second run reads the renders from the folder
         self.assertEqual(len(self.calls), 2)
+        self.assertEqual(again["wall_seconds"], wall)  # and keeps the time of the run that made them
+
+    def test_a_render_made_for_another_request_is_refused(self):
+        vp.peel("made-up", "parallel", "low")
+        self.d["plan"]["parts"][3]["name"] = "The tabby"
+        with self.assertRaises(SystemExit):
+            vp.peel("made-up", "parallel", "low")
 
     def test_chained_peel_clears_what_the_last_render_painted(self):
-        vp.peel("made-up", "chained", "low")
+        r = vp.peel("made-up", "chained", "low")
+        self.assertEqual(r["wall_seconds"], r["render_seconds"])  # one after another
         p0 = np.array(Image.open(Path(self.tmp.name) / "chained-low" / "made-up" / "P0.png"))
         # the rug under the cat came from the first render and has no outline: it must go with the rug
         self.assertLess(np.abs(p0[62:68, 55:85].astype(int) - SKY).max(), 12)
