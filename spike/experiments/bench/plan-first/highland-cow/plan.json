@@ -1,0 +1,967 @@
+{
+  "focal_point": "the cow's face: the fringe over its eyes and its nose",
+  "light": "the setting sun, low on the right behind the hills, rimming the cow's top and right side with gold",
+  "paints": [
+    {
+      "id": "sky-1",
+      "name": "Soft sky blue",
+      "used_for": "the top of the sky",
+      "hex": "#8dabce",
+      "sample_x": 0.472,
+      "sample_y": 0.0,
+      "parts": [
+        "sky"
+      ]
+    },
+    {
+      "id": "clouds-1",
+      "name": "Pale silver-gray",
+      "used_for": "the cool cloud streaks higher on the left, and the loch",
+      "hex": "#bbbdbb",
+      "sample_x": 0.972,
+      "sample_y": 0.0,
+      "parts": [
+        "clouds",
+        "loch"
+      ]
+    },
+    {
+      "id": "far-hills-1",
+      "name": "Deep slate blue",
+      "used_for": "the nearer mountain ridge",
+      "hex": "#597199",
+      "sample_x": 0.543,
+      "sample_y": 0.238,
+      "parts": [
+        "far-hills"
+      ]
+    },
+    {
+      "id": "far-hills-2",
+      "name": "Hazy blue-violet",
+      "used_for": "the farthest mountain range",
+      "hex": "#8e8a90",
+      "sample_x": 0.904,
+      "sample_y": 0.204,
+      "parts": [
+        "far-hills"
+      ],
+      "added": true
+    },
+    {
+      "id": "clouds-2",
+      "name": "Golden ochre",
+      "used_for": "the gold low in the sky, the lit cloud tops, the cow's golden locks and sunlit rim, the horns' lit tops, and the brightest grass tips",
+      "hex": "#e2ae4d",
+      "sample_x": 0.008,
+      "sample_y": 0.492,
+      "parts": [
+        "sky",
+        "clouds",
+        "grass",
+        "cow",
+        "muzzle",
+        "horns"
+      ]
+    },
+    {
+      "id": "grass-1",
+      "name": "Deep grass green",
+      "used_for": "the bushes, the meadow's base, and the dark grass blades",
+      "hex": "#34423b",
+      "of": "grass-3",
+      "plus": "Ultramarine blue",
+      "sample_x": 0.216,
+      "sample_y": 0.999,
+      "parts": [
+        "hillside",
+        "bushes",
+        "grass"
+      ]
+    },
+    {
+      "id": "grass-2",
+      "name": "Olive gold",
+      "used_for": "the gold grass blades in the meadow",
+      "hex": "#948031",
+      "sample_x": 0.0,
+      "sample_y": 0.548,
+      "parts": [
+        "hillside",
+        "grass"
+      ]
+    },
+    {
+      "id": "grass-3",
+      "name": "Olive green",
+      "used_for": "the body of the hillside, and the olive grass blades",
+      "hex": "#455337",
+      "of": "grass-1",
+      "plus": "white",
+      "sample_x": 0.999,
+      "sample_y": 0.84,
+      "parts": [
+        "hillside",
+        "grass"
+      ],
+      "added": true
+    },
+    {
+      "id": "hillside-1",
+      "name": "Sunlit yellow-green",
+      "used_for": "the sunlit hillside, the sun on the bushes, and the sunlit grass blades",
+      "hex": "#5e623a",
+      "of": "grass-3",
+      "plus": "white",
+      "sample_x": 0.301,
+      "sample_y": 0.823,
+      "parts": [
+        "hillside",
+        "bushes",
+        "grass"
+      ],
+      "added": true
+    },
+    {
+      "id": "cow-1",
+      "name": "Deep red-brown",
+      "used_for": "the shadow side of the coat, the horns' undersides, and the nostrils and mouth",
+      "hex": "#4c2a1e",
+      "of": "cow-2",
+      "plus": "Ultramarine blue",
+      "sample_x": 0.492,
+      "sample_y": 0.52,
+      "parts": [
+        "cow",
+        "muzzle",
+        "horns"
+      ]
+    },
+    {
+      "id": "cow-2",
+      "hex": "#71371d",
+      "sample_x": 0.429,
+      "sample_y": 0.532,
+      "parts": [
+        "cow",
+        "muzzle",
+        "horns"
+      ],
+      "name": "Rust brown",
+      "used_for": "the cow's main coat color and its darker locks"
+    },
+    {
+      "id": "muzzle-2",
+      "hex": "#944b23",
+      "sample_x": 0.207,
+      "sample_y": 0.509,
+      "parts": [
+        "cow",
+        "muzzle"
+      ],
+      "added": true,
+      "name": "Copper orange",
+      "used_for": "the cow's copper locks"
+    },
+    {
+      "id": "sky-2",
+      "hex": "#d19e6a",
+      "of": "clouds-2",
+      "plus": "white",
+      "sample_x": 0.65,
+      "sample_y": 0.354,
+      "parts": [
+        "sky",
+        "clouds",
+        "cow",
+        "horns"
+      ],
+      "added": true,
+      "name": "Warm apricot",
+      "used_for": "the warm glow in the sky and the apricot cloud streaks"
+    },
+    {
+      "id": "muzzle-1",
+      "name": "Rosy brown",
+      "used_for": "the cow's nose",
+      "hex": "#734933",
+      "of": "cow-2",
+      "plus": "white",
+      "sample_x": 0.601,
+      "sample_y": 0.498,
+      "parts": [
+        "muzzle"
+      ],
+      "added": true
+    },
+    {
+      "id": "horns-1",
+      "name": "Rose gray",
+      "used_for": "the lit top of the nose",
+      "hex": "#85737d",
+      "sample_x": 0.746,
+      "sample_y": 0.337,
+      "parts": [
+        "muzzle",
+        "horns"
+      ]
+    },
+    {
+      "id": "horns-2",
+      "name": "Horn taupe",
+      "used_for": "the horns",
+      "hex": "#866658",
+      "sample_x": 0.683,
+      "sample_y": 0.34,
+      "parts": [
+        "horns"
+      ],
+      "added": true
+    }
+  ],
+  "parts": [
+    {
+      "box": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "covers": [
+        [
+          0,
+          0,
+          1,
+          0.36
+        ]
+      ],
+      "element": "sky-blend",
+      "element_why": "A smooth gradient from blue at the top to gold at the hills, blended wet in one go and run down past the hill line.",
+      "id": "sky",
+      "kind": "area",
+      "name": "Sunset sky",
+      "thing": "sky"
+    },
+    {
+      "box": [
+        0,
+        0,
+        1,
+        0.19
+      ],
+      "element": "clouds",
+      "element_why": "Soft streaks laid on the dry sky: a silver-gray base dry-brushed in, then the sunset gold over it where the light catches them.",
+      "id": "clouds",
+      "kind": "marks",
+      "name": "Gold cloud streaks",
+      "parent": "sky",
+      "points_in": [
+        [
+          0.2,
+          0.025
+        ],
+        [
+          0.3,
+          0.03
+        ],
+        [
+          0.72,
+          0.075
+        ],
+        [
+          0.88,
+          0.12
+        ],
+        [
+          0.62,
+          0.15
+        ],
+        [
+          0.25,
+          0.115
+        ],
+        [
+          0.93,
+          0.065
+        ]
+      ],
+      "points_out": [
+        [
+          0.05,
+          0.06
+        ],
+        [
+          0.45,
+          0.04
+        ],
+        [
+          0.5,
+          0.11
+        ],
+        [
+          0.12,
+          0.17
+        ],
+        [
+          0.97,
+          0.17
+        ],
+        [
+          0.7,
+          0.02
+        ]
+      ],
+      "thing": "clouds"
+    },
+    {
+      "box": [
+        0,
+        0.165,
+        1,
+        0.34
+      ],
+      "covers": [
+        [
+          0,
+          0.165,
+          1,
+          0.4
+        ]
+      ],
+      "element": "far-hills",
+      "element_why": "Two or three flat blue-gray ranges, lighter at the back, no texture at this distance.",
+      "id": "far-hills",
+      "kind": "area",
+      "name": "Far blue hills",
+      "points_in": [
+        [
+          0.5,
+          0.285
+        ],
+        [
+          0.65,
+          0.29
+        ],
+        [
+          0.4,
+          0.283
+        ],
+        [
+          0.75,
+          0.2
+        ],
+        [
+          0.9,
+          0.205
+        ],
+        [
+          0.95,
+          0.335
+        ],
+        [
+          0.42,
+          0.29
+        ],
+        [
+          0.5,
+          0.298
+        ],
+        [
+          0.37,
+          0.285
+        ]
+      ],
+      "thing": "mountains",
+      "element_left_out": "Separate shadow and light sides: the ranges are two flat values, a far one and a nearer ridge."
+    },
+    {
+      "box": [
+        0.84,
+        0.29,
+        1,
+        0.34
+      ],
+      "element": "water",
+      "element_why": "A small strip of far water, laid in with horizontal strokes in one pale color.",
+      "id": "loch",
+      "kind": "area",
+      "name": "The loch",
+      "thing": "loch",
+      "element_left_out": "The lighter streaks and ripples: the strip is too small and far for them."
+    },
+    {
+      "box": [
+        0,
+        0.21,
+        1,
+        0.6
+      ],
+      "covers": [
+        [
+          0,
+          0.21,
+          1,
+          0.62
+        ]
+      ],
+      "element": "field-grass",
+      "element_why": "The rolling slope behind the cow: one blended lay-in, lighter and yellower toward the sun; its bushes are their own part.",
+      "id": "hillside",
+      "kind": "area",
+      "name": "Green hillside",
+      "points_in": [
+        [
+          0.05,
+          0.3
+        ],
+        [
+          0.15,
+          0.4
+        ],
+        [
+          0.05,
+          0.45
+        ],
+        [
+          0.8,
+          0.36
+        ],
+        [
+          0.95,
+          0.42
+        ],
+        [
+          0.9,
+          0.52
+        ],
+        [
+          0.75,
+          0.5
+        ],
+        [
+          0.42,
+          0.287
+        ],
+        [
+          0.5,
+          0.297
+        ],
+        [
+          0.07,
+          0.469
+        ],
+        [
+          0.688,
+          0.465
+        ],
+        [
+          0.686,
+          0.5
+        ],
+        [
+          0.115,
+          0.455
+        ]
+      ],
+      "thing": "hillside"
+    },
+    {
+      "id": "bushes",
+      "name": "Dark bushes on the hillside",
+      "kind": "marks",
+      "parent": "hillside",
+      "thing": "bushes",
+      "box": [
+        0,
+        0.21,
+        1,
+        0.56
+      ],
+      "element": "foliage",
+      "element_why": "Dark clumps dappled over the slope: dark dabs first, then a few sunlit taps on top.",
+      "element_left_out": "The middle-value leaves: the hillside green under them plays the middle value.",
+      "colors_in": [
+        "#2d3d44",
+        "#354948",
+        "#384949"
+      ],
+      "colors_out": [
+        "#927d34",
+        "#6f723f",
+        "#5b5d37",
+        "#988133",
+        "#646c3d"
+      ]
+    },
+    {
+      "box": [
+        0,
+        0.46,
+        1,
+        1
+      ],
+      "element": "field-grass",
+      "element_why": "Foreground grass: a dark green base blended with the hillside, then flicked blades in passes from dark to gold.",
+      "id": "grass",
+      "kind": "area",
+      "name": "Tall grass",
+      "points_in": [
+        [
+          0.99,
+          0.8
+        ],
+        [
+          0.99,
+          0.6
+        ],
+        [
+          0.99,
+          0.95
+        ],
+        [
+          0.5,
+          0.9
+        ],
+        [
+          0.118,
+          0.56
+        ],
+        [
+          0.122,
+          0.6
+        ],
+        [
+          0.19,
+          0.705
+        ],
+        [
+          0.192,
+          0.73
+        ]
+      ],
+      "thing": "meadow",
+      "element_left_out": "Seed heads and single fine stalks: the grass is flicked blades only."
+    },
+    {
+      "box": [
+        0.1,
+        0.29,
+        0.76,
+        0.81
+      ],
+      "element": "shaggy-animal",
+      "element_left_out": "A painted eye and the legs: the eyes hide under the fringe (one dark touch shows), and the legs are lost in the grass.",
+      "element_why": "A long-haired animal whose coat hangs in locks: shape, shadow, locks pulled dark to light, the sun's rim, then the face.",
+      "id": "cow",
+      "kind": "object",
+      "name": "The Highland cow",
+      "thing": "cow"
+    },
+    {
+      "id": "muzzle",
+      "name": "The cow's muzzle",
+      "kind": "object",
+      "thing": "cow",
+      "box": [
+        0.51,
+        0.43,
+        0.68,
+        0.545
+      ],
+      "element": "shaped-object",
+      "element_why": "The nose and mouth under the fringe: a rounded shape blocked in, lit on top, then the nostrils dotted and the mouth lined.",
+      "element_left_out": "A shadow pass on the muzzle: the nose's dark is its nostrils and mouth, which the details steps paint.",
+      "parent": "cow"
+    },
+    {
+      "boxes": [
+        [
+          0.265,
+          0.2,
+          0.445,
+          0.355
+        ],
+        [
+          0.67,
+          0.25,
+          0.815,
+          0.37
+        ]
+      ],
+      "element": "shaped-object",
+      "element_why": "Two curved horns with a clear edge: blocked in as curved pieces, shaded underneath, lit along the top.",
+      "id": "horns",
+      "kind": "object",
+      "name": "The horns",
+      "thing": "horns"
+    }
+  ],
+  "photo": "spike/experiments/bench/pictures/highland-cow/00_beginner.png",
+  "plan_version": 2,
+  "stages": [
+    {
+      "id": "the-sky",
+      "name": "The sky",
+      "steps": [
+        {
+          "id": "blend-sky",
+          "of": "blend-sky",
+          "name": "Blend the sunset sky",
+          "part": "sky",
+          "show": "blend",
+          "paints": [
+            "sky-1",
+            "sky-2",
+            "clouds-2"
+          ],
+          "stroke": "side-to-side-blend",
+          "brush": "1 inch flat"
+        },
+        {
+          "id": "streak-clouds",
+          "of": "streak-clouds",
+          "name": "Dry-brush the cloud streaks",
+          "part": "clouds",
+          "show": "flat",
+          "paints": [
+            "sky-2",
+            "clouds-1"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/2 inch flat"
+        },
+        {
+          "id": "light-cloud-tops",
+          "of": "light-cloud-tops",
+          "name": "Light the tops of the clouds",
+          "part": "clouds",
+          "show": "pass",
+          "paints": [
+            "clouds-2"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/2 inch flat"
+        }
+      ]
+    },
+    {
+      "id": "the-far-land",
+      "name": "The mountains and the loch",
+      "steps": [
+        {
+          "id": "lay-in-mountains",
+          "of": "lay-in-mountains",
+          "name": "Lay in the mountain ranges",
+          "part": "far-hills",
+          "show": "full",
+          "paints": [
+            "far-hills-2",
+            "far-hills-1"
+          ],
+          "stroke": "horizontal-strokes",
+          "brush": "3/4 inch flat"
+        },
+        {
+          "id": "streak-loch",
+          "of": "streak-loch",
+          "name": "Streak in the loch",
+          "part": "loch",
+          "show": "blend",
+          "paints": [
+            "clouds-1"
+          ],
+          "stroke": "horizontal-strokes",
+          "brush": "1/4 inch flat"
+        }
+      ]
+    },
+    {
+      "id": "the-green-ground",
+      "name": "The green slope and the meadow",
+      "steps": [
+        {
+          "id": "lay-in-hillside",
+          "of": "lay-in-ground",
+          "name": "Lay in the hillside",
+          "part": "hillside",
+          "show": "blend",
+          "paints": [
+            "hillside-1",
+            "grass-3",
+            "grass-1"
+          ],
+          "stroke": "side-to-side-blend",
+          "brush": "1 inch flat"
+        },
+        {
+          "id": "lay-in-meadow",
+          "of": "lay-in-ground",
+          "name": "Lay in the meadow",
+          "part": "grass",
+          "show": "flat",
+          "paints": [
+            "grass-1"
+          ],
+          "stroke": "side-to-side-blend",
+          "brush": "1 inch flat"
+        },
+        {
+          "id": "dab-dark-bushes",
+          "of": "dab-dark-bushes",
+          "name": "Dab the dark bushes on the hillside",
+          "part": "bushes",
+          "show": "flat",
+          "paints": [
+            "grass-1"
+          ],
+          "stroke": "dabbing",
+          "brush": "old stiff 1/2 inch flat"
+        },
+        {
+          "id": "tap-sunlit-bushes",
+          "of": "tap-sunlit-bushes",
+          "name": "Tap the sun on the bushes",
+          "part": "bushes",
+          "show": "pass",
+          "paints": [
+            "hillside-1"
+          ],
+          "stroke": "dabbing",
+          "brush": "old stiff 1/2 inch flat"
+        }
+      ]
+    },
+    {
+      "id": "the-cow-shape",
+      "name": "The cow's shape and horns",
+      "steps": [
+        {
+          "id": "block-in-cow",
+          "of": "block-in-cow",
+          "name": "Block in the cow",
+          "part": "cow",
+          "show": "flat",
+          "paints": [
+            "cow-2"
+          ],
+          "stroke": "build-from-pieces",
+          "brush": "1/2 inch flat"
+        },
+        {
+          "id": "shade-cow",
+          "of": "shade-cow",
+          "name": "Shade the cow's shadow side",
+          "part": "cow",
+          "show": "pass",
+          "paints": [
+            "cow-1"
+          ],
+          "stroke": "curved-strokes",
+          "brush": "1/2 inch flat"
+        },
+        {
+          "id": "block-in-horns",
+          "of": "block-in-horns",
+          "name": "Block in the horns",
+          "part": "horns",
+          "show": "flat",
+          "paints": [
+            "horns-2"
+          ],
+          "stroke": "build-from-pieces",
+          "brush": "#6 round"
+        },
+        {
+          "id": "shade-horns",
+          "of": "shade-horns",
+          "name": "Shade the undersides of the horns",
+          "part": "horns",
+          "show": "pass",
+          "paints": [
+            "cow-1"
+          ],
+          "stroke": "curved-strokes",
+          "brush": "#4 round"
+        }
+      ]
+    },
+    {
+      "id": "the-shaggy-coat",
+      "name": "The shaggy coat",
+      "steps": [
+        {
+          "id": "pull-copper-locks",
+          "of": "pull-copper-locks",
+          "name": "Pull the copper locks",
+          "part": "cow",
+          "show": "pass",
+          "paints": [
+            "muzzle-2",
+            "cow-2"
+          ],
+          "stroke": "thick-to-thin",
+          "brush": "1/2 inch angle"
+        },
+        {
+          "id": "pull-golden-locks",
+          "of": "pull-golden-locks",
+          "name": "Pull the sunlit golden locks",
+          "part": "cow",
+          "show": "pass",
+          "paints": [
+            "clouds-2"
+          ],
+          "stroke": "thick-to-thin",
+          "brush": "1/4 inch angle"
+        },
+        {
+          "id": "rim-light-cow",
+          "of": "catch-rim-light",
+          "name": "Catch the sun's rim on the hair",
+          "part": "cow",
+          "show": "pass",
+          "paints": [
+            "clouds-2"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/4 inch flat"
+        },
+        {
+          "id": "rim-light-horns",
+          "of": "catch-rim-light",
+          "name": "Catch the sun's rim on the horns",
+          "part": "horns",
+          "show": "pass",
+          "paints": [
+            "clouds-2"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/4 inch flat"
+        }
+      ]
+    },
+    {
+      "id": "the-face",
+      "name": "The face",
+      "steps": [
+        {
+          "id": "paint-nose",
+          "of": "paint-nose",
+          "name": "Paint the nose",
+          "part": "muzzle",
+          "show": "flat",
+          "paints": [
+            "muzzle-1"
+          ],
+          "stroke": "curved-strokes",
+          "brush": "#4 round"
+        },
+        {
+          "id": "light-nose",
+          "of": "light-nose",
+          "name": "Light the top of the nose",
+          "part": "muzzle",
+          "show": "pass",
+          "paints": [
+            "horns-1"
+          ],
+          "stroke": "curved-strokes",
+          "brush": "#2 round"
+        },
+        {
+          "id": "dot-nostrils-eye",
+          "of": "dot-nostrils-eye",
+          "name": "Dot the nostrils and the eye",
+          "part": "muzzle",
+          "show": "pass",
+          "paints": [
+            "cow-1"
+          ],
+          "stroke": "dotting",
+          "brush": "#2 round"
+        },
+        {
+          "id": "line-mouth",
+          "of": "line-mouth",
+          "name": "Line the mouth and chin",
+          "part": "muzzle",
+          "show": "pass",
+          "paints": [
+            "cow-1"
+          ],
+          "stroke": "liner",
+          "brush": "liner"
+        }
+      ]
+    },
+    {
+      "id": "the-tall-grass",
+      "name": "The tall grass in front",
+      "steps": [
+        {
+          "id": "flick-dark-blades",
+          "of": "flick-dark-blades",
+          "name": "Flick the dark grass blades",
+          "part": "grass",
+          "show": "pass",
+          "paints": [
+            "grass-1"
+          ],
+          "stroke": "flicking",
+          "brush": "1 inch fan"
+        },
+        {
+          "id": "flick-olive-blades",
+          "of": "flick-olive-blades",
+          "name": "Flick the olive blades",
+          "part": "grass",
+          "show": "pass",
+          "paints": [
+            "grass-3"
+          ],
+          "stroke": "flicking",
+          "brush": "1 inch fan"
+        },
+        {
+          "id": "flick-yellow-green-blades",
+          "of": "flick-yellow-green-blades",
+          "name": "Flick the sunlit green blades",
+          "part": "grass",
+          "show": "pass",
+          "paints": [
+            "hillside-1"
+          ],
+          "stroke": "flicking",
+          "brush": "1 inch fan"
+        },
+        {
+          "id": "flick-gold-blades",
+          "of": "flick-gold-blades",
+          "name": "Flick the golden blades",
+          "part": "grass",
+          "show": "pass",
+          "paints": [
+            "grass-2"
+          ],
+          "stroke": "flicking",
+          "brush": "1/2 inch fan"
+        },
+        {
+          "id": "flick-brightest-tips",
+          "of": "flick-brightest-tips",
+          "name": "Flick the brightest grass tips",
+          "part": "grass",
+          "show": "pass",
+          "paints": [
+            "clouds-2"
+          ],
+          "stroke": "flicking",
+          "brush": "1/2 inch fan"
+        }
+      ]
+    }
+  ],
+  "subject": "A shaggy ginger Highland cow with long upturned horns, standing in tall grass on a moor at sunset",
+  "technique": "techniques/acrylic-paint-along-beginner.yaml",
+  "technique_why": "A sky, far hills, a near hillside and a field with one animal in front: paint-along, back to front, on a white canvas is the beginner approach that fits, with the cow and the grass in front of it last."
+}

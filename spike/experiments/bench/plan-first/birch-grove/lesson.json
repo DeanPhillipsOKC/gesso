@@ -1,0 +1,2526 @@
+{
+  "canvas": {
+    "h_in": 12.0,
+    "orientation": "landscape",
+    "w_in": 16.0
+  },
+  "folded_from": "birch-grove_skill_20261116-210750-plan-first",
+  "groups": [
+    {
+      "id": "the-backdrop",
+      "name": "The misty backdrop",
+      "steps": [
+        "blend-the-glow",
+        "paint-the-sun"
+      ]
+    },
+    {
+      "id": "the-far-woods",
+      "name": "The far woods in the mist",
+      "steps": [
+        "stamp-far-firs",
+        "pull-far-trunks",
+        "dry-brush-rays"
+      ]
+    },
+    {
+      "id": "the-ground",
+      "name": "The ground and the path",
+      "steps": [
+        "lay-in-floor",
+        "pull-in-path"
+      ]
+    },
+    {
+      "id": "the-golden-leaves",
+      "name": "The wood's golden leaves",
+      "steps": [
+        "dab-dark-canopy",
+        "dab-dark-bushes",
+        "dab-mid-leaves"
+      ]
+    },
+    {
+      "id": "the-rock",
+      "name": "The mossy rock",
+      "steps": [
+        "build-the-rock",
+        "shade-the-rock"
+      ]
+    },
+    {
+      "id": "the-birches",
+      "name": "The birch trunks",
+      "steps": [
+        "pull-pale-trunks",
+        "shade-the-trunks",
+        "add-bark-marks",
+        "pull-branches"
+      ]
+    },
+    {
+      "id": "the-fallen-leaves",
+      "name": "The fallen leaves",
+      "steps": [
+        "dab-dark-floor-leaves",
+        "dab-orange-floor-leaves",
+        "dab-gold-floor-leaves"
+      ]
+    },
+    {
+      "id": "the-last-lights",
+      "name": "The last lights",
+      "steps": [
+        "light-the-rock",
+        "light-the-bark",
+        "dab-sunlit-leaves"
+      ]
+    }
+  ],
+  "plan_first": 1,
+  "plan_version": 2,
+  "stages": [
+    {
+      "brushes": "1 1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#dbaf5d",
+          "id": "canopy-2",
+          "mix": {
+            "delta_e": 1.8,
+            "guess_recipe": "",
+            "mixed_hex": "#daaf67",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 3
+            },
+            "reachable": true,
+            "target_hex": "#dbaf5d",
+            "text": "3 parts white, 2 parts burnt sienna, 1 part yellow, a touch of red"
+          },
+          "name": "Pale gold",
+          "of": "fallen-leaves-2",
+          "parts": [
+            "sky",
+            "sun-rays",
+            "fallen-leaves",
+            "canopy",
+            "undergrowth"
+          ],
+          "plus": "white",
+          "recipe": "3 parts white, 2 parts burnt sienna, 1 part yellow, a touch of red",
+          "sample_x": 0.064,
+          "sample_y": 0.273,
+          "used_for": "the glow around the sun, the sun rays, the sunlit leaves"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#d1be98",
+          "id": "sky-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#d3bd9b",
+            "parts": {
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1,
+              "Ultramarine blue": 0.2
+            },
+            "reachable": true,
+            "target_hex": "#d1be98",
+            "text": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine"
+          },
+          "name": "Warm cream",
+          "of": "canopy-2",
+          "parts": [
+            "sky",
+            "sun-rays",
+            "far-trunks",
+            "birches"
+          ],
+          "plus": "white",
+          "recipe": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine",
+          "sample_x": 0.402,
+          "sample_y": 0.282,
+          "used_for": "the soft glow in the sky, the far pale trunks, the sunlit left edges of the birches"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#97a6b4",
+          "id": "sky-1",
+          "mix": {
+            "delta_e": 3.8,
+            "guess_recipe": "",
+            "mixed_hex": "#90a6be",
+            "parts": {
+              "Burnt sienna": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#97a6b4",
+            "text": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna"
+          },
+          "name": "Misty blue",
+          "parts": [
+            "sky",
+            "far-trunks",
+            "rock",
+            "branches"
+          ],
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna",
+          "sample_x": 0.544,
+          "sample_y": 0.293,
+          "used_for": "the cool mist on the right and low down, the far trunks' shade, the rock's shadow"
+        }
+      ],
+      "group": "the-backdrop",
+      "id": "blend-the-glow",
+      "image": "canvas/01_blend-the-glow.png",
+      "lines": [
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 15 in wide and 11 1/2 in tall."
+        },
+        {
+          "kind": "where",
+          "text": "Paint a little past its bottom and right side, under where the birch trunks and the forest floor will go."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, top to bottom: Pale gold, Warm cream, then Misty blue."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Pale gold for this step and steps 5 and 22; cover it between them."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Warm cream for this step and steps 4 and 21; cover it between them."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Misty blue for this step and steps 4 and 12; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 1/2 inch flat. Load: One or two colors on the brush. How much of each is on it controls the blend."
+        },
+        {
+          "kind": "how",
+          "text": "Short strokes that cross each other in two directions, like overlapping X shapes."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a soft, slightly textured blended fill with visible criss-cross marks."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags."
+        },
+        {
+          "kind": "watch",
+          "text": "Let it dry, then blend a new thin layer on top."
+        }
+      ],
+      "name": "Blend the misty glow",
+      "paints": "Misty sky and haze",
+      "parts": [
+        "sky"
+      ],
+      "steps": [
+        "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 15 in wide and 11 1/2 in tall.",
+        "Paint a little past its bottom and right side, under where the birch trunks and the forest floor will go.",
+        "Paints, top to bottom: Pale gold, Warm cream, then Misty blue.",
+        "Mix enough Pale gold for this step and steps 5 and 22; cover it between them.",
+        "Mix enough Warm cream for this step and steps 4 and 21; cover it between them.",
+        "Mix enough Misty blue for this step and steps 4 and 12; cover it between them.",
+        "Brush: 1 1/2 inch flat. Load: One or two colors on the brush. How much of each is on it controls the blend.",
+        "Short strokes that cross each other in two directions, like overlapping X shapes.",
+        "It should leave a soft, slightly textured blended fill with visible criss-cross marks.",
+        "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+        "Let it dry, then blend a new thin layer on top."
+      ],
+      "summary": "Blend the whole canvas from warm gold at the sun to misty blue on the right.",
+      "tip": "The light comes from a low sun at the upper left, so start with Pale gold there and work out and down, adding Warm cream and then Misty blue as you move right. Toward the bottom let the blue go grayer and darker; the floor covers it later, but run the paint over the whole canvas so no white shows between the leaves and trunks.",
+      "v2_steps": [
+        "glow-sky"
+      ]
+    },
+    {
+      "brushes": "No. 8 round",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#f8eed5",
+          "id": "sun-1",
+          "mix": {
+            "delta_e": 2.4,
+            "guess_recipe": "",
+            "mixed_hex": "#f6eccc",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 12
+            },
+            "reachable": true,
+            "target_hex": "#f8eed5",
+            "text": "12 parts white, 1 part yellow, 1 part burnt sienna"
+          },
+          "name": "Warm white",
+          "parts": [
+            "sun"
+          ],
+          "recipe": "12 parts white, 1 part yellow, 1 part burnt sienna",
+          "sample_x": 0.064,
+          "sample_y": 0.146,
+          "used_for": "the sun"
+        }
+      ],
+      "group": "the-backdrop",
+      "id": "paint-the-sun",
+      "image": "canvas/02_paint-the-sun.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the misty sky and haze dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "rinse",
+          "text": "Rinse the brush fully first: this is the lightest paint yet."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its left side is at the left edge; it's about 1/2 in wide and 1 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Warm white."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: No. 8 round."
+        },
+        {
+          "kind": "how",
+          "text": "Small circles with the tip of the brush make a soft round edge. Around the bright sun, circular strokes move outward from it."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a soft, round edge."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: The edge is too hard. Fix: soften it with lighter passes. Smudging with a finger works too."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Circle in the sun",
+      "paints": "The sun",
+      "parts": [
+        "sun"
+      ],
+      "steps": [
+        "Let the misty sky and haze dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush fully first: this is the lightest paint yet.",
+        "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its left side is at the left edge; it's about 1/2 in wide and 1 in tall.",
+        "Paint: Warm white.",
+        "Brush: No. 8 round.",
+        "Small circles with the tip of the brush make a soft round edge. Around the bright sun, circular strokes move outward from it.",
+        "It should leave a soft, round edge.",
+        "Watch out: The edge is too hard. Fix: soften it with lighter passes. Smudging with a finger works too.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Circle a small, soft near-white sun into the gold at the upper left.",
+      "tip": "Put the sun about 1 in from the left edge and 1 1/2 in down, as the Where picture shows, no bigger than a large coin. Keep the circles small and the edge soft so it glows into the gold.",
+      "v2_steps": [
+        "sun-disk"
+      ]
+    },
+    {
+      "brushes": "fan brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4d5a62",
+          "id": "far-forest-1",
+          "mix": {
+            "delta_e": 7.4,
+            "guess_recipe": "",
+            "mixed_hex": "#5c5e5b",
+            "parts": {
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4d5a62",
+            "text": "3 parts ultramarine, 1 part yellow, 1 part red, 1 part white"
+          },
+          "name": "Deep blue-green",
+          "parts": [
+            "far-forest",
+            "undergrowth",
+            "rock"
+          ],
+          "recipe": "3 parts ultramarine, 1 part yellow, 1 part red, 1 part white",
+          "sample_x": 0.749,
+          "sample_y": 0.43,
+          "used_for": "the dark far firs, the darkest bushes, the rock's shadow side"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#68819c",
+          "id": "far-forest-2",
+          "mix": {
+            "delta_e": 1.5,
+            "guess_recipe": "",
+            "mixed_hex": "#6b85a1",
+            "parts": {
+              "Burnt sienna": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#68819c",
+            "text": "1 part ultramarine, 1 part white, a touch of yellow, a touch of burnt sienna"
+          },
+          "name": "Misty fir blue",
+          "of": "far-forest-1",
+          "parts": [
+            "far-forest"
+          ],
+          "plus": "white",
+          "recipe": "1 part ultramarine, 1 part white, a touch of yellow, a touch of burnt sienna",
+          "sample_x": 0.538,
+          "sample_y": 0.509,
+          "used_for": "the paler firs further back in the mist"
+        }
+      ],
+      "group": "the-far-woods",
+      "id": "stamp-far-firs",
+      "image": "canvas/03_stamp-far-firs.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the misty backdrop dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "rinse",
+          "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its right side is about 1 in from the right edge; it's about 8 in wide and 5 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Deep blue-green, then Misty fir blue. The paint map shows where each goes."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Deep blue-green for this step and steps 9 and 12; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out."
+        },
+        {
+          "kind": "how",
+          "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down."
+        },
+        {
+          "kind": "how",
+          "text": "Short strokes in different directions make a rough texture."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: A heavy, solid top. Too much pressure or paint at the start of the tree. Fix: add fine branches with a small round instead of more fan marks."
+        }
+      ],
+      "name": "Stamp the far misty firs",
+      "paints": "The far misty firs",
+      "parts": [
+        "far-forest"
+      ],
+      "steps": [
+        "Let the misty backdrop dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its right side is about 1 in from the right edge; it's about 8 in wide and 5 1/2 in tall.",
+        "Paints, darkest first: Deep blue-green, then Misty fir blue. The paint map shows where each goes.",
+        "Mix enough Deep blue-green for this step and steps 9 and 12; cover it between them.",
+        "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out.",
+        "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down.",
+        "Short strokes in different directions make a rough texture.",
+        "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed.",
+        "Watch out: A heavy, solid top. Too much pressure or paint at the start of the tree. Fix: add fine branches with a small round instead of more fan marks."
+      ],
+      "summary": "Stamp the dark misty firs behind where the path ends, right of center.",
+      "tip": "Stamp Deep blue-green for the dark firs right of center, pointed at the top and widening down, and use Misty fir blue for the softer firs further back. Let their feet fade into the mist: no light side, they stay one soft value.",
+      "v2_steps": [
+        "far-firs"
+      ]
+    },
+    {
+      "brushes": "1/4 inch angle",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#d1be98",
+          "id": "sky-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#d3bd9b",
+            "parts": {
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1,
+              "Ultramarine blue": 0.2
+            },
+            "reachable": true,
+            "target_hex": "#d1be98",
+            "text": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine"
+          },
+          "name": "Warm cream",
+          "of": "canopy-2",
+          "parts": [
+            "sky",
+            "sun-rays",
+            "far-trunks",
+            "birches"
+          ],
+          "plus": "white",
+          "recipe": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine",
+          "sample_x": 0.402,
+          "sample_y": 0.282,
+          "used_for": "the soft glow in the sky, the far pale trunks, the sunlit left edges of the birches"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#97a6b4",
+          "id": "sky-1",
+          "mix": {
+            "delta_e": 3.8,
+            "guess_recipe": "",
+            "mixed_hex": "#90a6be",
+            "parts": {
+              "Burnt sienna": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#97a6b4",
+            "text": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna"
+          },
+          "name": "Misty blue",
+          "parts": [
+            "sky",
+            "far-trunks",
+            "rock",
+            "branches"
+          ],
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna",
+          "sample_x": 0.544,
+          "sample_y": 0.293,
+          "used_for": "the cool mist on the right and low down, the far trunks' shade, the rock's shadow"
+        }
+      ],
+      "group": "the-far-woods",
+      "id": "pull-far-trunks",
+      "image": "canvas/04_pull-far-trunks.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the far misty firs and the misty backdrop dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its right side is about 4 1/2 in from the right edge; it's about 5 1/2 in wide and 5 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Misty blue, then Warm cream. The paint map shows where each goes."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/4 inch angle."
+        },
+        {
+          "kind": "how",
+          "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a line that starts wide and tapers to a point."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Trunks that look like stiff sticks, every one the same width. Fix: start thicker at the top and let each thin out and fade toward the bottom."
+        }
+      ],
+      "name": "Pull the far pale trunks",
+      "paints": "Far misty trunks",
+      "parts": [
+        "far-trunks"
+      ],
+      "steps": [
+        "Let the far misty firs and the misty backdrop dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its right side is about 4 1/2 in from the right edge; it's about 5 1/2 in wide and 5 1/2 in tall.",
+        "Paints, darkest first: Misty blue, then Warm cream. The paint map shows where each goes.",
+        "Brush: 1/4 inch angle.",
+        "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+        "It should leave a line that starts wide and tapers to a point.",
+        "Watch out: Trunks that look like stiff sticks, every one the same width. Fix: start thicker at the top and let each thin out and fade toward the bottom."
+      ],
+      "summary": "Pull thin, pale far trunks standing in the mist in the middle of the canvas.",
+      "tip": "Pull each one in a single stroke from the top down, thin and straight, letting it fade out toward the bottom. Warm cream reads light against the dark firs; touch Misty blue into the shaded right side. No bark marks this far away.",
+      "v2_steps": [
+        "far-pale-trunks"
+      ]
+    },
+    {
+      "brushes": "1 inch old stiff flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#dbaf5d",
+          "id": "canopy-2",
+          "mix": {
+            "delta_e": 1.8,
+            "guess_recipe": "",
+            "mixed_hex": "#daaf67",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 3
+            },
+            "reachable": true,
+            "target_hex": "#dbaf5d",
+            "text": "3 parts white, 2 parts burnt sienna, 1 part yellow, a touch of red"
+          },
+          "name": "Pale gold",
+          "of": "fallen-leaves-2",
+          "parts": [
+            "sky",
+            "sun-rays",
+            "fallen-leaves",
+            "canopy",
+            "undergrowth"
+          ],
+          "plus": "white",
+          "recipe": "3 parts white, 2 parts burnt sienna, 1 part yellow, a touch of red",
+          "sample_x": 0.064,
+          "sample_y": 0.273,
+          "used_for": "the glow around the sun, the sun rays, the sunlit leaves"
+        }
+      ],
+      "group": "the-far-woods",
+      "id": "dry-brush-rays",
+      "image": "canvas/05_dry-brush-rays.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the misty backdrop dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its left side is at the left edge; it's about 4 1/2 in wide and 3 1/2 in tall."
+        },
+        {
+          "kind": "where",
+          "text": "The outline also runs under where the birch trunks and the golden canopy will go: paint straight through there."
+        },
+        {
+          "kind": "where",
+          "text": "The outline also reaches onto the misty sky and haze, painted already: there, only soften this paint into its edge and leave it showing."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Pale gold."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Hard, solid rays. Too much paint on the brush. Fix: wipe the brush nearly dry and skim lightly, so the sky shows through."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Dry-brush the sun rays",
+      "paints": "Sun rays",
+      "parts": [
+        "sun-rays"
+      ],
+      "steps": [
+        "Let the misty backdrop dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its left side is at the left edge; it's about 4 1/2 in wide and 3 1/2 in tall.",
+        "The outline also runs under where the birch trunks and the golden canopy will go: paint straight through there.",
+        "The outline also reaches onto the misty sky and haze, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Paint: Pale gold.",
+        "Brush: 1 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Watch out: Hard, solid rays. Too much paint on the brush. Fix: wipe the brush nearly dry and skim lightly, so the sky shows through.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Dry-brush soft rays of pale gold fanning down and right from the sun.",
+      "tip": "Start each stroke at the sun and drag it down and to the right, over the far firs and trunks on the left half. Keep it broken and see-through; the right side stays cool blue.",
+      "v2_steps": [
+        "rays"
+      ]
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#865131",
+          "id": "ground-3",
+          "mix": {
+            "delta_e": 1.6,
+            "guess_recipe": "",
+            "mixed_hex": "#8b5234",
+            "parts": {
+              "Burnt sienna": 3,
+              "Cadmium red medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#865131",
+            "text": "3 parts burnt sienna, 1 part red, 1 part ultramarine, 1 part white"
+          },
+          "name": "Rust brown",
+          "of": "ground-1",
+          "parts": [
+            "ground"
+          ],
+          "plus": "white",
+          "recipe": "3 parts burnt sienna, 1 part red, 1 part ultramarine, 1 part white",
+          "sample_x": 0.0,
+          "sample_y": 0.993,
+          "used_for": "the bare ground under the leaves"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#b77638",
+          "id": "fallen-leaves-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#bb7941",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#b77638",
+            "text": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red"
+          },
+          "name": "Orange gold",
+          "parts": [
+            "ground",
+            "path",
+            "fallen-leaves",
+            "canopy"
+          ],
+          "recipe": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red",
+          "sample_x": 0.422,
+          "sample_y": 0.951,
+          "used_for": "the darker leaves in the canopy and on the ground, the path"
+        }
+      ],
+      "group": "the-ground",
+      "id": "lay-in-floor",
+      "image": "canvas/06_lay-in-floor.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the misty backdrop dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 5 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, top to bottom: Orange gold, then Rust brown."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Orange gold for this step and steps 7, 8 and 18; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 3/4 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Keep the brush level and the strokes long, left and right."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke."
+        }
+      ],
+      "name": "Lay in the forest floor",
+      "paints": "The forest floor",
+      "parts": [
+        "ground"
+      ],
+      "steps": [
+        "Let the misty backdrop dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 5 in from the bottom edge.",
+        "Paints, top to bottom: Orange gold, then Rust brown.",
+        "Mix enough Orange gold for this step and steps 7, 8 and 18; cover it between them.",
+        "Brush: 3/4 inch flat.",
+        "Keep the brush level and the strokes long, left and right.",
+        "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke."
+      ],
+      "summary": "Lay in the warm forest floor across the bottom third, darker toward the front.",
+      "tip": "Orange gold at the back where the ground meets the mist, Rust brown toward the bottom edge, in long level strokes blended where they meet, brought up over the far trees' feet. Along the left, under the bushes, a few golden leaf shapes already show: dab them in with Orange gold now.",
+      "v2_steps": [
+        "floor"
+      ]
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#b77638",
+          "id": "fallen-leaves-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#bb7941",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#b77638",
+            "text": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red"
+          },
+          "name": "Orange gold",
+          "parts": [
+            "ground",
+            "path",
+            "fallen-leaves",
+            "canopy"
+          ],
+          "recipe": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red",
+          "sample_x": 0.422,
+          "sample_y": 0.951,
+          "used_for": "the darker leaves in the canopy and on the ground, the path"
+        }
+      ],
+      "group": "the-ground",
+      "id": "pull-in-path",
+      "image": "canvas/07_pull-in-path.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the forest floor and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 2 in from the bottom edge, and its right side is about 4 in from the right edge; it's about 4 1/2 in wide and 2 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Orange gold."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 3/4 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Find the path's far end, just left of the dark firs. Chalk two faint lines from it, wide apart at the bottom middle. Pull strokes along them, wide in front, thin at the far end."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a strip that narrows toward one point, which is what makes the path lie down and recede."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: The path stays the same width all the way back. Without the point and the faint lines, it stands up like a wall."
+        },
+        {
+          "kind": "watch",
+          "text": "Fix: mark the far end first, follow the faint lines from it, and let the path narrow to a thread there."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Pull in the winding path",
+      "paints": "The winding path",
+      "parts": [
+        "path"
+      ],
+      "steps": [
+        "Let the forest floor and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 2 in from the bottom edge, and its right side is about 4 in from the right edge; it's about 4 1/2 in wide and 2 1/2 in tall.",
+        "Paint: Orange gold.",
+        "Brush: 3/4 inch flat.",
+        "Find the path's far end, just left of the dark firs. Chalk two faint lines from it, wide apart at the bottom middle. Pull strokes along them, wide in front, thin at the far end.",
+        "It should leave a strip that narrows toward one point, which is what makes the path lie down and recede.",
+        "Watch out: The path stays the same width all the way back. Without the point and the faint lines, it stands up like a wall.",
+        "Fix: mark the far end first, follow the faint lines from it, and let the path narrow to a thread there.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Pull in the light path from the bottom middle back to a point by the far firs.",
+      "tip": "There is only one path here: its far end is just left of the dark firs, where the floor meets the mist. Pull each stroke from the bottom middle back toward that point, curving a little to the right; it reads as broken light patches along the strip rather than a solid band, with Rust brown showing between and on both sides.",
+      "v2_steps": [
+        "path-strip"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#b77638",
+          "id": "fallen-leaves-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#bb7941",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#b77638",
+            "text": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red"
+          },
+          "name": "Orange gold",
+          "parts": [
+            "ground",
+            "path",
+            "fallen-leaves",
+            "canopy"
+          ],
+          "recipe": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red",
+          "sample_x": 0.422,
+          "sample_y": 0.951,
+          "used_for": "the darker leaves in the canopy and on the ground, the path"
+        }
+      ],
+      "group": "the-golden-leaves",
+      "id": "dab-dark-canopy",
+      "image": "canvas/08_dab-dark-canopy.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the far woods in the mist and the misty backdrop dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Orange gold."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        }
+      ],
+      "name": "Dab the dark canopy leaves",
+      "paints": "The golden canopy",
+      "parts": [
+        "canopy"
+      ],
+      "steps": [
+        "Let the far woods in the mist and the misty backdrop dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge.",
+        "Paint: Orange gold.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+      ],
+      "summary": "Dab loose orange-gold leaf clumps across the top and down the left.",
+      "tip": "Keep the clumps loose, with gaps where the glow and blue sky show through, and leave the sun clear. Dab right over the area where the trunks will go; they go on top later.",
+      "v2_steps": [
+        "canopy-dark"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#7a6948",
+          "id": "undergrowth-1",
+          "mix": {
+            "delta_e": 2.8,
+            "guess_recipe": "",
+            "mixed_hex": "#79693f",
+            "parts": {
+              "Cadmium red medium (hue)": 2,
+              "Cadmium yellow medium (hue)": 2,
+              "Titanium white": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#7a6948",
+            "text": "3 parts ultramarine, 2 parts yellow, 2 parts red, 1 part white"
+          },
+          "name": "Olive",
+          "of": "undergrowth-3",
+          "parts": [
+            "undergrowth"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 2 parts yellow, 2 parts red, 1 part white",
+          "sample_x": 0.957,
+          "sample_y": 0.56,
+          "used_for": "the bushes in shade"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4d5a62",
+          "id": "far-forest-1",
+          "mix": {
+            "delta_e": 7.4,
+            "guess_recipe": "",
+            "mixed_hex": "#5c5e5b",
+            "parts": {
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4d5a62",
+            "text": "3 parts ultramarine, 1 part yellow, 1 part red, 1 part white"
+          },
+          "name": "Deep blue-green",
+          "parts": [
+            "far-forest",
+            "undergrowth",
+            "rock"
+          ],
+          "recipe": "3 parts ultramarine, 1 part yellow, 1 part red, 1 part white",
+          "sample_x": 0.749,
+          "sample_y": 0.43,
+          "used_for": "the dark far firs, the darkest bushes, the rock's shadow side"
+        }
+      ],
+      "group": "the-golden-leaves",
+      "id": "dab-dark-bushes",
+      "image": "canvas/09_dab-dark-bushes.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the ground and the path, and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is at the left edge; it's about 15 in wide and 2 1/2 in tall."
+        },
+        {
+          "kind": "where",
+          "text": "The outline also runs under where the birch trunks will go: paint straight through there."
+        },
+        {
+          "kind": "where",
+          "text": "The outline also reaches onto the misty sky and haze, and the forest floor, painted already: there, only soften this paint into their edge and leave them showing."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Deep blue-green, then Olive. The paint map shows where each goes."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        }
+      ],
+      "name": "Dab the dark of the bushes",
+      "paints": "The yellow bushes",
+      "parts": [
+        "undergrowth"
+      ],
+      "steps": [
+        "Let the ground and the path, and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is at the left edge; it's about 15 in wide and 2 1/2 in tall.",
+        "The outline also runs under where the birch trunks will go: paint straight through there.",
+        "The outline also reaches onto the misty sky and haze, and the forest floor, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paints, darkest first: Deep blue-green, then Olive. The paint map shows where each goes.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+      ],
+      "summary": "Dab the dark olive and blue-green of the low bushes along the path.",
+      "tip": "Dab them along both sides of the path where it meets the far woods and along the left where the ground meets the haze. Use Deep blue-green under the firs, where they are darkest, and Olive elsewhere; keep the path open between them.",
+      "v2_steps": [
+        "bushes-dark"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#df9b31",
+          "id": "fallen-leaves-2",
+          "mix": {
+            "delta_e": 1.3,
+            "guess_recipe": "",
+            "mixed_hex": "#dc9726",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 3,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#df9b31",
+            "text": "3 parts yellow, 2 parts burnt sienna, 1 part red, 1 part white"
+          },
+          "name": "Golden yellow",
+          "parts": [
+            "sky",
+            "ground",
+            "fallen-leaves",
+            "canopy",
+            "undergrowth",
+            "rock",
+            "branches"
+          ],
+          "recipe": "3 parts yellow, 2 parts burnt sienna, 1 part red, 1 part white",
+          "sample_x": 0.05,
+          "sample_y": 0.0,
+          "used_for": "the main color of the leaves, the moss on the rock"
+        }
+      ],
+      "group": "the-golden-leaves",
+      "id": "dab-mid-leaves",
+      "image": "canvas/10_dab-mid-leaves.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the golden canopy and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "dry",
+          "text": "Let the yellow bushes, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "The golden canopy: Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge."
+        },
+        {
+          "kind": "where",
+          "text": "The yellow bushes: Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is at the left edge; it's about 14 1/2 in wide and 2 in tall."
+        },
+        {
+          "kind": "where",
+          "text": "The yellow bushes: The outline also runs under where the birch trunks will go: paint straight through there."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Golden yellow."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Golden yellow for this step and steps 19 and 20; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 8 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 9 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Dab the golden leaves",
+      "paints": "The golden canopy, The yellow bushes",
+      "parts": [
+        "canopy",
+        "undergrowth"
+      ],
+      "steps": [
+        "Let the golden canopy and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up.",
+        "Let the yellow bushes, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "The golden canopy: Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge.",
+        "The yellow bushes: Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is at the left edge; it's about 14 1/2 in wide and 2 in tall.",
+        "The yellow bushes: The outline also runs under where the birch trunks will go: paint straight through there.",
+        "Paint: Golden yellow.",
+        "Mix enough Golden yellow for this step and steps 19 and 20; cover it between them.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Leave what step 8 painted showing around these marks, as in the Result picture.",
+        "Leave what step 9 painted showing around these marks, as in the Result picture.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Dab golden yellow over the canopy, then over the tops of the bushes.",
+      "tip": "One brush, one load of Golden yellow: do the canopy first, more toward the sun on the left, then carry the same brush down to the tops of the bushes. In both, leave the orange or olive showing underneath and on the side away from the sun, and keep the sky gaps open.",
+      "v2_steps": [
+        "canopy-gold",
+        "bushes-gold"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#56503f",
+          "id": "rock-1",
+          "mix": {
+            "delta_e": 4.6,
+            "guess_recipe": "",
+            "mixed_hex": "#504a2f",
+            "parts": {
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#56503f",
+            "text": "2 parts ultramarine, 1 part yellow, 1 part red"
+          },
+          "name": "Gray-green",
+          "parts": [
+            "rock"
+          ],
+          "recipe": "2 parts ultramarine, 1 part yellow, 1 part red",
+          "sample_x": 0.726,
+          "sample_y": 0.624,
+          "used_for": "the rock's first coat"
+        }
+      ],
+      "group": "the-rock",
+      "id": "build-the-rock",
+      "image": "canvas/11_build-the-rock.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the wood's golden leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "rinse",
+          "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+        },
+        {
+          "kind": "chalk",
+          "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 1/2 in from the right edge; it's about 2 in wide and 1 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Gray-green."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+        }
+      ],
+      "name": "Build the mossy rock",
+      "paints": "The mossy rock",
+      "parts": [
+        "rock"
+      ],
+      "steps": [
+        "Let the wood's golden leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 1/2 in from the right edge; it's about 2 in wide and 1 in tall.",
+        "Paint: Gray-green.",
+        "Brush: 1/2 inch flat.",
+        "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges.",
+        "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+      ],
+      "summary": "Build a low gray-green dome right of the path.",
+      "tip": "The rock sits right of the path just in front of the bushes, about 2 in wide and 1 in tall, flat at the bottom. Start with a flat-bottomed oval, then add a smaller curved piece on its right.",
+      "v2_steps": [
+        "rock-shape"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4d5a62",
+          "id": "far-forest-1",
+          "mix": {
+            "delta_e": 7.4,
+            "guess_recipe": "",
+            "mixed_hex": "#5c5e5b",
+            "parts": {
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4d5a62",
+            "text": "3 parts ultramarine, 1 part yellow, 1 part red, 1 part white"
+          },
+          "name": "Deep blue-green",
+          "parts": [
+            "far-forest",
+            "undergrowth",
+            "rock"
+          ],
+          "recipe": "3 parts ultramarine, 1 part yellow, 1 part red, 1 part white",
+          "sample_x": 0.749,
+          "sample_y": 0.43,
+          "used_for": "the dark far firs, the darkest bushes, the rock's shadow side"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#97a6b4",
+          "id": "sky-1",
+          "mix": {
+            "delta_e": 3.8,
+            "guess_recipe": "",
+            "mixed_hex": "#90a6be",
+            "parts": {
+              "Burnt sienna": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#97a6b4",
+            "text": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna"
+          },
+          "name": "Misty blue",
+          "parts": [
+            "sky",
+            "far-trunks",
+            "rock",
+            "branches"
+          ],
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna",
+          "sample_x": 0.544,
+          "sample_y": 0.293,
+          "used_for": "the cool mist on the right and low down, the far trunks' shade, the rock's shadow"
+        }
+      ],
+      "group": "the-rock",
+      "id": "shade-the-rock",
+      "image": "canvas/12_shade-the-rock.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the mossy rock and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 1/2 in from the right edge; it's about 1 1/2 in wide and 1 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Deep blue-green, then Misty blue. The paint map shows where each goes."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 11 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Shade the rock's far side",
+      "paints": "The mossy rock",
+      "parts": [
+        "rock"
+      ],
+      "steps": [
+        "Let the mossy rock and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 1/2 in from the right edge; it's about 1 1/2 in wide and 1 in tall.",
+        "Paints, darkest first: Deep blue-green, then Misty blue. The paint map shows where each goes.",
+        "Brush: 1/2 inch flat.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+        "Leave what step 11 painted showing around these marks, as in the Result picture.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Shade the rock's right side and base in cool blue-gray.",
+      "tip": "The sun is at the upper left, so the shade goes on the right side and along the bottom. Curve each stroke around the dome and leave the gray-green top and left showing.",
+      "v2_steps": [
+        "rock-shade"
+      ]
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#98929b",
+          "id": "birches-2",
+          "mix": {
+            "delta_e": 4.4,
+            "guess_recipe": "",
+            "mixed_hex": "#a2929d",
+            "parts": {
+              "Burnt sienna": 3,
+              "Titanium white": 6,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#98929b",
+            "text": "6 parts white, 3 parts burnt sienna, 2 parts ultramarine"
+          },
+          "name": "Gray-white",
+          "of": "birches-1",
+          "parts": [
+            "birches"
+          ],
+          "plus": "white",
+          "recipe": "6 parts white, 3 parts burnt sienna, 2 parts ultramarine",
+          "sample_x": 0.235,
+          "sample_y": 0.309,
+          "used_for": "the birch trunks' first coat"
+        }
+      ],
+      "group": "the-birches",
+      "id": "pull-pale-trunks",
+      "image": "canvas/13_pull-pale-trunks.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the wood's golden leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Gray-white."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 3/4 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a line that starts wide and tapers to a point."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Trunks that look like flat white posts. Every trunk the same width, straight, with hard even edges. Fix: taper each trunk as it rises, let it lean a little, and let the edges wobble."
+        }
+      ],
+      "name": "Pull the pale birch trunks",
+      "paints": "The birch trunks",
+      "parts": [
+        "birches"
+      ],
+      "steps": [
+        "Let the wood's golden leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge.",
+        "Paint: Gray-white.",
+        "Brush: 3/4 inch flat.",
+        "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+        "It should leave a line that starts wide and tapers to a point.",
+        "Watch out: Trunks that look like flat white posts. Every trunk the same width, straight, with hard even edges. Fix: taper each trunk as it rises, let it lean a little, and let the edges wobble."
+      ],
+      "summary": "Pull five pale gray-white birch trunks from the bottom edge to the top.",
+      "tip": "Three on the left lean a little to the right, the middle-left one the widest; two on the right frame the path. Start each at the bottom edge, wide, and taper up, painting straight over the canopy, bushes and ground.",
+      "v2_steps": [
+        "trunks-pale"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#666164",
+          "id": "birches-3",
+          "mix": {
+            "delta_e": 4.8,
+            "guess_recipe": "",
+            "mixed_hex": "#5b5459",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#666164",
+            "text": "2 parts ultramarine, 2 parts burnt sienna, 1 part white, a touch of yellow"
+          },
+          "name": "Gray-brown",
+          "of": "birches-1",
+          "parts": [
+            "birches"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 2 parts burnt sienna, 1 part white, a touch of yellow",
+          "sample_x": 0.123,
+          "sample_y": 0.008,
+          "used_for": "the shaded right side of the trunks"
+        }
+      ],
+      "group": "the-birches",
+      "id": "shade-the-trunks",
+      "image": "canvas/14_shade-the-trunks.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is at the top edge, and its right side is at the right edge; it's about 15 1/2 in wide and 11 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Gray-brown."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 13 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+        }
+      ],
+      "name": "Shade the right side of the trunks",
+      "paints": "The birch trunks",
+      "parts": [
+        "birches"
+      ],
+      "steps": [
+        "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is at the top edge, and its right side is at the right edge; it's about 15 1/2 in wide and 11 in tall.",
+        "Paint: Gray-brown.",
+        "Brush: 1/2 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Leave what step 13 painted showing around these marks, as in the Result picture.",
+        "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+      ],
+      "summary": "Dry-brush a gray-brown shade down the right side of every trunk.",
+      "tip": "The sun is on the left, so keep most of the shade on the right side of each trunk, heavier near the ground; a few broken patches cross the middle, as the Result picture shows. Keep the left edge pale.",
+      "v2_steps": [
+        "trunks-shade"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#3b3430",
+          "id": "birches-1",
+          "mix": {
+            "delta_e": 4.8,
+            "guess_recipe": "",
+            "mixed_hex": "#3c2d28",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#3b3430",
+            "text": "1 part ultramarine, 1 part burnt sienna, a touch of red"
+          },
+          "name": "Bark dark",
+          "parts": [
+            "birches",
+            "branches"
+          ],
+          "recipe": "1 part ultramarine, 1 part burnt sienna, a touch of red",
+          "sample_x": 0.951,
+          "sample_y": 0.896,
+          "used_for": "the bark marks, the trunks' feet, the branches"
+        },
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#88663f",
+          "id": "birches-4",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#876137",
+            "parts": {
+              "Cadmium red medium (hue)": 3,
+              "Cadmium yellow medium (hue)": 2,
+              "Titanium white": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#88663f",
+            "text": "3 parts red, 3 parts ultramarine, 2 parts yellow, 1 part white"
+          },
+          "name": "Bark brown",
+          "parts": [
+            "birches"
+          ],
+          "recipe": "3 parts red, 3 parts ultramarine, 2 parts yellow, 1 part white",
+          "sample_x": 0.784,
+          "sample_y": 0.767,
+          "used_for": "the warm dark at the trunks' feet"
+        }
+      ],
+      "group": "the-birches",
+      "id": "add-bark-marks",
+      "image": "canvas/15_add-bark-marks.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Bark dark, then Bark brown. The paint map shows where each goes."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Bark dark for this step and step 16; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a line that starts wide and tapers to a point."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 13 and 14 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Even stripes like a barber pole. Every mark the same size, spacing, and length, all the way across. Fix: vary them; many marks reach only partway across, and leave bigger gaps of white higher up."
+        }
+      ],
+      "name": "Lay the dark bark marks",
+      "paints": "The birch trunks",
+      "parts": [
+        "birches"
+      ],
+      "steps": [
+        "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge.",
+        "Paints, darkest first: Bark dark, then Bark brown. The paint map shows where each goes.",
+        "Mix enough Bark dark for this step and step 16; cover it between them.",
+        "Brush: 1/2 inch flat.",
+        "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+        "It should leave a line that starts wide and tapers to a point.",
+        "Leave what steps 13 and 14 painted showing around these marks, as in the Result picture.",
+        "Watch out: Even stripes like a barber pole. Every mark the same size, spacing, and length, all the way across. Fix: vary them; many marks reach only partway across, and leave bigger gaps of white higher up."
+      ],
+      "summary": "Lay broken dark bark marks across the trunks, dense near the ground.",
+      "tip": "Press each mark wide and lift it off partway across the trunk, small and sparse near the top, bigger and closer near the ground. End each trunk in solid dark at its foot, warming it with Bark brown there, and leave big gaps of pale bark.",
+      "v2_steps": [
+        "bark-marks"
+      ]
+    },
+    {
+      "brushes": "liner",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#3b3430",
+          "id": "birches-1",
+          "mix": {
+            "delta_e": 4.8,
+            "guess_recipe": "",
+            "mixed_hex": "#3c2d28",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#3b3430",
+            "text": "1 part ultramarine, 1 part burnt sienna, a touch of red"
+          },
+          "name": "Bark dark",
+          "parts": [
+            "birches",
+            "branches"
+          ],
+          "recipe": "1 part ultramarine, 1 part burnt sienna, a touch of red",
+          "sample_x": 0.951,
+          "sample_y": 0.896,
+          "used_for": "the bark marks, the trunks' feet, the branches"
+        }
+      ],
+      "group": "the-birches",
+      "id": "pull-branches",
+      "image": "canvas/16_pull-branches.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Bark dark."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often."
+        },
+        {
+          "kind": "how",
+          "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave thin, flowing lines."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Branches that look like stiff sticks. Every branch the same width and straight. Fix: start thick at the trunk and taper. Let branches fork in different directions and overlap."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Pull the dark branches",
+      "paints": "The dark branches",
+      "parts": [
+        "branches"
+      ],
+      "steps": [
+        "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge.",
+        "Paint: Bark dark.",
+        "Brush: liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+        "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little.",
+        "It should leave thin, flowing lines.",
+        "Watch out: Branches that look like stiff sticks. Every branch the same width and straight. Fix: start thick at the trunk and taper. Let branches fork in different directions and overlap.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Pull the dark branches from the trunks up into the gold leaves.",
+      "tip": "Two from the far left trunk, one long one reaching right from the middle-left trunk, and one from each right trunk, as the Where picture shows. Start each at the trunk, thick, and taper it out into the leaves.",
+      "v2_steps": [
+        "branch-lines"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#795841",
+          "id": "ground-1",
+          "mix": {
+            "delta_e": 0.8,
+            "guess_recipe": "",
+            "mixed_hex": "#785942",
+            "parts": {
+              "Burnt sienna": 3,
+              "Titanium white": 1,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#795841",
+            "text": "3 parts burnt sienna, 1 part ultramarine, 1 part white"
+          },
+          "name": "Deep rust",
+          "of": "ground-3",
+          "parts": [
+            "sky",
+            "ground",
+            "fallen-leaves"
+          ],
+          "plus": "white",
+          "recipe": "3 parts burnt sienna, 1 part ultramarine, 1 part white",
+          "sample_x": 0.989,
+          "sample_y": 0.999,
+          "used_for": "the dark ground under the leaves, the shadowed fallen leaves"
+        }
+      ],
+      "group": "the-fallen-leaves",
+      "id": "dab-dark-floor-leaves",
+      "image": "canvas/17_dab-dark-floor-leaves.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the birch trunks, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 5 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep rust."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        }
+      ],
+      "name": "Dab the shadowed fallen leaves",
+      "paints": "The fallen leaves",
+      "parts": [
+        "fallen-leaves"
+      ],
+      "steps": [
+        "Let the birch trunks, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 5 in tall.",
+        "Paint: Deep rust.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+      ],
+      "summary": "Dab dark leaves over the ground and path, heavier at the trunks' feet.",
+      "tip": "Small, close dabs at the back and bigger ones in front. Go heavier around each trunk's foot and in a few soft bands across the path where the trunks' shadows fall; leave plenty of brown and the path showing.",
+      "v2_steps": [
+        "leaves-dark"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#b77638",
+          "id": "fallen-leaves-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#bb7941",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#b77638",
+            "text": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red"
+          },
+          "name": "Orange gold",
+          "parts": [
+            "ground",
+            "path",
+            "fallen-leaves",
+            "canopy"
+          ],
+          "recipe": "2 parts burnt sienna, 1 part white, a touch of yellow, a touch of red",
+          "sample_x": 0.422,
+          "sample_y": 0.951,
+          "used_for": "the darker leaves in the canopy and on the ground, the path"
+        }
+      ],
+      "group": "the-fallen-leaves",
+      "id": "dab-orange-floor-leaves",
+      "image": "canvas/18_dab-orange-floor-leaves.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the fallen leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 4 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Orange gold."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 17 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        }
+      ],
+      "name": "Dab the orange fallen leaves",
+      "paints": "The fallen leaves",
+      "parts": [
+        "fallen-leaves"
+      ],
+      "steps": [
+        "Let the fallen leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 4 1/2 in tall.",
+        "Paint: Orange gold.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Leave what step 17 painted showing around these marks, as in the Result picture.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+      ],
+      "summary": "Dab orange-gold leaves over most of the ground and path.",
+      "tip": "Cover most of the ground, over the trunk feet and across the path, smaller at the back; leave the dark dabs showing between them.",
+      "v2_steps": [
+        "leaves-orange"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#df9b31",
+          "id": "fallen-leaves-2",
+          "mix": {
+            "delta_e": 1.3,
+            "guess_recipe": "",
+            "mixed_hex": "#dc9726",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 3,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#df9b31",
+            "text": "3 parts yellow, 2 parts burnt sienna, 1 part red, 1 part white"
+          },
+          "name": "Golden yellow",
+          "parts": [
+            "sky",
+            "ground",
+            "fallen-leaves",
+            "canopy",
+            "undergrowth",
+            "rock",
+            "branches"
+          ],
+          "recipe": "3 parts yellow, 2 parts burnt sienna, 1 part red, 1 part white",
+          "sample_x": 0.05,
+          "sample_y": 0.0,
+          "used_for": "the main color of the leaves, the moss on the rock"
+        }
+      ],
+      "group": "the-fallen-leaves",
+      "id": "dab-gold-floor-leaves",
+      "image": "canvas/19_dab-gold-floor-leaves.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the fallen leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 5 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Golden yellow."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 17 and 18 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Dab the golden fallen leaves",
+      "paints": "The fallen leaves",
+      "parts": [
+        "fallen-leaves"
+      ],
+      "steps": [
+        "Let the fallen leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 5 in tall.",
+        "Paint: Golden yellow.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Leave what steps 17 and 18 painted showing around these marks, as in the Result picture.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Dab golden leaves along the path and the left, fewer on the right.",
+      "tip": "Gather them on the path and toward the sun on the left; on the right and in front, leave the orange and dark dabs showing around them.",
+      "v2_steps": [
+        "leaves-gold"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#7d6e4c",
+          "id": "rock-2",
+          "mix": {
+            "delta_e": 3.8,
+            "guess_recipe": "",
+            "mixed_hex": "#776f55",
+            "parts": {
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#7d6e4c",
+            "text": "2 parts ultramarine, 1 part yellow, 1 part red, 1 part white"
+          },
+          "name": "Moss olive",
+          "of": "rock-1",
+          "parts": [
+            "rock"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 1 part yellow, 1 part red, 1 part white",
+          "sample_x": 0.665,
+          "sample_y": 0.656,
+          "used_for": "the moss on the rock's top"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#df9b31",
+          "id": "fallen-leaves-2",
+          "mix": {
+            "delta_e": 1.3,
+            "guess_recipe": "",
+            "mixed_hex": "#dc9726",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 3,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#df9b31",
+            "text": "3 parts yellow, 2 parts burnt sienna, 1 part red, 1 part white"
+          },
+          "name": "Golden yellow",
+          "parts": [
+            "sky",
+            "ground",
+            "fallen-leaves",
+            "canopy",
+            "undergrowth",
+            "rock",
+            "branches"
+          ],
+          "recipe": "3 parts yellow, 2 parts burnt sienna, 1 part red, 1 part white",
+          "sample_x": 0.05,
+          "sample_y": 0.0,
+          "used_for": "the main color of the leaves, the moss on the rock"
+        }
+      ],
+      "group": "the-last-lights",
+      "id": "light-the-rock",
+      "image": "canvas/20_light-the-rock.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the mossy rock and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 1/2 in from the right edge; it's about 2 in wide and 1 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Moss olive, then Golden yellow. The paint map shows where each goes."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 11 and 12 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "coats",
+          "text": "Golden yellow is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+        }
+      ],
+      "name": "Light the mossy top of the rock",
+      "paints": "The mossy rock",
+      "parts": [
+        "rock"
+      ],
+      "steps": [
+        "Let the mossy rock and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 1/2 in from the right edge; it's about 2 in wide and 1 in tall.",
+        "Paints, darkest first: Moss olive, then Golden yellow. The paint map shows where each goes.",
+        "Brush: 1/2 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Leave what steps 11 and 12 painted showing around these marks, as in the Result picture.",
+        "Golden yellow is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+      ],
+      "summary": "Dry-brush a mossy light on the top and left of the rock.",
+      "tip": "Only the top and left face the sun: skim Moss olive there, then a little Golden yellow along the very top. The middle stays gray-green and the right side blue-gray.",
+      "v2_steps": [
+        "rock-moss"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#d1be98",
+          "id": "sky-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#d3bd9b",
+            "parts": {
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1,
+              "Ultramarine blue": 0.2
+            },
+            "reachable": true,
+            "target_hex": "#d1be98",
+            "text": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine"
+          },
+          "name": "Warm cream",
+          "of": "canopy-2",
+          "parts": [
+            "sky",
+            "sun-rays",
+            "far-trunks",
+            "birches"
+          ],
+          "plus": "white",
+          "recipe": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine",
+          "sample_x": 0.402,
+          "sample_y": 0.282,
+          "used_for": "the soft glow in the sky, the far pale trunks, the sunlit left edges of the birches"
+        }
+      ],
+      "group": "the-last-lights",
+      "id": "light-the-bark",
+      "image": "canvas/21_light-the-bark.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Warm cream."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 13, 14 and 15 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "coats",
+          "text": "Warm cream is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+        }
+      ],
+      "name": "Catch the light on the bark",
+      "paints": "The birch trunks",
+      "parts": [
+        "birches"
+      ],
+      "steps": [
+        "Let the birch trunks and the wood's golden leaves dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge.",
+        "Paint: Warm cream.",
+        "Brush: 1/2 inch old stiff flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Leave what steps 13, 14 and 15 painted showing around these marks, as in the Result picture.",
+        "Warm cream is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+      ],
+      "summary": "Dry-brush a light down the left side of every trunk.",
+      "tip": "Keep it on the sun's side only, a broken strip down the left edge, breaking over a few of the dark marks. The right side stays gray-brown.",
+      "v2_steps": [
+        "bark-light"
+      ]
+    },
+    {
+      "brushes": "1/2 inch old stiff brush",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#dbaf5d",
+          "id": "canopy-2",
+          "mix": {
+            "delta_e": 1.8,
+            "guess_recipe": "",
+            "mixed_hex": "#daaf67",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 3
+            },
+            "reachable": true,
+            "target_hex": "#dbaf5d",
+            "text": "3 parts white, 2 parts burnt sienna, 1 part yellow, a touch of red"
+          },
+          "name": "Pale gold",
+          "of": "fallen-leaves-2",
+          "parts": [
+            "sky",
+            "sun-rays",
+            "fallen-leaves",
+            "canopy",
+            "undergrowth"
+          ],
+          "plus": "white",
+          "recipe": "3 parts white, 2 parts burnt sienna, 1 part yellow, a touch of red",
+          "sample_x": 0.064,
+          "sample_y": 0.273,
+          "used_for": "the glow around the sun, the sun rays, the sunlit leaves"
+        }
+      ],
+      "group": "the-last-lights",
+      "id": "dab-sunlit-leaves",
+      "image": "canvas/22_dab-sunlit-leaves.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the wood's golden leaves and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "dry",
+          "text": "Let the wood's golden leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "dry",
+          "text": "Let the fallen leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "The golden canopy: Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge."
+        },
+        {
+          "kind": "where",
+          "text": "The yellow bushes: Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is at the left edge; it's about 15 in wide and 2 1/2 in tall."
+        },
+        {
+          "kind": "where",
+          "text": "The fallen leaves: Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 5 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Pale gold."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 8 and 10 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 17, 18 and 19 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Dab the sunlit leaves",
+      "paints": "The golden canopy, The yellow bushes, The fallen leaves",
+      "parts": [
+        "canopy",
+        "undergrowth",
+        "fallen-leaves"
+      ],
+      "steps": [
+        "Let the wood's golden leaves and the far woods in the mist dry to the touch first. A hair dryer on low speeds it up.",
+        "Let the wood's golden leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "Let the fallen leaves, and the ground and the path dry to the touch first. A hair dryer on low speeds it up.",
+        "The golden canopy: Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the top edge.",
+        "The yellow bushes: Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is at the left edge; it's about 15 in wide and 2 1/2 in tall.",
+        "The fallen leaves: Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 15 in wide and 5 in tall.",
+        "Paint: Pale gold.",
+        "Brush: 1/2 inch old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Leave what steps 8 and 10 painted showing around these marks, as in the Result picture.",
+        "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture.",
+        "Leave what steps 17, 18 and 19 painted showing around these marks, as in the Result picture.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Tap the last pale gold lights on the canopy, the bushes and the path.",
+      "tip": "One load of Pale gold for all three: first the canopy clumps nearest the sun and their left edges, where the leaves around the sun turn almost the color of the glow, then a few taps on the bushes left of the path, then scattered leaves down the path and the sunlit ground on the left, fewer in front. Every light stays on the sun's side.",
+      "v2_steps": [
+        "sunlit-canopy",
+        "sunlit-bushes",
+        "sunlit-floor"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2590 @@
+{
+  "canvas": {
+    "h_in": 16.0,
+    "orientation": "portrait",
+    "w_in": 12.0
+  },
+  "folded_from": "highland-cow_skill_20261116-212627-plan-first",
+  "groups": [
+    {
+      "id": "the-sky",
+      "name": "The sky",
+      "steps": [
+        "blend-sky",
+        "streak-clouds",
+        "light-cloud-tops"
+      ]
+    },
+    {
+      "id": "the-far-land",
+      "name": "The mountains and the loch",
+      "steps": [
+        "lay-in-mountains",
+        "streak-loch"
+      ]
+    },
+    {
+      "id": "the-green-ground",
+      "name": "The green slope and the meadow",
+      "steps": [
+        "lay-in-ground",
+        "dab-dark-bushes",
+        "tap-sunlit-bushes"
+      ]
+    },
+    {
+      "id": "the-cow-shape",
+      "name": "The cow's shape and horns",
+      "steps": [
+        "block-in-cow",
+        "shade-cow",
+        "block-in-horns",
+        "shade-horns"
+      ]
+    },
+    {
+      "id": "the-shaggy-coat",
+      "name": "The shaggy coat",
+      "steps": [
+        "pull-copper-locks",
+        "pull-golden-locks",
+        "catch-rim-light"
+      ]
+    },
+    {
+      "id": "the-face",
+      "name": "The face",
+      "steps": [
+        "paint-nose",
+        "light-nose",
+        "dot-nostrils-eye",
+        "line-mouth"
+      ]
+    },
+    {
+      "id": "the-tall-grass",
+      "name": "The tall grass in front",
+      "steps": [
+        "flick-dark-blades",
+        "flick-olive-blades",
+        "flick-yellow-green-blades",
+        "flick-gold-blades",
+        "flick-brightest-tips"
+      ]
+    }
+  ],
+  "plan_first": 1,
+  "plan_version": 2,
+  "stages": [
+    {
+      "brushes": "1 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#8dabce",
+          "id": "sky-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#8eafcf",
+            "parts": {
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#8dabce",
+            "text": "2 parts white, 1 part ultramarine, a touch of yellow"
+          },
+          "name": "Soft sky blue",
+          "parts": [
+            "sky"
+          ],
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow",
+          "sample_x": 0.472,
+          "sample_y": 0.0,
+          "used_for": "the top of the sky"
+        },
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#d19e6a",
+          "id": "sky-2",
+          "mix": {
+            "delta_e": 2.4,
+            "guess_recipe": "",
+            "mixed_hex": "#cb9d64",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#d19e6a",
+            "text": "1 part burnt sienna, 1 part white, a touch of yellow"
+          },
+          "name": "Warm apricot",
+          "of": "clouds-2",
+          "parts": [
+            "sky",
+            "clouds",
+            "cow",
+            "horns"
+          ],
+          "plus": "white",
+          "recipe": "1 part burnt sienna, 1 part white, a touch of yellow",
+          "sample_x": 0.65,
+          "sample_y": 0.354,
+          "used_for": "the warm glow in the sky and the apricot cloud streaks"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#e2ae4d",
+          "id": "clouds-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#daa941",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#e2ae4d",
+            "text": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red"
+          },
+          "name": "Golden ochre",
+          "parts": [
+            "sky",
+            "clouds",
+            "grass",
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red",
+          "sample_x": 0.008,
+          "sample_y": 0.492,
+          "used_for": "the gold low in the sky, the lit cloud tops, the cow's golden locks and sunlit rim, the horns' lit tops, and the brightest grass tips"
+        }
+      ],
+      "group": "the-sky",
+      "id": "blend-sky",
+      "image": "canvas/01_blend-sky.png",
+      "lines": [
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 5 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints: Soft sky blue over nearly all of it, with Warm apricot and Golden ochre only at the right edge, low down."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Warm apricot for this step and step 2; cover it between them."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Golden ochre for this step and steps 3, 14, 15 and 24; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 inch flat. Load: Creamy paint. An even coat."
+        },
+        {
+          "kind": "how",
+          "text": "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave smooth bands of color, with a soft join where two wet colors meet."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags."
+        },
+        {
+          "kind": "watch",
+          "text": "Let it dry, then blend a new thin layer on top."
+        }
+      ],
+      "name": "Blend the sunset sky",
+      "paints": "Sunset sky",
+      "parts": [
+        "sky"
+      ],
+      "steps": [
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 5 in from the top edge.",
+        "Paints: Soft sky blue over nearly all of it, with Warm apricot and Golden ochre only at the right edge, low down.",
+        "Mix enough Warm apricot for this step and step 2; cover it between them.",
+        "Mix enough Golden ochre for this step and steps 3, 14, 15 and 24; cover it between them.",
+        "Brush: 1 inch flat. Load: Creamy paint. An even coat.",
+        "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times.",
+        "It should leave smooth bands of color, with a soft join where two wet colors meet.",
+        "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+        "Let it dry, then blend a new thin layer on top."
+      ],
+      "summary": "Blend the sky soft blue from the top edge down to the middle of the canvas.",
+      "tip": "The sun is low on the right, behind the hills, so any warm color goes lowest on the right: here just a touch of Golden ochre and Warm apricot at the right edge, about 2 in from the top. Run the blue right down to about 5 in from the top, past where the mountains go; the gold glow across the lower sky comes with the cloud streaks next.",
+      "v2_steps": [
+        "blend-sky"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#d19e6a",
+          "id": "sky-2",
+          "mix": {
+            "delta_e": 2.4,
+            "guess_recipe": "",
+            "mixed_hex": "#cb9d64",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#d19e6a",
+            "text": "1 part burnt sienna, 1 part white, a touch of yellow"
+          },
+          "name": "Warm apricot",
+          "of": "clouds-2",
+          "parts": [
+            "sky",
+            "clouds",
+            "cow",
+            "horns"
+          ],
+          "plus": "white",
+          "recipe": "1 part burnt sienna, 1 part white, a touch of yellow",
+          "sample_x": 0.65,
+          "sample_y": 0.354,
+          "used_for": "the warm glow in the sky and the apricot cloud streaks"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#bbbdbb",
+          "id": "clouds-1",
+          "mix": {
+            "delta_e": 1.7,
+            "guess_recipe": "",
+            "mixed_hex": "#b5bab9",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 12,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#bbbdbb",
+            "text": "12 parts white, 3 parts ultramarine, 2 parts burnt sienna, 1 part yellow"
+          },
+          "name": "Pale silver-gray",
+          "parts": [
+            "clouds",
+            "loch"
+          ],
+          "recipe": "12 parts white, 3 parts ultramarine, 2 parts burnt sienna, 1 part yellow",
+          "sample_x": 0.972,
+          "sample_y": 0.0,
+          "used_for": "the cool cloud streaks higher on the left, and the loch"
+        }
+      ],
+      "group": "the-sky",
+      "id": "streak-clouds",
+      "image": "canvas/02_streak-clouds.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the sunset sky dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Warm apricot, then Pale silver-gray. The paint map shows where each goes."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Pale silver-gray for this step and step 5; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Hard, solid clouds. Too much paint on the brush. Fix: wipe the brush nearly dry and use small circles with the tip, so the sky shows through the edges."
+        }
+      ],
+      "name": "Dry-brush the cloud streaks",
+      "paints": "Gold cloud streaks",
+      "parts": [
+        "clouds"
+      ],
+      "steps": [
+        "Let the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 1/2 in from the top edge.",
+        "Paints, darkest first: Warm apricot, then Pale silver-gray. The paint map shows where each goes.",
+        "Mix enough Pale silver-gray for this step and step 5; cover it between them.",
+        "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Watch out: Hard, solid clouds. Too much paint on the brush. Fix: wipe the brush nearly dry and use small circles with the tip, so the sky shows through the edges."
+      ],
+      "summary": "Dry-brush long flat cloud streaks across the lower half of the sky.",
+      "tip": "Lay Warm apricot in long side-to-side streaks across the gold-glow band, about 1 to 2 1/2 in from the top, heaviest toward the right where the sun is, and a few Pale silver-gray streaks higher on the left. Keep every streak level and let the blue show between them.",
+      "v2_steps": [
+        "streak-clouds"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#e2ae4d",
+          "id": "clouds-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#daa941",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#e2ae4d",
+            "text": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red"
+          },
+          "name": "Golden ochre",
+          "parts": [
+            "sky",
+            "clouds",
+            "grass",
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red",
+          "sample_x": 0.008,
+          "sample_y": 0.492,
+          "used_for": "the gold low in the sky, the lit cloud tops, the cow's golden locks and sunlit rim, the horns' lit tops, and the brightest grass tips"
+        }
+      ],
+      "group": "the-sky",
+      "id": "light-cloud-tops",
+      "image": "canvas/03_light-cloud-tops.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the gold cloud streaks and the sunset sky dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Golden ochre."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 2 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Light the tops of the clouds",
+      "paints": "Gold cloud streaks",
+      "parts": [
+        "clouds"
+      ],
+      "steps": [
+        "Let the gold cloud streaks and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 1/2 in from the top edge.",
+        "Paint: Golden ochre.",
+        "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Leave what step 2 painted showing around these marks, as in the Result picture.",
+        "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Light the cloud streaks with Golden ochre, most near the sun on the right.",
+      "tip": "Drag Golden ochre along the top edges of the streaks and across the glow low on the right, so the sky is brightest just above the mountains on the right. Leave the apricot and gray showing underneath; the sky is now finished.",
+      "v2_steps": [
+        "light-cloud-tops"
+      ]
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#8e8a90",
+          "id": "far-hills-2",
+          "mix": {
+            "delta_e": 2.7,
+            "guess_recipe": "",
+            "mixed_hex": "#938f91",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 0.2,
+              "Titanium white": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#8e8a90",
+            "text": "2 parts white, 1 part ultramarine, 1 part burnt sienna, a touch of yellow"
+          },
+          "name": "Hazy blue-violet",
+          "parts": [
+            "far-hills"
+          ],
+          "recipe": "2 parts white, 1 part ultramarine, 1 part burnt sienna, a touch of yellow",
+          "sample_x": 0.904,
+          "sample_y": 0.204,
+          "used_for": "the farthest mountain range"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#597199",
+          "id": "far-hills-1",
+          "mix": {
+            "delta_e": 5.3,
+            "guess_recipe": "",
+            "mixed_hex": "#656eb0",
+            "parts": {
+              "Burnt sienna": 1,
+              "Titanium white": 3,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#597199",
+            "text": "3 parts ultramarine, 3 parts white, 1 part burnt sienna"
+          },
+          "name": "Deep slate blue",
+          "parts": [
+            "far-hills"
+          ],
+          "recipe": "3 parts ultramarine, 3 parts white, 1 part burnt sienna",
+          "sample_x": 0.543,
+          "sample_y": 0.238,
+          "used_for": "the nearer mountain ridge"
+        }
+      ],
+      "group": "the-far-land",
+      "id": "lay-in-mountains",
+      "image": "canvas/04_lay-in-mountains.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the sky dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "rinse",
+          "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across. Its top is about 2 in from the top edge and its bottom is about 5 in from the top edge."
+        },
+        {
+          "kind": "where",
+          "text": "Paint a little past its bottom, under where the highland cow and the green hillside will go."
+        },
+        {
+          "kind": "where",
+          "text": "The outline also reaches onto the gold cloud streaks and the sunset sky, painted already: there, only soften this paint into their edge and leave them showing."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Deep slate blue, then Hazy blue-violet. The paint map shows where each goes."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 3/4 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Keep the brush level and the strokes long, left and right."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke."
+        }
+      ],
+      "name": "Lay in the mountain ranges",
+      "paints": "Far blue hills",
+      "parts": [
+        "far-hills"
+      ],
+      "steps": [
+        "Let the sky dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Inside the outlined area, all the way across. Its top is about 2 in from the top edge and its bottom is about 5 in from the top edge.",
+        "Paint a little past its bottom, under where the highland cow and the green hillside will go.",
+        "The outline also reaches onto the gold cloud streaks and the sunset sky, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paints, darkest first: Deep slate blue, then Hazy blue-violet. The paint map shows where each goes.",
+        "Brush: 3/4 inch flat.",
+        "Keep the brush level and the strokes long, left and right.",
+        "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke."
+      ],
+      "summary": "Lay in the far range and the nearer blue ridge in flat bands.",
+      "tip": "Paint the far range first in Hazy blue-violet with its peaks about 2 in from the top, then overlap it with the Deep slate blue ridge, which slopes down toward the right. Keep both flat, with level strokes and no texture.",
+      "v2_steps": [
+        "lay-in-mountains"
+      ]
+    },
+    {
+      "brushes": "1/4 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#bbbdbb",
+          "id": "clouds-1",
+          "mix": {
+            "delta_e": 1.7,
+            "guess_recipe": "",
+            "mixed_hex": "#b5bab9",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 12,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#bbbdbb",
+            "text": "12 parts white, 3 parts ultramarine, 2 parts burnt sienna, 1 part yellow"
+          },
+          "name": "Pale silver-gray",
+          "parts": [
+            "clouds",
+            "loch"
+          ],
+          "recipe": "12 parts white, 3 parts ultramarine, 2 parts burnt sienna, 1 part yellow",
+          "sample_x": 0.972,
+          "sample_y": 0.0,
+          "used_for": "the cool cloud streaks higher on the left, and the loch"
+        }
+      ],
+      "group": "the-far-land",
+      "id": "streak-loch",
+      "image": "canvas/05_streak-loch.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the far blue hills and the sky dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 4 1/2 in from the top edge, and its right side is at the right edge; it's about 1 3/4 in wide and 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Pale silver-gray."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/4 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Keep the brush level and the strokes long, left and right."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke."
+        },
+        {
+          "kind": "coats",
+          "text": "Pale silver-gray is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Streak in the loch",
+      "paints": "The loch",
+      "parts": [
+        "loch"
+      ],
+      "steps": [
+        "Let the far blue hills and the sky dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 4 1/2 in from the top edge, and its right side is at the right edge; it's about 1 3/4 in wide and 1/2 in tall.",
+        "Paint: Pale silver-gray.",
+        "Brush: 1/4 inch flat.",
+        "Keep the brush level and the strokes long, left and right.",
+        "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+        "Pale silver-gray is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Streak a thin pale strip of loch at the right edge, under the ridge.",
+      "tip": "The loch is a small sliver at the right edge, about 4 1/2 in from the top, tucked under the dark ridge. A few level strokes of Pale silver-gray are all it needs.",
+      "v2_steps": [
+        "streak-loch"
+      ]
+    },
+    {
+      "brushes": "1 inch flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#5e623a",
+          "id": "hillside-1",
+          "mix": {
+            "delta_e": 3.9,
+            "guess_recipe": "",
+            "mixed_hex": "#666c47",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#5e623a",
+            "text": "2 parts ultramarine, 2 parts burnt sienna, 1 part yellow, 1 part white"
+          },
+          "name": "Sunlit yellow-green",
+          "of": "grass-3",
+          "parts": [
+            "hillside",
+            "bushes",
+            "grass"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 2 parts burnt sienna, 1 part yellow, 1 part white",
+          "sample_x": 0.301,
+          "sample_y": 0.823,
+          "used_for": "the sunlit hillside, the sun on the bushes, and the sunlit grass blades"
+        },
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#455337",
+          "id": "grass-3",
+          "mix": {
+            "delta_e": 3.6,
+            "guess_recipe": "",
+            "mixed_hex": "#384e2f",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#455337",
+            "text": "2 parts ultramarine, 1 part yellow, 1 part burnt sienna"
+          },
+          "name": "Olive green",
+          "of": "grass-1",
+          "parts": [
+            "hillside",
+            "grass"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 1 part yellow, 1 part burnt sienna",
+          "sample_x": 0.999,
+          "sample_y": 0.84,
+          "used_for": "the body of the hillside, and the olive grass blades"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#34423b",
+          "id": "grass-1",
+          "mix": {
+            "delta_e": 3.1,
+            "guess_recipe": "",
+            "mixed_hex": "#2c4036",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#34423b",
+            "text": "3 parts ultramarine, 1 part yellow, 1 part burnt sienna"
+          },
+          "name": "Deep grass green",
+          "of": "grass-3",
+          "parts": [
+            "hillside",
+            "bushes",
+            "grass"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 1 part yellow, 1 part burnt sienna",
+          "sample_x": 0.216,
+          "sample_y": 0.999,
+          "used_for": "the bushes, the meadow's base, and the dark grass blades"
+        }
+      ],
+      "group": "the-green-ground",
+      "id": "lay-in-ground",
+      "image": "canvas/06_lay-in-ground.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the mountains and the loch, and the sky dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "rinse",
+          "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+        },
+        {
+          "kind": "where",
+          "text": "Green hillside: Inside the outlined area, all the way across. Its top is about 3 in from the top edge and its bottom is about 7 in from the bottom edge."
+        },
+        {
+          "kind": "where",
+          "text": "Green hillside: Paint a little past its bottom, under where the tall grass and the highland cow will go. The outline also reaches onto the far blue hills, painted already: there, only soften this paint into its edge and leave it showing."
+        },
+        {
+          "kind": "where",
+          "text": "Tall grass: Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Green hillside: Paints, top to bottom: Deep grass green, Olive green, then Sunlit yellow-green."
+        },
+        {
+          "kind": "paints",
+          "text": "Tall grass: Paint: Deep grass green."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Deep grass green for this step and steps 7 and 20; cover it between them."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Olive green for this step and step 21; cover it between them."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Sunlit yellow-green for this step and steps 8 and 22; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 inch flat. Load: Creamy paint. An even coat."
+        },
+        {
+          "kind": "how",
+          "text": "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave smooth bands of color, with a soft join where two wet colors meet."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: A hard line where two colors meet. Fix: add more of the lighter color at the join and blend again."
+        }
+      ],
+      "name": "Lay in the hillside and the meadow",
+      "paints": "Green hillside, Tall grass",
+      "parts": [
+        "hillside",
+        "grass"
+      ],
+      "steps": [
+        "Let the mountains and the loch, and the sky dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Green hillside: Inside the outlined area, all the way across. Its top is about 3 in from the top edge and its bottom is about 7 in from the bottom edge.",
+        "Green hillside: Paint a little past its bottom, under where the tall grass and the highland cow will go. The outline also reaches onto the far blue hills, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Tall grass: Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the top edge.",
+        "Green hillside: Paints, top to bottom: Deep grass green, Olive green, then Sunlit yellow-green.",
+        "Tall grass: Paint: Deep grass green.",
+        "Mix enough Deep grass green for this step and steps 7 and 20; cover it between them.",
+        "Mix enough Olive green for this step and step 21; cover it between them.",
+        "Mix enough Sunlit yellow-green for this step and steps 8 and 22; cover it between them.",
+        "Brush: 1 inch flat. Load: Creamy paint. An even coat.",
+        "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times.",
+        "It should leave smooth bands of color, with a soft join where two wet colors meet.",
+        "Watch out: A hard line where two colors meet. Fix: add more of the lighter color at the join and blend again."
+      ],
+      "summary": "Blend the green slope and the whole meadow below it in one go.",
+      "tip": "Start on the hillside under the mountains with Sunlit yellow-green and Olive green, lighter toward the sun on the right, sloping down from left to right; then, without stopping, carry Deep grass green down over the whole bottom of the canvas, straight through where the cow will stand. Keep the same 1 inch flat and the same side-to-side stroke for both.",
+      "v2_steps": [
+        "lay-in-hillside",
+        "lay-in-meadow"
+      ]
+    },
+    {
+      "brushes": "old stiff 1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#34423b",
+          "id": "grass-1",
+          "mix": {
+            "delta_e": 3.1,
+            "guess_recipe": "",
+            "mixed_hex": "#2c4036",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#34423b",
+            "text": "3 parts ultramarine, 1 part yellow, 1 part burnt sienna"
+          },
+          "name": "Deep grass green",
+          "of": "grass-3",
+          "parts": [
+            "hillside",
+            "bushes",
+            "grass"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 1 part yellow, 1 part burnt sienna",
+          "sample_x": 0.216,
+          "sample_y": 0.999,
+          "used_for": "the bushes, the meadow's base, and the dark grass blades"
+        }
+      ],
+      "group": "the-green-ground",
+      "id": "dab-dark-bushes",
+      "image": "canvas/07_dab-dark-bushes.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the green hillside, and the mountains and the loch dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across. Its top is about 3 in from the top edge and its bottom is about 7 1/2 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep grass green."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: old stiff 1/2 inch flat. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        }
+      ],
+      "name": "Dab the dark bushes on the hillside",
+      "paints": "Dark bushes on the hillside",
+      "parts": [
+        "bushes"
+      ],
+      "steps": [
+        "Let the green hillside, and the mountains and the loch dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across. Its top is about 3 in from the top edge and its bottom is about 7 1/2 in from the bottom edge.",
+        "Paint: Deep grass green.",
+        "Brush: old stiff 1/2 inch flat. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+      ],
+      "summary": "Dab dark green bushes in rows across the hillside.",
+      "tip": "Tap Deep grass green in loose clumps that follow the slope down to the right, smaller and closer together near the mountains and bigger lower down. Let the hillside green show between them.",
+      "v2_steps": [
+        "dab-dark-bushes"
+      ]
+    },
+    {
+      "brushes": "old stiff 1/2 inch flat",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#5e623a",
+          "id": "hillside-1",
+          "mix": {
+            "delta_e": 3.9,
+            "guess_recipe": "",
+            "mixed_hex": "#666c47",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#5e623a",
+            "text": "2 parts ultramarine, 2 parts burnt sienna, 1 part yellow, 1 part white"
+          },
+          "name": "Sunlit yellow-green",
+          "of": "grass-3",
+          "parts": [
+            "hillside",
+            "bushes",
+            "grass"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 2 parts burnt sienna, 1 part yellow, 1 part white",
+          "sample_x": 0.301,
+          "sample_y": 0.823,
+          "used_for": "the sunlit hillside, the sun on the bushes, and the sunlit grass blades"
+        }
+      ],
+      "group": "the-green-ground",
+      "id": "tap-sunlit-bushes",
+      "image": "canvas/08_tap-sunlit-bushes.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the dark bushes on the hillside and the green hillside dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across. Its top is about 3 in from the top edge and its bottom is about 7 1/2 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Sunlit yellow-green."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: old stiff 1/2 inch flat. Load: A light load. No water on the brush: a wet one makes blobs."
+        },
+        {
+          "kind": "how",
+          "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave dots or dappled patches that get more solid the more you tap."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 7 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Tap the sun on the bushes",
+      "paints": "Dark bushes on the hillside",
+      "parts": [
+        "bushes"
+      ],
+      "steps": [
+        "Let the dark bushes on the hillside and the green hillside dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across. Its top is about 3 in from the top edge and its bottom is about 7 1/2 in from the bottom edge.",
+        "Paint: Sunlit yellow-green.",
+        "Brush: old stiff 1/2 inch flat. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Leave what step 7 painted showing around these marks, as in the Result picture.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Tap a little Sunlit yellow-green on the bushes, on the side facing the sun.",
+      "tip": "Touch the light only on the right-hand tops of the clumps, toward the sun, and keep most of each bush dark. The background is now finished.",
+      "v2_steps": [
+        "tap-sunlit-bushes"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#71371d",
+          "id": "cow-2",
+          "mix": {
+            "delta_e": 2.0,
+            "guess_recipe": "",
+            "mixed_hex": "#723117",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 3,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#71371d",
+            "text": "3 parts red, 2 parts ultramarine, 1 part burnt sienna"
+          },
+          "name": "Rust brown",
+          "parts": [
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "3 parts red, 2 parts ultramarine, 1 part burnt sienna",
+          "sample_x": 0.429,
+          "sample_y": 0.532,
+          "used_for": "the cow's main coat color and its darker locks"
+        }
+      ],
+      "group": "the-cow-shape",
+      "id": "block-in-cow",
+      "image": "canvas/09_block-in-cow.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the green slope and the meadow, and the mountains and the loch dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "chalk",
+          "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Rust brown."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Rust brown for this step and step 13; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+        }
+      ],
+      "name": "Block in the cow",
+      "paints": "The Highland cow",
+      "parts": [
+        "cow"
+      ],
+      "steps": [
+        "Let the green slope and the meadow, and the mountains and the loch dry to the touch first. A hair dryer on low speeds it up.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall.",
+        "Paint: Rust brown.",
+        "Mix enough Rust brown for this step and step 13; cover it between them.",
+        "Brush: 1/2 inch flat.",
+        "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges.",
+        "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+      ],
+      "summary": "Block in the whole cow in Rust brown: body, head, fringe and ears.",
+      "tip": "The body is a big tall oval left of center, about 7 1/2 in wide; the head sits on its upper right with the fringe as a cap over it and an ear each side. Build it from curved pieces that hang downward the way the hair falls, and fade the bottom into the meadow; no legs are needed.",
+      "v2_steps": [
+        "block-in-cow"
+      ]
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4c2a1e",
+          "id": "cow-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#502d24",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 2,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4c2a1e",
+            "text": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna"
+          },
+          "name": "Deep red-brown",
+          "of": "cow-2",
+          "parts": [
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna",
+          "sample_x": 0.492,
+          "sample_y": 0.52,
+          "used_for": "the shadow side of the coat, the horns' undersides, and the nostrils and mouth"
+        }
+      ],
+      "group": "the-cow-shape",
+      "id": "shade-cow",
+      "image": "canvas/10_shade-cow.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the highland cow, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 3/4 in from the left edge; it's about 6 in wide and 8 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep red-brown."
+        },
+        {
+          "kind": "mix",
+          "text": "Mix enough Deep red-brown for this step and steps 12, 18 and 19; cover it between them."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch flat."
+        },
+        {
+          "kind": "how",
+          "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 9 painted showing around these marks, as in the Result picture."
+        }
+      ],
+      "name": "Shade the cow's shadow side",
+      "paints": "The Highland cow",
+      "parts": [
+        "cow"
+      ],
+      "steps": [
+        "Let the highland cow, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 3/4 in from the left edge; it's about 6 in wide and 8 1/2 in tall.",
+        "Paint: Deep red-brown.",
+        "Mix enough Deep red-brown for this step and steps 12, 18 and 19; cover it between them.",
+        "Brush: 1/2 inch flat.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+        "Leave what step 9 painted showing around these marks, as in the Result picture."
+      ],
+      "summary": "Shade the cow's shadow side with long downward curves of Deep red-brown.",
+      "tip": "The sun is behind and to the right, so the shadow goes on the left of the body, down the chest, under the chin and under the fringe. Keep the strokes curving down like hanging hair, and leave the rust showing on the right.",
+      "v2_steps": [
+        "shade-cow"
+      ]
+    },
+    {
+      "brushes": "#6 round",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#866658",
+          "id": "horns-2",
+          "mix": {
+            "delta_e": 3.4,
+            "guess_recipe": "",
+            "mixed_hex": "#906e60",
+            "parts": {
+              "Burnt sienna": 3,
+              "Titanium white": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#866658",
+            "text": "3 parts burnt sienna, 2 parts white, 1 part ultramarine"
+          },
+          "name": "Horn taupe",
+          "parts": [
+            "horns"
+          ],
+          "recipe": "3 parts burnt sienna, 2 parts white, 1 part ultramarine",
+          "sample_x": 0.683,
+          "sample_y": 0.34,
+          "used_for": "the horns"
+        }
+      ],
+      "group": "the-cow-shape",
+      "id": "block-in-horns",
+      "image": "canvas/11_block-in-horns.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the highland cow, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "chalk",
+          "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 1/2 in wide and 3 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Horn taupe."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: #6 round."
+        },
+        {
+          "kind": "how",
+          "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+        }
+      ],
+      "name": "Block in the horns",
+      "paints": "The horns",
+      "parts": [
+        "horns"
+      ],
+      "steps": [
+        "Let the highland cow, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 1/2 in wide and 3 in tall.",
+        "Paint: Horn taupe.",
+        "Brush: #6 round.",
+        "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges.",
+        "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+      ],
+      "summary": "Build the two horns in Horn taupe, curving up from each side of the head.",
+      "tip": "The left horn sweeps up high from the top of the head, about 2 1/2 in from the top edge; the right one curves out and up toward the right. Start each with a thick piece at the head and add curved pieces that taper toward the tip.",
+      "v2_steps": [
+        "block-in-horns"
+      ]
+    },
+    {
+      "brushes": "#4 round",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4c2a1e",
+          "id": "cow-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#502d24",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 2,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4c2a1e",
+            "text": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna"
+          },
+          "name": "Deep red-brown",
+          "of": "cow-2",
+          "parts": [
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna",
+          "sample_x": 0.492,
+          "sample_y": 0.52,
+          "used_for": "the shadow side of the coat, the horns' undersides, and the nostrils and mouth"
+        }
+      ],
+      "group": "the-cow-shape",
+      "id": "shade-horns",
+      "image": "canvas/12_shade-horns.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the horns and the highland cow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 3 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 in wide and 2 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep red-brown."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: #4 round."
+        },
+        {
+          "kind": "how",
+          "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 11 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Shade the undersides of the horns",
+      "paints": "The horns",
+      "parts": [
+        "horns"
+      ],
+      "steps": [
+        "Let the horns and the highland cow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 3 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 in wide and 2 1/2 in tall.",
+        "Paint: Deep red-brown.",
+        "Brush: #4 round.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+        "Leave what step 11 painted showing around these marks, as in the Result picture.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Shade the underside of each horn with Deep red-brown.",
+      "tip": "Run the dark along the lower edge of each curve, from the base by the head toward the tip, and keep the taupe showing along the top.",
+      "v2_steps": [
+        "shade-horns"
+      ]
+    },
+    {
+      "brushes": "1/2 inch angle",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#944b23",
+          "id": "muzzle-2",
+          "mix": {
+            "delta_e": 3.0,
+            "guess_recipe": "",
+            "mixed_hex": "#874823",
+            "parts": {
+              "Cadmium red medium (hue)": 3,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 0.2,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#944b23",
+            "text": "3 parts red, 2 parts ultramarine, 1 part yellow, a touch of white"
+          },
+          "name": "Copper orange",
+          "parts": [
+            "cow",
+            "muzzle"
+          ],
+          "recipe": "3 parts red, 2 parts ultramarine, 1 part yellow, a touch of white",
+          "sample_x": 0.207,
+          "sample_y": 0.509,
+          "used_for": "the cow's copper locks"
+        },
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#71371d",
+          "id": "cow-2",
+          "mix": {
+            "delta_e": 2.0,
+            "guess_recipe": "",
+            "mixed_hex": "#723117",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 3,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#71371d",
+            "text": "3 parts red, 2 parts ultramarine, 1 part burnt sienna"
+          },
+          "name": "Rust brown",
+          "parts": [
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "3 parts red, 2 parts ultramarine, 1 part burnt sienna",
+          "sample_x": 0.429,
+          "sample_y": 0.532,
+          "used_for": "the cow's main coat color and its darker locks"
+        }
+      ],
+      "group": "the-shaggy-coat",
+      "id": "pull-copper-locks",
+      "image": "canvas/13_pull-copper-locks.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the cow's shape and horns, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paints, darkest first: Rust brown, then Copper orange. The paint map shows where each goes."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch angle."
+        },
+        {
+          "kind": "how",
+          "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a line that starts wide and tapers to a point."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: The coat turns into one smooth patch with no locks. Too much paint, or the strokes are blended into each other. Fix: use a light load, keep each lock separate, and let it dry before adding more."
+        }
+      ],
+      "name": "Pull the copper locks",
+      "paints": "The Highland cow",
+      "parts": [
+        "cow"
+      ],
+      "steps": [
+        "Let the cow's shape and horns, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall.",
+        "Paints, darkest first: Rust brown, then Copper orange. The paint map shows where each goes.",
+        "Brush: 1/2 inch angle.",
+        "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+        "It should leave a line that starts wide and tapers to a point.",
+        "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture.",
+        "Watch out: The coat turns into one smooth patch with no locks. Too much paint, or the strokes are blended into each other. Fix: use a light load, keep each lock separate, and let it dry before adding more."
+      ],
+      "summary": "Pull copper and rust locks down over the whole coat, fringe and head.",
+      "tip": "Pull each lock from the top down, following the body's curve: Copper orange for the brighter locks and Rust brown for the darker ones, with gaps so the shadow shows through, fewest on the left. Let the fringe locks fall over the bases of the horns and over the eyes.",
+      "v2_steps": [
+        "pull-copper-locks"
+      ]
+    },
+    {
+      "brushes": "1/4 inch angle",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#e2ae4d",
+          "id": "clouds-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#daa941",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#e2ae4d",
+            "text": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red"
+          },
+          "name": "Golden ochre",
+          "parts": [
+            "sky",
+            "clouds",
+            "grass",
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red",
+          "sample_x": 0.008,
+          "sample_y": 0.492,
+          "used_for": "the gold low in the sky, the lit cloud tops, the cow's golden locks and sunlit rim, the horns' lit tops, and the brightest grass tips"
+        }
+      ],
+      "group": "the-shaggy-coat",
+      "id": "pull-golden-locks",
+      "image": "canvas/14_pull-golden-locks.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the cow's shape and horns, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 2 in from the left edge; it's about 7 in wide and 8 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Golden ochre."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/4 inch angle."
+        },
+        {
+          "kind": "how",
+          "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave a line that starts wide and tapers to a point."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 9, 10 and 13 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "coats",
+          "text": "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: The coat turns into one smooth patch with no locks. Too much paint, or the strokes are blended into each other. Fix: use a light load, keep each lock separate, and let it dry before adding more."
+        }
+      ],
+      "name": "Pull the sunlit golden locks",
+      "paints": "The Highland cow",
+      "parts": [
+        "cow"
+      ],
+      "steps": [
+        "Let the cow's shape and horns, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 2 in from the left edge; it's about 7 in wide and 8 1/2 in tall.",
+        "Paint: Golden ochre.",
+        "Brush: 1/4 inch angle.",
+        "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+        "It should leave a line that starts wide and tapers to a point.",
+        "Leave what steps 9, 10 and 13 painted showing around these marks, as in the Result picture.",
+        "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Watch out: The coat turns into one smooth patch with no locks. Too much paint, or the strokes are blended into each other. Fix: use a light load, keep each lock separate, and let it dry before adding more."
+      ],
+      "summary": "Pull golden locks on the fringe, the top of the head and the sun side.",
+      "tip": "Use Golden ochre in fewer, shorter locks than the copper, on the fringe, the top of the head and the right of the body and chest that face the sun; leave the left side mostly copper and dark. Carry a few broken strokes right to the cow's right-hand edge, which gives the glowing rim.",
+      "v2_steps": [
+        "pull-golden-locks"
+      ]
+    },
+    {
+      "brushes": "1/4 inch flat",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#e2ae4d",
+          "id": "clouds-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#daa941",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#e2ae4d",
+            "text": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red"
+          },
+          "name": "Golden ochre",
+          "parts": [
+            "sky",
+            "clouds",
+            "grass",
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red",
+          "sample_x": 0.008,
+          "sample_y": 0.492,
+          "used_for": "the gold low in the sky, the lit cloud tops, the cow's golden locks and sunlit rim, the horns' lit tops, and the brightest grass tips"
+        }
+      ],
+      "group": "the-shaggy-coat",
+      "id": "catch-rim-light",
+      "image": "canvas/15_catch-rim-light.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the highland cow, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "The Highland cow: Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall."
+        },
+        {
+          "kind": "where",
+          "text": "The horns: Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 1/2 in wide and 3 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Golden ochre."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/4 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+        },
+        {
+          "kind": "how",
+          "text": "Light pressure, skimming the surface."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 9, 10, 13 and 14 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 11 and 12 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "coats",
+          "text": "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Catch the sun's rim on the hair and horns",
+      "paints": "The Highland cow, The horns",
+      "parts": [
+        "cow",
+        "horns"
+      ],
+      "steps": [
+        "Let the highland cow, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up.",
+        "The Highland cow: Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall.",
+        "The horns: Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 1/2 in wide and 3 in tall.",
+        "Paint: Golden ochre.",
+        "Brush: 1/4 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Leave what steps 9, 10, 13 and 14 painted showing around these marks, as in the Result picture.",
+        "Leave what steps 11 and 12 painted showing around these marks, as in the Result picture.",
+        "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Catch the sun's rim along the cow's sunny edges and the tops of the horns.",
+      "tip": "Go round in this order with the same 1/4 inch flat and Golden ochre: a few broken touches on the top of the fringe and the right ear and cheek, then a thin line along the top edge of each horn's curve. On the cow most of the rim is already there from the golden locks, so keep it light and broken.",
+      "v2_steps": [
+        "rim-light-cow",
+        "rim-light-horns"
+      ]
+    },
+    {
+      "brushes": "#4 round",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#734933",
+          "id": "muzzle-1",
+          "mix": {
+            "delta_e": 2.6,
+            "guess_recipe": "",
+            "mixed_hex": "#6c412b",
+            "parts": {
+              "Cadmium red medium (hue)": 3,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 0.2,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#734933",
+            "text": "3 parts red, 3 parts ultramarine, 1 part yellow, a touch of white"
+          },
+          "name": "Rosy brown",
+          "of": "cow-2",
+          "parts": [
+            "muzzle"
+          ],
+          "plus": "white",
+          "recipe": "3 parts red, 3 parts ultramarine, 1 part yellow, a touch of white",
+          "sample_x": 0.601,
+          "sample_y": 0.498,
+          "used_for": "the cow's nose"
+        }
+      ],
+      "group": "the-face",
+      "id": "paint-nose",
+      "image": "canvas/16_paint-nose.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the shaggy coat, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "rinse",
+          "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 7 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 3/4 in wide and 1 3/4 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Rosy brown."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: #4 round."
+        },
+        {
+          "kind": "how",
+          "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+        }
+      ],
+      "name": "Paint the nose",
+      "paints": "The cow's muzzle",
+      "parts": [
+        "muzzle"
+      ],
+      "steps": [
+        "Let the shaggy coat, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Inside the outlined area. Its top is about 7 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 3/4 in wide and 1 3/4 in tall.",
+        "Paint: Rosy brown.",
+        "Brush: #4 round.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+      ],
+      "summary": "Paint the broad nose under the fringe in Rosy brown.",
+      "tip": "The nose sits on the right of the head under the fringe, about 1 3/4 in wide, rounded and wider at the bottom. Curve the strokes around its shape.",
+      "v2_steps": [
+        "paint-nose"
+      ]
+    },
+    {
+      "brushes": "#2 round",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#85737d",
+          "id": "horns-1",
+          "mix": {
+            "delta_e": 1.4,
+            "guess_recipe": "",
+            "mixed_hex": "#847079",
+            "parts": {
+              "Burnt sienna": 3,
+              "Titanium white": 3,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#85737d",
+            "text": "3 parts burnt sienna, 3 parts white, 2 parts ultramarine"
+          },
+          "name": "Rose gray",
+          "parts": [
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "3 parts burnt sienna, 3 parts white, 2 parts ultramarine",
+          "sample_x": 0.746,
+          "sample_y": 0.337,
+          "used_for": "the lit top of the nose"
+        }
+      ],
+      "group": "the-face",
+      "id": "light-nose",
+      "image": "canvas/17_light-nose.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the cow's muzzle, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 7 1/2 in from the top edge, and its right side is about 4 1/2 in from the right edge; it's about 3/4 in wide and 1/2 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Rose gray."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: #2 round."
+        },
+        {
+          "kind": "how",
+          "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 16 painted showing around these marks, as in the Result picture."
+        }
+      ],
+      "name": "Light the top of the nose",
+      "paints": "The cow's muzzle",
+      "parts": [
+        "muzzle"
+      ],
+      "steps": [
+        "Let the cow's muzzle, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 7 1/2 in from the top edge, and its right side is about 4 1/2 in from the right edge; it's about 3/4 in wide and 1/2 in tall.",
+        "Paint: Rose gray.",
+        "Brush: #2 round.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+        "Leave what step 16 painted showing around these marks, as in the Result picture."
+      ],
+      "summary": "Light the top of the nose with a small curve of Rose gray.",
+      "tip": "Lay it across the top of the nose on the sun side and leave the Rosy brown showing around and below it.",
+      "v2_steps": [
+        "light-nose"
+      ]
+    },
+    {
+      "brushes": "#2 round",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4c2a1e",
+          "id": "cow-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#502d24",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 2,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4c2a1e",
+            "text": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna"
+          },
+          "name": "Deep red-brown",
+          "of": "cow-2",
+          "parts": [
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna",
+          "sample_x": 0.492,
+          "sample_y": 0.52,
+          "used_for": "the shadow side of the coat, the horns' undersides, and the nostrils and mouth"
+        }
+      ],
+      "group": "the-face",
+      "id": "dot-nostrils-eye",
+      "image": "canvas/18_dot-nostrils-eye.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the cow's muzzle, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 7 1/2 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 1/2 in wide and 1 1/4 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep red-brown."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: #2 round. Load: Thick paint. Dip in fresh paint for each dot or small group."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave round, slightly raised dots."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 16 and 17 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Uneven dots. Dipping into paint that has skinned over. Fix: keep a fresh puddle."
+        }
+      ],
+      "name": "Dot the nostrils and the eye",
+      "paints": "The cow's muzzle",
+      "parts": [
+        "muzzle"
+      ],
+      "steps": [
+        "Let the cow's muzzle, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 7 1/2 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 1/2 in wide and 1 1/4 in tall.",
+        "Paint: Deep red-brown.",
+        "Brush: #2 round. Load: Thick paint. Dip in fresh paint for each dot or small group.",
+        "It should leave round, slightly raised dots.",
+        "Leave what steps 16 and 17 painted showing around these marks, as in the Result picture.",
+        "Watch out: Uneven dots. Dipping into paint that has skinned over. Fix: keep a fresh puddle."
+      ],
+      "summary": "Dot two dark nostrils on the front of the nose.",
+      "tip": "Use Deep red-brown, the darkest paint here, with the tip of the brush (the handle end works too). The eye that peeks out under the fringe, left of the nose, is already dark from the shadow side, so add a dot there only if yours got covered.",
+      "v2_steps": [
+        "dot-nostrils-eye"
+      ]
+    },
+    {
+      "brushes": "liner",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#4c2a1e",
+          "id": "cow-1",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#502d24",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium red medium (hue)": 2,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#4c2a1e",
+            "text": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna"
+          },
+          "name": "Deep red-brown",
+          "of": "cow-2",
+          "parts": [
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna",
+          "sample_x": 0.492,
+          "sample_y": 0.52,
+          "used_for": "the shadow side of the coat, the horns' undersides, and the nostrils and mouth"
+        }
+      ],
+      "group": "the-face",
+      "id": "line-mouth",
+      "image": "canvas/19_line-mouth.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the cow's muzzle, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area. Its top is about 7 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 3/4 in wide and 1 3/4 in tall."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep red-brown."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often."
+        },
+        {
+          "kind": "how",
+          "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave thin, flowing lines."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 16, 17 and 18 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Line the mouth and chin",
+      "paints": "The cow's muzzle",
+      "parts": [
+        "muzzle"
+      ],
+      "steps": [
+        "Let the cow's muzzle, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 7 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 3/4 in wide and 1 3/4 in tall.",
+        "Paint: Deep red-brown.",
+        "Brush: liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+        "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little.",
+        "It should leave thin, flowing lines.",
+        "Leave what steps 16, 17 and 18 painted showing around these marks, as in the Result picture.",
+        "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Line the mouth under the nose and the chin below it.",
+      "tip": "One short curved line of Deep red-brown under the nose for the mouth and a thin line under the chin; the face is then finished.",
+      "v2_steps": [
+        "line-mouth"
+      ]
+    },
+    {
+      "brushes": "1 inch fan",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#34423b",
+          "id": "grass-1",
+          "mix": {
+            "delta_e": 3.1,
+            "guess_recipe": "",
+            "mixed_hex": "#2c4036",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Ultramarine blue": 3
+            },
+            "reachable": true,
+            "target_hex": "#34423b",
+            "text": "3 parts ultramarine, 1 part yellow, 1 part burnt sienna"
+          },
+          "name": "Deep grass green",
+          "of": "grass-3",
+          "parts": [
+            "hillside",
+            "bushes",
+            "grass"
+          ],
+          "plus": "Ultramarine blue",
+          "recipe": "3 parts ultramarine, 1 part yellow, 1 part burnt sienna",
+          "sample_x": 0.216,
+          "sample_y": 0.999,
+          "used_for": "the bushes, the meadow's base, and the dark grass blades"
+        }
+      ],
+      "group": "the-tall-grass",
+      "id": "flick-dark-blades",
+      "image": "canvas/20_flick-dark-blades.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Deep grass green."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 inch fan. Load: A light load. Too much paint makes flat blobs."
+        },
+        {
+          "kind": "how",
+          "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave tapered marks with broken tips, denser at the base."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what step 6 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+        }
+      ],
+      "name": "Flick the dark grass blades",
+      "paints": "Tall grass",
+      "parts": [
+        "grass"
+      ],
+      "steps": [
+        "Let the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the bottom edge.",
+        "Paint: Deep grass green.",
+        "Brush: 1 inch fan. Load: A light load. Too much paint makes flat blobs.",
+        "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+        "It should leave tapered marks with broken tips, denser at the base.",
+        "Leave what step 6 painted showing around these marks, as in the Result picture.",
+        "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+      ],
+      "summary": "Flick dark grass blades up over the meadow and the cow's lower legs.",
+      "tip": "Flick Deep grass green upward from the bottom edge, longest at the bottom and shorter up the meadow, right up to the cow. A few blades already cross the bottom of the cow from its block-in; flick over them too, so it stands in the grass.",
+      "v2_steps": [
+        "flick-dark-blades"
+      ]
+    },
+    {
+      "brushes": "1 inch fan",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#455337",
+          "id": "grass-3",
+          "mix": {
+            "delta_e": 3.6,
+            "guess_recipe": "",
+            "mixed_hex": "#384e2f",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium yellow medium (hue)": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#455337",
+            "text": "2 parts ultramarine, 1 part yellow, 1 part burnt sienna"
+          },
+          "name": "Olive green",
+          "of": "grass-1",
+          "parts": [
+            "hillside",
+            "grass"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 1 part yellow, 1 part burnt sienna",
+          "sample_x": 0.999,
+          "sample_y": 0.84,
+          "used_for": "the body of the hillside, and the olive grass blades"
+        }
+      ],
+      "group": "the-tall-grass",
+      "id": "flick-olive-blades",
+      "image": "canvas/21_flick-olive-blades.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 7 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Olive green."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 inch fan. Load: A light load. Too much paint makes flat blobs."
+        },
+        {
+          "kind": "how",
+          "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave tapered marks with broken tips, denser at the base."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 6 and 20 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+        }
+      ],
+      "name": "Flick the olive blades",
+      "paints": "Tall grass",
+      "parts": [
+        "grass"
+      ],
+      "steps": [
+        "Let the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 7 in from the bottom edge.",
+        "Paint: Olive green.",
+        "Brush: 1 inch fan. Load: A light load. Too much paint makes flat blobs.",
+        "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+        "It should leave tapered marks with broken tips, denser at the base.",
+        "Leave what steps 6 and 20 painted showing around these marks, as in the Result picture.",
+        "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+      ],
+      "summary": "Flick olive blades over most of the meadow.",
+      "tip": "Flick Olive green over the dark blades, leaving dark showing between them so the grass has depth.",
+      "v2_steps": [
+        "flick-olive-blades"
+      ]
+    },
+    {
+      "brushes": "1 inch fan",
+      "colors": [
+        {
+          "added": true,
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#5e623a",
+          "id": "hillside-1",
+          "mix": {
+            "delta_e": 3.9,
+            "guess_recipe": "",
+            "mixed_hex": "#666c47",
+            "parts": {
+              "Burnt sienna": 2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1,
+              "Ultramarine blue": 2
+            },
+            "reachable": true,
+            "target_hex": "#5e623a",
+            "text": "2 parts ultramarine, 2 parts burnt sienna, 1 part yellow, 1 part white"
+          },
+          "name": "Sunlit yellow-green",
+          "of": "grass-3",
+          "parts": [
+            "hillside",
+            "bushes",
+            "grass"
+          ],
+          "plus": "white",
+          "recipe": "2 parts ultramarine, 2 parts burnt sienna, 1 part yellow, 1 part white",
+          "sample_x": 0.301,
+          "sample_y": 0.823,
+          "used_for": "the sunlit hillside, the sun on the bushes, and the sunlit grass blades"
+        }
+      ],
+      "group": "the-tall-grass",
+      "id": "flick-yellow-green-blades",
+      "image": "canvas/22_flick-yellow-green-blades.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 7 in from the bottom edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Sunlit yellow-green."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1 inch fan. Load: A light load. Too much paint makes flat blobs."
+        },
+        {
+          "kind": "how",
+          "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave tapered marks with broken tips, denser at the base."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 6, 20 and 21 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+        }
+      ],
+      "name": "Flick the sunlit green blades",
+      "paints": "Tall grass",
+      "parts": [
+        "grass"
+      ],
+      "steps": [
+        "Let the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 7 in from the bottom edge.",
+        "Paint: Sunlit yellow-green.",
+        "Brush: 1 inch fan. Load: A light load. Too much paint makes flat blobs.",
+        "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+        "It should leave tapered marks with broken tips, denser at the base.",
+        "Leave what steps 6, 20 and 21 painted showing around these marks, as in the Result picture.",
+        "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+      ],
+      "summary": "Flick fewer sunlit green blades, mostly toward the right and the top.",
+      "tip": "Sunlit yellow-green goes where the sun reaches, toward the right and up the meadow, covering less than the olive.",
+      "v2_steps": [
+        "flick-yellow-green-blades"
+      ]
+    },
+    {
+      "brushes": "1/2 inch fan",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#948031",
+          "id": "grass-2",
+          "mix": {
+            "delta_e": 1.9,
+            "guess_recipe": "",
+            "mixed_hex": "#927d23",
+            "parts": {
+              "Cadmium red medium (hue)": 1,
+              "Cadmium yellow medium (hue)": 2,
+              "Ultramarine blue": 1
+            },
+            "reachable": true,
+            "target_hex": "#948031",
+            "text": "2 parts yellow, 1 part red, 1 part ultramarine"
+          },
+          "name": "Olive gold",
+          "parts": [
+            "hillside",
+            "grass"
+          ],
+          "recipe": "2 parts yellow, 1 part red, 1 part ultramarine",
+          "sample_x": 0.0,
+          "sample_y": 0.548,
+          "used_for": "the gold grass blades in the meadow"
+        }
+      ],
+      "group": "the-tall-grass",
+      "id": "flick-gold-blades",
+      "image": "canvas/23_flick-gold-blades.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the cow's shape and horns, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 7 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Olive gold."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch fan. Load: A light load. Too much paint makes flat blobs."
+        },
+        {
+          "kind": "how",
+          "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave tapered marks with broken tips, denser at the base."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 6, 20, 21 and 22 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+        }
+      ],
+      "name": "Flick the golden blades",
+      "paints": "Tall grass",
+      "parts": [
+        "grass"
+      ],
+      "steps": [
+        "Let the cow's shape and horns, and the green slope and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 7 1/2 in from the top edge.",
+        "Paint: Olive gold.",
+        "Brush: 1/2 inch fan. Load: A light load. Too much paint makes flat blobs.",
+        "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+        "It should leave tapered marks with broken tips, denser at the base.",
+        "Leave what steps 6, 20, 21 and 22 painted showing around these marks, as in the Result picture.",
+        "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+      ],
+      "summary": "Flick gold blades all over the meadow and in front of the cow.",
+      "tip": "Use Olive gold, the gold of the grass: bigger blades farther apart at the bottom, smaller and closer up the meadow. Where gold blades already cross the bottom of the cow, go over them with the same paint so they match.",
+      "v2_steps": [
+        "flick-gold-blades"
+      ]
+    },
+    {
+      "brushes": "1/2 inch fan",
+      "colors": [
+        {
+          "guess_hex": null,
+          "guess_recipe": "",
+          "hex": "#e2ae4d",
+          "id": "clouds-2",
+          "mix": {
+            "delta_e": 2.1,
+            "guess_recipe": "",
+            "mixed_hex": "#daa941",
+            "parts": {
+              "Burnt sienna": 1,
+              "Cadmium red medium (hue)": 0.2,
+              "Cadmium yellow medium (hue)": 1,
+              "Titanium white": 1
+            },
+            "reachable": true,
+            "target_hex": "#e2ae4d",
+            "text": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red"
+          },
+          "name": "Golden ochre",
+          "parts": [
+            "sky",
+            "clouds",
+            "grass",
+            "cow",
+            "muzzle",
+            "horns"
+          ],
+          "recipe": "1 part yellow, 1 part burnt sienna, 1 part white, a touch of red",
+          "sample_x": 0.008,
+          "sample_y": 0.492,
+          "used_for": "the gold low in the sky, the lit cloud tops, the cow's golden locks and sunlit rim, the horns' lit tops, and the brightest grass tips"
+        }
+      ],
+      "group": "the-tall-grass",
+      "id": "flick-brightest-tips",
+      "image": "canvas/24_flick-brightest-tips.png",
+      "lines": [
+        {
+          "kind": "dry",
+          "text": "Let the tall grass, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up."
+        },
+        {
+          "kind": "where",
+          "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the top edge."
+        },
+        {
+          "kind": "paints",
+          "text": "Paint: Golden ochre."
+        },
+        {
+          "kind": "how",
+          "text": "Brush: 1/2 inch fan. Load: A light load. Too much paint makes flat blobs."
+        },
+        {
+          "kind": "how",
+          "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top."
+        },
+        {
+          "kind": "result",
+          "text": "It should leave tapered marks with broken tips, denser at the base."
+        },
+        {
+          "kind": "result",
+          "text": "Leave what steps 6, 20, 21, 22 and 23 painted showing around these marks, as in the Result picture."
+        },
+        {
+          "kind": "coats",
+          "text": "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+        },
+        {
+          "kind": "watch",
+          "text": "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front."
+        },
+        {
+          "kind": "step-back",
+          "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+        }
+      ],
+      "name": "Flick the brightest grass tips",
+      "paints": "Tall grass",
+      "parts": [
+        "grass"
+      ],
+      "steps": [
+        "Let the tall grass, and the cow's shape and horns dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the top edge.",
+        "Paint: Golden ochre.",
+        "Brush: 1/2 inch fan. Load: A light load. Too much paint makes flat blobs.",
+        "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+        "It should leave tapered marks with broken tips, denser at the base.",
+        "Leave what steps 6, 20, 21, 22 and 23 painted showing around these marks, as in the Result picture.",
+        "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Watch out: Texture all the way to the horizon. Texture belongs near the viewer; on the far field it flattens the distance. Fix: keep the far field nearly flat, and put the flicks and taps only in front.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "summary": "Flick the brightest Golden ochre tips on the tallest blades to finish.",
+      "tip": "Only a few, mostly on the sun side and in front of the cow, so they match the gold rim on the cow; these are the brightest touches in the grass.",
+      "v2_steps": [
+        "flick-brightest-tips"
+      ]
+    }
+  ]
+}

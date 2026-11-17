@@ -1,0 +1,1464 @@
+{
+  "focal_point": "where the path disappears into the blue mist, between the birches",
+  "light": "a low sun at the upper left, shining across the wood toward the right",
+  "paints": [
+    {
+      "id": "fallen-leaves-2",
+      "name": "Golden yellow",
+      "used_for": "the main color of the leaves, the moss on the rock",
+      "hex": "#df9b31",
+      "sample_x": 0.05,
+      "sample_y": 0.0,
+      "parts": [
+        "sky",
+        "ground",
+        "fallen-leaves",
+        "canopy",
+        "undergrowth",
+        "rock",
+        "branches"
+      ]
+    },
+    {
+      "id": "sky-1",
+      "hex": "#97a6b4",
+      "sample_x": 0.544,
+      "sample_y": 0.293,
+      "parts": [
+        "sky",
+        "far-trunks",
+        "rock",
+        "branches"
+      ],
+      "name": "Misty blue",
+      "used_for": "the cool mist on the right and low down, the far trunks' shade, the rock's shadow"
+    },
+    {
+      "id": "sky-2",
+      "name": "Warm cream",
+      "used_for": "the soft glow in the sky, the far pale trunks, the sunlit left edges of the birches",
+      "hex": "#d1be98",
+      "of": "canopy-2",
+      "plus": "white",
+      "sample_x": 0.402,
+      "sample_y": 0.282,
+      "parts": [
+        "sky",
+        "sun-rays",
+        "far-trunks",
+        "birches"
+      ]
+    },
+    {
+      "id": "far-forest-1",
+      "name": "Deep blue-green",
+      "used_for": "the dark far firs, the darkest bushes, the rock's shadow side",
+      "hex": "#4d5a62",
+      "sample_x": 0.749,
+      "sample_y": 0.43,
+      "parts": [
+        "far-forest",
+        "undergrowth",
+        "rock"
+      ]
+    },
+    {
+      "id": "far-forest-2",
+      "name": "Misty fir blue",
+      "used_for": "the paler firs further back in the mist",
+      "hex": "#68819c",
+      "of": "far-forest-1",
+      "plus": "white",
+      "sample_x": 0.538,
+      "sample_y": 0.509,
+      "parts": [
+        "far-forest"
+      ]
+    },
+    {
+      "id": "fallen-leaves-1",
+      "name": "Orange gold",
+      "used_for": "the darker leaves in the canopy and on the ground, the path",
+      "hex": "#b77638",
+      "sample_x": 0.422,
+      "sample_y": 0.951,
+      "parts": [
+        "ground",
+        "path",
+        "fallen-leaves",
+        "canopy"
+      ]
+    },
+    {
+      "id": "ground-1",
+      "hex": "#795841",
+      "of": "ground-3",
+      "plus": "white",
+      "sample_x": 0.989,
+      "sample_y": 0.999,
+      "parts": [
+        "sky",
+        "ground",
+        "fallen-leaves"
+      ],
+      "name": "Deep rust",
+      "used_for": "the dark ground under the leaves, the shadowed fallen leaves"
+    },
+    {
+      "id": "ground-3",
+      "hex": "#865131",
+      "of": "ground-1",
+      "plus": "white",
+      "sample_x": 0.0,
+      "sample_y": 0.993,
+      "parts": [
+        "ground"
+      ],
+      "added": true,
+      "name": "Rust brown",
+      "used_for": "the bare ground under the leaves"
+    },
+    {
+      "id": "canopy-2",
+      "hex": "#dbaf5d",
+      "of": "fallen-leaves-2",
+      "plus": "white",
+      "sample_x": 0.064,
+      "sample_y": 0.273,
+      "parts": [
+        "sky",
+        "sun-rays",
+        "fallen-leaves",
+        "canopy",
+        "undergrowth"
+      ],
+      "name": "Pale gold",
+      "used_for": "the glow around the sun, the sun rays, the sunlit leaves"
+    },
+    {
+      "id": "undergrowth-1",
+      "hex": "#7a6948",
+      "of": "undergrowth-3",
+      "plus": "Ultramarine blue",
+      "sample_x": 0.957,
+      "sample_y": 0.56,
+      "parts": [
+        "undergrowth"
+      ],
+      "name": "Olive",
+      "used_for": "the bushes in shade"
+    },
+    {
+      "id": "undergrowth-3",
+      "hex": "#a1804a",
+      "sample_x": 0.145,
+      "sample_y": 0.547,
+      "parts": [
+        "undergrowth",
+        "branches"
+      ],
+      "name": "Muted gold",
+      "used_for": "the base of the olive mix"
+    },
+    {
+      "id": "rock-1",
+      "hex": "#56503f",
+      "sample_x": 0.726,
+      "sample_y": 0.624,
+      "parts": [
+        "rock"
+      ],
+      "name": "Gray-green",
+      "used_for": "the rock's first coat"
+    },
+    {
+      "id": "rock-2",
+      "hex": "#7d6e4c",
+      "of": "rock-1",
+      "plus": "white",
+      "sample_x": 0.665,
+      "sample_y": 0.656,
+      "parts": [
+        "rock"
+      ],
+      "added": true,
+      "name": "Moss olive",
+      "used_for": "the moss on the rock's top"
+    },
+    {
+      "id": "birches-1",
+      "name": "Bark dark",
+      "used_for": "the bark marks, the trunks' feet, the branches",
+      "hex": "#3b3430",
+      "sample_x": 0.951,
+      "sample_y": 0.896,
+      "parts": [
+        "birches",
+        "branches"
+      ]
+    },
+    {
+      "id": "birches-2",
+      "hex": "#98929b",
+      "of": "birches-1",
+      "plus": "white",
+      "sample_x": 0.235,
+      "sample_y": 0.309,
+      "parts": [
+        "birches"
+      ],
+      "name": "Gray-white",
+      "used_for": "the birch trunks' first coat"
+    },
+    {
+      "id": "birches-3",
+      "name": "Gray-brown",
+      "used_for": "the shaded right side of the trunks",
+      "hex": "#666164",
+      "of": "birches-1",
+      "plus": "white",
+      "sample_x": 0.123,
+      "sample_y": 0.008,
+      "parts": [
+        "birches"
+      ],
+      "added": true
+    },
+    {
+      "id": "birches-4",
+      "hex": "#88663f",
+      "sample_x": 0.784,
+      "sample_y": 0.767,
+      "parts": [
+        "birches"
+      ],
+      "added": true,
+      "name": "Bark brown",
+      "used_for": "the warm dark at the trunks' feet"
+    },
+    {
+      "id": "sun-1",
+      "hex": "#f8eed5",
+      "sample_x": 0.064,
+      "sample_y": 0.146,
+      "parts": [
+        "sun"
+      ],
+      "name": "Warm white",
+      "used_for": "the sun"
+    }
+  ],
+  "parts": [
+    {
+      "box": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "element": "sky-blend",
+      "element_why": "The glowing gold-to-blue haze behind everything is one soft gradient with no edges, blended wet in one go.",
+      "id": "sky",
+      "kind": "area",
+      "name": "Misty sky and haze",
+      "thing": "backdrop",
+      "covers": [
+        [
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "box": [
+        0.0,
+        0.18,
+        0.3,
+        0.52
+      ],
+      "element": "clouds",
+      "element_why": "The rays are haze laid over the sky: soft dry-brushed light, the clouds element's mist.",
+      "id": "sun-rays",
+      "kind": "marks",
+      "name": "Sun rays",
+      "parent": "sky",
+      "points_in": [
+        [
+          0.04,
+          0.25
+        ],
+        [
+          0.17,
+          0.38
+        ],
+        [
+          0.2,
+          0.3
+        ],
+        [
+          0.07,
+          0.42
+        ],
+        [
+          0.24,
+          0.44
+        ]
+      ],
+      "points_out": [
+        [
+          0.115,
+          0.35
+        ],
+        [
+          0.03,
+          0.47
+        ],
+        [
+          0.25,
+          0.2
+        ],
+        [
+          0.27,
+          0.5
+        ],
+        [
+          0.14,
+          0.2
+        ]
+      ],
+      "thing": "sun-rays"
+    },
+    {
+      "box": [
+        0.38,
+        0.15,
+        0.9,
+        0.62
+      ],
+      "element": "pines",
+      "element_why": "The far wood is a mass of misty firs: dark blue-green shapes, tapped lighter on the lit side, no texture at this distance.",
+      "id": "far-forest",
+      "kind": "marks",
+      "name": "The far misty firs",
+      "parent": "sky",
+      "points_in": [
+        [
+          0.63,
+          0.42
+        ],
+        [
+          0.75,
+          0.35
+        ],
+        [
+          0.58,
+          0.45
+        ],
+        [
+          0.85,
+          0.4
+        ],
+        [
+          0.47,
+          0.48
+        ],
+        [
+          0.7,
+          0.55
+        ]
+      ],
+      "points_out": [
+        [
+          0.55,
+          0.22
+        ],
+        [
+          0.6,
+          0.15
+        ],
+        [
+          0.68,
+          0.4
+        ],
+        [
+          0.8,
+          0.4
+        ],
+        [
+          0.45,
+          0.25
+        ],
+        [
+          0.6,
+          0.62
+        ]
+      ],
+      "thing": "far-firs"
+    },
+    {
+      "box": [
+        0.41,
+        0.08,
+        0.71,
+        0.6
+      ],
+      "element": "trunks-branches",
+      "element_why": "Far trunks: pale dry-brushed verticals, no light pass at this distance.",
+      "id": "far-trunks",
+      "kind": "marks",
+      "name": "Far misty trunks",
+      "parent": "sky",
+      "points_in": [
+        [
+          0.68,
+          0.3
+        ],
+        [
+          0.68,
+          0.5
+        ],
+        [
+          0.505,
+          0.45
+        ],
+        [
+          0.435,
+          0.45
+        ],
+        [
+          0.58,
+          0.52
+        ]
+      ],
+      "points_out": [
+        [
+          0.47,
+          0.4
+        ],
+        [
+          0.63,
+          0.42
+        ],
+        [
+          0.55,
+          0.2
+        ],
+        [
+          0.46,
+          0.2
+        ],
+        [
+          0.71,
+          0.45
+        ],
+        [
+          0.53,
+          0.35
+        ],
+        [
+          0.6,
+          0.3
+        ],
+        [
+          0.47,
+          0.55
+        ],
+        [
+          0.55,
+          0.5
+        ]
+      ],
+      "thing": "far-trunks"
+    },
+    {
+      "box": [
+        0,
+        0.55,
+        1,
+        1
+      ],
+      "element": "field-grass",
+      "element_why": "The ground under the leaves is laid in like a field, in horizontal strokes, darker in front.",
+      "id": "ground",
+      "kind": "area",
+      "name": "The forest floor",
+      "thing": "forest-floor",
+      "element_left_out": "Grass texture: the fallen leaves are their own part.",
+      "points_in": [
+        [
+          0.06,
+          0.637
+        ],
+        [
+          0.145,
+          0.647
+        ],
+        [
+          0.867,
+          0.717
+        ],
+        [
+          0.747,
+          0.65
+        ],
+        [
+          0.985,
+          0.7
+        ],
+        [
+          0.5,
+          0.85
+        ]
+      ]
+    },
+    {
+      "id": "path",
+      "name": "The winding path",
+      "kind": "marks",
+      "parent": "ground",
+      "thing": "path",
+      "element": "soil-rows",
+      "element_why": "One dirt track pulled toward one point at the far trees; only the pull is used.",
+      "element_left_out": "Edge shading and a light down the middle: the fallen leaves cover the path's edges and carry its light.",
+      "boxes": [
+        [
+          0.5,
+          0.58,
+          0.62,
+          0.66
+        ],
+        [
+          0.46,
+          0.66,
+          0.72,
+          0.78
+        ],
+        [
+          0.4,
+          0.78,
+          0.8,
+          0.9
+        ],
+        [
+          0.36,
+          0.9,
+          0.84,
+          1.0
+        ]
+      ],
+      "colors_in": [
+        "#ae764c",
+        "#c19c7d",
+        "#af724b",
+        "#c69c78"
+      ],
+      "colors_out": [
+        "#744b33",
+        "#734825",
+        "#954f22",
+        "#4f3a2f",
+        "#9a5d2e"
+      ]
+    },
+    {
+      "id": "fallen-leaves",
+      "name": "The fallen leaves",
+      "kind": "marks",
+      "parent": "ground",
+      "thing": "fallen-leaves",
+      "box": [
+        0,
+        0.57,
+        1,
+        1
+      ],
+      "element": "foliage",
+      "element_why": "Leaves in a mass on the ground: a dark pass, two warmer passes each covering less, then sunlit taps.",
+      "colors_in": [
+        "#c77924",
+        "#ed9c27",
+        "#f5bb56"
+      ],
+      "colors_out": [
+        "#744b33",
+        "#9a5d2e",
+        "#ae764c",
+        "#3c342e"
+      ]
+    },
+    {
+      "id": "canopy",
+      "name": "The golden canopy",
+      "kind": "marks",
+      "thing": "canopy",
+      "box": [
+        0,
+        0,
+        1,
+        0.3
+      ],
+      "element": "foliage",
+      "element_why": "Autumn leaves in a mass across the top, dabbed dark to light, brightest toward the sun.",
+      "element_left_out": "Single leaf shapes.",
+      "points_in": [
+        [
+          0.25,
+          0.1
+        ],
+        [
+          0.45,
+          0.12
+        ],
+        [
+          0.72,
+          0.12
+        ],
+        [
+          0.95,
+          0.08
+        ]
+      ],
+      "points_out": [
+        [
+          0.55,
+          0.15
+        ],
+        [
+          0.115,
+          0.4
+        ],
+        [
+          0.07,
+          0.38
+        ],
+        [
+          0.4,
+          0.3
+        ],
+        [
+          0.88,
+          0.45
+        ]
+      ]
+    },
+    {
+      "id": "undergrowth",
+      "name": "The yellow bushes",
+      "kind": "marks",
+      "thing": "undergrowth",
+      "boxes": [
+        [
+          0,
+          0.47,
+          0.1,
+          0.66
+        ],
+        [
+          0.1,
+          0.53,
+          0.5,
+          0.66
+        ],
+        [
+          0.58,
+          0.5,
+          0.84,
+          0.66
+        ],
+        [
+          0.84,
+          0.42,
+          1,
+          0.68
+        ]
+      ],
+      "element": "foliage",
+      "element_why": "Low bushes along the path: a leaf mass, olive dark first, then gold, then a few sunlit taps.",
+      "points_in": [
+        [
+          0.05,
+          0.55
+        ],
+        [
+          0.3,
+          0.55
+        ],
+        [
+          0.95,
+          0.55
+        ],
+        [
+          0.64,
+          0.55
+        ],
+        [
+          0.47,
+          0.57
+        ]
+      ],
+      "points_out": [
+        [
+          0.55,
+          0.15
+        ],
+        [
+          0.115,
+          0.4
+        ],
+        [
+          0.47,
+          0.64
+        ],
+        [
+          0.6,
+          0.48
+        ],
+        [
+          0.5,
+          0.52
+        ],
+        [
+          0.88,
+          0.45
+        ],
+        [
+          0.62,
+          0.57
+        ],
+        [
+          0.66,
+          0.575
+        ]
+      ]
+    },
+    {
+      "id": "rock",
+      "name": "The mossy rock",
+      "kind": "object",
+      "thing": "rock",
+      "box": [
+        0.635,
+        0.58,
+        0.745,
+        0.695
+      ],
+      "element": "shaped-object",
+      "element_why": "A low boulder built from a dome shape, shaded on the far side and lit on the mossy top.",
+      "element_left_out": "The small dry grass tuft in front of the rock.",
+      "points_in": [
+        [
+          0.69,
+          0.615
+        ],
+        [
+          0.685,
+          0.662
+        ],
+        [
+          0.715,
+          0.63
+        ]
+      ],
+      "points_out": [
+        [
+          0.66,
+          0.575
+        ],
+        [
+          0.75,
+          0.64
+        ],
+        [
+          0.66,
+          0.7
+        ],
+        [
+          0.62,
+          0.66
+        ]
+      ]
+    },
+    {
+      "element": "birch-trunks",
+      "element_why": "The near birches: pale trunks pulled first, shaded on the side away from the sun, then the dark bark marks, then light on the sunlit side.",
+      "id": "birches",
+      "kind": "thin",
+      "name": "The birch trunks",
+      "paths": [
+        [
+          [
+            0.115,
+            0.0
+          ],
+          [
+            0.115,
+            0.3
+          ],
+          [
+            0.11,
+            0.55
+          ],
+          [
+            0.1,
+            0.76
+          ]
+        ],
+        [
+          [
+            0.25,
+            0.0
+          ],
+          [
+            0.24,
+            0.3
+          ],
+          [
+            0.22,
+            0.55
+          ],
+          [
+            0.19,
+            0.84
+          ]
+        ],
+        [
+          [
+            0.385,
+            0.0
+          ],
+          [
+            0.37,
+            0.2
+          ],
+          [
+            0.34,
+            0.45
+          ],
+          [
+            0.3,
+            0.76
+          ]
+        ],
+        [
+          [
+            0.795,
+            0.0
+          ],
+          [
+            0.8,
+            0.3
+          ],
+          [
+            0.805,
+            0.55
+          ],
+          [
+            0.81,
+            0.79
+          ]
+        ],
+        [
+          [
+            0.885,
+            0.0
+          ],
+          [
+            0.895,
+            0.3
+          ],
+          [
+            0.915,
+            0.6
+          ],
+          [
+            0.93,
+            0.95
+          ]
+        ]
+      ],
+      "points_in": [
+        [
+          0.115,
+          0.3
+        ],
+        [
+          0.24,
+          0.3
+        ],
+        [
+          0.2,
+          0.78
+        ],
+        [
+          0.37,
+          0.2
+        ],
+        [
+          0.8,
+          0.4
+        ],
+        [
+          0.92,
+          0.7
+        ]
+      ],
+      "points_out": [
+        [
+          0.17,
+          0.3
+        ],
+        [
+          0.3,
+          0.5
+        ],
+        [
+          0.27,
+          0.8
+        ],
+        [
+          0.85,
+          0.4
+        ],
+        [
+          0.07,
+          0.35
+        ],
+        [
+          0.85,
+          0.6
+        ],
+        [
+          0.065,
+          0.145
+        ]
+      ],
+      "width": 0.07,
+      "thing": "birches"
+    },
+    {
+      "id": "branches",
+      "name": "The dark branches",
+      "kind": "thin",
+      "thing": "branches",
+      "paths": [
+        [
+          [
+            0.27,
+            0.15
+          ],
+          [
+            0.37,
+            0.09
+          ],
+          [
+            0.47,
+            0.04
+          ]
+        ],
+        [
+          [
+            0.39,
+            0.07
+          ],
+          [
+            0.43,
+            0.04
+          ],
+          [
+            0.47,
+            0.0
+          ]
+        ],
+        [
+          [
+            0.13,
+            0.16
+          ],
+          [
+            0.17,
+            0.09
+          ],
+          [
+            0.2,
+            0.06
+          ]
+        ],
+        [
+          [
+            0.1,
+            0.235
+          ],
+          [
+            0.075,
+            0.21
+          ],
+          [
+            0.06,
+            0.195
+          ]
+        ],
+        [
+          [
+            0.87,
+            0.2
+          ],
+          [
+            0.8,
+            0.11
+          ],
+          [
+            0.72,
+            0.08
+          ]
+        ],
+        [
+          [
+            0.92,
+            0.25
+          ],
+          [
+            0.96,
+            0.17
+          ],
+          [
+            1.0,
+            0.12
+          ]
+        ]
+      ],
+      "width": 0.025,
+      "element": "trunks-branches",
+      "element_why": "The dark main branches pulled thick at the trunk and tapering into the canopy.",
+      "element_left_out": "Fine twigs.",
+      "points_in": [
+        [
+          0.76,
+          0.1
+        ],
+        [
+          0.804,
+          0.14
+        ],
+        [
+          0.956,
+          0.195
+        ],
+        [
+          0.148,
+          0.14
+        ],
+        [
+          0.33,
+          0.1
+        ]
+      ],
+      "points_out": [
+        [
+          0.3,
+          0.14
+        ],
+        [
+          0.977,
+          0.15
+        ],
+        [
+          0.55,
+          0.15
+        ],
+        [
+          0.065,
+          0.145
+        ],
+        [
+          0.174,
+          0.091
+        ],
+        [
+          0.086,
+          0.218
+        ]
+      ]
+    },
+    {
+      "id": "sun",
+      "name": "The sun",
+      "kind": "object",
+      "parent": "sky",
+      "thing": "sun",
+      "box": [
+        0.035,
+        0.1,
+        0.095,
+        0.19
+      ],
+      "element": "simple-shape",
+      "element_why": "A small flat pale disk, one move with small circles."
+    }
+  ],
+  "photo": "spike/experiments/bench/pictures/birch-grove/00_beginner.png",
+  "plan_version": 2,
+  "stages": [
+    {
+      "id": "the-backdrop",
+      "name": "The misty backdrop",
+      "steps": [
+        {
+          "id": "glow-sky",
+          "of": "blend-the-glow",
+          "name": "Blend the misty glow",
+          "part": "sky",
+          "show": "blend",
+          "paints": [
+            "canopy-2",
+            "sky-2",
+            "sky-1"
+          ],
+          "stroke": "x-stroke",
+          "brush": "1 1/2 inch flat"
+        },
+        {
+          "id": "sun-disk",
+          "of": "paint-the-sun",
+          "name": "Circle in the sun",
+          "part": "sun",
+          "show": "full",
+          "paints": [
+            "sun-1"
+          ],
+          "stroke": "small-circles",
+          "brush": "No. 8 round"
+        }
+      ]
+    },
+    {
+      "id": "the-far-woods",
+      "name": "The far woods in the mist",
+      "steps": [
+        {
+          "id": "far-firs",
+          "of": "stamp-far-firs",
+          "name": "Stamp the far misty firs",
+          "part": "far-forest",
+          "show": "full",
+          "paints": [
+            "far-forest-1",
+            "far-forest-2"
+          ],
+          "stroke": "fan-tapping",
+          "brush": "fan brush"
+        },
+        {
+          "id": "far-pale-trunks",
+          "of": "pull-far-trunks",
+          "name": "Pull the far pale trunks",
+          "part": "far-trunks",
+          "show": "full",
+          "paints": [
+            "sky-2",
+            "sky-1"
+          ],
+          "stroke": "thick-to-thin",
+          "brush": "1/4 inch angle"
+        },
+        {
+          "id": "rays",
+          "of": "dry-brush-rays",
+          "name": "Dry-brush the sun rays",
+          "part": "sun-rays",
+          "show": "full",
+          "paints": [
+            "canopy-2"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1 inch old stiff flat"
+        }
+      ]
+    },
+    {
+      "id": "the-ground",
+      "name": "The ground and the path",
+      "steps": [
+        {
+          "id": "floor",
+          "of": "lay-in-floor",
+          "name": "Lay in the forest floor",
+          "part": "ground",
+          "show": "blend",
+          "paints": [
+            "ground-3",
+            "fallen-leaves-1"
+          ],
+          "stroke": "horizontal-strokes",
+          "brush": "3/4 inch flat"
+        },
+        {
+          "id": "path-strip",
+          "of": "pull-in-path",
+          "name": "Pull in the winding path",
+          "part": "path",
+          "show": "pass",
+          "paints": [
+            "fallen-leaves-1"
+          ],
+          "stroke": "toward-vanishing-point",
+          "brush": "3/4 inch flat"
+        }
+      ]
+    },
+    {
+      "id": "the-golden-leaves",
+      "name": "The wood's golden leaves",
+      "steps": [
+        {
+          "id": "canopy-dark",
+          "of": "dab-dark-canopy",
+          "name": "Dab the dark canopy leaves",
+          "part": "canopy",
+          "show": "flat",
+          "paints": [
+            "fallen-leaves-1"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "bushes-dark",
+          "of": "dab-dark-bushes",
+          "name": "Dab the dark of the bushes",
+          "part": "undergrowth",
+          "show": "flat",
+          "paints": [
+            "undergrowth-1",
+            "far-forest-1"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "canopy-gold",
+          "of": "dab-mid-leaves",
+          "name": "Dab the golden canopy leaves",
+          "part": "canopy",
+          "show": "pass",
+          "paints": [
+            "fallen-leaves-2"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "bushes-gold",
+          "of": "dab-mid-leaves",
+          "name": "Dab the golden bush leaves",
+          "part": "undergrowth",
+          "show": "pass",
+          "paints": [
+            "fallen-leaves-2"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        }
+      ]
+    },
+    {
+      "id": "the-rock",
+      "name": "The mossy rock",
+      "steps": [
+        {
+          "id": "rock-shape",
+          "of": "build-the-rock",
+          "name": "Build the mossy rock",
+          "part": "rock",
+          "show": "flat",
+          "paints": [
+            "rock-1"
+          ],
+          "stroke": "build-from-pieces",
+          "brush": "1/2 inch flat"
+        },
+        {
+          "id": "rock-shade",
+          "of": "shade-the-rock",
+          "name": "Shade the rock's far side",
+          "part": "rock",
+          "show": "pass",
+          "paints": [
+            "far-forest-1",
+            "sky-1"
+          ],
+          "stroke": "curved-strokes",
+          "brush": "1/2 inch flat"
+        }
+      ]
+    },
+    {
+      "id": "the-birches",
+      "name": "The birch trunks",
+      "steps": [
+        {
+          "id": "trunks-pale",
+          "of": "pull-pale-trunks",
+          "name": "Pull the pale birch trunks",
+          "part": "birches",
+          "show": "flat",
+          "paints": [
+            "birches-2"
+          ],
+          "stroke": "thick-to-thin",
+          "brush": "3/4 inch flat"
+        },
+        {
+          "id": "trunks-shade",
+          "of": "shade-the-trunks",
+          "name": "Shade the right side of the trunks",
+          "part": "birches",
+          "show": "pass",
+          "paints": [
+            "birches-3"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/2 inch old stiff flat"
+        },
+        {
+          "id": "bark-marks",
+          "of": "add-bark-marks",
+          "name": "Lay the dark bark marks",
+          "part": "birches",
+          "show": "pass",
+          "paints": [
+            "birches-1",
+            "birches-4"
+          ],
+          "stroke": "thick-to-thin",
+          "brush": "1/2 inch flat"
+        },
+        {
+          "id": "branch-lines",
+          "of": "pull-branches",
+          "name": "Pull the dark branches",
+          "part": "branches",
+          "show": "full",
+          "paints": [
+            "birches-1"
+          ],
+          "stroke": "liner",
+          "brush": "liner"
+        }
+      ]
+    },
+    {
+      "id": "the-fallen-leaves",
+      "name": "The fallen leaves",
+      "steps": [
+        {
+          "id": "leaves-dark",
+          "of": "dab-dark-floor-leaves",
+          "name": "Dab the shadowed fallen leaves",
+          "part": "fallen-leaves",
+          "show": "flat",
+          "paints": [
+            "ground-1"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "leaves-orange",
+          "of": "dab-orange-floor-leaves",
+          "name": "Dab the orange fallen leaves",
+          "part": "fallen-leaves",
+          "show": "pass",
+          "paints": [
+            "fallen-leaves-1"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "leaves-gold",
+          "of": "dab-gold-floor-leaves",
+          "name": "Dab the golden fallen leaves",
+          "part": "fallen-leaves",
+          "show": "pass",
+          "paints": [
+            "fallen-leaves-2"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        }
+      ]
+    },
+    {
+      "id": "the-last-lights",
+      "name": "The last lights",
+      "steps": [
+        {
+          "id": "rock-moss",
+          "of": "light-the-rock",
+          "name": "Light the mossy top of the rock",
+          "part": "rock",
+          "show": "pass",
+          "paints": [
+            "rock-2",
+            "fallen-leaves-2"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/2 inch old stiff flat"
+        },
+        {
+          "id": "bark-light",
+          "of": "light-the-bark",
+          "name": "Catch the light on the bark",
+          "part": "birches",
+          "show": "pass",
+          "paints": [
+            "sky-2"
+          ],
+          "stroke": "dry-brush",
+          "brush": "1/2 inch old stiff flat"
+        },
+        {
+          "id": "sunlit-canopy",
+          "of": "dab-sunlit-leaves",
+          "name": "Dab the sunlit canopy leaves",
+          "part": "canopy",
+          "show": "pass",
+          "paints": [
+            "canopy-2"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "sunlit-bushes",
+          "of": "dab-sunlit-leaves",
+          "name": "Dab the sunlit bush leaves",
+          "part": "undergrowth",
+          "show": "pass",
+          "paints": [
+            "canopy-2"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        },
+        {
+          "id": "sunlit-floor",
+          "of": "dab-sunlit-leaves",
+          "name": "Dab the sunlit fallen leaves",
+          "part": "fallen-leaves",
+          "show": "pass",
+          "paints": [
+            "canopy-2"
+          ],
+          "stroke": "dabbing",
+          "brush": "1/2 inch old stiff brush"
+        }
+      ]
+    }
+  ],
+  "subject": "White birch trunks framing a leaf-covered path into a misty autumn wood",
+  "technique": "techniques/acrylic-paint-along-beginner.yaml",
+  "technique_why": "Paint-along, back to front: a misty wood with clear layers of depth (haze, far trees, ground, near birches), the beginner approach with v2 rules."
+}
