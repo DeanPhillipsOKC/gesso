@@ -225,7 +225,8 @@ round should give the experiment's lesson folder its own name.
 
 - **The second edit model.** It needs a new host allowed and a key (`pipeline-v3-plan.md`, "How a spike runs").
   `v3_peel.py` takes a model by name (`RENDERERS`); adding one is a function that sends a picture and a prompt and
-  saves the answer. After the A/B it's hard to justify: gpt-image's renders weren't where the peel fell short.
+  saves the answer. Skipped (owner's call, 2026-11-17, after the A/B: "Skip the second model"): gpt-image's renders weren't where the
+  peel fell short.
 - **Fault counts** for the peel lessons (section 5).
 - **The other four bench pictures.** They would have gone in only on a clear win here.
 - **A part's own children.** The sky under its clouds is still v2's fill; a peel could remove them too.
