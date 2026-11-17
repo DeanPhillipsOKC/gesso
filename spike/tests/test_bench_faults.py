@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import shutil
 import sys
@@ -90,20 +92,46 @@ def _result(steps: int, faults: dict[int, list[tuple[str, str]]], worst=()):
 
 
 class CommittedBaselineTests(unittest.TestCase):
-    def test_the_documented_command_runs_on_what_is_committed(self):
-        """agreement.py --packets spike/experiments/bench/baseline --scores .../scores/baseline-1.12.1.json"""
+    NAMES = ["faults-a.json", "faults-b.json"]
+
+    def base(self) -> Path:
         import benchlib
         base = benchlib.HERE / "baseline"
         if not (base / "key.json").exists():
             self.skipTest("no baseline fault counts committed")
+        return base
+
+    def test_the_documented_command_runs_on_what_is_committed(self):
+        """agreement.py --packets spike/experiments/bench/baseline --name faults-a.json --name faults-b.json --scores
+        .../scores/baseline-1.12.1.json: the two counters' mean against the owner."""
+        import benchlib
+        base = self.base()
         scores_path = benchlib.SCORES_DIR / "baseline-1.12.1.json"
         scores = json.loads(scores_path.read_text()) if scores_path.exists() else None
-        r = agreement.agree(base, scores)
+        r = agreement.agree(base, scores, self.NAMES)
         self.assertEqual((len(r["lessons"]), r["counter_missing"]), (8, []))
         self.assertEqual([p for v in r["lessons"].values() for p in v["faults"]["format_problems"]], [])
+        self.assertTrue(all(v["faults"]["counters"] == 2 for v in r["lessons"].values()))
         if scores is None:
             self.assertEqual(r["correlations"]["all"], agreement.NOT_SCORED)
-        self.assertEqual(agreement.main(["--packets", str(base)] + (["--scores", str(scores_path)] if scores else [])), 0)
+        args = ["--packets", str(base), "--name", self.NAMES[0], "--name", self.NAMES[1]]
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(agreement.main(args + (["--scores", str(scores_path)] if scores else [])), 0)
+
+    def test_the_two_counters_against_each_other(self):
+        r = agreement.compare(self.base(), *self.NAMES)
+        self.assertEqual((len(r["lessons"]), r["missing"]), (8, []))
+        self.assertTrue(all(not ps for row in r["lessons"] for ps in row["format_problems"].values()))
+        s = r["summary"]
+        self.assertEqual(s["worst3_overlap"], [18, 24])
+        self.assertEqual((s["distinct_spread"]["min"], s["distinct_spread"]["max"]), (0.0, 0.286))
+        self.assertEqual(s["first_flagged_jaccard"]["mean"], 0.691)
+
+    def test_the_first_brief_counts_are_kept_apart(self):
+        base = self.base()
+        for d in (x for x in base.iterdir() if (x / "faults-a.json").exists()):
+            self.assertTrue((d / "faults-v1.json").exists(), d.name)
+            self.assertFalse((d / "faults.json").exists(), d.name)
 
 
 class AgreementTests(unittest.TestCase):

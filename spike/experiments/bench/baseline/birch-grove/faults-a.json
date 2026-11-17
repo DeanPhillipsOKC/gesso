@@ -1,0 +1,617 @@
+{
+ "packet": "p07",
+ "painting": "autumn birch grove: white birches either side of a leaf-covered path running back into misty blue firs, sun rays from the upper left",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled diamond/kaleidoscope pattern repeats over the whole sky fill, nothing a brush makes",
+     "where": "AFTER picture, x 0-100%, y 0-65% (whole upper canvas)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghosts of the gold leaves: bright orange leaf clusters in the canopy and an orange strip at the right, long before any leaf step",
+     "where": "AFTER picture, x 45-75%, y 3-25% and x 89-92%, y 69-79%",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "the rock already shows with a gold-lit top and textured face, two steps before the rock is stamped in step 3",
+     "where": "AFTER picture, x 62-82%, y 62-68% (about 10-13 in from the left, 7 1/2-8 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "major",
+     "sees": "a dark blue vertical band with a hard straight left edge at the right side, a rectangular block no blend makes",
+     "where": "AFTER picture, x 93-100%, y 12-50%",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "B",
+     "severity": "major",
+     "sees": "the fill ends in a chain of round blobs and loops, with loops trailing down into blank canvas and white unpainted holes left in the sky",
+     "where": "AFTER picture, loops x 0-35% y 65-90% and x 75-100% y 70-100%; white holes x 34-37% y 5-25%, x 92-97% y 5-12%, x 44-47% y 55-64%",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 and the tip put the blend's bottom about 1/2 in from the bottom edge, straight through the ground; across most of the width the picture's fill stops about 3 to 4 1/2 in from the bottom, the rest is bare canvas",
+     "where": "line 1 / tip; AFTER picture y 62-75% (fill bottom), x 35-75%",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "D",
+     "severity": "major",
+     "sees": "the paints say the bottom blends into Leaf brown (#875632, a warm red-brown) with a Golden ochre band near the top; the picture's lower half is a dark slate gray-green (about #686c60) going to khaki olive (#716548), and no gold band is there",
+     "where": "line 2 / tip; AFTER picture y 45-80%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun-rays",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "major",
+     "sees": "the rock ghost from step 1 is still there",
+     "where": "AFTER picture, x 62-82%, y 62-68%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "major",
+     "sees": "the hard-edged dark rectangular band from step 1 is still at the right edge",
+     "where": "AFTER picture, x 93-100%, y 12-50%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f26",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "major",
+     "sees": "small dark fir silhouettes appear at the lower left, though the step only pulls light rays; no step ever paints firs there",
+     "where": "AFTER picture, x 0-15%, y 40-56% (0-2 1/2 in from the left, 5-6 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "firs-dark",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "the hard-edged dark rectangular band from step 1 is still at the right edge",
+     "where": "AFTER picture, x 93-100%, y 12-50%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f27",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "major",
+     "sees": "the firs' painted area includes tall thin dark posts with hooked tops sticking up into the sky, not tree shapes",
+     "where": "AFTER picture, x 72-92%, y 6-30% (about 11 1/2-14 1/2 in from the left, 3/4-3 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "minor",
+     "sees": "pale dashed vertical trunk-like lines already show in the firs, two steps before the far misty trunks",
+     "where": "AFTER picture, x 69%, y 35-55%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "firs-light",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f28",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the pale trunk ghosts still show, now also around x 50% and 59%",
+     "where": "AFTER picture, x 49-50%, 59%, 69%, y 35-60%",
+     "same_as": "f35"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "far-trunks",
+   "faults": [
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f29",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f37",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says keep the far trunks pale and broken with no bark marks; the picture's far trunks are fairly solid cream with dark bark dashes",
+     "where": "tip; AFTER picture, x 42-70%, y 15-62%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "ground-dark",
+   "faults": [
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f30",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "major",
+     "sees": "the brown ground is one perfectly flat, uniform color with hairline traces of old outlines and no tap marks; the words promise a slightly dappled tapped coat",
+     "where": "AFTER picture, x 0-100%, y 62-100%",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold fallen-leaf shapes already show through holes in the brown, two steps before the golden leaves",
+     "where": "AFTER picture, x 0-35%, y 62-80% (0-5 1/2 in from the left, 7 1/2-9 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "ground-rust",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat brown with no tap marks from step 6 still fills most of the ground between the dabs",
+     "where": "AFTER picture, x 0-100%, y 65-100%",
+     "same_as": "f38"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold leaf ghosts from step 6 still show",
+     "where": "AFTER picture, x 0-35%, y 62-80%",
+     "same_as": "f39"
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "major",
+     "sees": "many rust 'dabs' are thin hairline rings around flat brown shapes, outlines no tapped brush makes",
+     "where": "AFTER picture, x 25-100%, y 65-100% (zoom: hollow rings across the lower ground)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "ground-gold",
+   "faults": [
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled kaleidoscope pattern from step 1 still covers the sky",
+     "where": "AFTER picture, sky, x 0-100%, y 0-45%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f32",
+     "class": "B",
+     "severity": "major",
+     "sees": "the step 1 outline's blobby loops and white unpainted holes in the sky are still visible",
+     "where": "AFTER picture, white holes x 34-37% y 5-25%, x 92-97% y 5-12%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the ground goes from sparse rust dabs on flat brown to a dense, fully modeled leaf carpet with a lit path, deep shadow leaves and highlights in one tapping step",
+     "where": "AFTER picture, x 0-100%, y 62-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "leaves-dark",
+   "faults": [
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold-leaf ghosts from step 1 are still in the canopy (and the orange strip at the right until the ground is covered)",
+     "where": "AFTER picture, x 45-75%, y 3-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "major",
+     "sees": "the olive is flat, smooth slabs with no tap marks, ending in a hard straight horizontal edge across the left canopy",
+     "where": "AFTER picture, x 0-35%, y 28-30% (edge about 3 1/2 in down); slabs x 0-100%, y 0-65%",
+     "same_as": null
+    },
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "light-blue outline lines trace the future birch branches through the canopy, five steps before the branches",
+     "where": "AFTER picture, x 40-100%, y 3-15%",
+     "same_as": null
+    },
+    {
+     "id": "f46",
+     "class": "B",
+     "severity": "major",
+     "sees": "the olive area is not leafy masses with ragged edges but trunk- and branch-shaped slabs, including straight-sided trunk bases standing on the ground",
+     "where": "AFTER picture, slabs at x 0-10%, 25-36%, 88-92%, y 45-65%; branch shapes x 40-100%, y 0-15%",
+     "same_as": null
+    },
+    {
+     "id": "f47",
+     "class": "D",
+     "severity": "major",
+     "sees": "Olive shadow's recipe (2 parts ultramarine, 1 yellow, 1 red, 1 white) is mostly ultramarine and mixes a dark slate blue-gray, not the warm olive-taupe swatch #87795f",
+     "where": "paints, step 9",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "leaves-gold",
+   "faults": [
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat olive slabs with the hard straight edge from step 9 are still there",
+     "where": "AFTER picture, x 0-35%, y 28-30%",
+     "same_as": "f44"
+    },
+    {
+     "id": "f49",
+     "class": "A",
+     "severity": "major",
+     "sees": "the light-blue branch outlines from step 9 are still there",
+     "where": "AFTER picture, x 40-100%, y 3-15%",
+     "same_as": "f45"
+    },
+    {
+     "id": "f50",
+     "class": "B",
+     "severity": "major",
+     "sees": "the trunk-shaped olive slabs from step 9 are still there",
+     "where": "AFTER picture, x 0-10%, 88-92%, y 45-65%",
+     "same_as": "f46"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a step of 'only a few taps' of Sunlit gold makes all the olive slabs vanish: they turn into blue sky, longer sun rays and pale canopy, about a fifth of the added color is sky blue no line names",
+     "where": "AFTER picture, x 0-100%, y 0-65%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "birch-trunks",
+   "faults": [
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the trunks are flat, perfectly uniform gray with hard vector-like edges and no brush marks",
+     "where": "AFTER picture, trunks x 4-30% and 82-100%, y 0-90%",
+     "same_as": null
+    },
+    {
+     "id": "f53",
+     "class": "B",
+     "severity": "major",
+     "sees": "the trunk paint takes in the sun: a round gray disk with a jigsaw-shaped white cut-out sits where the pale sun was",
+     "where": "AFTER picture, x 0-4%, y 11-18% (about 1 1/2 in down at the left edge)",
+     "same_as": null
+    },
+    {
+     "id": "f54",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5 talks about an angle brush ('With an angle brush, the lighter you press...'), but the step's brush is a 3/4 inch flat",
+     "where": "line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "birch-marks",
+   "faults": [
+    {
+     "id": "f55",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the flat no-brush-mark gray from step 12 still shows between the bark marks",
+     "where": "AFTER picture, trunks",
+     "same_as": "f52"
+    },
+    {
+     "id": "f56",
+     "class": "B",
+     "severity": "major",
+     "sees": "the gray sun disk with the jigsaw cut-out from step 12 is still there",
+     "where": "AFTER picture, x 0-4%, y 11-18%",
+     "same_as": "f53"
+    },
+    {
+     "id": "f57",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5 again refers to an angle brush; the brush is a 1/4 inch flat",
+     "where": "line 5",
+     "same_as": "f54"
+    },
+    {
+     "id": "f58",
+     "class": "F",
+     "severity": "minor",
+     "sees": "too much: the step adds bark marks, solid dark trunk feet and pulls all the dark branches, two different kinds of move",
+     "where": "tip; AFTER picture, branches x 25-45% and 70-95%, y 3-20%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "birch-light",
+   "faults": [
+    {
+     "id": "f59",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the sun turns back from a gray disk into a pale disk, though no line mentions the sun",
+     "where": "AFTER picture, x 0-4%, y 11-18%",
+     "same_as": null
+    },
+    {
+     "id": "f60",
+     "class": "C",
+     "severity": "minor",
+     "sees": "line 3 puts the area's bottom about 1/2 in from the bottom edge; the picture's highlights stop about 1 1/2 in from the bottom",
+     "where": "line 3; AFTER picture y 87%",
+     "same_as": null
+    },
+    {
+     "id": "f61",
+     "class": "D",
+     "severity": "major",
+     "sees": "Warm cream (#d7c092) is a tan; the picture turns the trunks a cool near-white with lavender tints, much lighter and cooler than the named paint",
+     "where": "AFTER picture, trunks x 4-30%, 82-100%, y 0-85%",
+     "same_as": null
+    },
+    {
+     "id": "f62",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says to skim cream down the left edge of each trunk only and leave the gray on the right; the picture whitens the trunks across their full width and also reshapes the bark marks",
+     "where": "tip; AFTER picture, trunks x 10-30%, y 10-70%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 39,
+  "B": 13,
+  "C": 2,
+  "D": 3,
+  "E": 4,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 15,
+  "B": 4,
+  "C": 2,
+  "D": 3,
+  "E": 3,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  11,
+  9
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, the 'Where' and 'Result' pictures the words refer to, close-ups, links, the site and lesson history are not in the packet; steps are numbered 1-14 with no gaps and every step picture is present",
+  "H": "how the run went, diagrams, the renders and checks themselves; no placeholders, tool notes or repeated lines show in the words"
+ },
+ "summary": "The step pictures are the main problem: step 1's sky is a tiled kaleidoscope pattern with blobby looped edges and white holes, and that, plus ghosts of the leaves and rock, carries through step 8. Mid-lesson coats are flat digital fills (brown ground, olive slabs, gray trunks) with hard straight edges and ghost outlines, and later steps undo them with no instruction (step 11 turns the olive into sky). The words are mostly sound; their faults are colors (step 1's bottom band, step 14's white highlights, a wrong Olive shadow recipe) and step 14's 'left edge only' that the picture contradicts."
+}

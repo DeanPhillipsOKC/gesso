@@ -1,0 +1,764 @@
+{
+ "packet": "p07",
+ "painting": "autumn birch grove: white birches with gold leaves over a leaf-covered path winding into misty blue firs, sun rays from the upper left",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a pale diagonal sun ray already shows before the ray step",
+     "where": "AFTER picture, x 3-15%, y 10-38%",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "major",
+     "sees": "photo-like patches of later objects: a lit rock and leaves strip, and an orange leaf patch, sit inside the brown band",
+     "where": "AFTER picture, x 62-82%, y 62-67% (rock) and x 89-92%, y 69-78% (orange patch)",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "B",
+     "severity": "major",
+     "sees": "the bottom of the painted area is a ragged chain of looping circles that leaves most of the lower canvas white, though line 1 says the area runs to 1/2 in from the bottom edge",
+     "where": "AFTER picture, x 0-100%, y 55-98%",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "D",
+     "severity": "major",
+     "sees": "the bottom of the blend, named Leaf brown (a warm red-brown), is an olive khaki-gray in the picture",
+     "where": "AFTER picture, x 0-100%, y 50-65%; Paints list",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "F",
+     "severity": "minor",
+     "sees": "a four-color soft sky blend is taught as criss-cross strokes laid, dried, then another layer blended on top (line 10), where a soft gradient needs the paints worked together wet",
+     "where": "words lines 7 and 10",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "F",
+     "severity": "minor",
+     "sees": "Warm cream is to be mixed now and kept for step 14, Golden ochre for steps 8 and 10: acrylic mixed at step 1 skins and dries over many dry-to-touch waits; covering it isn't enough without saying how (sealed palette, a few drops of water)",
+     "where": "words lines 3-4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun-rays",
+   "faults": [
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "photo-like patches of later objects: a lit rock and leaves strip, and an orange leaf patch, sit inside the brown band (still showing)",
+     "where": "AFTER picture, x 62-82%, y 62-67% (rock) and x 89-92%, y 69-78% (orange patch)",
+     "same_as": "f5"
+    },
+    {
+     "id": "f15",
+     "class": "B",
+     "severity": "major",
+     "sees": "the bottom of the painted area is a ragged chain of looping circles that leaves most of the lower canvas white, though line 1 says the area runs to 1/2 in from the bottom edge (still showing)",
+     "where": "AFTER picture, x 0-100%, y 55-98%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f16",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f17",
+     "class": "E",
+     "severity": "major",
+     "sees": "dark fir silhouettes appear on the left edge in the sun-ray step; no line of step 2 (or any step) asks for firs there",
+     "where": "AFTER picture, x 0-12%, y 28-50%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "far-firs-dark",
+   "faults": [
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "photo-like patches of later objects: a lit rock and leaves strip, and an orange leaf patch, sit inside the brown band (still showing)",
+     "where": "AFTER picture, x 62-82%, y 62-67% (rock) and x 89-92%, y 69-78% (orange patch)",
+     "same_as": "f5"
+    },
+    {
+     "id": "f22",
+     "class": "B",
+     "severity": "major",
+     "sees": "the bottom of the painted area is a ragged chain of looping circles that leaves most of the lower canvas white, though line 1 says the area runs to 1/2 in from the bottom edge (still showing)",
+     "where": "AFTER picture, x 0-100%, y 55-98%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f23",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f24",
+     "class": "B",
+     "severity": "major",
+     "sees": "the fir area runs up into the sky as straight-sided dark columns with tab-like tops, shapes no fir has",
+     "where": "AFTER picture, x 81-88%, y 9-32% (about 2 in from the right edge, 1 to 4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": null
+    },
+    {
+     "id": "f26",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says stamp the rock in the same dark blue-green, but the picture shows a lit, mossy-gold rock top that no line asks for, here or later",
+     "where": "AFTER picture, x 66-76%, y 61-68%; tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "far-firs-misty",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "major",
+     "sees": "photo-like patches of later objects: a lit rock and leaves strip, and an orange leaf patch, sit inside the brown band (still showing)",
+     "where": "AFTER picture, x 62-82%, y 62-67% (rock) and x 89-92%, y 69-78% (orange patch)",
+     "same_as": "f5"
+    },
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "major",
+     "sees": "the bottom of the painted area is a ragged chain of looping circles that leaves most of the lower canvas white, though line 1 says the area runs to 1/2 in from the bottom edge (still showing)",
+     "where": "AFTER picture, x 0-100%, y 55-98%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f32",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step (still showing)",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": "f25"
+    },
+    {
+     "id": "f34",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the words say to tap hazy blue over the tops and left sides of the existing firs, but the picture adds new whole hazy fir shapes left of the path where there were none",
+     "where": "AFTER picture, x 43-58%, y 33-60%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "far-trunks",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "major",
+     "sees": "photo-like patches of later objects: a lit rock and leaves strip, and an orange leaf patch, sit inside the brown band (still showing)",
+     "where": "AFTER picture, x 62-82%, y 62-67% (rock) and x 89-92%, y 69-78% (orange patch)",
+     "same_as": "f5"
+    },
+    {
+     "id": "f39",
+     "class": "B",
+     "severity": "major",
+     "sees": "the bottom of the painted area is a ragged chain of looping circles that leaves most of the lower canvas white, though line 1 says the area runs to 1/2 in from the bottom edge (still showing)",
+     "where": "AFTER picture, x 0-100%, y 55-98%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f40",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step (still showing)",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": "f25"
+    },
+    {
+     "id": "f42",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says no bark marks at this distance, but the far trunks in the picture carry dark bark dashes",
+     "where": "AFTER picture, trunks at x 43%, 50%, 70%, y 15-45%; tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "ground-brown",
+   "faults": [
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f46",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step (still showing)",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": "f25"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "major",
+     "sees": "rectangular blocks of gold leaf dabs (later steps' leaves) show through the flat brown, with straight vertical block edges no brush makes",
+     "where": "AFTER picture, x 0-33%, y 63-78% (edge at x 33%) and x 77-92%, y 63-90%",
+     "same_as": null
+    },
+    {
+     "id": "f49",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says to include the rock's place in the brown, but the picture leaves the lit rock showing",
+     "where": "AFTER picture, x 66-76%, y 61-68%; tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "rust-leaves",
+   "faults": [
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f53",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step (still showing)",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": "f25"
+    },
+    {
+     "id": "f55",
+     "class": "A",
+     "severity": "major",
+     "sees": "rectangular blocks of gold leaf dabs (later steps' leaves) show through the flat brown, with straight vertical block edges no brush makes (still showing)",
+     "where": "AFTER picture, x 0-33%, y 63-78% (edge at x 33%) and x 77-92%, y 63-90%",
+     "same_as": "f48"
+    },
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "many dabs are hollow hairline outlines, rings of thin gold line around brown, a pattern no tapped brush makes",
+     "where": "AFTER picture, x 0-100%, y 75-100%, densest x 25-75%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "golden-ground-leaves",
+   "faults": [
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, kaleidoscope-like tiled pattern with straight vertical seams every ~1 1/2 in covers the whole sky and haze; nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth filter-like blur band with no brush marks across the middle, ending in a hard straight vertical edge on the right, where the words promise visible criss-cross marks (still showing)",
+     "where": "AFTER picture, x 35-95%, y 15-55%; hard edge at x ~92% (about 1 1/4 in from the right edge)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f59",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f60",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted canvas holes and slits inside the sky and haze area (still showing)",
+     "where": "AFTER picture, e.g. x 35-37%, y 5-22%; x 15-30%, y 55-62%; x 0-3%, y 26%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step (still showing)",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": "f25"
+    },
+    {
+     "id": "f62",
+     "class": "A",
+     "severity": "major",
+     "sees": "the ground jumps from scattered rust dabs to a finished, dense carpet of individually shaped leaves in several golds, browns and greens, with the lit path modeled: far more than one ochre dabbing pass",
+     "where": "AFTER picture, x 0-100%, y 63-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "olive-shadow-leaves",
+   "faults": [
+    {
+     "id": "f63",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange-gold leaf clusters already show in the canopy, long before the leaf steps (10-11) (still showing)",
+     "where": "AFTER picture, x 45-80%, y 0-20% and x 0-5%, y 0-5%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f64",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden bush leaves already show beside the path, before any gold-leaf step (still showing)",
+     "where": "AFTER picture, x 60-66%, y 57-64%",
+     "same_as": "f25"
+    },
+    {
+     "id": "f65",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the olive is flat, smooth slabs with straight horizontal and vertical edges and rectangular blocks, filling the sky, nothing tapped",
+     "where": "AFTER picture, x 0-35% with a straight bottom edge at y 30%; block x 87-100%, y 52-65%; x 30-50%, y 47-65%",
+     "same_as": null
+    },
+    {
+     "id": "f66",
+     "class": "A",
+     "severity": "major",
+     "sees": "thin pale-blue halo lines trace around the branch and trunk shapes in the canopy, an outline no brush makes",
+     "where": "AFTER picture, x 20-100%, y 0-15%",
+     "same_as": null
+    },
+    {
+     "id": "f67",
+     "class": "A",
+     "severity": "major",
+     "sees": "the sun is a white disk with a dark cross-like emblem inside it, not a painted shape",
+     "where": "AFTER picture, x 0-4%, y 10-17%",
+     "same_as": null
+    },
+    {
+     "id": "f68",
+     "class": "A",
+     "severity": "major",
+     "sees": "the sun rays, mist and far woods on the left are repainted (tiles and blur become finished brushy rays and blue woods) in a step that only paints olive leaves",
+     "where": "AFTER picture, x 0-50%, y 25-55%",
+     "same_as": null
+    },
+    {
+     "id": "f69",
+     "class": "D",
+     "severity": "major",
+     "sees": "Olive shadow's recipe (2 parts ultramarine to 1 each of yellow, red, white) mixes a cool slate or violet gray, not the warm olive tan of its swatch",
+     "where": "Paints list",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "golden-leaves",
+   "faults": [
+    {
+     "id": "f70",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the olive is flat, smooth slabs with straight horizontal and vertical edges and rectangular blocks, filling the sky, nothing tapped (still showing)",
+     "where": "AFTER picture, x 0-35% with a straight bottom edge at y 30%; block x 87-100%, y 52-65%; x 30-50%, y 47-65%",
+     "same_as": "f65"
+    },
+    {
+     "id": "f71",
+     "class": "A",
+     "severity": "major",
+     "sees": "thin pale-blue halo lines trace around the branch and trunk shapes in the canopy, an outline no brush makes (still showing)",
+     "where": "AFTER picture, x 20-100%, y 0-15%",
+     "same_as": "f66"
+    },
+    {
+     "id": "f72",
+     "class": "A",
+     "severity": "major",
+     "sees": "the sun is a white disk with a dark cross-like emblem inside it, not a painted shape (still showing)",
+     "where": "AFTER picture, x 0-4%, y 10-17%",
+     "same_as": "f67"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "sunlit-leaves",
+   "faults": [
+    {
+     "id": "f73",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "in a step whose tip says only a few taps, all the olive slabs vanish and become pale blue sky and a fully modeled gold canopy, and the rays are repainted",
+     "where": "AFTER picture, x 0-100%, y 0-45%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "birch-trunks",
+   "faults": [
+    {
+     "id": "f74",
+     "class": "B",
+     "severity": "major",
+     "sees": "the trunk gray takes in the sun: a gray disk with a white jigsaw-like shape beside the left trunk",
+     "where": "AFTER picture, x 0-4%, y 10-16%",
+     "same_as": null
+    },
+    {
+     "id": "f75",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5 talks about an angle brush, but the step's brush is a 3/4 inch flat",
+     "where": "words line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "bark-marks",
+   "faults": [
+    {
+     "id": "f76",
+     "class": "B",
+     "severity": "major",
+     "sees": "the trunk gray takes in the sun: a gray disk with a white jigsaw-like shape beside the left trunk (still showing)",
+     "where": "AFTER picture, x 0-4%, y 10-16%",
+     "same_as": "f74"
+    },
+    {
+     "id": "f77",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5 talks about an angle brush, but the step's brush is a 3/4 inch flat (still showing)",
+     "where": "words line 5 (brush is a 1/4 inch flat)",
+     "same_as": "f75"
+    },
+    {
+     "id": "f78",
+     "class": "A",
+     "severity": "minor",
+     "sees": "pale blue-white streaks and lighter bark modeling appear on the trunk feet in the dark-marks step, before the light step",
+     "where": "AFTER picture, x 22-28%, y 45-60% and x 12-20%, y 50-70%",
+     "same_as": null
+    },
+    {
+     "id": "f79",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the watch-out says to leave bigger gaps of white higher up, but the trunks are birch shadow gray at this point, not white",
+     "where": "words line 8",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "bark-light",
+   "faults": []
+  }
+ ],
+ "lesson_faults": [
+  {
+   "id": "f80",
+   "class": "D",
+   "severity": "major",
+   "steps": [
+    1,
+    11
+   ],
+   "sees": "the clear pale sky blue that steps 1 and 11 add between the leaves is no listed paint; Misty blue-gray is a darker, grayer color",
+   "where": "paints; AFTER pictures of steps 1 and 11, x 50-65%, y 3-20%"
+  }
+ ],
+ "counts": {
+  "A": 51,
+  "B": 16,
+  "C": 0,
+  "D": 3,
+  "E": 8,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 15,
+  "B": 4,
+  "C": 0,
+  "D": 3,
+  "E": 7,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  9,
+  7
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups and Where/Result diagrams the words refer to, the site and lesson history; steps here are numbered 1-14 without gaps and every picture is present",
+  "H": "how the run went, diagram/close-up generation, checks; no placeholders, internal ids or tool notes appear in the words"
+ },
+ "summary": "The early step pictures are not paint: a tiled kaleidoscope pattern, a filter blur and ragged circle-chain edges with white holes run through steps 1-8, with gold leaves and bushes ghosting in long before their steps. The middle steps jump or change unasked (step 8's finished leaf carpet, step 9's flat olive slabs with halo outlines and repainted rays, step 11 turning the slabs into finished sky and canopy). The words mostly match placement but miss things the pictures add (left firs, the lit rock, the pale sky blue)."
+}

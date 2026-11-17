@@ -1,0 +1,612 @@
+{
+ "packet": "p08",
+ "painting": "A black-capped chickadee on an arching branch with four autumn leaves, before a misty orange woodland with a low sun at the upper right",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark tree-trunk shapes already show on the left and lower center in the sky step; step 3 only paints trunks on the right",
+     "where": "AFTER, x 8-14% and 24-28% y 25-75%; x 37-42% y 78-100% (about 5 1/2 in from the left, bottom 3 in)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "rust-orange foliage dabs (the step 4 color) already show in the sky step, beyond the gold patches the tip asks for",
+     "where": "AFTER, x 64-70% y 43-48%; x 0-20% y 77-98% (lower left corner)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the sun's concentric rings and disk outline already show before the sun step",
+     "where": "AFTER, x 58-76% y 3-24% (about 10 in from the left, 1 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "large smooth blurred areas with no brush marks, like a photo filter, in the right third and lower left",
+     "where": "AFTER, x 70-100% y 20-75%; x 0-10% y 40-50%",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "major",
+     "sees": "hard-edged, torn-paper-like blue-gray fragments float on the smooth gold where the right trunks will go; no brush makes them",
+     "where": "AFTER, x 88-100% y 0-75% (about 1 to 2 in from the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 2 orders the paints 'top to bottom: Warm gold, then Misty blue-gray', while the step name says gray-blue to gold and line 6 says gold around the sun with gray out to every edge (the top left is gray)",
+     "where": "words line 2",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "E",
+     "severity": "minor",
+     "sees": "'Let it dry, then blend a new thin layer on top' does not say which colors or where the second layer goes",
+     "where": "words line 9",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used with no explanation of what creamy means for a beginner",
+     "where": "words line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark tree-trunk shapes already show on the left and lower center in the sky step; step 3 only paints trunks on the right",
+     "where": "AFTER, x 8-14% and 37-42%, lower half",
+     "same_as": "f1"
+    },
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "major",
+     "sees": "rust-orange foliage dabs (the step 4 color) already show in the sky step, beyond the gold patches the tip asks for",
+     "where": "AFTER, x 64-70% y 43-48%; lower left corner",
+     "same_as": "f2"
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "large smooth blurred areas with no brush marks, like a photo filter, in the right third and lower left",
+     "where": "AFTER, x 70-100% y 20-75%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "hard-edged, torn-paper-like blue-gray fragments float on the smooth gold where the right trunks will go; no brush makes them",
+     "where": "AFTER, x 88-100% y 0-75%",
+     "same_as": "f5"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "trunks",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark tree-trunk shapes already show on the left and lower center in the sky step; step 3 only paints trunks on the right",
+     "where": "AFTER, x 8-14% and 37-42%, lower half",
+     "same_as": "f1"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "rust-orange foliage dabs (the step 4 color) already show in the sky step, beyond the gold patches the tip asks for",
+     "where": "AFTER, x 0-20% y 77-98%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "large smooth blurred areas with no brush marks, like a photo filter, in the right third and lower left",
+     "where": "AFTER, x 70-85% y 25-45% (smooth glow left of the trunks)",
+     "same_as": "f4"
+    },
+    {
+     "id": "f16",
+     "class": "B",
+     "severity": "major",
+     "sees": "the trunks' edges carry lumpy dark-blue blobs with orange rims and loose detached chunks, not feathery dry-brush trunks",
+     "where": "AFTER, x 83-98% y 0-50% (about 1/2 to 2 3/4 in from the right edge, top 6 in)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "foliage",
+   "faults": [
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "the trunks painted in step 3 change shape (their blobby edges vanish, outlines smooth out) and the sky's smooth blur and fragments turn brushy, on a step that only dabs foliage",
+     "where": "AFTER vs BEFORE, x 80-100% whole height; x 70-85% y 20-45%",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names one muted Warm rust-orange (#d77d48), but most of what it adds is bright saturated orange and red-orange; only about an eighth is near the named paint",
+     "where": "AFTER, foliage clumps upper right x 68-100% y 0-50% and lower left x 15-40% y 70-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "branch-dark",
+   "faults": [
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-45% and 50-54% y 56-58% (about 5 3/4 in and 7 in from the left, 7 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the leaf stems end in round blobs/knobs instead of tapering where a leaf will start",
+     "where": "AFTER, x 12-13% y 13%; x 61-63% y 70-72%; x 67% y 80%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "branch-light",
+   "faults": [
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the flat brown branch becomes finished, fully modeled bark (cream plates, mid tans, dark brown cracks along the whole length) in one dry-brush step",
+     "where": "AFTER, whole trunk and branch x 0-100% y 0-100%",
+     "same_as": null
+    },
+    {
+     "id": "f22",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names Warm rust-orange, but the marks it adds are pale tan/cream highlights and darker browns, not orange",
+     "where": "AFTER, branch top x 15-75% y 57-65%, trunk x 2-12% y 5-60%",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 8 asks for two or three thin coats letting each dry, while lines 4-6 ask for nearly dry, broken, never-solid dry-brush marks",
+     "where": "words lines 4-8",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    },
+    {
+     "id": "f25",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the leaf stems still end in round knobs",
+     "where": "AFTER, x 12-13% y 13%; x 61-67% y 70-80%",
+     "same_as": "f20"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "leaves-block",
+   "faults": [
+    {
+     "id": "f26",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 7 promises four maple leaves made of distinct pointed pieces with gaps or overlaps; the picture shows four smooth, single flat silhouettes, and the lower orange leaf is an oval, not a maple shape",
+     "where": "words line 7; AFTER x 49-64% y 70-93%",
+     "same_as": null
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the orange leaves go from flat block-in to finished leaves with dark veins, texture and modeled tones in one 'gold strokes' step; no line mentions veins",
+     "where": "AFTER, x 17-35% y 0-18%; x 49-64% y 70-93%",
+     "same_as": null
+    },
+    {
+     "id": "f29",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says the red leaves get no gold and keep step 7's red and orange, but the picture remodels them with dark-red shading, veins and new orange, and removes step 7's orange patch",
+     "where": "words tip; AFTER x 10-23% y 13-37%; x 65-79% y 79-100%",
+     "same_as": null
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "bird-block",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "major",
+     "sees": "the bird's block-in has a dark speckled line and pale specks along its edge, and a toe-shaped notch under the belly",
+     "where": "AFTER, head and back edge x 38-60% y 11-25%; right side x 55-60% y 25-50%; belly bottom x 40-43% y 54%",
+     "same_as": null
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "bird-shade",
+   "faults": [
+    {
+     "id": "f33",
+     "class": "C",
+     "severity": "minor",
+     "sees": "line 2 says the shadow is about 4 1/2 in wide; the patch in the picture is about 3 to 3 1/2 in wide",
+     "where": "words line 2; AFTER x 35-52% y 43-56% (about 5 1/2 to 8 1/2 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the bird's block-in has a dark speckled line and pale specks along its edge, and a toe-shaped notch under the belly",
+     "where": "AFTER, edge of the head/back x 38-60% y 11-25%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "wing-block",
+   "faults": [
+    {
+     "id": "f36",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the bird's block-in has a dark speckled line and pale specks along its edge, and a toe-shaped notch under the belly",
+     "where": "AFTER, edge of the head/back x 38-60% y 11-25%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    },
+    {
+     "id": "f38",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the wing's block-in has a beak-shaped hook sticking up at its top right, plus loose gray specks along its lower edge",
+     "where": "AFTER, x 43-46% y 26-30%; x 30-36% y 47-50%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "wing-dark",
+   "faults": [
+    {
+     "id": "f39",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the bird's block-in has a dark speckled line and pale specks along its edge, and a toe-shaped notch under the belly",
+     "where": "AFTER, edge of the head/back x 38-60% y 11-25%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    },
+    {
+     "id": "f41",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the beak-shaped hook at the wing's top right is still there (in step 13 it turns into a blue speck)",
+     "where": "AFTER, x 43-46% y 26-30%",
+     "same_as": "f38"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "wing-light",
+   "faults": [
+    {
+     "id": "f42",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the bird's block-in has a dark speckled line and pale specks along its edge, and a toe-shaped notch under the belly",
+     "where": "AFTER, edge of the head/back x 38-60% y 11-25%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    },
+    {
+     "id": "f44",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the beak-shaped hook at the wing's top right is still there (in step 13 it turns into a blue speck)",
+     "where": "AFTER, x 43-46% y 26-30%",
+     "same_as": "f38"
+    },
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the wing goes from a flat gray shape with a few stripes to finished, fully modeled feathers, and step 12's dark stripes are reshaped",
+     "where": "AFTER, x 15-45% y 25-62%",
+     "same_as": null
+    },
+    {
+     "id": "f46",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names Pale wing gray (a light warm gray), but about half of what it adds is a mid and dark blue-gray; only a fifth is near the pale paint",
+     "where": "AFTER, wing x 15-45% y 25-62%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "bird-feathers",
+   "faults": [
+    {
+     "id": "f47",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the bird's block-in has a dark speckled line and pale specks along its edge, and a toe-shaped notch under the belly",
+     "where": "AFTER, edge of the head/back x 38-60% y 11-25%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    },
+    {
+     "id": "f49",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the beak-shaped hook at the wing's top right is still there (in step 13 it turns into a blue speck)",
+     "where": "AFTER, x 43-46% y 26-30%",
+     "same_as": "f38"
+    },
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "major",
+     "sees": "the whole body is restroked with gold and tan feather texture and step 10's shadow patch disappears, though line 7 says to leave steps 9 and 10 showing",
+     "where": "AFTER vs BEFORE, x 30-58% y 30-56%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "cap",
+   "faults": [
+    {
+     "id": "f51",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says to leave a gap for the white cheek between cap and bib; the picture fills almost all of it with black, leaving only a small gold hole",
+     "where": "words tip and line 7; AFTER x 39-50% y 21-28%",
+     "same_as": null
+    },
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a pale wavy line, the outline of the cheek-to-come, shows inside the black of the cap",
+     "where": "AFTER, x 39-50% y 21-24%",
+     "same_as": null
+    },
+    {
+     "id": "f53",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "cheek",
+   "faults": [
+    {
+     "id": "f54",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says the white goes over the gold; in the step's own BEFORE the cheek area is mostly black from step 15",
+     "where": "words tip; BEFORE x 39-50% y 21-28%",
+     "same_as": null
+    },
+    {
+     "id": "f55",
+     "class": "A",
+     "severity": "minor",
+     "sees": "two small toe-shaped lumps stick up from the top of the branch where the bird's feet will grip, twelve steps before the feet step",
+     "where": "AFTER, x 42-54% y 56-58%",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "feet-dark",
+   "faults": [
+    {
+     "id": "f56",
+     "class": "B",
+     "severity": "major",
+     "sees": "the legs and toes are thick flat blobs, toes merged into solid paddles, not thin liner lines",
+     "where": "AFTER, x 40-46% y 58-66% and 49-54% y 58-65% (about 6 1/2 and 6 3/4 in from the left)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "feet-light",
+   "faults": [
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "major",
+     "sees": "the feet change shape and become fully rendered (thin legs, separate scaled toes, claws, light on every side) on a step that only adds a thin gray line on the right of each leg and top of each toe",
+     "where": "AFTER vs BEFORE, x 40-55% y 58-66%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [
+  {
+   "id": "f58",
+   "class": "D",
+   "severity": "minor",
+   "steps": [
+    5
+   ],
+   "sees": "Bark brown (#623b29, a warm brown) is mixed from equal parts red and ultramarine with only a touch of yellow, which mixes a dark purple, not this brown",
+   "where": "paints, step 5"
+  }
+ ],
+ "counts": {
+  "A": 31,
+  "B": 14,
+  "C": 1,
+  "D": 4,
+  "E": 7,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 13,
+  "B": 5,
+  "C": 1,
+  "D": 4,
+  "E": 7,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  6,
+  13
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups, paint maps, Where pictures and transfer outline that the words refer to, the site listing and version history",
+  "H": "the paint maps and diagrams, the run logs, and whether checks caught these problems; no tool note, placeholder or repeated line shows in the words"
+ },
+ "summary": "The step pictures are the main problem: the sky step carries ghosts of trunks, foliage and the sun plus smooth filter-like blur and hard torn fragments, and several steps jump from flat block-ins to finished detail (bark, leaves, wing, body, feet) or change earlier work the words leave alone. Paint names often don't match what is added (foliage, bark light, wing light), and a few lines contradict their pictures (red leaves, cheek gap). Small outline flaws (toe lumps on the branch, speckled bird edge, beak hook on the wing) persist across many steps."
+}

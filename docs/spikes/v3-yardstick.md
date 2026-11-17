@@ -18,10 +18,11 @@ All commands run from the repo root with `.venv/bin/python`. The tests are `spik
 
 **Status (2026-11-17).**
 - Done: the bench is frozen for all 8 pictures (skill steps 0 and 1) and builds to the same bytes on any machine;
-  the 8 v2 baseline runs are made and each has a trace.
-- To be redone: the fault counts in section 5 were made with the first brief, whose examples came partly from the
-  bench pictures' own past faults. The brief is rewritten (section 3); the 8 counts will be rerun with it, twice
-  each, which replaces them and measures how well the counter agrees with itself.
+  the 8 v2 baseline runs are made, each has a trace, and each was fault-counted twice, by two independent
+  fresh-context counters with the final brief (section 5). The counter's repeatability is measured (section 5).
+- Superseded: the first fault counts, made with a brief whose examples came partly from the bench pictures' own past
+  faults (it told the counter where to look). They're kept as `faults-v1.json` beside each picture's new counts, for
+  the record only.
 - Pending: the owner's A/B scores on the baseline, and so any measure of how well the counter agrees with the owner.
   Until both exist, the fault counts are the counter's findings only, not a validated measure, and no spike should
   be screened on them alone.
@@ -197,7 +198,7 @@ C placement, D paints, E text, F teaching, G site, H tooling. The brief is
 #98, #99 for F; #83, #141, #135 for G; #91, #89, #136 for H), but the brief's examples are made up for pictures that
 aren't on the bench (pumpkins, a barn, a fox, a lighthouse, pears), with no issue numbers. The first brief used
 the bench pictures' own past faults as examples, which told the counter where to look on exactly the lessons it
-scores; that brief made the counts in section 5, and they will be redone.
+scores. Its counts are superseded (kept as `faults-v1.json`); section 5's counts use the final brief.
 
 The reviewer never sees the plan, the run, or this write-up. It gets a packet, made by:
 
@@ -221,17 +222,29 @@ Classes G and H are mostly about the site and the run, which a packet can't show
 symptoms it can see (a missing step picture, a tool's note in the words, a `None` where a name should be) and
 says in `not_visible` what the packet can't show, so a zero there isn't read as none.
 
-**Keeping the results.** Copy each `faults.json` to `spike/experiments/bench/baseline/<picture>/faults.json` (or the
-round's own folder) and the packets' `key.json` beside them. The key holds packet ids, picture names, lesson folder
-names and step counts, no lesson content.
+**Keeping the results.** Count each lesson twice, by two fresh counters, each in its own copy of the packets. Copy
+the results to `<round folder>/<picture>/faults-a.json` and `faults-b.json` (the baseline's are in
+`spike/experiments/bench/baseline/`) and the packets' `key.json` beside them. The key holds packet ids, picture names,
+lesson folder names and step counts, no lesson content.
 
-**Agreement with the owner,** on what's committed:
+**The two counters against each other** (repeatability):
 
     python spike/experiments/bench/agreement.py --packets spike/experiments/bench/baseline \
-        --scores spike/experiments/bench/scores/baseline-1.12.1.json
+        --compare faults-a.json faults-b.json
 
-It reads the packet key and each lesson's `faults.json` (in `<packet>/` as packet.py lays them out, or in
-`<picture>/` as the bench keeps them), checks each against the brief's format, and matches lessons to the owner's
+Per lesson: distinct faults from each and their spread (the difference over their mean), weighted counts, how many of
+their top-3 worst steps match, and the Jaccard index of the steps each flags with a major or blocker fault, counted
+two ways: every step a fault shows in, and only the step where it first shows. Across lessons: the rank correlation
+of their weighted counts per step.
+
+**Agreement with the owner,** on what's committed, with the two counters' mean:
+
+    python spike/experiments/bench/agreement.py --packets spike/experiments/bench/baseline \
+        --name faults-a.json --name faults-b.json --scores spike/experiments/bench/scores/baseline-1.12.1.json
+
+It reads the packet key and each lesson's result files (`--name`, default `faults.json`; in `<packet>/` as packet.py
+lays them out, or in `<picture>/` as the bench keeps them), checks each against the brief's format, takes the
+counters' mean for each lesson (every count averaged; a step is flagged when at least half of them flag it), and matches lessons to the owner's
 scores through the key, refusing a key that names a folder twice. Per lesson it reports faults by class, weighted,
 and weighted per step (so a lesson with more, smaller steps doesn't score worse for it), beside the owner's three
 scores and worst steps. Across lessons, Spearman's rank correlation of the per-step weighted count (sign turned so 1
@@ -346,55 +359,98 @@ finish render, so the same picture gave a different finish, a different plan, an
 
 ### Fault counts
 
-**To be redone.** These counts were made with the first brief, whose examples came partly from the bench pictures'
-own past faults (section 3). They stay here until the 8 lessons are counted again with the rewritten brief, twice
-each; those counts replace them, and the two runs per lesson give the counter's agreement with itself.
+Two independent fresh-context counters per lesson (A and B), each in its own copy of the packets outside the repo,
+each given only the final `fault_counter.md` and one packet (no key, no plan, no run). Their files are
+`spike/experiments/bench/baseline/<picture>/faults-a.json` and `faults-b.json`, with the packet key in
+`spike/experiments/bench/baseline/key.json`. All 16 fit the format (`agreement.py` checks it): every step listed,
+classes and severities valid, ids unique, `same_as` pointing at a real fault, and `counts` and `distinct` matching
+the faults listed. The files are the record. A counter's chat reply sometimes gave different numbers, so only the
+files are used.
 
-One fresh-context reviewer per lesson, each given only `fault_counter.md` and one packet (no key, no plan, no run).
-Each wrote `faults.json`, kept as `spike/experiments/bench/baseline/<picture>/faults.json`. All 8 fit the format
-(`agreement.py` checks it): every step listed, classes and severities valid, ids unique, `same_as` pointing at a
-real fault, and `counts` and `distinct` matching the faults listed.
+These replace the first counts (`faults-v1.json`, one counter per lesson), which are superseded: that brief's
+examples came partly from the bench pictures' own past faults, so it told the counter where to look.
 
 Each cell is all / distinct: all counts a fault once in every step a painter meets it in; distinct counts it once.
 Weighted is blocker 3, major 2, minor 1, over all. "Run left" is what the run's own same-session review found and
 left as it was (`review.json`, `left` items): the number the lesson page's Known problems shows today.
 
-| Picture | A | B | C | D | E | F | G | H | Total | Weighted | Run left | Worst steps |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| chickadee | 8/5 | 13/5 | 1/1 | 5/5 | 9/9 | 4/3 | 0 | 0 | 40/28 | 66 | 1 | 1, 15, 8 |
-| red-sailboat | 26/9 | 4/3 | 2/2 | 4/4 | 4/4 | 4/1 | 0 | 0 | 44/23 | 84 | 1 | 9, 5, 13 |
-| balloon-lavender | 42/12 | 8/4 | 1/1 | 8/8 | 6/6 | 4/1 | 0 | 0 | 69/32 | 139 | 2 | 7, 3, 8 |
-| sleeping-cat | 51/13 | 18/6 | 4/4 | 5/5 | 5/5 | 4/1 | 0 | 0 | 87/34 | 159 | 3 | 1, 2, 11 |
-| snow-lantern | 24/11 | 8/4 | 3/3 | 3/3 | 0 | 4/3 | 0 | 0 | 42/24 | 60 | 3 | 7, 20, 16 |
-| highland-cow | 22/9 | 0 | 2/2 | 3/3 | 9/9 | 1/1 | 0 | 0 | 37/24 | 70 | 2 | 1, 7, 13 |
-| lake-cabin | 29/12 | 3/3 | 1/1 | 5/5 | 7/6 | 2/1 | 0 | 0 | 47/28 | 77 | 4 | 12, 3, 6 |
-| birch-grove | 35/15 | 17/4 | 0 | 4/4 | 13/11 | 0 | 0 | 0 | 69/34 | 134 | 3 | 1, 9, 11 |
-| all 8 | 237/86 | 71/29 | 14/14 | 37/37 | 53/50 | 23/11 | 0 | 0 | 435/227 | 789 | 19 | |
+| Picture | Counter | A | B | C | D | E | F | G | H | Total | Weighted | Run left | Worst steps |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| chickadee | A | 11/6 | 15/6 | 0 | 4/4 | 10/10 | 2/2 | 0 | 0 | 42/28 | 70 | 1 | 1, 8, 6 |
+| | B | 31/13 | 14/5 | 1/1 | 4/4 | 7/7 | 1/1 | 0 | 0 | 58/31 | 86 | | 1, 6, 13 |
+| red-sailboat | A | 34/17 | 7/3 | 2/2 | 3/3 | 3/3 | 5/2 | 0 | 0 | 54/30 | 90 | 1 | 9, 12, 5 |
+| | B | 27/14 | 2/1 | 2/2 | 5/5 | 3/3 | 4/1 | 0 | 0 | 43/26 | 78 | | 13, 9, 5 |
+| balloon-lavender | A | 52/22 | 24/5 | 4/4 | 5/5 | 8/8 | 11/3 | 0 | 0 | 104/47 | 177 | 2 | 4, 8, 19 |
+| | B | 42/20 | 26/7 | 1/1 | 2/2 | 6/6 | 10/2 | 0 | 0 | 87/38 | 161 | | 3, 8, 7 |
+| sleeping-cat | A | 43/11 | 18/6 | 2/2 | 6/6 | 3/3 | 8/3 | 0 | 0 | 80/31 | 150 | 3 | 2, 1, 11 |
+| | B | 35/12 | 11/2 | 3/3 | 5/5 | 3/3 | 7/2 | 0 | 0 | 64/27 | 128 | | 2, 11, 1 |
+| snow-lantern | A | 12/10 | 7/5 | 1/1 | 3/3 | 3/3 | 4/3 | 0 | 1/1 | 31/26 | 46 | 3 | 20, 1, 19 |
+| | B | 22/9 | 6/4 | 1/1 | 3/3 | 3/3 | 2/2 | 0 | 0 | 37/22 | 69 | | 7, 19, 1 |
+| highland-cow | A | 19/8 | 5/5 | 3/3 | 3/3 | 6/6 | 1/1 | 0 | 0 | 37/26 | 71 | 2 | 1, 13, 7 |
+| | B | 29/10 | 1/1 | 4/4 | 3/3 | 10/7 | 1/1 | 0 | 0 | 48/26 | 78 | | 7, 13, 1 |
+| lake-cabin | A | 30/12 | 6/3 | 2/2 | 4/4 | 7/4 | 2/2 | 0 | 0 | 51/27 | 95 | 4 | 3, 12, 6 |
+| | B | 36/14 | 3/3 | 6/4 | 6/6 | 8/7 | 2/2 | 0 | 0 | 61/36 | 103 | | 3, 12, 6 |
+| birch-grove | A | 39/15 | 13/4 | 2/2 | 3/3 | 4/3 | 1/1 | 0 | 0 | 62/28 | 123 | 3 | 1, 11, 9 |
+| | B | 51/15 | 16/4 | 0 | 3/3 | 8/7 | 2/2 | 0 | 0 | 80/31 | 162 | | 1, 9, 7 |
+| all 8 | A | 240/101 | 95/37 | 16/16 | 31/31 | 44/40 | 34/17 | 0 | 1/1 | 461/243 | 822 | 19 | |
+| | B | 273/107 | 79/27 | 18/16 | 31/31 | 48/43 | 29/13 | 0 | 0 | 478/237 | 865 | | |
 
-The counter found 227 distinct faults where the runs' own reviews left 19, about 12 times as many. 19 of the 227 are
-blockers (14 A, 4 B, 1 D). G and H are 0 everywhere: every reviewer said in `not_visible` that the packet can't show
-the site or the run.
+Each counter found about 240 distinct faults (243 and 237) where the runs' own same-session reviews left 19: about
+12 times as many. Distinct blockers: 15 for A (13 A, 1 C, 1 D) and 19 for B (18 A, 1 B). G and H are 0 but for one
+H (a tool's note in the words): every counter said in `not_visible` that the packet can't show the site or the run.
 
-**What the counter found most** (distinct faults, sorted by hand from the reviewers' `sees` lines, so the counts are
-approximate). These are the counter's findings, not yet checked against the owner:
-- **Steps that add colors their paints don't name** (class D, often a part's last step): about 25, on all 8 pictures.
-  The step names one paint while most of what it adds is another color (a sail step naming a gray that adds
-  near-white cream; brass bars named "Deep night blue" that the picture paints brass).
-- **Ghosts**, something showing before its step paints it (A): about 24, on 7 pictures. The cow's place, the sun's
-  path, the boat's reflection, and reeds in the water.
-- **Tiled, mirrored patterns** no brush makes (A), the fill behind objects borrowing texture: 12, on 7 of the 8
-  pictures (all but the chickadee), 7 of them blockers. They look like kaleidoscope diamonds, lace, chevrons, or a
-  dot lattice in a sky, a wall, a sail, a hull strip, a mountain.
-- **Load words a beginner isn't told the meaning of** (F): "creamy" and "a light load", 9 times, on 7 pictures.
-- **Pictures with no brush marks**, flat or blurred like a filter (A): about 8, on 6 pictures.
-- **Words ask for texture, and the picture shows one flat, hard-edged shape** (E): about 8, on 5 pictures. Tapped
-  clumps shown as a solid slab, curved pieces shown as a smooth silhouette.
-- **Recipes whose mix doesn't match the swatch** (D): 4, on 4 pictures. "Bark brown" from red and ultramarine with
-  no burnt sienna mixes a violet-maroon; the balloon's "Coral pink" mixes a mauve.
-- **Jumps** from a flat coat to finished detail in one step (A): 4, on 3 pictures.
+### Repeatability: the two counters against each other
 
-A step-picture fault the counter met once is usually met again in the following steps, which is why A's all count
-(237) is almost three times its distinct count (86).
+From `agreement.py --compare faults-a.json faults-b.json`:
+
+| Picture | Distinct A / B | Spread | Weighted A / B | Top-3 worst steps in common | Flagged steps, Jaccard (every step / first step) |
+|---|---|---|---|---|---|
+| balloon-lavender | 47 / 38 | 21% | 177 / 161 | 1 of 3 | 0.83 / 0.65 |
+| birch-grove | 28 / 31 | 10% | 123 / 162 | 2 of 3 | 0.93 / 0.90 |
+| chickadee | 28 / 31 | 10% | 70 / 86 | 2 of 3 | 0.67 / 0.67 |
+| highland-cow | 26 / 26 | 0% | 71 / 78 | 3 of 3 | 0.80 / 0.54 |
+| lake-cabin | 27 / 36 | 29% | 95 / 103 | 3 of 3 | 0.88 / 0.79 |
+| red-sailboat | 30 / 26 | 14% | 90 / 78 | 2 of 3 | 0.93 / 0.73 |
+| sleeping-cat | 31 / 27 | 14% | 150 / 128 | 3 of 3 | 0.79 / 0.62 |
+| snow-lantern | 26 / 22 | 17% | 46 / 69 | 2 of 3 | 0.47 / 0.64 |
+
+- **Totals:** distinct faults differ by 0 to 29% per picture (mean 14%); weighted counts by 8 to 40% (mean 18%).
+- **Worst steps:** their top-3 worst steps share 18 of 24.
+- **Flagged steps:** the steps each flags with a major or blocker fault overlap with a mean Jaccard index of 0.79
+  (0.47 to 0.93) over every step a fault shows in. Over only the step where a fault first shows, it's 0.69 (0.54 to
+  0.90).
+- **Ranking:** across the 8 lessons, the two counters rank them almost the same by weighted faults per step (Spearman
+  0.95).
+- **By class:** totals agree closely (A 101 / 107, D 31 / 31, E 40 / 43), but one picture's class count can differ by
+  half or more (the chickadee's A: 6 against 13).
+
+**What it means for screening.** The counter ranks lessons consistently and mostly agrees on the worst steps, but its
+per-picture totals move by up to about 30% between two counters on the same packet. So a per-picture change smaller
+than about that spread isn't a signal from the counter alone. Count every lesson twice and use the mean of the two
+counters (`agreement.py --name faults-a.json --name faults-b.json`). Judge a spike on changes larger than the A-B
+spread, or on the same direction across most of the 8 pictures. These are one pair of counters on 8 lessons; a third
+counter would tighten them.
+
+**What the counter found most** (distinct faults, sorted by keyword from the counters' `sees` lines, so the counts
+are approximate; given as counter A / counter B). These are the counters' findings, not yet checked against
+the owner:
+- **Ghosts**, something showing before its step paints it (class A): about 29 / 36, on all 8 pictures. The cow's
+  place, the sun's path, the boat's reflection, reeds in the water.
+- **Steps that add colors their paints don't name, or a color far from the named paint** (class D, often a part's
+  last step): 26 / 28, on all 8 pictures. The step names one paint while most of what it adds is another
+  color: a sail turning near-white on a step that names a gray, brass bars named "Deep night blue".
+- **Pictures with no brush marks**, flat or smeared like a filter (A): about 17 / 12, on 7 or 8 pictures.
+- **Words ask for texture, and the picture shows one flat, hard-edged shape** (E): about 14 / 14, on 5 or 6
+  pictures. Tapped clumps shown as a solid slab, curved pieces shown as a smooth silhouette.
+- **Tiled, mirrored patterns** no brush makes (A), the fill behind objects borrowing texture: 13 / 17, on 7 of the 8
+  pictures. They look like kaleidoscope diamonds, lace, chevrons, or a dot lattice.
+- **Load words a beginner isn't told the meaning of** (F): "creamy", "a light load", 11 / 10, on 7 pictures.
+- **Jumps** from a flat coat to finished detail in one step (A): 9 / 7, on 5 pictures.
+- **Recipes whose mix doesn't match the swatch** (D): 5 / 3, on 5 pictures between them. "Bark brown" from red and
+  ultramarine with no burnt sienna mixes a purple-gray; "Mossy green" mostly ultramarine mixes a gray-blue.
+
+A step-picture fault a counter met once is usually met again in the following steps, which is why A's all counts
+(240, 273) are more than twice their distinct counts (101, 107).
 
 ### Trace (minutes)
 
@@ -431,10 +487,11 @@ cabin's did) is tool time. So read the birch grove's 12.1 minutes of Claude time
 
 ### Counter against owner
 
-Pending: the owner hasn't scored yet. `agreement.py --packets spike/experiments/bench/baseline --scores
-spike/experiments/bench/scores/baseline-1.12.1.json` runs on what's committed and says "not scored yet" for every
-comparison today. Once the
-scores are in: rho for each group, and worst-step agreement against the 8 of 15 to beat.
+Pending: the owner hasn't scored yet. `agreement.py --packets spike/experiments/bench/baseline --name faults-a.json
+--name faults-b.json --scores spike/experiments/bench/scores/baseline-1.12.1.json` runs on what's committed and says
+"not scored yet" for every comparison today. Once the scores are in: rho for each group, and worst-step agreement
+(with kappa) against the 8 of 15 to beat. Judge it against the counter's own repeatability (section 5): the counter
+can't agree with the owner much better than it agrees with itself.
 
 ## Limits
 
@@ -444,7 +501,9 @@ scores are in: rho for each group, and worst-step agreement against the 8 of 15 
   one picture can't be told from noise. (The coordinator is filing the noise-floor run as a follow-up issue.)
 - **Step 5's background render isn't frozen.** Every bench build still makes a new paid `98_background.png`, the
   render behind the ghosts and patches behind objects (section 1). A step-picture fault can come from it.
-- **The counter's own repeatability** is unmeasured until each packet is counted twice (section 5, Fault counts).
+- **The counter's repeatability is one pair of counters on 8 lessons** (section 5, Repeatability). Two counters'
+  distinct totals differ by up to about 30% on one picture; a smaller per-picture change isn't a signal from the
+  counter alone.
 - Pair rounds that reuse the same 8 baseline lessons: the owner will have scored them step by step in single mode,
   and may start to recognise the baseline side. A fresh v2 control per round would avoid it.
 - The A/B page shows step pictures, paints and words, not the close-ups, paint maps, diagrams or stroke cards a

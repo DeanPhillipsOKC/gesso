@@ -5,7 +5,7 @@
       "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
     },
     {
-      "calls_naming_it": 10,
+      "calls_naming_it": 11,
       "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
     },
     {
@@ -13,12 +13,16 @@
       "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
     },
     {
+      "calls_naming_it": 2,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
+    },
+    {
       "calls_naming_it": 1,
       "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
     },
     {
       "calls_naming_it": 1,
-      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a907dd1d258e97263.jsonl"
     },
     {
       "calls_naming_it": 0,
@@ -292,7 +296,7 @@
   },
   "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl",
   "warnings": [
-    "1 background calls ran for 73.0 s alongside Claude and other tools: in background_s, not in tool time (Claude time includes waiting on them)"
+    "1 background calls ran for 73.0 s alongside Claude and other tools: in background_s, not in tool time (meanwhile the run's time counts as whatever it was doing: Claude time, or tool time for a wait such as sleep)"
   ],
   "window": {
     "end": "2026-11-16T21:44:30Z",

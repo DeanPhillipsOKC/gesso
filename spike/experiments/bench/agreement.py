@@ -28,6 +28,14 @@ the counter's own worst_steps. In pair mode also: does the side with fewer weigh
 match the owner's preference.
 
 Lessons with no owner scores are listed as "not scored yet"; with none at all, every correlation says so.
+
+    --name F [--name G]   which result file to read in each lesson's folder (default faults.json). With two or more,
+                          each lesson's counts are the counters' mean, and a step is flagged when at least half flag it.
+    --compare F G         two counters on the same packets, against each other (repeatability): per lesson, distinct
+                          faults and their spread (|a-b| over the mean), weighted counts, how many of their top-3 worst
+                          steps match, and the Jaccard index of the steps each flags with a major or blocker fault,
+                          over every step a fault shows in and over the step it first shows in; then the rank
+                          correlation of the weighted count per step across lessons.
 """
 
 from __future__ import annotations
@@ -156,32 +164,80 @@ def owner_lessons(scores: dict | None) -> dict[str, dict]:
     return out
 
 
-def agree(packets: Path, scores: dict | None) -> dict:
+def _key(packets: Path) -> dict:
     key = read_json(Path(packets) / "key.json")
     if not key:
         raise FileNotFoundError(f"{packets}/key.json is missing: make the packets with packet.py")
     folders = [v["lesson"] for v in key["packets"].values()]
     if len(set(folders)) != len(folders):
         raise ValueError(f"the packet key names a lesson folder twice: {sorted({f for f in folders if folders.count(f) > 1})}")
+    return key
+
+
+def _result(packets: Path, pid: str, info: dict, name: str) -> dict | None:
+    """One counter's result for a lesson: <packet>/<name> as packet.py lays them out, or <picture>/<name>."""
+    found = read_json(Path(packets) / pid / name)
+    return found if found is not None else read_json(Path(packets) / info["picture"] / name)
+
+
+def _one(result: dict, steps: int | None) -> dict:
+    f = lesson_faults(result)
+    f["distinct_count"] = {c: sum(1 for _, x in _faults(result)
+                                  if str(x.get("class", "")).upper() == c and not x.get("same_as"))
+                           for c in CLASSES}
+    f["distinct"] = sum(f["distinct_count"].values())
+    f["format_problems"] = check_faults(result, steps)
+    return f
+
+
+def _mean(fs: list[dict]) -> dict:
+    """Several counters' results for one lesson as one: every count is their mean, and a step is flagged when at
+    least half of them flag it."""
+    if len(fs) == 1:
+        return fs[0]
+    n = len(fs)
+
+    def avg(xs):
+        return round(sum(xs) / n, 3)
+
+    flagged = sorted({s for f in fs for s in f["flagged_steps"]
+                      if sum(s in g["flagged_steps"] for g in fs) * 2 >= n})
+    worst = []
+    for f in fs:
+        worst += [w for w in f["worst_steps"] if w not in worst]
+    return {"count": {c: avg([f["count"][c] for f in fs]) for c in CLASSES},
+            "weight": {c: avg([f["weight"][c] for f in fs]) for c in CLASSES},
+            "distinct_count": {c: avg([f["distinct_count"][c] for f in fs]) for c in CLASSES},
+            "total": avg([f["total"] for f in fs]), "weighted": avg([f["weighted"] for f in fs]),
+            "distinct": avg([f["distinct"] for f in fs]),
+            "per_step": avg([f["per_step"] or 0 for f in fs]), "flagged_steps": flagged, "worst_steps": worst,
+            "steps": fs[0]["steps"], "counters": n,
+            "format_problems": [p for f in fs for p in f["format_problems"]]}
+
+
+def agree(packets: Path, scores: dict | None, names: list[str] | tuple[str, ...] = ("faults.json",)) -> dict:
+    """The counter against the owner. With several result files per lesson (names), each lesson's counts are the
+    counters' mean."""
+    key = _key(packets)
     owner = owner_lessons(scores)
     lessons, missing = {}, []
     for pid, info in sorted(key["packets"].items()):
-        result = read_json(Path(packets) / pid / "faults.json")
-        if result is None:
-            result = read_json(Path(packets) / info["picture"] / "faults.json")
-        if result is None:
-            missing.append(pid)
+        results = [(name, _result(packets, pid, info, name)) for name in names]
+        if any(r is None for _, r in results):
+            missing += [f"{pid} {name}" for name, r in results if r is None]
             continue
-        f = lesson_faults(result)
-        f["distinct_count"] = {c: sum(1 for _, x in _faults(result)
-                                      if str(x.get("class", "")).upper() == c and not x.get("same_as"))
-                               for c in CLASSES}
-        f["format_problems"] = check_faults(result, info.get("steps"))
+        fs = []
+        for name, r in results:
+            f = _one(r, info.get("steps"))
+            if len(names) > 1:
+                f["format_problems"] = [f"{name}: {x}" for x in f["format_problems"]]
+            fs.append(f)
         o = owner.get(info["lesson"])
-        lessons[info["lesson"]] = {"packet": pid, "picture": info["picture"], "faults": f,
+        lessons[info["lesson"]] = {"packet": pid, "picture": info["picture"], "faults": _mean(fs),
                                    "owner": o if o and o["scored"] else NOT_SCORED}
     scored = {k: v for k, v in lessons.items() if v["owner"] != NOT_SCORED}
-    report = {"lessons": lessons, "counter_missing": missing, "scored": len(scored), "correlations": {}}
+    report = {"lessons": lessons, "counter_missing": missing, "scored": len(scored), "counters": list(names),
+              "correlations": {}}
     for name, (classes, score) in GROUPS.items():
         if not scored:
             report["correlations"][name] = NOT_SCORED
@@ -248,6 +304,89 @@ def _preference(lessons: dict, owner: dict) -> dict | str:
     return {"pictures": rows, "agree": sum(r["agree"] for r in rows), "of": len(rows)}
 
 
+def jaccard(a: set, b: set) -> float | None:
+    return round(len(a & b) / len(a | b), 3) if a | b else None
+
+
+def first_flagged(result: dict) -> set[int]:
+    """Steps where a major or blocker fault first shows (repeats, with same_as, left out)."""
+    return {s.get("n") for s in result.get("steps") or [] for f in s.get("faults") or []
+            if not f.get("same_as") and SEVERITY.get(str(f.get("severity", "")).lower(), 1) >= FLAG}
+
+
+def compare(packets: Path, a: str, b: str) -> dict:
+    """Two counters on the same packets: how much they agree with each other (the counter's repeatability)."""
+    key = _key(packets)
+    rows, missing = [], []
+    for pid, info in sorted(key["packets"].items(), key=lambda kv: kv[1]["picture"]):
+        ra, rb = _result(packets, pid, info, a), _result(packets, pid, info, b)
+        if ra is None or rb is None:
+            missing.append(pid)
+            continue
+        fa, fb = _one(ra, info.get("steps")), _one(rb, info.get("steps"))
+        da, db = fa["distinct"], fb["distinct"]
+        rows.append({
+            "picture": info["picture"], "packet": pid, "steps": fa["steps"],
+            "distinct": [da, db], "all": [fa["total"], fb["total"]], "weighted": [fa["weighted"], fb["weighted"]],
+            "distinct_by_class": {c: [fa["distinct_count"][c], fb["distinct_count"][c]] for c in CLASSES},
+            "distinct_spread": round(abs(da - db) / ((da + db) / 2), 3) if da + db else 0.0,
+            "weighted_spread": round(abs(fa["weighted"] - fb["weighted"]) / ((fa["weighted"] + fb["weighted"]) / 2), 3)
+            if fa["weighted"] + fb["weighted"] else 0.0,
+            "worst3_overlap": len(set(fa["worst_steps"][:3]) & set(fb["worst_steps"][:3])),
+            "worst3_of": min(3, len(fa["worst_steps"][:3]), len(fb["worst_steps"][:3])),
+            "flagged_jaccard": jaccard(set(fa["flagged_steps"]), set(fb["flagged_steps"])),
+            "first_flagged_jaccard": jaccard(first_flagged(ra), first_flagged(rb)),
+            "flagged": [len(fa["flagged_steps"]), len(fb["flagged_steps"])],
+            "format_problems": {a: fa["format_problems"], b: fb["format_problems"]},
+        })
+    js = [r["flagged_jaccard"] for r in rows if r["flagged_jaccard"] is not None]
+    fj = [r["first_flagged_jaccard"] for r in rows if r["first_flagged_jaccard"] is not None]
+    spreads = [r["distinct_spread"] for r in rows]
+    wsp = [r["weighted_spread"] for r in rows]
+    summary = {
+        "lessons": len(rows),
+        "distinct_spread": {"mean": round(sum(spreads) / len(spreads), 3) if spreads else None,
+                            "min": min(spreads, default=None), "max": max(spreads, default=None)},
+        "weighted_spread": {"mean": round(sum(wsp) / len(wsp), 3) if wsp else None,
+                            "min": min(wsp, default=None), "max": max(wsp, default=None)},
+        "worst3_overlap": [sum(r["worst3_overlap"] for r in rows), sum(r["worst3_of"] for r in rows)],
+        "flagged_jaccard": {"mean": round(sum(js) / len(js), 3) if js else None,
+                            "min": min(js, default=None), "max": max(js, default=None)},
+        "first_flagged_jaccard": {"mean": round(sum(fj) / len(fj), 3) if fj else None,
+                                  "min": min(fj, default=None), "max": max(fj, default=None)},
+        "rank_rho_weighted_per_step": spearman([r["weighted"][0] / r["steps"] for r in rows],
+                                               [r["weighted"][1] / r["steps"] for r in rows]),
+        "distinct_by_class_total": {c: [sum(r["distinct_by_class"][c][0] for r in rows),
+                                        sum(r["distinct_by_class"][c][1] for r in rows)] for c in CLASSES},
+    }
+    return {"counters": [a, b], "lessons": rows, "missing": missing, "summary": summary}
+
+
+def compare_table(report: dict) -> str:
+    a, b = report["counters"]
+    lines = [f"picture | distinct {a} / {b} | spread | weighted | worst-3 overlap | flagged-step Jaccard (all / first)"]
+    for r in report["lessons"]:
+        lines.append(f"{r['picture']} | {r['distinct'][0]} / {r['distinct'][1]} | {r['distinct_spread']:.0%} | "
+                     f"{r['weighted'][0]} / {r['weighted'][1]} | {r['worst3_overlap']} of {r['worst3_of']} | "
+                     f"{r['flagged_jaccard']} / {r['first_flagged_jaccard']}")
+    s = report["summary"]
+    lines += ["", f"distinct spread: mean {s['distinct_spread']['mean']:.0%}, {s['distinct_spread']['min']:.0%} to "
+              f"{s['distinct_spread']['max']:.0%}",
+              f"weighted spread: mean {s['weighted_spread']['mean']:.0%}, {s['weighted_spread']['min']:.0%} to "
+              f"{s['weighted_spread']['max']:.0%}",
+              f"worst-3 overlap: {s['worst3_overlap'][0]} of {s['worst3_overlap'][1]}",
+              f"flagged-step Jaccard: mean {s['flagged_jaccard']['mean']}, {s['flagged_jaccard']['min']} to "
+              f"{s['flagged_jaccard']['max']} (every step a major fault shows in)",
+              f"first-flagged-step Jaccard: mean {s['first_flagged_jaccard']['mean']}, "
+              f"{s['first_flagged_jaccard']['min']} to {s['first_flagged_jaccard']['max']} (the step it first shows in)",
+              f"rank rho of weighted per step, {a} against {b}: {s['rank_rho_weighted_per_step']}"]
+    lines += [f"format, {r['packet']} {n}: {p}" for r in report["lessons"] for n, ps in r["format_problems"].items()
+              for p in ps]
+    if report["missing"]:
+        lines.append(f"missing: {', '.join(report['missing'])}")
+    return "\n".join(lines)
+
+
 def table(report: dict) -> str:
     lines = ["lesson | packet | faults (weighted) | A B C D E F G H | owner a/b/c | worst (owner / counter)"]
     for folder, v in report["lessons"].items():
@@ -275,19 +414,28 @@ def table(report: dict) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--packets", required=True, help="the folder packet.py made, with each reviewer's faults.json")
+    ap.add_argument("--packets", required=True, help="the folder with key.json and each lesson's counter results")
     ap.add_argument("--scores", help="the owner's scores (spike/experiments/bench/scores/<round>.json)")
+    ap.add_argument("--name", action="append", help="a counter's result file name in each lesson's folder (default "
+                    "faults.json); give it twice or more to use the counters' mean")
+    ap.add_argument("--compare", nargs=2, metavar=("A", "B"), help="two counters' result file names: report how well "
+                    "they agree with each other instead")
     ap.add_argument("--out", help="write the report JSON here too")
     a = ap.parse_args(argv)
     scores = read_json(Path(a.scores)) if a.scores else None
     try:
-        report = agree(Path(a.packets), scores)
+        if a.compare:
+            report = compare(Path(a.packets), *a.compare)
+            text = compare_table(report)
+        else:
+            report = agree(Path(a.packets), scores, a.name or ["faults.json"])
+            text = table(report)
     except (FileNotFoundError, ValueError) as err:
         print(json.dumps({"problems": [str(err)]}))
         return 1
     if a.out:
         write_json(Path(a.out), report)
-    print(table(report))
+    print(text)
     return 0
 
 

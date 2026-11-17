@@ -1,0 +1,661 @@
+{
+ "packet": "p04",
+ "painting": "An alpine lake with a small red cabin and dock among dark spruces under a snowy peak, the trees and mountain reflected in blue water, reeds and gray rocks in the lower-left foreground",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "major",
+     "sees": "the pale lower sky is covered by a faint mirrored, tiled texture (repeating symmetric swirls), and the cloud dabs near the top are cut off by hard triangular edges: nothing a brush makes",
+     "where": "AFTER picture, x 0-100%, y 15-47% (about 1 3/4 to 5 1/2 in down); cut clouds at x 2-25%, y 0-15%",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 puts the sky's bottom about 2 1/2 in from the top edge; the picture's sky runs to about 5 5/8 in, and the tip says 5 1/2 in",
+     "where": "line 1 vs AFTER picture, sky bottom at y 47% (5 5/8 in from top)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "D",
+     "severity": "major",
+     "sees": "the picture adds cream/pale yellow cloud dabs across the upper sky; neither paint (Clear sky blue, Pale horizon blue) makes that color and no line asks for clouds",
+     "where": "AFTER picture, x 2-100%, y 2-15% (top 1 3/4 in)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' is used with no explanation, and line 7 'Let it dry, then blend a new thin layer on top' asks for blending on dry paint, which a beginner can't do and contradicts the wet-into-wet blend of line 4",
+     "where": "lines 3 and 7",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "mountain-base",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "major",
+     "sees": "the faint tiled, mirrored texture in the lower sky is still visible",
+     "where": "AFTER picture, sky left of the mountain/between trees, x 0-33%, y 15-47%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the mountain's light-blue block-in ends in a hard straight vertical edge and a ruler-straight horizontal bottom with square corners, a rectangle no brush makes",
+     "where": "AFTER picture, vertical edge at x 33% (5 1/4 in from left), y 13-42%; flat bottom at y 42% (5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the mountain's painted area takes in a narrow tall knob at its left end, the top of a spruce, not a peak",
+     "where": "AFTER picture, x 36-39% (about 5 3/4 to 6 1/4 in from left), y 14-23%",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 2 says the mountain is about 9 1/2 in wide and 3 in tall; the painted area measures about 10 3/4 in wide (from 5 1/4 in to the right edge) and 4 3/4 in tall (from 1/3 in to 5 in down)",
+     "where": "line 2 vs AFTER picture",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "C",
+     "severity": "major",
+     "sees": "the tip puts the highest peak 'a little right of the canvas middle'; it is at about 11 3/4 in from the left, nearly 4 in right of the middle",
+     "where": "tip vs AFTER picture, peak at x 73%, y 3%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "mountain-shade",
+   "faults": [
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "major",
+     "sees": "the faint tiled, mirrored texture in the lower sky is still visible",
+     "where": "AFTER picture, sky left of the mountain/between trees, x 0-33%, y 15-47%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower half of the mountain is a kaleidoscope: mirrored, tiled diamond and X shapes in teal and navy repeating across the slope, nothing a dry brush makes",
+     "where": "AFTER picture, x 33-100% (5 1/4 in to right edge), y 22-42% (2 1/2 to 5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 2 gives the outlined area as about 9 in wide and 3 in tall (step 2 said 9 1/2 in wide for the same mountain); the area measures about 10 3/4 in by 4 1/2 in",
+     "where": "line 2 vs AFTER picture",
+     "same_as": "f11"
+    },
+    {
+     "id": "f15",
+     "class": "D",
+     "severity": "major",
+     "sees": "only Lake blue (a mid blue) is named, but much of what the picture adds is dark teal-green and deep navy on the forested lower slope",
+     "where": "AFTER picture, x 45-100%, y 22-42%",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the hard rectangular left edge of the mountain block still shows",
+     "where": "AFTER picture, x 33-36%, y 13-42%",
+     "same_as": "f9"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "mountain-snow",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "major",
+     "sees": "the faint tiled, mirrored texture in the lower sky is still visible",
+     "where": "AFTER picture, sky left of the mountain/between trees, x 0-33%, y 15-47%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the lower mountain is still there",
+     "where": "AFTER picture, x 33-100%, y 22-42%",
+     "same_as": "f13"
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the hard rectangular left edge of the mountain block still shows (now lavender)",
+     "where": "AFTER picture, x 33-36%, y 13-42%",
+     "same_as": "f9"
+    },
+    {
+     "id": "f18",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 3 again gives about 9 1/2 in wide and 3 in tall; the area is about 10 3/4 by 4 1/2 in",
+     "where": "line 3 vs AFTER picture",
+     "same_as": "f11"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "major",
+     "sees": "on a step that only lays cream on the sunny peaks, the lower mountain changes color: the patterned slope turns olive and tan, and the forested slope under the snow turns from patterned teal to smooth green",
+     "where": "AFTER picture vs BEFORE, x 33-100%, y 22-42% (3 to 5 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "forest-dark",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "major",
+     "sees": "the faint tiled, mirrored texture in the lower sky is still visible",
+     "where": "AFTER picture, sky left of the mountain/between trees, x 0-33%, y 15-47%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern still shows between the spruces on the lower right slope",
+     "where": "AFTER picture, x 70-100%, y 30-42%",
+     "same_as": "f13"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the lavender strip with a hard straight left edge (the mountain block's corner) shows between the spruces",
+     "where": "AFTER picture, x 33-38%, y 25-42%",
+     "same_as": "f9"
+    },
+    {
+     "id": "f23",
+     "class": "B",
+     "severity": "minor",
+     "sees": "loose dark specks float on the bare sky below the left spruces, away from any tree",
+     "where": "AFTER picture, x 5-9%, y 44-47% (about 3/4 to 1 1/2 in from left, 5 1/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "forest-light",
+   "faults": [
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "major",
+     "sees": "a smooth, blurred dark olive blob with no brush marks sits exactly where the cabin will go, a patch behind the object",
+     "where": "AFTER picture, x 16-25% (2 1/2 to 4 in from left), y 33-45% (4 to 5 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "the sky between the treetops changes with no instruction: the pale tiled sky becomes cloud strokes in cream and blue",
+     "where": "AFTER picture vs BEFORE, x 0-40%, y 10-30%",
+     "same_as": null
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the olive shore band under the trees shows a faint mirrored, tiled pattern",
+     "where": "AFTER picture, x 0-100%, y 44-48% (5 1/4 to 5 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f27",
+     "class": "E",
+     "severity": "major",
+     "sees": "whole new yellow-green trees between the dark spruces, a band of far woods on the right, and a shore strip appear; the words only ask to tap light greens on the left of each spruce and along the shore bushes",
+     "where": "AFTER picture, e.g. x 22-27% and 33-36%, y 15-40%; far woods x 70-100%, y 30-42%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "cabin-block",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the tiled pattern in the olive shore band is still visible",
+     "where": "AFTER picture, y 44-48%",
+     "same_as": "f26"
+    },
+    {
+     "id": "f32",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 8 says the result is a cabin of distinct pieces with gaps or overlaps; the picture shows one flat red silhouette",
+     "where": "line 8 vs AFTER picture, x 16-25%, y 33-43%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "cabin-shade",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the tiled pattern in the olive shore band is still visible",
+     "where": "AFTER picture, y 44-48%",
+     "same_as": "f26"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "cabin-light",
+   "faults": [
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the tiled pattern in the olive shore band is still visible",
+     "where": "AFTER picture, y 44-48%",
+     "same_as": "f26"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the gable end, left sunny red by step 8, turns a darker, textured brick red on a step that only paints roof and trim",
+     "where": "AFTER picture vs BEFORE, x 21-25%, y 35-43%",
+     "same_as": null
+    },
+    {
+     "id": "f34",
+     "class": "D",
+     "severity": "minor",
+     "sees": "the window gets a blue-gray pane, a color Warm pale gray doesn't make and no line names",
+     "where": "AFTER picture, x 23%, y 39-41%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "dock",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the tiled pattern in the olive shore band is still visible",
+     "where": "AFTER picture, y 44-48%",
+     "same_as": "f26"
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "major",
+     "sees": "blue-gray, water-colored pads with dark half-oval shapes appear under the dock on the shore band before the lake is painted; no line asks for them",
+     "where": "AFTER picture, x 26-40% (about 4 1/4 to 6 1/2 in from left), y 45-48% (5 1/2 to 5 3/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "water-base",
+   "faults": []
+  },
+  {
+   "n": 12,
+   "id": "water-light",
+   "faults": [
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark spruce-green streaks and olive dabs (the forest's reflection) already show in the lake, a step before the reflections are painted",
+     "where": "AFTER picture, x 16-23% (2 1/2 to 3 3/4 in from left), y 52-62% (6 1/4 to 7 1/2 in down); olive dabs x 37-47%, y 57-60%",
+     "same_as": null
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "major",
+     "sees": "an upside-down olive-yellow reed reflection shows in the lake six steps before the reeds",
+     "where": "AFTER picture, x 13-21% (2 to 3 1/2 in from left), y 85-91% (10 1/4 to 11 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "major",
+     "sees": "the pale streaks stop at a ruler-straight horizontal line and a straight vertical-ish edge, leaving a flat, untouched lake-blue block with hard edges, and the streaked area has hard cut-out silhouettes of the tree reflections",
+     "where": "AFTER picture, flat block x 0-20% (0 to 3 1/4 in), y 46-84% (5 1/2 to 10 in down); edge at y 84%",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "D",
+     "severity": "major",
+     "sees": "Pale lake blue is the only paint, but the picture also adds cream/white highlights in a mountain-reflection shape and deep saturated blue strokes darker than Lake blue across the bottom",
+     "where": "AFTER picture, cream x 45-65%, y 70-80%; deep blue x 0-100%, y 88-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "tree-reflection-dark",
+   "faults": [
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "the olive reed reflection still shows before the reeds are painted",
+     "where": "AFTER picture, x 13-21%, y 85-91%",
+     "same_as": "f37"
+    },
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat, hard-edged lake-blue block at the lower left is still there",
+     "where": "AFTER picture, x 0-20%, y 50-84%",
+     "same_as": "f38"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "tree-reflection-olive",
+   "faults": [
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "major",
+     "sees": "the olive reed reflection still shows before the reeds are painted",
+     "where": "AFTER picture, x 13-21%, y 85-91%",
+     "same_as": "f37"
+    },
+    {
+     "id": "f46",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat, hard-edged lake-blue block at the lower left is still there",
+     "where": "AFTER picture, x 0-20%, y 50-84%",
+     "same_as": "f38"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "mountain-reflection",
+   "faults": [
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "major",
+     "sees": "the olive reed reflection still shows before the reeds are painted",
+     "where": "AFTER picture, x 13-21%, y 85-91%",
+     "same_as": "f37"
+    },
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat, hard-edged lake-blue block at the lower left is still there",
+     "where": "AFTER picture, x 0-20%, y 50-84%",
+     "same_as": "f38"
+    },
+    {
+     "id": "f49",
+     "class": "D",
+     "severity": "major",
+     "sees": "Warm pale gray is a muted gray, but the picture adds a bright warm cream-yellow as light as the snow, which the tip also says to avoid ('never as bright')",
+     "where": "AFTER picture, x 50-90% (8 to 14 in from left), y 70-88%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "cabin-reflection",
+   "faults": [
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "major",
+     "sees": "the olive reed reflection still shows before the reeds are painted",
+     "where": "AFTER picture, x 13-21%, y 85-91%",
+     "same_as": "f37"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat, hard-edged lake-blue block at the lower left is still there",
+     "where": "AFTER picture, x 0-20%, y 50-84%",
+     "same_as": "f38"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "tree-reflection-ripples",
+   "faults": [
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "major",
+     "sees": "the olive reed reflection still shows before the reeds are painted",
+     "where": "AFTER picture, x 13-21%, y 85-91%",
+     "same_as": "f37"
+    },
+    {
+     "id": "f50",
+     "class": "E",
+     "severity": "major",
+     "sees": "the flat lake-blue block at the lower left gets a full dark-green and olive tree reflection, not short dashes; no line asks for that reflection",
+     "where": "AFTER picture vs BEFORE, x 0-20% (0 to 3 1/4 in), y 50-84%",
+     "same_as": null
+    },
+    {
+     "id": "f51",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint, a light load' uses load words with no explanation on the step",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "reeds-base",
+   "faults": [
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "major",
+     "sees": "mossy and olive reed blades already show inside the dark clump, a step before they are flicked in",
+     "where": "AFTER picture, x 0-22%, y 50-84% (6 to 10 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f53",
+     "class": "E",
+     "severity": "minor",
+     "sees": "lines 5-6 ask for criss-cross X strokes leaving visible criss-cross marks; the picture's clump is one flat, smooth dark fill",
+     "where": "lines 5-6 vs AFTER picture, x 0-22%, y 50-84%",
+     "same_as": null
+    },
+    {
+     "id": "f54",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 4 says 'One or two colors on the brush' controlling the blend, but the step names only one paint",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "reeds-mid",
+   "faults": [
+    {
+     "id": "f55",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the watch-out about texture 'all the way to the horizon' and 'the far field' is written for a field, not a reed clump at the water's edge",
+     "where": "line 8",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "reeds-light",
+   "faults": [
+    {
+     "id": "f56",
+     "class": "E",
+     "severity": "minor",
+     "sees": "same far-field watch-out for the reed clump",
+     "where": "line 8",
+     "same_as": "f55"
+    },
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "major",
+     "sees": "one step goes from a dark clump with a few blades to a dense, finished clump where nearly every blade is drawn and the dark is almost all covered, though the words say leave the dark showing",
+     "where": "AFTER picture, x 0-22%, y 50-84%",
+     "same_as": null
+    },
+    {
+     "id": "f58",
+     "class": "D",
+     "severity": "major",
+     "sees": "Sunlit olive is a dull olive, but many blades the picture adds are a bright yellow and yellow-green, much lighter and more saturated",
+     "where": "AFTER picture, x 2-18%, y 50-75%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "id": "rocks-block",
+   "faults": [
+    {
+     "id": "f59",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 7 says the result is distinct rounded rocks with small gaps; the picture shows one flat gray silhouette",
+     "where": "line 7 vs AFTER picture, x 0-38%, y 78-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "id": "rocks-shade",
+   "faults": [
+    {
+     "id": "f60",
+     "class": "C",
+     "severity": "major",
+     "sees": "the tip puts each rock's shadow low and on the right, away from the light; on the big middle rock the picture puts the dark on its left and lower-left side",
+     "where": "tip vs AFTER picture, rock at x 8-27% (1 1/4 to 4 1/4 in from left), y 82-92%",
+     "same_as": null
+    },
+    {
+     "id": "f61",
+     "class": "B",
+     "severity": "minor",
+     "sees": "small blocky dark specks float on the light gray, apart from the shadow shapes",
+     "where": "AFTER picture, x 33-36%, y 86-90%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "id": "rocks-light",
+   "faults": []
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 36,
+  "B": 3,
+  "C": 6,
+  "D": 6,
+  "E": 8,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 14,
+  "B": 3,
+  "C": 4,
+  "D": 6,
+  "E": 7,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  3,
+  12,
+  6
+ ],
+ "not_visible": {
+  "G": "the lesson page's layout and links, the close-ups, paint maps and transfer outline the words refer to, the site listing and lesson history, and which version is published",
+  "H": "whether the render, cutting and checking tools ran cleanly, diagrams and paint maps, and any check that should have caught the tiled patterns"
+ },
+ "summary": "The step pictures carry most of the faults: tiled, mirrored textures (lower sky, mountain slope, shore band), hard rectangular edges, and ghosts of later parts (forest and reed reflections, a cabin-shaped blur, reed blades) that persist across many steps. Sizes in the words often disagree with the pictures (sky bottom, mountain size and peak position), and several steps add color their paints can't make (clouds, cream reflection, bright yellow reeds). The words are otherwise clear; the teaching faults are small."
+}
