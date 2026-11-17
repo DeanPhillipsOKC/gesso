@@ -247,3 +247,7 @@ with the date.
   the skills, techniques, elements, cards, or palettes.
   **No full suite either (2026-11-17, owner's call).** A pull request that changes no code runs the quick set, not
   the full suite, before it merges (owner: "Why run the full suite for no code change? We should relax the rule").
+  **Results aren't code (2026-11-17, owner's call).** Data an experiment produces or freezes under
+  `spike/experiments/bench/` (frozen pictures and manifests, traces, fault counts, scores and answer keys) is results,
+  not code: a pull request that changes only those, docs, lesson runs, `site/` or the lesson history skips the
+  adversarial review and runs the quick set (owner: "Yes they are results not code"). Scripts there are still code.
