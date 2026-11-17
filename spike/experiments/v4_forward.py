@@ -367,7 +367,8 @@ def band_of(step_things: list[str], bands: list[dict]) -> int:
     raise SystemExit(f"no band holds {step_things[0]}")
 
 
-def three_rows(path: Path, d: dict, forward: list[np.ndarray], width: int = 240, per_line: int = 9) -> None:
+def three_rows(path: Path, d: dict, forward: list[np.ndarray], width: int = 240, per_line: int = 9,
+               tag: str = "forward") -> None:
     """Three rows a thing: v2, whole-picture stages (#204), forward. The plans differ (v2's 16 steps, the painter's
     24), so the rows are lined up by the thing being painted (v4_forward_bands.json), each picture under its own
     step number. Things are in the forward lesson's order."""
@@ -390,7 +391,7 @@ def three_rows(path: Path, d: dict, forward: list[np.ndarray], width: int = 240,
                 rows[2].append(_cell(forward[i], f"{i + 1} {s['id']}", width, like))
         cells.append(rows)
     blank = _cell(None, "", width, like)
-    tags = ["v2", "whole stages", "forward"]
+    tags = ["v2", "whole stages", tag]
     lines: list[list[int]] = [[]]
     for k, rows in enumerate(cells):  # bands side by side while they fit
         wide = max(len(r) for r in rows)
