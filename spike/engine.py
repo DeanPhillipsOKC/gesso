@@ -21,9 +21,13 @@ engine keeps between calls, each by exactly what went into it:
   output/.embed-cache/ by the picture's bytes and the model file, so `outline` reads a finish once however many
   times its parts change.
 
-`chain` holds the plan it last saw for each lesson and knows what depends on what (the skill's rule 9): after a
-change to `parts` it runs from `outline`; after a change to `paints` or `stages` only, from `build-steps`; otherwise
-from `check`. `--from` says where to start instead. It stops at the first tool that refuses.
+`chain` knows what each tool reads (INPUTS: plan.json's parts, paints, stages and the rest of it, the finish, the
+outlines, the background picture, canvas.json, the lesson's elements, text.json, notes.json, and techniques/ and
+palettes/) and remembers, for each lesson, what each tool read when it last succeeded. It starts at the first tool
+in the skill's order (rule 9) that hasn't succeeded yet or whose inputs changed since, and runs every tool after it:
+a parts edit runs from `outline`, a stages edit from `build-steps`, a new canvas.json from `step-aids`, text alone
+just `check`. A tool that refuses or fails doesn't count as run. `--from` says where to start instead. It stops at
+the first tool that refuses.
 
 One engine serves one caller at a time; calls wait their turn. It listens on 127.0.0.1 with a random token, both
 written to its state file (output/.engine/engine.json unless --state), which `call` reads.
@@ -53,16 +57,59 @@ ORDER = ["outline", "paints", "build-steps", "step-aids", "mix", "draft-text", "
 TOOLS_ONLY = ("engine",)  # what `call` won't run inside the engine
 
 
-def _plan_parts(lesson: Path) -> dict[str, str] | None:
-    """A digest of each of plan.json's sections that decide what reruns: parts, paints, stages, and the rest."""
+# What each tool of the chain reads, by group (its own outputs left out: outline's outlines, paints' paints,
+# draft-text's and card-adapt's text.json). A tool is run again when any of its groups changed since it last
+# succeeded on the lesson, and so is every tool after it.
+INPUTS = {
+    "outline": ("parts", "rest", "finish"),
+    "paints": ("parts", "rest", "finish", "owner", "library"),
+    "build-steps": ("parts", "paints", "stages", "rest", "finish", "owner", "background"),
+    "step-aids": ("parts", "paints", "stages", "rest", "finish", "owner", "background", "canvas"),
+    "mix": ("paints", "rest", "finish", "library"),
+    "draft-text": ("parts", "paints", "stages", "rest", "finish", "owner", "background", "canvas", "elements",
+                   "library"),
+    "card-adapt": ("stages", "rest", "library"),
+    "check": ("parts", "paints", "stages", "rest", "finish", "owner", "background", "canvas", "elements", "library",
+              "text", "notes"),
+}
+FILES = {"finish": "99_finish.png", "owner": "parts/owner.png", "background": "98_background.png",
+         "canvas": "canvas.json", "text": "text.json", "notes": "notes.json"}
+
+
+def _digest_files(paths) -> str:
+    h = hashlib.sha1()
+    for path in paths:
+        h.update(f"{path}\n".encode())
+        try:
+            h.update(Path(path).read_bytes())
+        except OSError:
+            h.update(b"(missing)")
+    return h.hexdigest()
+
+
+def _inputs(lesson: Path) -> dict[str, str]:
+    """A digest of every group of inputs the chain's tools read: plan.json's parts, paints, stages, and everything
+    else in it (technique, palette, ...), the finish, the outlines, the background picture, canvas.json, the
+    lesson's drafted elements, text.json, notes.json, and the library (techniques/ and palettes/, every byte)."""
+    digest = lambda v: hashlib.sha1(json.dumps(v, sort_keys=True).encode()).hexdigest()  # noqa: E731
     try:
         plan = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
-    digest = lambda v: hashlib.sha1(json.dumps(v, sort_keys=True).encode()).hexdigest()  # noqa: E731
+        if not isinstance(plan, dict):
+            raise ValueError("not an object")
+    except (OSError, ValueError) as e:
+        plan = {"unreadable": str(e)}
     out = {k: digest(plan.get(k)) for k in ("parts", "paints", "stages")}
     out["rest"] = digest({k: v for k, v in plan.items() if k not in ("parts", "paints", "stages")})
+    for group, name in FILES.items():
+        out[group] = _digest_files([lesson / name])
+    out["elements"] = _digest_files(sorted(f for f in (lesson / "elements").rglob("*") if f.is_file()))
+    out["library"] = _library_stamp()
     return out
+
+
+def _library_stamp() -> str:
+    return _digest_files(sorted(p for folder in (ROOT / "techniques", ROOT / "palettes") if folder.exists()
+                                for p in folder.rglob("*.yaml")))
 
 
 def _lesson_of(argv: list[str], cwd: str) -> Path | None:
@@ -82,11 +129,16 @@ class Engine:
         self.tools, self.bs = tools, build_steps
         self.started = time.time()
         self.calls = 0
-        self.plans: dict[str, dict[str, str]] = {}  # lesson -> its plan's digests after the last call on it
+        # lesson -> tool -> the digests of that tool's inputs right after it last succeeded on the lesson
+        self.ran: dict[str, dict[str, dict[str, str]]] = {}
         self.sam, self.readings = None, Path(readings)
-        build_steps.remember_parts(True)
-        tools._outline_model = self.outline_model
-        self.memos, self._undo = install_memos()
+        self.memos, self._undo = install_memos()  # first: if it fails, nothing else has been changed
+        try:
+            build_steps.remember_parts(True)
+            tools._outline_model = self.outline_model
+        except Exception:
+            self.close()
+            raise
         self.base_env = dict(os.environ)
 
     def close(self) -> None:
@@ -152,22 +204,27 @@ class Engine:
             os.environ.update(self.base_env)
             os.chdir(here)
         lesson = _lesson_of(argv, cwd)
-        if lesson is not None:
-            self.plans[str(lesson)] = _plan_parts(lesson)
+        if code == 0 and lesson is not None and argv[0] in INPUTS:
+            self.record(lesson, argv[0])
         return {"code": code, "stdout": out.getvalue(), "stderr": err.getvalue()}
 
+    def record(self, lesson: Path, tool: str) -> None:
+        """`tool` succeeded on the lesson: what it read, as it is now. A tool that failed or refused leaves its last
+        success in place, so the chain still runs it after an edit."""
+        now = _inputs(Path(lesson))
+        self.ran.setdefault(str(Path(lesson).resolve()), {})[tool] = {g: now[g] for g in INPUTS[tool]}
+
     def start_of(self, lesson: Path) -> tuple[str, str]:
-        """Where the chain starts for this lesson, and why: what changed in plan.json since the last call on it."""
-        seen, now = self.plans.get(str(lesson)), _plan_parts(lesson)
-        if now is None:
-            return "outline", "no plan.json the engine can read: outline says what's wrong"
-        if seen is None:
-            return "outline", "the engine hasn't seen this lesson yet, so everything runs"
-        if seen["parts"] != now["parts"]:
-            return "outline", "parts changed"
-        if seen["paints"] != now["paints"] or seen["stages"] != now["stages"]:
-            return "build-steps", "paints or stages changed, parts didn't"
-        return "check", "the plan's parts, paints, and stages are as the last call left them"
+        """Where the chain starts for this lesson, and why: the first tool in the skill's order that hasn't
+        succeeded on the lesson in this engine, or whose inputs changed since it last did."""
+        ran, now = self.ran.get(str(Path(lesson).resolve()), {}), _inputs(Path(lesson))
+        for tool in ORDER:
+            if tool not in ran:
+                return tool, f"{tool} hasn't succeeded on this lesson in this engine yet"
+            changed = [g for g in INPUTS[tool] if ran[tool][g] != now[g]]
+            if changed:
+                return tool, f"{', '.join(changed)} changed since {tool} last succeeded"
+        return "check", "nothing any tool reads changed since it last succeeded: only check runs"
 
     def chain(self, lesson: str, cwd: str, env: dict[str, str], first: str | None, last: str) -> dict:
         path = (Path(cwd) / lesson).resolve()
@@ -203,7 +260,7 @@ class Engine:
                 "peak_memory_mb": peak,
                 "builds_kept": len(self.bs._built), "parts_kept": len(self.bs._parts_memo or {}),
                 "memos": {name: dict(m.counts, held=len(m.kept)) for name, m in self.memos.items()},
-                "lessons": sorted(self.plans), "outline_model": "loaded" if sam else "not loaded yet",
+                "lessons": sorted(self.ran), "outline_model": "loaded" if sam else "not loaded yet",
                 "readings": dict(sam.reads) if sam else {}, "readings_folder": str(self.readings)}
 
 
@@ -251,15 +308,9 @@ class Memo:
 
 
 def _yaml_stamp(*folders: Path) -> str:
-    """Every stroke card, basics card, element, and technique file's path, size, and time: what draft-text reads
+    """Every stroke card, basics card, element, technique, and palette file's path and bytes: what draft-text reads
     besides its arguments. A changed card changes the key."""
-    h = hashlib.sha1()
-    for folder in folders:
-        if folder.exists():
-            for p in sorted(folder.rglob("*.yaml")):
-                st = p.stat()
-                h.update(f"{p} {st.st_size} {st.st_mtime_ns}\n".encode())
-    return h.hexdigest()
+    return _digest_files(sorted(p for folder in folders if folder.exists() for p in folder.rglob("*.yaml")))
 
 
 def install_memos() -> tuple[dict[str, Memo], list[tuple[object, str, object]]]:
@@ -381,7 +432,9 @@ def serve(state: Path, readings: Path = READINGS) -> int:
             conn, _ = srv.accept()
             with conn:
                 try:
+                    conn.settimeout(30)  # a caller that connects and sends nothing doesn't hold up the others
                     req = _recv(conn)
+                    conn.settimeout(None)
                 except (OSError, ValueError):
                     continue
                 if not secrets.compare_digest(str(req.get("token", "")), token):

@@ -21,8 +21,10 @@ Every pixel then belongs to exactly one part: the latest (nearest the painter) t
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import os
+import time
 import urllib.request
 from pathlib import Path
 
@@ -48,6 +50,36 @@ HOLE_BRIDGE = 0.02  # gaps in an area's outline narrower than about twice this (
 
 
 _keep_readings = 6  # pictures' readings a `keep` folder holds, newest first (lower case: not a tuned number)
+
+
+_tmp_stale = 3600  # seconds: a temp reading this old was left by a killed write (lower case: not tuned)
+
+
+def prune(keep: Path, now: float | None = None) -> None:
+    """The newest `_keep_readings` readings stay; older ones go, and so do temp files left by a killed write. Other
+    engines may share the folder and rename or delete files at the same time: a file that's gone is skipped."""
+    now = time.time() if now is None else now
+    readings = []
+    try:
+        entries = list(os.scandir(keep))
+    except OSError:
+        return
+    for entry in entries:
+        if not entry.name.endswith(".npz"):
+            continue
+        try:
+            mtime = entry.stat().st_mtime
+        except OSError:  # renamed or deleted by another process since the listing
+            continue
+        if ".tmp." in entry.name:
+            if now - mtime > _tmp_stale:
+                with contextlib.suppress(OSError):
+                    os.unlink(entry.path)
+            continue
+        readings.append((mtime, entry.path))
+    for _, path in sorted(readings)[:-_keep_readings]:  # about 70 MB each
+        with contextlib.suppress(OSError):
+            os.unlink(path)
 
 
 class NoModel(RuntimeError):
@@ -77,7 +109,8 @@ class Sam:
 
     def __init__(self, folder: Path = MODELS, keep: Path | None = None):
         """`keep`: a folder where each picture's reading (the embedding) is kept, so the same picture is read once
-        however many times it's outlined. Only the engine (#176) passes one; without it every picture is read."""
+        however many times it's outlined. Only the engine (#176) passes one; without it every picture is read. The
+        key holds no CPU or runtime settings, so a folder is for one machine: don't share it between machines."""
         try:
             import onnxruntime as ort
         except ImportError as e:  # pragma: no cover
@@ -136,15 +169,20 @@ class Sam:
         return True
 
     def _save(self, key: str) -> None:
+        """Keep the reading on disk, written whole (to a temp file of this process, then renamed). Never fatal: the
+        reading is already in memory, so a full disk or a folder another engine is clearing costs only the next
+        engine's read."""
         self._last = (key, self.emb, self.interm)
-        self.keep.mkdir(parents=True, exist_ok=True)
-        path = self.keep / f"{key}.npz"
         tmp = self.keep / f"{key}.{os.getpid()}.tmp.npz"
-        np.savez(tmp, emb=self.emb, interm=self.interm)
-        tmp.replace(path)
-        kept = sorted(self.keep.glob("*.npz"), key=lambda p: p.stat().st_mtime)
-        for old in [p for p in kept if ".tmp." not in p.name][:-_keep_readings]:  # about 70 MB each
-            old.unlink(missing_ok=True)
+        try:
+            self.keep.mkdir(parents=True, exist_ok=True)
+            np.savez(tmp, emb=self.emb, interm=self.interm)
+            tmp.replace(self.keep / f"{key}.npz")
+        except OSError:
+            with contextlib.suppress(OSError):
+                tmp.unlink()
+            return
+        prune(self.keep)
 
     def mask(self, box=None, points_in=(), points_out=()) -> tuple[np.ndarray, float]:
         """The outline for a box and/or points (all 0-1), and the model's own confidence (0-1)."""

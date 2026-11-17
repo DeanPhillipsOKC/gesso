@@ -2,13 +2,15 @@
 
 2026-11-17. Pipeline v3 plan, "Speed": one long-lived process in place of thirty one-shot tools. The engine is
 `spike/engine.py` (`tools.py engine ...`). The proof and the timings are `spike/experiments/v3_one_engine.py`, with
-today's hashes in `spike/experiments/v3_one_engine.json`. No renders.
+today's hashes in `spike/experiments/v3_one_engine.json` and the timed runs in
+`spike/experiments/v3_one_engine_timings.json` (`v3_one_engine.py table v3_one_engine_timings.json` prints the tables
+below from it). No renders.
 
 **What it showed:** through the engine, every file the tools write is the same, byte for byte, as today, on all
-three fixtures, after a stages edit, and after a parts edit. The tools spend about 60% less time: 268 seconds
+three fixtures, after a stages edit, and after a parts edit. Wall time for the tools is about 60% less: 268 seconds
 against 666 for the three fixtures' three scenarios together (medians of 3 runs each). A stages edit reruns in 8 to
 13 seconds where it took 44 to 67. The first full pass gains least (27 to 48%), because the first outline and the
-first build cost the same as today.
+first build cost the same as today; the first outline was even 13% slower in the medians (below).
 
 ## What was built
 
@@ -28,22 +30,34 @@ What the engine keeps between calls, each keyed by exactly what goes into it:
 
 | Kept | Keyed by | Saves |
 |---|---|---|
-| Python modules, stroke cards, element files | (loaded once; cards by file time, as `yaml_files` already did) | about 0.3 s a call |
+| Python modules, stroke cards, element files | (loaded once; cards by file time and size, as `yaml_files` already did) | about 0.3 s a call |
 | Every step picture build (`build_steps._built`, the memo only tests used) | the plan, finish, outlines, background, tuned numbers | the build in step-aids, draft-text, check, publish |
 | What's behind the objects, and each part's prepared paint and flat coat (`build_steps.remember_parts`) | the parts and pictures; for a part, also its paints' ids and colors | most of a rebuild after a stages edit |
 | The outline model, loaded once | | 1 to 2 s an outline |
-| The model's reading of the picture, in memory and in `output/.embed-cache/` (about 70 MB each, newest 6) | the picture's bytes, the encoder file's SHA-256, the onnxruntime version | the 8 s read, on every outline after the first, even in a new engine |
-| Decoded step pictures, a page's inlined pictures, the embed's webp files, encoded step PNGs, the texture check, the drafted text check and publish draft again | each file's bytes, or each array's bytes and every argument | most of check and publish |
+| The model's reading of the picture, in memory and in `output/.embed-cache/` (about 70 MB each, newest 6; for one machine, since the key holds no CPU settings) | the picture's bytes, the encoder file's SHA-256, the onnxruntime version | the 8 s read, on every outline after the first, even in a new engine |
+| Decoded step pictures, a page's inlined pictures, the embed's webp files, encoded step PNGs, the texture check, the drafted text check and publish draft again | each file's bytes, or each array's bytes and every argument (for the draft, also every card, element, technique and palette file's bytes) | most of check and publish |
 
-`engine chain` holds each lesson's plan as the last call left it: a change to `parts` runs from `outline`, to
-`paints` or `stages` from `build-steps`, otherwise from `check` (skill rule 9). It stops at the first refusal.
+The readings folder may be shared by several engines: a reading is written to a temp file of its own process and
+renamed into place, the cleanup skips files another engine renamed or deleted meanwhile and removes temp files over
+an hour old (left by a killed write), and a failed write is never fatal (the reading is already in memory).
+
+`engine chain` knows what each tool of the skill's order reads (`engine.INPUTS`: plan.json's parts, paints, stages,
+and the rest of it, such as the technique and palette; the finish, the outlines, the background picture,
+canvas.json, the lesson's drafted elements, text.json, notes.json, and every file in techniques/ and palettes/). For
+each lesson it remembers what each tool read the last time that tool succeeded, and starts at the first tool that
+hasn't succeeded yet or whose inputs changed since; every later tool runs too. So a parts edit, a technique change
+or a new finish runs from `outline`, a stages or paints edit from `build-steps`, a new canvas.json from `step-aids`,
+a drafted element from `draft-text`, and text alone runs only `check`. A tool that refuses or fails doesn't count
+as run: the first review of this found that a refused `outline` after a parts edit made the next chain start at
+`check`, and the tests now cover that case. It stops at the first refusal.
 
 Code changes outside the engine, all only refactors on the default path:
 - `build_steps._build`: `prepare` moved out of the closure into `_prepare(...)`, and what's behind the objects into
   `_behind(...)`, so each can be kept. With the memo off (the default) they run every time, as before.
 - `outline.Sam(keep=...)`: an optional folder for readings. Without it, `embed` is unchanged.
 - `tools.py`: a hook for the engine's kept outline model, `save_png` for the step pictures, and the `engine`
-  subcommand.
+  subcommand. `tools.py --help` lists `engine` among the tools: the one visible change without the engine, kept so
+  it can be found.
 
 ## How byte-identity was proven
 
@@ -55,20 +69,26 @@ three scenarios in one folder, the way a run loops, each tool as its own process
   lavender's tree passes, the sailboat's reflection passes), then build-steps on;
 - **part:** the first single-box object's box grows by 0.005 on every side (each fixture's sun), then outline on.
 
-After every tool it hashes every file in the lesson folder (sha256) and what the tool printed. 75 tool runs per
-fixture, 225 in all, each compared on its exit code, its printed result, and every file it changed.
+After every tool it hashes every file in the lesson folder (sha256), all the tool printed on stdout, and all it
+printed on stderr. 75 tool runs per fixture, 225 in all, each compared on its exit code, stdout, stderr, and every
+file it changed.
 
 Only these fields are normalized, everything else is compared byte for byte:
 - **publish's stamp** (`version.stamp`): the commit, the dirty flag, and the date. In `lesson.json` and
   `embed/lesson.json` as `gesso.commit`, `gesso.dirty`, `gesso.published`, `gesso.made.commit`,
-  `gesso.made.published`; in `lesson.html`, `lesson-artifact.html` and `lesson-standalone.html` as the footer
+  `gesso.made.published`, replaced in the raw bytes inside the `gesso` object only; in `lesson.html`, `lesson-artifact.html` and `lesson-standalone.html` as the footer
   "(&lt;commit&gt;) on &lt;date&gt;" (two places each); in publish's printed `gesso`. They change with the code's
   commit and the day, not with what the tools do.
-- **the lesson folder's absolute path**, only in what the tools print (`seconds` is left out there too). No file
-  holds it.
+- **the lesson folder's absolute path**, only in what the tools print on stdout and stderr (`seconds` is left out
+  of stdout too). No file holds it.
 
 The golden hashes come from today's code: main at bb39e54, unpacked from `git archive`, so it has no git and its
 stamp says "unknown", against this branch's real commit and dirty flag. That is how the stamp fields were found.
+Its `spike/` tool code is the same as main's at the time of writing (main since added only experiments and tests).
+
+The table's runs were made with the first form of the harness, which parsed lesson.json again to normalize it and
+compared only stdout's last line. After the review the golden was made again with the stricter form (raw bytes,
+all of stdout, stderr), and the engine matched it again on the red sailboat.
 
 | | chickadee | lavender balloon | red sailboat |
 |---|---|---|---|
@@ -118,9 +138,9 @@ Each tool, wall seconds summed over the three fixtures (median of 3):
 | publish | 53.1 | 18.3 | 53.2 | 7.3 | 53.0 | 15.4 |
 
 What the numbers say:
-- **The first outline is no faster** (76 against 86 seconds over three fixtures, and single runs went from 13 to
-  39 seconds either way, so that difference is noise or the 70 MB written to disk). The engine reads the picture
-  like today the first time. After that: 13.6 seconds for the three part-edit outlines, against 84.
+- **The first outline is no faster, and was 13% slower in the medians** (86 against 76 seconds over the three
+  fixtures). Single runs went from 13 to 39 seconds either way, so 3 runs don't separate it from noise; what the
+  engine does more on a first outline is hash the picture and write its 70 MB reading to disk. After that: 13.6 seconds for the three part-edit outlines, against 84.
 - **A finish already read, in a new engine:** with the readings folder kept from an earlier run, the first outline
   took 3.9 to 6.0 seconds against 12.3 to 14.5 with an empty folder (one run each, the machine quiet).
 - **build-steps gains only when something is kept.** The first build and a build after a parts edit (new outlines)
@@ -146,7 +166,7 @@ lesson's memos take about twice as much. One engine serves one call at a time.
 
 ## Verdict: open
 
-The build is done and proven byte for byte, and on the fixtures the tools spend 60% less time. The verdict waits on
+The build is done and proven byte for byte, and on the fixtures the tools take 60% less wall time. The verdict waits on
 #165's run trace: before and after numbers on the frozen bench, split into Claude's time, tool time and render time,
 to say whether the tool time saved is a real share of a run. Until then nothing in `/paint-lesson` changes.
 

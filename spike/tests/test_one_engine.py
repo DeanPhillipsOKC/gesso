@@ -137,6 +137,31 @@ class KeptReadingTests(unittest.TestCase):
             b.embed(other)  # one pixel changed: read again
             self.assertEqual(b.enc.runs, 1)
 
+    def test_cleanup_skips_files_that_vanish_and_old_temps(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            keep = Path(tmp)
+            for i in range(ol._keep_readings + 2):
+                (keep / f"r{i}.npz").write_bytes(b"x")
+                os.utime(keep / f"r{i}.npz", (1000 + i, 1000 + i))
+            (keep / "gone.npz").symlink_to(keep / "nothing")  # stat fails, as for a file renamed mid-listing
+            (keep / "a.1.tmp.npz").write_bytes(b"x")
+            os.utime(keep / "a.1.tmp.npz", (10, 10))  # left by a killed write
+            (keep / "b.2.tmp.npz").write_bytes(b"x")  # another engine writing now
+            ol.prune(keep, now=10 + ol._tmp_stale + 1)
+            left = sorted(p.name for p in keep.iterdir())
+            self.assertEqual(left, sorted(["b.2.tmp.npz", "gone.npz"] + [f"r{i}.npz" for i in range(2, ol._keep_readings + 2)]))
+
+    def test_a_failed_save_isnt_fatal(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            blocked = Path(tmp) / "file"
+            blocked.write_bytes(b"not a folder")
+            s = self.sam(blocked)
+            pic = np.zeros((10, 10, 3), np.uint8)
+            s.embed(pic)  # can't write the reading: still read, and kept in memory
+            s.emb = None
+            s.embed(pic)
+            self.assertEqual((s.enc.runs, s.reads["memory"]), (1, 1))
+
     def test_without_keep_every_picture_is_read(self):
         s = self.sam(None)
         pic = np.zeros((10, 10, 3), np.uint8)
@@ -175,21 +200,67 @@ class EngineInProcessTests(unittest.TestCase):
         self.assertIsNone(bs._parts_memo)
         self.assertIsNone(tools._outline_model)
 
+    def lesson(self, tmp):
+        lesson = Path(tmp) / "lesson"
+        (lesson / "parts").mkdir(parents=True)
+        plan = {"plan_version": 2, "parts": [{"id": "a"}], "paints": [], "stages": [], "subject": "x",
+                "technique": "techniques/acrylic-paint-along-beginner.yaml"}
+        (lesson / "plan.json").write_text(json.dumps(plan))
+        for name in ("99_finish.png", "parts/owner.png", "canvas.json", "text.json"):
+            (lesson / name).write_bytes(b"one")
+        return lesson, plan
+
+    def bare(self):
+        e = object.__new__(engine.Engine)
+        e.ran = {}
+        return e
+
     def test_where_the_chain_starts(self):
         with tempfile.TemporaryDirectory() as tmp:
-            lesson = Path(tmp)
-            plan = {"plan_version": 2, "parts": [{"id": "a"}], "paints": [], "stages": [], "subject": "x"}
-            (lesson / "plan.json").write_text(json.dumps(plan))
-            e = object.__new__(engine.Engine)
-            e.plans = {}
+            lesson, plan = self.lesson(tmp)
+            e = self.bare()
             self.assertEqual(e.start_of(lesson)[0], "outline")
-            e.plans[str(lesson)] = engine._plan_parts(lesson)
+            for tool in engine.ORDER[:3]:
+                e.record(lesson, tool)
+            self.assertEqual(e.start_of(lesson)[0], "step-aids")  # the first tool that hasn't run
+            for tool in engine.ORDER:
+                e.record(lesson, tool)
             self.assertEqual(e.start_of(lesson)[0], "check")
-            for key, value, start in (("subject", "y", "check"), ("stages", [{"id": "s"}], "build-steps"),
-                                      ("paints", [{"id": "p"}], "build-steps"), ("parts", [{"id": "b"}], "outline")):
-                changed = dict(plan, **{key: value})
-                (lesson / "plan.json").write_text(json.dumps(changed))
+            plan_edits = (("subject", "y", "outline"), ("technique", "techniques/other.yaml", "outline"),
+                          ("stages", [{"id": "s"}], "build-steps"), ("paints", [{"id": "p"}], "build-steps"),
+                          ("parts", [{"id": "b"}], "outline"))
+            for key, value, start in plan_edits:
+                (lesson / "plan.json").write_text(json.dumps(dict(plan, **{key: value})))
                 self.assertEqual(e.start_of(lesson)[0], start, key)
+            (lesson / "plan.json").write_text(json.dumps(plan))
+            files = (("99_finish.png", "outline"), ("parts/owner.png", "paints"), ("98_background.png", "build-steps"),
+                     ("canvas.json", "step-aids"), ("elements/fur.yaml", "draft-text"), ("text.json", "check"),
+                     ("notes.json", "check"))
+            for name, start in files:
+                path = lesson / name
+                was = path.read_bytes() if path.exists() else None
+                path.parent.mkdir(exist_ok=True)
+                path.write_bytes(b"two")
+                self.assertEqual(e.start_of(lesson)[0], start, name)
+                path.unlink() if was is None else path.write_bytes(was)
+            self.assertEqual(e.start_of(lesson)[0], "check")
+
+    def test_a_failed_call_doesnt_count_as_run(self):
+        """The review of #184: parts edited, then outline refuses (or any tool fails): the next chain must still start
+        at outline, not at check."""
+        with tempfile.TemporaryDirectory() as tmp:
+            lesson, plan = self.lesson(tmp)
+            e = engine.Engine(readings=Path(tmp) / "readings")
+            try:
+                for tool in engine.ORDER:
+                    e.record(lesson, tool)
+                (lesson / "plan.json").write_text(json.dumps(dict(plan, parts=[{"id": "b"}])))  # no kind: refused
+                for tool in ("outline", "build-steps", "check"):  # refused, refused, and check runs (it lists them)
+                    r = e.call([tool, "--lesson", str(lesson)], os.getcwd(), dict(os.environ))
+                    self.assertEqual(r["code"] != 0, tool != "check", (tool, r["stdout"]))
+                    self.assertEqual(e.start_of(lesson)[0], "outline", tool)
+            finally:
+                e.close()
 
 
 class EngineClientTests(unittest.TestCase):
@@ -255,6 +326,9 @@ class EngineFixtureTests(unittest.TestCase):
                     r = e.call([tool, "--lesson", str(via)], os.getcwd(), dict(os.environ))
                     self.assertEqual(r["code"], 0, (tool, r["stdout"][-500:], r["stderr"][-2000:]))
                 self.assertEqual(files(via), files(plain))
+                self.assertEqual(e.start_of(via)[0], "outline")  # the engine hasn't seen outline succeed here
+                for tool in ("outline", "paints"):  # the fixture's saved outlines and paints stand in for them
+                    e.record(via, tool)
                 for lesson_ in (plain, via):  # the same stages edit on both
                     path = lesson_ / "plan.json"
                     plan = json.loads(path.read_text())
@@ -264,6 +338,7 @@ class EngineFixtureTests(unittest.TestCase):
                 result = json.loads(chain["stdout"])
                 self.assertEqual(result["from"], "build-steps")
                 self.assertEqual([x["tool"] for x in result["ran"]], self.CHAIN)
+                self.assertEqual(e.start_of(via)[0], "check")  # nothing changed since
             finally:
                 e.close()
             for tool in self.CHAIN:

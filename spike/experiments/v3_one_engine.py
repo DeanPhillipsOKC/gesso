@@ -59,7 +59,8 @@ NORMALIZED = {
              "lesson.json and embed/lesson.json as gesso.commit, gesso.dirty, gesso.published and gesso.made.commit, "
              "gesso.made.published; in the three pages as the footer line 'Gesso <version> (<commit>[+dirty]) on "
              "<date>'; in publish's printed gesso.",
-    "path": "the lesson folder's absolute path, in what the tools print (a scratch folder, different each run).",
+    "path": "the lesson folder's absolute path, in what the tools print on stdout and stderr (a scratch folder, "
+            "different each run); and each tool's printed `seconds`.",
 }
 STAMP = re.compile(r"\((?:[0-9a-f]{4,40}|unknown)(?:\+dirty)?\) on \d{4}-\d{2}-\d{2}")
 
@@ -133,16 +134,47 @@ def _unstamp(g: dict) -> dict:
     return g
 
 
+GESSO_FIELDS = re.compile(rb'("(?:commit|published)": )"[^"]*"|("dirty": )(?:true|false)')
+
+
+def _gesso_span(data: bytes) -> tuple[int, int] | None:
+    """Where the top-level "gesso" object is in a lesson.json's bytes: from its opening brace to its closing one."""
+    at = data.find(b'"gesso": {')
+    if at < 0:
+        return None
+    start = data.index(b"{", at)
+    depth, i, in_str = 0, start, False
+    while i < len(data):
+        c = data[i:i + 1]
+        if in_str:
+            if c == b"\\":
+                i += 1
+            elif c == b'"':
+                in_str = False
+        elif c == b'"':
+            in_str = True
+        elif c == b"{":
+            depth += 1
+        elif c == b"}":
+            depth -= 1
+            if depth == 0:
+                return start, i + 1
+        i += 1
+    return None
+
+
 def normalized(rel: str, data: bytes) -> bytes:
-    """A file's bytes with the NORMALIZED fields replaced by placeholders; every other byte as it is."""
+    """A file's bytes with the NORMALIZED fields replaced by placeholders; every other byte as it is. In lesson.json
+    only the stamp's values inside its "gesso" object are replaced, on the raw bytes, so a change in how the file is
+    written (spacing, a trailing newline, escaping) still shows."""
     if rel in ("lesson.json", "embed/lesson.json"):
-        d = json.loads(data)
-        if isinstance(d.get("gesso"), dict):
-            d["gesso"] = _unstamp(d["gesso"])
-        # written by json.dumps(..., indent=2) in tools.publish and lesson_embed.export: written back the same way,
-        # so any other difference still shows
-        indent = 2 if data.startswith(b"{\n  ") else None
-        return json.dumps(d, indent=indent).encode()
+        span = _gesso_span(data)
+        if span is None:
+            return data
+        a, b = span
+        inner = GESSO_FIELDS.sub(lambda m: (m.group(1) + b'"<stamp>"') if m.group(1) else m.group(2) + b'"<stamp>"',
+                                 data[a:b])
+        return data[:a] + inner + data[b:]
     if rel.endswith(".html"):
         return STAMP.sub("(<commit>) on <date>", data.decode("utf-8")).encode("utf-8")
     return data
@@ -157,13 +189,30 @@ def snapshot(lesson: Path) -> dict[str, str]:
     return out
 
 
-def printed(result: dict, lesson: Path) -> str:
-    """What a tool printed, without its `seconds`, the lesson's path, or publish's stamp."""
-    r = {k: v for k, v in result.items() if k != "seconds"}
-    if isinstance(r.get("gesso"), dict):
-        r["gesso"] = _unstamp(r["gesso"])
-    text = json.dumps(r, sort_keys=True).replace(str(lesson.resolve()), "<lesson>").replace(str(lesson), "<lesson>")
-    return hashlib.sha256(text.encode()).hexdigest()
+def printed(stdout: str, lesson: Path) -> str:
+    """All a tool printed on stdout, without its `seconds`, the lesson's path, or publish's stamp."""
+    lines = []
+    for line in stdout.splitlines():
+        try:
+            r = json.loads(line)
+        except ValueError:
+            lines.append(_unpath(line, lesson))
+            continue
+        if isinstance(r, dict):
+            r = {k: v for k, v in r.items() if k != "seconds"}
+            if isinstance(r.get("gesso"), dict):
+                r["gesso"] = _unstamp(r["gesso"])
+        lines.append(_unpath(json.dumps(r, sort_keys=True), lesson))
+    return hashlib.sha256("\n".join(lines).encode()).hexdigest()
+
+
+def _unpath(text: str, lesson: Path) -> str:
+    return text.replace(str(lesson.resolve()), "<lesson>").replace(str(lesson), "<lesson>")
+
+
+def errors(stderr: str, lesson: Path) -> str:
+    """What a tool printed on stderr, without the lesson's path."""
+    return hashlib.sha256(_unpath(stderr, lesson).encode()).hexdigest()
 
 
 # ---------------------------------------------------------------------------
@@ -253,7 +302,8 @@ def run_fixture(code: Path, name: str, mode: str, work: Path, env: dict, reading
                 now = snapshot(lesson)
                 changed = {k: v for k, v in now.items() if before.get(k) != v}
                 changed.update({k: None for k in before if k not in now})
-                rows.append({"tool": tool, "code": p.returncode, "printed": printed(result, lesson),
+                rows.append({"tool": tool, "code": p.returncode, "printed": printed(p.stdout, lesson),
+                             "stderr": errors(p.stderr, lesson),
                              "refused": result.get("refused"), "seconds": result.get("seconds"),
                              "wall": round(wall, 2), "files": changed})
                 before = now
@@ -363,7 +413,8 @@ def tables(paths: list[Path]) -> str:
     median of every run and the lowest to highest."""
     runs: dict[str, list[dict]] = {}
     for path in paths:
-        for label, rs in json.loads(path.read_text(encoding="utf-8"))["runs"].items():
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for label, rs in (data["bench"] if "bench" in data else data)["runs"].items():
             runs.setdefault(label, []).extend(r for r in rs if r)
     before, after = runs["before"], runs["engine"]
     names = [n for n in NAMES if all(n in r for r in before + after)]

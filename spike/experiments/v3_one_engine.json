@@ -1,8 +1,8 @@
 {
- "made_with": "today's code (main at bb39e54, as a git archive), the default path: one process per tool. The same hashes came out of 3 more runs of that code, of this branch's default path, and of the engine",
+ "made_with": "today's code (main at bb39e54, whose spike/ tools match main's since), the default path: one process per tool. The earlier normalization's hashes matched 6 more runs of that code, this branch's default path, and 10 engine runs; these, with lesson.json normalized on its raw bytes and stdout and stderr compared in full, matched an engine run",
  "normalized": {
   "stamp": "publish's stamp (version.stamp): the git commit, whether the tree was dirty, and the date it ran. In lesson.json and embed/lesson.json as gesso.commit, gesso.dirty, gesso.published and gesso.made.commit, gesso.made.published; in the three pages as the footer line 'Gesso <version> (<commit>[+dirty]) on <date>'; in publish's printed gesso.",
-  "path": "the lesson folder's absolute path, in what the tools print (a scratch folder, different each run)."
+  "path": "the lesson folder's absolute path, in what the tools print on stdout and stderr (a scratch folder, different each run); and each tool's printed `seconds`."
  },
  "fixtures": {
   "chickadee": {
@@ -11,6 +11,7 @@
      "tool": "outline",
      "code": 0,
      "printed": "268b8e7833998dfc0d7268baf0ae7f35f4db1828c4f4a30e3a3efb5316a605e3",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "parts/bird-cheek.png": "4f4a15b5521d78b13bb975699f56fb57034563f1f9ff38aceb3bd047a6f7addf",
@@ -33,6 +34,7 @@
      "tool": "paints",
      "code": 0,
      "printed": "75a220c251786a7577445009e0e2159df9568f72250bf0671a2d3d84176ac4a2",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "plan.json": "526eecde00ce02c88b2e7dbd6f5569ca0bc711cd7ea911664cd7c468045cc79b",
@@ -43,6 +45,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "71c7baf0865a5456267a4d6fc36dc8b0cd0ea082e88a506f5db67370a6943a54",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "01_sky-blend.png": "52d4ba294d71858383208928fb627e14dfb1f86327d50fb8668d2d0e1a474937",
@@ -70,6 +73,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "a3bbe3963dae475d32b70dd5921583aa47be6ef0d2dd16ebe6d6995f4a9a69df",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/01_sky-blend_map.png": "ca681c66401800ef5058338bce9642930421d1e5c871af049ed348c46592bf04",
@@ -106,6 +110,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "9be9d44768407c143825a02cc1d30712a178ed549cb339560c03d3fb71055ff0",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "mixes.json": "791f28632391dc275c3c97552b23c4e6e4f6f7e167dee4872761e4242bc798a8"
@@ -115,6 +120,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "c6eef548e615bad16e7e4387f5297fb23a68e50935c2f614b6cd8ecd3531b9c0",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "f13d5f3f807abb6f374ba14b3e29745077a0feef5a8fba7ec32ffd955b1cf4d0"
@@ -124,6 +130,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "d6fd0ea50f017570ac9bad6753cbe35f291f35f7a34688312e5d0b83c2d8bc94",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "d57a7ac25582a64bb2e94d430f12d1c18b4a573de40744a48017725802627ac3"
@@ -133,6 +140,7 @@
      "tool": "check",
      "code": 0,
      "printed": "a02896cdb4510202dbf5f4057b0298006af1e9be1c19c9220f3d5f2e79dc5e21",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -140,6 +148,7 @@
      "tool": "publish",
      "code": 0,
      "printed": "eebdf45ac5a602b15062db8e6b36e9d73d710c1c2fb8eff48ce5a55573672748",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/01-t.webp": "e3f91482e8815212fc0be49c482de5be2f03316d78fac5372d9d3036775a9769",
@@ -178,12 +187,12 @@
       "embed/17.webp": "6624377ad6460a92f8be7df51214fd7f5362dd2c48867f790d40990dec6f7e8b",
       "embed/18-t.webp": "7396615fceaae5d93f52a66bcd310219d69712c9d6f5d8a72e66354eb2fac3f8",
       "embed/18.webp": "62780d16620435c481b96a9012e885d1c82d4fa51f0d9f2ec3eb4cc04ab5d02d",
-      "embed/lesson.json": "b1b25c09817041da8fc0efff1b8c86089973eb376fbb34abaac3510929b7dfd5",
+      "embed/lesson.json": "20f865d4129a13f6cfe717f7f1a487f5e4a744baed422308086bcaabb3187601",
       "embed/photo.webp": "62780d16620435c481b96a9012e885d1c82d4fa51f0d9f2ec3eb4cc04ab5d02d",
       "lesson-artifact.html": "d9e35477f12a19f7ebdd7ba22297d0bc9ccbb24a4d9aa493e8a8c69eb4379eaa",
       "lesson-standalone.html": "ab90cd932888dd8ec66dba8df332f76884afe86a34b9b4163baf1cdfe85157c6",
       "lesson.html": "57ce24b8078fc0ab27eb8426315554faaf60ce74589251238efb284a73c5e250",
-      "lesson.json": "6fe2d1b40a52517878875b9b6a05695f7c4e83b25b48bdcab04b44be187dadfa",
+      "lesson.json": "9d6699d1c65b0c494131aad36caa8c87c03afc6e0767573dd76cf7674a24701b",
       "photo.jpg": "7f6c130aad942196c05b0a2664aa51f52a348cd3852a260eda9cb11f68b8b27a"
      }
     }
@@ -200,6 +209,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "e7d7c974f215a901b8d881cbe5456b5b8dd4e1cec83105e65680edccb27dae45",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "15_wing-light.png": "4c106f3545e791de0eb477834545c68a77b152e8c82ab0b81f90dfd2c8e8dc08",
@@ -214,6 +224,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "a3bbe3963dae475d32b70dd5921583aa47be6ef0d2dd16ebe6d6995f4a9a69df",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/11_bird-wing_map.png": "2dde161d8d61a59b8164f29b9efddffb59538546da98e96fa7d97bd0820e902b",
@@ -232,6 +243,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "9be9d44768407c143825a02cc1d30712a178ed549cb339560c03d3fb71055ff0",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -239,6 +251,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "943e14de084f3db84ba9173e65b46997080835468ec1c1b2016422dcc623e613",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "02fd0376453d655a6da092cb5cad584691d3593fb08d91f0166d6d74737fda70"
@@ -248,6 +261,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "8a761e460f18f1f65aebf8bdcce233c7d87ac34c616125ad8e8a287c01a793d9",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -255,6 +269,7 @@
      "tool": "check",
      "code": 0,
      "printed": "c6929c9bbb9e4f843648c21dd92357fea512e876be56f866e3241c02a00518be",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -262,17 +277,18 @@
      "tool": "publish",
      "code": 0,
      "printed": "8974c4f402dd4c0233587bdba6e9ace2e709410b1646da321789048a161ed6d3",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/15-t.webp": "af8ba9382e1ab51ab8413db6790fdbe2e12d860d7ece49c7fead14cddbb618ef",
       "embed/15.webp": "fbc09592ab89e1361e8faa42a24cf304d5f1d666a38024fbb3e0dfe26ca424be",
       "embed/16.webp": "aee1043cdc1be9eed26fdf2c047fa4131d6e96f94ee67bc21a5c0e262fb060f1",
       "embed/17.webp": "1f090cdb6c06f2991db3119c3731c112750eb5b0cb51c3fca2474902ab03b6ca",
-      "embed/lesson.json": "d9c3901d946503fda531e5a02fd6495e390215707f5fb64b56e8496ce8a88d19",
+      "embed/lesson.json": "2eb9c69b97c0ff667ba2dfc7e3e12a99e1b219a1996ca41969687e10ab748170",
       "lesson-artifact.html": "653b2709a662369a8bd5df6757cfda1261583a7ccab9847d8440f554e6b1f5f0",
       "lesson-standalone.html": "170a3ea83465783bda0440be775658b08b9849a01cf1dead9154adf5a201465a",
       "lesson.html": "e7c481f597bc0cab61849e4ad8ca55f67327f212b565070c2d240da1ce1fddc2",
-      "lesson.json": "9ac0f4bf37bd09527b91e8457630a1bd2bad52ff97f747cff57f78db98ab5274"
+      "lesson.json": "6ab97dbb7664148a4ccc5cd76e053cceb65971ea9dc1cc2ced866bdbb8dc1a0f"
      }
     }
    ],
@@ -288,6 +304,7 @@
      "tool": "outline",
      "code": 0,
      "printed": "651924c0ac2cd4d54d21d4f26d69551aab4ae2e22d54da65bea8a539cec133e0",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "parts/owner.png": "ae7698c072ff6160497c270ab4066014f11221c55726cf610dcca97a12d187a4",
@@ -301,6 +318,7 @@
      "tool": "paints",
      "code": 0,
      "printed": "75a220c251786a7577445009e0e2159df9568f72250bf0671a2d3d84176ac4a2",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "trials/paints.jpg": "7801febae75b523270f2afc45ded29dec6f7c6ae413d548c5a79966a7eff7a55"
@@ -310,6 +328,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "32bee79ca5998ab6b0ccd9b43a1fb45319c8f70044196c98b06c31857e4fd480",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "01_sky-blend.png": "e14a8bd213d56dcdf7791e6ed6e689fd7011cd2376bca203218b3215e487da4b",
@@ -336,6 +355,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "a3bbe3963dae475d32b70dd5921583aa47be6ef0d2dd16ebe6d6995f4a9a69df",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/01_sky-blend_map.png": "4b78ec54c44e66f493d55466dfd2b6c452d03c642b17289bf8f163d6b7340fa6",
@@ -349,6 +369,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "9be9d44768407c143825a02cc1d30712a178ed549cb339560c03d3fb71055ff0",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -356,6 +377,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "943e14de084f3db84ba9173e65b46997080835468ec1c1b2016422dcc623e613",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -363,6 +385,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "8a761e460f18f1f65aebf8bdcce233c7d87ac34c616125ad8e8a287c01a793d9",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -370,6 +393,7 @@
      "tool": "check",
      "code": 0,
      "printed": "158c0c4b7c6b2b4dd13cc532b279dc94299889dbd0bd4e9cac47a96ff2bca65f",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -377,6 +401,7 @@
      "tool": "publish",
      "code": 0,
      "printed": "d5391d3e309ee7ab7f6df5ddd90db57d83dba4f80f5be9ec709f0cb435bec868",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/01-t.webp": "b08ef3134d1acd4bc4b2dba2dbf914e124c9475f3ff15d9321f8addc002e8067",
@@ -410,7 +435,7 @@
       "lesson-artifact.html": "3562ba41f260cd3bd8ea6b7f82f15de1b5a1163b8f2c4f8414e14a7521c52b54",
       "lesson-standalone.html": "df85470bb155473eba72448faa0735a4bf583f839a9651cef4e5d62b3ed0b349",
       "lesson.html": "c714f831c8061884d545505a135fe786463aab0d846100bdfa159f3ea09e04f4",
-      "lesson.json": "9c763d645fbc060aab722fce795386866f1eae1588afead41605938367a4a0a6"
+      "lesson.json": "513599fad761564c3944bf38d86c58a983a33594c6642f9b6dbe9d1596441cd3"
      }
     }
    ]
@@ -421,6 +446,7 @@
      "tool": "outline",
      "code": 0,
      "printed": "6c1c7c044befc8045af06dc67564df08077e0ed120686d4bdce757cfa0cda446",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "parts/balloon.png": "6c6bd0247ca4ad59d257fa03f1a7fb6d2cab9cab8b6d6e1e4ddbc680609cc74c",
@@ -442,6 +468,7 @@
      "tool": "paints",
      "code": 0,
      "printed": "e20b44419037a407d5c56ff44dd7b758a7f02b88b87ae1090b4814907b170bf9",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "plan.json": "6d133a94d1eb0ec2c2a30c2a82b9aebc1806f539da6a9b309983cb5a4a1a7bd8",
@@ -452,6 +479,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "90b9b7f20900e8f8234b41994a3a7f9757dec6ffcd02aeb764c392e66cd581b6",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "01_sky-blend.png": "043cf19c7865ee8b4eaeb720e9be63fd41470d1948091dff6972f2b196cd79c3",
@@ -479,6 +507,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "2379740d9fc8e2506765037ecf3e03e0e189da1bd80d788206a0ee8f3292fca4",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/01_sky-blend_map.png": "f4e470d9e9076a7ab22caaccd886adfb5efd1e9d1c233683416ad6b751cb18c6",
@@ -510,6 +539,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "78057f9b867c8dbc07131e2e3799f848f0bc374ab72b4557875b2bf1e99ee42d",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "mixes.json": "f628d0c7254dc9b1403bc1c936e9c4a95abed7a35b460cac4a411119a9279dbe"
@@ -519,6 +549,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "2de85bdca891d14374edd6e8b4369f457a80f35f344a73833c14e1a342cc185b",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "244121fb462c5b33ce222297e20aa8f78da50c1407bf5d947d3a3712aa408d70"
@@ -528,6 +559,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "af18dbd8eee97fe6b4da53a048fb504d1f025b60da87e5aaa3a3a7023c888a29",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "6b76e0b1e83fd21ea26776b03f5e04267cfeb5db63f3635ca8f2c996fce9f9c5"
@@ -537,6 +569,7 @@
      "tool": "check",
      "code": 0,
      "printed": "ae08919af46905591137d25408f700332a03b4c0279dc38aaae2d5c7d7de9f5a",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -544,6 +577,7 @@
      "tool": "publish",
      "code": 0,
      "printed": "1b0fc74d8719e0778f0a3d60439317553598712ee7204c9920c066b991d1fd52",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/01-t.webp": "36b683abaa5c656e34a1cdd4109de800c0f23d38b6d1a50205f1ee58ad3b1391",
@@ -582,12 +616,12 @@
       "embed/17.webp": "66f643eed7348197ce73cd8c97c79d5aa33ee0ae4c14ef8fc0b135279e20cbda",
       "embed/18-t.webp": "3ff9d6b2c33c22743ab64407ede68add6486915d41d7ba5fc4d94fb5dfa95042",
       "embed/18.webp": "6b15d292115afcef06ef00fc6b0b91bf8e823037a5c9838e46c2861aa699b681",
-      "embed/lesson.json": "01e38dccb5c6141b44f1bbaa6935b83e30e6609a33c794fbb335710600464104",
+      "embed/lesson.json": "c076bcda22c5dd4c02398f92ec54a4cbfa23014913ec64b58f31a00a77af81eb",
       "embed/photo.webp": "6b15d292115afcef06ef00fc6b0b91bf8e823037a5c9838e46c2861aa699b681",
       "lesson-artifact.html": "1b389e9528718b97f5fa0f1f43e74422ecc40961c1a2559add24b3cfa66b75ea",
       "lesson-standalone.html": "6dbff966c33db5cfb6dc8ceed47a91b338b71191b72dda156ad3e7835ba93237",
       "lesson.html": "e8fa7f3f3adf47ad8ab733940209937517ee0ff42573ecc9be844ebc318c95d5",
-      "lesson.json": "abbf8e652f5bdb87787b2833d1f474efde6c39691826cbd7f026c559046de9b5",
+      "lesson.json": "f279e783c8289d5c22c83d7f1568fe06e556144fcbc28d55c3a68b7c77871b8b",
       "photo.jpg": "40e9dc9a10566709cca2a29e0598c88d7e383d6902d3d55b6e8c0f188a4fd75a"
      }
     }
@@ -604,6 +638,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "3a678dbe664e270142cc1351fa17c98d0c45c0e6e1491383e9d081cb6910fa21",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "15_tree-light.png": "c0a53c88b0f1669369f72be939c39047a8eb556f67eeffc88757556a45b840cf",
@@ -618,6 +653,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "2379740d9fc8e2506765037ecf3e03e0e189da1bd80d788206a0ee8f3292fca4",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/13_tree-coat_map.png": "9c2cecad081292e816fb2df3acb193f413db30bacc50b45722c29c8cfb8fe1c4",
@@ -636,6 +672,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "78057f9b867c8dbc07131e2e3799f848f0bc374ab72b4557875b2bf1e99ee42d",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -643,6 +680,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "345514f8a0df4538516f32d43dcb89307e4d8a1a196985c05c10ac88f3bc72f5",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "0edd419c017552975b9bd0fdf83a11dcf83b364aedbc749e233342db6ccea899"
@@ -652,6 +690,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "b290c079e96e78d6293c0cb0e97062c1884d816f4474a651ed17d90768553f12",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -659,6 +698,7 @@
      "tool": "check",
      "code": 0,
      "printed": "8858d33a8ef18c5d696c184f058720554c742b72e5226eca3ce5393e7939a14c",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -666,16 +706,17 @@
      "tool": "publish",
      "code": 0,
      "printed": "edfab0a8d80f8347b109e4c90ac977bb8a6936d43560f5754f24eb1f0b4e7f7a",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/15-t.webp": "69c7b6b8e3297f39143cc8c59260260df001bcd63b5030da57351af6a8bb3cb7",
       "embed/15.webp": "3f34ccbb6c349652c54b3e4d1604b42658959c03be1352d284e44a59a2bdef4d",
       "embed/17.webp": "3d743443cdf88609991a9b3cf31af98139f0cbc7beb4d662ac192747565a7696",
-      "embed/lesson.json": "090695a9a23f8b80bf0fa92160486f3459d49a668202f84d5e0df7c669013905",
+      "embed/lesson.json": "4a652b460481df779130bccd7b78067fd88b36c3a816d01d6a1c94171a1bfd94",
       "lesson-artifact.html": "3e4874a6754d8073cb15a9c41de4284b2197cdeff5378f4cca60875f7f127f3f",
       "lesson-standalone.html": "b9464f97885dc4b6e293b6c5eb744b765b22a68551b6dd7cc6a03931c8747a79",
       "lesson.html": "26b29862f1bf167858f24734a255c8c51a5e14dc504b747bd7739805868db827",
-      "lesson.json": "5983dc669f781a21e632333f007ac4cacac34b576ff6aac70ef1463a3032ffb4"
+      "lesson.json": "12c18327c3ef8870879d0601ebda18c68f24ff15aa23ec1b29a9582a7e77dbfc"
      }
     }
    ],
@@ -691,6 +732,7 @@
      "tool": "outline",
      "code": 0,
      "printed": "c3b738e7f90fb1ebf2f1fcd0dd4149776de386aa06f46000d31bbfe9d8297b6b",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "parts/owner.png": "48923709a5102739d737728c0ceaa3909afa81cdb4b4d31cc0812e40e74c3852",
@@ -704,6 +746,7 @@
      "tool": "paints",
      "code": 0,
      "printed": "96c4d95983ec26c80bf89ce343a6285c252add0ef7cc5476a35cfc665b4e1c90",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -711,6 +754,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "3a678dbe664e270142cc1351fa17c98d0c45c0e6e1491383e9d081cb6910fa21",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "01_sky-blend.png": "7195b91d3af9719569698143bea20ed83d77fbc37f63125cc040b68d8f7fc49a",
@@ -737,6 +781,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "2379740d9fc8e2506765037ecf3e03e0e189da1bd80d788206a0ee8f3292fca4",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/04_sun_after.jpg": "0111509d13e8e10db4440ff599b9ea589ed26649374a071909e5b3fbff47d70c",
@@ -749,6 +794,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "78057f9b867c8dbc07131e2e3799f848f0bc374ab72b4557875b2bf1e99ee42d",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -756,6 +802,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "345514f8a0df4538516f32d43dcb89307e4d8a1a196985c05c10ac88f3bc72f5",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -763,6 +810,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "b290c079e96e78d6293c0cb0e97062c1884d816f4474a651ed17d90768553f12",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -770,6 +818,7 @@
      "tool": "check",
      "code": 0,
      "printed": "8858d33a8ef18c5d696c184f058720554c742b72e5226eca3ce5393e7939a14c",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -777,6 +826,7 @@
      "tool": "publish",
      "code": 0,
      "printed": "edfab0a8d80f8347b109e4c90ac977bb8a6936d43560f5754f24eb1f0b4e7f7a",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/01-t.webp": "595ab7c28cbd4f6c459f5ff7ebfb812ede28da618342491764b1773b4244f887",
@@ -810,7 +860,7 @@
       "lesson-artifact.html": "271549ac52a1fe67ade6e10a308c0dda7c963679750fe2ea1f73f46efb2318df",
       "lesson-standalone.html": "199e6309d695ff67e7ec1c6f0ff8a8c2eb1bdbba514b8ff5daffc638f1c71b3e",
       "lesson.html": "562760e52140696b2fb5510bc6679303e60c7cc21bd06391ab80cd3178f62985",
-      "lesson.json": "4bb32253887e5a6a6d31864473c0c1cb821508dba1300a43da75ce4f97a46da1"
+      "lesson.json": "f16bc3963e094fa754ee6a8b90953f1827545c4d98135da7f06d44f310f6d241"
      }
     }
    ]
@@ -821,6 +871,7 @@
      "tool": "outline",
      "code": 0,
      "printed": "49f9e65e58041acbe66ba0e933401dc1288ca698a015b6500e2bfb97702c91d1",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "parts/hill.png": "a2a1e29bf261dca4398d57de6ffa25a4645fe5883962c5c96008970ba0fbcb69",
@@ -840,6 +891,7 @@
      "tool": "paints",
      "code": 0,
      "printed": "2c888cfd4f35944ab14d9877a9fe50312d728fb873fc40224bd65045bdc0c823",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "plan.json": "57b0f8a6b07a48113afb241669dde4d6a7643b15c368a519f8c7100268d3e817",
@@ -850,6 +902,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "8883b48ae15477680b6739389f35aebf1fe8889b56732c99d912888ca11c6daf",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "01_sky-blend.png": "10e4f8b29594cb6c565c142eb8b5a9ed20bbfc6a073555639604c619f7de6150",
@@ -873,6 +926,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "c625139ead9082e66dec3635c0c98195d26ec72978a75c0475aaf2aa9cb8b84f",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/01_sky-blend_map.png": "dff040b0a892c8784d727f75d92d9496fc19a3d47d061b727e15a0493e995f7d",
@@ -906,6 +960,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "1ac759146c60a77b1a2be55d45be77bf0453e3f9d69570671dad96608a18fe67",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "mixes.json": "314503254239045220508f358ce3b1ff7ecf81e6cb1bbc3a4da4e7ed17a51060"
@@ -915,6 +970,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "4e76f5a299861ebe774cdb0e3101a9829c0b06de5956920c69f97267f2622cd8",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "9f8b3fe6d35792d384f23c94258d000e6de22844f4f86c8f4e21c5696ed62003"
@@ -924,6 +980,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "fe4b720607e036244f83246f3a4c9d8802bcaad543c6bfeeafb83d21fe4e9d6e",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "86b2d7c0a92354eefb0136d770d3070b138c50ceaab79ce8a1813d2c62c03b14"
@@ -933,6 +990,7 @@
      "tool": "check",
      "code": 0,
      "printed": "1f270bc50b0cdc482aa5abbde2dab9eaa889fde6cb72310e764b65128a5b90bc",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -940,6 +998,7 @@
      "tool": "publish",
      "code": 0,
      "printed": "d9af65f6d22c17b061358ad736f46abed6919abba2a7b6f9dbdf4b231bd70afa",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/01-t.webp": "3935d30ae22b86da469e5cade28aac50fbe27f91c0bfd5fffe80d3f45dc518ae",
@@ -970,12 +1029,12 @@
       "embed/13.webp": "a47c88be4c6a4b1bc135a76e93a1fe1cfc13164aaba2d764520ef93bb720c35a",
       "embed/14-t.webp": "3d21c9c0fbd5fc9d58e9fdc7e1d83b7b0f335430385ca66f97ec4c30c43abfce",
       "embed/14.webp": "9de3fc0f6c5eba9feff49d71c89931bba050d39266ea1fff7ecbb9469deaace3",
-      "embed/lesson.json": "c15529c3b1a751b92c3d279435c7f2dcec54a8e3d54fa382b60325e59d04f37d",
+      "embed/lesson.json": "f64af8f3064dcaf4a52162a7461d32621f7c1c7c2499eb822cec94c2ef571d94",
       "embed/photo.webp": "9de3fc0f6c5eba9feff49d71c89931bba050d39266ea1fff7ecbb9469deaace3",
       "lesson-artifact.html": "aaa75042d70b8e5dedf699d1e60a80fc215eb3c891f75fbe1fd8403cdbc18779",
       "lesson-standalone.html": "dcc78f80be44c82c5f76692c4b2ea8a2b5d3da080a2f1d195a17c59783afac8b",
       "lesson.html": "b77f143eb017d9da9ec0a958b91f58df80a46cd8630af26df70e408cb866c583",
-      "lesson.json": "0f342a04a51808f0db54d3cc24f6b333e132b4f51c8fe43bef2bc6f1bb550b33",
+      "lesson.json": "ee8e9836269bced4ae89950c6726488d29a2d10be05249e501959c68a0e23d7f",
       "photo.jpg": "5a0d8b61055694d1e0d478276f7d634bb9b401467d21382fdf5002f860a44169"
      }
     }
@@ -992,6 +1051,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "2dc0cdad441a3c08a4a76d71a15784977a24ebb29b8622b6e786244e79f5c425",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "13_reflection-light.png": "d20afdb0f4eb2733f42b881377cc5e0434234bc629491acb422b96a50a990c56",
@@ -1005,6 +1065,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "c625139ead9082e66dec3635c0c98195d26ec72978a75c0475aaf2aa9cb8b84f",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/13_reflection-light_after.jpg": "5e7bc59f3dd3412f3e0fc2c22c35b03a98a6900704b31aabc1e7c53c0366a9c8",
@@ -1024,6 +1085,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "1ac759146c60a77b1a2be55d45be77bf0453e3f9d69570671dad96608a18fe67",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1031,6 +1093,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "261d060e894bb2986f45a3df4877def119b647ab459f129d09d9ffd1a1a228c9",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "8141b283f447b93682a4054206acf8f6b7dd2fd184b516364a1581d477051f3a"
@@ -1040,6 +1103,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "0d2da884de9257b38871e8ffbf2e24ae843dac2e526c3d16a267859b53878de9",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "text.json": "961e42e889ca63af531892af394ff20b4506f422f8bd892b60ed80718abe74ec"
@@ -1049,6 +1113,7 @@
      "tool": "check",
      "code": 0,
      "printed": "055c6cc12a457ebeb788d5a091d1f48645090383b4139ca0a724256bfafb309d",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1056,15 +1121,16 @@
      "tool": "publish",
      "code": 0,
      "printed": "130cdf432efdfc286d97c89e743f7ec972d1fdcc83717e826a6c21b5cddc7d9a",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/13-t.webp": "5b3df8b0119fab14d0cfd7f754c663ecf61736d15a8f46f40597bbb1c0f775ca",
       "embed/13.webp": "f38100cd27e41439dd0b3d3a3bd56b94d565671fa8296ca760f336bcc7897892",
-      "embed/lesson.json": "0db077f9ce466d0a60a00723309914072a97e0db1adf22de8b41c4864d559786",
+      "embed/lesson.json": "f473620f8159d98fa972666816f63444e6b2454d083b712aa2614a07befae7a2",
       "lesson-artifact.html": "38665e74902c03cac5c6129d77b5cd0ee512578493c009069fd6c8dc0286a946",
       "lesson-standalone.html": "c4eb9dcc11e1789aecf95d76f0d8a4b9a5c3c6c5548ade6c0476e1dceff50c23",
       "lesson.html": "801224c65e119a96488a2139c99aec1d076651832aacf75c3a5f3e1ca324dac5",
-      "lesson.json": "118780ac978f3668b4d255bdc28c32b5b6835a3c528f6037d1a47ebb9f4eba60"
+      "lesson.json": "e4b5e36b45018b1b7a4727b7b7fceca8806795dd4e91dcb73c85d0c5a84c9e2b"
      }
     }
    ],
@@ -1080,6 +1146,7 @@
      "tool": "outline",
      "code": 0,
      "printed": "07c4ec64d30e6813aea631256517bed3ff31ceae31453dc4feb223ba19c78b48",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "parts/owner.png": "bae82592ada96146ca0e50aa34a3a1517c4700babd352b3ae2864b0ce90bfacc",
@@ -1093,6 +1160,7 @@
      "tool": "paints",
      "code": 0,
      "printed": "2c888cfd4f35944ab14d9877a9fe50312d728fb873fc40224bd65045bdc0c823",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1100,6 +1168,7 @@
      "tool": "build-steps",
      "code": 0,
      "printed": "2dc0cdad441a3c08a4a76d71a15784977a24ebb29b8622b6e786244e79f5c425",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "01_sky-blend.png": "c4756688b3b7199113b66041da5fa7816115a30e14581895e64ecff379a3c53e",
@@ -1116,6 +1185,7 @@
      "tool": "step-aids",
      "code": 0,
      "printed": "c625139ead9082e66dec3635c0c98195d26ec72978a75c0475aaf2aa9cb8b84f",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "aids/02_sun_after.jpg": "37728cb474fe4fe605423dc9eb8256bb058889a27ad897d66a7933f5a7cd85b7",
@@ -1128,6 +1198,7 @@
      "tool": "mix",
      "code": 0,
      "printed": "1ac759146c60a77b1a2be55d45be77bf0453e3f9d69570671dad96608a18fe67",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1135,6 +1206,7 @@
      "tool": "draft-text",
      "code": 0,
      "printed": "261d060e894bb2986f45a3df4877def119b647ab459f129d09d9ffd1a1a228c9",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1142,6 +1214,7 @@
      "tool": "card-adapt",
      "code": 0,
      "printed": "eb5ebbe44f273e239715e42e8716edb83572d4400e4d57e68eb6036e3e834676",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1149,6 +1222,7 @@
      "tool": "check",
      "code": 0,
      "printed": "055c6cc12a457ebeb788d5a091d1f48645090383b4139ca0a724256bfafb309d",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {}
     },
@@ -1156,6 +1230,7 @@
      "tool": "publish",
      "code": 0,
      "printed": "130cdf432efdfc286d97c89e743f7ec972d1fdcc83717e826a6c21b5cddc7d9a",
+     "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
      "refused": null,
      "files": {
       "embed/01-t.webp": "481ff6e47915b239fca3e2371c1ad232cf1bbd8432250ee385a66abd36ad4261",
@@ -1168,7 +1243,7 @@
       "lesson-artifact.html": "1e22a009296469162e67fd7e2b682770bd0cfa380174ec5ab90104c3d15a6e84",
       "lesson-standalone.html": "6002ea191a4f0949dd7e88ee0a50c88b501789399bd3f5c10e3021e9f1112dd2",
       "lesson.html": "153e2da94fcf3428a6de0cc7d2bd0fe0a0ba53a3a57da1ba956b01a3c3eb51a4",
-      "lesson.json": "9e53affa9ac818acdff31ee62884fef8378dfa79308df1605219bbcbb49991dc"
+      "lesson.json": "fa3cc591c63694970db42106deae964a5fcc1f058ece41ed6b3ece93616adba8"
      }
     }
    ]
