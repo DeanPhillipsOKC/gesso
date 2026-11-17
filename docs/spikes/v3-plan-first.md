@@ -213,7 +213,8 @@ blocker 3, major 2, minor 1.
   about coats on the whiskers). That text comes from the stroke cards (`draft-text`), the same on both sides.
 - **The cow's two F faults are the plan's doing.** Golden ochre is mixed in step 1 and wanted again in steps 3, 14,
   15 and 24, and the ground's three greens are mixed at the lay-in and wanted again fourteen steps later, because
-  the plan paints the tall grass last. Its writer said as much ("the painter will need to mix them again"). A
+  the plan paints the tall grass last. Its writer said in its report that the
+  painter would need to mix both again. A
   painter's order can pull a mix's uses apart; v2's one-thing-a-stage order keeps them together.
 - **Class F doesn't count what the plan was meant to fix:** whether each thing in the picture has a step. That shows
   up, when it does, as a step-picture jump in A.
