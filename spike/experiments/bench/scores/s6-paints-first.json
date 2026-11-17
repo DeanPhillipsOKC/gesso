@@ -1,0 +1,309 @@
+{
+ "format": "gesso-ab-grades/1",
+ "round": "s6-lock-step-8",
+ "seed": 171,
+ "mode": "pair",
+ "graded_by": "claude: two fresh blind graders a picture (spike/experiments/bench/ab_grader.md), sides swapped for the second",
+ "pictures": [
+  {
+   "picture": "birch-grove",
+   "lessons": {
+    "lock-step-8": "lessons/birch-grove_skill_20261116-210750-lock-step-8",
+    "v2": "output/birch-grove_skill_20261116-210750"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "shown_as": {
+      "lock-step-8": "A",
+      "v2": "B"
+     },
+     "prefer": "v2",
+     "note": "The words are the same in both lessons. The pictures differ, and A's halo outlines run from step 9 into the finished painting, which the owner marks down hard. B has its own magic jump at step 11 and the same weak early steps, but it ends on a clean painting that matches the photo. Fairly clear preference for B, though neither lesson is good.",
+     "scores": {
+      "lock-step-8": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        9,
+        1,
+        13
+       ],
+       "note": "From step 9 on, pale halo outlines of every birch and branch are on the canvas before the trunks are painted. They are still there in the finished painting, along with a stamped circle badge where the sun goes, so no step's words could produce what's pictured. Step 1 starts with tiled X patterns, gold leaf scraps and blobby trunk-shaped edges with white canvas below. The mossy rock never becomes a rock, and step 13 adds white bark highlights along with the dark marks it names."
+      },
+      "v2": {
+       "real": 3,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        11,
+        9,
+        6
+       ],
+       "note": "It has the same step 1 tiling and leaf scraps as A, and step 9's flat olive slabs with box edges and ghost outlines. Step 6 shows gold leaf blobs on the brown ground two steps early. Step 11 is magic: with only sunlit gold named, the olive slabs and outlines vanish into finished canopy and blue sky. The ghosts are gone by step 12, though, and the rock, trunks and finish come out clean and close to the photo."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "shown_as": {
+      "v2": "A",
+      "lock-step-8": "B"
+     },
+     "prefer": "v2",
+     "note": "The words are identical, and steps 1 to 8 are about equally flawed in both. A's late steps and finish come clean, while B carries gray halos, olive ghosts and a missing rock all the way to the end. I'm fairly sure, though not overwhelmingly: A still has big problems in steps 1, 9 and 11.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        9,
+        11
+       ],
+       "note": "The early steps are not something a brush makes: step 1 is a tiled wash with round blob edges, white holes where trunks go, and gold leaves and the lit rock already showing; step 6 has gold leaf blobs in the brown, and step 8 jumps the ground to finished. Step 9 lays flat olive tree-shaped silhouettes with pale halos and a sun emblem, and step 11 then turns the canopy almost finished, blue sky included, with only sunlit gold named. From step 12 on it reads well: clean gray trunks, bark marks, highlights, and the finish matches the photo."
+      },
+      "lock-step-8": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 1,
+       "worst_steps": [
+        1,
+        9,
+        12
+       ],
+       "note": "It shares A's tiled, blobby step 1 and the step 8 jump to a finished ground, and its sky is cooler than the words' warm cream and gold. Step 9's olive silhouettes have hard cream outlines that are still there at step 11, and step 12 lays each trunk inside a wide gray halo that no later step paints out, so the finish keeps gray outlines around every trunk and branch, a sun emblem, and no rock. A beginner can't match pictures whose artifacts never resolve."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "lessons": {
+    "lock-step-8": "lessons/chickadee_skill_20261116-203451-lock-step-8",
+    "v2": "output/chickadee_skill_20261116-203451"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "shown_as": {
+      "lock-step-8": "A",
+      "v2": "B"
+     },
+     "prefer": "none",
+     "note": "The two lessons have identical words, paints and step structure; only the rendering texture differs. B's background is a little more painterly and A's a little more cut-paper, but both share the same blockers (ghosts in step 1, cut-out silhouettes, magic in steps 14-15), and a painter would be stopped or misled at the same places. It's a toss-up with a slight visual lean to B, not enough to prefer it.",
+     "scores": {
+      "lock-step-8": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        15,
+        14
+       ],
+       "note": "Step 1 is supposed to be a gold-to-gray blend, but its picture already shows the far trunks and ragged foliage shapes, and the background throughout has hard-edged, posterized patches that no brush makes. The branch, leaves, bird body and wing go down as flat cut-out silhouettes before being suddenly textured. Step 8 adds veins to the red leaves the words say to leave alone. Step 14 re-textures the whole body, not just the pale chest. Step 15 produces the eye, the beak and finished feather texture all at once, and lays black over the wing shoulder that step 16 then quietly fixes."
+      },
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        15,
+        14
+       ],
+       "note": "The words are the same as A's, word for word, and so are the step order and the shape of each step. That means B has the same problems: trunks and foliage ghosted into the step 1 sky, flat cut-out silhouettes at steps 5, 7, 9 and 11, extra work on the red leaves in step 8, the whole body re-textured in step 14, and the eye and beak appearing magically in step 15. Its sky and foliage have softer, brushier texture that looks more like real paint than A's hard patches, which is the only thing lifting real by a point."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "shown_as": {
+      "v2": "A",
+      "lock-step-8": "B"
+     },
+     "prefer": "v2",
+     "note": "The two lessons have identical words, paints and step plans; only the pictures differ, and A's are cleaner, with no flecked branch fringe, fewer hard flat patches, and a proper right foot. Both share the same big jumps and early ghosts, so the edge is slight but consistent across every step from 4 on.",
+     "scores": {
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        14,
+        6,
+        1
+       ],
+       "note": "Clean, believable cut-outs with soft edges, and the bird builds sensibly from flat gold to wing to stripes. But step 1 already shows the far trunks and foliage clumps, step 6 jumps the flat brown branch to fully textured bark with dark streaks and cream lights from one rust-orange, step 8 reworks the red leaves the words say get no gold, step 14 turns the flat gold body into a fully modeled, shaded breast from one pale buff, and step 15 paints the whole head black with no gap for the cheek the words ask for."
+      },
+      "lock-step-8": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        14,
+        6,
+        5
+       ],
+       "note": "Same words and the same structural problems as A: trunks and foliage early in step 1, the bark jump in step 6, red leaves changing in step 8, the body jump in step 14, and a cheek gap that isn't there in step 15. On top of that its pictures look more cut out: from step 5 on, hard posterized patches in the sky and jagged dark flecks along the branch edges that no brush makes, and the right foot in steps 17-18 is a ragged blotch."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "lessons": {
+    "lock-step-8": "lessons/lake-cabin_skill_20261116-205703-lock-step-8",
+    "v2": "output/lake-cabin_skill_20261116-205703"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "shown_as": {
+      "lock-step-8": "A",
+      "v2": "B"
+     },
+     "prefer": "none",
+     "note": "Both lessons have the same words, the same plan and the same big failures (tiled mountain, step 6 jump, step 17 magic), and those failures decide the scores. B is a little cleaner: a smoother mountain slope, no stray blob on the cabin, and step 19 shows something. That is a small edge, not a real preference, so I'm fairly sure the answer is none.",
+     "scores": {
+      "lock-step-8": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        6,
+        17
+       ],
+       "note": "Steps 3 and 4 put a mirrored kaleidoscope pattern on the lower mountain, a patch no brush makes, and the whole low slope turns into finished green forest at step 5. Step 6 jumps the forest to nearly finished and leaves a smooth dark blob where the cabin goes, and step 17 finishes the whole reflection when the step only names short green dashes. Also specific to A: the mountain slope stays speckled to the end, a stray red blob sits on the cabin's roof corner, and step 19's mossy blades barely show, so step 20 does all the reed work."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        6,
+        17
+       ],
+       "note": "B has the same problems as A: kaleidoscope tiles on the mountain in steps 3 and 4, the low slope finished by step 5, a flat-to-finished forest with a blob where the cabin goes in step 6, and step 17 finishing the whole lake from one dash color. Its mountain slope and cabin come out cleaner than A's, and step 19's blades are visible. Against that, olive reed blades show early in step 18, and reed bits are in the lake from step 12."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "shown_as": {
+      "v2": "A",
+      "lock-step-8": "B"
+     },
+     "prefer": "v2",
+     "note": "The words are identical, so only the pictures differ, and both share the worst faults (tiled mountain, step 6 jump, lake box). A is cleaner: B adds sky dashes, a speckled slope, a stray red blob by the cabin and a box-tinted reed patch, and these last from their step to the finish, so a beginner copying them would paint them in. This is a slight preference, not a clear one.",
+     "scores": {
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        6,
+        18
+       ],
+       "note": "Steps 3-4 fill the lower mountain with a mirrored kaleidoscope tile pattern no brush makes, and step 6 jumps from bare stamped trees to a finished forest, with a dark ghost blotch where the cabin will go. A flat lake-blue box sits in the reed area from step 12 to 16, and the 'dark clump' of step 18 already shows the olive blades. Away from those, the cabin, dock, reflections and rocks build up cleanly and look like a real painting in progress."
+      },
+      "lock-step-8": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        5,
+        6
+       ],
+       "note": "B has the same text and the same big faults as A: tiled mountain in steps 3-4, the step 6 jump with a ghost blotch, and the lake box behind the reeds. On top of those, step 5 adds dark dashes in the sky and a speckled, patchy mountain slope that no step's words cover, and from step 7 there is a ragged red blob left of the cabin that stays to the finish. The reed area is tinted as a flat green box in step 17 and ends muddier. Its step 3 tiling covers less of the mountain than A's."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "lessons": {
+    "v2": "output/highland-cow_skill_20261116-212627",
+    "lock-step-8": "lessons/highland-cow_skill_20261116-212627-lock-step-8"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "shown_as": {
+      "v2": "A",
+      "lock-step-8": "B"
+     },
+     "prefer": "v2",
+     "note": "The words and paints in both are identical, so the pictures decide it. Both have the early blue ghost blobs, but B adds boxes, a horn ghost, tiles and holes in the cow that last to the finish, while A's cow and finish come out clean. A is the clear choice.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        7
+       ],
+       "note": "From step 1 to step 10, pale blue blobs with dark green inside sit where the cow will go, and no brush makes them. The hillside in step 7 has a flat dark slab with hard edges. Step 13 jumps from a blocky rust coat to a nearly finished, lit face and nose using only one gold. Once the cow is blocked in, the steps read well and end in a clean finish that matches the photo."
+      },
+      "lock-step-8": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 1,
+       "worst_steps": [
+        4,
+        7,
+        13
+       ],
+       "note": "It has the same blue blobs before the cow as A, plus more faults. In step 4 a ghost horn-shaped patch shows in the hills, step 7 lays hard rectangular boxes and mirrored tile texture on the hillside, and step 10 leaves tan patches in the grass. From step 13 on, cream holes and a hard halo stay on the cow and horns, and no step covers them, so the finish itself looks broken."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "shown_as": {
+      "lock-step-8": "A",
+      "v2": "B"
+     },
+     "prefer": "v2",
+     "note": "The words are the same in both lessons, so only the pictures decide. Both have early ghost blotches and a big jump at step 13. A adds cream holes, gray halos and a box that run to the finish, and its ghosts sit more visibly on the landscape. B is clearly better, but neither is good.",
+     "scores": {
+      "lock-step-8": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        13,
+        1,
+        14
+       ],
+       "note": "Pale-blue cow-shaped blotches with green inside sit on the canvas from step 1 and stay on top of the hills, hillside and grass through step 10. From step 13 on, flat cream holes no brush makes cover the cow and remain in the finish, and the same step jumps to a modeled face and nose that rust and gold can't give. Gray horn-paint halos and a dark offset rim around the cow are left behind, and a brown box shows by the loch from step 7."
+      },
+      "v2": {
+       "real": 3,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        13,
+        1,
+        2
+       ],
+       "note": "It also has cow-shaped blue and dark-green blotches on the white canvas from step 1, and they stay in the grass until step 10, but the ones over the hills are gone by step 6. Step 2 already shows orange gold in the clouds when it names only silver-gray, and step 13 takes the cow from flat rust locks to a fully rendered cow, face and nose included, in one gold step. The horns (14 to 16) build cleanly, and the cow ends clean."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
