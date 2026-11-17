@@ -1,12 +1,15 @@
-# Spike: build the painting forward (#207), stage 1
+# Spike: build the painting forward (#207)
 
 2026-11-17. A v4 idea, not part of v3. The image model paints the bare canvas a thing at a time, with the photo
 beside it, and there is no finished painting to cut from: the last picture of the chain is the finish. The code is
 `spike/experiments/v4_forward.py`, its numbers `spike/experiments/v4_forward.json`, its tests
 `spike/tests/test_v4_forward.py`. It is experiment code: no lesson tool, the skill, or the site changed.
 
-**No verdict yet.** This is stage 1: one picture (the highland cow), for the owner to look at and say go or stop.
-No graders ran.
+**Verdict: park** (owner's call, 2026-11-17, after looking at the pictures below). Owner: "A lot of the steps look
+the same in that one. Might be worth tweaking in the future but I think the v3 solution is better." Stage 2 did not
+run, and no graders ran. v3 goes on with whole-picture stages (#204). If this is picked up again, the two things to
+fix first are the steps that look the same (the model paints more than a step asks, so the steps after it change
+little) and the finish wandering from the photo.
 
 ## The two questions
 
