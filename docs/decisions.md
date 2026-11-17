@@ -256,3 +256,10 @@ with the date.
   second or two), since a malformed file there could stop lessons loading. Owner: "No need to a review unless code was
   changed"; "they're not code please update the rules to say code only"; "I really need tests ran only when there is a
   chance of regression. They take time and tokens and both are limited resources right now."
+  **New renders of lessons need no review (2026-11-17, owner's call, said again).** A pull request that holds new
+  lesson runs or renders, and no change to program files, merges without the adversarial review. Owner: "My
+  consumption is on trajectory to hit my weekly limit and I can't pay for inference on pointless things."
+- **Lessons are generated on Opus, not Fable (2026-11-17, owner's call).** A `/paint-lesson` run, hands-off or not,
+  runs on an Opus model, whatever model the session that starts it is on (`CLAUDE_MODEL` in `spike/run.py` is what a
+  lesson is stamped with). A `model:fable` label is for the issue's own work (a spike's code and write-up), not for
+  making lessons inside it.
