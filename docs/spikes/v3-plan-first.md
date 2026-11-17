@@ -311,7 +311,7 @@ What decided each, in the graders' words:
 
 - **Not all of the cow's win is the plan.** The blotches behind the cow are an outline fault the fitter happened to
   close with extra points (section 4). The face steps are the plan's.
-- **(b) "I could paint each step from its words" moved least:** up a point for three graders and level for three.
+- **(b) "I could paint each step from its words" moved least:** up a point for four graders and level for two.
   The gains in (a) and (c) are steadier (five graders of six), from smaller steps whose pictures show what their
   paints can do.
 - **The graders are Claude, grading lessons Claude wrote.** On S4 Claude liked the stages better and the owner
