@@ -26,8 +26,7 @@ All commands run from the repo root with `.venv/bin/python`. The tests are `spik
 - Done (2026-11-17): the owner scored all 8 baseline lessons (section 5, Owner scores), and the counter was compared
   with those scores (Counter against owner). It agrees only moderately (rho 0.43 on 8 lessons), so the fault counts
   still don't screen a spike alone: the owner's A/B stays the deciding measure.
-- Not measured: the noise floor. No v2 lesson has been rebuilt from the bench, so how much two v2 runs from the
-  same frozen folder differ is unknown (Limits, at the end).
+- Not measured, by choice: the noise floor. Spikes count only clear wins instead (Limits, at the end).
 
 ## 1. The frozen bench
 
@@ -545,13 +544,19 @@ however few other faults it has, and a count per step doesn't capture that.
 
 ## Limits
 
-- **No noise floor yet.** No v2 lesson has been rebuilt from the bench, so the spread between two v2 runs from the
-  same frozen folder (fault counts, trace, owner scores) is unknown. The excluded highland cow pair (section 5) is a
-  first look only, and it had different finishes. Until a bench-built v2 rerun exists, a spike that wins or loses on
-  one picture can't be told from noise. **Deferred to the first v3 spike (owner's call, 2026-11-17):** when the first
-  spike is ready, rebuild v2 from the bench on the same 8 pictures in the same batch, and score both on one page (spike
-  against baseline, and v2 rerun against baseline), so the owner grades once and the noise floor arrives when it's
-  first needed. About $0.02 of background render per picture; the cost is mostly usage (8 more lesson runs).
+- **No noise floor, by choice (owner's call, 2026-11-17).** No v2 lesson is rebuilt from the bench, so the spread
+  between two v2 runs from the same frozen folder is unknown, and it won't be measured: eight more lesson runs cost
+  too much of the owner's weekly usage. The excluded highland cow pair (section 5) is the only look at it: the same
+  step count and cost, a similar number of known problems of different kinds. In its place:
+  - **Clear wins only.** A spike beats v2 only when the owner prefers it on at least 6 of 8 pictures (or on most of a
+    smaller round) and it loses clearly on none. A smaller margin is a tie.
+  - **Targeted reruns.** When a result is borderline on a picture, rebuild v2 from the bench on that one picture and
+    compare again, rather than measuring all 8.
+  - The v3 gate (beat v2 on every bench picture's weakest stage) already rules out an average win carried by noise.
+- **Keeping spikes affordable.** A full round (8 lesson runs plus two fault counters per lesson) is about a 5-hour
+  usage window. A spike starts on the 3 or 4 bench pictures most likely to show its effect and goes to all 8 only if
+  it looks promising; screening uses one fault counter per lesson; and the owner is told a batch's rough size before
+  it starts.
 - **Step 5's background render isn't frozen.** Every bench build still makes a new paid `98_background.png`, the
   render behind the ghosts and patches behind objects (section 1). A step-picture fault can come from it.
 - **The counter's repeatability is one pair of counters on 8 lessons** (section 5, Repeatability). Two counters'
