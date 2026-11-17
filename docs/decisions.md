@@ -245,3 +245,5 @@ with the date.
   `site/`, or the lesson history, such as a rerun of the site's lessons) merges without the adversarial review once
   the tests pass (owner: "No need to a review unless code was changed"). Code here means anything under `spike/`,
   the skills, techniques, elements, cards, or palettes.
+  **No full suite either (2026-11-17, owner's call).** A pull request that changes no code runs the quick set, not
+  the full suite, before it merges (owner: "Why run the full suite for no code change? We should relax the rule").
