@@ -1,0 +1,633 @@
+{
+ "packet": "p02",
+ "painting": "an autumn birch grove: white birches either side of a leaf-covered path running back into misty blue firs, with sun rays from the upper left",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern of repeating diamond motifs runs through the whole sky fill; no brush makes it",
+     "where": "AFTER, across the cream and blue-gray fill, x 0-100%, y 0-60%",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "pieces of the finished painting already show in the first coat: gold leaf clusters and pale blue sky gaps at the top middle, the lit rock, a dark blue trunk/fir slab at the right edge, gold leaf bits in the orange band",
+     "where": "AFTER, x 45-62% y 0-25% (leaves, sky); x 60-80% y 61-67% (rock); x 95-100% y 18-50% (right edge); x 8-22% y 64-72%",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the fill has bead-chain, blobby circular edges and leaves many white-canvas holes inside the sky (top edge and along y 50-60%)",
+     "where": "AFTER, top edge x 15-95% y 0-12%; holes at x 14-17% y 52-60%, x 39-44% y 55-60%, x 88-92% y 57-67%",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the area stops far short of \"about 1/2 in from the bottom edge\": the whole lower middle (about 5 in tall) is bare canvas, with loops of orange dangling into it",
+     "where": "AFTER, x 30-90%, y 62-100% (bottom 4 1/2 in left white); words line 1 and tip",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "D",
+     "severity": "major",
+     "sees": "line 2 and the tip put Leaf brown at the bottom and Golden ochre second from the top; the picture has no leaf brown at all, and its bottom band is bright golden orange sitting below the blue-gray",
+     "where": "AFTER, x 0-100% y 47-80%; words line 2",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "E",
+     "severity": "major",
+     "sees": "\"short strokes that cross each other ... visible criss-cross marks\" for what the picture shows as a smooth airbrushed gradient with no stroke marks",
+     "where": "words lines 7-8; AFTER x 0-100% y 25-55%",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Let it dry, then blend a new thin layer on top\": a soft wet-into-wet sky blend taught as dry layers, which comes out streaky",
+     "where": "words line 10",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun-rays",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still covers the sky",
+     "where": "AFTER, x 0-100% y 0-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves, rock and right-edge slab still show before their steps",
+     "where": "AFTER, x 45-62% y 0-25%; x 60-80% y 61-67%; x 95-100% y 18-50%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f10",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes and blobby edges of the sky fill remain",
+     "where": "AFTER, x 14-17% y 52-60%, x 39-44% y 55-60%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f11",
+     "class": "E",
+     "severity": "major",
+     "sees": "dark blue-gray fir silhouettes appear at the left edge with the rays; no line asks for them, and no later step paints firs on the left (step 3 says \"middle of the canvas to the right side\")",
+     "where": "AFTER, x 0-12%, y 37-55%",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the rays end at the bottom in a ragged fringe of square-cut vertical bars, not feathered strokes",
+     "where": "AFTER, x 2-28%, y 45-52% (about 0 to 4 1/2 in from the left, 6 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "firs-dark",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still covers the sky",
+     "where": "AFTER, x 0-60% y 0-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves at the top middle still show",
+     "where": "AFTER, x 45-62% y 0-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f15",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes in the sky fill remain",
+     "where": "AFTER, x 14-17% y 52-60%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tall vertical bars with square, hard-cornered tops stand behind the firs like pillars; no fan brush makes them",
+     "where": "AFTER, x 80-96%, y 14-60% (about 13 to 15 1/2 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a pale far-trunk streak already shows between the firs two steps before the far-trunks step",
+     "where": "AFTER, x 69-71%, y 35-55%",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "golden leaf clumps in the sky and gold bush strokes and a lit ochre top on the rock appear in a step that only stamps dark blue-green (gold leaves come in step 10; the tip says stamp the rock dark)",
+     "where": "AFTER, x 63-66% y 16-21%, x 75-78% y 18-24%; bushes and rock x 62-76% y 53-63%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "firs-light",
+   "faults": [
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still covers the sky",
+     "where": "AFTER, x 0-45% y 0-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves at the top middle still show",
+     "where": "AFTER, x 45-62% y 0-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f21",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes in the sky fill remain",
+     "where": "AFTER, x 14-17% y 52-60%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the pale far trunk still shows before its step",
+     "where": "AFTER, x 69-71% y 35-55%",
+     "same_as": "f17"
+    },
+    {
+     "id": "f23",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the hazy blue area's lower-left edge is a chain of round lumps, not fir tips",
+     "where": "AFTER, x 42-50%, y 44-62%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "far-trunks",
+   "faults": [
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still covers the sky",
+     "where": "AFTER, x 0-45% y 0-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves at the top middle still show",
+     "where": "AFTER, x 45-62% y 0-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f26",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes in the sky fill remain",
+     "where": "AFTER, x 14-17% y 52-60%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "minor",
+     "sees": "patches of the blue haze and firs change color and shape around the trunks in a step that only skims pale trunks",
+     "where": "AFTER, x 39-58% y 25-60%; x 66-73% y 25-35%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "ground-dark",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still covers the sky",
+     "where": "AFTER, x 0-45% y 0-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves at the top middle still show",
+     "where": "AFTER, x 45-62% y 0-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f30",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes in the sky fill remain",
+     "where": "AFTER, x 14-17% y 52-60%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the brown ground has hard rectangular edges and rectangular windows where the old orange shows through with straight sides; no tapping makes them",
+     "where": "AFTER, x 1-8% y 64-80%, x 8-22% y 64-75%, x 88-100% y 67-80%",
+     "same_as": null
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the brown is a dead-flat digital fill with no dabs, where line 6 promises \"slightly dappled\"",
+     "where": "AFTER, x 0-100% y 75-100%",
+     "same_as": null
+    },
+    {
+     "id": "f33",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: A light load\" is used with no explanation of how much paint that is",
+     "where": "words line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "ground-rust",
+   "faults": [
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still covers the sky",
+     "where": "AFTER, x 0-45% y 0-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves at the top middle still show",
+     "where": "AFTER, x 45-62% y 0-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f36",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes in the sky fill remain",
+     "where": "AFTER, x 14-17% y 52-60%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "minor",
+     "sees": "rectangular orange windows in the ground still show",
+     "where": "AFTER, x 8-22% y 64-75%, x 92-100% y 67-77%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the rust \"dabs\" are hollow ring outlines with brown centers, a cell-like net no brush tap makes; on the path they form a cobblestone pattern",
+     "where": "AFTER, x 0-100% y 62-100%; path x 50-60% y 62-72%",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"A light load\" again with no explanation",
+     "where": "words line 4",
+     "same_as": "f33"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "ground-gold",
+   "faults": [
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "tiled kaleidoscope pattern still shows in the sky above the ground",
+     "where": "AFTER, x 0-45% y 45-62%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost leaves at the top middle still show",
+     "where": "AFTER, x 45-62% y 0-25%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f42",
+     "class": "B",
+     "severity": "major",
+     "sees": "white-canvas holes in the sky fill remain",
+     "where": "AFTER, x 14-17% y 55-60%, x 55-57% y 55-58%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "major",
+     "sees": "smooth hard-edged rectangular orange patches still show in the leaves",
+     "where": "AFTER, x 8-22% y 66-75%, x 92-100% y 68-77%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "jump: the ground goes from rings on flat brown to the finished leaf carpet (every leaf, lit path, cast shadows, highlights) in one dabbing step",
+     "where": "AFTER, x 0-100% y 62-100%",
+     "same_as": null
+    },
+    {
+     "id": "f45",
+     "class": "D",
+     "severity": "major",
+     "sees": "the ground's last step names only Golden ochre, but about 40% of what it adds is dark umber shadow strokes and pale cream leaf highlights",
+     "where": "AFTER, x 0-100% y 62-100%; paints",
+     "same_as": null
+    },
+    {
+     "id": "f46",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"A light load\" again with no explanation",
+     "where": "words line 4",
+     "same_as": "f33"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "leaves-dark",
+   "faults": [
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "major",
+     "sees": "smooth hard-edged rectangular orange patches still show in the leaves",
+     "where": "AFTER, x 8-22% y 66-75%, x 92-100% y 68-77%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the olive is flat, unbrushed color with straight ruled edges: a horizontal cut across the canopy and straight-sided vertical columns",
+     "where": "AFTER, horizontal edge at y 23% across x 0-52%; columns x 0-8% y 37-60%, x 88-92% y 40-50%",
+     "same_as": null
+    },
+    {
+     "id": "f49",
+     "class": "B",
+     "severity": "major",
+     "sees": "the olive leaves pale birch-trunk and branch shaped holes, though the tip says to dab straight through where the birches will go",
+     "where": "AFTER, x 5-10% y 0-23%, x 28-40% y 0-20%, x 48-56% y 0-15%",
+     "same_as": null
+    },
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "major",
+     "sees": "new bright golden leaf clusters appear in a step that only dabs olive (gold leaves are step 10)",
+     "where": "AFTER, x 15-25% y 2-15%, x 68-80% y 10-25%",
+     "same_as": null
+    },
+    {
+     "id": "f51",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"A light load\" again with no explanation",
+     "where": "words line 4",
+     "same_as": "f33"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "leaves-gold",
+   "faults": [
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "major",
+     "sees": "smooth hard-edged rectangular orange patches still show in the leaves",
+     "where": "AFTER, x 8-22% y 66-75%, x 92-100% y 68-77%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f53",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the flat, straight-edged olive blocks still show",
+     "where": "AFTER, y 23% x 0-52%; x 0-8% y 37-60%",
+     "same_as": "f48"
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "major",
+     "sees": "rows of small hollow ring outlines appear along the foot of the bushes",
+     "where": "AFTER, x 2-12%, 22-30%, 44-50%, y 59-62%",
+     "same_as": null
+    },
+    {
+     "id": "f55",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"A light load\" again with no explanation",
+     "where": "words line 4",
+     "same_as": "f33"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "major",
+     "sees": "smooth hard-edged rectangular orange patches still show in the leaves",
+     "where": "AFTER, x 8-22% y 66-75%, x 92-100% y 68-77%",
+     "same_as": "f31"
+    },
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the step should add \"only a few taps\" of sunlit gold, but the whole olive canopy disappears and is repainted as blue sky, light rays and new gold leaf clusters",
+     "where": "AFTER, x 0-60% y 0-25% (and x 85-95% y 0-20%)",
+     "same_as": null
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark bark-colored branches appear before any birch step",
+     "where": "AFTER, x 3-7% y 3-12%, x 12-20% y 5-15%, x 25-32% y 10-17%, x 62-78% y 5-18%",
+     "same_as": null
+    },
+    {
+     "id": "f59",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"A light load\" again with no explanation",
+     "where": "words line 5",
+     "same_as": "f33"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "birch-trunks",
+   "faults": [
+    {
+     "id": "f60",
+     "class": "E",
+     "severity": "major",
+     "sees": "two thin middle trunks are painted that no line mentions; the tip names only three trunks on the left and two on the right",
+     "where": "AFTER, x 41-45% and x 48-51%, y 12-58%",
+     "same_as": null
+    },
+    {
+     "id": "f61",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip and line 6 say to pull branches from the trunks, but the picture adds no gray branches (the branches are already there, dark, from step 11)",
+     "where": "words line 6 and tip; AFTER x 0-100% y 0-20%",
+     "same_as": null
+    },
+    {
+     "id": "f62",
+     "class": "E",
+     "severity": "minor",
+     "sees": "\"With an angle brush, the lighter you press, the thinner the line\" on a step that uses a 3/4 inch flat",
+     "where": "words line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "birch-marks",
+   "faults": [
+    {
+     "id": "f63",
+     "class": "E",
+     "severity": "minor",
+     "sees": "angle-brush sentence again on a 1/4 inch flat step",
+     "where": "words line 5",
+     "same_as": "f62"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "birch-light",
+   "faults": [
+    {
+     "id": "f64",
+     "class": "D",
+     "severity": "major",
+     "sees": "Warm cream (a beige) is named, but much of what the step adds is a cool lavender/blue-white across the middle of each trunk, not only on its left edge",
+     "where": "AFTER, trunk centers x 18-22%, 30-36%, 93-98%, y 20-70%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 36,
+  "B": 12,
+  "C": 0,
+  "D": 3,
+  "E": 6,
+  "F": 7,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 15,
+  "B": 5,
+  "C": 0,
+  "D": 3,
+  "E": 5,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  11,
+  8
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, the Where and Result pictures the words refer to, close-ups, diagrams, links, site listing and version history are not in the packet",
+  "H": "the run logs, render and cut tools, diagrams and checks are not in the packet; no tool notes, placeholders or repeated lines show in the words"
+ },
+ "summary": "The step pictures are the main problem: the first sky coat carries a tiled kaleidoscope texture, blobby bead-chain edges, white holes and ghosts of the finished painting, and these persist for many steps, while later steps add hard rectangles, ring outlines and flat ruled-edge fills no brush makes. Several steps jump or change unrelated areas (the ground finished in one dab step, the canopy repainted and branches added on a \"few taps\" step). The words are mostly sound; faults there are unnamed colors on finishing steps, unmentioned trunks and firs, and unexplained \"light load\"."
+}

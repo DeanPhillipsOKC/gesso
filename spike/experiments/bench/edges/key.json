@@ -1,0 +1,20 @@
+{
+  "packets": {
+    "p01": {
+      "lesson": "chickadee_skill_20261116-203451-name",
+      "picture": "chickadee",
+      "steps": 18
+    },
+    "p02": {
+      "lesson": "birch-grove_skill_20261116-210750-name",
+      "picture": "birch-grove",
+      "steps": 14
+    },
+    "p03": {
+      "lesson": "sleeping-cat_skill_20261116-203502-name",
+      "picture": "sleeping-cat",
+      "steps": 16
+    }
+  },
+  "seed": 165
+}
