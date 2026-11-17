@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -53,6 +54,7 @@ WEAK = 9.0  # ... and a pixel that changed this much, joined to one that was, we
 REACH = 0.04  # how far past the plan's loose box for a thing its change may run, as a share of the long side
 SPECK = 0.0002  # a changed patch smaller than this share of the picture is brushwork, not the thing
 HOLE = 0.004  # a gap in the change smaller than this share of the picture is the thing too
+CORE = 15  # pixels: a strong change narrower than this isn't the thing itself, and a gap in it this narrow is
 BARE = 0.5  # a unit with more of its box than this outside every earlier area's cover has only canvas behind it
 SMOOTH = bs.SMOOTH
 
@@ -166,6 +168,18 @@ def diff_mask(before: np.ndarray, after: np.ndarray, where: np.ndarray | None = 
     return m
 
 
+def core_mask(before: np.ndarray, after: np.ndarray, d: np.ndarray) -> np.ndarray:
+    """The thing itself inside its change `d`: where the change is STRONG in a solid patch. The rest of `d` is what
+    went with the thing (its reflection, its shadow, ground the render painted again under fallen leaves). A flat
+    coat or a pass that covered all of `d` painted the reeds' coat over their reflection and the leaves' coat over
+    the whole forest floor (2026-11-17), so those go on the core only; the thing's last step lays all of `d`."""
+    a = ol.lab(cv2.GaussianBlur(before, (0, 0), BLUR)).astype(np.float32)
+    b = ol.lab(cv2.GaussianBlur(after, (0, 0), BLUR)).astype(np.float32)
+    m = (np.sqrt(((a - b) ** 2).sum(2)) >= STRONG).astype(np.uint8)
+    k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (CORE, CORE))
+    return (cv2.morphologyEx(cv2.morphologyEx(m, cv2.MORPH_CLOSE, k), cv2.MORPH_OPEN, k) > 0) & d
+
+
 def erase_one(src: np.ndarray, raw: np.ndarray, where: np.ndarray, bare: bool, frozen: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """(the picture with the thing erased, what was erased). `frozen` is canvas already bare: it never changes."""
     canvas = np.array(ff.CANVAS, np.uint8)
@@ -199,12 +213,27 @@ def prompt_for(remove: list[str], keep: list[str], bare: bool) -> str:
             "any bare white canvas stays bare. No text, signature, or watermark.")
 
 
+def plain(plan: dict, us: list[dict], n: int, shape: tuple[int, int]) -> str:
+    """Added to a request made again because the first answer painted new things where the old one was (firs in the
+    mist under the birch grove's ground, twice, 2026-11-17). "Continue what is around them" is what invited them, so
+    this names what is behind: the earlier wide areas whose cover holds a good share of the unit's box."""
+    by_id = {p["id"]: p for p in plan["parts"]}
+    mine = unit_box(plan, us[n], shape, 0.0)
+    behind = [pid for u in us[:n] for pid in u["parts"] if by_id[pid].get("kind") == "area"
+              and (box_mask(boxes_of(by_id[pid], covers=True), shape) & mine).sum() > 0.3 * mine.sum()]
+    what = "; ".join(part_names(plan, behind)) or "the plain background"
+    return (f" Behind them there is only this: {what}. Paint that there, soft, plain and empty, as it is in the open "
+            "places of the painting. Paint no new thing there: no trees, trunks, plants, rocks, buildings or figures.")
+
+
 def part_names(plan: dict, ids: list[str]) -> list[str]:
     by_id = {p["id"]: p for p in plan["parts"]}
     return [by_id[i].get("name") or i for i in ids]
 
 
-def erase(picture: str, quality: str = "low", model: str = "gpt-image") -> dict:
+def erase(picture: str, quality: str = "low", model: str = "gpt-image", redo: tuple[int, ...] = ()) -> dict:
+    """`redo`: units whose request is made again with `plain` added (kept as U<n>r). The renders of the units before
+    them were made from the old picture: delete those files first."""
     d = peel.load(picture)
     finish, plan, owner = d["finish"], d["plan"], d["owner"]
     us = units(plan)
@@ -220,16 +249,19 @@ def erase(picture: str, quality: str = "low", model: str = "gpt-image") -> dict:
         bare = is_bare(plan, us, n, shape)
         remove = part_names(plan, us[n]["parts"])
         keep = part_names(plan, [pid for u in us[:n] for pid in u["parts"]])
-        raw, info = peel.render(model, P[n], prompt_for(remove, keep, bare), folder, f"U{n:02d}", quality)
+        again = n in redo
+        name = f"U{n:02d}" + ("r" if again else "")
+        raw, info = peel.render(model, P[n], prompt_for(remove, keep, bare) + (plain(plan, us, n, shape) if again else ""), folder, name, quality)
         P[n - 1], D = erase_one(P[n], raw, unit_box(plan, us[n], shape), bare, frozen)
         if bare:
             frozen |= D
         np.save(folder / f"D{n:02d}.npy", D)
+        np.save(folder / f"C{n:02d}.npy", D if bare else core_mask(P[n - 1], P[n], D))
         Image.fromarray(P[n - 1]).save(folder / f"P{n - 1:02d}.png")
         # numbers only: against the baseline run's outline of the same parts (never used to make a picture)
         theirs = np.isin(owner, [index[pid] for pid in us[n]["parts"]])
         both, either = (D & theirs).sum(), (D | theirs).sum()
-        rows.append({"unit": n, "parts": us[n]["parts"], "bare": bare, "seconds": info["seconds"],
+        rows.append({"unit": n, "parts": us[n]["parts"], "bare": bare, "redo": again, "seconds": info["seconds"],
                      "cost_usd": info["cost_usd"], "erased_share": round(float(D.mean()), 4),
                      "v2_outline_share": round(float(theirs.mean()), 4),
                      "iou_with_v2_outline": round(float(both / max(1, either)), 3),
@@ -239,12 +271,14 @@ def erase(picture: str, quality: str = "low", model: str = "gpt-image") -> dict:
         print(json.dumps(rows[-1]))
     D0 = ~frozen  # the first unit: everything that isn't bare canvas when only it is left
     np.save(folder / "D00.npy", D0)
+    np.save(folder / "C00.npy", D0)
     result = {"picture": picture, "run": d["run"].name, "quality": quality, "model": model,
-              "units": us, "renders": len(rows), "cost_usd": round(sum(r["cost_usd"] for r in rows), 4),
+              "units": us, "redone": sorted(redo), "renders": len(rows), "cost_usd": round(sum(r["cost_usd"] for r in rows), 4),
               "render_seconds": round(sum(r["seconds"] for r in rows), 1), "rows": rows}
     (folder / "erase.json").write_text(json.dumps(result, indent=1))
     chain = [np.full_like(finish, canvas)] + [P[n] for n in range(len(us))]
-    raws = [None, None] + [np.array(Image.open(folder / f"U{n:02d}_raw.png").convert("RGB")) for n in range(1, len(us))]
+    raws = [None, None] + [np.array(Image.open(folder / (f"U{n:02d}" + ("r" if n in redo else "") + "_raw.png")).convert("RGB"))
+                           for n in range(1, len(us))]
     sheet_rows(folder / "chain.jpg", [chain, raws[1:] + [None]], width=384)
     return result
 
@@ -305,7 +339,8 @@ def build(picture: str) -> tuple[list[np.ndarray], list[dict], dict]:
     for n, u in enumerate(us):
         content = finish if n == len(us) - 1 else np.array(Image.open(folder / f"P{n:02d}.png").convert("RGB"))
         D = np.load(folder / f"D{n:02d}.npy")
-        masks = split(plan, u, content, D, paints_of, hexes)
+        core = np.load(folder / f"C{n:02d}.npy")
+        masks = split(plan, u, content, core if len(u["parts"]) == 1 else D, paints_of, hexes)
         near = {pid: nearest(content, [hexes[c] for c in paints_of[pid]]) for pid in u["parts"] if paints_of.get(pid)}
         for i in u["steps"]:
             s = steps[i]
@@ -336,6 +371,71 @@ def build(picture: str) -> tuple[list[np.ndarray], list[dict], dict]:
     labels = [f"{i + 1} {s['id']}" for i, s in enumerate(steps)]
     compare_sheet(folder / "steps.jpg", theirs, pictures, labels)
     return pictures, rows, info
+
+
+# ---------------------------------------------------------------------------
+# A lesson to grade
+# ---------------------------------------------------------------------------
+
+
+def lesson_folder(picture: str) -> Path:
+    return OUT / "lessons" / f"{peel.baseline_run(picture).name}-whole"
+
+
+def make_lesson(picture: str) -> Path:
+    """The baseline lesson with this spike's step pictures: a copy of the run, same plan, paints and words."""
+    d = peel.load(picture)
+    pictures, _, _ = build(picture)
+    lesson = lesson_folder(picture)
+    if lesson.exists():
+        shutil.rmtree(lesson)
+    shutil.copytree(d["run"], lesson, ignore=shutil.ignore_patterns("trials", "versions", "busy", "embed", "*.html"))
+    box = (json.loads((lesson / "canvas.json").read_text()).get("canvas_box") or [0, 0, 1, 1]) \
+        if (lesson / "canvas.json").exists() else [0, 0, 1, 1]
+    h, w = d["owner"].shape
+    x0, y0, x1, y1 = round(box[0] * w), round(box[1] * h), round(box[2] * w), round(box[3] * h)
+    for i, (s, img) in enumerate(zip(bs.flat_steps(d["plan"]), pictures)):
+        name = f"{i + 1:02d}_{s['id']}.png"
+        Image.fromarray(img).save(lesson / name)
+        if (lesson / "canvas" / name).exists():
+            Image.fromarray(img[y0:y1, x0:x1]).save(lesson / "canvas" / name)
+    return lesson
+
+
+def grade_folders(pictures: list[str], out: Path, seed: int = 204) -> dict:
+    """The blind A/B round for Claude's graders (bench/ab_grader.md): two folders a picture, each with the v2
+    baseline and this spike's lesson as A/ and B/, sides drawn from the seed and swapped for the second grader. The
+    folders are pair-01, pair-02, ... in a seeded shuffle. The key goes beside `out` (<out>.key.json), never in it,
+    and `out` must be outside the repository."""
+    import random
+
+    sys.path.insert(0, str(peel.BENCH))
+    import packet
+
+    out = Path(out).resolve()
+    if ROOT in out.parents or out == ROOT:
+        raise SystemExit("the grading folders must be outside the repository")
+    rng = random.Random(seed)
+    key: dict = {"round": "s204-whole", "seed": seed, "pictures": {}, "folders": {}}
+    jobs = []
+    for pic in pictures:
+        order = ["v2", "whole"] if rng.random() < 0.5 else ["whole", "v2"]
+        jobs += [(pic, "g1", order), (pic, "g2", order[::-1])]
+    names = [f"pair-{n + 1:02d}" for n in range(len(jobs))]
+    rng.shuffle(names)
+    out.mkdir(parents=True, exist_ok=True)
+    for name, (pic, g, order) in zip(names, jobs):
+        sides = {"v2": peel.baseline_run(pic), "whole": lesson_folder(pic)}
+        folder = out / name
+        if folder.exists():
+            shutil.rmtree(folder)
+        for side, which in zip("AB", order):
+            packet.build_one(sides[which], folder / side)
+        shutil.copy(peel.BENCH / "ab_grader.md", folder / "ab_grader.md")
+        key["pictures"].setdefault(pic, {})[g] = {"A": order[0], "B": order[1], "folder": name}
+        key["folders"][name] = f"{pic}-{g}"
+    out.with_name(out.name + ".key.json").write_text(json.dumps(key, indent=1))
+    return key
 
 
 # ---------------------------------------------------------------------------
@@ -391,7 +491,17 @@ def main() -> None:
         p.add_argument("picture")
         if name == "erase":
             p.add_argument("--quality", default="low")
+            p.add_argument("--redo", default="", help="units to ask for again with the plain-background sentence, e.g. 4")
+    g = sub.add_parser("grade")
+    g.add_argument("pictures", help="comma-separated")
+    g.add_argument("--out", required=True, help="a folder outside the repository")
     args = ap.parse_args()
+    if args.cmd == "grade":
+        pics = args.pictures.split(",")
+        for pic in pics:
+            make_lesson(pic)
+        print(json.dumps(grade_folders(pics, Path(args.out))["folders"]))
+        return
     if args.cmd == "units":
         d = peel.load(args.picture)
         us = units(d["plan"])
@@ -399,7 +509,7 @@ def main() -> None:
             how = "first" if n == 0 else ("bare" if is_bare(d["plan"], us, n, d["finish"].shape[:2]) else "behind")
             print(n, how, u["parts"], [s + 1 for s in u["steps"]])
     elif args.cmd == "erase":
-        r = erase(args.picture, args.quality)
+        r = erase(args.picture, args.quality, redo=tuple(int(x) for x in args.redo.split(",") if x))
         print(json.dumps({k: r[k] for k in ("renders", "cost_usd", "render_seconds")}))
     else:
         _, _, info = build(args.picture)
