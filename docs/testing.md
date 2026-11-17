@@ -5,7 +5,10 @@ The tests are in `spike/tests/` (`unittest`, no network, no API key, no model fi
 | Set | Command | When | Time on 4 cores |
 |---|---|---|---|
 | Quick | `python spike/tests/suite.py --quick` | after every change, while working | about 11 seconds |
-| Full | `python spike/tests/suite.py` | before opening or merging a pull request | about 1 1/2 minutes |
+| Full | `python spike/tests/suite.py` | before opening or merging a pull request that changes code | about 1 1/2 minutes |
+
+A pull request that changes no code (only docs, lesson runs, `site/`, or the lesson history; "code" as in
+`docs/decisions.md`) runs the quick set instead of the full suite before it merges (owner's call, 2026-11-17).
 
 Both run from the repo root with the venv's Python. Pass files, classes, or single tests to run only those
 (`python spike/tests/suite.py test_aids test_publish_v2.PublishV2Tests`). `--jobs N` sets the number of worker
