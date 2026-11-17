@@ -8,10 +8,10 @@ the skill, or the site changed.
 edit model, which needs a host and a key (section 8). What the numbers and the pictures say so far:
 
 - **The image model can peel.** Asked to remove the things in front, it painted a whole blanket under the cat, a
-  whole meadow behind the cow, and a whole mountain behind the forest. 47 of 49 renders removed what they were asked
-  to; the two that didn't were the same request, in a chained peel.
-- **All at once beats chained.** The same pictures in 18 to 22 seconds a picture where chained took 30 to 45, and
-  the only failed renders were chained.
+  whole meadow behind the cow, and a whole mountain behind the forest. 47 of 49 renders passed v2's check that the things were removed; the two
+  that didn't were the same request, in a chained peel. One that passed still left 29% of a loch (section 6).
+- **All at once beats chained.** 18 to 21 seconds a picture whatever the number of levels, where chained's renders
+  add up to 33 to 41 on the pictures with more than one level, and the only failed renders were chained.
 - **Low is enough.** Medium costs a third more and the step pictures look the same.
 - **It fixes what's behind things in front, and only that.** Clearly better step pictures on the sleeping cat and
   the highland cow, little change on the lake cabin, none on the birch grove. Those two pictures' faults are among
@@ -55,24 +55,26 @@ The other four pictures weren't run (`docs/decisions.md`: spikes start on 3 or 4
 ## 2. The three checks
 
 1. **All layers together equal the finish.** Holds by construction: the top picture is the finish, and the guard
-   keeps every render inside its hole. `stack_gap` is 0 on every run. Before the last picture is set to the finish,
+   keeps every render inside its hole. Before the last picture is set to the finish,
    the built one differs from it on 0.00 to 0.09% of pixels (v2: 0.00 to 0.05%).
 2. **No picture changes a pixel outside the layer its step adds.** Holds in the built steps: the most any step
    changes outside its part is 0.02% of the picture, the same step and the same number as v2 (the lake cabin). It
    does not hold for the peeled pictures taken as they come: where two levels are both hidden, P[L] and P[L+1] are
-   two renders of the same place, and 21 to 77% of those pixels differ by more than 24 levels (`under_moved`). The
-   builder never shows both: each pixel comes from the picture of the level that owns it.
+   two renders of the same place. Counting only the pixels the same part owns in both (so not the blanket's own
+   paint under the cat), 9 to 76% of them differ by more than 24 levels all at once, and 1 to 57% chained
+   (`same_place_moved`). The builder never shows both: each pixel comes from the picture of the level that owns it.
 3. **Every pixel within a set distance of a paint the step names.** Not measured. The paints are the baseline's,
    fitted to the finish, and S6 (#171) is the spike for this.
 
 ## 3. Chained against all at once
 
-Low quality, front levels only. Seconds are wall time for the renders of one picture.
+Low quality, front levels only. Seconds are for the renders of one picture: chained, each render's time added up
+(they run one after another); all at once, the clock from the first request to the last answer.
 
 | Picture | Levels | Chained: seconds, failed renders | All at once: seconds, failed renders |
 |---|---|---|---|
 | highland cow | 2 | 33, 0 | 19, 0 |
-| sleeping cat | 3 | 45, 1 (and its redo) | 18, 0 |
+| sleeping cat | 3 | 41, 1 (and its redo) | 18, 0 |
 | lake cabin | 2 | 34, 0 | 20, 0 |
 | birch grove | 1 | 17, 0 | 21, 0 |
 
@@ -84,7 +86,8 @@ Low quality, front levels only. Seconds are wall time for the renders of one pic
 - A chained peel can't use a hole of only the level it removes. What the level has under the levels already gone
   (the blanket under the cat) was painted by the last render and has no outline, so it stays behind. The hole has to
   be everything above, as in the all-at-once peel, and then chained has nothing left to offer.
-- The pictures are otherwise alike. Edge left behind (section 5) is within 0.03 of each other on every picture.
+- The pictures are otherwise alike. The share of the removed things' edge still showing (`edge_left`) is within
+  0.04 of each other on three pictures; on the cat chained is 0.09 against 0.03, from the failed render.
 
 ## 4. Low against medium
 
@@ -93,7 +96,7 @@ All at once, front levels only.
 | | Low | Medium |
 |---|---|---|
 | Cost a render | 1.76 cents | 2.32 cents |
-| Seconds a render | 13 to 19 | 16 to 20 |
+| Seconds a render | 13 to 19 | 16 to 23 |
 | Pixels the raw render moved away from the hole, mean of 4 pictures | 6.1% | 5.0% |
 | Edge of the removed things still showing, worst level, mean of 4 | 0.22 | 0.26 |
 | Failed renders | 0 of 8 | 0 of 8 |
