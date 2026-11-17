@@ -1,0 +1,993 @@
+{
+ "packet": "p02",
+ "painting": "An autumn birch grove: white birch trunks framing a leaf-covered path into misty blue firs, a low sun with rays at upper left, a mossy rock right of the path.",
+ "steps": [
+  {
+   "n": 1,
+   "id": "misty-glow",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "major",
+     "sees": "a pale yellow diagonal streak like the later sun rays shows before the rays step",
+     "where": "AFTER picture, x 3-13%, y 10-38% (about 1/2 to 2 in from the left, 1 1/4 to 4 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "a dark blue vertical mass at the right edge and a small detailed fir at left-center show before any fir step",
+     "where": "AFTER picture, x 93-100%, y 18-50% (right edge, 2 to 6 in down); small fir at x 28-33%, y 43-57% (about 4 1/2 to 5 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "the lower half is a flat olive-brown band (forest-floor color) where the words ask for Misty blue going grayer; patch of the later floor's place",
+     "where": "AFTER picture, x 0-100%, y 63-100% (bottom 4 1/2 in)",
+     "same_as": null
+    },
+    {
+     "id": "f27",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 3 orders the paints top to bottom, but the tip lays them left to right ('adding Warm cream and then Misty blue as you move right')",
+     "where": "words lines 3 and Tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun",
+   "faults": [
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step (still showing)",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": "f9"
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "a pale yellow diagonal streak like the later sun rays shows before the rays step (still showing)",
+     "where": "AFTER picture, x 3-13%, y 10-38% (about 1/2 to 2 in from the left, 1 1/4 to 4 1/2 in down)",
+     "same_as": "f16"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "a dark blue vertical mass at the right edge and a small detailed fir at left-center show before any fir step (still showing)",
+     "where": "AFTER picture, x 93-100%, y 18-50% (right edge, 2 to 6 in down); small fir at x 28-33%, y 43-57% (about 4 1/2 to 5 in from the left)",
+     "same_as": "f20"
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "major",
+     "sees": "the lower half is a flat olive-brown band (forest-floor color) where the words ask for Misty blue going grayer; patch of the later floor's place (still showing)",
+     "where": "AFTER picture, x 0-100%, y 63-100% (bottom 4 1/2 in)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f28",
+     "class": "C",
+     "severity": "minor",
+     "sees": "line 3 puts the sun's left side at the left edge (as the picture shows: it spans about 0 to 1/2 in), but the tip says 'about 1 in from the left edge'",
+     "where": "words line 3 vs Tip; AFTER picture x 0-4%, y 11-18% (0 to 1/2 in from the left, 1 1/4 to 2 1/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "far-firs",
+   "faults": [
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step (still showing)",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": "f9"
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "a pale yellow diagonal streak like the later sun rays shows before the rays step (still showing)",
+     "where": "AFTER picture, x 3-13%, y 10-38% (about 1/2 to 2 in from the left, 1 1/4 to 4 1/2 in down)",
+     "same_as": "f16"
+    },
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "major",
+     "sees": "the lower half is a flat olive-brown band (forest-floor color) where the words ask for Misty blue going grayer; patch of the later floor's place (still showing)",
+     "where": "AFTER picture, x 0-100%, y 63-100% (bottom 4 1/2 in)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "dashed pale trunk segments (the far trunks of step 4) already show inside the firs",
+     "where": "AFTER picture, x 49% and 70%, y 30-45% (about 8 in and 11 in from the left, 3 1/2 to 5 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "far-trunks",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step (still showing)",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": "f9"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "major",
+     "sees": "a pale yellow diagonal streak like the later sun rays shows before the rays step (still showing)",
+     "where": "AFTER picture, x 3-13%, y 10-38% (about 1/2 to 2 in from the left, 1 1/4 to 4 1/2 in down)",
+     "same_as": "f16"
+    },
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "the lower half is a flat olive-brown band (forest-floor color) where the words ask for Misty blue going grayer; patch of the later floor's place (still showing)",
+     "where": "AFTER picture, x 0-100%, y 63-100% (bottom 4 1/2 in)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f30",
+     "class": "B",
+     "severity": "major",
+     "sees": "lumpy pale-gray blobs stuck at the feet of the far trunks, much wider than the trunks",
+     "where": "AFTER picture, x 40-52%, y 52-60% (about 6 1/2 to 8 1/4 in from the left, 6 1/4 to 7 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f35",
+     "class": "E",
+     "severity": "minor",
+     "sees": "tip says 'No bark marks this far away', but the new trunks in the picture carry dark bark dashes",
+     "where": "Tip; AFTER picture trunks at x 43%, 50%, 70%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "sun-rays",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step (still showing)",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": "f9"
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "the lower half is a flat olive-brown band (forest-floor color) where the words ask for Misty blue going grayer; patch of the later floor's place (still showing)",
+     "where": "AFTER picture, x 0-100%, y 63-100% (bottom 4 1/2 in)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "major",
+     "sees": "lumpy pale-gray blobs stuck at the feet of the far trunks, much wider than the trunks (still showing)",
+     "where": "AFTER picture, x 40-52%, y 52-60% (about 6 1/2 to 8 1/4 in from the left, 6 1/4 to 7 1/4 in down)",
+     "same_as": "f30"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "a row of hard-edged, flat rounded-rectangle silhouettes with pale caps along the haze line, nothing a brush makes",
+     "where": "AFTER picture, x 12-50%, y 52-57% (about 2 to 8 in from the left, 6 1/4 to 6 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f40",
+     "class": "E",
+     "severity": "major",
+     "sees": "dark fir shapes appear at the left edge in a sun-ray step; no line asks for them",
+     "where": "AFTER picture, x 0-12%, y 28-55% (left 2 in, 3 1/2 to 6 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f41",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 4 says where the outline reaches the misty sky to 'only soften this paint into its edge and leave it showing', yet the rays are painted on that sky; a beginner can't tell where to paint",
+     "where": "words line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "forest-floor",
+   "faults": [
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step (still showing)",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": "f9"
+    },
+    {
+     "id": "f32",
+     "class": "B",
+     "severity": "major",
+     "sees": "lumpy pale-gray blobs stuck at the feet of the far trunks, much wider than the trunks (still showing)",
+     "where": "AFTER picture, x 40-52%, y 52-60% (about 6 1/2 to 8 1/4 in from the left, 6 1/4 to 7 1/4 in down)",
+     "same_as": "f30"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "major",
+     "sees": "a row of hard-edged, flat rounded-rectangle silhouettes with pale caps along the haze line, nothing a brush makes (still showing)",
+     "where": "AFTER picture, x 12-50%, y 52-57% (about 2 to 8 in from the left, 6 1/4 to 6 3/4 in down)",
+     "same_as": "f36"
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": null
+    },
+    {
+     "id": "f53",
+     "class": "D",
+     "severity": "minor",
+     "sees": "tip says dab the leaf shapes with Orange gold (#b77638), but the picture adds bright golden-yellow dots, a clearly lighter, yellower color",
+     "where": "Tip; AFTER picture x 0-33%, y 58-75% (left 5 1/4 in, 7 to 9 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "path",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange leaf clumps and pale-blue sky-hole shapes of the later canopy already show in the backdrop step (still showing)",
+     "where": "AFTER picture, top band x 20-75%, y 0-30% (about 3 to 12 in from the left, top 3 1/2 in)",
+     "same_as": "f9"
+    },
+    {
+     "id": "f33",
+     "class": "B",
+     "severity": "major",
+     "sees": "lumpy pale-gray blobs stuck at the feet of the far trunks, much wider than the trunks (still showing)",
+     "where": "AFTER picture, x 40-52%, y 52-60% (about 6 1/2 to 8 1/4 in from the left, 6 1/4 to 7 1/4 in down)",
+     "same_as": "f30"
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "major",
+     "sees": "a row of hard-edged, flat rounded-rectangle silhouettes with pale caps along the haze line, nothing a brush makes (still showing)",
+     "where": "AFTER picture, x 12-50%, y 52-57% (about 2 to 8 in from the left, 6 1/4 to 6 3/4 in down)",
+     "same_as": "f36"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f54",
+     "class": "B",
+     "severity": "major",
+     "sees": "the path is a row of lumpy rounded blobs with a separate island, and its far end is a flat-topped block with a hard vertical edge instead of narrowing to a point",
+     "where": "AFTER picture, x 46-75%, y 60-83% (about 7 1/2 to 12 in from the left, 7 1/4 to 10 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f55",
+     "class": "A",
+     "severity": "major",
+     "sees": "a hard outlined oval ring (the rock's later outline) sits right of the path, nothing a brush makes",
+     "where": "AFTER picture, x 65-75%, y 64-70% (about 10 1/2 to 12 in from the left, 7 3/4 to 8 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f59",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5 and tip pull strokes from 'the bottom middle', but line 2 and the picture stop the path about 2 in above the bottom edge",
+     "where": "words lines 2, 5 and Tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "dark-canopy",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, tiled kaleidoscope pattern (repeating diamond/flower motifs) over the whole backdrop, nothing a brush makes (still showing)",
+     "where": "AFTER picture, whole canvas, clearest in the haze band y 30-65% (about 4 to 8 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "major",
+     "sees": "lumpy pale-gray blobs stuck at the feet of the far trunks, much wider than the trunks (still showing)",
+     "where": "AFTER picture, x 40-52%, y 52-60% (about 6 1/2 to 8 1/4 in from the left, 6 1/4 to 7 1/4 in down)",
+     "same_as": "f30"
+    },
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "major",
+     "sees": "a row of hard-edged, flat rounded-rectangle silhouettes with pale caps along the haze line, nothing a brush makes (still showing)",
+     "where": "AFTER picture, x 12-50%, y 52-57% (about 2 to 8 in from the left, 6 1/4 to 6 3/4 in down)",
+     "same_as": "f36"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "major",
+     "sees": "a hard outlined oval ring (the rock's later outline) sits right of the path, nothing a brush makes (still showing)",
+     "where": "AFTER picture, x 65-75%, y 64-70% (about 10 1/2 to 12 in from the left, 7 3/4 to 8 1/2 in down)",
+     "same_as": "f55"
+    },
+    {
+     "id": "f60",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "bush-darks",
+   "faults": [
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "major",
+     "sees": "a hard outlined oval ring (the rock's later outline) sits right of the path, nothing a brush makes (still showing)",
+     "where": "AFTER picture, x 65-75%, y 64-70% (about 10 1/2 to 12 in from the left, 7 3/4 to 8 1/2 in down)",
+     "same_as": "f55"
+    },
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f74",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "golden-leaves",
+   "faults": [
+    {
+     "id": "f46",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "major",
+     "sees": "a hard outlined oval ring (the rock's later outline) sits right of the path, nothing a brush makes (still showing)",
+     "where": "AFTER picture, x 65-75%, y 64-70% (about 10 1/2 to 12 in from the left, 7 3/4 to 8 1/2 in down)",
+     "same_as": "f55"
+    },
+    {
+     "id": "f62",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f75",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f87",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 2 says to let 'the yellow bushes' dry first, but line 4 paints the yellow bushes in this very step",
+     "where": "words lines 2 and 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "mossy-rock",
+   "faults": [
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f63",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f76",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "rock-shade",
+   "faults": [
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f64",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f77",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f88",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "birch-trunks",
+   "faults": [
+    {
+     "id": "f49",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f65",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f78",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f89",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    },
+    {
+     "id": "f96",
+     "class": "C",
+     "severity": "major",
+     "sees": "tip says start each trunk at the bottom edge, but the three left trunks end about 1 3/4 to 2 3/4 in above it",
+     "where": "Tip; AFTER picture x 2-32%, trunk feet at y 77-86% (1 3/4 to 2 3/4 in from the bottom)",
+     "same_as": null
+    },
+    {
+     "id": "f97",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5 explains how an angle brush makes thin lines, but the step's brush is a 3/4 inch flat",
+     "where": "words line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "trunk-shade",
+   "faults": [
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f66",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f79",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f90",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    },
+    {
+     "id": "f98",
+     "class": "A",
+     "severity": "major",
+     "sees": "thin dark contour rings outlining the later bark marks appear on the trunks before the bark-mark step; a dry-brushed shade makes no outlines",
+     "where": "AFTER picture, all five trunks, e.g. x 15-24%, y 10-60% (about 2 1/2 to 4 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f99",
+     "class": "D",
+     "severity": "major",
+     "sees": "the picture adds slate-blue patches, not Gray-brown (#666164), many on the left and middle of the trunks where the tip says keep pale",
+     "where": "AFTER picture, x 13-30%, y 40-75% (about 2 to 5 in from the left, 5 to 9 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "bark-marks",
+   "faults": [
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f67",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f80",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f91",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    },
+    {
+     "id": "f100",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 6 explains how an angle brush makes thin lines, but the step's brush is a 1/2 inch flat",
+     "where": "words line 6",
+     "same_as": "f97"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "branches",
+   "faults": [
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark-brown and gold fallen-leaf clusters (steps 17-19) already show across the floor (still showing)",
+     "where": "AFTER picture, x 0-100%, y 70-100% (bottom 3 1/2 in), heaviest in diagonal bands bottom-left",
+     "same_as": "f42"
+    },
+    {
+     "id": "f68",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f81",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f92",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "shadow-leaves",
+   "faults": [
+    {
+     "id": "f69",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f82",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f93",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    },
+    {
+     "id": "f101",
+     "class": "A",
+     "severity": "major",
+     "sees": "the shadow leaves go on as a large smooth, flat brown fill with hard edges and no brush marks, covering the pale path the tip says to leave showing",
+     "where": "AFTER picture, x 15-95%, y 60-100% (bottom 4 3/4 in), path at x 45-75%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "orange-leaves",
+   "faults": [
+    {
+     "id": "f70",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f83",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f94",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    },
+    {
+     "id": "f102",
+     "class": "A",
+     "severity": "major",
+     "sees": "the shadow leaves go on as a large smooth, flat brown fill with hard edges and no brush marks, covering the pale path the tip says to leave showing (still showing)",
+     "where": "AFTER picture, x 15-95%, y 60-100% (bottom 4 3/4 in), path at x 45-75%",
+     "same_as": "f101"
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "golden-fallen",
+   "faults": [
+    {
+     "id": "f71",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f84",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    },
+    {
+     "id": "f95",
+     "class": "B",
+     "severity": "major",
+     "sees": "the shade is a pale blue-gray squiggle on the top middle of the rock, not on its right side and bottom as the words say; no Deep blue-green shows (still showing)",
+     "where": "AFTER picture, x 68-74%, y 62-66% (about 11 to 11 3/4 in from the left, 7 1/2 to 8 in down)",
+     "same_as": "f88"
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "rock-moss",
+   "faults": [
+    {
+     "id": "f72",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f85",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "id": "bark-light",
+   "faults": [
+    {
+     "id": "f73",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the canopy is flat, solid orange-brown slabs with pale-blue halo rims around the sky holes and a straight horizontal bottom edge, not tapped dots (still showing)",
+     "where": "AFTER picture, x 0-100%, y 0-30% (top 3 1/2 in); straight edge at y 30%, x 0-20%",
+     "same_as": "f60"
+    },
+    {
+     "id": "f86",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the bush darks are flat olive blocks with straight vertical and horizontal edges, not dappled dabs (still showing)",
+     "where": "AFTER picture, x 0-50% and 59-90%, y 52-65% (about 6 1/4 to 7 3/4 in down); e.g. block at x 59-64% (9 1/2 to 10 1/4 in from the left)",
+     "same_as": "f74"
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "id": "sunlit-leaves",
+   "faults": [
+    {
+     "id": "f103",
+     "class": "A",
+     "severity": "major",
+     "sees": "a jump: the flat orange canopy slabs and olive bush blocks turn into dense, finished, multi-color leaf masses in one Pale gold dab step",
+     "where": "AFTER picture, canopy x 0-100%, y 0-30%; bushes x 0-50% and 59-90%, y 52-65%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 77,
+  "B": 14,
+  "C": 2,
+  "D": 2,
+  "E": 8,
+  "F": 0,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 14,
+  "B": 3,
+  "C": 2,
+  "D": 2,
+  "E": 7,
+  "F": 0,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  8,
+  9,
+  1
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups, paint maps, Where/transfer pictures the words refer to, the site and lesson history; within the packet all 22 steps are numbered in order with pictures, photo and finish present",
+  "H": "how the run went, diagram/paint-map rendering, checks that ran or missed problems; no placeholders, tool notes or word-for-word repeated lines appear in the words"
+ },
+ "summary": "The step pictures are the main problem: a tiled kaleidoscope pattern and ghosts of the canopy, rays, firs, floor and fallen leaves show from step 1, and steps 8 and 9 lay flat hard-edged slabs and rectangular blocks that stay on the canvas until the last step, which then jumps to finished foliage. Several shapes are lumpy or misplaced (path blobs, far-trunk feet, rock shade on the wrong side), and the words carry a few small contradictions (sun position, trunk feet, angle-brush text on flat-brush steps)."
+}

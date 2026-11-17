@@ -1,0 +1,840 @@
+{
+  "focal_point": "the cat's sleeping face, its closed eyes and pink nose",
+  "light": "soft daylight from the window at the upper left",
+  "painter_dropped": {
+    "flick-lit-fur": "The pale flicks on the lit edge are the same measured color as the grayer white of the white patches (no lighter gray than the silver fur is left: paints --add cat refused one 7.6 from the mid gray), so they arrive with the white patches and a pass here would add nothing.",
+    "shade-the-cat": "The finish has no shadow gray on the cat: paints --add cat finds no color darker than the mid fur gray except the stripes' charcoal, so a shading pass would either show nothing or lay every stripe at once; the shadow side is the stripes set closer together, and it arrives with the stripes."
+  },
+  "paints": [
+    {
+      "hex": "#a4b2c9",
+      "id": "wall-1",
+      "name": "Pale periwinkle",
+      "parts": [
+        "wall",
+        "outside"
+      ],
+      "sample_x": 0.999,
+      "sample_y": 0.0,
+      "used_for": "the blue wall, and the sky through the window"
+    },
+    {
+      "hex": "#6c9d8e",
+      "id": "leaves-1",
+      "name": "Deep teal green",
+      "of": "leaves-2",
+      "parts": [
+        "leaves"
+      ],
+      "plus": "Ultramarine blue",
+      "sample_x": 0.071,
+      "sample_y": 0.394,
+      "used_for": "the shady leaves outside the window"
+    },
+    {
+      "hex": "#abbf71",
+      "id": "leaves-2",
+      "name": "Sunny yellow-green",
+      "parts": [
+        "outside",
+        "leaves"
+      ],
+      "sample_x": 0.0,
+      "sample_y": 0.28,
+      "used_for": "the sunlit leaves outside the window"
+    },
+    {
+      "hex": "#9c9ab9",
+      "id": "window-1",
+      "name": "Soft lavender",
+      "of": "window-2",
+      "parts": [
+        "window"
+      ],
+      "plus": "Ultramarine blue",
+      "sample_x": 0.242,
+      "sample_y": 0.023,
+      "used_for": "the shady sides of the white window frame"
+    },
+    {
+      "hex": "#f3e6db",
+      "id": "window-2",
+      "name": "Warm cream white",
+      "parts": [
+        "window",
+        "cat"
+      ],
+      "sample_x": 0.15,
+      "sample_y": 0.237,
+      "used_for": "the window frame, and the white muzzle, chest and paws of the cat"
+    },
+    {
+      "added": true,
+      "hex": "#5e7195",
+      "id": "window-3",
+      "name": "Deep blue-violet",
+      "of": "window-2",
+      "parts": [
+        "window"
+      ],
+      "plus": "Ultramarine blue",
+      "sample_x": 0.281,
+      "sample_y": 0.207,
+      "used_for": "the deep side of the window opening"
+    },
+    {
+      "hex": "#934025",
+      "id": "sill-1",
+      "name": "Warm wood brown",
+      "parts": [
+        "sill"
+      ],
+      "sample_x": 0.026,
+      "sample_y": 0.927,
+      "used_for": "the wooden sill, its dark front edge and the shadow under the blanket"
+    },
+    {
+      "hex": "#e3a17c",
+      "id": "sill-2",
+      "name": "Peach light",
+      "parts": [
+        "sill"
+      ],
+      "sample_x": 0.062,
+      "sample_y": 0.786,
+      "used_for": "the patches of sunlight on the sill"
+    },
+    {
+      "hex": "#f1a012",
+      "id": "blanket-1",
+      "name": "Golden yellow",
+      "parts": [
+        "blanket"
+      ],
+      "sample_x": 0.157,
+      "sample_y": 0.636,
+      "used_for": "the knitted blanket and its sunlit stitches"
+    },
+    {
+      "added": true,
+      "hex": "#da7f05",
+      "id": "blanket-2",
+      "name": "Deep gold",
+      "parts": [
+        "blanket"
+      ],
+      "sample_x": 0.919,
+      "sample_y": 0.887,
+      "used_for": "the dark knit stitches"
+    },
+    {
+      "added": true,
+      "hex": "#af5f16",
+      "id": "blanket-3",
+      "name": "Deep ochre",
+      "parts": [
+        "blanket"
+      ],
+      "sample_x": 0.189,
+      "sample_y": 0.789,
+      "used_for": "the blanket's folds and dark stitches"
+    },
+    {
+      "hex": "#4c4347",
+      "id": "cat-1",
+      "name": "Charcoal",
+      "parts": [
+        "cat",
+        "face"
+      ],
+      "sample_x": 0.898,
+      "sample_y": 0.59,
+      "used_for": "the tabby stripes and the closed eyes"
+    },
+    {
+      "hex": "#827478",
+      "id": "cat-2",
+      "name": "Mid fur gray",
+      "parts": [
+        "cat"
+      ],
+      "sample_x": 0.396,
+      "sample_y": 0.332,
+      "used_for": "the cat's main fur color"
+    },
+    {
+      "hex": "#e1d3d0",
+      "id": "cat-3",
+      "name": "Pale silver white",
+      "of": "cat-2",
+      "parts": [
+        "cat",
+        "face"
+      ],
+      "plus": "white",
+      "sample_x": 0.566,
+      "sample_y": 0.483,
+      "used_for": "the grayer white at the edges of the white patches, and the whiskers"
+    },
+    {
+      "added": true,
+      "hex": "#d08677",
+      "id": "cat-4",
+      "name": "Warm salmon",
+      "parts": [
+        "cat",
+        "face"
+      ],
+      "sample_x": 0.15,
+      "sample_y": 0.363,
+      "used_for": "the inside of the ears and the nose"
+    }
+  ],
+  "parts": [
+    {
+      "box": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "element": "sky-blend",
+      "element_why": "A plain background that shades softly from pale blue-gray to a little darker at the right, blended wet in one go and run straight under the cat and the blanket.",
+      "id": "wall",
+      "kind": "area",
+      "name": "The pale blue wall",
+      "thing": "wall"
+    },
+    {
+      "box": [
+        0,
+        0,
+        0.14,
+        0.47
+      ],
+      "element": "sky-blend",
+      "element_why": "A small patch of pale sky seen through the glass, one soft blend before the leaves go on.",
+      "id": "outside",
+      "kind": "area",
+      "name": "The sky through the window",
+      "parent": "wall",
+      "points_in": [
+        [
+          0.06,
+          0.12
+        ],
+        [
+          0.09,
+          0.02
+        ],
+        [
+          0.02,
+          0.24
+        ],
+        [
+          0.11,
+          0.09
+        ]
+      ],
+      "points_out": [
+        [
+          0.16,
+          0.2
+        ],
+        [
+          0.08,
+          0.19
+        ]
+      ],
+      "thing": "window-view"
+    },
+    {
+      "box": [
+        0,
+        0,
+        0.13,
+        0.45
+      ],
+      "element": "foliage",
+      "element_left_out": "single leaf shapes; they stay soft dabs",
+      "element_why": "Far leaves seen through glass: dabbed dark then light, soft and with no fine detail at this distance.",
+      "id": "leaves",
+      "kind": "marks",
+      "name": "The leaves outside",
+      "parent": "outside",
+      "points_in": [
+        [
+          0.04,
+          0.3
+        ],
+        [
+          0.08,
+          0.38
+        ],
+        [
+          0.02,
+          0.05
+        ],
+        [
+          0.1,
+          0.27
+        ],
+        [
+          0.05,
+          0.42
+        ]
+      ],
+      "points_out": [
+        [
+          0.06,
+          0.12
+        ],
+        [
+          0.08,
+          0.02
+        ],
+        [
+          0.16,
+          0.3
+        ],
+        [
+          0.05,
+          0.19
+        ],
+        [
+          0.12,
+          0.45
+        ]
+      ],
+      "thing": "window-trees"
+    },
+    {
+      "box": [
+        0,
+        0,
+        0.31,
+        0.6
+      ],
+      "element": "shaped-object",
+      "element_why": "A frame of straight white bars with a shadowed blue side: blocked in as rectangles, then shaded and lit.",
+      "id": "window",
+      "kind": "object",
+      "name": "The window frame",
+      "points_in": [
+        [
+          0.16,
+          0.2
+        ],
+        [
+          0.25,
+          0.3
+        ],
+        [
+          0.08,
+          0.19
+        ],
+        [
+          0.1,
+          0.5
+        ],
+        [
+          0.28,
+          0.1
+        ],
+        [
+          0.2,
+          0.15
+        ],
+        [
+          0.145,
+          0.05
+        ]
+      ],
+      "points_out": [
+        [
+          0.05,
+          0.3
+        ],
+        [
+          0.08,
+          0.08
+        ],
+        [
+          0.25,
+          0.42
+        ],
+        [
+          0.2,
+          0.58
+        ]
+      ],
+      "thing": "window-frame"
+    },
+    {
+      "box": [
+        0,
+        0.55,
+        1,
+        1
+      ],
+      "element": "shaped-object",
+      "element_why": "A flat wooden ledge with a sunlit patch and a darker front edge: one block-in, then a shadow pass and a light pass.",
+      "id": "sill",
+      "kind": "object",
+      "name": "The wooden sill",
+      "points_in": [
+        [
+          0.05,
+          0.75
+        ],
+        [
+          0.1,
+          0.82
+        ],
+        [
+          0.03,
+          0.68
+        ],
+        [
+          0.5,
+          0.95
+        ],
+        [
+          0.12,
+          0.7
+        ]
+      ],
+      "points_out": [
+        [
+          0.05,
+          0.58
+        ],
+        [
+          0.3,
+          0.8
+        ]
+      ],
+      "thing": "sill"
+    },
+    {
+      "box": [
+        0.11,
+        0.5,
+        1,
+        0.94
+      ],
+      "element": "shaped-object",
+      "element_left_out": "every single knit loop; the stitches become one repeated short mark",
+      "element_why": "A folded blanket with a clear shape: blocked in as a long rounded rectangle, then the folds shaded and the knit stitches pressed on as short light marks.",
+      "id": "blanket",
+      "kind": "object",
+      "name": "The yellow knitted blanket",
+      "thing": "blanket"
+    },
+    {
+      "box": [
+        0.1,
+        0.1,
+        0.96,
+        0.7
+      ],
+      "element": "furry-animal",
+      "element_why": "A short-haired tabby with stripes, a white chest and paws, and a face: block in, shade, pale patches, stripes, fur flicks, face last.",
+      "id": "cat",
+      "kind": "object",
+      "name": "The sleeping cat",
+      "thing": "cat"
+    },
+    {
+      "boxes": [
+        [
+          0.262,
+          0.475,
+          0.334,
+          0.515
+        ],
+        [
+          0.382,
+          0.395,
+          0.422,
+          0.482
+        ],
+        [
+          0.352,
+          0.512,
+          0.4,
+          0.585
+        ]
+      ],
+      "element": "furry-animal",
+      "element_why": "The closed eyes and the pink nose: the furry-animal's last step (the face, one color per step), kept as their own marks so the cat's earlier passes leave them for the end.",
+      "id": "face",
+      "kind": "marks",
+      "name": "The sleeping face",
+      "parent": "cat",
+      "points_in": [
+        [
+          0.298,
+          0.497
+        ],
+        [
+          0.391,
+          0.439
+        ],
+        [
+          0.38,
+          0.538
+        ],
+        [
+          0.376,
+          0.533
+        ]
+      ],
+      "points_out": [
+        [
+          0.36,
+          0.5
+        ],
+        [
+          0.25,
+          0.53
+        ],
+        [
+          0.29,
+          0.43
+        ],
+        [
+          0.45,
+          0.5
+        ],
+        [
+          0.31,
+          0.48
+        ]
+      ],
+      "thing": "cat"
+    }
+  ],
+  "photo": "spike/experiments/bench/pictures/sleeping-cat/00_canvas_fit.png",
+  "plan_version": 2,
+  "stages": [
+    {
+      "id": "the-window",
+      "name": "The window view",
+      "steps": [
+        {
+          "brush": "3/4 inch flat",
+          "id": "blend-window-sky",
+          "name": "Blend the sky in the window",
+          "of": "blend-window-sky",
+          "paints": [
+            "wall-1"
+          ],
+          "part": "outside",
+          "show": "blend",
+          "stroke": "side-to-side-blend"
+        },
+        {
+          "brush": "old stiff brush, about 1/4 inch",
+          "id": "dab-dark-trees",
+          "name": "Dab the dark leaves outside",
+          "of": "dab-dark-trees",
+          "paints": [
+            "leaves-1"
+          ],
+          "part": "leaves",
+          "show": "pass",
+          "stroke": "dabbing"
+        },
+        {
+          "brush": "old stiff brush, about 1/4 inch",
+          "id": "dab-sunlit-leaves",
+          "name": "Dab the sunlit leaves outside",
+          "of": "dab-sunlit-leaves",
+          "paints": [
+            "leaves-2"
+          ],
+          "part": "leaves",
+          "show": "pass",
+          "stroke": "dabbing"
+        }
+      ]
+    },
+    {
+      "id": "wall-and-frame",
+      "name": "The wall and the window frame",
+      "steps": [
+        {
+          "brush": "1 inch flat",
+          "id": "blend-the-wall",
+          "name": "Blend the blue wall",
+          "of": "blend-the-wall",
+          "paints": [
+            "wall-1"
+          ],
+          "part": "wall",
+          "show": "blend",
+          "stroke": "side-to-side-blend"
+        },
+        {
+          "brush": "1/2 inch flat",
+          "id": "block-window-frame",
+          "name": "Build the window frame from strips",
+          "of": "block-window-frame",
+          "paints": [
+            "window-2"
+          ],
+          "part": "window",
+          "show": "flat",
+          "stroke": "build-from-pieces"
+        },
+        {
+          "brush": "1/4 inch flat",
+          "id": "shade-window-frame",
+          "name": "Shade the frame's shady sides",
+          "of": "shade-window-frame",
+          "paints": [
+            "window-1",
+            "window-3"
+          ],
+          "part": "window",
+          "show": "pass",
+          "stroke": "build-from-pieces"
+        }
+      ]
+    },
+    {
+      "id": "the-sill",
+      "name": "The windowsill",
+      "steps": [
+        {
+          "brush": "1 inch flat",
+          "id": "block-the-sill",
+          "name": "Lay in the wooden sill",
+          "of": "block-the-sill",
+          "paints": [
+            "sill-1"
+          ],
+          "part": "sill",
+          "show": "flat",
+          "stroke": "build-from-pieces"
+        },
+        {
+          "brush": "3/4 inch flat",
+          "id": "shade-the-sill",
+          "name": "Shade the sill's front and the blanket's shadow",
+          "of": "shade-the-sill",
+          "paints": [
+            "sill-1"
+          ],
+          "part": "sill",
+          "show": "pass",
+          "stroke": "build-from-pieces"
+        },
+        {
+          "brush": "1/2 inch flat",
+          "id": "light-the-sill",
+          "name": "Lay the sun patches on the sill",
+          "of": "light-the-sill",
+          "paints": [
+            "sill-2"
+          ],
+          "part": "sill",
+          "show": "pass",
+          "stroke": "build-from-pieces"
+        }
+      ]
+    },
+    {
+      "id": "the-blanket",
+      "name": "The blanket",
+      "steps": [
+        {
+          "brush": "1 inch flat",
+          "id": "block-the-blanket",
+          "name": "Build the blanket from rolls",
+          "of": "block-the-blanket",
+          "paints": [
+            "blanket-1"
+          ],
+          "part": "blanket",
+          "show": "flat",
+          "stroke": "build-from-pieces"
+        },
+        {
+          "brush": "1/2 inch flat",
+          "id": "shade-the-blanket",
+          "name": "Shade the blanket's folds",
+          "of": "shade-the-blanket",
+          "paints": [
+            "blanket-3"
+          ],
+          "part": "blanket",
+          "show": "pass",
+          "stroke": "curved-strokes"
+        },
+        {
+          "brush": "#8 round",
+          "id": "dark-stitches",
+          "name": "Press in the dark knit stitches",
+          "of": "dark-stitches",
+          "paints": [
+            "blanket-3",
+            "blanket-2"
+          ],
+          "part": "blanket",
+          "show": "pass",
+          "stroke": "press-and-lift"
+        },
+        {
+          "brush": "#6 round",
+          "id": "light-stitches",
+          "name": "Press in the sunlit stitches",
+          "of": "light-stitches",
+          "paints": [
+            "blanket-1"
+          ],
+          "part": "blanket",
+          "show": "pass",
+          "stroke": "press-and-lift"
+        }
+      ]
+    },
+    {
+      "id": "the-cat-shape",
+      "name": "The cat's shape",
+      "steps": [
+        {
+          "brush": "3/4 inch flat",
+          "id": "block-the-cat",
+          "name": "Build the cat from simple shapes",
+          "of": "block-the-cat",
+          "paints": [
+            "cat-2"
+          ],
+          "part": "cat",
+          "show": "flat",
+          "stroke": "build-from-pieces"
+        },
+        {
+          "brush": "#8 round",
+          "id": "white-patches",
+          "name": "Paint the white muzzle, chest and paws",
+          "of": "white-patches",
+          "paints": [
+            "window-2",
+            "cat-3"
+          ],
+          "part": "cat",
+          "show": "pass",
+          "stroke": "curved-strokes"
+        }
+      ]
+    },
+    {
+      "id": "the-markings",
+      "name": "The tabby markings",
+      "steps": [
+        {
+          "brush": "1/4 inch angle",
+          "id": "paint-stripes",
+          "name": "Pull the dark tabby stripes",
+          "of": "paint-stripes",
+          "paints": [
+            "cat-1"
+          ],
+          "part": "cat",
+          "show": "pass",
+          "stroke": "thick-to-thin"
+        },
+        {
+          "brush": "#6 round",
+          "id": "paint-inner-ears",
+          "name": "Paint the pink inside the ears",
+          "of": "paint-inner-ears",
+          "paints": [
+            "cat-4"
+          ],
+          "part": "cat",
+          "show": "pass",
+          "stroke": "press-and-lift"
+        }
+      ]
+    },
+    {
+      "id": "the-fur",
+      "name": "The fur",
+      "steps": [
+        {
+          "brush": "small fan brush",
+          "id": "flick-silver-fur",
+          "name": "Flick in the silver fur",
+          "of": "flick-silver-fur",
+          "paints": [
+            "cat-2"
+          ],
+          "part": "cat",
+          "show": "pass",
+          "stroke": "flicking"
+        }
+      ]
+    },
+    {
+      "id": "the-face",
+      "name": "The sleeping face",
+      "steps": [
+        {
+          "brush": "#1 liner",
+          "id": "eyes-and-mouth",
+          "name": "Line the closed eyes and mouth",
+          "of": "eyes-and-mouth",
+          "paints": [
+            "cat-1"
+          ],
+          "part": "face",
+          "show": "pass",
+          "stroke": "liner"
+        },
+        {
+          "brush": "#2 round",
+          "id": "paint-the-nose",
+          "name": "Press in the pink nose",
+          "of": "paint-the-nose",
+          "paints": [
+            "cat-4"
+          ],
+          "part": "face",
+          "show": "pass",
+          "stroke": "press-and-lift"
+        },
+        {
+          "brush": "#1 liner",
+          "id": "whiskers-cat",
+          "name": "Pull the white whiskers",
+          "of": "white-whiskers",
+          "paints": [
+            "cat-3"
+          ],
+          "part": "cat",
+          "show": "pass",
+          "stroke": "liner"
+        },
+        {
+          "brush": "#1 liner",
+          "id": "whiskers-face",
+          "name": "Pull the white whiskers",
+          "of": "white-whiskers",
+          "paints": [
+            "cat-3"
+          ],
+          "part": "face",
+          "show": "pass",
+          "stroke": "liner"
+        }
+      ]
+    }
+  ],
+  "subject": "A gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden window sill",
+  "technique": "techniques/acrylic-paint-along-beginner.yaml",
+  "technique_why": "A calm indoor scene with one big subject: paint the wall and window behind first, then the sill, the blanket and the cat on top, the beginner paint-along with v2 rules."
+}
