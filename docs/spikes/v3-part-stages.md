@@ -134,7 +134,7 @@ cabin (81%).
 - **Parts that start with a flat coat, own paints:** mixed. The stages are nearer on 5 of 11 steps (grass, horns,
   mountain, reeds, rocks) and v2 on 6 (all four of the cat's and blanket's, the cow's locks, the cabin). The third
   check, as the plan words it, does not favor the stages. In the plain build, where a step lays the whole part
-  again, the stages' own-paints share is lower still (19 to 83%), because it counts the coat laid again.
+  again, the stages' own-paints share is lower on most steps (5 to 83%), because it counts the coat laid again.
 - **Parts that start with a flat coat, paints so far:** the stages are level with v2 or better on 10 of 11 steps, by
   12 to 21 points on five. So a stage stays inside the part's palette better than v2's finish pixels do (the finish
   holds colors no step names, #158), but what a single step adds is often an earlier step's paint again: the cat's
