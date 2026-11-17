@@ -128,8 +128,10 @@ and the owner's A/B.
   the paints, what's next to it. Claude may only use numbers and sides that are on the sheet, and a tool
   checks every one in the text (#159 can't happen). The writer sees the before and after pictures while
   writing. One writer per stage, in parallel. Run 2026-11-17: `docs/spikes/v3-words-from-facts.md` (verdict: adopt;
-  Claude's blind graders preferred the fact-sheet words on 3 of 4 pictures and called the fourth a toss-up, with
-  about 27% fewer placement and text faults and a text phase of minutes, not tens of minutes).
+  Claude's blind graders preferred the writer's words on 3 of 4 pictures, mostly by a slight edge, and called the
+  fourth a toss-up; one fault counter found fewer placement and text faults, inside the counters' spread; the text
+  phase took minutes, not tens of minutes. The verdict covers the whole writer (sheet, checker, before and after
+  pictures), not the sheet alone).
 - **S9. The student test (#174).** A reviewer who has never seen the plan gets only the before picture and the
   words, and must say what the after picture will show, or pick it out of four. Where it can't, the words
   are at fault. A dearer form for the bench only: the image model carries out the words on the before

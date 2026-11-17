@@ -17,7 +17,8 @@ Two limits on that verdict:
 - **The edges are small.** Five of the six graders who chose a side called it slight or slight to moderate, though the
   brief says a small edge isn't a preference. It passes the 2026-11-17 rule (most pictures, a clear loss on none);
   the yardstick's older "clear wins only" was written for the owner's 6-of-8 round. What decides it here is that every
-  measure points the same way and none against: graders, fault counts, the checker and time. The pictures are the
+  measure of quality and time points the same way, none against: graders, fault counts, the checker and wall time.
+  It costs more tokens (below). The pictures are the
   same on both sides, so the words can only move a lesson so far.
 - **The A/B tests the package, not the sheet alone.** The writer differs from step 6 in three ways at once: the fact
   sheet with the checker, the before and after pictures side by side, and a brief that asks it to say what a picture
@@ -401,8 +402,9 @@ What decided it, in the graders' words:
   credited this on every picture. It warns the painter but can't fix a faulty picture, so (a) didn't
   move.
 - **Where it lost points:** on the chickadee both graders marked down the step 10 shade put on "the right side of
-  the chickadee" (below), the cheek the step 15 tip says is covered when the picture leaves it gold, and tips
-  "crowded with measurements". On the cow, step 16 puts "most of the gold on the left" against its own light from the
+  the chickadee" (below). Grader 1 also found its tips "packed with measurements that are sometimes confusing", and
+  grader 2 its generic card lines (steps 8, 10 and 16) and an upward flick against the feathers in step 14; grader 2
+  counted its measurements in its favour. On the cow, step 16 puts "most of the gold on the left" against its own light from the
   right; that is what the picture shows (the bigger horn), but the words don't say why.
 
 **Read it with these in mind.**
@@ -411,8 +413,9 @@ What decided it, in the graders' words:
   than its pictures do, and all four pictures score 2 or 3 on (a) on both sides.
 - The fact-sheet side had no fresh-context review; the v2 side did. If anything that favours v2.
 - **A grader could tell the sides apart, if not which was which.** The pictures are the same, and the fact-sheet
-  words are 15 to 24% longer and carry many more measurements. Two chickadee graders marked the measurements down
-  ("crowded"), so the style didn't win by itself there.
+  words are 15 to 27% longer and carry many more measurements. On the chickadee the two graders split on the
+  measurements (one marked them down, one credited them), and both called it a toss-up, so the style didn't win by
+  itself there.
 
 ### What the sheet got wrong, through the writer
 
