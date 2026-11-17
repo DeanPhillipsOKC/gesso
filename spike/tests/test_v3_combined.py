@@ -39,6 +39,32 @@ class CombinedTests(unittest.TestCase):
         for k in ((3,), (10,), (13, 14, 15), (19,), (20, 21, 22, 23, 24)):
             self.assertEqual(kind[k], "back")
 
+    def test_the_extras_of_a_picture_change_its_requests_and_units(self):
+        # #214: the sleeping cat and the birch grove
+        d = vc.load("birch-grove")
+        us = vc.units(d["painter"], vc.flats(d))
+        steps = [[i + 1 for i in u["steps"]] for u in us]
+        self.assertIn([17, 18, 19], steps)  # the dark leaf dabs are no block-in (`not_flat`): one render for all three
+        self.assertEqual(vc.shows(d)["dab-dark-floor-leaves"], "pass")
+        at = {u["steps"][0] + 1: n for n, u in enumerate(us)}
+        leaves = vc.prompt_for(d["painter"], us, at[17], d["behind"])
+        self.assertIn("The mossy rock right of the path", leaves)  # `say`
+        self.assertIn("the plain light sandy path", leaves)  # `called`
+        self.assertNotIn("smooth, flat and softly blended", leaves)
+        d = vc.load("sleeping-cat")
+        us = vc.units(d["painter"], vc.flats(d))
+        self.assertEqual(len(us), 15)
+        trees = vc.prompt_for(d["painter"], us, 1, d["behind"])
+        self.assertIn("Behind them there is only this: the pale sky through the window.", trees)
+
+    def test_results_holds_a_picture_each(self):
+        import json
+
+        kept = json.loads((vc.HERE / "v3_combined.json").read_text())["pictures"]
+        self.assertEqual(sorted(kept), ["birch-grove", "highland-cow", "sleeping-cat"])
+        for r in kept.values():
+            self.assertEqual(r["checks"]["final_gap"], 0.0)
+
     def test_state_drops_what_is_not_there_yet(self):
         line = "The whole bottom half is covered in green. It is smooth, with no bushes, blades or cow yet."
         self.assertEqual(vc._state(line), "The whole bottom half is covered in green.")
