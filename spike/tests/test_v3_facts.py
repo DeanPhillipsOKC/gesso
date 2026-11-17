@@ -446,6 +446,55 @@ class ClaimTests(unittest.TestCase):
         self.assertEqual(self.sheet["tolerance"], vf.TOLERANCE)
 
 
+class WriterTests(unittest.TestCase):
+    """The writer's packet and the merge (S8's A/B): the facts it's given pass the checker said the way they're
+    given, and a merge takes in a writer's words, sends back only its own failures, and takes out what still fails."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.sheet = balloon_scene()
+        cls.plan = {"stages": [{"id": "all", "steps": [{"id": s["id"]} for s in cls.sheet["steps"]]}]}
+
+    def test_facts_said_as_given_pass(self):
+        st = self.sheet["steps"][1]  # the balloon's first step
+        words = vf.facts_text(self.sheet, self.plan, st)
+        a = st["area"]
+        for v in (a["top"], a["wide"], a["tall"], a["left"]):
+            self.assertIn(vf.ruler(v) + " in", words)
+        self.assertIn("inside Sunset sky", words)
+        self.assertIn(st["where"], words)
+        tip = (f"Its top is about {vf.ruler(a['top'])} in from the top edge, and it's about {vf.ruler(a['wide'])} in "
+               f"wide and {vf.ruler(a['tall'])} in tall. Its left side is about {vf.ruler(a['left'])} in from the left "
+               "edge.")
+        r = vf.check_text(self.sheet, text(self.sheet, {"balloon-shape": tip}), strict=True)
+        self.assertEqual(failed(r, "balloon-shape"), [])
+        self.assertGreaterEqual(len([c for c in r["claims"] if c["field"] == "tip"]), 4)
+
+    def test_earlier_stripes_are_named_by_paint(self):
+        words = vf.facts_text(self.sheet, self.plan, self.sheet["steps"][3])
+        self.assertIn("Under it, step 3 (Deep balloon red): at the middle row", words)
+        self.assertIn("Its marks, biggest first", words)
+
+    def test_apply_and_whose_failures(self):
+        t = text(self.sheet, {})
+        t["steps"][1]["lines"].append({"kind": "how", "text": "Paint it at the right edge."})
+        bad = vf._apply(t, {"steps": {"balloon-shape": {"summary": "The balloon.", "tip": "Paint it at the right edge.",
+                                                        "lines": {"9": "x"}},
+                                      "nope": {"tip": "x"}}})
+        self.assertEqual(bad, ["balloon-shape: no line 9", "no step nope"])
+        self.assertEqual(t["steps"][1]["summary"], "The balloon.")
+        r = vf.check_text(self.sheet, t, strict=True)
+        fields = sorted(c["field"] for c in vf._writers(t, r["failures"]))
+        self.assertEqual(fields, ["tip"])  # the unedited drafted line's same claim isn't the writer's
+        vf._apply(t, {"steps": {"balloon-shape": {"lines": {"2": "Paint it at the right edge."}}}})
+        r = vf.check_text(self.sheet, t, strict=True)
+        self.assertEqual(sorted(c["field"] for c in vf._writers(t, r["failures"])), ["line 2 (how)", "tip"])
+
+    def test_drop_takes_out_one_sentence(self):
+        self.assertEqual(vf._drop("Keep it soft. Paint it at the right edge. Let it dry.", "Paint it at the right edge."),
+                         "Keep it soft. Let it dry.")
+
+
 class MutationTests(unittest.TestCase):
     """Planted faults: the share the checker catches is a number of its own (the PR #182 review)."""
 
