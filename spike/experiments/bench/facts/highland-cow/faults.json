@@ -1,0 +1,452 @@
+{
+ "packet": "p01",
+ "painting": "A shaggy Highland cow with long horns standing in tall gold-green grass on a hillside, blue hills, a strip of loch and a gold sunset sky behind",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "major",
+     "sees": "sky-blue blotches with dark green spots inside them scattered over the area where the cow goes; nothing painted them (step 1's tip even says to leave the dark spots out), and step 8's coat, said to go straight through there, still leaves them",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 5-6 ask for a soft gold glow blended into the blue at the right edge; the picture adds a small hard-edged gold cloud shape there instead",
+     "where": "AFTER, x 93-100%, y 8-15%; lines 5-6",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used with nothing on the step to explain what a load or creamy paint means",
+     "where": "line 4",
+     "same_as": null
+    },
+    {
+     "id": "f13",
+     "class": "E",
+     "severity": "minor",
+     "sees": "'Let it dry, then blend a new thin layer on top' with no say whether this is always done, with which colors, or how; it dangles after the watch-out",
+     "where": "line 8",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "clouds-gray",
+   "faults": [
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "the streaks this step adds are peach and gold, the gold of step 3, not Pale silver-gray (the tip admits it); step 3's paint already shows",
+     "where": "AFTER, x 0-90%, y 0-14% (top 2 1/4 in)",
+     "same_as": null
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the gold glow at the right edge grows wider with no line asking for it",
+     "where": "AFTER, x 80-100%, y 2-15%",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "C",
+     "severity": "minor",
+     "sees": "line 2 says the streaks are about 1 1/2 in tall; in the picture they reach about 2 1/4-2 1/3 in down",
+     "where": "line 2 vs AFTER, y 0-14%",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "E",
+     "severity": "minor",
+     "sees": "tip says to put most of it 'in the left half of the gold cloud streaks', which aren't painted until step 3",
+     "where": "tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "clouds-gold",
+   "faults": [
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f18",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 1 says to let 'the gold cloud streaks' dry, but those are what this step paints; step 2 painted the silver streaks",
+     "where": "line 1",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "far-hills",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a dark gray-green boot-shaped patch in the lower hills that no step paints (where the right horn's tip will be)",
+     "where": "AFTER, about 9 1/4-9 3/4 in from the left, 4 1/2-4 3/4 in down",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "B",
+     "severity": "minor",
+     "sees": "thin broken lines and specks of bare canvas left inside the hill coat",
+     "where": "AFTER, about 7-9 1/2 in from the left, 4 1/3 and 5 1/3 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "loch",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same dark patch still in the hills",
+     "where": "AFTER, about 9 1/4-9 3/4 in from the left, 4 1/2 in down",
+     "same_as": "f19"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "hillside-base",
+   "faults": [
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f22",
+     "class": "B",
+     "severity": "major",
+     "sees": "a hard-edged sliver of hill blue is left unpainted inside the top of the hillside",
+     "where": "AFTER, x 52-82%, y 27-32% (about 6 1/4-9 3/4 in from the left, 4 1/3-5 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "hillside-patches",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "major",
+     "sees": "large flat dark-green shapes with smooth hard cut-out edges and no brush marks are left in the hillside among the dry-brushed patchwork",
+     "where": "AFTER, x 15-75%, y 21-31% (about 2-9 in from the left, 3 1/3-5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the lower hillside is tinted an even, smooth olive with no brush marks, not broken dry-brush marks (tip admits it)",
+     "where": "AFTER, x 0-100%, y 30-42%",
+     "same_as": null
+    },
+    {
+     "id": "f31",
+     "class": "D",
+     "severity": "major",
+     "sees": "most of what the step adds is dark blue-green bush shapes and dull gray-greens; only Olive gold is named",
+     "where": "AFTER, hillside x 0-100%, y 22-38%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "grass-base",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "major",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same flat cut-out dark-green shape in the hillside (smaller where the cow covers it)",
+     "where": "AFTER, x 15-75%, y 21-31% (about 2-9 in from the left, 3 1/3-5 in down)",
+     "same_as": "f23"
+    },
+    {
+     "id": "f32",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 2 (and tip) put the grass coat's top about 5 in from the top edge; in the picture it is about 7 1/2 in down on the left and 8 3/4 in on the right",
+     "where": "line 2, tip vs AFTER",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "grass-moss",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same flat cut-out dark-green shape in the hillside (smaller where the cow covers it)",
+     "where": "AFTER, x 15-75%, y 21-31% (about 2-9 in from the left, 3 1/3-5 in down)",
+     "same_as": "f23"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "minor",
+     "sees": "red-brown rust marks appear in the grass at the cow's bottom before any cow step",
+     "where": "AFTER, x 33-45%, y 79-84% (about 4-5 1/2 in from the left, 12 2/3-13 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "grass-olive",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same blue blotches with dark ghost spots still show in the cow area",
+     "where": "AFTER picture, x 10-75%, y 25-57% (about 1 1/4 to 9 in from the left, 4 to 9 in down)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same flat cut-out dark-green shape in the hillside (smaller where the cow covers it)",
+     "where": "AFTER, x 15-75%, y 21-31% (about 2-9 in from the left, 3 1/3-5 in down)",
+     "same_as": "f23"
+    },
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same red-brown marks still show at the cow's bottom",
+     "where": "AFTER, x 33-45%, y 79-84%",
+     "same_as": "f33"
+    },
+    {
+     "id": "f35",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 2 puts the top of the blades about 5 in from the top edge; in the picture they start about 7 in down",
+     "where": "line 2 vs AFTER",
+     "same_as": null
+    },
+    {
+     "id": "f36",
+     "class": "D",
+     "severity": "major",
+     "sees": "the blades added are bright saturated gold and orange, much brighter than Olive gold (#9a8133), plus dark teal blades in the lower left; neither is named",
+     "where": "AFTER, x 0-100%, y 45-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "cow-block",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same flat cut-out dark-green shape in the hillside (smaller where the cow covers it)",
+     "where": "AFTER, left of the cow's head, about 3-4 1/2 in from the left, 4 1/2 in down",
+     "same_as": "f23"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "cow-locks",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same flat cut-out dark-green shape in the hillside (smaller where the cow covers it)",
+     "where": "AFTER, left of the cow's head, about 3-4 1/2 in from the left, 4 1/2 in down",
+     "same_as": "f23"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "minor",
+     "sees": "thin yellowish outline loops drawn on the lower body, not lock strokes",
+     "where": "AFTER, x 13-30%, y 69-76%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "cow-rim",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "minor",
+     "sees": "same flat cut-out dark-green shape in the hillside (smaller where the cow covers it)",
+     "where": "AFTER, left of the cow's head, about 3-4 1/2 in from the left, 4 1/2 in down",
+     "same_as": "f23"
+    },
+    {
+     "id": "f38",
+     "class": "D",
+     "severity": "major",
+     "sees": "besides Sunset gold the step adds near-black brown shadows on the face and body and a pinkish-gray modeled nose and muzzle (tip admits it); none is named",
+     "where": "AFTER, cow face x 50-65%, y 40-55%, and body",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "horns-block",
+   "faults": [
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the hillside left of the cow's head is repainted (the flat dark patch and dark specks become patchwork) on a step that only paints horns",
+     "where": "AFTER vs BEFORE, x 25-45%, y 23-33%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "horns-shade",
+   "faults": []
+  },
+  {
+   "n": 16,
+   "id": "horns-light",
+   "faults": [
+    {
+     "id": "f40",
+     "class": "D",
+     "severity": "major",
+     "sees": "only about a fifth of what the step adds is near Sunset gold; the rest is pale gray-cream, bluish gray and brown blending that smooths the whole horn",
+     "where": "AFTER, horns x 28-80%, y 14-35%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 26,
+  "B": 2,
+  "C": 3,
+  "D": 4,
+  "E": 4,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 9,
+  "B": 2,
+  "C": 3,
+  "D": 4,
+  "E": 4,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  7,
+  10,
+  1
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, the 'Where' pictures and paint maps the words refer to, close-ups, the site and lesson history",
+  "H": "diagrams, paint maps, render logs and checks; only the words and step pictures show here, and no placeholders or tool notes appear in them"
+ },
+ "summary": "The step pictures carry ghosts the painter never paints: sky-blue blotches with dark spots sit in the cow's area from step 1 to step 10, gold appears in the silver-cloud step, and flat hard-edged cut-out shapes stay in the hillside from step 7 until the cow covers them. Several steps add colors their one paint can't make (dark bushes in step 7, bright gold blades in 10, dark shadows and a pink nose in 13, gray-cream horn shine in 16), and the grass steps put the grass top about 2 in too high."
+}

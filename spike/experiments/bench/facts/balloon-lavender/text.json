@@ -1,0 +1,2486 @@
+{
+ "card_text": {
+  "sky-blend": {
+   "side-to-side-blend": {
+    "motion": "Start with the soft lavender blue at the top and stroke side to side. Without rinsing, pick up the golden ochre and paint below it, then the sunset orange down to the horizon. Then stroke back up over each join several times.",
+    "result": "Smooth bands of sky color, lavender blue into gold into orange, with a soft join where two wet colors meet.",
+    "then": "Stroke back over each join in the sky while it's wet.",
+    "mistakes": [
+     {
+      "mistake": "A hard line where the blue meets the gold.",
+      "fix": "Add more of the gold at the join and blend again."
+     },
+     {
+      "mistake": "The blue and the orange won't blend.",
+      "fix": "Mix a bridge color from the two on the palette and paint it between them; the gold band does this job here."
+     },
+     {
+      "mistake": "The brush is overloaded.",
+      "fix": "Wipe it on a rag. Rinse before going into the lightest color."
+     }
+    ],
+    "diagram": {
+     "title": "Blend the sky side to side",
+     "stages": [
+      {
+       "caption": "Lavender blue, side to side",
+       "add": [
+        {
+         "rect": [
+          8,
+          14,
+          84,
+          30
+         ],
+         "paint": "Soft lavender blue"
+        }
+       ],
+       "arrows": [
+        "M 14 29 L 86 29"
+       ]
+      },
+      {
+       "caption": "Golden ochre below it",
+       "add": [
+        {
+         "rect": [
+          8,
+          44,
+          84,
+          30
+         ],
+         "paint": "Golden ochre"
+        }
+       ],
+       "arrows": [
+        "M 86 59 L 14 59"
+       ]
+      },
+      {
+       "caption": "Back up over the join",
+       "add": [
+        {
+         "rect": [
+          8,
+          38,
+          84,
+          12
+         ],
+         "paint": "Sunset orange",
+         "opacity": 0.9
+        }
+       ],
+       "arrows": [
+        "M 14 44 L 86 44"
+       ]
+      }
+     ]
+    },
+    "from": "side-to-side-blend"
+   }
+  },
+  "sun": {
+   "small-circles": {
+    "motion": "Small circles with the tip of the brush, from the middle of the sun outward to its round edge.",
+    "result": "A soft, round disc.",
+    "then": "Smooth it with the same circular motion until the edge is round.",
+    "mistakes": [
+     {
+      "mistake": "The sun's edge is too hard.",
+      "fix": "Soften it with lighter passes of the same circles. Smudging with a finger works too."
+     }
+    ],
+    "diagram": {
+     "title": "Little circles out to a round edge",
+     "stages": [
+      {
+       "caption": "Circles with the tip",
+       "add": [
+        {
+         "rect": [
+          4,
+          4,
+          92,
+          92
+         ],
+         "paint": "Golden ochre",
+         "done": true,
+         "round": 4
+        },
+        {
+         "circle": [
+          50,
+          56,
+          6
+         ],
+         "paint": "Pale sun yellow"
+        },
+        {
+         "circle": [
+          40,
+          56,
+          6
+         ],
+         "paint": "Pale sun yellow"
+        },
+        {
+         "circle": [
+          60,
+          56,
+          6
+         ],
+         "paint": "Pale sun yellow"
+        },
+        {
+         "circle": [
+          50,
+          46,
+          6
+         ],
+         "paint": "Pale sun yellow"
+        },
+        {
+         "circle": [
+          50,
+          66,
+          6
+         ],
+         "paint": "Pale sun yellow"
+        }
+       ],
+       "arrows": [
+        "M 18 32 Q 50 24 82 32"
+       ]
+      },
+      {
+       "caption": "Fill out to a round edge",
+       "add": [
+        {
+         "circle": [
+          50,
+          56,
+          22
+         ],
+         "paint": "Pale sun yellow"
+        }
+       ]
+      }
+     ]
+    },
+    "from": "small-circles"
+   }
+  },
+  "far-hills": {
+   "horizontal-strokes": {
+    "motion": "Keep the brush level and the strokes long, left and right, following the gentle slope of each hill.",
+    "result": "Flat, level purple bands that seem to stretch away, with slight streaks that follow the stroke.",
+    "then": "Keep the far hills smooth: no texture this far back.",
+    "diagram": {
+     "title": "Long and level",
+     "stages": [
+      {
+       "caption": "Left and right, level",
+       "add": [
+        {
+         "rect": [
+          8,
+          30,
+          84,
+          44
+         ],
+         "paint": "Lavender purple"
+        }
+       ],
+       "arrows": [
+        "M 14 40 L 86 40",
+        "M 86 62 L 14 62"
+       ]
+      },
+      {
+       "caption": "A few darker streaks left in",
+       "add": [
+        {
+         "line": "M 16 48 l 30 0",
+         "paint": "#4a3d8c",
+         "width": 2
+        },
+        {
+         "line": "M 52 56 l 28 0",
+         "paint": "#4a3d8c",
+         "width": 2
+        },
+        {
+         "line": "M 22 66 l 24 0",
+         "paint": "#4a3d8c",
+         "width": 2
+        }
+       ]
+      }
+     ]
+    },
+    "from": "horizontal-strokes"
+   }
+  },
+  "fields-front": {
+   "dry-brush": {
+    "motion": "Light pressure, skimming over the golden field.",
+    "result": "Feathery, broken olive marks that catch the canvas texture, with the gold showing through. Never a solid area.",
+    "then": "Build up the shaded slopes in several light passes.",
+    "mistakes": [
+     {
+      "mistake": "The olive went on solid.",
+      "why": "The brush was too loaded.",
+      "fix": "Let it dry, then dry-brush golden ochre back over part of it."
+     }
+    ],
+    "diagram": {
+     "title": "Skim, with almost no paint",
+     "stages": [
+      {
+       "caption": "The golden field, dry",
+       "add": [
+        {
+         "rect": [
+          10,
+          30,
+          80,
+          40
+         ],
+         "paint": "Golden ochre"
+        }
+       ]
+      },
+      {
+       "caption": "Broken olive strokes over it",
+       "add": [
+        {
+         "line": "M 14 38 l 22 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 42 36 l 14 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 62 39 l 20 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 20 46 l 12 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 38 47 l 26 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 70 48 l 12 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 14 56 l 18 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 40 58 l 12 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 58 57 l 24 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 26 64 l 20 0",
+         "paint": "Olive ochre",
+         "width": 2
+        },
+        {
+         "line": "M 54 65 l 14 0",
+         "paint": "Olive ochre",
+         "width": 2
+        }
+       ],
+       "arrows": [
+        "M 14 22 L 84 22"
+       ]
+      }
+     ]
+    },
+    "from": "dry-brush"
+   }
+  },
+  "bushes-dark": {
+   "dabbing": {
+    "motion": "Tap with the tip of the brush along each bush. The more you tap one spot, the more solid it gets.",
+    "result": "Dappled clumps of bush that get more solid the more you tap.",
+    "then": "Tap the lighter greens on the sunlit tops, leaving the darker taps showing underneath.",
+    "mistakes": [
+     {
+      "mistake": "Blobs instead of leafy dots.",
+      "why": "The brush is too wet or holds too much paint.",
+      "fix": "Wipe most of the paint off on a paper towel and tap again."
+     },
+     {
+      "mistake": "A bush went too solid.",
+      "fix": "Tap over it with a lighter or darker green to break it up."
+     }
+    ],
+    "diagram": {
+     "title": "Tap, don't stroke",
+     "stages": [
+      {
+       "caption": "Dark taps, gaps between",
+       "add": [
+        {
+         "circle": [
+          30,
+          40,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          44,
+          34,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          58,
+          42,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          38,
+          54,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          52,
+          56,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          66,
+          52,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          46,
+          68,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          60,
+          68,
+          5
+         ],
+         "paint": "Deep blue-green"
+        },
+        {
+         "circle": [
+          32,
+          66,
+          5
+         ],
+         "paint": "Deep blue-green"
+        }
+       ]
+      },
+      {
+       "caption": "Lighter taps on the sunlit top",
+       "add": [
+        {
+         "circle": [
+          46,
+          30,
+          4
+         ],
+         "paint": "Olive gold"
+        },
+        {
+         "circle": [
+          60,
+          36,
+          4
+         ],
+         "paint": "Olive gold"
+        },
+        {
+         "circle": [
+          68,
+          46,
+          4
+         ],
+         "paint": "Olive gold"
+        },
+        {
+         "circle": [
+          54,
+          48,
+          4
+         ],
+         "paint": "Olive gold"
+        }
+       ]
+      }
+     ]
+    },
+    "from": "dabbing"
+   }
+  },
+  "balloon-shape": {
+   "build-from-pieces": {
+    "motion": "Start with one tall oval in the middle of the balloon. Then add the rest in curved pieces on each side, like ( ), smaller toward the edges.",
+    "result": "A balloon made of curved segments, like its stripes, with small gaps or overlaps between them.",
+    "then": "Soften where the pieces meet so the balloon looks smooth; the stripes go on top next.",
+    "diagram": {
+     "title": "One tall oval, then the sides",
+     "stages": [
+      {
+       "caption": "A center oval",
+       "add": [
+        {
+         "ellipse": [
+          50,
+          55,
+          12,
+          21
+         ],
+         "paint": "Bright orange"
+        }
+       ],
+       "arrows": [
+        "M 50 36 Q 42 55 50 74"
+       ]
+      },
+      {
+       "caption": "A ( ) on each side, tucked behind",
+       "add": [
+        {
+         "ellipse": [
+          38,
+          57,
+          12,
+          19
+         ],
+         "paint": "Bright orange",
+         "behind": true
+        },
+        {
+         "ellipse": [
+          62,
+          57,
+          12,
+          19
+         ],
+         "paint": "Bright orange",
+         "behind": true
+        }
+       ]
+      },
+      {
+       "caption": "Smaller ones at the edges",
+       "add": [
+        {
+         "ellipse": [
+          27,
+          59,
+          9,
+          16
+         ],
+         "paint": "Bright orange",
+         "behind": true
+        },
+        {
+         "ellipse": [
+          73,
+          59,
+          9,
+          16
+         ],
+         "paint": "Bright orange",
+         "behind": true
+        }
+       ]
+      }
+     ]
+    },
+    "from": "build-from-pieces"
+   }
+  },
+  "balloon-blue": {
+   "curved-strokes": {
+    "motion": "Bend every stroke with the balloon: from the top of the balloon down along its curve to the narrow bottom.",
+    "result": "Stripes that bend with the balloon, which is what makes it look round.",
+    "then": "Use the darker colors along the shaded bottom and the lighter one on the side facing the sun, both following the curve.",
+    "diagram": {
+     "title": "Stripes that wrap the balloon",
+     "stages": [
+      {
+       "caption": "The orange balloon",
+       "add": [
+        {
+         "circle": [
+          50,
+          52,
+          30
+         ],
+         "paint": "Bright orange"
+        }
+       ]
+      },
+      {
+       "caption": "Curved stripes down its sides",
+       "add": [
+        {
+         "line": "M 40 28 Q 30 52 40 76",
+         "paint": "Balloon blue",
+         "width": 2.4
+        },
+        {
+         "line": "M 52 24 Q 46 52 52 80",
+         "paint": "Balloon blue",
+         "width": 2.4
+        },
+        {
+         "line": "M 64 28 Q 62 52 64 76",
+         "paint": "Balloon blue",
+         "width": 2.4
+        }
+       ],
+       "arrows": [
+        "M 30 30 Q 20 52 30 74"
+       ]
+      }
+     ]
+    },
+    "from": "curved-strokes"
+   }
+  },
+  "lavender-soil": {
+   "toward-vanishing-point": {
+    "motion": "Mark one dot where the middle paths meet the fields. Draw three to five faint chalk lines fanning out from it to the bottom edge. Pull each path's strokes along its line, wide in front and thin near the dot.",
+    "result": "Soil paths that narrow and bunch together toward one point, which is what makes the lavender field lie down and recede.",
+    "then": "Check a few paths with the brush handle held from the dot.",
+    "mistakes": [
+     {
+      "mistake": "The soil paths run parallel or cross each other.",
+      "fix": "Mark the dot and the fan of lines first. It takes a minute."
+     }
+    ],
+    "diagram": {
+     "title": "Every path aims at one dot",
+     "stages": [
+      {
+       "caption": "A dot where the paths meet, faint lines from it",
+       "add": [
+        {
+         "line": "M 6 30 L 94 30",
+         "paint": "#8a8a8a",
+         "width": 0.8
+        },
+        {
+         "circle": [
+          50,
+          30,
+          2.4
+         ],
+         "paint": "#333333"
+        },
+        {
+         "line": "M 50 30 L 6 96",
+         "paint": "#9a9a9a",
+         "width": 0.8
+        },
+        {
+         "line": "M 50 30 L 28 96",
+         "paint": "#9a9a9a",
+         "width": 0.8
+        },
+        {
+         "line": "M 50 30 L 50 96",
+         "paint": "#9a9a9a",
+         "width": 0.8
+        },
+        {
+         "line": "M 50 30 L 72 96",
+         "paint": "#9a9a9a",
+         "width": 0.8
+        },
+        {
+         "line": "M 50 30 L 94 96",
+         "paint": "#9a9a9a",
+         "width": 0.8
+        }
+       ]
+      },
+      {
+       "caption": "Paths wide in front, thin at the dot",
+       "add": [
+        {
+         "path": "M 50 30 L 8 96 L 24 96 Z",
+         "paint": "Rust red"
+        },
+        {
+         "path": "M 50 30 L 32 96 L 46 96 Z",
+         "paint": "Rust red"
+        },
+        {
+         "path": "M 50 30 L 54 96 L 68 96 Z",
+         "paint": "Rust red"
+        },
+        {
+         "path": "M 50 30 L 76 96 L 92 96 Z",
+         "paint": "Rust red"
+        }
+       ],
+       "arrows": [
+        "M 16 92 L 44 40"
+       ]
+      }
+     ]
+    },
+    "from": "toward-vanishing-point"
+   }
+  },
+  "lavender-dark": {
+   "stamp": {
+    "motion": "Stamp straight down with the end of the brush. Stamps side by side make a lavender row.",
+    "result": "A short, blunt block of purple; a strip of them makes a row of lavender.",
+    "then": "Stamp the lilac over the same row without covering all of it. Wipe the brush, don't rinse it, between the purple and the lilac.",
+    "mistakes": [
+     {
+      "mistake": "The lilac covered all of the purple.",
+      "fix": "Leave the purple and violet showing. Light over dark is what gives each row depth."
+     }
+    ],
+    "diagram": {
+     "title": "A row of lavender stamps",
+     "stages": [
+      {
+       "caption": "Purple stamps in a row",
+       "add": [
+        {
+         "rect": [
+          14,
+          44,
+          9,
+          16
+         ],
+         "paint": "Lavender purple"
+        },
+        {
+         "rect": [
+          26,
+          44,
+          9,
+          16
+         ],
+         "paint": "Lavender purple"
+        },
+        {
+         "rect": [
+          38,
+          44,
+          9,
+          16
+         ],
+         "paint": "Lavender purple"
+        },
+        {
+         "rect": [
+          50,
+          44,
+          9,
+          16
+         ],
+         "paint": "Lavender purple"
+        },
+        {
+         "rect": [
+          62,
+          44,
+          9,
+          16
+         ],
+         "paint": "Lavender purple"
+        },
+        {
+         "rect": [
+          74,
+          44,
+          9,
+          16
+         ],
+         "paint": "Lavender purple"
+        }
+       ],
+       "arrows": [
+        "M 18 28 L 18 42"
+       ]
+      },
+      {
+       "caption": "Lilac stamps over part of them",
+       "add": [
+        {
+         "rect": [
+          16,
+          42,
+          7,
+          9
+         ],
+         "paint": "Lilac"
+        },
+        {
+         "rect": [
+          30,
+          42,
+          7,
+          9
+         ],
+         "paint": "Lilac"
+        },
+        {
+         "rect": [
+          41,
+          42,
+          7,
+          9
+         ],
+         "paint": "Lilac"
+        },
+        {
+         "rect": [
+          55,
+          42,
+          7,
+          9
+         ],
+         "paint": "Lilac"
+        },
+        {
+         "rect": [
+          65,
+          42,
+          7,
+          9
+         ],
+         "paint": "Lilac"
+        },
+        {
+         "rect": [
+          77,
+          42,
+          7,
+          9
+         ],
+         "paint": "Lilac"
+        }
+       ]
+      }
+     ]
+    },
+    "from": "stamp"
+   }
+  }
+ },
+ "steps": [
+  {
+   "stage_id": "sky-blend",
+   "lines": [
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 5 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom, under where the rolling fields and the golden hill, and the bushes and tree lines will go.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, top to bottom: Soft lavender blue, Golden ochre, then Sunset orange.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Golden ochre for this step and steps 6, 16 and 19; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Sunset orange for this step and step 4; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat. Load: Creamy paint. An even coat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave smooth bands of color, with a soft join where two wet colors meet.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Let it dry, then blend a new thin layer on top.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Blend the sunset sky"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Blends the sunset sky from lavender blue at the top through ochre to orange.",
+   "tip": "The light in this lesson is the low setting sun on the far hills, its middle about 6 3/4 in from the left edge; every later highlight faces it. Keep the blue to a band along the top edge and let the ochre glow brightest around where the sun will go, as the after picture shows. The after picture also has a thin orange line below the sky and a few golden cloud patches; paint them as it shows them, or let later steps cover them."
+  },
+  {
+   "stage_id": "sun",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush fully first: this is the lightest paint yet.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 1/2 in from the top edge, and its left side is about 6 1/2 in from the left edge; it's about 3/4 in wide and 3/4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale sun yellow.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Small circles with the tip of the brush make a bumpy edge. Around a bright spot, circular strokes move outward from it.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a bumpy, soft edge.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The edge is too hard. Fix: soften it with lighter passes. Smudging with a finger works too.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the sun"
+    }
+   ],
+   "stroke_cards": [
+    "small-circles"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Paints the small pale yellow sun low in the sunset sky.",
+   "tip": "The sun is a small soft disc, about 3/4 in wide, with its middle about 6 3/4 in from the left edge and about 5 in from the top edge. Paint the disc first, then a faint ring of glow around it with lighter circles, as the after picture shows.",
+   "paint_notes": [
+    "Pale sun yellow is see-through over the orange sky: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "clouds-base",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 4 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Coral pink.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Small circles with the tip of the brush make a bumpy edge. Around a bright spot, circular strokes move outward from it.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat coral cloud shapes, with the golden patches and blue gaps still showing.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Painting over the golden cloud patches. Fix: work around them with the tip of the brush, so they show as in the after picture.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Lay in the coral cloud shapes"
+    }
+   ],
+   "stroke_cards": [
+    "small-circles"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Blocks in the coral pink cloud shapes across the upper sky.",
+   "tip": "Most of the coral goes in the right half of the sunset clouds, and it stops above the sun. Paint around the golden cloud patches and the blue sky gaps so they stay showing, as the after picture shows. These flat shapes are only a base: step 4 paints over most of them."
+  },
+  {
+   "stage_id": "clouds-mid",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset clouds and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 4 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Red orange, then Sunset orange. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Small circles with the tip of the brush make a bumpy edge. Around a bright spot, circular strokes move outward from it.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a bumpy, soft edge.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Only a little of what step 3 painted stays showing, where the after picture has it.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The edge is too hard. Fix: soften it with lighter passes. Smudging with a finger works too.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Light the clouds with red orange"
+    }
+   ],
+   "stroke_cards": [
+    "small-circles"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Models the clouds in red orange and sunset orange, their sunward edges lit.",
+   "tip": "The sun lights the clouds' lower edges: put the Red orange in the upper, shadowed parts of each cloud first, then the Sunset orange along the lower edges that face the sun. Most of this goes in the right half of the sunset clouds, where the biggest cloud is about 3 3/4 in wide with its left side about 12 1/4 in from the left edge. The after picture covers nearly all of step 3's cloud shapes, so let the new colors replace them."
+  },
+  {
+   "stage_id": "far-hills",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 1/2 in from the top edge, and its left side is at the left edge; it's about 13 1/2 in wide and 2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom and right side, under where the rolling fields and the golden hill, and the bushes and tree lines will go.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky and the sunset clouds, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Lavender purple.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Lavender purple for this step and step 22; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Lay in the far purple hills"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Paint the far purple hills as two soft peaks with the sun sitting in the dip between them.",
+   "tip": "The light comes from the low sun sitting on these hills, so keep the hill tops that face it soft against the glowing sky. Make two hills with the sun left showing in the gap between them, as the Where picture shows. Lay the hill tops first, then pull the same paint down in level strokes under the hill tops; the after picture carries this paint to the right edge of the canvas too.",
+   "paint_notes": [
+    "Lavender purple is see-through over the orange of the sunset sky: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "fields-base",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far purple hills and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 5 1/2 in from the top edge and its bottom is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom, under where the lavender rows and the tree will go.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky and the far purple hills, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Golden ochre.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Lay in the golden fields"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Cover the lower land with a flat coat of Golden ochre for the fields and golden hill.",
+   "tip": "Its top is about 5 1/4 in from the top edge and the band reaches the left and right edges of the canvas. Let the top edge of the golden fields climb into the golden hill and stay ragged and bumpy where the after picture has it, since the bushes will sit along that edge. Leave the tops of the far purple hills and the sun showing above the golden fields.",
+   "paint_notes": [
+    "Golden ochre is see-through over the Lavender purple of the far purple hills: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "fields-front",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the rolling fields and the golden hill, and the far purple hills dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 5 1/2 in from the top edge and its bottom is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom, under where the lavender rows will go.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Olive ochre.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 6 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Darken the front of the fields"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dry-brush Olive ochre streaks to shade the fields and the slope of the golden hill.",
+   "tip": "The golden hill faces the low sun, so keep its upper slope the plain Golden ochre and put the darker streaks lower. Most of what this step adds is in the bottom half of the rolling fields and the golden hill: a rougher, darker band across the front, and streaks on the slopes as the Where picture shows. On the golden hill, let the strokes run along its slope, rising toward the right edge of the canvas."
+  },
+  {
+   "stage_id": "bushes-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the rolling fields and the golden hill, and the far purple hills dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 5 1/2 in from the top edge and its bottom is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep blue-green.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Deep blue-green for this step and step 17; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dark patches with bumpy, dotted edges that get more solid the more you tap, until they look like the after picture.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the dark bushes"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Tap in the dark Deep blue-green shapes of the bushes and tree lines across the fields.",
+   "tip": "Block in two dark masses: one about 9 3/4 in wide whose left side is at the left edge of the canvas, and one about 8 3/4 in wide whose left side is about 7 1/4 in from the left edge, along the bottom of the golden hill. Tap the outlines first so the tops stay bumpy like tree lines, then fill them in. Leave the golden bands of the fields and the top of the golden hill showing between them, as the after picture has it."
+  },
+  {
+   "stage_id": "bushes-mid",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the bushes and tree lines, and the rolling fields and the golden hill dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 5 1/2 in from the top edge and its bottom is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Dark olive green.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Dark olive green for this step and step 18; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 8 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the olive middle of the bushes"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dab Dark olive green clumps over the dark bushes to give them rounded shapes.",
+   "tip": "Most of what this step adds is in the bottom half of the bushes and tree lines. Dab small rounded clumps on the upper part of each dark bush, where the low sun reaches, and keep the Deep blue-green showing beneath and between them as shadow."
+  },
+  {
+   "stage_id": "bushes-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the bushes and tree lines, and the rolling fields and the golden hill dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 5 1/2 in from the top edge and its bottom is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Olive gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 8 and 9 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the sunlit bush tops"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Tap Olive gold on the sunlit tops of the bush clumps.",
+   "tip": "The light comes from the low sun, so touch only the tops of the bush clumps and the sides that face it, as the after picture shows. Keep the dabs small and few; the Dark olive green and Deep blue-green should still show under each touch. In the after picture these tops read as a soft, warm green rather than bright gold, so don't press hard or build them up."
+  },
+  {
+   "stage_id": "balloon-shape",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 3 in wide and 3 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Bright orange.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the round top as one big oval. Then curve both sides in toward the bottom to a narrow neck, and add a small square for the basket under it.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid orange balloon shape: a round top narrowing to a neck, with the small basket below.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Build the balloon's shape"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the balloon from simple pieces",
+    "paint": "Bright orange",
+    "stages": [
+     {
+      "caption": "A tall center oval",
+      "add": [
+       {
+        "ellipse": [
+         50,
+         40,
+         11,
+         30
+        ]
+       }
+      ],
+      "arrows": [
+       "M 50 12 Q 43 40 50 68"
+      ]
+     },
+     {
+      "caption": "A ( ) on each side, tucked behind",
+      "add": [
+       {
+        "ellipse": [
+         37,
+         38,
+         12,
+         27
+        ],
+        "behind": true
+       },
+       {
+        "ellipse": [
+         63,
+         38,
+         12,
+         27
+        ],
+        "behind": true
+       }
+      ]
+     },
+     {
+      "caption": "Smaller ones at the edges, then narrow the bottom",
+      "add": [
+       {
+        "ellipse": [
+         25,
+         34,
+         9,
+         21
+        ],
+        "behind": true
+       },
+       {
+        "ellipse": [
+         75,
+         34,
+         9,
+         21
+        ],
+        "behind": true
+       },
+       {
+        "path": "M 30 56 L 70 56 L 57 78 L 43 78 Z"
+       }
+      ]
+     },
+     {
+      "caption": "Ropes and a small basket below",
+      "add": [
+       {
+        "line": "M 44 78 L 46 86",
+        "width": 1
+       },
+       {
+        "line": "M 56 78 L 54 86",
+        "width": 1
+       },
+       {
+        "rect": [
+         44,
+         86,
+         12,
+         9
+        ],
+        "round": 1
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Block in the whole balloon in one flat orange: round top, narrow neck, small basket.",
+   "tip": "The balloon is taller than wide: about 2 3/4 in wide and 3 1/2 in tall, with its top about 1/2 in from the top edge and its middle about 3 3/4 in from the left edge. Paint the round top first, then taper it down to the neck, and dab the little basket just under the neck as the Where picture shows. Fill it solid so no sky shows through.",
+   "paint_notes": [
+    "Bright orange can let the sky show through, most where it covers the blue at the top of the balloon: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "balloon-blue",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the striped balloon and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 2 1/2 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Balloon blue.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Pull each stripe from the top of the balloon down toward the neck, bending it with the balloon's round side; the stripe nearest the edge bends the most.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 11 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the blue stripes"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Paint the blue stripes down the balloon, curving with its round top.",
+   "tip": "Run each stripe from the top of the balloon down toward the neck, bowing outward with the curve."
+  },
+  {
+   "stage_id": "balloon-teal",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the striped balloon and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 3 in from the left edge; it's about 2 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Slate teal.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Pull the stripe from the top of the balloon down toward the neck, bending it with the balloon's round side.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 11 and 12 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the teal stripes"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Add the teal stripe on the right side of the balloon.",
+   "tip": "All of it is on the right side of the balloon: one curved stripe between the orange, as the after picture shows. Pull it from the top of the balloon down toward the neck, bowing it out with the balloon's right side."
+  },
+  {
+   "stage_id": "balloon-red",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the striped balloon and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 3 in wide and 3 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Rust red.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Rust red for this step and step 21; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Pull each stripe from the top of the balloon down toward the neck, bending it with the balloon's round side.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 11, 12 and 13 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the red stripes"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Add the thin red stripes beside the blue ones.",
+   "tip": "Most of it is on the left side of the balloon: narrow stripes laid next to the Balloon blue stripes, where the after picture has them. Keep them thinner than the blue and pull each one from the top of the balloon down toward the neck, curving with the shape."
+  },
+  {
+   "stage_id": "balloon-shade",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the striped balloon and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 3 in from the left edge; it's about 1 1/4 in wide and 3 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Dark maroon.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Pull thin lines down the seams between the stripes, bending them with the balloon's round side, then dab the neck and basket dark.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 11, 12, 13 and 14 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Shade the balloon's dark side"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Darken the neck, the basket, and the seams between the stripes.",
+   "tip": "Most of it is in the bottom half of the balloon: darken the narrow neck and the basket, as the Where picture shows. Then run thin maroon lines down the seams between the stripes, from the top of the balloon to the neck, so the stripes read as separate panels."
+  },
+  {
+   "stage_id": "balloon-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the striped balloon and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 3 in wide and 3 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Golden ochre.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Pull each yellow stripe from the top of the balloon down toward the neck, bending it with the balloon's round side.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 11, 12, 13, 14 and 15 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The object looks flat. One flat color all over, or the light spread over the whole shape. Fix: keep the light to the side facing it and leave the far side and the bottom dark.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Light the yellow stripes toward the sun"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Paint the golden yellow stripes, brightest on the side toward the sun.",
+   "tip": "The light comes from the low sun on the far hills, so it lands on the right side of the balloon: most of what this step adds is on the right side of the balloon and in the top half of the balloon. Lay the yellow stripes in the orange gaps between the colored stripes, as the after picture shows, and keep the left side of the balloon darker."
+  },
+  {
+   "stage_id": "tree-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far hills and fields, and the sunset sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is at the right edge; it's about 3 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep blue-green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush, going over each spot until it's solid. Keep tapping along the outer edge so it stays bumpy, not smooth.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid dark shape: a round, bumpy canopy on a short trunk.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the dark of the tree"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the tree: a Y-shaped trunk, then the crown",
+    "paint": "Deep blue-green",
+    "stages": [
+     {
+      "caption": "The trunk splits into a Y",
+      "add": [
+       {
+        "path": "M 46 96 L 56 96 L 54 74 L 66 60 L 62 57 L 51 67 L 41 56 L 37 59 L 47 74 Z"
+       }
+      ],
+      "arrows": [
+       "M 51 96 L 51 72"
+      ]
+     },
+     {
+      "caption": "One big rounded crown over the Y",
+      "add": [
+       {
+        "ellipse": [
+         51,
+         38,
+         40,
+         23
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Bumpy clumps around its edge",
+      "add": [
+       {
+        "circle": [
+         17,
+         42,
+         10
+        ]
+       },
+       {
+        "circle": [
+         28,
+         24,
+         12
+        ]
+       },
+       {
+        "circle": [
+         50,
+         17,
+         13
+        ]
+       },
+       {
+        "circle": [
+         72,
+         23,
+         12
+        ]
+       },
+       {
+        "circle": [
+         86,
+         40,
+         10
+        ]
+       },
+       {
+        "circle": [
+         74,
+         54,
+         9
+        ]
+       },
+       {
+        "circle": [
+         28,
+         55,
+         9
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Tap the tree's whole canopy and trunk in as one solid dark blue-green shape.",
+   "tip": "This step's area reaches the right edge of the canvas: its top is about 2 3/4 in from the top edge, its middle is about 14 in from the left edge, and it's about 3 3/4 in wide and 2 3/4 in tall. Fill it solid, canopy and short trunk together, and keep its outer edge bumpy like a cloud of leaves, as the after picture shows."
+  },
+  {
+   "stage_id": "tree-mid",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the tree, and the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is at the right edge; it's about 3 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Dark olive green, then Leaf olive. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave rounded clumps of leaves with dark gaps between them.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 17 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the tree's middle leaves"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dab olive greens into the canopy as leaf clumps, leaving the dark between them.",
+   "tip": "The sun sits low on the far hills, so put most of the greens on the left side of the tree, the side facing it, and in its top half, and leave the rest of the canopy mostly dark, as the after picture shows. Dab Dark olive green clumps first, then Leaf olive on top of them. The after picture also warms the trunk to a brown, which this step's paints don't cover."
+  },
+  {
+   "stage_id": "tree-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the tree, and the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its right side is at the right edge; it's about 3 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Golden ochre.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 17 and 18 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Golden ochre is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the tree's sunlit leaves"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Tap Golden ochre on the sunlit leaf clumps on the left side of the tree.",
+   "tip": "The light comes from the sun on the far hills, so the Golden ochre goes almost all on the left side of the tree, the side facing it, and mostly in its top half. Tap it only on the tops of the leaf clumps, as the Where picture shows, and leave the right side of the tree in its greens."
+  },
+  {
+   "stage_id": "lavender-base",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep violet.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Cutting the background in around each flower. Painting around flowers leaves messy halos and gaps. Fix: paint the whole field first, let it dry, then paint the flowers over it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Lay in the deep violet field"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Cover the whole bottom of the canvas with flat Deep violet for the lavender field.",
+   "tip": "Its top is about 7 1/4 in from the top edge, a level line straight across that butts up against the rolling fields and the bushes, and it covers the gold band at the bottom of the rolling fields, as the after picture shows. Run every stroke left and right, all the way to the left, right and bottom edges, so no white canvas shows."
+  },
+  {
+   "stage_id": "lavender-soil",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lavender rows, and the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is about 2 1/2 in from the left edge; it's about 11 1/2 in wide and 4 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Rust red.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Mark one dot on the horizon. Draw three to five faint chalk or pencil lines fanning out from it. Pull each row's strokes along its line, wide in front and thin near the dot.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave bands that narrow and bunch together toward one point, which is what makes the ground lie down and recede.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 20 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Rows run parallel or cross each other. Fix: mark the dot and the fan of lines first. It takes a minute.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull in the rust soil between the rows"
+    }
+   ],
+   "stroke_cards": [
+    "toward-vanishing-point"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Pull rust red soil rows that fan out from one dot on the horizon.",
+   "tip": "Put the dot near the middle of the horizon: the middle rust row's middle is about 8 in from the left edge, and it's about 4 1/4 in tall, running from the bottom edge almost to the top of the lavender rows. The other rows fan out from the same dot, widest at the bottom edge and thin as a line near the top, with a few small rust flecks scattered between them as the after picture shows. Leave broad bands of Deep violet between the rows; the lavender goes there next."
+  },
+  {
+   "stage_id": "lavender-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lavender rows, and the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Lavender purple.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #12 bright. Load: Creamy paint.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp straight down with the end of the brush. Stamps side by side make a row.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a short, blunt block of color.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 20 and 21 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The same size and spacing everywhere. It reads as wallpaper, with no depth. Fix: smaller, tighter, and lighter at the back; bigger and wider-spaced in front.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#12 bright",
+     "use": "Stamp the purple of the blooms"
+    }
+   ],
+   "stroke_cards": [
+    "stamp"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Stamp Lavender purple blooms along each row, following the soil lines.",
+   "tip": "Work back to front: small, tight stamps near the top of the lavender rows, bigger and looser ones toward the bottom edge. Follow each row along the Rust red soil lines toward the dot, and keep the Rust red paths clear. Leave Deep violet showing between the stamps and at the bottom of each row, as the after picture shows."
+  },
+  {
+   "stage_id": "lavender-mid",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lavender rows, and the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 4 1/2 in from the bottom edge and its bottom is about 3/4 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Lilac.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Lilac for this step and step 24; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #12 bright. Load: Creamy paint.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp straight down with the end of the brush. Stamps side by side make a row.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a short, blunt block of color.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 20, 21 and 22 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Lilac is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Covering all of the dark. The rows go flat, one value, with no depth. Fix: leave the dark showing at the bottom of each row and between the marks.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#12 bright",
+     "use": "Stamp the lilac over the rows"
+    }
+   ],
+   "stroke_cards": [
+    "stamp"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Stamp Lilac on the tops of the lavender rows, leaving the darker purple below.",
+   "tip": "Keep the Lilac to the tops of the rows and the side of each row that faces the low sun; most of it goes in the top half of the lavender rows. Stamp it over the Lavender purple, not over the Rust red paths, and leave Lavender purple and Deep violet showing under each Lilac stamp."
+  },
+  {
+   "stage_id": "lavender-tips",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lavender rows, and the far hills and fields dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 4 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Lilac.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #12 bright. Load: Creamy paint.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp straight down with the end of the brush. Stamps side by side make a row.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a short, blunt block of color.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 20, 21, 22 and 23 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The light pass covered the dark. Fix: leave dark showing. Light over dark is what gives the row depth.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#12 bright",
+     "use": "Tip the front rows with light"
+    }
+   ],
+   "stroke_cards": [
+    "stamp"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dab bigger Lilac tips on the front rows near the bottom edge.",
+   "tip": "Most of this goes in the bottom half of the lavender rows, on the front rows nearest the bottom edge; the back rows stay as step 23 left them. Make these dabs bigger than the step 23 stamps and keep them on the tops of the rows and the side facing the sun. The change is small: compare closely with the after picture and stop before the front rows turn one flat light color.",
+   "paint_notes": [
+    "Lilac is see-through over the dark purple: dab it twice where you want a bright tip, letting the first coat dry."
+   ]
+  }
+ ]
+}

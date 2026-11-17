@@ -1,0 +1,803 @@
+{
+ "packet": "p04",
+ "painting": "A sunset landscape: striped hot-air balloon over far purple hills, golden fields with bushes, a tree on the right, and lavender rows running to a vanishing point.",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "C",
+     "severity": "major",
+     "sees": "Line 1 puts the sky's bottom about 5 1/2 in from the top edge; the painted sky stops about 6 3/4 in down (measured)",
+     "where": "line 1 vs AFTER picture, sky bottom edge y about 56% (6 3/4 in from top)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "A thin, hard, wavy orange line floats on bare white canvas below the sky; nothing a brush stroke for the sky makes, and it stays visible through every step until the lavender field covers it",
+     "where": "AFTER picture, x 15-100%, y about 62-63% (about 7 1/2 in from the top, from 2 1/2 in to the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "A faint ghost of the sun disc already shows in the sky before the sun step",
+     "where": "AFTER picture, x 38-45%, y 38-42% (about 6 1/4 in from left, 5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "minor",
+     "sees": "A blue-violet blob sits at the right edge of the orange sky, a ghost of the far hills painted in step 5",
+     "where": "AFTER picture, x 97-100%, y 37-43% (right edge, about 4 1/2-5 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "minor",
+     "sees": "A faint repeating diamond/rhombus pattern runs through the orange lower sky, a tiled texture no brush makes",
+     "where": "AFTER picture, x 0-100%, y 30-55% (about 3 1/2-6 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "E",
+     "severity": "major",
+     "sees": "Vague: the tip says to paint the golden cloud patches and the thin orange line 'as it shows them, or let later steps cover them', with no paint, brush or stroke for them",
+     "where": "Tip",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "E",
+     "severity": "minor",
+     "sees": "Missing: the AFTER picture adds red-orange cloud streaks around where the sun goes and along the horizon; no line asks for them",
+     "where": "AFTER picture, x 20-100%, y 26-42% (about 3 1/4-5 in down); words lines 1-10",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "E",
+     "severity": "minor",
+     "sees": "Contradiction: line 7 says start with the darkest colour then pick up the 'next lighter' one, but the order in line 3 puts Sunset orange (darker) below Golden ochre (lighter)",
+     "where": "lines 3 and 7",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "F",
+     "severity": "major",
+     "sees": "Wet-blending Soft lavender blue straight into Golden ochre (blue into yellow) makes a green-grey mud at the join; the picture's join is a clean lavender-to-orange and nothing tells the beginner how to avoid the green",
+     "where": "lines 3 and 7; AFTER picture y 12-20%",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' is used as if the beginner knows what a creamy load is, with nothing on the step explaining it",
+     "where": "line 6",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun",
+   "faults": [
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin orange line still floating on bare canvas below the sky",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Blue-violet ghost blob of the far hills still at the right edge of the sky",
+     "where": "AFTER picture, x 97-100%, y 37-43%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Faint tiled diamond pattern still in the orange lower sky",
+     "where": "AFTER picture, y 30-55%",
+     "same_as": "f5"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "clouds-base",
+   "faults": [
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Blue-violet ghost blob of the far hills still at the right edge of the sky",
+     "where": "AFTER picture, x 97-100%, y 37-43%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Faint tiled diamond pattern still in the orange lower sky",
+     "where": "AFTER picture, y 30-55%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin orange line still floating on bare canvas below the sky",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The coral fill has a hard, straight-edged rectangular block with square corners; flat, untextured, nothing a brush makes",
+     "where": "AFTER picture, x 15-23%, y 12-16% (about 2 1/4-3 3/4 in from left, 1 1/2-2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "A thin orange outline of a cloud (a drawn ring) sits inside the coral, a ghost of the later cloud shape that no line asks for",
+     "where": "AFTER picture, x 76-100%, y 22-37% (about 12 1/4 in to right edge, 2 1/2-4 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "major",
+     "sees": "New golden cloud patches appear that were not there after step 2, in a step whose only paint is Coral pink",
+     "where": "AFTER picture, e.g. x 33-42% y 11-22%, x 58-67% y 11-25%, x 83-92% y 0-22%",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "E",
+     "severity": "major",
+     "sees": "Wrong result: 'small circles with the tip... bumpy edge; around a bright spot, circular strokes move outward' cannot make the flat, hard-edged coral mass shown (and there is no bright spot in this area)",
+     "where": "lines 6-7 vs AFTER picture",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "D",
+     "severity": "minor",
+     "sees": "Coral pink's recipe (3 red, 2 white, 1 ultramarine) mixes a cool dusty mauve, not the warm coral swatch #d75b61",
+     "where": "paints: Coral pink",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "clouds-mid",
+   "faults": [
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Blue-violet ghost blob of the far hills still at the right edge of the sky",
+     "where": "AFTER picture, x 97-100%, y 37-43%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Faint tiled diamond pattern still in the orange lower sky",
+     "where": "AFTER picture, y 30-55%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin orange line still floating on bare canvas below the sky",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the flat coral block-in becomes fully modelled, textured sunset clouds in many values (deep red, orange, gold, mauve) across the whole sky in one step",
+     "where": "AFTER picture, x 0-100%, y 0-38%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "far-hills",
+   "faults": [
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin orange line still floating on bare canvas below the sky",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f27",
+     "class": "C",
+     "severity": "major",
+     "sees": "Line 3 says the hills are about 13 1/2 in wide from the left edge; the picture (and the tip) carries them to the right edge, 16 in",
+     "where": "line 3 vs AFTER picture x 0-100%",
+     "same_as": null
+    },
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The lower band under the hills is filled with a mirrored, wavy tiled pattern, nothing a brush makes",
+     "where": "AFTER picture, x 0-100%, y 50-58% (about 6-7 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f29",
+     "class": "B",
+     "severity": "minor",
+     "sees": "Stray orange specks and short curved orange lines float inside the purple at the right",
+     "where": "AFTER picture, x 85-92%, y 41-45% (about 13 1/2-14 3/4 in from left, 5-5 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f30",
+     "class": "F",
+     "severity": "minor",
+     "sees": "Flat: one paint for hills that the picture shows with lit tops, shadowed slopes and a darker lower ridge, with no word on building those values",
+     "where": "line 6 vs AFTER picture y 36-58%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "fields-base",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "minor",
+     "sees": "The stray orange specks at the right of the hills still show above the gold",
+     "where": "AFTER picture, x 85-92%, y 41-45%",
+     "same_as": "f29"
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "major",
+     "sees": "The stray line from step 1 shows through the opaque gold as a dark wavy line",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "fields-front",
+   "faults": [
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "major",
+     "sees": "The stray line from step 1 shows through the opaque gold as a dark wavy line",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "A band along the front of the fields is filled with a mirrored, kaleidoscope-like tiled pattern, nothing a brush makes; it stays until the lavender field covers it",
+     "where": "AFTER picture, x 0-100%, y 62-70% (about 7 1/2-8 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "bushes-dark",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f59",
+     "class": "E",
+     "severity": "major",
+     "sees": "Wrong result: 'tap with the tip... dark patches with bumpy, dotted edges' for what the picture shows as flat, solid, hard-edged dark silhouettes",
+     "where": "lines 7-8 vs AFTER picture x 0-100%, y 45-65%",
+     "same_as": null
+    },
+    {
+     "id": "f60",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' is used as if the beginner knows how much paint that is; the step only says no water",
+     "where": "line 6",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "bushes-mid",
+   "faults": [
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f61",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' used again with no explanation of how much paint",
+     "where": "load line",
+     "same_as": "f60"
+    },
+    {
+     "id": "f69",
+     "class": "E",
+     "severity": "minor",
+     "sees": "Contradiction in the tip: 'most of what this step adds is in the bottom half' of the bushes, then 'dab... on the upper part of each dark bush'",
+     "where": "Tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "bushes-light",
+   "faults": [
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f62",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' used again with no explanation of how much paint",
+     "where": "load line",
+     "same_as": "f60"
+    },
+    {
+     "id": "f70",
+     "class": "A",
+     "severity": "major",
+     "sees": "Things change with no instruction: large parts of the dark bush masses turn back into golden field and blue-grey distant tree line, though the step only dabs Olive gold bush tops",
+     "where": "AFTER picture, e.g. x 75-100% y 45-55% and x 0-25% y 44-48% (about 12-16 in from left, 5 1/2-6 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "balloon-shape",
+   "faults": [
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "balloon-blue",
+   "faults": [
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "balloon-teal",
+   "faults": [
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f46",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "balloon-red",
+   "faults": [
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f71",
+     "class": "D",
+     "severity": "major",
+     "sees": "Rust red (#bb5835, a brownish terracotta, the same paint later used for orange soil) is named, but the picture adds bright crimson-red stripes",
+     "where": "paints vs AFTER picture, balloon x 20-35%, y 5-40%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "balloon-shade",
+   "faults": [
+    {
+     "id": "f49",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f72",
+     "class": "E",
+     "severity": "minor",
+     "sees": "Missing: the basket's suspension ropes appear under the neck; no line asks for them",
+     "where": "AFTER picture, x 30-33%, y 24-28% (about 4 1/2 in from left, 3-3 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "balloon-light",
+   "faults": [
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f73",
+     "class": "D",
+     "severity": "major",
+     "sees": "Only Golden ochre is named, but about a third of what the picture adds is red and red-orange (stripes on the right turn red-orange)",
+     "where": "paints vs AFTER picture, balloon right side x 30-42%, y 5-40%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "tree-dark",
+   "faults": [
+    {
+     "id": "f53",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f63",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' used again with no explanation of how much paint",
+     "where": "load line",
+     "same_as": "f60"
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "tree-mid",
+   "faults": [
+    {
+     "id": "f55",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f64",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' used again with no explanation of how much paint",
+     "where": "load line",
+     "same_as": "f60"
+    },
+    {
+     "id": "f74",
+     "class": "A",
+     "severity": "major",
+     "sees": "The leaf clumps have yellow-orange halo outlines and sky-coloured holes, and eye-shaped light rings sit at the base of the canopy; outlines no brush makes",
+     "where": "AFTER picture, tree x 78-98%, y 23-46%; rings at x 82-92%, y 41-43%",
+     "same_as": null
+    },
+    {
+     "id": "f75",
+     "class": "D",
+     "severity": "minor",
+     "sees": "The trunk turns warm brown; no paint on the step makes it (the tip admits it)",
+     "where": "AFTER picture, trunk x 85-88%, y 41-46%; Tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "tree-light",
+   "faults": [
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "Tiled kaleidoscope pattern still in the band at the front of the fields",
+     "where": "AFTER picture, y 62-70%",
+     "same_as": "f34"
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "major",
+     "sees": "Stray thin line from step 1 still running across the front of the fields",
+     "where": "AFTER picture, y about 62-63%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f65",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' used again with no explanation of how much paint",
+     "where": "load line",
+     "same_as": "f60"
+    },
+    {
+     "id": "f76",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the half-done dark tree becomes a fully modelled tree, with every leaf clump lit and shaded, teal greens over the whole right side and dark branches, in one step",
+     "where": "AFTER picture, x 77-100%, y 22-46%",
+     "same_as": null
+    },
+    {
+     "id": "f77",
+     "class": "D",
+     "severity": "major",
+     "sees": "Only Golden ochre is named, but most of what the picture adds is near-black shadow, teal-green and olive-yellow; little is near the ochre swatch, and the right side gets new greens though the tip says leave it",
+     "where": "paints vs AFTER picture x 77-100%, y 22-46%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "lavender-base",
+   "faults": []
+  },
+  {
+   "n": 21,
+   "id": "lavender-soil",
+   "faults": []
+  },
+  {
+   "n": 22,
+   "id": "lavender-dark",
+   "faults": [
+    {
+     "id": "f66",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used again with no explanation",
+     "where": "load line",
+     "same_as": "f10"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "id": "lavender-mid",
+   "faults": [
+    {
+     "id": "f67",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used again with no explanation",
+     "where": "load line",
+     "same_as": "f10"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "id": "lavender-tips",
+   "faults": [
+    {
+     "id": "f68",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used again with no explanation",
+     "where": "load line",
+     "same_as": "f10"
+    },
+    {
+     "id": "f78",
+     "class": "D",
+     "severity": "major",
+     "sees": "Only Lilac is named, but most of what the picture adds is dark violet and brown stroke texture in the shadows between rows, not light tips",
+     "where": "paints vs AFTER picture, front rows x 0-100%, y 63-100%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 49,
+  "B": 2,
+  "C": 2,
+  "D": 6,
+  "E": 7,
+  "F": 12,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 13,
+  "B": 1,
+  "C": 2,
+  "D": 6,
+  "E": 7,
+  "F": 4,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  7,
+  3,
+  19
+ ],
+ "not_visible": {
+  "G": "The packet cannot show the lesson page layout, links, close-ups, paint maps and the 'Where'/'Result' pictures the words refer to, whether the lesson appears on the site, or version history; step numbering 1-24 is continuous and every step picture is present and changes.",
+  "H": "The packet cannot show diagrams, paint maps, render/run logs or checker output; no placeholders, internal ids or leaked tool notes appear in the words."
+ },
+ "summary": "The step pictures carry most of the faults: a stray line from step 1 and a tiled kaleidoscope band (from step 7) persist for many steps, and several steps jump or change unrelated areas (flat coral with a rectangular block and new gold patches in step 3, fully finished clouds in step 4, bushes repainted in step 10, a finished tree in step 19). Late steps often add colours they don't name (balloon reds, tree greens and shadows, lavender darks in step 24), and the step 1 sky has wrong placement and a blue-into-yellow wet blend; load words go unexplained throughout."
+}

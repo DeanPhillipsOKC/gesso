@@ -1,0 +1,25 @@
+{
+ "seed": 173,
+ "packets": {
+  "p01": {
+   "lesson": "highland-cow_skill_20261116-212627-facts",
+   "picture": "highland-cow",
+   "steps": 16
+  },
+  "p02": {
+   "lesson": "lake-cabin_skill_20261116-205703-facts",
+   "picture": "lake-cabin",
+   "steps": 23
+  },
+  "p03": {
+   "lesson": "chickadee_skill_20261116-203451-facts",
+   "picture": "chickadee",
+   "steps": 18
+  },
+  "p04": {
+   "lesson": "balloon-lavender_skill_20261116-203450-facts",
+   "picture": "balloon-lavender",
+   "steps": 24
+  }
+ }
+}

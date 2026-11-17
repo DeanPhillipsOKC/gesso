@@ -1,0 +1,545 @@
+{
+ "packet": "p03",
+ "painting": "A black-capped chickadee perched on an arching branch with four autumn leaves, against a misty orange-and-gray autumn woods with a low glowing sun",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "major",
+     "sees": "Ghost: the sun's pale disc with its circular brushwork already shows, though step 2 paints the sun",
+     "where": "AFTER, x 60-75%, y 3-23% (about 10-11 1/4 in from the left, 1-2 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "Ghost: hard-edged, ragged gray slivers stand where the far trunks go, before the trunk step",
+     "where": "AFTER, x 85-100%, y 0-75% (about 13 1/2-16 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "Not paint: the right third is a smooth airbrush-like blur with no brush marks, with a dark smudge in it",
+     "where": "AFTER, x 70-100%, y 15-70% (smudge at about 13 1/4 in from the left, 4 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "major",
+     "sees": "Ghost: jagged dabbed orange leaf clusters already cover the middle and left, the kind of mark step 4's tapping makes; side-to-side blending doesn't make them",
+     "where": "AFTER, x 0-75%, y 5-95%",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "E",
+     "severity": "major",
+     "sees": "Missing: faint gray trunks show on the left and at the bottom, and no line asks for them; the tip says trunks come in step 3, but step 3 paints only the two trunks at the right edge, so no step paints these",
+     "where": "AFTER, trunks at about 1 3/4 in, 4 in and 6 1/4 in from the left; tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun",
+   "faults": [
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "major",
+     "sees": "Gray trunk slivers still show before the trunk step",
+     "where": "AFTER, x 85-100%, y 0-75%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "major",
+     "sees": "Smooth blur with no brush marks still on the right third",
+     "where": "AFTER, x 70-100%, y 15-70%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "major",
+     "sees": "Dabbed foliage clusters still show before the foliage step",
+     "where": "AFTER, x 0-75%",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "trunks",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "B",
+     "severity": "major",
+     "sees": "The trunks' edges carry lumpy dark navy blobs and loose specks stuck to their sides, and they read solid, not skimmed",
+     "where": "AFTER, x 83-100%, y 0-55% (about 13 1/4-16 in from the left, top 6 1/2 in)",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "major",
+     "sees": "Smooth blur still shows between and beside the trunks",
+     "where": "AFTER, x 70-100%, y 15-70%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "Dabbed foliage clusters still show before the foliage step",
+     "where": "AFTER, x 0-75%",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "foliage",
+   "faults": [
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "Things change with no instruction: the step 3 trunks lose their navy lumps and change outline, and the blurred glow at the right is repainted, though the step only taps foliage",
+     "where": "AFTER vs BEFORE, x 80-100%, y 0-60%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "branch-dark",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Patches behind an object: lumps stick up from the top of the branch exactly where the bird's feet will stand, and stay there (lit pale) until the foot step",
+     "where": "AFTER, about 6 3/4 in and 8 1/4 in from the left, 6 3/4-7 in down",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "B",
+     "severity": "minor",
+     "sees": "The hanging stubs end in round knobs/blobs, not tapered stems",
+     "where": "AFTER, about 2 in from left 1 1/2 in down; 10 in from left 8 1/2 in down; 10 3/4 in from left 9 1/2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f15",
+     "class": "D",
+     "severity": "major",
+     "sees": "Bark brown's recipe is 1 red + 1 ultramarine + a touch of yellow, which mixes a dull purple, not the warm brown swatch #623b29",
+     "where": "paints, Bark brown",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "branch-light",
+   "faults": [
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the flat brown silhouette becomes fully modeled bark (dark streaks, cream highlights, many values along the whole trunk and branch) in one dry-brush step",
+     "where": "AFTER, trunk and branch, x 0-100%, y 0-95%",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "D",
+     "severity": "major",
+     "sees": "The step names only Warm rust-orange (an orange) but the picture adds pale cream/tan highlights and darker brown streaks; little of what it adds is orange",
+     "where": "AFTER, top of the branch and the trunk",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go, now lit pale",
+     "where": "AFTER, about 6 3/4 and 8 1/4 in from the left, 7 in down",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "leaves-block",
+   "faults": [
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER, about 6 3/4 and 8 1/4 in from the left, 7 in down",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the four flat leaves become fully finished leaves (veins, streaked yellow-to-red modeling, dark center veins) in one step",
+     "where": "AFTER, all four leaves",
+     "same_as": null
+    },
+    {
+     "id": "f21",
+     "class": "D",
+     "severity": "major",
+     "sees": "The step names only Warm gold (#eaa758, a muted pale gold) but the picture adds saturated yellow, deep red streaks and dark veins",
+     "where": "AFTER, all four leaves",
+     "same_as": null
+    },
+    {
+     "id": "f22",
+     "class": "E",
+     "severity": "major",
+     "sees": "Vague: the tip says the after picture adds a thin dark center vein down each leaf 'as it shows' with no paint, brush or how",
+     "where": "tip, last sentence",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER, about 6 3/4 and 8 1/4 in from the left, 7 in down",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "bird-block",
+   "faults": [
+    {
+     "id": "f24",
+     "class": "B",
+     "severity": "major",
+     "sees": "The bird's edge is ringed by a dashed line of dark and pale specks along the head and back, plus a notch at the bottom",
+     "where": "AFTER, outline from about 6 to 9 1/2 in from the left, 1 1/4-6 in down",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "E",
+     "severity": "minor",
+     "sees": "The tip says 'most of it on the right side of the chickadee' for the step that paints the whole chickadee; it can't be acted on",
+     "where": "tip, third sentence",
+     "same_as": null
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER, about 6 3/4 and 8 1/4 in from the left, 7 in down",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "bird-shade",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "C",
+     "severity": "major",
+     "sees": "Two lines give different sizes for one patch: line 2 says top 4 in, 4 1/2 in wide, left side 4 1/2 in; the tip says top about 5 in, 3 1/4 in wide; the picture's patch top is about 5 1/4 in and its left side about 5 1/4 in",
+     "where": "line 2 vs tip; AFTER, belly patch about 5 1/4-8 1/4 in from the left, 5 1/4-6 3/4 in down",
+     "same_as": null
+    },
+    {
+     "id": "f28",
+     "class": "B",
+     "severity": "major",
+     "sees": "Dashed speckled fringe along the bird's edge still shows",
+     "where": "AFTER, head/back outline",
+     "same_as": "f24"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER, about 6 3/4 and 8 1/4 in from the left, 7 in down",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "wing-block",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "B",
+     "severity": "major",
+     "sees": "Dashed speckled fringe along the bird's edge still shows",
+     "where": "AFTER, head/back outline",
+     "same_as": "f24"
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "minor",
+     "sees": "The wing's top right ends in a hooked bump like a small head, not a rounded wing",
+     "where": "AFTER, about 7-7 1/4 in from the left, 3 1/4-3 1/2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "wing-dark",
+   "faults": [
+    {
+     "id": "f30",
+     "class": "B",
+     "severity": "major",
+     "sees": "Dashed speckled fringe along the bird's edge still shows",
+     "where": "AFTER, head/back outline",
+     "same_as": "f24"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "wing-light",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "major",
+     "sees": "Dashed speckled fringe along the bird's edge still shows",
+     "where": "AFTER, head/back outline",
+     "same_as": "f24"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the flat wing with a few stripes becomes fully finished layered feathers, the step 12 stripes repainted, in one dry-brush step",
+     "where": "AFTER, wing and tail, about 2 1/2-7 in from the left, 3-7 1/2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f38",
+     "class": "D",
+     "severity": "major",
+     "sees": "The step names Pale wing gray (#b5a9a5, a light warm gray) but most of what the picture adds is a darker blue-gray",
+     "where": "AFTER, wing and tail",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "bird-feathers",
+   "faults": [
+    {
+     "id": "f32",
+     "class": "B",
+     "severity": "major",
+     "sees": "Dashed speckled fringe along the bird's edge still shows",
+     "where": "AFTER, head/back outline",
+     "same_as": "f24"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the flat gold body and belly patch become a fully finished, densely feathered body with many warm tones in one step",
+     "where": "AFTER, body, about 4 1/2-9 1/2 in from the left, 2-6 1/2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f41",
+     "class": "E",
+     "severity": "major",
+     "sees": "Vague: the tip says the after picture also softens the belly into fine feathery strokes, with no paint, brush or how",
+     "where": "tip, last sentence",
+     "same_as": null
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "cap",
+   "faults": [
+    {
+     "id": "f43",
+     "class": "E",
+     "severity": "major",
+     "sees": "Contradiction: the tip says the cap and bib cover the whole head for now with the cheek going over it next step, but the picture leaves the cheek Warm gold, unpainted",
+     "where": "tip; AFTER, about 6 1/4-8 in from the left, 2 1/2-3 1/2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f44",
+     "class": "B",
+     "severity": "minor",
+     "sees": "A thin pale and blue hairline ring traces the unpainted cheek hole",
+     "where": "AFTER, about 6 1/4-8 in from the left, 2 3/4-3 1/4 in down",
+     "same_as": null
+    },
+    {
+     "id": "f45",
+     "class": "E",
+     "severity": "major",
+     "sees": "Vague: eye, light glint and gray beak are to be 'dabbed in where the after picture has them', with no paint (the beak is gray, not Soft black), no brush and no place",
+     "where": "tip, last sentence",
+     "same_as": null
+    },
+    {
+     "id": "f46",
+     "class": "F",
+     "severity": "minor",
+     "sees": "Too much: one step blocks in the cap, the bib, the eye, its glint and the beak, several kinds of moves",
+     "where": "step 15",
+     "same_as": null
+    },
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Lumps where the feet go",
+     "where": "AFTER",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "cheek",
+   "faults": [
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Pale lumps where the feet go, the last step before them",
+     "where": "AFTER, about 6 3/4 and 8 1/4 in from the left, 7 in down",
+     "same_as": "f13"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "feet-dark",
+   "faults": [
+    {
+     "id": "f49",
+     "class": "B",
+     "severity": "major",
+     "sees": "The legs are two flat, blobby mitten shapes with no toes, not the thin forked lines the step asks for",
+     "where": "AFTER, about 6 1/2-9 in from the left, 6 1/2-7 3/4 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "feet-light",
+   "faults": [
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: the flat leg blobs become fully modeled scaly legs and curled toes with highlights from 'a few short, thin lines'",
+     "where": "AFTER, about 6 1/2-8 3/4 in from the left, 6 1/2-7 3/4 in down",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 27,
+  "B": 11,
+  "C": 1,
+  "D": 4,
+  "E": 6,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 11,
+  "B": 6,
+  "C": 1,
+  "D": 4,
+  "E": 6,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  6,
+  8
+ ],
+ "not_visible": {
+  "G": "The packet can't show the lesson page layout, links, Where pictures, paint maps, close-ups, diagrams, the transfer outline, the site's lesson list or version history.",
+  "H": "The packet can't show how the run went, the diagrams' rendering, or whether checks caught problems; no tool notes or placeholders appear in the words."
+ },
+ "summary": "The early sky steps already show later work (sun, trunks, dabbed foliage) plus a filter-like blur, and several steps jump from a flat block-in to finished detail (bark, leaves, wing, body, feet) with colors the named paint can't make. Persistent picture defects (lumps where the feet go, a speckled fringe round the bird) repeat across many steps, and the words often defer to 'what the after picture shows' instead of naming paint and place."
+}

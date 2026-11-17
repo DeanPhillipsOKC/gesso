@@ -1,0 +1,9 @@
+[
+ {
+  "step": 12,
+  "id": "balloon-blue",
+  "field": "tip",
+  "sentence": "Most of it is on the left side of the balloon: one stripe hugs the left edge of the balloon and a second runs inside it, with only a short piece near the top, as the after picture shows.",
+  "why": "step 12 (balloon-blue), tip: \"inside it\" can't find 'it' on the sheet; sheet: nothing on the sheet"
+ }
+]
