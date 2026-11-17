@@ -4,12 +4,14 @@ The tests are in `spike/tests/` (`unittest`, no network, no API key, no model fi
 
 | Set | Command | When | Time on 4 cores |
 |---|---|---|---|
-| Quick | `python spike/tests/suite.py --quick` | after every change, while working | about 11 seconds |
-| Full | `python spike/tests/suite.py` | before opening or merging a pull request that changes code | about 1 1/2 minutes |
+| Quick | `python spike/tests/suite.py --quick` | after every code change, while working | about 11 seconds |
+| Full | `python spike/tests/suite.py` | before merging a pull request that changes code | about 1 1/2 minutes |
 
-A pull request that changes no code (only docs, lesson runs, `site/`, or the lesson history; "code" as in
-`docs/decisions.md`; results under `spike/experiments/bench/` such as scores, fault counts and frozen pictures aren't
-code) runs the quick set instead of the full suite before it merges (owner's call, 2026-11-17).
+Run tests only when a change could cause a regression (owner's call, 2026-11-17). Code means program files: the
+Python and JavaScript under `spike/`. A pull request that changes no code (docs, skills' instructions, techniques,
+elements, cards, palettes, bench results, lesson runs, `site/`) runs no suite. If it changes a file the tools load
+(techniques, elements, cards, palettes), run only that loader's test: `python spike/tests/suite.py test_elements
+test_yaml_files`.
 
 Both run from the repo root with the venv's Python. Pass files, classes, or single tests to run only those
 (`python spike/tests/suite.py test_aids test_publish_v2.PublishV2Tests`). `--jobs N` sets the number of worker
