@@ -8,5 +8,23 @@
     {"name": "The cow", "things": ["cow"], "v2": ["cow"]},
     {"name": "The horns", "things": ["horns"], "v2": ["horns"]},
     {"name": "The tall grass", "things": ["meadow"], "v2": ["grass"]}
+  ],
+  "sleeping-cat": [
+    {"name": "The sky through the window", "things": ["window-view"], "v2": ["outside"]},
+    {"name": "The leaves outside", "things": ["window-trees"], "v2": ["leaves"]},
+    {"name": "The wall", "things": ["wall"], "v2": ["wall"]},
+    {"name": "The window frame", "things": ["window-frame"], "v2": ["window"]},
+    {"name": "The sill", "things": ["sill"], "v2": ["sill"]},
+    {"name": "The blanket", "things": ["blanket"], "v2": ["blanket"]},
+    {"name": "The cat", "things": ["cat"], "v2": ["cat"]}
+  ],
+  "birch-grove": [
+    {"name": "The sky and the sun", "things": ["backdrop", "sun"], "v2": ["sky"]},
+    {"name": "The far firs", "things": ["far-firs"], "v2": ["far-forest"]},
+    {"name": "The far trunks", "things": ["far-trunks"], "v2": ["far-trunks"]},
+    {"name": "The sun rays", "things": ["sun-rays"], "v2": ["sun-rays"]},
+    {"name": "The ground and the path", "things": ["forest-floor", "path", "fallen-leaves"], "v2": ["ground"]},
+    {"name": "The leaves, the bushes and the rock", "things": ["canopy", "undergrowth", "rock"], "v2": ["foliage"]},
+    {"name": "The birches", "things": ["birches", "branches"], "v2": ["birches"]}
   ]
 }

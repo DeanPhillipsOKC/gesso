@@ -375,6 +375,7 @@ def three_rows(path: Path, d: dict, forward: list[np.ndarray], width: int = 240,
     v2 = peel.load(d["picture"])
     v2_steps = bs.flat_steps(v2["plan"])
     whole = ws.OUT / d["picture"] / "steps"
+    has_whole = whole.exists()  # a picture #204 never ran on (the sleeping cat) gets two rows
     steps = flat(d["painter"])
     like = forward[0]
     bands = d["bands"]
@@ -385,7 +386,8 @@ def three_rows(path: Path, d: dict, forward: list[np.ndarray], width: int = 240,
             if s["part"] in b["v2"]:
                 name = f"{i + 1:02d}_{s['id']}.png"
                 rows[0].append(_cell(np.array(Image.open(v2["run"] / name).convert("RGB")), f"{i + 1} {s['id']}", width, like))
-                rows[1].append(_cell(np.array(Image.open(whole / name).convert("RGB")), f"{i + 1} {s['id']}", width, like))
+                if has_whole:
+                    rows[1].append(_cell(np.array(Image.open(whole / name).convert("RGB")), f"{i + 1} {s['id']}", width, like))
         for i, s in enumerate(steps):
             if bands[band_of(things_of(s), bands)] is b:
                 rows[2].append(_cell(forward[i], f"{i + 1} {s['id']}", width, like))
@@ -416,6 +418,8 @@ def three_rows(path: Path, d: dict, forward: list[np.ndarray], width: int = 240,
             return np.hstack([img, np.full((img.shape[0], total - img.shape[1], 3), fill, np.uint8)]) if img.shape[1] < total else img
         out.append(pad(np.hstack(head), 20))
         for r in range(3):
+            if r == 1 and not has_whole:
+                continue
             row = pad(np.hstack(body[r]), 255)
             tag = np.full((row.shape[0], 30, 3), (40, 40, 40) if r < 2 else (150, 60, 20), np.uint8)
             label = np.full((30, row.shape[0], 3), tag[0, 0], np.uint8)
