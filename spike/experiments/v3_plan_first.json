@@ -1,0 +1,261 @@
+{
+  "birch-grove": {
+    "differ": {
+      "painter-a / painter-b": {
+        "a": {
+          "crossing": 2,
+          "stages": 8,
+          "steps": 22
+        },
+        "b": {
+          "crossing": 3,
+          "stages": 6,
+          "steps": 22
+        },
+        "moves": 0.65,
+        "only_a": [
+          "path"
+        ],
+        "only_b": [],
+        "order": 0.86,
+        "sequence": 0.68,
+        "things": 0.92
+      },
+      "painter-a / v2": {
+        "a": {
+          "crossing": 2,
+          "stages": 8,
+          "steps": 22
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 5,
+          "steps": 14
+        },
+        "moves": 0.33,
+        "only_a": [
+          "branches",
+          "fallen-leaves",
+          "path",
+          "rock",
+          "sun",
+          "undergrowth"
+        ],
+        "only_b": [],
+        "order": 0.81,
+        "sequence": 0.44,
+        "things": 0.54
+      },
+      "painter-b / v2": {
+        "a": {
+          "crossing": 3,
+          "stages": 6,
+          "steps": 22
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 5,
+          "steps": 14
+        },
+        "moves": 0.25,
+        "only_a": [
+          "branches",
+          "fallen-leaves",
+          "rock",
+          "sun",
+          "undergrowth"
+        ],
+        "only_b": [],
+        "order": 0.71,
+        "sequence": 0.44,
+        "things": 0.58
+      }
+    },
+    "plans": {
+      "painter-a": {
+        "crossing": 2,
+        "problems": [],
+        "stages": 8,
+        "steps": 22,
+        "things": 13
+      },
+      "painter-b": {
+        "crossing": 3,
+        "problems": [],
+        "stages": 6,
+        "steps": 22,
+        "things": 12
+      },
+      "v2": {
+        "crossing": 0,
+        "stages": 5,
+        "steps": 14,
+        "things": 7
+      }
+    }
+  },
+  "highland-cow": {
+    "differ": {
+      "painter-a / painter-b": {
+        "a": {
+          "crossing": 2,
+          "stages": 7,
+          "steps": 24
+        },
+        "b": {
+          "crossing": 1,
+          "stages": 7,
+          "steps": 23
+        },
+        "moves": 0.79,
+        "only_a": [],
+        "only_b": [],
+        "order": 0.92,
+        "sequence": 0.77,
+        "things": 1.0
+      },
+      "painter-a / v2": {
+        "a": {
+          "crossing": 2,
+          "stages": 7,
+          "steps": 24
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 6,
+          "steps": 16
+        },
+        "moves": 0.38,
+        "only_a": [
+          "scrub"
+        ],
+        "only_b": [],
+        "order": 0.96,
+        "sequence": 0.45,
+        "things": 0.89
+      },
+      "painter-b / v2": {
+        "a": {
+          "crossing": 1,
+          "stages": 7,
+          "steps": 23
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 6,
+          "steps": 16
+        },
+        "moves": 0.53,
+        "only_a": [
+          "scrub"
+        ],
+        "only_b": [],
+        "order": 1.0,
+        "sequence": 0.56,
+        "things": 0.89
+      }
+    },
+    "plans": {
+      "painter-a": {
+        "crossing": 2,
+        "problems": [],
+        "stages": 7,
+        "steps": 24,
+        "things": 9
+      },
+      "painter-b": {
+        "crossing": 1,
+        "problems": [],
+        "stages": 7,
+        "steps": 23,
+        "things": 9
+      },
+      "v2": {
+        "crossing": 0,
+        "stages": 6,
+        "steps": 16,
+        "things": 8
+      }
+    }
+  },
+  "sleeping-cat": {
+    "differ": {
+      "painter-a / painter-b": {
+        "a": {
+          "crossing": 0,
+          "stages": 8,
+          "steps": 23
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 8,
+          "steps": 24
+        },
+        "moves": 0.87,
+        "only_a": [],
+        "only_b": [],
+        "order": 1.0,
+        "sequence": 0.98,
+        "things": 1.0
+      },
+      "painter-a / v2": {
+        "a": {
+          "crossing": 0,
+          "stages": 8,
+          "steps": 23
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 7,
+          "steps": 16
+        },
+        "moves": 0.81,
+        "only_a": [],
+        "only_b": [],
+        "order": 0.81,
+        "sequence": 0.77,
+        "things": 1.0
+      },
+      "painter-b / v2": {
+        "a": {
+          "crossing": 0,
+          "stages": 8,
+          "steps": 24
+        },
+        "b": {
+          "crossing": 0,
+          "stages": 7,
+          "steps": 16
+        },
+        "moves": 0.71,
+        "only_a": [],
+        "only_b": [],
+        "order": 0.81,
+        "sequence": 0.75,
+        "things": 1.0
+      }
+    },
+    "plans": {
+      "painter-a": {
+        "crossing": 0,
+        "problems": [],
+        "stages": 8,
+        "steps": 23,
+        "things": 7
+      },
+      "painter-b": {
+        "crossing": 0,
+        "problems": [],
+        "stages": 8,
+        "steps": 24,
+        "things": 7
+      },
+      "v2": {
+        "crossing": 0,
+        "stages": 7,
+        "steps": 16,
+        "things": 7
+      }
+    }
+  }
+}

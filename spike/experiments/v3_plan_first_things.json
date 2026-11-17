@@ -1,0 +1,17 @@
+{
+  "highland-cow": {
+    "painter-a": {"mountains": "far-hills", "bushes": "scrub"},
+    "painter-b": {"far-range": "far-hills", "near-range": "far-hills"},
+    "v2": {"grass": "meadow"}
+  },
+  "sleeping-cat": {
+    "painter-a": {"window-view": "window-sky", "window-trees": "trees"},
+    "painter-b": {"trees-outside": "trees"},
+    "v2": {"outside": "window-sky", "leaves": "trees", "window": "window-frame"}
+  },
+  "birch-grove": {
+    "painter-a": {"backdrop": "sky", "far-firs": "far-pines", "forest-floor": "ground"},
+    "painter-b": {"far-birches": "far-trunks", "mist-rays": "sun-rays", "floor-leaves": "fallen-leaves"},
+    "v2": {"far-forest": "far-pines", "foliage": "canopy"}
+  }
+}
