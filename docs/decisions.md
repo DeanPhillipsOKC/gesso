@@ -247,13 +247,12 @@ with the date.
   until it signs off on every one. If nothing is medium or higher, there's no second review. Either way, Claude fixes
   the low findings it agrees with and merges once the tests pass and nothing blocks (owner: "If there are medium or
   high findings those are blockers").
-  **Only when code changed (2026-11-16, owner's call).** A pull request that changes no code (only new lesson runs,
-  `site/`, or the lesson history, such as a rerun of the site's lessons) merges without the adversarial review once
-  the tests pass (owner: "No need to a review unless code was changed"). Code here means anything under `spike/`,
-  the skills, techniques, elements, cards, or palettes.
-  **No full suite either (2026-11-17, owner's call).** A pull request that changes no code runs the quick set, not
-  the full suite, before it merges (owner: "Why run the full suite for no code change? We should relax the rule").
-  **Results aren't code (2026-11-17, owner's call).** Data an experiment produces or freezes under
-  `spike/experiments/bench/` (frozen pictures and manifests, traces, fault counts, scores and answer keys) is results,
-  not code: a pull request that changes only those, docs, lesson runs, `site/` or the lesson history skips the
-  adversarial review and runs the quick set (owner: "Yes they are results not code"). Scripts there are still code.
+  **Only when code changed (2026-11-16, owner's call; narrowed 2026-11-17).** Code means program files only: the
+  Python and JavaScript under `spike/` (tests included). Docs, the skills' instructions, techniques, elements, stroke
+  cards, palettes, bench results under `spike/experiments/bench/` (frozen pictures, traces, fault counts, scores,
+  keys), lesson runs, `site/` and the lesson history are not code. A pull request that changes no code merges without
+  the adversarial review and without the test suite. The one exception: a change to a file the tools load
+  (techniques, elements, cards, palettes) runs only the test for that loader (`test_elements`, `test_yaml_files`, a
+  second or two), since a malformed file there could stop lessons loading. Owner: "No need to a review unless code was
+  changed"; "they're not code please update the rules to say code only"; "I really need tests ran only when there is a
+  chance of regression. They take time and tokens and both are limited resources right now."
