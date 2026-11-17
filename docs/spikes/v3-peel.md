@@ -4,8 +4,11 @@
 `spike/experiments/v3_peel.json`, its tests `spike/tests/test_v3_peel.py`. It is experiment code: no lesson tool,
 the skill, or the site changed.
 
-**Verdict: open.** Two things are still to come: the owner's blind A/B (the page is made, section 7), and the second
-edit model, which needs a host and a key (section 8). What the numbers and the pictures say so far:
+**Verdict: park.** The owner scored the blind A/B on 2026-11-17 (section 8): no difference on all four pictures,
+with the same three scores on both sides of each. A spike beats v2 only on a clear win (`docs/decisions.md`), so the
+peel is not adopted. It isn't dropped either: the renders work and cost almost nothing, and the layers they give are
+what S3 (#168) and S4 (#169) need. But a peel alone doesn't change what the owner sees. What the numbers and the
+pictures say:
 
 - **The image model can peel.** Asked to remove the things in front, it painted a whole blanket under the cat, a
   whole meadow behind the cow, and a whole mountain behind the forest. 47 of 49 renders passed v2's check that the things were removed; the two
@@ -21,8 +24,9 @@ edit model, which needs a host and a key (section 8). What the numbers and the p
   goes, but new faults come in: the peeled pictures need outlines of their own, and today's outlines aren't good
   enough for it.
 
-Recommended, if the A/B agrees: **adopt** the all-at-once low peel for what's behind things in front; **drop**
-chained and medium; **park** the deep peel (the parts behind) until S3 (#168) has better outlines.
+Before the A/B, the recommendation here was to adopt the front peel. The A/B says otherwise. What stands: if a
+later spike peels, it peels **all at once at low quality**; chained and medium are **dropped**; the deep peel waits
+for better outlines (S3, #168).
 
 ## 1. What was tried
 
@@ -175,13 +179,55 @@ those are S3 (#168). Parked until then.
   made by `ab_page.py make --round s1-peel`. Its answer key is `spike/experiments/bench/scores/s1-peel.key.json`:
   it says which side is which, so the owner doesn't open it before scoring.
 
-## 8. Not done
+## 8. The owner's blind A/B (2026-11-17)
+
+Round `s1-peel`, scored on the phone page; saved in `spike/experiments/bench/scores/s1-peel.json`. (a) real,
+(b) paintable, (c) agree, each 1 to 5.
+
+| Picture | v2: a, b, c | Peel: a, b, c | Prefers | Worst steps tapped |
+|---|---|---|---|---|
+| sleeping cat | 3, 2, 2 | 3, 2, 2 | no difference | none |
+| highland cow | 2, 2, 2 | 2, 2, 2 | no difference | peel: step 1, the sky |
+| lake cabin | 2, 2, 2 | 2, 2, 2 | no difference | peel: step 13, the trees' reflection |
+| birch grove | 1, 2, 1 | 1, 2, 1 | no difference | peel: step 1, the sky |
+
+The peel won on none and lost on none. The three worst-step taps all fell on the peel's side, but the first two are
+steps the peel builds the same as v2 or nearly (a tap is made on whichever side is open), and the owner's notes are
+about each picture, not a side.
+
+**What the owner wrote**, and where each belongs:
+
+- Highland cow: "Mountains have at least four shades of blue, but only one is shown, and the instructions don't say
+  anything about tinting." Paints and words (S6 #171, S8 #173).
+- Highland cow: "There is a lot of cow artifacts up until you get to the cow steps that are very distracting." Read
+  with the same scores on both sides: the peel's slivers along the cow's edge (section 5) bother the owner as much
+  as v2's blotches did. Smaller isn't enough; nothing of the cow may show before its step. They are outline faults
+  (S3 #168).
+- Lake cabin: clouds in the first step that the words don't mention; the "weird crosshatch pattern in the mountain"
+  that "magically becomes trees" on a step whose paints and words aren't about trees; reflection strokes that
+  wouldn't give ripples. The crosshatch is the fill under the forest, which the front peel leaves alone and the deep
+  peel removes (section 6). The rest is words and teaching (S7 #172, S8 #173).
+- Sleeping cat: "Some steps use multiple tones of a color like the window frame and there's no mention of it."
+  Stages inside a part and paints (S4 #169, S6 #171).
+- Birch grove: "Both are pretty much unpaintable because they start out with a blobby mess." The sky's fill under
+  its own marks, the same on both sides.
+
+**What it means.** The faults the front peel removes aren't the ones that set the owner's scores. On these four
+pictures the scores are set by what a step shows inside its own part, by fills among the parts behind, and by paints
+and words that don't match the picture. None of that is a layer behind a thing in front.
+
+**A flaw in how the round was keyed.** Both sides of a picture were folders with the same name (the peel lesson is a
+copy of the baseline run), and the answer key holds folder names, so the key alone couldn't say which side was which.
+The sides were worked out again from the seed with `ab_page.plan_round` and written into the key as `which`. A later
+round should give the experiment's lesson folder its own name.
+
+## 9. Not done
 
 - **The second edit model.** It needs a new host allowed and a key (`pipeline-v3-plan.md`, "How a spike runs").
   `v3_peel.py` takes a model by name (`RENDERERS`); adding one is a function that sends a picture and a prompt and
-  saves the answer.
+  saves the answer. After the A/B it's hard to justify: gpt-image's renders weren't where the peel fell short.
 - **Fault counts** for the peel lessons (section 5).
-- **The other four bench pictures.** They go in only if the A/B on these four is a clear win.
+- **The other four bench pictures.** They would have gone in only on a clear win here.
 - **A part's own children.** The sky under its clouds is still v2's fill; a peel could remove them too.
 
 ## Running it
