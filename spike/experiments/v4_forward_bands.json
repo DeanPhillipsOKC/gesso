@@ -1,0 +1,12 @@
+{
+  "highland-cow": [
+    {"name": "The sky", "things": ["sky"], "v2": ["sky"]},
+    {"name": "The clouds", "things": ["clouds"], "v2": ["clouds"]},
+    {"name": "The mountains", "things": ["mountains"], "v2": ["far-hills"]},
+    {"name": "The loch", "things": ["loch"], "v2": ["loch"]},
+    {"name": "The hillside and its bushes", "things": ["hillside", "bushes"], "v2": ["hillside"]},
+    {"name": "The cow", "things": ["cow"], "v2": ["cow"]},
+    {"name": "The horns", "things": ["horns"], "v2": ["horns"]},
+    {"name": "The tall grass", "things": ["meadow"], "v2": ["grass"]}
+  ]
+}
