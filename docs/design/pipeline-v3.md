@@ -8,16 +8,23 @@ numbers), what is a **guess** (this draft's own joining of the pieces, run by no
 The three adopted spikes were each graded alone, against v2, by Claude's blind graders. They have never been run
 together. The first job of this design is one combined lesson that shows whether they fit (section 12).
 
-**The combined lesson ran on the highland cow (2026-11-17, `docs/spikes/v3-combined.md`), and is waiting for the
-owner's go, change or stop.** What it showed, against this draft's guesses:
+**The combined lesson ran on the highland cow (2026-11-17, `docs/spikes/v3-combined.md`), and the owner said go**
+("Go, fix those two things first"). Next: the same on two more bench pictures, with blind graders against v2
+(section 12, step 3). What it showed, against this draft's guesses, and what changed because of it:
+
+- **Units are smaller than section 6 says (changed on the owner's call).** A block-in is a unit by itself, and so
+  is a step whose paints its unit has all used already. Each gets its own render, so no block-in is a slab cut from
+  the next step's picture and no two steps share pixels by paint. The cow has 17 units, not 11: 16 renders, about
+  29 cents and 3 1/2 minutes of chain, where sections 6 and 14 say 20 cents and 2 1/2 minutes.
 
 - **Taking a thing back a stage works** (section 6, the main guess), on the coat, the face and the tall grass. The
   request has to say what is left ("a smooth first coat"), not only what goes.
 - **A chain with no boxes holds going backward,** with two stray changes kept (a few bush rows, a horn tip).
 - **Shapes from changes are enough for v2's teaching pictures and #173's sheet** (section 9): all were made with
   no outline and no change to those tools.
-- **Smaller units did remove the big jumps** (section 8), but a unit's last step still brings more than its words,
-  and two steps of one unit that share a paint can't be told apart.
+- **Smaller units did remove the big jumps** (section 8). In the first lesson a unit's last step still brought
+  more than its words and two steps that shared a paint couldn't be told apart; the units rule above fixed both.
+  Inside a unit that still has several steps, each pixel goes to the step whose paint it is nearest.
 - **A step's `after` line can't be given to a render as it is** (section 6): it describes the whole canvas. The
   plan needs a line a thing a stage, a name for a thing's first stage, and a name a unit (section 5).
 - **Not solved:** 17 paints against a target of 10, and four of them fitted to colors far from their names.

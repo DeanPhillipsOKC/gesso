@@ -5,14 +5,16 @@ describes, on one picture, the highland cow's frozen finish. The code is `spike/
 numbers `spike/experiments/v3_combined.json`, its tests `spike/tests/test_v3_combined.py`. It is experiment code: no
 lesson tool, the skill, or the site changed.
 
-**No verdict yet: this is for the owner to look at** (go, change, or stop). No graders ran. What follows is what
-was made, the numbers, and what Claude saw.
+**Verdict: go** (owner's call, 2026-11-17, after looking at the first lesson's page and step sheet): "Go, fix
+those two things first." The two things were a unit's last step bringing more than its words, and two steps that
+share a paint. Both are fixed below, the same way: each gets a render of its own. Next is the same on two more
+bench pictures, with blind graders against v2. No graders ran here.
 
 ## What was run
 
 1. **The plan** is the plan-first painter's plan (#172): 24 steps in 7 stages, written before any outline.
-2. **The chain** erases the finish backward by that plan's 11 units, one low render a unit, each made from the
-   last. The guard keeps only what a render changed by a lot, with no box (the plan has none).
+2. **The chain** erases the finish backward by that plan's units, one low render a unit, each made from the
+   last. The first lesson had 11 units (#207's rule); after the two fixes there are 17. The guard keeps only what a render changed by a lot, with no box (the plan has none).
 3. **Paints** are the plan's 17, each fitted to the color it has in its unit's change.
 4. **Step pictures** are cut from the chain: a unit's last step lays all of its change; an earlier step is a flat
    coat or a pass of the pixels nearest its paints.
@@ -25,80 +27,99 @@ was made, the numbers, and what Claude saw.
 
 ![The cow's steps: v2, whole-picture stages (#204), combined](v3-combined-cow.jpg)
 
-Three rows a thing: v2, whole-picture stages (#204, on v2's plan), and the combined lesson. The rows are lined up
-by the thing being painted, each picture under its own step number.
+Three rows a thing: v2, whole-picture stages (#204, on v2's plan), and the combined lesson after the two fixes. The
+rows are lined up by the thing being painted, each picture under its own step number.
 
 The chain: top row, the picture after each unit; bottom row, the raw renders.
 
 ![The cow's chain](v3-combined-cow-chain.jpg)
 
-## What it showed
+## The first lesson (11 units), and the two fixes
 
-**The untested request works.** Taking a thing back a stage (the design's third kind of request) was the main
-guess. It ran on three units:
+**The untested request worked.** Taking a thing back a stage (the design's third kind of request) was the main
+guess. On the face and the coat the first answer was kept. On the tall grass the first request took off only the
+gold blades and left the green ones, and stricter words gave the same. A third wording that says what is left ("a
+first coat: smooth, flat and softly blended, with no separate strokes, blades, dabs or texture") worked.
 
-- **The face** (probe, then the chain): the nose, nostrils and mouth come off and plain coat is left. The cow keeps
-  its place and outline.
-- **The coat:** the locks and the gold come off and a smooth, shaded brown cow is left, as the plan's step 10 says.
-- **The tall grass:** the first request took off only the gold blades and left the green ones, so steps 20 to 22
-  had nothing to show. Asking again in stricter words gave the same. A third wording that says what is left ("a
-  first coat: smooth, flat and softly blended, with no separate strokes, blades, dabs or texture") worked. The whole
-  chain was then made again from that render.
+**What the owner asked to have fixed:**
 
-**The step pictures follow the plan.** Claude's read of the sheet above:
+1. **A unit's last step brought more than its words.** It laid everything of the unit no earlier step had: dark
+   bush rows on the step that names the bushes' sunlit green, hair strokes on the step that shades the cow. And a
+   block-in cut from the next step's render was a slab of one color.
+2. **Two steps of one unit that share a paint couldn't be told apart.** The nostrils and the mouth line are both
+   Dark umber, so the first step took both and the second changed nothing.
 
-- Step 1 is a sky with faint streaks, not the finished sunset. The clouds arrive in steps 2 and 3.
-- The ground goes in as one smooth green (step 6), the bushes after it, the cow over it.
-- The cow is a flat shape (9), then shaded (10), then horns (11, 12), then copper locks, gold locks and the rim
-  (13 to 15), then the face in its own four steps (16 to 19). In v2 and in #204 the cow went from a flat shape to
-  nearly finished in one step, and the face had no step.
-- The tall grass builds over the cow's legs in four visible passes (20 to 23).
-- No blotches, pale holes or hard boxes: nothing is filled in by a rule.
+**The fix is one rule, used twice: such a step gets a render of its own.** `units` in `v3_combined.py` cuts a unit
 
-**What is still wrong,** most of it found by the stage writers comparing each picture with the plan:
+- after a block-in (a step shown as a flat coat), and
+- before a step whose paints the unit has all used already.
 
-- **Inside a unit the steps are still v2's cuts.** A unit's last step lays everything left, so it can bring more
-  than its words: step 8 (sun on the bushes) also brings dark bush rows; step 10 (shade the cow) also brings
-  hair-like strokes and lighter streaks; step 3 (cloud tops) lays gold across the whole sky.
-- **Two steps with one paint can't be told apart.** Steps 18 and 19 both use Dark umber, so step 18's pass takes
-  the mouth too and step 19 changes nothing you can see.
-- **Small last steps change little.** Step 24 (brightest tips) changes 0.04% of the canvas. Step 15 (the rim)
-  changes 1.3%, mostly on the fringe; the horns' light isn't seen.
-- **Flat coats read as blobs** where the plan describes texture: step 2's clouds are solid apricot shapes with no
-  violet, and step 7's bushes are solid dark shapes.
-- **With no box, a stray change is kept.** The tall-grass render also smoothed a few bush rows on the hillside,
-  which come back on step 24. The face render moved a horn tip a little.
-- **Step 6 has a dark strip under the mountains** where the plan says lighter and yellower.
-- **Some paints aren't in the finish.** Fitted to the picture, Pale rose came out gold (52 Lab units from the
-  plan's color), Copper orange a dark brown (29), Horn taupe a gray (23), Rosy brown a plain brown (22).
+The cow's plan then has 17 units where it had 11: 16 renders. A request that takes paint off a block-in also says
+what is left (the "first coat" sentence), from the first try. Inside the units that still hold several steps (the
+coat's three, the nose's light and nostrils, the grass's five) each pixel of the change now goes to the step whose
+paint it is nearest, so the last step lays only its own.
+
+What was tried and dropped on the way: showing a block-in's own pixels as they are and a flat coat on the rest. It
+gave a half-finished cow beside a flat slab, worse than either.
+
+**After the fixes** (Claude's read of the sheet above):
+
+- The cow's block-in (9) is a painted rust shape, not a slab. Step 10 adds the shadow and nothing else. The horns
+  go on flat (11), then shaded (12).
+- The face is four different pictures: a plain nose (16), its light (17), the nostrils and eye (18), the mouth and
+  chin lines (19).
+- The bushes arrive dark on step 7, and step 8 only lights their tops.
+- Step 1 is a sky with faint streaks; the clouds arrive on step 2 and their tops on step 3.
+
+**What is still wrong,** most of it from the stage writers comparing each picture with the plan:
+
+- **Some steps are faint.** Step 24 (brightest tips) changes 0.04% of the canvas; step 3 (cloud tops) and step 8
+  (sun on the bushes) can barely be seen; step 15's rim shows on the fringe but not on the horns.
+- **A render can do more or less than asked.** The cow's block-in already has a fringe, ears and a darker muzzle;
+  step 10 darkens most of the cow, not only its left; step 14 puts gold on the left side too; step 16's nose
+  already has a darker lip; step 20's dark blades are scattered clumps, not a dense cover over the legs.
+- **With no box, a stray change is kept.** The tall-grass render smoothed a few bush rows on the hillside, which
+  come back on step 24. The mouth render darkened a few hairs by the right horn.
+- **Step 6 has a dark strip under the mountains** where the plan says lighter and yellower, and step 1's sky is a
+  band about 2 1/2 in tall, not the top half of the canvas.
+- **Some paints aren't in the finish.** Fitted to the picture, Dark umber came out an olive brown (43 Lab units
+  from the plan's color), Copper orange a dark brown (30), Pale rose a tan (26), Rosy brown a plain brown (22).
 - **17 paints,** against the target of 10. Nothing merges them.
+- **Two part names confused the checker.** "The cow's shadow side" and "The cow's mouth and chin lines" were taken
+  for the subject of other steps' sentences (9 false failures). Renamed "The cow's shading" and "The cow's mouth".
 
-## The numbers
+## The numbers (the 17-unit chain)
 
 | Unit | Request | Steps | Erased (share of canvas) | Raw render moved the rest |
 |---|---|---|---|---|
 | tall grass | back (third wording) | 20 to 24 | 38.7% | 2.6% |
-| cow, face | back | 16 to 19 | 2.3% | 2.5% |
-| cow, coat (and the horns' rim) | back | 13 to 15 | 23.4% | 0.4% |
-| horns | behind | 11, 12 | 2.4% | 0.4% |
-| cow, shape | behind | 9, 10 | 22.9% | 0.7% |
-| bushes | behind | 7, 8 | 10.7% | 0.3% |
-| hillside and meadow | bare | 6 | 72.2% | 1.7% |
-| loch | bare | 5 | 0.2% | 0.7% |
-| mountains | behind | 4 | 9.9% | 0.7% |
-| clouds | behind | 2, 3 | 9.6% | 4.3% |
+| mouth and chin lines | back | 19 | 1.4% | 1.6% |
+| nose light, nostrils, eye | back | 17, 18 | 0.6% | 1.4% |
+| nose | back | 16 | 1.8% | 1.0% |
+| coat (and the horns' rim) | back | 13 to 15 | 23.5% | 0.3% |
+| horns, shade | back | 12 | 1.9% | 0.3% |
+| horns, block-in | behind | 11 | 2.2% | 0.3% |
+| cow, shade | back | 10 | 15.1% | 0.5% |
+| cow, block-in | behind | 9 | 23.0% | 0.8% |
+| bushes, sunlit tops | back | 8 | 2.0% | 0.5% |
+| bushes, dark | behind | 7 | 15.3% | 0.4% |
+| hillside and meadow | bare | 6 | 72.3% | 3.1% |
+| loch | bare | 5 | 0.3% | 1.2% |
+| mountains | behind | 4 | 9.8% | 0.8% |
+| clouds, tops | back | 3 | 3.1% | 4.4% |
+| clouds, streaks | behind | 2 | 12.5% | 2.9% |
 
 - **The three checks.** The last step picture is the finish (0.00% of pixels off). No step changes a pixel outside
-  what its unit adds (0.00%). What a step lays is a median 14.2 Lab units from the nearest paint it names; the worst
-  are the last steps of units (the rim 42.8, the brightest tips 38.0, the sun on the bushes 37.0).
+  what its unit adds (0.00%). What a step lays is a median 14.1 Lab units from the nearest paint it names.
 - **Steps that change under 0.2% of the canvas:** one, step 24.
-- **Renders:** 10 kept, at 18.1 cents and 127 seconds one after another. All spent: 40.0 cents (the first chain,
-  18.1 cents, thrown when the tall grass was asked for again; two probes not used, 3.8 cents).
-- **Words:** 7 writers, each back in under a minute. 138 checkable claims; 9 failed the strict check, all a side
-  word with nothing named ("below it"). After one round of fixes: 0 failures, nothing taken out.
-- **Teaching pictures from the changes:** 24 Where lines, 7 close-ups, 10 paint maps and a transfer outline were
-  made with no change to v2's tools. One fault seen: the face's sheet lists a second mark up by the right horn
-  (the stray change above).
+- **No request was made again** in this chain, apart from the tall grass's wording found on the first lesson.
+- **Renders:** 16 kept, at 29.0 cents and 214 seconds one after another. The 11-unit chain was 18.1 cents and 127
+  seconds. All spent on this issue: 86.8 cents (three chains thrown on the way, 52.2 cents; three probes not used,
+  5.6 cents).
+- **Words:** 7 writers, each back in about a minute. 130 checkable claims; 3 failed the strict check once the two
+  part names were changed. After one round of fixes: 0 failures of 126, nothing taken out.
+- **Teaching pictures from the changes:** 24 Where lines, 9 close-ups, 7 paint maps and a transfer outline, made
+  with no change to v2's tools.
 
 ## What the design gets from this
 
@@ -110,11 +131,14 @@ guess. It ran on three units:
 - The "back" request should say what is left, not only what goes.
 - A redo of a late unit throws the whole chain after it. A probe of one unit first costs 2 cents.
 - The stage writers are a good check of pictures against the plan. Their notes are the list above.
+- One render a step that can't be cut cleanly: after a block-in, and before a step that reuses the unit's paints.
+  About 16 renders and 29 cents a lesson on this plan, where the draft said 11 and 20.
+- A part's name must not hold words the checker reads as a side or a size ("side", "lines").
 
 ## Limits
 
-- One picture, one run, read by Claude and by the writers. No graders, no fault counter, and the owner hasn't
-  looked yet.
+- One picture, read by Claude and by the writers. No graders and no fault counter. The owner looked at the
+  first lesson (11 units), not yet at the fixed one.
 - The plan's extras (`behind`, the names, the rough paint colors) were written by hand for this picture.
 - v2's own `check` wasn't held to: it reads numbers only v2's cutter makes, and the plan's units break two of its
   part rules (a coat that starts with a pass).
@@ -122,8 +146,8 @@ guess. It ran on three units:
 ## Running it
 
     python spike/experiments/v3_combined.py units highland-cow --prompts   # the requests, last first; no render
-    python spike/experiments/v3_combined.py probe highland-cow 9           # PAID: one unit alone
-    python spike/experiments/v3_combined.py erase highland-cow --redo 10:2 # PAID: the chain
+    python spike/experiments/v3_combined.py probe highland-cow 15          # PAID: one unit alone
+    python spike/experiments/v3_combined.py erase highland-cow --redo 16:2 # PAID: the chain (unit 16, third wording)
     python spike/experiments/v3_combined.py build highland-cow             # step pictures, the three-row sheet
     python spike/experiments/v3_combined.py lesson highland-cow            # the lesson folder, aids, writers' packets
     python spike/experiments/v3_combined.py merge highland-cow [--final]   # the writers' words in, checked

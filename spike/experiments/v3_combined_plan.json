@@ -45,7 +45,7 @@
    },
    "shade-cow": {
     "id": "cow-shade",
-    "name": "The cow's shadow side",
+    "name": "The cow's shading",
     "parent": "cow"
    },
    "shade-horns": {
@@ -70,7 +70,7 @@
    },
    "line-mouth": {
     "id": "mouth",
-    "name": "The cow's mouth and chin lines",
+    "name": "The cow's mouth",
     "parent": "cow"
    },
    "flick-dark-blades": {
