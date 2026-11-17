@@ -2,31 +2,31 @@
  "picture": "highland-cow",
  "issue": 210,
  "steps": 24,
- "units": 11,
- "renders_kept": 10,
- "renders_thrown": 10,
- "probes": 3,
+ "units": 17,
+ "renders_kept": 16,
+ "renders_thrown": 29,
+ "probes": 4,
  "cost_usd": {
-  "chain_kept": 0.1811,
-  "chain_thrown": 0.1808,
-  "probes_not_used": 0.0377,
-  "all": 0.3996
+  "chain_kept": 0.2901,
+  "chain_thrown": 0.5223,
+  "probes_not_used": 0.0557,
+  "all": 0.8681
  },
- "render_seconds_kept": 126.9,
+ "render_seconds_kept": 213.7,
  "redone": {
-  "10": 2
+  "16": 2
  },
  "checks": {
   "final_gap": 0.0,
   "outside_unit_max": 0.0,
-  "from_its_paints_median": 14.2,
+  "from_its_paints_median": 14.1,
   "steps_that_change_little": [
    "flick-brightest-tips"
   ]
  },
  "chain": [
   {
-   "unit": 10,
+   "unit": 16,
    "kind": "back",
    "things": [
     "meadow"
@@ -45,25 +45,53 @@
    "cost_usd": 0.0193
   },
   {
-   "unit": 9,
+   "unit": 15,
    "kind": "back",
    "things": [
     "cow"
    ],
    "steps": [
-    16,
-    17,
-    18,
     19
    ],
    "redo": 0,
-   "erased_share": 0.0227,
-   "raw_moved_outside": 0.025,
-   "seconds": 14.8,
-   "cost_usd": 0.0186
+   "erased_share": 0.0136,
+   "raw_moved_outside": 0.0155,
+   "seconds": 16.0,
+   "cost_usd": 0.018
   },
   {
-   "unit": 8,
+   "unit": 14,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "steps": [
+    17,
+    18
+   ],
+   "redo": 0,
+   "erased_share": 0.0057,
+   "raw_moved_outside": 0.0136,
+   "seconds": 14.9,
+   "cost_usd": 0.0183
+  },
+  {
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "steps": [
+    16
+   ],
+   "redo": 0,
+   "erased_share": 0.0177,
+   "raw_moved_outside": 0.0101,
+   "seconds": 13.2,
+   "cost_usd": 0.0182
+  },
+  {
+   "unit": 12,
    "kind": "back",
    "things": [
     "cow",
@@ -75,61 +103,103 @@
     15
    ],
    "redo": 0,
-   "erased_share": 0.2342,
-   "raw_moved_outside": 0.0035,
-   "seconds": 15.6,
+   "erased_share": 0.2351,
+   "raw_moved_outside": 0.0025,
+   "seconds": 14.5,
    "cost_usd": 0.0189
   },
   {
-   "unit": 7,
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "horns"
+   ],
+   "steps": [
+    12
+   ],
+   "redo": 0,
+   "erased_share": 0.0189,
+   "raw_moved_outside": 0.0026,
+   "seconds": 14.0,
+   "cost_usd": 0.0182
+  },
+  {
+   "unit": 10,
    "kind": "behind",
    "things": [
     "horns"
    ],
    "steps": [
-    11,
-    12
+    11
    ],
    "redo": 0,
-   "erased_share": 0.0235,
-   "raw_moved_outside": 0.0038,
-   "seconds": 11.5,
+   "erased_share": 0.0215,
+   "raw_moved_outside": 0.0026,
+   "seconds": 11.2,
    "cost_usd": 0.0178
   },
   {
-   "unit": 6,
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "steps": [
+    10
+   ],
+   "redo": 0,
+   "erased_share": 0.1508,
+   "raw_moved_outside": 0.0049,
+   "seconds": 15.7,
+   "cost_usd": 0.0183
+  },
+  {
+   "unit": 8,
    "kind": "behind",
    "things": [
     "cow"
    ],
    "steps": [
-    9,
-    10
+    9
    ],
    "redo": 0,
-   "erased_share": 0.229,
-   "raw_moved_outside": 0.0072,
-   "seconds": 15.9,
+   "erased_share": 0.23,
+   "raw_moved_outside": 0.008,
+   "seconds": 9.9,
    "cost_usd": 0.0178
   },
   {
-   "unit": 5,
+   "unit": 7,
+   "kind": "back",
+   "things": [
+    "bushes"
+   ],
+   "steps": [
+    8
+   ],
+   "redo": 0,
+   "erased_share": 0.0204,
+   "raw_moved_outside": 0.0053,
+   "seconds": 15.2,
+   "cost_usd": 0.0183
+  },
+  {
+   "unit": 6,
    "kind": "behind",
    "things": [
     "bushes"
    ],
    "steps": [
-    7,
-    8
+    7
    ],
    "redo": 0,
-   "erased_share": 0.1074,
-   "raw_moved_outside": 0.0033,
-   "seconds": 11.2,
+   "erased_share": 0.1534,
+   "raw_moved_outside": 0.0035,
+   "seconds": 12.7,
    "cost_usd": 0.0178
   },
   {
-   "unit": 4,
+   "unit": 5,
    "kind": "bare",
    "things": [
     "hillside",
@@ -139,13 +209,13 @@
     6
    ],
    "redo": 0,
-   "erased_share": 0.7221,
-   "raw_moved_outside": 0.0166,
-   "seconds": 11.4,
+   "erased_share": 0.7231,
+   "raw_moved_outside": 0.0312,
+   "seconds": 13.4,
    "cost_usd": 0.0178
   },
   {
-   "unit": 3,
+   "unit": 4,
    "kind": "bare",
    "things": [
     "loch"
@@ -154,13 +224,13 @@
     5
    ],
    "redo": 0,
-   "erased_share": 0.0024,
-   "raw_moved_outside": 0.0067,
-   "seconds": 10.1,
+   "erased_share": 0.0027,
+   "raw_moved_outside": 0.0115,
+   "seconds": 8.8,
    "cost_usd": 0.0177
   },
   {
-   "unit": 2,
+   "unit": 3,
    "kind": "behind",
    "things": [
     "mountains"
@@ -169,10 +239,25 @@
     4
    ],
    "redo": 0,
-   "erased_share": 0.0994,
-   "raw_moved_outside": 0.0071,
-   "seconds": 9.8,
+   "erased_share": 0.0983,
+   "raw_moved_outside": 0.0077,
+   "seconds": 10.0,
    "cost_usd": 0.0177
+  },
+  {
+   "unit": 2,
+   "kind": "back",
+   "things": [
+    "clouds"
+   ],
+   "steps": [
+    3
+   ],
+   "redo": 0,
+   "erased_share": 0.0313,
+   "raw_moved_outside": 0.0439,
+   "seconds": 18.9,
+   "cost_usd": 0.0183
   },
   {
    "unit": 1,
@@ -181,231 +266,231 @@
     "clouds"
    ],
    "steps": [
-    2,
-    3
+    2
    ],
    "redo": 0,
-   "erased_share": 0.0964,
-   "raw_moved_outside": 0.0432,
-   "seconds": 11.3,
+   "erased_share": 0.1248,
+   "raw_moved_outside": 0.0294,
+   "seconds": 10.0,
    "cost_usd": 0.0177
   }
  ],
  "paints": [
   {
    "paint": "Soft sky blue",
-   "hex": "#91b0d0",
+   "hex": "#9cb4cf",
    "seed": "#8fa9c9",
    "from_unit": 0,
-   "pixels_share": 0.0877,
+   "pixels_share": 0.0975,
    "units": [
     0
    ],
-   "moved_from_seed": 2.8,
+   "moved_from_seed": 5.0,
    "not_in_finish": false
   },
   {
    "paint": "Pale gold",
-   "hex": "#eac4a1",
+   "hex": "#e6c297",
    "seed": "#f3dc9c",
    "from_unit": 0,
-   "pixels_share": 0.0704,
+   "pixels_share": 0.0669,
    "units": [
     0,
-    1,
-    8,
-    10
+    2,
+    12,
+    16
    ],
-   "moved_from_seed": 16.5,
+   "moved_from_seed": 13.5,
    "not_in_finish": false
   },
   {
    "paint": "Warm apricot",
-   "hex": "#fac870",
+   "hex": "#fbca6c",
    "seed": "#eeb072",
    "from_unit": 0,
-   "pixels_share": 0.1175,
+   "pixels_share": 0.1098,
    "units": [
     0,
     1
    ],
-   "moved_from_seed": 14.4,
+   "moved_from_seed": 16.9,
    "not_in_finish": false
   },
   {
    "paint": "Hazy blue-violet",
-   "hex": "#a2b6ca",
+   "hex": "#b7babd",
    "seed": "#9a9bb8",
    "from_unit": 1,
-   "pixels_share": 0.0392,
+   "pixels_share": 0.0495,
    "units": [
     1,
-    2
+    3
    ],
-   "moved_from_seed": 12.0,
+   "moved_from_seed": 17.9,
    "not_in_finish": false
   },
   {
    "paint": "Deep slate blue",
    "hex": "#577097",
    "seed": "#56678f",
-   "from_unit": 2,
-   "pixels_share": 0.0886,
+   "from_unit": 3,
+   "pixels_share": 0.0873,
    "units": [
-    2
+    3
    ],
    "moved_from_seed": 4.1,
    "not_in_finish": false
   },
   {
    "paint": "Pale lavender-white",
-   "hex": "#c6c3be",
+   "hex": "#c1c1b5",
    "seed": "#e6e2ee",
-   "from_unit": 3,
-   "pixels_share": 0.0024,
+   "from_unit": 4,
+   "pixels_share": 0.0027,
    "units": [
-    3
+    4
    ],
-   "moved_from_seed": 14.6,
+   "moved_from_seed": 17.9,
    "not_in_finish": false
   },
   {
    "paint": "Sunlit yellow-green",
-   "hex": "#97882b",
+   "hex": "#96892a",
    "seed": "#a8ad4f",
-   "from_unit": 4,
-   "pixels_share": 0.1644,
+   "from_unit": 5,
+   "pixels_share": 0.1819,
    "units": [
-    4,
     5,
-    10
+    7,
+    16
    ],
-   "moved_from_seed": 15.7,
+   "moved_from_seed": 15.0,
    "not_in_finish": false
   },
   {
    "paint": "Olive green",
-   "hex": "#6b7231",
+   "hex": "#697230",
    "seed": "#6f7a3a",
-   "from_unit": 4,
-   "pixels_share": 0.2323,
+   "from_unit": 5,
+   "pixels_share": 0.2454,
    "units": [
-    4,
-    10
-   ],
-   "moved_from_seed": 3.5,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Deep grass green",
-   "hex": "#3d5234",
-   "seed": "#2f4a3c",
-   "from_unit": 4,
-   "pixels_share": 0.3254,
-   "units": [
-    4,
     5,
-    10
-   ],
-   "moved_from_seed": 10.5,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Rust brown",
-   "hex": "#884f23",
-   "seed": "#8a4a26",
-   "from_unit": 6,
-   "pixels_share": 0.0917,
-   "units": [
-    6
-   ],
-   "moved_from_seed": 4.7,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Deep red-brown",
-   "hex": "#532c1f",
-   "seed": "#4f2617",
-   "from_unit": 6,
-   "pixels_share": 0.1373,
-   "units": [
-    6,
-    7
+    16
    ],
    "moved_from_seed": 3.4,
    "not_in_finish": false
   },
   {
-   "paint": "Horn taupe",
-   "hex": "#636a6e",
-   "seed": "#a08e7c",
-   "from_unit": 7,
-   "pixels_share": 0.01,
+   "paint": "Deep grass green",
+   "hex": "#3b5033",
+   "seed": "#2f4a3c",
+   "from_unit": 5,
+   "pixels_share": 0.2959,
    "units": [
-    7
+    5,
+    6,
+    16
    ],
-   "moved_from_seed": 22.8,
+   "moved_from_seed": 9.8,
+   "not_in_finish": false
+  },
+  {
+   "paint": "Rust brown",
+   "hex": "#773b1f",
+   "seed": "#8a4a26",
+   "from_unit": 8,
+   "pixels_share": 0.23,
+   "units": [
+    8
+   ],
+   "moved_from_seed": 7.8,
+   "not_in_finish": false
+  },
+  {
+   "paint": "Deep red-brown",
+   "hex": "#592b1e",
+   "seed": "#4f2617",
+   "from_unit": 9,
+   "pixels_share": 0.1508,
+   "units": [
+    9,
+    11
+   ],
+   "moved_from_seed": 3.7,
+   "not_in_finish": false
+  },
+  {
+   "paint": "Horn taupe",
+   "hex": "#6d6857",
+   "seed": "#a08e7c",
+   "from_unit": 10,
+   "pixels_share": 0.0215,
+   "units": [
+    10
+   ],
+   "moved_from_seed": 17.1,
    "not_in_finish": false
   },
   {
    "paint": "Copper orange",
-   "hex": "#7a3c1f",
+   "hex": "#783b1e",
    "seed": "#c2692a",
-   "from_unit": 8,
-   "pixels_share": 0.1563,
+   "from_unit": 12,
+   "pixels_share": 0.1526,
    "units": [
-    8
+    12
    ],
-   "moved_from_seed": 29.2,
+   "moved_from_seed": 29.8,
    "not_in_finish": false
   },
   {
    "paint": "Golden ochre",
-   "hex": "#d78f2e",
+   "hex": "#d58c2e",
    "seed": "#d9a03a",
-   "from_unit": 8,
-   "pixels_share": 0.0521,
+   "from_unit": 12,
+   "pixels_share": 0.0535,
    "units": [
-    8,
-    10
+    12,
+    16
    ],
-   "moved_from_seed": 9.0,
+   "moved_from_seed": 10.1,
    "not_in_finish": false
   },
   {
    "paint": "Rosy brown",
-   "hex": "#814920",
+   "hex": "#8b4f22",
    "seed": "#a8705f",
-   "from_unit": 9,
-   "pixels_share": 0.0078,
+   "from_unit": 13,
+   "pixels_share": 0.0177,
    "units": [
-    9
+    13
    ],
    "moved_from_seed": 21.9,
    "not_in_finish": false
   },
   {
    "paint": "Pale rose",
-   "hex": "#efa833",
+   "hex": "#926d55",
    "seed": "#dcae9f",
-   "from_unit": 9,
-   "pixels_share": 0.0033,
+   "from_unit": 14,
+   "pixels_share": 0.0022,
    "units": [
-    9
+    14
    ],
-   "moved_from_seed": 52.3,
+   "moved_from_seed": 26.4,
    "not_in_finish": false
   },
   {
    "paint": "Dark umber",
-   "hex": "#53301c",
+   "hex": "#81662d",
    "seed": "#2c1b13",
-   "from_unit": 9,
-   "pixels_share": 0.0116,
+   "from_unit": 15,
+   "pixels_share": 0.0136,
    "units": [
-    9
+    14,
+    15
    ],
-   "moved_from_seed": 17.3,
+   "moved_from_seed": 42.6,
    "not_in_finish": false
   }
  ],
@@ -418,12 +503,12 @@
     "sky"
    ],
    "show": "all",
-   "painted": 0.2755,
-   "changed": 0.2672,
+   "painted": 0.2742,
+   "changed": 0.2634,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 8.4,
-    "over_25": 0.002
+    "median": 10.1,
+    "over_25": 0.0
    }
   },
   {
@@ -433,293 +518,293 @@
    "things": [
     "clouds"
    ],
-   "show": "flat",
-   "painted": 0.0172,
-   "changed": 0.0165,
+   "show": "all",
+   "painted": 0.1248,
+   "changed": 0.1085,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 14.5,
-    "over_25": 0.192
+    "median": 12.9,
+    "over_25": 0.097
    }
   },
   {
    "n": 3,
    "id": "light-cloud-tops",
-   "unit": 1,
+   "unit": 2,
    "things": [
     "clouds"
    ],
    "show": "all",
-   "painted": 0.0964,
-   "changed": 0.0834,
+   "painted": 0.0313,
+   "changed": 0.0224,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 23.4,
-    "over_25": 0.45
+    "median": 16.2,
+    "over_25": 0.146
    }
   },
   {
    "n": 4,
    "id": "lay-in-mountains",
-   "unit": 2,
+   "unit": 3,
    "things": [
     "mountains"
    ],
    "show": "all",
-   "painted": 0.0994,
-   "changed": 0.0943,
+   "painted": 0.0983,
+   "changed": 0.0934,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 5.6,
-    "over_25": 0.061
+    "median": 5.7,
+    "over_25": 0.058
    }
   },
   {
    "n": 5,
    "id": "streak-loch",
-   "unit": 3,
+   "unit": 4,
    "things": [
     "loch"
    ],
    "show": "all",
-   "painted": 0.0024,
-   "changed": 0.0024,
+   "painted": 0.0027,
+   "changed": 0.0027,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 9.8,
-    "over_25": 0.172
+    "median": 13.8,
+    "over_25": 0.293
    }
   },
   {
    "n": 6,
    "id": "lay-in-ground",
-   "unit": 4,
+   "unit": 5,
    "things": [
     "hillside",
     "meadow"
    ],
    "show": "all",
-   "painted": 0.7221,
-   "changed": 0.7221,
+   "painted": 0.7231,
+   "changed": 0.7231,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 6.9,
-    "over_25": 0.022
+    "median": 7.0,
+    "over_25": 0.02
    }
   },
   {
    "n": 7,
    "id": "dab-dark-bushes",
-   "unit": 5,
+   "unit": 6,
    "things": [
     "bushes"
    ],
-   "show": "flat",
-   "painted": 0.0383,
-   "changed": 0.0383,
+   "show": "all",
+   "painted": 0.1534,
+   "changed": 0.1282,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 14.8,
-    "over_25": 0.011
+    "median": 17.5,
+    "over_25": 0.248
    }
   },
   {
    "n": 8,
    "id": "tap-sunlit-bushes",
-   "unit": 5,
+   "unit": 7,
    "things": [
     "bushes"
    ],
    "show": "all",
-   "painted": 0.1074,
-   "changed": 0.0865,
+   "painted": 0.0204,
+   "changed": 0.0156,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 37.0,
-    "over_25": 0.751
+    "median": 37.8,
+    "over_25": 0.881
    }
   },
   {
    "n": 9,
    "id": "block-in-cow",
-   "unit": 6,
+   "unit": 8,
    "things": [
     "cow"
    ],
-   "show": "flat",
-   "painted": 0.2001,
-   "changed": 0.2001,
+   "show": "all",
+   "painted": 0.23,
+   "changed": 0.2178,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 21.9,
-    "over_25": 0.36
+    "median": 7.7,
+    "over_25": 0.147
    }
   },
   {
    "n": 10,
    "id": "shade-cow",
-   "unit": 6,
+   "unit": 9,
    "things": [
     "cow"
    ],
    "show": "all",
-   "painted": 0.229,
-   "changed": 0.2181,
+   "painted": 0.1508,
+   "changed": 0.1387,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 12.3,
-    "over_25": 0.265
+    "median": 7.9,
+    "over_25": 0.021
    }
   },
   {
    "n": 11,
    "id": "block-in-horns",
-   "unit": 7,
+   "unit": 10,
    "things": [
     "horns"
    ],
-   "show": "flat",
-   "painted": 0.0104,
-   "changed": 0.0104,
+   "show": "all",
+   "painted": 0.0215,
+   "changed": 0.0147,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 25.7,
-    "over_25": 0.527
+    "median": 14.4,
+    "over_25": 0.241
    }
   },
   {
    "n": 12,
    "id": "shade-horns",
-   "unit": 7,
+   "unit": 11,
    "things": [
     "horns"
    ],
    "show": "all",
-   "painted": 0.0235,
-   "changed": 0.0167,
+   "painted": 0.0189,
+   "changed": 0.0129,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 22.5,
-    "over_25": 0.465
+    "median": 22.0,
+    "over_25": 0.397
    }
   },
   {
    "n": 13,
    "id": "pull-copper-locks",
-   "unit": 8,
+   "unit": 12,
    "things": [
     "cow"
    ],
    "show": "pass",
-   "painted": 0.1563,
-   "changed": 0.1482,
+   "painted": 0.1526,
+   "changed": 0.1399,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 10.6,
-    "over_25": 0.04
+    "median": 10.3,
+    "over_25": 0.029
    }
   },
   {
    "n": 14,
    "id": "pull-golden-locks",
-   "unit": 8,
+   "unit": 12,
    "things": [
     "cow"
    ],
    "show": "pass",
-   "painted": 0.0521,
-   "changed": 0.0499,
+   "painted": 0.0535,
+   "changed": 0.0517,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 17.9,
-    "over_25": 0.083
+    "median": 18.0,
+    "over_25": 0.097
    }
   },
   {
    "n": 15,
    "id": "catch-rim-light",
-   "unit": 8,
+   "unit": 12,
    "things": [
     "cow",
     "horns"
    ],
    "show": "all",
-   "painted": 0.2342,
-   "changed": 0.0126,
+   "painted": 0.2351,
+   "changed": 0.0155,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 42.8,
-    "over_25": 0.977
+    "median": 43.7,
+    "over_25": 0.978
    }
   },
   {
    "n": 16,
    "id": "paint-nose",
-   "unit": 9,
+   "unit": 13,
    "things": [
     "cow"
    ],
-   "show": "flat",
-   "painted": 0.0046,
-   "changed": 0.0046,
+   "show": "all",
+   "painted": 0.0177,
+   "changed": 0.0153,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 21.0,
-    "over_25": 0.322
+    "median": 15.4,
+    "over_25": 0.279
    }
   },
   {
    "n": 17,
    "id": "light-nose",
-   "unit": 9,
+   "unit": 14,
    "things": [
     "cow"
    ],
    "show": "pass",
-   "painted": 0.0033,
-   "changed": 0.0026,
+   "painted": 0.0022,
+   "changed": 0.002,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 13.8,
-    "over_25": 0.118
+    "median": 19.6,
+    "over_25": 0.35
    }
   },
   {
    "n": 18,
    "id": "dot-nostrils-eye",
-   "unit": 9,
+   "unit": 14,
    "things": [
     "cow"
    ],
-   "show": "pass",
-   "painted": 0.0116,
-   "changed": 0.0092,
+   "show": "all",
+   "painted": 0.0057,
+   "changed": 0.0032,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 9.7,
-    "over_25": 0.132
+    "median": 22.6,
+    "over_25": 0.311
    }
   },
   {
    "n": 19,
    "id": "line-mouth",
-   "unit": 9,
+   "unit": 15,
    "things": [
     "cow"
    ],
    "show": "all",
-   "painted": 0.0227,
-   "changed": 0.0067,
+   "painted": 0.0136,
+   "changed": 0.0104,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 21.2,
-    "over_25": 0.334
+    "median": 27.7,
+    "over_25": 0.591
    }
   },
   {
    "n": 20,
    "id": "flick-dark-blades",
-   "unit": 10,
+   "unit": 16,
    "things": [
     "meadow"
    ],
@@ -728,14 +813,14 @@
    "changed": 0.1366,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 9.8,
-    "over_25": 0.066
+    "median": 9.4,
+    "over_25": 0.059
    }
   },
   {
    "n": 21,
    "id": "flick-olive-blades",
-   "unit": 10,
+   "unit": 16,
    "things": [
     "meadow"
    ],
@@ -744,14 +829,14 @@
    "changed": 0.1138,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 9.5,
-    "over_25": 0.057
+    "median": 10.0,
+    "over_25": 0.058
    }
   },
   {
    "n": 22,
    "id": "flick-yellow-green-blades",
-   "unit": 10,
+   "unit": 16,
    "things": [
     "meadow"
    ],
@@ -760,14 +845,14 @@
    "changed": 0.0628,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 8.6,
-    "over_25": 0.036
+    "median": 9.4,
+    "over_25": 0.04
    }
   },
   {
    "n": 23,
    "id": "flick-gold-blades",
-   "unit": 10,
+   "unit": 16,
    "things": [
     "meadow"
    ],
@@ -776,14 +861,14 @@
    "changed": 0.0458,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 12.7,
+    "median": 13.4,
     "over_25": 0.011
    }
   },
   {
    "n": 24,
    "id": "flick-brightest-tips",
-   "unit": 10,
+   "unit": 16,
    "things": [
     "meadow"
    ],
@@ -792,22 +877,22 @@
    "changed": 0.0004,
    "outside_unit": 0.0,
    "from_its_paints": {
-    "median": 38.0,
+    "median": 35.0,
     "over_25": 1.0
    }
   }
  ],
  "words": {
   "merge": {
-   "claims": 138,
-   "failures": 9,
-   "after": 9,
+   "claims": 130,
+   "failures": 3,
+   "after": 3,
    "dropped": 0,
    "unwritten": [],
    "missing": []
   },
   "merge-final": {
-   "claims": 129,
+   "claims": 126,
    "failures": 0,
    "after": 0,
    "dropped": 0,

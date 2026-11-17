@@ -60,8 +60,41 @@ def load(picture: str) -> dict:
     extra = json.loads((HERE / "v3_combined_plan.json").read_text())[picture]
     d["behind"] = extra["behind"]
     d["extra"] = extra
-    d["painter"]["early"] = extra.get("early") or {}  # a thing's name before its later stages (the meadow, plain)
+    d["painter"]["early"] = extra.get("early") or {}
+    d["painter"]["flat"] = sorted(k for k, v in fw.shows(d["fit"]).items() if v == "flat")  # the block-ins  # a thing's name before its later stages (the meadow, plain)
     return d
+
+
+# ---------------------------------------------------------------------------
+# Units
+# ---------------------------------------------------------------------------
+
+
+def units(painter: dict, flat: set[str] = frozenset()) -> list[dict]:
+    """#207's units, cut twice more, so that no step's picture has to be cut out of another step's render:
+    - a step whose paints the unit has all used already starts a unit of its own. Two steps of one render that share
+      a paint can't be told apart in it (the nostrils and the mouth line, both Dark umber: the first took both and
+      the second changed nothing, 2026-11-17);
+    - a block-in (a step in `flat`, the ids shown as a flat coat) is a unit by itself. Cut from the next step's
+      render it was a slab of one color, and its brushwork arrived on the step after (2026-11-17)."""
+    steps = fw.flat(painter)
+    out = []
+    for u in fw.units(painter):
+        cur = {"stage": u["stage"], "things": [], "steps": []}
+        used: set[str] = set()
+        for i in u["steps"]:
+            if cur["steps"] and (set(steps[i]["paints"]) <= used or steps[cur["steps"][-1]]["id"] in flat):
+                out.append(cur)
+                cur, used = {"stage": u["stage"], "things": [], "steps": []}, set()
+            cur["steps"].append(i)
+            cur["things"] += [t for t in fw.things_of(steps[i]) if t not in cur["things"]]
+            used |= set(steps[i]["paints"])
+        out.append(cur)
+    return out
+
+
+def flats(d: dict) -> set[str]:
+    return {k for k, v in fw.shows(d["fit"]).items() if v == "flat"}
 
 
 # ---------------------------------------------------------------------------
@@ -127,7 +160,7 @@ def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str
     if again:
         text += ("Take all of that layer off: none of its strokes, lights or details may still show. Add no new "
                  "detail in its place. ")
-    if again > 1:
+    if again > 1 or steps[first - 1]["id"] in (painter.get("flat") or ()) and set(fw.things_of(steps[first - 1])) & set(u["things"]):
         text += ("What is left where the paint came off is a first coat: smooth, flat and softly blended, with no "
                  "separate strokes, blades, dabs or texture in it. ")
     return text + end
@@ -157,7 +190,7 @@ def erase_one(src: np.ndarray, raw: np.ndarray, bare: bool, frozen: np.ndarray) 
 def probe(picture: str, n: int, quality: str = "low", again: int = 0) -> dict:
     """One unit erased from the finish, alone: does the request work before a chain is spent on it?"""
     d = load(picture)
-    us = fw.units(d["painter"])
+    us = units(d["painter"], flats(d))
     folder = OUT / picture / "probe"
     folder.mkdir(parents=True, exist_ok=True)
     name = f"U{n:02d}" + "r" * again
@@ -185,7 +218,7 @@ def erase(picture: str, quality: str = "low", redo: dict[int, int] | None = None
     picture, so its files are thrown and it is rendered again. A render the probe already made is used."""
     d = load(picture)
     painter, finish = d["painter"], d["finish"]
-    us = fw.units(painter)
+    us = units(painter, flats(d))
     folder = OUT / picture
     folder.mkdir(parents=True, exist_ok=True)
     was = json.loads((folder / "erase.json").read_text()) if (folder / "erase.json").exists() else {}
@@ -292,12 +325,14 @@ def fit(d: dict, us: list[dict], ch: list[dict]) -> tuple[dict[str, str], list[d
 
 
 def build(picture: str) -> tuple[list[np.ndarray], list[np.ndarray], dict]:
-    """(step pictures, where each step lays paint, numbers). A unit's last step lays all of D; an earlier one is a
-    flat coat on the core, or a pass of the pixels of D nearest that step's paints (cut from D, not the core: thin
-    strokes aren't in the core, #207)."""
+    """(step pictures, where each step lays paint, numbers). Each pixel of a unit's change D belongs to the step
+    whose paint it is nearest (cut from D, not the core: thin strokes aren't in the core, #207). A pass lays its
+    own pixels. A flat step lays a flat coat over the core and over its own pixels outside it. The last step lays all
+    of D: its own pixels, and the brushwork under a flat coat. Before 2026-11-17 it also brought every pixel no
+    earlier step had claimed (dark bush rows on the step that names the bushes' sunlit green)."""
     d = load(picture)
     painter, folder = d["painter"], OUT / picture
-    us, steps, show = fw.units(painter), fw.flat(painter), fw.shows(d["fit"])
+    us, steps, show = units(painter, flats(d)), fw.flat(painter), fw.shows(d["fit"])
     ch = chain(picture, us)
     one, per_unit, paint_rows = fit(d, us, ch)
     canvas = np.empty(d["finish"].shape, np.float32)
@@ -311,16 +346,25 @@ def build(picture: str) -> tuple[list[np.ndarray], list[np.ndarray], dict]:
         hexes = per_unit[n]
         near = ws.nearest(content, [hexes[p] for p in names])
         lab = bs.ol.lab(cv2.GaussianBlur(content, (0, 0), 1.0))
+        # every pixel of the change belongs to one step: the first of the unit that names the paint nearest it
+        first = {p: next(i for i in u["steps"] if p in steps[i]["paints"]) for p in names}
+        own = {i: D & np.isin(near, [j for j, p in enumerate(names) if first[p] == i]) for i in u["steps"]}
         for i in u["steps"]:
             s = steps[i]
             before = canvas.copy()
             how = show.get(s["id"], "full")
             if i == u["steps"][-1]:
+                # the unit's last step: P[u] exactly. The steps before it laid their own pixels, so what is left
+                # is its own (and the soft rim of the change)
                 how, lay, where = "all", content, D
             elif how == "flat":
-                lay, where = ff.flat_paint(content, core, [hexes[p] for p in s["paints"]]), core
+                # a flat coat of its paint over the core and over its own pixels outside it. Showing its own pixels
+                # as they are was tried and looked worse: a half-finished cow beside a flat slab (2026-11-17). So
+                # its brushwork still arrives on the unit's last step.
+                where = core | own[i]
+                lay = ff.flat_paint(content, where, [hexes[p] for p in s["paints"]])
             else:
-                how, lay, where = "pass", content, D & np.isin(near, [names.index(p) for p in s["paints"]])
+                how, lay, where = "pass", content, own[i]
             canvas = bs._lay(canvas, lay, where)
             pic = np.clip(canvas, 0, 255).astype(np.uint8)
             changed = np.abs(canvas - before).max(2) > 6
@@ -400,7 +444,7 @@ def v2_plan(d: dict, us: list[dict], ch: list[dict], one: dict[str, str], owner:
     parts, part_of = [], {}
     for n, u in enumerate(us):
         t = thing[u["things"][0]]
-        over = named.get(str(n)) or {}
+        over = named.get(steps[u["steps"][0]]["id"]) or {}
         pid = over.get("id") or t["id"]
         where = owner == n
         if not where.any():
@@ -429,11 +473,14 @@ def v2_plan(d: dict, us: list[dict], ch: list[dict], one: dict[str, str], owner:
         y, x = np.unravel_index(np.sqrt(((lab - ff.hex_lab(hx)) ** 2).sum(2)).argmin(), lab.shape[:2])
         paints.append({"id": slug(name), "name": name, "used_for": looks[name], "hex": hx,
                        "sample_x": round(float(x / w), 3), "sample_y": round(float(y / h), 3), "parts": users})
+    last_of_unit = {u["steps"][-1] for u in us}
     stages, i = [], 0
     for st in painter["stages"]:
         out = []
         for s in st["steps"]:
             how = "blend" if s.get("blend") else show.get(s["id"], "full")
+            if how == "flat" and i in last_of_unit:  # a block-in with its own render: v2 has no flat last step
+                how = "full"
             out.append({k: v for k, v in {"id": s["id"], "name": s["name"], "part": part_of[i], "show": how,
                                           "paints": [slug(p) for p in s["paints"]], "stroke": s["stroke"],
                                           "brush": s["brush"], "why": s.get("why")}.items() if v})
@@ -489,7 +536,7 @@ def make_lesson(picture: str) -> Path:
     import v3_facts as fx
 
     d = load(picture)
-    us = fw.units(d["painter"])
+    us = units(d["painter"], flats(d))
     pictures, masks, _ = build(picture)
     ch = chain(picture, us)
     one, _, _ = fit(d, us, ch)
@@ -592,7 +639,7 @@ def main() -> None:
     args = ap.parse_args()
     if args.cmd == "units":
         d = load(args.picture)
-        us = fw.units(d["painter"])
+        us = units(d["painter"], flats(d))
         for n in range(len(us) - 1, -1, -1):
             print(n, kind_of(us, n, d["behind"]) if n else "first", us[n]["things"], [s + 1 for s in us[n]["steps"]])
             if args.prompts and n:

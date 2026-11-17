@@ -29,21 +29,51 @@
    "meadow": "the plain green meadow, smooth, with no grass blades"
   },
   "units": {
-   "4": {
+   "lay-in-ground": {
     "id": "ground",
     "name": "The hillside and the meadow"
    },
-   "8": {
+   "light-cloud-tops": {
+    "id": "cloud-tops",
+    "name": "The cloud tops",
+    "parent": "clouds"
+   },
+   "tap-sunlit-bushes": {
+    "id": "bush-tops",
+    "name": "The sunlit bush tops",
+    "parent": "bushes"
+   },
+   "shade-cow": {
+    "id": "cow-shade",
+    "name": "The cow's shading",
+    "parent": "cow"
+   },
+   "shade-horns": {
+    "id": "horn-shade",
+    "name": "The horns' undersides",
+    "parent": "horns"
+   },
+   "pull-copper-locks": {
     "id": "coat",
     "name": "The cow's shaggy coat",
     "parent": "cow"
    },
-   "9": {
+   "paint-nose": {
+    "id": "nose",
+    "name": "The cow's nose",
+    "parent": "cow"
+   },
+   "light-nose": {
     "id": "face",
     "name": "The cow's face",
     "parent": "cow"
    },
-   "10": {
+   "line-mouth": {
+    "id": "mouth",
+    "name": "The cow's mouth",
+    "parent": "cow"
+   },
+   "flick-dark-blades": {
     "id": "tall-grass",
     "name": "The tall grass in front",
     "parent": "ground"
