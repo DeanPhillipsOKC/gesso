@@ -1,0 +1,50 @@
+id: birch-trunks
+name: Birch trunks with dark bark marks
+for: "White-barked trees (birch, aspen): a pale trunk shaded on the side away from the light, broken dark bark marks across it, and light on the sunlit side."
+examples: [birches along a woodland path, an aspen grove]
+kinds: [thin, marks, object]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Pull the pale trunks and branches
+    show: [flat, pass, full]
+    strokes: [thick-to-thin, press-and-lift]
+    value: mid
+    does: Each trunk in a pale gray-white, pulled in the direction the tree grows, wide at the base and tapering up; the branches thick at the trunk and tapering out.
+    mistake:
+      mistake: Trunks that look like flat white posts.
+      why: Every trunk the same width, straight, with hard even edges.
+      fix: Taper each trunk as it rises, let it lean a little, and let the edges wobble.
+  - name: Shade the side away from the light
+    show: [pass, full]
+    strokes: [dry-brush, thick-to-thin]
+    value: dark
+    optional: true
+    does: A gray-brown dry-brushed down the side of each trunk away from the light, and darker toward the base, so the trunk looks round.
+  - name: Add the dark bark marks
+    show: [pass, full]
+    strokes: [thick-to-thin, press-and-lift, liner]
+    value: dark
+    repeat: true
+    does: Short, broken dark marks laid across the trunk with the brush's edge, more toward the base, and the dark at each trunk's foot; on a dry trunk.
+    mistake:
+      mistake: Even stripes like a barber pole.
+      why: Every mark the same size, spacing, and length, all the way across.
+      fix: Vary them; many marks reach only partway across, and leave bigger gaps of white higher up.
+  - name: Catch the light on the bark
+    show: [pass, full]
+    strokes: [dry-brush, thick-to-thin]
+    value: light
+    optional: true
+    does: A near-white mix dragged down the side facing the light, over the dry marks in places, so the shaded side stays gray.
+rules:
+  - Paint in the direction the tree grows, thick at the base and tapering up and out.
+  - Pale trunk, then shading, then dark marks, then light. The marks go on a dry trunk, or they smear gray.
+  - Keep every light on the side the light comes from.
+sources:
+  - docs/research/acrylic-paint-along.md, section 4, Trees (branches thick at the trunk and tapering, in the direction the tree grows)
+  - docs/research/acrylic-paint-along.md, section 4, The core pattern (dark, mid, small light; each covering less)
+  - docs/research/acrylic-paint-along.md, section 2, Thick-to-thin stroke with a flat or angle; Dry brushing; Liner work
+  - techniques/elements/trunks-branches.yaml, the closest library element (pull the trunk, then catch the light)
+  - "general practice: the research has no section on birch bark; the step that lays dark broken marks across a pale trunk (and its mistake) goes past it"

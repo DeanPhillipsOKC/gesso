@@ -755,6 +755,10 @@ checked: false
   `sources` which lines go past the research ("general practice: ..."); a research pass for fur, feathers, snow,
   night skies, and light sources would back those lines. Still `checked: false` until the owner paints from them.
   Skin, and glass and metal on their own, aren't covered yet; a run drafts them.
+- **Added from the v3 bench's baseline runs (2026-11-17, owner: "I'm sure they're fine ... Just approve them"):** the
+  two those runs drafted and filed: birch-trunks (#180, the birch grove) and shaggy-animal (#181, the highland cow;
+  furry-animal is for short fur with markings). Both say in `sources` which lines go past the research. Still
+  `checked: false` until the owner paints from them.
 
 ### Step text (`draft-text`, then Claude; issue 7 of 8)
 

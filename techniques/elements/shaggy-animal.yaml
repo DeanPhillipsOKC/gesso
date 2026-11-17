@@ -1,0 +1,55 @@
+id: shaggy-animal
+name: A long-haired, shaggy animal
+for: "An animal whose coat hangs in long locks rather than short fur, with no markings to paint: a Highland cow, a shaggy pony, a long-haired goat or dog. Built as a shape, shaded, then the locks pulled down in long tapering strokes, a lit rim where the light catches the hair, and the face last."
+examples: [a Highland cow, a shaggy pony, a long-haired goat]
+kinds: [object]
+medium: acrylic
+levels: [beginner]
+checked: false
+steps:
+  - name: Block in the animal
+    show: [flat, full]
+    strokes: [build-from-pieces, curved-strokes]
+    value: mid
+    does: The whole animal in its main mid coat color. One big oval for the body first, then the head as a smaller rounded shape, the fringe as a curved cap over it, and the legs as short pieces, every stroke curving down the way the hair hangs.
+  - name: Shade the side away from the light
+    show: [pass, full]
+    strokes: [curved-strokes, dry-brush]
+    value: dark
+    optional: true
+    does: A darker mix of the coat color in long downward curves on the side away from the light, under the head and fringe, and low on the body, leaving the mid showing on the lit side.
+  - name: Pull the long locks
+    show: [pass, full]
+    strokes: [thick-to-thin, curved-strokes]
+    value: mid
+    repeat: true
+    does: Long locks in a lighter coat mix over the dry base, each pressed wide where it starts and lifted to a point as it hangs down, following the body's curve, with gaps so the darker coat shows between them. Fewer locks on the shadow side.
+    mistake:
+      mistake: The coat turns into one smooth patch with no locks.
+      why: Too much paint, or the strokes are blended into each other.
+      fix: Use a light load, keep each lock separate, and let it dry before adding more.
+  - name: Light the rim where the light catches the hair
+    show: [pass, full]
+    strokes: [thick-to-thin, dry-brush]
+    value: light
+    optional: true
+    does: The lightest mix on the edges facing the light only (the top of the head, the fringe, the lit side's outline), in short tapering strokes that run off the edge, covering much less than the locks under it. Light over dark needs 2 to 3 thin coats with drying between.
+  - name: Add the face
+    show: [pass, full]
+    strokes: [curved-strokes, dotting, liner]
+    optional: true
+    repeat: true
+    does: The nose, nostrils, and mouth line, on a dry layer, one color per step. The nose is a rounded shape in curved strokes; nostrils and the mouth are small dark dots or a short liner line.
+rules:
+  - Block in the shape first, then the shadow, the locks, the lit rim, and the face. Each light pass covers less than the one before.
+  - Every lock hangs down along the body's curve, tapering to a point; the fringe falls over the eyes the same way.
+  - Locks, the rim, and the face go on a dry layer, so the dark coat shows between the locks.
+  - Keep the lit rim on the side the light comes from only.
+sources:
+  - "docs/research/acrylic-paint-along.md, section 4, The core pattern (dark base, then mid, then small light, each covering less)"
+  - "docs/research/acrylic-paint-along.md, section 2, Thick-to-thin stroke with a flat or angle (a line that starts wide and tapers to a point); Dry brushing; Dotting; Liner work"
+  - "docs/research/acrylic-paint-along.md, section 2, Flicking (grass, fur): tapered marks over a dark base so the dark shows between; lower confidence"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Layering and drying 3 and 5 (dry layer before a contrasting color; light over dark needs 2 to 3 coats)"
+  - "docs/research/acrylic-paint-along.md, For Gesso, Values and texture 5 (stroke direction follows the form)"
+  - "techniques/elements/furry-animal.yaml (block in from pieces, shade, fur over a dry base, the face last)"
+  - "general practice: the research has no section on long-haired animals; long hanging locks as thick-to-thin strokes and a backlit rim on the hair go past it"
