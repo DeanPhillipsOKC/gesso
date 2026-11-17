@@ -4,8 +4,10 @@
 numbers `spike/experiments/v3_part_stages.json`, its tests `spike/tests/test_v3_part_stages.py`. It is experiment
 code: no lesson tool, the skill, or the site changed.
 
-**Verdict: not given yet. It waits for the owner's blind A/B** (round `s4-stages`, section 7). A spike beats v2 only
-on a clear win there (`docs/decisions.md`). What the numbers and the pictures say before it:
+**Verdict: drop.** The owner scored the blind A/B on 2026-11-17 (section 7): v2 preferred on the sleeping cat and
+the highland cow, no difference on the lake cabin. The stages won on none. A spike that loses the A/B to the v2
+baseline is dropped (`docs/design/pipeline-v3-plan.md`, "How a spike runs"). What the numbers and the pictures said
+before it, which the A/B did not bear out where they favored the stages:
 
 - **The image model can paint a stage the plan describes.** Asked for the cat "blocked in", "with the white chest
   done" and "with the stripes done", it gave a plain gray cat, then the white, then flat stripes with no fur. 29
@@ -26,8 +28,9 @@ on a clear win there (`docs/decisions.md`). What the numbers and the pictures sa
 - **It costs about a render a step:** 8 to 12 low renders a lesson, 14 to 22 cents, where v2 spends 2 cents on its one
   background render. The renders take 24 to 43 seconds a lesson, run together.
 
-Before the A/B, the recommendation is: **adopt only for parts that start with a flat coat, and only if the A/B is a
-clear win; otherwise park.** A part that starts with a pass keeps v2's pictures either way.
+Before the A/B, the recommendation here was to adopt the stages for parts that start with a flat coat if the A/B
+was a clear win. It wasn't: the owner preferred v2 on the two pictures where the stages looked best to Claude. v2's
+flat coat and passes stay.
 
 ## 1. What was tried
 
@@ -187,11 +190,40 @@ The page is https://claude.ai/artifact/F4SNZQ2LbiWwJtmDxz7VcB (3 pictures, 110 s
 before scoring. This time the experiment's lesson folders have their own names (`<run>-stages`), so the key alone
 says which side is which.
 
-Not scored yet.
+### The owner's scores (2026-11-17)
+
+Saved in `spike/experiments/bench/scores/s4-stages.json`. The owner scored (a), "the step pictures look like a real
+half-done painting", 1 to 5, and which lesson they'd paint from. (b) and (c) were left blank on purpose: the words
+and paints are the same on both sides.
+
+| Picture | v2: (a) | Stages: (a) | Prefers | Worst steps tapped |
+|---|---|---|---|---|
+| sleeping cat | 4 | 3 | v2 | stages: step 16, the pink ears and nose |
+| highland cow | 3 | 2 | v2 | stages: step 12, the rust locks |
+| lake cabin | 2 | 2 | no difference | none |
+
+The stages lost by a point on two pictures and tied on the third. The owner's scores move by a point between
+sittings (`docs/spikes/v3-yardstick.md`, Limits), but these were given side by side in one sitting, and the
+preference agrees with them both times.
+
+- **Sleeping cat.** The step tapped, 16, is the part's last step: the finish, the same picture on both sides. What
+  differs is the step before it. On the stages' side the picture goes from a render of the cat to the finish in one
+  step, and the whole cat shifts a little (the eyes, the white patch, section 2), on a step whose words add only
+  pink ears and a nose.
+- **Highland cow.** Step 12 is where the stage shows the cow's locks, and also its face: the owner wrote "In both,
+  the facial features just magically appear even though they're not disclosed in the steps or the paint colors.
+  They just happen in different steps." The stage puts the face a step earlier than v2 does, and no step's words or
+  paints cover it on either side. That is the plan and the words (S7 #172, S8 #173), not the pictures.
+- **Lake cabin.** The stages' better reflection and reeds and worse mountain and forest came out even.
+
+**What it means.** A render of a half-done part looked more painted to Claude and scored lower with the owner. Two
+things the stages add count against them: each step redraws the whole part, so things move between steps and a step
+shows more than its words say; and the jump to the finish at a part's last step is bigger. v2's passes show less,
+but what they show is the finish's own paint in the finish's own place.
 
 ## 8. Not done
 
-- **The lavender balloon**, picked as the fourth picture for its six-step balloon and five-step field. The image
+- **The lavender balloon** (not needed now: the stages lost on two of three), picked as the fourth picture for its six-step balloon and five-step field. The image
   model's account ran out of credits before its 15 renders started. Nothing was spent on it.
 - **Chained stages** (each made from the one after it: un-paint one step at a time). It might make two stages of a
   part agree better. The code is there (`render --mode chained`); no render was made, for the same reason.
