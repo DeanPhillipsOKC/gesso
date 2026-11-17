@@ -295,16 +295,58 @@ def back_owner(parts: list[dict], owner: np.ndarray, background: np.ndarray, fro
 
 _built: dict[str, tuple] = {}  # the last few builds in this process, by what went in (see build)
 KEEP_BUILDS = 4
+# The engine's finer memo (#176, spike/engine.py): what each part's steps paint over (`_prepare`) and what's behind
+# the objects (`_behind`), by exactly what goes into each, so a change to one stage rebuilds only the parts it
+# touches. None (the default, and every tool run from the command line): everything is built each time, as before.
+_parts_memo: dict[str, object] | None = None
+_keep_bytes = 1_000_000_000  # the most the engine's memo holds; the oldest go first (lower case: not in _tuned)
+
+
+def remember_parts(on: bool = True) -> None:
+    """Turn the engine's per-part memo on (or off and empty). Only the engine calls this."""
+    global _parts_memo
+    _parts_memo = {} if on else None
+
+
+def _nbytes(value) -> int:
+    if isinstance(value, np.ndarray):
+        return value.nbytes
+    if isinstance(value, dict):
+        return sum(_nbytes(v) for v in value.values())
+    return 0
+
+
+def _arrays(*arrays: np.ndarray | None) -> bytes:
+    """The bytes a key takes from pictures and outlines: each one's shape, type, and every value."""
+    return b"".join(b"-" if a is None else f"{a.shape}{a.dtype}".encode() + np.ascontiguousarray(a).tobytes()
+                    for a in arrays)
+
+
+def _tuned() -> bytes:
+    """The tuned numbers build uses, here and in what it calls, as bytes for a key."""
+    return b"".join(repr(sorted((k, v) for k, v in module.items()
+                                if k.isupper() and isinstance(v, (int, float, str, tuple)))).encode()
+                    for module in (globals(), vars(ff), vars(ol)))
 
 
 def _key(finish: np.ndarray, plan: dict, owner: np.ndarray, background: np.ndarray | None) -> str:
     h = hashlib.sha1(json.dumps(plan, sort_keys=True, default=str).encode())
-    for a in (finish, owner, background):
-        h.update(b"-" if a is None else f"{a.shape}{a.dtype}".encode() + np.ascontiguousarray(a).tobytes())
-    for module in (globals(), vars(ff), vars(ol)):  # the tuned numbers build uses, here and in what it calls
-        h.update(repr(sorted((k, v) for k, v in module.items()
-                             if k.isupper() and isinstance(v, (int, float, str, tuple)))).encode())
+    h.update(_arrays(finish, owner, background))
+    h.update(_tuned())
     return h.hexdigest()
+
+
+def _memo(key: str, make):
+    """make() once per key while the engine's memo is on; every call when it's off (the default)."""
+    if _parts_memo is None:
+        return make()
+    if key in _parts_memo:
+        _parts_memo[key] = _parts_memo.pop(key)  # newest last
+    else:
+        _parts_memo[key] = make()
+        while len(_parts_memo) > 1 and sum(_nbytes(v) for v in _parts_memo.values()) > _keep_bytes:
+            _parts_memo.pop(next(iter(_parts_memo)))
+    return _parts_memo[key]
 
 
 def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
@@ -326,6 +368,123 @@ def build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     return [p.copy() for p in pictures], copy.deepcopy(rows), [m.copy() for m in painted]
 
 
+def _behind(finish: np.ndarray, parts: list[dict], owner: np.ndarray, background: np.ndarray | None) -> dict:
+    """What every step starts from: which parts are behind, and the scene with the objects taken out (the finish,
+    `background`'s pixels behind them or a fill, and who owns each pixel there). It needs only the parts, the
+    finish, the outlines, and the background picture, never the stages."""
+    finish, owner = finish.copy(), owner.copy()  # the engine keeps this answer: nothing outside may change them
+    h, w = owner.shape
+    is_back = back_parts(parts)
+    front = ~is_back[owner]
+    front_grown = halo(front) if front.any() else front
+    base_back = make_background(finish, front, background)
+    doubt, opened = np.zeros((h, w), bool), np.zeros((h, w), bool)
+    own_back = back_owner(parts, owner, base_back, front, real=background is not None, doubt=doubt, opened=opened)
+    return {"finish": finish, "owner": owner, "is_back": is_back, "front": front, "front_grown": front_grown,
+            "real_background": background is not None, "base_back": base_back, "doubt": doubt, "opened": opened,
+            "own_back": own_back}
+
+
+def _group_of(parts: list[dict], k: int) -> np.ndarray:
+    """For every part, the part that brings its rim back on part k: itself, or for something painted on a later
+    part (a wing on the bird), that later part. A child of k itself (a cloud on the sky) is its own."""
+    index = {p["id"]: i for i, p in enumerate(parts)}
+    res = np.arange(len(parts))
+    for q0, p in enumerate(parts):
+        q = q0
+        while p.get("parent") and p["parent"] != parts[k]["id"]:
+            q = index[p["parent"]]
+            p = parts[q]
+        res[q0] = q
+    return res
+
+
+def _prepare(pre: dict, parts: list[dict], k: int, names: list[str], hexes: dict[str, str]) -> dict:
+    """Part k's painted area, and what its paint looks like across all of it. `pre` is `_behind`'s answer, `names`
+    the paints the part's steps use, in the order they first do. Nothing in the answer is changed afterwards."""
+    finish, owner, is_back = pre["finish"], pre["owner"], pre["is_back"]
+    h, w = owner.shape
+    long_side = max(h, w)
+    p = parts[k]
+    base, own_map = (pre["base_back"], pre["own_back"]) if is_back[k] else (finish, owner)
+    fam = _family(parts, k)
+    mine = own_map == k
+    if is_back[k] and not pre["real_background"]:
+        mine &= ~pre["front_grown"]  # with no picture of what's behind the objects, carry this part's own paint across
+    elif is_back[k]:
+        mine &= ~pre["doubt"]  # what the render shows there isn't this part's: carry its own paint across (#139)
+    whole = np.isin(own_map, fam)
+    in_front = own_map > k  # parts painted later; children are handled as family
+    if p.get("covers"):
+        reach = ol.box_mask((h, w), p["covers"])
+    else:
+        r = max(1, int(UNDERLAP * long_side))
+        reach = cv2.dilate(whole.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
+        if not is_back[k]:  # an object is painted whole: across narrow gaps and holes where nearer things cross it
+            c_ = max(1, int(CLOSE * long_side))
+            reach |= cv2.morphologyEx(whole.astype(np.uint8), cv2.MORPH_CLOSE,
+                                      cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * c_ + 1, 2 * c_ + 1))) > 0
+    hidden = reach & in_front & ~whole
+    if is_back[k]:
+        hidden &= is_back[own_map]  # behind an object, base_back already holds what's there
+    area = whole | hidden
+    seen = np.flatnonzero(np.isin(owner, fam).any(1))
+    far = np.zeros((h, w), bool)
+    if len(seen) and p["kind"] == "area":  # marks found behind an object (a cloud) aren't held to rows
+        m, ys_ = int(FAR_ROWS * h), np.arange(h)
+        # rows behind an object that no area had are split between the nearest areas above and below, and
+        # aren't far from either
+        far = whole & ((ys_ < seen.min() - m) | (ys_ > seen.max() + m))[:, None] & ~pre["opened"]
+    c = base.copy()
+    # This part's paint right beside a part painted later is that part's rim: a cloud's glow on the sky, a
+    # foot's shadow on the branch. Carried into the gap it drew the cloud and the foot before their steps
+    # (#84). So the fill is taken from the part's clean paint only, and the rim itself shows the fill until
+    # the part it belongs to is painted.
+    later = (own_map > k) & (is_back[own_map] == is_back[k])
+    r = max(2, int(RIM * long_side))
+    near = cv2.dilate(later.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
+    clean = main_pieces(mine, mine & ~near)
+    wide = bool(is_back[k]) and _is_wide(mine)  # a long branch isn't a sky
+    if wide:
+        # a wide part is itself only in the rows it runs along: bits of it lower down (sky showing between a
+        # ridge and a tree) aren't what its rows look like, whatever size they are
+        clean = clean & (whole.sum(1) >= ROW_BAND * w)[:, None]
+    group = np.full((h, w), -1, np.int32)
+    if clean.sum() >= max(50, CLEAN_MIN * mine.sum()):
+        # A stray piece of the part goes the same way, whole, when it's a dab beside a later part (most of it
+        # within RIM of one): a dab of foliage the outline left to the sky is the foliage's, and comes with it.
+        # Any other stray (a small cloud up in the sky, one behind the tree, a streak along the ridge) is the
+        # part's own and is painted with it; only its pixels right beside a later part are that part's rim.
+        # Given whole to the nearest later part however far away, the clouds' strays showed a fill through
+        # the clouds' steps and changed to the real paint on the mountains' step, with no instruction (#153).
+        rim_k = mine & ~clean
+        n_, pieces = cv2.connectedComponents(rim_k.astype(np.uint8), connectivity=8)
+        dab = np.bincount(pieces[rim_k & near], minlength=n_) >= STRAY_NEAR * np.bincount(pieces[rim_k], minlength=n_)
+        dab[0] = False
+        rim_k &= near | dab[pieces]
+        group[rim_k] = _group_of(parts, k)[ol.fill_from_nearest(own_map, ~later)[rim_k]]
+    else:
+        clean, rim_k = mine, np.zeros((h, w), bool)  # a thin part that is all rim: nothing cleaner to go on
+    carried = (area & ~mine) | rim_k  # hidden, under this part's own children, or a later part's rim
+    if carried.any() and clean.any():
+        fill = blend_paint(base, clean) if wide else None
+        if fill is None:
+            # a thing's paint (bark, a hull) has bigger marks than a sky's: carry them over whole, or the gap
+            # shows as a smooth patch in the shape of what will cover it
+            fill = ff.continue_paint(base, clean) + borrowed_texture(base, clean, carried, MARKS * long_side, 45, 1.0)
+        else:
+            fill = fill + borrowed_texture(base, clean, carried)
+        c[carried] = np.clip(fill, 0, 255).astype(np.uint8)[carried]
+    out = {"family": fam, "area": area, "far": far, "rim_group": group, "content": c,
+           "kids": whole & ~mine,  # where this part's children go
+           "base_of": base}
+    if names:
+        L = ol.lab(cv2.GaussianBlur(c, (0, 0), 1.0))
+        d = np.stack([np.sqrt(((L - ff.hex_lab(hexes[n])) ** 2).sum(2)) for n in names])
+        out["nearest"] = cv2.medianBlur(d.argmin(0).astype(np.uint8), SMOOTH)
+    return out
+
+
 def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
            background: np.ndarray | None = None) -> tuple[list[np.ndarray], list[dict], list[np.ndarray]]:
     parts, steps = plan["parts"], flat_steps(plan)
@@ -333,14 +492,13 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     hexes = {p["id"]: p["hex"] for p in plan["paints"]}
     h, w = owner.shape
     long_side = max(h, w)
-    roots = _roots(parts)
-    is_back = back_parts(parts)
-    front = ~is_back[owner]
-    real_background = background is not None
-    front_grown = halo(front) if front.any() else front
-    base_back = make_background(finish, front, background)
-    doubt, opened = np.zeros((h, w), bool), np.zeros((h, w), bool)
-    own_back = back_owner(parts, owner, base_back, front, real=background is not None, doubt=doubt, opened=opened)
+    # with the engine's memo on, what's behind is kept by its own inputs, and so is each part's prepared paint
+    # (below), so a change to the stages rebuilds only the parts whose steps changed (#176)
+    behind_key = hashlib.sha1(b"behind" + json.dumps(parts, sort_keys=True, default=str).encode()
+                              + _arrays(finish, owner, background) + _tuned()).hexdigest() if _parts_memo is not None else ""
+    pre = _memo(behind_key, lambda: _behind(finish, parts, owner, background))
+    finish, owner, is_back, front = pre["finish"], pre["owner"], pre["is_back"], pre["front"]
+    own_back = pre["own_back"]
 
     last_of = {s["part"]: i for i, s in enumerate(steps)}
     paints_of: dict[str, list[str]] = {}
@@ -358,102 +516,24 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
     kids: dict[int, np.ndarray] = {}
     far: dict[int, np.ndarray] = {}  # an area's paint behind the objects far above or below its own outline's rows
     rim_group: dict[int, np.ndarray] = {}  # for a part's rim pixels, the later part whose rim it is; -1 elsewhere
+    prepared: dict[int, str] = {}  # each prepared part's key in the engine's memo
     detailed: dict[int, np.ndarray] = {}  # where a part has laid more than a flat coat so far
     top = np.full((h, w), -1, np.int32)  # the part whose paint is on top at each pixel
 
-    def group_of(k: int) -> np.ndarray:
-        """For every part, the part that brings its rim back on part k: itself, or for something painted on a
-        later part (a wing on the bird), that later part. A child of k itself (a cloud on the sky) is its own."""
-        res = np.arange(len(parts))
-        for q0, p in enumerate(parts):
-            q = q0
-            while p.get("parent") and p["parent"] != parts[k]["id"]:
-                q = index[p["parent"]]
-                p = parts[q]
-            res[q0] = q
-        return res
-
     def prepare(k: int) -> None:
-        """Part k's painted area, and what its paint looks like across all of it."""
-        p = parts[k]
-        base, own_map = (base_back, own_back) if is_back[k] else (finish, owner)
-        fam = family[k] = _family(parts, k)
-        mine = own_map == k
-        if is_back[k] and not real_background:
-            mine &= ~front_grown  # with no picture of what's behind the objects, carry this part's own paint across
-        elif is_back[k]:
-            mine &= ~doubt  # what the render shows there isn't this part's: carry its own paint across (#139)
-        whole = np.isin(own_map, fam)
-        in_front = own_map > k  # parts painted later; children are handled as family
-        if p.get("covers"):
-            reach = ol.box_mask((h, w), p["covers"])
-        else:
-            r = max(1, int(UNDERLAP * long_side))
-            reach = cv2.dilate(whole.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
-            if not is_back[k]:  # an object is painted whole: across narrow gaps and holes where nearer things cross it
-                c_ = max(1, int(CLOSE * long_side))
-                reach |= cv2.morphologyEx(whole.astype(np.uint8), cv2.MORPH_CLOSE,
-                                          cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * c_ + 1, 2 * c_ + 1))) > 0
-        hidden = reach & in_front & ~whole
-        if is_back[k]:
-            hidden &= is_back[own_map]  # behind an object, base_back already holds what's there
-        area[k] = whole | hidden
-        seen = np.flatnonzero(np.isin(owner, fam).any(1))
-        far[k] = np.zeros((h, w), bool)
-        if len(seen) and p["kind"] == "area":  # marks found behind an object (a cloud) aren't held to rows
-            m, ys_ = int(FAR_ROWS * h), np.arange(h)
-            # rows behind an object that no area had are split between the nearest areas above and below, and
-            # aren't far from either
-            far[k] = whole & ((ys_ < seen.min() - m) | (ys_ > seen.max() + m))[:, None] & ~opened
-        c = base.copy()
-        # This part's paint right beside a part painted later is that part's rim: a cloud's glow on the sky, a
-        # foot's shadow on the branch. Carried into the gap it drew the cloud and the foot before their steps
-        # (#84). So the fill is taken from the part's clean paint only, and the rim itself shows the fill until
-        # the part it belongs to is painted.
-        later = (own_map > k) & (is_back[own_map] == is_back[k])
-        r = max(2, int(RIM * long_side))
-        near = cv2.dilate(later.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * r + 1, 2 * r + 1))) > 0
-        clean = main_pieces(mine, mine & ~near)
-        wide = bool(is_back[k]) and _is_wide(mine)  # a long branch isn't a sky
-        if wide:
-            # a wide part is itself only in the rows it runs along: bits of it lower down (sky showing between a
-            # ridge and a tree) aren't what its rows look like, whatever size they are
-            clean = clean & (whole.sum(1) >= ROW_BAND * w)[:, None]
-        group = np.full((h, w), -1, np.int32)
-        if clean.sum() >= max(50, CLEAN_MIN * mine.sum()):
-            # A stray piece of the part goes the same way, whole, when it's a dab beside a later part (most of it
-            # within RIM of one): a dab of foliage the outline left to the sky is the foliage's, and comes with it.
-            # Any other stray (a small cloud up in the sky, one behind the tree, a streak along the ridge) is the
-            # part's own and is painted with it; only its pixels right beside a later part are that part's rim.
-            # Given whole to the nearest later part however far away, the clouds' strays showed a fill through
-            # the clouds' steps and changed to the real paint on the mountains' step, with no instruction (#153).
-            rim_k = mine & ~clean
-            n_, pieces = cv2.connectedComponents(rim_k.astype(np.uint8), connectivity=8)
-            dab = np.bincount(pieces[rim_k & near], minlength=n_) >= STRAY_NEAR * np.bincount(pieces[rim_k], minlength=n_)
-            dab[0] = False
-            rim_k &= near | dab[pieces]
-            group[rim_k] = group_of(k)[ol.fill_from_nearest(own_map, ~later)[rim_k]]
-        else:
-            clean, rim_k = mine, np.zeros((h, w), bool)  # a thin part that is all rim: nothing cleaner to go on
-        rim_group[k] = group
-        carried = (area[k] & ~mine) | rim_k  # hidden, under this part's own children, or a later part's rim
-        if carried.any() and clean.any():
-            fill = blend_paint(base, clean) if wide else None
-            if fill is None:
-                # a thing's paint (bark, a hull) has bigger marks than a sky's: carry them over whole, or the gap
-                # shows as a smooth patch in the shape of what will cover it
-                fill = ff.continue_paint(base, clean) + borrowed_texture(base, clean, carried, MARKS * long_side, 45, 1.0)
-            else:
-                fill = fill + borrowed_texture(base, clean, carried)
-            c[carried] = np.clip(fill, 0, 255).astype(np.uint8)[carried]
-        content[k] = c
-        kids[k] = whole & ~mine  # where this part's children go
-        base_of[k] = base
-        names = paints_of.get(p["id"]) or []
-        if names:
-            L = ol.lab(cv2.GaussianBlur(c, (0, 0), 1.0))
-            d = np.stack([np.sqrt(((L - ff.hex_lab(hexes[n])) ** 2).sum(2)) for n in names])
-            nearest[k] = cv2.medianBlur(d.argmin(0).astype(np.uint8), SMOOTH)
+        names = paints_of.get(parts[k]["id"]) or []
+        key = hashlib.sha1(f"{behind_key} {k} {json.dumps([(n, hexes[n]) for n in names])}".encode()).hexdigest() \
+            if _parts_memo is not None else ""
+        r = _memo(key, lambda: _prepare(pre, parts, k, names, hexes))
+        family[k], area[k], far[k], rim_group[k] = r["family"], r["area"], r["far"], r["rim_group"]
+        content[k], kids[k], base_of[k] = r["content"], r["kids"], r["base_of"]
+        if "nearest" in r:
+            nearest[k] = r["nearest"]
+        prepared[k] = key
+
+    def flat(k: int, colors: list[str]) -> np.ndarray:
+        key = hashlib.sha1(f"flat {prepared[k]} {colors}".encode()).hexdigest() if _parts_memo is not None else ""
+        return _memo(key, lambda: ff.flat_paint(content[k], area[k], colors))
 
     canvas = np.empty((h, w, 3), np.float32)
     canvas[:] = ff.CANVAS
@@ -474,7 +554,7 @@ def _build(finish: np.ndarray, plan: dict, owner: np.ndarray,
         show = s.get("show", "full")
         names = paints_of.get(p["id"]) or []
         if show == "flat":
-            lay = ff.flat_paint(content[k], area[k], [hexes[n] for n in s["paints"]])
+            lay = flat(k, [hexes[n] for n in s["paints"]])
             where = target
             coated[k] = True
         elif show == "pass" and last_of[s["part"]] != i:

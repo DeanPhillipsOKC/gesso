@@ -27,6 +27,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+if __name__ == "__main__" and sys.argv[1:2] == ["engine"]:  # the engine (#176): its client needs nothing below
+    import engine
+
+    sys.exit(engine.main(sys.argv[2:]))
+
 from run import IMAGE_MODEL, ROOT, Ledger, edit_image, png_bytes, size_for  # noqa: E402
 
 CACHE_DIR = ROOT / "output" / ".render-cache"
@@ -991,6 +996,9 @@ def _read_owner(lesson: Path, plan: dict):
     return owner
 
 
+_outline_model = None  # the engine's kept outline model (#176, spike/engine.py); None: load one for this call
+
+
 def outline_tool(a: argparse.Namespace) -> dict:
     """Write parts/<id>.png, parts/owner.png, and parts/preview.jpg for a version 2 plan."""
     import numpy as np
@@ -1000,7 +1008,7 @@ def outline_tool(a: argparse.Namespace) -> dict:
     lesson = Path(a.lesson)
     plan, finish = _v2_parts_only(lesson)  # outline runs before there are paints or stages (design section 4)
     try:
-        masks, owner, stats = ol.outline(finish, plan["parts"], ol.Sam())
+        masks, owner, stats = ol.outline(finish, plan["parts"], _outline_model() if _outline_model else ol.Sam())
     except ol.NoModel as e:
         raise Refused(str(e))
     except ValueError as e:
@@ -1131,6 +1139,14 @@ def _v2_parts_only(lesson: Path):
     return plan, load(finish, max_side=100_000)
 
 
+def save_png(rgb, path: Path) -> None:
+    """A step picture as a PNG. The engine (#176) swaps in one that keeps each picture's bytes, so a step that
+    didn't change isn't encoded again."""
+    from PIL import Image
+
+    Image.fromarray(rgb).save(path)
+
+
 def build_steps_tool(a: argparse.Namespace) -> dict:
     """Write NN_<step id>.png for every step of a version 2 plan, cut from the finish. No renders."""
     import build_steps as bs
@@ -1152,7 +1168,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     names = []
     for i, (pic, s) in enumerate(zip(pictures, steps)):
         name = f"{i + 1:02d}_{s['id']}.png"
-        Image.fromarray(pic).save(lesson / name)
+        save_png(pic, lesson / name)
         names.append(name)
     (lesson / "trials").mkdir(exist_ok=True)
     sheet = lesson / "trials" / "steps.jpg"
@@ -1525,10 +1541,18 @@ def build_parser() -> argparse.ArgumentParser:
     add_render(sub)
     add_lesson_tools(sub)
     add_v2_tools(sub)
+    p = sub.add_parser("engine", help="Free. Opt-in: one long-lived process that runs these tools and rebuilds only "
+                                      "what changed (#176). Run `engine --help`; the tools work the same without it.",
+                       add_help=False)
+    p.add_argument("args", nargs=argparse.REMAINDER)
     return ap
 
 
 def main(argv: list[str] | None = None, client=None) -> int:
+    words = sys.argv[1:] if argv is None else list(argv)
+    if words[:1] == ["engine"]:  # spike/engine.py reads its own arguments and prints what the tool it runs prints
+        import engine
+        return engine.main(words[1:])
     a = build_parser().parse_args(argv)
     started = time.time()
     try:

@@ -1,0 +1,1177 @@
+{
+ "made_with": "today's code (main at bb39e54, as a git archive), the default path: one process per tool. The same hashes came out of 3 more runs of that code, of this branch's default path, and of the engine",
+ "normalized": {
+  "stamp": "publish's stamp (version.stamp): the git commit, whether the tree was dirty, and the date it ran. In lesson.json and embed/lesson.json as gesso.commit, gesso.dirty, gesso.published and gesso.made.commit, gesso.made.published; in the three pages as the footer line 'Gesso <version> (<commit>[+dirty]) on <date>'; in publish's printed gesso.",
+  "path": "the lesson folder's absolute path, in what the tools print (a scratch folder, different each run)."
+ },
+ "fixtures": {
+  "chickadee": {
+   "full": [
+    {
+     "tool": "outline",
+     "code": 0,
+     "printed": "268b8e7833998dfc0d7268baf0ae7f35f4db1828c4f4a30e3a3efb5316a605e3",
+     "refused": null,
+     "files": {
+      "parts/bird-cheek.png": "4f4a15b5521d78b13bb975699f56fb57034563f1f9ff38aceb3bd047a6f7addf",
+      "parts/bird-face.png": "5f6382585e5a1c2376afefe94019b38b5ad2f301863ee1dfd1aed4a7d59c7d2c",
+      "parts/bird-feet.png": "2708f393428df14fed897e0333c5cde52385ba1d1306b407cfa4c913acd0848b",
+      "parts/bird-head.png": "686b52b9fe1030f828a814fdc8c75c5715baf044c00264c6e6962465ed154833",
+      "parts/bird-wing.png": "c56bfc665392322edf43090356c4ffe61a923ddb5a8405dc30d2116ea0a3f6ed",
+      "parts/bird.png": "3377600c1ac97e7cfd15f8feb8c3152bf7f3fa79619b9a2bacddcc8d2bbc0c34",
+      "parts/branch.png": "83459fb613a8c228a9ecb76cfcb8d0c78efc98d13b20d3307fa432eea61dd2b7",
+      "parts/foliage.png": "ef694c20579874d79caf62781c198c11b61beda2d11eb934ad9810ab475371fc",
+      "parts/leaves.png": "458f5c1707aa5aaa32f840aeea8d43af260b6c4da274bb847bc3edd959a7be90",
+      "parts/preview.jpg": "e779801c00f4ba0a9a6dbcabe529e4d0b36b10cbc6cbc7aaaa326ceb3da9050e",
+      "parts/sky.png": "ca2e3fe295d593ac5431ebaebe233d4cae65a6109d03e0a9317d4b5efebeb224",
+      "parts/stats.json": "cfa7f30e9ab85c1995c1eeb1a27b84d33192e25f02a0388c02239662b3c9d1c5",
+      "parts/sun.png": "c6a26f1af16dca2f0179c9ca839b6a2a66c4e3647db328a412bc93f58a44c870",
+      "parts/trunks.png": "a4ffacdac50f994c389ba302612f093b11389175ba06db4021756d2088aa8cac"
+     }
+    },
+    {
+     "tool": "paints",
+     "code": 0,
+     "printed": "75a220c251786a7577445009e0e2159df9568f72250bf0671a2d3d84176ac4a2",
+     "refused": null,
+     "files": {
+      "plan.json": "526eecde00ce02c88b2e7dbd6f5569ca0bc711cd7ea911664cd7c468045cc79b",
+      "trials/paints.jpg": "72ecdfef725049b9ddc8258951c2588ff03d150b8d647b3c02f1705b50548229"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "71c7baf0865a5456267a4d6fc36dc8b0cd0ea082e88a506f5db67370a6943a54",
+     "refused": null,
+     "files": {
+      "01_sky-blend.png": "52d4ba294d71858383208928fb627e14dfb1f86327d50fb8668d2d0e1a474937",
+      "02_sun.png": "c4195e3d5fbe29b119e77e7a8d3c3143cc860eb4319bd361e3b052615b3f5443",
+      "03_trunks.png": "f8925651697a8381b9bc0cc246c6494a3cc69e8d551cd5fdac2b6b6aa96f0ed9",
+      "04_foliage-rust.png": "d4db3c621e2330c917eacb3551caa86a8f8f1eb2181a76c9cddd068d637435e8",
+      "05_branch-dark.png": "a9e58b2aa86a963b04bfc0ddfd50fd73e3bbcdc49f87e588d507e81e02791efd",
+      "06_branch-mid.png": "8cc25d42a22215f8d99ce0511bc423f954cd4e98c09149f4ded43f31e0898c7e",
+      "07_branch-light.png": "e2624490ca4d7a86374e16d825ea34f0810673cf520335f724c96b9b2588e7c6",
+      "08_leaves-shape.png": "675d148d5dec00f3c606dcd240a2d689a34fb6b6686c7dd0f159a47c6b39c7e1",
+      "09_leaves-light.png": "48980c7452c0aae21fc0ea647962bc14e3c6f87fe748c293868d6aad64a07656",
+      "10_bird-body.png": "cd89b77451e8b7faf246441a5498b88d95e13afeba1b95a47d54cac2921b2cd0",
+      "11_bird-wing.png": "972405db2c40369a7de898b3ac551d40635157274d13d10ace51dd9ad0193f80",
+      "12_bird-head.png": "d6d4d6da5e4f2450b4101b0659619880939ae256668bef2bc111301ec0e39ae5",
+      "13_bird-cheek.png": "8b488d6cf4b799bf6d6b16a252146796ebd5e6614be42f1480de2c0da3c25e5b",
+      "14_bird-chest.png": "c5350c5a0bbf1397e7f662fa36a7d8b3417d88a50b47c2eb9a9a599d19c3ab8e",
+      "15_wing-dark.png": "04a0d1303fb03b01279d0e252a75b8f56d5899194e16912ed2eaa7a04d2d8225",
+      "16_wing-light.png": "bd8d7ec640610ab2191a114547b4e8739a01e85deac5962fa63e3c3d151971e3",
+      "17_bird-face.png": "ffbd3549c7f624a3679de987f4d7263dd3c18b78d664a155330c7cb9bd616250",
+      "18_bird-feet.png": "e59bb62a462eda472e21cc2511fc57fd73cc510f536bc89f46af6689ccf8d09e",
+      "trials/steps.jpg": "4238da871fe126338a2ee83f23de43bb3f889ff2d6a6da7cab3c493a9636fc1b"
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "a3bbe3963dae475d32b70dd5921583aa47be6ef0d2dd16ebe6d6995f4a9a69df",
+     "refused": null,
+     "files": {
+      "aids/01_sky-blend_map.png": "ca681c66401800ef5058338bce9642930421d1e5c871af049ed348c46592bf04",
+      "aids/02_sun_after.jpg": "b43f31156e0f8fa42639fea22ac12cb20e7ff84b060710671f79150ec34e93af",
+      "aids/02_sun_before.jpg": "b9e6f69498219d77f16fef07b4d5550f9e95024b6e12520addd0fbfc4c12f96f",
+      "aids/05_branch-dark_map.png": "7ead23959bf979b4c5a0dfd366d079e199333d41d90dad0511582ffe693cc8f3",
+      "aids/08_leaves-shape_map.png": "01d0aed7726a134e21fda55acdfd099c5a6f6ff7748f1ece00dd58734f884c99",
+      "aids/10_bird-body_after.jpg": "4474ebeeacdc7cfa904d61022e2de8a4d6be03d329cbf08a6319e873704e65de",
+      "aids/10_bird-body_before.jpg": "ab9000bd54944ca31c451b7f0af05725456efdcebbb803e407dad88ec71c38c9",
+      "aids/10_bird-body_map.png": "81fd9fc1e14def28ac77ab6d2c9be71f7596fcb0f0286dfd8c8e36960b57d949",
+      "aids/11_bird-wing_after.jpg": "fa7d16ca787cf0c90d675be6d3307b42a8fad6f4486c89976178450449acead0",
+      "aids/11_bird-wing_before.jpg": "71d718be253a1f286e47353bc29b08b6e5a501c9e584dffe93f772bcbc76159c",
+      "aids/11_bird-wing_map.png": "775cc6233d09f6229c2c57909cb2b80e55f5d984762cbee3096a23ccdac41c39",
+      "aids/12_bird-head_after.jpg": "61055cd15de198beca1e619c3173b45e2ff5bd229e208c2a9ac23bbfbd61903a",
+      "aids/12_bird-head_before.jpg": "09124a499cccb5258f94d1d179d6115275a8fcb15eb286364a140eb03cb214ba",
+      "aids/13_bird-cheek_after.jpg": "005181e0fc6c8128354c310469f98636fe7a4f8abf09982e7190f805e13c2a33",
+      "aids/13_bird-cheek_before.jpg": "d721cf2d81994fadfcae4bfb4b5f0e8ff52ae7956266239a0711eef166c04229",
+      "aids/14_bird-chest_after.jpg": "7efd0265f1db403ecde922f7d3c6eb542994528f6a48893c0c303f5bfc5ba51b",
+      "aids/14_bird-chest_before.jpg": "64e4d00c1f235ac1815fdf8aaf50c0d4d508d2d52826e51aa58f95e5a1223af4",
+      "aids/15_wing-dark_after.jpg": "a7f21d62c0a09c819f9406970e01cf90d5ed80ec70929e6f72a03efc88fce438",
+      "aids/15_wing-dark_before.jpg": "3ed4a14292d2059f13820e4530d13c2ff4cdea89892f2d82b8763f66c1ff63fd",
+      "aids/16_wing-light_after.jpg": "a0829b961bfe5bdffc0e121bd2f2e3160422891f3d3ab7a44384d5683b3fb147",
+      "aids/16_wing-light_before.jpg": "07c7d9628bcc61ac72e5c098ebc7f46f18cfcfc48b92246b0aab34e3871c901c",
+      "aids/17_bird-face_after.jpg": "0c74fab031832295e1a766652dd3df8e77c286d6c3f646458465449296721fbb",
+      "aids/17_bird-face_before.jpg": "f916f425555009ce2e5577c9d46c6b9644a00f8db2f7360948bca7ee46a9f501",
+      "aids/18_bird-feet_after.jpg": "bc4e76ca6e2006a43839dcaba0866413af44bde570252b0292cea021e607768f",
+      "aids/18_bird-feet_before.jpg": "349595b6b53dfec1eba17d488d165875f7bc08cd47ef1973fa81b90090ad15f2",
+      "aids/aids.json": "6dee15b5ce283962c018d38cbb8a73262fcf42182221bc924a6ad6c341723ffa",
+      "aids/transfer.png": "d02dc2e108eb8d6b9a06aa5aaa49ee1dae24d988fc5917380371c216dad5e05e",
+      "canvas.json": "271fe6cc83facb3e45c3f233fae0b4f71c80ea8eff610d87194af84ce528e2c3"
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "9be9d44768407c143825a02cc1d30712a178ed549cb339560c03d3fb71055ff0",
+     "refused": null,
+     "files": {
+      "mixes.json": "791f28632391dc275c3c97552b23c4e6e4f6f7e167dee4872761e4242bc798a8"
+     }
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "c6eef548e615bad16e7e4387f5297fb23a68e50935c2f614b6cd8ecd3531b9c0",
+     "refused": null,
+     "files": {
+      "text.json": "f13d5f3f807abb6f374ba14b3e29745077a0feef5a8fba7ec32ffd955b1cf4d0"
+     }
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "d6fd0ea50f017570ac9bad6753cbe35f291f35f7a34688312e5d0b83c2d8bc94",
+     "refused": null,
+     "files": {
+      "text.json": "d57a7ac25582a64bb2e94d430f12d1c18b4a573de40744a48017725802627ac3"
+     }
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "a02896cdb4510202dbf5f4057b0298006af1e9be1c19c9220f3d5f2e79dc5e21",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "eebdf45ac5a602b15062db8e6b36e9d73d710c1c2fb8eff48ce5a55573672748",
+     "refused": null,
+     "files": {
+      "embed/01-t.webp": "e3f91482e8815212fc0be49c482de5be2f03316d78fac5372d9d3036775a9769",
+      "embed/01.webp": "2533e258762fd44dce071d0983aee1a7e6bde4b5bbcbfdc555cd8837d3e0c0eb",
+      "embed/02-t.webp": "5f897b62f6ac0b625272508e8836a511b6467b3b23c08d475587f259916645d6",
+      "embed/02.webp": "e556d57d1da689708031cb6517c8deb4081a5be27f45d5a70e92ba3a999374ae",
+      "embed/03-t.webp": "9a21aba200b56a31dab1ee6ce536f9d29202968ab806cec74137ac344340899a",
+      "embed/03.webp": "d207d1d5c401f0e7088869ced549db0ee0fa413cb7e54421722de3f9b855d44a",
+      "embed/04-t.webp": "f59ad27b6fc24a0d0d5523a4cb96f70a89a73c4fc1302736bc113b00c19a8543",
+      "embed/04.webp": "40a110c379bda0c8a761a553e58c8755c51f86965a1ce0581399d4d7bede6a47",
+      "embed/05-t.webp": "d0bdc6c88e0c98c941594b22481bdbf85616652630715c451daa2bf0b1a8fcde",
+      "embed/05.webp": "cd8a5fb2734d48bb00f1daf2d83a83519864942eeeeb04d81064cc63b5449946",
+      "embed/06-t.webp": "9572087eb04b7619a975d26805674687f15b970d6a7ccdd8a3cf77212a936298",
+      "embed/06.webp": "94c1b3538d6b6162e690a0a0d11512a7c94da34c9ec81bdf15b5d178410141e4",
+      "embed/07-t.webp": "b4246f13b2cc9d571e391934057e6f16394dc38a4f16a62a494f4f706a6379d7",
+      "embed/07.webp": "ad4b1d7885acb889e2a1190856d6bab757e94768a7a166b6966d01d32d0f4438",
+      "embed/08-t.webp": "181c1c8d61b926154f96805b72de82ec0320e46baf8c2ba4ef6ac944c0261fd4",
+      "embed/08.webp": "2401db46211bc55111c8630d5bba76a19dab81a0bd5945356372ca1ce52e22fe",
+      "embed/09-t.webp": "5ee0de6796c310e1b390884b7486c7c839b62167780b97c3d7d89df868a5f1c6",
+      "embed/09.webp": "cbcb08a334804bd159d1436cad1ac24cd9c8d2e28aedd4cc594465b5ab038fcb",
+      "embed/10-t.webp": "60f155614347fbdb2f4ec7c4c5a66b8ddc7e5747608d875b9ef354ba6302f732",
+      "embed/10.webp": "cbc461bf3624177c83e918489f01bac0ac7b64693ca4ad26e356add6dcd1e55f",
+      "embed/11-t.webp": "5bfa70786d5ddd1df9a79b2416773f5992b6fd551a2a71529e04207e9bf492d7",
+      "embed/11.webp": "88f2db8b114d217da09c5ee4fbb31b45769b5e9e000150944ac54eaecf3713be",
+      "embed/12-t.webp": "8f0767ffaa6376c7bb6d4df89ed96d4546016f0e3f0aa98ab144309bcf9a3b84",
+      "embed/12.webp": "d74c567336e6312e6d8dda34f98bfccddd5b839d973d2f8ce655393a278674e1",
+      "embed/13-t.webp": "8e0a8505e3568ea68b0d760a85be2cde9a4ebc5470ed501b0d40cac0335a8a8b",
+      "embed/13.webp": "2e8d8386dc21f60ae8fa0e37d26e581d5d1643b3efc4fd37389434d981fc6980",
+      "embed/14-t.webp": "12ca71184855646663544e028fefb98693b3ee12d54bb618e29da8ea1d4cdfb1",
+      "embed/14.webp": "9edfd1846cf23c28993deb7248b9f5cfed6335985abd7951fb8da47500558399",
+      "embed/15-t.webp": "254dd3d7e8f72571d45fe68d810b151efd8a916d82e9cef0310b70b8ba1228e3",
+      "embed/15.webp": "da680f522402caf36cee809e371c6f6c7cf3dfa9930f693c1bb34b260a504bb1",
+      "embed/16-t.webp": "9559a814a8e4554e9e32c2fff04a9a257182c9761d599f4e28127ca97edb66ff",
+      "embed/16.webp": "8e6c9a84e310a2fa51925e6d6f10f35d5c1147a66795ddfe698a291d82782385",
+      "embed/17-t.webp": "350f75e234ecf0d9bfa0e0949fdbfb0038c0de9c2d5e1592c86391add2e22e65",
+      "embed/17.webp": "6624377ad6460a92f8be7df51214fd7f5362dd2c48867f790d40990dec6f7e8b",
+      "embed/18-t.webp": "7396615fceaae5d93f52a66bcd310219d69712c9d6f5d8a72e66354eb2fac3f8",
+      "embed/18.webp": "62780d16620435c481b96a9012e885d1c82d4fa51f0d9f2ec3eb4cc04ab5d02d",
+      "embed/lesson.json": "b1b25c09817041da8fc0efff1b8c86089973eb376fbb34abaac3510929b7dfd5",
+      "embed/photo.webp": "62780d16620435c481b96a9012e885d1c82d4fa51f0d9f2ec3eb4cc04ab5d02d",
+      "lesson-artifact.html": "d9e35477f12a19f7ebdd7ba22297d0bc9ccbb24a4d9aa493e8a8c69eb4379eaa",
+      "lesson-standalone.html": "ab90cd932888dd8ec66dba8df332f76884afe86a34b9b4163baf1cdfe85157c6",
+      "lesson.html": "57ce24b8078fc0ab27eb8426315554faaf60ce74589251238efb284a73c5e250",
+      "lesson.json": "6fe2d1b40a52517878875b9b6a05695f7c4e83b25b48bdcab04b44be187dadfa",
+      "photo.jpg": "7f6c130aad942196c05b0a2664aa51f52a348cd3852a260eda9cb11f68b8b27a"
+     }
+    }
+   ],
+   "stage": [
+    {
+     "tool": "edit plan.json",
+     "change": "swapped wing-dark and wing-light",
+     "files": {
+      "plan.json": "aaebec776369cef4111547a88440d3ca75b3eca52e26abe3fa0102dd03ee2aed"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "e7d7c974f215a901b8d881cbe5456b5b8dd4e1cec83105e65680edccb27dae45",
+     "refused": null,
+     "files": {
+      "15_wing-light.png": "4c106f3545e791de0eb477834545c68a77b152e8c82ab0b81f90dfd2c8e8dc08",
+      "16_wing-dark.png": "eea281592e8631cc86bb57c1caa9a563970d828d70781ba02841d0e8da029af7",
+      "17_bird-face.png": "0b6bc19d4b1784ae6f2ee75ea71919762ecc3ce8f118e8789a64c4018af32c85",
+      "trials/steps.jpg": "dd22969894c2013509dbb28e7afb4e6ecf5204876ebe2528d5f8b17ddd3cb343",
+      "15_wing-dark.png": null,
+      "16_wing-light.png": null
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "a3bbe3963dae475d32b70dd5921583aa47be6ef0d2dd16ebe6d6995f4a9a69df",
+     "refused": null,
+     "files": {
+      "aids/11_bird-wing_map.png": "2dde161d8d61a59b8164f29b9efddffb59538546da98e96fa7d97bd0820e902b",
+      "aids/15_wing-light_after.jpg": "64192045123f4cc03215e0418c0269092e16d1d2c57ea79eff9be0067f8e174a",
+      "aids/15_wing-light_before.jpg": "54098e76982cdda5527150d82c3b8addfb82b728a53441a35ba72e59e977faa3",
+      "aids/16_wing-dark_after.jpg": "a0829b961bfe5bdffc0e121bd2f2e3160422891f3d3ab7a44384d5683b3fb147",
+      "aids/16_wing-dark_before.jpg": "750d9e478ab0a480ec72c94dad125acde2c336ea23b02619ef8536db6b2d4e9d",
+      "aids/aids.json": "21d993910c90a48b65742add8ae9c5d4e2e1761abdd5c5e7c4dcf2f5b90d659a",
+      "aids/15_wing-dark_after.jpg": null,
+      "aids/15_wing-dark_before.jpg": null,
+      "aids/16_wing-light_after.jpg": null,
+      "aids/16_wing-light_before.jpg": null
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "9be9d44768407c143825a02cc1d30712a178ed549cb339560c03d3fb71055ff0",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "943e14de084f3db84ba9173e65b46997080835468ec1c1b2016422dcc623e613",
+     "refused": null,
+     "files": {
+      "text.json": "02fd0376453d655a6da092cb5cad584691d3593fb08d91f0166d6d74737fda70"
+     }
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "8a761e460f18f1f65aebf8bdcce233c7d87ac34c616125ad8e8a287c01a793d9",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "c6929c9bbb9e4f843648c21dd92357fea512e876be56f866e3241c02a00518be",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "8974c4f402dd4c0233587bdba6e9ace2e709410b1646da321789048a161ed6d3",
+     "refused": null,
+     "files": {
+      "embed/15-t.webp": "af8ba9382e1ab51ab8413db6790fdbe2e12d860d7ece49c7fead14cddbb618ef",
+      "embed/15.webp": "fbc09592ab89e1361e8faa42a24cf304d5f1d666a38024fbb3e0dfe26ca424be",
+      "embed/16.webp": "aee1043cdc1be9eed26fdf2c047fa4131d6e96f94ee67bc21a5c0e262fb060f1",
+      "embed/17.webp": "1f090cdb6c06f2991db3119c3731c112750eb5b0cb51c3fca2474902ab03b6ca",
+      "embed/lesson.json": "d9c3901d946503fda531e5a02fd6495e390215707f5fb64b56e8496ce8a88d19",
+      "lesson-artifact.html": "653b2709a662369a8bd5df6757cfda1261583a7ccab9847d8440f554e6b1f5f0",
+      "lesson-standalone.html": "170a3ea83465783bda0440be775658b08b9849a01cf1dead9154adf5a201465a",
+      "lesson.html": "e7c481f597bc0cab61849e4ad8ca55f67327f212b565070c2d240da1ce1fddc2",
+      "lesson.json": "9ac0f4bf37bd09527b91e8457630a1bd2bad52ff97f747cff57f78db98ab5274"
+     }
+    }
+   ],
+   "part": [
+    {
+     "tool": "edit plan.json",
+     "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]",
+     "files": {
+      "plan.json": "fc831e05279b192d77eb79ecbf1c3f6326d1a4dab8b4beb1d1d39342adc26b1b"
+     }
+    },
+    {
+     "tool": "outline",
+     "code": 0,
+     "printed": "651924c0ac2cd4d54d21d4f26d69551aab4ae2e22d54da65bea8a539cec133e0",
+     "refused": null,
+     "files": {
+      "parts/owner.png": "ae7698c072ff6160497c270ab4066014f11221c55726cf610dcca97a12d187a4",
+      "parts/preview.jpg": "fe1089743ebdfcdaa6a93c23994d0a2def347ef99017bdb7a0d168f7aad208ec",
+      "parts/sky.png": "8f4c2ca69e2533a5d5111d7f3b434c468adeeb1598a0c08365cb8333f580428d",
+      "parts/stats.json": "94dec2ea6f0f31a6e8f4e4afbedffdb16014a7c9e5af68a3075f62e91e957109",
+      "parts/sun.png": "a4ebd7e477365163d91766c7c238a3f5d24b67deee24e80b73eddf399717b081"
+     }
+    },
+    {
+     "tool": "paints",
+     "code": 0,
+     "printed": "75a220c251786a7577445009e0e2159df9568f72250bf0671a2d3d84176ac4a2",
+     "refused": null,
+     "files": {
+      "trials/paints.jpg": "7801febae75b523270f2afc45ded29dec6f7c6ae413d548c5a79966a7eff7a55"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "32bee79ca5998ab6b0ccd9b43a1fb45319c8f70044196c98b06c31857e4fd480",
+     "refused": null,
+     "files": {
+      "01_sky-blend.png": "e14a8bd213d56dcdf7791e6ed6e689fd7011cd2376bca203218b3215e487da4b",
+      "02_sun.png": "bb71d9240f6dc0ea787311a7466c7cabdf58e8f8503d4c8b0ae6b5b5c446c046",
+      "03_trunks.png": "f353930364ef13fbe1195d7742b6c0d7783ca3f34a01a4ad4343f451cf408808",
+      "04_foliage-rust.png": "8853dc6a7918670fdec85d30546819dab964e6b885d0e815436972217ed38a9e",
+      "05_branch-dark.png": "4c48ee3570118dcc5b2d6703c4d717f1f14d3347d00fcc4c514e8879b0de9e57",
+      "06_branch-mid.png": "90fad7fae53951a6645e3e3aa110f84ca5820a0965ec76d587778445c70a48d4",
+      "07_branch-light.png": "26b58a0aa76d5a379d0f990c0e5ae256e21f05e3066f4302ce863da3bebeac07",
+      "08_leaves-shape.png": "15e6ad3f1e1502aa27ea362a6c461e54923b2fe75dbd14332812710d86e22c31",
+      "09_leaves-light.png": "0d3b1da63bcb54a0bb302428c62cb151c292ad8796737845846da581a7b7792c",
+      "10_bird-body.png": "595399160f6e433b1762d52e08e8c745c44bb2e850e89a24479c4f47e38f2ee2",
+      "11_bird-wing.png": "64faff4d44d90aa6f493c616d9a5043429b4bcccd86877d0589ffab382bff0a7",
+      "12_bird-head.png": "ffc269a93a8a0149c52c6eaa3c93eed4774ddbb34b29b5aa63b9c0a35bb2f81c",
+      "13_bird-cheek.png": "5598272284b8769aba898b03705d707d6ace62530222b367b36bfb4852b17e9a",
+      "14_bird-chest.png": "8517c6dbee5a27125f56256c2d09e1818ac6556952bcf5fc8cd218986491574a",
+      "15_wing-light.png": "510b7259637a5cc51718bcdc03348bfe929bc983e0ba1dd9f97f39a6485483fb",
+      "16_wing-dark.png": "c39e89f594c24e5c1de0736393a8d207323665dfeae3a83876165b2ecea41ad8",
+      "17_bird-face.png": "201fb76a1de1e0f0944f243461d73ee504303b7b48536211f926bac905e0cc64",
+      "trials/steps.jpg": "3601e1b36742e927dbab407550270c53bc31b4aa52a7e03f47ed0c3823a0ec78"
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "a3bbe3963dae475d32b70dd5921583aa47be6ef0d2dd16ebe6d6995f4a9a69df",
+     "refused": null,
+     "files": {
+      "aids/01_sky-blend_map.png": "4b78ec54c44e66f493d55466dfd2b6c452d03c642b17289bf8f163d6b7340fa6",
+      "aids/02_sun_after.jpg": "3d6e1417f84bd011def15a917ad41cf26690979ae920125d789c1d2138bb8733",
+      "aids/02_sun_before.jpg": "367df5102f5a687db05b6b0f3e2c8614c398aef44e3604fa30a08e92ff4b5c5b",
+      "aids/10_bird-body_before.jpg": "e2c4f70470addcc8ee38398b44e2c5641bae9671fc2a55806c12cf87b61c96e7",
+      "aids/aids.json": "633e83b9b4fb9b8efb9fe3421a86a0858189c78de437f1cda835c8412e7b23cc"
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "9be9d44768407c143825a02cc1d30712a178ed549cb339560c03d3fb71055ff0",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "943e14de084f3db84ba9173e65b46997080835468ec1c1b2016422dcc623e613",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "8a761e460f18f1f65aebf8bdcce233c7d87ac34c616125ad8e8a287c01a793d9",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "158c0c4b7c6b2b4dd13cc532b279dc94299889dbd0bd4e9cac47a96ff2bca65f",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "d5391d3e309ee7ab7f6df5ddd90db57d83dba4f80f5be9ec709f0cb435bec868",
+     "refused": null,
+     "files": {
+      "embed/01-t.webp": "b08ef3134d1acd4bc4b2dba2dbf914e124c9475f3ff15d9321f8addc002e8067",
+      "embed/01.webp": "1cebb69341cb9868a1502684d78dc970b70f10bf5caa69cd5b4d144eab3b64b1",
+      "embed/02-t.webp": "e0edb1eec1a18b1e7755f4c5871abe365da695d149a8260ffe2f1dfd32caa269",
+      "embed/02.webp": "89bd221e66ae9f5f51e0bfaaf9a6e44f3a3e43de6aa50ff915fa2e9cf2e3db76",
+      "embed/03-t.webp": "4b66c15d7ecd051891f28ee3066530506130f109717f3d20d54c6a91a227ba94",
+      "embed/03.webp": "e3436496a01c05bfa191c33d9f82e4120516a5c348ae022b910d377fb520d7e8",
+      "embed/04-t.webp": "16b5c0f4ae7afaa521a8a7583e96fc5896ed47c4d2c1e85d6afa0fc27cf8bc83",
+      "embed/04.webp": "213b9d17e2ea9e565442c9ff0f6a7bb620840295a9f97d871f6e9e9d2167990c",
+      "embed/05-t.webp": "061ea40a8e6bb8db80ad967d8c1d951f6eaff0dd7e360dafe034bc19574272e5",
+      "embed/05.webp": "15741121cadfe875d4c46d3d89bceb9b5fd3633700eec70b686c9bc79b66e47a",
+      "embed/06-t.webp": "0dbf940077bd4f6efcb6eec1451a7f01d05eca0382e78be097f0f653eb57ba77",
+      "embed/06.webp": "3eefb7faacaf37c2a23f339cfec6098e045143959b7041fcda32cb163e741fe4",
+      "embed/07-t.webp": "8a0668866430f078c757aa01fb5f7bdfdecd9b7709f3e692d4b4f99789370b20",
+      "embed/07.webp": "e1a114797c9f60b18ac51103914d0b5ebc077d344b255f085c429edc91e3ad9a",
+      "embed/08-t.webp": "a361d5b598e227f8ed5146f289f13ce9e6a7e6fe3acdddf2796dc7b619447f86",
+      "embed/08.webp": "07db9a1aaa5828bc0eeabcc7cba57617e8d589898155da20cc32936364eedae3",
+      "embed/09-t.webp": "ea71ac4e1e8906b552703489d0ea26af1797cf4b62f25919134b57572f4882f0",
+      "embed/09.webp": "60385caaa368228efaae20a6edb2fa6776af8b3983d6e21b61c58be4ed5ab2ef",
+      "embed/10.webp": "43e5030a8a5634197a9c259bfb4426ccffeb255d52a44a8c969b064c90bd04bc",
+      "embed/11.webp": "37588d1fe4ee2c0ccccb0ddae35cd228eb08d57093d2d7fce6a6066fee80b450",
+      "embed/12.webp": "c6a3f64c1118a89c7f1fd30a8ad0c8c47b7441a49f17237313d92c15771146ca",
+      "embed/13.webp": "af52efd64fb9a8055ad9ac8b433125eb0909bc4a962adbab6e547b347f6084d2",
+      "embed/14.webp": "bc836ebb9d634e538c6baa28897251a902b0749700fc2a04ef3ddbc05251e350",
+      "embed/15-t.webp": "b2789cdcfc09f36363ffcdfce9c9301b4733fca00292c18a2dedab56ab157b7d",
+      "embed/15.webp": "6faa60d291e09cb92433ebb325ec150666029860f6985dc0ced36205a84a0d2f",
+      "embed/16-t.webp": "aeaffbe57d1912024281d0cb087e25e4a1f87580bc95aa6e8231e4481ddee8bd",
+      "embed/16.webp": "131dae3a8f516095e3670acb5f02c9527d4818952d77c96790d29baf3138dbd8",
+      "embed/17.webp": "9db338b3c602f4b7ddcc41601354a03f76ecceb8b23bbe93c21e498217029eea",
+      "lesson-artifact.html": "3562ba41f260cd3bd8ea6b7f82f15de1b5a1163b8f2c4f8414e14a7521c52b54",
+      "lesson-standalone.html": "df85470bb155473eba72448faa0735a4bf583f839a9651cef4e5d62b3ed0b349",
+      "lesson.html": "c714f831c8061884d545505a135fe786463aab0d846100bdfa159f3ea09e04f4",
+      "lesson.json": "9c763d645fbc060aab722fce795386866f1eae1588afead41605938367a4a0a6"
+     }
+    }
+   ]
+  },
+  "lavender-balloon": {
+   "full": [
+    {
+     "tool": "outline",
+     "code": 0,
+     "printed": "6c1c7c044befc8045af06dc67564df08077e0ed120686d4bdce757cfa0cda446",
+     "refused": null,
+     "files": {
+      "parts/balloon.png": "6c6bd0247ca4ad59d257fa03f1a7fb6d2cab9cab8b6d6e1e4ddbc680609cc74c",
+      "parts/clouds.png": "45c5714a4f82551fc1a758ee6e8558bdb24d055c00aa62b50d10a963f4980e54",
+      "parts/fields.png": "28d429a5941803dcca199dd64ce185b97e0f6311759810a4b9f204e618abab74",
+      "parts/hedges.png": "c2e09d1e80a57ab2aad348ec6c07476ffb242bfaf0de966db2cc233cece65e0c",
+      "parts/lavender.png": "8ebe03defcdd3851cab104a849cdb9fd0b2d2228c7016a406cdb3a3a3c717b31",
+      "parts/mountains.png": "db1e1e332c77a80fdee5c687b01df7542fa8689a743ddfb1161aee28168e1578",
+      "parts/owner.png": "30ea02bb35b229027180016dff46ebe0ba0907b2d8ce0a0b96e8ebb973b20a1b",
+      "parts/preview.jpg": "be49f127487e1f5f7eabb0210e310689a4e38156ba76920093a75bf9678f0456",
+      "parts/sky.png": "cedf261719dbfaa4ecbc32a75bb2b448520110bce2696c3ad4e6529b5f3eb09c",
+      "parts/stats.json": "a0fe7cc9881cc56db38b45460ead3ab9c2125a9be7ef29175b488d4d05880394",
+      "parts/sun.png": "bd5ea8e60c13c194d48d1b41604c742620ef392dbce78d9a75d78da23994a692",
+      "parts/tree.png": "79db3a0dbc6f07b9cc69a2e15b7a2b34e04cb1a89f78fff43a6653668969756b",
+      "parts/trunk.png": "e640b5cda01cc73849a489647b8b5f555a2805a5694935a19d4c0dc2ce75722b"
+     }
+    },
+    {
+     "tool": "paints",
+     "code": 0,
+     "printed": "e20b44419037a407d5c56ff44dd7b758a7f02b88b87ae1090b4814907b170bf9",
+     "refused": null,
+     "files": {
+      "plan.json": "6d133a94d1eb0ec2c2a30c2a82b9aebc1806f539da6a9b309983cb5a4a1a7bd8",
+      "trials/paints.jpg": "bb105dc284a7634a57ea4d6c22d63523d6a9319357ddd6810efb27124a4d24e8"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "90b9b7f20900e8f8234b41994a3a7f9757dec6ffcd02aeb764c392e66cd581b6",
+     "refused": null,
+     "files": {
+      "01_sky-blend.png": "043cf19c7865ee8b4eaeb720e9be63fd41470d1948091dff6972f2b196cd79c3",
+      "02_clouds-dark.png": "3df50a94b47bb3d7016df353f9a8555d159cdb3a4b8e927d8245f359431bd58c",
+      "03_clouds-light.png": "e753ca1276c837fbb41f7c8e61a5b436ab9411017c0d3ff0252c699e27cca6eb",
+      "04_sun.png": "eecb269f87eb9e4511f8f633ad8c1ff95e1507e383de1b396787f8e396f490b5",
+      "05_mountains-far.png": "f21134be9ecc5b29cffe5d880e4fc58c8ec6e3f65723021ff16870db9c0e8c13",
+      "06_fields-coat.png": "eff01a6c53bd445c7bb09be1770912c8da2d9cbfb54c86aa040dd403d8c3ae40",
+      "07_fields-shade.png": "453029082b8909ceeb2fd77ff30cd36c9b3ea0d201bcc2e72919b5a386bce2dd",
+      "08_hedges.png": "48e6653a0b7a83397af95ad8be7e189e4c78def63871fb84da7ff519fcb52147",
+      "09_lavender-coat.png": "9953a1e3785a1d63c6f407566178dfee2e0910c4520eb502812a30efca7d180b",
+      "10_paths.png": "b8369096fca3b502f6146250d600129ebce036c56db08211f0c965b7f2afe09f",
+      "11_lavender-mid.png": "bdd818d82f0523c83e53c265fdf5c3c89705f533264fb3d6d6a2ad19ffd4919f",
+      "12_lavender-light.png": "3f70c39b2f9506b79e7d80985adfbbfe5e4e988dea66679e836fc3e3857e8281",
+      "13_tree-coat.png": "24c99322137ad8c527a2311a2db225388bf626ebd42d2fe16bbdea37de452d76",
+      "14_trunk.png": "8b89650654f41610e4c82d8dea98dd658b6a04cddec62fe941496461198edc7a",
+      "15_tree-mid.png": "e2b1d4c4f009326e468f4080e36ccef42704224e492b1265abe725b040139da0",
+      "16_tree-light.png": "3b502143bf603b329fa44ddfed603fef319f268fec49caff4761e53f308bd723",
+      "17_balloon-shape.png": "c1b8cf05fbcceddec92a94d4a816b24d43953eb5de1343334bd00e3c7fd3466b",
+      "18_balloon-stripes.png": "5fafffe419d8c3eece0172a0053162aca47a17411aa55f203b03e86dc7bbb26d",
+      "trials/steps.jpg": "47299f3aca676372a653afb96a5f1a5bba7a2b3ce0a7a295bde0aa5cb207624c"
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "2379740d9fc8e2506765037ecf3e03e0e189da1bd80d788206a0ee8f3292fca4",
+     "refused": null,
+     "files": {
+      "aids/01_sky-blend_map.png": "f4e470d9e9076a7ab22caaccd886adfb5efd1e9d1c233683416ad6b751cb18c6",
+      "aids/02_clouds-dark_map.png": "406d4509abe25d4e80a0d7e933462a256c345c63472828ea1807a84e15298b28",
+      "aids/04_sun_after.jpg": "42cffdf5464ec8503343cadd1a8c5ab3b896e844f06f2d152195f7834b368893",
+      "aids/04_sun_before.jpg": "789f5406d92c6eb465bb6c485bcb06e4fa8723d90c2feb3c46e79e8290832fd2",
+      "aids/06_fields-coat_map.png": "c71c0f380c9117b8e12076bf42982fb660bc9899ebe07e598bbb7496e866699c",
+      "aids/09_lavender-coat_map.png": "fcaa7ed6aa8bdda03b75aad7270ce7ef411445e1985472fc27eeb986f4de5e70",
+      "aids/13_tree-coat_after.jpg": "cb569f7d46f7a106a079f3aa2982872847c8a777e6853942083b4035b5c4db71",
+      "aids/13_tree-coat_before.jpg": "b4f55a11daca7343158085c63ff2992c3cd619ed62a56679bf73e0f2440d2f66",
+      "aids/13_tree-coat_map.png": "641afddc93f087991e1d43ec5abd4b7dbec4b4c3651f1a0bd0126ecce642fa60",
+      "aids/14_trunk_after.jpg": "487658110a6ff433b241afc5122b9eb4a364db4419ffb290a2b03ade61f76bc8",
+      "aids/14_trunk_before.jpg": "f08284e3b0417d7635f2fa4726ca286b61a2fc23bb7cc14dad3e9314e5141851",
+      "aids/15_tree-mid_after.jpg": "30b52f9d0e7637e409a5add6c0836f8332e86185ab77676e0920922e7bd0788d",
+      "aids/15_tree-mid_before.jpg": "1269a5a324c60e110654bd688a136d9d5d57eda68a6024d6300b8bc74a1cbe50",
+      "aids/16_tree-light_after.jpg": "124d94c53a8f2086aed3d97823200650d4449a03a3c7c7251ff40011c35e8302",
+      "aids/16_tree-light_before.jpg": "665ec88cd8e6f1f927fb805bba12eba35115483aea930799b409939d6cd6462b",
+      "aids/17_balloon-shape_after.jpg": "0f3666867e6287c847defef9a343da9f4015611d2d5f7e346358f9812b78030a",
+      "aids/17_balloon-shape_before.jpg": "b2d387f1b07bd337ff8c38e723b805e528897dc7c5b32c3503d8d3183e517efa",
+      "aids/17_balloon-shape_map.png": "2965bd5164f0a53fc7511cf7115c78361e31f6d61aae742073b035fbdcbb978e",
+      "aids/18_balloon-stripes_after.jpg": "578f912d3ab16d30fdb4ce94127351702fc9716f030c326b9b53a75fe70fc337",
+      "aids/18_balloon-stripes_before.jpg": "2319ee07c3b39d0a9a2f73cedd847c14387d1ba962f662fdec4857c615736bb4",
+      "aids/aids.json": "2c8773be1ebaa6e62d8303c85ca2d85a3508e3e8834f59292da0c80bc9ca5071",
+      "aids/transfer.png": "532d478f0ec66c7fd25136213024afc7653c78c4f5f4379196eb0cda571e1554",
+      "canvas.json": "271fe6cc83facb3e45c3f233fae0b4f71c80ea8eff610d87194af84ce528e2c3"
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "78057f9b867c8dbc07131e2e3799f848f0bc374ab72b4557875b2bf1e99ee42d",
+     "refused": null,
+     "files": {
+      "mixes.json": "f628d0c7254dc9b1403bc1c936e9c4a95abed7a35b460cac4a411119a9279dbe"
+     }
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "2de85bdca891d14374edd6e8b4369f457a80f35f344a73833c14e1a342cc185b",
+     "refused": null,
+     "files": {
+      "text.json": "244121fb462c5b33ce222297e20aa8f78da50c1407bf5d947d3a3712aa408d70"
+     }
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "af18dbd8eee97fe6b4da53a048fb504d1f025b60da87e5aaa3a3a7023c888a29",
+     "refused": null,
+     "files": {
+      "text.json": "6b76e0b1e83fd21ea26776b03f5e04267cfeb5db63f3635ca8f2c996fce9f9c5"
+     }
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "ae08919af46905591137d25408f700332a03b4c0279dc38aaae2d5c7d7de9f5a",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "1b0fc74d8719e0778f0a3d60439317553598712ee7204c9920c066b991d1fd52",
+     "refused": null,
+     "files": {
+      "embed/01-t.webp": "36b683abaa5c656e34a1cdd4109de800c0f23d38b6d1a50205f1ee58ad3b1391",
+      "embed/01.webp": "1dd06595c545cb3211f34a6d19b2bf6e6194570018a4e1e5a6011669ae93396c",
+      "embed/02-t.webp": "4a996188b40ad15ed242f4c7087caf0aa428cd9960040708f6de01be34b0d5c6",
+      "embed/02.webp": "f7119e6f25ec3f208e78f6131fa8f4ac76a620320a45ce2000c1617c59d8fe0c",
+      "embed/03-t.webp": "0dc3795a2a869068690568324ffbf98b26d1e0d6ca0ffe56a75700d6f8fbe25e",
+      "embed/03.webp": "5b9908f6007ee8c1448a77ef7ab8deb04c318085d2963ca39d0fac71d40ee5ec",
+      "embed/04-t.webp": "83c7341eb4d060cb0d3b75ca83a946e1f957b631d1c749e06a2eaf95405a2e27",
+      "embed/04.webp": "2977f126fe2bc5f9209943fca8d6847acf7a1238bf7894efa8707315d8cfa9cb",
+      "embed/05-t.webp": "cf4510ff88f4ca62a5628be0d8848593643743a9d5527efad27f74f108e71374",
+      "embed/05.webp": "e12b27f81497f75f119bfb10840b3f2361ec8eacfa4898e5f18ef71012a2d230",
+      "embed/06-t.webp": "4a32a71c195a364dcec5e85f450c07878f2eec2508be2c592ac8c7b6ac2937d7",
+      "embed/06.webp": "0a22cda4587a0d2262c315616097370f73231aeb5cb2074e5e32e45198c30c18",
+      "embed/07-t.webp": "1d876da1f2c4866fb21939c6517c6d38b4cee6c04fed2700299f3a1036acf8c8",
+      "embed/07.webp": "d4eeaf863b60a0885383b963deec7d2f779a336e2a2ab57e406cdba1e00f6f2d",
+      "embed/08-t.webp": "27c19480d66d9edd9d81899dc742eef8786765d931ed8f671dc7d4a18957b9a0",
+      "embed/08.webp": "4c5fb622338beadc0e8790006501930135e6c9cdfde9d3ac018495f43722e19f",
+      "embed/09-t.webp": "92a7b7c5477757a029d22920892e46d544942ee3d808d12b0b29bf40090dbaf0",
+      "embed/09.webp": "f8ee611efff94f1c9eef0aaa847c542d8a161469c156faa4106541d4b4808d32",
+      "embed/10-t.webp": "a125085acf2894b87043f964216bee50d0e6639600b84b7150d1e748b1ced349",
+      "embed/10.webp": "92381c46f1d15edb7ed4406e627704a589a4dd6ee6817e027d18f1afb405d34c",
+      "embed/11-t.webp": "19ce90650f27f590fceea807f9b39e2b05da09dad3dccb7272a955337a6cf2c2",
+      "embed/11.webp": "dcfaa1696f1cf964be4e8c8c0a0c6ac3757ab9a367995ff93ec1795156c2a556",
+      "embed/12-t.webp": "067e4249ea4c12a47c73c3b6a8dfbe3568c3bc93b0effb2392e294e0dc73b695",
+      "embed/12.webp": "0dceb12295f5dc67dfce667756f83d34dc11fde5ada2dc02614d5707cbcb36a5",
+      "embed/13-t.webp": "7b68fc7b27a7e44c19d245534d95e9d9bc728ba94fb7edf58e9b3dc69216f286",
+      "embed/13.webp": "3d00a8b8a7b2c19a54994980dd8a0224a46687d5b56b4be06d431c647b435d1f",
+      "embed/14-t.webp": "1d34e0732170d520a72df81caa9e04e9ca033ed0db27e53e47ebeb5f1b230cb7",
+      "embed/14.webp": "1a40a6614bd4436abf832bc2b1b9eda7c9f5b4c5bfaeb64fcb088afa142c45a7",
+      "embed/15-t.webp": "dd80bab226f729190aff2a0043adb13371a80b9d24fa78d500619629c60b3a06",
+      "embed/15.webp": "71fcc1ea1baf0e0187b71d274b63bc37efcc3ff0d19ecf896e5cd3693bec7f57",
+      "embed/16-t.webp": "6a1ecebfff6f5f51903f42c018277c42087d37e16cd714446246c98eb908e3a4",
+      "embed/16.webp": "fd7ba955f188b53797807365c5b8b163f078987ab05bfc20b62742de0ae4cae0",
+      "embed/17-t.webp": "c1d77922683d97b6580f1f199d6d28f978562db80bb462c14299037e8e989f1b",
+      "embed/17.webp": "66f643eed7348197ce73cd8c97c79d5aa33ee0ae4c14ef8fc0b135279e20cbda",
+      "embed/18-t.webp": "3ff9d6b2c33c22743ab64407ede68add6486915d41d7ba5fc4d94fb5dfa95042",
+      "embed/18.webp": "6b15d292115afcef06ef00fc6b0b91bf8e823037a5c9838e46c2861aa699b681",
+      "embed/lesson.json": "01e38dccb5c6141b44f1bbaa6935b83e30e6609a33c794fbb335710600464104",
+      "embed/photo.webp": "6b15d292115afcef06ef00fc6b0b91bf8e823037a5c9838e46c2861aa699b681",
+      "lesson-artifact.html": "1b389e9528718b97f5fa0f1f43e74422ecc40961c1a2559add24b3cfa66b75ea",
+      "lesson-standalone.html": "6dbff966c33db5cfb6dc8ceed47a91b338b71191b72dda156ad3e7835ba93237",
+      "lesson.html": "e8fa7f3f3adf47ad8ab733940209937517ee0ff42573ecc9be844ebc318c95d5",
+      "lesson.json": "abbf8e652f5bdb87787b2833d1f474efde6c39691826cbd7f026c559046de9b5",
+      "photo.jpg": "40e9dc9a10566709cca2a29e0598c88d7e383d6902d3d55b6e8c0f188a4fd75a"
+     }
+    }
+   ],
+   "stage": [
+    {
+     "tool": "edit plan.json",
+     "change": "swapped tree-mid and tree-light",
+     "files": {
+      "plan.json": "f567518f29dd375b32180c2b6d7dc8cc3ae8c8f7e5ac30e34c06c283a1a13e3d"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "3a678dbe664e270142cc1351fa17c98d0c45c0e6e1491383e9d081cb6910fa21",
+     "refused": null,
+     "files": {
+      "15_tree-light.png": "c0a53c88b0f1669369f72be939c39047a8eb556f67eeffc88757556a45b840cf",
+      "16_tree-mid.png": "0f23ed7222112b7204d295929d19d4774701abadd4381ebc7eb2a06afddb9224",
+      "17_balloon-shape.png": "a8c7d7cb8018fa2f641251dc3047822fafddcecee761a973ac18d1002af6c839",
+      "trials/steps.jpg": "38cd751c50e56fa842a3ca2dfb3d289d7ea5b03a4c7a72ffe027b00f6703840d",
+      "15_tree-mid.png": null,
+      "16_tree-light.png": null
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "2379740d9fc8e2506765037ecf3e03e0e189da1bd80d788206a0ee8f3292fca4",
+     "refused": null,
+     "files": {
+      "aids/13_tree-coat_map.png": "9c2cecad081292e816fb2df3acb193f413db30bacc50b45722c29c8cfb8fe1c4",
+      "aids/15_tree-light_after.jpg": "b195ca9f1d481396b4550ee8e2d05987dfca1b7041ab552ffdf223a6f3b22923",
+      "aids/15_tree-light_before.jpg": "d7b2acc1f9a5ccfb8c0c7c6e6f0304b928720313a71644acbab8d665d71249e4",
+      "aids/16_tree-mid_after.jpg": "fb6a833280047fc2a8d292ec43f57a4f7de36e5e16273f50163f10f388d3bb67",
+      "aids/16_tree-mid_before.jpg": "0fe73f3339a1a2abac8e3aa298433a4190989af51c3b226c99c2fcff1c5044e2",
+      "aids/aids.json": "4a12e45f0bbb00b35ad37b27a3949bc632b5f3b3283e86d0bca9dcb7469fa3a9",
+      "aids/15_tree-mid_after.jpg": null,
+      "aids/15_tree-mid_before.jpg": null,
+      "aids/16_tree-light_after.jpg": null,
+      "aids/16_tree-light_before.jpg": null
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "78057f9b867c8dbc07131e2e3799f848f0bc374ab72b4557875b2bf1e99ee42d",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "345514f8a0df4538516f32d43dcb89307e4d8a1a196985c05c10ac88f3bc72f5",
+     "refused": null,
+     "files": {
+      "text.json": "0edd419c017552975b9bd0fdf83a11dcf83b364aedbc749e233342db6ccea899"
+     }
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "b290c079e96e78d6293c0cb0e97062c1884d816f4474a651ed17d90768553f12",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "8858d33a8ef18c5d696c184f058720554c742b72e5226eca3ce5393e7939a14c",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "edfab0a8d80f8347b109e4c90ac977bb8a6936d43560f5754f24eb1f0b4e7f7a",
+     "refused": null,
+     "files": {
+      "embed/15-t.webp": "69c7b6b8e3297f39143cc8c59260260df001bcd63b5030da57351af6a8bb3cb7",
+      "embed/15.webp": "3f34ccbb6c349652c54b3e4d1604b42658959c03be1352d284e44a59a2bdef4d",
+      "embed/17.webp": "3d743443cdf88609991a9b3cf31af98139f0cbc7beb4d662ac192747565a7696",
+      "embed/lesson.json": "090695a9a23f8b80bf0fa92160486f3459d49a668202f84d5e0df7c669013905",
+      "lesson-artifact.html": "3e4874a6754d8073cb15a9c41de4284b2197cdeff5378f4cca60875f7f127f3f",
+      "lesson-standalone.html": "b9464f97885dc4b6e293b6c5eb744b765b22a68551b6dd7cc6a03931c8747a79",
+      "lesson.html": "26b29862f1bf167858f24734a255c8c51a5e14dc504b747bd7739805868db827",
+      "lesson.json": "5983dc669f781a21e632333f007ac4cacac34b576ff6aac70ef1463a3032ffb4"
+     }
+    }
+   ],
+   "part": [
+    {
+     "tool": "edit plan.json",
+     "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]",
+     "files": {
+      "plan.json": "48ea4e3e06b5df9b49d7993a893de74f40f85c3308ce5f47082ffa963f44639b"
+     }
+    },
+    {
+     "tool": "outline",
+     "code": 0,
+     "printed": "c3b738e7f90fb1ebf2f1fcd0dd4149776de386aa06f46000d31bbfe9d8297b6b",
+     "refused": null,
+     "files": {
+      "parts/owner.png": "48923709a5102739d737728c0ceaa3909afa81cdb4b4d31cc0812e40e74c3852",
+      "parts/preview.jpg": "b117ac9b088935c0dc5ca132f34d7c638b1008d62ccccabdc0aa8bec3e22b850",
+      "parts/sky.png": "36ca06349cc7428944ebd76dbe49adbbf7a35d78855354f99a3d0cbfabd2a7e0",
+      "parts/stats.json": "7d1e7c8fff9b53739cb7197582002c53bf620f6b03a97fc7230692ee9095a3ba",
+      "parts/sun.png": "9bd3d76b9cf728c5b774e4cac9a64c7c100cad505b26552807e5c066df3d8f39"
+     }
+    },
+    {
+     "tool": "paints",
+     "code": 0,
+     "printed": "96c4d95983ec26c80bf89ce343a6285c252add0ef7cc5476a35cfc665b4e1c90",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "3a678dbe664e270142cc1351fa17c98d0c45c0e6e1491383e9d081cb6910fa21",
+     "refused": null,
+     "files": {
+      "01_sky-blend.png": "7195b91d3af9719569698143bea20ed83d77fbc37f63125cc040b68d8f7fc49a",
+      "02_clouds-dark.png": "d72113a3240176395d76213c3f7f39cda827f91e76b73dd2bdca9d7285d36c57",
+      "03_clouds-light.png": "1fa4510c1a661a16302122e1ce18cb947d860784939dabed3300ddf9694271a5",
+      "04_sun.png": "003efd23bf0b6533e2a66264f7299f4d5c0c30f69ebe725e4269007a8c2bdf53",
+      "05_mountains-far.png": "688af7554a03ae7b8313991bfff69de53964b7c38a0342a3c7a1adc1b9f9bcc8",
+      "06_fields-coat.png": "ecccda4af363c82387acbda3089aee9efc41223d310e90e9c45fe38d3d17f4a1",
+      "07_fields-shade.png": "8b5fa71be4fb3945de4863a41dd18d12d08b8b037fd68481f4dc3a12f0adcc85",
+      "08_hedges.png": "1f05d74de44c1a0be1bb383a53de359d4cc8003513263ab61b93c91aebc37ad0",
+      "09_lavender-coat.png": "67292f2ba3feb0f6cfb56ac76df459f87bb5288f1a6dcec7c758078a97cae556",
+      "10_paths.png": "995b6a192f0ee53356df083fa9471d5fea475ba38b50d676d7a79149312f82ef",
+      "11_lavender-mid.png": "2d9f36c14994599dfdd811bd4d5d1ad36aeebf7db38a14988634b4b3bb091290",
+      "12_lavender-light.png": "0a1005b3633cddca09df89735b964f9b9cfc136ac42c8d2d66c970ddb5a3d7be",
+      "13_tree-coat.png": "6f58d60468094b3f919217ecfc22e15e8d955dde1f593cee84886ae477d3eb20",
+      "14_trunk.png": "d7d80bff969affe0a34346d2345b50274e37143af0799887021e94537b919d6f",
+      "15_tree-light.png": "7b1243c46aa29d44ea350a27fd18bea373295d7b5726c1685f807843a693137c",
+      "16_tree-mid.png": "1c6ebb39efddc6d79af6496ca2498693c11d5e55d306338ba289f621aa6ff92b",
+      "17_balloon-shape.png": "1271817156a047668d4947361121dce1b8122b9482bdd4f6b3ed9421a49d52e8",
+      "trials/steps.jpg": "52c0ee0f87eb144e0fe4748bfc290d2e1f7f9fb209c5ea39b687c9edc3bd9cf1"
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "2379740d9fc8e2506765037ecf3e03e0e189da1bd80d788206a0ee8f3292fca4",
+     "refused": null,
+     "files": {
+      "aids/04_sun_after.jpg": "0111509d13e8e10db4440ff599b9ea589ed26649374a071909e5b3fbff47d70c",
+      "aids/04_sun_before.jpg": "5d8c8859d5987748ef9425f55f7d6936315adda98b76f73b877ba501abe8ccc8",
+      "aids/13_tree-coat_before.jpg": "fb3bfc9bb669f66897cc60567c7d091ebb921dcea5a0d39c44fb4a14b12c40d7",
+      "aids/aids.json": "87b071d7651c1be4c4b0bd333b6a6ca4d93af30fb80eb1c61d5e501b3e9c92fe"
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "78057f9b867c8dbc07131e2e3799f848f0bc374ab72b4557875b2bf1e99ee42d",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "345514f8a0df4538516f32d43dcb89307e4d8a1a196985c05c10ac88f3bc72f5",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "b290c079e96e78d6293c0cb0e97062c1884d816f4474a651ed17d90768553f12",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "8858d33a8ef18c5d696c184f058720554c742b72e5226eca3ce5393e7939a14c",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "edfab0a8d80f8347b109e4c90ac977bb8a6936d43560f5754f24eb1f0b4e7f7a",
+     "refused": null,
+     "files": {
+      "embed/01-t.webp": "595ab7c28cbd4f6c459f5ff7ebfb812ede28da618342491764b1773b4244f887",
+      "embed/01.webp": "3e903f5779b88dd692a4d26811781cf0251506bfa4d9c0b76e5e7bbe608b5d6d",
+      "embed/02-t.webp": "4ad74b937812776cf10287fbc52664e8699fb82834b07e666aa24bbac0869dbd",
+      "embed/02.webp": "5f6506ed84aee8a6d229c35b507773c265225a6f6c5bd22ffa2715843d2ff0ce",
+      "embed/03-t.webp": "1a3f6191de459ad3c2047741d743c33d866bb2174b1987f126aad82f07f6a0f7",
+      "embed/03.webp": "4c9c8123e9e39a0e7ac976299b02aa8ef2b59b558d9a0412cd9a6c13dee0cce6",
+      "embed/04-t.webp": "7556d0394b9240042c567c3b66cf7bc71d44ee1cf4f6423a16c900d422621370",
+      "embed/04.webp": "8366a498318ae5320e2a50ab2cdb5702cb97731ef0690d966123ea1b544e7df5",
+      "embed/05-t.webp": "47205ba9a83fc020c0d3edcd044d7e665a7ac509814df0d7b27e43b1cdc9cd8c",
+      "embed/05.webp": "41ec87f2e0bde1327f34ae9d35871d6e56432ee6c4189ad7d7c9d9c21da48406",
+      "embed/06-t.webp": "b88d0c9d1caf66666b36b1b844990f28d6d6b153464b97d74f88b0d7ce50a1d3",
+      "embed/06.webp": "76098f88157449dd99d6e029237f400cd939a6c4c51bc6a9ba55468831555e68",
+      "embed/07-t.webp": "afbde25cb9763b9cd6a93feb2db1990a4a72409791adf69c2c252cae69d3ea31",
+      "embed/07.webp": "00c4335e2a56098eb1783e1e7e90cb4d066700a28ba9246644caf4b1340a08af",
+      "embed/08-t.webp": "e141f4f247c465ff6a526822ddd0c362fa77fee8248f94361bf154a6f3ad32db",
+      "embed/08.webp": "ff3bdf9143f76415cdcb322423f601687d1c0b594d1704c831f67c2f5bbbbf58",
+      "embed/09-t.webp": "fa2f318abf34f3e93b0c7379ea14130f83dff34f78ab52f01abde080b2c6cf79",
+      "embed/09.webp": "8d7bf5b3f19016adde929d6ab9a061f473e6ad45c5c663300d9c5880a10e5108",
+      "embed/10-t.webp": "236d6aea69be25d5616e831740c4c1c7c3f0cb7a869a76671b3c12d9a0a4795e",
+      "embed/10.webp": "f1590d783967bd59d3244461a94b6c2a8677f0e813bec7a94685eb72b2023b7c",
+      "embed/11-t.webp": "323383a0e45ebee0eb30893af4c5a5ac6ad5f69301f1a2bfe77c9060f635fea3",
+      "embed/11.webp": "a470630285b160bb578ca4f654779b2c483da5c745da04071c306f46924e9dc1",
+      "embed/12-t.webp": "f15a06a844d493f13520e84ac7b9351ad1eb1b3dcad5dc67241d4db8018d6b09",
+      "embed/12.webp": "bbd03a50a28172a91baf16edeca58fbc8b6f5d3d07274d537317834888895973",
+      "embed/13-t.webp": "48502ef1d12b5206876dd7d8938c2b17ac51ad9078d0e1bdd47f8afcf15a261c",
+      "embed/14-t.webp": "1a0cd50a10aba4b9c15077821a71a89d62526920b045dfa18af1e84e1fcba7c5",
+      "embed/15-t.webp": "96f964c0a5d2f98de6486d76575e7736035c5cfaf8aa182849edd93466e97273",
+      "embed/16-t.webp": "b168b63a0ba341175f5fecc39587f05079cf973329054a93c4e4dc729d5d6354",
+      "lesson-artifact.html": "271549ac52a1fe67ade6e10a308c0dda7c963679750fe2ea1f73f46efb2318df",
+      "lesson-standalone.html": "199e6309d695ff67e7ec1c6f0ff8a8c2eb1bdbba514b8ff5daffc638f1c71b3e",
+      "lesson.html": "562760e52140696b2fb5510bc6679303e60c7cc21bd06391ab80cd3178f62985",
+      "lesson.json": "4bb32253887e5a6a6d31864473c0c1cb821508dba1300a43da75ce4f97a46da1"
+     }
+    }
+   ]
+  },
+  "red-sailboat": {
+   "full": [
+    {
+     "tool": "outline",
+     "code": 0,
+     "printed": "49f9e65e58041acbe66ba0e933401dc1288ca698a015b6500e2bfb97702c91d1",
+     "refused": null,
+     "files": {
+      "parts/hill.png": "a2a1e29bf261dca4398d57de6ffa25a4645fe5883962c5c96008970ba0fbcb69",
+      "parts/hull.png": "d898c88e0857ddf4ea7f9fdfc3fd4cb57028196729c78c9e7bf700a9ef9e75b5",
+      "parts/mast.png": "18e157985bd5e13803ea8301d5196ba279e63d005550acda8c63ba70a1d8549c",
+      "parts/preview.jpg": "c8a991d2f041954657efc9c74331f8a997897bcb19a04d0a91a667efa8f0dadb",
+      "parts/reflection.png": "5bb39cb8cdfdcd80f747b0bb2fd76afb7a9f9aba87843d5755240649cbd0393d",
+      "parts/sail.png": "be486f136f5d78bc5b3a27b164a355534bf0eb7ffc7b924e59264204b44e6fee",
+      "parts/sky.png": "7b46db407d82b1139a13c72e0b8f77e6f02c37961cb834dc33f8cff44adda3a8",
+      "parts/stats.json": "9ed7224fb0e82bdd6b579a41bc836ca762f87e16a422a0274d3f2e22f995f00c",
+      "parts/sun-path.png": "b90a96ccd331128093fe1f95c77121d8e921578dac5983f2983b9470636f9a8a",
+      "parts/sun.png": "5db7d069fff8e9059360d9f6b830b87492d09df19ae587b72ec09fedc0d48fc2",
+      "parts/water.png": "c5d183e0fbfa746166189d5e8c2f2873e46418c829a65d04e024aec8bd0904ae"
+     }
+    },
+    {
+     "tool": "paints",
+     "code": 0,
+     "printed": "2c888cfd4f35944ab14d9877a9fe50312d728fb873fc40224bd65045bdc0c823",
+     "refused": null,
+     "files": {
+      "plan.json": "57b0f8a6b07a48113afb241669dde4d6a7643b15c368a519f8c7100268d3e817",
+      "trials/paints.jpg": "069f872d307f906bb4d540abc7dad715332e9ee19ecd9453c639685b9a9d5923"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "8883b48ae15477680b6739389f35aebf1fe8889b56732c99d912888ca11c6daf",
+     "refused": null,
+     "files": {
+      "01_sky-blend.png": "10e4f8b29594cb6c565c142eb8b5a9ed20bbfc6a073555639604c619f7de6150",
+      "02_sun.png": "787e491e642909eb9785d7fee3c027099074641d0a80d55349ceedb60e19f725",
+      "03_hill.png": "e836dbe55b356b3f4a2b6c5bffa63241416bf122f31e467bfc3102237c117b5e",
+      "04_water-coat.png": "9a18b1fad676edf4beb23c24a6f3f1f4cb04a8bddd6bddc0b47c3f0ee7d1957a",
+      "05_water-light.png": "f83a09f88a4371c553d7a9f3f57eb92c02af82c254ee6fb8cc3e8c13db3fa4c6",
+      "06_path-dark.png": "e44120bdffe281b85fda6997a65e5ea9c48bb94712519ea2b34d57b0500d4a47",
+      "07_path-light.png": "472dac465d7d884d701706a0f900d95afbe089e1c4db0e18625c1146bcdc843d",
+      "08_sail-shape.png": "8aa22686f04b5bcad9f5f14f8d48da011612bad5325cad3823ff875bfe711c67",
+      "09_sail-shade.png": "25f9d2e7e1468378e5493b09f6e09176eb590911cef606241b59977a6b804ba5",
+      "10_hull-shape.png": "b539040d30871a46f698a8fecf143aa27524a92d8e43816ea61c2351b06d6ca7",
+      "11_hull-shade.png": "544ead8897a52361534b4c1c0aa512920d6e7a926effcecbb8177b218618b858",
+      "12_mast.png": "f4f62fd25fb98afb0578e4fbeca6f9e1fc1d72824e9ca9cb99c408a738ce3246",
+      "13_reflection-dark.png": "2e95a8da856a9fa0d6b82ca3c7fc83ed6a4cae4a047e08107c8f18adee4e711c",
+      "14_reflection-light.png": "b4b7b6f28098cc5020395b980d22b9540c7d347b76d449d389583c7abdf93b9e",
+      "trials/steps.jpg": "e94493bcc8263f2f95f9e72ce97cd19089703c14e604b9d7eb68d316a26e7be8"
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "c625139ead9082e66dec3635c0c98195d26ec72978a75c0475aaf2aa9cb8b84f",
+     "refused": null,
+     "files": {
+      "aids/01_sky-blend_map.png": "dff040b0a892c8784d727f75d92d9496fc19a3d47d061b727e15a0493e995f7d",
+      "aids/02_sun_after.jpg": "4c0465aa842cc60eb87d7cea64e5f9eac23ecac0977690e28b4be610b56d7623",
+      "aids/02_sun_before.jpg": "81be45f91185ac0bf83ff092373d0e4861de16acf235a95757c277b4a3ee8ddb",
+      "aids/04_water-coat_map.png": "9659a24b5d1330b085ac7ee1ccae94ebd738efa87bb38c859c41ac83c7990652",
+      "aids/06_path-dark_map.png": "4d0554032d6153791a7248380797cc780ea73443a2585dc6fb7c64a49ffbc501",
+      "aids/08_sail-shape_after.jpg": "85e97e146395b19e988ef0b97aacc95002c2f73ef83d451cdd365474d63cc015",
+      "aids/08_sail-shape_before.jpg": "9f2916bb6f44e4eb32fd49b608ea0897e2314e4ddf25ca47cf2824a7f977b36e",
+      "aids/08_sail-shape_map.png": "9f3fc7124028bbebb5978ebbb0a2636bbe134c2c5a3a81bbd073b73ef03dc981",
+      "aids/09_sail-shade_after.jpg": "b8cc94bad4e05bd2f9bce9bb81ba6d4695fb1f86120bae9b1d07fff139bc198c",
+      "aids/09_sail-shade_before.jpg": "3daaff2291c2b3d0d62f097739209867e82eb3782eaa04050a0a53c68ad3060e",
+      "aids/10_hull-shape_after.jpg": "9e880aa63af5dc2e16ab795bc30745fd7621f126a6f03c43e5e68e90cb1e50b3",
+      "aids/10_hull-shape_before.jpg": "178b842d9773b2ecc5e49a34ad8a25900edf5ed958c92565e145434ef9d4f514",
+      "aids/10_hull-shape_map.png": "c8a691e7e6e47d594e9b20e9beb1aa6d1a659b0f83441c78808d62f716b05a48",
+      "aids/11_hull-shade_after.jpg": "c4c1f744df1de5299dd42fadd7a72f846f991ae16e6c10f712dbbb99c48e70b5",
+      "aids/11_hull-shade_before.jpg": "27f76538b8b76fc64e4c7315899519b49d609da409475c71f47a847823e524c9",
+      "aids/12_mast_after.jpg": "760f17481da53ef0acd8de2289aa0a02c7fd52d466534b5c1b4195df67d3d038",
+      "aids/12_mast_before.jpg": "2fb076f3f2fea2feba959484ebb243982a7c35167075ec2a53832c46cd118035",
+      "aids/13_reflection-dark_after.jpg": "738d66f7e92fd873ffc20f0dfb616b378129ed6cc479a0c0ba661e272e283700",
+      "aids/13_reflection-dark_before.jpg": "4ce50804e882ee1134abb23c0db4accc339b1c67fbd3d391f55b8ed68b32d862",
+      "aids/13_reflection-dark_map.png": "4cecd11eb8362292de64832835b2c347093185b366d46095dac45e041bdafc3d",
+      "aids/14_reflection-light_after.jpg": "48238efcd3a795fced24f208e8bb62e5011e957d61bc46840ba23113fe9472af",
+      "aids/14_reflection-light_before.jpg": "fc40d355103752aea4127630aa6b3d04dee9f77487454c2fb8e19ce282e964e2",
+      "aids/aids.json": "905ff2c1fe02ae650781ad04250ee2dfdcb122aca0a1a255734687d212d7c829",
+      "aids/transfer.png": "e985e5e4bbf31fa1439ef2815cca53db3d06c12c1832c85179f3b0249bc45c52",
+      "canvas.json": "271fe6cc83facb3e45c3f233fae0b4f71c80ea8eff610d87194af84ce528e2c3"
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "1ac759146c60a77b1a2be55d45be77bf0453e3f9d69570671dad96608a18fe67",
+     "refused": null,
+     "files": {
+      "mixes.json": "314503254239045220508f358ce3b1ff7ecf81e6cb1bbc3a4da4e7ed17a51060"
+     }
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "4e76f5a299861ebe774cdb0e3101a9829c0b06de5956920c69f97267f2622cd8",
+     "refused": null,
+     "files": {
+      "text.json": "9f8b3fe6d35792d384f23c94258d000e6de22844f4f86c8f4e21c5696ed62003"
+     }
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "fe4b720607e036244f83246f3a4c9d8802bcaad543c6bfeeafb83d21fe4e9d6e",
+     "refused": null,
+     "files": {
+      "text.json": "86b2d7c0a92354eefb0136d770d3070b138c50ceaab79ce8a1813d2c62c03b14"
+     }
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "1f270bc50b0cdc482aa5abbde2dab9eaa889fde6cb72310e764b65128a5b90bc",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "d9af65f6d22c17b061358ad736f46abed6919abba2a7b6f9dbdf4b231bd70afa",
+     "refused": null,
+     "files": {
+      "embed/01-t.webp": "3935d30ae22b86da469e5cade28aac50fbe27f91c0bfd5fffe80d3f45dc518ae",
+      "embed/01.webp": "5854841f12ede70eaaa1dff1a0abfbbde9a79f52134f13614f761e84e46d7842",
+      "embed/02-t.webp": "995ad52770395d63b8d9bd3d8539813c562be5bce7f9441553780306b8376da5",
+      "embed/02.webp": "c899abe619881ec0bb601347ea617918e024fbc7b95b0f1b6a6f59ab4bd5422a",
+      "embed/03-t.webp": "d3518a2e6c4232c8cd9bd9aee2babad647f5184a188419d17a75ba7d431ffd1b",
+      "embed/03.webp": "e9f9bf565d9f914a3fffe8107a8002121684b707b818522c9aeb20cbb1b7e1b9",
+      "embed/04-t.webp": "5aae4458a4354968d40037dabbb41b7d52b2b08db4ec35a071bceddd185dd95f",
+      "embed/04.webp": "b40a4bbc9ce7cbd3564f62ee4147cda2f3921a27dede22a3321153f4f87696d2",
+      "embed/05-t.webp": "be6878209f79c90ce44888195909dad87e624d0b79652f1ff751a173fec6d458",
+      "embed/05.webp": "9dc296d6f04e36255f959cf98a105604110604d0073c1bd71e1cd3a51e75833e",
+      "embed/06-t.webp": "004e281d511a4d223674637bcf3f22585810dc604bf862a2b5de307e5be99d83",
+      "embed/06.webp": "6ab0025439ffb2af70a6f73e90cbd7563ddb3c52b81f572a9c78d8ae8b485a9d",
+      "embed/07-t.webp": "d8be2bdc96694f4bed703ef9146c8eadab3e0d83cd4e88098b96f780c6e8e879",
+      "embed/07.webp": "f31237341a14498fb77ef16299db95d47be85f434160a61617085fc51f3f2d5b",
+      "embed/08-t.webp": "4a45b71a2181c4d419d6cfefb45a4c6221799d5d3b8719597f60a81a98e21e62",
+      "embed/08.webp": "ec6f1842fafb902b994739809fa0938e38589c02e9622739fc509d546726cd58",
+      "embed/09-t.webp": "493bad8591a62499f8aecf037cb26cacb2a7980ecb655e64b505d3402beb9172",
+      "embed/09.webp": "41c70a9652b7887756db4d21e58448f45794d57f2fc4aa21a175a9009fb6a64a",
+      "embed/10-t.webp": "7fff3d9513dedcbff4d6658384e386d883331980b026bd439723d076134a0c98",
+      "embed/10.webp": "68006d8011c72cfd67ebcfe53722fede912236739810c240f4cd8b2fb1572d4a",
+      "embed/11-t.webp": "e3b45826226be864a6b28965f0360489d276b55259f9dd396dc93d43109bed9b",
+      "embed/11.webp": "24bea8bc9cf4ca76b6d7908aef92d914fc292d82a4bee52971b7de680c2db424",
+      "embed/12-t.webp": "d39c9902b997ffd1d4e03596418ff8f5674a6ca77af5cf5f0fb500da3a73d77e",
+      "embed/12.webp": "f15ebe274b37388ad619f6c3f6be431ad6c2ddb45bf9b689a34fd9d618198373",
+      "embed/13-t.webp": "f127a2414000fc6574bf26189005ba801cfe9b55e1da8c97796db632fbec0952",
+      "embed/13.webp": "a47c88be4c6a4b1bc135a76e93a1fe1cfc13164aaba2d764520ef93bb720c35a",
+      "embed/14-t.webp": "3d21c9c0fbd5fc9d58e9fdc7e1d83b7b0f335430385ca66f97ec4c30c43abfce",
+      "embed/14.webp": "9de3fc0f6c5eba9feff49d71c89931bba050d39266ea1fff7ecbb9469deaace3",
+      "embed/lesson.json": "c15529c3b1a751b92c3d279435c7f2dcec54a8e3d54fa382b60325e59d04f37d",
+      "embed/photo.webp": "9de3fc0f6c5eba9feff49d71c89931bba050d39266ea1fff7ecbb9469deaace3",
+      "lesson-artifact.html": "aaa75042d70b8e5dedf699d1e60a80fc215eb3c891f75fbe1fd8403cdbc18779",
+      "lesson-standalone.html": "dcc78f80be44c82c5f76692c4b2ea8a2b5d3da080a2f1d195a17c59783afac8b",
+      "lesson.html": "b77f143eb017d9da9ec0a958b91f58df80a46cd8630af26df70e408cb866c583",
+      "lesson.json": "0f342a04a51808f0db54d3cc24f6b333e132b4f51c8fe43bef2bc6f1bb550b33",
+      "photo.jpg": "5a0d8b61055694d1e0d478276f7d634bb9b401467d21382fdf5002f860a44169"
+     }
+    }
+   ],
+   "stage": [
+    {
+     "tool": "edit plan.json",
+     "change": "swapped reflection-dark and reflection-light",
+     "files": {
+      "plan.json": "dc9ca89bdc81e9f11d5230c5b62cf3bdc039c389624ee9d917caa15184436f43"
+     }
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "2dc0cdad441a3c08a4a76d71a15784977a24ebb29b8622b6e786244e79f5c425",
+     "refused": null,
+     "files": {
+      "13_reflection-light.png": "d20afdb0f4eb2733f42b881377cc5e0434234bc629491acb422b96a50a990c56",
+      "14_reflection-dark.png": "b4b7b6f28098cc5020395b980d22b9540c7d347b76d449d389583c7abdf93b9e",
+      "trials/steps.jpg": "80722dce1ed8241d4ccde7e722c4ea3dad515e8b8a155efacdebb95573e4b36e",
+      "13_reflection-dark.png": null,
+      "14_reflection-light.png": null
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "c625139ead9082e66dec3635c0c98195d26ec72978a75c0475aaf2aa9cb8b84f",
+     "refused": null,
+     "files": {
+      "aids/13_reflection-light_after.jpg": "5e7bc59f3dd3412f3e0fc2c22c35b03a98a6900704b31aabc1e7c53c0366a9c8",
+      "aids/13_reflection-light_before.jpg": "4ce50804e882ee1134abb23c0db4accc339b1c67fbd3d391f55b8ed68b32d862",
+      "aids/13_reflection-light_map.png": "baaa11df44b15b9f378476641fee0e951b29d6c4fe34a4359bb937ff34effec9",
+      "aids/14_reflection-dark_after.jpg": "48238efcd3a795fced24f208e8bb62e5011e957d61bc46840ba23113fe9472af",
+      "aids/14_reflection-dark_before.jpg": "d8dab4591182865597c8815a47edc977e57b86c7563759e447a3c1d69a60be76",
+      "aids/aids.json": "15e9f9f111c52835aac0f8d20204106f48b8fa549c8feeb764b309a14fff5b24",
+      "aids/13_reflection-dark_after.jpg": null,
+      "aids/13_reflection-dark_before.jpg": null,
+      "aids/13_reflection-dark_map.png": null,
+      "aids/14_reflection-light_after.jpg": null,
+      "aids/14_reflection-light_before.jpg": null
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "1ac759146c60a77b1a2be55d45be77bf0453e3f9d69570671dad96608a18fe67",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "261d060e894bb2986f45a3df4877def119b647ab459f129d09d9ffd1a1a228c9",
+     "refused": null,
+     "files": {
+      "text.json": "8141b283f447b93682a4054206acf8f6b7dd2fd184b516364a1581d477051f3a"
+     }
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "0d2da884de9257b38871e8ffbf2e24ae843dac2e526c3d16a267859b53878de9",
+     "refused": null,
+     "files": {
+      "text.json": "961e42e889ca63af531892af394ff20b4506f422f8bd892b60ed80718abe74ec"
+     }
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "055c6cc12a457ebeb788d5a091d1f48645090383b4139ca0a724256bfafb309d",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "130cdf432efdfc286d97c89e743f7ec972d1fdcc83717e826a6c21b5cddc7d9a",
+     "refused": null,
+     "files": {
+      "embed/13-t.webp": "5b3df8b0119fab14d0cfd7f754c663ecf61736d15a8f46f40597bbb1c0f775ca",
+      "embed/13.webp": "f38100cd27e41439dd0b3d3a3bd56b94d565671fa8296ca760f336bcc7897892",
+      "embed/lesson.json": "0db077f9ce466d0a60a00723309914072a97e0db1adf22de8b41c4864d559786",
+      "lesson-artifact.html": "38665e74902c03cac5c6129d77b5cd0ee512578493c009069fd6c8dc0286a946",
+      "lesson-standalone.html": "c4eb9dcc11e1789aecf95d76f0d8a4b9a5c3c6c5548ade6c0476e1dceff50c23",
+      "lesson.html": "801224c65e119a96488a2139c99aec1d076651832aacf75c3a5f3e1ca324dac5",
+      "lesson.json": "118780ac978f3668b4d255bdc28c32b5b6835a3c528f6037d1a47ebb9f4eba60"
+     }
+    }
+   ],
+   "part": [
+    {
+     "tool": "edit plan.json",
+     "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]",
+     "files": {
+      "plan.json": "0abe02ad55b50692dd12b5e249f8b5599e50ab5d26e0ad27a3b6ed88f235bd57"
+     }
+    },
+    {
+     "tool": "outline",
+     "code": 0,
+     "printed": "07c4ec64d30e6813aea631256517bed3ff31ceae31453dc4feb223ba19c78b48",
+     "refused": null,
+     "files": {
+      "parts/owner.png": "bae82592ada96146ca0e50aa34a3a1517c4700babd352b3ae2864b0ce90bfacc",
+      "parts/preview.jpg": "8b74ffbb4283b54d1844c3a38266c9d5159598bc9a1626c2bdd4278670dea711",
+      "parts/sky.png": "fccbac7433aaaabc6b13407651a4eabcbbf26d3ee6f1977f40836f2fd672a282",
+      "parts/stats.json": "49108eca892791882ba1cd4a3d99d04bf933336ae7eb08e0ae95ef10f05e401f",
+      "parts/sun.png": "76b4424c6bd0ad61c9da23f1811353efb9720bcb7568baf13843076265d60d2f"
+     }
+    },
+    {
+     "tool": "paints",
+     "code": 0,
+     "printed": "2c888cfd4f35944ab14d9877a9fe50312d728fb873fc40224bd65045bdc0c823",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "build-steps",
+     "code": 0,
+     "printed": "2dc0cdad441a3c08a4a76d71a15784977a24ebb29b8622b6e786244e79f5c425",
+     "refused": null,
+     "files": {
+      "01_sky-blend.png": "c4756688b3b7199113b66041da5fa7816115a30e14581895e64ecff379a3c53e",
+      "02_sun.png": "4468fb597d7f7e740a8f947bb689e7538a78f5953ea7716051751f441d4e2149",
+      "03_hill.png": "9cf39bf5af6e726e8085c09739c8326f9f079912d43dbb3aa6d875bbca23b7d6",
+      "04_water-coat.png": "9942d3fd4654ab3e1966bf229d1a65b6b3a69162fc0fa6bb5d6ea92c668b1fc3",
+      "05_water-light.png": "fe8a9b40e32565f714f0f9ff5b5f00a90c90a4069fa953e0c532b14a51383cb3",
+      "06_path-dark.png": "81f6c021b73f1485dd3398f4517a8641788096fd97fd1da146f1ae41aa8c0a3f",
+      "07_path-light.png": "6b5e279ac5910db360c3c8983abe4ae56cdbd0df9762350417d8e1e4c0871a50",
+      "trials/steps.jpg": "7cd55c3bcd3bddb6cff8187993122bb6bd1d5b53fa380cf227a1eed9b21a9ee8"
+     }
+    },
+    {
+     "tool": "step-aids",
+     "code": 0,
+     "printed": "c625139ead9082e66dec3635c0c98195d26ec72978a75c0475aaf2aa9cb8b84f",
+     "refused": null,
+     "files": {
+      "aids/02_sun_after.jpg": "37728cb474fe4fe605423dc9eb8256bb058889a27ad897d66a7933f5a7cd85b7",
+      "aids/02_sun_before.jpg": "3297d1b82b97e030d8a6ce92738d01dce6abdeba985d0d74e1131eca280ec433",
+      "aids/08_sail-shape_before.jpg": "c73e6af6ae8e54a7091cf8cb42d9d7aecc5ffd677827f8fd2cef71622be9e63e",
+      "aids/aids.json": "ec04126534b28d9b78209ad11e9dd7a4f940e2c6ce5a74640e90bd71c49659f5"
+     }
+    },
+    {
+     "tool": "mix",
+     "code": 0,
+     "printed": "1ac759146c60a77b1a2be55d45be77bf0453e3f9d69570671dad96608a18fe67",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "draft-text",
+     "code": 0,
+     "printed": "261d060e894bb2986f45a3df4877def119b647ab459f129d09d9ffd1a1a228c9",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "card-adapt",
+     "code": 0,
+     "printed": "eb5ebbe44f273e239715e42e8716edb83572d4400e4d57e68eb6036e3e834676",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "check",
+     "code": 0,
+     "printed": "055c6cc12a457ebeb788d5a091d1f48645090383b4139ca0a724256bfafb309d",
+     "refused": null,
+     "files": {}
+    },
+    {
+     "tool": "publish",
+     "code": 0,
+     "printed": "130cdf432efdfc286d97c89e743f7ec972d1fdcc83717e826a6c21b5cddc7d9a",
+     "refused": null,
+     "files": {
+      "embed/01-t.webp": "481ff6e47915b239fca3e2371c1ad232cf1bbd8432250ee385a66abd36ad4261",
+      "embed/01.webp": "f71d6c8ba5cd5b14b2766fa1c2d465609c71ca1255ccf55303e07a06c0d75200",
+      "embed/02.webp": "d995a1da611db923a1226708d8d5a03e90dbda9647f7fccf4351769fe1ab649a",
+      "embed/03.webp": "23dafc75627de7e53991450803a00fdb4175eed144fc0390eb9c5fc1ddc09f38",
+      "embed/05.webp": "1a2481826978bdcb708e5822a49829e60f375b90d84f3486abd3629e9f29935c",
+      "embed/06.webp": "6af90bcb61842cac05a69e59ed4231449ea49026d7007857b36b3afb1d8a01bb",
+      "embed/07.webp": "eee199ad205f19bf38aee4b271cc41eb159048cec42552b672ccb82fa62d6073",
+      "lesson-artifact.html": "1e22a009296469162e67fd7e2b682770bd0cfa380174ec5ab90104c3d15a6e84",
+      "lesson-standalone.html": "6002ea191a4f0949dd7e88ee0a50c88b501789399bd3f5c10e3021e9f1112dd2",
+      "lesson.html": "153e2da94fcf3428a6de0cc7d2bd0fe0a0ba53a3a57da1ba956b01a3c3eb51a4",
+      "lesson.json": "9e53affa9ac818acdff31ee62884fef8378dfa79308df1605219bbcbb49991dc"
+     }
+    }
+   ]
+  }
+ }
+}
