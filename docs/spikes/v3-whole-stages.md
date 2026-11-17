@@ -14,9 +14,11 @@ looked at the lake cabin's step sheet after stage 1 and said go. These are Claud
 What the pictures and the numbers say:
 
 - **Erasing backward, chained, with a guard that needs no outline, works.** 21 kept renders across three pictures.
-  No step changes a pixel outside what its thing adds, and the last picture is the finish, both by construction.
+  No step changes a pixel outside what its thing adds, and the last picture is the finish: both measured at 0.00%
+  (a pixel counts when it moves by more than 6 levels outside the thing's change, or ends more than 24 from the
+  finish), and nearly so by construction.
 - **It removes the faults the owner marked down hardest.** The blotches where the cow will stand, the tiled pattern
-  on the mountain, the "blobby mess" under the birch grove, the pale hole in the lake: all gone. Every grader named
+  on the mountain, what the owner called the "blobby mess" under the birch grove, the pale hole in the lake: all gone. Every grader named
   these as what sank v2.
 - **The lake cabin and the highland cow needed no redo.** 15 renders, first answer kept each time.
 - **The birch grove needed three tries at its back layers** and is still not clean: the model painted firs in the mist
@@ -89,7 +91,8 @@ The chains: top row, bare canvas and then the picture after each unit is added; 
 | | sun rays (redo) | 12.6% | 0.17 | 0.0% |
 
 - **Nothing moves outside what a step adds:** 0.00% on every step of all three, and the built last picture is the
-  finish. The raw renders moved 0 to 7% of the pixels outside the change; the guard threw that away.
+  finish. Both are measured, as above: paint is laid with a softened edge (`build_steps._lay`), so it is the
+  measure that says nothing moved, not the code alone. The raw renders moved 0 to 7% of the pixels outside the change; the guard threw that away.
 - **A low IoU is not a fault by itself.** The change is often bigger than v2's outline for a good reason: a thing
   takes its reflection with it, the lake is the whole lower canvas, the mountain is whole behind the forest. It is a
   fault where the change is the render painting something else again: the foliage's 80.5% is mostly the forest floor
@@ -158,7 +161,8 @@ real / paintable / agree, each 1 to 5.
 
 - **Spend:** 31 low and medium renders, 55 cents: 37 cents kept, 18 cents thrown away on the birch grove. Under the
   $2 the issue allows.
-- A chain can't run all at once, so its time grows with the number of things: 12 to 17 seconds a render.
+- A chain can't run all at once, so its time grows with the number of things: 10 to 18 seconds a render, about 14
+  on average.
 
 ## 7. Limits
 
@@ -180,7 +184,10 @@ real / paintable / agree, each 1 to 5.
 - **Stages inside a thing.** The biggest faults left on the whole-stages side are v2's own. A chain that erases a
   thing's detail before the thing (its highlights, then its texture) is the same tool pointed one level down; S4
   (#169) tried that with separate renders and no guard of this kind.
-- **Fault counts** by a fresh counter.
+- **Fault counts** by a fresh counter. `docs/decisions.md` has spikes screen with one counter a lesson; this one
+  went straight to the graders, to save usage.
+- **The plan's third check** (every pixel within a set distance of a paint its step names). The paints and the
+  steps inside a thing are v2's, unchanged, so it wasn't measured here.
 
 ## Running it
 
