@@ -185,7 +185,8 @@ No fixed target. Report the trace before and after.
 2. Wave 0. Owner picks or approves the three hard pictures and does the baseline scoring.
 3. S1, S2, S3 in parallel; S11 alongside. Then S4.
 4. S6 and S7, then S8 and S9. S5 and S10 as time allows, since both depend on Wave 1's answer.
-5. Write `docs/design/pipeline-v3.md` from what was adopted. Gate: v3 beats v2 on the blind A/B for every
+5. Write `docs/design/pipeline-v3.md` from what was adopted (a draft since 2026-11-17, #210; one combined lesson
+   for the owner to look at comes before the gate). Gate: v3 beats v2 on the blind A/B for every
    bench picture's weakest stage, known problems per lesson drop below 2, and the trace is shorter.
 6. Build v3 as `/paint-lesson` behind `plan_version: 3`, rerun the site lessons, remove v2.
 
