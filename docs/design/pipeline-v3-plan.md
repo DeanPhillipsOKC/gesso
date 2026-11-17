@@ -91,7 +91,7 @@ and the owner's A/B.
   ones back, and keep only the pixels inside what was removed (the same guard `background_problems` uses
   today). This is v2's one background render made general. Try chained against all-at-once-in-parallel, low
   against medium quality, and gpt-image against one other edit model. Guess: 3 to 5 low renders, about 8
-  cents and 20 seconds in parallel.
+  cents and 20 seconds in parallel. Run 2026-11-17: `docs/spikes/v3-peel.md` (verdict open until the owner's A/B).
 - **S2. Layer models (#167).** Models built to split one picture into see-through layers in one call (the
   Qwen-Image-Layered kind), and gpt-image's own transparent-background output for a single object. If one
   call gives clean complete layers, S1 isn't needed.
