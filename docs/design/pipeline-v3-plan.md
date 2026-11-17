@@ -98,7 +98,10 @@ and the owner's A/B.
 - **S3. Better edges (#168).** Outlines that follow what Claude means, not where Claude put a box: name-prompted
   segmenters (the SAM 3 kind) so "the branch" is the prompt, and a matting model for soft and thin edges
   (whiskers, fur, foliage). Also test outlining the photo against outlining the finish. Reuse the
-  nine-model harness in `spike/experiments/issue85.py`.
+  nine-model harness in `spike/experiments/issue85.py`. Run 2026-11-17: `docs/spikes/v3-edges.md` (verdict: drop the
+  name prompts and the photo outlines, park the soft edges; Claude's blind graders preferred v2 over SAM 3's
+  name-prompted outlines on 2 of 3 pictures, and tied soft edges with v2 on all 4, one chickadee grader preferring
+  them slightly).
 - **S4. Stages inside a part (#169).** Today a half-done part is a flat coat plus nearest-color passes, which the
   design doc itself lists as a risk. Test peeling detail instead of things: the same part "before the
   highlights", "before the texture", "blocked in", pixels locked outside the part. Compare with v2's

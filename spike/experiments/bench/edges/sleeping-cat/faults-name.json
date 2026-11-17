@@ -1,0 +1,666 @@
+{
+ "packet": "p03",
+ "painting": "A gray tabby cat curled asleep on a folded mustard knitted blanket on a wooden windowsill, with a white window frame and green leaves at the left",
+ "steps": [
+  {
+   "n": 1,
+   "id": "wall-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, whole lower 75%: x 0-100%, y 25-100%; vertical seams at about x 10%, 43%, 76% (1 1/2, 7, 12 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark navy strip (the frame's deep inner side) already shows, though no step has painted the frame",
+     "where": "AFTER, x 23-28% (about 3.7 to 4.45 in from the left), y 0-24% (top 3 in)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' with nothing on the step explaining what a creamy load is",
+     "where": "words line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "outside-blend",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, y 25-100%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark navy strip (the frame's deep inner side) already shows, though no step has painted the frame",
+     "where": "AFTER, x 23-28%, y 0-24%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the sky is a mirrored, tiled pattern of horizontal streaks with a stepped, rectangular right edge, nothing a brush makes",
+     "where": "AFTER, x 0-16% (0 to 2 1/2 in), y 0-48%",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "major",
+     "sees": "a gray horizontal crossbar line already crosses the sky, three steps before the frame step",
+     "where": "AFTER, about 2 1/4 in down, x 0-16%",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "C",
+     "severity": "major",
+     "sees": "words and tip say the sky strip is about 1 1/4 in wide; the picture's sky is about 2 1/2 in wide",
+     "where": "words line 3 and tip vs AFTER, sky from 0 to about 2 1/2 in from the left",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "D",
+     "severity": "major",
+     "sees": "Soft leaf green is named for the sky blend, but the picture adds no green at all, only sky blue and white",
+     "where": "AFTER, x 0-16%, y 0-48%",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "E",
+     "severity": "major",
+     "sees": "line 5 orders the paints top to bottom as green then blue and line 8 starts with the darker one, but the tip says to keep the green low and the blue at the top (the picture shows blue at the top)",
+     "where": "words lines 5 and 8 vs tip",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "E",
+     "severity": "minor",
+     "sees": "white cloud strokes appear in the sky and no line asks for them or names a white",
+     "where": "AFTER, x 0-10%, y 5-35%",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' unexplained again",
+     "where": "words line 7",
+     "same_as": "f3"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "leaves-dark",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, y 25-100%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark navy strip (the frame's deep inner side) already shows, though no step has painted the frame",
+     "where": "AFTER, x 23-28%, y 0-24%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gray crossbar line still shows across the window before the frame step",
+     "where": "AFTER, about 2 1/4 in down, x 0-16%",
+     "same_as": "f7"
+    },
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the shady leaves are one flat, solid green block with straight horizontal and vertical edges (a rectangular bar and a straight right side), no dabs or dots",
+     "where": "AFTER, x 0-16% (0 to 2 1/2 in), y 9-45% (1 to 5 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "C",
+     "severity": "major",
+     "sees": "words say about 1 1/4 in wide; the green area in the picture is about 2 1/2 in wide",
+     "where": "words line 2 vs AFTER, 0 to 2 1/2 in from the left",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' with nothing on the step saying how much paint that is",
+     "where": "words line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, y 25-100%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark navy strip (the frame's deep inner side) already shows, though no step has painted the frame",
+     "where": "AFTER, x 23-28%, y 0-24%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gray crossbar line still shows across the window",
+     "where": "AFTER, about 2 1/4 in down",
+     "same_as": "f7"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the flat, hard-edged green rectangles from step 3 remain right of the leaves",
+     "where": "AFTER, x 8-16% (1 1/4 to 2 1/2 in), y 12-25%",
+     "same_as": "f16"
+    },
+    {
+     "id": "f23",
+     "class": "D",
+     "severity": "minor",
+     "sees": "besides Soft leaf green, the picture adds dark teal blue-green strokes that no paint names",
+     "where": "AFTER, x 0-7%, y 30-42%",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words ask for tapped dots; the picture shows long diagonal brush strokes",
+     "where": "AFTER, x 0-7%, y 20-42%",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' unexplained again",
+     "where": "words line 4",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "window-block",
+   "faults": [
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, y 25-100%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark navy strip (the frame's deep inner side) already shows, though no step has painted the frame (the white post stops at 3.7 in, though the tip puts the block to 4 1/2 in)",
+     "where": "AFTER, x 23-28%, y 0-24%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f28",
+     "class": "B",
+     "severity": "major",
+     "sees": "the frame block's lower edge is wavy and notched around where the cat's head and ear will go, ringed by a thin dark brown and orange line, not straight bars",
+     "where": "AFTER, x 8-15% (1 1/4 to 2 1/2 in), y 30-65% (3 1/2 to 8 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "window-shade",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, y 30-100%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f30",
+     "class": "B",
+     "severity": "major",
+     "sees": "the wavy, rimmed lower edge of the frame block still shows",
+     "where": "AFTER, x 8-15%, y 30-65%",
+     "same_as": "f28"
+    },
+    {
+     "id": "f31",
+     "class": "D",
+     "severity": "minor",
+     "sees": "under the window the picture adds a dark mauve-brown, warmer and darker than Shadow lavender",
+     "where": "AFTER, x 0-15%, y 50-65%",
+     "same_as": null
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the warm white areas of the frame change from a flat coat to streaky brushwork with brighter highlights, which no line asks for",
+     "where": "AFTER, x 0-23%, y 0-45%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "sill-block",
+   "faults": [
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, wall area x 10-100%, y 30-75%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "major",
+     "sees": "the rimmed, notched lower edge of the frame block still shows",
+     "where": "AFTER, x 8-15%, y 30-55%",
+     "same_as": "f28"
+    },
+    {
+     "id": "f35",
+     "class": "D",
+     "severity": "major",
+     "sees": "Wood brown's recipe is 2 parts red to 1 part ultramarine, which mixes a maroon-purple, but the swatch and picture are an orange red-brown",
+     "where": "paints: Wood brown #934025",
+     "same_as": null
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "a thin yellow-gold line (the blanket's edge) runs along the sill's top edge before the blanket is painted",
+     "where": "AFTER, along the sill top, x 8-100%, y 60-90%",
+     "same_as": null
+    },
+    {
+     "id": "f37",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says to paint straight through where the blanket will sit, but the picture leaves that area unpainted: the sill's top follows the blanket's outline",
+     "where": "tip vs AFTER, x 10-100%, y 60-90%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "sill-light",
+   "faults": [
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, y 30-90%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f39",
+     "class": "B",
+     "severity": "major",
+     "sees": "the rimmed lower edge of the frame block still shows",
+     "where": "AFTER, x 8-15%, y 30-55%",
+     "same_as": "f28"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "the yellow-gold line along the sill's top edge still shows",
+     "where": "AFTER, along the sill top",
+     "same_as": "f36"
+    },
+    {
+     "id": "f41",
+     "class": "D",
+     "severity": "major",
+     "sees": "only about a tenth of what the picture adds is near Sunlit peach; most is dark red-brown wood grain",
+     "where": "AFTER, x 0-100%, y 70-100%",
+     "same_as": null
+    },
+    {
+     "id": "f42",
+     "class": "E",
+     "severity": "major",
+     "sees": "no line asks for the wood grain and dark streaks the picture adds across the whole front of the sill; the tip says to keep the dark wood showing there",
+     "where": "AFTER, x 10-100%, y 85-100% (bottom 2 in)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "blanket-block",
+   "faults": [
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, wall x 10-100%, y 30-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f44",
+     "class": "B",
+     "severity": "major",
+     "sees": "the rimmed lower edge of the frame block still shows above the blanket",
+     "where": "AFTER, x 8-15%, y 30-50%",
+     "same_as": "f28"
+    },
+    {
+     "id": "f45",
+     "class": "B",
+     "severity": "major",
+     "sees": "the blanket's top edge carries a dark gray line and stray white and gray streaks",
+     "where": "AFTER, x 7-100%, y 52-60% (about 6 1/4 to 7 1/4 in down); white streaks x 8-15%",
+     "same_as": null
+    },
+    {
+     "id": "f46",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says to paint straight through where the cat will lie, but the picture leaves the cat's area unpainted (the blanket's top dips around it)",
+     "where": "tip vs AFTER, x 10-100%, y 40-60%",
+     "same_as": null
+    },
+    {
+     "id": "f47",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words say the result is distinct curved rolls with gaps between them; the picture is one flat shape",
+     "where": "words lines 6-7 vs AFTER",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "blanket-stitches",
+   "faults": [
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, wall x 10-100%, y 30-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f49",
+     "class": "B",
+     "severity": "major",
+     "sees": "the rimmed lower edge of the frame block still shows",
+     "where": "AFTER, x 8-15%, y 30-50%",
+     "same_as": "f28"
+    },
+    {
+     "id": "f50",
+     "class": "B",
+     "severity": "major",
+     "sees": "the dark line along the blanket's top edge still shows",
+     "where": "AFTER, y 52-60%",
+     "same_as": "f45"
+    },
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "major",
+     "sees": "the 'stitch gaps' are irregular, posterized blotches with contour-like edges, not teardrop strokes in rows; no brush makes this",
+     "where": "AFTER, blanket x 10-100%, y 55-92%",
+     "same_as": null
+    },
+    {
+     "id": "f52",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint, a full load' unexplained",
+     "where": "words line 4",
+     "same_as": "f3"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "blanket-folds",
+   "faults": [
+    {
+     "id": "f53",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the wall where the cat, blanket and sill will go is a smooth darker fill with a mirrored, kaleidoscope-like tiled texture and straight vertical seams; its top edge traces the cat's back. No brush makes this",
+     "where": "AFTER, wall x 10-100%, y 30-55%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f54",
+     "class": "B",
+     "severity": "major",
+     "sees": "the rimmed lower edge of the frame block still shows",
+     "where": "AFTER, x 8-15%, y 30-50%",
+     "same_as": "f28"
+    },
+    {
+     "id": "f55",
+     "class": "B",
+     "severity": "major",
+     "sees": "the dark line along the blanket's top edge still shows",
+     "where": "AFTER, y 52-60%",
+     "same_as": "f45"
+    },
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: from blotches to the finished knit, every stitch stroke modeled with highlights, on a step that only shades the deep folds",
+     "where": "AFTER, blanket x 7-100%, y 52-92%",
+     "same_as": null
+    },
+    {
+     "id": "f57",
+     "class": "D",
+     "severity": "major",
+     "sees": "only about a third of what the picture adds is near Dark ochre; most is bright light-yellow stitch strokes no paint names",
+     "where": "AFTER, blanket",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "cat-block",
+   "faults": [
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "major",
+     "sees": "the wall above the cat's back changes from the smooth fill to brushed wall texture, though no line touches the wall",
+     "where": "AFTER, x 35-80% (5 1/2 to 13 in), y 10-25%",
+     "same_as": null
+    },
+    {
+     "id": "f59",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a thin orange-peach rim runs along the cat's silhouette at the ears and back",
+     "where": "AFTER, x 7-60%, y 12-28%",
+     "same_as": null
+    },
+    {
+     "id": "f60",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words say the result is distinct curved pieces with gaps; the picture is one flat silhouette",
+     "where": "words lines 7-8 vs AFTER",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "cat-white",
+   "faults": [
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "major",
+     "sees": "pink and tan specks show in the ear, on the forehead and around the closed eyes, before the stripes and pink-ear steps",
+     "where": "AFTER, left ear x 7-12%, y 30-35%; forehead x 26%, y 22%; eye area x 13-20%, y 40-46%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "cat-stripes",
+   "faults": [
+    {
+     "id": "f62",
+     "class": "A",
+     "severity": "major",
+     "sees": "the pink specks in the left ear and on the forehead still show",
+     "where": "AFTER, x 7-12%, y 30-35%; x 26%, y 22%",
+     "same_as": "f61"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "cat-fur",
+   "faults": [
+    {
+     "id": "f63",
+     "class": "A",
+     "severity": "major",
+     "sees": "the pink specks in the left ear still show",
+     "where": "AFTER, x 7-12%, y 30-35%",
+     "same_as": "f61"
+    },
+    {
+     "id": "f64",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' unexplained",
+     "where": "words line 4",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "cat-pink",
+   "faults": [
+    {
+     "id": "f65",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint, a full load' unexplained",
+     "where": "words line 4",
+     "same_as": "f3"
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [
+  {
+   "id": "f66",
+   "class": "E",
+   "severity": "major",
+   "steps": [
+    1,
+    5,
+    6
+   ],
+   "sees": "the dark navy-blue deep inner side of the window frame (about 3.7 to 4.45 in from the left, top 3 in) is in the finish and every step picture from step 1, but no step's words or paints ever paint it; step 6's lavender goes on a strip left of it",
+   "where": "all AFTER pictures, x 23-28%, y 0-24%; paints of steps 5-6"
+  }
+ ],
+ "counts": {
+  "A": 31,
+  "B": 11,
+  "C": 2,
+  "D": 6,
+  "E": 9,
+  "F": 7,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 11,
+  "B": 3,
+  "C": 2,
+  "D": 6,
+  "E": 9,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  3,
+  2
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups and paint-map diagrams, whether the right version is published on the site, and the lesson history numbers",
+  "H": "how the render and cutting tools ran, diagrams, and whether the checks missed problems; no tool notes, placeholders or repeated lines show in the words"
+ },
+ "summary": "The step pictures are the main problem: the wall coat from step 1 is a mirrored, tiled fill with vertical seams whose edge traces the cat, repeated in every step until the cat covers it, and the window steps add flat hard-edged blocks, a tiled sky, and ghosts of the frame. Several steps' pictures add colors and finished detail the words don't name (sill grain, finished knit), block-ins leave out the areas the tips say to paint through, and the window sizes are about twice what the words say. Load words (creamy, light load) are never explained."
+}

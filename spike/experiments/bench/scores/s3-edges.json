@@ -1,0 +1,498 @@
+{
+ "format": "gesso-ab-grades/1",
+ "graded_by": "claude: two fresh blind graders a picture (spike/experiments/bench/ab_grader.md), sides swapped for the second; folders named pair-NN so the experiment's name wasn't shown",
+ "mode": "pair",
+ "round": "s3-edges",
+ "pictures": [
+  {
+   "picture": "birch-grove",
+   "variant": "name",
+   "lessons": {
+    "name": "birch-grove_skill_20261116-210750-name",
+    "v2": "birch-grove_skill_20261116-210750"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-01",
+     "prefer": "v2",
+     "note": "The words are the same, so this comes down to the pictures. B avoids A's hard boxes in the ground (steps 6 to 11) and A's unexplained flat far trunks, and its pictures match the words better at steps 1 and 5. Both lessons are weak in the same big ways, so this is a slight preference, not a clear one.",
+     "scores": {
+      "name": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        6,
+        9
+       ],
+       "note": "Step 1 is sausage-shaped strokes with white holes, a tiled pattern and finished canopy leaves already showing, and its bottom is bright orange where the words say blend down to leaf brown. From step 6 to step 11 two hard rectangular boxes sit in the ground, and the olive and gold canopy steps are flat cut-outs with the gold leaves already done at step 9. Step 5 shows only about one far trunk, and step 12 adds two flat gray far trunks the words never mention, which turn into pale birches only in the finish."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        9,
+        8
+       ],
+       "note": "B has the same words and shares A's worst problems: the blobby, tiled step 1 with leaves showing early, flat olive cut-outs with the gold canopy already done at step 9, and the whole leaf floor finished in one go at step 8. But its step 1 bottom is the dark brown the words ask for, step 5 shows the several far trunks it describes, and the ground has no hard boxes. Its one new flaw is a gray blotch over the sun disk from step 12 on, after step 11 painted it."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-02",
+     "prefer": "v2",
+     "note": "The two lessons have word-for-word the same text, paints and finish; only the step pictures differ, and they share their worst problems (tiled sky, the step 8 and 11 jumps, flat cut-out olive and gray shapes). B adds a wrong-color ground band that leaves hard boxes for six steps, early floating branches, and magic far trunks at the last step, so A misleads the painter less. A slight preference, not a clear one: both would mislead a beginner badly.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        11,
+        8
+       ],
+       "note": "Step 1 is a tiled, wallpaper-patterned fill with sausage-blob edges, white canvas left where the words say to fill to the bottom, and gold leaves and blue patches already showing; that tiling stays in the sky until step 11. Step 8 jumps the ground nearly to finished, and step 11 (a few taps of sunlit gold) turns the whole flat-olive canopy into finished sky, rays and firs. Smaller faults: the step 5 far trunks already carry bark marks the words rule out, and a puzzle-piece blotch sits where the sun goes through steps 9 to 13."
+      },
+      "name": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 1,
+       "worst_steps": [
+        1,
+        14,
+        11
+       ],
+       "note": "B has the same tiled step 1 and the same big jumps at steps 8 and 11, plus its own faults. Step 1 paints the bottom bright orange where the words say leaf brown, and that orange stays as hard pale rectangles in the ground from step 6 through 13. Dark bark branches float in the sky at step 11, two steps before bark is painted. Step 5 shows one far trunk instead of about four. The two far middle trunks are flat gray posts until step 14, where they turn into finished bark-marked birches in a cream-highlight step."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "variant": "soft",
+   "lessons": {
+    "v2": "birch-grove_skill_20261116-210750",
+    "soft": "birch-grove_skill_20261116-210750-soft"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-03",
+     "prefer": "none",
+     "note": "The two lessons are the same lesson: identical text, identical step pictures through step 11, an identical finish, and only softer trunk edges in B's step 12. That is a small edge, not a preference, so it's none, and I'm sure of it (clear).",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        9,
+        11
+       ],
+       "note": "Step 1 is a tiled diamond texture with blob-chain outlines, hard boxes, orange leaf patches and white canvas left in the bottom half, though the words say blend down to leaf brown at the bottom. Things show up early (finished rock and gold bushes in step 3, a sun-disk ghost from step 9 on), and steps 8 and 11 jump from flat to finished (whole leaf floor; whole canopy, rays and sky in a step that names one light gold). Step 9 lays flat olive boxes into the sky that look nothing like dabbed leaves."
+      },
+      "soft": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        9,
+        11
+       ],
+       "note": "Same words as A word for word, and steps 1 to 11 and the finish are the same pictures at the pixel level, so it has every problem A has: the tiled first step, early rock and bushes, the sun ghost, and the big jumps at steps 8 and 11. The only difference is step 12 (and a little of 13), where the gray trunk edges blend softly into the leaves instead of A's crisp cut-out edges with a dark fringe. That reads a bit more like paint but changes nothing a painter would do."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-04",
+     "prefer": "none",
+     "note": "The two lessons have identical words and packets, and their pictures differ only in how the gray trunk shapes are cut at step 12 (B's fit slightly better). The same serious problems run through both, so this is a toss-up with no real difference.",
+     "scores": {
+      "soft": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        11,
+        13
+       ],
+       "note": "Step 1 is not a blended sky: it already holds gold leaf bits, blue blotches, a piece of the rock, a tiled pattern, white holes and brown looping worm shapes, and leaves the bottom white although the words say blend to leaf brown. Later steps show things early or by magic (gold leaves in the ground at step 6, a white sun icon from step 9 to 13, new firs and a finished canopy appearing at step 11 from a few sunlit-gold taps), and step 13 jumps from flat gray posts to fully barked trunks with dark feet and branches. Step 12's gray trunks are soft blobs a little off the trunk shapes that follow."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        11,
+        13
+       ],
+       "note": "The words and steps 1 to 11 and 14 are the same as A for practical purposes, so B has the same faults: a step 1 full of early leaves, blotches, tiles and worm loops, a white sun icon left on the canvas, magic firs and canopy at step 11, and a big jump at step 13. Only step 12 (and slightly 13) differ: B's gray trunk shapes fit the finished trunks a bit more closely, with a thin dark edge line, which is a small help, not a different lesson."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "variant": "name",
+   "lessons": {
+    "name": "chickadee_skill_20261116-203451-name",
+    "v2": "chickadee_skill_20261116-203451"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-05",
+     "prefer": "v2",
+     "note": "The two lessons share their words and steps 8-18, so the choice comes down to steps 1-7. A shows the finished trunk before its step and has hard blobs appear and vanish at step 7. B builds the tree in order. Clear preference for B.",
+     "scores": {
+      "name": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        7,
+        4
+       ],
+       "note": "The words are identical to B; only steps 1-7 pictures differ. In A the textured, already-lit left trunk sits on the canvas from step 1 through step 4, before the step that paints it, and leaf stems pop in at step 4 with no instruction. Step 7 paints hard flat red/orange blobs over the background foliage that the words never ask for, and they turn back into soft foliage in step 8."
+      },
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        15,
+        1,
+        8
+       ],
+       "note": "B's early steps follow the words: the trunk and branch arrive in step 5 as a flat bark-brown fill, step 6 adds the lit texture, and step 7 changes only the four leaves. It still has faint trunk ghosts and blotchy patches in the step 1 sky, red-leaf veins showing up in step 8 under a gold-only step, and a big jump at step 15 (textured cap, beak and eye all at once). A shares these flaws because steps 8-18 are the same in both."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-06",
+     "prefer": "v2",
+     "note": "The words are identical and steps 9 to 18 look nearly the same, so it comes down to steps 1 to 8. There B shows the trunk before its step and adds, then removes, unexplained blobs in step 7, which would confuse a beginner more than anything in A. Clear preference for A, though A has its own big jumps at steps 6 and 8.",
+     "scores": {
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        8,
+        6,
+        1
+       ],
+       "note": "Steps 9 to 18 are solid and match their words. The early steps are weaker: step 1 already carries faint ghost trunks and a dark smudge at right, step 6 turns flat brown into fully textured bark with dark patches when the words name only a rust-orange dry-brush, and step 8 jumps the leaves from flat shapes to finished veined leaves, red ones included, though the words say the red leaves get nothing. The leaf stems in steps 5 and 6 end in odd knobs."
+      },
+      "name": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        7,
+        8
+       ],
+       "note": "Same words and the same later steps as A, but the early pictures break the rules. The textured left trunk, with pale blotchy halos around it, is already on the canvas at step 1, three steps before the bark step, and a loose twig floats at right from step 1. Step 7 paints flat red and orange blobs over the background foliage that the words never mention, and step 8 silently takes them away. It also shares A's jumps at steps 6 and 8."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "variant": "soft",
+   "lessons": {
+    "v2": "chickadee_skill_20261116-203451",
+    "soft": "chickadee_skill_20261116-203451-soft"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-07",
+     "prefer": "soft",
+     "note": "The lessons differ only in how the block-in edges look. A's head carries a visible dark/white ghost of the cap and cheek for six steps and its silhouettes have fringed, cut-out edges; B's do not. Everything else, including the bigger shared magic at steps 6, 8 and 14, is the same, so the preference is slight.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        9,
+        14,
+        6
+       ],
+       "note": "Words, paints and the finish are identical to B; only the step pictures differ. A's block-ins are hard cut-outs: the branch at step 5 has a bright fringe along its edge, and from step 9 to 14 the gold head carries a dark-and-white jagged rim where the black cap and white cheek will go, so they show before their steps. Shared faults: step 6 turns flat brown into fully modelled bark from one rust-orange, step 8 gives the red leaves veins and texture the words rule out, a blue beak fleck appears at step 13, and step 14 re-textures the whole body, not just the pale chest."
+      },
+      "soft": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        14,
+        6,
+        8
+       ],
+       "note": "Same words and paints as A, same shared faults: bark detail beyond one rust-orange at step 6, textured red leaves at step 8, beak fleck at step 13, whole body re-textured at step 14. Its block-ins have soft brushy edges instead of cut-out ones, and the bird has no ghost rim of the cap and cheek through steps 9 to 14, so the half-done pictures read more like paint."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-08",
+     "prefer": "none",
+     "note": "The two lessons are the same except for mask edges: B leaks a thin dark and white outline around the bird in steps 9-14, and A does not. That is a small edge for A, and both lessons share the same bigger problems, so I call it a toss-up that leans slightly to A.",
+     "scores": {
+      "soft": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        3,
+        14
+       ],
+       "note": "The words and paints are the same as B's, and steps 1-4 and 18 are the same pictures. Step 1 already shows ghost trunks on the left, the sun's ring texture and a dark smudge at mid-right. Step 3's trunks carry odd dark-blue swirl blotches. Later steps jump: step 6's single rust-orange stroke gives full bark texture, step 8 adds veins and shading to the red leaves the words say get no gold, and step 14 turns the flat gold body into a finished feathered chest with one pale buff. The bird silhouette from step 9 on has clean edges."
+      },
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        3,
+        14
+       ],
+       "note": "It has the same words, the same early pictures and the same jumps as A (ghosts and a smudge in step 1, blotchy trunks in step 3, magic bark and leaf detail in steps 6 and 8, the big body jump in step 14). The one difference is a thin fringe of dark and white flecks around the flat gold bird from step 9 through step 14. That fringe is the black cap and white chest of the finish showing early. The branch in step 5 has crisper edges than A's, which is neutral."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "variant": "soft",
+   "lessons": {
+    "soft": "highland-cow_skill_20261116-212627-soft",
+    "v2": "highland-cow_skill_20261116-212627"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-09",
+     "prefer": "none",
+     "note": "The two lessons have the same text, and their pictures differ only in a few edge pixels around the loch and the cow's outline. Each side has one small edge over the other: A has the softer cow edge, and B has the cleaner loch and early gold specks. Neither difference would change how a beginner paints, so this is a toss-up.",
+     "scores": {
+      "soft": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        10
+       ],
+       "note": "Step 1 leaves pale-blue blotches with dark-green cores where the cow will go, and they ride along through step 10. Step 7 has hard-edged dark boxes on the hillside. Step 2 shows gold in the clouds when the only paint is silver-gray, step 10 jumps from sparse blades to near-finished grass with teal blades no paint names, and step 13 turns flat locks into a finished, lit face and pink nose with only Sunset gold. The cow block-in in step 11 has soft, feathered edges."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        10
+       ],
+       "note": "The words, paints, and steps 1-3 and 16 are the same as A, and steps 4-15 differ only in edge pixels. It has the same blotches in step 1, the same boxes in step 7, the same magic gold in step 2, and the same big jumps in steps 10 and 13. The edges differ a little: the loch shoreline in steps 5-7 is a touch cleaner, but the step 11 cow block-in has a hard cut edge with slivers of finished gold hair showing before step 13."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-10",
+     "prefer": "none",
+     "note": "The two lessons have identical text and identical pictures for steps 1 to 3 and step 16. Where the pictures do differ, the change is a few pixels at the loch shoreline and the cow's block-in edge. Both share the same faults that would sink the lesson: the early canvas blotches and the face that moves in step 13. A toss-up: there is no real difference to prefer.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        12
+       ],
+       "note": "From step 1 to step 10 the white canvas carries pale-blue and dark-green blotches where the cow will stand, which no step asks for (the step 1 tip even tells the painter to ignore them). Step 13 turns the cow's face from a side-on view with the nose at the right to a front-on face with a nose in the middle. A gold that only names a rim of light can't do that, and in step 12 a single rust paint already brings in the eye, nose and fringe detail. The landscape steps (sky, hills, hillside, grass layers) build up believably and match their words."
+      },
+      "soft": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        12
+       ],
+       "note": "B has the same words and paints as A, and its pictures differ from A's only in tiny ways: a slightly different loch outline and a softer, feathered cow edge in steps 11 and 12. It has the same flaws: blotches on the canvas before their step through step 10, and the cow's face turning from side-on to front-on in step 13 with no instruction for it. The softer cow edge looks a little more like paint, but it changes nothing a painter would notice."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "variant": "name",
+   "lessons": {
+    "v2": "sleeping-cat_skill_20261116-203502",
+    "name": "sleeping-cat_skill_20261116-203502-name"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-11",
+     "prefer": "none",
+     "note": "The words, paints and plan are word-for-word the same, and from step 9 on the pictures are almost the same. The only differences are which early ghost each one carries: A has a peach blotch and a long stray blue line, B has the frame's dark shadow strip, which is at least where the finished painting puts it. B may be slightly better, but that is a small edge, so this is a toss-up.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        2,
+        12,
+        6
+       ],
+       "note": "Things show up before their step: a peach sill blotch from step 1, and from step 2 a thin light-blue line across the wall that stays until the cat covers it. The wall has a dark lower half with a hard horizontal band until step 12, then turns into the finished brushy wall with no instruction for it. The shading steps are jumps no beginner could match: step 6 'shade the frame' finishes the whole frame, and step 8 dry-brush peach adds full wood grain. Step 13's white also puts pink and tan specks on the head."
+      },
+      "name": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        12,
+        6
+       ],
+       "note": "The dark shadow side of the window post, with a soft airbrushed shadow on the wall, is there from step 1, five steps before any shading is asked for. Apart from that it has the same faults as A: the banded wall changes at step 12 with no instruction, the green leaves are flat blobs, step 6 and step 8 jump to finished, and pink and tan specks appear in step 13. Its stray blue line in step 2 is much shorter than A's."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-12",
+     "prefer": "none",
+     "note": "The words are identical and the cat steps (12 to 16) match almost pixel for pixel; the two differ only in the early wall, window and sill pictures, and both share the big faults (the flat hole in the wall and the sudden full wall at step 12). B's stray blue line across the wall is the more visible early defect, so A has a slight edge, but that is a small difference against the shared faults, so it is close to a toss-up.",
+     "scores": {
+      "name": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        12,
+        1,
+        13
+       ],
+       "note": "Steps 1 to 11 leave a flat, machine-smooth blue-gray hole where the cat will go, and at step 12 the whole wall suddenly turns into the finished textured wall and the frame edges change, with no words for it. Step 1 already shows the dark shadow side of the window post (painted in step 6), thin yellow outline traces run along the frame and sill edges in steps 5 to 11, and step 13 shows pink in the ear and the eye lines before steps 14 and 16. The words are the same as B's and are clear enough to follow step by step."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        2,
+        12,
+        1
+       ],
+       "note": "It has the same flat hole in the wall, the same wall that appears all at once at step 12, and the same early ear pink and eye marks at step 13. On top of that, a hard sky-blue line runs straight across the middle of the wall from step 2 to step 11, a mark no brush makes and no step asks for, and a scrap of sill wood shows on the wall at step 1. The words are identical to A's, and steps 12 to 16 are nearly identical to A's."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "variant": "soft",
+   "lessons": {
+    "soft": "sleeping-cat_skill_20261116-203502-soft",
+    "v2": "sleeping-cat_skill_20261116-203502"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-13",
+     "prefer": "none",
+     "note": "The lessons share identical text and a nearly pixel-identical set of pictures. The only differences are thin edge lines: A has a few inside the blanket's upper edge, and B has a slightly darker rim around the cat. Neither difference would change what a beginner paints. No real difference, so I'm sure of the 'none'.",
+     "scores": {
+      "soft": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        2,
+        5,
+        15
+       ],
+       "note": "The wall shows a hard horizontal seam, and an orange sill patch is on the canvas from step 1. Step 2 adds a hard boxed sky tile and a stray light-blue bar across the wall that no step paints, and it stays until the cat covers it. Step 5 names only warm white, yet the leaves jump from dabs to finished foliage. Later steps also jump to finished: the sill in 8, the knit in 11, and the fur, face and ears in 14 and 15, with pink ear marks already showing at step 13."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        2,
+        5,
+        15
+       ],
+       "note": "The words and paints are word-for-word the same as A, and the pictures differ only in faint hairline seams at cut edges (under 0.5% of pixels). So it has all of A's faults: the early sill ghost, the boxed sky and the stray blue bar, leaves that are magically finished in step 5, and finished-in-one-step jumps on the sill, the blanket and the fur."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-14",
+     "prefer": "none",
+     "note": "The two lessons have identical text and nearly identical pictures. Under 1% of pixels differ, and only as thin seams along shape edges that a painter would not notice. A toss-up: neither is easier to paint from.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        2,
+        8,
+        11
+       ],
+       "note": "The early steps don't look like paint. Step 1 has tiled star texture and a peach sill blotch before the sill step, and step 2 has hard sky boxes plus a long blue bar across the wall that stays until step 12 and then vanishes. Step 8 (dry-brush peach) shows the whole sill textured, step 11 jumps from blotches to finished knit, and step 13 shows pink on the nose and ears three steps early. The cat steps (12 to 16) read well."
+      },
+      "soft": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        2,
+        8,
+        11
+       ],
+       "note": "Same words, paints and plan as A, and the pictures are nearly the same. It has the same tiled step 1 with an early sill blotch, the stray blue bar from step 2 to step 11, the whole-sill magic at step 8, the step 11 jump to finished knit and the early pink at step 13. The only differences are faint edge seams: a soft gray fringe around the cat and frame here, against a thin peach fringe in A."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
