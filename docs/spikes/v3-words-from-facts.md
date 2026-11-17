@@ -7,22 +7,39 @@
 graders' scores in `spike/experiments/bench/scores/s8-facts.json`. Nothing in the pipeline changed, and no render was
 made.
 
-**Verdict: adopt** writing each step's words from its measured fact sheet, one writer per stage, checked by the tool,
-for the v3 design. Blind graders preferred the fact-sheet words on the highland cow, the lake cabin and the lavender
-balloon (both graders each) and called the chickadee a toss-up (both); they lost on none (section "The A/B"). These
-are Claude's grades (`docs/decisions.md`, 2026-11-17), not the owner's. The edges are small: the pictures are the same
-on both sides, and both sides share their faults.
+**Verdict: adopt** the writer as the issue scoped it, for the v3 design: one writer per stage, in parallel, each
+with its steps' before and after pictures and a measured fact sheet, held to the sheet by the checker. Blind graders
+preferred its words on the highland cow, the lake cabin and the lavender balloon (both graders each) and called the
+chickadee a toss-up (both); they lost on none (section "The A/B"). These are Claude's grades (`docs/decisions.md`,
+2026-11-17), not the owner's.
+
+Two limits on that verdict:
+- **The edges are small.** Five of the six graders who chose a side called it slight or slight to moderate, though the
+  brief says a small edge isn't a preference. It passes the 2026-11-17 rule (most pictures, a clear loss on none);
+  the yardstick's older "clear wins only" was written for the owner's 6-of-8 round. What decides it here is that every
+  measure points the same way and none against: graders, fault counts, the checker and time. The pictures are the
+  same on both sides, so the words can only move a lesson so far.
+- **The A/B tests the package, not the sheet alone.** The writer differs from step 6 in three ways at once: the fact
+  sheet with the checker, the before and after pictures side by side, and a brief that asks it to say what a picture
+  adds beyond its paints. Most of what the graders credited (card lines rewritten to match the picture, extras named)
+  comes from the pictures and that instruction. What the sheet and checker add on their own is the fault counts and
+  the checker numbers below: placement claims that are measured, not guessed.
 
 - **The words agree with the pictures better.** Every grader who chose a side scored the fact-sheet words a point
   higher on "the pictures, paints and words agree" (6 of 6). "I could paint each step from its words" rose for 2 of 8.
-- **Fewer placement and text faults:** 27 distinct C and E faults on the four lessons against 37 and 37 from v2's two
-  counters (about 27% fewer), lower on three pictures and inside the counters' spread on the balloon. 6 of the 8
-  placement faults left are the measured Where lines, the same words on both sides.
-- **Faster:** the 26 stage writers ran in 2 1/2 minutes for all four lessons, and the whole text phase (writers,
-  checker, one round of fixes, the lesson's own `check`) in about 12. v2's step 6 alone took 1 1/2 to 12 minutes a
-  lesson, and its step 7 review another 3 1/2 to 11.
-- **The checker holds the writers to the sheet.** 35 of 551 claims failed on the first pass; one round of fixes left 1,
-  which was taken out. v2's step-6 words, checked the same way, fail or don't resolve on 35 of 78 claims.
+- **Fewer placement and text faults, by one counter:** 27 distinct C and E faults on the four lessons against 37 and
+  37 from v2's two counters (27% fewer), lower on three pictures and between v2's two counts on the balloon. That's
+  one counter against two, and within what two counters differ by on one packet (up to about 30%), so it's a
+  direction, not a measured size. 6 of the 8 placement faults left are the measured Where lines, the same words on
+  both sides.
+- **Faster in wall time:** the 26 stage writers ran in 2 1/2 minutes for all four lessons at once, and the whole text
+  phase (writers, checker, one round of fixes, the lesson's own `check`) in about 12. v2's step 6 alone took 1 1/2 to
+  12 minutes a lesson, one lesson per session, and its step 7 review another 3 1/2 to 11. Not cheaper: about 49 Opus
+  calls of 70,000 to 90,000 tokens each, mostly pictures, where v2 writes in the run's own session.
+- **The checker holds the writers to the sheet.** The writers make about 3 times as many checkable claims as v2's
+  step 6 (232 against 78, in the words each side's writer owns). 35 failed on the first pass, about 15%; one round of
+  fixes left 1, taken out, and one more the merge missed (below). v2's step-6 words, checked the same way, fail or
+  don't resolve on 35 of 78.
 
 The fact sheet and the checker, from the first half of the spike:
 - **Planted faults:** a fault put into a measured Where line is caught 97 to 100% of the time, depending on the
@@ -275,33 +292,44 @@ v2's step 7b text review in a fresh context wasn't run on this side: the checker
 
 | | Fact-sheet words, four lessons | v2, per lesson (from the baseline traces) |
 |---|---|---|
-| Writing | 2 min 21 s for all 26 stage writers (20 at a time, the session's limit); 26 to 76 s each | step 6: 1.6, 2.3, 10.3 and 12.1 min |
-| Checker fixes | 16 writers, 6 to 15 s each | |
+| Writing | 2 min 21 s for all 26 stage writers, the four lessons at once (20 at a time, the session's limit); 26 to 76 s each | step 6: 1.6, 2.3, 10.3 and 12.1 min |
+| Checker fixes | 16 writers, 6 to 16 s each | |
 | `check` fixes | 7 writers, 5 to 11 s each | |
 | Tools | `start`, about 45 s a lesson; each `merge`, about 15 s a lesson, and the final one with `publish` about a minute | (in step 6's time) |
 | Review | none | step 7: 3.4 to 11.3 min, check loop and fresh review |
 | Renders | $0 | $0 |
 
 From the first writer to the last fix took about 12 minutes of wall time for all four lessons, most of it the
-merges and `publish`. A writer reads about 70,000 to 90,000 tokens, mostly the pictures.
+merges and `publish`. A writer reads about 70,000 to 90,000 tokens, mostly the pictures: 26 first calls, 16 checker
+fixes and 7 `check` fixes, about 49 calls. v2 writes in the run's own session. The times are from the session (the
+writers' start in `runs/facts/writers-started.txt`, their output files' times and each subagent's reported duration),
+not a run trace: `spike/experiments/bench/facts/timings.json`.
 
 ### The checker on both sides
 
-The same strict check on the words each side's writer owns (summaries, tips, paint notes, edited lines), against the
-same sheet:
+The same strict check, against the same sheet, on the words each side's writer owns (summaries, tips, paint notes,
+and lines it edited; the drafted lines are the same on both sides and left out):
 
-| Picture | v2's step-6 words: claims, failed, unresolved | Fact-sheet words, first pass: failed or unresolved, of claims | After one round of fixes |
+| Picture | v2's step-6 words: claims, failed, unresolved | Fact-sheet words, first pass: failed or unresolved | Fact-sheet words as graded: claims, failed |
 |---|---|---|---|
-| highland cow | 14, 1, 2 | 4 of 107 | 0 of 104 |
-| chickadee | 21, 4, 5 | 9 of 137 | 0 of 130 |
-| lavender balloon | 22, 10, 2 | 13 of 134 | 1 of 121, taken out |
-| lake cabin | 21, 2, 9 | 9 of 173 | 0 of 163 |
-| **All four** | **78, 17, 18** | **35 of 551** | **1** |
+| highland cow | 14, 1, 2 | 4 | 48, 1 |
+| chickadee | 21, 4, 5 | 9 | 73, 0 |
+| lavender balloon | 22, 10, 2 | 13 | 36, 0 |
+| lake cabin | 21, 2, 9 | 9 | 75, 0 |
+| **All four** | **78, 17, 18** | **35** | **232, 1** |
 
-The fact-sheet writers make about 7 times as many checkable claims and fail 6% of them at first; v2's words fail or
-don't resolve on 45%. Not every flag on v2's words is a fault: on the balloon's step 21, "4 1/2 in up from the bottom
-edge" is right (the lavender's top), but the checker read it against the marks' bottoms. So the checker's own numbers
-aren't the measure; the counters and graders are.
+The first pass's own claim count wasn't kept; against the 232 on the words as graded, 35 is about 15%. v2's words fail
+or don't resolve on 45%.
+
+**One failure got through.** The merge counted a size disagreement as the writer's only when its first field was, so
+the cow's step 2 tip ("about 1 3/4 in tall", against the Where line's 1 1/2) was neither sent back nor taken out. The
+adversarial review of PR #201 found it; `_writers` now counts it when either field is the writer's, and `--final` takes
+out the writer's sentence (tested). The graded lesson keeps the sentence. The fault counter measured those streaks at
+about 2 1/4 in, so of the two, the tip was the closer.
+
+Not every flag on v2's words is a fault: on the balloon's step 21, "4 1/2 in up from the bottom edge" is right (the
+lavender's top), but the checker read it against the marks' bottoms. So the checker's own numbers aren't the measure;
+the counters and graders are.
 
 ### Fault counts
 
@@ -326,9 +354,9 @@ each step a painter meets one in, in brackets where it differs); weighted is blo
 | **All four** | v2, A / B | 9 / 10 | 28 / 27 | **37 / 37** | | | |
 | | fact sheet | 8 | 19 | **27** | | | |
 
-- **C and E fell on three pictures and held on the balloon,** inside its two v2 counters' spread (7 and 12). On one
-  packet two counters differ by up to about 30% (`docs/spikes/v3-yardstick.md`, Repeatability), so only the total is
-  past that, and only just.
+- **C and E fell on three pictures and held on the balloon,** between its two v2 counters (7 and 12). On one packet two
+  counters differ by up to about 30% (`docs/spikes/v3-yardstick.md`, Repeatability), and the total's 27% is inside
+  that. One counter a lesson is the screening rule; a second would say whether the fall is real.
 - **Most of the placement faults left are the Where lines,** which are measured and the same on both sides: the cow's
   three (the streaks' height, the grass top twice), the balloon's two (the sky's bottom, the hills' width), and the
   cabin mountain's size. The Where measure takes in only what the step's picture shows of the part, so a part that a
@@ -382,6 +410,9 @@ What decided it, in the graders' words:
 - Five of the six graders who chose a side called it "slight" or "slight to moderate". The words move a lesson less
   than its pictures do, and all four pictures score 2 or 3 on (a) on both sides.
 - The fact-sheet side had no fresh-context review; the v2 side did. If anything that favours v2.
+- **A grader could tell the sides apart, if not which was which.** The pictures are the same, and the fact-sheet
+  words are 15 to 24% longer and carry many more measurements. Two chickadee graders marked the measurements down
+  ("crowded"), so the style didn't win by itself there.
 
 ### What the sheet got wrong, through the writer
 
@@ -405,9 +436,9 @@ saying what to paint.
 
 ## What it means for v3
 
-- **Write the words from a sheet, one writer per stage, in parallel, with the checker in the loop.** It's cheaper
-  and faster than step 6 plus step 7's review, the words track the pictures better, and #159's kind of fault can't
-  get through unflagged. In v3 the sheet would be measured from each layer, which is what this sheet stands in for.
+- **Write the words from a sheet, one writer per stage, in parallel, with the checker in the loop.** It's faster in
+  wall time than step 6 plus step 7's review, the words track the pictures better, and #159's kind of fault can't get
+  through unflagged. In v3 the sheet would be measured from each layer, which is what this sheet stands in for.
 - **The writer must see the before and after.** Most of what the graders credited came from the pictures, not the
   numbers: rewriting card lines that promise a result the picture doesn't show, and naming what a picture adds.
 - **Fix the sheet before adopting it as is:**

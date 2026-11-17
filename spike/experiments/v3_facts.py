@@ -1382,6 +1382,11 @@ def add_up(results: list[dict]) -> dict:
 
 
 # the sealed POC 1.12.1 lessons the write-up ran on (L5: by name; 153316 is 1.12.0 and doesn't rebuild to its pictures)
+SEALED = [ROOT / "output" / n for n in ("balloon-lavender_skill_20261116-171639", "chickadee_skill_20261116-191619",
+                                        "red-sailboat_skill_20261116-191627", "sleeping-cat_skill_20261116-191623",
+                                        "snow-lantern_skill_20261116-191628")]
+
+
 # --- The writer and the A/B on the frozen bench (S8's second half) ---
 #
 # `start` copies a v2 baseline lesson, takes out everything skill step 6 wrote (summaries, tips, paint notes, edited
@@ -1596,7 +1601,7 @@ def _apply(text: dict, out: dict) -> list[str]:
         if w.get("paint_notes"):
             t["paint_notes"] = [x for x in w["paint_notes"] if x.strip()]
         for n, new in (w.get("lines") or {}).items():
-            j = int(n) - 1
+            j = int(n) - 1 if str(n).strip().isdigit() else -1
             if not 0 <= j < len(t["lines"]):
                 bad.append(f"{sid}: no line {n}")
                 continue
@@ -1604,23 +1609,56 @@ def _apply(text: dict, out: dict) -> list[str]:
     return bad
 
 
+def _parts(c: dict) -> list[tuple[str, str]]:
+    """(field, sentence) of each piece of text a failed claim stands on: one, or two for an `agree` claim (two sizes
+    of the step's own thing in two fields, which check_text joins with " and " and " / ")."""
+    if c["kind"] == "agree":
+        return list(zip(c["field"].split(" and "), c["sentence"].split(" / ")))
+    return [(c["field"], c["sentence"])]
+
+
+def _owned(t: dict, field: str) -> bool:
+    """Whether a writer wrote this field of a text.json step: its summary, tip, paint notes, or a line it edited."""
+    if field.startswith(("summary", "tip", "paint note")):
+        return True
+    if field.startswith("line "):
+        return bool(t["lines"][int(field.split()[1]) - 1].get("edited"))
+    return False
+
+
 def _writers(text: dict, failures: list[dict]) -> list[dict]:
-    """The failures in what a writer wrote: its summaries, tips and paint notes, and the lines it edited."""
+    """The failures that stand on what a writer wrote. An `agree` claim between a tip and the drafted Where line is
+    the writer's: the Where line is measured, so the tip is the one to change."""
     by_id = {t["stage_id"]: t for t in text["steps"]}
-    out = []
-    for c in failures:
-        f = c["field"]
-        if f.startswith(("summary", "tip", "paint note")):
-            out.append(c)
-        elif f.startswith("line "):
-            j = int(f.split()[1]) - 1
-            if by_id[c["id"]]["lines"][j].get("edited"):
-                out.append(c)
-    return out
+    return [c for c in failures if any(_owned(by_id[c["id"]], f) for f, _s in _parts(c))]
 
 
 def _drop(words: str, sentence: str) -> str:
-    return " ".join(s for s in sentences(words) if s != sentence).strip()
+    """The words without the first copy of the sentence."""
+    out, gone = [], False
+    for s in sentences(words):
+        if not gone and s == sentence:
+            gone = True
+            continue
+        out.append(s)
+    return " ".join(out).strip()
+
+
+def _take_out(t: dict, field: str, sentence: str) -> bool:
+    """Take a sentence out of one field of a text.json step; False when it isn't there."""
+    if field in ("summary", "tip"):
+        before = t.get(field) or ""
+        t[field] = _drop(before, sentence)
+        return t[field] != before
+    if field.startswith("paint note"):
+        j = int(field.split()[2]) - 1
+        before = t["paint_notes"][j]
+        t["paint_notes"][j] = _drop(before, sentence)
+        return t["paint_notes"][j] != before
+    j = int(field.split()[1]) - 1
+    before = t["lines"][j]["text"]
+    t["lines"][j]["text"] = _drop(before, sentence)
+    return t["lines"][j]["text"] != before
 
 
 def merge(lesson: Path, final: bool = False) -> dict:
@@ -1648,18 +1686,15 @@ def merge(lesson: Path, final: bool = False) -> dict:
     dropped = []
     if final:
         by_id = {t["stage_id"]: t for t in text["steps"]}
+        done = set()
         for c in mine:
             t = by_id[c["id"]]
-            f = c["field"]
-            if f in ("summary", "tip"):
-                t[f] = _drop(t.get(f) or "", c["sentence"])
-            elif f.startswith("paint note"):
-                j = int(f.split()[2]) - 1
-                t["paint_notes"][j] = _drop(t["paint_notes"][j], c["sentence"])
-            else:
-                j = int(f.split()[1]) - 1
-                t["lines"][j]["text"] = _drop(t["lines"][j]["text"], c["sentence"])
-            dropped.append({"step": c["step"], "id": c["id"], "field": f, "sentence": c["sentence"], "why": say(c)})
+            for f, sent in _parts(c):
+                if not _owned(t, f) or (c["id"], f, sent) in done:
+                    continue
+                done.add((c["id"], f, sent))
+                if _take_out(t, f, sent):
+                    dropped.append({"step": c["step"], "id": c["id"], "field": f, "sentence": sent, "why": say(c)})
         for t in text["steps"]:
             if t.get("paint_notes"):
                 t["paint_notes"] = [x for x in t["paint_notes"] if x]
@@ -1675,7 +1710,9 @@ def merge(lesson: Path, final: bool = False) -> dict:
                 "the fact the sheet gives, or say it without a number or a side.\n\n" + "\n".join(lines) + "\n",
                 encoding="utf-8")
     after = check_text(sheet, text, strict=True)
-    return {"lesson": lesson.name, "missing": missing, "bad": bad, "failures": len(mine),
+    unwritten = [t["stage_id"] for t in text["steps"] if not (t.get("summary") or "").strip()
+                 or not (t.get("tip") or "").strip()]
+    return {"lesson": lesson.name, "missing": missing, "bad": bad, "unwritten": unwritten, "failures": len(mine),
             "failed": [say(c) for c in mine], "dropped": len(dropped),
             "after": len(_writers(text, after["failures"])),
             "claims": len([c for c in after["claims"] if c["field"].split()[0] in ("summary", "tip", "paint")
@@ -1714,11 +1751,6 @@ def grade_folders(pictures: list[str], out: Path, seed: int = 173) -> dict:
                                        "lessons": {n: sides[n].name for n in names}}
     (out / "key.json").write_text(json.dumps(key, indent=1))
     return key
-
-
-SEALED = [ROOT / "output" / n for n in ("balloon-lavender_skill_20261116-171639", "chickadee_skill_20261116-191619",
-                                        "red-sailboat_skill_20261116-191627", "sleeping-cat_skill_20261116-191623",
-                                        "snow-lantern_skill_20261116-191628")]
 
 
 def main(argv: list[str] | None = None) -> int:

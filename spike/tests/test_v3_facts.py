@@ -493,6 +493,42 @@ class WriterTests(unittest.TestCase):
     def test_drop_takes_out_one_sentence(self):
         self.assertEqual(vf._drop("Keep it soft. Paint it at the right edge. Let it dry.", "Paint it at the right edge."),
                          "Keep it soft. Let it dry.")
+        self.assertEqual(vf._drop("Dab. Dab. Rest.", "Dab."), "Dab. Rest.")  # only the first copy
+
+    def test_a_tip_against_the_drafted_where_line_is_the_writers(self):
+        """PR #201 review: an `agree` failure between the writer's tip and the drafted (measured) Where line is the
+        writer's to fix, and --final takes the tip's sentence out, not the Where line's."""
+        st = self.sheet["steps"][1]
+        wide = st["area"]["wide"]
+        tip = f"Keep it round. It's about {vf.ruler(wide + 1.5)} in wide."
+        t = text(self.sheet, {"balloon-shape": tip})
+        r = vf.check_text(self.sheet, t, strict=True)
+        mine = vf._writers(t, r["failures"])
+        agree = [c for c in mine if c["kind"] == "agree"]
+        self.assertEqual(len(agree), 1)
+        parts = vf._parts(agree[0])
+        self.assertEqual(sorted(f for f, _s in parts), ["line 1 (where)", "tip"])  # the smaller size first
+        step = t["steps"][1]
+        owned = [(f, s) for f, s in parts if vf._owned(step, f)]
+        self.assertEqual([f for f, _s in owned], ["tip"])
+        self.assertTrue(vf._take_out(step, *owned[0]))
+        self.assertEqual(step["tip"], "Keep it round.")
+        self.assertEqual(step["lines"][0]["text"], st["where"])
+        self.assertFalse(vf._take_out(step, *owned[0]))  # already gone
+
+    def test_take_out_of_a_paint_note_and_an_edited_line(self):
+        step = {"tip": "", "paint_notes": ["Two coats. It sits at the right edge."],
+                "lines": [{"kind": "how", "text": "Pull it down. Then up.", "edited": True}]}
+        self.assertTrue(vf._take_out(step, "paint note 1", "It sits at the right edge."))
+        self.assertEqual(step["paint_notes"], ["Two coats."])
+        self.assertTrue(vf._take_out(step, "line 1 (how)", "Then up."))
+        self.assertEqual(step["lines"][0]["text"], "Pull it down.")
+        self.assertTrue(vf._owned(step, "line 1 (how)"))
+        self.assertFalse(vf._owned({"lines": [{"text": "x"}]}, "line 1 (how)"))
+
+    def test_apply_reports_a_line_key_that_isnt_a_number(self):
+        t = text(self.sheet, {})
+        self.assertEqual(vf._apply(t, {"steps": {"sky": {"lines": {"six": "x"}}}}), ["sky: no line six"])
 
 
 class MutationTests(unittest.TestCase):
