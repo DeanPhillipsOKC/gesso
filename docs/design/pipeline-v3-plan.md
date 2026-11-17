@@ -159,7 +159,9 @@ No fixed target. Report the trace before and after.
 - Code in `spike/experiments/v3_<name>.py`, a write-up in `docs/spikes/v3-<name>.md` ending in one of
   **adopt, drop, park**, with numbers. Same pattern as `issue52.py`, `issue85.py`, `issue100.py`.
 - One GitHub issue per spike under the parent issue #164, scored per `docs/backlog.md`. One pull
-  request per spike, with the usual adversarial review when it changes code.
+  request per spike. Spike code under `spike/experiments/` skips the adversarial review; a write-up that gives a
+  verdict gets one verdict check in its place (numbers match the results file, the A/B was blind, the verdict
+  follows), per `docs/decisions.md`.
 - **Since 2026-11-17 the A/B is graded by Claude, not the owner** (`docs/decisions.md`): two fresh graders a
   picture who don't know which side is which, by `spike/experiments/bench/ab_grader.md`. The owner grades one
   finished lesson at the end (the gate in Order, step 5).

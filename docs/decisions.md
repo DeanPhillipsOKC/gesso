@@ -272,6 +272,15 @@ with the date.
   **New renders of lessons need no review (2026-11-17, owner's call, said again).** A pull request that holds new
   lesson runs or renders, and no change to program files, merges without the adversarial review. Owner: "My
   consumption is on trajectory to hit my weekly limit and I can't pay for inference on pointless things."
+  **Spike code gets a verdict check, not the adversarial review (2026-11-17, owner's call).** Code under
+  `spike/experiments/` and its tests (`spike/tests/test_v3_*.py`) is experiment code, so a pull request that changes only that (and docs) skips the adversarial
+  review and its second looks. In its place, a spike whose write-up gives a verdict (adopt, drop or park) gets one
+  pass by an Opus model, limited to three questions: do the numbers in the write-up match the results file, was the
+  A/B blind, and does the verdict follow from them. It runs once; Claude fixes what it finds and merges. A spike
+  pull request with no verdict (a first stage, a probe) gets neither. The past spike reviews' findings that mattered
+  were of this kind (an edge called a win that was slight, grading folders that weren't blind); the rest was polish
+  an experiment doesn't need. Spike code that later moves into the lesson tools gets the full review then. Owner:
+  "These are experiments not production code."
 - **Lessons are generated on Opus, not Fable (2026-11-17, owner's call).** A `/paint-lesson` run, hands-off or not,
   runs on an Opus model, whatever model the session that starts it is on (`CLAUDE_MODEL` in `spike/run.py` is what a
   lesson is stamped with). A `model:fable` label is for the issue's own work (a spike's code and write-up), not for
