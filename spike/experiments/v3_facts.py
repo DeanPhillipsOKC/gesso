@@ -345,7 +345,10 @@ def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], 
             cw_, ch_ = float(canvas["w_in"]), float(canvas["h_in"])
             px, py = xs / added.shape[1] * cw_, ys / added.shape[0] * ch_
             adds = {"hex": hx, "paints": {names[c]: round(mixing.delta_e(hx, hexes[c]), 1) for c in s.get("paints") or []},
-                    "cx": _r(px.mean()), "cy": _r(py.mean())}
+                    "cx": _r(px.mean()), "cy": _r(py.mean()),
+                    # the canvas edges all of its paint reaches, not only its biggest marks (N3 of PR #182's third
+                    # review: twelve dabs across a field keep only eight marks, and an edge dab can be left out)
+                    "edges": (box_fact(own_paint, canvas, speckless=False) or {}).get("edges", [])}
             if part:  # how much of what it adds is in each half of its part
                 mx, my = part["left"] + part["wide"] / 2, part["top"] + part["tall"] / 2
                 adds["halves"] = {"left": _r((px < mx).mean()), "right": _r((px >= mx).mean()),
@@ -916,11 +919,13 @@ class Reader:
         if field.endswith("(where)"):
             things = [dict(self.st["area"], what="the step's area")] if self.st["area"] else []
         has = set()
-        if who == "this step" and not field.endswith("(where)") and not self.st["first_of_part"] and self.st["marks"]:
-            things = [dict(k, what=f"mark {n + 1}") for n, k in enumerate(self.st["marks"])]  # N2: a pass's paint is
-            # its marks, not the whole part it's painted on
-        for t in things:
-            has |= set(t.get("edges") or [])
+        pass_tip = who == "this step" and not field.endswith("(where)") and not self.st["first_of_part"]
+        if pass_tip and self.st.get("adds"):  # N2, N3: a pass's paint is what it adds, not the part it's painted on
+            has |= set(self.st["adds"].get("edges") or [])
+            things = [dict(k, what=f"mark {n + 1}") for n, k in enumerate(self.st["marks"])]
+        else:
+            for t in things:
+                has |= set(t.get("edges") or [])
         if who == "this step" and not field.endswith("(where)"):
             for c in self.st["crossings"]["across"]:
                 if c["from"] <= aids.EDGE_SHARE * self.cw:

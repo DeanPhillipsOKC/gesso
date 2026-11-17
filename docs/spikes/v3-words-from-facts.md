@@ -134,7 +134,9 @@ The full lists are in `mutate`'s output.
   then, while and but, so each relation is checked. The #159 step-22 sentence shape is tested both ways.
 - **A pass's tip about an edge** is now read from the marks the pass adds, not from the whole part it's painted on.
   Before, "dab the dark marks at the right edge" passed when the dabs were all in the left third, and "keep the dark
-  marks short of the right edge" was a false alarm when it was true.
+  marks short of the right edge" was a false alarm when it was true. After the third review, those edges come from
+  all the paint the pass adds (`adds.edges` on the sheet), not its 8 biggest marks, so 13 equal dabs from edge to
+  edge still reach both edges.
 
 `FixtureTests` fails if the fixtures' Where-line catch rate drops below these floors:
 - 100% for ±1 in, side swaps and edge moves;

@@ -306,6 +306,29 @@ class Fault159Tests(unittest.TestCase):
             got = [c["kind"] for c in failed(vf.check_text(sheet, text(sheet, {"lavender-dark": tip})), "lavender-dark")]
             self.assertEqual(got, bad, tip)
 
+    def test_many_equal_dabs_reach_the_edges_they_reach(self):
+        """N3 of the third review: 13 equal dabs across the field are more than the sheet's 8 marks, and the edge
+        claims read all of the paint the pass adds, not only the biggest marks."""
+        field = box(0, 7, 16, 12)
+        cols = np.indices(field.shape)[1]
+        across = field & box(0, 9, 16, 10) & ((cols % 27 < 7) | box(15.65, 0, 16, 12))  # 13 dabs, edge to edge
+        part_way = across & box(0, 0, 9, 12)  # the same dabs, stopping a little past the middle
+        for dabs, ok in ((across, True), (part_way, False)):
+            sheet = scene([("sky", "Sunset sky", "area", None, box(0, 0, 16, 7)),
+                           ("lavender", "Lavender rows", "area", None, field)],
+                          [("sky", "sky", "flat", ["s"], box(0, 0, 16, 7)),
+                           ("lavender-base", "lavender", "flat", ["v"], field),
+                           ("lavender-dark", "lavender", "pass", ["d"], dabs)],
+                          {"s": ("Sunset orange", "#f08a3c"), "v": ("Lavender purple", "#6250a8"),
+                           "d": ("Shadow violet", "#313a51")})
+            if ok:
+                self.assertEqual(len(sheet["steps"][2]["marks"]), vf.MAX_MARKS)
+            for tip in ["Dab the dark marks all the way across.",
+                        "Dab the dark marks from the left edge to the right edge."]:
+                got = [c["kind"] for c in failed(vf.check_text(sheet, text(sheet, {"lavender-dark": tip})),
+                                                 "lavender-dark")]
+                self.assertEqual(got, [] if ok else ["edge"], (tip, ok))
+
     def test_same_paint_as_the_coat_under(self):
         paints = {"s": ("Sunset orange", "#f08a3c"), "v": ("Shadow violet", "#313a51")}
         field = box(0, 7, 16, 12)
