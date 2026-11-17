@@ -535,12 +535,23 @@ So the counter can rank lessons coarsely and flag the worst, but not screen a sp
 owner's A/B. Two things would help: worst-step taps in the next round (the page has them), which allow the per-step
 comparison and kappa; and a look at what the owner sees in the cow and the cabin that the counter misses.
 
+What the owner saw (2026-11-17, from memory, after scoring): "The cow had artifacts in every step and some of the
+steps had magical things happen like the cow's face suddenly coming into focus even though the step did not have the
+right paints or instructions to make it happen. The lake had lots of artifacts." Both counters did find these on the
+cow (step 13 finishing the face with no paint or line for it; the blotches where the cow goes, through step 10), rated
+major. The owner kept them major rather than blockers ("Major issues seems reasonable"), so the brief is unchanged.
+Read the miss as weighting, not blindness: a lesson-wide artifact or one "magic" step can sink a lesson for the owner
+however few other faults it has, and a count per step doesn't capture that.
+
 ## Limits
 
 - **No noise floor yet.** No v2 lesson has been rebuilt from the bench, so the spread between two v2 runs from the
   same frozen folder (fault counts, trace, owner scores) is unknown. The excluded highland cow pair (section 5) is a
   first look only, and it had different finishes. Until a bench-built v2 rerun exists, a spike that wins or loses on
-  one picture can't be told from noise. (The coordinator is filing the noise-floor run as a follow-up issue.)
+  one picture can't be told from noise. **Deferred to the first v3 spike (owner's call, 2026-11-17):** when the first
+  spike is ready, rebuild v2 from the bench on the same 8 pictures in the same batch, and score both on one page (spike
+  against baseline, and v2 rerun against baseline), so the owner grades once and the noise floor arrives when it's
+  first needed. About $0.02 of background render per picture; the cost is mostly usage (8 more lesson runs).
 - **Step 5's background render isn't frozen.** Every bench build still makes a new paid `98_background.png`, the
   render behind the ghosts and patches behind objects (section 1). A step-picture fault can come from it.
 - **The counter's repeatability is one pair of counters on 8 lessons** (section 5, Repeatability). Two counters'
