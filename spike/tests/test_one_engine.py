@@ -17,6 +17,7 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -261,6 +262,45 @@ class EngineInProcessTests(unittest.TestCase):
                     self.assertEqual(e.start_of(lesson)[0], "outline", tool)
             finally:
                 e.close()
+
+
+    def test_an_edit_during_a_call_still_counts(self):
+        """The second review of #184: what a tool read is taken before it runs, so an edit made while it runs (here
+        build-steps' stand-in changes the stages) sends the next chain back to it."""
+        with tempfile.TemporaryDirectory() as tmp:
+            lesson, plan = self.lesson(tmp)
+            e = engine.Engine(readings=Path(tmp) / "readings")
+            real = e.tools.main
+            try:
+                for tool in engine.ORDER:
+                    e.record(lesson, tool)
+
+                def edits_stages(argv):
+                    (lesson / "plan.json").write_text(json.dumps(dict(plan, stages=[{"id": "late"}])))
+                    return 0
+                e.tools.main = edits_stages
+                r = e.call(["build-steps", "--lesson", str(lesson)], os.getcwd(), dict(os.environ))
+                self.assertEqual(r["code"], 0)
+                self.assertEqual(e.start_of(lesson)[0], "build-steps")
+            finally:
+                e.tools.main = real
+                e.close()
+
+    def test_a_palette_named_by_path_is_tracked(self):
+        """The second review of #184: tools.load_palette takes "<path>.yaml" from the repo root, outside palettes/."""
+        with tempfile.TemporaryDirectory() as tmp:
+            lesson, plan = self.lesson(tmp)
+            root = Path(tmp) / "root"
+            (root / "mine").mkdir(parents=True)
+            (root / "mine" / "tubes.yaml").write_text("one")
+            (lesson / "plan.json").write_text(json.dumps(dict(plan, palette="mine/tubes.yaml")))
+            with mock.patch.object(engine, "ROOT", root):
+                e = self.bare()
+                for tool in engine.ORDER:
+                    e.record(lesson, tool)
+                self.assertEqual(e.start_of(lesson)[0], "check")
+                (root / "mine" / "tubes.yaml").write_text("two")
+                self.assertNotEqual(e.start_of(lesson)[0], "check")
 
 
 class EngineClientTests(unittest.TestCase):

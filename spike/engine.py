@@ -103,13 +103,18 @@ def _inputs(lesson: Path) -> dict[str, str]:
     for group, name in FILES.items():
         out[group] = _digest_files([lesson / name])
     out["elements"] = _digest_files(sorted(f for f in (lesson / "elements").rglob("*") if f.is_file()))
-    out["library"] = _library_stamp()
+    out["library"] = _library_stamp(plan.get("palette"))
     return out
 
 
-def _library_stamp() -> str:
-    return _digest_files(sorted(p for folder in (ROOT / "techniques", ROOT / "palettes") if folder.exists()
-                                for p in folder.rglob("*.yaml")))
+def _library_stamp(palette=None) -> str:
+    """techniques/ and palettes/, plus a palette the plan names by path outside palettes/ (tools.load_palette takes
+    "<path>.yaml" relative to the repo root)."""
+    files = sorted(p for folder in (ROOT / "techniques", ROOT / "palettes") if folder.exists()
+                   for p in folder.rglob("*.yaml"))
+    if isinstance(palette, str) and palette.endswith(".yaml") and (ROOT / palette) not in files:
+        files.append(ROOT / palette)
+    return _digest_files(files)
 
 
 def _lesson_of(argv: list[str], cwd: str) -> Path | None:
@@ -185,6 +190,9 @@ class Engine:
             return {"code": 2, "stdout": json.dumps({"refused": "engine call runs a tool, not the engine"}) + "\n",
                     "stderr": ""}
         self.calls += 1
+        lesson = _lesson_of(argv, cwd)
+        # what the tool reads, taken before it runs: an edit made while it runs must still send the chain back to it
+        before = _inputs(lesson) if lesson is not None and argv[:1] and argv[0] in INPUTS else None
         out, err = io.StringIO(), io.StringIO()
         here = os.getcwd()
         try:
@@ -203,15 +211,14 @@ class Engine:
             os.environ.clear()
             os.environ.update(self.base_env)
             os.chdir(here)
-        lesson = _lesson_of(argv, cwd)
-        if code == 0 and lesson is not None and argv[0] in INPUTS:
-            self.record(lesson, argv[0])
+        if code == 0 and before is not None:
+            self.record(lesson, argv[0], before)
         return {"code": code, "stdout": out.getvalue(), "stderr": err.getvalue()}
 
-    def record(self, lesson: Path, tool: str) -> None:
-        """`tool` succeeded on the lesson: what it read, as it is now. A tool that failed or refused leaves its last
-        success in place, so the chain still runs it after an edit."""
-        now = _inputs(Path(lesson))
+    def record(self, lesson: Path, tool: str, now: dict[str, str] | None = None) -> None:
+        """`tool` succeeded on the lesson: what it read, as it was when it started (now, from call) or as it is now.
+        A tool that failed or refused leaves its last success in place, so the chain still runs it after an edit."""
+        now = now if now is not None else _inputs(Path(lesson))
         self.ran.setdefault(str(Path(lesson).resolve()), {})[tool] = {g: now[g] for g in INPUTS[tool]}
 
     def start_of(self, lesson: Path) -> tuple[str, str]:
