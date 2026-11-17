@@ -150,6 +150,9 @@ No fixed target. Report the trace before and after.
   **adopt, drop, park**, with numbers. Same pattern as `issue52.py`, `issue85.py`, `issue100.py`.
 - One GitHub issue per spike under the parent issue #164, scored per `docs/backlog.md`. One pull
   request per spike, with the usual adversarial review when it changes code.
+- **Since 2026-11-17 the A/B is graded by Claude, not the owner** (`docs/decisions.md`): two fresh graders a
+  picture who don't know which side is which, by `spike/experiments/bench/ab_grader.md`. The owner grades one
+  finished lesson at the end (the gate in Order, step 5).
 - A spike is dropped when it loses the A/B to the v2 baseline, or breaks one of the three checks on more than
   one bench picture with no clear fix.
 - Render spend is expected to stay under about $2 per spike. Anything dearer gets asked first.

@@ -219,6 +219,19 @@ with the date.
   picture gets one targeted v2 rerun. Spikes start on the 3 or 4 bench pictures most likely to show their effect,
   screen with one fault counter per lesson, and the owner hears a batch's rough size before it starts
   (`docs/spikes/v3-yardstick.md`, Limits).
+- **Claude grades the experiments; the owner grades one finished result at the end (2026-11-17, owner's call;
+  replaces "scored blind by the owner" above for v3 spikes).** Scoring a round step by step took too long and wore
+  the owner out. Owner: "This is taking way too long to grade. Can't you do the grading and then take all of the
+  research and create a pic for me to grade at the end? ... I think you would be better at grading. When I got
+  overwhelmed I get irritated and picky." So each spike's A/B round is scored by graders in a fresh context who
+  don't know which side is which, with the owner's rubric (`spike/experiments/bench/ab_grader.md`): two graders a
+  picture, sides swapped for the second. A spike beats v2 when the graders prefer it on most pictures and it loses
+  clearly on none; a split between the two graders of one picture is a tie. Their scores are saved the way the
+  owner's were (`spike/experiments/bench/scores/<round>.json`, marked as graded by Claude). The owner still decides
+  the v3 gate, on one finished lesson put in front of them when the research is done, not on every spike. Known
+  risk, kept in view: a Claude grader is not the owner (on S4 Claude liked the stages and the owner preferred v2;
+  the fault counter agreed with the owner at rho 0.43), so the brief lists what the owner has marked down before,
+  and a spike the graders pass can still fail at the end.
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
