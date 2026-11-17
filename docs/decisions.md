@@ -213,6 +213,12 @@ with the date.
   pictures with their finish renders frozen, so an experiment changes one thing. The owner scores two lessons side
   by side without knowing which is which, about 15 minutes an experiment. This is for experiments only: site
   lessons still rerun from the photo after a tool fix.
+- **No noise floor; spikes count only clear wins (2026-11-17, owner's call).** Measuring how much two v2 runs on the
+  bench differ would take eight more lesson runs, too much of the owner's weekly usage. A spike beats v2 only when the
+  owner prefers it on at least 6 of 8 pictures (or most of a smaller round) and it loses clearly on none; a borderline
+  picture gets one targeted v2 rerun. Spikes start on the 3 or 4 bench pictures most likely to show their effect,
+  screen with one fault counter per lesson, and the owner hears a batch's rough size before it starts
+  (`docs/spikes/v3-yardstick.md`, Limits).
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
