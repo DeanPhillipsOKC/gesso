@@ -132,6 +132,52 @@ class TraceTests(unittest.TestCase):
         self.assertEqual(walls, {0: 10.0, 1: 10.0, 2: 20.0, 8: 1.0})
         self.assertEqual(r["phases"][8]["calls"], 1)
 
+    def test_a_main_session_run_ends_at_its_own_end_not_a_later_freeze(self):
+        """The review's case: the coordinator freezes the run an hour later in the same session."""
+        t = run_transcript()
+        t.user(3600, "freeze it")
+        t.bash(3610, 1, f".venv/bin/python spike/experiments/bench/bench.py freeze output/{RUN}")
+        path = self.projects / "main-session.jsonl"
+        t.write(path)
+        r = run_trace.trace(self.lesson, transcript=path)
+        self.assertEqual(r["window"]["wall_s"], 228.0)  # from the skill's launch at 2 s to the handback at 230
+        self.assertEqual(r["phases"][7]["wall_s"], 80.0)
+        self.assertTrue(any("later calls name the folder" in w for w in r["warnings"]), r["warnings"])
+
+    def test_a_seal_ends_the_run_and_two_runs_in_one_session_stay_apart(self):
+        t = Transcript()
+        other = "red-sailboat_skill_20261116-191627"
+        for k, run in ((0, other), (1000, RUN)):
+            t.call(k + 1, 0, "Skill", {"skill": "paint-lesson", "args": "x"}, "Launching skill")
+            t.bash(k + 2, 1, "cat .claude/skills/paint-lesson/steps/0-setup.md")
+            t.bash(k + 10, 5, f"spike/tools.py fit-canvas p --lesson output/{run}")
+            t.bash(k + 100, 20, f"spike/tools.py publish --lesson output/{run} --final")
+        t.bash(1500, 2, f"spike/experiments/bench/run_trace.py output/{RUN}")  # after its seal: not the run
+        path = self.tmp / "two-runs.jsonl"
+        t.write(path)
+        r = run_trace.trace(self.lesson, transcript=path)
+        self.assertEqual((r["window"]["start"], r["window"]["wall_s"]), ("2026-11-16T19:32:41Z", 119.0))
+        self.assertEqual(r["totals"]["calls"], 4)
+
+    def test_a_background_call_is_counted_apart_until_its_notification(self):
+        t = Transcript()
+        L = f"output/{RUN}"
+        t.call(0, 0, "Skill", {"skill": "paint-lesson", "args": "x"}, "Launching skill")
+        t.bash(1, 1, "cat .claude/skills/paint-lesson/steps/2-parts.md")
+        t.call(10, 0.1, "Bash", {"command": f"spike/tools.py outline --lesson {L}", "run_in_background": True},
+               "Command running in background with ID: b1")
+        bg_id = f"toolu_{t.n}"
+        t.rows.append({"type": "attachment", "timestamp": t.at(70), "attachment": {
+            "type": "queued_command", "prompt": f"<task-notification> <tool-use-id>{bg_id}</tool-use-id> done"}})
+        t.bash(80, 2, f"spike/tools.py publish --lesson {L} --final")
+        path = self.tmp / "bg.jsonl"
+        t.write(path)
+        r = run_trace.trace(self.lesson, transcript=path)
+        ph = r["phases"][2]
+        self.assertEqual((ph["background_calls"], ph["background_s"]), (1, 60.0))
+        self.assertEqual(ph["tool_s"], 3.0)  # the cat and the publish, not the background outline
+        self.assertTrue(any("background calls" in w for w in r["warnings"]))
+
     def test_no_transcript(self):
         r = run_trace.trace(self.lesson, [self.tmp / "nowhere"])
         self.assertIsNone(r["transcript"])

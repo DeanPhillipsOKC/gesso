@@ -2,20 +2,29 @@
 
     python spike/experiments/bench/agreement.py --packets DIR [--scores spike/experiments/bench/scores/<round>.json] [--out report.json]
 
-Reads the counter's results (DIR/<packet>/faults.json, written by a fresh reviewer from fault_counter.md), the packet
-key (DIR/key.json: packet -> lesson folder) and the owner's scores from the A/B page (ab_page.py import). Lessons are
-matched by lesson folder name.
+    e.g. the baseline, on what's committed:
+    python spike/experiments/bench/agreement.py --packets spike/experiments/bench/baseline \
+        --scores spike/experiments/bench/scores/baseline-1.12.1.json
 
-Per lesson: the weighted fault count (blocker 3, major 2, minor 1) and per class, beside the owner's three 1-5
-scores. Across lessons, Spearman's rank correlation, sign turned so higher means the counter agrees:
+Reads the packet key (DIR/key.json: packet -> lesson folder and picture), each lesson's counter result (written by a
+fresh reviewer from fault_counter.md: DIR/<packet>/faults.json as packet.py lays them out, or DIR/<picture>/faults.json
+as the bench keeps them), and the owner's scores from the A/B page (ab_page.py import, joined to lesson folders through
+the page's answer key). Lessons are matched through the packet key by lesson folder name; a key that names one folder
+twice is refused.
+
+Per lesson: the weighted fault count (blocker 3, major 2, minor 1), per class, and per step (weighted / steps, so a
+lesson with more, smaller steps doesn't score worse for it), beside the owner's three 1-5 scores. Across lessons,
+Spearman's rank correlation of the per-step weighted count, sign turned so higher means the counter agrees:
   - all faults            against the mean of the three scores
   - class A               against (a) "the step pictures look like a real half-done painting"
   - classes C, E, F       against (b) "I could paint each step from its words"
   - classes A, C, D, E    against (c) "the pictures, paints and words agree"
 Per step: the owner's "worst step" taps against the counter. A step is the counter's pick when it has a blocker or
-major fault. Reported as agreement over all steps (both flag it or both don't), how many of the owner's worst steps
-the counter flagged (recall), how many of the counter's flagged steps the owner tapped (precision), and how many
-owner worst steps are in the counter's own worst_steps. In pair mode also: does the side with fewer weighted faults
+major fault. A lesson the owner scored without tapping any worst step is left out here (no taps means unknown, not
+"no step is bad"). Reported as agreement over those lessons' steps with Cohen's kappa beside it (most steps are
+flagged by neither, so raw agreement alone flatters), how many of the owner's worst steps the counter flagged
+(recall), how many of the counter's flagged steps the owner tapped (precision), and how many owner worst steps are in
+the counter's own worst_steps. In pair mode also: does the side with fewer weighted faults
 match the owner's preference.
 
 Lessons with no owner scores are listed as "not scored yet"; with none at all, every correlation says so.
@@ -84,7 +93,9 @@ def lesson_faults(result: dict) -> dict:
         weight[c] += w
         if n is not None:
             steps[n] = max(steps.get(n, 0), w)
+    n_steps = len(result.get("steps") or [])
     return {"count": by_class, "weight": weight, "total": sum(by_class.values()), "weighted": sum(weight.values()),
+            "per_step": round(sum(weight.values()) / n_steps, 3) if n_steps else None,
             "flagged_steps": sorted(n for n, w in steps.items() if w >= FLAG),
             "worst_steps": [int(n) for n in result.get("worst_steps") or []],
             "steps": len(result.get("steps") or [])}
@@ -140,7 +151,7 @@ def owner_lessons(scores: dict | None) -> dict[str, dict]:
             out[folder] = {"picture": p.get("picture"), "side": side, "real": sc.get("real"),
                            "paintable": sc.get("paintable"), "agree": sc.get("agree"),
                            "mean": round(sum(vals) / 3, 2) if done else None, "scored": done,
-                           "worst": sorted(int(w["n"]) for w in sc.get("worst_steps") or [] if "n" in w),
+                           "worst": sorted(int(w["n"]) for w in sc.get("worst_steps") or [] if "n" in w) or None,
                            "would_paint": sc.get("would_paint"), "prefer": p.get("prefer")}
     return out
 
@@ -149,10 +160,15 @@ def agree(packets: Path, scores: dict | None) -> dict:
     key = read_json(Path(packets) / "key.json")
     if not key:
         raise FileNotFoundError(f"{packets}/key.json is missing: make the packets with packet.py")
+    folders = [v["lesson"] for v in key["packets"].values()]
+    if len(set(folders)) != len(folders):
+        raise ValueError(f"the packet key names a lesson folder twice: {sorted({f for f in folders if folders.count(f) > 1})}")
     owner = owner_lessons(scores)
     lessons, missing = {}, []
     for pid, info in sorted(key["packets"].items()):
         result = read_json(Path(packets) / pid / "faults.json")
+        if result is None:
+            result = read_json(Path(packets) / info["picture"] / "faults.json")
         if result is None:
             missing.append(pid)
             continue
@@ -170,29 +186,46 @@ def agree(packets: Path, scores: dict | None) -> dict:
         if not scored:
             report["correlations"][name] = NOT_SCORED
             continue
-        xs = [-sum(v["faults"]["weight"][c] for c in classes) for v in scored.values()]
+        xs = [-sum(v["faults"]["weight"][c] for c in classes) / max(1, v["faults"]["steps"]) for v in scored.values()]
         ys = [v["owner"][score] for v in scored.values()]
         rho = spearman(xs, ys)
-        report["correlations"][name] = {"against": score, "classes": classes, "n": len(xs),
+        report["correlations"][name] = {"against": score, "classes": classes, "n": len(xs), "per_step": True,
                                         "rho": rho if rho is not None else "too few lessons or no spread"}
     report["steps"] = _steps(scored) if scored else NOT_SCORED
     report["preference"] = _preference(lessons, owner) if scored else NOT_SCORED
     return report
 
 
-def _steps(scored: dict) -> dict:
+def kappa(pairs: list[tuple[bool, bool]]) -> float | None:
+    """Cohen's kappa of two yes/no raters; None when it can't be told."""
+    n = len(pairs)
+    if not n:
+        return None
+    po = sum(a == b for a, b in pairs) / n
+    pa, pb = sum(a for a, _ in pairs) / n, sum(b for _, b in pairs) / n
+    pe = pa * pb + (1 - pa) * (1 - pb)
+    return None if pe == 1 else round((po - pe) / (1 - pe), 3)
+
+
+def _steps(scored: dict) -> dict | str:
+    tapped = {k: v for k, v in scored.items() if v["owner"]["worst"]}
+    if not tapped:
+        return "the owner tapped no worst step: unknown"
     both = total = owner_n = counter_n = hit = in_worst = 0
-    for v in scored.values():
+    pairs = []
+    for v in tapped.values():
         n_steps = v["faults"]["steps"]
         mine, theirs = set(v["faults"]["flagged_steps"]), set(v["owner"]["worst"])
         for n in range(1, n_steps + 1):
             total += 1
             both += (n in mine) == (n in theirs)
+            pairs.append((n in theirs, n in mine))
         owner_n += len(theirs)
         counter_n += len(mine)
         hit += len(mine & theirs)
         in_worst += len(theirs & set(v["faults"]["worst_steps"]))
-    return {"steps": total, "agree": both, "agree_share": round(both / total, 3) if total else None,
+    return {"lessons": len(tapped), "lessons_without_taps": len(scored) - len(tapped), "steps": total,
+            "agree": both, "agree_share": round(both / total, 3) if total else None, "kappa": kappa(pairs),
             "owner_worst": owner_n, "counter_flagged": counter_n, "both": hit,
             "recall": round(hit / owner_n, 3) if owner_n else None,
             "precision": round(hit / counter_n, 3) if counter_n else None,
@@ -229,8 +262,9 @@ def table(report: dict) -> str:
                      + ("" if isinstance(c, str) else f" (n {c['n']}, against {c['against']})"))
     s = report["steps"]
     lines.append("steps: " + (s if isinstance(s, str) else
-                              f"{s['agree']} of {s['steps']} agree; owner worst {s['owner_worst']}, counter flagged "
-                              f"{s['counter_flagged']}, both {s['both']}"))
+                              f"{s['agree']} of {s['steps']} agree (kappa {s['kappa']}); owner worst {s['owner_worst']}, "
+                              f"counter flagged {s['counter_flagged']}, both {s['both']}; {s['lessons_without_taps']} "
+                              "scored lessons without worst-step taps left out"))
     for folder, v in report["lessons"].items():
         for p in v["faults"].get("format_problems") or []:
             lines.append(f"format, {v['packet']}: {p}")
@@ -248,7 +282,7 @@ def main(argv: list[str] | None = None) -> int:
     scores = read_json(Path(a.scores)) if a.scores else None
     try:
         report = agree(Path(a.packets), scores)
-    except FileNotFoundError as err:
+    except (FileNotFoundError, ValueError) as err:
         print(json.dumps({"problems": [str(err)]}))
         return 1
     if a.out:

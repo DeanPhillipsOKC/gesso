@@ -2,23 +2,39 @@
   "candidates": [
     {
       "calls_naming_it": 110,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
     },
     {
-      "calls_naming_it": 2,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+      "calls_naming_it": 10,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 7,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
     },
     {
       "calls_naming_it": 1,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    },
+    {
+      "calls_naming_it": 1,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a9b5d02e3911432c1.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a907dd1d258e97263.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a9b5d02e3911432c1.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a9b5d02e3911432c1.jsonl"
     }
   ],
   "file_marks": {
@@ -88,6 +104,8 @@
   "lesson": "lake-cabin_skill_20261116-205703",
   "phases": [
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 27.4,
         "Read": 0.1,
@@ -106,6 +124,8 @@
       "wall_s": 109.2
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 80.1,
         "Read": 0.6
@@ -123,6 +143,8 @@
       "wall_s": 119.4
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 220.7,
         "Read": 0.3
@@ -140,6 +162,8 @@
       "wall_s": 320.2
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 3.5,
         "Read": 0.0
@@ -157,6 +181,8 @@
       "wall_s": 17.1
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 2.8
       },
@@ -173,23 +199,27 @@
       "wall_s": 71.9
     },
     {
+      "background_calls": 1,
+      "background_s": 73.0,
       "by_tool_s": {
-        "Bash": 505.4,
+        "Bash": 505.3,
         "Read": 0.3
       },
       "calls": 19,
-      "claude_s": 88.4,
+      "claude_s": 88.5,
       "name": "step pictures and aids",
       "phase": 5,
       "render_s": 19.3,
       "renders": 1,
       "started": "2026-11-16T21:07:37Z",
-      "tool_other_s": 486.3,
+      "tool_other_s": 486.1,
       "tool_printed_s": 64.9,
-      "tool_s": 505.6,
+      "tool_s": 505.4,
       "wall_s": 593.9
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 540.8,
         "Grep": 0.1,
@@ -209,6 +239,8 @@
       "wall_s": 726.4
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 499.9,
         "Read": 3.6
@@ -226,6 +258,8 @@
       "wall_s": 678.0
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 124.6,
         "Read": 0.0,
@@ -246,16 +280,20 @@
   ],
   "phases_from": "step files",
   "totals": {
+    "background_calls": 1,
+    "background_s": 73.0,
     "calls": 138,
-    "claude_s": 840.0,
+    "claude_s": 840.1,
     "render_s": 70.0,
-    "tool_other_s": 1940.9,
+    "tool_other_s": 1940.7,
     "tool_printed_s": 305.2,
-    "tool_s": 2010.9,
+    "tool_s": 2010.7,
     "wall_s": 2850.8
   },
-  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl",
-  "warnings": [],
+  "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl",
+  "warnings": [
+    "1 background calls ran for 73.0 s alongside Claude and other tools: in background_s, not in tool time (Claude time includes waiting on them)"
+  ],
   "window": {
     "end": "2026-11-16T21:44:30Z",
     "start": "2026-11-16T20:57:00Z",

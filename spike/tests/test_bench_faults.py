@@ -20,6 +20,11 @@ from test_bench import published  # noqa: E402
 BRIEF = HERE.parent / "experiments" / "bench" / "fault_counter.md"
 
 
+def packet_root() -> Path:
+    import benchlib
+    return benchlib.ROOT
+
+
 class PacketTests(unittest.TestCase):
     def test_a_packet_holds_what_a_painter_gets_and_nothing_that_names_the_run(self):
         tmp = Path(tempfile.mkdtemp())
@@ -46,6 +51,29 @@ class PacketTests(unittest.TestCase):
         self.assertEqual(info["steps"][1]["lines"], ["Line one of step 2.", "Line two."])
         self.assertIn("- Warm gold (#e8a661): 3 parts white, 1 part yellow", (p / "lesson.md").read_text())
 
+    def test_packets_go_outside_the_repo_with_the_brief_and_the_key_beside_them(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        one = published(tmp / "l", "chickadee", "chickadee_skill_20261116-100000", steps=1)
+        with self.assertRaises(packet.Refused):
+            packet.build([one], packet_root() / "output" / "bench" / "packets" / "x")
+        with self.assertRaises(packet.Refused):
+            packet.build([one, one], tmp / "dup")
+        out = Path(packet.build([one])["out"])  # no --out: a new temp folder
+        self.addCleanup(shutil.rmtree, out, True)
+        self.assertNotIn(packet_root().resolve(), out.resolve().parents)
+        self.assertEqual((out / "fault_counter.md").read_text(), BRIEF.read_text())
+        self.assertFalse(list(out.glob("p*/key.json")))
+        for f in out.glob("p*/**/*"):
+            if f.is_file():
+                self.assertNotIn(b'"packets"', f.read_bytes(), f)
+
+    def test_the_brief_draws_no_example_from_a_bench_picture(self):
+        text = BRIEF.read_text(encoding="utf-8").lower()
+        for word in ("chickadee", "sailboat", "balloon", "lavender", "sleeping cat", "lantern", "highland", "cow",
+                     "cabin", "birch", "mast", "hull", "#1", "#8", "#9"):
+            self.assertNotIn(word, text)
+
     def test_the_brief_defines_every_class_and_the_output(self):
         text = BRIEF.read_text(encoding="utf-8")
         for c, name in agreement.CLASSES.items():
@@ -59,6 +87,23 @@ def _result(steps: int, faults: dict[int, list[tuple[str, str]]], worst=()):
                                                          for i, (c, s) in enumerate(faults.get(n, []))]}
                       for n in range(1, steps + 1)],
             "lesson_faults": [], "worst_steps": list(worst)}
+
+
+class CommittedBaselineTests(unittest.TestCase):
+    def test_the_documented_command_runs_on_what_is_committed(self):
+        """agreement.py --packets spike/experiments/bench/baseline --scores .../scores/baseline-1.12.1.json"""
+        import benchlib
+        base = benchlib.HERE / "baseline"
+        if not (base / "key.json").exists():
+            self.skipTest("no baseline fault counts committed")
+        scores_path = benchlib.SCORES_DIR / "baseline-1.12.1.json"
+        scores = json.loads(scores_path.read_text()) if scores_path.exists() else None
+        r = agreement.agree(base, scores)
+        self.assertEqual((len(r["lessons"]), r["counter_missing"]), (8, []))
+        self.assertEqual([p for v in r["lessons"].values() for p in v["faults"]["format_problems"]], [])
+        if scores is None:
+            self.assertEqual(r["correlations"]["all"], agreement.NOT_SCORED)
+        self.assertEqual(agreement.main(["--packets", str(base)] + (["--scores", str(scores_path)] if scores else [])), 0)
 
 
 class AgreementTests(unittest.TestCase):
@@ -101,9 +146,13 @@ class AgreementTests(unittest.TestCase):
         self.assertEqual(r["correlations"]["all"]["rho"], 1.0)
         self.assertEqual(r["correlations"]["A"]["rho"], 1.0)  # a has the A blocker and the lowest "real"
         s = r["steps"]
-        self.assertEqual((s["steps"], s["owner_worst"], s["counter_flagged"], s["both"]), (12, 3, 2, 2))
-        self.assertEqual(s["agree"], 11)  # only b's step 4 differs
+        # c tapped no worst step: unknown, left out (not "no bad step")
+        self.assertEqual((s["lessons"], s["lessons_without_taps"]), (2, 1))
+        self.assertEqual((s["steps"], s["owner_worst"], s["counter_flagged"], s["both"]), (8, 3, 2, 2))
+        self.assertEqual(s["agree"], 7)  # only b's step 4 differs
+        self.assertEqual(s["kappa"], 0.714)
         self.assertEqual((s["recall"], s["precision"], s["owner_worst_in_counter_worst"]), (0.667, 1.0, 2))
+        self.assertTrue(r["correlations"]["all"]["per_step"])
         self.assertEqual(r["preference"], "single mode: no preferences to compare")
 
     def test_the_format_check(self):
@@ -123,6 +172,26 @@ class AgreementTests(unittest.TestCase):
             self.assertTrue(any(words in p for p in problems), (words, problems))
         r = agreement.agree(self.tmp, None)  # the made-up results here have no sees/where/counts: all reported
         self.assertTrue(r["lessons"]["a_skill_1"]["faults"]["format_problems"])
+
+    def test_kappa(self):
+        self.assertEqual(agreement.kappa([(True, True), (False, False)]), 1.0)
+        self.assertEqual(agreement.kappa([(True, False), (False, True)]), -1.0)
+        self.assertIsNone(agreement.kappa([(False, False), (False, False)]))
+
+    def test_results_kept_by_picture_and_a_key_naming_a_folder_twice(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        key = json.loads((self.tmp / "key.json").read_text())
+        (tmp / "key.json").write_text(json.dumps(key))
+        for pid, info in key["packets"].items():  # the bench's layout: <picture>/faults.json
+            (tmp / info["picture"]).mkdir()
+            shutil.copyfile(self.tmp / pid / "faults.json", tmp / info["picture"] / "faults.json")
+        r = agreement.agree(tmp, self.scores())
+        self.assertEqual((r["scored"], r["counter_missing"]), (3, []))
+        key["packets"]["p02"]["lesson"] = "a_skill_1"
+        (tmp / "key.json").write_text(json.dumps(key))
+        with self.assertRaises(ValueError):
+            agreement.agree(tmp, None)
 
     def test_spearman(self):
         self.assertEqual(agreement.spearman([1, 2, 3, 4], [10, 20, 30, 40]), 1.0)

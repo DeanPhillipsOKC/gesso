@@ -2,27 +2,43 @@
   "candidates": [
     {
       "calls_naming_it": 102,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-afc0a6351780472f8.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-afc0a6351780472f8.jsonl"
     },
     {
-      "calls_naming_it": 3,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+      "calls_naming_it": 12,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 9,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
     },
     {
       "calls_naming_it": 1,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    },
+    {
+      "calls_naming_it": 1,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a9b5d02e3911432c1.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a907dd1d258e97263.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a9b5d02e3911432c1.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a9b5d02e3911432c1.jsonl"
     }
   ],
   "file_marks": {
@@ -87,6 +103,8 @@
   "lesson": "snow-lantern_skill_20261116-205524",
   "phases": [
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 5.6,
         "Read": 1.0,
@@ -105,6 +123,8 @@
       "wall_s": 61.5
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 51.7,
         "Read": 0.3
@@ -122,6 +142,8 @@
       "wall_s": 85.5
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 152.4,
         "Read": 0.3
@@ -139,6 +161,8 @@
       "wall_s": 227.6
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 4.6,
         "Read": 0.0
@@ -156,6 +180,8 @@
       "wall_s": 18.2
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 121.8,
         "Read": 0.2
@@ -173,6 +199,8 @@
       "wall_s": 197.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 156.2,
         "Read": 0.3
@@ -190,6 +218,8 @@
       "wall_s": 203.8
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 35.7,
         "Read": 0.1
@@ -207,23 +237,27 @@
       "wall_s": 157.7
     },
     {
+      "background_calls": 1,
+      "background_s": 61.4,
       "by_tool_s": {
-        "Bash": 584.7,
+        "Bash": 584.6,
         "Read": 8.1
       },
       "calls": 47,
-      "claude_s": 212.4,
+      "claude_s": 212.5,
       "name": "check and review",
       "phase": 7,
       "render_s": 0.0,
       "renders": 0,
       "started": "2026-11-16T21:11:12Z",
-      "tool_other_s": 592.3,
+      "tool_other_s": 592.2,
       "tool_printed_s": 24.8,
-      "tool_s": 592.3,
+      "tool_s": 592.2,
       "wall_s": 804.7
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 167.3,
         "Read": 0.3,
@@ -244,16 +278,20 @@
   ],
   "phases_from": "step files",
   "totals": {
+    "background_calls": 1,
+    "background_s": 61.4,
     "calls": 131,
-    "claude_s": 720.1,
+    "claude_s": 720.2,
     "render_s": 44.1,
-    "tool_other_s": 1245.3,
+    "tool_other_s": 1245.2,
     "tool_printed_s": 166.3,
-    "tool_s": 1289.4,
+    "tool_s": 1289.3,
     "wall_s": 2009.4
   },
-  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-afc0a6351780472f8.jsonl",
-  "warnings": [],
+  "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-afc0a6351780472f8.jsonl",
+  "warnings": [
+    "1 background calls ran for 61.4 s alongside Claude and other tools: in background_s, not in tool time (Claude time includes waiting on them)"
+  ],
   "window": {
     "end": "2026-11-16T21:28:50Z",
     "start": "2026-11-16T20:55:21Z",

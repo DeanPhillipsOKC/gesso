@@ -25,5 +25,14 @@
     "found": "just the picture",
     "subject": "A red sailboat with a white sail on teal water at sunset, with a purple hill, a low far shore, a setting sun and its orange path on the water.",
     "why": "It is an AI-made painting with nothing around it: no bars, borders, text or frame."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so the v2 pipeline can't plan from it; it's also the toned, block-in approach the owner set aside for beginners in favor of paint-along."
+      }
+    ],
+    "why": "Paint-along, back to front fits a picture of big flat areas stacked from far to near (sky, hill, water) with one small subject in front, and it is the owner's chosen beginner approach with v2 rules and step range."
   }
 }

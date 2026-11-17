@@ -39,5 +39,14 @@
     "found": "just the picture",
     "subject": "a mountain lake at dawn: a small red cabin with a dock on the left shore under tall spruces, a snow-capped peak on the right, and both mirrored in still water, with reeds and pebbles in the left foreground",
     "why": "nothing outside the scene (no bars, borders, text, or frame); the picture is AI-made and already stored in photos/"
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so pipeline v2 can't plan with it; the owner also prefers paint-along for acrylic beginners."
+      }
+    ],
+    "why": "Paint-along, back to front, fits a landscape that goes sky, mountain, forest, cabin, lake, reflections, reeds, rocks, and it's the beginner approach with version 2 rules."
   }
 }

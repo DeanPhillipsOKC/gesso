@@ -39,5 +39,14 @@
     "found": "just the picture",
     "subject": "an autumn birch grove: white birch trunks framing a leaf-covered path that winds back into misty blue forest, low sun glowing in from the upper left, yellow leaves on the branches and the ground",
     "why": "nothing in the image is outside the scene: no bars, captions, border, or watermark"
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner.yaml)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so pipeline v2 can't plan from it; the owner also picked paint-along for acrylic beginners."
+      }
+    ],
+    "why": "A sunlit woodland path is the classic paint-along landscape: misty background first, then far trees, the ground and path, then the near birch trunks over it, then bark marks, leaf dabs, and light last. Paint-along back to front is the only whole-painting approach with version 2 keys, and it fits this scene's clear layers of depth."
   }
 }

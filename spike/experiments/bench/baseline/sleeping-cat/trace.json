@@ -2,19 +2,31 @@
   "candidates": [
     {
       "calls_naming_it": 79,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a265ea5bfd1761831.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a265ea5bfd1761831.jsonl"
     },
     {
-      "calls_naming_it": 3,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+      "calls_naming_it": 16,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 13,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 2,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a907dd1d258e97263.jsonl"
     },
     {
       "calls_naming_it": 1,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    },
+    {
+      "calls_naming_it": 1,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
     }
   ],
   "file_marks": {
@@ -84,6 +96,8 @@
   "lesson": "sleeping-cat_skill_20261116-203502",
   "phases": [
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 42.8,
         "Read": 0.3,
@@ -102,6 +116,8 @@
       "wall_s": 132.6
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 95.6,
         "Read": 0.2
@@ -119,6 +135,8 @@
       "wall_s": 142.4
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 74.4,
         "Read": 0.1
@@ -136,6 +154,8 @@
       "wall_s": 148.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 3.0,
         "Read": 0.0
@@ -153,6 +173,8 @@
       "wall_s": 15.7
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 8.3
       },
@@ -169,6 +191,8 @@
       "wall_s": 76.5
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 135.5,
         "Read": 0.4
@@ -186,6 +210,8 @@
       "wall_s": 179.1
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 38.9
       },
@@ -202,6 +228,8 @@
       "wall_s": 132.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 70.4,
         "Read": 3.1
@@ -219,6 +247,8 @@
       "wall_s": 163.4
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 115.0,
         "Read": 0.1,
@@ -239,6 +269,8 @@
   ],
   "phases_from": "step files",
   "totals": {
+    "background_calls": 0,
+    "background_s": 0.0,
     "calls": 99,
     "claude_s": 622.4,
     "render_s": 130.5,
@@ -247,7 +279,7 @@
     "tool_s": 588.8,
     "wall_s": 1211.2
   },
-  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a265ea5bfd1761831.jsonl",
+  "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a265ea5bfd1761831.jsonl",
   "warnings": [],
   "window": {
     "end": "2026-11-16T20:54:57Z",

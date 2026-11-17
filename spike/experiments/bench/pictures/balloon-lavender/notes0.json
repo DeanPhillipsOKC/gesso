@@ -39,5 +39,15 @@
     "found": "just the picture",
     "subject": "A striped hot air balloon over a sunset lavender field in Provence: orange and pink clouds, a low sun over far purple hills, a tree on a golden hill at right, a small village with cypresses at left, and lavender rows running toward the viewer.",
     "why": "An AI-made painting with no app bars, borders, captions, or watermark; everything in it is the scene."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so a v2 plan can't follow it."
+      }
+    ],
+    "picked": "acrylic-paint-along-beginner",
+    "why": "Paint-along, back to front, is the beginner approach for a landscape: sky first, then each layer of land, the balloon and tree, and the lavender in front last. It's also the only technique with version 2 rules."
   }
 }

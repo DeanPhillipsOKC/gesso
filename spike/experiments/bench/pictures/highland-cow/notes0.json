@@ -39,5 +39,14 @@
     "found": "just the picture",
     "subject": "A shaggy ginger Highland cow with long upturned horns standing in tall grass on a moor at sunset, backlit from the upper right, with hills, a sliver of loch, and a pale gold sky behind.",
     "why": "No bars, borders, captions, watermarks, or unrelated scene around the subject; the whole image is the picture."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so pipeline v2 can't plan from it; the owner also picked paint-along for acrylic beginners."
+      }
+    ],
+    "why": "Paint along, back to front is the only whole-painting approach with version 2 keys, and it fits: a sky, far hills, a near hillside, then the cow and grass in front, painted farthest to nearest on a white canvas."
   }
 }

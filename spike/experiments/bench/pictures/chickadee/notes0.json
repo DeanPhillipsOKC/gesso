@@ -25,5 +25,14 @@
     "found": "just the picture",
     "subject": "a black-capped chickadee perched on a curved brown branch, four autumn leaves, a hazy blue-and-orange autumn forest behind with a soft sun at upper right",
     "why": "An AI-made painting with no bars, borders, captions or frame around it; everything in the image is the scene."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so pipeline v2 can't plan with it; and the owner's pick for beginners is paint-along."
+      }
+    ],
+    "why": "Paint-along, back to front, suits a calm picture with a soft background and a clear subject in front: the misty sky goes on in one wet blend, then the far woods, the branch, the leaves and the bird on top, each in small steps a beginner can follow."
   }
 }

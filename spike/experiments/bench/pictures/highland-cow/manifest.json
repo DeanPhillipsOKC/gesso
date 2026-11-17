@@ -6,9 +6,25 @@
       "bytes": 2654244,
       "sha256": "419cae136ebc86eed00c8c22cc83d1803f87c99963352b778f63202aaec80675"
     },
+    "00_beginner_palette.json": {
+      "bytes": 608,
+      "sha256": "74e761bcd27c78a3f1b8c09c747027a79bf119863464810cb1695b2ab53fc976"
+    },
+    "00_beginner_palette.png": {
+      "bytes": 895,
+      "sha256": "7a313d0d55aca5beca92aeffdf7f880efd73b487fccdc8e74b053c268afceb8f"
+    },
+    "00_beginner_value-study.png": {
+      "bytes": 117142,
+      "sha256": "b368cbb65ef54847ca93103b6d98a978283931a2b0050f5ca6dca68128e85fd3"
+    },
     "00_canvas_frame.png": {
       "bytes": 2152348,
       "sha256": "d1920a1644a35c347e89fd534cba87273994e20a8631406d83b5358e6a79bdeb"
+    },
+    "00_reference.png": {
+      "bytes": 799875,
+      "sha256": "bc6c2faf61382038c6f6211ac36f285e6948d3a138fce1e3311acb29c512f4d2"
     },
     "99_finish.png": {
       "bytes": 3047361,
@@ -19,12 +35,16 @@
       "sha256": "bc806afe5e0bf76519c007a55f2776560ca31e9b9e92193bfa81c9f40f9d3c0e"
     },
     "notes0.json": {
-      "bytes": 2645,
-      "sha256": "49d8ec6012fcb7278d181e82830517756209ef653836aa0aaee276e0a0b35c1e"
+      "bytes": 3143,
+      "sha256": "31fa00285ac2200ee3167e60c807905f2665ea60eca89ddc91aeb379acad964f"
     },
     "photo.jpg": {
       "bytes": 422656,
       "sha256": "0fe67e3bd81fe36f6e684407c960bc6e7789e75e4b9c7a92b686f80a064d1f89"
+    },
+    "review0.json": {
+      "bytes": 26,
+      "sha256": "6c20eff20806cf0a7346e443c1682d9ca9fa7f91d2fa6c48a1357ec26c5f2df6"
     }
   },
   "photo": "photo.jpg",

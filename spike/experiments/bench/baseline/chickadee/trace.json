@@ -2,23 +2,35 @@
   "candidates": [
     {
       "calls_naming_it": 77,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-aea6922e3bf47e417.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-aea6922e3bf47e417.jsonl"
     },
     {
-      "calls_naming_it": 4,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+      "calls_naming_it": 16,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 13,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 2,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a907dd1d258e97263.jsonl"
     },
     {
       "calls_naming_it": 1,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    },
+    {
+      "calls_naming_it": 1,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a265ea5bfd1761831.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a265ea5bfd1761831.jsonl"
     },
     {
       "calls_naming_it": 0,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
     }
   ],
   "file_marks": {
@@ -83,6 +95,8 @@
   "lesson": "chickadee_skill_20261116-203451",
   "phases": [
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 5.1,
         "Read": 0.0,
@@ -101,6 +115,8 @@
       "wall_s": 66.8
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 93.5,
         "Read": 0.2
@@ -118,6 +134,8 @@
       "wall_s": 138.8
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 137.0,
         "Read": 0.4
@@ -135,6 +153,8 @@
       "wall_s": 220.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 3.0,
         "Read": 0.0
@@ -152,6 +172,8 @@
       "wall_s": 14.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 8.8
       },
@@ -168,6 +190,8 @@
       "wall_s": 65.9
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 103.5,
         "Read": 0.1
@@ -185,6 +209,8 @@
       "wall_s": 128.5
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 23.6,
         "Write": 0.0
@@ -202,6 +228,8 @@
       "wall_s": 140.6
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 131.3,
         "Read": 3.4
@@ -219,6 +247,8 @@
       "wall_s": 249.4
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 151.7,
         "Read": 43.4,
@@ -239,6 +269,8 @@
   ],
   "phases_from": "step files",
   "totals": {
+    "background_calls": 0,
+    "background_s": 0.0,
     "calls": 94,
     "claude_s": 599.8,
     "render_s": 81.0,
@@ -247,7 +279,7 @@
     "tool_s": 661.5,
     "wall_s": 1261.5
   },
-  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-aea6922e3bf47e417.jsonl",
+  "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-aea6922e3bf47e417.jsonl",
   "warnings": [],
   "window": {
     "end": "2026-11-16T20:55:47Z",

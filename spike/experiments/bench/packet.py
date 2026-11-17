@@ -1,6 +1,10 @@
 """Packets for the fault counter (#165, S0c): what a painter gets from a lesson, and nothing else.
 
-    python spike/experiments/bench/packet.py --out DIR --lesson LESSON [--lesson LESSON ...] [--seed N]
+    python spike/experiments/bench/packet.py --lesson LESSON [--lesson LESSON ...] [--out DIR] [--seed N]
+
+DIR must be outside the repository (by default a new temp folder): a counter must never sit next to the bench's
+saved results (spike/experiments/bench/baseline/<picture>/faults.json, known_problems.json), which for a pair round
+are the answers for the same picture.
 
 For each lesson it writes DIR/<packet id>/ with:
     photo.jpg            the photo the lesson shows, cropped to the canvas
@@ -10,8 +14,10 @@ For each lesson it writes DIR/<packet id>/ with:
     lesson.md            each step's name, paints with recipes, brush, numbered words and tip, as the page shows them
     packet.json          the same, structured, with the picture paths
 
-and DIR/key.json, which maps each packet id to its lesson folder. The key stays out of the packets: hand the
-reviewer only fault_counter.md and one packet folder. Packet ids are p01, p02, ... in an order drawn from the seed,
+and DIR/fault_counter.md (the brief) and DIR/key.json, which maps each packet id to its lesson folder. The key stays
+out of the packets: hand the reviewer only the brief and one packet folder. Keep the key with the round's results
+(the baseline's is spike/experiments/bench/baseline/key.json): agreement.py joins the counts to the owner's scores
+through it. It holds packet ids, picture names, lesson folder names and step counts, no lesson content. Packet ids are p01, p02, ... in an order drawn from the seed,
 so a packet's name says nothing about which run or experiment made it. Nothing from plan.json, notes.json,
 review.json, the ledger, or the run's transcript goes in.
 """
@@ -110,12 +116,29 @@ def build_one(lesson: Path, dest: Path) -> dict:
               "finish": "finish.jpg" if (dest / "finish.jpg").exists() else None,
               "steps": steps, "write_to": RESULT}
     write_json(dest / "packet.json", packet)
-    (dest / "lesson.md").write_text(_md(picture, steps), encoding="utf-8")
+    (dest / "lesson.md").write_bytes(_md(picture, steps).encode("utf-8"))
     return packet
 
 
-def build(lessons: list[Path], out: Path, seed: int = 165) -> dict:
-    out = Path(out)
+class Refused(ValueError):
+    pass
+
+
+def build(lessons: list[Path], out: Path | None = None, seed: int = 165) -> dict:
+    import shutil
+    import tempfile
+
+    from benchlib import HERE, ROOT
+
+    out = Path(out) if out else Path(tempfile.mkdtemp(prefix="gesso-packets-"))
+    if out.resolve() == ROOT.resolve() or ROOT.resolve() in out.resolve().parents:
+        raise Refused(f"{out} is inside the repository: make packets outside it (leave out --out for a temp folder), "
+                      "so a counter can't read the bench's saved results")
+    names = [Path(x).name for x in lessons]
+    if len(set(names)) != len(names):
+        raise Refused(f"two lessons share a folder name: {sorted({n for n in names if names.count(n) > 1})}")
+    out.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(HERE / "fault_counter.md", out / "fault_counter.md")
     order = list(lessons)
     random.Random(seed).shuffle(order)
     key = {}
@@ -129,13 +152,13 @@ def build(lessons: list[Path], out: Path, seed: int = 165) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--out", required=True)
+    ap.add_argument("--out", help="a folder outside the repository (default: a new temp folder)")
     ap.add_argument("--lesson", action="append", required=True, help="a published lesson folder (repeat)")
     ap.add_argument("--seed", type=int, default=165, help="the order packets are numbered in")
     a = ap.parse_args(argv)
     try:
-        r = build([Path(x) for x in a.lesson], Path(a.out), a.seed)
-    except FileNotFoundError as err:
+        r = build([Path(x) for x in a.lesson], Path(a.out) if a.out else None, a.seed)
+    except (FileNotFoundError, Refused) as err:
         print(json.dumps({"problems": [str(err)]}))
         return 1
     print(json.dumps({**r, "problems": []}, indent=2))

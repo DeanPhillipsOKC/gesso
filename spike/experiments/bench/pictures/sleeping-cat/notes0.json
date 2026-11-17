@@ -25,5 +25,14 @@
     "found": "just the picture",
     "subject": "a gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden window sill, a plain pale blue wall behind and a white window frame with green leaves outside at the left",
     "why": "The image is an AI-made painting with no app bars, borders, captions or watermark; everything in it is part of the scene."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so a v2 plan can't follow it; and the owner prefers paint-along for beginners."
+      }
+    ],
+    "why": "Paint-along, back to front, suits a calm scene with one big subject: the wall and window behind first, then the sill, the blanket and the cat on top, at the beginner level the owner paints at."
   }
 }

@@ -5,7 +5,8 @@ renders.
 
 It finds the Claude Code transcript that made the run by the lesson folder's name: every *.jsonl under
 ~/.claude/projects (subagent transcripts in <session>/subagents/ too), keeping the one whose tool calls name the folder
-most often. In it:
+most often. It warns when that transcript is a main session's, not a subagent's, or when another names the folder
+about as often. In it:
 
 - **Phases** are the skill's steps 0 to 8. The run reads each step's file when it starts that step
   (.claude/skills/paint-lesson/steps/<N>-*.md, by cat or Read), so the phase changes at that call; going back to a
@@ -14,7 +15,11 @@ most often. In it:
 - **Tool time** is the time between a tool call and its result, with calls that ran at once counted once.
 - **Render time** is the `seconds` a render prints (render and background print a JSON line with "cached" and
   "seconds"); it's part of tool time, and taken out of it.
-- **Claude time** is the rest of the phase's wall time: thinking, writing, and waiting for the model.
+- **Background calls** (Bash with run_in_background) return at once and run until their task notification. That
+  time is reported apart (`background_s`, `background_calls`) with a warning, since it runs alongside Claude and the
+  other tools; it isn't in tool time.
+- **Claude time** is the rest of the phase's wall time: thinking, writing, and waiting for the model (and for any
+  background call).
 - The `seconds` field every tool prints is summed too (`tool_printed_s`): a tool's own work, without the process
   start-up and the shell around it.
 
@@ -23,7 +28,10 @@ times give rough marks for each step (00_canvas_frame.png for 0, 99_finish.png f
 which is all there is when no transcript is found.
 
 The window is the whole transcript for a subagent's (a subagent that ran /paint-lesson does nothing else). For a main
-session's, it runs from the last /paint-lesson start before the folder is first named to the last call that names it.
+session's, it runs from the last /paint-lesson start before the folder is first named to the result of the run's
+seal (publish --final into its folder), or with no seal, to its last call into the folder before a gap of over 15
+minutes. Calls naming the folder after that (a freeze, a trace) aren't the run: they're counted in a warning. The
+report names the transcript relative to the folder it was found in (<project>/<session>[/subagents/<agent>].jsonl).
 """
 
 from __future__ import annotations
@@ -41,6 +49,9 @@ from benchlib import read_json, write_json  # noqa: E402
 PHASES = {0: "set up, photo, canvas, beginner version", 1: "reference and finish", 2: "parts and outlines",
           3: "paints", 4: "stages and steps", 5: "step pictures and aids", 6: "text", 7: "check and review",
           8: "diagrams, notes, seal"}
+NOTICE = re.compile(r"<tool-use-id>([^<]+)</tool-use-id>")
+FINAL = re.compile(r"\bpublish\b[^\n;&|]*--final")
+GAP = 15  # minutes with no call into the folder that end a run without a seal
 STEP_FILE = re.compile(r"paint-lesson/steps/(\d)-[\w-]+\.md")
 TOOL = re.compile(r"tools\.py\s+([a-z][a-z0-9-]*)((?:\s+--?[\w-]+(?:\s+[^\s-][^\s]*)?)*)")
 TOOL_PHASE = {"store-photo": 0, "crop": 0, "fit-canvas": 0, "busy": 0, "simplify": 1, "value-study": 1, "palette": 1,
@@ -80,17 +91,25 @@ def load(path: Path) -> list[dict]:
                 r = json.loads(line)
             except ValueError:
                 continue
-            if r.get("type") not in ("user", "assistant") or not r.get("timestamp"):
+            if not r.get("timestamp"):
                 continue
             t = _ts(r["timestamp"])
+            if r.get("type") == "attachment":  # a background task's notification names the call that started it
+                for tid in NOTICE.findall(json.dumps(r.get("attachment"))):
+                    rows.append({"t": t, "kind": "notice", "id": tid})
+                continue
+            if r.get("type") not in ("user", "assistant"):
+                continue
             content = (r.get("message") or {}).get("content")
             if isinstance(content, list):
                 for b in content:
                     if not isinstance(b, dict):
                         continue
                     if b.get("type") == "tool_use":
+                        inp = b.get("input") if isinstance(b.get("input"), dict) else {}
                         rows.append({"t": t, "kind": "call", "id": b.get("id"), "name": b.get("name"),
-                                     "input": json.dumps(b.get("input"), ensure_ascii=False)})
+                                     "input": json.dumps(b.get("input"), ensure_ascii=False),
+                                     "background": bool(inp.get("run_in_background"))})
                     elif b.get("type") == "tool_result":
                         rows.append({"t": t, "kind": "result", "id": b.get("tool_use_id"),
                                      "text": _text(b.get("content"))})
@@ -120,24 +139,53 @@ def find(folder: str, roots: list[Path]) -> tuple[Path | None, list[dict]]:
     return best, found
 
 
-def _window(rows: list[dict], folder: str, subagent: bool) -> tuple[int, int]:
+def _result_of(rows: list[dict], i: int) -> int:
+    """The index of call i's result (or i when it has none)."""
+    return next((j for j in range(i, len(rows)) if rows[j]["kind"] == "result" and rows[j]["id"] == rows[i]["id"]), i)
+
+
+def _window(rows: list[dict], folder: str, subagent: bool) -> tuple[int, int, list[str]]:
+    """(first row, last row, warnings) of the run. It starts at the last /paint-lesson launch before the folder is
+    first named (a subagent's transcript: its first row). It ends at the result of the run's own seal (publish
+    --final into the folder), or, with no seal, at the last call into the folder before a gap of over GAP minutes
+    (a subagent's transcript: its last row). Later calls that name the folder (a freeze, a trace, a packet by whoever
+    started the run) aren't the run."""
     named = [i for i, r in enumerate(rows) if folder in (r.get("input") or "") or folder in (r.get("text") or "")]
     if not named:
-        return 0, len(rows) - 1
-    if subagent:
-        return 0, len(rows) - 1
+        return 0, len(rows) - 1, []
     start = 0
-    for i in range(named[0], -1, -1):
-        r = rows[i]
-        if (r["kind"] == "call" and r["name"] == "Skill" and "paint-lesson" in r["input"]) or \
-                (r["kind"] == "user" and "paint-lesson" in (r.get("text") or "")):
-            start = i
-            break
-    end = named[-1]
-    if rows[end]["kind"] == "call":  # to its result
-        end = next((j for j in range(end, len(rows)) if rows[j]["kind"] == "result"
-                    and rows[j]["id"] == rows[end]["id"]), end)
-    return start, end
+    if not subagent:
+        for i in range(named[0], -1, -1):
+            r = rows[i]
+            if (r["kind"] == "call" and r["name"] == "Skill" and "paint-lesson" in r["input"]) or \
+                    (r["kind"] == "user" and "paint-lesson" in (r.get("text") or "")):
+                start = i
+                break
+    calls = [i for i, r in enumerate(rows) if i >= start and r["kind"] == "call" and folder in r["input"]]
+    seal = next((i for i in calls if FINAL.search(r_input(rows[i]))), None)
+    warnings = []
+    if subagent:
+        end = len(rows) - 1
+    elif seal is not None:
+        end = _result_of(rows, seal)
+    else:
+        last = calls[0] if calls else named[0]
+        for i in calls[1:]:
+            if (rows[i]["t"] - rows[last]["t"]).total_seconds() > GAP * 60:
+                break
+            last = i
+        end = _result_of(rows, last)
+        warnings.append("no publish --final into the folder: the run ends at its last call into the folder before a "
+                        f"gap of over {GAP} minutes")
+    later = [i for i in calls if i > end]
+    if later:
+        warnings.append(f"{len(later)} later calls name the folder after the run ended "
+                        f"({_iso(rows[later[0]]['t'])} on): not counted")
+    return start, end, warnings
+
+
+def r_input(r: dict) -> str:
+    return (r.get("input") or "").replace("\\n", "\n")
 
 
 def _phase_of_call(r: dict) -> int | None:
@@ -185,7 +233,8 @@ def _union(intervals: list[tuple[dt.datetime, dt.datetime]]) -> float:
 
 
 def trace_rows(rows: list[dict], folder: str, subagent: bool) -> dict:
-    lo, hi = _window(rows, folder, subagent)
+    lo, hi, warnings = _window(rows, folder, subagent)
+    notices = {r["id"]: r["t"] for r in rows if r["kind"] == "notice"}
     rows = rows[lo:hi + 1]
     start, end = rows[0]["t"], rows[-1]["t"]
     results = {r["id"]: r for r in rows if r["kind"] == "result"}
@@ -200,16 +249,25 @@ def trace_rows(rows: list[dict], folder: str, subagent: bool) -> dict:
     segments = [(t, switches[i + 1][0] if i + 1 < len(switches) else end, p) for i, (t, p) in enumerate(switches)]
 
     phases = {p: {"phase": p, "name": PHASES[p], "wall_s": 0.0, "claude_s": 0.0, "tool_s": 0.0, "render_s": 0.0,
-                  "tool_other_s": 0.0, "tool_printed_s": 0.0, "calls": 0, "renders": 0, "by_tool_s": {},
-                  "started": None} for p in PHASES}
+                  "tool_other_s": 0.0, "tool_printed_s": 0.0, "background_s": 0.0, "calls": 0, "background_calls": 0,
+                  "renders": 0, "by_tool_s": {}, "started": None} for p in PHASES}
+    unseen = 0
     for a, b, p in segments:
         ph = phases[p]
         ph["started"] = ph["started"] or _iso(a)
         wall = max(0.0, (b - a).total_seconds())
         mine = [c for c in calls if a <= c["t"] < b or (b == end and c["t"] == end)]
-        spans, render, printed = [], 0.0, 0.0
+        spans, bg, render, printed = [], [], 0.0, 0.0
         for c in mine:
             res = results.get(c["id"])
+            if c.get("background"):  # runs alongside Claude and other tools, until its notification
+                ph["background_calls"] += 1
+                done = notices.get(c["id"])
+                if done is None:
+                    unseen += 1
+                else:
+                    bg.append((c["t"], min(done, end)))
+                continue
             stop = min(res["t"], b) if res else c["t"]
             spans.append((c["t"], max(c["t"], stop)))
             label = "subagent" if c["name"] in SUBAGENT_TOOLS else c["name"]
@@ -228,18 +286,35 @@ def trace_rows(rows: list[dict], folder: str, subagent: bool) -> dict:
         ph["tool_other_s"] += tool - render
         ph["claude_s"] += max(0.0, wall - tool)
         ph["tool_printed_s"] += printed
+        ph["background_s"] += _union(bg)
         ph["calls"] += len(mine)
     out = []
     for p in PHASES:
         ph = phases[p]
-        for k in ("wall_s", "claude_s", "tool_s", "render_s", "tool_other_s", "tool_printed_s"):
+        for k in ("wall_s", "claude_s", "tool_s", "render_s", "tool_other_s", "tool_printed_s", "background_s"):
             ph[k] = round(ph[k], 1)
         out.append(ph)
     totals = {k: round(sum(ph[k] for ph in out), 1)
-              for k in ("wall_s", "claude_s", "tool_s", "render_s", "tool_other_s", "tool_printed_s")}
+              for k in ("wall_s", "claude_s", "tool_s", "render_s", "tool_other_s", "tool_printed_s", "background_s")}
     totals["calls"] = sum(ph["calls"] for ph in out)
+    totals["background_calls"] = sum(ph["background_calls"] for ph in out)
+    if totals["background_calls"]:
+        warnings.append(f"{totals['background_calls']} background calls ran for {totals['background_s']} s alongside "
+                        "Claude and other tools: in background_s, not in tool time (Claude time includes waiting on "
+                        "them)" + (f"; {unseen} have no notification, so their time is unknown" if unseen else ""))
     return {"window": {"start": _iso(start), "end": _iso(end), "wall_s": round((end - start).total_seconds(), 1)},
-            "phases_from": "step files" if by_files else "tool names", "phases": out, "totals": totals}
+            "phases_from": "step files" if by_files else "tool names", "phases": out, "totals": totals,
+            "warnings": warnings}
+
+
+def _short(path: Path, roots: list[Path]) -> str:
+    """A transcript as <project>/<session>[/subagents/<agent>].jsonl, relative to the folder it was found in."""
+    for root in roots:
+        try:
+            return Path(path).resolve().relative_to(Path(root).expanduser().resolve()).as_posix()
+        except ValueError:
+            continue
+    return Path(path).name
 
 
 def ledger_renders(lesson: Path) -> dict:
@@ -272,13 +347,23 @@ def trace(lesson: Path, roots: list[Path] | None = None, transcript: Path | None
     candidates = []
     if transcript is None:
         transcript, candidates = find(folder, roots or [Path.home() / ".claude" / "projects"])
-    report = {"lesson": folder, "transcript": str(transcript) if transcript else None, "candidates": candidates,
+    base = (roots or [Path.home() / ".claude" / "projects"])
+    report = {"lesson": folder, "transcript": _short(transcript, base) if transcript else None,
+              "candidates": [{**c, "transcript": _short(Path(c["transcript"]), base)} for c in candidates],
               "ledger": ledger_renders(lesson), "file_marks": file_marks(lesson), "warnings": []}
     if transcript is None:
         report["warnings"].append("no transcript names this folder: only the ledger and the file times are known")
         return report
+    subagent = "subagents" in Path(transcript).parts
+    if candidates and not subagent:
+        report["warnings"].append("the transcript is a main session's, not a subagent's: check the run's window")
+    if len(candidates) > 1 and candidates[1]["calls_naming_it"] >= 0.5 * candidates[0]["calls_naming_it"] > 0:
+        report["warnings"].append(f"two transcripts name the folder about as often ({candidates[0]['calls_naming_it']} "
+                                  f"and {candidates[1]['calls_naming_it']} calls): check it picked the run's")
     rows = load(Path(transcript))
-    report.update(trace_rows(rows, folder, "/subagents/" in str(transcript)))
+    traced = trace_rows(rows, folder, subagent)
+    report["warnings"] += traced.pop("warnings")
+    report.update(traced)
     seen, led = report["totals"]["render_s"], report["ledger"]["seconds"]
     if abs(seen - led) > max(5.0, 0.1 * led):
         report["warnings"].append(f"renders in the transcript ({seen} s) and in the ledger ({led} s) differ")

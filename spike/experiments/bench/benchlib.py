@@ -26,12 +26,33 @@ CLASSES = {"A": "step pictures", "B": "outlines", "C": "placement", "D": "paints
 SEVERITY = {"blocker": 3, "major": 2, "minor": 1}
 
 
+TEXT = {".json", ".md", ".txt"}  # frozen text: hashed with LF line ends, whatever a checkout did to them
+
+
 def sha256(path: Path) -> str:
+    """A file's sha256. A text file (TEXT) is hashed as if its line ends were LF, so a Windows checkout that turned
+    them into CRLF still matches the manifest written on Linux."""
+    path = Path(path)
+    if path.suffix.lower() in TEXT:
+        return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
     h = hashlib.sha256()
     with open(path, "rb") as f:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def lf_bytes(path: Path) -> bytes:
+    """A frozen text file's bytes with LF line ends (as frozen), for copying into a build."""
+    return Path(path).read_bytes().replace(b"\r\n", b"\n")
+
+
+def posix(path: Path) -> str:
+    """A path for a file Claude or a tool reads: forward slashes, relative to the repo when it's inside it."""
+    try:
+        return Path(path).resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return Path(path).as_posix()
 
 
 def dumps(data) -> str:
@@ -40,8 +61,9 @@ def dumps(data) -> str:
 
 
 def write_json(path: Path, data) -> None:
+    path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(dumps(data), encoding="utf-8")
+    path.write_bytes(dumps(data).encode("utf-8"))  # LF on every machine (write_text gives CRLF on Windows)
 
 
 def read_json(path: Path, default=None):
@@ -76,7 +98,8 @@ def canvas_box(lesson: Path) -> list[float]:
 
 
 def stage_image(lesson: Path, stage: dict) -> Path:
-    """A published step's picture as the painter sees it (cropped to the canvas when the lesson has a canvas box)."""
+    """A published step's picture: lesson.json's `image`, which publish already cropped to the canvas (canvas/NN.png)
+    when the lesson has a canvas box. Nothing is cropped here."""
     return Path(lesson) / stage["image"]
 
 

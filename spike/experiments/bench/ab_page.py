@@ -3,12 +3,17 @@ saves the scores next to the round on the bench.
 
     python spike/experiments/bench/ab_page.py make --round <name> --out page.html --lesson DIR [--lesson DIR ...]
     python spike/experiments/bench/ab_page.py make --round <name> --out page.html --pair DIR_1 DIR_2 [--pair ...] [--seed N]
-    python spike/experiments/bench/ab_page.py import <scores.json> [--force]
+    python spike/experiments/bench/ab_page.py import <scores.json> [<more.json> ...] [--key page.key.json] [--force]
 
-Single mode (--lesson): one lesson per picture, for the baseline. Pair mode (--pair): two lessons of the same picture;
-which one is shown as A is drawn from the seed (random.Random(f"{seed}:{picture}")), recorded in the page's answer
-key and in <page>.key.json beside it. The page shows A and B only; the lesson folders are in the answer key, which is
-encoded in the page and only comes back inside the copied scores.
+Single mode (--lesson): one lesson per picture, for the baseline. Pair mode (--pair): two lessons of the same picture.
+Which lesson is A is drawn from the seed, balanced: half the pictures (one more or less) get their first-named lesson
+as A. Without --seed one is drawn at random; either way it's recorded only in the answer key.
+
+**Blind.** The page never holds a lesson folder's name, the seed, or anything that maps a side to a folder. Each side
+is an opaque token (a hash of the seed, round, picture, side and folder), and the page, the scores it copies, its
+localStorage and its database records carry only tokens. The token-to-folder map is the answer key, <page>.key.json,
+written beside the page and never into it. `import` joins the scores to folders through the key, and refuses tokens the
+key doesn't know.
 
 Per lesson, 1 to 5 each: (a) the step pictures look like a real half-done painting; (b) I could paint each step from
 its words; (c) the pictures, paints and words agree. Then, in pair mode, which would I paint from (A, B, no
@@ -17,8 +22,9 @@ every lesson and picture takes an optional note.
 
 The page is phone-first: one picture at a time with Back and Next, one step at a time (tap the arrows or swipe the
 picture), step pictures as JPEGs about 720 px on the long side. All saving goes through one JS function,
-saveScores(scores): it writes localStorage today (in try/catch) and is the one place to wire a storage backend when
-the page is published as an artifact. "Copy scores" copies the scores JSON (SCORES_FORMAT below) at any time.
+saveScores(scores): it writes localStorage (in try/catch) and, when the page runs as a claude.ai artifact with a
+database, one record per device (collection "scores", doc id "<round>__<device>"), so a second phone or a reopened tab
+never replaces another's scores. "Copy scores" copies the scores JSON (SCORES_FORMAT below) at any time.
 
 The page is the same bytes for the same inputs and seed: nothing in it is a time or an absolute path.
 """
@@ -31,6 +37,7 @@ import hashlib
 import io
 import json
 import random
+import secrets
 import sys
 from html import escape
 from pathlib import Path
@@ -40,6 +47,7 @@ from benchlib import (SCORES_DIR, canvas_box, crop_canvas, dumps, lesson_steps, 
                       picture_order, read_json, write_json)
 
 FORMAT = "gesso-ab-scores/1"
+KEY_FORMAT = "gesso-ab-key/2"
 MAX_BYTES = 12_000_000
 BUDGET = 11_500_000  # leave room under the 12 MB cap
 SIDE = 720
@@ -49,17 +57,18 @@ RUBRIC = [
     ("paintable", "I could paint each step from its words"),
     ("agree", "The pictures, paints and words agree"),
 ]
+ITEMS = [k for k, _ in RUBRIC] + ["would_paint", "worst_steps", "note"]
 
 # The scores JSON the page copies and saveScores() receives. ab_page.py import checks it.
 SCORES_FORMAT = {
     "format": FORMAT,
     "round": "the round's name (--round)",
     "mode": "single | pair",
-    "seed": "the seed the sides were drawn from (pair mode; null in single mode)",
     "saved_at": "when the page last saved, ISO 8601 from the phone's clock",
+    "device": "the device's random id (only in the database record)",
     "pictures": [{
         "picture": "chickadee",
-        "lessons": {"A": "<lesson folder name>", "B": "<lesson folder name, pair mode only>"},
+        "lessons": {"A": "<opaque token>", "B": "<opaque token, pair mode only>"},
         "scores": {"A": {"real": "1-5 or null", "paintable": "1-5 or null", "agree": "1-5 or null",
                          "would_paint": "yes | maybe | no | null (single mode only)",
                          "worst_steps": [{"n": 5, "id": "branch-dark"}], "note": ""}},
@@ -100,45 +109,56 @@ def _photo(lesson: Path):
     return None
 
 
-def _seed_for(round_name: str) -> int:
-    return int(hashlib.sha256(round_name.encode("utf-8")).hexdigest()[:8], 16)
+def token(seed, round_name: str, picture: str, side: str, folder: str) -> str:
+    """A side's opaque id: says nothing about the folder without the seed, which only the answer key holds."""
+    raw = f"{seed}:{round_name}:{picture}:{side}:{folder}".encode("utf-8")
+    return "L" + hashlib.sha256(raw).hexdigest()[:12]
 
 
 def plan_round(round_name: str, lessons: list[Path] | None = None, pairs: list[tuple[Path, Path]] | None = None,
                seed: int | None = None, order_seed: int | None = None) -> dict:
-    """Which lessons go on the page and on which side: {mode, seed, order_seed, pictures: [{picture, sides: {A: path,
-    B: path}}]}. Pictures go in bench order, or shuffled by order_seed, so a round doesn't always start (and tire) on
-    the same picture."""
+    """Which lessons go on the page, on which side, under which token: {mode, seed, order_seed, pictures: [{picture,
+    sides: {A: path, B: path}, tokens: {A: token, B: token}}]}. Pictures go in bench order, or shuffled by order_seed,
+    so a round doesn't always start (and tire) on the same picture."""
     if bool(lessons) == bool(pairs):
         raise ValueError("give --lesson folders (single mode) or --pair folders (pair mode), not both")
+    seed = secrets.randbelow(2 ** 31) if seed is None else int(seed)
     if lessons:
         rows = [{"picture": picture_of(p), "sides": {"A": Path(p)}} for p in lessons]
-        mode, seed = "single", None
+        mode = "single"
     else:
-        seed = _seed_for(round_name) if seed is None else int(seed)
         rows = []
         for one, two in pairs:
             pic = picture_of(one)
             if picture_of(two) != pic:
                 raise ValueError(f"a pair must be two lessons of one picture: {Path(one).name} and {Path(two).name}")
-            swap = random.Random(f"{seed}:{pic}").random() < 0.5
-            a, b = (two, one) if swap else (one, two)
-            rows.append({"picture": pic, "sides": {"A": Path(a), "B": Path(b)}})
+            rows.append({"picture": pic, "given": (Path(one), Path(two))})
         mode = "pair"
     seen = [r["picture"] for r in rows]
     dup = sorted({p for p in seen if seen.count(p) > 1})
     if dup:
         raise ValueError(f"one entry per picture: {dup} came twice")
     rows.sort(key=lambda r: picture_order(r["picture"]))
+    if mode == "pair":  # balanced: half the pictures swap, drawn from the seed
+        swaps = [True] * (len(rows) // 2) + [False] * (len(rows) - len(rows) // 2)
+        random.Random(f"{seed}:sides").shuffle(swaps)
+        for r, swap in zip(rows, swaps):
+            one, two = r.pop("given")
+            a, b = (two, one) if swap else (one, two)
+            r["sides"] = {"A": a, "B": b}
+    for r in rows:
+        r["tokens"] = {s: token(seed, round_name, r["picture"], s, Path(p).name) for s, p in r["sides"].items()}
     if order_seed is not None:
         random.Random(f"order:{order_seed}").shuffle(rows)
     return {"round": round_name, "mode": mode, "seed": seed, "order_seed": order_seed, "pictures": rows}
 
 
 def answer_key(plan: dict) -> dict:
-    return {"format": FORMAT, "round": plan["round"], "mode": plan["mode"], "seed": plan["seed"],
+    """The only place a token meets its folder. Written beside the page, never into it."""
+    return {"format": KEY_FORMAT, "round": plan["round"], "mode": plan["mode"], "seed": plan["seed"],
             "order_seed": plan.get("order_seed"),
-            "pictures": [{"picture": r["picture"], "lessons": {s: Path(p).name for s, p in r["sides"].items()}}
+            "pictures": [{"picture": r["picture"], "tokens": r["tokens"],
+                          "lessons": {s: Path(p).name for s, p in r["sides"].items()}}
                          for r in plan["pictures"]]}
 
 
@@ -161,15 +181,15 @@ def _data(plan: dict, side: int, quality: int) -> dict:
                               "lines": st["lines"], "tip": st["tip"], "brushes": st["brushes"],
                               "paints": st["paints"]})
             sides[s] = {"steps": steps}
-        pictures.append({"picture": r["picture"], "photo": photo, "sides": sides})
-    return {"round": plan["round"], "mode": plan["mode"], "rubric": RUBRIC, "pictures": pictures}
+        pictures.append({"picture": r["picture"], "photo": photo, "lessons": r["tokens"], "sides": sides})
+    return {"format": FORMAT, "round": plan["round"], "mode": plan["mode"], "rubric": RUBRIC, "pictures": pictures}
 
 
 def make(plan: dict, out: Path) -> dict:
     key = answer_key(plan)
     for side, quality in TRIES:
         data = _data(plan, side, quality)
-        html = page(data, key)
+        html = page(data)
         size = len(html.encode("utf-8"))
         if size <= BUDGET:
             break
@@ -178,11 +198,10 @@ def make(plan: dict, out: Path) -> dict:
                          f"{MAX_BYTES / 1e6:g} MB: split the round into two pages (fewer --lesson or --pair)")
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(html, encoding="utf-8")
+    out.write_bytes(html.encode("utf-8"))
     write_json(out.with_suffix(".key.json"), key)
     return {"page": str(out), "key": str(out.with_suffix(".key.json")), "mb": round(size / 1e6, 2),
             "side_px": side, "jpeg_quality": quality, "pictures": len(plan["pictures"]), "mode": plan["mode"],
-            "seed": plan["seed"],
             "steps": sum(len(s["steps"]) for p in data["pictures"] for s in p["sides"].values())}
 
 
@@ -239,28 +258,59 @@ footer button{width:100%;white-space:nowrap;padding:8px 6px}
 SCRIPT = r"""
 (function(){
 const D = JSON.parse(document.getElementById('data').textContent);
-const KEY = JSON.parse(atob(document.getElementById('key').textContent.trim()));
 const STORE = 'gesso-ab:' + D.round;
 let at = 0;
 const scores = blank();
 
+// Only opaque lesson tokens are on this page: no folder names, no seed, nothing that maps a side to a lesson.
 function blank(){
-  return {format: KEY.format, round: KEY.round, mode: KEY.mode, seed: KEY.seed, saved_at: null,
-    pictures: KEY.pictures.map(function(p){
+  return {format: D.format, round: D.round, mode: D.mode, saved_at: null,
+    pictures: D.pictures.map(function(p){
       const s = {};
       Object.keys(p.lessons).forEach(function(side){
         s[side] = {real: null, paintable: null, agree: null, worst_steps: [], note: ''};
-        if (KEY.mode === 'single') s[side].would_paint = null;
+        if (D.mode === 'single') s[side].would_paint = null;
       });
       return {picture: p.picture, lessons: p.lessons, scores: s, prefer: null, note: ''};
     })};
 }
 
-// All saving goes through here. Today: this browser's localStorage. Wire a storage backend in this one function.
+// All saving goes through here: this browser's localStorage, then (inside a claude.ai artifact with a database) one
+// record per device, so a second phone or a reopened tab never replaces another's scores.
 function saveScores(scores){
   scores.saved_at = new Date().toISOString();
   try { localStorage.setItem(STORE, JSON.stringify(scores)); } catch (e) {}
   status('Saved on this phone. Copy scores when you finish.');
+  clearTimeout(saveScores._t);
+  saveScores._t = setTimeout(function(){ pushScores(scores); }, 900);
+}
+let dbp = null;
+function getDb(){
+  if (!dbp) dbp = (window.claude && window.claude.use) ? window.claude.use('db').catch(function(){ return null; }) : Promise.resolve(null);
+  return dbp;
+}
+let device = null;
+try { device = localStorage.getItem('gesso-ab-device'); } catch (e) {}
+if (!device) {
+  device = 'd' + Math.random().toString(36).slice(2, 10);
+  try { localStorage.setItem('gesso-ab-device', device); } catch (e) {}
+}
+let pushing = false, again = null;
+function pushScores(sc){
+  if (pushing) { again = sc; return; }
+  pushing = true;
+  getDb().then(function(db){
+    if (!db) return null;
+    const rec = JSON.parse(JSON.stringify(sc)); rec.device = device;
+    return db.collection('scores').doc(sc.round + '__' + device).set(rec).then(function(){
+      status('Saved. Claude can read these scores now.');
+    });
+  }).catch(function(){
+    status('Saved on this phone only. Tap Copy scores when you finish.');
+  }).then(function(){
+    pushing = false;
+    if (again) { const n = again; again = null; pushScores(n); }
+  });
 }
 window.saveScores = saveScores;
 
@@ -372,7 +422,7 @@ function rubric(sc){
       choice([1, 2, 3, 4, 5], ['1', '2', '3', '4', '5'], function(){ return sc[r[0]]; }, function(v){ sc[r[0]] = v; }, 'scale'),
       el('div', {class: 'ends'}, [el('span', {text: 'not at all'}), el('span', {text: 'completely'})])]));
   });
-  if (KEY.mode === 'single'){
+  if (D.mode === 'single'){
     box.appendChild(el('div', {class: 'q'}, [el('p', {text: 'Would you paint from this lesson?'}),
       choice(['yes', 'maybe', 'no'], ['Yes', 'Maybe', 'No'], function(){ return sc.would_paint; }, function(v){ sc.would_paint = v; }, 'three')]));
   }
@@ -398,10 +448,10 @@ function build(){
     Object.keys(P.sides).sort().forEach(function(side){
       const sc = S.scores[side];
       sec.appendChild(el('div', {class: 'lesson'}, [
-        el('h3', {text: KEY.mode === 'pair' ? 'Lesson ' + side : 'The lesson'}),
-        viewer(p, side, sc), el('h3', {text: KEY.mode === 'pair' ? 'Score lesson ' + side : 'Score it'}), rubric(sc)]));
+        el('h3', {text: D.mode === 'pair' ? 'Lesson ' + side : 'The lesson'}),
+        viewer(p, side, sc), el('h3', {text: D.mode === 'pair' ? 'Score lesson ' + side : 'Score it'}), rubric(sc)]));
     });
-    if (KEY.mode === 'pair'){
+    if (D.mode === 'pair'){
       sec.appendChild(el('div', {class: 'q'}, [el('p', {text: 'Which would you paint from?'}),
         choice(['A', 'B', 'same'], ['A', 'B', 'No difference'], function(){ return S.prefer; }, function(v){ S.prefer = v; }, 'three')]));
     }
@@ -421,9 +471,9 @@ function complete(p){
   const S = scores.pictures[p];
   const ok = Object.keys(S.scores).every(function(side){
     const sc = S.scores[side];
-    return sc.real && sc.paintable && sc.agree && (KEY.mode !== 'single' || sc.would_paint);
+    return sc.real && sc.paintable && sc.agree && (D.mode !== 'single' || sc.would_paint);
   });
-  return ok && (KEY.mode !== 'pair' || S.prefer);
+  return ok && (D.mode !== 'pair' || S.prefer);
 }
 function progress(){
   const n = scores.pictures.filter(function(_, p){ return complete(p); }).length;
@@ -463,10 +513,10 @@ show(0);
 """
 
 
-def page(data: dict, key: dict) -> str:
+def page(data: dict) -> str:
+    """The page: the lessons, their tokens and the rubric. No answer key, seed or folder name goes in."""
     title = "Blind A/B scores" if data["mode"] == "pair" else "Lesson scores"
     payload = json.dumps(data, separators=(",", ":"), ensure_ascii=False).replace("</", "<\\/")
-    key64 = base64.b64encode(json.dumps(key, sort_keys=True).encode("utf-8")).decode("ascii")
     return (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
@@ -478,7 +528,6 @@ def page(data: dict, key: dict) -> str:
         '<footer><button type="button" id="back">Back</button><button type="button" id="copy">Copy scores</button>'
         '<button type="button" id="next">Next</button></footer>'
         f'<script type="application/json" id="data">{payload}</script>'
-        f'<script type="text/plain" id="key">{key64}</script>'
         f"<script>{SCRIPT}</script></body></html>"
     )
 
@@ -518,22 +567,116 @@ def check_scores(s: dict) -> list[str]:
     return out
 
 
-def import_scores(path: Path, dest: Path = SCORES_DIR, force: bool = False) -> dict:
-    """Save a scores JSON the page copied as scores/<round>.json on the bench."""
-    s = json.loads(Path(path).read_text(encoding="utf-8"))
-    problems = check_scores(s)
-    if problems:
-        raise Invalid("; ".join(problems))
-    safe = "".join(c if c.isalnum() or c in "-_." else "-" for c in s["round"])
+def _records(paths: list[Path]) -> list[tuple[str, dict]]:
+    """(file name, scores record) from each file: a record the page copied, a database record, or a list of them."""
+    out = []
+    for path in paths:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        for rec in data if isinstance(data, list) else [data]:
+            out.append((Path(path).name, rec))
+    return out
+
+
+def _is_set(item: str, v) -> bool:
+    return bool(v) if item in ("worst_steps", "note") else v is not None
+
+
+def merge(records: list[dict]) -> tuple[dict, list[dict]]:
+    """One scores record from several devices' records: for each picture, side and item, the value from the latest
+    record that set it wins. Returns (merged, conflicts): a conflict is an item two records set differently."""
+    records = sorted(records, key=lambda r: r.get("saved_at") or "")
+    first = records[0]
+    if {(r.get("round"), r.get("mode")) for r in records} != {(first.get("round"), first.get("mode"))}:
+        raise Invalid("the records are from different rounds or modes")
+    conflicts = []
+    pictures = []
+    names = []
+    for r in records:
+        names += [p["picture"] for p in r["pictures"] if p["picture"] not in names]
+    for name in names:
+        rows = [(r, next(p for p in r["pictures"] if p["picture"] == name)) for r in records
+                if any(p["picture"] == name for p in r["pictures"])]
+        tokens = {json.dumps(p.get("lessons"), sort_keys=True) for _, p in rows}
+        if len(tokens) > 1:
+            raise Invalid(f"{name}: the records name different lessons for the same picture")
+        out = {"picture": name, "lessons": rows[0][1]["lessons"], "scores": {}, "prefer": None, "note": ""}
+
+        def pick(where: str, values: list[tuple[dict, object]], item: str):
+            got = [(r, v) for r, v in values if _is_set(item, v)]
+            if not got:
+                return None
+            if len({json.dumps(v, sort_keys=True) for _, v in got}) > 1:
+                conflicts.append({"where": where, "item": item, "values": [
+                    {"device": r.get("device"), "saved_at": r.get("saved_at"), "value": v} for r, v in got],
+                    "kept": got[-1][1]})
+            return got[-1][1]
+
+        for side in out["lessons"]:
+            sc = {}
+            for item in ITEMS:
+                if first["mode"] == "pair" and item == "would_paint":
+                    continue
+                v = pick(f"{name} {side}", [(r, (p.get("scores") or {}).get(side, {}).get(item)) for r, p in rows], item)
+                sc[item] = v if v is not None else ([] if item == "worst_steps" else "" if item == "note" else None)
+            out["scores"][side] = sc
+        out["prefer"] = pick(name, [(r, p.get("prefer")) for r, p in rows], "prefer")
+        out["note"] = pick(name, [(r, p.get("note")) for r, p in rows], "note") or ""
+        pictures.append(out)
+    merged = {"format": FORMAT, "round": first["round"], "mode": first["mode"],
+              "saved_at": records[-1].get("saved_at"), "pictures": pictures}
+    return merged, conflicts
+
+
+def join(merged: dict, key: dict) -> dict:
+    """Each side's token replaced by its lesson folder, through the answer key. Refuses a token the key doesn't know.
+    A key from before tokens (lessons only, as the baseline-1.12.1 round's) matches folder names directly."""
+    if key.get("round") != merged["round"]:
+        raise Invalid(f"the answer key is for round {key.get('round')!r}, the scores for {merged['round']!r}")
+    by = {p["picture"]: p for p in key["pictures"]}
+    for p in merged["pictures"]:
+        kp = by.get(p["picture"])
+        if kp is None:
+            raise Invalid(f"{p['picture']}: not in the answer key")
+        folders, tokens = {}, {}
+        for side, v in p["lessons"].items():
+            want = (kp.get("tokens") or kp["lessons"]).get(side)
+            if v != want:
+                raise Invalid(f"{p['picture']} {side}: {v!r} doesn't match the answer key")
+            folders[side], tokens[side] = kp["lessons"][side], v
+        p["lessons"], p["tokens"] = folders, tokens
+    merged["seed"] = key.get("seed")
+    return merged
+
+
+def import_scores(paths, key: Path | None = None, dest: Path = SCORES_DIR, force: bool = False) -> dict:
+    """Save the scores of one round (one or more device records) as scores/<round>.json on the bench, joined to the
+    lesson folders through the answer key (default scores/<round>.key.json)."""
+    paths = [paths] if isinstance(paths, (str, Path)) else list(paths)
+    records = _records(paths)
+    for name, rec in records:
+        problems = check_scores(rec)
+        if problems:
+            raise Invalid(f"{name}: " + "; ".join(problems))
+    merged, conflicts = merge([r for _, r in records])
+    safe = "".join(c if c.isalnum() or c in "-_." else "-" for c in merged["round"])
+    key_path = Path(key) if key else Path(dest) / f"{safe}.key.json"
+    key_data = read_json(key_path)
+    if not key_data:
+        raise Invalid(f"no answer key at {key_path}: pass --key <page>.key.json")
+    out_data = join(merged, key_data)
+    out_data["merged_from"] = sorted(({"device": r.get("device"), "saved_at": r.get("saved_at"), "file": n}
+                                      for n, r in records), key=lambda x: x["saved_at"] or "")
+    out_data["conflicts"] = conflicts
     out = Path(dest) / f"{safe}.json"
     if out.exists() and not force:
         old = read_json(out)
-        if old != s:
+        if old != out_data:
             raise Invalid(f"{out} already holds scores for this round (saved {old.get('saved_at')}); pass --force")
-    write_json(out, s)
-    unscored = [p["picture"] for p in s["pictures"]
+    write_json(out, out_data)
+    unscored = [p["picture"] for p in out_data["pictures"]
                 if any(sc.get(k) is None for sc in p["scores"].values() for k, _ in RUBRIC)]
-    return {"saved": str(out), "pictures": len(s["pictures"]), "not_fully_scored": unscored}
+    return {"saved": str(out), "pictures": len(out_data["pictures"]), "records": len(records),
+            "conflicts": len(conflicts), "not_fully_scored": unscored}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -545,10 +688,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--lesson", action="append", default=[], help="single mode: a lesson folder (repeat per picture)")
     p.add_argument("--pair", nargs=2, action="append", default=[], metavar=("DIR_1", "DIR_2"),
                    help="pair mode: two lesson folders of one picture (repeat per picture)")
-    p.add_argument("--seed", type=int, help="pair mode: the seed for the sides (default: from the round's name)")
+    p.add_argument("--seed", type=int, help="the seed for the sides and tokens (default: random, kept in the key)")
     p.add_argument("--order-seed", type=int, help="shuffle the pictures' order with this seed (default: bench order)")
-    p = sub.add_parser("import", help="save a copied scores JSON on the bench (spike/experiments/bench/scores/)")
-    p.add_argument("scores")
+    p = sub.add_parser("import", help="save a round's scores on the bench (spike/experiments/bench/scores/)")
+    p.add_argument("scores", nargs="+", help="scores JSON files: copied from the page, or database records")
+    p.add_argument("--key", help="the round's answer key (default spike/experiments/bench/scores/<round>.key.json)")
     p.add_argument("--force", action="store_true")
     sub.add_parser("format", help="print the scores JSON format")
     a = ap.parse_args(argv)
@@ -558,7 +702,7 @@ def main(argv: list[str] | None = None) -> int:
                               [(Path(x), Path(y)) for x, y in a.pair] or None, a.seed, a.order_seed)
             out = make(plan, Path(a.out))
         elif a.cmd == "import":
-            out = import_scores(Path(a.scores), force=a.force)
+            out = import_scores([Path(x) for x in a.scores], Path(a.key) if a.key else None, force=a.force)
         else:
             print(dumps(SCORES_FORMAT), end="")
             return 0

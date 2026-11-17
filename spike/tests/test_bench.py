@@ -18,6 +18,10 @@ sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE.parent / "experiments" / "bench"))
 sys.path.insert(0, str(HERE))
 
+import contextlib  # noqa: E402
+import io  # noqa: E402
+from unittest import mock  # noqa: E402
+
 import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
@@ -27,6 +31,15 @@ import lessons  # noqa: E402
 
 FIX = HERE / "fixtures"
 RUN = "chickadee_skill_20261112-090000"
+# The JSON files a build of the frozen chickadee makes, by sha256: the same on every machine (#165 review, finding 3).
+PINNED = {
+    "00_reference_palette.json": "7de225370db338cd4762d8450108cc5085f4f7424a6696c45e77f532e0cfc8c3",
+    "bench.json": "c4a63341f9e268cc7c42fe3246c606d827dfb211f693a8fa216110397aa65e10",
+    "canvas.json": "2e45e2f5b49e163a44bb75344152c6023eda14b71aa6070e1a7c2190799ef6ec",
+    "ledger.json": "4b528af9d3fb5eca6b456b192ee9e563d4ec46efbd78714a7e98c297f8d549ca",
+    "notes.json": "49b04dc17358f8746fff75645ef4d1662c94fcfe80a3bf3a4900b2f6628f778b",
+    "review.json": "98d9044a0c01c74c1336486902714fc7e7a84aad8dd078d25b04febe69599174",
+}
 
 
 def sealed(root: Path, name: str = "chickadee", beginner: bool = False, run: str = RUN, full: bool = False) -> Path:
@@ -42,6 +55,8 @@ def sealed(root: Path, name: str = "chickadee", beginner: bool = False, run: str
     finish.save(Path(root) / "photos" / f"{name}.jpg", quality=90)
     finish.save(lesson / "99_finish.png")
     finish.save(lesson / "00_canvas_frame.png")
+    finish.resize((125, 98)).save(lesson / "00_reference.png")
+    (lesson / "00_reference_palette.json").write_bytes(b'{"colors": ["#9c97a8"]}\r\n')  # CRLF, as Windows leaves it
     if beginner:
         finish.resize((125, 98)).resize(finish.size).save(lesson / "00_beginner.png")
     canvas = {"canvas": {"w_in": 14.0, "h_in": 11.0, "orientation": "landscape"}, "canvas_box": [0.0, 0.0, 1.0, 1.0],
@@ -63,8 +78,11 @@ def sealed(root: Path, name: str = "chickadee", beginner: bool = False, run: str
     (lesson / "ledger.json").write_text(json.dumps({"calls": calls, "total_cost_usd": 0.1}))
     notes = {"photo_prep": {"subject": "a bird"}, "canvas_fit": {"canvas": "14 x 11 in"},
              "beginner_version": {"made": beginner, "busy": {"photo": {"fine_texture": 0.004}}},
-             "read": "not frozen: written after step 1"}
+             "technique": {"why": "paint-along fits"}, "read": "not frozen: written after step 1",
+             "filters": [{"image": "trials/simp.png"}]}
     (lesson / "notes.json").write_text(json.dumps(notes))
+    (lesson / "review.json").write_text(json.dumps({"finish_issues": ["the first finish turned the sky blue: redone"],
+                                                    "text_issues": [{"action": "left as is"}]}))
     photo = "00_beginner.png" if beginner else "00_canvas_frame.png"
     (lesson / "plan.json").write_text(json.dumps({"plan_version": 2, "photo": f"output/{run}/{photo}"}))
     return lesson
@@ -104,8 +122,9 @@ class FreezeBuildTests(unittest.TestCase):
         out = bench.freeze(run, bench=self.store)
         dest = self.store / "chickadee"
         self.assertEqual(out["picture"], "chickadee")
-        for f in ("99_finish.png", "00_canvas_frame.png", "00_beginner.png"):
+        for f in ("99_finish.png", "00_canvas_frame.png", "00_beginner.png", "00_reference.png"):
             self.assertEqual((dest / f).read_bytes(), (run / f).read_bytes(), f)
+        self.assertEqual((dest / "00_reference_palette.json").read_bytes(), b'{"colors": ["#9c97a8"]}\n')  # LF
         self.assertEqual((dest / "photo.jpg").read_bytes(), (self.tmp / "photos" / "chickadee.jpg").read_bytes())
         m = json.loads((dest / "manifest.json").read_text())
         self.assertEqual(m["source"]["run"], RUN)
@@ -120,7 +139,9 @@ class FreezeBuildTests(unittest.TestCase):
         self.assertEqual((canvas["frame"], canvas["input"]), ("00_canvas_frame.png", "photos/chickadee.jpg"))
         self.assertNotIn(RUN, (dest / "canvas.json").read_text())
         notes = json.loads((dest / "notes0.json").read_text())
-        self.assertEqual(sorted(notes), ["beginner_version", "canvas_fit", "photo_prep"])
+        self.assertEqual(sorted(notes), ["beginner_version", "canvas_fit", "photo_prep", "technique"])
+        self.assertEqual(json.loads((dest / "review0.json").read_text()),
+                         {"finish_issues": ["the first finish turned the sky blue: redone"]})
 
     def test_building_twice_gives_the_same_bytes(self):
         bench.freeze(sealed(self.tmp, beginner=True), bench=self.store)
@@ -128,9 +149,11 @@ class FreezeBuildTests(unittest.TestCase):
         two = bench.build("chickadee", self.tmp / "two", "20261117-235959", bench=self.store)
         h1, h2 = bench.folder_hashes(one), bench.folder_hashes(two)
         self.assertEqual(h1, h2)
-        self.assertEqual(sorted(h1), ["00_beginner.png", "00_canvas_frame.png", "99_finish.png", "bench.json",
-                                      "canvas.json", "ledger.json", "notes.json"])
-        for f in ("bench.json", "canvas.json", "ledger.json", "notes.json"):
+        self.assertEqual(sorted(h1), ["00_beginner.png", "00_canvas_frame.png", "00_reference.png",
+                                      "00_reference_palette.json", "99_finish.png", "bench.json", "canvas.json",
+                                      "ledger.json", "notes.json", "review.json"])
+        for f in ("bench.json", "canvas.json", "ledger.json", "notes.json", "review.json"):
+            self.assertNotIn(b"\r\n", (one / f).read_bytes(), f)
             text = (one / f).read_text()
             self.assertNotIn(one.name, text, f)
             self.assertNotIn(str(self.tmp / "one"), text, f)
@@ -149,6 +172,9 @@ class FreezeBuildTests(unittest.TestCase):
         notes = json.loads((lesson / "notes.json").read_text())
         self.assertIn("photo", notes["beginner_version"]["busy"])  # what the seal checks
         self.assertNotIn("read", notes)
+        self.assertEqual(json.loads((lesson / "review.json").read_text())["finish_issues"],
+                         ["the first finish turned the sky blue: redone"])
+        self.assertIn("background render", info["varies"])
         import tools
         self.assertEqual(tools.busy_problems(lesson, notes), [])
 
@@ -170,10 +196,46 @@ class FreezeBuildTests(unittest.TestCase):
         with open(self.store / "chickadee" / "99_finish.png", "ab") as f:
             f.write(b"x")
         self.assertIn("changed", bench.verify(self.store)["chickadee"])
+        self.assertEqual(len(bench.verify(self.store)["problems"]), 1)
         with self.assertRaises(bench.Refused):
             bench.build("chickadee", self.tmp / "c", "20261116-100000", bench=self.store)
         with self.assertRaises(bench.Refused):
             bench.build("lake-cabin", self.tmp / "c", bench=self.store)
+
+
+    def test_a_crlf_checkout_still_verifies_and_builds_the_same_bytes(self):
+        """Git for Windows with core.autocrlf turns LF into CRLF in text files on checkout."""
+        bench.freeze(sealed(self.tmp), bench=self.store)
+        lf = bench.build("chickadee", self.tmp / "lf", "20261116-100000", bench=self.store)
+        for f in (self.store / "chickadee").glob("*.json"):
+            f.write_bytes(f.read_bytes().replace(b"\n", b"\r\n"))
+        self.assertEqual(bench.verify(self.store)["chickadee"], "ok")
+        crlf = bench.build("chickadee", self.tmp / "crlf", "20261116-100000", bench=self.store)
+        self.assertEqual(bench.folder_hashes(crlf), bench.folder_hashes(lf))
+        self.assertEqual((crlf / "canvas.json").read_bytes(), (lf / "canvas.json").read_bytes())
+
+    def test_verify_fails_on_a_changed_or_extra_file(self):
+        bench.freeze(sealed(self.tmp), bench=self.store)
+        self.assertEqual(bench.verify(self.store)["problems"], [])
+        (self.store / "chickadee" / "stray.png").write_bytes(b"x")
+        out = bench.verify(self.store)
+        self.assertIn("not in the manifest", out["chickadee"])
+        with mock.patch.object(bench, "PICTURES_DIR", self.store), mock.patch.object(bench, "verify",
+                                                                                     lambda: out):
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(bench.main(["verify"]), 1)
+
+    def test_the_default_build_is_outside_output_so_publish_keeps_out_of_the_history(self):
+        import tools
+        self.assertNotIn((benchlib.ROOT / "output").resolve(), bench.DEFAULT_INTO.resolve().parents)
+        bench.freeze(sealed(self.tmp), bench=self.store)
+        folder = bench.build("chickadee", bench.DEFAULT_INTO, "19990101-000000", bench=self.store,
+                             name=f"test-{os.getpid()}-chickadee_skill_19990101-000000")
+        self.addCleanup(shutil.rmtree, folder, True)
+        with mock.patch.dict(os.environ):
+            os.environ.pop("GESSO_HISTORY", None)
+            self.assertFalse(tools.history_wanted(folder))
+        self.assertTrue(json.loads((folder / "bench.json").read_text())["history"].startswith("spike/"))
 
 
 class FrozenBenchTests(unittest.TestCase):
@@ -190,6 +252,16 @@ class FrozenBenchTests(unittest.TestCase):
             one = bench.build(p, tmp / "one", "20261116-100000")
             two = bench.build(p, tmp / "two", "20261116-100001")
             self.assertEqual(bench.folder_hashes(one), bench.folder_hashes(two), p)
+
+    def test_the_chickadee_build_matches_its_pinned_hashes(self):
+        """The same bytes on any machine, not only twice on this one: a built chickadee's JSON files against fixed
+        hashes. Re-pin these only when the chickadee is frozen again on purpose."""
+        if not (benchlib.PICTURES_DIR / "chickadee" / "manifest.json").exists():
+            self.skipTest("chickadee isn't frozen")
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        got = bench.folder_hashes(bench.build("chickadee", tmp, "20261116-100000"))
+        self.assertEqual({f: got[f] for f in PINNED}, PINNED)
 
 
 @lessons.slow

@@ -14,6 +14,22 @@
       "bytes": 2784256,
       "sha256": "0a129ed50c86ed7bf34c2e62bb859498d93f6e127317ecf729de3b9db7487b40"
     },
+    "00_reference.png": {
+      "bytes": 1678815,
+      "sha256": "1cdaf933440f995fc3a3ddae513ce37ad034d6f8b3e1e03821a63b73234a69d5"
+    },
+    "00_reference_palette.json": {
+      "bytes": 606,
+      "sha256": "1a348278bcdb85b6dedadda2859fd8077ed0ccfab81d8c3b680f2e12daaec40a"
+    },
+    "00_reference_palette.png": {
+      "bytes": 895,
+      "sha256": "b0ab337fb3b6285e6f63801fa3aba6ba9612ec0497b8ede865e26f91ad73cda1"
+    },
+    "00_reference_value-study.png": {
+      "bytes": 115159,
+      "sha256": "9a73de237496b82b7d7c0bed32287cd446734a3a5954b71f114ea71ffd3ac3ea"
+    },
     "99_finish.png": {
       "bytes": 2791297,
       "sha256": "025158606cae217be0fe779277ab28878e787be4f503d7db916ac34df0222b85"
@@ -23,12 +39,16 @@
       "sha256": "7a781574328ab29224655e889dcb03e1ace15c97e622c5ee82866a47c97be967"
     },
     "notes0.json": {
-      "bytes": 2511,
-      "sha256": "5bd14babdd566e9d87303f58ca936ec41fd34d4a17711961f6f543e0c28d3eb2"
+      "bytes": 3163,
+      "sha256": "a82d362443fe9874a1590a015c9187f22966075d8c80139c6c64c90166687657"
     },
     "photo.jpg": {
       "bytes": 785449,
       "sha256": "6ab125f6a6e895660b1333626a9b026d726486e31c5939ed9f98763d19622cca"
+    },
+    "review0.json": {
+      "bytes": 197,
+      "sha256": "a49cbf712504ffed83f28c1d552df10400acdf41e8362fd92811657bdcab155f"
     }
   },
   "photo": "photo.jpg",

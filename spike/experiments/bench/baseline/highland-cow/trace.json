@@ -2,15 +2,27 @@
   "candidates": [
     {
       "calls_naming_it": 92,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a973909bade80dc4a.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a973909bade80dc4a.jsonl"
+    },
+    {
+      "calls_naming_it": 11,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 8,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
     },
     {
       "calls_naming_it": 3,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
     },
     {
       "calls_naming_it": 3,
-      "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a907dd1d258e97263.jsonl"
     }
   ],
   "file_marks": {
@@ -80,6 +92,8 @@
   "lesson": "highland-cow_skill_20261116-212627",
   "phases": [
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 27.5,
         "Read": 0.2,
@@ -98,6 +112,8 @@
       "wall_s": 101.7
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 42.8,
         "Read": 0.3
@@ -115,25 +131,29 @@
       "wall_s": 73.2
     },
     {
+      "background_calls": 1,
+      "background_s": 60.2,
       "by_tool_s": {
-        "Bash": 263.8,
+        "Bash": 263.6,
         "Read": 0.4,
         "SendMessage": 0.2,
         "ToolSearch": 0.0
       },
       "calls": 25,
-      "claude_s": 155.3,
+      "claude_s": 155.4,
       "name": "parts and outlines",
       "phase": 2,
       "render_s": 0.0,
       "renders": 0,
       "started": "2026-11-16T21:29:18Z",
-      "tool_other_s": 264.8,
+      "tool_other_s": 264.7,
       "tool_printed_s": 266.7,
-      "tool_s": 264.8,
+      "tool_s": 264.7,
       "wall_s": 420.1
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 3.6,
         "Read": 0.0
@@ -151,6 +171,8 @@
       "wall_s": 15.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 4.9
       },
@@ -167,6 +189,8 @@
       "wall_s": 73.3
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 317.8,
         "Read": 0.4
@@ -184,6 +208,8 @@
       "wall_s": 437.1
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 25.3
       },
@@ -200,6 +226,8 @@
       "wall_s": 94.0
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 98.8,
         "Read": 0.7,
@@ -218,6 +246,8 @@
       "wall_s": 205.9
     },
     {
+      "background_calls": 0,
+      "background_s": 0.0,
       "by_tool_s": {
         "Bash": 149.0,
         "Read": 0.1,
@@ -238,16 +268,20 @@
   ],
   "phases_from": "step files",
   "totals": {
+    "background_calls": 1,
+    "background_s": 60.2,
     "calls": 119,
-    "claude_s": 721.7,
+    "claude_s": 721.8,
     "render_s": 64.3,
-    "tool_other_s": 872.2,
+    "tool_other_s": 872.1,
     "tool_printed_s": 437.1,
-    "tool_s": 936.5,
+    "tool_s": 936.4,
     "wall_s": 1658.2
   },
-  "transcript": "/root/.claude/projects/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a973909bade80dc4a.jsonl",
-  "warnings": [],
+  "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a973909bade80dc4a.jsonl",
+  "warnings": [
+    "1 background calls ran for 60.2 s alongside Claude and other tools: in background_s, not in tool time (Claude time includes waiting on them)"
+  ],
   "window": {
     "end": "2026-11-16T21:54:01Z",
     "start": "2026-11-16T21:26:23Z",

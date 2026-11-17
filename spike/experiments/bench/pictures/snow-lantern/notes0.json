@@ -25,5 +25,14 @@
     "found": "just the picture",
     "subject": "A brass lantern glowing orange, hanging from a bracket on a weathered wooden fence post, over snowy drifts at night, with a full moon, stars and dark pines behind.",
     "why": "The whole image is the painting: no bars, borders, text or frame."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so the v2 pipeline cannot plan from it."
+      }
+    ],
+    "why": "Paint-along, back to front, is the only technique with version 2 keys, and it fits a night snow scene: sky first, pines, snow, then the post and the lantern on top, glow and highlights last."
   }
 }
