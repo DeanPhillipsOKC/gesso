@@ -1,0 +1,7580 @@
+{
+ "lock-0": [
+  {
+   "picture": "balloon-lavender",
+   "run": "balloon-lavender_skill_20261116-203450",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 5.9,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/balloon-lavender_skill_20261116-203450-lock-0",
+   "mixes": 16,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 7
+   },
+   "lock": {
+    "moved_mean": 6.26,
+    "moved_far": 0.068,
+    "background_moved_mean": 6.26
+   },
+   "loss": {
+    "delta_e_mean": 5.5,
+    "moved_far": 0.0531,
+    "detail": 0.769
+   },
+   "edges_kept": 0.806,
+   "off_finish": 0.008,
+   "off_finish_v2": 0.0628,
+   "summary": {
+    "steps": 24,
+    "judged": 24,
+    "off": 0.068,
+    "off_part": 0.056,
+    "off_any": 0.038,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.096,
+    "worst": {
+     "id": "lavender-tips",
+     "off": 0.984
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5632,
+     "off": 0.147,
+     "off_part": 0.147,
+     "off_any": 0.146
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0019,
+     "off": 0.007,
+     "off_part": 0.007,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2518,
+     "off": 0.109,
+     "off_part": 0.061,
+     "off_any": 0.001
+    },
+    {
+     "id": "clouds-mid",
+     "show": "pass",
+     "last": true,
+     "added": 0.1589,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.1698,
+     "off": 0.015,
+     "off_part": 0.015,
+     "off_any": 0.002
+    },
+    {
+     "id": "fields-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2246,
+     "off": 0.025,
+     "off_part": 0.025,
+     "off_any": 0.009
+    },
+    {
+     "id": "fields-front",
+     "show": "pass",
+     "last": true,
+     "added": 0.0225,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1095,
+     "off": 0.12,
+     "off_part": 0.074,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0277,
+     "off": 0.009,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0153,
+     "off": 0.063,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "balloon-shape",
+     "show": "flat",
+     "last": false,
+     "added": 0.0187,
+     "off": 0.016,
+     "off_part": 0.013,
+     "off_any": 0.012
+    },
+    {
+     "id": "balloon-blue",
+     "show": "pass",
+     "last": false,
+     "added": 0.0074,
+     "off": 0.087,
+     "off_part": 0.067,
+     "off_any": 0.045
+    },
+    {
+     "id": "balloon-teal",
+     "show": "pass",
+     "last": false,
+     "added": 0.0021,
+     "off": 0.201,
+     "off_part": 0.077,
+     "off_any": 0.032
+    },
+    {
+     "id": "balloon-red",
+     "show": "pass",
+     "last": false,
+     "added": 0.0068,
+     "off": 0.018,
+     "off_part": 0.003,
+     "off_any": 0.003
+    },
+    {
+     "id": "balloon-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0023,
+     "off": 0.025,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "balloon-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0026,
+     "off": 0.027,
+     "off_part": 0.009,
+     "off_any": 0.008
+    },
+    {
+     "id": "tree-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0336,
+     "off": 0.14,
+     "off_part": 0.135,
+     "off_any": 0.008
+    },
+    {
+     "id": "tree-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0117,
+     "off": 0.045,
+     "off_part": 0.028,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0038,
+     "off": 0.22,
+     "off_part": 0.118,
+     "off_any": 0.001
+    },
+    {
+     "id": "lavender-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3749,
+     "off": 0.007,
+     "off_part": 0.006,
+     "off_any": 0.0
+    },
+    {
+     "id": "lavender-soil",
+     "show": "pass",
+     "last": false,
+     "added": 0.0328,
+     "off": 0.046,
+     "off_part": 0.033,
+     "off_any": 0.01
+    },
+    {
+     "id": "lavender-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1238,
+     "off": 0.024,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "lavender-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0743,
+     "off": 0.029,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "lavender-tips",
+     "show": "full",
+     "last": true,
+     "added": 0.0036,
+     "off": 0.984,
+     "off_part": 0.101,
+     "off_any": 0.01
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "run": "birch-grove_skill_20261116-210750",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 7.0,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/birch-grove_skill_20261116-210750-lock-0",
+   "mixes": 8,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 2
+   },
+   "lock": {
+    "moved_mean": 7.77,
+    "moved_far": 0.1502,
+    "background_moved_mean": 10.34
+   },
+   "loss": {
+    "delta_e_mean": 7.19,
+    "moved_far": 0.1172,
+    "detail": 0.872
+   },
+   "edges_kept": 0.884,
+   "off_finish": 0.0142,
+   "off_finish_v2": 0.1482,
+   "summary": {
+    "steps": 14,
+    "judged": 14,
+    "off": 0.125,
+    "off_part": 0.091,
+    "off_any": 0.025,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.114,
+    "worst": {
+     "id": "leaves-dark",
+     "off": 0.304
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.7127,
+     "off": 0.138,
+     "off_part": 0.138,
+     "off_any": 0.071
+    },
+    {
+     "id": "sun-rays",
+     "show": "full",
+     "last": true,
+     "added": 0.028,
+     "off": 0.107,
+     "off_part": 0.107,
+     "off_any": 0.0
+    },
+    {
+     "id": "firs-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0716,
+     "off": 0.158,
+     "off_part": 0.091,
+     "off_any": 0.0
+    },
+    {
+     "id": "firs-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.048,
+     "off": 0.021,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.028,
+     "off": 0.221,
+     "off_part": 0.221,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.3602,
+     "off": 0.024,
+     "off_part": 0.003,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-rust",
+     "show": "pass",
+     "last": false,
+     "added": 0.0849,
+     "off": 0.009,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.1115,
+     "off": 0.011,
+     "off_part": 0.003,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.2279,
+     "off": 0.304,
+     "off_part": 0.139,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-gold",
+     "show": "pass",
+     "last": false,
+     "added": 0.0489,
+     "off": 0.018,
+     "off_part": 0.012,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.059,
+     "off": 0.046,
+     "off_part": 0.026,
+     "off_any": 0.0
+    },
+    {
+     "id": "birch-trunks",
+     "show": "flat",
+     "last": false,
+     "added": 0.2343,
+     "off": 0.241,
+     "off_part": 0.172,
+     "off_any": 0.0
+    },
+    {
+     "id": "birch-marks",
+     "show": "pass",
+     "last": false,
+     "added": 0.1094,
+     "off": 0.054,
+     "off_part": 0.049,
+     "off_any": 0.028
+    },
+    {
+     "id": "birch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0354,
+     "off": 0.107,
+     "off_part": 0.07,
+     "off_any": 0.034
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "run": "chickadee_skill_20261116-203451",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 5.7,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/chickadee_skill_20261116-203451-lock-0",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 4
+   },
+   "lock": {
+    "moved_mean": 7.34,
+    "moved_far": 0.1382,
+    "background_moved_mean": 7.43
+   },
+   "loss": {
+    "delta_e_mean": 6.96,
+    "moved_far": 0.1104,
+    "detail": 0.715
+   },
+   "edges_kept": 0.743,
+   "off_finish": 0.0149,
+   "off_finish_v2": 0.1382,
+   "summary": {
+    "steps": 18,
+    "judged": 18,
+    "off": 0.074,
+    "off_part": 0.07,
+    "off_any": 0.005,
+    "off_steps": 2,
+    "empty": [],
+    "off_last": 0.082,
+    "worst": {
+     "id": "wing-light",
+     "off": 0.881
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.068,
+     "off_part": 0.068,
+     "off_any": 0.0
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0034,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0393,
+     "off": 0.042,
+     "off_part": 0.042,
+     "off_any": 0.0
+    },
+    {
+     "id": "foliage",
+     "show": "pass",
+     "last": true,
+     "added": 0.199,
+     "off": 0.154,
+     "off_part": 0.154,
+     "off_any": 0.0
+    },
+    {
+     "id": "branch-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1435,
+     "off": 0.03,
+     "off_part": 0.022,
+     "off_any": 0.011
+    },
+    {
+     "id": "branch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.045,
+     "off": 0.146,
+     "off_part": 0.141,
+     "off_any": 0.121
+    },
+    {
+     "id": "leaves-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.069,
+     "off": 0.029,
+     "off_part": 0.015,
+     "off_any": 0.005
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0227,
+     "off": 0.074,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bird-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0299,
+     "off": 0.027,
+     "off_part": 0.027,
+     "off_any": 0.0
+    },
+    {
+     "id": "bird-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0073,
+     "off": 0.001,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0275,
+     "off": 0.018,
+     "off_part": 0.006,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0077,
+     "off": 0.058,
+     "off_part": 0.058,
+     "off_any": 0.001
+    },
+    {
+     "id": "wing-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0007,
+     "off": 0.881,
+     "off_part": 0.483,
+     "off_any": 0.059
+    },
+    {
+     "id": "bird-feathers",
+     "show": "pass",
+     "last": true,
+     "added": 0.0132,
+     "off": 0.058,
+     "off_part": 0.003,
+     "off_any": 0.0
+    },
+    {
+     "id": "cap",
+     "show": "full",
+     "last": true,
+     "added": 0.0219,
+     "off": 0.064,
+     "off_part": 0.064,
+     "off_any": 0.011
+    },
+    {
+     "id": "cheek",
+     "show": "full",
+     "last": true,
+     "added": 0.0058,
+     "off": 0.024,
+     "off_part": 0.024,
+     "off_any": 0.0
+    },
+    {
+     "id": "feet-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0043,
+     "off": 0.276,
+     "off_part": 0.274,
+     "off_any": 0.008
+    },
+    {
+     "id": "feet-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.001,
+     "off": 0.044,
+     "off_part": 0.044,
+     "off_any": 0.044
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "run": "highland-cow_skill_20261116-212627",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 4.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/highland-cow_skill_20261116-212627-lock-0",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 3
+   },
+   "lock": {
+    "moved_mean": 6.97,
+    "moved_far": 0.1198,
+    "background_moved_mean": 8.72
+   },
+   "loss": {
+    "delta_e_mean": 6.31,
+    "moved_far": 0.0902,
+    "detail": 0.754
+   },
+   "edges_kept": 0.785,
+   "off_finish": 0.0125,
+   "off_finish_v2": 0.115,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.048,
+    "off_part": 0.024,
+    "off_any": 0.003,
+    "off_steps": 4,
+    "empty": [],
+    "off_last": 0.039,
+    "worst": {
+     "id": "clouds-gray",
+     "off": 0.548
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.3984,
+     "off": 0.006,
+     "off_part": 0.006,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-gray",
+     "show": "pass",
+     "last": false,
+     "added": 0.059,
+     "off": 0.548,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-gold",
+     "show": "full",
+     "last": true,
+     "added": 0.071,
+     "off": 0.004,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.2124,
+     "off": 0.018,
+     "off_part": 0.018,
+     "off_any": 0.001
+    },
+    {
+     "id": "loch",
+     "show": "full",
+     "last": true,
+     "added": 0.0037,
+     "off": 0.056,
+     "off_part": 0.056,
+     "off_any": 0.001
+    },
+    {
+     "id": "hillside-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3148,
+     "off": 0.008,
+     "off_part": 0.007,
+     "off_any": 0.003
+    },
+    {
+     "id": "hillside-patches",
+     "show": "full",
+     "last": true,
+     "added": 0.0443,
+     "off": 0.251,
+     "off_part": 0.218,
+     "off_any": 0.001
+    },
+    {
+     "id": "grass-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3762,
+     "off": 0.024,
+     "off_part": 0.011,
+     "off_any": 0.001
+    },
+    {
+     "id": "grass-moss",
+     "show": "pass",
+     "last": false,
+     "added": 0.1286,
+     "off": 0.018,
+     "off_part": 0.004,
+     "off_any": 0.001
+    },
+    {
+     "id": "grass-olive",
+     "show": "full",
+     "last": true,
+     "added": 0.1889,
+     "off": 0.077,
+     "off_part": 0.053,
+     "off_any": 0.0
+    },
+    {
+     "id": "cow-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.2181,
+     "off": 0.056,
+     "off_part": 0.046,
+     "off_any": 0.001
+    },
+    {
+     "id": "cow-locks",
+     "show": "pass",
+     "last": false,
+     "added": 0.0696,
+     "off": 0.044,
+     "off_part": 0.03,
+     "off_any": 0.026
+    },
+    {
+     "id": "cow-rim",
+     "show": "full",
+     "last": true,
+     "added": 0.0268,
+     "off": 0.152,
+     "off_part": 0.068,
+     "off_any": 0.063
+    },
+    {
+     "id": "horns-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0142,
+     "off": 0.264,
+     "off_part": 0.214,
+     "off_any": 0.021
+    },
+    {
+     "id": "horns-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0063,
+     "off": 0.053,
+     "off_part": 0.05,
+     "off_any": 0.04
+    },
+    {
+     "id": "horns-light",
+     "show": "full",
+     "last": true,
+     "added": 0.002,
+     "off": 0.276,
+     "off_part": 0.229,
+     "off_any": 0.094
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "run": "lake-cabin_skill_20261116-205703",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 6.7,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/lake-cabin_skill_20261116-205703-lock-0",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 11,
+    "paints": 11,
+    "merges": 10
+   },
+   "lock": {
+    "moved_mean": 7.47,
+    "moved_far": 0.126,
+    "background_moved_mean": 7.77
+   },
+   "loss": {
+    "delta_e_mean": 6.7,
+    "moved_far": 0.0994,
+    "detail": 0.708
+   },
+   "edges_kept": 0.795,
+   "off_finish": 0.0049,
+   "off_finish_v2": 0.1161,
+   "summary": {
+    "steps": 23,
+    "judged": 23,
+    "off": 0.03,
+    "off_part": 0.016,
+    "off_any": 0.001,
+    "off_steps": 2,
+    "empty": [],
+    "off_last": 0.026,
+    "worst": {
+     "id": "mountain-snow",
+     "off": 0.398
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.4411,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.1744,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0919,
+     "off": 0.005,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-snow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0208,
+     "off": 0.398,
+     "off_part": 0.294,
+     "off_any": 0.1
+    },
+    {
+     "id": "forest-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.143,
+     "off": 0.04,
+     "off_part": 0.03,
+     "off_any": 0.001
+    },
+    {
+     "id": "forest-light",
+     "show": "full",
+     "last": true,
+     "added": 0.1462,
+     "off": 0.019,
+     "off_part": 0.006,
+     "off_any": 0.001
+    },
+    {
+     "id": "cabin-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0067,
+     "off": 0.211,
+     "off_part": 0.202,
+     "off_any": 0.011
+    },
+    {
+     "id": "cabin-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0018,
+     "off": 0.062,
+     "off_part": 0.052,
+     "off_any": 0.007
+    },
+    {
+     "id": "cabin-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0028,
+     "off": 0.078,
+     "off_part": 0.053,
+     "off_any": 0.0
+    },
+    {
+     "id": "dock",
+     "show": "full",
+     "last": true,
+     "added": 0.0066,
+     "off": 0.208,
+     "off_part": 0.208,
+     "off_any": 0.021
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5454,
+     "off": 0.011,
+     "off_part": 0.011,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0899,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1202,
+     "off": 0.083,
+     "off_part": 0.062,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-olive",
+     "show": "pass",
+     "last": false,
+     "added": 0.0298,
+     "off": 0.14,
+     "off_part": 0.024,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0162,
+     "off": 0.059,
+     "off_part": 0.059,
+     "off_any": 0.0
+    },
+    {
+     "id": "cabin-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0055,
+     "off": 0.079,
+     "off_part": 0.079,
+     "off_any": 0.001
+    },
+    {
+     "id": "tree-reflection-ripples",
+     "show": "pass",
+     "last": true,
+     "added": 0.0816,
+     "off": 0.086,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.04,
+     "off": 0.297,
+     "off_part": 0.004,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0121,
+     "off": 0.016,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0205,
+     "off": 0.013,
+     "off_part": 0.003,
+     "off_any": 0.002
+    },
+    {
+     "id": "rocks-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0472,
+     "off": 0.025,
+     "off_part": 0.025,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0171,
+     "off": 0.002,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0106,
+     "off": 0.037,
+     "off_part": 0.0,
+     "off_any": 0.0
+    }
+   ]
+  },
+  {
+   "picture": "red-sailboat",
+   "run": "red-sailboat_skill_20261116-203450",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 5.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/red-sailboat_skill_20261116-203450-lock-0",
+   "mixes": 15,
+   "remeasured": {
+    "mixes": 11,
+    "paints": 12,
+    "merges": 2
+   },
+   "lock": {
+    "moved_mean": 6.07,
+    "moved_far": 0.0638,
+    "background_moved_mean": 6.19
+   },
+   "loss": {
+    "delta_e_mean": 5.46,
+    "moved_far": 0.0471,
+    "detail": 0.56
+   },
+   "edges_kept": 0.73,
+   "off_finish": 0.0111,
+   "off_finish_v2": 0.0596,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.018,
+    "off_part": 0.015,
+    "off_any": 0.004,
+    "off_steps": 5,
+    "empty": [],
+    "off_last": 0.012,
+    "worst": {
+     "id": "mast-light",
+     "off": 0.497
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5801,
+     "off": 0.004,
+     "off_part": 0.004,
+     "off_any": 0.004
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0023,
+     "off": 0.024,
+     "off_part": 0.024,
+     "off_any": 0.0
+    },
+    {
+     "id": "hills",
+     "show": "full",
+     "last": true,
+     "added": 0.0954,
+     "off": 0.031,
+     "off_part": 0.031,
+     "off_any": 0.01
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.46,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "water-streaks",
+     "show": "pass",
+     "last": true,
+     "added": 0.1099,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "sun-path-first",
+     "show": "pass",
+     "last": false,
+     "added": 0.0318,
+     "off": 0.253,
+     "off_part": 0.185,
+     "off_any": 0.003
+    },
+    {
+     "id": "sun-path-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.0228,
+     "off": 0.028,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "sail-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0258,
+     "off": 0.07,
+     "off_part": 0.069,
+     "off_any": 0.002
+    },
+    {
+     "id": "sail-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.003,
+     "off": 0.033,
+     "off_part": 0.033,
+     "off_any": 0.024
+    },
+    {
+     "id": "mast-line",
+     "show": "flat",
+     "last": false,
+     "added": 0.0055,
+     "off": 0.338,
+     "off_part": 0.256,
+     "off_any": 0.023
+    },
+    {
+     "id": "mast-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0017,
+     "off": 0.497,
+     "off_part": 0.347,
+     "off_any": 0.126
+    },
+    {
+     "id": "hull-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0099,
+     "off": 0.152,
+     "off_part": 0.151,
+     "off_any": 0.013
+    },
+    {
+     "id": "hull-rail",
+     "show": "pass",
+     "last": true,
+     "added": 0.0007,
+     "off": 0.484,
+     "off_part": 0.324,
+     "off_any": 0.0
+    },
+    {
+     "id": "reflection-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0268,
+     "off": 0.014,
+     "off_part": 0.012,
+     "off_any": 0.0
+    },
+    {
+     "id": "reflection-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0061,
+     "off": 0.139,
+     "off_part": 0.136,
+     "off_any": 0.002
+    },
+    {
+     "id": "reflection-zigzag",
+     "show": "pass",
+     "last": true,
+     "added": 0.005,
+     "off": 0.451,
+     "off_part": 0.348,
+     "off_any": 0.123
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "run": "sleeping-cat_skill_20261116-203502",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 2.1,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/sleeping-cat_skill_20261116-203502-lock-0",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 0
+   },
+   "lock": {
+    "moved_mean": 5.25,
+    "moved_far": 0.0606
+   },
+   "loss": {
+    "delta_e_mean": 4.72,
+    "moved_far": 0.0431,
+    "detail": 0.759
+   },
+   "edges_kept": 0.804,
+   "off_finish": 0.01,
+   "off_finish_v2": 0.0591,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.012,
+    "off_part": 0.009,
+    "off_any": 0.002,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.006,
+    "worst": {
+     "id": "cat-fur",
+     "off": 0.998
+    }
+   },
+   "steps": [
+    {
+     "id": "wall-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "outside-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.0782,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0438,
+     "off": 0.025,
+     "off_part": 0.006,
+     "off_any": 0.002
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0194,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "window-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0814,
+     "off": 0.035,
+     "off_part": 0.035,
+     "off_any": 0.0
+    },
+    {
+     "id": "window-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.0365,
+     "off": 0.07,
+     "off_part": 0.068,
+     "off_any": 0.005
+    },
+    {
+     "id": "sill-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.1577,
+     "off": 0.01,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "sill-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0209,
+     "off": 0.169,
+     "off_part": 0.165,
+     "off_any": 0.021
+    },
+    {
+     "id": "blanket-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.212,
+     "off": 0.014,
+     "off_part": 0.013,
+     "off_any": 0.009
+    },
+    {
+     "id": "blanket-stitches",
+     "show": "pass",
+     "last": false,
+     "added": 0.0065,
+     "off": 0.033,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "blanket-folds",
+     "show": "pass",
+     "last": true,
+     "added": 0.0164,
+     "off": 0.034,
+     "off_part": 0.024,
+     "off_any": 0.024
+    },
+    {
+     "id": "cat-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.3565,
+     "off": 0.01,
+     "off_part": 0.009,
+     "off_any": 0.001
+    },
+    {
+     "id": "cat-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0424,
+     "off": 0.039,
+     "off_part": 0.027,
+     "off_any": 0.026
+    },
+    {
+     "id": "cat-stripes",
+     "show": "pass",
+     "last": false,
+     "added": 0.1319,
+     "off": 0.001,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "cat-fur",
+     "show": "pass",
+     "last": false,
+     "added": 0.0048,
+     "off": 0.998,
+     "off_part": 0.195,
+     "off_any": 0.195
+    },
+    {
+     "id": "cat-pink",
+     "show": "pass",
+     "last": true,
+     "added": 0.0194,
+     "off": 0.028,
+     "off_part": 0.002,
+     "off_any": 0.0
+    }
+   ]
+  },
+  {
+   "picture": "snow-lantern",
+   "run": "snow-lantern_skill_20261116-205524",
+   "variant": "lock-0",
+   "tol": 0.0,
+   "lock_seconds": 5.8,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-0/lessons/snow-lantern_skill_20261116-205524-lock-0",
+   "mixes": 12,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 3
+   },
+   "lock": {
+    "moved_mean": 5.89,
+    "moved_far": 0.066,
+    "background_moved_mean": 6.12
+   },
+   "loss": {
+    "delta_e_mean": 5.36,
+    "moved_far": 0.0481,
+    "detail": 0.556
+   },
+   "edges_kept": 0.659,
+   "off_finish": 0.0082,
+   "off_finish_v2": 0.061,
+   "summary": {
+    "steps": 20,
+    "judged": 20,
+    "off": 0.016,
+    "off_part": 0.009,
+    "off_any": 0.003,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.013,
+    "worst": {
+     "id": "lantern-darks",
+     "off": 0.417
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.6602,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "sky-moon",
+     "show": "full",
+     "last": true,
+     "added": 0.0169,
+     "off": 0.031,
+     "off_part": 0.031,
+     "off_any": 0.009
+    },
+    {
+     "id": "pines-stamp",
+     "show": "full",
+     "last": true,
+     "added": 0.1121,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "snow-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.525,
+     "off": 0.002,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "snow-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0892,
+     "off": 0.015,
+     "off_part": 0.009,
+     "off_any": 0.009
+    },
+    {
+     "id": "snow-glow-edge",
+     "show": "pass",
+     "last": false,
+     "added": 0.0503,
+     "off": 0.072,
+     "off_part": 0.035,
+     "off_any": 0.032
+    },
+    {
+     "id": "snow-glow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0551,
+     "off": 0.101,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "rails-block",
+     "show": "full",
+     "last": true,
+     "added": 0.0346,
+     "off": 0.017,
+     "off_part": 0.017,
+     "off_any": 0.015
+    },
+    {
+     "id": "post-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0816,
+     "off": 0.032,
+     "off_part": 0.028,
+     "off_any": 0.007
+    },
+    {
+     "id": "post-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0349,
+     "off": 0.03,
+     "off_part": 0.019,
+     "off_any": 0.005
+    },
+    {
+     "id": "post-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0187,
+     "off": 0.085,
+     "off_part": 0.004,
+     "off_any": 0.004
+    },
+    {
+     "id": "bracket-pull",
+     "show": "flat",
+     "last": false,
+     "added": 0.014,
+     "off": 0.027,
+     "off_part": 0.022,
+     "off_any": 0.001
+    },
+    {
+     "id": "bracket-light",
+     "show": "full",
+     "last": true,
+     "added": 0.0091,
+     "off": 0.002,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "caps-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0269,
+     "off": 0.188,
+     "off_part": 0.188,
+     "off_any": 0.036
+    },
+    {
+     "id": "caps-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0141,
+     "off": 0.034,
+     "off_part": 0.024,
+     "off_any": 0.006
+    },
+    {
+     "id": "caps-warm",
+     "show": "pass",
+     "last": true,
+     "added": 0.012,
+     "off": 0.13,
+     "off_part": 0.067,
+     "off_any": 0.008
+    },
+    {
+     "id": "lantern-glass",
+     "show": "flat",
+     "last": false,
+     "added": 0.0547,
+     "off": 0.028,
+     "off_part": 0.019,
+     "off_any": 0.005
+    },
+    {
+     "id": "lantern-glow",
+     "show": "pass",
+     "last": false,
+     "added": 0.014,
+     "off": 0.008,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "lantern-brass",
+     "show": "pass",
+     "last": false,
+     "added": 0.0179,
+     "off": 0.012,
+     "off_part": 0.007,
+     "off_any": 0.003
+    },
+    {
+     "id": "lantern-darks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0057,
+     "off": 0.417,
+     "off_part": 0.164,
+     "off_any": 0.03
+    }
+   ]
+  }
+ ],
+ "lock-8": [
+  {
+   "picture": "balloon-lavender",
+   "run": "balloon-lavender_skill_20261116-203450",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 6.8,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/balloon-lavender_skill_20261116-203450-lock-8",
+   "mixes": 16,
+   "remeasured": {
+    "mixes": 13,
+    "paints": 13,
+    "merges": 6
+   },
+   "lock": {
+    "moved_mean": 0.93,
+    "moved_far": 0.0152,
+    "background_moved_mean": 0.94
+   },
+   "loss": {
+    "delta_e_mean": 0.87,
+    "moved_far": 0.0098,
+    "detail": 0.944
+   },
+   "edges_kept": 0.942,
+   "off_finish": 0.0133,
+   "off_finish_v2": 0.0628,
+   "summary": {
+    "steps": 24,
+    "judged": 24,
+    "off": 0.064,
+    "off_part": 0.04,
+    "off_any": 0.024,
+    "off_steps": 3,
+    "empty": [],
+    "off_last": 0.08,
+    "worst": {
+     "id": "lavender-tips",
+     "off": 0.997
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5632,
+     "off": 0.094,
+     "off_part": 0.094,
+     "off_any": 0.088
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0024,
+     "off": 0.147,
+     "off_part": 0.147,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2631,
+     "off": 0.117,
+     "off_part": 0.052,
+     "off_any": 0.003
+    },
+    {
+     "id": "clouds-mid",
+     "show": "pass",
+     "last": true,
+     "added": 0.1741,
+     "off": 0.027,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.1711,
+     "off": 0.023,
+     "off_part": 0.023,
+     "off_any": 0.003
+    },
+    {
+     "id": "fields-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2247,
+     "off": 0.026,
+     "off_part": 0.025,
+     "off_any": 0.008
+    },
+    {
+     "id": "fields-front",
+     "show": "pass",
+     "last": true,
+     "added": 0.0188,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1136,
+     "off": 0.152,
+     "off_part": 0.05,
+     "off_any": 0.001
+    },
+    {
+     "id": "bushes-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0283,
+     "off": 0.007,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0154,
+     "off": 0.073,
+     "off_part": 0.015,
+     "off_any": 0.0
+    },
+    {
+     "id": "balloon-shape",
+     "show": "flat",
+     "last": false,
+     "added": 0.0278,
+     "off": 0.01,
+     "off_part": 0.008,
+     "off_any": 0.006
+    },
+    {
+     "id": "balloon-blue",
+     "show": "pass",
+     "last": false,
+     "added": 0.0073,
+     "off": 0.085,
+     "off_part": 0.046,
+     "off_any": 0.037
+    },
+    {
+     "id": "balloon-teal",
+     "show": "pass",
+     "last": false,
+     "added": 0.0022,
+     "off": 0.218,
+     "off_part": 0.104,
+     "off_any": 0.051
+    },
+    {
+     "id": "balloon-red",
+     "show": "pass",
+     "last": false,
+     "added": 0.0063,
+     "off": 0.115,
+     "off_part": 0.009,
+     "off_any": 0.009
+    },
+    {
+     "id": "balloon-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0017,
+     "off": 0.049,
+     "off_part": 0.015,
+     "off_any": 0.014
+    },
+    {
+     "id": "balloon-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0042,
+     "off": 0.399,
+     "off_part": 0.011,
+     "off_any": 0.001
+    },
+    {
+     "id": "tree-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0308,
+     "off": 0.064,
+     "off_part": 0.058,
+     "off_any": 0.012
+    },
+    {
+     "id": "tree-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0109,
+     "off": 0.092,
+     "off_part": 0.08,
+     "off_any": 0.01
+    },
+    {
+     "id": "tree-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0036,
+     "off": 0.29,
+     "off_part": 0.263,
+     "off_any": 0.002
+    },
+    {
+     "id": "lavender-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3755,
+     "off": 0.007,
+     "off_part": 0.006,
+     "off_any": 0.0
+    },
+    {
+     "id": "lavender-soil",
+     "show": "pass",
+     "last": false,
+     "added": 0.0328,
+     "off": 0.069,
+     "off_part": 0.06,
+     "off_any": 0.027
+    },
+    {
+     "id": "lavender-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.169,
+     "off": 0.037,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "lavender-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0644,
+     "off": 0.018,
+     "off_part": 0.006,
+     "off_any": 0.004
+    },
+    {
+     "id": "lavender-tips",
+     "show": "full",
+     "last": true,
+     "added": 0.011,
+     "off": 0.997,
+     "off_part": 0.099,
+     "off_any": 0.049
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "run": "birch-grove_skill_20261116-210750",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 9.1,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/birch-grove_skill_20261116-210750-lock-8",
+   "mixes": 8,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 13,
+    "merges": 3
+   },
+   "lock": {
+    "moved_mean": 1.66,
+    "moved_far": 0.0258,
+    "background_moved_mean": 3.87
+   },
+   "loss": {
+    "delta_e_mean": 1.57,
+    "moved_far": 0.0216,
+    "detail": 0.964
+   },
+   "edges_kept": 0.96,
+   "off_finish": 0.0247,
+   "off_finish_v2": 0.1482,
+   "summary": {
+    "steps": 14,
+    "judged": 14,
+    "off": 0.163,
+    "off_part": 0.116,
+    "off_any": 0.006,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.17,
+    "worst": {
+     "id": "leaves-dark",
+     "off": 0.372
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.7274,
+     "off": 0.221,
+     "off_part": 0.221,
+     "off_any": 0.016
+    },
+    {
+     "id": "sun-rays",
+     "show": "full",
+     "last": true,
+     "added": 0.0588,
+     "off": 0.01,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "firs-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0729,
+     "off": 0.167,
+     "off_part": 0.078,
+     "off_any": 0.004
+    },
+    {
+     "id": "firs-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0457,
+     "off": 0.016,
+     "off_part": 0.003,
+     "off_any": 0.001
+    },
+    {
+     "id": "far-trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0249,
+     "off": 0.187,
+     "off_part": 0.187,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.3092,
+     "off": 0.046,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-rust",
+     "show": "pass",
+     "last": false,
+     "added": 0.0846,
+     "off": 0.02,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.1027,
+     "off": 0.032,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.2455,
+     "off": 0.372,
+     "off_part": 0.135,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-gold",
+     "show": "pass",
+     "last": false,
+     "added": 0.0547,
+     "off": 0.032,
+     "off_part": 0.008,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0741,
+     "off": 0.078,
+     "off_part": 0.016,
+     "off_any": 0.001
+    },
+    {
+     "id": "birch-trunks",
+     "show": "flat",
+     "last": false,
+     "added": 0.2188,
+     "off": 0.203,
+     "off_part": 0.157,
+     "off_any": 0.0
+    },
+    {
+     "id": "birch-marks",
+     "show": "pass",
+     "last": false,
+     "added": 0.1069,
+     "off": 0.042,
+     "off_part": 0.039,
+     "off_any": 0.009
+    },
+    {
+     "id": "birch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0351,
+     "off": 0.161,
+     "off_part": 0.119,
+     "off_any": 0.013
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "run": "chickadee_skill_20261116-203451",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 7.1,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/chickadee_skill_20261116-203451-lock-8",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 5
+   },
+   "lock": {
+    "moved_mean": 1.37,
+    "moved_far": 0.0089,
+    "background_moved_mean": 1.39
+   },
+   "loss": {
+    "delta_e_mean": 1.28,
+    "moved_far": 0.0057,
+    "detail": 0.939
+   },
+   "edges_kept": 0.946,
+   "off_finish": 0.0239,
+   "off_finish_v2": 0.1382,
+   "summary": {
+    "steps": 18,
+    "judged": 18,
+    "off": 0.084,
+    "off_part": 0.077,
+    "off_any": 0.005,
+    "off_steps": 2,
+    "empty": [],
+    "off_last": 0.094,
+    "worst": {
+     "id": "wing-light",
+     "off": 0.332
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.089,
+     "off_part": 0.089,
+     "off_any": 0.0
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0032,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0758,
+     "off": 0.03,
+     "off_part": 0.03,
+     "off_any": 0.0
+    },
+    {
+     "id": "foliage",
+     "show": "pass",
+     "last": true,
+     "added": 0.2055,
+     "off": 0.102,
+     "off_part": 0.102,
+     "off_any": 0.001
+    },
+    {
+     "id": "branch-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1439,
+     "off": 0.033,
+     "off_part": 0.027,
+     "off_any": 0.011
+    },
+    {
+     "id": "branch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0501,
+     "off": 0.249,
+     "off_part": 0.144,
+     "off_any": 0.114
+    },
+    {
+     "id": "leaves-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0692,
+     "off": 0.029,
+     "off_part": 0.021,
+     "off_any": 0.002
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0218,
+     "off": 0.117,
+     "off_part": 0.002,
+     "off_any": 0.001
+    },
+    {
+     "id": "bird-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0407,
+     "off": 0.028,
+     "off_part": 0.02,
+     "off_any": 0.0
+    },
+    {
+     "id": "bird-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0066,
+     "off": 0.122,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0275,
+     "off": 0.013,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0075,
+     "off": 0.073,
+     "off_part": 0.072,
+     "off_any": 0.006
+    },
+    {
+     "id": "wing-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0022,
+     "off": 0.332,
+     "off_part": 0.24,
+     "off_any": 0.023
+    },
+    {
+     "id": "bird-feathers",
+     "show": "pass",
+     "last": true,
+     "added": 0.0138,
+     "off": 0.088,
+     "off_part": 0.014,
+     "off_any": 0.001
+    },
+    {
+     "id": "cap",
+     "show": "full",
+     "last": true,
+     "added": 0.0222,
+     "off": 0.089,
+     "off_part": 0.089,
+     "off_any": 0.032
+    },
+    {
+     "id": "cheek",
+     "show": "full",
+     "last": true,
+     "added": 0.0058,
+     "off": 0.035,
+     "off_part": 0.035,
+     "off_any": 0.002
+    },
+    {
+     "id": "feet-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0046,
+     "off": 0.308,
+     "off_part": 0.306,
+     "off_any": 0.023
+    },
+    {
+     "id": "feet-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.001,
+     "off": 0.044,
+     "off_part": 0.044,
+     "off_any": 0.01
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "run": "highland-cow_skill_20261116-212627",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 6.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/highland-cow_skill_20261116-212627-lock-8",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 10,
+    "merges": 7
+   },
+   "lock": {
+    "moved_mean": 1.3,
+    "moved_far": 0.0105,
+    "background_moved_mean": 2.88
+   },
+   "loss": {
+    "delta_e_mean": 1.21,
+    "moved_far": 0.0085,
+    "detail": 0.952
+   },
+   "edges_kept": 0.921,
+   "off_finish": 0.023,
+   "off_finish_v2": 0.115,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.056,
+    "off_part": 0.028,
+    "off_any": 0.006,
+    "off_steps": 3,
+    "empty": [],
+    "off_last": 0.057,
+    "worst": {
+     "id": "clouds-gray",
+     "off": 0.598
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.3973,
+     "off": 0.005,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-gray",
+     "show": "pass",
+     "last": false,
+     "added": 0.053,
+     "off": 0.598,
+     "off_part": 0.006,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-gold",
+     "show": "full",
+     "last": true,
+     "added": 0.0708,
+     "off": 0.001,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.2128,
+     "off": 0.019,
+     "off_part": 0.019,
+     "off_any": 0.001
+    },
+    {
+     "id": "loch",
+     "show": "full",
+     "last": true,
+     "added": 0.0038,
+     "off": 0.062,
+     "off_part": 0.062,
+     "off_any": 0.013
+    },
+    {
+     "id": "hillside-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.316,
+     "off": 0.008,
+     "off_part": 0.008,
+     "off_any": 0.005
+    },
+    {
+     "id": "hillside-patches",
+     "show": "full",
+     "last": true,
+     "added": 0.0633,
+     "off": 0.514,
+     "off_part": 0.285,
+     "off_any": 0.004
+    },
+    {
+     "id": "grass-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3876,
+     "off": 0.022,
+     "off_part": 0.01,
+     "off_any": 0.005
+    },
+    {
+     "id": "grass-moss",
+     "show": "pass",
+     "last": false,
+     "added": 0.1215,
+     "off": 0.014,
+     "off_part": 0.005,
+     "off_any": 0.003
+    },
+    {
+     "id": "grass-olive",
+     "show": "full",
+     "last": true,
+     "added": 0.1905,
+     "off": 0.062,
+     "off_part": 0.045,
+     "off_any": 0.005
+    },
+    {
+     "id": "cow-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.217,
+     "off": 0.051,
+     "off_part": 0.043,
+     "off_any": 0.002
+    },
+    {
+     "id": "cow-locks",
+     "show": "pass",
+     "last": false,
+     "added": 0.0778,
+     "off": 0.083,
+     "off_part": 0.065,
+     "off_any": 0.06
+    },
+    {
+     "id": "cow-rim",
+     "show": "full",
+     "last": true,
+     "added": 0.0263,
+     "off": 0.145,
+     "off_part": 0.085,
+     "off_any": 0.059
+    },
+    {
+     "id": "horns-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0139,
+     "off": 0.242,
+     "off_part": 0.189,
+     "off_any": 0.021
+    },
+    {
+     "id": "horns-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0062,
+     "off": 0.052,
+     "off_part": 0.051,
+     "off_any": 0.039
+    },
+    {
+     "id": "horns-light",
+     "show": "full",
+     "last": true,
+     "added": 0.002,
+     "off": 0.346,
+     "off_part": 0.3,
+     "off_any": 0.177
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "run": "lake-cabin_skill_20261116-205703",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 8.6,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/lake-cabin_skill_20261116-205703-lock-8",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 13,
+    "paints": 15,
+    "merges": 9
+   },
+   "lock": {
+    "moved_mean": 1.56,
+    "moved_far": 0.0239,
+    "background_moved_mean": 1.93
+   },
+   "loss": {
+    "delta_e_mean": 1.51,
+    "moved_far": 0.0203,
+    "detail": 0.881
+   },
+   "edges_kept": 0.926,
+   "off_finish": 0.0099,
+   "off_finish_v2": 0.1161,
+   "summary": {
+    "steps": 23,
+    "judged": 23,
+    "off": 0.056,
+    "off_part": 0.034,
+    "off_any": 0.003,
+    "off_steps": 4,
+    "empty": [],
+    "off_last": 0.073,
+    "worst": {
+     "id": "mountain-snow",
+     "off": 0.549
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.1507,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.176,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0895,
+     "off": 0.181,
+     "off_part": 0.18,
+     "off_any": 0.012
+    },
+    {
+     "id": "mountain-snow",
+     "show": "pass",
+     "last": true,
+     "added": 0.029,
+     "off": 0.549,
+     "off_part": 0.394,
+     "off_any": 0.086
+    },
+    {
+     "id": "forest-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1327,
+     "off": 0.042,
+     "off_part": 0.029,
+     "off_any": 0.001
+    },
+    {
+     "id": "forest-light",
+     "show": "full",
+     "last": true,
+     "added": 0.1428,
+     "off": 0.038,
+     "off_part": 0.019,
+     "off_any": 0.001
+    },
+    {
+     "id": "cabin-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0071,
+     "off": 0.254,
+     "off_part": 0.24,
+     "off_any": 0.009
+    },
+    {
+     "id": "cabin-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0018,
+     "off": 0.064,
+     "off_part": 0.054,
+     "off_any": 0.019
+    },
+    {
+     "id": "cabin-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0029,
+     "off": 0.122,
+     "off_part": 0.076,
+     "off_any": 0.003
+    },
+    {
+     "id": "dock",
+     "show": "full",
+     "last": true,
+     "added": 0.006,
+     "off": 0.251,
+     "off_part": 0.251,
+     "off_any": 0.038
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5449,
+     "off": 0.008,
+     "off_part": 0.008,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0778,
+     "off": 0.023,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1196,
+     "off": 0.101,
+     "off_part": 0.083,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-olive",
+     "show": "pass",
+     "last": false,
+     "added": 0.0254,
+     "off": 0.147,
+     "off_part": 0.039,
+     "off_any": 0.004
+    },
+    {
+     "id": "mountain-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.018,
+     "off": 0.185,
+     "off_part": 0.185,
+     "off_any": 0.0
+    },
+    {
+     "id": "cabin-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0056,
+     "off": 0.157,
+     "off_part": 0.157,
+     "off_any": 0.037
+    },
+    {
+     "id": "tree-reflection-ripples",
+     "show": "pass",
+     "last": true,
+     "added": 0.0883,
+     "off": 0.116,
+     "off_part": 0.01,
+     "off_any": 0.003
+    },
+    {
+     "id": "reeds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0394,
+     "off": 0.318,
+     "off_part": 0.011,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0118,
+     "off": 0.023,
+     "off_part": 0.009,
+     "off_any": 0.005
+    },
+    {
+     "id": "reeds-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0209,
+     "off": 0.034,
+     "off_part": 0.014,
+     "off_any": 0.005
+    },
+    {
+     "id": "rocks-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0459,
+     "off": 0.035,
+     "off_part": 0.034,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0163,
+     "off": 0.002,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0099,
+     "off": 0.03,
+     "off_part": 0.003,
+     "off_any": 0.0
+    }
+   ]
+  },
+  {
+   "picture": "red-sailboat",
+   "run": "red-sailboat_skill_20261116-203450",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 5.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/red-sailboat_skill_20261116-203450-lock-8",
+   "mixes": 15,
+   "remeasured": {
+    "mixes": 13,
+    "paints": 14,
+    "merges": 3
+   },
+   "lock": {
+    "moved_mean": 0.89,
+    "moved_far": 0.012,
+    "background_moved_mean": 0.9
+   },
+   "loss": {
+    "delta_e_mean": 0.83,
+    "moved_far": 0.0096,
+    "detail": 0.931
+   },
+   "edges_kept": 0.897,
+   "off_finish": 0.0132,
+   "off_finish_v2": 0.0596,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.021,
+    "off_part": 0.017,
+    "off_any": 0.005,
+    "off_steps": 5,
+    "empty": [],
+    "off_last": 0.014,
+    "worst": {
+     "id": "hull-rail",
+     "off": 0.847
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5801,
+     "off": 0.004,
+     "off_part": 0.004,
+     "off_any": 0.004
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0023,
+     "off": 0.03,
+     "off_part": 0.03,
+     "off_any": 0.0
+    },
+    {
+     "id": "hills",
+     "show": "full",
+     "last": true,
+     "added": 0.095,
+     "off": 0.028,
+     "off_part": 0.028,
+     "off_any": 0.009
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.46,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-streaks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0718,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "sun-path-first",
+     "show": "pass",
+     "last": false,
+     "added": 0.0353,
+     "off": 0.32,
+     "off_part": 0.287,
+     "off_any": 0.049
+    },
+    {
+     "id": "sun-path-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.0229,
+     "off": 0.045,
+     "off_part": 0.007,
+     "off_any": 0.006
+    },
+    {
+     "id": "sail-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0258,
+     "off": 0.066,
+     "off_part": 0.061,
+     "off_any": 0.004
+    },
+    {
+     "id": "sail-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.0023,
+     "off": 0.037,
+     "off_part": 0.015,
+     "off_any": 0.013
+    },
+    {
+     "id": "mast-line",
+     "show": "flat",
+     "last": false,
+     "added": 0.0063,
+     "off": 0.416,
+     "off_part": 0.308,
+     "off_any": 0.016
+    },
+    {
+     "id": "mast-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0016,
+     "off": 0.396,
+     "off_part": 0.286,
+     "off_any": 0.217
+    },
+    {
+     "id": "hull-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.01,
+     "off": 0.16,
+     "off_part": 0.159,
+     "off_any": 0.015
+    },
+    {
+     "id": "hull-rail",
+     "show": "pass",
+     "last": true,
+     "added": 0.0025,
+     "off": 0.847,
+     "off_part": 0.092,
+     "off_any": 0.011
+    },
+    {
+     "id": "reflection-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.027,
+     "off": 0.028,
+     "off_part": 0.026,
+     "off_any": 0.001
+    },
+    {
+     "id": "reflection-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0052,
+     "off": 0.022,
+     "off_part": 0.022,
+     "off_any": 0.0
+    },
+    {
+     "id": "reflection-zigzag",
+     "show": "pass",
+     "last": true,
+     "added": 0.0046,
+     "off": 0.409,
+     "off_part": 0.278,
+     "off_any": 0.119
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "run": "sleeping-cat_skill_20261116-203502",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 1.8,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/sleeping-cat_skill_20261116-203502-lock-8",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 11,
+    "paints": 12,
+    "merges": 1
+   },
+   "lock": {
+    "moved_mean": 0.83,
+    "moved_far": 0.0138
+   },
+   "loss": {
+    "delta_e_mean": 0.78,
+    "moved_far": 0.0136,
+    "detail": 1.004
+   },
+   "edges_kept": 0.965,
+   "off_finish": 0.0121,
+   "off_finish_v2": 0.0591,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.013,
+    "off_part": 0.01,
+    "off_any": 0.002,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.008,
+    "worst": {
+     "id": "cat-fur",
+     "off": 0.996
+    }
+   },
+   "steps": [
+    {
+     "id": "wall-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "outside-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.0538,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.044,
+     "off": 0.025,
+     "off_part": 0.008,
+     "off_any": 0.006
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0193,
+     "off": 0.007,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "window-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0827,
+     "off": 0.044,
+     "off_part": 0.043,
+     "off_any": 0.001
+    },
+    {
+     "id": "window-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.0365,
+     "off": 0.066,
+     "off_part": 0.062,
+     "off_any": 0.005
+    },
+    {
+     "id": "sill-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.1583,
+     "off": 0.014,
+     "off_part": 0.014,
+     "off_any": 0.0
+    },
+    {
+     "id": "sill-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0224,
+     "off": 0.201,
+     "off_part": 0.154,
+     "off_any": 0.011
+    },
+    {
+     "id": "blanket-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.2149,
+     "off": 0.02,
+     "off_part": 0.019,
+     "off_any": 0.002
+    },
+    {
+     "id": "blanket-stitches",
+     "show": "pass",
+     "last": false,
+     "added": 0.0316,
+     "off": 0.001,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "blanket-folds",
+     "show": "pass",
+     "last": true,
+     "added": 0.0135,
+     "off": 0.075,
+     "off_part": 0.036,
+     "off_any": 0.02
+    },
+    {
+     "id": "cat-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.3575,
+     "off": 0.009,
+     "off_part": 0.008,
+     "off_any": 0.001
+    },
+    {
+     "id": "cat-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0416,
+     "off": 0.031,
+     "off_part": 0.021,
+     "off_any": 0.014
+    },
+    {
+     "id": "cat-stripes",
+     "show": "pass",
+     "last": false,
+     "added": 0.1159,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "cat-fur",
+     "show": "pass",
+     "last": false,
+     "added": 0.0036,
+     "off": 0.996,
+     "off_part": 0.354,
+     "off_any": 0.258
+    },
+    {
+     "id": "cat-pink",
+     "show": "pass",
+     "last": true,
+     "added": 0.0175,
+     "off": 0.047,
+     "off_part": 0.029,
+     "off_any": 0.005
+    }
+   ]
+  },
+  {
+   "picture": "snow-lantern",
+   "run": "snow-lantern_skill_20261116-205524",
+   "variant": "lock-8",
+   "tol": 8.0,
+   "lock_seconds": 6.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-8/lessons/snow-lantern_skill_20261116-205524-lock-8",
+   "mixes": 12,
+   "remeasured": {
+    "mixes": 11,
+    "paints": 11,
+    "merges": 8
+   },
+   "lock": {
+    "moved_mean": 0.96,
+    "moved_far": 0.0149,
+    "background_moved_mean": 1.5
+   },
+   "loss": {
+    "delta_e_mean": 0.9,
+    "moved_far": 0.0137,
+    "detail": 0.917
+   },
+   "edges_kept": 0.85,
+   "off_finish": 0.0118,
+   "off_finish_v2": 0.061,
+   "summary": {
+    "steps": 20,
+    "judged": 20,
+    "off": 0.027,
+    "off_part": 0.012,
+    "off_any": 0.004,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.029,
+    "worst": {
+     "id": "lantern-darks",
+     "off": 0.74
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.6602,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "sky-moon",
+     "show": "full",
+     "last": true,
+     "added": 0.0169,
+     "off": 0.032,
+     "off_part": 0.032,
+     "off_any": 0.014
+    },
+    {
+     "id": "pines-stamp",
+     "show": "full",
+     "last": true,
+     "added": 0.1116,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "snow-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5277,
+     "off": 0.006,
+     "off_part": 0.006,
+     "off_any": 0.001
+    },
+    {
+     "id": "snow-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0892,
+     "off": 0.022,
+     "off_part": 0.017,
+     "off_any": 0.012
+    },
+    {
+     "id": "snow-glow-edge",
+     "show": "pass",
+     "last": false,
+     "added": 0.0513,
+     "off": 0.082,
+     "off_part": 0.054,
+     "off_any": 0.041
+    },
+    {
+     "id": "snow-glow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0604,
+     "off": 0.193,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "rails-block",
+     "show": "full",
+     "last": true,
+     "added": 0.0346,
+     "off": 0.025,
+     "off_part": 0.025,
+     "off_any": 0.008
+    },
+    {
+     "id": "post-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0813,
+     "off": 0.032,
+     "off_part": 0.025,
+     "off_any": 0.005
+    },
+    {
+     "id": "post-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0361,
+     "off": 0.059,
+     "off_part": 0.044,
+     "off_any": 0.011
+    },
+    {
+     "id": "post-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0187,
+     "off": 0.142,
+     "off_part": 0.002,
+     "off_any": 0.001
+    },
+    {
+     "id": "bracket-pull",
+     "show": "flat",
+     "last": false,
+     "added": 0.0142,
+     "off": 0.034,
+     "off_part": 0.025,
+     "off_any": 0.001
+    },
+    {
+     "id": "bracket-light",
+     "show": "full",
+     "last": true,
+     "added": 0.0088,
+     "off": 0.003,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "caps-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0307,
+     "off": 0.162,
+     "off_part": 0.162,
+     "off_any": 0.029
+    },
+    {
+     "id": "caps-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0138,
+     "off": 0.037,
+     "off_part": 0.026,
+     "off_any": 0.014
+    },
+    {
+     "id": "caps-warm",
+     "show": "pass",
+     "last": true,
+     "added": 0.0118,
+     "off": 0.127,
+     "off_part": 0.073,
+     "off_any": 0.04
+    },
+    {
+     "id": "lantern-glass",
+     "show": "flat",
+     "last": false,
+     "added": 0.0546,
+     "off": 0.026,
+     "off_part": 0.017,
+     "off_any": 0.009
+    },
+    {
+     "id": "lantern-glow",
+     "show": "pass",
+     "last": false,
+     "added": 0.0135,
+     "off": 0.027,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "lantern-brass",
+     "show": "pass",
+     "last": false,
+     "added": 0.0159,
+     "off": 0.029,
+     "off_part": 0.012,
+     "off_any": 0.008
+    },
+    {
+     "id": "lantern-darks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0123,
+     "off": 0.74,
+     "off_part": 0.112,
+     "off_any": 0.036
+    }
+   ]
+  }
+ ],
+ "lock-step-8": [
+  {
+   "picture": "balloon-lavender",
+   "run": "balloon-lavender_skill_20261116-203450",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 41.4,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/balloon-lavender_skill_20261116-203450-lock-step-8",
+   "mixes": 16,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 10,
+    "merges": 10
+   },
+   "lock": {
+    "moved_far": 0.0889,
+    "moved_mean": 3.31,
+    "background_moved_mean": 0.94
+   },
+   "loss": {
+    "delta_e_mean": 3.31,
+    "moved_far": 0.0889,
+    "detail": 1.042
+   },
+   "edges_kept": 0.915,
+   "off_finish": 0.0602,
+   "off_finish_v2": 0.0628,
+   "summary": {
+    "steps": 24,
+    "judged": 24,
+    "off": 0.041,
+    "off_part": 0.03,
+    "off_any": 0.023,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.066,
+    "worst": {
+     "id": "lavender-tips",
+     "off": 0.616
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5632,
+     "off": 0.093,
+     "off_part": 0.093,
+     "off_any": 0.088
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0028,
+     "off": 0.044,
+     "off_part": 0.044,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2629,
+     "off": 0.046,
+     "off_part": 0.013,
+     "off_any": 0.002
+    },
+    {
+     "id": "clouds-mid",
+     "show": "pass",
+     "last": true,
+     "added": 0.1693,
+     "off": 0.025,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.1726,
+     "off": 0.016,
+     "off_part": 0.016,
+     "off_any": 0.002
+    },
+    {
+     "id": "fields-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2259,
+     "off": 0.015,
+     "off_part": 0.015,
+     "off_any": 0.006
+    },
+    {
+     "id": "fields-front",
+     "show": "pass",
+     "last": true,
+     "added": 0.0185,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1179,
+     "off": 0.085,
+     "off_part": 0.013,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0294,
+     "off": 0.011,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "bushes-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.018,
+     "off": 0.061,
+     "off_part": 0.009,
+     "off_any": 0.001
+    },
+    {
+     "id": "balloon-shape",
+     "show": "flat",
+     "last": false,
+     "added": 0.0287,
+     "off": 0.013,
+     "off_part": 0.012,
+     "off_any": 0.007
+    },
+    {
+     "id": "balloon-blue",
+     "show": "pass",
+     "last": false,
+     "added": 0.0072,
+     "off": 0.069,
+     "off_part": 0.032,
+     "off_any": 0.024
+    },
+    {
+     "id": "balloon-teal",
+     "show": "pass",
+     "last": false,
+     "added": 0.0025,
+     "off": 0.174,
+     "off_part": 0.095,
+     "off_any": 0.045
+    },
+    {
+     "id": "balloon-red",
+     "show": "pass",
+     "last": false,
+     "added": 0.006,
+     "off": 0.027,
+     "off_part": 0.006,
+     "off_any": 0.006
+    },
+    {
+     "id": "balloon-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0016,
+     "off": 0.049,
+     "off_part": 0.007,
+     "off_any": 0.005
+    },
+    {
+     "id": "balloon-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0026,
+     "off": 0.045,
+     "off_part": 0.03,
+     "off_any": 0.006
+    },
+    {
+     "id": "tree-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0343,
+     "off": 0.043,
+     "off_part": 0.039,
+     "off_any": 0.004
+    },
+    {
+     "id": "tree-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0119,
+     "off": 0.029,
+     "off_part": 0.026,
+     "off_any": 0.003
+    },
+    {
+     "id": "tree-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0041,
+     "off": 0.222,
+     "off_part": 0.152,
+     "off_any": 0.029
+    },
+    {
+     "id": "lavender-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3763,
+     "off": 0.002,
+     "off_part": 0.002,
+     "off_any": 0.001
+    },
+    {
+     "id": "lavender-soil",
+     "show": "pass",
+     "last": false,
+     "added": 0.0336,
+     "off": 0.058,
+     "off_part": 0.05,
+     "off_any": 0.026
+    },
+    {
+     "id": "lavender-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.174,
+     "off": 0.003,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "lavender-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0706,
+     "off": 0.017,
+     "off_part": 0.007,
+     "off_any": 0.006
+    },
+    {
+     "id": "lavender-tips",
+     "show": "full",
+     "last": true,
+     "added": 0.0015,
+     "off": 0.616,
+     "off_part": 0.05,
+     "off_any": 0.05
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "run": "birch-grove_skill_20261116-210750",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 31.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/birch-grove_skill_20261116-210750-lock-step-8",
+   "mixes": 8,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 4
+   },
+   "lock": {
+    "moved_far": 0.1657,
+    "moved_mean": 5.12,
+    "background_moved_mean": 3.87
+   },
+   "loss": {
+    "delta_e_mean": 5.12,
+    "moved_far": 0.1657,
+    "detail": 1.058
+   },
+   "edges_kept": 0.945,
+   "off_finish": 0.1121,
+   "off_finish_v2": 0.1482,
+   "summary": {
+    "steps": 14,
+    "judged": 14,
+    "off": 0.117,
+    "off_part": 0.099,
+    "off_any": 0.002,
+    "off_steps": 0,
+    "empty": [],
+    "off_last": 0.174,
+    "worst": {
+     "id": "sky-blend",
+     "off": 0.238
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.7147,
+     "off": 0.238,
+     "off_part": 0.238,
+     "off_any": 0.003
+    },
+    {
+     "id": "sun-rays",
+     "show": "full",
+     "last": true,
+     "added": 0.0559,
+     "off": 0.024,
+     "off_part": 0.024,
+     "off_any": 0.0
+    },
+    {
+     "id": "firs-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0703,
+     "off": 0.09,
+     "off_part": 0.032,
+     "off_any": 0.003
+    },
+    {
+     "id": "firs-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0418,
+     "off": 0.005,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0172,
+     "off": 0.064,
+     "off_part": 0.064,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.2959,
+     "off": 0.003,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-rust",
+     "show": "pass",
+     "last": false,
+     "added": 0.1009,
+     "off": 0.003,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.1085,
+     "off": 0.019,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.2257,
+     "off": 0.211,
+     "off_part": 0.095,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-gold",
+     "show": "pass",
+     "last": false,
+     "added": 0.0572,
+     "off": 0.019,
+     "off_part": 0.007,
+     "off_any": 0.001
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0854,
+     "off": 0.057,
+     "off_part": 0.021,
+     "off_any": 0.001
+    },
+    {
+     "id": "birch-trunks",
+     "show": "flat",
+     "last": false,
+     "added": 0.2261,
+     "off": 0.025,
+     "off_part": 0.021,
+     "off_any": 0.0
+    },
+    {
+     "id": "birch-marks",
+     "show": "pass",
+     "last": false,
+     "added": 0.1037,
+     "off": 0.029,
+     "off_part": 0.028,
+     "off_any": 0.008
+    },
+    {
+     "id": "birch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0427,
+     "off": 0.134,
+     "off_part": 0.123,
+     "off_any": 0.001
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "run": "chickadee_skill_20261116-203451",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 38.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/chickadee_skill_20261116-203451-lock-step-8",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 5
+   },
+   "lock": {
+    "moved_far": 0.0275,
+    "moved_mean": 1.89,
+    "background_moved_mean": 1.39
+   },
+   "loss": {
+    "delta_e_mean": 1.89,
+    "moved_far": 0.0275,
+    "detail": 0.967
+   },
+   "edges_kept": 0.931,
+   "off_finish": 0.0381,
+   "off_finish_v2": 0.1382,
+   "summary": {
+    "steps": 18,
+    "judged": 18,
+    "off": 0.07,
+    "off_part": 0.067,
+    "off_any": 0.005,
+    "off_steps": 0,
+    "empty": [],
+    "off_last": 0.081,
+    "worst": {
+     "id": "branch-light",
+     "off": 0.164
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.089,
+     "off_part": 0.089,
+     "off_any": 0.0
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0031,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0756,
+     "off": 0.021,
+     "off_part": 0.021,
+     "off_any": 0.0
+    },
+    {
+     "id": "foliage",
+     "show": "pass",
+     "last": true,
+     "added": 0.2041,
+     "off": 0.048,
+     "off_part": 0.048,
+     "off_any": 0.002
+    },
+    {
+     "id": "branch-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.145,
+     "off": 0.023,
+     "off_part": 0.019,
+     "off_any": 0.015
+    },
+    {
+     "id": "branch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0626,
+     "off": 0.164,
+     "off_part": 0.118,
+     "off_any": 0.081
+    },
+    {
+     "id": "leaves-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0698,
+     "off": 0.016,
+     "off_part": 0.014,
+     "off_any": 0.004
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0224,
+     "off": 0.053,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "bird-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0401,
+     "off": 0.006,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "bird-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0064,
+     "off": 0.016,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0276,
+     "off": 0.016,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.007,
+     "off": 0.055,
+     "off_part": 0.055,
+     "off_any": 0.005
+    },
+    {
+     "id": "wing-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0015,
+     "off": 0.143,
+     "off_part": 0.124,
+     "off_any": 0.044
+    },
+    {
+     "id": "bird-feathers",
+     "show": "pass",
+     "last": true,
+     "added": 0.015,
+     "off": 0.034,
+     "off_part": 0.013,
+     "off_any": 0.001
+    },
+    {
+     "id": "cap",
+     "show": "full",
+     "last": true,
+     "added": 0.0225,
+     "off": 0.06,
+     "off_part": 0.06,
+     "off_any": 0.026
+    },
+    {
+     "id": "cheek",
+     "show": "full",
+     "last": true,
+     "added": 0.0057,
+     "off": 0.024,
+     "off_part": 0.024,
+     "off_any": 0.002
+    },
+    {
+     "id": "feet-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0056,
+     "off": 0.164,
+     "off_part": 0.164,
+     "off_any": 0.038
+    },
+    {
+     "id": "feet-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.001,
+     "off": 0.036,
+     "off_part": 0.036,
+     "off_any": 0.013
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "run": "highland-cow_skill_20261116-212627",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 28.8,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/highland-cow_skill_20261116-212627-lock-step-8",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 6
+   },
+   "lock": {
+    "moved_far": 0.0699,
+    "moved_mean": 2.99,
+    "background_moved_mean": 2.88
+   },
+   "loss": {
+    "delta_e_mean": 2.99,
+    "moved_far": 0.0699,
+    "detail": 1.04
+   },
+   "edges_kept": 0.898,
+   "off_finish": 0.0741,
+   "off_finish_v2": 0.115,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.064,
+    "off_part": 0.036,
+    "off_any": 0.003,
+    "off_steps": 2,
+    "empty": [],
+    "off_last": 0.126,
+    "worst": {
+     "id": "hillside-patches",
+     "off": 0.659
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.4144,
+     "off": 0.016,
+     "off_part": 0.016,
+     "off_any": 0.002
+    },
+    {
+     "id": "clouds-gray",
+     "show": "pass",
+     "last": false,
+     "added": 0.0522,
+     "off": 0.008,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-gold",
+     "show": "full",
+     "last": true,
+     "added": 0.0699,
+     "off": 0.001,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.1963,
+     "off": 0.013,
+     "off_part": 0.013,
+     "off_any": 0.002
+    },
+    {
+     "id": "loch",
+     "show": "full",
+     "last": true,
+     "added": 0.0044,
+     "off": 0.083,
+     "off_part": 0.083,
+     "off_any": 0.038
+    },
+    {
+     "id": "hillside-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3092,
+     "off": 0.013,
+     "off_part": 0.012,
+     "off_any": 0.005
+    },
+    {
+     "id": "hillside-patches",
+     "show": "full",
+     "last": true,
+     "added": 0.165,
+     "off": 0.659,
+     "off_part": 0.337,
+     "off_any": 0.001
+    },
+    {
+     "id": "grass-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.4511,
+     "off": 0.006,
+     "off_part": 0.002,
+     "off_any": 0.001
+    },
+    {
+     "id": "grass-moss",
+     "show": "pass",
+     "last": false,
+     "added": 0.1024,
+     "off": 0.002,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "grass-olive",
+     "show": "full",
+     "last": true,
+     "added": 0.193,
+     "off": 0.064,
+     "off_part": 0.035,
+     "off_any": 0.001
+    },
+    {
+     "id": "cow-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.2187,
+     "off": 0.009,
+     "off_part": 0.005,
+     "off_any": 0.003
+    },
+    {
+     "id": "cow-locks",
+     "show": "pass",
+     "last": false,
+     "added": 0.0862,
+     "off": 0.016,
+     "off_part": 0.014,
+     "off_any": 0.01
+    },
+    {
+     "id": "cow-rim",
+     "show": "full",
+     "last": true,
+     "added": 0.0338,
+     "off": 0.129,
+     "off_part": 0.07,
+     "off_any": 0.036
+    },
+    {
+     "id": "horns-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0136,
+     "off": 0.07,
+     "off_part": 0.065,
+     "off_any": 0.033
+    },
+    {
+     "id": "horns-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0066,
+     "off": 0.054,
+     "off_part": 0.052,
+     "off_any": 0.033
+    },
+    {
+     "id": "horns-light",
+     "show": "full",
+     "last": true,
+     "added": 0.0027,
+     "off": 0.32,
+     "off_part": 0.319,
+     "off_any": 0.217
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "run": "lake-cabin_skill_20261116-205703",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 37.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/lake-cabin_skill_20261116-205703-lock-step-8",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 13,
+    "paints": 15,
+    "merges": 10
+   },
+   "lock": {
+    "moved_far": 0.0635,
+    "moved_mean": 2.8,
+    "background_moved_mean": 1.93
+   },
+   "loss": {
+    "delta_e_mean": 2.8,
+    "moved_far": 0.0635,
+    "detail": 0.912
+   },
+   "edges_kept": 0.9,
+   "off_finish": 0.0426,
+   "off_finish_v2": 0.1161,
+   "summary": {
+    "steps": 23,
+    "judged": 23,
+    "off": 0.042,
+    "off_part": 0.03,
+    "off_any": 0.003,
+    "off_steps": 1,
+    "empty": [],
+    "off_last": 0.072,
+    "worst": {
+     "id": "mountain-snow",
+     "off": 0.564
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.1507,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.176,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0714,
+     "off": 0.184,
+     "off_part": 0.183,
+     "off_any": 0.014
+    },
+    {
+     "id": "mountain-snow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0469,
+     "off": 0.564,
+     "off_part": 0.405,
+     "off_any": 0.063
+    },
+    {
+     "id": "forest-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1316,
+     "off": 0.041,
+     "off_part": 0.035,
+     "off_any": 0.001
+    },
+    {
+     "id": "forest-light",
+     "show": "full",
+     "last": true,
+     "added": 0.1418,
+     "off": 0.029,
+     "off_part": 0.019,
+     "off_any": 0.003
+    },
+    {
+     "id": "cabin-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0075,
+     "off": 0.156,
+     "off_part": 0.125,
+     "off_any": 0.021
+    },
+    {
+     "id": "cabin-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0018,
+     "off": 0.035,
+     "off_part": 0.026,
+     "off_any": 0.007
+    },
+    {
+     "id": "cabin-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0029,
+     "off": 0.103,
+     "off_part": 0.08,
+     "off_any": 0.004
+    },
+    {
+     "id": "dock",
+     "show": "full",
+     "last": true,
+     "added": 0.0061,
+     "off": 0.189,
+     "off_part": 0.189,
+     "off_any": 0.054
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.547,
+     "off": 0.003,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0756,
+     "off": 0.004,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1241,
+     "off": 0.054,
+     "off_part": 0.043,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-olive",
+     "show": "pass",
+     "last": false,
+     "added": 0.0235,
+     "off": 0.12,
+     "off_part": 0.028,
+     "off_any": 0.002
+    },
+    {
+     "id": "mountain-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0192,
+     "off": 0.116,
+     "off_part": 0.116,
+     "off_any": 0.0
+    },
+    {
+     "id": "cabin-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0062,
+     "off": 0.152,
+     "off_part": 0.152,
+     "off_any": 0.036
+    },
+    {
+     "id": "tree-reflection-ripples",
+     "show": "pass",
+     "last": true,
+     "added": 0.091,
+     "off": 0.056,
+     "off_part": 0.004,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0348,
+     "off": 0.027,
+     "off_part": 0.007,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0138,
+     "off": 0.007,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "reeds-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0222,
+     "off": 0.025,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0464,
+     "off": 0.006,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0149,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.01,
+     "off": 0.007,
+     "off_part": 0.0,
+     "off_any": 0.0
+    }
+   ]
+  },
+  {
+   "picture": "red-sailboat",
+   "run": "red-sailboat_skill_20261116-203450",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 36.1,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/red-sailboat_skill_20261116-203450-lock-step-8",
+   "mixes": 15,
+   "remeasured": {
+    "mixes": 12,
+    "paints": 15,
+    "merges": 3
+   },
+   "lock": {
+    "moved_far": 0.0203,
+    "moved_mean": 1.4,
+    "background_moved_mean": 0.9
+   },
+   "loss": {
+    "delta_e_mean": 1.4,
+    "moved_far": 0.0203,
+    "detail": 0.962
+   },
+   "edges_kept": 0.874,
+   "off_finish": 0.0312,
+   "off_finish_v2": 0.0596,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.016,
+    "off_part": 0.015,
+    "off_any": 0.005,
+    "off_steps": 3,
+    "empty": [],
+    "off_last": 0.014,
+    "worst": {
+     "id": "hull-rail",
+     "off": 0.524
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5801,
+     "off": 0.004,
+     "off_part": 0.004,
+     "off_any": 0.004
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0026,
+     "off": 0.066,
+     "off_part": 0.066,
+     "off_any": 0.0
+    },
+    {
+     "id": "hills",
+     "show": "full",
+     "last": true,
+     "added": 0.0961,
+     "off": 0.022,
+     "off_part": 0.022,
+     "off_any": 0.01
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.4602,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-streaks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0595,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "sun-path-first",
+     "show": "pass",
+     "last": false,
+     "added": 0.038,
+     "off": 0.197,
+     "off_part": 0.183,
+     "off_any": 0.053
+    },
+    {
+     "id": "sun-path-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.0236,
+     "off": 0.035,
+     "off_part": 0.005,
+     "off_any": 0.005
+    },
+    {
+     "id": "sail-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.025,
+     "off": 0.024,
+     "off_part": 0.022,
+     "off_any": 0.002
+    },
+    {
+     "id": "sail-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.002,
+     "off": 0.006,
+     "off_part": 0.004,
+     "off_any": 0.001
+    },
+    {
+     "id": "mast-line",
+     "show": "flat",
+     "last": false,
+     "added": 0.0066,
+     "off": 0.249,
+     "off_part": 0.197,
+     "off_any": 0.025
+    },
+    {
+     "id": "mast-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0015,
+     "off": 0.338,
+     "off_part": 0.314,
+     "off_any": 0.117
+    },
+    {
+     "id": "hull-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0097,
+     "off": 0.094,
+     "off_part": 0.094,
+     "off_any": 0.007
+    },
+    {
+     "id": "hull-rail",
+     "show": "pass",
+     "last": true,
+     "added": 0.0046,
+     "off": 0.524,
+     "off_part": 0.489,
+     "off_any": 0.057
+    },
+    {
+     "id": "reflection-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0283,
+     "off": 0.01,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "reflection-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0047,
+     "off": 0.022,
+     "off_part": 0.021,
+     "off_any": 0.0
+    },
+    {
+     "id": "reflection-zigzag",
+     "show": "pass",
+     "last": true,
+     "added": 0.0068,
+     "off": 0.356,
+     "off_part": 0.347,
+     "off_any": 0.178
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "run": "sleeping-cat_skill_20261116-203502",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 23.3,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/sleeping-cat_skill_20261116-203502-lock-step-8",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 1
+   },
+   "lock": {
+    "moved_far": 0.031,
+    "moved_mean": 1.39
+   },
+   "loss": {
+    "delta_e_mean": 1.39,
+    "moved_far": 0.031,
+    "detail": 1.0
+   },
+   "edges_kept": 0.935,
+   "off_finish": 0.0314,
+   "off_finish_v2": 0.0591,
+   "summary": {
+    "steps": 16,
+    "judged": 15,
+    "off": 0.008,
+    "off_part": 0.006,
+    "off_any": 0.001,
+    "off_steps": 0,
+    "empty": [
+     "cat-fur"
+    ],
+    "off_last": 0.008,
+    "worst": {
+     "id": "sill-light",
+     "off": 0.18
+    }
+   },
+   "steps": [
+    {
+     "id": "wall-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "outside-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.0357,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0435,
+     "off": 0.005,
+     "off_part": 0.005,
+     "off_any": 0.003
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.02,
+     "off": 0.009,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "window-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0852,
+     "off": 0.008,
+     "off_part": 0.008,
+     "off_any": 0.001
+    },
+    {
+     "id": "window-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.0379,
+     "off": 0.075,
+     "off_part": 0.07,
+     "off_any": 0.006
+    },
+    {
+     "id": "sill-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.1623,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "sill-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0281,
+     "off": 0.18,
+     "off_part": 0.164,
+     "off_any": 0.003
+    },
+    {
+     "id": "blanket-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.2188,
+     "off": 0.012,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "blanket-stitches",
+     "show": "pass",
+     "last": false,
+     "added": 0.0317,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "blanket-folds",
+     "show": "pass",
+     "last": true,
+     "added": 0.015,
+     "off": 0.059,
+     "off_part": 0.016,
+     "off_any": 0.009
+    },
+    {
+     "id": "cat-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.3599,
+     "off": 0.009,
+     "off_part": 0.008,
+     "off_any": 0.003
+    },
+    {
+     "id": "cat-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0404,
+     "off": 0.013,
+     "off_part": 0.012,
+     "off_any": 0.011
+    },
+    {
+     "id": "cat-stripes",
+     "show": "pass",
+     "last": false,
+     "added": 0.1091,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "cat-fur",
+     "show": "pass",
+     "last": false,
+     "added": 0.0003,
+     "off": null,
+     "off_part": null,
+     "off_any": null
+    },
+    {
+     "id": "cat-pink",
+     "show": "pass",
+     "last": true,
+     "added": 0.0171,
+     "off": 0.014,
+     "off_part": 0.011,
+     "off_any": 0.005
+    }
+   ]
+  },
+  {
+   "picture": "snow-lantern",
+   "run": "snow-lantern_skill_20261116-205524",
+   "variant": "lock-step-8",
+   "tol": 8.0,
+   "lock_seconds": 29.8,
+   "lesson": "spike/experiments/bench/runs/paints-first/lock-step-8/lessons/snow-lantern_skill_20261116-205524-lock-step-8",
+   "mixes": 12,
+   "remeasured": {
+    "mixes": 11,
+    "paints": 11,
+    "merges": 7
+   },
+   "lock": {
+    "moved_far": 0.0472,
+    "moved_mean": 2.19,
+    "background_moved_mean": 1.5
+   },
+   "loss": {
+    "delta_e_mean": 2.19,
+    "moved_far": 0.0472,
+    "detail": 1.001
+   },
+   "edges_kept": 0.897,
+   "off_finish": 0.0341,
+   "off_finish_v2": 0.061,
+   "summary": {
+    "steps": 20,
+    "judged": 20,
+    "off": 0.028,
+    "off_part": 0.013,
+    "off_any": 0.007,
+    "off_steps": 2,
+    "empty": [],
+    "off_last": 0.039,
+    "worst": {
+     "id": "snow-glow",
+     "off": 0.304
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.6602,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "sky-moon",
+     "show": "full",
+     "last": true,
+     "added": 0.0171,
+     "off": 0.033,
+     "off_part": 0.033,
+     "off_any": 0.018
+    },
+    {
+     "id": "pines-stamp",
+     "show": "full",
+     "last": true,
+     "added": 0.1043,
+     "off": 0.002,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "snow-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5285,
+     "off": 0.002,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "snow-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0985,
+     "off": 0.01,
+     "off_part": 0.006,
+     "off_any": 0.003
+    },
+    {
+     "id": "snow-glow-edge",
+     "show": "pass",
+     "last": false,
+     "added": 0.0517,
+     "off": 0.051,
+     "off_part": 0.037,
+     "off_any": 0.028
+    },
+    {
+     "id": "snow-glow",
+     "show": "pass",
+     "last": true,
+     "added": 0.071,
+     "off": 0.304,
+     "off_part": 0.014,
+     "off_any": 0.002
+    },
+    {
+     "id": "rails-block",
+     "show": "full",
+     "last": true,
+     "added": 0.0331,
+     "off": 0.191,
+     "off_part": 0.191,
+     "off_any": 0.119
+    },
+    {
+     "id": "post-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0812,
+     "off": 0.018,
+     "off_part": 0.012,
+     "off_any": 0.007
+    },
+    {
+     "id": "post-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0341,
+     "off": 0.065,
+     "off_part": 0.059,
+     "off_any": 0.019
+    },
+    {
+     "id": "post-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0207,
+     "off": 0.084,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "bracket-pull",
+     "show": "flat",
+     "last": false,
+     "added": 0.0145,
+     "off": 0.027,
+     "off_part": 0.01,
+     "off_any": 0.0
+    },
+    {
+     "id": "bracket-light",
+     "show": "full",
+     "last": true,
+     "added": 0.0098,
+     "off": 0.008,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "caps-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0329,
+     "off": 0.09,
+     "off_part": 0.09,
+     "off_any": 0.061
+    },
+    {
+     "id": "caps-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0157,
+     "off": 0.015,
+     "off_part": 0.012,
+     "off_any": 0.01
+    },
+    {
+     "id": "caps-warm",
+     "show": "pass",
+     "last": true,
+     "added": 0.0128,
+     "off": 0.135,
+     "off_part": 0.04,
+     "off_any": 0.019
+    },
+    {
+     "id": "lantern-glass",
+     "show": "flat",
+     "last": false,
+     "added": 0.0553,
+     "off": 0.032,
+     "off_part": 0.023,
+     "off_any": 0.013
+    },
+    {
+     "id": "lantern-glow",
+     "show": "pass",
+     "last": false,
+     "added": 0.0132,
+     "off": 0.034,
+     "off_part": 0.006,
+     "off_any": 0.0
+    },
+    {
+     "id": "lantern-brass",
+     "show": "pass",
+     "last": false,
+     "added": 0.0216,
+     "off": 0.096,
+     "off_part": 0.047,
+     "off_any": 0.02
+    },
+    {
+     "id": "lantern-darks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0145,
+     "off": 0.252,
+     "off_part": 0.172,
+     "off_any": 0.111
+    }
+   ]
+  }
+ ],
+ "swatch": [
+  {
+   "picture": "birch-grove",
+   "run": "birch-grove_skill_20261116-210750",
+   "variant": "swatch",
+   "render": {
+    "seconds": 32.9,
+    "cost_usd": 0.0604,
+    "quality": "high",
+    "prompt": "The first image is a finished acrylic painting. The second image is a card of paint swatches: the only paints the painter has mixed for it. Repaint the first image so that every color in it is one of these swatches, or a swatch lightened with white or darkened slightly: where the painting has a color no swatch has, use the nearest swatch. Keep everything else exactly as it is: the same picture, the same composition, every shape, edge and brushstroke in the same place and the same size, the same light and shadow. Do not add, remove or move anything. No text, signature, or watermark."
+   },
+   "lesson": "spike/experiments/bench/runs/paints-first/swatch/lessons/birch-grove_skill_20261116-210750-swatch",
+   "mixes": 8,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 15,
+    "merges": 2
+   },
+   "loss": {
+    "delta_e_mean": 5.54,
+    "moved_far": 0.0288,
+    "detail": 1.042
+   },
+   "edges_kept": 0.984,
+   "off_finish": 0.1569,
+   "off_finish_v2": 0.1482,
+   "summary": {
+    "steps": 14,
+    "judged": 14,
+    "off": 0.298,
+    "off_part": 0.237,
+    "off_any": 0.015,
+    "off_steps": 7,
+    "empty": [],
+    "off_last": 0.452,
+    "worst": {
+     "id": "leaves-light",
+     "off": 0.597
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.7287,
+     "off": 0.473,
+     "off_part": 0.473,
+     "off_any": 0.015
+    },
+    {
+     "id": "sun-rays",
+     "show": "full",
+     "last": true,
+     "added": 0.049,
+     "off": 0.11,
+     "off_part": 0.11,
+     "off_any": 0.0
+    },
+    {
+     "id": "firs-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0649,
+     "off": 0.133,
+     "off_part": 0.088,
+     "off_any": 0.003
+    },
+    {
+     "id": "firs-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0131,
+     "off": 0.043,
+     "off_part": 0.02,
+     "off_any": 0.001
+    },
+    {
+     "id": "far-trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.016,
+     "off": 0.384,
+     "off_part": 0.384,
+     "off_any": 0.002
+    },
+    {
+     "id": "ground-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.3523,
+     "off": 0.046,
+     "off_part": 0.004,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-rust",
+     "show": "pass",
+     "last": false,
+     "added": 0.0734,
+     "off": 0.05,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.1076,
+     "off": 0.419,
+     "off_part": 0.157,
+     "off_any": 0.011
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.2345,
+     "off": 0.367,
+     "off_part": 0.15,
+     "off_any": 0.021
+    },
+    {
+     "id": "leaves-gold",
+     "show": "pass",
+     "last": false,
+     "added": 0.0346,
+     "off": 0.295,
+     "off_part": 0.254,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.1052,
+     "off": 0.597,
+     "off_part": 0.456,
+     "off_any": 0.109
+    },
+    {
+     "id": "birch-trunks",
+     "show": "flat",
+     "last": false,
+     "added": 0.2423,
+     "off": 0.15,
+     "off_part": 0.09,
+     "off_any": 0.003
+    },
+    {
+     "id": "birch-marks",
+     "show": "pass",
+     "last": false,
+     "added": 0.1071,
+     "off": 0.071,
+     "off_part": 0.069,
+     "off_any": 0.013
+    },
+    {
+     "id": "birch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0385,
+     "off": 0.345,
+     "off_part": 0.323,
+     "off_any": 0.047
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "run": "chickadee_skill_20261116-203451",
+   "variant": "swatch",
+   "render": {
+    "seconds": 36.6,
+    "cost_usd": 0.0624,
+    "quality": "high",
+    "prompt": "The first image is a finished acrylic painting. The second image is a card of paint swatches: the only paints the painter has mixed for it. Repaint the first image so that every color in it is one of these swatches, or a swatch lightened with white or darkened slightly: where the painting has a color no swatch has, use the nearest swatch. Keep everything else exactly as it is: the same picture, the same composition, every shape, edge and brushstroke in the same place and the same size, the same light and shadow. Do not add, remove or move anything. No text, signature, or watermark."
+   },
+   "lesson": "spike/experiments/bench/runs/paints-first/swatch/lessons/chickadee_skill_20261116-203451-swatch",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 5
+   },
+   "loss": {
+    "delta_e_mean": 3.49,
+    "moved_far": 0.0024,
+    "detail": 1.091
+   },
+   "edges_kept": 0.984,
+   "off_finish": 0.1624,
+   "off_finish_v2": 0.1382,
+   "summary": {
+    "steps": 18,
+    "judged": 18,
+    "off": 0.221,
+    "off_part": 0.214,
+    "off_any": 0.013,
+    "off_steps": 7,
+    "empty": [],
+    "off_last": 0.262,
+    "worst": {
+     "id": "trunks",
+     "off": 0.749
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.201,
+     "off_part": 0.201,
+     "off_any": 0.001
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0032,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0714,
+     "off": 0.749,
+     "off_part": 0.749,
+     "off_any": 0.012
+    },
+    {
+     "id": "foliage",
+     "show": "pass",
+     "last": true,
+     "added": 0.2312,
+     "off": 0.295,
+     "off_part": 0.295,
+     "off_any": 0.008
+    },
+    {
+     "id": "branch-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.144,
+     "off": 0.03,
+     "off_part": 0.026,
+     "off_any": 0.012
+    },
+    {
+     "id": "branch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0556,
+     "off": 0.683,
+     "off_part": 0.579,
+     "off_any": 0.233
+    },
+    {
+     "id": "leaves-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0692,
+     "off": 0.026,
+     "off_part": 0.022,
+     "off_any": 0.004
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0222,
+     "off": 0.307,
+     "off_part": 0.134,
+     "off_any": 0.1
+    },
+    {
+     "id": "bird-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0483,
+     "off": 0.043,
+     "off_part": 0.018,
+     "off_any": 0.002
+    },
+    {
+     "id": "bird-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0119,
+     "off": 0.053,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "wing-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0278,
+     "off": 0.018,
+     "off_part": 0.013,
+     "off_any": 0.002
+    },
+    {
+     "id": "wing-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0079,
+     "off": 0.119,
+     "off_part": 0.118,
+     "off_any": 0.018
+    },
+    {
+     "id": "wing-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0041,
+     "off": 0.668,
+     "off_part": 0.644,
+     "off_any": 0.098
+    },
+    {
+     "id": "bird-feathers",
+     "show": "pass",
+     "last": true,
+     "added": 0.0152,
+     "off": 0.103,
+     "off_part": 0.025,
+     "off_any": 0.002
+    },
+    {
+     "id": "cap",
+     "show": "full",
+     "last": true,
+     "added": 0.0222,
+     "off": 0.095,
+     "off_part": 0.095,
+     "off_any": 0.022
+    },
+    {
+     "id": "cheek",
+     "show": "full",
+     "last": true,
+     "added": 0.0057,
+     "off": 0.084,
+     "off_part": 0.084,
+     "off_any": 0.003
+    },
+    {
+     "id": "feet-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0048,
+     "off": 0.323,
+     "off_part": 0.32,
+     "off_any": 0.046
+    },
+    {
+     "id": "feet-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.001,
+     "off": 0.325,
+     "off_part": 0.32,
+     "off_any": 0.073
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "run": "highland-cow_skill_20261116-212627",
+   "variant": "swatch",
+   "render": {
+    "seconds": 34.6,
+    "cost_usd": 0.0604,
+    "quality": "high",
+    "prompt": "The first image is a finished acrylic painting. The second image is a card of paint swatches: the only paints the painter has mixed for it. Repaint the first image so that every color in it is one of these swatches, or a swatch lightened with white or darkened slightly: where the painting has a color no swatch has, use the nearest swatch. Keep everything else exactly as it is: the same picture, the same composition, every shape, edge and brushstroke in the same place and the same size, the same light and shadow. Do not add, remove or move anything. No text, signature, or watermark."
+   },
+   "lesson": "spike/experiments/bench/runs/paints-first/swatch/lessons/highland-cow_skill_20261116-212627-swatch",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 10,
+    "merges": 5
+   },
+   "loss": {
+    "delta_e_mean": 4.84,
+    "moved_far": 0.0192,
+    "detail": 1.038
+   },
+   "edges_kept": 0.964,
+   "off_finish": 0.125,
+   "off_finish_v2": 0.115,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.091,
+    "off_part": 0.066,
+    "off_any": 0.015,
+    "off_steps": 5,
+    "empty": [],
+    "off_last": 0.137,
+    "worst": {
+     "id": "hillside-patches",
+     "off": 0.681
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.4104,
+     "off": 0.03,
+     "off_part": 0.03,
+     "off_any": 0.001
+    },
+    {
+     "id": "clouds-gray",
+     "show": "pass",
+     "last": false,
+     "added": 0.0569,
+     "off": 0.531,
+     "off_part": 0.191,
+     "off_any": 0.078
+    },
+    {
+     "id": "clouds-gold",
+     "show": "full",
+     "last": true,
+     "added": 0.0656,
+     "off": 0.03,
+     "off_part": 0.026,
+     "off_any": 0.019
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.1864,
+     "off": 0.041,
+     "off_part": 0.041,
+     "off_any": 0.005
+    },
+    {
+     "id": "loch",
+     "show": "full",
+     "last": true,
+     "added": 0.004,
+     "off": 0.09,
+     "off_part": 0.09,
+     "off_any": 0.047
+    },
+    {
+     "id": "hillside-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3253,
+     "off": 0.005,
+     "off_part": 0.005,
+     "off_any": 0.003
+    },
+    {
+     "id": "hillside-patches",
+     "show": "full",
+     "last": true,
+     "added": 0.0628,
+     "off": 0.681,
+     "off_part": 0.585,
+     "off_any": 0.035
+    },
+    {
+     "id": "grass-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3719,
+     "off": 0.01,
+     "off_part": 0.003,
+     "off_any": 0.002
+    },
+    {
+     "id": "grass-moss",
+     "show": "pass",
+     "last": false,
+     "added": 0.1204,
+     "off": 0.024,
+     "off_part": 0.007,
+     "off_any": 0.003
+    },
+    {
+     "id": "grass-olive",
+     "show": "full",
+     "last": true,
+     "added": 0.1732,
+     "off": 0.175,
+     "off_part": 0.165,
+     "off_any": 0.007
+    },
+    {
+     "id": "cow-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.2143,
+     "off": 0.032,
+     "off_part": 0.022,
+     "off_any": 0.003
+    },
+    {
+     "id": "cow-locks",
+     "show": "pass",
+     "last": false,
+     "added": 0.0428,
+     "off": 0.223,
+     "off_part": 0.22,
+     "off_any": 0.087
+    },
+    {
+     "id": "cow-rim",
+     "show": "full",
+     "last": true,
+     "added": 0.0553,
+     "off": 0.627,
+     "off_part": 0.307,
+     "off_any": 0.213
+    },
+    {
+     "id": "horns-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0123,
+     "off": 0.184,
+     "off_part": 0.143,
+     "off_any": 0.037
+    },
+    {
+     "id": "horns-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0055,
+     "off": 0.367,
+     "off_part": 0.366,
+     "off_any": 0.264
+    },
+    {
+     "id": "horns-light",
+     "show": "full",
+     "last": true,
+     "added": 0.003,
+     "off": 0.641,
+     "off_part": 0.64,
+     "off_any": 0.499
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "run": "lake-cabin_skill_20261116-205703",
+   "variant": "swatch",
+   "render": {
+    "seconds": 33.8,
+    "cost_usd": 0.0609,
+    "quality": "high",
+    "prompt": "The first image is a finished acrylic painting. The second image is a card of paint swatches: the only paints the painter has mixed for it. Repaint the first image so that every color in it is one of these swatches, or a swatch lightened with white or darkened slightly: where the painting has a color no swatch has, use the nearest swatch. Keep everything else exactly as it is: the same picture, the same composition, every shape, edge and brushstroke in the same place and the same size, the same light and shadow. Do not add, remove or move anything. No text, signature, or watermark."
+   },
+   "lesson": "spike/experiments/bench/runs/paints-first/swatch/lessons/lake-cabin_skill_20261116-205703-swatch",
+   "mixes": 13,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 13,
+    "merges": 12
+   },
+   "loss": {
+    "delta_e_mean": 5.59,
+    "moved_far": 0.0103,
+    "detail": 0.946
+   },
+   "edges_kept": 0.938,
+   "off_finish": 0.1078,
+   "off_finish_v2": 0.1161,
+   "summary": {
+    "steps": 23,
+    "judged": 23,
+    "off": 0.154,
+    "off_part": 0.109,
+    "off_any": 0.003,
+    "off_steps": 11,
+    "empty": [],
+    "off_last": 0.272,
+    "worst": {
+     "id": "mountain-snow",
+     "off": 0.873
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.1489,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.1798,
+     "off": 0.003,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0545,
+     "off": 0.775,
+     "off_part": 0.775,
+     "off_any": 0.04
+    },
+    {
+     "id": "mountain-snow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0969,
+     "off": 0.873,
+     "off_part": 0.748,
+     "off_any": 0.014
+    },
+    {
+     "id": "forest-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1114,
+     "off": 0.047,
+     "off_part": 0.03,
+     "off_any": 0.001
+    },
+    {
+     "id": "forest-light",
+     "show": "full",
+     "last": true,
+     "added": 0.1363,
+     "off": 0.043,
+     "off_part": 0.034,
+     "off_any": 0.001
+    },
+    {
+     "id": "cabin-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0071,
+     "off": 0.24,
+     "off_part": 0.225,
+     "off_any": 0.009
+    },
+    {
+     "id": "cabin-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0021,
+     "off": 0.406,
+     "off_part": 0.389,
+     "off_any": 0.019
+    },
+    {
+     "id": "cabin-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0028,
+     "off": 0.501,
+     "off_part": 0.46,
+     "off_any": 0.01
+    },
+    {
+     "id": "dock",
+     "show": "full",
+     "last": true,
+     "added": 0.0061,
+     "off": 0.313,
+     "off_part": 0.313,
+     "off_any": 0.034
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5451,
+     "off": 0.01,
+     "off_part": 0.008,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.1868,
+     "off": 0.311,
+     "off_part": 0.102,
+     "off_any": 0.0
+    },
+    {
+     "id": "tree-reflection-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1169,
+     "off": 0.088,
+     "off_part": 0.061,
+     "off_any": 0.001
+    },
+    {
+     "id": "tree-reflection-olive",
+     "show": "pass",
+     "last": false,
+     "added": 0.0139,
+     "off": 0.18,
+     "off_part": 0.058,
+     "off_any": 0.005
+    },
+    {
+     "id": "mountain-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0226,
+     "off": 0.098,
+     "off_part": 0.098,
+     "off_any": 0.0
+    },
+    {
+     "id": "cabin-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0055,
+     "off": 0.316,
+     "off_part": 0.316,
+     "off_any": 0.034
+    },
+    {
+     "id": "tree-reflection-ripples",
+     "show": "pass",
+     "last": true,
+     "added": 0.0975,
+     "off": 0.382,
+     "off_part": 0.26,
+     "off_any": 0.008
+    },
+    {
+     "id": "reeds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0401,
+     "off": 0.334,
+     "off_part": 0.057,
+     "off_any": 0.005
+    },
+    {
+     "id": "reeds-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.009,
+     "off": 0.259,
+     "off_part": 0.213,
+     "off_any": 0.011
+    },
+    {
+     "id": "reeds-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0223,
+     "off": 0.27,
+     "off_part": 0.259,
+     "off_any": 0.017
+    },
+    {
+     "id": "rocks-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0473,
+     "off": 0.04,
+     "off_part": 0.038,
+     "off_any": 0.0
+    },
+    {
+     "id": "rocks-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0153,
+     "off": 0.158,
+     "off_part": 0.157,
+     "off_any": 0.014
+    },
+    {
+     "id": "rocks-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0095,
+     "off": 0.115,
+     "off_part": 0.105,
+     "off_any": 0.022
+    }
+   ]
+  }
+ ],
+ "swatch-strict": [
+  {
+   "picture": "chickadee",
+   "run": "chickadee_skill_20261116-203451",
+   "variant": "swatch-strict",
+   "render": {
+    "seconds": 31.7,
+    "cost_usd": 0.0623,
+    "quality": "high",
+    "prompt": "The first image is a finished acrylic painting. The second image is a card of paint swatches. Repaint the painting using ONLY these exact swatch colors, as a painter with only these paints would: every brushstroke must be one of the swatch colors, or one of them mixed with white, and no other color may appear anywhere. Keep the same picture: every shape, edge and brushstroke in the same place and the same size. No text, signature, or watermark."
+   },
+   "lesson": "spike/experiments/bench/runs/paints-first/swatch-strict/lessons/chickadee_skill_20261116-203451-swatch-strict",
+   "mixes": 10,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 7
+   },
+   "loss": {
+    "delta_e_mean": 3.38,
+    "moved_far": 0.0104,
+    "detail": 1.184
+   },
+   "edges_kept": 0.989,
+   "off_finish": 0.1919,
+   "off_finish_v2": 0.1382,
+   "summary": {
+    "steps": 18,
+    "judged": 18,
+    "off": 0.224,
+    "off_part": 0.216,
+    "off_any": 0.015,
+    "off_steps": 6,
+    "empty": [],
+    "off_last": 0.264,
+    "worst": {
+     "id": "branch-light",
+     "off": 0.723
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.212,
+     "off_part": 0.212,
+     "off_any": 0.002
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0033,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.0
+    },
+    {
+     "id": "trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.084,
+     "off": 0.615,
+     "off_part": 0.615,
+     "off_any": 0.011
+    },
+    {
+     "id": "foliage",
+     "show": "pass",
+     "last": true,
+     "added": 0.1989,
+     "off": 0.274,
+     "off_part": 0.274,
+     "off_any": 0.012
+    },
+    {
+     "id": "branch-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.144,
+     "off": 0.032,
+     "off_part": 0.027,
+     "off_any": 0.011
+    },
+    {
+     "id": "branch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0591,
+     "off": 0.723,
+     "off_part": 0.614,
+     "off_any": 0.239
+    },
+    {
+     "id": "leaves-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0693,
+     "off": 0.03,
+     "off_part": 0.023,
+     "off_any": 0.004
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0288,
+     "off": 0.249,
+     "off_part": 0.143,
+     "off_any": 0.088
+    },
+    {
+     "id": "bird-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0488,
+     "off": 0.042,
+     "off_part": 0.019,
+     "off_any": 0.002
+    },
+    {
+     "id": "bird-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.008,
+     "off": 0.077,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "wing-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0276,
+     "off": 0.013,
+     "off_part": 0.007,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0074,
+     "off": 0.114,
+     "off_part": 0.113,
+     "off_any": 0.012
+    },
+    {
+     "id": "wing-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0037,
+     "off": 0.524,
+     "off_part": 0.498,
+     "off_any": 0.09
+    },
+    {
+     "id": "bird-feathers",
+     "show": "pass",
+     "last": true,
+     "added": 0.0156,
+     "off": 0.158,
+     "off_part": 0.101,
+     "off_any": 0.005
+    },
+    {
+     "id": "cap",
+     "show": "full",
+     "last": true,
+     "added": 0.0222,
+     "off": 0.108,
+     "off_part": 0.108,
+     "off_any": 0.027
+    },
+    {
+     "id": "cheek",
+     "show": "full",
+     "last": true,
+     "added": 0.0057,
+     "off": 0.088,
+     "off_part": 0.088,
+     "off_any": 0.002
+    },
+    {
+     "id": "feet-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.005,
+     "off": 0.358,
+     "off_part": 0.354,
+     "off_any": 0.045
+    },
+    {
+     "id": "feet-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0011,
+     "off": 0.355,
+     "off_part": 0.352,
+     "off_any": 0.048
+    }
+   ]
+  }
+ ],
+ "v2": [
+  {
+   "picture": "balloon-lavender",
+   "run": "balloon-lavender_skill_20261116-203450",
+   "variant": "v2",
+   "mixes": 16,
+   "paints": 19,
+   "remeasured": {
+    "mixes": 13,
+    "paints": 13,
+    "merges": 6
+   },
+   "off_finish": 0.0628,
+   "summary": {
+    "steps": 24,
+    "judged": 24,
+    "off": 0.099,
+    "off_part": 0.075,
+    "off_any": 0.048,
+    "off_steps": 7,
+    "empty": [],
+    "off_last": 0.148,
+    "worst": {
+     "id": "lavender-tips",
+     "off": 0.998
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5632,
+     "off": 0.154,
+     "off_part": 0.154,
+     "off_any": 0.145
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0024,
+     "off": 0.139,
+     "off_part": 0.139,
+     "off_any": 0.0
+    },
+    {
+     "id": "clouds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.263,
+     "off": 0.113,
+     "off_part": 0.046,
+     "off_any": 0.005
+    },
+    {
+     "id": "clouds-mid",
+     "show": "pass",
+     "last": true,
+     "added": 0.1769,
+     "off": 0.085,
+     "off_part": 0.071,
+     "off_any": 0.055
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.1712,
+     "off": 0.1,
+     "off_part": 0.1,
+     "off_any": 0.037
+    },
+    {
+     "id": "fields-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.2259,
+     "off": 0.031,
+     "off_part": 0.027,
+     "off_any": 0.004
+    },
+    {
+     "id": "fields-front",
+     "show": "pass",
+     "last": true,
+     "added": 0.0192,
+     "off": 0.027,
+     "off_part": 0.015,
+     "off_any": 0.003
+    },
+    {
+     "id": "bushes-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1137,
+     "off": 0.147,
+     "off_part": 0.046,
+     "off_any": 0.001
+    },
+    {
+     "id": "bushes-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0282,
+     "off": 0.006,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "bushes-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0203,
+     "off": 0.301,
+     "off_part": 0.138,
+     "off_any": 0.002
+    },
+    {
+     "id": "balloon-shape",
+     "show": "flat",
+     "last": false,
+     "added": 0.0279,
+     "off": 0.014,
+     "off_part": 0.009,
+     "off_any": 0.006
+    },
+    {
+     "id": "balloon-blue",
+     "show": "pass",
+     "last": false,
+     "added": 0.0073,
+     "off": 0.12,
+     "off_part": 0.08,
+     "off_any": 0.06
+    },
+    {
+     "id": "balloon-teal",
+     "show": "pass",
+     "last": false,
+     "added": 0.0023,
+     "off": 0.286,
+     "off_part": 0.157,
+     "off_any": 0.058
+    },
+    {
+     "id": "balloon-red",
+     "show": "pass",
+     "last": false,
+     "added": 0.0059,
+     "off": 0.149,
+     "off_part": 0.019,
+     "off_any": 0.017
+    },
+    {
+     "id": "balloon-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0016,
+     "off": 0.319,
+     "off_part": 0.277,
+     "off_any": 0.272
+    },
+    {
+     "id": "balloon-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0049,
+     "off": 0.511,
+     "off_part": 0.053,
+     "off_any": 0.003
+    },
+    {
+     "id": "tree-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0303,
+     "off": 0.042,
+     "off_part": 0.033,
+     "off_any": 0.01
+    },
+    {
+     "id": "tree-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0109,
+     "off": 0.172,
+     "off_part": 0.169,
+     "off_any": 0.023
+    },
+    {
+     "id": "tree-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0045,
+     "off": 0.764,
+     "off_part": 0.749,
+     "off_any": 0.125
+    },
+    {
+     "id": "lavender-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3757,
+     "off": 0.007,
+     "off_part": 0.006,
+     "off_any": 0.001
+    },
+    {
+     "id": "lavender-soil",
+     "show": "pass",
+     "last": false,
+     "added": 0.0328,
+     "off": 0.331,
+     "off_part": 0.326,
+     "off_any": 0.032
+    },
+    {
+     "id": "lavender-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1695,
+     "off": 0.038,
+     "off_part": 0.002,
+     "off_any": 0.002
+    },
+    {
+     "id": "lavender-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0639,
+     "off": 0.09,
+     "off_part": 0.079,
+     "off_any": 0.076
+    },
+    {
+     "id": "lavender-tips",
+     "show": "full",
+     "last": true,
+     "added": 0.013,
+     "off": 0.998,
+     "off_part": 0.383,
+     "off_any": 0.28
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "run": "birch-grove_skill_20261116-210750",
+   "variant": "v2",
+   "mixes": 8,
+   "paints": 12,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 13,
+    "merges": 4
+   },
+   "off_finish": 0.1482,
+   "summary": {
+    "steps": 14,
+    "judged": 14,
+    "off": 0.283,
+    "off_part": 0.239,
+    "off_any": 0.044,
+    "off_steps": 5,
+    "empty": [],
+    "off_last": 0.426,
+    "worst": {
+     "id": "leaves-light",
+     "off": 0.585
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.7255,
+     "off": 0.5,
+     "off_part": 0.5,
+     "off_any": 0.099
+    },
+    {
+     "id": "sun-rays",
+     "show": "full",
+     "last": true,
+     "added": 0.0512,
+     "off": 0.069,
+     "off_part": 0.069,
+     "off_any": 0.003
+    },
+    {
+     "id": "firs-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0605,
+     "off": 0.184,
+     "off_part": 0.091,
+     "off_any": 0.015
+    },
+    {
+     "id": "firs-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.059,
+     "off": 0.03,
+     "off_part": 0.012,
+     "off_any": 0.001
+    },
+    {
+     "id": "far-trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0217,
+     "off": 0.367,
+     "off_part": 0.367,
+     "off_any": 0.008
+    },
+    {
+     "id": "ground-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.354,
+     "off": 0.044,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "ground-rust",
+     "show": "pass",
+     "last": false,
+     "added": 0.0828,
+     "off": 0.019,
+     "off_part": 0.002,
+     "off_any": 0.001
+    },
+    {
+     "id": "ground-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.119,
+     "off": 0.221,
+     "off_part": 0.118,
+     "off_any": 0.018
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.228,
+     "off": 0.36,
+     "off_part": 0.167,
+     "off_any": 0.035
+    },
+    {
+     "id": "leaves-gold",
+     "show": "pass",
+     "last": false,
+     "added": 0.0566,
+     "off": 0.082,
+     "off_part": 0.058,
+     "off_any": 0.0
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0902,
+     "off": 0.585,
+     "off_part": 0.509,
+     "off_any": 0.139
+    },
+    {
+     "id": "birch-trunks",
+     "show": "flat",
+     "last": false,
+     "added": 0.2519,
+     "off": 0.163,
+     "off_part": 0.116,
+     "off_any": 0.001
+    },
+    {
+     "id": "birch-marks",
+     "show": "pass",
+     "last": false,
+     "added": 0.1048,
+     "off": 0.089,
+     "off_part": 0.087,
+     "off_any": 0.015
+    },
+    {
+     "id": "birch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0408,
+     "off": 0.395,
+     "off_part": 0.371,
+     "off_any": 0.054
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "run": "chickadee_skill_20261116-203451",
+   "variant": "v2",
+   "mixes": 10,
+   "paints": 13,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 6
+   },
+   "off_finish": 0.1382,
+   "summary": {
+    "steps": 18,
+    "judged": 18,
+    "off": 0.182,
+    "off_part": 0.174,
+    "off_any": 0.014,
+    "off_steps": 5,
+    "empty": [],
+    "off_last": 0.213,
+    "worst": {
+     "id": "branch-light",
+     "off": 0.681
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.19,
+     "off_part": 0.19,
+     "off_any": 0.002
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0032,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "trunks",
+     "show": "full",
+     "last": true,
+     "added": 0.0819,
+     "off": 0.301,
+     "off_part": 0.301,
+     "off_any": 0.01
+    },
+    {
+     "id": "foliage",
+     "show": "pass",
+     "last": true,
+     "added": 0.1979,
+     "off": 0.179,
+     "off_part": 0.179,
+     "off_any": 0.01
+    },
+    {
+     "id": "branch-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.1438,
+     "off": 0.03,
+     "off_part": 0.025,
+     "off_any": 0.011
+    },
+    {
+     "id": "branch-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0584,
+     "off": 0.681,
+     "off_part": 0.575,
+     "off_any": 0.262
+    },
+    {
+     "id": "leaves-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0691,
+     "off": 0.029,
+     "off_part": 0.021,
+     "off_any": 0.004
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0227,
+     "off": 0.155,
+     "off_part": 0.032,
+     "off_any": 0.025
+    },
+    {
+     "id": "bird-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0503,
+     "off": 0.035,
+     "off_part": 0.015,
+     "off_any": 0.001
+    },
+    {
+     "id": "bird-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0064,
+     "off": 0.093,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0275,
+     "off": 0.012,
+     "off_part": 0.005,
+     "off_any": 0.0
+    },
+    {
+     "id": "wing-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.0073,
+     "off": 0.127,
+     "off_part": 0.127,
+     "off_any": 0.017
+    },
+    {
+     "id": "wing-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0037,
+     "off": 0.593,
+     "off_part": 0.56,
+     "off_any": 0.144
+    },
+    {
+     "id": "bird-feathers",
+     "show": "pass",
+     "last": true,
+     "added": 0.0148,
+     "off": 0.15,
+     "off_part": 0.065,
+     "off_any": 0.003
+    },
+    {
+     "id": "cap",
+     "show": "full",
+     "last": true,
+     "added": 0.0222,
+     "off": 0.111,
+     "off_part": 0.111,
+     "off_any": 0.029
+    },
+    {
+     "id": "cheek",
+     "show": "full",
+     "last": true,
+     "added": 0.0057,
+     "off": 0.089,
+     "off_part": 0.089,
+     "off_any": 0.0
+    },
+    {
+     "id": "feet-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.005,
+     "off": 0.358,
+     "off_part": 0.358,
+     "off_any": 0.048
+    },
+    {
+     "id": "feet-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0012,
+     "off": 0.352,
+     "off_part": 0.352,
+     "off_any": 0.035
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "run": "highland-cow_skill_20261116-212627",
+   "variant": "v2",
+   "mixes": 10,
+   "paints": 11,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 10,
+    "merges": 8
+   },
+   "off_finish": 0.115,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.105,
+    "off_part": 0.066,
+    "off_any": 0.019,
+    "off_steps": 4,
+    "empty": [],
+    "off_last": 0.17,
+    "worst": {
+     "id": "hillside-patches",
+     "off": 0.816
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.4085,
+     "off": 0.033,
+     "off_part": 0.033,
+     "off_any": 0.007
+    },
+    {
+     "id": "clouds-gray",
+     "show": "pass",
+     "last": false,
+     "added": 0.0531,
+     "off": 0.489,
+     "off_part": 0.034,
+     "off_any": 0.009
+    },
+    {
+     "id": "clouds-gold",
+     "show": "full",
+     "last": true,
+     "added": 0.0708,
+     "off": 0.003,
+     "off_part": 0.002,
+     "off_any": 0.001
+    },
+    {
+     "id": "far-hills",
+     "show": "full",
+     "last": true,
+     "added": 0.2122,
+     "off": 0.04,
+     "off_part": 0.04,
+     "off_any": 0.005
+    },
+    {
+     "id": "loch",
+     "show": "full",
+     "last": true,
+     "added": 0.0041,
+     "off": 0.117,
+     "off_part": 0.117,
+     "off_any": 0.069
+    },
+    {
+     "id": "hillside-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.3249,
+     "off": 0.01,
+     "off_part": 0.01,
+     "off_any": 0.009
+    },
+    {
+     "id": "hillside-patches",
+     "show": "full",
+     "last": true,
+     "added": 0.1212,
+     "off": 0.816,
+     "off_part": 0.461,
+     "off_any": 0.052
+    },
+    {
+     "id": "grass-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.4102,
+     "off": 0.012,
+     "off_part": 0.003,
+     "off_any": 0.003
+    },
+    {
+     "id": "grass-moss",
+     "show": "pass",
+     "last": false,
+     "added": 0.1199,
+     "off": 0.014,
+     "off_part": 0.006,
+     "off_any": 0.003
+    },
+    {
+     "id": "grass-olive",
+     "show": "full",
+     "last": true,
+     "added": 0.185,
+     "off": 0.192,
+     "off_part": 0.172,
+     "off_any": 0.024
+    },
+    {
+     "id": "cow-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.2154,
+     "off": 0.036,
+     "off_part": 0.027,
+     "off_any": 0.004
+    },
+    {
+     "id": "cow-locks",
+     "show": "pass",
+     "last": false,
+     "added": 0.0792,
+     "off": 0.165,
+     "off_part": 0.157,
+     "off_any": 0.147
+    },
+    {
+     "id": "cow-rim",
+     "show": "full",
+     "last": true,
+     "added": 0.0362,
+     "off": 0.511,
+     "off_part": 0.285,
+     "off_any": 0.221
+    },
+    {
+     "id": "horns-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0125,
+     "off": 0.151,
+     "off_part": 0.111,
+     "off_any": 0.033
+    },
+    {
+     "id": "horns-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0062,
+     "off": 0.236,
+     "off_part": 0.235,
+     "off_any": 0.1
+    },
+    {
+     "id": "horns-light",
+     "show": "full",
+     "last": true,
+     "added": 0.0026,
+     "off": 0.578,
+     "off_part": 0.566,
+     "off_any": 0.386
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "run": "lake-cabin_skill_20261116-205703",
+   "variant": "v2",
+   "mixes": 13,
+   "paints": 20,
+   "remeasured": {
+    "mixes": 11,
+    "paints": 16,
+    "merges": 13
+   },
+   "off_finish": 0.1161,
+   "summary": {
+    "steps": 23,
+    "judged": 23,
+    "off": 0.126,
+    "off_part": 0.1,
+    "off_any": 0.016,
+    "off_steps": 11,
+    "empty": [],
+    "off_last": 0.208,
+    "worst": {
+     "id": "mountain-snow",
+     "off": 0.709
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.1443,
+     "off": 0.0,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.1762,
+     "off": 0.003,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "mountain-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0953,
+     "off": 0.379,
+     "off_part": 0.379,
+     "off_any": 0.072
+    },
+    {
+     "id": "mountain-snow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0422,
+     "off": 0.709,
+     "off_part": 0.545,
+     "off_any": 0.1
+    },
+    {
+     "id": "forest-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1299,
+     "off": 0.076,
+     "off_part": 0.064,
+     "off_any": 0.022
+    },
+    {
+     "id": "forest-light",
+     "show": "full",
+     "last": true,
+     "added": 0.1371,
+     "off": 0.085,
+     "off_part": 0.068,
+     "off_any": 0.015
+    },
+    {
+     "id": "cabin-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0072,
+     "off": 0.258,
+     "off_part": 0.241,
+     "off_any": 0.014
+    },
+    {
+     "id": "cabin-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0019,
+     "off": 0.352,
+     "off_part": 0.349,
+     "off_any": 0.022
+    },
+    {
+     "id": "cabin-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0029,
+     "off": 0.528,
+     "off_part": 0.473,
+     "off_any": 0.003
+    },
+    {
+     "id": "dock",
+     "show": "full",
+     "last": true,
+     "added": 0.0062,
+     "off": 0.439,
+     "off_part": 0.439,
+     "off_any": 0.06
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5461,
+     "off": 0.011,
+     "off_part": 0.009,
+     "off_any": 0.001
+    },
+    {
+     "id": "water-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0869,
+     "off": 0.206,
+     "off_part": 0.15,
+     "off_any": 0.003
+    },
+    {
+     "id": "tree-reflection-dark",
+     "show": "pass",
+     "last": false,
+     "added": 0.1233,
+     "off": 0.211,
+     "off_part": 0.174,
+     "off_any": 0.014
+    },
+    {
+     "id": "tree-reflection-olive",
+     "show": "pass",
+     "last": false,
+     "added": 0.024,
+     "off": 0.176,
+     "off_part": 0.057,
+     "off_any": 0.009
+    },
+    {
+     "id": "mountain-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0196,
+     "off": 0.321,
+     "off_part": 0.321,
+     "off_any": 0.0
+    },
+    {
+     "id": "cabin-reflection",
+     "show": "full",
+     "last": true,
+     "added": 0.0062,
+     "off": 0.43,
+     "off_part": 0.43,
+     "off_any": 0.057
+    },
+    {
+     "id": "tree-reflection-ripples",
+     "show": "pass",
+     "last": true,
+     "added": 0.0863,
+     "off": 0.39,
+     "off_part": 0.293,
+     "off_any": 0.017
+    },
+    {
+     "id": "reeds-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0423,
+     "off": 0.369,
+     "off_part": 0.062,
+     "off_any": 0.013
+    },
+    {
+     "id": "reeds-mid",
+     "show": "pass",
+     "last": false,
+     "added": 0.0124,
+     "off": 0.245,
+     "off_part": 0.233,
+     "off_any": 0.041
+    },
+    {
+     "id": "reeds-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0237,
+     "off": 0.398,
+     "off_part": 0.381,
+     "off_any": 0.264
+    },
+    {
+     "id": "rocks-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.048,
+     "off": 0.042,
+     "off_part": 0.04,
+     "off_any": 0.001
+    },
+    {
+     "id": "rocks-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0163,
+     "off": 0.129,
+     "off_part": 0.127,
+     "off_any": 0.015
+    },
+    {
+     "id": "rocks-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0114,
+     "off": 0.19,
+     "off_part": 0.172,
+     "off_any": 0.053
+    }
+   ]
+  },
+  {
+   "picture": "red-sailboat",
+   "run": "red-sailboat_skill_20261116-203450",
+   "variant": "v2",
+   "mixes": 15,
+   "paints": 17,
+   "remeasured": {
+    "mixes": 14,
+    "paints": 14,
+    "merges": 4
+   },
+   "off_finish": 0.0596,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.049,
+    "off_part": 0.044,
+    "off_any": 0.016,
+    "off_steps": 5,
+    "empty": [],
+    "off_last": 0.058,
+    "worst": {
+     "id": "hull-rail",
+     "off": 0.863
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.5801,
+     "off": 0.045,
+     "off_part": 0.045,
+     "off_any": 0.023
+    },
+    {
+     "id": "sun",
+     "show": "full",
+     "last": true,
+     "added": 0.0025,
+     "off": 0.029,
+     "off_part": 0.029,
+     "off_any": 0.0
+    },
+    {
+     "id": "hills",
+     "show": "full",
+     "last": true,
+     "added": 0.0946,
+     "off": 0.035,
+     "off_part": 0.035,
+     "off_any": 0.013
+    },
+    {
+     "id": "water-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.4602,
+     "off": 0.001,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "water-streaks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0747,
+     "off": 0.084,
+     "off_part": 0.083,
+     "off_any": 0.026
+    },
+    {
+     "id": "sun-path-first",
+     "show": "pass",
+     "last": false,
+     "added": 0.0376,
+     "off": 0.372,
+     "off_part": 0.341,
+     "off_any": 0.089
+    },
+    {
+     "id": "sun-path-gold",
+     "show": "pass",
+     "last": true,
+     "added": 0.0231,
+     "off": 0.118,
+     "off_part": 0.076,
+     "off_any": 0.008
+    },
+    {
+     "id": "sail-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0247,
+     "off": 0.023,
+     "off_part": 0.023,
+     "off_any": 0.003
+    },
+    {
+     "id": "sail-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.0025,
+     "off": 0.072,
+     "off_part": 0.06,
+     "off_any": 0.013
+    },
+    {
+     "id": "mast-line",
+     "show": "flat",
+     "last": false,
+     "added": 0.0059,
+     "off": 0.361,
+     "off_part": 0.261,
+     "off_any": 0.019
+    },
+    {
+     "id": "mast-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0017,
+     "off": 0.591,
+     "off_part": 0.471,
+     "off_any": 0.296
+    },
+    {
+     "id": "hull-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0097,
+     "off": 0.101,
+     "off_part": 0.101,
+     "off_any": 0.011
+    },
+    {
+     "id": "hull-rail",
+     "show": "pass",
+     "last": true,
+     "added": 0.0027,
+     "off": 0.863,
+     "off_part": 0.241,
+     "off_any": 0.047
+    },
+    {
+     "id": "reflection-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0288,
+     "off": 0.092,
+     "off_part": 0.049,
+     "off_any": 0.01
+    },
+    {
+     "id": "reflection-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.0051,
+     "off": 0.052,
+     "off_part": 0.052,
+     "off_any": 0.0
+    },
+    {
+     "id": "reflection-zigzag",
+     "show": "pass",
+     "last": true,
+     "added": 0.0056,
+     "off": 0.641,
+     "off_part": 0.529,
+     "off_any": 0.134
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "run": "sleeping-cat_skill_20261116-203502",
+   "variant": "v2",
+   "mixes": 13,
+   "paints": 15,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 12,
+    "merges": 1
+   },
+   "off_finish": 0.0591,
+   "summary": {
+    "steps": 16,
+    "judged": 16,
+    "off": 0.075,
+    "off_part": 0.069,
+    "off_any": 0.009,
+    "off_steps": 4,
+    "empty": [],
+    "off_last": 0.118,
+    "worst": {
+     "id": "cat-fur",
+     "off": 0.997
+    }
+   },
+   "steps": [
+    {
+     "id": "wall-blend",
+     "show": "blend",
+     "last": true,
+     "added": 1.0,
+     "off": 0.107,
+     "off_part": 0.107,
+     "off_any": 0.001
+    },
+    {
+     "id": "outside-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.0547,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "leaves-dark",
+     "show": "flat",
+     "last": false,
+     "added": 0.0442,
+     "off": 0.027,
+     "off_part": 0.012,
+     "off_any": 0.009
+    },
+    {
+     "id": "leaves-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0198,
+     "off": 0.036,
+     "off_part": 0.02,
+     "off_any": 0.011
+    },
+    {
+     "id": "window-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0849,
+     "off": 0.069,
+     "off_part": 0.066,
+     "off_any": 0.005
+    },
+    {
+     "id": "window-shade",
+     "show": "pass",
+     "last": true,
+     "added": 0.037,
+     "off": 0.294,
+     "off_part": 0.288,
+     "off_any": 0.211
+    },
+    {
+     "id": "sill-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.1623,
+     "off": 0.012,
+     "off_part": 0.012,
+     "off_any": 0.001
+    },
+    {
+     "id": "sill-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0269,
+     "off": 0.449,
+     "off_part": 0.355,
+     "off_any": 0.011
+    },
+    {
+     "id": "blanket-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.217,
+     "off": 0.032,
+     "off_part": 0.024,
+     "off_any": 0.003
+    },
+    {
+     "id": "blanket-stitches",
+     "show": "pass",
+     "last": false,
+     "added": 0.0318,
+     "off": 0.002,
+     "off_part": 0.0,
+     "off_any": 0.0
+    },
+    {
+     "id": "blanket-folds",
+     "show": "pass",
+     "last": true,
+     "added": 0.0187,
+     "off": 0.34,
+     "off_part": 0.149,
+     "off_any": 0.125
+    },
+    {
+     "id": "cat-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.3586,
+     "off": 0.012,
+     "off_part": 0.01,
+     "off_any": 0.002
+    },
+    {
+     "id": "cat-white",
+     "show": "pass",
+     "last": false,
+     "added": 0.041,
+     "off": 0.046,
+     "off_part": 0.041,
+     "off_any": 0.022
+    },
+    {
+     "id": "cat-stripes",
+     "show": "pass",
+     "last": false,
+     "added": 0.1159,
+     "off": 0.004,
+     "off_part": 0.004,
+     "off_any": 0.003
+    },
+    {
+     "id": "cat-fur",
+     "show": "pass",
+     "last": false,
+     "added": 0.0054,
+     "off": 0.997,
+     "off_part": 0.81,
+     "off_any": 0.647
+    },
+    {
+     "id": "cat-pink",
+     "show": "pass",
+     "last": true,
+     "added": 0.0174,
+     "off": 0.088,
+     "off_part": 0.079,
+     "off_any": 0.017
+    }
+   ]
+  },
+  {
+   "picture": "snow-lantern",
+   "run": "snow-lantern_skill_20261116-205524",
+   "variant": "v2",
+   "mixes": 12,
+   "paints": 13,
+   "remeasured": {
+    "mixes": 10,
+    "paints": 11,
+    "merges": 11
+   },
+   "off_finish": 0.061,
+   "summary": {
+    "steps": 20,
+    "judged": 20,
+    "off": 0.058,
+    "off_part": 0.034,
+    "off_any": 0.015,
+    "off_steps": 4,
+    "empty": [],
+    "off_last": 0.076,
+    "worst": {
+     "id": "lantern-darks",
+     "off": 0.832
+    }
+   },
+   "steps": [
+    {
+     "id": "sky-blend",
+     "show": "blend",
+     "last": true,
+     "added": 0.6595,
+     "off": 0.001,
+     "off_part": 0.001,
+     "off_any": 0.001
+    },
+    {
+     "id": "sky-moon",
+     "show": "full",
+     "last": true,
+     "added": 0.0168,
+     "off": 0.098,
+     "off_part": 0.098,
+     "off_any": 0.069
+    },
+    {
+     "id": "pines-stamp",
+     "show": "full",
+     "last": true,
+     "added": 0.1035,
+     "off": 0.012,
+     "off_part": 0.012,
+     "off_any": 0.001
+    },
+    {
+     "id": "snow-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.5281,
+     "off": 0.002,
+     "off_part": 0.002,
+     "off_any": 0.0
+    },
+    {
+     "id": "snow-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0889,
+     "off": 0.12,
+     "off_part": 0.111,
+     "off_any": 0.091
+    },
+    {
+     "id": "snow-glow-edge",
+     "show": "pass",
+     "last": false,
+     "added": 0.0503,
+     "off": 0.129,
+     "off_part": 0.109,
+     "off_any": 0.085
+    },
+    {
+     "id": "snow-glow",
+     "show": "pass",
+     "last": true,
+     "added": 0.0781,
+     "off": 0.373,
+     "off_part": 0.042,
+     "off_any": 0.036
+    },
+    {
+     "id": "rails-block",
+     "show": "full",
+     "last": true,
+     "added": 0.0325,
+     "off": 0.386,
+     "off_part": 0.386,
+     "off_any": 0.077
+    },
+    {
+     "id": "post-block",
+     "show": "flat",
+     "last": false,
+     "added": 0.0798,
+     "off": 0.029,
+     "off_part": 0.017,
+     "off_any": 0.006
+    },
+    {
+     "id": "post-shade",
+     "show": "pass",
+     "last": false,
+     "added": 0.0364,
+     "off": 0.14,
+     "off_part": 0.13,
+     "off_any": 0.034
+    },
+    {
+     "id": "post-light",
+     "show": "pass",
+     "last": true,
+     "added": 0.0199,
+     "off": 0.245,
+     "off_part": 0.072,
+     "off_any": 0.062
+    },
+    {
+     "id": "bracket-pull",
+     "show": "flat",
+     "last": false,
+     "added": 0.0143,
+     "off": 0.05,
+     "off_part": 0.041,
+     "off_any": 0.0
+    },
+    {
+     "id": "bracket-light",
+     "show": "full",
+     "last": true,
+     "added": 0.0101,
+     "off": 0.198,
+     "off_part": 0.193,
+     "off_any": 0.027
+    },
+    {
+     "id": "caps-base",
+     "show": "flat",
+     "last": false,
+     "added": 0.0355,
+     "off": 0.132,
+     "off_part": 0.13,
+     "off_any": 0.019
+    },
+    {
+     "id": "caps-tops",
+     "show": "pass",
+     "last": false,
+     "added": 0.0136,
+     "off": 0.129,
+     "off_part": 0.124,
+     "off_any": 0.06
+    },
+    {
+     "id": "caps-warm",
+     "show": "pass",
+     "last": true,
+     "added": 0.0137,
+     "off": 0.458,
+     "off_part": 0.366,
+     "off_any": 0.181
+    },
+    {
+     "id": "lantern-glass",
+     "show": "flat",
+     "last": false,
+     "added": 0.0547,
+     "off": 0.027,
+     "off_part": 0.016,
+     "off_any": 0.008
+    },
+    {
+     "id": "lantern-glow",
+     "show": "pass",
+     "last": false,
+     "added": 0.0132,
+     "off": 0.099,
+     "off_part": 0.075,
+     "off_any": 0.0
+    },
+    {
+     "id": "lantern-brass",
+     "show": "pass",
+     "last": false,
+     "added": 0.0156,
+     "off": 0.151,
+     "off_part": 0.129,
+     "off_any": 0.049
+    },
+    {
+     "id": "lantern-darks",
+     "show": "pass",
+     "last": true,
+     "added": 0.0163,
+     "off": 0.832,
+     "off_part": 0.159,
+     "off_any": 0.052
+    }
+   ]
+  }
+ ]
+}
