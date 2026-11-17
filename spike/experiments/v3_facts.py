@@ -1387,6 +1387,372 @@ SEALED = [ROOT / "output" / n for n in ("balloon-lavender_skill_20261116-171639"
                                         "snow-lantern_skill_20261116-191628")]
 
 
+# --- The writer and the A/B on the frozen bench (S8's second half) ---
+#
+# `start` copies a v2 baseline lesson, takes out everything skill step 6 wrote (summaries, tips, paint notes, edited
+# lines; the adapted stroke cards stay, they're out of scope), redrafts the lines, and writes one packet per stage
+# under <lesson>/trials/facts/stage-NN/: the before and after pictures, the stage's drafted lines, and the sheet's
+# facts as plain sentences. A writer (a subagent given v3_facts_writer.md and one packet) writes out.json. `merge`
+# puts every stage's out.json into text.json and checks it strictly; each failure goes back to its stage's writer
+# once (feedback.md). `merge --final` takes out any sentence that still fails and records it.
+
+RUNS = Path("/home/user/gesso-baseline/output")  # the v2 baseline runs (docs/spikes/v3-yardstick.md, section 5)
+BENCH = ROOT / "spike" / "experiments" / "bench"
+OUT = BENCH / "runs" / "facts"
+WRITER = Path(__file__).with_name("v3_facts_writer.md")
+RESULTS = Path(__file__).with_name("v3_facts.json")
+PICKED = ["highland-cow", "chickadee", "balloon-lavender", "lake-cabin"]  # the most C and E faults in v2's counts
+WRITTEN = ("summary", "tip", "paint_notes")
+PAIR_SIDE = 640
+
+
+def baseline_run(picture: str, runs: Path = RUNS) -> Path:
+    key = json.loads((BENCH / "baseline" / "key.json").read_text())["packets"]
+    return runs / next(v["lesson"] for v in key.values() if v["picture"] == picture)
+
+
+def facts_lesson(picture: str) -> Path:
+    return OUT / f"{baseline_run(picture).name}-facts"
+
+
+def q(v: float | None) -> str:
+    """A measured length for the writer: the ruler value it may say, and the measure: '2 3/4 in (2.82)'."""
+    return "?" if v is None else f"{ruler(v)} in ({v:.2f})"
+
+
+def _box_words(f: dict, of: str) -> str:
+    edges = f.get("edges") or []
+    sides = [f"its left side {q(f['left'])} from the left edge", f"its right side {q(f['right'])} from the right edge",
+             f"its top {q(f['top'])} from the top edge", f"its bottom {q(f['bottom'])} from the bottom edge"]
+    reach = f"It reaches the {', '.join(edges)} edge{'s' if len(edges) > 1 else ''} of the canvas" if edges else \
+        "It reaches no canvas edge"
+    return (f"{of}: {'; '.join(sides)}. {q(f['wide'])} wide, {q(f['tall'])} tall; its middle {q(f['cx'])} from the "
+            f"left edge and {q(f['cy'])} from the top edge. {reach}.")
+
+
+def _beside(o: dict) -> str:
+    w = o["this_is"]
+    where = "inside" if "inside" in w else " and ".join(w) if w else "apart from"
+    gaps = [f"{q(g)} apart {k}" for k, g in (o.get("gap") or {}).items() if g]
+    return f"{where} {o['name']}" + (", touching" if o["touches"] else "") + (f" ({', '.join(gaps)})" if gaps else "")
+
+
+def facts_text(sheet: dict, plan: dict, st: dict) -> str:
+    """One step's facts as plain sentences, every number in the ruler step it may be said in, every part and earlier
+    mark named the way the checker finds it."""
+    parts = sheet["parts"]
+    part = parts.get(st["part"])
+    paints = ", ".join(p["name"] for p in st["paints"]) or "none"
+    head = [f"## Step {st['n']} ({st['id']}): {st['name']}",
+            f"Part: {st['part_name']}. " + ("Its first step." if st["first_of_part"] else
+                                            f"A later {st['show'] or ''} step on it; its earlier steps: "
+                                            f"{', '.join(map(str, st['earlier_steps_of_part']))}.") +
+            f" Paints: {paints}.",
+            f"Where line (kept as it is, word for word): {st['where']}"]
+    if st.get("area"):
+        head.append(_box_words(st["area"], "This step's area (what the Where line measures)"))
+    a = st.get("adds")
+    if a:
+        e = a.get("edges") or []
+        line = (f"The paint it adds: its middle {q(a['cx'])} from the left edge and {q(a['cy'])} from the top edge; "
+                + (f"it reaches the {', '.join(e)} edge{'s' if len(e) > 1 else ''}" if e else "it reaches no canvas edge"))
+        h = a.get("halves")
+        if h and part:
+            line += (f". Of what it adds inside {st['part_name']}: {h['left']:.2f} in the left half, {h['right']:.2f} "
+                     f"in the right half, {h['top']:.2f} in the top half, {h['bottom']:.2f} in the bottom half")
+        head.append(line + ".")
+    if st.get("marks") and (st["show"] == "pass" or len(st["marks"]) > 1):
+        rows = []
+        for k, m in enumerate(st["marks"], 1):
+            rows.append(f"mark {k}: left side {q(m['left'])} from the left edge, top {q(m['top'])} from the top edge, "
+                        f"{q(m['wide'])} wide, {q(m['tall'])} tall, middle {q(m['cx'])} from the left edge"
+                        + (f" ({m['in_part'][0]:.2f} of the way across {st['part_name']}, {m['in_part'][1]:.2f} down)"
+                           if m.get("in_part") else ""))
+        head.append("Its marks, biggest first: " + "; ".join(rows) + ".")
+    cr = st.get("crossings") or {}
+    if part and (cr.get("across") or cr.get("down")):
+        def runs(xs, axis):
+            return "; ".join(f"{q(x['from'])} to {q(x['to'])} from the {axis} edge ({x['in_part']:.2f} of the way "
+                             f"{'across' if axis == 'left' else 'down'})" for x in xs) or "none"
+        head.append(f"Where its paint crosses the middle row of {st['part_name']} (middle {q(part['cx'])} from the "
+                    f"left edge): {runs(cr.get('across') or [], 'left')}. Down its middle column: "
+                    f"{runs(cr.get('down') or [], 'top')}.")
+    if part:
+        head.append(_box_words(part, f"{st['part_name']} as the finish shows it"))
+    for j in st["earlier_steps_of_part"][-3:]:
+        e = sheet["steps"][j - 1]
+        xs = (e.get("crossings") or {}).get("across") or []
+        head.append(f"Under it, step {j} ({', '.join(p['name'] for p in e['paints'])})" +
+                    (": at the middle row " + "; ".join(f"{q(x['from'])} to {q(x['to'])} from the left edge"
+                                                        for x in xs) if xs else "") + ".")
+    if st.get("same_paint_as_under"):
+        head.append(f"Warning: it lays {', '.join(st['same_paint_as_under'])} over the same paint from the step "
+                    f"before on this part, so its marks won't show.")
+    near = [o for o in st.get("others") or [] if o["touches"] or "inside" in o["this_is"]
+            or min([g for g in (o.get("gap") or {}).values() if g is not None] or [99]) < 2]
+    if near:
+        head.append("Next to it: " + "; ".join(_beside(o) + ("" if o["painted"] else " (not painted yet)")
+                                                for o in near) + ".")
+    return "\n".join(head)
+
+
+def _clear_written(text: dict) -> dict:
+    for t in text.get("steps") or []:
+        for k in WRITTEN:
+            t.pop(k, None)
+        t["lines"] = [x for x in t.get("lines") or [] if not x.get("edited")]
+    return text
+
+
+def _tool(cmd: str, lesson: Path) -> dict:
+    import subprocess
+
+    r = subprocess.run([sys.executable, str(ROOT / "spike" / "tools.py"), cmd, "--lesson", str(lesson)],
+                       capture_output=True, text=True, cwd=ROOT)
+    if r.returncode:
+        raise SystemExit(f"{cmd} failed on {lesson}:\n{r.stdout[-2000:]}\n{r.stderr[-2000:]}")
+    return json.loads(r.stdout) if r.stdout.strip().startswith("{") else {}
+
+
+def _stage_of(plan: dict) -> dict[str, int]:
+    return {s["id"]: k for k, stage in enumerate(plan["stages"], 1) for s in stage["steps"]}
+
+
+def start(picture: str) -> Path:
+    """The baseline lesson with step 6's words taken out, its sheet, and one writer's packet per stage."""
+    import shutil
+
+    sys.path.insert(0, str(BENCH))
+    from PIL import Image
+
+    import benchlib
+    import packet
+
+    src, lesson = baseline_run(picture), facts_lesson(picture)
+    if lesson.exists():
+        shutil.rmtree(lesson)
+    shutil.copytree(src, lesson, ignore=shutil.ignore_patterns("trials", "versions", "embed", "*.html", "sealed.json"))
+    text = _clear_written(json.loads((lesson / "text.json").read_text(encoding="utf-8")))
+    (lesson / "text.json").write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
+    review = json.loads((lesson / "review.json").read_text()) if (lesson / "review.json").exists() else {}
+    (lesson / "review.json").write_text(json.dumps({"finish_issues": review.get("finish_issues") or [],
+                                                    "text_issues": []}, indent=1) + "\n")
+    _tool("draft-text", lesson)
+    sheet, plan = lesson_sheet(lesson)
+    work = lesson / "trials" / "facts"
+    work.mkdir(parents=True, exist_ok=True)
+    (work / "sheet.json").write_text(json.dumps(sheet, indent=1), encoding="utf-8")
+    text = json.loads((lesson / "text.json").read_text(encoding="utf-8"))
+    by_id = {t["stage_id"]: t for t in text["steps"]}
+    box = benchlib.canvas_box(lesson)
+    files = sorted(lesson.glob("[0-9][0-9]_*.png"))
+    pics = {f.name[3:-4]: f for f in files if f.name[:2] not in ("00", "98", "99")}
+    names = publish2.paint_names(plan)
+    outline = [f"step {s['n']}: {s['name']} ({s['part_name']})" for s in sheet["steps"]]
+    stage = _stage_of(plan)
+    light = plan.get("light") or ""
+    for k, stg in enumerate(plan["stages"], 1):
+        folder = work / f"stage-{k:02d}"
+        folder.mkdir(exist_ok=True)
+        steps, facts = [], [f"# Stage {k}: {stg.get('name') or stg['id']}", ""]
+        for st in sheet["steps"]:
+            if stage[st["id"]] != k:
+                continue
+            prev = sheet["steps"][st["n"] - 2]["id"] if st["n"] > 1 else None
+            before = benchlib.crop_canvas(Image.open(pics[prev]), box) if prev else None
+            after = benchlib.crop_canvas(Image.open(pics[st["id"]]), box)
+            pair = packet._pair(before, after)
+            k2 = PAIR_SIDE * 2 / pair.width
+            pair.convert("RGB").resize((round(pair.width * k2), round(pair.height * k2))).save(
+                folder / f"pair-{st['n']:02d}.jpg", quality=85)
+            ps = next(s for s in plan["stages"][k - 1]["steps"] if s["id"] == st["id"])
+            t = by_id[st["id"]]
+            steps.append({"n": st["n"], "id": st["id"], "name": st["name"], "part": st["part_name"],
+                          "paints": [names[c] for c in ps.get("paints") or []], "brush": ps.get("brush"),
+                          "stroke": ps.get("stroke"), "pair": f"pair-{st['n']:02d}.jpg",
+                          "lines": [{"n": j + 1, "kind": x.get("kind"), "text": x.get("text")}
+                                    for j, x in enumerate(t["lines"])]})
+            facts += [facts_text(sheet, plan, st), ""]
+        (folder / "facts.md").write_text("\n".join(facts), encoding="utf-8")
+        (folder / "steps.json").write_text(json.dumps({"stage": k, "light": light, "lesson": outline,
+                                                       "steps": steps, "write_to": "out.json"}, indent=1),
+                                           encoding="utf-8")
+        for name, dst in (("photo.png", "photo.jpg"), ("99_finish.png", "finish.jpg")):
+            if (lesson / name).exists():
+                img = benchlib.crop_canvas(Image.open(lesson / name), box).convert("RGB")
+                img.thumbnail((900, 900))
+                img.save(folder / dst, quality=85)
+        shutil.copy(WRITER, folder / "brief.md")
+    return lesson
+
+
+def _apply(text: dict, out: dict) -> list[str]:
+    """One stage's out.json into text.json; returns what it couldn't use."""
+    by_id = {t["stage_id"]: t for t in text["steps"]}
+    bad = []
+    for sid, w in (out.get("steps") or {}).items():
+        t = by_id.get(sid)
+        if t is None:
+            bad.append(f"no step {sid}")
+            continue
+        for k in ("summary", "tip"):
+            if k in w:
+                t[k] = (w[k] or "").strip()
+        if w.get("paint_notes"):
+            t["paint_notes"] = [x for x in w["paint_notes"] if x.strip()]
+        for n, new in (w.get("lines") or {}).items():
+            j = int(n) - 1 if str(n).strip().isdigit() else -1
+            if not 0 <= j < len(t["lines"]):
+                bad.append(f"{sid}: no line {n}")
+                continue
+            t["lines"][j] = {**t["lines"][j], "text": (new or "").strip(), "edited": True}
+    return bad
+
+
+def _parts(c: dict) -> list[tuple[str, str]]:
+    """(field, sentence) of each piece of text a failed claim stands on: one, or two for an `agree` claim (two sizes
+    of the step's own thing in two fields, which check_text joins with " and " and " / ")."""
+    if c["kind"] == "agree":
+        return list(zip(c["field"].split(" and "), c["sentence"].split(" / ")))
+    return [(c["field"], c["sentence"])]
+
+
+def _owned(t: dict, field: str) -> bool:
+    """Whether a writer wrote this field of a text.json step: its summary, tip, paint notes, or a line it edited."""
+    if field.startswith(("summary", "tip", "paint note")):
+        return True
+    if field.startswith("line "):
+        return bool(t["lines"][int(field.split()[1]) - 1].get("edited"))
+    return False
+
+
+def _writers(text: dict, failures: list[dict]) -> list[dict]:
+    """The failures that stand on what a writer wrote. An `agree` claim between a tip and the drafted Where line is
+    the writer's: the Where line is measured, so the tip is the one to change."""
+    by_id = {t["stage_id"]: t for t in text["steps"]}
+    return [c for c in failures if any(_owned(by_id[c["id"]], f) for f, _s in _parts(c))]
+
+
+def _drop(words: str, sentence: str) -> str:
+    """The words without the first copy of the sentence."""
+    out, gone = [], False
+    for s in sentences(words):
+        if not gone and s == sentence:
+            gone = True
+            continue
+        out.append(s)
+    return " ".join(out).strip()
+
+
+def _take_out(t: dict, field: str, sentence: str) -> bool:
+    """Take a sentence out of one field of a text.json step; False when it isn't there."""
+    if field in ("summary", "tip"):
+        before = t.get(field) or ""
+        t[field] = _drop(before, sentence)
+        return t[field] != before
+    if field.startswith("paint note"):
+        j = int(field.split()[2]) - 1
+        before = t["paint_notes"][j]
+        t["paint_notes"][j] = _drop(before, sentence)
+        return t["paint_notes"][j] != before
+    j = int(field.split()[1]) - 1
+    before = t["lines"][j]["text"]
+    t["lines"][j]["text"] = _drop(before, sentence)
+    return t["lines"][j]["text"] != before
+
+
+def merge(lesson: Path, final: bool = False) -> dict:
+    """Every stage's out.json into text.json, checked strictly. Writes feedback.md into each stage with a failure.
+    With `final`, a sentence that still fails is taken out (and recorded in trials/facts/dropped.json)."""
+    lesson = Path(lesson)
+    work = lesson / "trials" / "facts"
+    sheet = json.loads((work / "sheet.json").read_text(encoding="utf-8"))
+    plan = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
+    text = _clear_written(json.loads((lesson / "text.json").read_text(encoding="utf-8")))
+    _tool_text = lesson / "text.json"
+    _tool_text.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
+    _tool("draft-text", lesson)  # back to the drafted lines, then each writer's words on them
+    text = json.loads(_tool_text.read_text(encoding="utf-8"))
+    bad, missing = [], []
+    for folder in sorted(work.glob("stage-*")):
+        o = folder / "out.json"
+        if not o.exists():
+            missing.append(folder.name)
+            continue
+        bad += [f"{folder.name}: {b}" for b in _apply(text, json.loads(o.read_text(encoding="utf-8")))]
+    r = check_text(sheet, text, strict=True)
+    mine = _writers(text, r["failures"])
+    stage = _stage_of(plan)
+    dropped = []
+    if final:
+        by_id = {t["stage_id"]: t for t in text["steps"]}
+        done = set()
+        for c in mine:
+            t = by_id[c["id"]]
+            for f, sent in _parts(c):
+                if not _owned(t, f) or (c["id"], f, sent) in done:
+                    continue
+                done.add((c["id"], f, sent))
+                if _take_out(t, f, sent):
+                    dropped.append({"step": c["step"], "id": c["id"], "field": f, "sentence": sent, "why": say(c)})
+        for t in text["steps"]:
+            if t.get("paint_notes"):
+                t["paint_notes"] = [x for x in t["paint_notes"] if x]
+        (work / "dropped.json").write_text(json.dumps(dropped, indent=1), encoding="utf-8")
+    _tool_text.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
+    for folder in work.glob("stage-*"):
+        (folder / "feedback.md").unlink(missing_ok=True)
+    if not final:
+        for k in sorted({stage[c["id"]] for c in mine}):
+            lines = [f"- {say(c)}\n  in: \"{c['sentence']}\"" for c in mine if stage[c["id"]] == k]
+            (work / f"stage-{k:02d}" / "feedback.md").write_text(
+                "# The checker's failures in your words\n\nFix each one in out.json (write the whole file again): use "
+                "the fact the sheet gives, or say it without a number or a side.\n\n" + "\n".join(lines) + "\n",
+                encoding="utf-8")
+    after = check_text(sheet, text, strict=True)
+    unwritten = [t["stage_id"] for t in text["steps"] if not (t.get("summary") or "").strip()
+                 or not (t.get("tip") or "").strip()]
+    return {"lesson": lesson.name, "missing": missing, "bad": bad, "unwritten": unwritten, "failures": len(mine),
+            "failed": [say(c) for c in mine], "dropped": len(dropped),
+            "after": len(_writers(text, after["failures"])),
+            "claims": len([c for c in after["claims"] if c["field"].split()[0] in ("summary", "tip", "paint")
+                           or c["field"].startswith("line")]),
+            "stages_with_feedback": sorted({stage[c["id"]] for c in mine}) if not final else []}
+
+
+def grade_folders(pictures: list[str], out: Path, seed: int = 173) -> dict:
+    """The blind A/B round for Claude's graders (bench/ab_grader.md): per picture <out>/<picture>-g1/ and -g2/, the
+    two lessons as A/ and B/, sides drawn from the seed and swapped for the second grader. The key is only in
+    <out>/key.json. `out` must be outside the repository."""
+    import random
+    import shutil
+
+    sys.path.insert(0, str(BENCH))
+    import packet
+
+    out = Path(out).resolve()
+    if ROOT in out.parents or out == ROOT:
+        raise SystemExit("the grading folders must be outside the repository")
+    rng = random.Random(seed)
+    key = {"round": "s8-facts", "seed": seed, "pictures": {}}
+    for pic in pictures:
+        sides = {"v2": baseline_run(pic), "facts": facts_lesson(pic)}
+        first = rng.random() < 0.5
+        order = ["v2", "facts"] if first else ["facts", "v2"]
+        key["pictures"][pic] = {}
+        for g, names in (("g1", order), ("g2", order[::-1])):
+            folder = out / f"{pic}-{g}"
+            if folder.exists():
+                shutil.rmtree(folder)
+            for side, name in zip("AB", names):
+                packet.build_one(sides[name], folder / side)
+            shutil.copy(BENCH / "ab_grader.md", folder / "ab_grader.md")
+            key["pictures"][pic][g] = {"A": names[0], "B": names[1],
+                                       "lessons": {n: sides[n].name for n in names}}
+    (out / "key.json").write_text(json.dumps(key, indent=1))
+    return key
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1401,7 +1767,32 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--out", type=Path, help="write every claim of every lesson here, as JSON")
     d = sub.add_parser("mutate", help="plant faults in each lesson's words and count how many the checker catches")
     d.add_argument("lessons", type=Path, nargs="*")
+    e = sub.add_parser("start", help="a bench lesson with step 6's words taken out, and one writer's packet a stage")
+    e.add_argument("pictures", help=f"comma-separated bench pictures, or 'picked' ({','.join(PICKED)})")
+    f = sub.add_parser("merge", help="every stage's out.json into text.json, checked; feedback for the writers")
+    f.add_argument("pictures")
+    f.add_argument("--final", action="store_true", help="take out what still fails, then publish")
+    g = sub.add_parser("grade", help="the blind A/B folders for Claude's graders, outside the repository")
+    g.add_argument("pictures")
+    g.add_argument("--out", type=Path, required=True)
     args = ap.parse_args(argv)
+    pics = (PICKED if getattr(args, "pictures", None) == "picked" else
+            (args.pictures or "").split(",") if hasattr(args, "pictures") else [])
+    if args.cmd == "start":
+        for p in pics:
+            lesson = start(p)
+            print(p, lesson, len(list((lesson / "trials" / "facts").glob("stage-*"))), "stages")
+        return 0
+    if args.cmd == "merge":
+        for p in pics:
+            r = merge(facts_lesson(p), final=args.final)
+            if args.final:
+                _tool("publish", facts_lesson(p))
+            print(json.dumps(r, indent=1))
+        return 0
+    if args.cmd == "grade":
+        print(json.dumps(grade_folders(pics, args.out), indent=1))
+        return 0
     if args.cmd == "mutate":
         results = []
         for lesson in args.lessons or SEALED:

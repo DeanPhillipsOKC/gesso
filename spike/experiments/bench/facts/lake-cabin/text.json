@@ -1,0 +1,2426 @@
+{
+ "card_text": {
+  "sky-blend": {
+   "side-to-side-blend": {
+    "motion": "Start with Clear sky blue across the top and stroke side to side. Without rinsing, pick up Pale horizon blue and paint below it, down past where the trees and mountain go. Then stroke back up over the join several times.",
+    "result": "Smooth bands of blue, deeper at the top and paler low down, with a soft join where the two wet blues meet.",
+    "then": "Stroke back over the join while it's wet.",
+    "mistakes": [
+     {
+      "mistake": "A hard line where the two blues meet.",
+      "fix": "Add more Pale horizon blue at the join and blend again."
+     },
+     {
+      "mistake": "The brush is overloaded.",
+      "fix": "Wipe it on a rag. Rinse before going into white."
+     }
+    ],
+    "diagram": {
+     "title": "Blend the two sky blues side to side",
+     "stages": [
+      {
+       "caption": "Clear sky blue, side to side",
+       "add": [
+        {
+         "rect": [
+          8,
+          14,
+          84,
+          30
+         ],
+         "paint": "Clear sky blue"
+        }
+       ],
+       "arrows": [
+        "M 14 29 L 86 29"
+       ]
+      },
+      {
+       "caption": "Pale horizon blue below it",
+       "add": [
+        {
+         "rect": [
+          8,
+          44,
+          84,
+          30
+         ],
+         "paint": "Pale horizon blue"
+        }
+       ],
+       "arrows": [
+        "M 86 59 L 14 59"
+       ]
+      },
+      {
+       "caption": "Back up over the join",
+       "add": [
+        {
+         "rect": [
+          8,
+          38,
+          84,
+          12
+         ],
+         "paint": "Pale horizon blue",
+         "opacity": 0.9
+        }
+       ],
+       "arrows": [
+        "M 14 44 L 86 44"
+       ]
+      }
+     ]
+    },
+    "from": "side-to-side-blend"
+   }
+  },
+  "mountain-base": {
+   "curved-strokes": {
+    "motion": "Bend every stroke with the mountain: from the top of each peak down along its slope.",
+    "result": "Marks that run down the slopes, which is what makes the mountain look sloped.",
+    "then": "Use the darker mix along the shadow side and the lighter one along the lit side, both following the slopes.",
+    "diagram": {
+     "title": "Strokes that run down the slopes",
+     "stages": [
+      {
+       "caption": "The mountain's shape",
+       "add": [
+        {
+         "path": "M 6 80 L 48 24 L 60 38 L 72 30 L 94 80 Z",
+         "paint": "Light mountain blue"
+        }
+       ]
+      },
+      {
+       "caption": "Strokes down the slopes, lighter toward the light",
+       "add": [
+        {
+         "line": "M 46 30 Q 36 50 24 74",
+         "paint": "#c9d6e6",
+         "width": 2.4
+        },
+        {
+         "line": "M 50 30 Q 46 52 40 76",
+         "paint": "#c9d6e6",
+         "width": 2.4
+        },
+        {
+         "line": "M 70 36 Q 74 54 80 74",
+         "paint": "#c9d6e6",
+         "width": 2.4
+        }
+       ],
+       "arrows": [
+        "M 40 30 Q 28 50 16 72"
+       ]
+      }
+     ]
+    },
+    "from": "curved-strokes"
+   }
+  },
+  "mountain-shade": {
+   "dry-brush": {
+    "motion": "Light pressure, skimming over the rock and the right-hand slopes of the mountain.",
+    "result": "Feathery, broken, see-through blue marks that catch the canvas texture on the shadow side. Never a solid area.",
+    "then": "Build up in several light passes.",
+    "mistakes": [
+     {
+      "mistake": "The shadow went on as solid blue.",
+      "why": "The brush was too loaded.",
+      "fix": "Let it dry, then dry-brush Light mountain blue back over part of it."
+     }
+    ],
+    "diagram": {
+     "title": "Skim the shadow on, with almost no paint",
+     "stages": [
+      {
+       "caption": "The light blue mountain, dry",
+       "add": [
+        {
+         "rect": [
+          10,
+          30,
+          80,
+          40
+         ],
+         "paint": "Light mountain blue"
+        }
+       ]
+      },
+      {
+       "caption": "Light, broken strokes of lake blue",
+       "add": [
+        {
+         "line": "M 14 38 l 22 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 42 36 l 14 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 62 39 l 20 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 20 46 l 12 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 38 47 l 26 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 70 48 l 12 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 14 56 l 18 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 40 58 l 12 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 58 57 l 24 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 26 64 l 20 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 54 65 l 14 0",
+         "paint": "Lake blue",
+         "width": 2
+        }
+       ],
+       "arrows": [
+        "M 14 22 L 84 22"
+       ]
+      }
+     ]
+    },
+    "from": "dry-brush"
+   }
+  },
+  "forest-dark": {
+   "fan-tapping": {
+    "motion": "Stamp only the tips, using the middle of the fan, not the side bristles. For each spruce, work from its top point down in a zigzag and press harder as you go down, so it widens. Short strokes in different directions make the rough far woods.",
+    "result": "Clusters of fine, needle-like marks, light at each spruce's tip and heavier where pressed toward its base.",
+    "then": "If a spruce's top is too heavy, add a few fine lines with a small round instead of more fan marks.",
+    "mistakes": [
+     {
+      "mistake": "Heavy, clumpy spruces.",
+      "why": "The paint is too thick, the bristles are clumped, or you stamped with the side.",
+      "fix": "Thin the paint a little, spread the fan, and stamp with the middle tips."
+     }
+    ],
+    "diagram": {
+     "title": "Tap the spruce's tip, then zigzag down",
+     "stages": [
+      {
+       "caption": "Light taps at the tip",
+       "add": [
+        {
+         "line": "M 44 22 L 56 22",
+         "paint": "Deep spruce green",
+         "width": 2.5
+        },
+        {
+         "line": "M 41 30 L 59 30",
+         "paint": "Deep spruce green",
+         "width": 3
+        }
+       ]
+      },
+      {
+       "caption": "Zigzag down, pressing harder",
+       "add": [
+        {
+         "line": "M 36 40 L 64 40",
+         "paint": "Deep spruce green",
+         "width": 4
+        },
+        {
+         "line": "M 31 52 L 69 52",
+         "paint": "Deep spruce green",
+         "width": 5
+        },
+        {
+         "line": "M 26 64 L 74 64",
+         "paint": "Deep spruce green",
+         "width": 6
+        },
+        {
+         "line": "M 22 76 L 78 76",
+         "paint": "Deep spruce green",
+         "width": 7
+        }
+       ],
+       "arrows": [
+        "M 82 24 L 86 74"
+       ]
+      }
+     ]
+    },
+    "from": "fan-tapping"
+   }
+  },
+  "cabin-block": {
+   "build-from-pieces": {
+    "motion": "Start with one simple shape: a rectangle for the walls. Then add the rest in pieces: the roof's triangle on top, and the gable end on the right.",
+    "result": "A cabin made of distinct pieces, with small gaps or overlaps between them.",
+    "then": "Leave the pieces showing: the shade and the roof go on them next.",
+    "diagram": {
+     "title": "One rectangle, then the roof and the gable",
+     "stages": [
+      {
+       "caption": "A rectangle for the walls",
+       "add": [
+        {
+         "rect": [
+          14,
+          46,
+          52,
+          34
+         ],
+         "paint": "Sunny barn red"
+        }
+       ],
+       "arrows": [
+        "M 18 63 L 62 63"
+       ]
+      },
+      {
+       "caption": "The roof on top, tucked behind",
+       "add": [
+        {
+         "path": "M 10 47 L 30 24 L 72 24 L 72 47 Z",
+         "paint": "Sunny barn red",
+         "behind": true
+        }
+       ]
+      },
+      {
+       "caption": "The gable end on the right",
+       "add": [
+        {
+         "path": "M 64 46 L 78 22 L 92 46 L 92 80 L 64 80 Z",
+         "paint": "Sunny barn red"
+        }
+       ]
+      }
+     ]
+    },
+    "from": "build-from-pieces"
+   }
+  },
+  "water-base": {
+   "horizontal-strokes": {
+    "motion": "Keep the brush level and the strokes long, left and right, across the whole lake.",
+    "result": "Flat, level bands of lake blue that seem to stretch away to the far shore, with slight streaks that follow the stroke.",
+    "then": "Lighter and smoother toward the far shore, darker and more textured in front.",
+    "diagram": {
+     "title": "Long and level across the lake",
+     "stages": [
+      {
+       "caption": "Left and right, level",
+       "add": [
+        {
+         "rect": [
+          8,
+          30,
+          84,
+          44
+         ],
+         "paint": "Lake blue"
+        }
+       ],
+       "arrows": [
+        "M 14 40 L 86 40",
+        "M 86 62 L 14 62"
+       ]
+      },
+      {
+       "caption": "A few darker streaks left in",
+       "add": [
+        {
+         "line": "M 16 48 l 30 0",
+         "paint": "#45689a",
+         "width": 2
+        },
+        {
+         "line": "M 52 56 l 28 0",
+         "paint": "#45689a",
+         "width": 2
+        },
+        {
+         "line": "M 22 66 l 24 0",
+         "paint": "#45689a",
+         "width": 2
+        }
+       ]
+      }
+     ]
+    },
+    "from": "horizontal-strokes"
+   }
+  },
+  "tree-reflection-dark": {
+   "pull-down": {
+    "motion": "Stroke straight down, starting just below the spruces at the waterline.",
+    "result": "Soft, streaky, see-through dark green marks straight down under the trees.",
+    "then": "Once dry, cross it with thin level dashes of the base color.",
+    "diagram": {
+     "title": "Pull the spruce's color straight down",
+     "stages": [
+      {
+       "caption": "A spruce above the dry lake",
+       "add": [
+        {
+         "rect": [
+          8,
+          46,
+          84,
+          44
+         ],
+         "paint": "Lake blue"
+        },
+        {
+         "path": "M 50 14 L 62 46 L 38 46 Z",
+         "paint": "Deep spruce green"
+        }
+       ]
+      },
+      {
+       "caption": "Thin, dry strokes straight down",
+       "add": [
+        {
+         "line": "M 42 48 L 42 66",
+         "paint": "Deep spruce green",
+         "width": 1.8
+        },
+        {
+         "line": "M 46 48 L 46 74",
+         "paint": "Deep spruce green",
+         "width": 1.8
+        },
+        {
+         "line": "M 50 48 L 50 80",
+         "paint": "Deep spruce green",
+         "width": 1.8
+        },
+        {
+         "line": "M 54 48 L 54 72",
+         "paint": "Deep spruce green",
+         "width": 1.8
+        },
+        {
+         "line": "M 58 48 L 58 64",
+         "paint": "Deep spruce green",
+         "width": 1.8
+        }
+       ],
+       "arrows": [
+        "M 68 50 L 68 78"
+       ]
+      },
+      {
+       "caption": "Level dashes across, once dry",
+       "add": [
+        {
+         "line": "M 38 58 l 14 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 48 66 l 14 0",
+         "paint": "Lake blue",
+         "width": 2
+        },
+        {
+         "line": "M 40 74 l 16 0",
+         "paint": "Lake blue",
+         "width": 2
+        }
+       ]
+      }
+     ]
+    },
+    "from": "pull-down"
+   }
+  },
+  "tree-reflection-ripples": {
+   "horizontal-dashes": {
+    "motion": "Short, level dashes across the forest's reflection. Small and close together near the far shore, longer and wider apart lower down.",
+    "result": "Short, flat, level marks with gaps of the reflection's dark green between them.",
+    "then": "Keep every dash level.",
+    "mistakes": [
+     {
+      "mistake": "The dashes smear into the dark green reflection.",
+      "why": "The reflection is still wet.",
+      "fix": "Paint them over a dry layer only."
+     }
+    ],
+    "diagram": {
+     "title": "Ripples that grow toward you",
+     "stages": [
+      {
+       "caption": "The dry dark reflection",
+       "add": [
+        {
+         "rect": [
+          8,
+          20,
+          84,
+          66
+         ],
+         "paint": "Deep spruce green"
+        }
+       ]
+      },
+      {
+       "caption": "Short and close at the top, longer below",
+       "add": [
+        {
+         "line": "M 46.0 26 l 8 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        },
+        {
+         "line": "M 44.0 32 l 12 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        },
+        {
+         "line": "M 42.0 39 l 16 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        },
+        {
+         "line": "M 38.0 48 l 24 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        },
+        {
+         "line": "M 34.0 58 l 32 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        },
+        {
+         "line": "M 28.0 70 l 44 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        },
+        {
+         "line": "M 35.0 82 l 30 0",
+         "paint": "Soft reflection green",
+         "width": 2.2
+        }
+       ]
+      }
+     ]
+    },
+    "from": "horizontal-dashes"
+   }
+  },
+  "reeds-base": {
+   "x-stroke": {
+    "motion": "Short strokes that cross each other in two directions, like overlapping X shapes, filling the reed clump.",
+    "result": "A soft, slightly textured dark green fill with visible criss-cross marks: the dark heart of the reeds.",
+    "then": "Leave it as texture: the flicked blades go over it once it's dry.",
+    "diagram": {
+     "title": "Fill the clump with crossing strokes",
+     "stages": [
+      {
+       "caption": "One X",
+       "add": [
+        {
+         "line": "M 30 30 L 60 60",
+         "paint": "Dark reed green",
+         "width": 7
+        },
+        {
+         "line": "M 60 30 L 30 60",
+         "paint": "Dark reed green",
+         "width": 7
+        }
+       ],
+       "arrows": [
+        "M 30 30 L 58 58"
+       ]
+      },
+      {
+       "caption": "Overlap the next ones",
+       "add": [
+        {
+         "line": "M 50 34 L 80 64",
+         "paint": "#3f6264",
+         "width": 7
+        },
+        {
+         "line": "M 80 34 L 50 64",
+         "paint": "#3f6264",
+         "width": 7
+        },
+        {
+         "line": "M 22 52 L 52 82",
+         "paint": "Dark reed green",
+         "width": 7
+        },
+        {
+         "line": "M 52 52 L 22 82",
+         "paint": "Dark reed green",
+         "width": 7
+        }
+       ]
+      }
+     ]
+    },
+    "from": "x-stroke"
+   }
+  },
+  "reeds-mid": {
+   "flicking": {
+    "motion": "A quick stroke upward from the base of the reeds, lifting off as it goes, so each blade thins at the top.",
+    "result": "Tapered blades with broken tips, denser at the base of the clump.",
+    "then": "Flick a lighter green over the dark base, fewer as you go up, so the dark shows between the blades.",
+    "diagram": {
+     "title": "Flick the blades up from the base",
+     "stages": [
+      {
+       "caption": "Dark reed base",
+       "add": [
+        {
+         "line": "M 24 80 Q 22 60 28 44",
+         "paint": "Dark reed green",
+         "width": 2
+        },
+        {
+         "line": "M 34 80 Q 36 62 32 48",
+         "paint": "Dark reed green",
+         "width": 2
+        },
+        {
+         "line": "M 44 80 Q 42 58 48 40",
+         "paint": "Dark reed green",
+         "width": 2
+        },
+        {
+         "line": "M 54 80 Q 58 64 54 50",
+         "paint": "Dark reed green",
+         "width": 2
+        },
+        {
+         "line": "M 64 80 Q 62 60 68 46",
+         "paint": "Dark reed green",
+         "width": 2
+        },
+        {
+         "line": "M 74 80 Q 76 64 72 52",
+         "paint": "Dark reed green",
+         "width": 2
+        }
+       ],
+       "arrows": [
+        "M 86 78 L 84 44"
+       ]
+      },
+      {
+       "caption": "Fewer, lighter blades on top",
+       "add": [
+        {
+         "line": "M 30 80 Q 28 64 34 52",
+         "paint": "Mossy green",
+         "width": 1.6
+        },
+        {
+         "line": "M 50 80 Q 52 62 48 50",
+         "paint": "Mossy green",
+         "width": 1.6
+        },
+        {
+         "line": "M 68 80 Q 66 66 72 56",
+         "paint": "Mossy green",
+         "width": 1.6
+        }
+       ]
+      }
+     ]
+    },
+    "from": "flicking"
+   }
+  }
+ },
+ "steps": [
+  {
+   "stage_id": "sky-blend",
+   "lines": [
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 1/2 in from the top edge. Paint a little past its bottom, under where the spruce forest and the snowy mountain will go.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, top to bottom: Clear sky blue, then Pale horizon blue.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch wide flat. Load: Creamy paint. An even coat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave smooth bands of color, with a soft join where two wet colors meet.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Let it dry, then blend a new thin layer on top.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch wide flat",
+     "use": "Blend the pale blue sky"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Blends the sky from Clear sky blue at the top edge down to Pale horizon blue.",
+   "tip": "The light in this lesson comes from the upper left, so every highlight later goes on the left side of the peaks, spruces and rocks. Stroke side to side across the whole canvas, about 16 in wide, with Clear sky blue along the top edge, and carry the Pale horizon blue down past the sky's bottom as far as the after picture shows, so no white shows under the snowy mountain and the spruce forest. The after picture also has a few soft cream wisps in the blue; this step's paints have no cream, so leave them for now or touch in a little Pale horizon blue where the after picture has them."
+  },
+  {
+   "stage_id": "mountain-base",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its right side is at the right edge; it's about 9 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom and left side, under where the spruce forest will go. The outline also reaches onto the sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Light mountain blue.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the tip of each peak down along its slope, then fill the lower part with plain side-to-side strokes.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Lay in the mountain in light blue"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Fill the mountain's shape with flat light blue, peaks against the sky.",
+   "tip": "The mountain's left side is about 6 1/2 in from the left edge, and it runs to the right edge of the canvas; cut its jagged peaks carefully against the sky, as the Where picture shows. Fill the lower part solid, square to its bottom, since the spruce forest will cover it later. The early sun comes from the upper left, but this step is one flat blue; the light comes in steps 3 and 4."
+  },
+  {
+   "stage_id": "mountain-shade",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the snowy mountain and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its right side is at the right edge; it's about 9 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom and left side, under where the spruce forest will go.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Lake blue.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Lake blue for this step and steps 11 and 15; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 2 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Shade the mountain's rock and shadow side"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dry-brush Lake blue into the peaks' shadow sides and the mountain's lower slopes.",
+   "tip": "The sun comes from the upper left, so the shadow is on the right side of each peak and in the gullies: drag the Lake blue down those slopes and leave the left faces of the peaks light. Most of it goes on the right side of the snowy mountain and in its bottom half, where the lower slopes are darkest. The after picture shows a repeating pattern in the lower part; you don't need to copy it, just keep it broken and dark there, since the spruce forest will cover it."
+  },
+  {
+   "stage_id": "mountain-snow",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the snowy mountain and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush fully first: this is the lightest paint yet.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1/2 in from the top edge, and its right side is at the right edge; it's about 9 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Paint a little past its bottom and left side, under where the spruce forest will go.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm snow cream.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 2 and 3 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Warm snow cream is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Too much detail on the far mountain. Beginners tend to over-detail it; far forms are simpler, softer, and lower in contrast.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Fix: keep them as a few big shapes with a light side and a shadow side, soft edges, no texture.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Light the snow on the sunny faces"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dry-brush warm cream snow onto the sunlit left faces of the peaks.",
+   "tip": "The sun comes from the upper left, so the snow catches the left side of each peak: start at each tip and drag the cream down and to the left along the ridge, and keep the shadow side on the right of each peak blue. The biggest patch is the main peak's lit face, its top about 1/2 in from the top edge and about 2 1/2 in wide; most of what this step adds is on the left side of the snowy mountain. The after picture also warms the lower slopes with a thin cream haze; keep that faint, since the spruce forest will cover most of it."
+  },
+  {
+   "stage_id": "forest-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the snowy mountain and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 1/2 in from the top edge and its bottom is about 5 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Deep spruce green, then Blue-green haze. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Deep spruce green for this step and step 13; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Short strokes in different directions make a rough texture.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: A heavy, solid top. Too much pressure or paint at the start of the tree. Fix: add fine branches with a small round instead of more fan marks.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Stamp the dark spruces and the far blue-green woods"
+    }
+   ],
+   "stroke_cards": [
+    "fan-tapping"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Stamp one spruce from the tip down",
+    "paint": "Deep spruce green",
+    "stages": [
+     {
+      "caption": "A narrow tip",
+      "add": [
+       {
+        "line": "M 50 8 L 50 92",
+        "width": 1.5
+       },
+       {
+        "path": "M 50 8 L 56 26 L 44 26 Z"
+       }
+      ],
+      "arrows": [
+       "M 64 10 L 64 26"
+      ]
+     },
+     {
+      "caption": "Wider tiers going down",
+      "add": [
+       {
+        "line": "M 50 8 L 50 92",
+        "width": 1.5,
+        "done": true
+       },
+       {
+        "path": "M 50 8 L 56 26 L 44 26 Z",
+        "done": true
+       },
+       {
+        "path": "M 50 22 L 62 44 L 38 44 Z"
+       },
+       {
+        "path": "M 50 38 L 66 62 L 34 62 Z"
+       }
+      ],
+      "arrows": [
+       "M 72 26 L 76 60"
+      ]
+     },
+     {
+      "caption": "Widest at the bottom",
+      "add": [
+       {
+        "line": "M 50 8 L 50 92",
+        "width": 1.5,
+        "done": true
+       },
+       {
+        "path": "M 50 8 L 56 26 L 44 26 Z",
+        "done": true
+       },
+       {
+        "path": "M 50 22 L 62 44 L 38 44 Z",
+        "done": true
+       },
+       {
+        "path": "M 50 38 L 66 62 L 34 62 Z",
+        "done": true
+       },
+       {
+        "path": "M 50 56 L 72 84 L 28 84 Z"
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Stamp a row of dark spruces across the canvas, with the far woods low behind them.",
+   "tip": "Start with the tallest spruces at the left edge of the canvas: that group is about 3 1/4 in wide and 4 1/4 in tall, its top about 1/4 in from the top edge. The rest of the row runs across to the right edge, shorter trees with a pointed top, and most of the paint lands in the bottom half of the spruce forest. Leave the sky and the snowy mountain showing between the trees, and stamp the Blue-green haze far woods low behind them where the after picture has it.",
+   "paint_notes": [
+    "Blue-green haze can't be mixed exactly from these tubes; mix it as close as they get, a soft grayed blue-green, and compare it with the after picture."
+   ]
+  },
+  {
+   "stage_id": "forest-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the spruce forest and the snowy mountain dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 1/2 in from the top edge and its bottom is about 5 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Mossy green, then Sunlit olive. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Mossy green for this step and step 19; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Sunlit olive for this step and steps 14 and 20; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Short strokes in different directions make a rough texture.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 5 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Heavy, clumpy marks. The paint is too thick, the bristles are clumped, or you stamped with the side. Fix: thin the paint a little, spread the fan, and stamp with the middle tips.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Tap the light side of the spruces and bushes"
+    }
+   ],
+   "stroke_cards": [
+    "fan-tapping"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Tap Mossy green and Sunlit olive light onto the spruces, bushes and shoreline.",
+   "tip": "The light comes from the upper left, so tap the Sunlit olive on the left side of each spruce and keep the Deep spruce green showing on its other side. Most of this step's paint is on the left side of the spruce forest and in its bottom half: fill the gaps between the trees with olive bushes and lay a low olive band along the shoreline, as the after picture shows. The after picture also has a dark olive mound where the red cabin will go; block it in softly, since the cabin is painted over it in step 7."
+  },
+  {
+   "stage_id": "cabin-block",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the spruce forest and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 1 1/2 in wide and 1 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the dock will go: paint straight through there. The outline also reaches onto the spruce forest, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Sunny barn red.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Sunny barn red for this step and step 16; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with one simple shape: a rectangle for the wall. Then add the pointed roof on top in short straight pieces.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one flat red house shape with straight sides and a pointed roof line.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Block in the red cabin"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the cabin from simple pieces",
+    "paint": "Sunny barn red",
+    "stages": [
+     {
+      "caption": "A rectangle for the walls",
+      "add": [
+       {
+        "rect": [
+         12,
+         46,
+         54,
+         36
+        ]
+       }
+      ],
+      "arrows": [
+       "M 16 64 L 62 64"
+      ]
+     },
+     {
+      "caption": "The roof on top",
+      "add": [
+       {
+        "rect": [
+         12,
+         46,
+         54,
+         36
+        ],
+        "done": true
+       },
+       {
+        "path": "M 8 47 L 28 22 L 72 22 L 72 47 Z",
+        "behind": true
+       }
+      ]
+     },
+     {
+      "caption": "The gable end on the right",
+      "add": [
+       {
+        "rect": [
+         12,
+         46,
+         54,
+         36
+        ],
+        "done": true
+       },
+       {
+        "path": "M 8 47 L 28 22 L 72 22 L 72 47 Z",
+        "done": true
+       },
+       {
+        "path": "M 64 47 L 78 20 L 92 47 L 92 82 L 64 82 Z"
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Block in the cabin as one flat red house shape with a pointed roof.",
+   "tip": "The red cabin is small: about 1 1/2 in wide and 1 in tall, its middle about 3 1/4 in from the left edge and 4 3/4 in from the top edge. Keep its sides straight and its roof line pointed, as the after picture shows; it sits inside the spruce forest, touching it.",
+   "paint_notes": [
+    "Sunny barn red is see-through over the dark green of the spruce forest: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "cabin-shade",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the red cabin and the spruce forest dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 1 1/2 in wide and 1 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the dock will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Barn red shadow.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Barn red shadow for this step and step 16; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the bigger dark patch on the lower wall, then add the narrow strip in short straight up-and-down pieces.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dark red boards on the lower wall and a dark strip under the roof edge, with the brighter red still showing.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 7 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Shade the cabin's end wall"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Darken the cabin's lower wall and the strip under the roof edge.",
+   "tip": "Most of this paint goes in the bottom half of the red cabin and the left half of it: the bigger mark is about 3/4 in wide and 1/2 in tall, with its top about 4 3/4 in from the top edge. The second mark is a narrow strip about 1/2 in wide and 1 in tall, its left side about 3 1/2 in from the left edge, where the after picture has it. Run the strokes up and down, like wall boards."
+  },
+  {
+   "stage_id": "cabin-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the red cabin and the spruce forest dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 1 1/2 in wide and 1 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the dock will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm pale gray.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Warm pale gray for this step and steps 15, 16 and 23; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #2 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the roof as one flat slanted shape. Then add the window as a tiny square with the tip of the brush.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a pale roof on top of the cabin and one small pale window, with the red walls still showing.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 7 and 8 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#2 round",
+     "use": "Paint the pale roof and window trim"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Paint the pale gray roof and the small window trim on the cabin.",
+   "tip": "Most of this paint goes in the top half of the red cabin: the roof is about 1 1/2 in wide and 1/2 in tall, its top about 4 1/4 in from the top edge. Paint the roof first with strokes running down its slope, then the small window, about 1/4 in wide and 1/4 in tall, its left side about 3 1/2 in from the left edge. The sun is from the upper left, so keep the roof the lightest part of the cabin.",
+   "paint_notes": [
+    "Warm pale gray is see-through over the red: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "dock",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the red cabin and the spruce forest dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 5 in from the top edge, and its left side is about 3 1/2 in from the left edge; it's about 3 in wide and 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Dark plank brown, Weathered gray-brown, then Warm plank tan. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the posts and shadow under the deck in short downward touches. Then lay the deck over them as one long flat rectangle.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a long flat deck with dark posts and shadow under it.",
+     "edited": true
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Paint the dock"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the dock from three pieces",
+    "paint": "Warm plank tan",
+    "stages": [
+     {
+      "caption": "A long thin deck",
+      "add": [
+       {
+        "rect": [
+         5,
+         30,
+         90,
+         10
+        ],
+        "paint": "Warm plank tan"
+       }
+      ],
+      "arrows": [
+       "M 8 26 L 92 26"
+      ]
+     },
+     {
+      "caption": "The edge under it",
+      "add": [
+       {
+        "rect": [
+         5,
+         30,
+         90,
+         10
+        ],
+        "paint": "Warm plank tan",
+        "done": true
+       },
+       {
+        "rect": [
+         5,
+         40,
+         90,
+         5
+        ],
+        "paint": "Weathered gray-brown"
+       }
+      ]
+     },
+     {
+      "caption": "Short dark posts",
+      "add": [
+       {
+        "rect": [
+         5,
+         30,
+         90,
+         10
+        ],
+        "paint": "Warm plank tan",
+        "done": true
+       },
+       {
+        "rect": [
+         5,
+         40,
+         90,
+         5
+        ],
+        "paint": "Weathered gray-brown",
+        "done": true
+       },
+       {
+        "rect": [
+         22,
+         45,
+         3,
+         12
+        ],
+        "paint": "Dark plank brown"
+       },
+       {
+        "rect": [
+         52,
+         45,
+         3,
+         12
+        ],
+        "paint": "Dark plank brown"
+       },
+       {
+        "rect": [
+         88,
+         45,
+         3,
+         12
+        ],
+        "paint": "Dark plank brown"
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Paint the long plank dock running out from the cabin, with dark posts under it.",
+   "tip": "The dock is a long thin strip: about 3 in wide and 1/2 in tall, its top about 5 in from the top edge, below and right of the red cabin, touching it. Lay the dark posts and the shadow under the deck first, then the deck in strokes running side to side along the planks. The after picture also shows bluish-gray shapes under the deck; put them in with the Weathered gray-brown as the after picture has them."
+  },
+  {
+   "stage_id": "water-base",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the spruce forest and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 5 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Lake blue.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Lay in the lake blue"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Covers the whole lake in flat Lake blue, from the shoreline to the bottom edge.",
+   "tip": "The lake reaches the left, right and bottom edges of the canvas and is about 16 in wide, so cover all the white below the spruce forest and the dock. Start with one long level stroke right along the shoreline, tucking the paint up against the spruce forest, then work down in rows to the bottom edge. Keep every stroke flat and level: this blue is the base the reflections and ripples go over later."
+  },
+  {
+   "stage_id": "water-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lake and the spruce forest dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its right side is at the right edge; it's about 15 1/2 in wide and 6 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the shore rocks will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale lake blue.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 11 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Streak in the pale lake blue"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Streaks pale lake blue across the lake, mostly in its lower half.",
+   "tip": "Most of what this step adds is in the bottom half of the lake: its biggest mark has its top about 6 1/2 in from the top edge and runs about 16 in wide. Leave the band of Lake blue just under the shoreline plain, and leave the plain patches the after picture keeps, since the reflections go there later. The after picture also shows a thin pale line along the far shore and a few small green and dark dabs; you can leave those out, as later steps paint the reflections and the reeds.",
+   "paint_notes": [
+    "Pale lake blue over Lake blue can look thin: if the streaks don't show, let them dry and go over them a second time."
+   ]
+  },
+  {
+   "stage_id": "tree-reflection-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lake and the spruce forest dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 1/2 in from the bottom edge, and its right side is at the right edge; it's about 15 1/2 in wide and 4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the reeds and the shore rocks will go: paint straight through there. The outline also reaches onto the lake, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep spruce green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stroke straight down, starting just below the shoreline of the spruce forest.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave soft, streaky, see-through marks straight down.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The reflection as sharp and detailed as the object. It looks like a mirror or a second picture. Fix: fewer details, softer edges, a thin dry brush.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull down the forest's dark reflection"
+    }
+   ],
+   "stroke_cards": [
+    "pull-down"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Pull dark upside-down spruce shapes down into the lake under the forest.",
+   "tip": "Put each dark reflection straight under its own spruce, upside down, with the pointed tip at the bottom, so the tallest trees make the longest streaks. Pull every stroke straight down from the shoreline and let them break up rather than drawing branches. The after picture leaves the plain lake blue patch where the reeds will go untouched for now; step 17 covers it."
+  },
+  {
+   "stage_id": "tree-reflection-olive",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lake and the spruce forest dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 1/2 in from the bottom edge, and its left side is at the left edge; it's about 14 1/2 in wide and 4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Sunlit olive.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stroke straight down, starting at the shoreline, as the Where picture shows.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave soft, streaky, see-through marks straight down.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 13 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull down the sunlit olive in the reflection"
+    }
+   ],
+   "stroke_cards": [
+    "pull-down"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Tap sunlit olive streaks down into the forest's reflection.",
+   "tip": "The light comes from the upper left, so the olive goes on the left sides of the dark reflections, matching the sunlit sides of the spruces; most of it is on the left side of the forest's reflection. Keep the marks small and broken, pulled straight down, with the Deep spruce green reflection showing between them."
+  },
+  {
+   "stage_id": "mountain-reflection",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the lake dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1 1/2 in from the bottom edge, and its right side is at the right edge; it's about 8 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Lake blue, then Warm pale gray. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stroke straight down, starting at the top of the outlined area.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave soft, streaky, see-through marks straight down.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The reflection as sharp and detailed as the object. It looks like a mirror or a second picture. Fix: fewer details, softer edges, a thin dry brush.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull down the mountain's pale reflection"
+    }
+   ],
+   "stroke_cards": [
+    "pull-down"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Pull the snowy peaks' pale reflection down into the lake.",
+   "tip": "This is the mountain upside down, so it sits lower in the lake than the dark tree reflections, not against the shore, as the Where picture shows; its middle is about 11 3/4 in from the left edge and it reaches the right edge of the canvas. Lay the Lake blue first, then pull the Warm pale gray into the brightest streaks as the Where picture shows, straight down, leaving the lake blue between them.",
+   "paint_notes": [
+    "Warm pale gray is see-through over the darker lake blue: paint it twice, letting the first coat dry.",
+    "The after picture's streaks are a warm cream, closer to gold than gray; the Warm pale gray can only come close."
+   ]
+  },
+  {
+   "stage_id": "cabin-reflection",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the forest's reflection and the lake dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 5 in from the bottom edge, and its left side is about 2 1/2 in from the left edge; it's about 1 1/2 in wide and 1 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Barn red shadow, Sunny barn red, then Warm pale gray. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat. Load: Wiped nearly dry.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stroke straight down, starting just below the red cabin.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave soft, streaky, see-through marks straight down.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The reflection as sharp and detailed as the object. It looks like a mirror or a second picture. Fix: fewer details, softer edges, a thin dry brush.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Pull down the cabin's red reflection"
+    }
+   ],
+   "stroke_cards": [
+    "pull-down"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Pull a small red cabin reflection straight down under the red cabin.",
+   "tip": "Put it straight under the red cabin, its middle about 3 1/2 in from the left edge, and keep it short, about 1 1/2 in tall. It is upside down: the Barn red shadow and Sunny barn red go on top, and the Warm pale gray of the roof goes at its bottom, as the after picture shows. Keep the strokes straight down and the edges soft so it doesn't look like a second cabin.",
+   "paint_notes": [
+    "Warm pale gray is see-through over the dark reflection: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "tree-reflection-ripples",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the forest's reflection and the lake dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 5 1/2 in from the top edge and its bottom is about 2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Soft reflection green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 round. Load: Creamy paint, a light load.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Short, level dashes. Small and close together at the top of the area, longer and wider apart lower down.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave short, flat, level marks with gaps of the color underneath between them.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 13 and 14 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The dashes smear into the paint underneath. That paint is still wet. Fix: paint them over a dry layer only.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Cross the reflection with ripples"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-dashes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Cross the whole forest's reflection with soft level green ripple dashes.",
+   "tip": "Run every dash level, side to side, never down, over the Deep spruce green and Sunlit olive streaks; most of it goes on the left side of the forest's reflection. The after picture also covers the plain lake blue patch where the reeds will go, so fill it with the same dashes. The streaks from steps 13 and 14 should still read as upside-down trees afterwards, only softer."
+  },
+  {
+   "stage_id": "reeds-base",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the reflections and the lake dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 in from the bottom edge, and its left side is at the left edge; it's about 3 1/2 in wide and 4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Dark reed green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: One or two colors on the brush. Here it is Dark reed green alone, so load it evenly.",
+     "edited": true
+    },
+    {
+     "kind": "how",
+     "text": "Short strokes that cross each other in two directions, like overlapping X shapes.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave an even dark fill with a few criss-cross marks showing, its edges broken rather than smooth.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Lay in the dark reed clump"
+    }
+   ],
+   "stroke_cards": [
+    "x-stroke"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Block in the dark green base of the reed clump at the left edge of the lake.",
+   "tip": "The clump is about 3 1/2 in wide and 3 3/4 in tall, its left side at the left edge of the canvas, its top about 6 in from the top edge and its bottom about 2 in from the bottom edge. Give it a ragged top and a ragged right side, as the after picture shows, so the blades in steps 19 and 20 have a dark ground to rise from. Leave the olive reflection marks the before picture already shows in the water as they are."
+  },
+  {
+   "stage_id": "reeds-mid",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the reeds and the reflections dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 in from the bottom edge, and its left side is at the left edge; it's about 3 in wide and 4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Mossy green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: fan brush. Load: A light load. Too much paint makes flat blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 18 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: blades all the same height and evenly spaced look like a fence. Fix: mix short and tall blades, crowd them at the base, and let a few lean.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Flick in the mossy reed blades"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Flick mossy green blades up from the base of the dark reed clump.",
+   "tip": "Most of what this step adds is in the bottom half of the reeds: the biggest group of blades has its left side at the left edge, its top about 8 in from the top edge, and is about 2 1/2 in wide and 2 in tall. A smaller group has its top about 6 in from the top edge and its left side about 1 1/4 in from the left edge, about 1 1/4 in wide and 1 1/2 in tall. Flick every blade upward from the base, some leaning a little, and keep the Dark reed green showing between them."
+  },
+  {
+   "stage_id": "reeds-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the reeds and the reflections dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 in from the bottom edge, and its left side is at the left edge; it's about 3 1/2 in wide and 4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Sunlit olive.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: fan brush. Load: A light load. Too much paint makes flat blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 18 and 19 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: covering the whole clump in olive flattens it. Fix: keep gaps so the darker greens of steps 18 and 19 show between the light blades.",
+     "edited": true
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Flick in the sunlit olive blades"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Flick sunlit olive blades over the reed clump to catch the morning sun.",
+   "tip": "The sun comes from the upper left, so these blades are the sunlit ones; put the brightest where the after picture has them. The olive blades spread across the whole clump, about 3 1/2 in wide and 3 1/4 in tall, with the top of the group about 6 1/2 in from the top edge and its left side at the left edge. Flick each one upward from the base and let the Dark reed green and the Mossy green blades show between them, as the after picture shows."
+  },
+  {
+   "stage_id": "rocks-block",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the reeds and the reflections dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 6 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Middle rock gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the biggest rounded rock at the left edge. Then add the rest as rounded pieces touching it, smaller and lower toward the right, like ( ).",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid gray shape with a lumpy, bumpy top edge and no blue showing through the gray.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Block in the rocks in middle gray"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the rock pile from rounded lumps",
+    "paint": "Middle rock gray",
+    "stages": [
+     {
+      "caption": "The biggest rock first",
+      "add": [
+       {
+        "ellipse": [
+         24,
+         64,
+         20,
+         15
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Smaller ones beside it, tucked behind",
+      "add": [
+       {
+        "ellipse": [
+         24,
+         64,
+         20,
+         15
+        ],
+        "done": true
+       },
+       {
+        "ellipse": [
+         52,
+         72,
+         16,
+         12
+        ],
+        "behind": true
+       },
+       {
+        "ellipse": [
+         12,
+         82,
+         14,
+         10
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Smallest toward the right",
+      "add": [
+       {
+        "ellipse": [
+         24,
+         64,
+         20,
+         15
+        ],
+        "done": true
+       },
+       {
+        "ellipse": [
+         52,
+         72,
+         16,
+         12
+        ],
+        "done": true,
+        "behind": true
+       },
+       {
+        "ellipse": [
+         12,
+         82,
+         14,
+         10
+        ],
+        "done": true
+       },
+       {
+        "ellipse": [
+         74,
+         82,
+         12,
+         9
+        ],
+        "behind": true
+       },
+       {
+        "ellipse": [
+         90,
+         88,
+         8,
+         6
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Block in the shore rocks as one flat middle gray shape in the bottom left corner.",
+   "tip": "The shore rocks sit below the reeds, touching them, and reach the left edge and the bottom edge of the canvas: about 6 in wide and 2 1/2 in tall, with its top about 9 1/2 in from the top edge. Most of the shape is on the left side and in the bottom half, so its top edge is a row of lumpy bumps that drops lower toward the right side of the shore rocks, as the after picture shows.",
+   "paint_notes": [
+    "If the blue underneath shows through the gray, let it dry and paint it twice."
+   ]
+  },
+  {
+   "stage_id": "rocks-shade",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the shore rocks and the reflections dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 6 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Rock shadow gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: start under the rounded top of each rock and pull down along its curve to its base.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 21 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Shade the rocks' undersides"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Shade the bottoms and shadow sides of the shore rocks in dark gray.",
+   "tip": "The light comes from the upper left, so the shadow gray goes on the undersides of the rocks and the sides turned away from it, as the after picture shows. The biggest patch starts at the left edge with its top about 10 in from the top edge and is about 3 in wide; most of the shadow is in the bottom half of the shore rocks and on the left side."
+  },
+  {
+   "stage_id": "rocks-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the shore rocks and the reeds dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 6 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm pale gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 21 and 22 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Light the rocks' sunny tops"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Light the sunny tops of the shore rocks in warm pale gray.",
+   "tip": "The light comes from the upper left, so the warm pale gray goes on the tops and left sides of the rocks, the faces turned toward it. The highest mark starts at the left edge with its top about 9 1/2 in from the top edge; most of the light is on the left side of the shore rocks. Keep it off the shadow gray at each rock's base so the rocks stay round."
+  }
+ ]
+}

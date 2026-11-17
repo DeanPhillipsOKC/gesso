@@ -1,0 +1,2073 @@
+{
+ "card_text": {
+  "sky-blend": {
+   "side-to-side-blend": {
+    "motion": "Start with Warm gold around where the sun will go and stroke side to side out from it. Without rinsing, pick up Misty blue-gray and paint it beyond the gold, toward the edges. Then stroke back over the join several times.",
+    "result": "A soft gold glow fading into misty gray-blue, with a soft join where the two wet colors meet.",
+    "then": "Stroke back over the join between the gold and the gray while it's wet.",
+    "mistakes": [
+     {
+      "mistake": "A hard line where the gold meets the gray.",
+      "fix": "Add more Warm gold at the join and blend again."
+     },
+     {
+      "mistake": "The gold and the gray won't blend and turn muddy.",
+      "fix": "Mix a bridge color from the two on the palette and paint it between them."
+     },
+     {
+      "mistake": "The brush is overloaded.",
+      "fix": "Wipe it on a rag. Rinse before going into the gray."
+     }
+    ],
+    "diagram": {
+     "title": "Blend the gold glow into the gray",
+     "stages": [
+      {
+       "caption": "Gold around the sun, side to side",
+       "add": [
+        {
+         "rect": [
+          8,
+          14,
+          84,
+          30
+         ],
+         "paint": "Warm gold"
+        }
+       ],
+       "arrows": [
+        "M 14 29 L 86 29"
+       ]
+      },
+      {
+       "caption": "Gray-blue beyond it",
+       "add": [
+        {
+         "rect": [
+          8,
+          44,
+          84,
+          30
+         ],
+         "paint": "Misty blue-gray"
+        }
+       ],
+       "arrows": [
+        "M 86 59 L 14 59"
+       ]
+      },
+      {
+       "caption": "Back over the join",
+       "add": [
+        {
+         "rect": [
+          8,
+          38,
+          84,
+          12
+         ],
+         "paint": "Misty blue-gray",
+         "opacity": 0.9
+        }
+       ],
+       "arrows": [
+        "M 14 44 L 86 44"
+       ]
+      }
+     ]
+    },
+    "from": "side-to-side-blend"
+   }
+  },
+  "sun": {
+   "small-circles": {
+    "motion": "Small circles with the tip of the brush, starting at the sun's center and moving outward, make its round, soft edge.",
+    "result": "A round disk with a soft edge.",
+    "then": "Smooth the edge with the same circular motion, so it melts into the gold glow.",
+    "mistakes": [
+     {
+      "mistake": "The sun's edge is too hard.",
+      "fix": "Soften it with lighter passes. Smudging with a finger works too."
+     }
+    ],
+    "diagram": {
+     "title": "Little circles out from the center",
+     "stages": [
+      {
+       "caption": "Circles round the sun's edge",
+       "add": [
+        {
+         "rect": [
+          4,
+          4,
+          92,
+          92
+         ],
+         "paint": "Warm gold",
+         "done": true,
+         "round": 4
+        },
+        {
+         "circle": [
+          68,
+          50,
+          6
+         ],
+         "paint": "Sun cream"
+        },
+        {
+         "circle": [
+          59,
+          66,
+          6
+         ],
+         "paint": "Sun cream"
+        },
+        {
+         "circle": [
+          41,
+          66,
+          6
+         ],
+         "paint": "Sun cream"
+        },
+        {
+         "circle": [
+          32,
+          50,
+          6
+         ],
+         "paint": "Sun cream"
+        },
+        {
+         "circle": [
+          41,
+          34,
+          6
+         ],
+         "paint": "Sun cream"
+        },
+        {
+         "circle": [
+          59,
+          34,
+          6
+         ],
+         "paint": "Sun cream"
+        }
+       ],
+       "arrows": [
+        "M 18 32 Q 50 24 82 32"
+       ]
+      },
+      {
+       "caption": "Fill in the middle",
+       "add": [
+        {
+         "circle": [
+          50,
+          50,
+          20
+         ],
+         "paint": "Sun cream"
+        }
+       ]
+      }
+     ]
+    },
+    "from": "small-circles"
+   }
+  },
+  "trunks": {
+   "dry-brush": {
+    "motion": "Light pressure, skimming the surface, pulling straight down each trunk.",
+    "result": "Feathery, broken, see-through gray trunks that catch the canvas texture. Never a solid post.",
+    "then": "Build the trunks up in several light passes if they're too faint.",
+    "mistakes": [
+     {
+      "mistake": "A trunk went on solid.",
+      "why": "The brush was too loaded.",
+      "fix": "Let it dry, then dry-brush the background gold or gray back over part of it."
+     }
+    ],
+    "diagram": {
+     "title": "Skim the trunks, with almost no paint",
+     "stages": [
+      {
+       "caption": "The misty sky, dry",
+       "add": [
+        {
+         "rect": [
+          10,
+          30,
+          80,
+          40
+         ],
+         "paint": "Warm gold"
+        }
+       ]
+      },
+      {
+       "caption": "Light, broken strokes down each trunk",
+       "add": [
+        {
+         "line": "M 14 38 l 22 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 42 36 l 14 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 62 39 l 20 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 20 46 l 12 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 38 47 l 26 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 70 48 l 12 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 14 56 l 18 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 40 58 l 12 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 58 57 l 24 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 26 64 l 20 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        },
+        {
+         "line": "M 54 65 l 14 0",
+         "paint": "Misty blue-gray",
+         "width": 2
+        }
+       ],
+       "arrows": [
+        "M 14 22 L 84 22"
+       ]
+      }
+     ]
+    },
+    "from": "dry-brush"
+   }
+  },
+  "foliage": {
+   "dabbing": {
+    "motion": "Tap with the tip of the brush over each leaf clump. The more you tap one spot, the more solid it gets.",
+    "result": "Soft dappled clumps of rust-orange that get more solid the more you tap.",
+    "then": "Leave gaps of the misty gray between the clumps so they stay soft and far away.",
+    "mistakes": [
+     {
+      "mistake": "Blobs instead of leafy dabs.",
+      "why": "The brush is too wet or holds too much paint.",
+      "fix": "Wipe most of the paint off on a paper towel and tap again."
+     },
+     {
+      "mistake": "A clump went too solid.",
+      "fix": "Let it dry and tap a little of the gray back over it to break it up."
+     }
+    ],
+    "diagram": {
+     "title": "Tap the clumps, don't stroke",
+     "stages": [
+      {
+       "caption": "Rust-orange taps, gaps between",
+       "add": [
+        {
+         "circle": [
+          30,
+          40,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          44,
+          34,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          58,
+          42,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          38,
+          54,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          52,
+          56,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          66,
+          52,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          46,
+          68,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          60,
+          68,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          32,
+          66,
+          5
+         ],
+         "paint": "Warm rust-orange"
+        }
+       ]
+      },
+      {
+       "caption": "More taps where the clump is thickest",
+       "add": [
+        {
+         "circle": [
+          46,
+          30,
+          4
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          60,
+          36,
+          4
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          68,
+          46,
+          4
+         ],
+         "paint": "Warm rust-orange"
+        },
+        {
+         "circle": [
+          54,
+          48,
+          4
+         ],
+         "paint": "Warm rust-orange"
+        }
+       ]
+      }
+     ]
+    },
+    "from": "dabbing"
+   }
+  },
+  "branch-dark": {
+   "thick-to-thin": {
+    "motion": "Press the full width of the brush for the thick base at the lower left, then turn onto its edge and lighten the pressure as you pull out toward the tips.",
+    "result": "A branch that starts wide at the base and tapers to thin twig tips.",
+    "then": "Add the thinnest twig tips and leaf stems with the tip of the brush.",
+    "diagram": {
+     "title": "Wide at the base, then onto the edge",
+     "stages": [
+      {
+       "caption": "Press the full width at the base",
+       "add": [
+        {
+         "path": "M 20 78 L 34 78 L 40 52 L 30 52 Z",
+         "paint": "Bark brown"
+        }
+       ],
+       "arrows": [
+        "M 16 76 L 22 54"
+       ]
+      },
+      {
+       "caption": "Turn to the edge along the branch",
+       "add": [
+        {
+         "path": "M 30 52 L 40 52 Q 56 30 74 16 Q 52 32 30 52 Z",
+         "paint": "Bark brown"
+        }
+       ],
+       "arrows": [
+        "M 46 52 L 76 22"
+       ]
+      }
+     ]
+    },
+    "from": "thick-to-thin"
+   }
+  },
+  "leaves-block": {
+   "build-from-pieces": {
+    "motion": "Start with one simple shape: a narrow oval along the leaf's middle. Then add the pointed lobes in curved pieces on each side, smaller toward the tip.",
+    "result": "A maple leaf made of distinct pointed pieces, with small gaps or overlaps between them.",
+    "then": "Leave the pieces showing; a few ragged edges look like a real leaf.",
+    "diagram": {
+     "title": "One oval, then the lobes",
+     "stages": [
+      {
+       "caption": "A narrow oval down the middle",
+       "add": [
+        {
+         "ellipse": [
+          50,
+          55,
+          12,
+          21
+         ],
+         "paint": "Leaf red"
+        }
+       ],
+       "arrows": [
+        "M 50 36 Q 42 55 50 74"
+       ]
+      },
+      {
+       "caption": "A lobe on each side, tucked behind",
+       "add": [
+        {
+         "ellipse": [
+          38,
+          57,
+          12,
+          19
+         ],
+         "paint": "Leaf red",
+         "behind": true,
+         "rotate": 30
+        },
+        {
+         "ellipse": [
+          62,
+          57,
+          12,
+          19
+         ],
+         "paint": "Leaf red",
+         "behind": true,
+         "rotate": -30
+        }
+       ]
+      },
+      {
+       "caption": "Smaller lobes near the stem",
+       "add": [
+        {
+         "ellipse": [
+          27,
+          59,
+          9,
+          16
+         ],
+         "paint": "Leaf red",
+         "behind": true,
+         "rotate": 50
+        },
+        {
+         "ellipse": [
+          73,
+          59,
+          9,
+          16
+         ],
+         "paint": "Leaf red",
+         "behind": true,
+         "rotate": -50
+        }
+       ]
+      }
+     ]
+    },
+    "from": "build-from-pieces"
+   }
+  },
+  "leaves-light": {
+   "curved-strokes": {
+    "motion": "Bend every stroke with the leaf: from the stem out along each lobe toward its point.",
+    "result": "Gold marks that bend with each leaf, which is what makes it look curled and lit.",
+    "then": "Keep the gold on the side facing the sun and the orange or red along the shaded side, both following the leaf.",
+    "diagram": {
+     "title": "Strokes that follow the leaf",
+     "stages": [
+      {
+       "caption": "The leaf, blocked in",
+       "add": [
+        {
+         "circle": [
+          50,
+          52,
+          30
+         ],
+         "paint": "Leaf orange"
+        }
+       ]
+      },
+      {
+       "caption": "Curved gold strokes on the lit side",
+       "add": [
+        {
+         "line": "M 40 28 Q 30 52 40 76",
+         "paint": "Warm gold",
+         "width": 2.4
+        },
+        {
+         "line": "M 52 24 Q 46 52 52 80",
+         "paint": "Warm gold",
+         "width": 2.4
+        },
+        {
+         "line": "M 64 28 Q 62 52 64 76",
+         "paint": "Warm gold",
+         "width": 2.4
+        }
+       ],
+       "arrows": [
+        "M 30 30 Q 20 52 30 74"
+       ]
+      }
+     ]
+    },
+    "from": "curved-strokes"
+   }
+  },
+  "bird-feathers": {
+   "flicking": {
+    "motion": "A quick stroke out from inside the body, lifting off as it goes, so each mark thins at its end. On this bird, flick down and back from the head, the way the feathers lie.",
+    "result": "Tapered feather marks with broken tips, thickest where the chest faces the sun.",
+    "then": "Flick the pale buff over the gold, fewer toward the belly, so the gold shows between the marks.",
+    "diagram": {
+     "title": "Flick out from the body",
+     "stages": [
+      {
+       "caption": "The gold body underneath",
+       "add": [
+        {
+         "line": "M 24 80 Q 22 60 28 44",
+         "paint": "Warm gold",
+         "width": 2
+        },
+        {
+         "line": "M 34 80 Q 36 62 32 48",
+         "paint": "Warm gold",
+         "width": 2
+        },
+        {
+         "line": "M 44 80 Q 42 58 48 40",
+         "paint": "Warm gold",
+         "width": 2
+        },
+        {
+         "line": "M 54 80 Q 58 64 54 50",
+         "paint": "Warm gold",
+         "width": 2
+        },
+        {
+         "line": "M 64 80 Q 62 60 68 46",
+         "paint": "Warm gold",
+         "width": 2
+        },
+        {
+         "line": "M 74 80 Q 76 64 72 52",
+         "paint": "Warm gold",
+         "width": 2
+        }
+       ],
+       "arrows": [
+        "M 86 78 L 84 44"
+       ]
+      },
+      {
+       "caption": "Fewer, pale buff flicks on top",
+       "add": [
+        {
+         "line": "M 30 80 Q 28 64 34 52",
+         "paint": "Pale buff",
+         "width": 1.6
+        },
+        {
+         "line": "M 50 80 Q 52 62 48 50",
+         "paint": "Pale buff",
+         "width": 1.6
+        },
+        {
+         "line": "M 68 80 Q 66 66 72 56",
+         "paint": "Pale buff",
+         "width": 1.6
+        }
+       ]
+      }
+     ]
+    },
+    "from": "flicking"
+   }
+  },
+  "feet-dark": {
+   "liner": {
+    "motion": "Hold the brush upright, with light, steady pressure. Pull each leg down from the belly, then curl short toes over the branch, and wobble the edges a little.",
+    "result": "Thin dark legs and toes gripping the branch.",
+    "then": "Reload often, a little for each leg.",
+    "mistakes": [
+     {
+      "mistake": "Skippy, broken legs.",
+      "why": "The paint is too thick.",
+      "fix": "Add water."
+     },
+     {
+      "mistake": "The toes spread or feather into the branch.",
+      "why": "The branch paint underneath is still wet.",
+      "fix": "Only paint the legs over a dry branch."
+     }
+    ],
+    "diagram": {
+     "title": "Thin paint, upright brush",
+     "stages": [
+      {
+       "caption": "One leg, thick to thin",
+       "add": [
+        {
+         "line": "M 30 84 Q 34 60 46 40 Q 54 26 62 16",
+         "paint": "Soft black",
+         "width": 2.4
+        }
+       ],
+       "arrows": [
+        "M 22 80 L 50 30"
+       ]
+      },
+      {
+       "caption": "Toes curled over the branch",
+       "add": [
+        {
+         "line": "M 40 52 Q 28 42 22 30",
+         "paint": "Soft black",
+         "width": 1.3
+        },
+        {
+         "line": "M 48 38 Q 62 36 74 40",
+         "paint": "Soft black",
+         "width": 1.3
+        },
+        {
+         "line": "M 55 26 Q 50 18 44 12",
+         "paint": "Soft black",
+         "width": 1.3
+        }
+       ]
+      }
+     ]
+    },
+    "from": "liner"
+   }
+  }
+ },
+ "steps": [
+  {
+   "stage_id": "sky-blend",
+   "lines": [
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints: Warm gold for the glow, Misty blue-gray for the mist around it.",
+     "edited": true
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Warm gold for this step and steps 8 and 9; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Misty blue-gray for this step and steps 3 and 11; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat. Load: Creamy paint. An even coat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stroke Misty blue-gray side to side, leaving room for the glow as the Where picture shows. Without rinsing, paint the glow in Warm gold, then stroke back and forth over the join.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a soft gold glow fading into gray-blue mist, with no hard joins.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Let it dry, then blend a new thin layer on top.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Blend the misty sky from gray-blue to gold"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Cover the canvas in a misty gray-blue sky with a warm gold glow.",
+   "tip": "The light in this painting comes from a low sun behind the bird, so keep the gold glow brightest where the after picture has it, around where the sun will go. Blend the Warm gold softly out into the Misty blue-gray, with no hard edge between them. The after picture already hints at orange leaf shapes and faint gray trunks in the mist; those come in steps 3 and 4, so a soft glow and mist is all this step needs."
+  },
+  {
+   "stage_id": "sun",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty glowing sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush fully first: this is the lightest paint yet.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its right side is about 5 in from the right edge; it's about 1 in wide and 1 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Sun cream.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #8 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Small circles with the tip of the brush, working outward from the middle of the sun, make a soft round edge.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a round, pale disc with a soft edge.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The edge is too hard. Fix: soften it with lighter passes. Smudging with a finger works too.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Paint the sun"
+    }
+   ],
+   "stroke_cards": [
+    "small-circles"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dab a small, pale sun into the brightest part of the gold glow.",
+   "tip": "This is the light for the whole painting: the sun sits right of the chickadee, so every highlight later goes on the side facing it. Keep it a small round disc, about 1 in wide, with its middle about 10 3/4 in from the left edge and about 1 3/4 in from the top edge, in the middle of the gold glow. Work your circles from its middle outward so the edge melts into the glow.",
+   "paint_notes": [
+    "Sun cream is lighter than the gold under it and may look see-through: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "trunks",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty glowing sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom to the right edge. Its left side is about 3 1/2 in from the right edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Misty blue-gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Trunks that lean, wobble, or turn solid and dark. Fix: pull long, straight strokes from top to bottom, and skim more lightly so the sky shows through.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull the far misty trunks"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Pull two straight, misty tree trunks down the canvas near the right edge.",
+   "tip": "These are two tall trunks, not branches: the wider one's middle is about 14 1/4 in from the left edge, and the narrower one goes where the Where picture shows it. Pull every stroke from the top edge straight down to the bottom edge, keeping each trunk about the same width all the way. They stand in the mist far behind the bird, so give them no glow; the light stays on the leaves and the branch later."
+  },
+  {
+   "stage_id": "foliage",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far misty trunks and the misty glowing sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm rust-orange.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Warm rust-orange for this step and step 6; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff 1/2 inch flat. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff 1/2 inch flat",
+     "use": "Dab the hazy autumn foliage"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dab clusters of rust-orange autumn leaves around the trunks and the lower left.",
+   "tip": "Most of what this step adds is in the top half of the canvas: the biggest clusters crowd around the two far misty trunks, one with its top at the top edge and its middle about 13 in from the left edge. Put the smaller clusters at the left edge and near the bottom, one with its top about 10 in from the top edge and its left side about 2 3/4 in from the left edge, as the Where picture shows. Tap right over the far misty trunks so the leaves hang in front of them, and leave plenty of the gray-blue mist showing between clusters.",
+   "paint_notes": [
+    "Warm rust-orange may look thin where it crosses the Misty blue-gray trunks: tap it twice there, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "branch-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far woods and the misty glowing sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Bark brown.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part near the trunk, then turn onto its edge and lighten the pressure as you pull out along the branch and twigs. The lighter you press, the thinner the line.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: A branch like a stiff stick, the same width and straight all the way. Fix: start thick where it leaves the trunk and taper toward the right edge, letting thin twigs fork at different angles.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Pull the trunk and branch in bark brown"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the tree from the base out",
+    "paint": "Bark brown",
+    "stages": [
+     {
+      "caption": "The trunk, up the left",
+      "add": [
+       {
+        "line": "M 10 100 Q 18 55 10 0",
+        "width": 9
+       }
+      ],
+      "arrows": [
+       "M 22 95 Q 28 55 22 10"
+      ]
+     },
+     {
+      "caption": "The branch, arcing right",
+      "add": [
+       {
+        "line": "M 10 92 Q 50 30 96 88",
+        "width": 7
+       }
+      ],
+      "arrows": [
+       "M 20 75 Q 50 22 88 70"
+      ]
+     },
+     {
+      "caption": "Thin twigs and stems",
+      "add": [
+       {
+        "line": "M 78 70 L 99 52",
+        "width": 2
+       },
+       {
+        "line": "M 86 82 L 99 84",
+        "width": 2
+       },
+       {
+        "line": "M 64 58 L 66 72",
+        "width": 1.5
+       },
+       {
+        "line": "M 12 12 L 24 2",
+        "width": 2
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Pull the dark trunk up from the bottom-left corner and the branch arcing to the right.",
+   "tip": "Start with the trunk, which climbs from the bottom edge to the top edge near the left edge, as the after picture shows. Then pull the branch off the trunk in one long arc that bows up and dips to the right edge; the paint's middle is about 4 1/2 in from the left edge and about 7 1/2 in from the top edge. Most of the paint lands on the left side and in the bottom half of the canvas, so stroke from the trunk outward and let the small twigs and the two hanging stubs taper off where the after picture has them."
+  },
+  {
+   "stage_id": "branch-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the branch and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm rust-orange.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 5 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Warm rust-orange is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Catch the light on the top of the bark"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dry-brush warm rust-orange light along the top of the branch and the trunk.",
+   "tip": "The light comes from the low sun behind the bird, as step 1 set it, so skim the warm rust-orange along the top of the branch and up the trunk, keeping the underside dark Bark brown. Drag the strokes along the length of the bark, following the arc of the branch, not across it. Most of these marks are on the left side and in the bottom half of the canvas, where the trunk and the thick part of the branch are; the thin twigs only get a touch, as the after picture shows."
+  },
+  {
+   "stage_id": "leaves-block",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the branch and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom. Its left side is about 1 1/2 in from the left edge and its right side is about 3 1/2 in from the right edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Leaf red, then Leaf orange. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #8 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start each leaf with its long middle point, pulled from the stem end down to the tip. Then add the smaller pointed lobes in pieces on each side, like ( ), smaller toward the stem.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave four flat, solid leaf shapes with jagged, pointed edges, each hanging from its stem.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Block in the four leaves"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build a hanging maple leaf from pieces",
+    "paint": "Leaf red",
+    "stages": [
+     {
+      "caption": "A narrow oval, hanging from the stem",
+      "add": [
+       {
+        "line": "M 50 4 L 50 26",
+        "width": 2,
+        "paint": "Bark brown",
+        "done": true
+       },
+       {
+        "ellipse": [
+         50,
+         56,
+         9,
+         30
+        ]
+       }
+      ],
+      "arrows": [
+       "M 50 28 L 50 84"
+      ]
+     },
+     {
+      "caption": "A pointed lobe out each side",
+      "add": [
+       {
+        "ellipse": [
+         33,
+         50,
+         7,
+         20
+        ],
+        "rotate": 55,
+        "behind": true
+       },
+       {
+        "ellipse": [
+         67,
+         50,
+         7,
+         20
+        ],
+        "rotate": -55,
+        "behind": true
+       }
+      ]
+     },
+     {
+      "caption": "Small lobes near the stem",
+      "add": [
+       {
+        "ellipse": [
+         40,
+         34,
+         5,
+         11
+        ],
+        "rotate": 70,
+        "behind": true
+       },
+       {
+        "ellipse": [
+         60,
+         34,
+         5,
+         11
+        ],
+        "rotate": -70,
+        "behind": true
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Paint four flat maple leaves, two red and two orange, hanging from their stems.",
+   "tip": "Paint the two Leaf red leaves first: the upper one's left side is about 1 1/2 in from the left edge and its top about 1 1/2 in from the top edge, and the lower one's left side is about 10 1/4 in from the left edge and its top about 9 1/2 in from the top edge. Then the two Leaf orange leaves: the upper one reaches the top edge of the canvas and is about 3 in wide, and the lower one's left side is about 7 3/4 in from the left edge and its top about 8 1/4 in from the top edge. Hang each leaf from the tip of a brown stem the branch step already painted, and leave a small Leaf orange patch near the point of each red leaf, as the after picture shows."
+  },
+  {
+   "stage_id": "leaves-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the four leaves and the branch dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom. Its left side is about 1 1/2 in from the left edge and its right side is about 3 1/2 in from the right edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the leaf: from the stem end out along the middle of each lobe toward its point.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 7 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Light the lit side of the leaves"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Brush warm gold into the leaves to light them and give them texture.",
+   "tip": "Keep to the light from the low sun, as step 1 set it: most of the Warm gold goes on the right side and in the bottom half, on the two leaves under the branch; the Leaf orange leaf that reaches the top edge gets a smaller patch about 1 1/2 in wide. Pull each stroke from the stem end of a leaf out toward its points, and leave streaks of the step 7 color showing between them so the leaves look veined, not flat. The after picture also adds a thin dark center vein down each leaf, as it shows.",
+   "paint_notes": [
+    "Warm gold is see-through over Leaf red: paint it twice, letting the first coat dry.",
+    "The thin dark center veins in the after picture aren't Warm gold; a thin line of the bark brown from the branch step, with the tip of the brush, comes close."
+   ]
+  },
+  {
+   "stage_id": "bird-block",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far woods and the misty glowing sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 7 in wide and 6 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch filbert.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with one simple shape, an oval for the round body. Then add the head as a smaller circle on top and the tail as a long tapering piece, curving each edge like ( ).",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid, smooth-edged chickadee shape in Warm gold, as in the after picture.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch filbert",
+     "use": "Block in the body"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Build the chickadee from three shapes",
+    "paint": "Warm gold",
+    "stages": [
+     {
+      "caption": "An oval for the body",
+      "add": [
+       {
+        "ellipse": [
+         56,
+         62,
+         24,
+         20
+        ]
+       }
+      ],
+      "arrows": [
+       "M 34 62 Q 56 40 80 62"
+      ]
+     },
+     {
+      "caption": "A circle for the head, upper right",
+      "add": [
+       {
+        "circle": [
+         68,
+         36,
+         14
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "A wedge for the tail, lower left",
+      "add": [
+       {
+        "path": "M 38 62 L 8 90 L 14 95 L 46 72 Z",
+        "behind": true
+       }
+      ],
+      "arrows": [
+       "M 36 70 L 14 88"
+      ]
+     }
+    ]
+   },
+   "summary": "Fill the whole chickadee shape, head, body and tail, in flat Warm gold.",
+   "tip": "The sun sits to the right of the chickadee, so the bird faces into a warm glow; this gold is its base, not its color yet. The shape is about 7 in wide and 6 in tall, its middle about 6 3/4 in from the left edge, with most of it on the right side of the chickadee: a round body and head, and the tail tapering away from the body as the Where picture shows. Cover it solidly with no sky showing through, since the wing, shading and feathers all go on top."
+  },
+  {
+   "stage_id": "bird-shade",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the chickadee and the misty glowing sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 in from the top edge, and its left side is about 4 1/2 in from the left edge; it's about 4 1/2 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Buff shadow.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #8 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 9 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Shade the belly away from the light"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Shade the bottom of the belly with Buff shadow, where the bird turns from the light.",
+   "tip": "The sun is to the right of the chickadee, so the shade goes on the underside of the belly, the part turned away from it. Nearly all of it lands on the right side of the chickadee and in its bottom half: one patch about 3 1/4 in wide, its top about 5 in from the top edge, its middle about 7 in from the left edge. Curve the strokes along the round of the belly, and leave the rest of the Warm gold as the after picture shows it."
+  },
+  {
+   "stage_id": "wing-block",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the chickadee and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 4 1/2 in wide and 4 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Misty blue-gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #8 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with one simple shape, a rounded wing on the body. Then pull the tail out from under it as one long narrow piece, keeping the edges smooth.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid Misty blue-gray wing and tail, as in the after picture.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Block in the wing and tail"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "The wing, then the tail",
+    "paint": "Misty blue-gray",
+    "stages": [
+     {
+      "caption": "Bird blocked in",
+      "add": [
+       {
+        "ellipse": [
+         56,
+         62,
+         24,
+         20
+        ],
+        "paint": "Warm gold",
+        "done": true
+       },
+       {
+        "circle": [
+         68,
+         36,
+         14
+        ],
+        "paint": "Warm gold",
+        "done": true
+       },
+       {
+        "path": "M 38 62 L 8 90 L 14 95 L 46 72 Z",
+        "paint": "Warm gold",
+        "done": true,
+        "behind": true
+       }
+      ]
+     },
+     {
+      "caption": "A long teardrop for the wing",
+      "add": [
+       {
+        "ellipse": [
+         48,
+         54,
+         8,
+         24
+        ],
+        "rotate": 50
+       }
+      ],
+      "arrows": [
+       "M 62 40 L 34 66"
+      ]
+     },
+     {
+      "caption": "A narrow strip for the tail",
+      "add": [
+       {
+        "path": "M 36 64 L 8 90 L 14 95 L 42 70 Z"
+       }
+      ]
+     }
+    ]
+   },
+   "summary": "Block in the wing and the long tail in flat Misty blue-gray over the gold body.",
+   "tip": "The wing and tail are about 4 3/4 in wide and 4 1/4 in tall, their middle about 5 in from the left edge and 5 in from the top edge; their left side is about 2 1/2 in from the left edge, the same as the chickadee's, because the tail tip is the bird's farthest point. Most of the paint goes in the top half of the wing and tail: a rounded wing on the gold body, then the tail as one long narrow piece running out from under it, as the Where picture shows. Leave the Warm gold head, chest and belly as they are."
+  },
+  {
+   "stage_id": "wing-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the wing and tail, and the chickadee dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 4 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Soft black.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Soft black for this step and steps 15 and 17; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Pull each stripe along the feathers, from the wing toward the tail tip, pressing at the start and lifting off at the end.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave thin dark stripes that follow the wing and tail, which is what makes the feathers lie flat along the body.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 11 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Shade the dark feather stripes"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Pull thin Soft black feather stripes along the wing and down the tail.",
+   "tip": "Run every stroke the way the feathers lie: from the wing toward the tail tip, one long thin stripe at a time, as the after picture shows. The stripes cover an area about 4 1/2 in wide and 3 1/4 in tall, its top about 4 1/4 in from the top edge, its middle about 4 3/4 in from the left edge. Keep plenty of Misty blue-gray between the stripes, and keep the top of the wing clear of black."
+  },
+  {
+   "stage_id": "wing-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the wing and tail, and the chickadee dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 4 1/2 in wide and 4 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale wing gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken marks along the feather edges, fullest on the top of the wing, as the after picture shows.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 11 and 12 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 flat",
+     "use": "Light the feather edges"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Dry-brush Pale wing gray along the top edges of the wing and tail feathers.",
+   "tip": "The sun is to the right of the chickadee, so the light catches the top of each feather; keep these marks along the upper edges and leave the Soft black stripes below them dark. Most of it goes in the top half of the wing and tail: the bigger patch on the wing, its top about 3 in from the top edge and its middle about 5 3/4 in from the left edge, then a lighter run down the tail, its middle about 3 3/4 in from the left edge. Skim each stroke along the feathers toward the tail tip."
+  },
+  {
+   "stage_id": "bird-feathers",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the chickadee and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its left side is about 4 1/2 in from the left edge; it's about 5 in wide and 5 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale buff.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: small fan brush. Load: A light load. Too much paint makes flat blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The feathers turn into a flat smooth patch. Too much paint on the brush, or the strokes are blended together.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Fix: wipe the brush nearly dry, make each flick short and separate, and let it dry before adding more.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "small fan brush",
+     "use": "Flick in the pale chest feathers"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Flick the pale chest on the sunlit side of the chickadee in Pale buff.",
+   "tip": "The sun is to the right of the chickadee, so the pale chest is the side facing it: all of these flicks go on the right side of the chickadee. The main patch is about 2 in wide and 2 1/2 in tall, its top about 3 1/4 in from the top edge, with a small patch higher up, its top about 1 3/4 in from the top edge, about 3/4 in wide. Leave the head Warm gold for the cap and cheek later; the after picture also softens the belly into fine feathery strokes, so keep the Buff shadow underneath showing through them.",
+   "paint_notes": [
+    "Pale buff is light over the Warm gold, so it can look thin: let the first flicks dry, then flick again where the after picture is palest."
+   ]
+  },
+  {
+   "stage_id": "cap",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the chickadee's body and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its left side is about 6 in from the left edge; it's about 3 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Soft black.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with one round shape for the cap. Then add the bib in curved pieces, as the Where picture shows, like ( ), smaller toward the edges.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid black cap and bib, with soft, feathery curved edges where it meets the body.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the black cap and bib"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "construct": {
+    "title": "Cap, bib, then beak",
+    "paint": "Soft black",
+    "stages": [
+     {
+      "caption": "A rounded cap over the head",
+      "add": [
+       {
+        "circle": [
+         50,
+         50,
+         26
+        ],
+        "paint": "Warm gold",
+        "done": true
+       },
+       {
+        "path": "M 26 44 Q 30 22 52 22 Q 72 24 76 44 Q 62 38 50 46 Q 38 42 26 44 Z"
+       }
+      ]
+     },
+     {
+      "caption": "The bib under the beak",
+      "add": [
+       {
+        "ellipse": [
+         66,
+         62,
+         14,
+         12
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "A short beak, pointing right",
+      "add": [
+       {
+        "path": "M 72 42 L 88 45 L 72 49 Z"
+       }
+      ],
+      "arrows": [
+       "M 70 38 L 88 41"
+      ]
+     }
+    ]
+   },
+   "summary": "Paints the chickadee's black cap and bib as one dark head shape.",
+   "tip": "The cap and bib is about 3 1/4 in wide and 2 1/2 in tall, its middle about 7 3/4 in from the left edge and about 2 1/2 in from the top edge; it covers the whole head for now, and the white cheek goes over it next step. Stop where the pale chest feathers begin so their white edge still shows, as the after picture shows. The after picture also has a small eye with a tiny light glint and a short gray beak; dab them in where the after picture has them."
+  },
+  {
+   "stage_id": "cheek",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the black cap and bib, and the chickadee's body dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its left side is about 6 in from the left edge; it's about 2 in wide and 1 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Cheek white.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Cheek white is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Paint the white cheek"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Paints the white cheek patch across the black head.",
+   "tip": "The cheek is about 2 in wide and 1 in tall, its middle about 7 1/4 in from the left edge and about 3 in from the top edge. Curve each stroke back from under the eye toward the wing and tail, following the round of the head. Leave the Soft black cap and bib showing above, below and right of the white cheek, as the after picture shows."
+  },
+  {
+   "stage_id": "feet-dark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the chickadee's body and the branch dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 4 1/2 in from the bottom edge, and its left side is about 6 1/2 in from the left edge; it's about 2 1/2 in wide and 1 1/4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Soft black.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #1 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. Pull each leg down in one stroke, starting thick and lightening as you go, then fork short toes that curl over the top of the branch.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave thin, flowing lines.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Lines that feather or spread. Laid into a wet layer underneath. Fix: let the area underneath dry first.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#1 liner",
+     "use": "Line in the legs and toes"
+    }
+   ],
+   "stroke_cards": [
+    "liner"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Line in the two thin legs and the curled toes gripping the top of the branch.",
+   "tip": "Paint two legs: one with its middle about 7 in from the left edge, the other with its middle about 8 1/2 in from the left edge, each about 1 in wide. Pull each leg down at a slant from the chickadee's belly, then curl its toes over the top of the branch, as the after picture shows. Keep them thin; the bark between the two legs stays as it was."
+  },
+  {
+   "stage_id": "feet-light",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the legs and feet, and the chickadee's body dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 4 1/2 in from the bottom edge, and its left side is about 6 1/2 in from the left edge; it's about 2 1/2 in wide and 1 1/4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Leg gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #1 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. Run short lines along each leg and toe, starting thick and lightening as you go.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave thin, flowing lines.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 17 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#1 liner",
+     "use": "Catch the light on the toes"
+    }
+   ],
+   "stroke_cards": [
+    "liner"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "cut from the finish inside the part's outline",
+   "summary": "Run thin Leg gray lines along the legs and toes to catch the light.",
+   "tip": "The light comes from the upper right, so lay the Leg gray on the side of each leg and toe that faces the light, where the after picture has it. Use a few short, thin lines over the Soft black on each of the two legs, and leave the Soft black showing beneath and between them so the toes still read as dark and sharp."
+  }
+ ]
+}
