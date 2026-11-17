@@ -189,10 +189,15 @@ class MeasureTests(unittest.TestCase):
         # a stage in a color no step names is counted
         off = dict(staged)
         off["cat-block"] = np.where((d["owner"] == 2)[..., None], np.uint8((200, 40, 200)), d["finish"]).astype(np.uint8)
-        pictures, rows, _, areas = st.build(d, off)
-        self.assertLessEqual({m["id"]: m for m in st.measure(d, pictures, areas)}["cat-block"]["named"], 0.05)
+        off_pictures, _, _, off_areas = st.build(d, off)
+        self.assertLessEqual({m["id"]: m for m in st.measure(d, off_pictures, off_areas)}["cat-block"]["named"], 0.05)
         total = st.summary(rows, marks, {"cat-block", "cat-white"})
         self.assertEqual(total["steps"], 2)
+        a, b = by["cat-block"], by["cat-white"]
+        weighted = (a["named"] * a["added"] + b["named"] * b["added"]) / (a["added"] + b["added"])
+        self.assertAlmostEqual(total["named"], weighted, places=3)
+        self.assertEqual(total["named_worst"], min(a["named"], b["named"]))
+        self.assertEqual(total["outside_max"], 0.0)
 
 
 class RenderTests(unittest.TestCase):
@@ -212,6 +217,28 @@ class RenderTests(unittest.TestCase):
             away = ~bs.halo(d["owner"] == 2)
             self.assertTrue((kept[away] == d["finish"][away]).all())
             self.assertGreater(got["rows"][1]["raw_moved"], 0.9)  # the stand-in repainted everything; the guard dropped it
+            # a run of one part's stages keeps the other parts' rows
+            again = st.render_stages("made-up", only=["cat"])
+            self.assertEqual([r["id"] for r in again["rows"]], ["rug-block", "cat-block", "cat-white"])
+            self.assertEqual(again["renders"], 3)
+
+    def test_chained_makes_a_parts_stages_backward_each_from_the_one_after(self):
+        d = scene()
+        seen = []
+
+        def fake(model, picture, prompt, folder, name, quality):
+            seen.append((name, picture.copy(), prompt))
+            return stage_picture(d, name), {"seconds": 1.0, "cost_usd": 0.01}
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(st, "OUT", Path(tmp)), \
+                mock.patch.object(st, "load", lambda picture, runs=None: d), mock.patch.object(st.vp, "render", fake), \
+                mock.patch.object(st, "WORKERS", 1):
+            st.render_stages("made-up", mode="chained", only=["cat"])
+        self.assertEqual([n for n, _, _ in seen], ["cat-white", "cat-block"])
+        self.assertTrue((seen[0][1] == d["finish"]).all())  # the last stage is un-painted from the finish
+        self.assertTrue((np.abs(seen[1][1][72:88, 52:58].astype(int) - WHITE).max() <= 2))  # the next from that stage
+        self.assertTrue((np.abs(seen[1][1][45:65, 60].astype(int) - CAT).max() <= 2))
+        self.assertIn("un-paint the last thing the painter did: Paint the chest", seen[1][2])
 
 
 if __name__ == "__main__":

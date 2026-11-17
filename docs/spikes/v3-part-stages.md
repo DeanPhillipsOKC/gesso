@@ -11,10 +11,11 @@ on a clear win there (`docs/decisions.md`). What the numbers and the pictures sa
   done" and "with the stripes done", it gave a plain gray cat, then the white, then flat stripes with no fur. 29
   renders, none failed to come back.
 - **It works on a thing that starts with a flat coat.** The cat, the cow, the horns, the rocks, the reeds, the
-  grass: each half-done stage looks like paint a person put down, where v2 shows the finish with holes in it. On
-  those parts the stages' colors are nearer the paints the steps name than v2's are (section 4).
+  grass: each half-done stage looks like paint a person put down, where v2 shows the finish with holes in it. The
+  colors are a mixed result (section 4): a stage stays nearer the paints its part has named so far than v2 does, but
+  against the step's own paints, the plan's third check, v2 is nearer on 6 of 11 steps.
 - **It fails on a part that starts with a pass.** Clouds, a forest, a reflection: the plan's first step is one
-  paint of several, and the model answers with the whole thing painted pale. 22 to 47% of what those steps add is
+  paint of several, and the model answers with the whole thing painted pale. 22 to 53% of what those steps add is
   near a paint the part has named by then, where v2 has 87 to 99%.
 - **The model's idea of a part isn't the outline's.** It is told the part's name, not shown its outline. On the
   lake cabin it flattened only the mountain's snowy peak and only the open half of the lake. The guard keeps the
@@ -100,37 +101,47 @@ the pixels away from the part, 10.0% at worst. Without the guard every stage wou
 
 Read from the pictures, the same way for both sides (`measure`): of the pixels a step changes inside its part, the
 share within Delta E 12 (CIEDE2000, `paints.MAX_MERGE`: the line past which a painter sees another color) of a
-paint the part's steps have named by then. This is the v3 plan's third check.
+paint. Two readings:
 
-A staged step lays its part again whole, so "a paint this step names" alone would count the coat it lays again as
-wrong. The table uses every paint named so far. A flat step is left out: v2's is the paint itself, 100% by
-construction, and the stages' block-ins are 89 to 100% except the lake cabin's mountain (54%) and cabin (81%).
+- **Own paints** (`named`): a paint this step names. This is the v3 plan's third check.
+- **Paints so far** (`named_so_far`): any paint the part's steps have named by then.
 
-| Picture | Pass step | Starts with | Stages | v2 |
+A staged step lays its part again whole, so most of what it changes is the earlier coat laid again, which is not
+this step's paint. Its own-paints share is therefore taken from the build that lays only what a stage changed
+(`build --changes`, section 5), the nearest thing to "what this step added". v2's pass picks the finish's pixels
+nearest the step's paints, so v2 starts with an advantage on own paints. A flat step is left out: v2's is the paint
+itself, 100% by construction, and the stages' block-ins are 89 to 100% except the lake cabin's mountain (54%) and
+cabin (81%).
+
+| Picture | Pass step | Starts with | Own paints: stages, v2 | Paints so far: stages, v2 |
 |---|---|---|---|---|
-| sleeping cat | blanket-stitches | flat | 100% | 100% |
-| | cat-white | flat | 97% | 94% |
-| | cat-stripes | flat | 98% | 99% |
-| | cat-fur | flat | 99% | 93% |
-| highland cow | grass-moss | flat | 99% | 97% |
-| | cow-locks | flat | 96% | 84% |
-| | horns-shade | flat | 89% | 75% |
-| | clouds-gray | pass | 41% | 99% |
-| lake cabin | mountain-shade | flat | 83% | 64% |
-| | reeds-mid | flat | 96% | 75% |
-| | rocks-shade | flat | 97% | 85% |
-| | cabin-shade | flat | 36% | 63% |
-| | forest-dark | pass | 22% | 92% |
-| | tree-reflection-dark | pass | 47% | 87% |
-| | tree-reflection-olive | pass | 53% | 90% |
+| sleeping cat | blanket-stitches | flat | 90%, 99% | 100%, 100% |
+| | cat-white | flat | 83%, 93% | 97%, 94% |
+| | cat-stripes | flat | 82%, 98% | 98%, 99% |
+| | cat-fur | flat | 40%, 90% | 99%, 93% |
+| highland cow | grass-moss | flat | 98%, 96% | 99%, 97% |
+| | cow-locks | flat | 45%, 80% | 96%, 84% |
+| | horns-shade | flat | 80%, 75% | 89%, 75% |
+| | clouds-gray | pass | 41%, 99% | 41%, 99% |
+| lake cabin | mountain-shade | flat | 90%, 63% | 83%, 64% |
+| | reeds-mid | flat | 75%, 74% | 96%, 75% |
+| | rocks-shade | flat | 94%, 82% | 97%, 85% |
+| | cabin-shade | flat | 4%, 62% | 36%, 63% |
+| | forest-dark | pass | 22%, 92% | 22%, 92% |
+| | tree-reflection-dark | pass | 47%, 87% | 47%, 87% |
+| | tree-reflection-olive | pass | 42%, 89% | 53%, 90% |
 
-- **Parts that start with a flat coat:** the stages are level with v2 or better on 10 of 11 steps, by 12 to 21
-  points on five of them. v2's pass shows finish pixels, and the finish holds colors no step names (#158); a stage
-  is painted to the step's words. The one loss is the cabin, a part of half a percent of the picture that the model
-  repainted loosely.
-- **Parts that start with a pass:** the stages lose on all four, badly. The model doesn't paint "only the dark of
-  the forest". This is the half of v2's flat-and-pass that already works: a nearest-color pass on scattered marks is
-  close to how they're painted.
+- **Parts that start with a flat coat, own paints:** mixed. The stages are nearer on 5 of 11 steps (grass, horns,
+  mountain, reeds, rocks) and v2 on 6 (all four of the cat's and blanket's, the cow's locks, the cabin). The third
+  check, as the plan words it, does not favor the stages. In the plain build, where a step lays the whole part
+  again, the stages' own-paints share is lower still (19 to 83%), because it counts the coat laid again.
+- **Parts that start with a flat coat, paints so far:** the stages are level with v2 or better on 10 of 11 steps, by
+  12 to 21 points on five. So a stage stays inside the part's palette better than v2's finish pixels do (the finish
+  holds colors no step names, #158), but what a single step adds is often an earlier step's paint again: the cat's
+  fur step repaints stripes and gray.
+- **Parts that start with a pass:** the stages lose on all four, on both readings, badly. The model doesn't paint
+  "only the dark of the forest". This is the half of v2's flat-and-pass that already works: a nearest-color pass on
+  scattered marks is close to how they're painted.
 
 **Does a later stage undo an earlier one?** `undone` is the share of a part that was within Delta E 12 of the
 finish before a step and isn't after it. v2's passes: 0.0 to 0.2%, and 3.4% once. The stages' passes: 0.2 to 3.9%,
@@ -140,9 +151,8 @@ the same thing as the cat's white patch: two renders of one part don't agree in 
 ## 5. Two free variants, from the same renders
 
 - **Lay only what changed** (`build --changes`): after a part's first step, a step lays its stage only where it
-  differs from the canvas by 8 Lab units or more. It doesn't help: section 4's shares move by up to 8 points
-  either way (the cat's white falls from 97% to 89%, the mountain's shade rises from 83% to 90%), and `undone` is
-  the same. Its pictures weren't compared by eye. Not worth its rule.
+  differs from the canvas by 8 Lab units or more. Section 4 uses it to read what a step adds. On paints so far its shares are within 8 points of the plain build's,
+  either way, and `undone` is the same. Its pictures weren't compared by eye. Not worth its rule.
 - **Keep v2's flat coat** (`build --passes`): only pass steps take a stage, 4 to 7 renders a lesson in place of 8 to
   12. The block-ins are where the two sides differ least, so this halves the cost for little loss, and it avoids
   the half-flattened mountain. It also puts a render's tone beside a flat coat's exact paint, and the first pass
@@ -163,7 +173,7 @@ Neither is on the A/B page. The page has the plain form: every stage a render.
   about 2 cents and 15 seconds. The baseline lessons' renders came to 8 to 22 cents each, so this about doubles or
   triples the image cost of a lesson.
 - The build takes 11 to 19 seconds against v2's 8 to 12: each stage's fill is worked out again from its own picture.
-- Renders ran at most 8 together. Each took 15 to 19 seconds.
+- Renders ran at most 8 together. Each took 13 to 21 seconds.
 
 ## 7. The A/B
 

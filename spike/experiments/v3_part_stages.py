@@ -218,14 +218,18 @@ def render_stages(picture: str, mode: str = "parallel", quality: str = "low", mo
         with concurrent.futures.ThreadPoolExecutor(WORKERS) as pool:
             list(pool.map(lambda s: one(s, source(d, s["k"])[0], prompt_for(plan, s)), todo))
     wall = time.time() - started
-    listed = [rows[s["id"]] for s in todo]
     old = folder / "stages.json"
+    if only and old.exists():
+        # a run of some parts only: the other stages' rows stay as the last run left them, so the file still
+        # covers every stage rendered
+        rows = {**{r["id"]: r for r in json.loads(old.read_text())["rows"]}, **rows}
+    listed = [rows[s["id"]] for s in stages(plan) if s["id"] in rows]
     result = {"picture": picture, "variant": variant, "mode": mode, "quality": quality, "model": model,
               "run": d["run"].name, "renders": len(listed), "steps": len(bs.flat_steps(plan)),
               "cost_usd": round(sum(r["cost_usd"] for r in listed), 4),
               "render_seconds": round(sum(r["seconds"] for r in listed), 1),
               # the clock for this picture's renders, when every one was made in this run
-              "wall_seconds": round(wall, 1) if len(fresh) == len(todo) else
+              "wall_seconds": round(wall, 1) if len(fresh) == len(todo) and not only else
               (json.loads(old.read_text()).get("wall_seconds") if old.exists() else None),
               "rows": listed}
     old.write_text(json.dumps(result, indent=1))
