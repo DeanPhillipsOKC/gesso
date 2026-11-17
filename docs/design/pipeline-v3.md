@@ -34,8 +34,9 @@ together. The first job of this design is one combined lesson that shows whether
 lesson on the cow and the birch grove (both graders each) and split on the cat (a tie); none preferred v2. Next is
 section 12, step 4. What it showed, and what this draft changes because of it:
 
-- **Nothing shows before its step, on any of the three.** That is what the graders preferred it for. v2 had a
-  ghost, a tiled patch or a hard box on every picture.
+- **No ghost, tiled patch or hard box of v2's kind, on any of the three.** That is what the graders preferred it
+  for; v2 had one on every picture. Smaller faults of that family remain: a pale patch on the cat's sill, and
+  things a step early or late (the cat's whiskers, the birch grove's sun).
 - **The block-in is the weakest step (section 6, not solved).** Erased only by "remove the thing", it is whatever
   the "back" render before it left: the cat's blanket arrives knitted, the cat with ears and eyes, the rock
   shaded. The steps after it then change almost nothing. No grader gave paintable or agree more than 3.

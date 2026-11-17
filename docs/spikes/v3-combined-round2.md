@@ -17,7 +17,11 @@ preferred v2 on any picture. Next is building it into `/paint-lesson` behind `pl
 
 Two graders a picture, each in a fresh context on Opus with `spike/experiments/bench/ab_grader.md`, sides swapped
 for the second. Their folders were named pair-01 to pair-06 in a seeded shuffle, held nothing that names a
-pipeline, and were outside the repository; the key was kept in another folder until all six had reported.
+pipeline, and were outside the repository (`/tmp/g214/`). The key was moved to a different folder before any
+grader started and was opened after all six had reported. **What a grader could still tell:** the two sides differ
+in ways no folder can hide. The combined side always has 22 to 24 steps and v2 14 to 16, its step names start with
+a verb, and only its words say "as the after picture shows". That tells the sides apart, not which pipeline made
+which.
 Scores are real / paintable / agree, 1 to 5.
 
 | Picture | Grader | v2 | Combined | Prefers | How sure |
@@ -32,7 +36,9 @@ Scores are real / paintable / agree, 1 to 5.
 **What decided it.** On every picture the graders marked v2 down for the owner's hardest fault: something on the
 canvas before its step (the cow's blotches through steps 1 to 10, tiled and mirrored patches, hard boxes, a stray
 line across the cat's wall for ten steps, finished leaves and the rock on the birch grove's step 1). The combined
-lesson had none of that on any picture: "every picture looks like a real half-done painting".
+lesson had no tiles, boxes or ghosts of that kind on any picture (the cow's first grader: "every picture looks like
+a real half-done painting"). It did have smaller faults of the same family: a pale hard-edged patch on the cat's
+sill (steps 7 and 8, both cat graders), and things a step early or late, listed below.
 
 **What they marked the combined lesson down for** is the same on all three pictures, and no grader gave it more
 than 3 for paintable or for agree:
@@ -69,7 +75,7 @@ bottom row, the raw renders.
 | Steps (v2's plan) | 23 (16) | 22 (14) | 24 (16) |
 | Units, renders kept | 15, 14 | 19, 18 | 17, 16 |
 | Kept renders: cost, seconds | 25.4 cents, 179 s | 32.5 cents, 247 s | 29.0 cents, 214 s |
-| Renders made again | 0 | 10 (17.8 cents) | 0 in the kept chain |
+| Renders made again | 0 | 10 (17.8 cents) | the tall grass asked for three times; 29 thrown on #210 in all |
 | The last step picture is the finish | 0.00% off | 0.00% off | 0.00% off |
 | A step changes a pixel outside its unit | 0.00% | 0.00% | 0.00% |
 | What a step lays, from its nearest paint (median) | 8.6 Lab units | 18.8 | 14.1 |
