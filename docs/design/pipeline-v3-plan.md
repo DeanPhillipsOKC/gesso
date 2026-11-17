@@ -113,7 +113,9 @@ and the owner's A/B.
   guide picture for a render in S4.
 - **S6. Paints before picture (#171).** Lock the finish to the lesson's mixes: either push the finished render onto
   the named paints, or hand the render the paint swatches as an input. Measure the share of pixels no step
-  names (#158 found 74% on one part) and whether the owner sees any loss.
+  names (#158 found 74% on one part) and whether the owner sees any loss. Run 2026-11-17:
+  `docs/spikes/v3-paints-first.md` (verdict: drop; locking the finish to the paints lost the graders' A/B on 2 of 4
+  pictures and tied the other 2, and the image model ignores a swatch card).
 - **S7. Plan before pixels (#172).** Claude writes the lesson as a painter would teach it (ground, block-in, middle
   values, shadows, lights, details; steps that cross parts) from the photo and the element techniques, and
   the layers are made to fit that plan. v2 does the reverse. Measure class F faults and the "could I paint
