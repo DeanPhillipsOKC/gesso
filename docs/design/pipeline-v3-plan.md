@@ -102,7 +102,8 @@ and the owner's A/B.
 - **S4. Stages inside a part (#169).** Today a half-done part is a flat coat plus nearest-color passes, which the
   design doc itself lists as a risk. Test peeling detail instead of things: the same part "before the
   highlights", "before the texture", "blocked in", pixels locked outside the part. Compare with v2's
-  flat/pass on the A/B.
+  flat/pass on the A/B. Run 2026-11-17: `docs/spikes/v3-part-stages.md` (good on parts that start with a flat coat,
+  bad on parts that start with a pass; the verdict waits for the owner's A/B).
 
 ## Wave 2: wilder bets
 
