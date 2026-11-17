@@ -232,6 +232,11 @@ with the date.
   risk, kept in view: a Claude grader is not the owner (on S4 Claude liked the stages and the owner preferred v2;
   the fault counter agreed with the owner at rho 0.43), so the brief lists what the owner has marked down before,
   and a spike the graders pass can still fail at the end.
+- **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
+  model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
+  (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
+  future but I think the v3 solution is better." v3 keeps whole-picture stages (#204). Don't re-propose a forward
+  build unless it comes with an answer to steps that look the same and to a finish that wanders from the photo.
 - **The lessons site stays on Cloudflare Pages (2026-11-12, owner asked).** It's static pages, so the owner's
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
