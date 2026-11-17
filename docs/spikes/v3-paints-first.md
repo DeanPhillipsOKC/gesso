@@ -30,8 +30,8 @@ What the numbers say (8 bench pictures, v2 baseline plans and outlines, section 
 - **Snapped onto the paints** (`lock-0`): 1.2 to 12.5% off, but the finish turns into flat posterized patches (it
   keeps 56 to 87% of its local detail and 66 to 88% of its edges).
 - **Mixes:** the lock doesn't change a lesson's mix count: the paints, and so the count (8 to 16), are the plan's.
-  Most of the count over 10 isn't the finish's colors at all, but paints `paints --add` gave a part (#154), which
-  never merge: 6 of the balloon's 16, 3 of the cat's 13 (section 3).
+  Across the 8, 12 of the 19 mixes over 10 aren't the finish's colors at all but paints `paints --add` gave a part
+  (#154), which never merge: 6 of the balloon's 16, 3 of the cat's 13. Not on the sailboat or the cabin (section 3).
 - **Cost:** the lock is free (2 to 9 seconds by part, 23 to 41 by step). The swatch round cost $0.31 for 5 renders.
 
 ## 1. What was tried
@@ -131,7 +131,8 @@ What the lock costs the finish:
 
 Where the issue's "12 to 16 mixes against a target of 10" comes from: `paints` run from scratch on the v2 finish, with
 the baseline's parts (`remeasured`), gives 10 to 14, and 10 on 5 of the 8 pictures. The runs land higher mostly
-through `paints --add` (#154's fix for a pass whose color no paint has), whose paints never merge:
+through `paints --add` (#154's fix for a pass whose color no paint has), whose paints never merge: 12 of the 19 mixes
+over 10 across the 8 runs, though not on the sailboat (1 of its 5) or the cabin (none of its 3):
 
 | Picture | The run's mixes | Of them, `--add` | From scratch: v2 finish | lock-8 | lock-step-8 | lock-0 |
 |---|---|---|---|---|---|---|
