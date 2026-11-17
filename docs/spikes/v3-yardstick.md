@@ -553,6 +553,13 @@ however few other faults it has, and a count per step doesn't capture that.
   - **Targeted reruns.** When a result is borderline on a picture, rebuild v2 from the bench on that one picture and
     compare again, rather than measuring all 8.
   - The v3 gate (beat v2 on every bench picture's weakest stage) already rules out an average win carried by noise.
+- **The owner's scores move by a point between sittings (found 2026-11-17).** Round `s1-peel` (#166) put four
+  baseline lessons in front of the owner a second time, a few hours after the baseline round. Of their 12 scores, 3
+  changed by one point and none by more (sleeping cat (a) 2 to 3; lake cabin (b) and (c) 3 to 2). Owner: "the scores
+  are very subjective and they're going to change depending on the mood that I'm in and how much time has elapsed."
+  So never compare an experiment's scores with the baseline round's. Compare only the two sides of one pair round,
+  scored in the same sitting, and lean on "Which would you paint from?" before the 1 to 5 scores. A one-point
+  difference between rounds is noise.
 - **Keeping spikes affordable.** A full round (8 lesson runs plus two fault counters per lesson) is about a 5-hour
   usage window. A spike starts on the 3 or 4 bench pictures most likely to show its effect and goes to all 8 only if
   it looks promising; screening uses one fault counter per lesson; and the owner is told a batch's rough size before
