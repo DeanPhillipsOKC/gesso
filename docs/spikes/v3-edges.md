@@ -13,23 +13,23 @@
   it takes too much, too little or nothing, and the step pictures show it: the chickadee's trunk is on the canvas
   from step 1. It is also less steady from run to run than the boxes it would replace: one changed word moved the
   branch's outline to an IoU of 0.41 and the leaves' to 0.31, where reading every box and point again 3% off moved
-  them to 0.90 at worst. The fault counter's totals didn't move outside the spread of its two baseline counts. And it's slow: 14 s to load and 23 to 28 s to read a picture on 4 cores, against v2's 13 to
+  them to 0.90 at worst. The fault counter didn't separate it from v2 (section 5). And it's slow: 14 s to load and 23 to 28 s to read a picture on 4 cores, against v2's 13 to
   18 s for the whole outline.
 - **Soft edges (a matte at every thing in front): park.** No grader preferred v2 on any picture; one chickadee grader
   preferred the soft edges (slightly), every other said no difference. A split is a tie, so that's four ties: not the
   clear win a spike needs (`docs/decisions.md`). It does what it set out to: the dashed rim of the bird's cap and cheek
   that shows around v2's flat bird for six steps is gone, the fur of the cow and the edges of the trunks look painted
-  rather than cut, and it costs 5 to 18 s a lesson, free, with all three checks holding. Park it for v3's layers,
+  rather than cut, and it costs 6 to 14 s a lesson, free, with checks 1 and 2 holding as they do for v2. Park it for v3's layers,
   which need a soft edge on each layer anyway.
 - **Outlining the photo instead of the finish: drop.** For the cow and the birch grove the photo is a real photo and
   the finish was painted from a beginner version, so the shapes have moved: the photo's birch trunks show as slivers
   three steps before the birches, and the cow's horns miss v2's by a third (IoU 0.65). For the cat and the chickadee, whose
-  photos are already paintings, the outlines agree (IoU 0.93 to 0.97) but follow the finish's own edges less well on
+  photos are already paintings, the outlines mostly agree (IoU 0.93 to 0.97; the chickadee's feet 0.79) but follow the finish's own edges less well on
   every part (edge fit 0.36 to 0.85 against v2's 0.52 to 0.96). Not graded: it lost on the numbers and the pictures.
 
 What it says for v3: **keep v2's outlines** (SAM-HQ with Claude's boxes, points and paths), and when layers come, give
 each layer the soft edge from this spike's matte. The run-to-run differences the issue blames on Claude's boxes are
-real but small on anything bigger than a few percent of the picture (IoU 0.92 to 0.998); they are large only on tiny
+real but small on anything bigger than a few percent of the picture (IoU 0.90 to 0.998); they are large only on tiny
 parts (the chickadee's feet, the cow's loch), where a name doesn't help either.
 
 ## 1. What was tried
@@ -64,14 +64,16 @@ color and the color behind it at every band pixel, so the finish is `alpha * fro
 
 - before the thing's first step, band pixels outside its outline that already show the finish (fur or whiskers
   painted with the wall) show `behind` instead;
-- from its first step, outside its outline: its paint by the matte over `behind`. Until its last step the paint is
-  what the part shows now at the nearest pixel inside (a flat coat gives a flat fringe); from its last step, `front`;
-- inside its outline only a 3-pixel feather blends with `behind`.
+- from its first step, outside its outline: its paint by the matte over `behind`, where the paint is what the part
+  shows now at the nearest pixel inside (a flat coat gives a flat fringe);
+- inside its outline only a 3-pixel feather blends with `behind`;
+- from its last step on, nothing: the part is done and v2's picture is the finish there.
 - A fringe only ever lies over parts listed before the thing: never over a part in front (the horns beside the cow,
   the cat in front of the window), painted yet or not.
 
 Two of those rules came from faults seen while building: the cow's fringe first painted bits of horn before the
-horns' step, and the window's fringe painted the cat's pink ear at the cat's flat-coat step. Both are tested.
+horns' step, and the window's fringe painted the cat's pink ear at the cat's flat-coat step. Both are tested
+(`StagedSoftenTests`), as is the last-step rule the review of #202 added.
 
 ## 2. The outlines
 
@@ -125,14 +127,17 @@ Soft edges on the sleeping cat and the chickadee, steps around the cat's and the
 
 v2's bird carries a dashed dark-and-white rim, the finished cap and cheek where the hard cut meets them, for six
 steps; soft has none. The cat's silhouette is softer and nothing comes early. The difference is small in every
-picture: under 1% of a step's pixels.
+picture: soft and v2 differ on at most 3.75% of a step's pixels (the birch grove's trunks at step 12), and under
+1.6% elsewhere.
 
 **The three checks** (`docs/design/pipeline-v3-plan.md`), on every variant and picture:
 
 1. *All layers together equal the finish:* the last picture is the finish in every variant; before it's set, v2's
-   builder is 0.00 to 0.03% off, unchanged by any variant (`final_gap`).
-2. *No picture changes a pixel outside its step's layer:* 0.000% to 0.001% for every variant, counting a soft step's
-   band as its layer (`outside_max`).
+   builder is 0.00 to 0.03% off (`final_gap`, measured on v2's builder before softening); `soften` leaves every
+   part as v2 has it from the part's last step on, so a soft lesson's last steps are v2's.
+2. *No picture changes a pixel outside its step's layer:* at most 0.11% of the picture on any step, the last
+   included, counting a soft step's band as its layer (`outside_max`). That 0.11% is v2's own last step on the cow;
+   every variant matches v2 or is below it, except the photo on the cow (0.12%).
 3. *Every pixel near a step's paint:* not measured; the paints are the baseline's, and S6 (#171) was the spike for it.
 
 | Variant | Ghost steps (cow, cat, chickadee, birches) | Worst ghost |
@@ -188,7 +193,9 @@ them. Soft edges keep v2's outlines, so they weren't counted again: their outlin
 | chickadee | 6, 6, 28; 5, 13, 31 | 6, 12, 29 |
 | birch grove | 4, 15, 28; 4, 15, 31 | 5, 15, 30 |
 
-Every count is inside the spread of the two baseline counters, so the counter doesn't tell the variants apart. It
+The counts sit at or just past the edge of the two baseline counters' spread (the cat's total 33 against 31 and 27,
+the birch grove's outlines 5 against 4 and 4, both worse for names), and the two baseline counters themselves
+differ by up to 7 A faults on one lesson, so one count each can't separate the variants. It
 does name what the graders saw: on the chickadee "the leaf block-in takes in about six background foliage clumps"
 (a blocker) and "the left trunk is fully painted in bark from step 1"; on the birch grove "hard rectangular orange
 windows in the ground" in steps 6 to 11.
@@ -196,8 +203,9 @@ windows in the ground" in steps 6 to 11.
 ## 6. The A/B
 
 Round `s3-edges`: the baseline against soft edges on all four pictures, and against name prompts on the three where
-the outlines differ (on the cow they agree at IoU 0.93 to 0.99, so a grade there would be "no difference" by
-construction). Photo outlines weren't graded (section 2). Two graders a picture in fresh contexts, each given only
+the outlines differ most (on the cow the outlines of the things in front agree at IoU 0.93 to 0.99; its name-built
+steps still differ from v2's on 1.2 to 2.0% of pixels in steps 1 to 10, more than soft's, so leaving it out was a
+judgment call to save two graders, not a certainty). Photo outlines weren't graded (section 2). Two graders a picture in fresh contexts, each given only
 `spike/experiments/bench/ab_grader.md` and a folder holding the two lessons as `A/` and `B/`, sides drawn from seed
 168 and swapped for the second. The folders were named `pair-01` to `pair-14`, so a grader didn't see the
 experiment's name either; the key is `spike/experiments/bench/scores/s3-edges.key.json`.
@@ -221,6 +229,14 @@ Scores are (a) real / (b) paintable / (c) agree, 1 to 5.
 | birch grove | name | 1 | 2 / 2 / 3 | 2 / 2 / 2 | v2 | slight |
 | | | 2 | 2 / 2 / 2 | 2 / 2 / 1 | v2 | slight |
 
+**What the graders saw, and the fix after.** The soft lessons were graded as first built. The adversarial review of
+#202 then found that `soften` kept blending a part's inner feather with what's behind after the part's last step,
+until the lesson's last picture. Fixed: from a part's last step, soft leaves it as v2 has it. Against the graded
+lessons the fix changes only those steps: up to 1.6% of the picture on the chickadee (the branch's and leaves' edges
+from steps 6 to 17), 0.8% on the cat, 0.7% on the cow, nothing on the birch grove, and each changed pixel goes back to
+v2's. So the fix moves soft toward v2 and can't turn the ties into a win; the bird's rim the graders named (steps 9 to
+14, before the bird's last step) is unchanged. They weren't graded again.
+
 **By the rule** (most pictures, and a clear loss on none; two graders who split are a tie): soft ties all four and
 loses none, so it isn't a win. Names lose the chickadee and the birch grove and tie the cat: dropped.
 
@@ -235,7 +251,8 @@ What the graders said, unblinded:
 - **Names:** on the chickadee both called out the trunk on the canvas from step 1 and red and orange blobs at step 7
   that step 8 takes away (the leaves outline taking background foliage). On the birch grove, hard orange rectangles in
   the ground from step 6 to 13, and branches floating in the sky at step 11. On the cat both leaned, slightly, to the
-  name side: v2's frame shadow sits on the canvas from step 1, the name side's stray sky-blue line runs shorter.
+  name side: the name side shows the frame's shadow from step 1, but v2 has a long stray sky-blue line across the
+  wall from step 2 to 11, which the graders weighed as worse.
 - **What every grader marked down on both sides** is the same list as earlier rounds: a tiled step 1, jumps from
   flat to finished, blotches where a thing will go. Edges are a small part of what makes these lessons weak.
 
@@ -252,8 +269,8 @@ On 4 CPU cores, per picture. Outlining (all of a plan's parts):
 SAM 3 also takes 14 s to load (3.1 GB), and needs about 7 GB of memory beside SAM-HQ; the first try with both models
 and onnxruntime's memory arena on ran this 15 GB machine out of memory. A name prompt is 2 to 6 s.
 
-Soft edges add the matte (3 to 13 s) and laying it into every step (1 to 6 s) to a build of 10 to 14 s: 5 to 18 s a
-lesson, free.
+Soft edges add the matte and laying it into every step: 6 to 14 s a lesson (7 to 17 s on name outlines), on top of
+a build of 10 to 14 s, free.
 
 ## 8. Limits
 

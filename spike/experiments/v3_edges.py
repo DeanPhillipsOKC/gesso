@@ -4,8 +4,7 @@ the photo against outlining the finish.
 Not part of the pipeline. It takes a bench picture's frozen finish and its v2 baseline run (plan, outlines, paints,
 words), changes only how the parts are outlined, and builds the step pictures again with v2's own builder:
 
-    python spike/experiments/v3_edges.py name highland-cow          # SAM 3 text prompts from the parts' names
-    python spike/experiments/v3_edges.py photo highland-cow         # SAM-HQ, the baseline's prompts, on the photo
+    python spike/experiments/v3_edges.py outline highland-cow       # v2 again, SAM 3 by name, and v2 on the photo
     python spike/experiments/v3_edges.py repeat highland-cow        # boxes read again (jittered) against other wordings
     python spike/experiments/v3_edges.py build highland-cow --variant name-soft    # step pictures, as a lesson copy
     python spike/experiments/v3_edges.py results                    # writes v3_edges.json
@@ -61,8 +60,8 @@ SAM3_FILES = ["sam3_image_encoder.onnx", "sam3_image_encoder.onnx.data", "sam3_l
 # Fur, whiskers, thin trunks and twigs, leaves: the four pictures most likely to show an edge change
 # (docs/decisions.md: spikes start on the 3 or 4 bench pictures most likely to show their effect).
 ALL4 = ["highland-cow", "sleeping-cat", "chickadee", "birch-grove"]
-# Second plans of the same frozen finish, written by Claude in another run: S7's plan-first runs keep the baseline's
-# outlining step, so their boxes and points are a second, independent try at the same parts.
+# Second plans of the same frozen finish: S7's plan-first runs. They started from the baseline's parts and boxes, so
+# they are not an independent second run; `repeat` compares only the parts whose prompts they changed.
 SECOND = {"highland-cow": BENCH / "runs/plan-first/highland-cow_skill_20261116-212627-plan-first",
           "sleeping-cat": BENCH / "runs/plan-first/sleeping-cat_skill_20261116-203502-plan-first",
           "birch-grove": BENCH / "runs/plan-first/birch-grove_skill_20261116-210750-plan-first"}
@@ -325,8 +324,9 @@ def soften(finish: np.ndarray, plan: dict, owner: np.ndarray, pictures: list[np.
     - before its first step, where the picture already shows the finish outside its outline (the fur or whiskers
       painted with the wall), show what's behind instead;
     - from its first step, outside its outline: by the matte over what's behind, the part's paint as it is now at
-      the nearest pixel inside (a flat coat gives a flat fringe), and its front color from its last step on;
-    - from its first step, inside its outline: its paint by the matte over what's behind.
+      the nearest pixel inside (a flat coat gives a flat fringe);
+    - from its first step, inside its outline (a thin feather): its paint by the matte over what's behind;
+    - from its last step on, nothing: the part is done, and v2's picture is the finish there.
 
     The last picture stays the finish. Nothing outside a band changes."""
     parts, steps = plan["parts"], bs.flat_steps(plan)
@@ -363,7 +363,9 @@ def soften(finish: np.ndarray, plan: dict, owner: np.ndarray, pictures: list[np.
                 shown = band & ~mine & (np.abs(img - fin).max(2) <= 6) & (a > 0.02)
                 img[shown] = m["behind"][shown]
                 continue
-            if near is None:
+            if near is None or i >= last[k]:
+                # from its last step the part is done: v2's picture is the finish there, edges and all (#202 review:
+                # a feather kept blending with `behind` until the last picture, where it jumped back)
                 continue
             ny, nx = near
             # only over what's behind it: never over a part listed after it (the horns beside the cow, the cat
@@ -372,10 +374,9 @@ def soften(finish: np.ndarray, plan: dict, owner: np.ndarray, pictures: list[np.
             later = np.isin(owner, [q for q in range(len(parts)) if (q > k and q not in fam) or q not in seen_by(i)])
             outer, inner = band & ~mine & ~later, band & mine
             aa = a[..., None]
-            # until the part's last step, its fringe is the part's paint as it is now at the nearest pixel inside
-            # (a flat coat gives a flat fringe; an ear's pink can't come early); from then, the front color
-            paint = m["front"] if i >= last[k] else img[ny, nx]
-            fringe = aa * paint + (1 - aa) * m["behind"]
+            # the fringe is the part's paint as it is now at the nearest pixel inside (a flat coat gives a flat
+            # fringe; an ear's pink can't come early)
+            fringe = aa * img[ny, nx] + (1 - aa) * m["behind"]
             edge = aa * img + (1 - aa) * m["behind"]
             img[outer] = fringe[outer]
             img[inner] = edge[inner]
@@ -452,7 +453,8 @@ DRAWS = 5
 def jitter(parts: list[dict], rng: np.random.Generator, by: float = JITTER) -> list[dict]:
     """The same plan with every box edge, point and path point moved by up to `by`, as a second reading might."""
     def move(v):
-        return float(np.clip(v + rng.uniform(-by, by), 0, 1))
+        d = rng.uniform(-by, by)  # drawn either way, so a border edge doesn't change the draws that follow
+        return float(v) if v in (0, 1) else float(np.clip(v + d, 0, 1))  # an edge on the border stays there
 
     out = []
     for p in parts:
@@ -528,10 +530,10 @@ def repeat(picture: str, sam3: Sam3 | None = None, sam=None) -> dict:
 
 def outside(pictures: list[np.ndarray], painted: list[np.ndarray], bands: list[np.ndarray]) -> float:
     """Check 2: the most any step changes outside what it paints (its painted area and rim, and the soft band of
-    the thing it belongs to), as a share of the picture."""
+    the thing it belongs to), as a share of the picture. Every step, the last included."""
     worst = 0.0
     k3 = np.ones((3, 3), np.uint8)
-    for i in range(1, len(pictures) - 1):
+    for i in range(1, len(pictures)):
         changed = np.abs(pictures[i].astype(np.int16) - pictures[i - 1].astype(np.int16)).max(2) > 6
         allowed = (cv2.dilate(painted[i].astype(np.uint8), k3) > 0) | bands[i]
         worst = max(worst, float((changed & ~allowed).mean()))
@@ -638,9 +640,11 @@ def variant_lesson(picture: str, variant: str) -> Path:
 
 
 def grade_folders(pairs: list[tuple[str, str]], out: Path, seed: int = 168) -> dict:
-    """The blind A/B round for Claude's graders (bench/ab_grader.md): per (picture, variant) <out>/<picture>-<variant>-g1/
-    and -g2/, the v2 baseline and the variant's lesson as A/ and B/, sides drawn from the seed and swapped for the
-    second grader. The key is only in <out>/key.json. `out` must be outside the repository."""
+    """The blind A/B round for Claude's graders (bench/ab_grader.md): two folders per (picture, variant), each with the
+    v2 baseline and the variant's lesson as A/ and B/, sides drawn from the seed and swapped for the second grader.
+    The folders are named pair-01, pair-02, ... in a seeded shuffle, so a grader sees neither the experiment's name
+    nor which grader it is. The key goes beside `out`, not in it (<out>.key.json), so no grader's folder holds it.
+    `out` must be outside the repository."""
     import random
 
     sys.path.insert(0, str(BENCH))
@@ -650,20 +654,26 @@ def grade_folders(pairs: list[tuple[str, str]], out: Path, seed: int = 168) -> d
     if ROOT in out.parents or out == ROOT:
         raise SystemExit("the grading folders must be outside the repository")
     rng = random.Random(seed)
-    key: dict = {"round": "s3-edges", "seed": seed, "pictures": {}}
+    key: dict = {"round": "s3-edges", "seed": seed, "pictures": {}, "folders": {}}
+    jobs = []
     for pic, variant in pairs:
-        sides = {"v2": baseline_run(pic), variant: variant_lesson(pic, variant)}
         order = ["v2", variant] if rng.random() < 0.5 else [variant, "v2"]
-        entry = key["pictures"].setdefault(f"{pic}/{variant}", {})
-        for g, names in (("g1", order), ("g2", order[::-1])):
-            folder = out / f"{pic}-{variant}-{g}"
-            if folder.exists():
-                shutil.rmtree(folder)
-            for side, name in zip("AB", names):
-                packet.build_one(sides[name], folder / side)
-            shutil.copy(BENCH / "ab_grader.md", folder / "ab_grader.md")
-            entry[g] = {"A": names[0], "B": names[1], "lessons": {n: sides[n].name for n in names}}
-    (out / "key.json").write_text(json.dumps(key, indent=1))
+        jobs += [(pic, variant, "g1", order), (pic, variant, "g2", order[::-1])]
+    names = [f"pair-{n + 1:02d}" for n in range(len(jobs))]
+    rng.shuffle(names)
+    out.mkdir(parents=True, exist_ok=True)
+    for name, (pic, variant, g, order) in zip(names, jobs):
+        sides = {"v2": baseline_run(pic), variant: variant_lesson(pic, variant)}
+        folder = out / name
+        if folder.exists():
+            shutil.rmtree(folder)
+        for side, which in zip("AB", order):
+            packet.build_one(sides[which], folder / side)
+        shutil.copy(BENCH / "ab_grader.md", folder / "ab_grader.md")
+        key["pictures"].setdefault(f"{pic}/{variant}", {})[g] = {"A": order[0], "B": order[1], "folder": name,
+                                                                "lessons": {n: sides[n].name for n in order}}
+        key["folders"][name] = f"{pic}-{variant}-{g}"
+    out.with_name(out.name + ".key.json").write_text(json.dumps(key, indent=1))
     return key
 
 

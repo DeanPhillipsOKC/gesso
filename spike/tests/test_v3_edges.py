@@ -3,9 +3,12 @@ re-reading jitter, and the grading folders (docs/spikes/v3-edges.md). A made-up 
 
 from __future__ import annotations
 
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
@@ -141,7 +144,97 @@ class SoftenTests(unittest.TestCase):
         self.assertTrue(np.array_equal(self.pictures[cat_step][post], self.hard[cat_step][post]))
 
 
+PINK = (230, 150, 170)
+MOUSE = (40, 40, 40)
+
+
+def staged_scene() -> dict:
+    """The scene with the post painted before the cat though listed after it, the cat in two steps (a flat coat, then
+    the rest), and a mouse far from everything painted last, so the cat's last step isn't the lesson's."""
+    d = scene()
+    d["owner"][5:10, 5:10] = 4
+    d["finish"][5:10, 5:10] = MOUSE
+    plan = d["plan"]
+    plan["parts"].append({"id": "mouse", "name": "The mouse", "kind": "object", "box": [0.03, 0.04, 0.07, 0.09]})
+    plan["paints"].append({"id": "mouse-1", "name": "The mouse", "hex": "#282828", "parts": ["mouse"]})
+    one = lambda pid, show="full": {"id": f"{pid}-{show}", "name": pid, "part": pid, "show": show,  # noqa: E731
+                                    "paints": [f"{pid}-1"]}
+    plan["stages"] = [{"id": "back", "name": "Back", "steps": [one("wall"), one("rug"), one("post")]},
+                      {"id": "cat", "name": "Cat", "steps": [one("cat", "flat"), one("cat")]},
+                      {"id": "mouse", "name": "Mouse", "steps": [one("mouse")]}]
+    return d
+
+
+class StagedSoftenTests(unittest.TestCase):
+    """Steps: 0 wall, 1 rug, 2 post, 3 the cat's flat coat, 4 the rest of the cat, 5 the mouse (the finish)."""
+
+    def setUp(self):
+        d = self.d = staged_scene()
+        self.hard, _, self.painted = bs.build(d["finish"], d["plan"], d["owner"])
+        m = hand_matte(d)
+        m[2]["front"][:] = PINK  # what the fur is made of: not the flat coat
+        m[2]["alpha"][40, 50:90] = 0.7  # the outline's top row: part of the inner feather
+        self.soft = m
+        self.pictures = ve.soften(d["finish"], d["plan"], d["owner"], self.hard, m)
+
+    def test_the_fringe_is_the_coat_on_the_canvas_not_the_finished_fur(self):
+        """At the flat coat the fringe is the coat by the matte over what's behind; the fur's own color (pink here,
+        the cat's ear in the bench) can't come before the step that paints it."""
+        got = self.pictures[3][37, 70].astype(float)
+        coat = self.hard[3][45, 70].astype(float)  # the flat coat just inside
+        self.assertLess(np.abs(got - (0.5 * coat + 0.5 * np.array(WALL))).max(), 3)
+        self.assertGreater(np.abs(got - (0.5 * np.array(PINK) + 0.5 * np.array(WALL))).max(), 20)
+
+    def test_a_fringe_never_covers_a_part_listed_after_it_even_painted_first(self):
+        post = self.d["owner"] == 3
+        self.assertTrue((self.soft[2]["band"] & post).any())  # the fur ring does reach the post
+        for i in (3, 4):
+            self.assertTrue(np.array_equal(self.pictures[i][post], self.hard[i][post]))
+
+    def test_the_inner_feather_blends_while_the_part_is_being_painted(self):
+        want = 0.7 * self.hard[3][40, 70].astype(float) + 0.3 * np.array(WALL)
+        self.assertLess(np.abs(self.pictures[3][40, 70].astype(float) - want).max(), 2)
+        self.assertGreater(np.abs(self.pictures[3][40, 70].astype(int) - self.hard[3][40, 70].astype(int)).max(), 10)
+
+    def test_from_its_last_step_the_part_is_v2s(self):
+        band = self.soft[2]["band"]
+        self.assertTrue(np.array_equal(self.pictures[4][band], self.hard[4][band]))
+
+    def test_check_two_counts_the_last_step(self):
+        a = np.zeros((H, W, 3), np.uint8)
+        b = a.copy()
+        b[0:10, 0:10] = 200
+        none = np.zeros((H, W), bool)
+        self.assertEqual(ve.outside([a, a, b], [none, none, none], [none, none, none]), round(100 / (H * W), 5))
+
+
 class GradeFolderTests(unittest.TestCase):
+    def test_the_folders_name_neither_the_experiment_nor_the_side_and_hold_no_key(self):
+        import packet
+
+        def build_one(lesson, dest):
+            dest.mkdir(parents=True)
+            (dest / "lesson.md").write_text("a lesson")
+
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.object(ve, "baseline_run", lambda pic: Path(f"/runs/{pic}_skill_1")), \
+                mock.patch.object(ve, "variant_lesson", lambda pic, v: Path(f"/runs/{pic}_skill_1-{v}")), \
+                mock.patch.object(packet, "build_one", build_one):
+            out = Path(tmp) / "round"
+            key = ve.grade_folders([("chickadee", "soft"), ("birch-grove", "name")], out)
+            folders = sorted(f.name for f in out.iterdir())
+            self.assertEqual(folders, ["pair-01", "pair-02", "pair-03", "pair-04"])
+            for f in out.rglob("*"):
+                self.assertNotIn("key", f.name)
+                if f.is_file() and f.name != "ab_grader.md":  # the brief is the same for every grader
+                    for word in ("soft", "name", "v2", "g1", "g2"):
+                        self.assertNotIn(word, f.read_text())
+            saved = json.loads((Path(tmp) / "round.key.json").read_text())
+            self.assertEqual(saved, key)
+            self.assertEqual(set(saved["folders"]), set(folders))
+            g = saved["pictures"]["chickadee/soft"]
+            self.assertEqual((g["g1"]["A"], g["g1"]["B"]), (g["g2"]["B"], g["g2"]["A"]))  # swapped for the second
+
     def test_refuses_a_folder_inside_the_repository(self):
         with self.assertRaises(SystemExit):
             ve.grade_folders([("chickadee", "soft")], ve.ROOT / "output" / "grades")
