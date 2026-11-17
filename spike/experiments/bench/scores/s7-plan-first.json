@@ -1,0 +1,233 @@
+{
+  "format": "gesso-ab-grades/1",
+  "graded_by": "claude: two fresh blind graders a picture (spike/experiments/bench/ab_grader.md), sides swapped for the second",
+  "mode": "pair",
+  "pictures": [
+    {
+      "graders": [
+        {
+          "grader": "g1",
+          "note": "B, a moderate edge rather than a clear win. Both share the same poor first pictures and the same cat steps, but B removes A's three magic jumps (frame shade, sill, blanket) by naming the paints the pictures show and splitting the work, at the cost of a wrong sky paint in step 1 and a couple of tiny or empty end steps.",
+          "prefer": "plan-first",
+          "scores": {
+            "plan-first": {
+              "agree": 3,
+              "note": "The same early faults are here (boxy window patch with mirrored leaf patterns on bare canvas, the blue streak, the orange patch and tile texture on the wall at step 4), and step 1 names a gray periwinkle for a sky the picture shows bright blue. But the middle builds the way paint does: the frame shadow uses two paints that match the picture, the sill gets a shade step then a sun step, and the blanket goes flat, folds, dark stitches, light stitches. Whiskers show from step 15 (the words admit it), so step 21 changes nothing in its picture, and the wall still changes on step 14.",
+              "paintable": 3,
+              "real": 3,
+              "worst_steps": [
+                1,
+                4,
+                21
+              ]
+            },
+            "v2": {
+              "agree": 2,
+              "note": "The early pictures don't look painted: a wall with a mirrored tile texture, an orange patch of sill showing on step 1, a hard blue streak across the canvas from step 2 on, and the shady leaves as flat hard-edged green boxes (step 3). Three steps show far more than their one paint can do: step 6 shades the frame in dark blue, violet and peach from one lavender, step 8 takes the sill from flat brown to finished wood with only a peach, and step 11 takes the blanket from blotches to finished knit with only a dark ochre. Step 2 also names a leaf green that the picture doesn't show, and the wall changes to brushy paint on step 12 with no instruction.",
+              "paintable": 3,
+              "real": 2,
+              "worst_steps": [
+                8,
+                11,
+                3
+              ]
+            }
+          },
+          "shown_as": {
+            "plan-first": "B",
+            "v2": "A"
+          }
+        },
+        {
+          "grader": "g2",
+          "note": "Both share the same weak opening, so the choice comes from the middle: A's sill and blanket steps show what their paints can do, where B's steps 3, 8 and 11 show things the words and paints don't cover. Slight to clear, not a toss-up; A's five extra steps are mostly small ones that earn their place, apart from the no-change last step.",
+          "prefer": "plan-first",
+          "scores": {
+            "plan-first": {
+              "agree": 3,
+              "note": "The first seven steps look cut out, not painted: a boxy sky with a stray streak across the canvas, a brown blotch on the wall before the sill's step, a cream frame blob with odd curved ends, and a sill shown as a thin strip while the words ask for a long rectangle running under the blanket. From the sill shading on, each step adds about what its paints and words cover (frame shadow in two named paints, sill shade then sun patches, blanket folds then dark stitches then light stitches, cat in small steps). The whiskers show from step 15, so step 21's picture changes nothing, though the words say so.",
+              "paintable": 3,
+              "real": 3,
+              "worst_steps": [
+                5,
+                7,
+                21
+              ]
+            },
+            "v2": {
+              "agree": 2,
+              "note": "Same cut-out start as A (wall with a brown blotch and a dark band the words call one even coat, the sky streak, the frame blob, the thin sill), and it adds more misses: step 2 names a leaf green the picture doesn't show, and step 3's 'dabs' are flat green boxes with hard straight edges. Steps 8 and 11 are magic: one dry-brushed peach gives the whole shaded, grained, sunlit sill, and one dark ochre takes the blanket from blotchy to finished with bright highlights. The cat steps are fine and the whiskers are covered where they appear.",
+              "paintable": 3,
+              "real": 2,
+              "worst_steps": [
+                3,
+                8,
+                11
+              ]
+            }
+          },
+          "shown_as": {
+            "plan-first": "A",
+            "v2": "B"
+          }
+        }
+      ],
+      "lessons": {
+        "A": "sleeping-cat_skill_20261116-203502",
+        "B": "sleeping-cat_skill_20261116-203502-plan-first-folded"
+      },
+      "picture": "sleeping-cat"
+    },
+    {
+      "graders": [
+        {
+          "grader": "g1",
+          "note": "Clear. Both end at the same finish and both have steps that jump further than their paints explain, but B has ghost blotches on the canvas for ten steps, boxes on the hillside, and a face that appears by magic, which are the things the owner marks down hardest. A's cow and face can actually be followed step by step; its 24 steps are not the reason, the staging is.",
+          "prefer": "plan-first",
+          "scores": {
+            "plan-first": {
+              "agree": 3,
+              "note": "The cow is built in believable stages (flat shape, shadow, horns, locks, nose, nostrils, mouth) on a clean dark meadow, and nothing appears on bare canvas before its step. It still has jumps that the named paints don't cover: step 2 shows a flat solid apricot blob where the words ask for feathery dry-brush streaks, step 3 finishes the whole sky (orange and red streaks) with one ochre, step 8 finishes the hillside with one dull green, step 13 goes from flat brown to an almost finished coat with two paints, and step 22 fills most of the grass leaving hard-edged dark holes. A gold halo also rings the cow from its block-in (step 9), five steps before any gold is named, and step 6 shows a tiled pattern and hard boxes on the hillside.",
+              "paintable": 3,
+              "real": 3,
+              "worst_steps": [
+                13,
+                3,
+                22
+              ]
+            },
+            "v2": {
+              "agree": 2,
+              "note": "Pale blue and dark green blotches sit on the white canvas where the cow will go from step 1 through step 10; the words only say to ignore them. Steps 6 to 8 show hard-edged dark boxes on the hillside and a half-canvas rectangle, and a dark patch on the hillside lingers until it vanishes at step 13 with no instruction. Step 7 finishes the hillside with one olive gold, step 10 takes the grass from sparse flicks to finished in one go, and step 13 turns a flat cow with rust locks into the finished coat and a fully painted face (nose, nostrils, mouth, eye) with only Sunset gold; the face never gets a step or a paint.",
+              "paintable": 2,
+              "real": 1,
+              "worst_steps": [
+                1,
+                13,
+                10
+              ]
+            }
+          },
+          "shown_as": {
+            "plan-first": "A",
+            "v2": "B"
+          }
+        },
+        {
+          "grader": "g2",
+          "note": "B, clear. A carries a ghost of the cow on the canvas for ten steps and paints the whole face by magic in a step that names one gold; B has neither, and builds the cow and face in steps a beginner can follow. B's own faults (the slab-like cloud step, the halo round the block-in) are real but smaller.",
+          "prefer": "plan-first",
+          "scores": {
+            "plan-first": {
+              "agree": 3,
+              "note": "No blotches before the cow: the canvas stays clean and the cow, horns, coat, nose, nostrils and mouth each get their own small step that a beginner can do in one go. The weak spots are the sky (step 2 shows a flat hard-edged apricot slab where the words ask for feathery dry-brush streaks, and step 3 turns it into the finished glowing sky with one gold), a gold-and-green halo of grass around the cow's block-in from step 9 until the grass is painted at step 20, and the hillside in steps 6 and 8 gaining gold and blue-green that the paints don't cover. Twenty-four steps is long, but no step asks too much.",
+              "paintable": 4,
+              "real": 3,
+              "worst_steps": [
+                2,
+                3,
+                9
+              ]
+            },
+            "v2": {
+              "agree": 2,
+              "note": "From step 1 to step 10 a cow-shaped cluster of pale blue and dark green blotches sits on the bare canvas where the cow will go, and nothing a brush does makes it; the words even have to tell the painter to ignore it. Step 13 names one gold for the rim of the hair, but its picture brings in the whole finished coat, the nose, the nostrils and the mouth, none of which any step ever paints. Steps 7 and 10 each name one olive gold while the pictures gain blue-green bushes and several greens.",
+              "paintable": 3,
+              "real": 2,
+              "worst_steps": [
+                1,
+                13,
+                10
+              ]
+            }
+          },
+          "shown_as": {
+            "plan-first": "B",
+            "v2": "A"
+          }
+        }
+      ],
+      "lessons": {
+        "A": "highland-cow_skill_20261116-212627-plan-first-folded",
+        "B": "highland-cow_skill_20261116-212627"
+      },
+      "picture": "highland-cow"
+    },
+    {
+      "graders": [
+        {
+          "grader": "g1",
+          "note": "B, clearly rather than slightly. Both carry the same early pattern and ghost faults, but A adds a white-gapped first step that contradicts its words and two big jumps (8 and 11), where B's later steps are small and follow from the paints named. B is longer, but each of its steps asks about what a beginner can do in one go.",
+          "prefer": "plan-first",
+          "scores": {
+            "plan-first": {
+              "agree": 3,
+              "note": "Shares the tiled pattern and early gold-leaf and fir ghosts in steps 1 to 7, the path in step 7 is bubbly blobs no brush makes, and step 8 lays hard flat orange boxes while the sky behind them changes. But the canvas is covered from step 1 as the words say, and the rock, trunks and fallen leaves each build in small steps whose pictures mostly match their paints. Step 22 still tidies the upper-left canopy and sky more than one pale gold could, and step 17 shows more leaf colors than its one rust.",
+              "paintable": 4,
+              "real": 3,
+              "worst_steps": [
+                8,
+                7,
+                22
+              ]
+            },
+            "v2": {
+              "agree": 2,
+              "note": "Step 1 shows a tiled pattern with bubble-edged white gaps, gold leaves and the rock already there, while the words say to blend down to brown at the bottom. Step 8 takes the ground from sparse rust dabs to finished with one gold, and step 11's 'few taps' of sunlit gold replace the flat olive boxes of step 9 with a whole finished sky, far firs and sun. Firs, far trunks with bark and bushes also show up on steps that don't name them (2, 3, 5).",
+              "paintable": 3,
+              "real": 2,
+              "worst_steps": [
+                11,
+                1,
+                8
+              ]
+            }
+          },
+          "shown_as": {
+            "plan-first": "B",
+            "v2": "A"
+          }
+        },
+        {
+          "grader": "g2",
+          "note": "Both lessons carry the same faults: things on the canvas before their step, flat box-edged patches no brush makes, and one late step that finishes far more than its words cover. A is a little easier to follow because its first step matches its words and its steps are smaller, but its box patches last through 14 steps, so the edge is small. A toss-up, leaning slightly to A.",
+          "prefer": "none",
+          "scores": {
+            "plan-first": {
+              "agree": 2,
+              "note": "Step 1 covers the whole canvas as its words say, but gold leaves, blue blotches, a small fir and a faint mirrored tile pattern are already on it, and the bottom is olive where the words say blue. From step 8 flat orange and olive patches with straight box edges sit in the canopy and bushes and stay until step 21; then step 22 (a few taps of pale gold) clears them, fills the canopy and changes the far trees on the right. Steps are small enough for a beginner, though step 17 paints flat brown over the path made in step 7 and the rock takes three steps.",
+              "paintable": 3,
+              "real": 2,
+              "worst_steps": [
+                8,
+                22,
+                1
+              ]
+            },
+            "v2": {
+              "agree": 2,
+              "note": "Step 1's words say blend down to leaf brown across the whole canvas, but its picture leaves the lower half white with rope-like dark outlines and white holes that stay until step 9, plus gold leaves and a lit rock already showing. Step 11 says only a few taps of sunlit gold, yet the picture drops all the flat olive, turns the sky blue and finishes the canopy and bushes; the sun turns into an odd glyph in steps 9, 12 and 13. The ground goes from flat brown to nearly finished in two steps (6 to 8), and the same mirrored tile pattern shows in the early sky.",
+              "paintable": 2,
+              "real": 2,
+              "worst_steps": [
+                1,
+                11,
+                9
+              ]
+            }
+          },
+          "shown_as": {
+            "plan-first": "A",
+            "v2": "B"
+          }
+        }
+      ],
+      "lessons": {
+        "A": "birch-grove_skill_20261116-210750",
+        "B": "birch-grove_skill_20261116-210750-plan-first-folded"
+      },
+      "picture": "birch-grove"
+    }
+  ],
+  "round": "s7-plan-first"
+}
