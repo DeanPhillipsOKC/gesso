@@ -1,0 +1,673 @@
+{
+ "highland-cow": {
+  "paint": {
+   "picture": "highland-cow",
+   "quality": "low",
+   "units": [
+    {
+     "stage": "the-sky",
+     "things": [
+      "sky"
+     ],
+     "steps": [
+      0
+     ]
+    },
+    {
+     "stage": "the-sky",
+     "things": [
+      "clouds"
+     ],
+     "steps": [
+      1,
+      2
+     ]
+    },
+    {
+     "stage": "the-far-land",
+     "things": [
+      "mountains"
+     ],
+     "steps": [
+      3
+     ]
+    },
+    {
+     "stage": "the-far-land",
+     "things": [
+      "loch"
+     ],
+     "steps": [
+      4
+     ]
+    },
+    {
+     "stage": "the-green-ground",
+     "things": [
+      "hillside",
+      "meadow"
+     ],
+     "steps": [
+      5
+     ]
+    },
+    {
+     "stage": "the-green-ground",
+     "things": [
+      "bushes"
+     ],
+     "steps": [
+      6,
+      7
+     ]
+    },
+    {
+     "stage": "the-cow-shape",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      8,
+      9
+     ]
+    },
+    {
+     "stage": "the-cow-shape",
+     "things": [
+      "horns"
+     ],
+     "steps": [
+      10,
+      11
+     ]
+    },
+    {
+     "stage": "the-shaggy-coat",
+     "things": [
+      "cow",
+      "horns"
+     ],
+     "steps": [
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "stage": "the-face",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      15,
+      16,
+      17,
+      18
+     ]
+    },
+    {
+     "stage": "the-tall-grass",
+     "things": [
+      "meadow"
+     ],
+     "steps": [
+      19,
+      20,
+      21,
+      22,
+      23
+     ]
+    }
+   ],
+   "redone": [],
+   "thrown": [],
+   "renders": 11,
+   "cost_usd": 0.348,
+   "thrown_cost_usd": 0,
+   "render_seconds": 165.6,
+   "bare_left": 0.0,
+   "rows": [
+    {
+     "unit": 0,
+     "stage": "the-sky",
+     "things": [
+      "sky"
+     ],
+     "steps": [
+      1
+     ],
+     "redo": false,
+     "seconds": 12.8,
+     "cost_usd": 0.0316,
+     "added_share": 0.4624,
+     "over_painted": 0.0,
+     "raw_moved_kept": 0.0
+    },
+    {
+     "unit": 1,
+     "stage": "the-sky",
+     "things": [
+      "clouds"
+     ],
+     "steps": [
+      2,
+      3
+     ],
+     "redo": false,
+     "seconds": 12.9,
+     "cost_usd": 0.0318,
+     "added_share": 0.0717,
+     "over_painted": 0.1549,
+     "raw_moved_kept": 0.0273
+    },
+    {
+     "unit": 2,
+     "stage": "the-far-land",
+     "things": [
+      "mountains"
+     ],
+     "steps": [
+      4
+     ],
+     "redo": false,
+     "seconds": 14.6,
+     "cost_usd": 0.0315,
+     "added_share": 0.1096,
+     "over_painted": 0.2272,
+     "raw_moved_kept": 0.0002
+    },
+    {
+     "unit": 3,
+     "stage": "the-far-land",
+     "things": [
+      "loch"
+     ],
+     "steps": [
+      5
+     ],
+     "redo": false,
+     "seconds": 11.9,
+     "cost_usd": 0.0312,
+     "added_share": 0.0048,
+     "over_painted": 0.0103,
+     "raw_moved_kept": 0.0007
+    },
+    {
+     "unit": 4,
+     "stage": "the-green-ground",
+     "things": [
+      "hillside",
+      "meadow"
+     ],
+     "steps": [
+      6
+     ],
+     "redo": false,
+     "seconds": 14.7,
+     "cost_usd": 0.0315,
+     "added_share": 0.56,
+     "over_painted": 0.0578,
+     "raw_moved_kept": 0.0025
+    },
+    {
+     "unit": 5,
+     "stage": "the-green-ground",
+     "things": [
+      "bushes"
+     ],
+     "steps": [
+      7,
+      8
+     ],
+     "redo": false,
+     "seconds": 19.4,
+     "cost_usd": 0.0314,
+     "added_share": 0.1026,
+     "over_painted": 0.1026,
+     "raw_moved_kept": 0.002
+    },
+    {
+     "unit": 6,
+     "stage": "the-cow-shape",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      9,
+      10
+     ],
+     "redo": false,
+     "seconds": 15.7,
+     "cost_usd": 0.0318,
+     "added_share": 0.1899,
+     "over_painted": 0.1899,
+     "raw_moved_kept": 0.0139
+    },
+    {
+     "unit": 7,
+     "stage": "the-cow-shape",
+     "things": [
+      "horns"
+     ],
+     "steps": [
+      11,
+      12
+     ],
+     "redo": false,
+     "seconds": 14.0,
+     "cost_usd": 0.0314,
+     "added_share": 0.0174,
+     "over_painted": 0.0174,
+     "raw_moved_kept": 0.0028
+    },
+    {
+     "unit": 8,
+     "stage": "the-shaggy-coat",
+     "things": [
+      "cow",
+      "horns"
+     ],
+     "steps": [
+      13,
+      14,
+      15
+     ],
+     "redo": false,
+     "seconds": 16.2,
+     "cost_usd": 0.032,
+     "added_share": 0.0972,
+     "over_painted": 0.0972,
+     "raw_moved_kept": 0.0033
+    },
+    {
+     "unit": 9,
+     "stage": "the-face",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      16,
+      17,
+      18,
+      19
+     ],
+     "redo": false,
+     "seconds": 15.7,
+     "cost_usd": 0.0317,
+     "added_share": 0.0044,
+     "over_painted": 0.0044,
+     "raw_moved_kept": 0.0093
+    },
+    {
+     "unit": 10,
+     "stage": "the-tall-grass",
+     "things": [
+      "meadow"
+     ],
+     "steps": [
+      20,
+      21,
+      22,
+      23,
+      24
+     ],
+     "redo": false,
+     "seconds": 17.7,
+     "cost_usd": 0.0321,
+     "added_share": 0.3378,
+     "over_painted": 0.3378,
+     "raw_moved_kept": 0.0195
+    }
+   ]
+  },
+  "build": {
+   "picture": "highland-cow",
+   "steps": 24,
+   "final_gap": 0.0,
+   "outside_unit_max": 0.0,
+   "steps_that_change_little": [
+    "streak-clouds",
+    "paint-nose",
+    "light-nose",
+    "dot-nostrils-eye",
+    "line-mouth",
+    "flick-brightest-tips"
+   ],
+   "close_to_photo": {
+    "forward": {
+     "color_distance": 26.1,
+     "light_and_dark": 0.645
+    },
+    "v2": {
+     "color_distance": 22.3,
+     "light_and_dark": 0.843
+    },
+    "forward_to_v2": {
+     "color_distance": 28.4,
+     "light_and_dark": 0.598
+    }
+   },
+   "paints": {
+    "U00": {
+     "Soft sky blue": "#a5bdd4",
+     "Pale gold": "#ecd6a7",
+     "Warm apricot": "#fcc179"
+    },
+    "U01": {
+     "Warm apricot": "#e5b595",
+     "Hazy blue-violet": "#bdbfbc",
+     "Pale gold": "#e9d1a8"
+    },
+    "U02": {
+     "Hazy blue-violet": "#8390b5",
+     "Deep slate blue": "#546a97"
+    },
+    "U03": {
+     "Pale lavender-white": "#a2a9cd"
+    },
+    "U04": {
+     "Sunlit yellow-green": "#9d933a",
+     "Olive green": "#697136",
+     "Deep grass green": "#334b2e"
+    },
+    "U05": {
+     "Deep grass green": "#3f5130",
+     "Sunlit yellow-green": "#827e37"
+    },
+    "U06": {
+     "Rust brown": "#934e25",
+     "Deep red-brown": "#602e20"
+    },
+    "U07": {
+     "Horn taupe": "#9a835d",
+     "Deep red-brown": "#732d19"
+    },
+    "U08": {
+     "Copper orange": "#a45220",
+     "Golden ochre": "#e79835",
+     "Pale gold": "#b8a387"
+    },
+    "U09": {
+     "Rosy brown": "#994d28",
+     "Pale rose": "#e4a67d",
+     "Dark umber": "#48271b"
+    },
+    "U10": {
+     "Deep grass green": "#495428",
+     "Olive green": "#6d692d",
+     "Sunlit yellow-green": "#957d33",
+     "Golden ochre": "#b88f3a",
+     "Pale gold": "#f3dc9c"
+    }
+   },
+   "rows": [
+    {
+     "id": "blend-sky",
+     "unit": 0,
+     "things": [
+      "sky"
+     ],
+     "show": "all",
+     "painted": 0.4624,
+     "changed": 0.4553,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "streak-clouds",
+     "unit": 1,
+     "things": [
+      "clouds"
+     ],
+     "show": "flat",
+     "painted": 0.0011,
+     "changed": 0.0011,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "light-cloud-tops",
+     "unit": 1,
+     "things": [
+      "clouds"
+     ],
+     "show": "all",
+     "painted": 0.0717,
+     "changed": 0.0459,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "lay-in-mountains",
+     "unit": 2,
+     "things": [
+      "mountains"
+     ],
+     "show": "all",
+     "painted": 0.1096,
+     "changed": 0.0938,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "streak-loch",
+     "unit": 3,
+     "things": [
+      "loch"
+     ],
+     "show": "all",
+     "painted": 0.0048,
+     "changed": 0.0027,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "lay-in-ground",
+     "unit": 4,
+     "things": [
+      "hillside",
+      "meadow"
+     ],
+     "show": "all",
+     "painted": 0.56,
+     "changed": 0.5543,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "dab-dark-bushes",
+     "unit": 5,
+     "things": [
+      "bushes"
+     ],
+     "show": "flat",
+     "painted": 0.032,
+     "changed": 0.032,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "tap-sunlit-bushes",
+     "unit": 5,
+     "things": [
+      "bushes"
+     ],
+     "show": "all",
+     "painted": 0.1026,
+     "changed": 0.0777,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "block-in-cow",
+     "unit": 6,
+     "things": [
+      "cow"
+     ],
+     "show": "flat",
+     "painted": 0.1591,
+     "changed": 0.1591,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "shade-cow",
+     "unit": 6,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.1899,
+     "changed": 0.1665,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "block-in-horns",
+     "unit": 7,
+     "things": [
+      "horns"
+     ],
+     "show": "flat",
+     "painted": 0.0067,
+     "changed": 0.0067,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "shade-horns",
+     "unit": 7,
+     "things": [
+      "horns"
+     ],
+     "show": "all",
+     "painted": 0.0174,
+     "changed": 0.0077,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "pull-copper-locks",
+     "unit": 8,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.0682,
+     "changed": 0.0504,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "pull-golden-locks",
+     "unit": 8,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.0175,
+     "changed": 0.0168,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "catch-rim-light",
+     "unit": 8,
+     "things": [
+      "cow",
+      "horns"
+     ],
+     "show": "all",
+     "painted": 0.0972,
+     "changed": 0.0046,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "paint-nose",
+     "unit": 9,
+     "things": [
+      "cow"
+     ],
+     "show": "flat",
+     "painted": 0.0005,
+     "changed": 0.0004,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "light-nose",
+     "unit": 9,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.0011,
+     "changed": 0.001,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "dot-nostrils-eye",
+     "unit": 9,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.0003,
+     "changed": 0.0003,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "line-mouth",
+     "unit": 9,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.0044,
+     "changed": 0.0019,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "flick-dark-blades",
+     "unit": 10,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.179,
+     "changed": 0.1483,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "flick-olive-blades",
+     "unit": 10,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.0929,
+     "changed": 0.0875,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "flick-yellow-green-blades",
+     "unit": 10,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.0485,
+     "changed": 0.0465,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "flick-gold-blades",
+     "unit": 10,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.0175,
+     "changed": 0.0168,
+     "outside_unit": 0.0
+    },
+    {
+     "id": "flick-brightest-tips",
+     "unit": 10,
+     "things": [
+      "meadow"
+     ],
+     "show": "all",
+     "painted": 0.3378,
+     "changed": 0.0003,
+     "outside_unit": 0.0
+    }
+   ]
+  }
+ }
+}
