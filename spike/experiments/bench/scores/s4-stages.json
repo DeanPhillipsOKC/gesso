@@ -1,0 +1,114 @@
+{
+  "conflicts": [],
+  "format": "gesso-ab-scores/1",
+  "merged_from": [
+    {
+      "device": null,
+      "file": "s4.json",
+      "saved_at": "2026-11-17T14:11:47.390Z"
+    }
+  ],
+  "mode": "pair",
+  "pictures": [
+    {
+      "lessons": {
+        "A": "sleeping-cat_skill_20261116-203502-stages",
+        "B": "sleeping-cat_skill_20261116-203502"
+      },
+      "note": "",
+      "picture": "sleeping-cat",
+      "prefer": "B",
+      "scores": {
+        "A": {
+          "agree": null,
+          "note": "",
+          "paintable": null,
+          "real": 3,
+          "worst_steps": [
+            {
+              "id": "cat-pink",
+              "n": 16
+            }
+          ]
+        },
+        "B": {
+          "agree": null,
+          "note": "",
+          "paintable": null,
+          "real": 4,
+          "worst_steps": []
+        }
+      },
+      "tokens": {
+        "A": "L969fd4416139",
+        "B": "Ld506d7ad186b"
+      }
+    },
+    {
+      "lessons": {
+        "A": "highland-cow_skill_20261116-212627",
+        "B": "highland-cow_skill_20261116-212627-stages"
+      },
+      "note": "In both, the facial features just magically appear even though they're not disclosed in the steps or the paint colors. They just happen in different steps.",
+      "picture": "highland-cow",
+      "prefer": "A",
+      "scores": {
+        "A": {
+          "agree": null,
+          "note": "",
+          "paintable": null,
+          "real": 3,
+          "worst_steps": []
+        },
+        "B": {
+          "agree": null,
+          "note": "",
+          "paintable": null,
+          "real": 2,
+          "worst_steps": [
+            {
+              "id": "cow-locks",
+              "n": 12
+            }
+          ]
+        }
+      },
+      "tokens": {
+        "A": "Lfbc061fe4f6c",
+        "B": "Ldfcae30a681c"
+      }
+    },
+    {
+      "lessons": {
+        "A": "lake-cabin_skill_20261116-205703-stages",
+        "B": "lake-cabin_skill_20261116-205703"
+      },
+      "note": "",
+      "picture": "lake-cabin",
+      "prefer": "same",
+      "scores": {
+        "A": {
+          "agree": null,
+          "note": "",
+          "paintable": null,
+          "real": 2,
+          "worst_steps": []
+        },
+        "B": {
+          "agree": null,
+          "note": "",
+          "paintable": null,
+          "real": 2,
+          "worst_steps": []
+        }
+      },
+      "tokens": {
+        "A": "L91567b406b9a",
+        "B": "Lb98284cbfb31"
+      }
+    }
+  ],
+  "round": "s4-stages",
+  "saved_at": "2026-11-17T14:11:47.390Z",
+  "seed": 169
+}
