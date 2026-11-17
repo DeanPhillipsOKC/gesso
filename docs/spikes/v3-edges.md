@@ -156,6 +156,8 @@ spike measured it two ways that need no Claude run (`repeat`):
 
 - **Boxes read again:** every box edge, point and path point moved by up to 3% of the picture (a third of the 10% grid
   cell Claude reads positions off), five seeded draws, outlined by v2's tool; IoU with the baseline's outline.
+  These draws were made before the review of #202 kept an edge on the picture's border from moving (it could move
+  inward, shrinking a backdrop box); the reviewer found no draw where that changed an outline, so they weren't rerun.
 - **Names said another way:** each name swapped for one other wording at a time (the second plans' names where they
   differ, and plain paraphrases), outlined by SAM 3; IoU with the outline from the baseline's name.
 
