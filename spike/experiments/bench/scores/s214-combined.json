@@ -1,0 +1,218 @@
+{
+ "format": "gesso-ab-grades/1",
+ "graded_by": "claude: two fresh blind graders a picture on Opus (spike/experiments/bench/ab_grader.md), sides swapped for the second; folders named pair-NN so the experiment's name wasn't shown",
+ "mode": "pair",
+ "round": "s214-combined",
+ "pictures": [
+  {
+   "picture": "highland-cow",
+   "variant": "combined",
+   "lessons": {
+    "v2": "highland-cow_skill_20261116-212627",
+    "combined": "highland-cow-combined"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-03",
+     "prefer": "combined",
+     "note": "In A the canvas reads as a real painting at every step; its faults are over-big jumps (6, 9) and some steps that do almost nothing. B breaks the owner's hardest rule for ten steps running: ghost blotches where the cow will go, plus hard boxes, then a magic face in step 13. Clear preference for A.",
+     "scores": {
+      "combined": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        9,
+        6,
+        21
+       ],
+       "note": "Every picture looks like a real half-done painting, with nothing on the canvas before its step. The problems are jumps and magic. Step 9 'one solid Rust brown cow shape' already shows a modeled cow with fringe, ears, muzzle and shading. Step 6 goes from white to a finished, blended meadow with gold streaks and dark tufts. Steps 20-21 (grass blades) quietly restyle the hillside into stripes and dark patches. About six steps (3, 8, 15, 17, 19, 24) barely change anything."
+      },
+      "v2": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 1,
+       "worst_steps": [
+        1,
+        13,
+        8
+       ],
+       "note": "From step 1 to step 10 the cow's area holds pale-blue blotches with dark-green cores and a faint cow outline, which no brush makes and no words explain. The sky, hills and dark grass stop in hard straight-edged rectangles (steps 1, 4, 6, 8), and flat dark holes sit in the hillside for several steps. Step 13 ('gold rim on the hair') adds the whole lit face, the pink nose and the shading at once. The flat cow block (step 11) and the horn steps are fine, but they come too late to save it."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-01",
+     "prefer": "combined",
+     "note": "I'm clearly for B. A carries the owner's worst fault, something on the canvas before its step, through ten of its sixteen steps, and adds a face that comes in by magic. B's faults are a few big jumps and some near-empty steps, which slow a painter down but don't mislead them.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        7
+       ],
+       "note": "From step 1 to step 10, a ghost of the cow sits on the canvas: hard-edged pale-blue blotches with dark green inside them, which no brush would make. They show through the sky, the hills and the grass until the cow covers them in step 11. Step 13 names only Sunset gold for a rim light, yet its picture finishes the whole face, nose and mouth included. Step 7 asks for olive dry-brushing, but its picture adds rounded dark bushes and flat dark slabs. Step 2's words say silver-gray, while its picture shows gold and apricot streaks."
+      },
+      "combined": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        6,
+        20
+       ],
+       "note": "Nothing shows up early and nothing looks pasted on: every picture looks like a real painting partway done. The weak spots are jumps. Step 1 takes the sky nearly to finished, clouds included, and step 6 goes from white to a fully modelled meadow in one blend. That leaves steps 2, 3, 8, 15, 17 and 19 showing almost no visible change. Step 20 also quietly redraws the hillside bushes into new rows, and a few paints don't match their pictures: 'Copper orange' is darker than the base but lays lighter marks, and 'Dark umber' is a mid olive."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "sleeping-cat",
+   "variant": "combined",
+   "lessons": {
+    "v2": "sleeping-cat_skill_20261116-203502",
+    "combined": "sleeping-cat-combined"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-06",
+     "prefer": "none",
+     "note": "Each has a flaw the owner marks hard. A shows things on the canvas before their step: tiling, a blotch, and a stray line that stays through ten steps. B shows magic and big jumps on the blanket and the cat, and four steps change almost nothing. A's back half is cleaner and B's front half is cleaner, so this is a toss-up with no real preference.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        2,
+        6
+       ],
+       "note": "The first half doesn't look like a real canvas. Step 1 shows a tiled, seamed wall with a wood-colored blotch already in it. From step 2 to step 11 a stray light-blue line crosses the wall, and the sky sits in hard boxes. Step 6 turns the frame into a fully rendered window with only one lavender, and step 8 jumps the sill to finished wood grain. In step 12 the wall's texture changes with no instruction for it. From step 9 on, the blanket and cat steps are clean and match their words and paints well."
+      },
+      "combined": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        14,
+        10,
+        8
+       ],
+       "note": "The early canvas looks real: clean shapes on white canvas, with the window, wall and frame built up believably. But step 10 goes from nothing to a finished knit blanket with a hollow using one golden yellow. Step 14, a one-gray block-in, already shows pink ears, closed eyes and modeled shading (the tip admits it). The eyes then fade in step 17 and come back in step 21, whiskers start in the nose step, and steps 12, 13, 18 and 19 show almost no visible change. Step 8's picture shows a pale ghost patch where the words ask for a dark band."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-02",
+     "prefer": "combined",
+     "note": "A has real faults (the big blanket jump, the pre-finished cat at 14, a few steps that show nothing), but its canvas always looks like a painting someone could make. B's first half is full of things no brush makes: tiles, mirrored patterns, a blotch and a line on the canvas before their steps, and the silhouette of the cat cut out early. Clear preference for A.",
+     "scores": {
+      "combined": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        10,
+        14,
+        8
+       ],
+       "note": "The pictures read as a real painting built back to front, with clean order (window, wall, frame, sill, blanket, cat, markings, face). But step 10 jumps from bare sill to a fully knitted, shaded blanket with one gold paint. Step 14's cat already has pink ears and closed eyes; the words admit it, but it is still magic. Steps 7-8 leave a pale, hard-edged ghost patch on the sill that 'Dark wood brown' doesn't explain, steps 12-13 and 19 show almost no change, and whiskers appear a step early in 22."
+      },
+      "v2": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        2,
+        13
+       ],
+       "note": "For the first 11 steps the wall is a tiled, mirrored kaleidoscope texture with vertical seams and a hard horizontal band, and a peach sill patch is on the canvas from step 1. A stray blue line sits across the wall from step 2, the sky and leaves are hard boxes, and the frame and sill end in a cat-shaped hole long before the cat is painted. At step 12 the wall suddenly swaps to the finished texture with no instruction. Step 13 (one white) also adds eye marks, a dark nose and ear specks. The blanket build-up (9-11) and the flat gray cat (12) are the only parts a beginner could follow cleanly."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "variant": "combined",
+   "lessons": {
+    "v2": "birch-grove_skill_20261116-210750",
+    "combined": "birch-grove-combined"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-04",
+     "prefer": "combined",
+     "note": "B is a believable painting at every step with only small mismatches, while A's pictures are broken from step 1 onward: patches no brush makes, objects showing early, and flat stencil cut-outs. A beginner could follow B and could not follow A. Clear preference.",
+     "scores": {
+      "v2": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 1,
+       "worst_steps": [
+        1,
+        9,
+        12
+       ],
+       "note": "From step 1 the canvas is covered in things no brush makes: a tiled diamond pattern, chains of round blobs tracing where trunks will go, white holes, and finished gold leaves and the rock already showing. Step 9 ('olive shadow') lays flat gray-brown cut-outs in the shape of the trunks and a stray sun icon, and step 12 lays the trunks down as flat gray stencils. The ground goes from flat brown to finished leaf carpet in step 8 and the canopy from flat cut-outs to finished in step 11, so the words almost never match the pictures."
+      },
+      "combined": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        2,
+        5,
+        13
+       ],
+       "note": "Each picture looks like a real painting part-way done, and the layers come in a sensible order: sky, firs, rays, ground, path, canopy, bushes, rock, trunks, bark, leaves. But step 2 ('circle in the sun') shows only a faint cream smudge, and the sun disk only appears in step 5 along with the rays. Steps 12, 20 and 21 show almost no change, step 13's flat trunks already have shading, and step 15 replaces step 14's gray patches with finished bark marks. The words also lean on 'as the after picture shows' and once describe an artifact to skip."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-05",
+     "prefer": "combined",
+     "note": "A is the one to paint from: its pictures look like a painting in progress and mostly follow its words. B's pictures are broken artifacts (tiling, blobs, things showing early, flat cutouts) for most of the lesson. Clear preference, even though A has its own magic steps (sun on 5, mid-trunks on 13).",
+     "scores": {
+      "combined": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        13,
+        5,
+        11
+       ],
+       "note": "Every picture reads as a believable half-done painting, built back to front without tiles or blank canvas. But some things appear by magic: step 2's sun is a faint patch in the wrong place, and the real sun disc only shows up on step 5, which names a dry-brushed gold. Step 13, the plain gray-white trunks, also brings in the middle-distance birches complete with bark marks. Step 11 puts the rock in finished in one go, steps 12 and 21 barely change anything, and step 18's leaves have odd outlined halos."
+      },
+      "v2": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 1,
+       "worst_steps": [
+        1,
+        9,
+        6
+       ],
+       "note": "From step 1 to step 10 the canvas has a tiled diamond pattern, loopy blob-shaped edges and patches of white canvas. Finished gold leaves, the rock and bits of the bushes show on step 1, the 'sky blend'. Steps 6 and 9 lay hard-edged flat brown and taupe boxes with finished leaves poking through, step 12's trunks are flat gray cutouts, and a strange glyph sits in the sun on steps 9 to 13. A beginner comparing their canvas with these pictures would be lost, however clean the words are."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

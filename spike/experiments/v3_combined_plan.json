@@ -82,6 +82,204 @@
   "parents": {
    "clouds": "sky",
    "bushes": "ground"
+  },
+  "areas": [
+   "mountains"
+  ]
+ },
+ "sleeping-cat": {
+  "behind": {
+   "window-view": [],
+   "window-trees": [
+    "window-view"
+   ],
+   "wall": [],
+   "window-frame": [
+    "window-view",
+    "window-trees",
+    "wall"
+   ],
+   "sill": [],
+   "blanket": [
+    "sill",
+    "wall"
+   ],
+   "cat": [
+    "blanket",
+    "wall"
+   ]
+  },
+  "early": {
+   "cat": "the plain gray cat shape",
+   "blanket": "the plain yellow blanket",
+   "sill": "the plain brown wooden sill",
+   "window-frame": "the plain cream window frame"
+  },
+  "units": {
+   "shade-window-frame": {
+    "id": "frame-shade",
+    "name": "The frame's shading",
+    "parent": "window-frame"
+   },
+   "shade-the-sill": {
+    "id": "sill-light",
+    "name": "The sill's shading and sun patches",
+    "parent": "sill"
+   },
+   "shade-the-blanket": {
+    "id": "blanket-folds",
+    "name": "The blanket's folds",
+    "parent": "blanket"
+   },
+   "dark-stitches": {
+    "id": "stitches",
+    "name": "The blanket's stitches",
+    "parent": "blanket"
+   },
+   "shade-the-cat": {
+    "id": "cat-shade",
+    "name": "The cat's shading and white patches",
+    "parent": "cat"
+   },
+   "paint-stripes": {
+    "id": "markings",
+    "name": "The cat's stripes and ears",
+    "parent": "cat"
+   },
+   "flick-silver-fur": {
+    "id": "fur",
+    "name": "The cat's fur",
+    "parent": "cat"
+   },
+   "eyes-and-mouth": {
+    "id": "face",
+    "name": "The cat's face",
+    "parent": "cat"
+   }
+  },
+  "parents": {
+   "window-trees": "window-view"
+  },
+  "called": {
+   "window-view": "the pale sky through the window"
+  },
+  "areas": []
+ },
+ "birch-grove": {
+  "behind": {
+   "backdrop": [],
+   "sun": [
+    "backdrop"
+   ],
+   "far-firs": [
+    "backdrop"
+   ],
+   "far-trunks": [
+    "backdrop",
+    "far-firs"
+   ],
+   "sun-rays": [
+    "backdrop",
+    "far-firs",
+    "far-trunks"
+   ],
+   "forest-floor": [
+    "backdrop"
+   ],
+   "path": [
+    "forest-floor"
+   ],
+   "canopy": [
+    "backdrop"
+   ],
+   "undergrowth": [
+    "forest-floor",
+    "far-firs",
+    "backdrop"
+   ],
+   "rock": [
+    "undergrowth",
+    "forest-floor"
+   ],
+   "birches": [
+    "canopy",
+    "backdrop",
+    "far-firs",
+    "undergrowth",
+    "forest-floor"
+   ],
+   "branches": [
+    "canopy",
+    "backdrop"
+   ],
+   "fallen-leaves": [
+    "forest-floor",
+    "path"
+   ]
+  },
+  "early": {
+   "canopy": "the orange-gold canopy clumps",
+   "undergrowth": "the dark bushes along the path",
+   "rock": "the plain gray-green rock",
+   "birches": "the plain pale birch trunks"
+  },
+  "units": {
+   "dab-mid-leaves": {
+    "id": "gold-leaves",
+    "name": "The golden leaves",
+    "parent": "canopy"
+   },
+   "shade-the-rock": {
+    "id": "rock-shade",
+    "name": "The rock's shading",
+    "parent": "rock"
+   },
+   "shade-the-trunks": {
+    "id": "bark",
+    "name": "The birch bark",
+    "parent": "birches"
+   },
+   "light-the-rock": {
+    "id": "rock-moss",
+    "name": "The rock's mossy top",
+    "parent": "rock"
+   },
+   "light-the-bark": {
+    "id": "bark-light",
+    "name": "The light on the bark",
+    "parent": "birches"
+   },
+   "dab-sunlit-leaves": {
+    "id": "sunlit-leaves",
+    "name": "The sunlit leaves",
+    "parent": "canopy"
+   }
+  },
+  "parents": {
+   "sun": "backdrop"
+  },
+  "called": {
+   "forest-floor": "the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it",
+   "path": "the plain light sandy path"
+  },
+  "not_flat": [
+   "dab-dark-floor-leaves"
+  ],
+  "areas": [
+   "far-firs",
+   "far-trunks",
+   "sun-rays",
+   "forest-floor",
+   "canopy",
+   "undergrowth",
+   "branches",
+   "fallen-leaves"
+  ],
+  "say": {
+   "dab-dark-floor-leaves": "The mossy rock right of the path and the bushes behind it are not fallen leaves: they stay exactly as they are.",
+   "dab-dark-bushes": "Only the low bushes go. The far firs and the pale far trunks behind them stay exactly as they are, and no new tree trunk is painted anywhere.",
+   "dab-dark-canopy": "Where the leaves were there is only open misty sky: no tree trunk and no branch is painted there.",
+   "stamp-far-firs": "Every fir goes, the dark ones right of the middle too: where they stood there is only soft pale mist, with no tree shape, dark patch or pointed top left in it."
   }
  }
 }

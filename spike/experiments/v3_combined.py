@@ -60,8 +60,12 @@ def load(picture: str) -> dict:
     extra = json.loads((HERE / "v3_combined_plan.json").read_text())[picture]
     d["behind"] = extra["behind"]
     d["extra"] = extra
-    d["painter"]["early"] = extra.get("early") or {}
-    d["painter"]["flat"] = sorted(k for k, v in fw.shows(d["fit"]).items() if v == "flat")  # the block-ins  # a thing's name before its later stages (the meadow, plain)
+    d["painter"]["early"] = extra.get("early") or {}  # a thing's name before its later stages (the meadow, plain)
+    # a thing's name in every request, when the plan's own would mislead a render ("The sky and trees through the
+    # window" as what is behind the trees, #214)
+    d["painter"]["called"] = extra.get("called") or {}
+    d["painter"]["flat"] = sorted(flats(d))  # the block-ins
+    d["painter"]["say"] = extra.get("say") or {}
     return d
 
 
@@ -93,8 +97,15 @@ def units(painter: dict, flat: set[str] = frozenset()) -> list[dict]:
     return out
 
 
+def shows(d: dict) -> dict[str, str]:
+    """How each step is shown (`shows` in v4_forward.py), with the extras' `not_flat` steps as a pass."""
+    return {**fw.shows(d["fit"]), **{k: "pass" for k in d["extra"].get("not_flat") or ()}}
+
+
 def flats(d: dict) -> set[str]:
-    return {k for k, v in fw.shows(d["fit"]).items() if v == "flat"}
+    """The block-ins: the steps the fitted plan shows as a flat coat, less the ones the extras say aren't one
+    (`not_flat`: the birch grove's dark leaf dabs are a flat coat to v2's cutter and no block-in, #214)."""
+    return {k for k, v in shows(d).items() if v == "flat"}
 
 
 # ---------------------------------------------------------------------------
@@ -119,6 +130,7 @@ def _state(after: str) -> str:
 def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str]], again: int = 0) -> str:
     steps = fw.flat(painter)
     name = {t["id"]: t["name"] for t in painter["things"]}
+    name.update(painter.get("called") or {})
     u = us[n]
     kind = kind_of(us, n, behind)
     later = {t for v in us[n + 1:] for t in v["things"]}
@@ -128,6 +140,9 @@ def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str
     stays = list(dict.fromkeys(done))
     end = ("Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that "
            "is already bare stays bare. No text, signature, or watermark.")
+    # a sentence written by hand for one unit, keyed by its first step: what a probe showed the request left open
+    # (the birch grove's rock went with the fallen leaves, #214)
+    end = ((painter.get("say") or {}).get(steps[u["steps"][0]]["id"], "") + " " + end).strip()
     if kind == "bare":
         remove = "; ".join(name[t] for t in u["things"])
         keep = (" (" + "; ".join(name[t] for t in stays) + ")") if stays else ""
@@ -332,7 +347,7 @@ def build(picture: str) -> tuple[list[np.ndarray], list[np.ndarray], dict]:
     earlier step had claimed (dark bush rows on the step that names the bushes' sunlit green)."""
     d = load(picture)
     painter, folder = d["painter"], OUT / picture
-    us, steps, show = units(painter, flats(d)), fw.flat(painter), fw.shows(d["fit"])
+    us, steps, show = units(painter, flats(d)), fw.flat(painter), shows(d)
     ch = chain(picture, us)
     one, per_unit, paint_rows = fit(d, us, ch)
     canvas = np.empty(d["finish"].shape, np.float32)
@@ -437,7 +452,7 @@ def owner_from(ch: list[dict]) -> np.ndarray:
 def v2_plan(d: dict, us: list[dict], ch: list[dict], one: dict[str, str], owner: np.ndarray) -> dict:
     """The painter's plan in the shape v2's tools read: a part a unit, its box measured from its place in `owner`."""
     painter = d["painter"]
-    steps, show = fw.flat(painter), fw.shows(d["fit"])
+    steps, show = fw.flat(painter), shows(d)
     thing = {t["id"]: t for t in painter["things"]}
     named, parents = d["extra"].get("units") or {}, d["extra"].get("parents") or {}
     h, w = owner.shape
@@ -450,7 +465,7 @@ def v2_plan(d: dict, us: list[dict], ch: list[dict], one: dict[str, str], owner:
         if not where.any():
             where = ch[n]["D"]
         ys, xs = np.nonzero(where)
-        kind = "area" if kind_of(us, n, d["behind"]) == "bare" or n == 0 or pid == "mountains" else "object"
+        kind = "area" if kind_of(us, n, d["behind"]) == "bare" or n == 0 or pid in (d["extra"].get("areas") or ()) else "object"
         p = {"id": pid, "name": over.get("name") or t["name"], "kind": kind, "thing": u["things"], "unit": n,
              "element": t["element"], "element_why": t.get("why", ""),
              "box": [round(float(xs.min() / w), 3), round(float(ys.min() / h), 3),
@@ -458,7 +473,10 @@ def v2_plan(d: dict, us: list[dict], ch: list[dict], one: dict[str, str], owner:
         parent = over.get("parent") or parents.get(pid)
         if parent:
             p["parent"] = parent
-        if kind_of(us, n, d["behind"]) == "back" and show.get(steps[u["steps"][0]]["id"]) != "flat":
+        # a new thing whose first of several steps is a pass (the cat's window trees, the birch grove's fallen
+        # leaves, #214): marks to v2 too, which refuses an area or object that starts with a pass
+        starts_pass = len(u["steps"]) > 1 and show.get(steps[u["steps"][0]]["id"], "full") == "pass"
+        if (kind_of(us, n, d["behind"]) == "back" and show.get(steps[u["steps"][0]]["id"]) != "flat") or starts_pass:
             # a later layer on a thing: v2 calls that marks, and wants their colors (never read: no outline runs)
             mine = [one[q] for q in unit_paints(steps, u)]
             p.update(kind="marks", colors_in=mine, colors_out=[h for h in one.values() if h not in mine][:3])
@@ -474,12 +492,17 @@ def v2_plan(d: dict, us: list[dict], ch: list[dict], one: dict[str, str], owner:
         paints.append({"id": slug(name), "name": name, "used_for": looks[name], "hex": hx,
                        "sample_x": round(float(x / w), 3), "sample_y": round(float(y / h), 3), "parts": users})
     last_of_unit = {u["steps"][-1] for u in us}
+    first_alone = [u["steps"] for n, u in enumerate(us) if len(u["steps"]) == 1 and kind_of(us, n, d["behind"]) != "back"]
     stages, i = [], 0
     for st in painter["stages"]:
         out = []
         for s in st["steps"]:
             how = "blend" if s.get("blend") else show.get(s["id"], "full")
             if how == "flat" and i in last_of_unit:  # a block-in with its own render: v2 has no flat last step
+                how = "full"
+            if how == "full" and i not in last_of_unit:  # the fitted plan has no row for it: cut as a pass (`build`)
+                how = "pass"
+            if how == "pass" and [i] in first_alone:  # a new thing in one step (the birch grove's path)
                 how = "full"
             out.append({k: v for k, v in {"id": s["id"], "name": s["name"], "part": part_of[i], "show": how,
                                           "paints": [slug(p) for p in s["paints"]], "stroke": s["stroke"],
@@ -596,7 +619,7 @@ def results(picture: str) -> dict:
         if f.exists():
             m = json.loads(f.read_text())
             words[name[:-5]] = {k: m[k] for k in ("claims", "failures", "after", "dropped", "unwritten", "missing")}
-    out = {"picture": picture, "issue": 210, "steps": bd["steps"], "units": bd["units"],
+    out = {"picture": picture, "issue": 210 if picture == "highland-cow" else 214, "steps": bd["steps"], "units": bd["units"],
            "renders_kept": er["renders"], "renders_thrown": len(er["thrown"]), "probes": len(probes),
            "cost_usd": {"chain_kept": er["cost_usd"], "chain_thrown": er["thrown_cost_usd"],
                         "probes_not_used": round(probe_cost, 4),
@@ -608,8 +631,48 @@ def results(picture: str) -> dict:
            "chain": [{k: r[k] for k in ("unit", "kind", "things", "steps", "redo", "erased_share", "raw_moved_outside",
                                          "seconds", "cost_usd")} for r in er["rows"]],
            "paints": bd["paints"], "step_rows": bd["rows"], "words": words}
-    (HERE / "v3_combined.json").write_text(json.dumps(out, indent=1) + "\n")
+    kept = json.loads((HERE / "v3_combined.json").read_text())  # one entry a picture; the others stay as they are
+    kept["pictures"][picture] = out
+    (HERE / "v3_combined.json").write_text(json.dumps(kept, indent=1) + "\n")
     return out
+
+
+def grade_folders(pictures: list[str], out: Path, seed: int = 214) -> dict:
+    """The blind A/B round for Claude's graders (bench/ab_grader.md), as #204's: two folders a picture, each with
+    the v2 baseline and the combined lesson as A/ and B/, sides drawn from the seed and swapped for the second
+    grader. The folders are pair-01, pair-02, ... in a seeded shuffle. The key goes beside `out` (<out>.key.json),
+    never in it, and `out` must be outside the repository."""
+    import random
+    import shutil
+
+    sys.path.insert(0, str(BENCH))
+    import packet
+
+    out = Path(out).resolve()
+    if ROOT in out.parents or out == ROOT:
+        raise SystemExit("the grading folders must be outside the repository")
+    rng = random.Random(seed)
+    key: dict = {"round": "s214-combined", "seed": seed, "pictures": {}, "folders": {}}
+    jobs = []
+    for pic in pictures:
+        order = ["v2", "combined"] if rng.random() < 0.5 else ["combined", "v2"]
+        jobs += [(pic, "g1", order), (pic, "g2", order[::-1])]
+    names = [f"pair-{n + 1:02d}" for n in range(len(jobs))]
+    rng.shuffle(names)
+    out.mkdir(parents=True, exist_ok=True)
+    for name, (pic, g, order) in zip(names, jobs):
+        sides = {"v2": peel.baseline_run(pic), "combined": lesson_folder(pic)}
+        folder = out / name
+        if folder.exists():
+            shutil.rmtree(folder)
+        for side, which in zip("AB", order):
+            packet.build_one(sides[which], folder / side)
+        shutil.copy(BENCH / "ab_grader.md", folder / "ab_grader.md")
+        key["pictures"].setdefault(pic, {})[g] = {"A": order[0], "B": order[1], "folder": name,
+                                                  "lessons": {k: v.name for k, v in sides.items()}}
+        key["folders"][name] = f"{pic}-{g}"
+    out.with_name(out.name + ".key.json").write_text(json.dumps(key, indent=1))
+    return key
 
 
 def main() -> None:
@@ -634,6 +697,9 @@ def main() -> None:
         p.add_argument("picture")
     p = sub.add_parser("lesson")
     p.add_argument("picture")
+    p = sub.add_parser("grade-folders")
+    p.add_argument("pictures", help="comma-separated")
+    p.add_argument("out", type=Path, help="a folder outside the repository")
     p = sub.add_parser("build")
     p.add_argument("picture")
     args = ap.parse_args()
@@ -663,6 +729,9 @@ def main() -> None:
     elif args.cmd == "results":
         r = results(args.picture)
         print(json.dumps({k: r[k] for k in ("renders_kept", "renders_thrown", "cost_usd", "checks", "words")}))
+    elif args.cmd == "grade-folders":
+        grade_folders(args.pictures.split(","), args.out)
+        print(f"{args.out}: the key is beside it, not in it")
     elif args.cmd == "lesson":
         print(make_lesson(args.picture))
     elif args.cmd == "probe":

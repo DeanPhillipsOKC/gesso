@@ -29,6 +29,27 @@ together. The first job of this design is one combined lesson that shows whether
   plan needs a line a thing a stage, a name for a thing's first stage, and a name a unit (section 5).
 - **Not solved:** 17 paints against a target of 10, and four of them fitted to colors far from their names.
 
+**The same was then made on the sleeping cat and the birch grove, and the three were graded blind against v2
+(2026-11-17, #214, `docs/spikes/v3-combined-round2.md`). Verdict: adopt.** Claude's graders preferred the combined
+lesson on the cow and the birch grove (both graders each) and split on the cat (a tie); none preferred v2. Next is
+section 12, step 4. What it showed, and what this draft changes because of it:
+
+- **No ghost, tiled patch or hard box of v2's kind, on any of the three.** That is what the graders preferred it
+  for; v2 had one on every picture. Smaller faults of that family remain: a pale patch on the cat's sill, and
+  things a step early or late (the cat's whiskers, the birch grove's sun).
+- **The block-in is the weakest step (section 6, not solved).** Erased only by "remove the thing", it is whatever
+  the "back" render before it left: the cat's blanket arrives knitted, the cat with ears and eyes, the rock
+  shaded. The steps after it then change almost nothing. No grader gave paintable or agree more than 3.
+- **A "behind" request has to say what stays (section 6, changed).** On the birch grove, removing the bushes
+  repainted the far woods, and removing the leaves took the rock. Each needed a sentence naming what stays.
+- **With no box, a change far from the thing is kept (section 6, open).** Step 5's look is the only catch today.
+- **The plan must mark its block-ins, and may need another name for a thing in a request (section 5).** v2's
+  "flat" isn't a block-in (the birch grove's dark leaf dabs), and a name like "The sky and trees through the
+  window" misleads a render.
+- **A returning unit's shape was too small for the sheet (section 9):** it is only where the unit is still on top
+  at the end. The sheet should measure what the unit changed.
+- **Cost:** 14 to 18 renders, 25 to 33 cents and 3 to 4 minutes a lesson; the birch grove made 10 renders again.
+
 ## 1. Why change
 
 v2 renders the finished painting once and cuts every step picture from it inside outlines. It stopped improving:
@@ -141,7 +162,8 @@ with every unit after u erased. P[last] is the finish.
 - **A thing on bare canvas** (`behind` is empty): remove it and leave bare white canvas. Canvas once bare stays bare.
 - **A thing with things behind it:** remove it and paint what is behind, named from `behind` ("Behind them there is
   only this: ..."). #204 found that "continue what is around" invites new things, and naming what is behind stops
-  it. So v3 names it from the first try, not only on a redo.
+  it. So v3 names it from the first try, not only on a redo. **It also names what stays** (#214): a render that
+  removes the bushes will otherwise repaint the woods behind them.
 - **A later stage of a thing already there** (the cow's coat, its face, the tall grass over the meadow): take the
   thing back to how the plan's `after` describes it before this stage. The request is the `after` line of the step
   before the unit's first.
@@ -269,6 +291,7 @@ guard's four and the core's one.
    from stage writers. A step sheet beside v2's and #204's.
 2. **The owner looks at that one lesson:** go, change, or stop. This draft is then corrected by what it showed.
 3. On a go: the same on two more bench pictures, with blind graders against v2, to see it isn't the cow alone.
+   **Done (#214): adopt.** Preferred on two of three pictures, a tie on the third, a loss on none.
 4. Build it into `/paint-lesson` behind `plan_version: 3`, tool by tool, v2 untouched beside it.
 5. The gate.
 
@@ -290,7 +313,9 @@ Then the site's lessons are rerun from their photos, and v2 is removed.
 - **The plan asks for what the finish doesn't have.** A shade the finish has no color for, a rim light the locks
   already brought. Erasing by stage may give the plan its order back; it can't add a color.
 - **Faint things won't erase,** so a first step can still show too much.
-- **More renders:** about 20 cents and 2 1/2 minutes of chain a lesson, one after another.
+- **More renders:** 25 to 33 cents and 3 to 4 minutes of chain a lesson, one after another (#214), and more when a
+  unit is asked again.
+- **Block-ins that arrive finished,** and the near-empty steps after them (#214).
 - **Claude's graders are not the owner.** Every adopt this draft rests on is Claude's grade. On S4 Claude liked the
   stages and the owner preferred v2.
 - **Every spike score was 2 to 4 out of 5.** Each adopted piece was the better of two flawed lessons, not a good

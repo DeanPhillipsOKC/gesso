@@ -8,7 +8,8 @@ lesson tool, the skill, or the site changed.
 **Verdict: go** (owner's call, 2026-11-17, after looking at the first lesson's page and step sheet): "Go, fix
 those two things first." The two things were a unit's last step bringing more than its words, and two steps that
 share a paint. Both are fixed below, the same way: each gets a render of its own. Next is the same on two more
-bench pictures, with blind graders against v2. No graders ran here.
+bench pictures, with blind graders against v2. No graders ran here. That round is
+`docs/spikes/v3-combined-round2.md` (#214): adopt.
 
 ## What was run
 

@@ -1,903 +1,2664 @@
 {
- "picture": "highland-cow",
- "issue": 210,
- "steps": 24,
- "units": 17,
- "renders_kept": 16,
- "renders_thrown": 29,
- "probes": 4,
- "cost_usd": {
-  "chain_kept": 0.2901,
-  "chain_thrown": 0.5223,
-  "probes_not_used": 0.0557,
-  "all": 0.8681
- },
- "render_seconds_kept": 213.7,
- "redone": {
-  "16": 2
- },
- "checks": {
-  "final_gap": 0.0,
-  "outside_unit_max": 0.0,
-  "from_its_paints_median": 14.1,
-  "steps_that_change_little": [
-   "flick-brightest-tips"
-  ]
- },
- "chain": [
-  {
-   "unit": 16,
-   "kind": "back",
-   "things": [
-    "meadow"
+ "pictures": {
+  "highland-cow": {
+   "picture": "highland-cow",
+   "issue": 210,
+   "steps": 24,
+   "units": 17,
+   "renders_kept": 16,
+   "renders_thrown": 29,
+   "probes": 4,
+   "cost_usd": {
+    "chain_kept": 0.2901,
+    "chain_thrown": 0.5223,
+    "probes_not_used": 0.0557,
+    "all": 0.8681
+   },
+   "render_seconds_kept": 213.7,
+   "redone": {
+    "16": 2
+   },
+   "checks": {
+    "final_gap": 0.0,
+    "outside_unit_max": 0.0,
+    "from_its_paints_median": 14.1,
+    "steps_that_change_little": [
+     "flick-brightest-tips"
+    ]
+   },
+   "chain": [
+    {
+     "unit": 16,
+     "kind": "back",
+     "things": [
+      "meadow"
+     ],
+     "steps": [
+      20,
+      21,
+      22,
+      23,
+      24
+     ],
+     "redo": 2,
+     "erased_share": 0.3869,
+     "raw_moved_outside": 0.0258,
+     "seconds": 15.3,
+     "cost_usd": 0.0193
+    },
+    {
+     "unit": 15,
+     "kind": "back",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      19
+     ],
+     "redo": 0,
+     "erased_share": 0.0136,
+     "raw_moved_outside": 0.0155,
+     "seconds": 16.0,
+     "cost_usd": 0.018
+    },
+    {
+     "unit": 14,
+     "kind": "back",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      17,
+      18
+     ],
+     "redo": 0,
+     "erased_share": 0.0057,
+     "raw_moved_outside": 0.0136,
+     "seconds": 14.9,
+     "cost_usd": 0.0183
+    },
+    {
+     "unit": 13,
+     "kind": "back",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      16
+     ],
+     "redo": 0,
+     "erased_share": 0.0177,
+     "raw_moved_outside": 0.0101,
+     "seconds": 13.2,
+     "cost_usd": 0.0182
+    },
+    {
+     "unit": 12,
+     "kind": "back",
+     "things": [
+      "cow",
+      "horns"
+     ],
+     "steps": [
+      13,
+      14,
+      15
+     ],
+     "redo": 0,
+     "erased_share": 0.2351,
+     "raw_moved_outside": 0.0025,
+     "seconds": 14.5,
+     "cost_usd": 0.0189
+    },
+    {
+     "unit": 11,
+     "kind": "back",
+     "things": [
+      "horns"
+     ],
+     "steps": [
+      12
+     ],
+     "redo": 0,
+     "erased_share": 0.0189,
+     "raw_moved_outside": 0.0026,
+     "seconds": 14.0,
+     "cost_usd": 0.0182
+    },
+    {
+     "unit": 10,
+     "kind": "behind",
+     "things": [
+      "horns"
+     ],
+     "steps": [
+      11
+     ],
+     "redo": 0,
+     "erased_share": 0.0215,
+     "raw_moved_outside": 0.0026,
+     "seconds": 11.2,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 9,
+     "kind": "back",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      10
+     ],
+     "redo": 0,
+     "erased_share": 0.1508,
+     "raw_moved_outside": 0.0049,
+     "seconds": 15.7,
+     "cost_usd": 0.0183
+    },
+    {
+     "unit": 8,
+     "kind": "behind",
+     "things": [
+      "cow"
+     ],
+     "steps": [
+      9
+     ],
+     "redo": 0,
+     "erased_share": 0.23,
+     "raw_moved_outside": 0.008,
+     "seconds": 9.9,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 7,
+     "kind": "back",
+     "things": [
+      "bushes"
+     ],
+     "steps": [
+      8
+     ],
+     "redo": 0,
+     "erased_share": 0.0204,
+     "raw_moved_outside": 0.0053,
+     "seconds": 15.2,
+     "cost_usd": 0.0183
+    },
+    {
+     "unit": 6,
+     "kind": "behind",
+     "things": [
+      "bushes"
+     ],
+     "steps": [
+      7
+     ],
+     "redo": 0,
+     "erased_share": 0.1534,
+     "raw_moved_outside": 0.0035,
+     "seconds": 12.7,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 5,
+     "kind": "bare",
+     "things": [
+      "hillside",
+      "meadow"
+     ],
+     "steps": [
+      6
+     ],
+     "redo": 0,
+     "erased_share": 0.7231,
+     "raw_moved_outside": 0.0312,
+     "seconds": 13.4,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 4,
+     "kind": "bare",
+     "things": [
+      "loch"
+     ],
+     "steps": [
+      5
+     ],
+     "redo": 0,
+     "erased_share": 0.0027,
+     "raw_moved_outside": 0.0115,
+     "seconds": 8.8,
+     "cost_usd": 0.0177
+    },
+    {
+     "unit": 3,
+     "kind": "behind",
+     "things": [
+      "mountains"
+     ],
+     "steps": [
+      4
+     ],
+     "redo": 0,
+     "erased_share": 0.0983,
+     "raw_moved_outside": 0.0077,
+     "seconds": 10.0,
+     "cost_usd": 0.0177
+    },
+    {
+     "unit": 2,
+     "kind": "back",
+     "things": [
+      "clouds"
+     ],
+     "steps": [
+      3
+     ],
+     "redo": 0,
+     "erased_share": 0.0313,
+     "raw_moved_outside": 0.0439,
+     "seconds": 18.9,
+     "cost_usd": 0.0183
+    },
+    {
+     "unit": 1,
+     "kind": "behind",
+     "things": [
+      "clouds"
+     ],
+     "steps": [
+      2
+     ],
+     "redo": 0,
+     "erased_share": 0.1248,
+     "raw_moved_outside": 0.0294,
+     "seconds": 10.0,
+     "cost_usd": 0.0177
+    }
    ],
-   "steps": [
-    20,
-    21,
-    22,
-    23,
-    24
+   "paints": [
+    {
+     "paint": "Soft sky blue",
+     "hex": "#9cb4cf",
+     "seed": "#8fa9c9",
+     "from_unit": 0,
+     "pixels_share": 0.0975,
+     "units": [
+      0
+     ],
+     "moved_from_seed": 5.0,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Pale gold",
+     "hex": "#e6c297",
+     "seed": "#f3dc9c",
+     "from_unit": 0,
+     "pixels_share": 0.0669,
+     "units": [
+      0,
+      2,
+      12,
+      16
+     ],
+     "moved_from_seed": 13.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Warm apricot",
+     "hex": "#fbca6c",
+     "seed": "#eeb072",
+     "from_unit": 0,
+     "pixels_share": 0.1098,
+     "units": [
+      0,
+      1
+     ],
+     "moved_from_seed": 16.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Hazy blue-violet",
+     "hex": "#b7babd",
+     "seed": "#9a9bb8",
+     "from_unit": 1,
+     "pixels_share": 0.0495,
+     "units": [
+      1,
+      3
+     ],
+     "moved_from_seed": 17.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep slate blue",
+     "hex": "#577097",
+     "seed": "#56678f",
+     "from_unit": 3,
+     "pixels_share": 0.0873,
+     "units": [
+      3
+     ],
+     "moved_from_seed": 4.1,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Pale lavender-white",
+     "hex": "#c1c1b5",
+     "seed": "#e6e2ee",
+     "from_unit": 4,
+     "pixels_share": 0.0027,
+     "units": [
+      4
+     ],
+     "moved_from_seed": 17.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Sunlit yellow-green",
+     "hex": "#96892a",
+     "seed": "#a8ad4f",
+     "from_unit": 5,
+     "pixels_share": 0.1819,
+     "units": [
+      5,
+      7,
+      16
+     ],
+     "moved_from_seed": 15.0,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Olive green",
+     "hex": "#697230",
+     "seed": "#6f7a3a",
+     "from_unit": 5,
+     "pixels_share": 0.2454,
+     "units": [
+      5,
+      16
+     ],
+     "moved_from_seed": 3.4,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep grass green",
+     "hex": "#3b5033",
+     "seed": "#2f4a3c",
+     "from_unit": 5,
+     "pixels_share": 0.2959,
+     "units": [
+      5,
+      6,
+      16
+     ],
+     "moved_from_seed": 9.8,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Rust brown",
+     "hex": "#773b1f",
+     "seed": "#8a4a26",
+     "from_unit": 8,
+     "pixels_share": 0.23,
+     "units": [
+      8
+     ],
+     "moved_from_seed": 7.8,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep red-brown",
+     "hex": "#592b1e",
+     "seed": "#4f2617",
+     "from_unit": 9,
+     "pixels_share": 0.1508,
+     "units": [
+      9,
+      11
+     ],
+     "moved_from_seed": 3.7,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Horn taupe",
+     "hex": "#6d6857",
+     "seed": "#a08e7c",
+     "from_unit": 10,
+     "pixels_share": 0.0215,
+     "units": [
+      10
+     ],
+     "moved_from_seed": 17.1,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Copper orange",
+     "hex": "#783b1e",
+     "seed": "#c2692a",
+     "from_unit": 12,
+     "pixels_share": 0.1526,
+     "units": [
+      12
+     ],
+     "moved_from_seed": 29.8,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Golden ochre",
+     "hex": "#d58c2e",
+     "seed": "#d9a03a",
+     "from_unit": 12,
+     "pixels_share": 0.0535,
+     "units": [
+      12,
+      16
+     ],
+     "moved_from_seed": 10.1,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Rosy brown",
+     "hex": "#8b4f22",
+     "seed": "#a8705f",
+     "from_unit": 13,
+     "pixels_share": 0.0177,
+     "units": [
+      13
+     ],
+     "moved_from_seed": 21.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Pale rose",
+     "hex": "#926d55",
+     "seed": "#dcae9f",
+     "from_unit": 14,
+     "pixels_share": 0.0022,
+     "units": [
+      14
+     ],
+     "moved_from_seed": 26.4,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Dark umber",
+     "hex": "#81662d",
+     "seed": "#2c1b13",
+     "from_unit": 15,
+     "pixels_share": 0.0136,
+     "units": [
+      14,
+      15
+     ],
+     "moved_from_seed": 42.6,
+     "not_in_finish": false
+    }
    ],
-   "redo": 2,
-   "erased_share": 0.3869,
-   "raw_moved_outside": 0.0258,
-   "seconds": 15.3,
-   "cost_usd": 0.0193
-  },
-  {
-   "unit": 15,
-   "kind": "back",
-   "things": [
-    "cow"
+   "step_rows": [
+    {
+     "n": 1,
+     "id": "blend-sky",
+     "unit": 0,
+     "things": [
+      "sky"
+     ],
+     "show": "all",
+     "painted": 0.2742,
+     "changed": 0.2634,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.1,
+      "over_25": 0.0
+     }
+    },
+    {
+     "n": 2,
+     "id": "streak-clouds",
+     "unit": 1,
+     "things": [
+      "clouds"
+     ],
+     "show": "all",
+     "painted": 0.1248,
+     "changed": 0.1085,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 12.9,
+      "over_25": 0.097
+     }
+    },
+    {
+     "n": 3,
+     "id": "light-cloud-tops",
+     "unit": 2,
+     "things": [
+      "clouds"
+     ],
+     "show": "all",
+     "painted": 0.0313,
+     "changed": 0.0224,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 16.2,
+      "over_25": 0.146
+     }
+    },
+    {
+     "n": 4,
+     "id": "lay-in-mountains",
+     "unit": 3,
+     "things": [
+      "mountains"
+     ],
+     "show": "all",
+     "painted": 0.0983,
+     "changed": 0.0934,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 5.7,
+      "over_25": 0.058
+     }
+    },
+    {
+     "n": 5,
+     "id": "streak-loch",
+     "unit": 4,
+     "things": [
+      "loch"
+     ],
+     "show": "all",
+     "painted": 0.0027,
+     "changed": 0.0027,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 13.8,
+      "over_25": 0.293
+     }
+    },
+    {
+     "n": 6,
+     "id": "lay-in-ground",
+     "unit": 5,
+     "things": [
+      "hillside",
+      "meadow"
+     ],
+     "show": "all",
+     "painted": 0.7231,
+     "changed": 0.7231,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 7.0,
+      "over_25": 0.02
+     }
+    },
+    {
+     "n": 7,
+     "id": "dab-dark-bushes",
+     "unit": 6,
+     "things": [
+      "bushes"
+     ],
+     "show": "all",
+     "painted": 0.1534,
+     "changed": 0.1282,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 17.5,
+      "over_25": 0.248
+     }
+    },
+    {
+     "n": 8,
+     "id": "tap-sunlit-bushes",
+     "unit": 7,
+     "things": [
+      "bushes"
+     ],
+     "show": "all",
+     "painted": 0.0204,
+     "changed": 0.0156,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 37.8,
+      "over_25": 0.881
+     }
+    },
+    {
+     "n": 9,
+     "id": "block-in-cow",
+     "unit": 8,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.23,
+     "changed": 0.2178,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 7.7,
+      "over_25": 0.147
+     }
+    },
+    {
+     "n": 10,
+     "id": "shade-cow",
+     "unit": 9,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.1508,
+     "changed": 0.1387,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 7.9,
+      "over_25": 0.021
+     }
+    },
+    {
+     "n": 11,
+     "id": "block-in-horns",
+     "unit": 10,
+     "things": [
+      "horns"
+     ],
+     "show": "all",
+     "painted": 0.0215,
+     "changed": 0.0147,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 14.4,
+      "over_25": 0.241
+     }
+    },
+    {
+     "n": 12,
+     "id": "shade-horns",
+     "unit": 11,
+     "things": [
+      "horns"
+     ],
+     "show": "all",
+     "painted": 0.0189,
+     "changed": 0.0129,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 22.0,
+      "over_25": 0.397
+     }
+    },
+    {
+     "n": 13,
+     "id": "pull-copper-locks",
+     "unit": 12,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.1526,
+     "changed": 0.1399,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.3,
+      "over_25": 0.029
+     }
+    },
+    {
+     "n": 14,
+     "id": "pull-golden-locks",
+     "unit": 12,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.0535,
+     "changed": 0.0517,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 18.0,
+      "over_25": 0.097
+     }
+    },
+    {
+     "n": 15,
+     "id": "catch-rim-light",
+     "unit": 12,
+     "things": [
+      "cow",
+      "horns"
+     ],
+     "show": "all",
+     "painted": 0.2351,
+     "changed": 0.0155,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 43.7,
+      "over_25": 0.978
+     }
+    },
+    {
+     "n": 16,
+     "id": "paint-nose",
+     "unit": 13,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.0177,
+     "changed": 0.0153,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 15.4,
+      "over_25": 0.279
+     }
+    },
+    {
+     "n": 17,
+     "id": "light-nose",
+     "unit": 14,
+     "things": [
+      "cow"
+     ],
+     "show": "pass",
+     "painted": 0.0022,
+     "changed": 0.002,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 19.6,
+      "over_25": 0.35
+     }
+    },
+    {
+     "n": 18,
+     "id": "dot-nostrils-eye",
+     "unit": 14,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.0057,
+     "changed": 0.0032,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 22.6,
+      "over_25": 0.311
+     }
+    },
+    {
+     "n": 19,
+     "id": "line-mouth",
+     "unit": 15,
+     "things": [
+      "cow"
+     ],
+     "show": "all",
+     "painted": 0.0136,
+     "changed": 0.0104,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 27.7,
+      "over_25": 0.591
+     }
+    },
+    {
+     "n": 20,
+     "id": "flick-dark-blades",
+     "unit": 16,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.1536,
+     "changed": 0.1366,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 9.4,
+      "over_25": 0.059
+     }
+    },
+    {
+     "n": 21,
+     "id": "flick-olive-blades",
+     "unit": 16,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.1205,
+     "changed": 0.1138,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.0,
+      "over_25": 0.058
+     }
+    },
+    {
+     "n": 22,
+     "id": "flick-yellow-green-blades",
+     "unit": 16,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.0656,
+     "changed": 0.0628,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 9.4,
+      "over_25": 0.04
+     }
+    },
+    {
+     "n": 23,
+     "id": "flick-gold-blades",
+     "unit": 16,
+     "things": [
+      "meadow"
+     ],
+     "show": "pass",
+     "painted": 0.0473,
+     "changed": 0.0458,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 13.4,
+      "over_25": 0.011
+     }
+    },
+    {
+     "n": 24,
+     "id": "flick-brightest-tips",
+     "unit": 16,
+     "things": [
+      "meadow"
+     ],
+     "show": "all",
+     "painted": 0.3869,
+     "changed": 0.0004,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 35.0,
+      "over_25": 1.0
+     }
+    }
    ],
-   "steps": [
-    19
-   ],
-   "redo": 0,
-   "erased_share": 0.0136,
-   "raw_moved_outside": 0.0155,
-   "seconds": 16.0,
-   "cost_usd": 0.018
-  },
-  {
-   "unit": 14,
-   "kind": "back",
-   "things": [
-    "cow"
-   ],
-   "steps": [
-    17,
-    18
-   ],
-   "redo": 0,
-   "erased_share": 0.0057,
-   "raw_moved_outside": 0.0136,
-   "seconds": 14.9,
-   "cost_usd": 0.0183
-  },
-  {
-   "unit": 13,
-   "kind": "back",
-   "things": [
-    "cow"
-   ],
-   "steps": [
-    16
-   ],
-   "redo": 0,
-   "erased_share": 0.0177,
-   "raw_moved_outside": 0.0101,
-   "seconds": 13.2,
-   "cost_usd": 0.0182
-  },
-  {
-   "unit": 12,
-   "kind": "back",
-   "things": [
-    "cow",
-    "horns"
-   ],
-   "steps": [
-    13,
-    14,
-    15
-   ],
-   "redo": 0,
-   "erased_share": 0.2351,
-   "raw_moved_outside": 0.0025,
-   "seconds": 14.5,
-   "cost_usd": 0.0189
-  },
-  {
-   "unit": 11,
-   "kind": "back",
-   "things": [
-    "horns"
-   ],
-   "steps": [
-    12
-   ],
-   "redo": 0,
-   "erased_share": 0.0189,
-   "raw_moved_outside": 0.0026,
-   "seconds": 14.0,
-   "cost_usd": 0.0182
-  },
-  {
-   "unit": 10,
-   "kind": "behind",
-   "things": [
-    "horns"
-   ],
-   "steps": [
-    11
-   ],
-   "redo": 0,
-   "erased_share": 0.0215,
-   "raw_moved_outside": 0.0026,
-   "seconds": 11.2,
-   "cost_usd": 0.0178
-  },
-  {
-   "unit": 9,
-   "kind": "back",
-   "things": [
-    "cow"
-   ],
-   "steps": [
-    10
-   ],
-   "redo": 0,
-   "erased_share": 0.1508,
-   "raw_moved_outside": 0.0049,
-   "seconds": 15.7,
-   "cost_usd": 0.0183
-  },
-  {
-   "unit": 8,
-   "kind": "behind",
-   "things": [
-    "cow"
-   ],
-   "steps": [
-    9
-   ],
-   "redo": 0,
-   "erased_share": 0.23,
-   "raw_moved_outside": 0.008,
-   "seconds": 9.9,
-   "cost_usd": 0.0178
-  },
-  {
-   "unit": 7,
-   "kind": "back",
-   "things": [
-    "bushes"
-   ],
-   "steps": [
-    8
-   ],
-   "redo": 0,
-   "erased_share": 0.0204,
-   "raw_moved_outside": 0.0053,
-   "seconds": 15.2,
-   "cost_usd": 0.0183
-  },
-  {
-   "unit": 6,
-   "kind": "behind",
-   "things": [
-    "bushes"
-   ],
-   "steps": [
-    7
-   ],
-   "redo": 0,
-   "erased_share": 0.1534,
-   "raw_moved_outside": 0.0035,
-   "seconds": 12.7,
-   "cost_usd": 0.0178
-  },
-  {
-   "unit": 5,
-   "kind": "bare",
-   "things": [
-    "hillside",
-    "meadow"
-   ],
-   "steps": [
-    6
-   ],
-   "redo": 0,
-   "erased_share": 0.7231,
-   "raw_moved_outside": 0.0312,
-   "seconds": 13.4,
-   "cost_usd": 0.0178
-  },
-  {
-   "unit": 4,
-   "kind": "bare",
-   "things": [
-    "loch"
-   ],
-   "steps": [
-    5
-   ],
-   "redo": 0,
-   "erased_share": 0.0027,
-   "raw_moved_outside": 0.0115,
-   "seconds": 8.8,
-   "cost_usd": 0.0177
-  },
-  {
-   "unit": 3,
-   "kind": "behind",
-   "things": [
-    "mountains"
-   ],
-   "steps": [
-    4
-   ],
-   "redo": 0,
-   "erased_share": 0.0983,
-   "raw_moved_outside": 0.0077,
-   "seconds": 10.0,
-   "cost_usd": 0.0177
-  },
-  {
-   "unit": 2,
-   "kind": "back",
-   "things": [
-    "clouds"
-   ],
-   "steps": [
-    3
-   ],
-   "redo": 0,
-   "erased_share": 0.0313,
-   "raw_moved_outside": 0.0439,
-   "seconds": 18.9,
-   "cost_usd": 0.0183
-  },
-  {
-   "unit": 1,
-   "kind": "behind",
-   "things": [
-    "clouds"
-   ],
-   "steps": [
-    2
-   ],
-   "redo": 0,
-   "erased_share": 0.1248,
-   "raw_moved_outside": 0.0294,
-   "seconds": 10.0,
-   "cost_usd": 0.0177
-  }
- ],
- "paints": [
-  {
-   "paint": "Soft sky blue",
-   "hex": "#9cb4cf",
-   "seed": "#8fa9c9",
-   "from_unit": 0,
-   "pixels_share": 0.0975,
-   "units": [
-    0
-   ],
-   "moved_from_seed": 5.0,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Pale gold",
-   "hex": "#e6c297",
-   "seed": "#f3dc9c",
-   "from_unit": 0,
-   "pixels_share": 0.0669,
-   "units": [
-    0,
-    2,
-    12,
-    16
-   ],
-   "moved_from_seed": 13.5,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Warm apricot",
-   "hex": "#fbca6c",
-   "seed": "#eeb072",
-   "from_unit": 0,
-   "pixels_share": 0.1098,
-   "units": [
-    0,
-    1
-   ],
-   "moved_from_seed": 16.9,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Hazy blue-violet",
-   "hex": "#b7babd",
-   "seed": "#9a9bb8",
-   "from_unit": 1,
-   "pixels_share": 0.0495,
-   "units": [
-    1,
-    3
-   ],
-   "moved_from_seed": 17.9,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Deep slate blue",
-   "hex": "#577097",
-   "seed": "#56678f",
-   "from_unit": 3,
-   "pixels_share": 0.0873,
-   "units": [
-    3
-   ],
-   "moved_from_seed": 4.1,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Pale lavender-white",
-   "hex": "#c1c1b5",
-   "seed": "#e6e2ee",
-   "from_unit": 4,
-   "pixels_share": 0.0027,
-   "units": [
-    4
-   ],
-   "moved_from_seed": 17.9,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Sunlit yellow-green",
-   "hex": "#96892a",
-   "seed": "#a8ad4f",
-   "from_unit": 5,
-   "pixels_share": 0.1819,
-   "units": [
-    5,
-    7,
-    16
-   ],
-   "moved_from_seed": 15.0,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Olive green",
-   "hex": "#697230",
-   "seed": "#6f7a3a",
-   "from_unit": 5,
-   "pixels_share": 0.2454,
-   "units": [
-    5,
-    16
-   ],
-   "moved_from_seed": 3.4,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Deep grass green",
-   "hex": "#3b5033",
-   "seed": "#2f4a3c",
-   "from_unit": 5,
-   "pixels_share": 0.2959,
-   "units": [
-    5,
-    6,
-    16
-   ],
-   "moved_from_seed": 9.8,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Rust brown",
-   "hex": "#773b1f",
-   "seed": "#8a4a26",
-   "from_unit": 8,
-   "pixels_share": 0.23,
-   "units": [
-    8
-   ],
-   "moved_from_seed": 7.8,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Deep red-brown",
-   "hex": "#592b1e",
-   "seed": "#4f2617",
-   "from_unit": 9,
-   "pixels_share": 0.1508,
-   "units": [
-    9,
-    11
-   ],
-   "moved_from_seed": 3.7,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Horn taupe",
-   "hex": "#6d6857",
-   "seed": "#a08e7c",
-   "from_unit": 10,
-   "pixels_share": 0.0215,
-   "units": [
-    10
-   ],
-   "moved_from_seed": 17.1,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Copper orange",
-   "hex": "#783b1e",
-   "seed": "#c2692a",
-   "from_unit": 12,
-   "pixels_share": 0.1526,
-   "units": [
-    12
-   ],
-   "moved_from_seed": 29.8,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Golden ochre",
-   "hex": "#d58c2e",
-   "seed": "#d9a03a",
-   "from_unit": 12,
-   "pixels_share": 0.0535,
-   "units": [
-    12,
-    16
-   ],
-   "moved_from_seed": 10.1,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Rosy brown",
-   "hex": "#8b4f22",
-   "seed": "#a8705f",
-   "from_unit": 13,
-   "pixels_share": 0.0177,
-   "units": [
-    13
-   ],
-   "moved_from_seed": 21.9,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Pale rose",
-   "hex": "#926d55",
-   "seed": "#dcae9f",
-   "from_unit": 14,
-   "pixels_share": 0.0022,
-   "units": [
-    14
-   ],
-   "moved_from_seed": 26.4,
-   "not_in_finish": false
-  },
-  {
-   "paint": "Dark umber",
-   "hex": "#81662d",
-   "seed": "#2c1b13",
-   "from_unit": 15,
-   "pixels_share": 0.0136,
-   "units": [
-    14,
-    15
-   ],
-   "moved_from_seed": 42.6,
-   "not_in_finish": false
-  }
- ],
- "step_rows": [
-  {
-   "n": 1,
-   "id": "blend-sky",
-   "unit": 0,
-   "things": [
-    "sky"
-   ],
-   "show": "all",
-   "painted": 0.2742,
-   "changed": 0.2634,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 10.1,
-    "over_25": 0.0
+   "words": {
+    "merge": {
+     "claims": 130,
+     "failures": 3,
+     "after": 3,
+     "dropped": 0,
+     "unwritten": [],
+     "missing": []
+    },
+    "merge-final": {
+     "claims": 126,
+     "failures": 0,
+     "after": 0,
+     "dropped": 0,
+     "unwritten": [],
+     "missing": []
+    }
    }
   },
-  {
-   "n": 2,
-   "id": "streak-clouds",
-   "unit": 1,
-   "things": [
-    "clouds"
+  "sleeping-cat": {
+   "picture": "sleeping-cat",
+   "issue": 214,
+   "steps": 23,
+   "units": 15,
+   "renders_kept": 14,
+   "renders_thrown": 0,
+   "probes": 2,
+   "cost_usd": {
+    "chain_kept": 0.254,
+    "chain_thrown": 0,
+    "probes_not_used": 0.0363,
+    "all": 0.2903
+   },
+   "render_seconds_kept": 179.1,
+   "redone": {},
+   "checks": {
+    "final_gap": 0.0,
+    "outside_unit_max": 0.0,
+    "from_its_paints_median": 8.6,
+    "steps_that_change_little": []
+   },
+   "chain": [
+    {
+     "unit": 14,
+     "kind": "back",
+     "things": [
+      "cat"
+     ],
+     "steps": [
+      21,
+      22,
+      23
+     ],
+     "redo": 0,
+     "erased_share": 0.0662,
+     "raw_moved_outside": 0.0183,
+     "seconds": 15.8,
+     "cost_usd": 0.0185
+    },
+    {
+     "unit": 13,
+     "kind": "back",
+     "things": [
+      "cat"
+     ],
+     "steps": [
+      19,
+      20
+     ],
+     "redo": 0,
+     "erased_share": 0.0484,
+     "raw_moved_outside": 0.0444,
+     "seconds": 15.3,
+     "cost_usd": 0.0184
+    },
+    {
+     "unit": 12,
+     "kind": "back",
+     "things": [
+      "cat"
+     ],
+     "steps": [
+      17,
+      18
+     ],
+     "redo": 0,
+     "erased_share": 0.2338,
+     "raw_moved_outside": 0.0122,
+     "seconds": 14.5,
+     "cost_usd": 0.0184
+    },
+    {
+     "unit": 11,
+     "kind": "back",
+     "things": [
+      "cat"
+     ],
+     "steps": [
+      15,
+      16
+     ],
+     "redo": 0,
+     "erased_share": 0.1486,
+     "raw_moved_outside": 0.0228,
+     "seconds": 13.7,
+     "cost_usd": 0.0186
+    },
+    {
+     "unit": 10,
+     "kind": "behind",
+     "things": [
+      "cat"
+     ],
+     "steps": [
+      14
+     ],
+     "redo": 0,
+     "erased_share": 0.3992,
+     "raw_moved_outside": 0.0262,
+     "seconds": 11.7,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 9,
+     "kind": "back",
+     "things": [
+      "blanket"
+     ],
+     "steps": [
+      12,
+      13
+     ],
+     "redo": 0,
+     "erased_share": 0.0715,
+     "raw_moved_outside": 0.029,
+     "seconds": 16.1,
+     "cost_usd": 0.0183
+    },
+    {
+     "unit": 8,
+     "kind": "back",
+     "things": [
+      "blanket"
+     ],
+     "steps": [
+      11
+     ],
+     "redo": 0,
+     "erased_share": 0.1424,
+     "raw_moved_outside": 0.0939,
+     "seconds": 12.8,
+     "cost_usd": 0.0184
+    },
+    {
+     "unit": 7,
+     "kind": "behind",
+     "things": [
+      "blanket"
+     ],
+     "steps": [
+      10
+     ],
+     "redo": 0,
+     "erased_share": 0.4057,
+     "raw_moved_outside": 0.0192,
+     "seconds": 12.8,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 6,
+     "kind": "back",
+     "things": [
+      "sill"
+     ],
+     "steps": [
+      8,
+      9
+     ],
+     "redo": 0,
+     "erased_share": 0.1745,
+     "raw_moved_outside": 0.0271,
+     "seconds": 13.5,
+     "cost_usd": 0.0184
+    },
+    {
+     "unit": 5,
+     "kind": "bare",
+     "things": [
+      "sill"
+     ],
+     "steps": [
+      7
+     ],
+     "redo": 0,
+     "erased_share": 0.3857,
+     "raw_moved_outside": 0.0125,
+     "seconds": 12.6,
+     "cost_usd": 0.0177
+    },
+    {
+     "unit": 4,
+     "kind": "back",
+     "things": [
+      "window-frame"
+     ],
+     "steps": [
+      6
+     ],
+     "redo": 0,
+     "erased_share": 0.0946,
+     "raw_moved_outside": 0.0171,
+     "seconds": 11.0,
+     "cost_usd": 0.0185
+    },
+    {
+     "unit": 3,
+     "kind": "behind",
+     "things": [
+      "window-frame"
+     ],
+     "steps": [
+      5
+     ],
+     "redo": 0,
+     "erased_share": 0.1167,
+     "raw_moved_outside": 0.0177,
+     "seconds": 10.8,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 2,
+     "kind": "bare",
+     "things": [
+      "wall"
+     ],
+     "steps": [
+      4
+     ],
+     "redo": 0,
+     "erased_share": 0.4719,
+     "raw_moved_outside": 0.011,
+     "seconds": 9.1,
+     "cost_usd": 0.0176
+    },
+    {
+     "unit": 1,
+     "kind": "behind",
+     "things": [
+      "window-trees"
+     ],
+     "steps": [
+      2,
+      3
+     ],
+     "redo": 0,
+     "erased_share": 0.0615,
+     "raw_moved_outside": 0.008,
+     "seconds": 9.4,
+     "cost_usd": 0.0178
+    }
    ],
-   "show": "all",
-   "painted": 0.1248,
-   "changed": 0.1085,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 12.9,
-    "over_25": 0.097
+   "paints": [
+    {
+     "paint": "Pale sky blue",
+     "hex": "#a4d4f9",
+     "seed": "#a9cdea",
+     "from_unit": 0,
+     "pixels_share": 0.0955,
+     "units": [
+      0
+     ],
+     "moved_from_seed": 5.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Sky white",
+     "hex": "#c3e2f6",
+     "seed": "#e6f0f7",
+     "from_unit": 0,
+     "pixels_share": 0.0468,
+     "units": [
+      0
+     ],
+     "moved_from_seed": 11.1,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep teal green",
+     "hex": "#80aea8",
+     "seed": "#2f6b5e",
+     "from_unit": 1,
+     "pixels_share": 0.0281,
+     "units": [
+      1
+     ],
+     "moved_from_seed": 27.7,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Sunny yellow-green",
+     "hex": "#a5bc6d",
+     "seed": "#a9c957",
+     "from_unit": 1,
+     "pixels_share": 0.0335,
+     "units": [
+      1
+     ],
+     "moved_from_seed": 17.0,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Pale periwinkle",
+     "hex": "#a1b5d0",
+     "seed": "#a9bfdc",
+     "from_unit": 2,
+     "pixels_share": 0.2816,
+     "units": [
+      2
+     ],
+     "moved_from_seed": 3.7,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Soft periwinkle",
+     "hex": "#8da7c9",
+     "seed": "#7f9cc6",
+     "from_unit": 2,
+     "pixels_share": 0.1903,
+     "units": [
+      2
+     ],
+     "moved_from_seed": 6.2,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Warm cream white",
+     "hex": "#f4e5d7",
+     "seed": "#f3ecd9",
+     "from_unit": 3,
+     "pixels_share": 0.1167,
+     "units": [
+      3
+     ],
+     "moved_from_seed": 4.2,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Soft lavender",
+     "hex": "#a1a0bc",
+     "seed": "#b9b3d6",
+     "from_unit": 4,
+     "pixels_share": 0.0722,
+     "units": [
+      4
+     ],
+     "moved_from_seed": 8.6,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep blue-violet",
+     "hex": "#556a8f",
+     "seed": "#5a5f9c",
+     "from_unit": 4,
+     "pixels_share": 0.0224,
+     "units": [
+      4
+     ],
+     "moved_from_seed": 16.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Warm wood brown",
+     "hex": "#a24b2f",
+     "seed": "#8f4a2c",
+     "from_unit": 5,
+     "pixels_share": 0.3857,
+     "units": [
+      5
+     ],
+     "moved_from_seed": 8.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Dark wood brown",
+     "hex": "#b3512e",
+     "seed": "#5a2a1c",
+     "from_unit": 6,
+     "pixels_share": 0.0911,
+     "units": [
+      6
+     ],
+     "moved_from_seed": 34.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Peach light",
+     "hex": "#ef884f",
+     "seed": "#f0b78f",
+     "from_unit": 6,
+     "pixels_share": 0.0834,
+     "units": [
+      6
+     ],
+     "moved_from_seed": 29.2,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Golden yellow",
+     "hex": "#e8960f",
+     "seed": "#e0a21c",
+     "from_unit": 7,
+     "pixels_share": 0.4057,
+     "units": [
+      7
+     ],
+     "moved_from_seed": 9.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep ochre",
+     "hex": "#ea900a",
+     "seed": "#b0701a",
+     "from_unit": 8,
+     "pixels_share": 0.1424,
+     "units": [
+      8,
+      9
+     ],
+     "moved_from_seed": 24.4,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Pale butter yellow",
+     "hex": "#f4a210",
+     "seed": "#f2d264",
+     "from_unit": 9,
+     "pixels_share": 0.0318,
+     "units": [
+      9
+     ],
+     "moved_from_seed": 30.8,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Mid fur gray",
+     "hex": "#827678",
+     "seed": "#8a8a8e",
+     "from_unit": 10,
+     "pixels_share": 0.3992,
+     "units": [
+      10
+     ],
+     "moved_from_seed": 8.7,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Shadow gray",
+     "hex": "#685f64",
+     "seed": "#5e5f66",
+     "from_unit": 11,
+     "pixels_share": 0.0946,
+     "units": [
+      11
+     ],
+     "moved_from_seed": 4.4,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Charcoal",
+     "hex": "#4c4549",
+     "seed": "#2e2c30",
+     "from_unit": 12,
+     "pixels_share": 0.1229,
+     "units": [
+      12,
+      14
+     ],
+     "moved_from_seed": 11.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Titanium white",
+     "hex": "#e9d7d4",
+     "seed": "#f6f5f1",
+     "from_unit": 11,
+     "pixels_share": 0.054,
+     "units": [
+      11,
+      14
+     ],
+     "moved_from_seed": 11.1,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Warm salmon",
+     "hex": "#927d7e",
+     "seed": "#e39a8c",
+     "from_unit": 12,
+     "pixels_share": 0.1109,
+     "units": [
+      12,
+      14
+     ],
+     "moved_from_seed": 28.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Silver gray",
+     "hex": "#87726e",
+     "seed": "#b4b4b8",
+     "from_unit": 13,
+     "pixels_share": 0.0355,
+     "units": [
+      13
+     ],
+     "moved_from_seed": 25.7,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Pale silver",
+     "hex": "#e6c0a6",
+     "seed": "#d8d8dc",
+     "from_unit": 13,
+     "pixels_share": 0.0129,
+     "units": [
+      13
+     ],
+     "moved_from_seed": 22.8,
+     "not_in_finish": false
+    }
+   ],
+   "step_rows": [
+    {
+     "n": 1,
+     "id": "blend-window-sky",
+     "unit": 0,
+     "things": [
+      "window-view"
+     ],
+     "show": "all",
+     "painted": 0.1423,
+     "changed": 0.1422,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 3.0,
+      "over_25": 0.0
+     }
+    },
+    {
+     "n": 2,
+     "id": "dab-dark-trees",
+     "unit": 1,
+     "things": [
+      "window-trees"
+     ],
+     "show": "pass",
+     "painted": 0.0281,
+     "changed": 0.0231,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 14.7,
+      "over_25": 0.109
+     }
+    },
+    {
+     "n": 3,
+     "id": "dab-sunlit-leaves",
+     "unit": 1,
+     "things": [
+      "window-trees"
+     ],
+     "show": "all",
+     "painted": 0.0615,
+     "changed": 0.0335,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 8.6,
+      "over_25": 0.003
+     }
+    },
+    {
+     "n": 4,
+     "id": "blend-the-wall",
+     "unit": 2,
+     "things": [
+      "wall"
+     ],
+     "show": "all",
+     "painted": 0.4719,
+     "changed": 0.4719,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 2.2,
+      "over_25": 0.0
+     }
+    },
+    {
+     "n": 5,
+     "id": "block-window-frame",
+     "unit": 3,
+     "things": [
+      "window-frame"
+     ],
+     "show": "all",
+     "painted": 0.1167,
+     "changed": 0.1101,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 5.2,
+      "over_25": 0.141
+     }
+    },
+    {
+     "n": 6,
+     "id": "shade-window-frame",
+     "unit": 4,
+     "things": [
+      "window-frame"
+     ],
+     "show": "all",
+     "painted": 0.0946,
+     "changed": 0.0782,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 6.2,
+      "over_25": 0.127
+     }
+    },
+    {
+     "n": 7,
+     "id": "block-the-sill",
+     "unit": 5,
+     "things": [
+      "sill"
+     ],
+     "show": "all",
+     "painted": 0.3857,
+     "changed": 0.3857,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 7.6,
+      "over_25": 0.051
+     }
+    },
+    {
+     "n": 8,
+     "id": "shade-the-sill",
+     "unit": 6,
+     "things": [
+      "sill"
+     ],
+     "show": "pass",
+     "painted": 0.0911,
+     "changed": 0.0771,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 6.7,
+      "over_25": 0.057
+     }
+    },
+    {
+     "n": 9,
+     "id": "light-the-sill",
+     "unit": 6,
+     "things": [
+      "sill"
+     ],
+     "show": "all",
+     "painted": 0.1745,
+     "changed": 0.0834,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 9.9,
+      "over_25": 0.14
+     }
+    },
+    {
+     "n": 10,
+     "id": "block-the-blanket",
+     "unit": 7,
+     "things": [
+      "blanket"
+     ],
+     "show": "all",
+     "painted": 0.4057,
+     "changed": 0.3928,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 8.2,
+      "over_25": 0.105
+     }
+    },
+    {
+     "n": 11,
+     "id": "shade-the-blanket",
+     "unit": 8,
+     "things": [
+      "blanket"
+     ],
+     "show": "all",
+     "painted": 0.1424,
+     "changed": 0.1203,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 9.6,
+      "over_25": 0.133
+     }
+    },
+    {
+     "n": 12,
+     "id": "dark-stitches",
+     "unit": 9,
+     "things": [
+      "blanket"
+     ],
+     "show": "pass",
+     "painted": 0.0397,
+     "changed": 0.0323,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.0,
+      "over_25": 0.141
+     }
+    },
+    {
+     "n": 13,
+     "id": "light-stitches",
+     "unit": 9,
+     "things": [
+      "blanket"
+     ],
+     "show": "all",
+     "painted": 0.0715,
+     "changed": 0.0182,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 3.6,
+      "over_25": 0.0
+     }
+    },
+    {
+     "n": 14,
+     "id": "block-the-cat",
+     "unit": 10,
+     "things": [
+      "cat"
+     ],
+     "show": "all",
+     "painted": 0.3992,
+     "changed": 0.3855,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 4.4,
+      "over_25": 0.086
+     }
+    },
+    {
+     "n": 15,
+     "id": "shade-the-cat",
+     "unit": 11,
+     "things": [
+      "cat"
+     ],
+     "show": "pass",
+     "painted": 0.0946,
+     "changed": 0.0813,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 11.3,
+      "over_25": 0.026
+     }
+    },
+    {
+     "n": 16,
+     "id": "white-patches",
+     "unit": 11,
+     "things": [
+      "cat"
+     ],
+     "show": "all",
+     "painted": 0.1486,
+     "changed": 0.0501,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 5.1,
+      "over_25": 0.056
+     }
+    },
+    {
+     "n": 17,
+     "id": "paint-stripes",
+     "unit": 12,
+     "things": [
+      "cat"
+     ],
+     "show": "pass",
+     "painted": 0.1229,
+     "changed": 0.1186,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 4.0,
+      "over_25": 0.0
+     }
+    },
+    {
+     "n": 18,
+     "id": "paint-inner-ears",
+     "unit": 12,
+     "things": [
+      "cat"
+     ],
+     "show": "all",
+     "painted": 0.2338,
+     "changed": 0.0676,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 9.9,
+      "over_25": 0.198
+     }
+    },
+    {
+     "n": 19,
+     "id": "flick-silver-fur",
+     "unit": 13,
+     "things": [
+      "cat"
+     ],
+     "show": "pass",
+     "painted": 0.0355,
+     "changed": 0.0235,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 16.0,
+      "over_25": 0.176
+     }
+    },
+    {
+     "n": 20,
+     "id": "flick-lit-fur",
+     "unit": 13,
+     "things": [
+      "cat"
+     ],
+     "show": "all",
+     "painted": 0.0484,
+     "changed": 0.0101,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 14.7,
+      "over_25": 0.175
+     }
+    },
+    {
+     "n": 21,
+     "id": "eyes-and-mouth",
+     "unit": 14,
+     "things": [
+      "cat"
+     ],
+     "show": "pass",
+     "painted": 0.0185,
+     "changed": 0.0115,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.0,
+      "over_25": 0.015
+     }
+    },
+    {
+     "n": 22,
+     "id": "paint-the-nose",
+     "unit": 14,
+     "things": [
+      "cat"
+     ],
+     "show": "pass",
+     "painted": 0.0254,
+     "changed": 0.0206,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 9.0,
+      "over_25": 0.132
+     }
+    },
+    {
+     "n": 23,
+     "id": "white-whiskers",
+     "unit": 14,
+     "things": [
+      "cat"
+     ],
+     "show": "all",
+     "painted": 0.0662,
+     "changed": 0.013,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 19.2,
+      "over_25": 0.202
+     }
+    }
+   ],
+   "words": {
+    "merge": {
+     "claims": 151,
+     "failures": 16,
+     "after": 16,
+     "dropped": 0,
+     "unwritten": [],
+     "missing": []
+    },
+    "merge-final": {
+     "claims": 130,
+     "failures": 0,
+     "after": 0,
+     "dropped": 0,
+     "unwritten": [],
+     "missing": []
+    }
    }
   },
-  {
-   "n": 3,
-   "id": "light-cloud-tops",
-   "unit": 2,
-   "things": [
-    "clouds"
+  "birch-grove": {
+   "picture": "birch-grove",
+   "issue": 214,
+   "steps": 22,
+   "units": 19,
+   "renders_kept": 18,
+   "renders_thrown": 10,
+   "probes": 2,
+   "cost_usd": {
+    "chain_kept": 0.3254,
+    "chain_thrown": 0.1779,
+    "probes_not_used": 0.0369,
+    "all": 0.5402
+   },
+   "render_seconds_kept": 246.9,
+   "redone": {
+    "8": 1,
+    "2": 1
+   },
+   "checks": {
+    "final_gap": 0.0,
+    "outside_unit_max": 0.0,
+    "from_its_paints_median": 18.8,
+    "steps_that_change_little": [
+     "shade-the-rock"
+    ]
+   },
+   "chain": [
+    {
+     "unit": 18,
+     "kind": "back",
+     "things": [
+      "canopy",
+      "undergrowth",
+      "fallen-leaves"
+     ],
+     "steps": [
+      22
+     ],
+     "redo": 0,
+     "erased_share": 0.4672,
+     "raw_moved_outside": 0.0859,
+     "seconds": 15.9,
+     "cost_usd": 0.019
+    },
+    {
+     "unit": 17,
+     "kind": "back",
+     "things": [
+      "birches"
+     ],
+     "steps": [
+      21
+     ],
+     "redo": 0,
+     "erased_share": 0.099,
+     "raw_moved_outside": 0.0218,
+     "seconds": 16.3,
+     "cost_usd": 0.0183
+    },
+    {
+     "unit": 16,
+     "kind": "back",
+     "things": [
+      "rock"
+     ],
+     "steps": [
+      20
+     ],
+     "redo": 0,
+     "erased_share": 0.0071,
+     "raw_moved_outside": 0.0293,
+     "seconds": 16.3,
+     "cost_usd": 0.0182
+    },
+    {
+     "unit": 15,
+     "kind": "behind",
+     "things": [
+      "fallen-leaves"
+     ],
+     "steps": [
+      17,
+      18,
+      19
+     ],
+     "redo": 0,
+     "erased_share": 0.319,
+     "raw_moved_outside": 0.0185,
+     "seconds": 15.4,
+     "cost_usd": 0.018
+    },
+    {
+     "unit": 14,
+     "kind": "behind",
+     "things": [
+      "branches"
+     ],
+     "steps": [
+      16
+     ],
+     "redo": 0,
+     "erased_share": 0.0398,
+     "raw_moved_outside": 0.0106,
+     "seconds": 13.6,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 13,
+     "kind": "back",
+     "things": [
+      "birches"
+     ],
+     "steps": [
+      14,
+      15
+     ],
+     "redo": 0,
+     "erased_share": 0.2952,
+     "raw_moved_outside": 0.0097,
+     "seconds": 13.9,
+     "cost_usd": 0.0185
+    },
+    {
+     "unit": 12,
+     "kind": "behind",
+     "things": [
+      "birches"
+     ],
+     "steps": [
+      13
+     ],
+     "redo": 0,
+     "erased_share": 0.3598,
+     "raw_moved_outside": 0.0171,
+     "seconds": 11.7,
+     "cost_usd": 0.018
+    },
+    {
+     "unit": 11,
+     "kind": "back",
+     "things": [
+      "rock"
+     ],
+     "steps": [
+      12
+     ],
+     "redo": 0,
+     "erased_share": 0.0017,
+     "raw_moved_outside": 0.007,
+     "seconds": 12.8,
+     "cost_usd": 0.0182
+    },
+    {
+     "unit": 10,
+     "kind": "behind",
+     "things": [
+      "rock"
+     ],
+     "steps": [
+      11
+     ],
+     "redo": 0,
+     "erased_share": 0.0232,
+     "raw_moved_outside": 0.0044,
+     "seconds": 13.9,
+     "cost_usd": 0.0179
+    },
+    {
+     "unit": 9,
+     "kind": "back",
+     "things": [
+      "canopy",
+      "undergrowth"
+     ],
+     "steps": [
+      10
+     ],
+     "redo": 0,
+     "erased_share": 0.4149,
+     "raw_moved_outside": 0.0045,
+     "seconds": 19.7,
+     "cost_usd": 0.0187
+    },
+    {
+     "unit": 8,
+     "kind": "behind",
+     "things": [
+      "undergrowth"
+     ],
+     "steps": [
+      9
+     ],
+     "redo": 1,
+     "erased_share": 0.2015,
+     "raw_moved_outside": 0.0074,
+     "seconds": 11.8,
+     "cost_usd": 0.0181
+    },
+    {
+     "unit": 7,
+     "kind": "behind",
+     "things": [
+      "canopy"
+     ],
+     "steps": [
+      8
+     ],
+     "redo": 0,
+     "erased_share": 0.2614,
+     "raw_moved_outside": 0.0014,
+     "seconds": 13.4,
+     "cost_usd": 0.0179
+    },
+    {
+     "unit": 6,
+     "kind": "behind",
+     "things": [
+      "path"
+     ],
+     "steps": [
+      7
+     ],
+     "redo": 0,
+     "erased_share": 0.0347,
+     "raw_moved_outside": 0.0066,
+     "seconds": 13.6,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 5,
+     "kind": "behind",
+     "things": [
+      "forest-floor"
+     ],
+     "steps": [
+      6
+     ],
+     "redo": 0,
+     "erased_share": 0.4696,
+     "raw_moved_outside": 0.0026,
+     "seconds": 14.3,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 4,
+     "kind": "behind",
+     "things": [
+      "sun-rays"
+     ],
+     "steps": [
+      5
+     ],
+     "redo": 0,
+     "erased_share": 0.2343,
+     "raw_moved_outside": 0.0007,
+     "seconds": 11.0,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 3,
+     "kind": "behind",
+     "things": [
+      "far-trunks"
+     ],
+     "steps": [
+      4
+     ],
+     "redo": 0,
+     "erased_share": 0.0162,
+     "raw_moved_outside": 0.0031,
+     "seconds": 10.7,
+     "cost_usd": 0.0178
+    },
+    {
+     "unit": 2,
+     "kind": "behind",
+     "things": [
+      "far-firs"
+     ],
+     "steps": [
+      3
+     ],
+     "redo": 1,
+     "erased_share": 0.3664,
+     "raw_moved_outside": 0.0052,
+     "seconds": 12.4,
+     "cost_usd": 0.0179
+    },
+    {
+     "unit": 1,
+     "kind": "behind",
+     "things": [
+      "sun"
+     ],
+     "steps": [
+      2
+     ],
+     "redo": 0,
+     "erased_share": 0.0293,
+     "raw_moved_outside": 0.0014,
+     "seconds": 10.2,
+     "cost_usd": 0.0177
+    }
    ],
-   "show": "all",
-   "painted": 0.0313,
-   "changed": 0.0224,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 16.2,
-    "over_25": 0.146
-   }
-  },
-  {
-   "n": 4,
-   "id": "lay-in-mountains",
-   "unit": 3,
-   "things": [
-    "mountains"
+   "paints": [
+    {
+     "paint": "Pale gold",
+     "hex": "#c7943b",
+     "seed": "#f3dc8a",
+     "from_unit": 18,
+     "pixels_share": 0.4672,
+     "units": [
+      0,
+      4,
+      16,
+      18
+     ],
+     "moved_from_seed": 28.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Warm white",
+     "hex": "#9e9488",
+     "seed": "#fbf3d8",
+     "from_unit": 17,
+     "pixels_share": 0.099,
+     "units": [
+      1,
+      17
+     ],
+     "moved_from_seed": 34.6,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Misty blue",
+     "hex": "#9cb2cc",
+     "seed": "#8fa6bd",
+     "from_unit": 0,
+     "pixels_share": 0.7977,
+     "units": [
+      0,
+      2,
+      3,
+      10,
+      11
+     ],
+     "moved_from_seed": 4.9,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep blue-green",
+     "hex": "#475e73",
+     "seed": "#2f5560",
+     "from_unit": 2,
+     "pixels_share": 0.1081,
+     "units": [
+      2,
+      8,
+      11
+     ],
+     "moved_from_seed": 9.7,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Gray-white",
+     "hex": "#a29d9f",
+     "seed": "#dcdcd6",
+     "from_unit": 12,
+     "pixels_share": 0.3598,
+     "units": [
+      3,
+      12
+     ],
+     "moved_from_seed": 22.8,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Gray-brown",
+     "hex": "#9a9089",
+     "seed": "#8c8278",
+     "from_unit": 13,
+     "pixels_share": 0.1615,
+     "units": [
+      13
+     ],
+     "moved_from_seed": 5.8,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Bark dark",
+     "hex": "#403931",
+     "seed": "#2a211f",
+     "from_unit": 13,
+     "pixels_share": 0.1337,
+     "units": [
+      13,
+      14
+     ],
+     "moved_from_seed": 11.4,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Rust brown",
+     "hex": "#8c593a",
+     "seed": "#9a4a22",
+     "from_unit": 5,
+     "pixels_share": 0.314,
+     "units": [
+      5
+     ],
+     "moved_from_seed": 17.5,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Deep rust",
+     "hex": "#7b4e2d",
+     "seed": "#5e2a17",
+     "from_unit": 15,
+     "pixels_share": 0.1697,
+     "units": [
+      15
+     ],
+     "moved_from_seed": 15.6,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Warm tan",
+     "hex": "#c78858",
+     "seed": "#c99a62",
+     "from_unit": 6,
+     "pixels_share": 0.0347,
+     "units": [
+      6
+     ],
+     "moved_from_seed": 9.4,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Orange gold",
+     "hex": "#a9805e",
+     "seed": "#e08a1e",
+     "from_unit": 7,
+     "pixels_share": 0.2614,
+     "units": [
+      5,
+      7,
+      15
+     ],
+     "moved_from_seed": 43.3,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Golden yellow",
+     "hex": "#b09047",
+     "seed": "#f2b62a",
+     "from_unit": 9,
+     "pixels_share": 0.4149,
+     "units": [
+      9,
+      15
+     ],
+     "moved_from_seed": 34.6,
+     "not_in_finish": false
+    },
+    {
+     "paint": "Olive",
+     "hex": "#766139",
+     "seed": "#7c7a34",
+     "from_unit": 8,
+     "pixels_share": 0.1027,
+     "units": [
+      8,
+      10,
+      16
+     ],
+     "moved_from_seed": 18.6,
+     "not_in_finish": false
+    }
    ],
-   "show": "all",
-   "painted": 0.0983,
-   "changed": 0.0934,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 5.7,
-    "over_25": 0.058
-   }
-  },
-  {
-   "n": 5,
-   "id": "streak-loch",
-   "unit": 4,
-   "things": [
-    "loch"
+   "step_rows": [
+    {
+     "n": 1,
+     "id": "blend-the-glow",
+     "unit": 0,
+     "things": [
+      "backdrop"
+     ],
+     "show": "all",
+     "painted": 1.0,
+     "changed": 1.0,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 8.3,
+      "over_25": 0.061
+     }
+    },
+    {
+     "n": 2,
+     "id": "paint-the-sun",
+     "unit": 1,
+     "things": [
+      "sun"
+     ],
+     "show": "all",
+     "painted": 0.0293,
+     "changed": 0.026,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 20.9,
+      "over_25": 0.036
+     }
+    },
+    {
+     "n": 3,
+     "id": "stamp-far-firs",
+     "unit": 2,
+     "things": [
+      "far-firs"
+     ],
+     "show": "all",
+     "painted": 0.3664,
+     "changed": 0.3505,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 11.0,
+      "over_25": 0.0
+     }
+    },
+    {
+     "n": 4,
+     "id": "pull-far-trunks",
+     "unit": 3,
+     "things": [
+      "far-trunks"
+     ],
+     "show": "all",
+     "painted": 0.0162,
+     "changed": 0.012,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 11.2,
+      "over_25": 0.004
+     }
+    },
+    {
+     "n": 5,
+     "id": "dry-brush-rays",
+     "unit": 4,
+     "things": [
+      "sun-rays"
+     ],
+     "show": "all",
+     "painted": 0.2343,
+     "changed": 0.2183,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 43.2,
+      "over_25": 0.953
+     }
+    },
+    {
+     "n": 6,
+     "id": "lay-in-floor",
+     "unit": 5,
+     "things": [
+      "forest-floor"
+     ],
+     "show": "all",
+     "painted": 0.4696,
+     "changed": 0.4675,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 12.9,
+      "over_25": 0.202
+     }
+    },
+    {
+     "n": 7,
+     "id": "pull-in-path",
+     "unit": 6,
+     "things": [
+      "path"
+     ],
+     "show": "all",
+     "painted": 0.0347,
+     "changed": 0.0297,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.6,
+      "over_25": 0.076
+     }
+    },
+    {
+     "n": 8,
+     "id": "dab-dark-canopy",
+     "unit": 7,
+     "things": [
+      "canopy"
+     ],
+     "show": "all",
+     "painted": 0.2614,
+     "changed": 0.2397,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 24.8,
+      "over_25": 0.494
+     }
+    },
+    {
+     "n": 9,
+     "id": "dab-dark-bushes",
+     "unit": 8,
+     "things": [
+      "undergrowth"
+     ],
+     "show": "all",
+     "painted": 0.2015,
+     "changed": 0.1886,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 15.1,
+      "over_25": 0.087
+     }
+    },
+    {
+     "n": 10,
+     "id": "dab-mid-leaves",
+     "unit": 9,
+     "things": [
+      "canopy",
+      "undergrowth"
+     ],
+     "show": "all",
+     "painted": 0.4149,
+     "changed": 0.3687,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 22.6,
+      "over_25": 0.413
+     }
+    },
+    {
+     "n": 11,
+     "id": "build-the-rock",
+     "unit": 10,
+     "things": [
+      "rock"
+     ],
+     "show": "all",
+     "painted": 0.0232,
+     "changed": 0.0202,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 20.4,
+      "over_25": 0.305
+     }
+    },
+    {
+     "n": 12,
+     "id": "shade-the-rock",
+     "unit": 11,
+     "things": [
+      "rock"
+     ],
+     "show": "all",
+     "painted": 0.0017,
+     "changed": 0.001,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 42.5,
+      "over_25": 0.695
+     }
+    },
+    {
+     "n": 13,
+     "id": "pull-pale-trunks",
+     "unit": 12,
+     "things": [
+      "birches"
+     ],
+     "show": "all",
+     "painted": 0.3598,
+     "changed": 0.3022,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 13.1,
+      "over_25": 0.257
+     }
+    },
+    {
+     "n": 14,
+     "id": "shade-the-trunks",
+     "unit": 13,
+     "things": [
+      "birches"
+     ],
+     "show": "pass",
+     "painted": 0.1615,
+     "changed": 0.1237,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 13.3,
+      "over_25": 0.134
+     }
+    },
+    {
+     "n": 15,
+     "id": "add-bark-marks",
+     "unit": 13,
+     "things": [
+      "birches"
+     ],
+     "show": "all",
+     "painted": 0.2952,
+     "changed": 0.12,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 8.1,
+      "over_25": 0.035
+     }
+    },
+    {
+     "n": 16,
+     "id": "pull-branches",
+     "unit": 14,
+     "things": [
+      "branches"
+     ],
+     "show": "all",
+     "painted": 0.0398,
+     "changed": 0.0254,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 37.9,
+      "over_25": 0.655
+     }
+    },
+    {
+     "n": 17,
+     "id": "dab-dark-floor-leaves",
+     "unit": 15,
+     "things": [
+      "fallen-leaves"
+     ],
+     "show": "pass",
+     "painted": 0.1697,
+     "changed": 0.1383,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 10.3,
+      "over_25": 0.032
+     }
+    },
+    {
+     "n": 18,
+     "id": "dab-orange-floor-leaves",
+     "unit": 15,
+     "things": [
+      "fallen-leaves"
+     ],
+     "show": "pass",
+     "painted": 0.1143,
+     "changed": 0.1129,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 27.5,
+      "over_25": 0.638
+     }
+    },
+    {
+     "n": 19,
+     "id": "dab-gold-floor-leaves",
+     "unit": 15,
+     "things": [
+      "fallen-leaves"
+     ],
+     "show": "all",
+     "painted": 0.319,
+     "changed": 0.0349,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 28.6,
+      "over_25": 0.801
+     }
+    },
+    {
+     "n": 20,
+     "id": "light-the-rock",
+     "unit": 16,
+     "things": [
+      "rock"
+     ],
+     "show": "all",
+     "painted": 0.0071,
+     "changed": 0.006,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 17.1,
+      "over_25": 0.094
+     }
+    },
+    {
+     "n": 21,
+     "id": "light-the-bark",
+     "unit": 17,
+     "things": [
+      "birches"
+     ],
+     "show": "all",
+     "painted": 0.099,
+     "changed": 0.0713,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 23.2,
+      "over_25": 0.469
+     }
+    },
+    {
+     "n": 22,
+     "id": "dab-sunlit-leaves",
+     "unit": 18,
+     "things": [
+      "canopy",
+      "undergrowth",
+      "fallen-leaves"
+     ],
+     "show": "all",
+     "painted": 0.4672,
+     "changed": 0.4049,
+     "outside_unit": 0.0,
+     "from_its_paints": {
+      "median": 22.9,
+      "over_25": 0.42
+     }
+    }
    ],
-   "show": "all",
-   "painted": 0.0027,
-   "changed": 0.0027,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 13.8,
-    "over_25": 0.293
+   "words": {
+    "merge": {
+     "claims": 147,
+     "failures": 19,
+     "after": 19,
+     "dropped": 0,
+     "unwritten": [],
+     "missing": []
+    },
+    "merge-final": {
+     "claims": 127,
+     "failures": 0,
+     "after": 0,
+     "dropped": 0,
+     "unwritten": [],
+     "missing": []
+    }
    }
-  },
-  {
-   "n": 6,
-   "id": "lay-in-ground",
-   "unit": 5,
-   "things": [
-    "hillside",
-    "meadow"
-   ],
-   "show": "all",
-   "painted": 0.7231,
-   "changed": 0.7231,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 7.0,
-    "over_25": 0.02
-   }
-  },
-  {
-   "n": 7,
-   "id": "dab-dark-bushes",
-   "unit": 6,
-   "things": [
-    "bushes"
-   ],
-   "show": "all",
-   "painted": 0.1534,
-   "changed": 0.1282,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 17.5,
-    "over_25": 0.248
-   }
-  },
-  {
-   "n": 8,
-   "id": "tap-sunlit-bushes",
-   "unit": 7,
-   "things": [
-    "bushes"
-   ],
-   "show": "all",
-   "painted": 0.0204,
-   "changed": 0.0156,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 37.8,
-    "over_25": 0.881
-   }
-  },
-  {
-   "n": 9,
-   "id": "block-in-cow",
-   "unit": 8,
-   "things": [
-    "cow"
-   ],
-   "show": "all",
-   "painted": 0.23,
-   "changed": 0.2178,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 7.7,
-    "over_25": 0.147
-   }
-  },
-  {
-   "n": 10,
-   "id": "shade-cow",
-   "unit": 9,
-   "things": [
-    "cow"
-   ],
-   "show": "all",
-   "painted": 0.1508,
-   "changed": 0.1387,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 7.9,
-    "over_25": 0.021
-   }
-  },
-  {
-   "n": 11,
-   "id": "block-in-horns",
-   "unit": 10,
-   "things": [
-    "horns"
-   ],
-   "show": "all",
-   "painted": 0.0215,
-   "changed": 0.0147,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 14.4,
-    "over_25": 0.241
-   }
-  },
-  {
-   "n": 12,
-   "id": "shade-horns",
-   "unit": 11,
-   "things": [
-    "horns"
-   ],
-   "show": "all",
-   "painted": 0.0189,
-   "changed": 0.0129,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 22.0,
-    "over_25": 0.397
-   }
-  },
-  {
-   "n": 13,
-   "id": "pull-copper-locks",
-   "unit": 12,
-   "things": [
-    "cow"
-   ],
-   "show": "pass",
-   "painted": 0.1526,
-   "changed": 0.1399,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 10.3,
-    "over_25": 0.029
-   }
-  },
-  {
-   "n": 14,
-   "id": "pull-golden-locks",
-   "unit": 12,
-   "things": [
-    "cow"
-   ],
-   "show": "pass",
-   "painted": 0.0535,
-   "changed": 0.0517,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 18.0,
-    "over_25": 0.097
-   }
-  },
-  {
-   "n": 15,
-   "id": "catch-rim-light",
-   "unit": 12,
-   "things": [
-    "cow",
-    "horns"
-   ],
-   "show": "all",
-   "painted": 0.2351,
-   "changed": 0.0155,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 43.7,
-    "over_25": 0.978
-   }
-  },
-  {
-   "n": 16,
-   "id": "paint-nose",
-   "unit": 13,
-   "things": [
-    "cow"
-   ],
-   "show": "all",
-   "painted": 0.0177,
-   "changed": 0.0153,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 15.4,
-    "over_25": 0.279
-   }
-  },
-  {
-   "n": 17,
-   "id": "light-nose",
-   "unit": 14,
-   "things": [
-    "cow"
-   ],
-   "show": "pass",
-   "painted": 0.0022,
-   "changed": 0.002,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 19.6,
-    "over_25": 0.35
-   }
-  },
-  {
-   "n": 18,
-   "id": "dot-nostrils-eye",
-   "unit": 14,
-   "things": [
-    "cow"
-   ],
-   "show": "all",
-   "painted": 0.0057,
-   "changed": 0.0032,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 22.6,
-    "over_25": 0.311
-   }
-  },
-  {
-   "n": 19,
-   "id": "line-mouth",
-   "unit": 15,
-   "things": [
-    "cow"
-   ],
-   "show": "all",
-   "painted": 0.0136,
-   "changed": 0.0104,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 27.7,
-    "over_25": 0.591
-   }
-  },
-  {
-   "n": 20,
-   "id": "flick-dark-blades",
-   "unit": 16,
-   "things": [
-    "meadow"
-   ],
-   "show": "pass",
-   "painted": 0.1536,
-   "changed": 0.1366,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 9.4,
-    "over_25": 0.059
-   }
-  },
-  {
-   "n": 21,
-   "id": "flick-olive-blades",
-   "unit": 16,
-   "things": [
-    "meadow"
-   ],
-   "show": "pass",
-   "painted": 0.1205,
-   "changed": 0.1138,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 10.0,
-    "over_25": 0.058
-   }
-  },
-  {
-   "n": 22,
-   "id": "flick-yellow-green-blades",
-   "unit": 16,
-   "things": [
-    "meadow"
-   ],
-   "show": "pass",
-   "painted": 0.0656,
-   "changed": 0.0628,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 9.4,
-    "over_25": 0.04
-   }
-  },
-  {
-   "n": 23,
-   "id": "flick-gold-blades",
-   "unit": 16,
-   "things": [
-    "meadow"
-   ],
-   "show": "pass",
-   "painted": 0.0473,
-   "changed": 0.0458,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 13.4,
-    "over_25": 0.011
-   }
-  },
-  {
-   "n": 24,
-   "id": "flick-brightest-tips",
-   "unit": 16,
-   "things": [
-    "meadow"
-   ],
-   "show": "all",
-   "painted": 0.3869,
-   "changed": 0.0004,
-   "outside_unit": 0.0,
-   "from_its_paints": {
-    "median": 35.0,
-    "over_25": 1.0
-   }
-  }
- ],
- "words": {
-  "merge": {
-   "claims": 130,
-   "failures": 3,
-   "after": 3,
-   "dropped": 0,
-   "unwritten": [],
-   "missing": []
-  },
-  "merge-final": {
-   "claims": 126,
-   "failures": 0,
-   "after": 0,
-   "dropped": 0,
-   "unwritten": [],
-   "missing": []
   }
  }
 }
