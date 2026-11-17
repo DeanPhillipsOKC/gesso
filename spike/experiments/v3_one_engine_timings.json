@@ -1,0 +1,4781 @@
+{
+ "what": "the runs behind docs/spikes/v3-one-engine.md's tables (tool seconds and wall time; the hashes are in v3_one_engine.json): `v3_one_engine.py table v3_one_engine_timings.json` prints them",
+ "bench": {
+  "arms": {
+   "before": [
+    "default",
+    "/tmp/claude-0/-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/scratchpad/base"
+   ],
+   "engine": [
+    "engine",
+    "/home/user/gesso/.claude/worktrees/agent-a9b5d02e3911432c1"
+   ]
+  },
+  "runs": {
+   "before": [
+    {
+     "chickadee": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 30.34,
+        "wall": 35.31
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.76,
+        "wall": 0.97
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.39,
+        "wall": 12.59
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 10.17,
+        "wall": 10.35
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.45,
+        "wall": 0.63
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 9.77,
+        "wall": 9.99
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.17,
+        "wall": 0.37
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 11.31,
+        "wall": 11.52
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 20.25,
+        "wall": 20.53
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped wing-dark and wing-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 13.08,
+        "wall": 13.29
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.87,
+        "wall": 10.08
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.49,
+        "wall": 0.69
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 9.87,
+        "wall": 10.09
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.22,
+        "wall": 0.42
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 11.25,
+        "wall": 11.45
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 20.44,
+        "wall": 20.67
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 29.9,
+        "wall": 30.12
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 1.1,
+        "wall": 1.33
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.89,
+        "wall": 13.13
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.24,
+        "wall": 9.46
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.39,
+        "wall": 0.55
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.47,
+        "wall": 8.67
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.18,
+        "wall": 0.39
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 10.73,
+        "wall": 10.94
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 19.48,
+        "wall": 19.69
+       }
+      ]
+     },
+     "lavender-balloon": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 12.8,
+        "wall": 13.04
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.57,
+        "wall": 0.73
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.64,
+        "wall": 9.81
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 7.94,
+        "wall": 8.15
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.55,
+        "wall": 0.72
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 7.64,
+        "wall": 7.84
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.16,
+        "wall": 0.34
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 8.99,
+        "wall": 9.16
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 17.74,
+        "wall": 17.95
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped tree-mid and tree-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.31,
+        "wall": 9.52
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 7.99,
+        "wall": 8.2
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.64,
+        "wall": 0.84
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 7.78,
+        "wall": 7.99
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.17,
+        "wall": 0.35
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 9.03,
+        "wall": 9.25
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 17.96,
+        "wall": 18.19
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 30.39,
+        "wall": 31.62
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 2.17,
+        "wall": 2.39
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 10.75,
+        "wall": 11.0
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 8.13,
+        "wall": 8.34
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.51,
+        "wall": 0.68
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.07,
+        "wall": 8.27
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.18,
+        "wall": 0.41
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 9.6,
+        "wall": 9.78
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 18.22,
+        "wall": 18.42
+       }
+      ]
+     },
+     "red-sailboat": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 27.69,
+        "wall": 27.93
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.86,
+        "wall": 1.07
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.91,
+        "wall": 8.1
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 6.86,
+        "wall": 7.09
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.5,
+        "wall": 0.68
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.18,
+        "wall": 6.39
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.16,
+        "wall": 0.35
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.28,
+        "wall": 7.49
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.42,
+        "wall": 14.65
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped reflection-dark and reflection-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.68,
+        "wall": 7.87
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 6.63,
+        "wall": 6.83
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.58,
+        "wall": 0.77
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.46,
+        "wall": 6.68
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.25,
+        "wall": 0.45
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.43,
+        "wall": 7.64
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.08,
+        "wall": 14.3
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 24.97,
+        "wall": 25.2
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.81,
+        "wall": 1.08
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 8.74,
+        "wall": 8.98
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 6.3,
+        "wall": 6.51
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.5,
+        "wall": 0.7
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.01,
+        "wall": 6.18
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.16,
+        "wall": 0.35
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.75,
+        "wall": 7.97
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.69,
+        "wall": 14.9
+       }
+      ]
+     }
+    },
+    {
+     "chickadee": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 33.96,
+        "wall": 34.21
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 1.02,
+        "wall": 1.28
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 13.86,
+        "wall": 14.08
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.58,
+        "wall": 9.78
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.46,
+        "wall": 0.64
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 10.17,
+        "wall": 10.41
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.24,
+        "wall": 0.45
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 11.92,
+        "wall": 12.17
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 23.49,
+        "wall": 23.73
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped wing-dark and wing-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 14.39,
+        "wall": 14.65
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 11.34,
+        "wall": 11.57
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.61,
+        "wall": 0.86
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 10.54,
+        "wall": 10.86
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.14,
+        "wall": 0.4
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 11.52,
+        "wall": 11.77
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 21.47,
+        "wall": 21.73
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 44.12,
+        "wall": 44.45
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.94,
+        "wall": 1.15
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.69,
+        "wall": 12.9
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.05,
+        "wall": 9.28
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.47,
+        "wall": 0.67
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 9.51,
+        "wall": 9.69
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.21,
+        "wall": 0.4
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 10.49,
+        "wall": 10.67
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 19.74,
+        "wall": 20.04
+       }
+      ]
+     },
+     "lavender-balloon": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 13.65,
+        "wall": 13.91
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.58,
+        "wall": 0.78
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.82,
+        "wall": 10.04
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 8.34,
+        "wall": 8.51
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.49,
+        "wall": 0.66
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.03,
+        "wall": 8.21
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.16,
+        "wall": 0.33
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 8.96,
+        "wall": 9.16
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 18.58,
+        "wall": 18.79
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped tree-mid and tree-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.54,
+        "wall": 9.72
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 8.18,
+        "wall": 8.4
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.67,
+        "wall": 0.86
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.32,
+        "wall": 8.53
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.16,
+        "wall": 0.36
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 9.23,
+        "wall": 9.46
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 18.02,
+        "wall": 18.24
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 13.46,
+        "wall": 13.69
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.65,
+        "wall": 0.84
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.71,
+        "wall": 9.91
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 8.36,
+        "wall": 8.58
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.65,
+        "wall": 0.86
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.63,
+        "wall": 8.85
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.15,
+        "wall": 0.33
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 9.27,
+        "wall": 9.49
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 18.45,
+        "wall": 18.69
+       }
+      ]
+     },
+     "red-sailboat": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 28.34,
+        "wall": 28.62
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 1.01,
+        "wall": 1.27
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 8.88,
+        "wall": 9.16
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 7.45,
+        "wall": 7.7
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.58,
+        "wall": 0.78
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.88,
+        "wall": 7.12
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.23,
+        "wall": 0.48
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 8.02,
+        "wall": 8.22
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.87,
+        "wall": 15.1
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped reflection-dark and reflection-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 8.65,
+        "wall": 8.89
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 6.98,
+        "wall": 7.16
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.5,
+        "wall": 0.65
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.61,
+        "wall": 6.82
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.2,
+        "wall": 0.4
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.61,
+        "wall": 7.82
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.68,
+        "wall": 14.91
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 25.86,
+        "wall": 26.07
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.73,
+        "wall": 0.93
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.66,
+        "wall": 7.85
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 7.13,
+        "wall": 7.41
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.51,
+        "wall": 0.69
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.61,
+        "wall": 6.81
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.25,
+        "wall": 0.46
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.54,
+        "wall": 7.77
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.0,
+        "wall": 14.25
+       }
+      ]
+     }
+    },
+    {
+     "chickadee": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 15.4,
+        "wall": 15.67
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.76,
+        "wall": 0.97
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 13.11,
+        "wall": 13.32
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.39,
+        "wall": 9.6
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.46,
+        "wall": 0.64
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 9.29,
+        "wall": 9.48
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.17,
+        "wall": 0.37
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 10.43,
+        "wall": 10.64
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 19.47,
+        "wall": 19.7
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped wing-dark and wing-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.86,
+        "wall": 13.08
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.66,
+        "wall": 9.88
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.53,
+        "wall": 0.77
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 9.36,
+        "wall": 9.56
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.15,
+        "wall": 0.34
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 11.15,
+        "wall": 11.33
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 20.06,
+        "wall": 20.29
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 28.24,
+        "wall": 28.48
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.76,
+        "wall": 0.96
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.97,
+        "wall": 13.19
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 9.35,
+        "wall": 9.58
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.47,
+        "wall": 0.71
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 9.25,
+        "wall": 9.5
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.13,
+        "wall": 0.29
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 10.61,
+        "wall": 10.82
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 18.92,
+        "wall": 19.13
+       }
+      ]
+     },
+     "lavender-balloon": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 13.31,
+        "wall": 13.57
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.6,
+        "wall": 0.77
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.26,
+        "wall": 9.44
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 7.62,
+        "wall": 7.81
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.46,
+        "wall": 0.6
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.31,
+        "wall": 8.5
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.24,
+        "wall": 0.43
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 9.44,
+        "wall": 9.62
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 17.76,
+        "wall": 17.99
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped tree-mid and tree-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.86,
+        "wall": 10.08
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 8.43,
+        "wall": 8.62
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.57,
+        "wall": 0.74
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.54,
+        "wall": 8.75
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.14,
+        "wall": 0.31
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 9.46,
+        "wall": 9.64
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 17.09,
+        "wall": 17.31
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 25.49,
+        "wall": 25.76
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.63,
+        "wall": 0.79
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 10.23,
+        "wall": 10.45
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 8.26,
+        "wall": 8.47
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.55,
+        "wall": 0.76
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 8.59,
+        "wall": 8.81
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.17,
+        "wall": 0.37
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 8.98,
+        "wall": 9.18
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 17.48,
+        "wall": 17.73
+       }
+      ]
+     },
+     "red-sailboat": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 25.58,
+        "wall": 25.79
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.57,
+        "wall": 0.73
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 8.05,
+        "wall": 8.26
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 6.55,
+        "wall": 6.75
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.58,
+        "wall": 0.75
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 5.74,
+        "wall": 5.93
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.2,
+        "wall": 0.38
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.0,
+        "wall": 7.18
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.71,
+        "wall": 14.93
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped reflection-dark and reflection-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 8.03,
+        "wall": 8.23
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 6.06,
+        "wall": 6.29
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.53,
+        "wall": 0.71
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 6.27,
+        "wall": 6.5
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.13,
+        "wall": 0.3
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 7.23,
+        "wall": 7.44
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.3,
+        "wall": 14.53
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 12.98,
+        "wall": 13.26
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.61,
+        "wall": 0.8
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.83,
+        "wall": 8.03
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 5.94,
+        "wall": 6.11
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.51,
+        "wall": 0.68
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 5.98,
+        "wall": 6.16
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.16,
+        "wall": 0.36
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 6.97,
+        "wall": 7.14
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 14.43,
+        "wall": 14.62
+       }
+      ]
+     }
+    }
+   ],
+   "engine": [
+    {
+     "chickadee": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 27.9,
+        "wall": 27.97
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.47,
+        "wall": 0.54
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 11.23,
+        "wall": 11.3
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.95,
+        "wall": 2.02
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.33,
+        "wall": 0.4
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.73,
+        "wall": 1.8
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.82,
+        "wall": 2.89
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.39,
+        "wall": 6.46
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped wing-dark and wing-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 4.09,
+        "wall": 4.15
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.59,
+        "wall": 1.67
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.85,
+        "wall": 1.9
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.06
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.75,
+        "wall": 2.82
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 2.95,
+        "wall": 3.02
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 7.72,
+        "wall": 7.78
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.38,
+        "wall": 0.44
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 11.5,
+        "wall": 11.57
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 2.11,
+        "wall": 2.16
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.09
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.77,
+        "wall": 1.83
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.74,
+        "wall": 2.81
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.71,
+        "wall": 5.78
+       }
+      ],
+      "engine": {
+       "up_seconds": 101.0,
+       "calls": 25,
+       "pid": 1487,
+       "builds_kept": 3,
+       "parts_kept": 36,
+       "memos": {
+        "load": {
+         "made": 38,
+         "reused": 146,
+         "held": 38
+        },
+        "image_src": {
+         "made": 77,
+         "reused": 151,
+         "held": 77
+        },
+        "webp": {
+         "made": 77,
+         "reused": 34,
+         "held": 77
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 38,
+         "reused": 16,
+         "held": 38
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-ogb8zymw/chickadee_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-ogb8zymw/readings",
+       "restarts": 0
+      }
+     },
+     "lavender-balloon": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 23.81,
+        "wall": 23.88
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.38,
+        "wall": 0.43
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.18,
+        "wall": 9.25
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.59,
+        "wall": 1.65
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.53,
+        "wall": 0.6
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.77,
+        "wall": 1.83
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.08
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.37,
+        "wall": 2.43
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.39,
+        "wall": 6.46
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped tree-mid and tree-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 3.34,
+        "wall": 3.42
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.66,
+        "wall": 1.73
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.1
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.59,
+        "wall": 1.66
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.76,
+        "wall": 2.82
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 2.86,
+        "wall": 2.92
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 4.89,
+        "wall": 4.96
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.49,
+        "wall": 0.55
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.1,
+        "wall": 9.16
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.86,
+        "wall": 1.93
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.04,
+        "wall": 0.18
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.54,
+        "wall": 1.66
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.57,
+        "wall": 2.65
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.8,
+        "wall": 5.88
+       }
+      ],
+      "engine": {
+       "up_seconds": 87.7,
+       "calls": 25,
+       "pid": 2504,
+       "builds_kept": 3,
+       "parts_kept": 32,
+       "memos": {
+        "load": {
+         "made": 38,
+         "reused": 146,
+         "held": 38
+        },
+        "image_src": {
+         "made": 77,
+         "reused": 151,
+         "held": 77
+        },
+        "webp": {
+         "made": 77,
+         "reused": 34,
+         "held": 77
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 38,
+         "reused": 16,
+         "held": 38
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-phboffho/lavender-balloon_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-phboffho/readings",
+       "restarts": 0
+      }
+     },
+     "red-sailboat": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 34.12,
+        "wall": 34.2
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.38,
+        "wall": 0.45
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.86,
+        "wall": 7.93
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.56,
+        "wall": 1.63
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.39,
+        "wall": 0.47
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.26,
+        "wall": 1.32
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.89,
+        "wall": 1.96
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.29,
+        "wall": 5.41
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped reflection-dark and reflection-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 2.22,
+        "wall": 2.28
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.46,
+        "wall": 1.53
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.26,
+        "wall": 1.32
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.79,
+        "wall": 1.86
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 1.65,
+        "wall": 1.71
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 4.72,
+        "wall": 4.78
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.39,
+        "wall": 0.45
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 6.52,
+        "wall": 6.59
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.48,
+        "wall": 1.53
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.1
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.25,
+        "wall": 1.33
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.92,
+        "wall": 2.0
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 3.0,
+        "wall": 3.08
+       }
+      ],
+      "engine": {
+       "up_seconds": 83.3,
+       "calls": 25,
+       "pid": 3743,
+       "builds_kept": 3,
+       "parts_kept": 27,
+       "memos": {
+        "load": {
+         "made": 22,
+         "reused": 126,
+         "held": 22
+        },
+        "image_src": {
+         "made": 45,
+         "reused": 135,
+         "held": 45
+        },
+        "webp": {
+         "made": 45,
+         "reused": 42,
+         "held": 45
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 22,
+         "reused": 20,
+         "held": 22
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-uvxxj603/red-sailboat_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-uvxxj603/readings",
+       "restarts": 0
+      }
+     }
+    },
+    {
+     "chickadee": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 39.11,
+        "wall": 39.18
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.4,
+        "wall": 0.48
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.7,
+        "wall": 12.78
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.78,
+        "wall": 1.88
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.39,
+        "wall": 0.46
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.71,
+        "wall": 1.78
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.05
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.76,
+        "wall": 2.82
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.98,
+        "wall": 6.06
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped wing-dark and wing-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 4.2,
+        "wall": 4.27
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.61,
+        "wall": 1.66
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.07
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.74,
+        "wall": 1.79
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.73,
+        "wall": 2.79
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 2.5,
+        "wall": 2.55
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 7.1,
+        "wall": 7.16
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.49,
+        "wall": 0.56
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 12.49,
+        "wall": 12.57
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.85,
+        "wall": 1.91
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.68,
+        "wall": 1.75
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.06
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.62,
+        "wall": 2.69
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.08,
+        "wall": 6.15
+       }
+      ],
+      "engine": {
+       "up_seconds": 112.9,
+       "calls": 25,
+       "pid": 3841,
+       "builds_kept": 3,
+       "parts_kept": 36,
+       "memos": {
+        "load": {
+         "made": 38,
+         "reused": 146,
+         "held": 38
+        },
+        "image_src": {
+         "made": 77,
+         "reused": 151,
+         "held": 77
+        },
+        "webp": {
+         "made": 77,
+         "reused": 34,
+         "held": 77
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 38,
+         "reused": 16,
+         "held": 38
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-n89p2vnt/chickadee_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-n89p2vnt/readings",
+       "restarts": 0
+      }
+     },
+     "lavender-balloon": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 28.73,
+        "wall": 28.8
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.43,
+        "wall": 0.5
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.31,
+        "wall": 9.39
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.87,
+        "wall": 1.94
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.42,
+        "wall": 0.48
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.84,
+        "wall": 1.89
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.06
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.51,
+        "wall": 2.57
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.94,
+        "wall": 7.01
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped tree-mid and tree-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 3.42,
+        "wall": 3.49
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.53,
+        "wall": 1.61
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.07
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.51,
+        "wall": 1.57
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.6,
+        "wall": 2.66
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 2.59,
+        "wall": 2.64
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 2.05,
+        "wall": 2.13
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.41,
+        "wall": 0.48
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.29,
+        "wall": 9.35
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.88,
+        "wall": 1.93
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.64,
+        "wall": 1.71
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.06
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.29,
+        "wall": 2.35
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.96,
+        "wall": 6.04
+       }
+      ],
+      "engine": {
+       "up_seconds": 90.1,
+       "calls": 25,
+       "pid": 22291,
+       "builds_kept": 3,
+       "parts_kept": 32,
+       "memos": {
+        "load": {
+         "made": 38,
+         "reused": 146,
+         "held": 38
+        },
+        "image_src": {
+         "made": 77,
+         "reused": 151,
+         "held": 77
+        },
+        "webp": {
+         "made": 77,
+         "reused": 34,
+         "held": 77
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 38,
+         "reused": 16,
+         "held": 38
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-_693ci57/lavender-balloon_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-_693ci57/readings",
+       "restarts": 0
+      }
+     },
+     "red-sailboat": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 25.56,
+        "wall": 25.63
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.36,
+        "wall": 0.43
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.78,
+        "wall": 7.84
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.61,
+        "wall": 1.67
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.45,
+        "wall": 0.51
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.24,
+        "wall": 1.3
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.08
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.92,
+        "wall": 1.99
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 4.88,
+        "wall": 4.95
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped reflection-dark and reflection-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 2.27,
+        "wall": 2.33
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.38,
+        "wall": 1.44
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.11
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.34,
+        "wall": 1.41
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.25,
+        "wall": 2.35
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 1.71,
+        "wall": 1.81
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 4.18,
+        "wall": 4.27
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.44,
+        "wall": 0.52
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 6.56,
+        "wall": 6.64
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.58,
+        "wall": 1.65
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.03,
+        "wall": 0.11
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.33,
+        "wall": 1.41
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.15,
+        "wall": 2.22
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 3.18,
+        "wall": 3.25
+       }
+      ],
+      "engine": {
+       "up_seconds": 75.4,
+       "calls": 25,
+       "pid": 24554,
+       "builds_kept": 3,
+       "parts_kept": 27,
+       "memos": {
+        "load": {
+         "made": 22,
+         "reused": 126,
+         "held": 22
+        },
+        "image_src": {
+         "made": 45,
+         "reused": 135,
+         "held": 45
+        },
+        "webp": {
+         "made": 45,
+         "reused": 42,
+         "held": 45
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 22,
+         "reused": 20,
+         "held": 22
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-sx4kosfq/red-sailboat_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-sx4kosfq/readings",
+       "restarts": 0
+      }
+     }
+    },
+    {
+     "chickadee": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 14.68,
+        "wall": 14.74
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.45,
+        "wall": 0.51
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 11.3,
+        "wall": 11.37
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 2.1,
+        "wall": 2.17
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.42,
+        "wall": 0.48
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.71,
+        "wall": 1.79
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.08
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.9,
+        "wall": 2.96
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.86,
+        "wall": 6.92
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped wing-dark and wing-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 4.08,
+        "wall": 4.15
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.49,
+        "wall": 1.55
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.77,
+        "wall": 1.83
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.76,
+        "wall": 2.83
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 2.85,
+        "wall": 2.91
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 3.68,
+        "wall": 3.74
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.39,
+        "wall": 0.49
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 11.65,
+        "wall": 11.72
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 2.11,
+        "wall": 2.17
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.51,
+        "wall": 1.57
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.46,
+        "wall": 2.56
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.39,
+        "wall": 6.47
+       }
+      ],
+      "engine": {
+       "up_seconds": 84.5,
+       "calls": 25,
+       "pid": 28814,
+       "builds_kept": 3,
+       "parts_kept": 36,
+       "memos": {
+        "load": {
+         "made": 38,
+         "reused": 146,
+         "held": 38
+        },
+        "image_src": {
+         "made": 77,
+         "reused": 151,
+         "held": 77
+        },
+        "webp": {
+         "made": 77,
+         "reused": 34,
+         "held": 77
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 38,
+         "reused": 16,
+         "held": 38
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-18iivew1/chickadee_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-18iivew1/readings",
+       "restarts": 0
+      }
+     },
+     "lavender-balloon": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 26.01,
+        "wall": 26.09
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.52,
+        "wall": 0.6
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.52,
+        "wall": 9.6
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.6,
+        "wall": 1.66
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.53,
+        "wall": 0.62
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.7,
+        "wall": 1.8
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.08
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.9,
+        "wall": 3.0
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 6.63,
+        "wall": 6.7
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped tree-mid and tree-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 3.34,
+        "wall": 3.41
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.59,
+        "wall": 1.66
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.63,
+        "wall": 1.7
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.08
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.61,
+        "wall": 2.68
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 2.81,
+        "wall": 2.87
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 3.69,
+        "wall": 3.77
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.43,
+        "wall": 0.5
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 9.53,
+        "wall": 9.61
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.91,
+        "wall": 1.99
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.7,
+        "wall": 1.76
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.08
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 2.71,
+        "wall": 2.8
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.77,
+        "wall": 5.85
+       }
+      ],
+      "engine": {
+       "up_seconds": 90.4,
+       "calls": 25,
+       "pid": 29672,
+       "builds_kept": 3,
+       "parts_kept": 32,
+       "memos": {
+        "load": {
+         "made": 38,
+         "reused": 146,
+         "held": 38
+        },
+        "image_src": {
+         "made": 77,
+         "reused": 151,
+         "held": 77
+        },
+        "webp": {
+         "made": 77,
+         "reused": 34,
+         "held": 77
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 38,
+         "reused": 16,
+         "held": 38
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-vnb_v9is/lavender-balloon_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-vnb_v9is/readings",
+       "restarts": 0
+      }
+     },
+     "red-sailboat": {
+      "full": [
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 23.89,
+        "wall": 23.95
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.35,
+        "wall": 0.43
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 7.48,
+        "wall": 7.54
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.45,
+        "wall": 1.52
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.5,
+        "wall": 0.56
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.25,
+        "wall": 1.32
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.67,
+        "wall": 1.72
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 5.23,
+        "wall": 5.31
+       }
+      ],
+      "stage": [
+       {
+        "tool": "edit plan.json",
+        "change": "swapped reflection-dark and reflection-light"
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 2.41,
+        "wall": 2.5
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.25,
+        "wall": 1.33
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.08
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 1.11,
+        "wall": 1.17
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.01,
+        "wall": 0.06
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.86,
+        "wall": 1.93
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 1.42,
+        "wall": 1.49
+       }
+      ],
+      "part": [
+       {
+        "tool": "edit plan.json",
+        "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+       },
+       {
+        "tool": "outline",
+        "code": 0,
+        "seconds": 1.81,
+        "wall": 1.87
+       },
+       {
+        "tool": "paints",
+        "code": 0,
+        "seconds": 0.33,
+        "wall": 0.38
+       },
+       {
+        "tool": "build-steps",
+        "code": 0,
+        "seconds": 6.32,
+        "wall": 6.39
+       },
+       {
+        "tool": "step-aids",
+        "code": 0,
+        "seconds": 1.35,
+        "wall": 1.41
+       },
+       {
+        "tool": "mix",
+        "code": 0,
+        "seconds": 0.02,
+        "wall": 0.07
+       },
+       {
+        "tool": "draft-text",
+        "code": 0,
+        "seconds": 0.93,
+        "wall": 0.99
+       },
+       {
+        "tool": "card-adapt",
+        "code": 0,
+        "seconds": 0.0,
+        "wall": 0.07
+       },
+       {
+        "tool": "check",
+        "code": 0,
+        "seconds": 1.83,
+        "wall": 1.89
+       },
+       {
+        "tool": "publish",
+        "code": 0,
+        "seconds": 3.02,
+        "wall": 3.08
+       }
+      ],
+      "engine": {
+       "up_seconds": 68.2,
+       "calls": 25,
+       "pid": 30531,
+       "builds_kept": 3,
+       "parts_kept": 27,
+       "memos": {
+        "load": {
+         "made": 22,
+         "reused": 126,
+         "held": 22
+        },
+        "image_src": {
+         "made": 45,
+         "reused": 135,
+         "held": 45
+        },
+        "webp": {
+         "made": 45,
+         "reused": 42,
+         "held": 45
+        },
+        "texture_jumps": {
+         "made": 3,
+         "reused": 6,
+         "held": 3
+        },
+        "draft": {
+         "made": 6,
+         "reused": 3,
+         "held": 6
+        },
+        "png": {
+         "made": 22,
+         "reused": 20,
+         "held": 22
+        }
+       },
+       "lessons": [
+        "/tmp/v3-one-engine-sswn_gs5/red-sailboat_skill_20261112-090000"
+       ],
+       "outline_model": "loaded",
+       "readings": {
+        "model": 1,
+        "memory": 1,
+        "disk": 0
+       },
+       "readings_folder": "/tmp/v3-one-engine-sswn_gs5/readings",
+       "restarts": 0
+      }
+     }
+    }
+   ]
+  }
+ },
+ "readings_from_disk": {
+  "note": "two engine runs sharing one readings folder: the second's first outline reads the picture from disk",
+  "runs": [
+   {
+    "chickadee": {
+     "full": [
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 14.49,
+       "wall": 14.56
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.46,
+       "wall": 0.53
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 12.47,
+       "wall": 12.54
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.91,
+       "wall": 1.98
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.32,
+       "wall": 0.39
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.96,
+       "wall": 2.02
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.6,
+       "wall": 2.66
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 7.0,
+       "wall": 7.06
+      }
+     ],
+     "stage": [
+      {
+       "tool": "edit plan.json",
+       "change": "swapped wing-dark and wing-light"
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 4.14,
+       "wall": 4.22
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.5,
+       "wall": 1.56
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.67,
+       "wall": 1.72
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.43,
+       "wall": 2.49
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 2.77,
+       "wall": 2.83
+      }
+     ],
+     "part": [
+      {
+       "tool": "edit plan.json",
+       "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+      },
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 3.41,
+       "wall": 3.47
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.41,
+       "wall": 0.47
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 11.38,
+       "wall": 11.44
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.83,
+       "wall": 1.89
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.79,
+       "wall": 1.84
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.06
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.69,
+       "wall": 2.75
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 6.13,
+       "wall": 6.19
+      }
+     ],
+     "engine": {
+      "up_seconds": 84.2,
+      "calls": 25,
+      "pid": 30725,
+      "builds_kept": 3,
+      "parts_kept": 36,
+      "memos": {
+       "load": {
+        "made": 38,
+        "reused": 146,
+        "held": 38
+       },
+       "image_src": {
+        "made": 77,
+        "reused": 151,
+        "held": 77
+       },
+       "webp": {
+        "made": 77,
+        "reused": 34,
+        "held": 77
+       },
+       "texture_jumps": {
+        "made": 3,
+        "reused": 6,
+        "held": 3
+       },
+       "draft": {
+        "made": 6,
+        "reused": 3,
+        "held": 6
+       },
+       "png": {
+        "made": 38,
+        "reused": 16,
+        "held": 38
+       }
+      },
+      "lessons": [
+       "/tmp/v3-one-engine-f1p1q42x/chickadee/chickadee_skill_20261112-090000"
+      ],
+      "outline_model": "loaded",
+      "readings": {
+       "model": 1,
+       "memory": 1,
+       "disk": 0
+      },
+      "readings_folder": "/tmp/claude-0/-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/scratchpad/readings",
+      "restarts": 0
+     }
+    },
+    "lavender-balloon": {
+     "full": [
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 12.92,
+       "wall": 12.98
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.41,
+       "wall": 0.46
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 9.08,
+       "wall": 9.15
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.78,
+       "wall": 1.84
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.47,
+       "wall": 0.54
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.6,
+       "wall": 1.65
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.06
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.52,
+       "wall": 2.58
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 6.67,
+       "wall": 6.76
+      }
+     ],
+     "stage": [
+      {
+       "tool": "edit plan.json",
+       "change": "swapped tree-mid and tree-light"
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 2.89,
+       "wall": 2.94
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.65,
+       "wall": 1.71
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.74,
+       "wall": 1.79
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.72,
+       "wall": 2.78
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 2.54,
+       "wall": 2.61
+      }
+     ],
+     "part": [
+      {
+       "tool": "edit plan.json",
+       "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+      },
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 2.08,
+       "wall": 2.15
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.39,
+       "wall": 0.44
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 9.06,
+       "wall": 9.13
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.87,
+       "wall": 1.93
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.49,
+       "wall": 1.56
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.09
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.43,
+       "wall": 2.48
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 5.85,
+       "wall": 5.91
+      }
+     ],
+     "engine": {
+      "up_seconds": 72.9,
+      "calls": 25,
+      "pid": 30889,
+      "builds_kept": 3,
+      "parts_kept": 32,
+      "memos": {
+       "load": {
+        "made": 38,
+        "reused": 146,
+        "held": 38
+       },
+       "image_src": {
+        "made": 77,
+        "reused": 151,
+        "held": 77
+       },
+       "webp": {
+        "made": 77,
+        "reused": 34,
+        "held": 77
+       },
+       "texture_jumps": {
+        "made": 3,
+        "reused": 6,
+        "held": 3
+       },
+       "draft": {
+        "made": 6,
+        "reused": 3,
+        "held": 6
+       },
+       "png": {
+        "made": 38,
+        "reused": 16,
+        "held": 38
+       }
+      },
+      "lessons": [
+       "/tmp/v3-one-engine-f1p1q42x/lavender-balloon/lavender-balloon_skill_20261112-090000"
+      ],
+      "outline_model": "loaded",
+      "readings": {
+       "model": 1,
+       "memory": 1,
+       "disk": 0
+      },
+      "readings_folder": "/tmp/claude-0/-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/scratchpad/readings",
+      "restarts": 0
+     }
+    },
+    "red-sailboat": {
+     "full": [
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 12.25,
+       "wall": 12.31
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.33,
+       "wall": 0.39
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 7.77,
+       "wall": 7.82
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.39,
+       "wall": 1.46
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.46,
+       "wall": 0.53
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.25,
+       "wall": 1.31
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.05
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 1.73,
+       "wall": 1.79
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 5.04,
+       "wall": 5.1
+      }
+     ],
+     "stage": [
+      {
+       "tool": "edit plan.json",
+       "change": "swapped reflection-dark and reflection-light"
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 2.02,
+       "wall": 2.09
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.25,
+       "wall": 1.31
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.13,
+       "wall": 1.19
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.06
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 1.46,
+       "wall": 1.52
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 1.34,
+       "wall": 1.4
+      }
+     ],
+     "part": [
+      {
+       "tool": "edit plan.json",
+       "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+      },
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 1.69,
+       "wall": 1.74
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.29,
+       "wall": 0.35
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 6.01,
+       "wall": 6.07
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.28,
+       "wall": 1.36
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 0.88,
+       "wall": 0.95
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.05
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 1.83,
+       "wall": 1.89
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 2.6,
+       "wall": 2.67
+      }
+     ],
+     "engine": {
+      "up_seconds": 54.6,
+      "calls": 25,
+      "pid": 30963,
+      "builds_kept": 3,
+      "parts_kept": 27,
+      "memos": {
+       "load": {
+        "made": 22,
+        "reused": 126,
+        "held": 22
+       },
+       "image_src": {
+        "made": 45,
+        "reused": 135,
+        "held": 45
+       },
+       "webp": {
+        "made": 45,
+        "reused": 42,
+        "held": 45
+       },
+       "texture_jumps": {
+        "made": 3,
+        "reused": 6,
+        "held": 3
+       },
+       "draft": {
+        "made": 6,
+        "reused": 3,
+        "held": 6
+       },
+       "png": {
+        "made": 22,
+        "reused": 20,
+        "held": 22
+       }
+      },
+      "lessons": [
+       "/tmp/v3-one-engine-f1p1q42x/red-sailboat/red-sailboat_skill_20261112-090000"
+      ],
+      "outline_model": "loaded",
+      "readings": {
+       "model": 1,
+       "memory": 1,
+       "disk": 0
+      },
+      "readings_folder": "/tmp/claude-0/-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/scratchpad/readings",
+      "restarts": 0
+     }
+    }
+   },
+   {
+    "chickadee": {
+     "full": [
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 5.94,
+       "wall": 6.01
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.46,
+       "wall": 0.52
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 12.28,
+       "wall": 12.35
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.96,
+       "wall": 2.03
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.45,
+       "wall": 0.52
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.9,
+       "wall": 1.97
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.06
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.68,
+       "wall": 2.73
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 6.8,
+       "wall": 6.87
+      }
+     ],
+     "stage": [
+      {
+       "tool": "edit plan.json",
+       "change": "swapped wing-dark and wing-light"
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 4.15,
+       "wall": 4.22
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.55,
+       "wall": 1.63
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.09
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.69,
+       "wall": 1.75
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.54,
+       "wall": 2.61
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 2.76,
+       "wall": 2.84
+      }
+     ],
+     "part": [
+      {
+       "tool": "edit plan.json",
+       "change": "grew sun's box to [0.615, 0.075, 0.725, 0.205]"
+      },
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 3.29,
+       "wall": 3.35
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.36,
+       "wall": 0.42
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 10.86,
+       "wall": 10.91
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 2.02,
+       "wall": 2.09
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.86,
+       "wall": 1.92
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.32,
+       "wall": 2.39
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 6.06,
+       "wall": 6.13
+      }
+     ],
+     "engine": {
+      "up_seconds": 74.9,
+      "calls": 25,
+      "pid": 31033,
+      "builds_kept": 3,
+      "parts_kept": 36,
+      "memos": {
+       "load": {
+        "made": 38,
+        "reused": 146,
+        "held": 38
+       },
+       "image_src": {
+        "made": 77,
+        "reused": 151,
+        "held": 77
+       },
+       "webp": {
+        "made": 77,
+        "reused": 34,
+        "held": 77
+       },
+       "texture_jumps": {
+        "made": 3,
+        "reused": 6,
+        "held": 3
+       },
+       "draft": {
+        "made": 6,
+        "reused": 3,
+        "held": 6
+       },
+       "png": {
+        "made": 38,
+        "reused": 16,
+        "held": 38
+       }
+      },
+      "lessons": [
+       "/tmp/v3-one-engine-ysdap80v/chickadee/chickadee_skill_20261112-090000"
+      ],
+      "outline_model": "loaded",
+      "readings": {
+       "model": 0,
+       "memory": 1,
+       "disk": 1
+      },
+      "readings_folder": "/tmp/claude-0/-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/scratchpad/readings",
+      "restarts": 0
+     }
+    },
+    "lavender-balloon": {
+     "full": [
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 4.26,
+       "wall": 4.33
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.35,
+       "wall": 0.41
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 9.39,
+       "wall": 9.46
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.89,
+       "wall": 1.96
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.42,
+       "wall": 0.47
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.59,
+       "wall": 1.66
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.56,
+       "wall": 2.62
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 5.98,
+       "wall": 6.03
+      }
+     ],
+     "stage": [
+      {
+       "tool": "edit plan.json",
+       "change": "swapped tree-mid and tree-light"
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 3.15,
+       "wall": 3.23
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.64,
+       "wall": 1.71
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.09
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.54,
+       "wall": 1.6
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.52,
+       "wall": 2.57
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 2.76,
+       "wall": 2.83
+      }
+     ],
+     "part": [
+      {
+       "tool": "edit plan.json",
+       "change": "grew sun's box to [0.335, 0.365, 0.415, 0.455]"
+      },
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 1.89,
+       "wall": 1.96
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.4,
+       "wall": 0.46
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 8.96,
+       "wall": 9.02
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.85,
+       "wall": 1.91
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.56,
+       "wall": 1.64
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 2.66,
+       "wall": 2.75
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 5.53,
+       "wall": 5.61
+      }
+     ],
+     "engine": {
+      "up_seconds": 63.7,
+      "calls": 25,
+      "pid": 31104,
+      "builds_kept": 3,
+      "parts_kept": 32,
+      "memos": {
+       "load": {
+        "made": 38,
+        "reused": 146,
+        "held": 38
+       },
+       "image_src": {
+        "made": 77,
+        "reused": 151,
+        "held": 77
+       },
+       "webp": {
+        "made": 77,
+        "reused": 34,
+        "held": 77
+       },
+       "texture_jumps": {
+        "made": 3,
+        "reused": 6,
+        "held": 3
+       },
+       "draft": {
+        "made": 6,
+        "reused": 3,
+        "held": 6
+       },
+       "png": {
+        "made": 38,
+        "reused": 16,
+        "held": 38
+       }
+      },
+      "lessons": [
+       "/tmp/v3-one-engine-ysdap80v/lavender-balloon/lavender-balloon_skill_20261112-090000"
+      ],
+      "outline_model": "loaded",
+      "readings": {
+       "model": 0,
+       "memory": 1,
+       "disk": 1
+      },
+      "readings_folder": "/tmp/claude-0/-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/scratchpad/readings",
+      "restarts": 0
+     }
+    },
+    "red-sailboat": {
+     "full": [
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 3.88,
+       "wall": 3.95
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.34,
+       "wall": 0.41
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 7.47,
+       "wall": 7.53
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.37,
+       "wall": 1.44
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.43,
+       "wall": 0.48
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.1,
+       "wall": 1.16
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.05
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 1.76,
+       "wall": 1.82
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 4.97,
+       "wall": 5.04
+      }
+     ],
+     "stage": [
+      {
+       "tool": "edit plan.json",
+       "change": "swapped reflection-dark and reflection-light"
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 2.05,
+       "wall": 2.12
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.23,
+       "wall": 1.31
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.16,
+       "wall": 1.22
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.01,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 1.65,
+       "wall": 1.72
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 1.45,
+       "wall": 1.51
+      }
+     ],
+     "part": [
+      {
+       "tool": "edit plan.json",
+       "change": "grew sun's box to [0.44, 0.375, 0.525, 0.47]"
+      },
+      {
+       "tool": "outline",
+       "code": 0,
+       "seconds": 1.7,
+       "wall": 1.76
+      },
+      {
+       "tool": "paints",
+       "code": 0,
+       "seconds": 0.27,
+       "wall": 0.33
+      },
+      {
+       "tool": "build-steps",
+       "code": 0,
+       "seconds": 5.62,
+       "wall": 5.68
+      },
+      {
+       "tool": "step-aids",
+       "code": 0,
+       "seconds": 1.4,
+       "wall": 1.46
+      },
+      {
+       "tool": "mix",
+       "code": 0,
+       "seconds": 0.02,
+       "wall": 0.08
+      },
+      {
+       "tool": "draft-text",
+       "code": 0,
+       "seconds": 1.02,
+       "wall": 1.09
+      },
+      {
+       "tool": "card-adapt",
+       "code": 0,
+       "seconds": 0.0,
+       "wall": 0.07
+      },
+      {
+       "tool": "check",
+       "code": 0,
+       "seconds": 1.68,
+       "wall": 1.73
+      },
+      {
+       "tool": "publish",
+       "code": 0,
+       "seconds": 2.97,
+       "wall": 3.03
+      }
+     ],
+     "engine": {
+      "up_seconds": 46.2,
+      "calls": 25,
+      "pid": 31173,
+      "builds_kept": 3,
+      "parts_kept": 27,
+      "memos": {
+       "load": {
+        "made": 22,
+        "reused": 126,
+        "held": 22
+       },
+       "image_src": {
+        "made": 45,
+        "reused": 135,
+        "held": 45
+       },
+       "webp": {
+        "made": 45,
+        "reused": 42,
+        "held": 45
+       },
+       "texture_jumps": {
+        "made": 3,
+        "reused": 6,
+        "held": 3
+       },
+       "draft": {
+        "made": 6,
+        "reused": 3,
+        "held": 6
+       },
+       "png": {
+        "made": 22,
+        "reused": 20,
+        "held": 22
+       }
+      },
+      "lessons": [
+       "/tmp/v3-one-engine-ysdap80v/red-sailboat/red-sailboat_skill_20261112-090000"
+      ],
+      "outline_model": "loaded",
+      "readings": {
+       "model": 0,
+       "memory": 1,
+       "disk": 1
+      },
+      "readings_folder": "/tmp/claude-0/-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/scratchpad/readings",
+      "restarts": 0
+     }
+    }
+   }
+  ]
+ },
+ "peak_memory": {
+  "chickadee": 3876,
+  "lavender-balloon": 3836,
+  "red-sailboat": 3673
+ }
+}

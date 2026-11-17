@@ -21,7 +21,10 @@ Every pixel then belongs to exactly one part: the latest (nearest the painter) t
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
+import os
+import time
 import urllib.request
 from pathlib import Path
 
@@ -44,6 +47,39 @@ LIMB_STEP = 0.06  # points along a limb for its own prompt, this share of the pi
 THIN_AGREES = 0.5  # a thin part the color rule agrees with on less than this share of its outline is told
 HOLE = 0.03  # an area enclosing more than this share of the picture that went to a part behind it is told
 HOLE_BRIDGE = 0.02  # gaps in an area's outline narrower than about twice this (of the long side) count as closed
+
+
+_keep_readings = 6  # pictures' readings a `keep` folder holds, newest first (lower case: not a tuned number)
+
+
+_tmp_stale = 3600  # seconds: a temp reading this old was left by a killed write (lower case: not tuned)
+
+
+def prune(keep: Path, now: float | None = None) -> None:
+    """The newest `_keep_readings` readings stay; older ones go, and so do temp files left by a killed write. Other
+    engines may share the folder and rename or delete files at the same time: a file that's gone is skipped."""
+    now = time.time() if now is None else now
+    readings = []
+    try:
+        entries = list(os.scandir(keep))
+    except OSError:
+        return
+    for entry in entries:
+        if not entry.name.endswith(".npz"):
+            continue
+        try:
+            mtime = entry.stat().st_mtime
+        except OSError:  # renamed or deleted by another process since the listing
+            continue
+        if ".tmp." in entry.name:
+            if now - mtime > _tmp_stale:
+                with contextlib.suppress(OSError):
+                    os.unlink(entry.path)
+            continue
+        readings.append((mtime, entry.path))
+    for _, path in sorted(readings)[:-_keep_readings]:  # about 70 MB each
+        with contextlib.suppress(OSError):
+            os.unlink(path)
 
 
 class NoModel(RuntimeError):
@@ -71,7 +107,10 @@ class Sam:
     on 4 cores), `mask` per prompt (about 0.1 s). It replaced SAM ViT-B in #129: the same outlines on clear-edged
     parts, and it keeps a branch's twigs (docs/spikes/outline-models.md)."""
 
-    def __init__(self, folder: Path = MODELS):
+    def __init__(self, folder: Path = MODELS, keep: Path | None = None):
+        """`keep`: a folder where each picture's reading (the embedding) is kept, so the same picture is read once
+        however many times it's outlined. Only the engine (#176) passes one; without it every picture is read. The
+        key holds no CPU or runtime settings, so a folder is for one machine: don't share it between machines."""
         try:
             import onnxruntime as ort
         except ImportError as e:  # pragma: no cover
@@ -81,6 +120,9 @@ class Sam:
         self.enc = ort.InferenceSession(str(paths[0]), providers=["CPUExecutionProvider"])
         self.dec = ort.InferenceSession(str(paths[1]), providers=["CPUExecutionProvider"])
         self.emb = None
+        self.keep, self.ort_version = keep, ort.__version__
+        self._last: tuple | None = None  # (key, emb, interm) of the last picture read, with `keep`
+        self.reads = {"model": 0, "memory": 0, "disk": 0}  # how each picture's reading was got, with `keep`
 
     def embed(self, rgb: np.ndarray) -> None:
         h, w = rgb.shape[:2]
@@ -88,8 +130,59 @@ class Sam:
         self.nh, self.nw = int(h * self.scale + 0.5), int(w * self.scale + 0.5)
         # this export normalizes and pads inside the model: it takes the resized picture as it is
         x = cv2.resize(rgb, (self.nw, self.nh), interpolation=cv2.INTER_LINEAR).astype(np.float32)
+        key = self._key(rgb, x) if self.keep is not None else None
+        if key is not None and self._kept(key):
+            return
         out = self.enc.run(None, {"input_image": x})
         self.emb, self.interm = out[0], np.stack(out[1:], axis=0)
+        if key is not None:
+            self.reads["model"] += 1
+            self._save(key)
+
+    def _key(self, rgb: np.ndarray, x: np.ndarray) -> str:
+        """The picture's bytes and the model file that reads it (its SHA-256, checked when it's loaded), with the
+        runtime's version and the resized input, in case either would read it differently."""
+        enc = next(iter(FILES))
+        h = hashlib.sha256(f"{enc} {FILES[enc]} onnxruntime {self.ort_version} {rgb.shape} {rgb.dtype} "
+                           f"{x.shape}".encode())
+        h.update(np.ascontiguousarray(rgb).tobytes())
+        h.update(np.ascontiguousarray(x).tobytes())
+        return h.hexdigest()
+
+    def _kept(self, key: str) -> bool:
+        """The picture's reading from memory (the same picture as the last one) or from `keep`, when it's there."""
+        if self._last is not None and self._last[0] == key:
+            _, self.emb, self.interm = self._last
+            self.reads["memory"] += 1
+            return True
+        path = self.keep / f"{key}.npz"
+        if not path.exists():
+            return False
+        try:
+            with np.load(path) as saved:
+                emb, interm = saved["emb"], saved["interm"]
+        except (OSError, ValueError, KeyError):  # a file cut short: read the picture again
+            return False
+        self.emb, self.interm = emb, interm
+        self._last = (key, emb, interm)
+        self.reads["disk"] += 1
+        return True
+
+    def _save(self, key: str) -> None:
+        """Keep the reading on disk, written whole (to a temp file of this process, then renamed). Never fatal: the
+        reading is already in memory, so a full disk or a folder another engine is clearing costs only the next
+        engine's read."""
+        self._last = (key, self.emb, self.interm)
+        tmp = self.keep / f"{key}.{os.getpid()}.tmp.npz"
+        try:
+            self.keep.mkdir(parents=True, exist_ok=True)
+            np.savez(tmp, emb=self.emb, interm=self.interm)
+            tmp.replace(self.keep / f"{key}.npz")
+        except OSError:
+            with contextlib.suppress(OSError):
+                tmp.unlink()
+            return
+        prune(self.keep)
 
     def mask(self, box=None, points_in=(), points_out=()) -> tuple[np.ndarray, float]:
         """The outline for a box and/or points (all 0-1), and the model's own confidence (0-1)."""
