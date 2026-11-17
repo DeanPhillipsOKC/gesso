@@ -5,8 +5,13 @@
 the folded lessons' words and the fault counts are in `spike/experiments/bench/plan-first/<picture>/`. It is
 experiment code: no lesson tool, the skill, or the site changed.
 
-**Verdict: open until the owner scores the blind A/B** (section 7; the page is
-https://claude.ai/artifact/PrA7Gi1d6pLnQWfndRkZmp). What the plans and the fault counts say before it:
+**Verdict: adopt** planning the lesson first, as a painter's process, for the v3 design. Blind graders preferred the
+plan-first lesson on the highland cow and the sleeping cat (both graders each) and split on the birch grove (one
+for it, one no difference); it lost on none (section 7). The owner handed the grading to Claude on 2026-11-17
+(`docs/decisions.md`), so these are Claude's grades, not the owner's. Steps that cross parts come with it but are a
+small part of it. Nothing here becomes the pipeline until the v3 gate.
+
+What the plans and the fault counts say:
 
 - **A plan written before any outline is a longer, better-shaped lesson.** 22 to 24 steps where v2 planned 14 to
   16, with the extra steps on the subject: the cow's nose, nostrils and eye, and mouth each get a step with its own
@@ -259,25 +264,62 @@ printed once per part). The fold now says it once, and the A/B page was rebuilt 
 
 ## 7. The A/B
 
-Round `s7-plan-first`: the three baseline lessons against the plan-first lessons of the same finishes. The page is
-https://claude.ai/artifact/PrA7Gi1d6pLnQWfndRkZmp (3 pictures, 113 steps, 9.2 MB, sides drawn with `--seed 172`).
-Its answer key is `spike/experiments/bench/scores/s7-plan-first.key.json`; it says which side is which, so the owner
-doesn't open it before scoring.
+Round `s7-plan-first`: the three baseline lessons against the plan-first lessons of the same finishes. Unlike the
+peel and stages rounds, the two sides differ in everything from the plan on: steps, paints' names, words, and the
+step pictures. So all three scores count.
 
-Unlike the peel and stages rounds, the two sides differ in everything from the plan on: steps, paints' names,
-words, and the step pictures. So all three scores count, and "(b) I could paint each step from its words" and
-"Which would you paint from?" are the ones this spike is judged on.
+**Who graded.** The owner started this round on the phone page (https://claude.ai/artifact/PrA7Gi1d6pLnQWfndRkZmp)
+and stopped: "This is taking way too long to grade. Can't you do the grading ... I think you would be better at
+grading." From this round on, Claude grades (`docs/decisions.md`, 2026-11-17). Six graders in fresh contexts, two a
+picture, each given only `spike/experiments/bench/ab_grader.md` (the owner's rubric, and what the owner has marked
+down in earlier rounds) and a folder with the two lessons as `A/` and `B/`: every step's picture, paints and words,
+the photo and the finish. No grader was told what differs or which side is which, and the second grader of each
+picture had the sides swapped. The grades are in `spike/experiments/bench/scores/s7-plan-first.json`.
 
-What to expect, so the result can be read against it: the cow is where the plan should win (the face has steps);
-the cat is close to a tie on pictures with more steps on the cat; the birch grove's plan-first pictures are rougher
-than v2's in the canopy and bushes for a dozen steps, for a reason that is the outlines and not the plan.
+Scores are (a) real / (b) paintable / (c) agree, 1 to 5.
 
-**The rule** (`docs/decisions.md`, no noise floor): the spike beats v2 only if the owner prefers it on most of the
-three and it loses clearly on none.
+| Picture | Grader | v2 | Plan-first | Prefers | How sure |
+|---|---|---|---|---|---|
+| highland cow | 1 | 1 / 2 / 2 | 3 / 3 / 3 | plan-first | clear |
+| | 2 | 2 / 3 / 2 | 3 / 4 / 3 | plan-first | clear |
+| sleeping cat | 1 | 2 / 3 / 2 | 3 / 3 / 3 | plan-first | a moderate edge |
+| | 2 | 2 / 3 / 2 | 3 / 3 / 3 | plan-first | slight to clear |
+| birch grove | 1 | 2 / 3 / 2 | 3 / 4 / 3 | plan-first | clear |
+| | 2 | 2 / 2 / 2 | 2 / 3 / 2 | no difference | a toss-up, leaning plan-first |
 
-Not scored yet.
+**By the rule** (most pictures, and a clear loss on none; two graders who split are a tie): plan-first wins the cow
+and the cat, ties the birch grove, and loses none. It beats v2 on this round.
 
-## 8. What it means for v3, before the A/B
+What decided each, in the graders' words:
+
+- **Highland cow.** Both named the same two v2 faults: blotches where the cow will stand from step 1 to step 10, and
+  step 13, which names one gold and brings in the finished coat and the whole face ("No step ever paints the
+  face"). On the plan-first side "the block-in, shadow side, horns, coat, nose, nostrils and mouth each get a small
+  step a beginner can do in one go". Marked down on it: the cloud step is a flat apricot slab where the words ask
+  for dry-brush streaks, the copper locks step jumps from flat to nearly finished, and a gold rim rings the cow
+  five steps before a gold is named.
+- **Sleeping cat.** The cat's own steps read as near-identical on both sides. The difference is the sill and the
+  blanket: v2 finishes each in one step from one paint ("flat brown to finished wood with only a peach"), and the
+  plan splits them into shade and light, folds and stitches. Marked down on plan-first: the sky's named paint is a
+  gray where the picture is bright blue, and the last step, the whiskers, changes nothing.
+- **Birch grove.** Both lessons share the worst faults (the tiled backdrop, things on the canvas before their step,
+  flat boxes in the canopy). One grader found the plan-first side clearly better for its small steps on the rock,
+  trunks and fallen leaves and v2's two big jumps; the other called it a toss-up because the plan-first side's box
+  patches last through 14 steps.
+
+**Read it with these in mind.**
+
+- **Not all of the cow's win is the plan.** The blotches behind the cow are an outline fault the fitter happened to
+  close with extra points (section 4). The face steps are the plan's.
+- **(b) "I could paint each step from its words" moved least:** up a point for three graders and level for three.
+  The gains in (a) and (c) are steadier (five graders of six), from smaller steps whose pictures show what their
+  paints can do.
+- **The graders are Claude, grading lessons Claude wrote.** On S4 Claude liked the stages better and the owner
+  preferred v2. Here the graders were blind and the brief lists what the owner marks down, but a grader's taste is
+  still not the owner's. The check on that is the one lesson the owner grades at the end.
+- Every plan-first score is 2 to 4. It is the better of two flawed lessons on all three pictures, not a good one.
+
+## 8. What it means for v3
 
 - **Plan first is cheap to adopt on its own.** Writing the painter's plan before step 2 needs no new tool. The
   plan then says which parts the lesson needs, in place of parts chosen by what outlines well.
@@ -293,7 +335,6 @@ Not scored yet.
 
 ## 9. Not done
 
-- **The owner's A/B** (section 7).
 - **Fitting plan B.** Only plan A was fitted, so how much two fitted lessons of one picture differ isn't known; the
   plans differ little (section 3).
 - **A fit from nothing,** with no baseline outlines to start from. The birch grove is the nearest look at it.

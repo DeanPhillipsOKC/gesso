@@ -117,7 +117,8 @@ and the owner's A/B.
 - **S7. Plan before pixels (#172).** Claude writes the lesson as a painter would teach it (ground, block-in, middle
   values, shadows, lights, details; steps that cross parts) from the photo and the element techniques, and
   the layers are made to fit that plan. v2 does the reverse. Measure class F faults and the "could I paint
-  it" score. Run 2026-11-17: `docs/spikes/v3-plan-first.md` (verdict: open until the owner scores the A/B).
+  it" score. Run 2026-11-17: `docs/spikes/v3-plan-first.md` (verdict: adopt; Claude's blind
+  graders preferred it on 2 of 3 pictures and split on the third).
 
 ## Wave 3: teaching and text
 
