@@ -238,7 +238,9 @@ with the date.
   brought more than its words, and two steps that shared a paint couldn't be told apart. Both were fixed by giving
   such a step its own render (16 renders a lesson on the cow, about 29 cents, where the first lesson used 10 and
   18 cents). Next is the same on two more bench pictures with blind graders against v2, then building it into
-  `/paint-lesson`. The gate is unchanged: the owner still grades one finished lesson at the end.
+  `/paint-lesson` (#214). The gate is unchanged: the owner still grades one finished lesson at the end.
+  **About 29 cents of renders a lesson is fine (2026-11-17, owner's call):** "29 cents is fine." This answers the
+  design's open question on whether a chain's cost is low enough.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

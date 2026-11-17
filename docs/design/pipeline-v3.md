@@ -10,7 +10,7 @@ together. The first job of this design is one combined lesson that shows whether
 
 **The combined lesson ran on the highland cow (2026-11-17, `docs/spikes/v3-combined.md`), and the owner said go**
 ("Go, fix those two things first"). Next: the same on two more bench pictures, with blind graders against v2
-(section 12, step 3). What it showed, against this draft's guesses, and what changed because of it:
+(section 12, step 3; #214). The owner also said about 29 cents of renders a lesson is fine. What it showed, against this draft's guesses, and what changed because of it:
 
 - **Units are smaller than section 6 says (changed on the owner's call).** A block-in is a unit by itself, and so
   is a step whose paints its unit has all used already. Each gets its own render, so no block-in is a slab cut from
