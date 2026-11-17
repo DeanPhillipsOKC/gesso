@@ -168,6 +168,9 @@ those are S3 (#168). Parked until then.
 - **The A/B round** is `s1-peel`: the four baseline lessons against the same lessons with step pictures from the
   all-at-once low peel. Same plan, paints and words on both sides, so (a) "the step pictures look like a real
   half-done painting" is the score this spike moves. The words weren't rewritten for the new pictures.
+  The page is https://claude.ai/artifact/8wVSjPsn5MmUM8TWYbHHDQ (138 steps, 9.7 MB, sides drawn with `--seed 166`),
+  made by `ab_page.py make --round s1-peel`. Its answer key is `spike/experiments/bench/scores/s1-peel.key.json`:
+  it says which side is which, so the owner doesn't open it before scoring.
 
 ## 8. Not done
 
