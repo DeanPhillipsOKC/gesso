@@ -1,0 +1,306 @@
+{
+  "candidates": [
+    {
+      "calls_naming_it": 110,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl"
+    },
+    {
+      "calls_naming_it": 11,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 7,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a3030404a48164d37.jsonl"
+    },
+    {
+      "calls_naming_it": 2,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01.jsonl"
+    },
+    {
+      "calls_naming_it": 1,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f.jsonl"
+    },
+    {
+      "calls_naming_it": 1,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a907dd1d258e97263.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a821f6ce57950f213.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a907dd1d258e97263.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a9b5d02e3911432c1.jsonl"
+    },
+    {
+      "calls_naming_it": 0,
+      "transcript": "-home-user-gesso/bd8595bb-3261-58bc-974f-2a08bee67b01/subagents/agent-a9b5d02e3911432c1.jsonl"
+    }
+  ],
+  "file_marks": {
+    "00_beginner.png": {
+      "at": "2026-11-16T20:58:31Z",
+      "phase": 0
+    },
+    "00_canvas_frame.png": {
+      "at": "2026-11-16T20:57:50Z",
+      "phase": 0
+    },
+    "00_reference.png": {
+      "at": "2026-11-16T20:59:45Z",
+      "phase": 1
+    },
+    "99_finish.png": {
+      "at": "2026-11-16T21:00:31Z",
+      "phase": 1
+    },
+    "aids/aids.json": {
+      "at": "2026-11-16T21:39:10Z",
+      "phase": 5
+    },
+    "folder name (local time)": {
+      "at": "20261116-205703",
+      "phase": 0
+    },
+    "mixes.json": {
+      "at": "2026-11-16T21:43:17Z",
+      "phase": 5
+    },
+    "notes.json": {
+      "at": "2026-11-16T21:43:16Z",
+      "phase": 8
+    },
+    "parts/owner.png": {
+      "at": "2026-11-16T21:32:08Z",
+      "phase": 2
+    },
+    "review.json": {
+      "at": "2026-11-16T21:40:56Z",
+      "phase": 7
+    },
+    "sealed.json": {
+      "at": "2026-11-16T21:44:09Z",
+      "phase": 8
+    },
+    "text.json": {
+      "at": "2026-11-16T21:41:18Z",
+      "phase": 6
+    },
+    "trials/review/review.json": {
+      "at": "2026-11-16T21:40:56Z",
+      "phase": 7
+    }
+  },
+  "ledger": {
+    "by_phase": {
+      "0": 19.0,
+      "1": 31.7,
+      "5": 19.3
+    },
+    "cost_usd": 0.1088,
+    "renders": 3,
+    "seconds": 70.0
+  },
+  "lesson": "lake-cabin_skill_20261116-205703",
+  "phases": [
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 27.4,
+        "Read": 0.1,
+        "Skill": 0.3
+      },
+      "calls": 19,
+      "claude_s": 81.5,
+      "name": "set up, photo, canvas, beginner version",
+      "phase": 0,
+      "render_s": 19.0,
+      "renders": 1,
+      "started": "2026-11-16T20:57:00Z",
+      "tool_other_s": 8.7,
+      "tool_printed_s": 20.0,
+      "tool_s": 27.7,
+      "wall_s": 109.2
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 80.1,
+        "Read": 0.6
+      },
+      "calls": 12,
+      "claude_s": 38.7,
+      "name": "reference and finish",
+      "phase": 1,
+      "render_s": 31.7,
+      "renders": 1,
+      "started": "2026-11-16T20:58:49Z",
+      "tool_other_s": 49.0,
+      "tool_printed_s": 72.7,
+      "tool_s": 80.7,
+      "wall_s": 119.4
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 220.7,
+        "Read": 0.3
+      },
+      "calls": 14,
+      "claude_s": 99.1,
+      "name": "parts and outlines",
+      "phase": 2,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:00:48Z",
+      "tool_other_s": 221.1,
+      "tool_printed_s": 134.2,
+      "tool_s": 221.1,
+      "wall_s": 320.2
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 3.5,
+        "Read": 0.0
+      },
+      "calls": 3,
+      "claude_s": 13.5,
+      "name": "paints",
+      "phase": 3,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:06:08Z",
+      "tool_other_s": 3.5,
+      "tool_printed_s": 3.1,
+      "tool_s": 3.5,
+      "wall_s": 17.1
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 2.8
+      },
+      "calls": 6,
+      "claude_s": 69.1,
+      "name": "stages and steps",
+      "phase": 4,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:06:25Z",
+      "tool_other_s": 2.8,
+      "tool_printed_s": 0.4,
+      "tool_s": 2.8,
+      "wall_s": 71.9
+    },
+    {
+      "background_calls": 1,
+      "background_s": 73.0,
+      "by_tool_s": {
+        "Bash": 505.3,
+        "Read": 0.3
+      },
+      "calls": 19,
+      "claude_s": 88.5,
+      "name": "step pictures and aids",
+      "phase": 5,
+      "render_s": 19.3,
+      "renders": 1,
+      "started": "2026-11-16T21:07:37Z",
+      "tool_other_s": 486.1,
+      "tool_printed_s": 64.9,
+      "tool_s": 505.4,
+      "wall_s": 593.9
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 540.8,
+        "Grep": 0.1,
+        "Read": 0.1,
+        "Write": 0.1
+      },
+      "calls": 21,
+      "claude_s": 185.3,
+      "name": "text",
+      "phase": 6,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:17:31Z",
+      "tool_other_s": 541.2,
+      "tool_printed_s": 0.0,
+      "tool_s": 541.2,
+      "wall_s": 726.4
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 499.9,
+        "Read": 3.6
+      },
+      "calls": 37,
+      "claude_s": 174.5,
+      "name": "check and review",
+      "phase": 7,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:29:38Z",
+      "tool_other_s": 503.5,
+      "tool_printed_s": 7.5,
+      "tool_s": 503.5,
+      "wall_s": 678.0
+    },
+    {
+      "background_calls": 0,
+      "background_s": 0.0,
+      "by_tool_s": {
+        "Bash": 124.6,
+        "Read": 0.0,
+        "SubagentHandback": 0.2
+      },
+      "calls": 7,
+      "claude_s": 89.9,
+      "name": "diagrams, notes, seal",
+      "phase": 8,
+      "render_s": 0.0,
+      "renders": 0,
+      "started": "2026-11-16T21:40:56Z",
+      "tool_other_s": 124.8,
+      "tool_printed_s": 2.4,
+      "tool_s": 124.8,
+      "wall_s": 214.7
+    }
+  ],
+  "phases_from": "step files",
+  "totals": {
+    "background_calls": 1,
+    "background_s": 73.0,
+    "calls": 138,
+    "claude_s": 840.1,
+    "render_s": 70.0,
+    "tool_other_s": 1940.7,
+    "tool_printed_s": 305.2,
+    "tool_s": 2010.7,
+    "wall_s": 2850.8
+  },
+  "transcript": "-home-user-gesso/5bc39600-2f43-4810-b6ef-8a487b93f83f/subagents/agent-a4773601ee5ed2315.jsonl",
+  "warnings": [
+    "1 background calls ran for 73.0 s alongside Claude and other tools: in background_s, not in tool time (meanwhile the run's time counts as whatever it was doing: Claude time, or tool time for a wait such as sleep)"
+  ],
+  "window": {
+    "end": "2026-11-16T21:44:30Z",
+    "start": "2026-11-16T20:57:00Z",
+    "wall_s": 2850.8
+  }
+}

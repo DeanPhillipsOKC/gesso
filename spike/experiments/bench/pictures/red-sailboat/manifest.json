@@ -1,0 +1,78 @@
+{
+  "beginner_version": false,
+  "canvas_render": false,
+  "files": {
+    "00_canvas_frame.png": {
+      "bytes": 2179325,
+      "sha256": "e2571618e41e38334b75e7dff8a354e1c2eff89d05006579b383c784f935eb7d"
+    },
+    "00_reference.png": {
+      "bytes": 553587,
+      "sha256": "e578540bce7bb8cb3100e3d049feb50665bf94254f94107004fe92b4fa25e984"
+    },
+    "00_reference_palette.json": {
+      "bytes": 610,
+      "sha256": "8096920bf15553f0e541760506991bcb26202ebfd784069467a7e518fce7ed6f"
+    },
+    "00_reference_palette.png": {
+      "bytes": 895,
+      "sha256": "b3590e2bee7b528e13c4cc7c6af4e1ae8f3ddf6a3b33cb2892bd13e82a6d7836"
+    },
+    "00_reference_value-study.png": {
+      "bytes": 25570,
+      "sha256": "9d2e9122d1cf2d4493c61d37e4ff54834684e3b47a7ab29cfe4a74f9ff4f660f"
+    },
+    "99_finish.png": {
+      "bytes": 2627427,
+      "sha256": "4be547f86b39bcb5a9ce4c4302d2da0b6caa84f60a892fb125d454276eb210e8"
+    },
+    "canvas.json": {
+      "bytes": 612,
+      "sha256": "1c3ab16595aad76fe5eaa269304262c53fd6e44a37e31a6038dbba7b7575fced"
+    },
+    "notes0.json": {
+      "bytes": 2240,
+      "sha256": "7030e39cf65c995b4340f9d990dfde45bd7875c61b3f5e8f1ca29a213efef173"
+    },
+    "photo.png": {
+      "bytes": 2458371,
+      "sha256": "30f47f263cc197e2687a8d2d90eae098123a525259fb59159580cf0fe5ee7da4"
+    },
+    "review0.json": {
+      "bytes": 289,
+      "sha256": "3a37a5806cfc2df87430baad99ec8879fc692ab4cab87bb3edd65bcd16a3d295"
+    }
+  },
+  "photo": "photo.png",
+  "photo_source": "photos/red-sailboat.png",
+  "picture": "red-sailboat",
+  "plan_photo": "00_canvas_frame.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 36.8,
+      "step": "finish"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0666,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 35.9,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "red-sailboat_skill_20261116-203450",
+    "sealed_at": "2026-11-16T20:56:30",
+    "version": "POC 1.12.1"
+  }
+}

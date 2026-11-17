@@ -1,0 +1,38 @@
+{
+  "beginner_version": {
+    "busy": {
+      "photo": {
+        "edges": 0.0231,
+        "fine_texture": 0.0,
+        "picture": "00_canvas_fit.png",
+        "tiles": 0,
+        "where": "busy/00_canvas_fit.jpg"
+      }
+    },
+    "found": "Tiny separate things: none (the window has a few leaves outside, read as one soft green mass). Textures of hundreds of items: the knit is about a hundred V-shaped stitches, but it's already one repeated mark (short curved dabs in rows), and busy measured 0.0% fine texture. Detail inside big shapes: the tabby stripes, which one repeated mark (a curved dark stroke) makes. Parts: wall, window and leaves, sill, blanket, cat body, head and ears, white chest and paws, face details: within the budget of 8.",
+    "list": "nothing dropped or merged",
+    "made": false,
+    "why": "The picture is already a loose painting with big shapes and no fine texture (busy 0.0%), so the lesson is made from the fitted photo."
+  },
+  "canvas_fit": {
+    "canvas": "16 x 12 in, landscape",
+    "lost": "nothing; the first extend render turned the plain blue wall into an outdoor sky with clouds and a lake, so it was redone once with the wall named as a plain indoor wall, and the redo kept the scene",
+    "mode": "extend",
+    "why": "No canvas was named, so fit-canvas picked the standard size closest to the 3:2 photo (12x16, landscape). Cropping to that shape would cut the cat's back or the blanket, so the picture sits on the canvas and the edges were painted on by one extend render."
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "a gray tabby cat asleep, curled on a folded mustard-yellow knitted blanket on a wooden window sill, a plain pale blue wall behind and a white window frame with green leaves outside at the left",
+    "why": "The image is an AI-made painting with no app bars, borders, captions or watermark; everything in it is part of the scene."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so a v2 plan can't follow it; and the owner prefers paint-along for beginners."
+      }
+    ],
+    "why": "Paint-along, back to front, suits a calm scene with one big subject: the wall and window behind first, then the sill, the blanket and the cat on top, at the beginner level the owner paints at."
+  }
+}

@@ -1,0 +1,458 @@
+{
+ "packet": "p02",
+ "painting": "a snowy night: a glowing brass lantern hangs from a bracket on a snow-capped fence post, under a full moon and stars, with dark pines and lantern-lit snow drifts",
+ "steps": [
+  {
+   "n": 1,
+   "id": "night-sky",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower sky is covered by a regular grid of small round dots and mirrored V-shaped seams, a tiled pattern no brush makes",
+     "where": "AFTER picture, x 0-100%, y 33-66% (about 4 to 8 in down, all the way across)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "D",
+     "severity": "major",
+     "sees": "Pale star gray is #9ca0b6, a mid blue-gray, but every star in the picture is a pure white dot, much lighter than the named paint",
+     "where": "paints / tip; AFTER picture, stars across the top 4 in",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: Creamy paint.\" is used as if a beginner knows what a creamy load is, with nothing on the step explaining it",
+     "where": "words line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "full-moon",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same tiled grid of dots and mirrored seams in the lower sky",
+     "where": "AFTER picture, y 33-66%",
+     "same_as": "f1"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "dark-pines",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the same tiled grid of dots shows in the strip below the hill line",
+     "where": "AFTER picture, y 52-66%, all across",
+     "same_as": "f1"
+    },
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "major",
+     "sees": "a stroke of pale snow blue lies inside the far-right pine group, though no snow has been painted yet",
+     "where": "AFTER picture, x 92-100%, y 39-42% (about 14 3/4 to 16 in from the left, 4 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the far-right pines carry a dark slab that juts out left below the trees, past their bases",
+     "where": "AFTER picture, x 90-96%, y 40-44% (about 14 1/2 in from the left, 5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "E",
+     "severity": "major",
+     "sees": "the words ask for thin paint stamped with a fan to leave \"fine, needle-like marks, light at the top\"; the picture shows solid, flat dark silhouettes and a solid dark band along the hill, which thin fan taps would not make",
+     "where": "words lines 5-8; AFTER picture, x 0-48%, y 15-58%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "snow-shadow-blue",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "major",
+     "sees": "the whole snow field is one flat, uniform blue with no brush marks at all, though the words promise long curved strokes that read as drifts",
+     "where": "AFTER picture, x 0-100%, y 43-100% (from about 5 in down to the bottom)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "drift-tops",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat brushless snow fill is still there between the new marks",
+     "where": "AFTER picture, y 43-100%",
+     "same_as": "f9"
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "pink and salmon marks already appear in a ring across the lower snow, the Dusky glow pink that step 6 paints, while this step only lays lavender",
+     "where": "AFTER picture, x 5-95%, y 63-95% (about 7 1/2 to 11 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "dusky-glow",
+   "faults": [
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat brushless snow fill is still there around the marks",
+     "where": "AFTER picture, y 43-100%",
+     "same_as": "f9"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "bright-glow",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the whole snow field is repainted: the flat blue becomes fully modeled drifts with many blue and lavender strokes and a new hill-line edge, while the words ask only for peach; only about a fifth of what changes is near Warm glow peach",
+     "where": "AFTER picture, x 0-100%, y 43-100%",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "a straight vertical seam with a lighter rectangular patch to its right and a warm vertical smear below it, just where the lantern will hang; no brush makes it",
+     "where": "AFTER picture, x 66-70%, y 43-70% (about 10 1/2 to 11 in from the left, 5 to 8 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "fence-rails",
+   "faults": [
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    },
+    {
+     "id": "f16",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a pale-blue speck hangs off the bottom of the upper rail near its left end",
+     "where": "AFTER picture, x 88-91%, y 60-62% (about 14 1/4 in from the left, 7 1/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "post",
+   "faults": [
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    },
+    {
+     "id": "f18",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the post is a flat shape with blobby lumps on both sides: one bulging into the sky on the left, others reaching over the rails on the right",
+     "where": "AFTER picture, x 76-78%, y 25-38% (left, about 3 to 4 1/2 in down) and x 92-93%, y 43-50% (right)",
+     "same_as": null
+    },
+    {
+     "id": "f19",
+     "class": "C",
+     "severity": "minor",
+     "sees": "the tip says the post runs \"from just below the top edge\", but line 3 and the picture put its top about 1 3/4 in down",
+     "where": "tip; AFTER picture, post top at y 14%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "post-grain",
+   "faults": [
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    },
+    {
+     "id": "f21",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the blobby lumps on the post outline remain",
+     "where": "AFTER picture, x 76-78%, y 25-38%",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "post-lit-side",
+   "faults": [
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    },
+    {
+     "id": "f23",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the blobby lump on the post's left side remains",
+     "where": "AFTER picture, x 76-78%, y 25-38%",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "bracket-dark",
+   "faults": [
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    },
+    {
+     "id": "f25",
+     "class": "B",
+     "severity": "major",
+     "sees": "the arm and brace are painted as one solid dark slab that fills the sky triangle between them (the tip itself admits this and tells the painter not to copy it)",
+     "where": "AFTER picture, x 64-79%, y 18-37% (about 10 1/4 to 12 3/4 in from the left, 2 1/4 to 4 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "bracket-light",
+   "faults": [
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "caps-blue",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "caps-lavender",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "caps-warm",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "the same vertical seam and patch in the snow",
+     "where": "AFTER picture, x 66-70%, y 43-70%",
+     "same_as": "f14"
+    },
+    {
+     "id": "f30",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names Warm-lit snow pink in small marks on the left ends only, but the picture turns the whole top of every cap pale cream-white; this is the caps' last step and the white highlight is never named",
+     "where": "AFTER picture, post cap x 77-92%, y 8-14%; rail caps x 87-100%, y 45-52% and 67-73%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "lantern-orange",
+   "faults": []
+  },
+  {
+   "n": 18,
+   "id": "glass-glow",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says yellow only on the left side of the cap and hook and to stop well short of the glass edges; the picture adds yellow on the right of the cap, on the base and in patches at both edges of the glass",
+     "where": "tip; AFTER picture, x 50-68%, y 22-66%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "brass",
+   "faults": [
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "one step jumps from a flat orange shape to a fully modeled brass lantern: shaded dome, lit brim, ringed base band, highlights and darks throughout, all with one brown and a #4 round",
+     "where": "AFTER picture, x 50-71%, y 17-66%",
+     "same_as": null
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark vertical bars already show on the glass, though painting the bars is step 20",
+     "where": "AFTER picture, x 54-66%, y 40-62% (about 9 to 10 1/2 in from the left)",
+     "same_as": null
+    },
+    {
+     "id": "f34",
+     "class": "E",
+     "severity": "minor",
+     "sees": "a ring and loop appear between the hook and the cap; no line asks for them (the words call the hook \"one curl\")",
+     "where": "AFTER picture, x 56-62%, y 22-31%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "dark-bars",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names Deep night blue for dark bars, but the bars and brass in the picture come out bronze-brown and gold; only about 14% of what changes is near the named blue",
+     "where": "AFTER picture, x 54-66%, y 40-62%",
+     "same_as": null
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "the glass sides change from yellow-orange to a deep red-orange with no word about it",
+     "where": "AFTER picture, x 50-56% and 64-70%, y 41-61%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [
+  {
+   "id": "f37",
+   "class": "F",
+   "severity": "minor",
+   "steps": [
+    1,
+    4,
+    9,
+    11
+   ],
+   "sees": "mixed acrylic is to be kept covered on the palette for up to 19 steps (Deep night blue from step 1 to step 20, Shadow snow blue 4 to 14, Warm wood brown 9 to 19), across many dry-to-the-touch waits; acrylic skins and dries in that time, with no advice to remix",
+   "where": "words: step 1 line 3, step 4 line 4, step 9 line 5"
+  }
+ ],
+ "counts": {
+  "A": 22,
+  "B": 6,
+  "C": 1,
+  "D": 3,
+  "E": 3,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 9,
+  "B": 4,
+  "C": 1,
+  "D": 3,
+  "E": 3,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  7,
+  19,
+  1
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups and diagrams, the transfer outline in Before you start, whether the site shows this version, and the lesson history; the packet only shows step pictures (all 20 present, numbered 1-20 with no gap)",
+  "H": "how the render and cutting tools ran, whether diagrams or close-ups came out right, and whether checks caught problems; no placeholders, tool notes or repeated lines show in the words"
+ },
+ "summary": "Most faults are in the step pictures: a tiled dot grid in the lower sky (steps 1-3), a flat brushless snow fill (4-6), a vertical seam patch where the lantern will hang that persists from step 7 to 16, and two big jumps where one step restyles everything (step 7 remodels the whole snow field, step 19 finishes the brass lantern in one move). Where the words and pictures disagree on color, it's the last step of a part adding color it never names (white cap highlights in 16, bronze bars where the words say Deep night blue in 20). Placement is accurate throughout."
+}

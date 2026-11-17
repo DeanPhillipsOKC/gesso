@@ -1,0 +1,32 @@
+{
+  "filed_issues": [],
+  "finish_issues": [
+    "First finish render (trials/99_finish_first.png) turned the photo's soft hazy gray-blue background into a saturated cornflower blue, changing the misty mood; redone once with the photo as the second input, and the redo matches."
+  ],
+  "known_problems": [
+    {
+      "name": "Pull the trunk and branch in bark brown",
+      "problem": "x 12-14, y 11-14 and x 66-68, y 79-82: round dark knobs at the stem ends are the tops of the leaves cut in with the branch; a painter wouldn't paint them, and the leaves cover them in steps 7 and 8",
+      "step": 5
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the branch's outline takes the top of each leaf at its stem end; the leaves cover it in steps 7 and 8",
+        "fix": "none in the text: the outline of the branch takes the top of each leaf",
+        "kind": "unpaintable",
+        "problem": "x 12-14, y 11-14 and x 66-68, y 79-82: round dark knobs at the stem ends are the tops of the leaves cut in with the branch; a painter wouldn't paint them, and the leaves cover them in steps 7 and 8",
+        "step_id": "branch-dark"
+      }
+    ]
+  },
+  "run": "chickadee_skill_20261116-203451"
+}

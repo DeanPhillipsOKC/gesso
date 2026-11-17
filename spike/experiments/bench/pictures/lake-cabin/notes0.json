@@ -1,0 +1,52 @@
+{
+  "beginner_version": {
+    "busy": {
+      "beginner": {
+        "edges": 0.0286,
+        "fine_texture": 0.009,
+        "picture": "00_beginner.png",
+        "tiles": 4,
+        "where": "busy/00_beginner.jpg"
+      },
+      "finish": {
+        "edges": 0.0426,
+        "fine_texture": 0.033,
+        "picture": "99_finish.png",
+        "tiles": 15,
+        "where": "busy/99_finish.jpg"
+      },
+      "photo": {
+        "edges": 0.0443,
+        "fine_texture": 0.144,
+        "picture": "00_canvas_frame.png",
+        "tiles": 65,
+        "where": "busy/00_canvas_frame.jpg"
+      }
+    },
+    "found": "Tiny separate things: yes, the cabin's windows, the dock's posts and railing, single pebbles. Hundreds of items: yes, dozens of separate spruces along the top-left skyline and the shore, hundreds of reed blades, a beach of pebbles, rock veins in the snow (busy outlined the skyline spruces, the peak, the dock, the reeds, the pebbles, and the ripple rings: 14.4% of the canvas). Detail inside big shapes: yes, crevices and rock in the snowfield, ripple rings in the water. More parts than 8: yes at the photo's level of detail.",
+    "list": "the mountain to three or four snow and shadow planes; the far slope to one blue-green mass; the spruce forest (the outlined skyline at top left) to a few big stacked-dab spruces; the cabin to a red box with a gray roof and one window; the dock to one plank line with no posts or railing; reflections to soft vertical blurs with a few ripple lines and no rings (the outlined band across the middle of the water); the reeds (outlined at the left) to a clump of flicked strokes in two greens; the pebbles (outlined at bottom left) to five or six big stones",
+    "made": true,
+    "why": "the photo's spruces, reeds, pebbles, and rock veins would each force a step that jumps from flat to dense texture"
+  },
+  "canvas_fit": {
+    "canvas": "16 x 12 in, landscape (default: the standard size closest to the 3:2 photo)",
+    "lost": "about 0.6 in-equivalent strips at each side: 11% of the width, empty sky and forest at the left edge and far-shore forest and water at the right edge",
+    "mode": "crop",
+    "why": "the photo is 3:2 and the closest standard canvas is 4:3; a crop keeps the cabin, the peak, and both reflections whole for free"
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "a mountain lake at dawn: a small red cabin with a dock on the left shore under tall spruces, a snow-capped peak on the right, and both mirrored in still water, with reeds and pebbles in the left foreground",
+    "why": "nothing outside the scene (no bars, borders, text, or frame); the picture is AI-made and already stored in photos/"
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so pipeline v2 can't plan with it; the owner also prefers paint-along for acrylic beginners."
+      }
+    ],
+    "why": "Paint-along, back to front, fits a landscape that goes sky, mountain, forest, cabin, lake, reflections, reeds, rocks, and it's the beginner approach with version 2 rules."
+  }
+}

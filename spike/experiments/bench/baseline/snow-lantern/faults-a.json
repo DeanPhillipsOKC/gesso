@@ -1,0 +1,402 @@
+{
+ "packet": "p02",
+ "painting": "a brass lantern glowing from a snowy wooden fence-post bracket at night, with a full moon, stars, dark pines and lantern light on the snow (16 x 12 in)",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower sky is covered with a mirrored, kaleidoscope-like texture and a regular grid of small round dots in rows, nothing a brush makes",
+     "where": "AFTER picture, x 0-100%, y 40-66% (about 4 3/4 to 7 3/4 in down from the top)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "minor",
+     "sees": "dark purple-black smudges low in the sky where no paint is named (ghost-like dark shapes; the finish has plain sky there)",
+     "where": "AFTER picture, x 47-78%, y 33-46%",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 puts the sky's bottom about 5 in from the bottom edge; in the picture it is about 4 1/8 in from the bottom edge (7 7/8 in down), about 7/8 in off",
+     "where": "line 1; AFTER picture, sky bottom at y 66%",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "D",
+     "severity": "minor",
+     "sees": "stars are named as Pale star gray (#9ca0b6, a mid lavender-gray) but the picture's stars are near-white (about #e6eff7), much lighter",
+     "where": "line 2 and tip; AFTER picture, stars across x 0-100%, y 0-35%",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 8 says 'Let it dry, then blend a new thin layer on top' with no colors or reason; it contradicts line 6's one smooth coat and the tip's stars dotted once the sky is dry (a new layer would cover them)",
+     "where": "line 8",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' is used with nothing on the step explaining what a creamy load is",
+     "where": "line 4",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "F",
+     "severity": "minor",
+     "sees": "too much in one step: a wet whole-sky blend, a second dried layer, and then dotting a few dozen stars with the brush handle, the stars hidden in the tip",
+     "where": "lines 2, 8 and tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sky-moon",
+   "faults": []
+  },
+  {
+   "n": 3,
+   "id": "pines-stamp",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a light-blue snow stripe shows under the right pines, before any snow step",
+     "where": "AFTER picture, x 92-100%, y 32-35% (about 4 in down at the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the right pine group's dark area has a slab that sticks out left past the trees into the sky as a blobby wedge with nothing above it",
+     "where": "AFTER picture, x 89-94%, y 34-37%",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "E",
+     "severity": "minor",
+     "sees": "lines 6-8 say fan stamps leave clusters of fine needle-like marks, light at the top; the picture's pines are solid, smooth dark silhouettes",
+     "where": "lines 6-8; AFTER picture, x 0-46%, y 15-56%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "snow-base",
+   "faults": [
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "the whole snow area is one dead-flat fill with no brush marks and no drift curves, a digital fill rather than the long curved strokes the words describe",
+     "where": "AFTER picture, x 0-100%, y 40-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "snow-tops",
+   "faults": [
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "pink and peach glow colors (the steps 6-7 lantern light) already show among the lavender, in a ring around a bare middle",
+     "where": "AFTER picture, x 0-100%, y 66-100%, e.g. x 25-60%, y 68-76%",
+     "same_as": null
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat, brushless blue fill from step 4 still covers most of the snow",
+     "where": "AFTER picture, x 0-100%, y 40-75%",
+     "same_as": "f11"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "snow-glow-edge",
+   "faults": [
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat, brushless blue fill from step 4 still covers most of the snow",
+     "where": "AFTER picture, x 0-100%, y 40-70%",
+     "same_as": "f11"
+    },
+    {
+     "id": "f15",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Scumble' (title, line 8) and 'Thick paint, a light load. A dry brush' are used without explaining what they are",
+     "where": "title, lines 4 and 8",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "snow-glow",
+   "faults": [
+    {
+     "id": "f16",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names only Warm glow peach, but most of what the picture adds (about 60%) is blue, lavender and near-white drift strokes repainted over the whole snowfield; only about 40% is near the peach",
+     "where": "AFTER picture, x 0-100%, y 42-100%",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a vertical warm-brown smear and a straight vertical seam in the snow between where the lantern and the post will go, painted by nothing",
+     "where": "AFTER picture, x 65-73%, y 45-70% (about 10 1/2 in from the left, 5 1/2-8 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f18",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'a light load' and 'scumble' (line 8) again used without explanation",
+     "where": "lines 4 and 8",
+     "same_as": "f15"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "rails-block",
+   "faults": [
+    {
+     "id": "f19",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the rails' left ends are ragged with drips hanging below them, and light lens-shaped specks sit on their top and bottom edges",
+     "where": "AFTER picture, x 84-88%, y 50-56% and 68-74%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "post-block",
+   "faults": [
+    {
+     "id": "f20",
+     "class": "B",
+     "severity": "major",
+     "sees": "the post's outline is lumpy: big bulges on its left side near the top and a spike and deep notches on its right side, so snow and sky show where the post's edge should be straight",
+     "where": "AFTER picture, left side x 75-78%, y 8-30%; right side x 89-93%, y 38-75%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "post-shade",
+   "faults": [
+    {
+     "id": "f21",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the post's lumpy left side and notched right side from step 9 are still there",
+     "where": "AFTER picture, x 75-78%, y 8-30% and x 89-93%, y 38-75%",
+     "same_as": "f20"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "post-light",
+   "faults": [
+    {
+     "id": "f22",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the post's lumpy left side and notched right side from step 9 are still there",
+     "where": "AFTER picture, x 75-78%, y 8-30% and x 89-93%, y 38-75%",
+     "same_as": "f20"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "bracket-pull",
+   "faults": [
+    {
+     "id": "f23",
+     "class": "B",
+     "severity": "major",
+     "sees": "the arm and brace are one flat blob that fills the triangle of sky between them, with a lumpy left end",
+     "where": "AFTER picture, x 68-78%, y 18-37% (about 10 1/4 to 12 3/8 in from the left, 2 1/4 to 4 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "H",
+     "severity": "minor",
+     "sees": "the tip carries a note about the tool's own picture: 'The step picture fills the little triangle between the arm and the brace dark too; leave that triangle sky blue'",
+     "where": "tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "bracket-light",
+   "faults": [
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the dark-filled triangle between arm and brace turns back to sky blue, and the arm's left end changes shape, though the words only drag warm brown on the top edges",
+     "where": "AFTER picture, x 70-76%, y 22-33%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "caps-base",
+   "faults": []
+  },
+  {
+   "n": 15,
+   "id": "caps-tops",
+   "faults": []
+  },
+  {
+   "n": 16,
+   "id": "caps-warm",
+   "faults": [
+    {
+     "id": "f26",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says only the left side of the post's cap and the left ends of the rail caps get small marks, but the picture lightens most of every cap, across their whole length",
+     "where": "tip; AFTER picture, x 66-100%, y 8-75%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "lantern-glass",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the lantern block-in is a lumpy blob: lumps on both sides at the cap's level and a thick sausage-shaped hook with no ring",
+     "where": "AFTER picture, x 50-68%, y 17-66%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "lantern-glow",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "major",
+     "sees": "the yellow is cut-out, hard-edged flat patches on flat orange (posterized), not soft circular strokes fading into the orange",
+     "where": "AFTER picture, x 52-66%, y 30-65%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "lantern-brass",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the lantern goes from a flat orange blob with yellow patches to a fully modeled brass cap, brim, base, two chain links and glass bars with highlights and shadows in one step with one round brush",
+     "where": "AFTER picture, x 50-68%, y 15-66%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "lantern-darks",
+   "faults": [
+    {
+     "id": "f30",
+     "class": "D",
+     "severity": "blocker",
+     "sees": "the bars and shadow lines are named as Deep night blue (#0d2d81), but the picture's new bars and lines are brass brown; only about a fifth of what it adds is near that blue",
+     "where": "lines 4-7; AFTER picture, glass bars x 54-63%, y 40-63%",
+     "same_as": null
+    },
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "major",
+     "sees": "the glass changes with no instruction: its sides turn deep red-orange and its outline is cleaned up (the orange halo around the brass from steps 17-19 disappears)",
+     "where": "AFTER picture, x 50-68%, y 30-66%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 12,
+  "B": 7,
+  "C": 1,
+  "D": 3,
+  "E": 3,
+  "F": 4,
+  "G": 0,
+  "H": 1
+ },
+ "distinct": {
+  "A": 10,
+  "B": 5,
+  "C": 1,
+  "D": 3,
+  "E": 3,
+  "F": 3,
+  "G": 0,
+  "H": 1
+ },
+ "worst_steps": [
+  20,
+  1,
+  19
+ ],
+ "not_visible": {
+  "G": "the lesson page's layout, links, close-ups and diagrams, whether this is the current version on the site, the lesson history; step numbering and all 20 step pictures are present and in order",
+  "H": "how the run went, whether diagrams or close-ups rendered, whether checks missed problems; only text leaks and placeholders in lesson.md/packet.json can be seen"
+ },
+ "summary": "The step pictures carry most faults: a kaleidoscope dot-grid in the first sky, flat digital fills (snow, post, bracket, lantern) with lumpy outlines, ghosts of the glow before its steps, and big unasked changes or jumps (the snowfield repainted on the peach step, the brass fully modeled in one step, the glass recolored on the bars step). The words mostly match the pictures, but paints go wrong at the ends (white stars named gray, unnamed drift colors on step 7, brown bars named Deep night blue), and some loads and terms are used unexplained."
+}

@@ -1,0 +1,484 @@
+{
+ "packet": "p03",
+ "painting": "a red sailboat with a white sail on teal water at sunset, low sun over a purple hill, with the sun's golden path and the boat's reflection",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a darker orange disk already shows where the sun will go, before the sun step",
+     "where": "AFTER picture, about 7.3-8.1 in from the left, 4.7-5.5 in down",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' is used as if a beginner knows what creamy means; nothing on the step explains it (later 'a light load' the same way)",
+     "where": "words line 4",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "E",
+     "severity": "minor",
+     "sees": "'Let it dry, then blend a new thin layer on top' does not say when or whether to do this (always? only if streaky?) or which colors",
+     "where": "words line 8",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun",
+   "faults": []
+  },
+  {
+   "n": 3,
+   "id": "hills",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "E",
+     "severity": "minor",
+     "sees": "stroke and result lines are water text ('flat, level bands that seem to stretch away') for a hill with a sloping top edge; nothing says how to cut in the hill's outline against the sky",
+     "where": "words lines 6-7",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a thin, ruler-straight dotted light line runs across the dark shore band where the water will start, nothing this step paints",
+     "where": "AFTER picture, y about 6.47 in down, x 0 to about 11.5 in",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "water-base",
+   "faults": [
+    {
+     "id": "f6",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the water is one perfectly uniform flat fill with no brush marks at all, though the words promise slight streaks that follow the stroke",
+     "where": "AFTER picture, whole water, y 6.5-12 in",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "water-streaks",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "major",
+     "sees": "flat, untouched teal patches with hard ragged edges are left where the sun's path will go, the shape of the later path",
+     "where": "AFTER picture, x about 5.3-10 in, y 6.5-9.3 in down",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "major",
+     "sees": "a flat, untouched teal patch with hard ragged edges, shaped like the boat's reflection, is left in the water long before the boat exists",
+     "where": "AFTER picture, x about 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "A",
+     "severity": "minor",
+     "sees": "orange and gold dashes of the sun's path already show in the light water streaks, a step before the path is painted",
+     "where": "AFTER picture, x about 1.7-11 in, y 6.6-11.5 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "sun-path-first",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint, a light load' again with no explanation of either term",
+     "where": "words line 4",
+     "same_as": "f2"
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal path-shaped patch is still there between the dashes",
+     "where": "AFTER picture, x about 5.5-9 in, y 6.5-9.3 in down",
+     "same_as": "f7"
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "sun-path-gold",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 2 reuses step 6's area (left side 1 3/4 in from the left edge, 8 1/2 in wide); the gold this step adds runs only from about 4.6 to 10.4 in from the left, mostly 6-9 in",
+     "where": "words line 2 vs AFTER picture",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint, a light load' again with no explanation",
+     "where": "words line 4",
+     "same_as": "f2"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "sail-block",
+   "faults": [
+    {
+     "id": "f16",
+     "class": "B",
+     "severity": "major",
+     "sees": "the sail's painted area takes in a thin pale sliver curving out to the left along the water and a small square tab hanging below its foot at the mast",
+     "where": "AFTER picture, sliver x 11.35-12.0 in, y about 7.0 in down; tab at x about 12.5 in, y 6.95-7.07 in",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "sail-shade",
+   "faults": [
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a mirrored, symmetric lace or kaleidoscope pattern covers the sail, nothing a dry brush makes",
+     "where": "AFTER picture, whole sail, x 11.4-14.2 in, y 3.2-7.0 in down",
+     "same_as": null
+    },
+    {
+     "id": "f19",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names only Sail shadow gray (#c3bec0), but most of what it adds is near-white cream (about #fce4cc) that lightens the whole sail, plus bluish gray",
+     "where": "AFTER picture, sail; paints list",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "mast-line",
+   "faults": [
+    {
+     "id": "f21",
+     "class": "B",
+     "severity": "major",
+     "sees": "the mast-and-boom area takes in a dark half-disk blob below the boom at the mast foot and a second long dark line under the boom; the words promise only two lines",
+     "where": "AFTER picture, blob x 12.45-12.75 in, y 6.95-7.2 in down; extra line y about 7.05 in, out to 14.3 in",
+     "same_as": null
+    },
+    {
+     "id": "f22",
+     "class": "D",
+     "severity": "major",
+     "sees": "Deep teal is named for the boom ('the grayer teal line'), but the boom in the picture is the same dark brown as the mast",
+     "where": "words line 4 and tip vs AFTER picture, boom y about 6.9 in, x 12.6-14.2 in",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    },
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "mast-light",
+   "faults": [
+    {
+     "id": "f25",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the light marks are not on the mast's left edge only: rust-red streaks run down both edges and onto the boom and the foot blob, which the tip says to leave dark",
+     "where": "AFTER picture, mast x 12.5-12.7 in and boom out to 14.3 in, y 3.1-7.3 in down",
+     "same_as": null
+    },
+    {
+     "id": "f26",
+     "class": "B",
+     "severity": "major",
+     "sees": "the dark half-disk blob and the extra line below the boom are still there",
+     "where": "AFTER picture, x 12.45-12.75 in, y 6.95-7.2 in down",
+     "same_as": "f21"
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    },
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.4-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "hull-block",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there below the new hull",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.8-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "hull-rail",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the red strip under the hull turns into a repeating chevron or zigzag tile pattern, nothing a brush makes",
+     "where": "AFTER picture, x about 11.5-14.3 in, y 7.6-7.8 in down",
+     "same_as": null
+    },
+    {
+     "id": "f32",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names only Warm off-white for one rail line, but most of what it adds is dark red shading and brushwork over the whole hull, never named or asked for",
+     "where": "AFTER picture, hull x 11.4-14.5 in, y 7.0-7.6 in down; words lines 4, 6",
+     "same_as": null
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    },
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat teal reflection-shaped patch is still there",
+     "where": "AFTER picture, x 11.3-14.4 in, y 7.8-11.3 in down",
+     "same_as": "f8"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "reflection-base",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "major",
+     "sees": "the reflection is one flat, opaque, hard-edged gray slab with no stroke marks and no teal showing through, while the words and finish call for soft, streaky, see-through dry-brush marks",
+     "where": "AFTER picture, x 11.5-14.6 in, y 7.9-11.3 in down",
+     "same_as": null
+    },
+    {
+     "id": "f36",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the red band under the hull is broken up into separate streaks, and no line of this step asks for it",
+     "where": "AFTER picture, x 11.5-14.5 in, y 7.6-7.9 in down",
+     "same_as": null
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "reflection-white",
+   "faults": [
+    {
+     "id": "f38",
+     "class": "C",
+     "severity": "major",
+     "sees": "the tip makes each white column about 1 1/4 in long; in the picture the whites run about 2 1/2 in, from about 8 to 10.5 in down",
+     "where": "tip vs AFTER picture, x 11.7-13.9 in",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip asks for two broken columns of white, one under each triangle; the picture shows stacked horizontal dashes spread across the whole reflection width",
+     "where": "tip vs AFTER picture, x 11.7-13.9 in, y 8-10.5 in down",
+     "same_as": null
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "the flat opaque gray slab still shows between the whites",
+     "where": "AFTER picture, x 11.5-14.6 in, y 7.9-11.3 in down",
+     "same_as": "f35"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "reflection-zigzag",
+   "faults": [
+    {
+     "id": "f42",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names only Dusky red for a wavy line, but most of what it adds is teal and light blue-gray that turns the gray slab back into streaky water, and the red band under the hull is reworked; none of it is named or asked for",
+     "where": "AFTER picture, x 11.3-14.5 in, y 7.5-11.2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f43",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' with no explanation of what that means",
+     "where": "words line 5",
+     "same_as": "f2"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the kaleidoscope pattern on the sail is still there (it stays into the finish)",
+     "where": "AFTER picture, sail",
+     "same_as": "f18"
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 26,
+  "B": 4,
+  "C": 2,
+  "D": 4,
+  "E": 4,
+  "F": 4,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 9,
+  "B": 3,
+  "C": 2,
+  "D": 4,
+  "E": 4,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  9,
+  5,
+  13
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups, paint maps and the transfer outline the words refer to, the site's tiles, versions and history",
+  "H": "how the run went, the construction diagrams and paint maps, and whether the checks flagged anything"
+ },
+ "summary": "The step pictures are the main problem: step 5 leaves flat, hard-edged teal holes shaped like the sun's path and the boat's reflection, which the reflection one carries through step 13, and step 9 stamps a mirrored kaleidoscope pattern on the sail that stays to the finish; step 13 adds a chevron tile strip and step 14 a flat opaque slab. Several steps (9, 13, 16) add a lot of color their paint lists don't name, and the boat's details have outline faults (a wake sliver and tab on the sail, a blob at the mast foot). The words are mostly sound, with a couple of copied areas or lengths that don't match the picture and unexplained load terms."
+}

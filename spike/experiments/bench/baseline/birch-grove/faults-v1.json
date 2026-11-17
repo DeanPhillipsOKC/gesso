@@ -1,0 +1,677 @@
+{
+ "packet": "p07",
+ "painting": "autumn birch grove: white birches framing a gold-leaf path into misty blue firs, with sun rays from the upper left and a mossy rock",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a regular repeating diamond/lattice tile pattern is printed over the whole sky blend, nothing a brush makes",
+     "where": "AFTER picture, whole painted area, clearest x 0-90%, y 15-65%",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "a blurred rectangle of darker blue with straight vertical and horizontal edges sits at the right edge, like a pasted block",
+     "where": "AFTER picture, x 92-100%, y 18-50% (about the right 1 1/4 in, 2 1/4 to 6 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghosts: finished gold leaf clusters, light-blue sky holes and blue far-tree shapes already show in the first sky blend",
+     "where": "AFTER picture, x 45-80%, y 0-25% (leaves, sky) and x 25-42%, y 25-45% (blue shapes)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "minor",
+     "sees": "ghosts of the rock and lit leaves: a gray-gold rock fragment and an orange leaf patch already show at the sky's lower edge",
+     "where": "AFTER picture, x 62-80%, y 62-67% and x 89-92%, y 69-78%",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the lower part of the painted area is a chain of looping round tendrils with white canvas between them instead of a fill down to 1/2 in from the bottom",
+     "where": "AFTER picture, x 0-35% and x 75-100%, y 55-98%; white canvas x 35-75% below y 62%",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "B",
+     "severity": "major",
+     "sees": "the painted area misses pieces of itself: white unpainted slivers and holes inside the sky",
+     "where": "AFTER picture, x 35-37%, y 5-22%; x 92-97%, y 0-10%; x 10-60%, y 52-60%",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "D",
+     "severity": "major",
+     "sees": "Leaf brown (#875632, a red-brown) is named for the bottom, but the picture's bottom band and tendrils are a dull olive gray-brown (about #68614f)",
+     "where": "AFTER picture, x 0-100%, y 55-95%; paints list",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "D",
+     "severity": "minor",
+     "sees": "Golden ochre is named second, top to bottom, but the picture has no gold band; gold appears only in ghost leaf spots",
+     "where": "AFTER picture, y 15-40%; line 2",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "E",
+     "severity": "major",
+     "sees": "wrong result: crossing X strokes with 'visible criss-cross marks' would not give the smooth soft gradient the picture shows",
+     "where": "lines 7-8",
+     "same_as": null
+    },
+    {
+     "id": "f10",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says the top cools from warm cream on the left to blue-gray on the right, but line 2 and the picture run top to bottom and the top right is warm cream",
+     "where": "tip; AFTER picture x 70-90%, y 0-15%",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "E",
+     "severity": "minor",
+     "sees": "vague: 'Let it dry, then blend a new thin layer on top' does not say which colors, where, or whether it is needed",
+     "where": "line 10",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun-rays",
+   "faults": [
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "the repeating diamond tile pattern still shows in the sky",
+     "where": "AFTER picture, x 0-90%, y 15-65%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "the blurred hard-edged rectangle still sits at the right edge",
+     "where": "AFTER picture, x 92-100%, y 18-50%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f14",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf and blue sky ghosts still show",
+     "where": "AFTER picture, x 45-80%, y 0-25%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "minor",
+     "sees": "rock fragment and orange leaf patch ghosts still show",
+     "where": "AFTER picture, x 62-80%, y 62-67%",
+     "same_as": "f4"
+    },
+    {
+     "id": "f16",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "looping tendrils with white canvas between them still form the lower edge",
+     "where": "AFTER picture, y 55-98%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f17",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still in the sky",
+     "where": "AFTER picture, x 10-60%, y 52-60%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "dark fir silhouettes appear along the left edge on the sun-rays step; no line paints them and no later step paints firs there",
+     "where": "AFTER picture, x 0-15%, y 30-52% (0 to 2 1/2 in from the left, 3 1/2 to 6 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "minor",
+     "sees": "mottled cream leaf-shaped clumps appear beside the rays, not feathery rays",
+     "where": "AFTER picture, x 12-40%, y 15-35%",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "E",
+     "severity": "minor",
+     "sees": "contradiction: says that where the outline reaches the painted sky, only soften the paint into its edge, but the whole ray area lies on the painted sky and the picture paints the rays there",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "firs-dark",
+   "faults": [
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "the repeating diamond tile pattern still shows in the sky",
+     "where": "AFTER picture, x 0-60%, y 15-65%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "the blurred hard-edged rectangle still shows at the right edge",
+     "where": "AFTER picture, x 95-100%, y 18-45%",
+     "same_as": "f2"
+    },
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf and blue sky ghosts still show",
+     "where": "AFTER picture, x 45-80%, y 0-25%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f24",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "looping tendrils with white canvas still form the lower edge",
+     "where": "AFTER picture, y 55-98%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f25",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still in the sky",
+     "where": "AFTER picture, x 10-60%, y 52-60%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "thin dark vertical poles with hooked, lamp-post-like tops appear above the firs; nothing in the words or the finish matches",
+     "where": "AFTER picture, x 80-96%, y 12-38% (12 3/4 to 15 1/4 in from the left, 1 1/2 to 4 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "major",
+     "sees": "the rock appears fully modeled with a gold-lit top, with lit gold bushes beside it, where the tip says to stamp the rock in the same dark",
+     "where": "AFTER picture, x 60-80%, y 55-67% (about 9 1/2 to 12 3/4 in from the left, 4 to 5 1/2 in from the bottom)",
+     "same_as": null
+    },
+    {
+     "id": "f28",
+     "class": "E",
+     "severity": "minor",
+     "sees": "same 'only soften into its edge' line, though the firs are painted wholly over the painted sky",
+     "where": "line 5",
+     "same_as": "f20"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "firs-light",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "diamond tile pattern still shows",
+     "where": "AFTER picture, x 0-45%, y 15-65%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf ghosts still show",
+     "where": "AFTER picture, x 45-75%, y 0-20%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f31",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "looping tendrils with white canvas still form the lower edge",
+     "where": "AFTER picture, y 55-98%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f32",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still in the sky",
+     "where": "AFTER picture, x 10-60%, y 52-60%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f33",
+     "class": "E",
+     "severity": "major",
+     "sees": "missing: a whole new group of hazy blue firs appears left of the dark ones, where nothing stood; the words only say to tap over the existing firs' tops and left sides",
+     "where": "AFTER picture, x 42-56%, y 37-62% (6 3/4 to 9 in from the left); tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "far-trunks",
+   "faults": [
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "major",
+     "sees": "diamond tile pattern still shows",
+     "where": "AFTER picture, x 0-40%, y 15-65%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf ghosts still show",
+     "where": "AFTER picture, x 45-75%, y 0-20%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f36",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "looping tendrils with white canvas still form the lower edge",
+     "where": "AFTER picture, y 55-98%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f37",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still in the sky",
+     "where": "AFTER picture, x 10-40%, y 52-60%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f38",
+     "class": "E",
+     "severity": "major",
+     "sees": "contradiction: the tip says no bark marks at this distance, but the far trunks in the picture carry dark bark dashes",
+     "where": "tip; AFTER picture, x 42-52%, y 15-55%",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "E",
+     "severity": "minor",
+     "sees": "wrong result: line 6 says feathery, broken, see-through, never solid, but the far trunks are solid pale strokes",
+     "where": "line 6; AFTER picture, x 42-60%, y 15-55%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "ground-dark",
+   "faults": [
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "diamond tile pattern still shows in the band above the ground",
+     "where": "AFTER picture, x 0-60%, y 45-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf ghosts still show in the canopy",
+     "where": "AFTER picture, x 45-75%, y 0-20%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f42",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still above the ground line",
+     "where": "AFTER picture, x 10-60%, y 52-60%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "major",
+     "sees": "bright gold leaf-shaped blobs show through the brown coat inside a hard-edged block, with faint outlines of the old tendril loops; the solid brown coat would cover them",
+     "where": "AFTER picture, x 0-33%, y 63-78% (block edge at x 33%, y 78%) and x 85-92%, y 66-80%",
+     "same_as": null
+    },
+    {
+     "id": "f44",
+     "class": "E",
+     "severity": "minor",
+     "sees": "contradiction: the tip says to cover the rock's place, but the picture leaves the modeled rock showing",
+     "where": "tip; AFTER picture, x 65-80%, y 57-67%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "ground-rust",
+   "faults": [
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "diamond tile pattern still shows",
+     "where": "AFTER picture, x 0-60%, y 45-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f46",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf ghosts still show in the canopy",
+     "where": "AFTER picture, x 45-75%, y 0-20%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f47",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still above the ground line",
+     "where": "AFTER picture, x 10-60%, y 52-60%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold blobs inside the hard-edged block still show",
+     "where": "AFTER picture, x 0-33%, y 63-78%",
+     "same_as": "f43"
+    },
+    {
+     "id": "f49",
+     "class": "A",
+     "severity": "major",
+     "sees": "the rust marks are thin contour rings and cell outlines around empty shapes, and the path gets ladder-like bands, not tapped dabs",
+     "where": "AFTER picture, x 0-100%, y 62-100%; path x 42-55%, y 55-63%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "ground-gold",
+   "faults": [
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "major",
+     "sees": "diamond tile pattern still shows",
+     "where": "AFTER picture, x 0-60%, y 45-60%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "major",
+     "sees": "gold leaf ghosts still show in the canopy",
+     "where": "AFTER picture, x 45-75%, y 0-20%",
+     "same_as": "f3"
+    },
+    {
+     "id": "f52",
+     "class": "B",
+     "severity": "major",
+     "sees": "white unpainted holes still above the ground line",
+     "where": "AFTER picture, x 10-60%, y 52-60%",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "leaves-dark",
+   "faults": [
+    {
+     "id": "f53",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the olive area is shaped like the birch trunks and branches, with straight cut edges, not leafy masses with ragged edges",
+     "where": "AFTER picture, trunk shapes x 3-12%, 26-36%, 82-90%; hard horizontal edge y 22% at x 0-31%; flat blocks x 5-35%, y 45-65%",
+     "same_as": null
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "pale blue bands run around the olive branch shapes like outlines, nothing a brush makes",
+     "where": "AFTER picture, x 25-80%, y 3-25%",
+     "same_as": null
+    },
+    {
+     "id": "f55",
+     "class": "A",
+     "severity": "major",
+     "sees": "a white disc with a cross-shaped cutout in olive appears at the sun",
+     "where": "AFTER picture, x 0-4%, y 10-17%",
+     "same_as": null
+    },
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "major",
+     "sees": "the cream sky between the leaf masses turns bright blue and new gold leaf clusters appear, on an olive step that names neither",
+     "where": "AFTER picture, x 20-60%, y 0-25%",
+     "same_as": null
+    },
+    {
+     "id": "f57",
+     "class": "D",
+     "severity": "minor",
+     "sees": "the Olive shadow swatch is a light warm tan-gray, lighter and warmer than 2 parts ultramarine with 1 part white would make",
+     "where": "paints",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "leaves-gold",
+   "faults": [
+    {
+     "id": "f58",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the trunk-shaped olive blocks with straight cut edges still show",
+     "where": "AFTER picture, x 3-12%, 26-36%, 82-90%; x 0-31%, y 22%",
+     "same_as": "f53"
+    },
+    {
+     "id": "f59",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the pale blue outline bands still show",
+     "where": "AFTER picture, x 25-80%, y 3-25%",
+     "same_as": "f54"
+    },
+    {
+     "id": "f60",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white cross-cut disc still shows",
+     "where": "AFTER picture, x 0-4%, y 10-17%",
+     "same_as": "f55"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "on a few-taps highlight step, the olive blocks, blue halo bands and much of the canopy are repainted as blue sky, cream mist and sun rays; only about a third of what changes is near Sunlit gold",
+     "where": "AFTER picture, x 0-50%, y 0-60%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "birch-trunks",
+   "faults": [
+    {
+     "id": "f62",
+     "class": "B",
+     "severity": "major",
+     "sees": "the gray trunk area takes in a disc with a cross-shaped cutout over the sun",
+     "where": "AFTER picture, x 0-3%, y 10-16%",
+     "same_as": null
+    },
+    {
+     "id": "f63",
+     "class": "E",
+     "severity": "minor",
+     "sees": "wrong subject: 'With an angle brush, the lighter you press...' but the brush is a 3/4 inch flat",
+     "where": "line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "birch-marks",
+   "faults": [
+    {
+     "id": "f64",
+     "class": "B",
+     "severity": "major",
+     "sees": "the gray cross-cut disc over the sun still shows",
+     "where": "AFTER picture, x 0-3%, y 10-16%",
+     "same_as": "f62"
+    },
+    {
+     "id": "f65",
+     "class": "E",
+     "severity": "minor",
+     "sees": "same angle-brush line though the brush is a 1/4 inch flat",
+     "where": "line 5",
+     "same_as": "f63"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "birch-light",
+   "faults": [
+    {
+     "id": "f66",
+     "class": "E",
+     "severity": "major",
+     "sees": "contradiction: the tip says cream on the left edge of each trunk only, leaving gray on the right, but the picture lightens nearly the whole width, most on the right trunks",
+     "where": "tip; AFTER picture, x 82-100%, y 0-95%",
+     "same_as": null
+    },
+    {
+     "id": "f67",
+     "class": "D",
+     "severity": "major",
+     "sees": "only about a third of what the step adds is near Warm cream; much is near-white and cool blue-gray it never names",
+     "where": "AFTER picture, all trunks",
+     "same_as": null
+    },
+    {
+     "id": "f68",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the sun's gray cross-cut disc turns into a pale disc with no line about the sun",
+     "where": "AFTER picture, x 0-3%, y 10-16%",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [
+  {
+   "id": "f69",
+   "class": "E",
+   "severity": "minor",
+   "steps": [
+    3,
+    6
+   ],
+   "sees": "no step teaches the mossy rock's lit top and moss that the finish shows; it only appears ready-made in step 3's picture",
+   "where": "finish x 65-80%, y 59-68%; steps 3 and 6 tips"
+  }
+ ],
+ "counts": {
+  "A": 35,
+  "B": 17,
+  "C": 0,
+  "D": 4,
+  "E": 13,
+  "F": 0,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 15,
+  "B": 4,
+  "C": 0,
+  "D": 4,
+  "E": 11,
+  "F": 0,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  1,
+  9,
+  11
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, its Where/Result pictures and close-ups that the words refer to, links, and the lessons site's tiles and history; step order, numbering and pictures in the packet are complete",
+  "H": "the run itself: diagrams, renders, checks and tool logs; no placeholders, tool notes or repeated lines show in the words"
+ },
+ "summary": "The step pictures are the main problem: step 1's sky carries a printed diamond tile pattern, a pasted rectangle, white holes and looping tendrils, and these plus ghost leaves persist through step 8. The canopy steps (9-11) paint olive in trunk-and-branch silhouettes with blue outline halos, then step 11 silently repaints it all as sky. The words mostly match placements, but several tips contradict their pictures (bark marks, rock, whole-trunk highlights) and two late steps add colors they don't name."
+}

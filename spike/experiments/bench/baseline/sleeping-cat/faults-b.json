@@ -1,0 +1,645 @@
+{
+ "packet": "p05",
+ "painting": "A gray tabby cat curled asleep on a knitted mustard-yellow blanket on a wooden window sill, pale blue wall, window with green leaves at the upper left",
+ "steps": [
+  {
+   "n": 1,
+   "id": "wall-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture, x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "major",
+     "sees": "An orange-brown/peach slanted patch shows on the wall at the left, the sill's sunlit color, long before the sill steps",
+     "where": "AFTER picture, x 0-10%, y 54-64% (0 to 1 1/4 in from the left, 6 1/2 to 7 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "C",
+     "severity": "minor",
+     "sees": "Line 1 puts the wall's bottom about 4 in from the bottom edge; the picture paints the wall color all the way to the bottom edge",
+     "where": "line 1; AFTER picture, y 67-100%",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: Creamy paint\" is used as if a beginner knows what a creamy load is; nothing on the step explains it",
+     "where": "line 4 (Brush/Load line)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "outside-blend",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The sky in the window is a tiled, mirrored pattern of horizontal stripes with a regular grid of small dots, not brushwork",
+     "where": "AFTER picture, x 0-18%, y 0-46% (0 to 2 3/4 in from the left, top 5 1/2 in)",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture, strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "C",
+     "severity": "major",
+     "sees": "Line 3 and the tip say the sky strip is about 1 1/4 in wide; in the picture the sky is about 2 3/4-2 7/8 in wide over its top 2 in",
+     "where": "line 3 and tip; AFTER picture x 0-18%, y 0-17%",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "D",
+     "severity": "major",
+     "sees": "Soft leaf green is listed (and line 5 orders it), but the picture adds no green at all, only blue",
+     "where": "paints; AFTER picture x 0-18%, y 0-46%",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "E",
+     "severity": "major",
+     "sees": "Line 5 says top to bottom Soft leaf green then Pale sky blue (and line 8 says start with the darkest and paint lighter below), but the tip says keep the green low and the blue at the top",
+     "where": "lines 5 and 8 vs tip",
+     "same_as": null
+    },
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "major",
+     "sees": "An orange-brown/peach slanted patch shows on the wall at the left, the sill's sunlit color, long before the sill steps",
+     "where": "AFTER picture (and BEFORE), same place: x 0-10%, y 54-64% (0 to 1 1/4 in from the left, 6 1/2 to 7 3/4 in down)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f30",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: Creamy paint\" is used as if a beginner knows what a creamy load is; nothing on the step explains it",
+     "where": "line 7 (Brush/Load line)",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "leaves-dark",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "A",
+     "severity": "major",
+     "sees": "The shady leaves are one flat, smooth, hard-edged slab with straight rectangular bars, no tapped dots at all",
+     "where": "AFTER picture, x 0-18%, y 13-17% and 20-25% (bars), mass x 0-7%, y 20-45%",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "C",
+     "severity": "major",
+     "sees": "Line 2 says the leaves are about 1 1/4 in wide; the green in the picture reaches about 2 7/8 in from the left edge",
+     "where": "line 2; AFTER picture x 0-18%, y 13-25%",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: A light load\" is used as if a beginner knows how much that is; only \"no water\" is explained",
+     "where": "line 5 (Brush/Load line)",
+     "same_as": null
+    },
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "major",
+     "sees": "An orange-brown/peach slanted patch shows on the wall at the left, the sill's sunlit color, long before the sill steps",
+     "where": "AFTER picture (and BEFORE), same place: x 0-10%, y 54-64% (0 to 1 1/4 in from the left, 6 1/2 to 7 3/4 in down)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The sky in the window is a tiled, mirrored pattern of horizontal stripes with a regular grid of small dots, not brushwork",
+     "where": "AFTER picture (and BEFORE), same place: x 0-18%, y 0-46% (0 to 2 3/4 in from the left, top 5 1/2 in)",
+     "same_as": "f5"
+    },
+    {
+     "id": "f34",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "leaves-light",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "major",
+     "sees": "An orange-brown/peach slanted patch shows on the wall at the left, the sill's sunlit color, long before the sill steps",
+     "where": "AFTER picture (and BEFORE), same place: x 0-10%, y 54-64% (0 to 1 1/4 in from the left, 6 1/2 to 7 3/4 in down)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The sky in the window is a tiled, mirrored pattern of horizontal stripes with a regular grid of small dots, not brushwork",
+     "where": "AFTER picture (and BEFORE), same place: x 0-18%, y 0-46% (0 to 2 3/4 in from the left, top 5 1/2 in)",
+     "same_as": "f5"
+    },
+    {
+     "id": "f38",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "major",
+     "sees": "The shady leaves are one flat, smooth, hard-edged slab with straight rectangular bars, no tapped dots at all",
+     "where": "AFTER picture (and BEFORE), same place: x 0-18%, y 13-17% and 20-25% (bars), mass x 0-7%, y 20-45%",
+     "same_as": "f10"
+    },
+    {
+     "id": "f40",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: A light load\" is used as if a beginner knows how much that is; only \"no water\" is explained",
+     "where": "line 4 (Brush/Load line)",
+     "same_as": "f12"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "window-block",
+   "faults": [
+    {
+     "id": "f13",
+     "class": "E",
+     "severity": "minor",
+     "sees": "Line 8 says it should leave distinct straight bars with small gaps or overlaps; the picture is one smooth, flat cream slab",
+     "where": "line 8; AFTER picture x 8-28%, y 0-57%",
+     "same_as": null
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "major",
+     "sees": "An orange-brown/peach slanted patch shows on the wall at the left, the sill's sunlit color, long before the sill steps",
+     "where": "AFTER picture (and BEFORE), same place: x 0-10%, y 54-64% (0 to 1 1/4 in from the left, 6 1/2 to 7 3/4 in down)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f43",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "window-shade",
+   "faults": [
+    {
+     "id": "f14",
+     "class": "D",
+     "severity": "major",
+     "sees": "The picture adds a dark navy-blue strip (about #5b6f93) down the right of the post, far darker and bluer than Shadow lavender (#8b8eaf), the only paint named",
+     "where": "AFTER picture, x 24-27%, y 0-25% (3 3/4 to 4 1/4 in from the left, top 3 in)",
+     "same_as": null
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "An orange-brown/peach slanted patch shows on the wall at the left, the sill's sunlit color, long before the sill steps",
+     "where": "AFTER picture (and BEFORE), same place: x 0-10%, y 54-64% (0 to 1 1/4 in from the left, 6 1/2 to 7 3/4 in down)",
+     "same_as": "f2"
+    },
+    {
+     "id": "f46",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "sill-block",
+   "faults": [
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "A dashed yellow-orange line runs along the top of the new brown sill, a ghost of the blanket's edge before the blanket step",
+     "where": "AFTER picture, x 18-100%, y 57-63% (about 4 1/2 to 5 in up from the bottom)",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "D",
+     "severity": "major",
+     "sees": "Wood brown's recipe (2 parts red, 1 part ultramarine, a touch of yellow and white) mixes a dull maroon-purple, not the warm orange-brown swatch #934025",
+     "where": "paints, step 7",
+     "same_as": null
+    },
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f48",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "sill-light",
+   "faults": [
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "major",
+     "sees": "The whole front of the sill changes from flat brown to darker red-brown wood grain with light ridges along its back edge; the words only skim peach on the lit left end and a thin line at the back",
+     "where": "AFTER picture, x 10-100%, y 60-100%",
+     "same_as": null
+    },
+    {
+     "id": "f49",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f50",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "major",
+     "sees": "A dashed yellow-orange line runs along the top of the new brown sill, a ghost of the blanket's edge before the blanket step",
+     "where": "AFTER picture (and BEFORE), same place: x 18-100%, y 57-63% (about 4 1/2 to 5 in up from the bottom)",
+     "same_as": "f15"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "blanket-block",
+   "faults": [
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "A thin dark line with specks shows inside the top of the blanket, a ghost of the cat's underside before the cat step",
+     "where": "AFTER picture, x 27-88%, y 57-60% (about 4 1/2 to 14 in from the left, 7 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f19",
+     "class": "E",
+     "severity": "minor",
+     "sees": "Line 7 says it should leave distinct curved rolls; the picture is one flat mustard shape with no rolls",
+     "where": "line 7; AFTER picture x 8-100%, y 50-92%",
+     "same_as": null
+    },
+    {
+     "id": "f52",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f53",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "blanket-stitches",
+   "faults": [
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "major",
+     "sees": "The deep gold goes on as posterized blotches with thin dark contour lines, puddle shapes, not teardrop brush marks in V rows",
+     "where": "AFTER picture, x 8-100%, y 52-88%",
+     "same_as": null
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f55",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: Creamy paint\" is used as if a beginner knows what a creamy load is; nothing on the step explains it",
+     "where": "line 4 (Brush/Load line)",
+     "same_as": "f4"
+    },
+    {
+     "id": "f56",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "major",
+     "sees": "A thin dark line with specks shows inside the top of the blanket, a ghost of the cat's underside before the cat step",
+     "where": "AFTER picture (and BEFORE), same place: x 27-88%, y 57-60% (about 4 1/2 to 14 in from the left, 7 in down)",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "blanket-folds",
+   "faults": [
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "major",
+     "sees": "Jump: on a step about dark folds, the blanket goes from blotches to every knit stitch fully modeled with highlights; step 10's marks disappear",
+     "where": "AFTER picture, x 8-100%, y 50-92%",
+     "same_as": null
+    },
+    {
+     "id": "f22",
+     "class": "D",
+     "severity": "major",
+     "sees": "About half of what the step changes is lighter yellow highlight (about #f0a818-#f0c030) on the stitches, not Dark ochre, the only paint named",
+     "where": "AFTER picture, x 8-100%, y 50-92%",
+     "same_as": null
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "The wall is a mirrored, tiled diamond pattern with straight vertical seams, and its lower half is a smooth, darker blue band with a soft horizontal gradient and no brush marks, like a photo filter: nothing a brush makes",
+     "where": "AFTER picture (and BEFORE), same place: x 0-100%, y 20-100%; seams at about 1 1/2, 6 3/4 and 12 in from the left",
+     "same_as": "f1"
+    },
+    {
+     "id": "f59",
+     "class": "B",
+     "severity": "major",
+     "sees": "The sky's painted area has stair-stepped rectangular notches and a thin, hard, ruler-straight sky-blue strip running far out into the wall",
+     "where": "AFTER picture (and BEFORE), same place: strip at y 47% from x 0 to 49% (about 6 1/4 in down, out to 7 3/4 in from the left); notches x 7-18%, y 18-25%",
+     "same_as": "f6"
+    },
+    {
+     "id": "f60",
+     "class": "A",
+     "severity": "major",
+     "sees": "A thin dark line with specks shows inside the top of the blanket, a ghost of the cat's underside before the cat step",
+     "where": "AFTER picture (and BEFORE), same place: x 27-88%, y 57-60% (about 4 1/2 to 14 in from the left, 7 in down)",
+     "same_as": "f18"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "cat-block",
+   "faults": [
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "major",
+     "sees": "The wall changes from the smooth/tiled finish to brushy texture, and the light-blue strip and seams vanish, on the cat step whose words don't mention the wall",
+     "where": "AFTER picture, x 28-100%, y 0-37%",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "B",
+     "severity": "minor",
+     "sees": "The cat block's top edge has a ragged thin dark-brown fringe of specks along the back",
+     "where": "AFTER picture, x 45-95%, y 13-22%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "cat-white",
+   "faults": [
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "Tan marks show where the closed eyes go, before the eyes are painted in step 14",
+     "where": "AFTER picture, x 23-30%, y 45-50% (about 3 3/4 to 4 3/4 in from the left, 5 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Pink specks show on the left ear and at the base of the right ear, ghosts of the ear pink painted in step 16",
+     "where": "AFTER picture, x 13-17%, y 36-40% and x 37-38%, y 19-21%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "cat-stripes",
+   "faults": [
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Pink specks show on the left ear and at the base of the right ear, ghosts of the ear pink painted in step 16",
+     "where": "AFTER picture (and BEFORE), same place: x 13-17%, y 36-40% and x 37-38%, y 19-21%",
+     "same_as": "f26"
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "cat-fur",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "D",
+     "severity": "major",
+     "sees": "About half of what the step changes is darker cool gray (#646464, #645064) and some lighter gray (#a08c8c); the named Warm cat gray (#827478) is the base color itself and would barely show",
+     "where": "AFTER picture, x 8-100%, y 12-72%",
+     "same_as": null
+    },
+    {
+     "id": "f62",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: A light load\" is used as if a beginner knows how much that is; only \"no water\" is explained",
+     "where": "line 4 (Brush/Load line)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f63",
+     "class": "A",
+     "severity": "minor",
+     "sees": "Pink specks show on the left ear and at the base of the right ear, ghosts of the ear pink painted in step 16",
+     "where": "AFTER picture (and BEFORE), same place: x 13-17%, y 36-40% and x 37-38%, y 19-21%",
+     "same_as": "f26"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "cat-pink",
+   "faults": [
+    {
+     "id": "f64",
+     "class": "F",
+     "severity": "minor",
+     "sees": "\"Load: Creamy paint\" is used as if a beginner knows what a creamy load is; nothing on the step explains it",
+     "where": "line 4 (Brush/Load line)",
+     "same_as": "f4"
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 35,
+  "B": 11,
+  "C": 3,
+  "D": 5,
+  "E": 3,
+  "F": 7,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 12,
+  "B": 2,
+  "C": 3,
+  "D": 5,
+  "E": 3,
+  "F": 2,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  2,
+  11,
+  1
+ ],
+ "not_visible": {
+  "G": "The lesson page layout, its links, close-ups and diagrams, the transfer outline referred to as \"Before you start\", whether the site shows this version, and the lesson history cannot be seen in the packet.",
+  "H": "How the render and cutting tools ran, whether diagrams or close-ups drew correctly, and whether checks missed problems cannot be seen; no tool notes, placeholders or repeated lines appear in the words."
+ },
+ "summary": "The step pictures are the main problem: the wall is a tiled, seamed, filter-blurred pattern for eleven steps, the window sky is tiled with a stray ruler-straight strip, and ghosts of later parts (sill peach, blanket edge, cat outline, eyes, ear pink) appear early. Parts often jump from a flat block or blotchy fill straight to finished detail (blanket stitches, sill grain, wall brushwork on the cat step) while the named paint covers only part of what is added. The window steps give widths about half of what the pictures show and contradict themselves on the sky's color order, and load terms such as \"creamy\" and \"a light load\" are never explained."
+}

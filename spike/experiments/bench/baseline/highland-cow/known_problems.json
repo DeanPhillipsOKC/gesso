@@ -1,0 +1,49 @@
+{
+  "filed_issues": [
+    {
+      "number": 181,
+      "state": "OPEN",
+      "title": "Element technique: A long-haired, shaggy animal",
+      "url": "https://github.com/DeanPhillipsOKC/gesso/issues/181"
+    }
+  ],
+  "finish_issues": [],
+  "known_problems": [
+    {
+      "name": "Blend the sky from blue to gold",
+      "problem": "Steps 1 to 10 show pale blue blotches with dark green centres where the cow will stand: the fill behind the cow in the step pictures, which no instruction paints.",
+      "step": 1
+    },
+    {
+      "name": "Light the gold rim on the hair",
+      "problem": "The near-black shadow under the chin and down the chest, and the nose's lighter top, appear in the gold rim step; no step paints them.",
+      "step": 13
+    },
+    {
+      "name": "",
+      "problem": "The text review was done by the same session that wrote the text, not a fresh one.",
+      "step": null
+    }
+  ],
+  "review_context": "same",
+  "review_left": {
+    "review_issues": [],
+    "text_issues": [
+      {
+        "action": "left: the step pictures' fill behind the cow; build-steps reports nothing, and the outline limits for step 2c were used up",
+        "fix": "The tip tells the painter to ignore them; the cow covers them in step 11.",
+        "kind": "missing",
+        "problem": "Steps 1 to 10 show pale blue blotches with dark green centres where the cow will stand: the fill behind the cow in the step pictures, which no instruction paints.",
+        "step_id": "sky-blend"
+      },
+      {
+        "action": "left: the cow has no darker paint for a shadow step of its own",
+        "fix": "A shadow pass needs a darker paint, and paints --add cow found no color distinct from Dark chestnut.",
+        "kind": "missing",
+        "problem": "The near-black shadow under the chin and down the chest, and the nose's lighter top, appear in the gold rim step; no step paints them.",
+        "step_id": "cow-rim"
+      }
+    ]
+  },
+  "run": "highland-cow_skill_20261116-212627"
+}

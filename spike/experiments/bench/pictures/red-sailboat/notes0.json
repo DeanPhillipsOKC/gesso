@@ -1,0 +1,38 @@
+{
+  "beginner_version": {
+    "busy": {
+      "photo": {
+        "edges": 0.0106,
+        "fine_texture": 0.0,
+        "picture": "00_canvas_frame.png",
+        "tiles": 0,
+        "where": "busy/00_canvas_frame.jpg"
+      }
+    },
+    "found": "Tiny separate things: none besides the boat, which is the subject. Textures of hundreds of items: none; busy measured 0.0% fine texture, and the water's ripples are one repeated horizontal dash. Detail inside big shapes: none a single repeated mark can't make (the sky is soft horizontal bands, the hill is flat). Parts: about eight at three distances (sky and sun, hill and shore, water and boat), within the 8-part budget for a 192 sq in canvas.",
+    "list": "nothing to drop, merge or turn into marks",
+    "made": false,
+    "why": "The picture is already a simple, loose painting a beginner can copy, so a beginner version would only cost a render and change nothing."
+  },
+  "canvas_fit": {
+    "canvas": "16 x 12 in, landscape",
+    "lost": "about 5.6% from each side: a strip of the purple hill at the left and empty water and far shore at the right (11% in all).",
+    "mode": "crop",
+    "why": "No canvas was named, so fit-canvas picked 12x16, the standard size closest to the photo's 3:2 shape. A crop keeps the boat, its reflection, the sun and the sun path whole."
+  },
+  "photo_prep": {
+    "action": "none",
+    "found": "just the picture",
+    "subject": "A red sailboat with a white sail on teal water at sunset, with a purple hill, a low far shore, a setting sun and its orange path on the water.",
+    "why": "It is an AI-made painting with nothing around it: no bars, borders, text or frame."
+  },
+  "technique": {
+    "considered": [
+      {
+        "name": "Block in, then build up (acrylic-block-in-beginner)",
+        "why_not": "It has no version 2 keys (v2_step_range, v2_rules), so the v2 pipeline can't plan from it; it's also the toned, block-in approach the owner set aside for beginners in favor of paint-along."
+      }
+    ],
+    "why": "Paint-along, back to front fits a picture of big flat areas stacked from far to near (sky, hill, water) with one small subject in front, and it is the owner's chosen beginner approach with v2 rules and step range."
+  }
+}

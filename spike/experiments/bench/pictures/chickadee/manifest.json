@@ -1,0 +1,78 @@
+{
+  "beginner_version": false,
+  "canvas_render": false,
+  "files": {
+    "00_canvas_frame.png": {
+      "bytes": 1866946,
+      "sha256": "b3c77d49794421e7ac7dbdee29552f9118ca583115a308570d0dfca5a4150ee6"
+    },
+    "00_reference.png": {
+      "bytes": 860337,
+      "sha256": "6b97a71c694d2849394e1e82f88c3c9c5311bea352e9512cc1d11d5e8bb181ad"
+    },
+    "00_reference_palette.json": {
+      "bytes": 607,
+      "sha256": "7de225370db338cd4762d8450108cc5085f4f7424a6696c45e77f532e0cfc8c3"
+    },
+    "00_reference_palette.png": {
+      "bytes": 892,
+      "sha256": "a599994de9e92bffbf99eab2d815683fad389c7022e615763ddd3d1b2afb2577"
+    },
+    "00_reference_value-study.png": {
+      "bytes": 40916,
+      "sha256": "a55328c81c7bc30f61924533bfed169203192426d9a749492dfee1990400ece1"
+    },
+    "99_finish.png": {
+      "bytes": 2656269,
+      "sha256": "422cd3b1e67848347c2a8fd88213d2b2c73991335a2f95b21c716f9e2cd1cf7e"
+    },
+    "canvas.json": {
+      "bytes": 628,
+      "sha256": "2e45e2f5b49e163a44bb75344152c6023eda14b71aa6070e1a7c2190799ef6ec"
+    },
+    "notes0.json": {
+      "bytes": 2307,
+      "sha256": "49b04dc17358f8746fff75645ef4d1662c94fcfe80a3bf3a4900b2f6628f778b"
+    },
+    "photo.jpg": {
+      "bytes": 92888,
+      "sha256": "58c9f9864c6753193c47f11834fc3f4e5d75f83b334093380094102928109a57"
+    },
+    "review0.json": {
+      "bytes": 263,
+      "sha256": "98d9044a0c01c74c1336486902714fc7e7a84aad8dd078d25b04febe69599174"
+    }
+  },
+  "photo": "photo.jpg",
+  "photo_source": "photos/chickadee.jpg",
+  "picture": "chickadee",
+  "plan_photo": "00_canvas_frame.png",
+  "renders": [
+    {
+      "cached": false,
+      "cost_usd": 0.0667,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 33.7,
+      "step": "finish"
+    },
+    {
+      "cached": false,
+      "cost_usd": 0.0665,
+      "model": "gpt-image-2.5-sunburst",
+      "out": "99_finish.png",
+      "quality": "high",
+      "seconds": 33.9,
+      "step": "finish"
+    }
+  ],
+  "source": {
+    "commit": "bb39e54",
+    "dirty": false,
+    "provenance": "hands-off",
+    "run": "chickadee_skill_20261116-203451",
+    "sealed_at": "2026-11-16T20:55:30",
+    "version": "POC 1.12.1"
+  }
+}

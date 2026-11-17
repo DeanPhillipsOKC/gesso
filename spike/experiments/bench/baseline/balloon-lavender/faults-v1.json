@@ -1,0 +1,735 @@
+{
+ "packet": "p01",
+ "painting": "Sunset landscape: striped hot-air balloon in an orange-and-coral cloudy sky, sun on purple hills, golden fields with bushes, a tree on the right hill, lavender rows on soil paths in front",
+ "steps": [
+  {
+   "n": 1,
+   "id": "sky-blend",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "major",
+     "sees": "lit cloud streaks with red-orange and gold, and bright cloud strips around the sun, already painted in the sky blend; clouds are steps 3-4",
+     "where": "AFTER, x 15-60%, y 25-42% (about 3 to 5 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a faint sun-shaped disc already shows where step 2 paints the sun",
+     "where": "AFTER, x 39-44%, y 38-45% (about 6 1/2 in from left, 4 1/2-5 1/2 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "major",
+     "sees": "blue-purple blob at the right edge at hill height before any hill is painted",
+     "where": "AFTER, x 96-100%, y 37-44% (right edge, about 4 1/2 to 5 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "B",
+     "severity": "major",
+     "sees": "thin wavy orange line across the still-blank lower canvas, outside the sky area",
+     "where": "AFTER, x 15-100%, y about 62% (7 1/2 in down, from about 2 1/2 in to the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 7 says to pick up 'the next lighter color' going down, but the order in line 3 puts Sunset orange (darker) below Golden ochre",
+     "where": "words line 7 vs line 3",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint' is used as a load with nothing on the step explaining it",
+     "where": "words line 6",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "sun",
+   "faults": [
+    {
+     "id": "f7",
+     "class": "A",
+     "severity": "major",
+     "sees": "lit cloud streaks around the sun still showing before the cloud steps",
+     "where": "AFTER, x 15-60%, y 25-42%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f8",
+     "class": "A",
+     "severity": "major",
+     "sees": "blue-purple blob at the right edge at hill height before any hill is painted",
+     "where": "AFTER, x 96-100%, y 37-44% (right edge, about 4 1/2 to 5 1/4 in down)",
+     "same_as": "f3"
+    },
+    {
+     "id": "f9",
+     "class": "B",
+     "severity": "major",
+     "sees": "thin wavy orange line across the still-blank lower canvas, outside the sky area",
+     "where": "AFTER, x 15-100%, y about 62% (7 1/2 in down, from about 2 1/2 in to the right edge)",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "clouds-base",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the coral area is one big slab across most of the sky with straight-cut rectangular steps on its top edge (top left) and a drawn ring-shaped cloud outline on the right; it takes in the sky gaps the tip says to leave",
+     "where": "AFTER, slab x 0-100%, y 0-37%; rectangular notch x 15-24%, y 12-16%; ring x 76-100%, y 22-37%",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "E",
+     "severity": "major",
+     "sees": "words say small circles leaving a bumpy, soft edge with sky showing through, and the watch-out warns against 'hard, solid clouds'; the picture is a hard, solid, textureless flat fill",
+     "where": "words lines 6-8 and tip vs AFTER x 0-100%, y 0-37%",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "major",
+     "sees": "ghost lit cloud streaks still visible in the gaps under the coral",
+     "where": "AFTER, x 15-60%, y 25-40%",
+     "same_as": "f1"
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "blue-purple blob at the right edge at hill height before any hill is painted",
+     "where": "AFTER, x 96-100%, y 37-44% (right edge, about 4 1/2 to 5 1/4 in down)",
+     "same_as": "f3"
+    },
+    {
+     "id": "f14",
+     "class": "B",
+     "severity": "major",
+     "sees": "thin wavy orange line across the still-blank lower canvas, outside the sky area",
+     "where": "AFTER, x 15-100%, y about 62% (7 1/2 in down, from about 2 1/2 in to the right edge)",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "clouds-mid",
+   "faults": [
+    {
+     "id": "f15",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the flat coral slab becomes fully modeled, finished clouds over the whole sky in one step; the slab's shapes (rectangular notch, ring outline) vanish and blue sky comes back where coral was, though line 7 says leave the step 3 coral showing",
+     "where": "AFTER, x 0-100%, y 0-38% (top 4 1/2 in)",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "A",
+     "severity": "major",
+     "sees": "blue-purple blob at the right edge at hill height before any hill is painted",
+     "where": "AFTER, x 96-100%, y 37-44% (right edge, about 4 1/2 to 5 1/4 in down)",
+     "same_as": "f3"
+    },
+    {
+     "id": "f17",
+     "class": "B",
+     "severity": "major",
+     "sees": "thin wavy orange line across the still-blank lower canvas, outside the sky area",
+     "where": "AFTER, x 15-100%, y about 62% (7 1/2 in down, from about 2 1/2 in to the right edge)",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "far-hills",
+   "faults": [
+    {
+     "id": "f18",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 3 says the hills are about 13 1/2 in wide from the left edge; the picture paints them right across the 16 in canvas (to 15.9 in)",
+     "where": "words line 3 vs AFTER x 0-100%, y 37-58%",
+     "same_as": null
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "major",
+     "sees": "a broken orange fragment with thin curved marks sits in the right hills, nothing the step paints",
+     "where": "AFTER, x 84-98%, y 43-46% (about 13 1/2-15 3/4 in from left, 5 1/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a dark tree-line strip already shows in the lower hill band before the bushes steps",
+     "where": "AFTER, x 33-43%, y 48-50% (about 5 1/4-6 3/4 in from left, 5 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f21",
+     "class": "B",
+     "severity": "major",
+     "sees": "thin wavy orange line across the still-blank lower canvas, outside the sky area",
+     "where": "AFTER, x 15-100%, y about 62% (7 1/2 in down, from about 2 1/2 in to the right edge)",
+     "same_as": "f4"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "fields-base",
+   "faults": [
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says to follow each field's slope with the strokes; line 8 says keep the brush level, strokes left and right",
+     "where": "words line 8 vs tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "fields-front",
+   "faults": [
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f25",
+     "class": "D",
+     "severity": "major",
+     "sees": "Olive ochre is the only paint, but much of what the step adds is bright gold and yellow streaks on the golden hill and a gold band at the bottom (about 60% of changed pixels near #d09010, far lighter than #aa872c); the tip even says leave the hill top bright",
+     "where": "AFTER, x 30-90%, y 45-70%",
+     "same_as": null
+    },
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "bushes-dark",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "B",
+     "severity": "blocker",
+     "sees": "the dark bush area is a huge solid slab covering most of the left fields and the right slope below the hill, not bands of clumps; it takes in field area that is gold in the finish",
+     "where": "AFTER, x 0-35% and 45-100%, y 45-65% (about 5 1/2-7 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f28",
+     "class": "E",
+     "severity": "major",
+     "sees": "words and tip ask for tapped dots and loose rounded clumps, 'not one solid strip'; the picture is a flat, hard-edged solid fill",
+     "where": "words lines 7-8 and tip vs AFTER",
+     "same_as": null
+    },
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "bushes-mid",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "bushes-light",
+   "faults": [
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f35",
+     "class": "D",
+     "severity": "major",
+     "sees": "Olive gold (#7d743a) is named for 'a few taps', but the picture repaints large parts of the dark bush slab as bright gold sunlit field (field gold, not olive gold), changing most of the bush shapes",
+     "where": "AFTER, x 0-30% and 55-100%, y 47-63%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "balloon-shape",
+   "faults": [
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f38",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 7 says it should leave distinct curved segments with gaps or overlaps; the picture is one smooth flat silhouette",
+     "where": "words line 7 vs AFTER x 15-32%, y 4-32%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "balloon-blue",
+   "faults": [
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "balloon-teal",
+   "faults": [
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the blue patch at the balloon's top right from step 12 disappears and turns orange again, with no word about it",
+     "where": "AFTER, x 26-28%, y 4-8% (about 4 1/4 in from left, 3/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "balloon-red",
+   "faults": [
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f45",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f46",
+     "class": "D",
+     "severity": "major",
+     "sees": "Rust red (#bb5835, brick) is named; the stripes added are a bright crimson red (about #d03030)",
+     "where": "AFTER, balloon stripes x 15-31%, y 4-30%",
+     "same_as": null
+    },
+    {
+     "id": "f47",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the basket turns dark brown with rope/weave detail before step 15, which paints the basket",
+     "where": "AFTER, x 24-27%, y 27-32%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 15,
+   "id": "balloon-shade",
+   "faults": [
+    {
+     "id": "f48",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f49",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "balloon-light",
+   "faults": [
+    {
+     "id": "f50",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f51",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f52",
+     "class": "D",
+     "severity": "major",
+     "sees": "Golden ochre is the only paint, but about a third of what the step adds is red and red-orange (a new red stripe at the right edge and a reddened right side), and two yellow stripes, where the tip names one golden stripe",
+     "where": "AFTER, x 26-32%, y 4-30%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "tree-dark",
+   "faults": [
+    {
+     "id": "f53",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f54",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f55",
+     "class": "E",
+     "severity": "major",
+     "sees": "the tip says tap the crown in loose clumps with gaps of sky and line 8 says dots or dappled patches; the picture is one solid, flat, hard-edged silhouette",
+     "where": "words line 8 and tip vs AFTER x 77-99%, y 23-46%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "tree-mid",
+   "faults": [
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f57",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "major",
+     "sees": "orange sky-colored outlines and specks appear inside the dark lower crown, under the boughs",
+     "where": "AFTER, x 86-95%, y 37-41% (about 14 in from left, 4 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f59",
+     "class": "D",
+     "severity": "minor",
+     "sees": "the trunk gains an orange-brown lit side, a color no named paint gives",
+     "where": "AFTER, x 92-94%, y 40-46%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "tree-light",
+   "faults": [
+    {
+     "id": "f60",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "mirrored, tiled diamond/wave pattern filling the gold band under the fields, nothing a brush makes",
+     "where": "AFTER, x 0-100%, y 63-70% (about 7.6 to 8.4 in down)",
+     "same_as": "f24"
+    },
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "major",
+     "sees": "the stray wavy line from step 1 (dark/pinkish now) shows through the opaque field and bush paint",
+     "where": "AFTER, x 15-100%, y about 62% (about 7 1/2 in down, from 2 1/2 in to the right edge)",
+     "same_as": "f22"
+    },
+    {
+     "id": "f62",
+     "class": "A",
+     "severity": "major",
+     "sees": "jump: the still-flat dark right half of the crown becomes fully modeled teal-green leaf clumps, with trunk and boughs drawn, in a step whose tip says 'a few taps only' and 'leave the right side dark'",
+     "where": "AFTER, x 85-99%, y 23-46%",
+     "same_as": null
+    },
+    {
+     "id": "f63",
+     "class": "D",
+     "severity": "major",
+     "sees": "Golden ochre is named, but most of what it adds is near-black and teal-green leaf shadow and a violet-brown trunk; well under half is near the named gold",
+     "where": "AFTER, x 77-99%, y 23-46%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "lavender-base",
+   "faults": []
+  },
+  {
+   "n": 21,
+   "id": "lavender-soil",
+   "faults": [
+    {
+     "id": "f64",
+     "class": "B",
+     "severity": "minor",
+     "sees": "loose rust specks float in the violet field away from any path",
+     "where": "AFTER, x 1-45%, y 72-82% (e.g. 1/4 in and 3 in from left, 8 1/2-9 1/2 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 22,
+   "id": "lavender-dark",
+   "faults": [
+    {
+     "id": "f65",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint' again, unexplained",
+     "where": "words line 5",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "id": "lavender-mid",
+   "faults": [
+    {
+     "id": "f66",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint' again, unexplained",
+     "where": "words line 5",
+     "same_as": "f6"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "id": "lavender-tips",
+   "faults": [
+    {
+     "id": "f67",
+     "class": "D",
+     "severity": "major",
+     "sees": "Lilac tips are named, but what the step adds is mostly dark violet and blue-purple stamps filling the bottom inch and darkening the paths (about two thirds of changed pixels get darker)",
+     "where": "AFTER, x 0-100%, y 88-100% (bottom 1 1/2 in)",
+     "same_as": null
+    },
+    {
+     "id": "f68",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Creamy paint' again, unexplained",
+     "where": "words line 4",
+     "same_as": "f6"
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [
+  {
+   "id": "f69",
+   "class": "D",
+   "severity": "minor",
+   "steps": [
+    3
+   ],
+   "sees": "Coral pink's recipe (3 red, 2 white, 1 ultramarine) makes a purplish mauve, not the warm coral of its swatch #d75b61",
+   "where": "paints, step 3"
+  }
+ ],
+ "counts": {
+  "A": 42,
+  "B": 8,
+  "C": 1,
+  "D": 8,
+  "E": 6,
+  "F": 4,
+  "G": 0,
+  "H": 0
+ },
+ "distinct": {
+  "A": 12,
+  "B": 4,
+  "C": 1,
+  "D": 8,
+  "E": 6,
+  "F": 1,
+  "G": 0,
+  "H": 0
+ },
+ "worst_steps": [
+  7,
+  3,
+  8
+ ],
+ "not_visible": {
+  "G": "the lesson page layout, links, close-ups, paint maps, 'Where'/'Result' pictures and transfer outline the words refer to, and the lessons site (tiles, versions, history)",
+  "H": "the run itself: renders, checks, construction diagrams and paint-map coloring; only text leaks would show here, and none were seen"
+ },
+ "summary": "The step pictures are the main problem. A stray line from step 1 and a tiled, mirrored pattern in the gold band (step 7) carry on through step 19, and several block-ins are flat digital slabs with hard edges (the coral sky in step 3, the bushes in step 8, the tree in step 17) that the words, asking for soft tapped clumps, contradict. Later steps jump to finished detail (clouds in step 4, the tree crown in steps 18-19) and add colors their one named paint can't make (steps 7, 10, 14, 16, 19, 24); placement is mostly accurate, except the hills' width in step 5."
+}
