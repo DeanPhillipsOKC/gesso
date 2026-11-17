@@ -14,32 +14,49 @@ import v4_forward as fw  # noqa: E402
 
 def cow():
     d = vc.load("highland-cow")
-    return d, fw.units(d["painter"])
+    return d, vc.units(d["painter"], vc.flats(d))
 
 
 class CombinedTests(unittest.TestCase):
+    def test_units_cut_a_block_in_and_a_shared_paint_into_their_own(self):
+        d, us = cow()
+        steps = [[i + 1 for i in u["steps"]] for u in us]
+        self.assertEqual(len(fw.units(d["painter"])), 11)
+        self.assertEqual(len(us), 17)
+        self.assertIn([9], steps)  # the cow's block-in, apart from its shade
+        self.assertIn([10], steps)
+        self.assertIn([17, 18], steps)  # the nose's light and the nostrils: two paints, one render
+        self.assertIn([19], steps)  # the mouth line: Dark umber again, so its own render
+        self.assertIn([20, 21, 22, 23, 24], steps)
+
     def test_kinds_follow_the_plan(self):
         d, us = cow()
-        kinds = [vc.kind_of(us, n, d["behind"]) for n in range(len(us))]
-        assert len(us) == 11
-        # the loch and the ground have nothing behind them; the coat, the face and the tall grass come back to a thing
-        assert kinds[3] == kinds[4] == "bare"
-        assert kinds[8] == kinds[9] == kinds[10] == "back"
-        assert kinds[1] == kinds[5] == kinds[6] == kinds[7] == "behind"
+        kind = {tuple(i + 1 for i in u["steps"]): vc.kind_of(us, n, d["behind"]) for n, u in enumerate(us)}
+        self.assertEqual(kind[(5,)], "bare")
+        self.assertEqual(kind[(6,)], "bare")
+        for k in ((2,), (7,), (9,), (11,)):
+            self.assertEqual(kind[k], "behind")
+        for k in ((3,), (10,), (13, 14, 15), (19,), (20, 21, 22, 23, 24)):
+            self.assertEqual(kind[k], "back")
 
     def test_state_drops_what_is_not_there_yet(self):
         line = "The whole bottom half is covered in green. It is smooth, with no bushes, blades or cow yet."
-        assert vc._state(line) == "The whole bottom half is covered in green."
+        self.assertEqual(vc._state(line), "The whole bottom half is covered in green.")
 
     def test_requests_name_what_is_behind_and_never_ask_for_the_cow_to_go_with_the_grass(self):
         d, us = cow()
-        grass = vc.prompt_for(d["painter"], us, 10, d["behind"])
-        assert "Take it back one stage" in grass and "cow yet" not in grass
-        cow_shape = vc.prompt_for(d["painter"], us, 6, d["behind"])
-        assert "Behind them there is only this" in cow_shape and "the plain green meadow" in cow_shape
-        assert "leave bare" in vc.prompt_for(d["painter"], us, 4, d["behind"])
-        assert "smooth, flat and softly blended" in vc.prompt_for(d["painter"], us, 10, d["behind"], 2)
-        assert "smooth, flat and softly blended" not in vc.prompt_for(d["painter"], us, 10, d["behind"], 1)
+        at = {u["steps"][0] + 1: n for n, u in enumerate(us)}
+        ask = lambda step, again=0: vc.prompt_for(d["painter"], us, at[step], d["behind"], again)  # noqa: E731
+        self.assertIn("Take it back one stage", ask(20))
+        self.assertNotIn("cow yet", ask(20))
+        self.assertIn("Behind them there is only this", ask(9))
+        self.assertIn("the plain green meadow", ask(9))
+        self.assertIn("leave bare", ask(6))
+        smooth = "smooth, flat and softly blended"
+        self.assertIn(smooth, ask(20, 2))
+        self.assertNotIn(smooth, ask(20, 1))
+        self.assertIn(smooth, ask(10))  # what is left under the cow's shade is its block-in
+        self.assertNotIn(smooth, ask(13))
 
     def test_owner_is_the_last_core_then_the_last_change_then_the_nearest(self):
         D0, D1 = np.zeros((4, 6), bool), np.zeros((4, 6), bool)
