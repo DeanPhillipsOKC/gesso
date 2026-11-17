@@ -234,7 +234,7 @@ class FoldTests(unittest.TestCase):
             "Let the rug dry.", "Let the cat dry.",
             "The rug: Rug where.", "The cat: Cat where.", "The cat: Cat where, more.",
             "Paint: Shadow.", "Brush: flat.", "Thin paint.", "A thin veil.",
-            "Leave what step 2 painted showing.", "Leave what step 3 painted showing.", "Step back."])
+            "Leave what steps 2 and 3 painted showing.", "Step back."])  # one sentence about both parts' steps
         self.assertEqual([x["kind"] for x in out][:5], ["dry", "dry", "where", "where", "where"])
 
     def test_one_parts_lines_arent_led_by_its_name(self):

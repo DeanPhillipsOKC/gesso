@@ -1,0 +1,538 @@
+{
+ "packet": "p03",
+ "painting": "A shaggy highland cow with upswept horns stands in tall sunlit grass on a green hillside, with blue mountain ranges, a small loch and a gold sunset sky behind it.",
+ "steps": [
+  {
+   "n": 1,
+   "id": "blend-sky",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the warm glow at the right edge is a lemon-yellow shape with a hard, cut-out edge sitting on flat blue, not a soft wet blend",
+     "where": "AFTER, x 93-100%, y 8-15% (11.2-12 in from the left, 1.2-2.4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f2",
+     "class": "D",
+     "severity": "minor",
+     "sees": "Warm apricot is named, but the picture adds only Soft sky blue and a yellow patch; no apricot appears",
+     "where": "AFTER, right edge, 1-2.5 in down; paints list",
+     "same_as": null
+    },
+    {
+     "id": "f3",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 2 puts the warm colors 'low down', but the tip puts them about 2 in from the top of a sky that runs to 5 in",
+     "where": "words line 2 vs tip",
+     "same_as": null
+    },
+    {
+     "id": "f4",
+     "class": "F",
+     "severity": "minor",
+     "sees": "Golden ochre is mixed in step 1 and kept covered for steps 3, 14, 15 and 24; a beginner's acrylic mix won't last across the whole lesson",
+     "where": "words line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "streak-clouds",
+   "faults": [
+    {
+     "id": "f5",
+     "class": "A",
+     "severity": "major",
+     "sees": "Warm apricot and Pale silver-gray are laid as big flat, hard-edged fills with no brush marks, nothing like the feathery, see-through dry-brush the words ask for",
+     "where": "AFTER, x 0-100%, y 3-16% (0.5-2.6 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f6",
+     "class": "D",
+     "severity": "minor",
+     "sees": "about a quarter of the added color is pale gold and cream streaks that neither named paint gives",
+     "where": "AFTER, x 5-75%, 1-2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f7",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip lays apricot 'across the gold-glow band', but step 1 painted no gold-glow band (its tip says the glow comes with these streaks)",
+     "where": "tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "light-cloud-tops",
+   "faults": [
+    {
+     "id": "f8",
+     "class": "E",
+     "severity": "major",
+     "sees": "line 7 and the tip say to leave the apricot and gray showing, but the picture covers almost all of step 2's apricot and gray with a blended gold sky",
+     "where": "words line 7 and tip vs AFTER, x 0-100%, y 3-16%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "lay-in-mountains",
+   "faults": [
+    {
+     "id": "f9",
+     "class": "D",
+     "severity": "minor",
+     "sees": "Hazy blue-violet (#8e8a90, a gray-mauve) is named for the far range, but the picture adds a periwinkle blue (about #7284a8)",
+     "where": "AFTER, far range, x 25-100%, 2-3 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "streak-loch",
+   "faults": [
+    {
+     "id": "f10",
+     "class": "D",
+     "severity": "minor",
+     "sees": "the loch is about 40% cream and pale gold (about #e8d5b3), which neutral Pale silver-gray doesn't give",
+     "where": "AFTER, x 84-100%, 4.4-5.2 in down",
+     "same_as": null
+    },
+    {
+     "id": "f11",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a straight vertical seam and a lighter rectangular block in the dark ridge just above the loch",
+     "where": "AFTER, about 9.9 in from the left, 4.1-4.6 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "lay-in-ground",
+   "faults": [
+    {
+     "id": "f12",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "a regular grid of faint rings, a tiled pattern no brush makes, covers the olive hillside",
+     "where": "AFTER, x 0-100%, y 22-38% (3-6 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f13",
+     "class": "A",
+     "severity": "major",
+     "sees": "hard-edged blue-gray holes in the hillside: a strip and a block with a straight vertical edge and a semicircular cut",
+     "where": "AFTER, 6.3-9.8 in from the left, 4.3-5 in down",
+     "same_as": null
+    },
+    {
+     "id": "f14",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the hillside's lower edge is scalloped and ragged, with loose olive islands floating into the dark meadow",
+     "where": "AFTER, 5-8 in from the left, 7.1-7.8 in down",
+     "same_as": null
+    },
+    {
+     "id": "f15",
+     "class": "E",
+     "severity": "major",
+     "sees": "line 6 gives the hillside's paints top to bottom as Deep grass green, Olive green, then Sunlit yellow-green; the tip and the picture put Sunlit yellow-green and Olive on the hillside and Deep grass green only on the meadow below",
+     "where": "words line 6 vs tip and AFTER",
+     "same_as": null
+    },
+    {
+     "id": "f16",
+     "class": "F",
+     "severity": "minor",
+     "sees": "the three greens are mixed now and kept covered for steps 20-22, fourteen steps later; acrylic won't keep that long",
+     "where": "words lines 8-10",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "dab-dark-bushes",
+   "faults": [
+    {
+     "id": "f17",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the tiled ring pattern is still on the hillside",
+     "where": "AFTER, x 0-100%, 3-6 in down",
+     "same_as": "f12"
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "major",
+     "sees": "the hard-edged blue-gray block with the straight vertical edge is still there, beside a new flat dark slab",
+     "where": "AFTER, 6.3-9.8 in from the left, 4.3-5 in down",
+     "same_as": "f13"
+    },
+    {
+     "id": "f19",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the words ask for tapped, dappled clumps, but the picture adds long flat, hard-edged dark slabs (one along the top of the hill, one about 3 in long under the ridge)",
+     "where": "AFTER, 0-2.5 in from the left, 3-3.7 in down; 4.5-9.6 in from the left, 4.2-4.8 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "tap-sunlit-bushes",
+   "faults": [
+    {
+     "id": "f20",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names Sunlit yellow-green for light on the right tops of the bushes, but the picture adds cool blue-gray and teal greens (about #3f525f, #44534a) that soften whole bushes and the ridge strip; no yellow-green light appears",
+     "where": "AFTER, x 0-100%, 3-8.5 in down",
+     "same_as": null
+    },
+    {
+     "id": "f21",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the tiled ring pattern still shows in the olive areas",
+     "where": "AFTER, 0-8 in from the left, 5-6.5 in down",
+     "same_as": "f12"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "block-in-cow",
+   "faults": [
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "major",
+     "sees": "a gold-yellow rim and green and gold grass-blade strokes show around and inside the cow's outline before the golden locks (step 14) and the grass (steps 20-24)",
+     "where": "AFTER, cow's left edge 1.3-1.8 in from the left, 6-13 in down; bottom fingers 2.5-6 in from the left, 12-13.3 in down",
+     "same_as": null
+    },
+    {
+     "id": "f23",
+     "class": "E",
+     "severity": "minor",
+     "sees": "lines 7-8 say it should leave distinct curved segments with gaps or overlaps; the picture is one flat, solid shape",
+     "where": "words lines 7-8 vs AFTER",
+     "same_as": null
+    },
+    {
+     "id": "f24",
+     "class": "D",
+     "severity": "major",
+     "sees": "Rust brown's recipe (3 red, 2 ultramarine, 1 burnt sienna) is mostly red and blue and mixes a maroon-purple, not the orange-brown swatch #71371d",
+     "where": "paints, Rust brown",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "shade-cow",
+   "faults": [
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold rim and grass ghosts around the cow's outline are still there",
+     "where": "AFTER, cow's left and bottom edges",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "block-in-horns",
+   "faults": [
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold rim and grass ghosts around the cow's outline are still there",
+     "where": "AFTER, cow's left and bottom edges",
+     "same_as": "f22"
+    },
+    {
+     "id": "f27",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the words ask for distinct curved segments; the horns are two smooth, flat shapes",
+     "where": "words lines 6-7 vs AFTER",
+     "same_as": "f23"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "shade-horns",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "major",
+     "sees": "the gold rim and grass ghosts around the cow's outline are still there",
+     "where": "AFTER, cow's left and bottom edges",
+     "same_as": "f22"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "pull-copper-locks",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the gold rim ghost still shows along the cow's left edge",
+     "where": "AFTER, 1.3-1.8 in from the left, 6-12 in down",
+     "same_as": "f22"
+    },
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "major",
+     "sees": "the coat jumps from a flat block-in to dense, fully modeled fur (hundreds of locks in several values, lit fringe), far more than one beginner pass of copper locks",
+     "where": "AFTER, 1.6-8 in from the left, 4.8-12.6 in down",
+     "same_as": null
+    },
+    {
+     "id": "f31",
+     "class": "D",
+     "severity": "major",
+     "sees": "Copper orange's recipe (3 red, 2 ultramarine, 1 yellow, a touch of white) mixes a dull maroon-brown, not the copper swatch #944b23",
+     "where": "paints, Copper orange",
+     "same_as": null
+    },
+    {
+     "id": "f32",
+     "class": "D",
+     "severity": "major",
+     "sees": "Rust brown's recipe again mixes a maroon-purple, not its orange-brown swatch",
+     "where": "paints, Rust brown",
+     "same_as": "f24"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "pull-golden-locks",
+   "faults": []
+  },
+  {
+   "n": 15,
+   "id": "catch-rim-light",
+   "faults": [
+    {
+     "id": "f33",
+     "class": "D",
+     "severity": "major",
+     "sees": "on the horns only about a quarter of what's added is near Golden ochre; the rest is brown streaks and gray-mauve highlights (about #7a5233, #928283) that fully model the horns, where the tip asks for a thin ochre line along the top",
+     "where": "AFTER, horns, 3.3-9.7 in from the left, 2.7-5.4 in down",
+     "same_as": null
+    },
+    {
+     "id": "f34",
+     "class": "H",
+     "severity": "minor",
+     "sees": "lines 8 and 9 are the same sentence twice, once for each part ('Leave what steps ... painted showing around these marks, as in the Result picture')",
+     "where": "words lines 8-9",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "paint-nose",
+   "faults": [
+    {
+     "id": "f35",
+     "class": "D",
+     "severity": "minor",
+     "sees": "Rosy brown's recipe (3 red, 3 ultramarine, 1 yellow) mixes a dull purple-brown, not the warm brown swatch #734933",
+     "where": "paints, Rosy brown",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "light-nose",
+   "faults": []
+  },
+  {
+   "n": 18,
+   "id": "dot-nostrils-eye",
+   "faults": [
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the mouth line, which step 19 paints, is already drawn",
+     "where": "AFTER, 6.5-7.7 in from the left, about 8.2 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "line-mouth",
+   "faults": [
+    {
+     "id": "f37",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names only Deep red-brown for one mouth line and a chin line, but the picture models the whole muzzle in tan, pink-mauve and gold hair strands (about #986548, #eeb23a); almost nothing added is Deep red-brown",
+     "where": "AFTER, muzzle, 6.2-8.2 in from the left, 7-8.8 in down",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "flick-dark-blades",
+   "faults": [
+    {
+     "id": "f38",
+     "class": "E",
+     "severity": "major",
+     "sees": "flicking Deep grass green over the Deep grass green meadow from step 6 would leave no visible blades; the picture shows lighter teal and darker blades",
+     "where": "words line 3 and tip vs AFTER, 9.9-16 in down",
+     "same_as": null
+    },
+    {
+     "id": "f39",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says blades already cross the bottom of the cow 'from its block-in', but step 9's words never asked for any",
+     "where": "tip",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "id": "flick-olive-blades",
+   "faults": []
+  },
+  {
+   "n": 22,
+   "id": "flick-yellow-green-blades",
+   "faults": [
+    {
+     "id": "f40",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says Sunlit yellow-green covers less than the olive; the picture adds about three times as much as step 21 did",
+     "where": "tip vs AFTER",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 23,
+   "id": "flick-gold-blades",
+   "faults": [
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "major",
+     "sees": "scattered flat, hard-edged dark holes cut into the meadow, crisp outlines that no flicked stroke leaves",
+     "where": "AFTER, 7-12 in from the left, 8.3-9.5 in down, and smaller ones across the meadow",
+     "same_as": null
+    },
+    {
+     "id": "f42",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip again refers to gold blades that 'already cross the bottom of the cow', which no earlier step's words asked for",
+     "where": "tip",
+     "same_as": "f39"
+    }
+   ]
+  },
+  {
+   "n": 24,
+   "id": "flick-brightest-tips",
+   "faults": [
+    {
+     "id": "f43",
+     "class": "C",
+     "severity": "minor",
+     "sees": "the top of the brightest tips is given as about 6 1/2 in from the top; the picture's highest gold blades start at about 7.7 in",
+     "where": "words line 2 vs AFTER",
+     "same_as": null
+    },
+    {
+     "id": "f44",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the tip says 'only a few', but the picture adds dozens of gold blades across the whole meadow",
+     "where": "tip vs AFTER",
+     "same_as": null
+    },
+    {
+     "id": "f45",
+     "class": "E",
+     "severity": "minor",
+     "sees": "the dark holes and gaps left in the meadow fill in with green, which no line asks for (only Golden ochre is named)",
+     "where": "AFTER, 0-1.7 in from the left, 7.4-8.6 in down; 7-12 in from the left, 8.3-9.5 in down",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 16,
+  "B": 1,
+  "C": 1,
+  "D": 11,
+  "E": 13,
+  "F": 2,
+  "G": 0,
+  "H": 1
+ },
+ "distinct": {
+  "A": 9,
+  "B": 1,
+  "C": 1,
+  "D": 10,
+  "E": 11,
+  "F": 2,
+  "G": 0,
+  "H": 1
+ },
+ "worst_steps": [
+  6,
+  13,
+  9
+ ],
+ "not_visible": {
+  "G": "the lesson page's layout and links, the close-ups and paint maps the words refer to ('the paint map', 'the transfer outline in Before you start', 'the Result picture'), whether the site shows the current version, and the lesson history",
+  "H": "the paint-map and diagram images, the render and cutting tools' runs and logs, and whether the tools' own checks flagged any of these faults"
+ },
+ "summary": "The worst problems are in the step pictures: flat, hard-edged fills and holes no brush makes (the sky streaks, the hillside's tiled ring pattern and blue block, the meadow holes in step 23), and a gold rim with grass blades around the cow from its block-in through step 13. Several steps jump to finished detail or add colors their single paint can't make (the coat in 13, the horns in 15, the muzzle in 19, the cool bushes in 8), and the words often contradict their own pictures or tips (step 6's color order, 'leave it showing' in step 3, 'only a few' in step 24). Three swatch recipes (Rust brown, Copper orange, Rosy brown) mix mostly red and ultramarine and would come out purple-maroon, not the warm browns shown."
+}

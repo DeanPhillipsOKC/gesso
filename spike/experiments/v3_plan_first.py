@@ -321,6 +321,29 @@ def _cap(name: str) -> str:
     return name[:1].upper() + name[1:]
 
 
+def _one_sentence(rows: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """Lines that are one sentence about different steps ("Leave what steps 9 and 10 painted showing", from one part,
+    and "Leave what steps 11 and 12 painted showing", from another) said once, about all of those steps."""
+    import draft_text
+
+    out: list[tuple[str, str]] = []
+    at: dict[str, int] = {}
+    nums: dict[str, list[int]] = {}
+    for part, text in rows:
+        found = NUMBERS.findall(text)
+        if len(found) != 1:
+            out.append((part, text))
+            continue
+        frame = NUMBERS.sub("\0", text)
+        nums.setdefault(frame, [])
+        nums[frame] += [int(x) for x in re.findall(r"\d+", found[0]) if int(x) not in nums[frame]]
+        if frame not in at:
+            at[frame] = len(out)
+            out.append((part, text))
+        out[at[frame]] = (out[at[frame]][0], frame.replace("\0", draft_text._steps_words(sorted(nums[frame]))))
+    return out
+
+
 def fold_lines(subs: list[dict], number_of: dict[int, int], n: int) -> list[dict]:
     """One painter's step's lines from its v2 steps' lines (lesson.json stages, each with `part_name`): kind by kind
     in the drafted order, a line two parts share said once, and the lines that differ by part (where, paints) led by
@@ -335,6 +358,7 @@ def fold_lines(subs: list[dict], number_of: dict[int, int], n: int) -> list[dict
                 text = renumber(line.get("text") or "", number_of, n)
                 if text and (sub["part_name"], text) not in rows:
                     rows.append((sub["part_name"], text))
+        rows = _one_sentence(rows)
         texts = list(dict.fromkeys(t for _, t in rows))
         by_part: dict[str, list[str]] = {}
         for part, text in rows:

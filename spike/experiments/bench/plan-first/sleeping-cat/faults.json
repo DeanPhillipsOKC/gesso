@@ -1,0 +1,818 @@
+{
+ "packet": "p01",
+ "painting": "A gray tabby cat curled asleep on a yellow knitted blanket on a wooden windowsill, a bright window with leaves at the upper left, pale blue wall",
+ "steps": [
+  {
+   "n": 1,
+   "id": "blend-window-sky",
+   "faults": [
+    {
+     "id": "f1",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the window sky is a mirrored, tiled kaleidoscope texture with small repeated square marks, not brushwork",
+     "where": "AFTER picture, sky area x 0-18%, y 0-48% (top-left 2 3/4 x 5 3/4 in)",
+     "same_as": null
+    },
+    {
+     "id": "f5",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 says the area is about 1 1/4 in wide; the painted sky (and the leaves in steps 2-3) spans about 2 3/4-2 7/8 in from the left edge in the top part",
+     "where": "line 1 (step 1), line 2 (step 2), line 3 (step 3); AFTER picture x 0-18%, y 0-30%",
+     "same_as": null
+    },
+    {
+     "id": "f8",
+     "class": "D",
+     "severity": "major",
+     "sees": "Pale periwinkle (#a4b2c9) is a grayed lavender-blue; the sky the picture adds is a clear saturated sky blue (about #9bd3f8), clearly a different color",
+     "where": "Paints / AFTER picture, sky x 0-18%, y 0-15%",
+     "same_as": null
+    },
+    {
+     "id": "f9",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the sky area has a blank unpainted strip across it (and a notch at its right), though line 2 says to paint straight through where the frame will go",
+     "where": "AFTER picture, x 0-18%, y 16-18% (about 2 in down) and x 8-18%, y 20-30%",
+     "same_as": null
+    },
+    {
+     "id": "f12",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a thin stray streak of sky runs out from the window across the bare canvas to about 7 3/4 in from the left",
+     "where": "AFTER picture, x 0-49%, y 47% (about 5 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f15",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used with nothing on the step explaining what a creamy load is",
+     "where": "line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "id": "dab-dark-trees",
+   "faults": [
+    {
+     "id": "f2",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the window sky is a mirrored, tiled kaleidoscope texture with small repeated square marks, not brushwork (still showing)",
+     "where": "AFTER picture, sky area x 0-18%, y 0-48% (top-left 2 3/4 x 5 3/4 in)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f6",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 says the area is about 1 1/4 in wide; the painted sky (and the leaves in steps 2-3) spans about 2 3/4-2 7/8 in from the left edge in the top part (still showing)",
+     "where": "line 1 (step 1), line 2 (step 2), line 3 (step 3); AFTER picture x 0-18%, y 0-30%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f10",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the sky area has a blank unpainted strip across it (and a notch at its right), though line 2 says to paint straight through where the frame will go (still showing)",
+     "where": "AFTER picture, x 0-18%, y 16-18% (about 2 in down) and x 8-18%, y 20-30%",
+     "same_as": "f9"
+    },
+    {
+     "id": "f13",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a thin stray streak of sky runs out from the window across the bare canvas to about 7 3/4 in from the left (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47% (about 5 3/4 in down)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f16",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 3 says where the area reaches onto the painted sky to 'only soften this paint into its edge and leave it showing', but the leaves are meant to be dabbed over the sky as one mass (tip)",
+     "where": "line 3",
+     "same_as": null
+    },
+    {
+     "id": "f17",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' used without saying how much paint that is",
+     "where": "line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "id": "dab-sunlit-leaves",
+   "faults": [
+    {
+     "id": "f3",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the window sky is a mirrored, tiled kaleidoscope texture with small repeated square marks, not brushwork (still showing)",
+     "where": "AFTER picture, sky area x 0-18%, y 0-48% (top-left 2 3/4 x 5 3/4 in)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f7",
+     "class": "C",
+     "severity": "major",
+     "sees": "line 1 says the area is about 1 1/4 in wide; the painted sky (and the leaves in steps 2-3) spans about 2 3/4-2 7/8 in from the left edge in the top part (still showing)",
+     "where": "line 1 (step 1), line 2 (step 2), line 3 (step 3); AFTER picture x 0-18%, y 0-30%",
+     "same_as": "f5"
+    },
+    {
+     "id": "f11",
+     "class": "B",
+     "severity": "minor",
+     "sees": "the sky area has a blank unpainted strip across it (and a notch at its right), though line 2 says to paint straight through where the frame will go (still showing)",
+     "where": "AFTER picture, x 0-18%, y 16-18% (about 2 in down) and x 8-18%, y 20-30%",
+     "same_as": "f9"
+    },
+    {
+     "id": "f14",
+     "class": "B",
+     "severity": "minor",
+     "sees": "a thin stray streak of sky runs out from the window across the bare canvas to about 7 3/4 in from the left (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47% (about 5 3/4 in down)",
+     "same_as": "f12"
+    },
+    {
+     "id": "f18",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the leaf strip right of the crossbar is a mirrored, symmetric pattern of green shapes, not dabbed brush marks",
+     "where": "AFTER picture, x 3-18%, y 10-25% (about 1/2 to 2 3/4 in from the left, 1 1/4-3 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f20",
+     "class": "E",
+     "severity": "minor",
+     "sees": "tip says tap the upper and right sides of each clump 'toward the light', but step 1's tip puts the light at the upper left",
+     "where": "Tip",
+     "same_as": null
+    },
+    {
+     "id": "f21",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' again used with no explanation",
+     "where": "line 6",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "id": "blend-the-wall",
+   "faults": [
+    {
+     "id": "f4",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the window sky is a mirrored, tiled kaleidoscope texture with small repeated square marks, not brushwork (still showing)",
+     "where": "AFTER picture, sky area x 0-18%, y 0-48% (top-left 2 3/4 x 5 3/4 in)",
+     "same_as": "f1"
+    },
+    {
+     "id": "f19",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the leaf strip right of the crossbar is a mirrored, symmetric pattern of green shapes, not dabbed brush marks (still showing)",
+     "where": "AFTER picture, x 3-18%, y 10-25% (about 1/2 to 2 3/4 in from the left, 1 1/4-3 in down)",
+     "same_as": "f18"
+    },
+    {
+     "id": "f22",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": null
+    },
+    {
+     "id": "f32",
+     "class": "A",
+     "severity": "major",
+     "sees": "a slanted wood-brown patch shows on the wall where the sill will go, before the sill step",
+     "where": "AFTER picture, x 0-10%, y 52-65% (left edge, about 6 1/4-7 3/4 in down)",
+     "same_as": null
+    },
+    {
+     "id": "f35",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": null
+    },
+    {
+     "id": "f45",
+     "class": "D",
+     "severity": "major",
+     "sees": "the lower two-thirds of the wall is a clearly darker, more saturated blue (about #7f95b9) than Pale periwinkle (#a4b2c9); no darker paint is named",
+     "where": "AFTER picture, x 10-100%, y 45-100%",
+     "same_as": null
+    },
+    {
+     "id": "f46",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words say lighter by the window and deeper to the right; the picture goes light at the top to dark at the bottom across the whole width",
+     "where": "line 4 and tip; AFTER picture",
+     "same_as": null
+    },
+    {
+     "id": "f47",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint' used without explanation",
+     "where": "line 3",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "id": "block-window-frame",
+   "faults": [
+    {
+     "id": "f23",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f33",
+     "class": "A",
+     "severity": "major",
+     "sees": "a slanted wood-brown patch shows on the wall where the sill will go, before the sill step (still showing)",
+     "where": "AFTER picture, x 0-10%, y 52-65% (left edge, about 6 1/4-7 3/4 in down)",
+     "same_as": "f32"
+    },
+    {
+     "id": "f36",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f48",
+     "class": "B",
+     "severity": "major",
+     "sees": "the frame's cream block-in is one blob with a curved, lumpy bottom on the post, a ragged ledge shape and a stray dark-red line, not the straight strips the words describe",
+     "where": "AFTER picture, x 7-27%, y 20-60% (post bottom about 3 in down, stray line 1-2 in from the left, 3 3/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "id": "shade-window-frame",
+   "faults": [
+    {
+     "id": "f24",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f34",
+     "class": "A",
+     "severity": "major",
+     "sees": "a slanted wood-brown patch shows on the wall where the sill will go, before the sill step (still showing)",
+     "where": "AFTER picture, x 0-10%, y 52-65% (left edge, about 6 1/4-7 3/4 in down)",
+     "same_as": "f32"
+    },
+    {
+     "id": "f37",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f49",
+     "class": "E",
+     "severity": "minor",
+     "sees": "words say Soft lavender goes in thin lines under the crossbar; the picture paints most of the crossbar itself as a wide lavender band",
+     "where": "line 6 and tip; AFTER picture x 0-8%, y 15-21%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "id": "block-the-sill",
+   "faults": [
+    {
+     "id": "f25",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f38",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f50",
+     "class": "B",
+     "severity": "major",
+     "sees": "the sill's painted area leaves the wall color showing over most of the sill top where the blanket will sit (words say run it straight through), and its left part is a lumpy column",
+     "where": "AFTER picture, x 10-100%, y 62-88%",
+     "same_as": null
+    },
+    {
+     "id": "f51",
+     "class": "C",
+     "severity": "major",
+     "sees": "line says the sill's top is about 4 1/2 in from the bottom edge all the way across; in the picture that is true only at the left, and across most of the width the top is about 1 1/4-1 3/4 in from the bottom",
+     "where": "line 4 (step 7), line 2 (steps 8, 9); AFTER picture x 10-100%, y 85-90%",
+     "same_as": null
+    },
+    {
+     "id": "f54",
+     "class": "D",
+     "severity": "major",
+     "sees": "Warm wood brown's recipe (2 parts red, 1 part ultramarine, touches of yellow and white) mixes a maroon/purple-brown, not the orange-brown swatch #934025",
+     "where": "Paints",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "id": "shade-the-sill",
+   "faults": [
+    {
+     "id": "f26",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f39",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f52",
+     "class": "C",
+     "severity": "major",
+     "sees": "line says the sill's top is about 4 1/2 in from the bottom edge all the way across; in the picture that is true only at the left, and across most of the width the top is about 1 1/4-1 3/4 in from the bottom (still showing)",
+     "where": "line 4 (step 7), line 2 (steps 8, 9); AFTER picture x 10-100%, y 85-90%",
+     "same_as": "f51"
+    },
+    {
+     "id": "f55",
+     "class": "D",
+     "severity": "major",
+     "sees": "Warm wood brown's recipe (2 parts red, 1 part ultramarine, touches of yellow and white) mixes a maroon/purple-brown, not the orange-brown swatch #934025 (still showing)",
+     "where": "Paints",
+     "same_as": "f54"
+    },
+    {
+     "id": "f56",
+     "class": "A",
+     "severity": "major",
+     "sees": "a scalloped row of light ridges and peaks appears along the sill's top edge, the outline of the blanket's bottom edge before the blanket step",
+     "where": "AFTER picture, x 10-100%, y 83-90% (about 1-2 in up from the bottom)",
+     "same_as": null
+    },
+    {
+     "id": "f57",
+     "class": "D",
+     "severity": "major",
+     "sees": "the step names only Warm wood brown (darkened); about half of what the picture adds is a lighter orange-brown wood grain and highlights (about #b05030 and lighter)",
+     "where": "Paints; AFTER picture, sill x 0-100%, y 62-100%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "id": "light-the-sill",
+   "faults": [
+    {
+     "id": "f27",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f40",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f53",
+     "class": "C",
+     "severity": "major",
+     "sees": "line says the sill's top is about 4 1/2 in from the bottom edge all the way across; in the picture that is true only at the left, and across most of the width the top is about 1 1/4-1 3/4 in from the bottom (still showing)",
+     "where": "line 4 (step 7), line 2 (steps 8, 9); AFTER picture x 10-100%, y 85-90%",
+     "same_as": "f51"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "id": "block-the-blanket",
+   "faults": [
+    {
+     "id": "f28",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f41",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f58",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a thin dark charcoal line runs inside the top of the blanket where the cat's underside will lie, before the cat step",
+     "where": "AFTER picture, x 28-88%, y 68-70% (about 4 1/2-14 in from the left, 8 1/4 in down)",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "id": "shade-the-blanket",
+   "faults": [
+    {
+     "id": "f29",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f42",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f59",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a thin dark charcoal line runs inside the top of the blanket where the cat's underside will lie, before the cat step (still showing)",
+     "where": "AFTER picture, x 28-88%, y 68-70% (about 4 1/2-14 in from the left, 8 1/4 in down)",
+     "same_as": "f58"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "id": "dark-stitches",
+   "faults": [
+    {
+     "id": "f30",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f43",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f60",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a thin dark charcoal line runs inside the top of the blanket where the cat's underside will lie, before the cat step (still showing)",
+     "where": "AFTER picture, x 28-88%, y 68-70% (about 4 1/2-14 in from the left, 8 1/4 in down)",
+     "same_as": "f58"
+    },
+    {
+     "id": "f62",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint, a full load' with no explanation",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "id": "light-stitches",
+   "faults": [
+    {
+     "id": "f31",
+     "class": "A",
+     "severity": "blocker",
+     "sees": "the lower wall is a smooth, filter-like blur with a tiled kaleidoscope texture and straight vertical seams, nothing a brush makes (still showing)",
+     "where": "AFTER picture, seams at x about 10%, 42% and 75% (1 2/3, 6 3/4 and 12 in from the left), y 25-100%",
+     "same_as": "f22"
+    },
+    {
+     "id": "f44",
+     "class": "A",
+     "severity": "minor",
+     "sees": "the stray sky streak still shows on top of the wall although the wall coat covers the whole canvas (still showing)",
+     "where": "AFTER picture, x 0-49%, y 47%",
+     "same_as": "f35"
+    },
+    {
+     "id": "f61",
+     "class": "A",
+     "severity": "minor",
+     "sees": "a thin dark charcoal line runs inside the top of the blanket where the cat's underside will lie, before the cat step (still showing)",
+     "where": "AFTER picture, x 28-88%, y 68-70% (about 4 1/2-14 in from the left, 8 1/4 in down)",
+     "same_as": "f58"
+    },
+    {
+     "id": "f63",
+     "class": "D",
+     "severity": "major",
+     "sees": "the sunlit stitches are a lighter, yellower gold (about #fbb725 and lighter) but the step names Golden yellow, the blanket's own base color, which would not show on it",
+     "where": "Paints; AFTER picture, tops of rolls x 10-95%, y 55-75%",
+     "same_as": null
+    },
+    {
+     "id": "f64",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint, a full load' with no explanation",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "id": "block-the-cat",
+   "faults": []
+  },
+  {
+   "n": 15,
+   "id": "white-patches",
+   "faults": [
+    {
+     "id": "f65",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white whiskers already show as fine pale lines, long before the whisker step",
+     "where": "AFTER picture, x 12-52%, y 45-62% (both sides of the muzzle)",
+     "same_as": null
+    },
+    {
+     "id": "f71",
+     "class": "A",
+     "severity": "minor",
+     "sees": "scattered pink and tan specks float on the gray head (where the ear pink and eye fur will go), not part of the white patches",
+     "where": "AFTER picture, x 13-16%, y 37-40%; x 37-40%, y 24-26%; x 24-28%, y 48-50%",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 16,
+   "id": "paint-stripes",
+   "faults": [
+    {
+     "id": "f66",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white whiskers already show as fine pale lines, long before the whisker step (still showing)",
+     "where": "AFTER picture, x 12-52%, y 45-62% (both sides of the muzzle)",
+     "same_as": "f65"
+    },
+    {
+     "id": "f72",
+     "class": "A",
+     "severity": "minor",
+     "sees": "scattered pink and tan specks float on the gray head (where the ear pink and eye fur will go), not part of the white patches (still showing)",
+     "where": "AFTER picture, x 13-16%, y 37-40%; x 37-40%, y 24-26%; x 24-28%, y 48-50%",
+     "same_as": "f71"
+    }
+   ]
+  },
+  {
+   "n": 17,
+   "id": "paint-inner-ears",
+   "faults": [
+    {
+     "id": "f67",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white whiskers already show as fine pale lines, long before the whisker step (still showing)",
+     "where": "AFTER picture, x 12-52%, y 45-62% (both sides of the muzzle)",
+     "same_as": "f65"
+    },
+    {
+     "id": "f73",
+     "class": "A",
+     "severity": "minor",
+     "sees": "scattered pink and tan specks float on the gray head (where the ear pink and eye fur will go), not part of the white patches (still showing)",
+     "where": "AFTER picture, x 13-16%, y 37-40%; x 37-40%, y 24-26%; x 24-28%, y 48-50%",
+     "same_as": "f71"
+    },
+    {
+     "id": "f74",
+     "class": "C",
+     "severity": "minor",
+     "sees": "line 2 gives the ears' area as 6 1/2 in tall; the pink in the picture spans only about 3 1/4 in (from about 1 3/4 to 5 in down)",
+     "where": "line 2; AFTER picture x 8-43%, y 14-42%",
+     "same_as": null
+    },
+    {
+     "id": "f75",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint, a full load' with no explanation",
+     "where": "line 5",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 18,
+   "id": "flick-silver-fur",
+   "faults": [
+    {
+     "id": "f68",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white whiskers already show as fine pale lines, long before the whisker step (still showing)",
+     "where": "AFTER picture, x 12-52%, y 45-62% (both sides of the muzzle)",
+     "same_as": "f65"
+    },
+    {
+     "id": "f76",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'A light load' with no explanation",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 19,
+   "id": "eyes-and-mouth",
+   "faults": [
+    {
+     "id": "f69",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white whiskers already show as fine pale lines, long before the whisker step (still showing)",
+     "where": "AFTER picture, x 12-52%, y 45-62% (both sides of the muzzle)",
+     "same_as": "f65"
+    },
+    {
+     "id": "f77",
+     "class": "C",
+     "severity": "minor",
+     "sees": "line 2 gives the area as 1 1/4 in tall; the lines the picture adds span about 2 1/8 in (4 2/3 to 6 3/4 in down)",
+     "where": "line 2; AFTER picture x 23-42%, y 39-57%",
+     "same_as": null
+    },
+    {
+     "id": "f78",
+     "class": "E",
+     "severity": "minor",
+     "sees": "line 3 says to only soften this paint into the cat's edge and leave the cat showing, but the eyes and mouth are painted entirely on the cat",
+     "where": "line 3",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 20,
+   "id": "paint-the-nose",
+   "faults": [
+    {
+     "id": "f70",
+     "class": "A",
+     "severity": "major",
+     "sees": "the white whiskers already show as fine pale lines, long before the whisker step (still showing)",
+     "where": "AFTER picture, x 12-52%, y 45-62% (both sides of the muzzle)",
+     "same_as": "f65"
+    },
+    {
+     "id": "f79",
+     "class": "E",
+     "severity": "minor",
+     "sees": "tip says to mix Warm salmon again, contradicting step 17 line 4, which says to mix enough for step 20 and cover it",
+     "where": "Tip",
+     "same_as": null
+    },
+    {
+     "id": "f80",
+     "class": "F",
+     "severity": "minor",
+     "sees": "'Load: Creamy paint, a full load' with no explanation",
+     "where": "line 4",
+     "same_as": null
+    }
+   ]
+  },
+  {
+   "n": 21,
+   "id": "white-whiskers",
+   "faults": [
+    {
+     "id": "f81",
+     "class": "G",
+     "severity": "major",
+     "sees": "the step picture is the same as step 20's (whiskers were already there), though the words say to paint the whiskers",
+     "where": "pairs/21: BEFORE and AFTER identical",
+     "same_as": null
+    },
+    {
+     "id": "f82",
+     "class": "F",
+     "severity": "minor",
+     "sees": "line 8 tells the beginner to build each fine liner whisker from two or three thin coats, letting each dry, which can't be done line on line",
+     "where": "line 8",
+     "same_as": null
+    }
+   ]
+  }
+ ],
+ "lesson_faults": [],
+ "counts": {
+  "A": 43,
+  "B": 8,
+  "C": 8,
+  "D": 6,
+  "E": 6,
+  "F": 10,
+  "G": 1,
+  "H": 0
+ },
+ "distinct": {
+  "A": 9,
+  "B": 4,
+  "C": 4,
+  "D": 5,
+  "E": 6,
+  "F": 10,
+  "G": 1,
+  "H": 0
+ },
+ "worst_steps": [
+  4,
+  1,
+  7
+ ],
+ "not_visible": {
+  "G": "the lesson page's layout, links, close-ups, paint maps, diagrams, the transfer outline ('Before you start'), the site listing and lesson history",
+  "H": "how the run went: renders, cut tools, checks, diagrams and paint maps the packet doesn't include"
+ },
+ "summary": "The early steps' pictures are not paint: the window sky, the leaf strip and the whole lower wall carry mirrored, tiled kaleidoscope textures and straight seams that stay visible for up to ten steps, and later objects ghost in early (sill patch on the wall, blanket ridges on the sill, cat line in the blanket, whiskers from step 15 so step 21's picture doesn't change). Words often give sizes that disagree with the pictures (window width, sill top) and several paints don't match what the picture adds (sky, wall, sill highlights, sunlit stitches, a wood-brown recipe that mixes purple). Load terms like 'creamy' and 'a light load' are never explained."
+}
