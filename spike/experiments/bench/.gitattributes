@@ -1,4 +1,6 @@
-# Frozen files must stay byte for byte as frozen on every machine (#165): no line-end conversion, ever.
+# Frozen files must stay byte for byte as frozen on every machine (#165). Images are binary; JSON is LF in the repo
+# and in every checkout (the *.json line below wins over -text for JSON). The bench still reads frozen JSON with
+# CRLF folded to LF, in case a checkout converts it anyway.
 pictures/** -text
 baseline/** -text
 scores/** -text

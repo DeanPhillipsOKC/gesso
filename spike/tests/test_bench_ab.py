@@ -125,10 +125,15 @@ class ABPageTests(unittest.TestCase):
     def test_sides_are_balanced_and_drawn_from_the_seed(self):
         pairs = [(published(self.tmp / "1", n, f"{n}_skill_20261116-100000", steps=1),
                   published(self.tmp / "2", n, f"{n}_skill_20261116-200000", steps=1)) for n in PICTURES]
-        for seed in range(6):
-            plan = ab_page.plan_round("r", pairs=pairs, seed=seed)
-            firsts = [r["sides"]["A"].name.endswith("100000") for r in plan["pictures"]]
-            self.assertEqual(sum(firsts), 4, seed)  # four and four, every time
+        for n in (1, 2, 3, 5, 8):
+            counts = set()
+            for seed in range(40):
+                plan = ab_page.plan_round("r", pairs=pairs[:n], seed=seed)
+                firsts = sum(r["sides"]["A"].name.endswith("100000") for r in plan["pictures"])
+                self.assertIn(firsts, {n // 2, n - n // 2}, (n, seed))  # balanced, one either way when n is odd
+                counts.add(firsts)
+            # the seed, not the order the lessons were named in, decides: with n odd both splits come up
+            self.assertEqual(counts, {n // 2, n - n // 2}, n)
         self.assertNotEqual(*(tuple(r["sides"]["A"] for r in ab_page.plan_round("r", pairs=pairs, seed=s)["pictures"])
                               for s in (1, 2)))
         self.assertIsInstance(ab_page.plan_round("r", pairs=pairs)["seed"], int)  # none given: a random one, kept
@@ -178,6 +183,8 @@ class BlindInTheBrowserTests(unittest.TestCase):
         out = json.loads(run.stdout.strip().splitlines()[-1])
         copied = json.loads(out["copy"])  # the clipboard is blocked: the fallback box shows the JSON
         self.assertEqual(copied["pictures"][0]["scores"]["A"]["real"], 4)
+        at = copied["pictures"][0]["scores"]["A"]["at"]  # each item's own save time
+        self.assertEqual(sorted(at), ["real", "worst_steps"])
         self.assertTrue(out["db"], "no database record was written")
         self.assertTrue(out["db"][-1]["id"].startswith("s1-test__d"))
         everything = json.dumps(out)
@@ -237,6 +244,17 @@ class ScoresTests(unittest.TestCase):
         self.assertEqual(saved["conflicts"][0]["item"], "real")
         self.assertEqual(saved["seed"], 7)
         self.assertEqual([m["device"] for m in saved["merged_from"]], ["d1", "d2"])
+
+    def test_each_item_merges_by_its_own_time_and_a_later_clear_wins(self):
+        phone = self.record("d1", "2026-11-17T12:00:00Z", real=4, worst=[5])  # saved last, but set real at 10:00
+        phone["pictures"][0]["scores"]["A"]["at"] = {"real": "2026-11-17T10:00:00Z", "worst_steps": "2026-11-17T10:00:00Z"}
+        laptop = self.record("d2", "2026-11-17T11:00:00Z", real=2, worst=[])  # corrected real, un-tapped step 5
+        laptop["pictures"][0]["scores"]["A"]["at"] = {"real": "2026-11-17T11:00:00Z", "worst_steps": "2026-11-17T11:00:00Z"}
+        out = ab_page.import_scores([self.write("p.json", phone), self.write("l.json", laptop)], dest=self.tmp / "scores")
+        sc = json.loads((self.tmp / "scores" / "s1-test.json").read_text())["pictures"][0]["scores"]["A"]
+        self.assertEqual(sc["real"], 2)  # the laptop's later correction, though the phone saved later
+        self.assertEqual(sc["worst_steps"], [])  # the later clear wins
+        self.assertEqual(out["conflicts"], 2)
 
     def test_refuses_tokens_the_key_doesnt_know_and_wont_overwrite(self):
         rec = self.record("d1", "2026-11-17T10:00:00Z", real=4)

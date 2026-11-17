@@ -152,21 +152,25 @@ copies the scores JSON; when the clipboard is blocked it shows the JSON in a box
  "pictures": [{"picture": "chickadee",
                "lessons": {"A": "L3f9a0c1d2e7b", "B": "L81c2d0e4a9f3"},
                "scores": {"A": {"real": 4, "paintable": 3, "agree": 4,
-                                "worst_steps": [{"n": 5, "id": "branch-dark"}], "note": ""},
-                          "B": {"real": 2, "paintable": 3, "agree": 2, "worst_steps": [], "note": ""}},
-               "prefer": "A", "note": ""}]}
+                                "worst_steps": [{"n": 5, "id": "branch-dark"}], "note": "",
+                                "at": {"real": "2026-11-17T20:58:10.000Z", "worst_steps": "2026-11-17T20:59:02.000Z"}},
+                          "B": {"real": 2, "paintable": 3, "agree": 2, "worst_steps": [], "note": "", "at": {}}},
+               "prefer": "A", "note": "", "at": {"prefer": "2026-11-17T21:00:00.000Z"}}]}
 ```
 
 In single mode `lessons` and `scores` have only `A`, each lesson has `would_paint` (yes, maybe or no), and there's no
-`prefer`. A score not given yet is `null`. `device` is only in database records.
+`prefer`. A score not given yet is `null`. `at` holds when each item was last set or cleared, on this device.
+`device` is only in database records.
 
 **Import** a round's scores onto the bench, from the copied JSON or the database records (one file each, or a list):
 
     python spike/experiments/bench/ab_page.py import scores-phone.json scores-laptop.json [--key page.key.json]
 
-It checks each record, merges the devices' records item by item (each score, worst-step list and note of each
-picture and side: the latest `saved_at` that set it wins), lists any item two records set differently as a
-conflict, then joins the tokens to lesson folders through the answer key (default
+It checks each record and merges the devices' records item by item: for each score, worst-step list and note of
+each picture and side, the latest change wins, by the item's own time in `at`. A record that times an item counts
+even when it cleared it (a worst step un-tapped), so a later clear wins. The baseline-1.12.1 page's records have no
+`at`: for them an item's time is the record's `saved_at`, and only a set value counts. Any item two records hold
+differently is listed as a conflict, with the value kept. Then it joins the tokens to lesson folders through the answer key (default
 `spike/experiments/bench/scores/<round>.key.json`) and refuses a token the key doesn't know. It saves
 `spike/experiments/bench/scores/<round>.json` with the folders, the tokens, the seed, the records merged and the
 conflicts. It won't overwrite different scores for the same round without `--force`.
@@ -251,7 +255,7 @@ subagent transcripts in `<session>/subagents/` too, keeping the one whose tool c
 (the parent session that started a subagent names it only in its report). It warns when that transcript is a main
 session's, or when another names the folder about as often. It reports wall time per skill step, 0 to 8, split
 into:
-- **Claude**: time with no tool running: thinking, writing, waiting for the model, and waiting on a background call.
+- **Claude**: time with no tool running: thinking, writing, waiting for the model.
 - **Tools**: from each tool call to its result, with calls that ran at once counted once, less render time. A
   fresh-context review run as a subagent counts here, labeled `subagent`.
 - **Render**: the `seconds` each render prints (`render` and `background` print a JSON line with `cached` and
@@ -407,7 +411,10 @@ A step-picture fault the counter met once is usually met again in the following 
 
 Four runs had background calls (an `outline` left running while Claude did other things): the snow lantern 61 s,
 the highland cow 60 s, the lake cabin 73 s, and the birch grove 2 calls for 8.3 minutes. That time is in each
-trace's `background_s`, and while it ran Claude was waiting or working, so it sits inside Claude time above.
+trace's `background_s`. It overlaps the other columns: while a background call ran, the run was doing something else,
+and that time counts as whatever it was. Claude thinking is Claude time, but a wait with a `sleep` call (the lake
+cabin's did) is tool time. So read the birch grove's 12.1 minutes of Claude time as including some waiting, not as
+12.1 minutes of thinking.
 
 ### Owner scores
 

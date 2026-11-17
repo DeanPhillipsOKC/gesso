@@ -6,8 +6,8 @@ saves the scores next to the round on the bench.
     python spike/experiments/bench/ab_page.py import <scores.json> [<more.json> ...] [--key page.key.json] [--force]
 
 Single mode (--lesson): one lesson per picture, for the baseline. Pair mode (--pair): two lessons of the same picture.
-Which lesson is A is drawn from the seed, balanced: half the pictures (one more or less) get their first-named lesson
-as A. Without --seed one is drawn at random; either way it's recorded only in the answer key.
+Which lesson is A is drawn from the seed, balanced: half the pictures get their first-named lesson as A, and with an
+odd number of pictures the seed decides which way the odd one goes (so a one-picture round is a coin flip too). Without --seed one is drawn at random; either way it's recorded only in the answer key.
 
 **Blind.** The page never holds a lesson folder's name, the seed, or anything that maps a side to a folder. Each side
 is an opaque token (a hash of the seed, round, picture, side and folder), and the page, the scores it copies, its
@@ -71,9 +71,11 @@ SCORES_FORMAT = {
         "lessons": {"A": "<opaque token>", "B": "<opaque token, pair mode only>"},
         "scores": {"A": {"real": "1-5 or null", "paintable": "1-5 or null", "agree": "1-5 or null",
                          "would_paint": "yes | maybe | no | null (single mode only)",
-                         "worst_steps": [{"n": 5, "id": "branch-dark"}], "note": ""}},
+                         "worst_steps": [{"n": 5, "id": "branch-dark"}], "note": "",
+                         "at": {"real": "when each item was last set or cleared, ISO 8601"}}},
         "prefer": "A | B | same | null (pair mode only)",
         "note": "",
+        "at": {"prefer": "when prefer and note were last set or cleared"},
     }],
 }
 
@@ -139,8 +141,10 @@ def plan_round(round_name: str, lessons: list[Path] | None = None, pairs: list[t
     if dup:
         raise ValueError(f"one entry per picture: {dup} came twice")
     rows.sort(key=lambda r: picture_order(r["picture"]))
-    if mode == "pair":  # balanced: half the pictures swap, drawn from the seed
-        swaps = [True] * (len(rows) // 2) + [False] * (len(rows) - len(rows) // 2)
+    if mode == "pair":  # balanced: half the pictures swap, and with an odd count the seed decides the odd one
+        n = len(rows)
+        k = n // 2 + (random.Random(f"{seed}:odd").randrange(2) if n % 2 else 0)
+        swaps = [True] * k + [False] * (n - k)
         random.Random(f"{seed}:sides").shuffle(swaps)
         for r, swap in zip(rows, swaps):
             one, two = r.pop("given")
@@ -268,10 +272,10 @@ function blank(){
     pictures: D.pictures.map(function(p){
       const s = {};
       Object.keys(p.lessons).forEach(function(side){
-        s[side] = {real: null, paintable: null, agree: null, worst_steps: [], note: ''};
+        s[side] = {real: null, paintable: null, agree: null, worst_steps: [], note: '', at: {}};
         if (D.mode === 'single') s[side].would_paint = null;
       });
-      return {picture: p.picture, lessons: p.lessons, scores: s, prefer: null, note: ''};
+      return {picture: p.picture, lessons: p.lessons, scores: s, prefer: null, note: '', at: {}};
     })};
 }
 
@@ -321,11 +325,14 @@ function restore(){
   old.pictures.forEach(function(op){
     const p = scores.pictures.find(function(x){ return x.picture === op.picture; });
     if (!p || JSON.stringify(p.lessons) !== JSON.stringify(op.lessons)) return;
-    p.prefer = op.prefer || null; p.note = op.note || '';
+    p.prefer = op.prefer || null; p.note = op.note || ''; p.at = op.at || {};
     Object.keys(p.scores).forEach(function(side){ if (op.scores && op.scores[side]) Object.assign(p.scores[side], op.scores[side]); });
   });
   scores.saved_at = old.saved_at || null;
 }
+
+// When each item was last set or cleared, so merging two devices' records keeps the latest change of each item.
+function stamp(obj, item){ obj.at = obj.at || {}; obj.at[item] = new Date().toISOString(); }
 
 function status(t){ document.getElementById('status').textContent = t; }
 function el(tag, attrs, kids){
@@ -398,6 +405,7 @@ function viewer(p, side, sc){
   next2.addEventListener('click', function(){ go(1, true); });
   worst.addEventListener('click', function(){
     const s = steps[k];
+    stamp(sc, 'worst_steps');
     if (isWorst()) sc.worst_steps = sc.worst_steps.filter(function(w){ return w.n !== s.n; });
     else { sc.worst_steps.push({n: s.n, id: s.id}); sc.worst_steps.sort(function(a, b){ return a.n - b.n; }); }
     show(); saveScores(scores);
@@ -419,16 +427,16 @@ function rubric(sc){
   const box = el('div', {class: 'rubric'});
   D.rubric.forEach(function(r){
     box.appendChild(el('div', {class: 'q'}, [el('p', {text: r[1]}),
-      choice([1, 2, 3, 4, 5], ['1', '2', '3', '4', '5'], function(){ return sc[r[0]]; }, function(v){ sc[r[0]] = v; }, 'scale'),
+      choice([1, 2, 3, 4, 5], ['1', '2', '3', '4', '5'], function(){ return sc[r[0]]; }, function(v){ sc[r[0]] = v; stamp(sc, r[0]); }, 'scale'),
       el('div', {class: 'ends'}, [el('span', {text: 'not at all'}), el('span', {text: 'completely'})])]));
   });
   if (D.mode === 'single'){
     box.appendChild(el('div', {class: 'q'}, [el('p', {text: 'Would you paint from this lesson?'}),
-      choice(['yes', 'maybe', 'no'], ['Yes', 'Maybe', 'No'], function(){ return sc.would_paint; }, function(v){ sc.would_paint = v; }, 'three')]));
+      choice(['yes', 'maybe', 'no'], ['Yes', 'Maybe', 'No'], function(){ return sc.would_paint; }, function(v){ sc.would_paint = v; stamp(sc, 'would_paint'); }, 'three')]));
   }
   const note = el('textarea', {placeholder: 'Note (optional)', 'aria-label': 'Note on this lesson'});
   note.value = sc.note || '';
-  note.addEventListener('input', function(){ sc.note = note.value; saveScores(scores); });
+  note.addEventListener('input', function(){ sc.note = note.value; stamp(sc, 'note'); saveScores(scores); });
   box.appendChild(note);
   return box;
 }
@@ -453,11 +461,11 @@ function build(){
     });
     if (D.mode === 'pair'){
       sec.appendChild(el('div', {class: 'q'}, [el('p', {text: 'Which would you paint from?'}),
-        choice(['A', 'B', 'same'], ['A', 'B', 'No difference'], function(){ return S.prefer; }, function(v){ S.prefer = v; }, 'three')]));
+        choice(['A', 'B', 'same'], ['A', 'B', 'No difference'], function(){ return S.prefer; }, function(v){ S.prefer = v; stamp(S, 'prefer'); }, 'three')]));
     }
     const note = el('textarea', {placeholder: 'Note on this picture (optional)', 'aria-label': 'Note on this picture'});
     note.value = S.note || '';
-    note.addEventListener('input', function(){ S.note = note.value; saveScores(scores); });
+    note.addEventListener('input', function(){ S.note = note.value; stamp(S, 'note'); saveScores(scores); });
     sec.appendChild(note);
     main.appendChild(sec);
   });
@@ -582,8 +590,11 @@ def _is_set(item: str, v) -> bool:
 
 
 def merge(records: list[dict]) -> tuple[dict, list[dict]]:
-    """One scores record from several devices' records: for each picture, side and item, the value from the latest
-    record that set it wins. Returns (merged, conflicts): a conflict is an item two records set differently."""
+    """One scores record from several devices' records: for each picture, side and item, the latest change wins.
+    An item's time is its own save time (the page records it per item, in `at`), or, for a record with no per-item
+    times (the baseline-1.12.1 page's), the record's saved_at. A record that times an item counts even when it cleared
+    it (a worst step un-tapped, a note emptied), so a later clear wins; without per-item times only a set value
+    counts. Returns (merged, conflicts): a conflict is an item two records hold differently."""
     records = sorted(records, key=lambda r: r.get("saved_at") or "")
     first = records[0]
     if {(r.get("round"), r.get("mode")) for r in records} != {(first.get("round"), first.get("mode"))}:
@@ -601,26 +612,32 @@ def merge(records: list[dict]) -> tuple[dict, list[dict]]:
             raise Invalid(f"{name}: the records name different lessons for the same picture")
         out = {"picture": name, "lessons": rows[0][1]["lessons"], "scores": {}, "prefer": None, "note": ""}
 
-        def pick(where: str, values: list[tuple[dict, object]], item: str):
-            got = [(r, v) for r, v in values if _is_set(item, v)]
+        def pick(where: str, values: list[tuple[dict, dict, object]], item: str):
+            """values: (record, the dict that holds the item, its value)."""
+            got = []
+            for r, holder, v in values:
+                when = (holder.get("at") or {}).get(item)
+                if when or _is_set(item, v):
+                    got.append((when or r.get("saved_at") or "", r, v))
             if not got:
                 return None
-            if len({json.dumps(v, sort_keys=True) for _, v in got}) > 1:
+            got.sort(key=lambda x: x[0])
+            if len({json.dumps(v, sort_keys=True) for _, _, v in got}) > 1:
                 conflicts.append({"where": where, "item": item, "values": [
-                    {"device": r.get("device"), "saved_at": r.get("saved_at"), "value": v} for r, v in got],
-                    "kept": got[-1][1]})
-            return got[-1][1]
+                    {"device": r.get("device"), "at": t, "value": v} for t, r, v in got], "kept": got[-1][2]})
+            return got[-1][2]
 
         for side in out["lessons"]:
             sc = {}
             for item in ITEMS:
                 if first["mode"] == "pair" and item == "would_paint":
                     continue
-                v = pick(f"{name} {side}", [(r, (p.get("scores") or {}).get(side, {}).get(item)) for r, p in rows], item)
+                v = pick(f"{name} {side}", [(r, (p.get("scores") or {}).get(side, {}),
+                                             ((p.get("scores") or {}).get(side, {})).get(item)) for r, p in rows], item)
                 sc[item] = v if v is not None else ([] if item == "worst_steps" else "" if item == "note" else None)
             out["scores"][side] = sc
-        out["prefer"] = pick(name, [(r, p.get("prefer")) for r, p in rows], "prefer")
-        out["note"] = pick(name, [(r, p.get("note")) for r, p in rows], "note") or ""
+        out["prefer"] = pick(name, [(r, p, p.get("prefer")) for r, p in rows], "prefer")
+        out["note"] = pick(name, [(r, p, p.get("note")) for r, p in rows], "note") or ""
         pictures.append(out)
     merged = {"format": FORMAT, "round": first["round"], "mode": first["mode"],
               "saved_at": records[-1].get("saved_at"), "pictures": pictures}

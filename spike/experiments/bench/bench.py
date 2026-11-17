@@ -260,9 +260,13 @@ def build(picture: str, into: Path = DEFAULT_INTO, stamp: str | None = None, ben
 
 
 def folder_hashes(folder: Path) -> dict[str, str]:
-    """{relative POSIX path: sha256} of every file in a folder."""
+    """{relative POSIX path: sha256 of its raw bytes} of every file in a folder: what a build really wrote, CRLF and
+    all (benchlib.sha256 folds CRLF for frozen files; this doesn't, so a build that wrote CRLF shows)."""
+    import hashlib
+
     folder = Path(folder)
-    return {p.relative_to(folder).as_posix(): sha256(p) for p in sorted(folder.rglob("*")) if p.is_file()}
+    return {p.relative_to(folder).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(folder.rglob("*")) if p.is_file()}
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -159,6 +159,21 @@ class TraceTests(unittest.TestCase):
         self.assertEqual((r["window"]["start"], r["window"]["wall_s"]), ("2026-11-16T19:32:41Z", 119.0))
         self.assertEqual(r["totals"]["calls"], 4)
 
+    def test_a_refused_seal_is_a_retry_not_the_end(self):
+        t = Transcript()
+        L = f"output/{RUN}"
+        t.call(0, 0, "Skill", {"skill": "paint-lesson", "args": "x"}, "Launching skill")
+        t.bash(1, 1, "cat .claude/skills/paint-lesson/steps/7-review.md")
+        t.bash(100, 3, f"spike/tools.py publish --lesson {L} --final", 'Exit code 1\n{"problems": ["check isn\'t clean"]}')
+        t.bash(200, 5, f"spike/tools.py check --lesson {L}", '{"problems": []}')
+        t.bash(900, 5, f"spike/tools.py publish --lesson {L} --final", '{"html": "x", "problems": []}')
+        t.call(910, 0, "SubagentHandback", {"message": f"publish --lesson {L} --final went fine"}, "ok")
+        path = self.tmp / "retry.jsonl"
+        t.write(path)
+        r = run_trace.trace(self.lesson, transcript=path)
+        self.assertEqual(r["window"]["wall_s"], 905.0)  # to the seal that worked, not the refusal at 103 s
+        self.assertEqual(r["totals"]["calls"], 5)
+
     def test_a_background_call_is_counted_apart_until_its_notification(self):
         t = Transcript()
         L = f"output/{RUN}"

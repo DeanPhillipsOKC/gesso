@@ -203,6 +203,14 @@ class FreezeBuildTests(unittest.TestCase):
             bench.build("lake-cabin", self.tmp / "c", bench=self.store)
 
 
+    def test_a_build_that_wrote_crlf_would_not_match(self):
+        """folder_hashes hashes raw bytes, so the pinned-hash test catches a build that writes CRLF."""
+        bench.freeze(sealed(self.tmp), bench=self.store)
+        one = bench.build("chickadee", self.tmp / "one", "20261116-100000", bench=self.store)
+        before = bench.folder_hashes(one)["bench.json"]
+        (one / "bench.json").write_bytes((one / "bench.json").read_bytes().replace(b"\n", b"\r\n"))
+        self.assertNotEqual(bench.folder_hashes(one)["bench.json"], before)
+
     def test_a_crlf_checkout_still_verifies_and_builds_the_same_bytes(self):
         """Git for Windows with core.autocrlf turns LF into CRLF in text files on checkout."""
         bench.freeze(sealed(self.tmp), bench=self.store)

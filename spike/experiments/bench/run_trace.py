@@ -16,10 +16,9 @@ about as often. In it:
 - **Render time** is the `seconds` a render prints (render and background print a JSON line with "cached" and
   "seconds"); it's part of tool time, and taken out of it.
 - **Background calls** (Bash with run_in_background) return at once and run until their task notification. That
-  time is reported apart (`background_s`, `background_calls`) with a warning, since it runs alongside Claude and the
-  other tools; it isn't in tool time.
-- **Claude time** is the rest of the phase's wall time: thinking, writing, and waiting for the model (and for any
-  background call).
+  time is reported apart (`background_s`, `background_calls`) with a warning: it overlaps the other columns, since
+  while it ran the run's time counts as whatever it was doing (Claude time, or tool time for a wait such as sleep).
+- **Claude time** is the rest of the phase's wall time: thinking, writing, and waiting for the model.
 - The `seconds` field every tool prints is summed too (`tool_printed_s`): a tool's own work, without the process
   start-up and the shell around it.
 
@@ -29,8 +28,9 @@ which is all there is when no transcript is found.
 
 The window is the whole transcript for a subagent's (a subagent that ran /paint-lesson does nothing else). For a main
 session's, it runs from the last /paint-lesson start before the folder is first named to the result of the run's
-seal (publish --final into its folder), or with no seal, to its last call into the folder before a gap of over 15
-minutes. Calls naming the folder after that (a freeze, a trace) aren't the run: they're counted in a warning. The
+seal (the first publish --final into its folder that didn't fail), or with no seal, to its last call into the folder
+before a gap of over 15 minutes. Calls naming the folder after that (a freeze, a trace) aren't the run: they're
+counted in a warning. The
 report names the transcript relative to the folder it was found in (<project>/<session>[/subagents/<agent>].jsonl).
 """
 
@@ -146,10 +146,10 @@ def _result_of(rows: list[dict], i: int) -> int:
 
 def _window(rows: list[dict], folder: str, subagent: bool) -> tuple[int, int, list[str]]:
     """(first row, last row, warnings) of the run. It starts at the last /paint-lesson launch before the folder is
-    first named (a subagent's transcript: its first row). It ends at the result of the run's own seal (publish
-    --final into the folder), or, with no seal, at the last call into the folder before a gap of over GAP minutes
-    (a subagent's transcript: its last row). Later calls that name the folder (a freeze, a trace, a packet by whoever
-    started the run) aren't the run."""
+    first named (a subagent's transcript: its first row). It ends at the result of the run's own seal (the first
+    publish --final into the folder that didn't fail; a refused one is just a retry), or, with no seal, at the last
+    call into the folder before a gap of over GAP minutes (a subagent's transcript: its last row). Later calls that
+    name the folder (a freeze, a trace, a packet by whoever started the run) aren't the run."""
     named = [i for i, r in enumerate(rows) if folder in (r.get("input") or "") or folder in (r.get("text") or "")]
     if not named:
         return 0, len(rows) - 1, []
@@ -162,7 +162,8 @@ def _window(rows: list[dict], folder: str, subagent: bool) -> tuple[int, int, li
                 start = i
                 break
     calls = [i for i, r in enumerate(rows) if i >= start and r["kind"] == "call" and folder in r["input"]]
-    seal = next((i for i in calls if FINAL.search(r_input(rows[i]))), None)
+    seal = next((i for i in calls if rows[i]["name"] == "Bash" and FINAL.search(r_input(rows[i]))
+                 and _sealed(rows, i)), None)
     warnings = []
     if subagent:
         end = len(rows) - 1
@@ -182,6 +183,16 @@ def _window(rows: list[dict], folder: str, subagent: bool) -> tuple[int, int, li
         warnings.append(f"{len(later)} later calls name the folder after the run ended "
                         f"({_iso(rows[later[0]]['t'])} on): not counted")
     return start, end, warnings
+
+
+def _sealed(rows: list[dict], i: int) -> bool:
+    """Whether the publish --final call at i sealed the lesson: it has a result and didn't fail (publish refuses, and
+    exits non-zero, until check is clean, so a retry is normal)."""
+    j = _result_of(rows, i)
+    if j == i:
+        return False
+    text = (rows[j].get("text") or "").lstrip()
+    return not text.startswith("Exit code") and '"refused": "' not in text
 
 
 def r_input(r: dict) -> str:
@@ -300,8 +311,8 @@ def trace_rows(rows: list[dict], folder: str, subagent: bool) -> dict:
     totals["background_calls"] = sum(ph["background_calls"] for ph in out)
     if totals["background_calls"]:
         warnings.append(f"{totals['background_calls']} background calls ran for {totals['background_s']} s alongside "
-                        "Claude and other tools: in background_s, not in tool time (Claude time includes waiting on "
-                        "them)" + (f"; {unseen} have no notification, so their time is unknown" if unseen else ""))
+                        "Claude and other tools: in background_s, not in tool time (meanwhile the run's time counts as "
+                        "whatever it was doing: Claude time, or tool time for a wait such as sleep)" + (f"; {unseen} have no notification, so their time is unknown" if unseen else ""))
     return {"window": {"start": _iso(start), "end": _iso(end), "wall_s": round((end - start).total_seconds(), 1)},
             "phases_from": "step files" if by_files else "tool names", "phases": out, "totals": totals,
             "warnings": warnings}
