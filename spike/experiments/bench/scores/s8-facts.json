@@ -1,0 +1,276 @@
+{
+ "format": "gesso-ab-grades/1",
+ "graded_by": "claude: two fresh blind graders a picture (spike/experiments/bench/ab_grader.md), sides swapped for the second",
+ "mode": "pair",
+ "round": "s8-facts",
+ "pictures": [
+  {
+   "picture": "highland-cow",
+   "lessons": {
+    "v2": "highland-cow_skill_20261116-212627",
+    "facts": "highland-cow_skill_20261116-212627-facts"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "prefer": "facts",
+     "note": "The step pictures are byte-identical, so only the words differ, and B's words agree with the pictures where A's contradict them in steps 1, 9, 10 and 11. A beginner who does exactly what each step says would paint the wrong sky and the wrong grass from A. I'm fairly sure of B (clear on the words), but both lessons carry the same serious picture faults: the early blotches and the step 13 jump.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        10,
+        13
+       ],
+       "note": "The pictures are the same in both lessons and share their flaws: from step 1 the canvas carries pale-blue blotches with dark-green centers where the cow will go, and they stay through step 10; step 7 adds dark blue clumps and flat dark patches no olive dry-brush makes; step 13 jumps the face and a pinkish-gray nose to near-finished with only Sunset gold named. A's words often fight the pictures: step 1 says bands top to bottom, darkest first, when the picture is all blue with a small gold patch at the right; step 9 says lean blades different ways when they all lean one way; step 10 says fewer gold blades near the top when the picture packs them there; step 11 asks for separate curved segments when the picture is one solid shape."
+      },
+      "facts": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        13,
+        7
+       ],
+       "note": "Same pictures, so the same blotches through steps 1 to 10, the same dark clumps in step 7 and the same jump to a finished face in step 13. B's words mostly match what the pictures show: blue sky with a gold glow at the right edge, blades leaning one way, gold blades packed along the top of the grass, the cow blocked in as one solid shape. It also says outright where a picture shows more than the paint (peachy streaks in step 2, the olive tint in step 7, the pinkish nose in step 13), but it can only point these out; it can't fix them."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "prefer": "facts",
+     "note": "The step pictures are identical in A and B, so only the words decide this. A's words match the pictures better: they call out where a picture shows more than the step paints, and they describe the solid cow block-in and the specific horns, where B uses generic text that contradicts the pictures. I'd call it a slight preference: both share the same picture problems (early blotches, magic in step 13), which weigh more than the wording.",
+     "scores": {
+      "facts": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        13,
+        1,
+        10
+       ],
+       "note": "The pictures are the same in both lessons. They carry blue blotches with dark spots where the cow goes from step 1 to step 10, teal clumps and blades that no named paint makes in steps 7 and 10, and a face and pinkish nose that come into focus on the gold-only step 13. A's words name most of these gaps (the dark spots in step 1, the peach streaks in step 2, the nose in step 13) and describe the solid cow silhouette and the horns the way the pictures show them, so the words and pictures mostly agree. Its step 16 tip puts the gold on the left half, against its own light-from-the-right rule."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        13,
+        11,
+        1
+       ],
+       "note": "Same pictures, so the same blotches, the same off-palette teal in steps 7 and 10, and the same magic face in step 13, which B's words never mention. Several of B's instructions are generic and clash with the pictures: step 11 asks for 'distinct curved segments with small gaps' but the picture is one solid silhouette, step 14 does the same for the horns, step 2's fix says 'small circles' for long streaks, and step 1 says 'top to bottom' for a glow that sits at the right edge. Its tips are shorter and readable, and step 16's right-horn note fits the light."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "chickadee",
+   "lessons": {
+    "facts": "chickadee_skill_20261116-203451-facts",
+    "v2": "chickadee_skill_20261116-203451"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "prefer": "none",
+     "note": "The step pictures are identical, so only the words differ, and neither set of words is clearly better. B is easier to follow for shapes and placement, and A is more candid about what the pictures add beyond the named paints. Each has a few mismatches that roughly cancel out. This is a toss-up.",
+     "scores": {
+      "facts": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        14,
+        15
+       ],
+       "note": "The pictures are byte-identical to B's, so real is the same: step 1 already shows the sun ring, ghost trunks and a dark blotch, steps 5 and 9 are flat cutouts, and steps 14-15 show belly texture, an eye and a beak that the named paints don't cover. A's words admit more of that magic (step 1 hints, the step 8 vein, step 14 belly, step 15 eye and beak) and get step 16 right (white over black). But its tips are packed with measurements that are sometimes confusing ('most of it on the right side of the chickadee', a 'rounded wing' for a long diagonal one), and it puts the step 10 shadow in the wrong place."
+      },
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        8,
+        15
+       ],
+       "note": "Same pictures and the same faults as A. B's words describe the shapes more plainly and more accurately (the step 1 ragged gold patches, the step 9 oval, circle and wedge, the step 10 shadow above the left foot, the step 11 long teardrop wing). But some of them contradict the pictures: step 8 says the red leaves get no gold while they visibly change, step 15 promises a cheek gap the picture mostly fills black, and step 16 says the white goes over gold when it goes over black. It also says nothing about the magic in steps 14 and 15."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "prefer": "none",
+     "note": "The step pictures are byte-identical, so only the words differ, and each set of words wins some steps and loses others: A on stroke direction and steps 10 and 14, B on steps 8 and 15 and on measurements. Neither fixes the real problems, which are in the pictures (steps 1, 6 and 14). It's a toss-up.",
+     "scores": {
+      "v2": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        6,
+        14
+       ],
+       "note": "The pictures are identical to B's. Step 1 already holds ghost trunks, leaf clumps and a dark blotch at the right, step 6 jumps from flat brown to fully textured multi-tone bark from one rust-orange, and step 14 refeathers the whole belly as well as the chest. A's stroke words are specific to this bird and mostly right, but they contradict the pictures in places: step 15 says to leave a gap for the cheek where the picture blacks out the whole head, and step 8 says the red leaves get nothing while the picture re-textures them and adds veins."
+      },
+      "facts": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        6,
+        14
+       ],
+       "note": "The pictures and their problems are the same as A's (ghosts in step 1, the bark jump in step 6, the belly reworked in step 14). B gives more inch measurements and owns up to more of the picture's extras (the step 1 hints, the step 8 veins, the step 14 belly, the step 15 cap over the whole head, then the cheek on top). But several of its words are generic template text (steps 8, 10 and 16: 'makes it look round or sloped'), step 10 puts the belly shade on the 'right side' when it sits left of centre, and step 14 flicks upward against the feathers."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "balloon-lavender",
+   "lessons": {
+    "facts": "balloon-lavender_skill_20261116-203450-facts",
+    "v2": "balloon-lavender_skill_20261116-203450"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "prefer": "facts",
+     "note": "The step pictures are byte-identical, so only the words differ. A's words match what the painter will see in more steps (8, 11, 17, 18), which matters to a beginner who checks each step against its picture. B reads cleaner, but in those steps it sends the painter toward a different result. It's a slight preference: both share the same serious picture faults in steps 1 to 5, and A has its own slips (the bumpy sun, telling the painter to copy artifacts).",
+     "scores": {
+      "facts": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        4,
+        3,
+        1
+       ],
+       "note": "The pictures are identical to B's and carry the same faults: step 1 shows a ghost sun, golden cloud patches and a stray orange line before their steps; step 3 is a flat coral block with hard rectangular edges; step 4 jumps from that block to a finished sky; step 5 brings the hills in already modelled. A's words follow the pictures closely (a solid balloon in 11, a solid tree silhouette in 17, two dark masses in 8) and admit the brown trunk that appears in 18 with no paint for it. But A also tells the painter to copy the step 1 artifacts, and still calls the sun's edge bumpy when the picture shows a smooth disc."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        4,
+        11,
+        17
+       ],
+       "note": "Same pictures, so the same early ghosts, hard coral block and sky jump. B's tips are short and describe sensible painting, and its rust-path positions in 21 match the picture well. But in several steps they describe something the picture doesn't show: step 11 asks for curved segments with gaps where the picture is one solid shape, step 17 asks for a dappled crown with boughs and sky gaps where the picture is a solid silhouette, and step 8 asks for loose clumps where the picture has solid masses. Step 18's brown trunk goes unmentioned."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "prefer": "facts",
+     "note": "Both lessons share the same pictures, so the difference is only in the words, and B's words match the pictures where A's contradict them on several steps (3, 4, 11, 17, 15). A beginner following A would paint segmented balloons and gappy trees and then not match the picture. The preference is slight to moderate: B is clearly more consistent, but the shared picture problems (steps 1, 3, 4) hurt both lessons equally.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        4,
+        3,
+        17
+       ],
+       "note": "The step pictures are identical to B's: step 1 already holds finished golden cloud bits, a sun ghost and a stray orange line; step 3 is flat coral with hard boxy edges; step 4 jumps to near-finished clouds, and step 22 is another big jump. A's words often contradict the pictures: step 3 asks for bumpy soft edges, step 4 says leave the coral showing though it is almost all covered, step 11 asks for separate curved segments where the picture is one solid orange shape, and step 17 asks for loose clumps with gaps of sky where the picture is a solid silhouette."
+      },
+      "facts": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        4,
+        3,
+        1
+       ],
+       "note": "Same pictures, with the same early-content, hard-box and big-jump problems in steps 1, 3, 4 and 22. B's words follow what the pictures show: they flag the orange line and golden patches in step 1, say step 4 replaces step 3's shapes, describe the balloon and tree as solid fills, put the teal, red and maroon where the pictures have them, and admit the trunk turns brown in step 18 with no paint for it. That makes it easier to match the canvas to each picture, but it cannot fix steps 3-4."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "lake-cabin",
+   "lessons": {
+    "facts": "lake-cabin_skill_20261116-205703-facts",
+    "v2": "lake-cabin_skill_20261116-205703"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "prefer": "facts",
+     "note": "The pictures are byte-identical, so only the words differ, and A's words follow the pictures more closely and explain the pictures' artifacts instead of leaving the beginner puzzled. The shared picture faults (tiled mountain, cabin ghost, step 12 jump) dominate both lessons, so the edge is slight.",
+     "scores": {
+      "facts": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        3,
+        12,
+        6
+       ],
+       "note": "The step pictures are identical to B's and share the same faults: a kaleidoscope tile pattern on the mountain in steps 3-4, hard rectangular boxes (sky band, mountain block, flat reed fill), a dark mound where the cabin goes in step 6, and step 12 jumping a whole patch of finished lake (with reed reflections) in early. A's words own up to most of these (the pattern, the mound, the cream wisps with no cream paint, the shapes under the dock, the untouched reed patch) and give placement measurements, so the words match the pictures more often."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        12,
+        6
+       ],
+       "note": "Same pictures as A, with the same tile pattern, hard boxes, cabin ghost and step 12 jump. B's words are cleaner and read well, but they skip the oddities in the pictures and sometimes describe something the picture doesn't show: the cabin built from distinct pieces in step 7 is one flat shape, and steps 19-20 warn about texture reaching the horizon, which has nothing to do with reeds. Step 18 also says 'blend' for a one-color flat fill."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "prefer": "facts",
+     "note": "The pictures are identical, so the choice comes down to whether the words match them, and B's match better step after step (2, 3, 6, 7, 8, 17, 21), so a painter comparing against the picture is misled less often. The preference is slight: the same broken pictures (the kaleidoscope mountain, the ghosts in the lake, the reed box) limit both lessons equally.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        12,
+        18
+       ],
+       "note": "The pictures are the same files in A and B. They fail in the same places: a mirrored kaleidoscope tile pattern on the mountain in steps 3 and 4, a big jump in step 6 that also leaves an olive blob where the cabin goes, mountain-reflection shapes and a green reed ghost in the lake at step 12, and a flat dark box with blades already in it at step 18. A's words often describe a different picture: a cabin of separate pieces when the step shows one flat red shape (7), distinct rocks with gaps when it shows one solid gray mass (21), a sunny gable the picture doesn't have (8). A never mentions the artifacts, and steps 19 and 20 carry a 'texture to the horizon' warning that doesn't apply to them."
+      },
+      "facts": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        3,
+        12,
+        18
+       ],
+       "note": "Same pictures, so the same failures at steps 3/4, 6, 12 and 18. B's words track what each picture actually shows: one flat red house shape, dark boards and a strip, the roof and window, one solid lumpy gray rock shape. It also names the odd things (the repeating pattern, the cream wisps, the olive mound, the bluish shapes under the dock, the dabs in the lake) and tells the painter whether to copy them. That doesn't make the pictures paintable, and it leans on 'as the after picture shows' plus a lot of measurements."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
