@@ -1,0 +1,369 @@
+{
+ "round": "s204-whole",
+ "pictures": {
+  "lake-cabin": {
+   "renders": 8,
+   "redone": [],
+   "cost_usd": 0.1414,
+   "render_seconds": 115.3,
+   "steps": 23,
+   "final_gap": 0.0,
+   "outside_unit_max": 0.0,
+   "rows": [
+    {
+     "unit": 8,
+     "parts": [
+      "rocks"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 18.3,
+     "cost_usd": 0.0178,
+     "erased_share": 0.0526,
+     "v2_outline_share": 0.0461,
+     "iou_with_v2_outline": 0.876,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0504
+    },
+    {
+     "unit": 7,
+     "parts": [
+      "reeds"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 13.2,
+     "cost_usd": 0.0178,
+     "erased_share": 0.1069,
+     "v2_outline_share": 0.0479,
+     "iou_with_v2_outline": 0.392,
+     "v2_outline_kept": 0.09,
+     "raw_moved_outside": 0.0393
+    },
+    {
+     "unit": 6,
+     "parts": [
+      "tree-reflection",
+      "mountain-reflection",
+      "cabin-reflection"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 14.2,
+     "cost_usd": 0.0177,
+     "erased_share": 0.4802,
+     "v2_outline_share": 0.1955,
+     "iou_with_v2_outline": 0.407,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0514
+    },
+    {
+     "unit": 5,
+     "parts": [
+      "water"
+     ],
+     "bare": true,
+     "redo": false,
+     "seconds": 16.6,
+     "cost_usd": 0.0176,
+     "erased_share": 0.5447,
+     "v2_outline_share": 0.2497,
+     "iou_with_v2_outline": 0.458,
+     "v2_outline_kept": 0.001,
+     "raw_moved_outside": 0.0367
+    },
+    {
+     "unit": 4,
+     "parts": [
+      "dock"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 13.3,
+     "cost_usd": 0.0177,
+     "erased_share": 0.0074,
+     "v2_outline_share": 0.0038,
+     "iou_with_v2_outline": 0.438,
+     "v2_outline_kept": 0.101,
+     "raw_moved_outside": 0.041
+    },
+    {
+     "unit": 3,
+     "parts": [
+      "cabin"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 14.3,
+     "cost_usd": 0.0176,
+     "erased_share": 0.01,
+     "v2_outline_share": 0.0054,
+     "iou_with_v2_outline": 0.538,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0711
+    },
+    {
+     "unit": 2,
+     "parts": [
+      "forest"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 12.8,
+     "cost_usd": 0.0176,
+     "erased_share": 0.2582,
+     "v2_outline_share": 0.2569,
+     "iou_with_v2_outline": 0.837,
+     "v2_outline_kept": 0.086,
+     "raw_moved_outside": 0.0329
+    },
+    {
+     "unit": 1,
+     "parts": [
+      "mountain"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 12.6,
+     "cost_usd": 0.0176,
+     "erased_share": 0.2457,
+     "v2_outline_share": 0.0667,
+     "iou_with_v2_outline": 0.272,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0237
+    }
+   ]
+  },
+  "highland-cow": {
+   "renders": 7,
+   "redone": [],
+   "cost_usd": 0.1234,
+   "render_seconds": 92.9,
+   "steps": 16,
+   "final_gap": 0.0,
+   "outside_unit_max": 0.0,
+   "rows": [
+    {
+     "unit": 7,
+     "parts": [
+      "horns"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 16.0,
+     "cost_usd": 0.0177,
+     "erased_share": 0.0221,
+     "v2_outline_share": 0.0107,
+     "iou_with_v2_outline": 0.486,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0269
+    },
+    {
+     "unit": 6,
+     "parts": [
+      "cow"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 14.1,
+     "cost_usd": 0.0177,
+     "erased_share": 0.2447,
+     "v2_outline_share": 0.2039,
+     "iou_with_v2_outline": 0.833,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0292
+    },
+    {
+     "unit": 5,
+     "parts": [
+      "grass"
+     ],
+     "bare": true,
+     "redo": false,
+     "seconds": 15.8,
+     "cost_usd": 0.0176,
+     "erased_share": 0.5046,
+     "v2_outline_share": 0.3798,
+     "iou_with_v2_outline": 0.751,
+     "v2_outline_kept": 0.001,
+     "raw_moved_outside": 0.011
+    },
+    {
+     "unit": 4,
+     "parts": [
+      "hillside"
+     ],
+     "bare": true,
+     "redo": false,
+     "seconds": 11.9,
+     "cost_usd": 0.0176,
+     "erased_share": 0.2167,
+     "v2_outline_share": 0.1227,
+     "iou_with_v2_outline": 0.538,
+     "v2_outline_kept": 0.032,
+     "raw_moved_outside": 0.0075
+    },
+    {
+     "unit": 3,
+     "parts": [
+      "loch"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 12.7,
+     "cost_usd": 0.0176,
+     "erased_share": 0.0122,
+     "v2_outline_share": 0.0025,
+     "iou_with_v2_outline": 0.192,
+     "v2_outline_kept": 0.066,
+     "raw_moved_outside": 0.0061
+    },
+    {
+     "unit": 2,
+     "parts": [
+      "far-hills"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 12.7,
+     "cost_usd": 0.0176,
+     "erased_share": 0.1025,
+     "v2_outline_share": 0.09,
+     "iou_with_v2_outline": 0.829,
+     "v2_outline_kept": 0.031,
+     "raw_moved_outside": 0.0047
+    },
+    {
+     "unit": 1,
+     "parts": [
+      "clouds"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 9.7,
+     "cost_usd": 0.0176,
+     "erased_share": 0.084,
+     "v2_outline_share": 0.0888,
+     "iou_with_v2_outline": 0.356,
+     "v2_outline_kept": 0.489,
+     "raw_moved_outside": 0.006
+    }
+   ]
+  },
+  "birch-grove": {
+   "renders": 6,
+   "redone": [
+    1,
+    2,
+    4
+   ],
+   "cost_usd": 0.1068,
+   "render_seconds": 82.5,
+   "steps": 14,
+   "final_gap": 0.0,
+   "outside_unit_max": 0.0,
+   "rows": [
+    {
+     "unit": 6,
+     "parts": [
+      "birches"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 15.0,
+     "cost_usd": 0.0177,
+     "erased_share": 0.3412,
+     "v2_outline_share": 0.2285,
+     "iou_with_v2_outline": 0.661,
+     "v2_outline_kept": 0.008,
+     "raw_moved_outside": 0.0191
+    },
+    {
+     "unit": 5,
+     "parts": [
+      "foliage"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 15.3,
+     "cost_usd": 0.0177,
+     "erased_share": 0.8053,
+     "v2_outline_share": 0.1431,
+     "iou_with_v2_outline": 0.176,
+     "v2_outline_kept": 0.008,
+     "raw_moved_outside": 0.011
+    },
+    {
+     "unit": 4,
+     "parts": [
+      "ground"
+     ],
+     "bare": false,
+     "redo": true,
+     "seconds": 12.7,
+     "cost_usd": 0.0179,
+     "erased_share": 0.4356,
+     "v2_outline_share": 0.2489,
+     "iou_with_v2_outline": 0.571,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0066
+    },
+    {
+     "unit": 3,
+     "parts": [
+      "far-trunks"
+     ],
+     "bare": false,
+     "redo": false,
+     "seconds": 11.7,
+     "cost_usd": 0.0177,
+     "erased_share": 0.0533,
+     "v2_outline_share": 0.0234,
+     "iou_with_v2_outline": 0.207,
+     "v2_outline_kept": 0.439,
+     "raw_moved_outside": 0.0152
+    },
+    {
+     "unit": 2,
+     "parts": [
+      "far-forest"
+     ],
+     "bare": false,
+     "redo": true,
+     "seconds": 13.1,
+     "cost_usd": 0.0179,
+     "erased_share": 0.3344,
+     "v2_outline_share": 0.0996,
+     "iou_with_v2_outline": 0.298,
+     "v2_outline_kept": 0.0,
+     "raw_moved_outside": 0.0028
+    },
+    {
+     "unit": 1,
+     "parts": [
+      "sun-rays"
+     ],
+     "bare": false,
+     "redo": true,
+     "seconds": 14.7,
+     "cost_usd": 0.0179,
+     "erased_share": 0.126,
+     "v2_outline_share": 0.0295,
+     "iou_with_v2_outline": 0.165,
+     "v2_outline_kept": 0.254,
+     "raw_moved_outside": 0.0003
+    }
+   ]
+  }
+ },
+ "spend": {
+  "note": "every paid render of the spike",
+  "kept_renders": 21,
+  "kept_usd": 0.3716,
+  "thrown_away_renders": 10,
+  "thrown_away_usd": 0.1824,
+  "thrown_away": "the birch grove's first ground render and the three after it, the second try's four, two probes of the ground (one low, one medium)",
+  "total_renders": 31,
+  "total_usd": 0.554
+ }
+}

@@ -1,0 +1,218 @@
+{
+ "format": "gesso-ab-grades/1",
+ "graded_by": "claude: two fresh blind graders a picture on Opus (spike/experiments/bench/ab_grader.md), sides swapped for the second; folders named pair-NN so the experiment's name wasn't shown",
+ "mode": "pair",
+ "round": "s204-whole",
+ "pictures": [
+  {
+   "picture": "lake-cabin",
+   "variant": "whole",
+   "lessons": {
+    "whole": "lake-cabin_skill_20261116-205703-whole",
+    "v2": "lake-cabin_skill_20261116-205703"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-03",
+     "prefer": "whole",
+     "note": "Both lessons have the same words, paints and finish, so the pictures decide it. A has several of the faults the owner marks down: mirrored tile patterns, a ghost where the cabin will go, and reflections and reed blades showing before their steps. B is clean apart from a few big jumps that both lessons share. A clear preference.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        12,
+        6
+       ],
+       "note": "The words and paints match B's exactly, but the pictures break them. The mountain starts as a hard-edged box (step 2). Steps 3 to 5 cover it in a mirrored kaleidoscope tile pattern that no brush makes. The sky has a tiled, wavy texture. A dark ghost blob sits where the cabin will go (step 6). Step 12, the pale-lake step, already shows the mountain's reflection and a floating piece of reed. A flat unpainted lake-blue hole stays until step 17, and the dark reed step 18 already shows olive blades."
+      },
+      "whole": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 4,
+       "worst_steps": [
+        3,
+        6,
+        18
+       ],
+       "note": "The step pictures read as a real painting building up. Nothing shows before its step, and the pale-lake, reflection and reed steps each add only what their words name. Its weak points are shared with A or minor. Step 2 is a flat mountain shape with odd holes punched in it. Step 3 jumps the lower slopes nearly to finished. Step 6 brings the whole forest close to done in one go. Step 18 is a flat, solid blob. A couple of small pale dots show in the rock steps."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-01",
+     "prefer": "whole",
+     "note": "The two lessons have the same words and paints, so this comes down to the step pictures. B has the owner's top fault (tiled, mirrored patches and things showing before their step) across several steps, while A's faults are one big jump and an awkward first mountain shape. Clear preference for A.",
+     "scores": {
+      "whole": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        4,
+        2,
+        12
+       ],
+       "note": "The words and paints are identical to B, so the pictures decide. A has no tiling or ghosts. Its main faults are step 4, a big jump where a cream dry-brush step also finishes the green forested slope and adds far peaks on the left, and step 2, a flat lumpy blob that doesn't look like a mountain. Step 12 is a heavy ripple texture rather than a few pale streaks. Small pale circles appear on the rocks at steps 21-22. The second half (cabin, reflections, reeds, rocks) builds honestly step by step."
+      },
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        3,
+        12,
+        18
+       ],
+       "note": "B's mountain base is a hard-edged box from step 2 to step 5 and is filled with a mirrored kaleidoscope pattern in steps 3-5 that no brush makes. At step 12 the mountain's reflection and a piece of the reeds already show, two steps and six steps before their own steps, and a flat, hard-edged blue patch stays in the lake until step 17. Step 18 shows olive reed blades on a step that names only dark green. The sky does run down behind the trees as the tip asks, and steps 6-11 match A."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "variant": "whole",
+   "lessons": {
+    "whole": "highland-cow_skill_20261116-212627-whole",
+    "v2": "highland-cow_skill_20261116-212627"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-06",
+     "prefer": "whole",
+     "note": "The words are identical and steps 12 to 16 look the same, so it comes down to the background. A carries ghost blotches over the cow area for ten steps, plus hard flat patches. B's fault is one over-finished sky step with two near-empty steps after it. Clear preference for B.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        7,
+        13
+       ],
+       "note": "From step 1 to step 10, blue blotches with dark green centres sit where the cow will go. They float on white canvas, then on the hills and grass, and no step paints them. Step 4 leaves a flat hard-edged blue band down to 5 in, and step 7 leaves flat dark boxes on the hillside that no dry-brush makes. The sky steps follow the words well, but this one ghost running through the background sinks it. Step 13 shows the whole face and nose appearing from a gold-rim step."
+      },
+      "whole": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        2,
+        13
+       ],
+       "note": "Step 1 paints the whole finished sunset, gold clouds and all, though the words say mostly blue with a small gold patch. That leaves steps 2 and 3 with almost nothing to show. From step 4 to step 12 the canvas is clean and believable: hills, loch, hillside, dark grass, blades, then the cow block and locks, with nothing showing early. Step 13 has the same face-appears magic as A."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-05",
+     "prefer": "whole",
+     "note": "Both lessons share the same words and the same cow and horn steps (11 to 16). The difference is the first ten steps: A has big jumps there, while B has unexplained ghost blotches where the cow will go and box-edged patches for ten steps, which the owner marks down hardest. Clear preference for A, though A is far from good.",
+     "scores": {
+      "whole": {
+       "real": 3,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        13,
+        7
+       ],
+       "note": "The words are identical in both lessons, so the pictures decided it. A's step 1 shows the finished gold-streaked sky in one go, against words and a tip that say mostly blue with a small gold patch, and steps 2 and 3 then change almost nothing. Step 7 jumps a flat green to a finished hillside, and step 13 brings out the whole face, nose and shading with only Sunset gold named. From step 4 on the canvas builds cleanly, with no ghosts, no stray boxes and nothing moving."
+      },
+      "v2": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        6,
+        13
+       ],
+       "note": "B's sky steps follow the words better: flat blue, then silver streaks (already tinged gold), then gold. But step 1 also puts pale-blue blobs with dark green inside them in the cow's place, no brush makes them, and they sit on the canvas through step 10. The sky and hills are painted as hard rectangles that end in a straight line, step 7 leaves dark flat patches, and a stray dark mark stays on the hillside to the end. Step 13 has the same face-from-gold magic as A."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "variant": "whole",
+   "lessons": {
+    "whole": "birch-grove_skill_20261116-210750-whole",
+    "v2": "birch-grove_skill_20261116-210750"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-04",
+     "prefer": "whole",
+     "note": "The words are identical, so only the pictures differ. A has a few bad steps (a ghosted step 1, a big jump at 8, magic at 11), but B's tiled patterns, hard blobs and early pieces run through the first ten steps, which is the kind of flaw the owner says sinks a lesson. Clear preference for A.",
+     "scores": {
+      "whole": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        1,
+        8,
+        11
+       ],
+       "note": "Steps 2 to 7 and 12 to 14 read as a real half-done canvas, built up in order. But step 1 is a cool blue mist with ghost firs and birches already in it, and none of the gold or leaf brown its words name. Step 8 jumps the whole ground to finished and makes the rock and bushes appear, and step 11 ('a few taps' of sunlit gold) brings out the rays and glows the whole canopy, which is magic."
+      },
+      "v2": {
+       "real": 1,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        9,
+        11
+       ],
+       "note": "From step 1 through step 10 the canvas has things no brush makes: a tiled diamond pattern over everything, hard sausage-shaped blobs, a hard box at the right, and white canvas holes. Gold leaves, bits of the rock and tree shapes show before their steps. Step 9 adds odd olive outlines and rectangles, and step 11 is the same magic jump as in A. Steps 12 to 14 are fine, but by then a beginner copying the pictures would long since have been misled."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-02",
+     "prefer": "whole",
+     "note": "B reads more like a real half-done painting through the first half. A's tiled, holey sky and its early leaves and rock would confuse a beginner from step 1 on. B has its own magic jump at step 8 and a slab at step 9, and the endings are about equal, so the preference is slight.",
+     "scores": {
+      "v2": {
+       "real": 2,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        1,
+        6,
+        9
+       ],
+       "note": "The words are identical to B's, so the pictures decided it. Steps 1 to 7 sit on a sky with a visible repeating tile pattern, white holes and fat rope-like outlines, with gold leaf bits, a lit rock and gold dots on the ground (step 6, a plain brown step) showing before their steps. Step 9's olive comes in hard slabs with blue halo outlines, and step 11 jumps to a misty, finished canopy on a step that only names a few taps of sunlit gold. The birch steps (12 to 14) are clean and good."
+      },
+      "whole": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        8,
+        1,
+        9
+       ],
+       "note": "Steps 1 to 7 look like a real misty underpainting. But step 1 already shows ghost firs, pale trunks and a sun disk, and its blue-cream colors don't match the cream-gold-to-leaf-brown blend the words ask for. Step 8, which only names golden ochre, jumps to a nearly finished ground with the rock, green bushes and cast shadows appearing by magic. Step 9 then lays one huge flat olive slab over the ground and far trees. Steps 12 to 14 are good, though the branches only appear on the cream step."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

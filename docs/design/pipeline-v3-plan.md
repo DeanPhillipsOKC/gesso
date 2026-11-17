@@ -108,6 +108,13 @@ and the owner's A/B.
   flat/pass on the A/B. Run 2026-11-17: `docs/spikes/v3-part-stages.md` (verdict: drop; the owner's A/B
   preferred v2 on 2 of 3 pictures and saw no difference on the third).
 
+- **S4b. Whole-picture stages (#204, added 2026-11-17 from the owner's ideas #203 and #204).** Erase things from the
+  finish one at a time, chained, and show the erased pictures themselves as the pictures a lesson's stages end on.
+  The guard needs no outline: of each render only what changed by a lot is kept. Steps inside a thing stay v2's.
+  Run 2026-11-17: `docs/spikes/v3-whole-stages.md` (verdict: adopt; Claude's blind graders preferred it on all 3
+  pictures, both graders each, five clearly and one slightly; the owner saw the lake cabin's sheet and said go. The
+  birch grove needed three tries and still shows faint firs in step 1).
+
 ## Wave 2: wilder bets
 
 - **S5. Paint it for real (#170).** A brush-stroke engine that carries out each step with that step's brush, paints
