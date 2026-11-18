@@ -120,6 +120,12 @@ These are the owner's decisions. Don't work around them.
 - Ids are lowercase slugs (letters, digits, hyphens), and no stage and step share one.
 - **`behind`** on every thing: the ids of the things already painted that it sits on, as the canvas shows them
   where the thing will go (the cow stands on the hillside and the meadow). `[]` when it goes on bare canvas.
+  **`behind` and the `after` lines must agree**, because the pictures are made from `behind`: when a render erases
+  a thing, it paints back what `behind` names. So a thing listed in another's `behind` runs under that one, and the
+  `after` lines of its steps say so: if the sea's `behind` is `["sky"]`, the sky is painted down to the bottom edge
+  where the sea will go, and the sky's `after` says "the sky runs to the bottom edge", never "the bottom third is bare
+  canvas". When the sea really goes on bare canvas, its `behind` is `[]`, and the `after` lines before the sea say
+  that part of the canvas is bare. Decide which a painter would do, then make both say it.
 - **`plain`** on a thing painted in more than one go: how it looks after its first coat, as a short phrase ("the
   plain gray cat shape"). A render told to keep the thing while it is still plain is told this.
 - **`called`** (optional) on a thing whose name would mislead someone asked to remove it or keep it: a name that
