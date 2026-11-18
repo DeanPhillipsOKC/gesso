@@ -302,5 +302,29 @@
       }
     ],
     "known": 18
+  },
+  {
+    "slug": "highland-cow",
+    "title": "A shaggy Highland cow standing in a tall golden-green meadow at sunset",
+    "subject": "A shaggy Highland cow standing in a tall golden-green meadow at sunset, with rolling green hills, blue mountains and a glimpse of a lake behind it",
+    "steps": 23,
+    "canvas": "12 x 16 in",
+    "tubes": 5,
+    "version": "POC 2.0.0",
+    "published": "2026-11-18",
+    "source": "highland-cow_skill_20261118-072336",
+    "versions": [
+      {
+        "id": "20261118-072336",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 07:23",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 23,
+        "href": "lessons/highland-cow/",
+        "current": true
+      }
+    ],
+    "known": 7
   }
 ]
