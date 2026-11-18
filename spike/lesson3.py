@@ -20,6 +20,7 @@ import numpy as np
 from PIL import Image
 
 import erase3
+import plan2
 import plan3
 import steps3
 
@@ -38,6 +39,13 @@ def digest(lesson: Path) -> str:
     return h.hexdigest()
 
 
+def _hashes(lesson: Path, names: list[str]) -> dict[str, str]:
+    """What build-steps wrote, by its bytes: a step picture or a shape changed by anything else is stale."""
+    files = [lesson / n for n in names] + [lesson / "parts" / "owner.png", lesson / "v3" / "masks.npz",
+                                           lesson / "v3" / "plan.json"]
+    return {str(f.relative_to(lesson)): hashlib.sha256(f.read_bytes()).hexdigest() if f.exists() else "" for f in files}
+
+
 def step_names(plan: dict) -> list[str]:
     return [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(plan3.steps(plan))]
 
@@ -53,6 +61,10 @@ def make(lesson: Path, plan: dict, finish: np.ndarray, save=None) -> dict:
     built = steps3.build(plan, finish, ch)
     owner = steps3.owner_from(ch)
     view = steps3.as_v2(plan, us, ch, built["hexes"], owner, finish)
+    wrong = plan2.problems(view)
+    if wrong:  # a fault in as_v2, not in the plan: the version 2 tools would misread the lesson
+        raise erase3.Refused("this plan can't be put in the shape the later tools read (report it; plan-check passed "
+                             "it): " + " | ".join(wrong[:3]))
     names = step_names(plan)
     for old in lesson.glob("[0-9][0-9]_*.png"):
         if not old.name.startswith(("00_", "98_", "99_")):
@@ -66,7 +78,8 @@ def make(lesson: Path, plan: dict, finish: np.ndarray, save=None) -> dict:
                         **{f"s{n:02d}": s for n, s in enumerate(steps3.shapes(ch, owner))})
     (lesson / "v3" / "plan.json").write_text(json.dumps(view, indent=1) + "\n", encoding="utf-8")
     kept = {k: built[k] for k in ("rows", "paints", "final_gap", "outside_unit_max", "from_its_paints_median", "little")}
-    (lesson / "v3" / "build.json").write_text(json.dumps({"made_from": digest(lesson), "steps": names, **kept}, indent=1),
+    (lesson / "v3" / "build.json").write_text(json.dumps({"made_from": digest(lesson), "steps": names,
+                                                          "files": _hashes(lesson, names), **kept}, indent=1),
                                               encoding="utf-8")
     return {**built, "plan": view, "owner": owner, "steps": names}
 
@@ -86,6 +99,9 @@ def read(lesson: Path, pictures: bool = True) -> dict:
     missing = [n for n in build["steps"] if not (lesson / n).exists()]
     if missing:
         raise Stale(f"missing step pictures {missing[:3]}: {again} again")
+    changed = [n for n, h in _hashes(lesson, build["steps"]).items() if build.get("files", {}).get(n) != h]
+    if changed:
+        raise Stale(f"{changed[0]} isn't the file build-steps wrote: {again} again")
     kept = np.load(need[2])
     out = {"plan": json.loads(need[0].read_text(encoding="utf-8")), "build": build, "rows": build["rows"],
            "owner": np.array(Image.open(need[3])).astype("int32"),

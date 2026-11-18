@@ -78,7 +78,8 @@ changes because of it:
 - **`erase` reports a thing left standing (section 6, new).** It sees a whole thing left, not a faint one in part.
 
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
-`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6). The spikes' three plans, with what was
+`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6); `paints`, `build-steps` and the bridge to `step-aids`,
+`mix` and `draft-text` (sections 7 to 9). The spikes' three plans, with what was
 written by hand folded in, are `spike/tests/fixtures/plans3/`. A step v2's cutter showed flat is a block-in there
 only when it is one by the plan's rule, so the cow has 14 units and the birch grove 17, where the spikes' chains
 had 17 and 19 (the cow's clouds, bushes and nose and the birch grove's canopy and bushes start with dabs or
@@ -328,6 +329,14 @@ paints, and each is fitted to the finish.
   gray darker than the cat's coat, no paint as pale as the plan's "Pale gold"). The plan is changed, not the finish.
 - Recipes are computed as in v2 (`mix`, Mixbox), and every step lists its own paints and recipes.
 
+**As built (#219; `steps3.fit`, `tools.py paints` and `build-steps`).** The fit is `fit_paints` of #207, a unit at a
+time, over the unit's whole change. The lesson's one color for a paint is its fit in the unit that lays the most of
+it (a tie goes to the earlier unit). `paints` on a version 3 lesson only reports; `build-steps` fits again and keeps
+the colors. Two things are reported, not failed: a paint fitted more than 25 Lab units from the plan's rough color
+(`far_from_name`: five of the sleeping cat's 22), and a paint fewer than 20 pixels came to (`not_in_finish`). A
+plan's `color`, name or `looks` can be changed without a new chain. Two paints whose names differ only in
+punctuation are refused by `plan-check`.
+
 ## 8. Step pictures (`build-steps`)
 
 For each unit, in painting order, from P[u] and D[u]:
@@ -341,6 +350,9 @@ Because units are smaller than things, fewer steps are cut this way: on the cow'
 step, and no unit has more than 5. The big jumps the graders marked down in #204 (flat to finished in a step, a
 face on a step that names a gold) were inside units that were whole things. **Guess:** smaller units remove most of
 them. The combined lesson is the test.
+
+**As built (#219; `steps3.build`).** A block-in is always a unit by itself (section 5), so no step is a flat coat
+cut by v2's rule: a unit's last step is P[u], and an earlier step shows the pixels nearest its own paints.
 
 **The three checks** (`pipeline-v3-plan.md`), run on every lesson:
 
@@ -359,6 +371,12 @@ Two more, from faults the graders named:
 5. **A first step that shows too much:** step 1's picture is compared with the plan's first `after`. This one is
    Claude's eye at step 5, not a measure.
 
+**As built:** checks 1 and 2 fail `build-steps` (they hold by construction, so a failure means the chain's files
+don't belong together). Check 3, a paint far from its name and check 4 are `notes`: fixing one needs a new plan and
+a new chain. Check 4 measures what a painter would see (`seen`: a change of 9 Lab units or more after the guard's
+blur), because a thing drawn again by a render moves every pixel a little; the spikes counted any pixel 6 levels
+off.
+
 ## 9. Teaching pictures and the fact sheet
 
 v2 draws these from outlines. In v3 a step's area is what the step laid, and a thing's shape is the core of its
@@ -373,6 +391,21 @@ unit's change. **All of this section is a guess:** no spike measured a Where lin
   IoU with v2's outlines ran from 0.17 to 0.88 in #204). So places are measured on the core, not the whole change.
 - **The sheet's own fixes,** from #173: halves and middles measured on a thing's main body; one size for a step's
   area, not two that can disagree; facts for the pieces of a thing.
+
+**As built (#219; `steps3.as_v2`, `spike/lesson3.py`), for the teaching pictures, the recipes and the drafted
+lines.** `build-steps` keeps the plan in version 2's shape (`v3/plan.json`: a part a unit), which unit each pixel
+belongs to (`parts/owner.png`), where each step lays paint and each unit's shape (`v3/masks.npz`), and the checks'
+numbers (`v3/build.json`). `step-aids`, `mix` and `draft-text` are v2's own code reading those; they never cut a
+version 3 step, and they refuse what was kept when the plan, the finish, the chain or a kept file has changed. What
+the spikes kept by hand is worked out:
+
+- a unit that comes back to a thing, and a new thing painted in several steps, is `marks`; its parent is the part
+  that started the thing (or what is behind it), and never another `marks` part;
+- a new thing that starts as a block-in on things already painted is an `object`, and the page offers its outline
+  to chalk. Every other new thing is an `area`. **Differs from the spikes,** where every new thing on painted
+  things was an object unless a hand-kept list said otherwise (the birch grove's path, sun and branches);
+- a unit's box, and its shape for the fact sheet, is what it changed (core first), not only where it is still on
+  top at the end (#214).
 
 ## 10. Words
 

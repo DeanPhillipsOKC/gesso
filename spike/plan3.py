@@ -34,7 +34,13 @@ APART = 3  # a paint used again this many steps or more after its last use has d
 def version(lesson: Path) -> int | None:
     """The lesson's plan version (2 or 3), or None when it has no plan.json."""
     path = Path(lesson) / "plan.json"
-    return json.loads(path.read_text(encoding="utf-8")).get("plan_version") if path.exists() else None
+    if not path.exists():
+        return None
+    try:
+        plan = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:  # not JSON: no version. The tool that reads the plan next says what is wrong with it
+        return None
+    return plan.get("plan_version") if isinstance(plan, dict) else None
 
 
 def is_v3(lesson: Path) -> bool:
@@ -300,6 +306,12 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
             continue
         if name in paints:
             out.append(f"paint {name!r}: two paints have this name")
+        elif slug(name) in {slug(x) for x in paints}:
+            other = next(x for x in paints if slug(x) == slug(name))
+            out.append(f"paint {name!r}: too like the name {other!r} (the tools tell paints apart by their letters "
+                       "and digits). Rename one.")
+        elif not slug(name):
+            out.append(f"paint {name!r}: a paint's name needs letters or digits in it")
         if not HEX.match(p.get("color") or ""):
             out.append(f"paint {name!r}: give its rough color (`color`) as a hex like #a1b2c3. The paints are fitted "
                        "to the painting from it.")

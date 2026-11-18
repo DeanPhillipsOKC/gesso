@@ -220,6 +220,7 @@ def as_v2(plan: dict, us: list[dict], ch: list[dict], hexes: dict[str, str], own
     h, w = owner.shape
     shape = shapes(ch, owner)  # a returning unit's box is what it changed, not only where it is still on top
     started: dict[str, str] = {}  # thing -> the part that started it
+    made: dict[str, dict] = {}
     parts, part_of = [], {}
     for n, u in enumerate(us):
         t = thing[u["things"][0]]
@@ -240,8 +241,13 @@ def as_v2(plan: dict, us: list[dict], ch: list[dict], hexes: dict[str, str], own
         parent = next((started[x] for x in u["things"] if x in started), None)
         if parent is None and kind == "marks":  # a new thing in several steps sits on what is behind it
             parent = next((started[b] for b in t.get("behind") or [] if b in started), None)
+        # version 2 has no marks on marks: a mark whose parent would be one sits on that part's own parent
+        # (plan2.parts_problems says the same), and on nothing when there is none
+        while parent and kind == "marks" and made[parent]["kind"] == "marks":
+            parent = made[parent].get("parent")
         if parent and parent != u["id"]:
             p["parent"] = parent
+        made[u["id"]] = p
         if kind == "marks":  # version 2 wants a mark's colors; nothing reads them, since no outline runs
             mine = [hexes[q] for q in unit_paints(steps, u) if q in hexes]
             p.update(colors_in=mine, colors_out=[x for x in hexes.values() if x not in mine][:3] or mine)

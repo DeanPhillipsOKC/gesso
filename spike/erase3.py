@@ -409,10 +409,14 @@ def run(lesson: Path, plan: dict, finish: np.ndarray, render, redo: dict[int, st
             raise Refused(f"there is no unit {n} to ask for again: the chain renders units 1 to {len(us) - 1}")
         if why not in WHY:
             raise Refused(f"say why unit {n} is asked for again: {' or '.join(WHY)}")
-        if len(again.get(n, [])) >= TRIES:
+        pending = bool(again.get(n)) and again[n][-1] == why and f"U{n:02d}" + "r" * len(again[n]) not in rendered
+        if len(again.get(n, [])) >= TRIES and not pending:
             raise Refused(f"unit {n} ({us[n]['name']}) has been asked for again {TRIES} times already. Go on with it "
                           "as it is, and record it in notes.json as a known problem.")
     for n, why in (redo or {}).items():
+        newest = f"U{n:02d}" + "r" * len(again.get(n, []))
+        if again.get(n) and again[n][-1] == why and newest not in rendered:
+            continue  # the same try, asked for by a run that stopped before rendering it: not a new one
         again.setdefault(n, []).append(why)
     keep()
     last = len(us) - 1
@@ -520,7 +524,9 @@ def load(lesson: Path, plan: dict) -> list[dict]:
         raise Refused("the chain was made for a plan with other units: run erase again")
     finish = Path(lesson) / "99_finish.png"
     again = {int(k): v for k, v in (kept.get("again") or {}).items()}
-    if not finish.exists() or kept.get("made_for") != made_for(plan, us, _read(finish), again):
+    from filters import load as read_finish  # as the tools read it (the camera's rotation flag honored)
+
+    if not finish.exists() or kept.get("made_for") != made_for(plan, us, read_finish(finish, max_side=100_000), again):
         raise Refused("the finish or the plan's words changed since the chain was made: run erase again (a request "
                       "that didn't change costs nothing)")
     return [{"P": _read(folder / f"P{n:02d}.png"), "D": np.array(Image.open(folder / f"D{n:02d}.png")) > 0,

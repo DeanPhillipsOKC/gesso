@@ -129,6 +129,31 @@ class Steps3Tests(unittest.TestCase):
         self.assertEqual(paints["shadow"]["parts"], ["the-shadows", "the-cat-s-eyes"])
         self.assertEqual((view["plan_version"], view["made_from"]), (2, 3))
 
+    def test_every_bench_plan_and_awkward_plan_fits_version_2s_shape(self):
+        def view_of(p):
+            us = plan3.units(p)
+            n = len(us)
+            ch = []
+            for k in range(n):  # a stand-in chain: each unit changed its own stripe
+                d = np.zeros((40, 10 * n), bool)
+                d[:, 10 * k:10 * k + 10] = True
+                ch.append({"P": np.full((40, 10 * n, 3), 200, np.uint8), "D": d, "core": d})
+            hexes = {q["name"]: q["color"] for q in p["paints"]}
+            return steps3.as_v2(p, us, ch, hexes, steps3.owner_from(ch), ch[-1]["P"])
+
+        for path in sorted((HERE / "fixtures" / "plans3").glob("*.json")):
+            self.assertEqual(plan2.problems(view_of(json.loads(path.read_text(encoding="utf-8")))), [], path.name)
+        # a thing painted in several steps is marks, and a unit that comes back to it can't be marks on marks
+        p = plan()
+        del step(p, "block-cat")["block_in"]
+        p["stages"][1]["steps"].append(dict(step(p, "light-cat"), id="cat-belly", paints=["Pale gray"]))
+        step(p, "light-cat")["paints"] = ["Sky blue"]
+        view = view_of(p)
+        self.assertEqual(plan2.problems(view), [])
+        kinds = {x["id"]: (x["kind"], x.get("parent")) for x in view["parts"]}
+        self.assertEqual(kinds["cat"], ("marks", "rug"))
+        self.assertEqual(kinds["the-cat-s-eyes"], ("marks", "rug"))
+
     def test_build_steps_keeps_what_the_later_tools_read_and_refuses_it_stale(self):
         with self.assertRaises(lesson3.Stale) as e:
             lesson3.read(self.lesson)
@@ -145,6 +170,15 @@ class Steps3Tests(unittest.TestCase):
         (self.lesson / "02_block-rug.png").unlink()
         with self.assertRaises(lesson3.Stale):
             lesson3.read(self.lesson)
+        lesson3.make(self.lesson, self.plan, self.finish)
+        Image.fromarray(pictures()[0]).save(self.lesson / "02_block-rug.png")  # a step picture something else wrote
+        with self.assertRaises(lesson3.Stale) as e:
+            lesson3.read(self.lesson)
+        self.assertIn("02_block-rug.png isn't the file build-steps wrote", str(e.exception))
+        with mock.patch.object(steps3, "as_v2", lambda *a, **k: {"plan_version": 2, "parts": []}):
+            with self.assertRaises(erase3.Refused) as e:
+                lesson3.make(self.lesson, self.plan, self.finish)
+        self.assertIn("report it", str(e.exception))
         lesson3.make(self.lesson, self.plan, self.finish)
         p = plan()
         step(p, "light-cat")["name"] = "Light the cat's back"

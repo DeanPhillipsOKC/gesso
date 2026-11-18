@@ -277,6 +277,14 @@ class ChainTests(unittest.TestCase):
             chain(other, redo={3: "stray"})
         r, model = chain(other)
         self.assertEqual([(c[0], c[2]) for c in model.calls][:2], [("U04", False), ("U03rr", False)])
+        # the same --redo given again after a run that stopped before rendering it is the same try, not a new one
+        third = tempfile.mkdtemp()
+        chain(third)
+        with self.assertRaises(RuntimeError):
+            chain(third, Model(fail_at="U03r"), redo={3: "stray"})
+        r, model = chain(third, redo={3: "stray"})
+        self.assertEqual(r["again"], {"3": ["stray"]})
+        self.assertEqual([(c[0], c[2]) for c in model.calls][:2], [("U04", False), ("U03r", True)])
 
     def test_a_unit_still_left_after_its_tries_stays_and_is_reported(self):
         half = striped()
