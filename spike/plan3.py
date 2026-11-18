@@ -1,0 +1,372 @@
+"""The version 3 lesson plan: a painter's plan written before any picture is cut (docs/design/pipeline-v3.md,
+section 5).
+
+    problems(plan, technique) -> what's wrong with the plan, each with what to change (empty when it's fine)
+    notes(plan, technique)    -> what isn't wrong but the run should know: the paint count, mixes to mix again
+    units(plan)               -> the renders the chain makes, in painting order: one a unit
+
+A version 2 plan lists parts with boxes, and each step paints inside one part's outline. A version 3 plan lists
+things with no boxes, and each step says what it lays on which things. The pictures are made to fit it: the finish
+is erased backward a unit at a time (`erase`), and a thing's shape is what its render changed.
+
+Words:
+    thing     something the painter paints, as a painter names it (the sky, the cow). No box, no outline.
+    unit      a run of steps in one stage on the same thing. One render a unit. A block-in is a unit by itself, and
+              so is a step whose paints its unit has all used already (two steps of one render that share a paint
+              can't be told apart in it).
+    kind      what a unit's render is asked for: "first" (the first unit: never erased), "bare" (its things are new
+              and have bare canvas behind), "behind" (new, on things already painted), "back" (a later stage of a
+              thing already there: only its last layer comes off).
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import plan2
+
+SLUG, HEX, MAX_PAINTS = plan2.SLUG, plan2.HEX, plan2.MAX_PAINTS
+CLOSE = 12.0  # Delta E: two base paints nearer than this could be one mix (paints.MAX_MERGE, the owner's 2026-11-12)
+APART = 3  # a paint used again this many steps or more after its last use has dried on the palette: mix it again
+
+
+def version(lesson: Path) -> int | None:
+    """The lesson's plan version (2 or 3), or None when it has no plan.json."""
+    path = Path(lesson) / "plan.json"
+    return json.loads(path.read_text(encoding="utf-8")).get("plan_version") if path.exists() else None
+
+
+def is_v3(lesson: Path) -> bool:
+    return version(lesson) == 3
+
+
+def load(lesson: Path) -> dict:
+    plan = json.loads((Path(lesson) / "plan.json").read_text(encoding="utf-8"))
+    if plan.get("plan_version") != 3:
+        raise ValueError(f"{lesson}/plan.json isn't a version 3 plan (no \"plan_version\": 3)")
+    return plan
+
+
+def steps(plan: dict) -> list[dict]:
+    """Every step in painting order, each with its stage's id and name."""
+    return [dict(s, stage=st.get("id"), stage_name=st.get("name") or st.get("id"))
+            for st in plan.get("stages") or [] for s in st.get("steps") or []]
+
+
+def things_of(step: dict) -> list[str]:
+    """The things a step lays paint on, in the order it names them, each once."""
+    return list(dict.fromkeys(lay.get("thing") for lay in step.get("lays") or []))
+
+
+def slug(name: str) -> str:
+    return "-".join("".join(ch if ch.isalnum() and ch.isascii() else " " for ch in name.lower()).split())
+
+
+def _runs(plan: dict) -> list[dict]:
+    """One run for the steps of a stage that share a thing (`units` in spike/experiments/v4_forward.py, #207). A
+    step on a thing an earlier run of the same stage painted joins that run, and takes the runs between with it:
+    a chain erases one run at a time, and those were painted before the step that comes back."""
+    out: list[dict] = []
+    i = 0
+    for st in plan.get("stages") or []:
+        mine: list[dict] = []
+        for s in st.get("steps") or []:
+            t = things_of(s)
+            hit = [k for k, u in enumerate(mine) if set(u["things"]) & set(t)]
+            if hit:
+                for late in mine[hit[0] + 1:]:
+                    mine[hit[0]]["things"] += [x for x in late["things"] if x not in mine[hit[0]]["things"]]
+                    mine[hit[0]]["steps"] += late["steps"]
+                del mine[hit[0] + 1:]
+                u = mine[hit[0]]
+            else:
+                u = {"stage": st.get("id"), "things": [], "steps": []}
+                mine.append(u)
+            u["things"] += [x for x in t if x not in u["things"]]
+            u["steps"].append(i)
+            i += 1
+        out += mine
+    return out
+
+
+def units(plan: dict) -> list[dict]:
+    """The plan's units in painting order: {"stage", "things", "steps" (indexes into `steps`), "kind", "id",
+    "name"}. A run of steps is cut where a step's paints are all ones the unit has used already, and after a
+    block-in (`units` in spike/experiments/v3_combined.py, #210).
+
+    A unit that starts one thing takes that thing's id and name. Any other unit (a later stage of a thing, or one
+    that starts several things at once) is named by its first step's `unit`; `problems` asks for it."""
+    all_steps = steps(plan)
+    block_in = {s.get("id") for s in all_steps if s.get("block_in")}
+    out: list[dict] = []
+    for run in _runs(plan):
+        cur: dict = {"stage": run["stage"], "things": [], "steps": []}
+        used: set[str] = set()
+        for i in run["steps"]:
+            s = all_steps[i]
+            paints = set(s.get("paints") or [])
+            if cur["steps"] and (paints <= used or all_steps[cur["steps"][-1]].get("id") in block_in):
+                out.append(cur)
+                cur, used = {"stage": run["stage"], "things": [], "steps": []}, set()
+            cur["steps"].append(i)
+            cur["things"] += [t for t in things_of(s) if t not in cur["things"]]
+            used |= paints
+        out.append(cur)
+    thing = {t.get("id"): t for t in plan.get("things") or []}
+    done: set[str] = set()
+    for n, u in enumerate(out):
+        new = [t for t in u["things"] if t not in done]
+        if n == 0:
+            u["kind"] = "first"
+        elif len(new) < len(u["things"]):
+            u["kind"] = "back"
+        else:
+            u["kind"] = "behind" if any((thing.get(t) or {}).get("behind") for t in u["things"]) else "bare"
+        said = (all_steps[u["steps"][0]].get("unit") or "").strip()
+        if said:
+            u["id"], u["name"] = slug(said), said
+        elif len(u["things"]) == 1 and new:
+            u["id"], u["name"] = u["things"][0], (thing.get(u["things"][0]) or {}).get("name") or u["things"][0]
+        else:
+            u["id"], u["name"] = None, None
+        done |= set(u["things"])
+    return out
+
+
+def _list(x) -> list:
+    return x if isinstance(x, list) else [] if x is None else [x]
+
+
+def _delta_e(a: str, b: str) -> float:
+    import mixing  # only here: the rest of this file needs no color math
+
+    return mixing.delta_e(a, b)
+
+
+def bases(plan: dict) -> list[dict]:
+    """The paints that count as a mix of their own: not a lighter or darker version of another (`of`)."""
+    return [p for p in plan.get("paints") or [] if not p.get("of")]
+
+
+def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict] | None = None,
+             strokes: set[str] | None = None) -> list[str]:
+    """What's wrong with a version 3 plan, each with what to change. It checks the plan against itself, the
+    technique's ranges and the library; nothing here knows the picture. `elements` is the element techniques by id
+    and `strokes` the stroke cards' ids (read from techniques/ when None)."""
+    if elements is None:
+        import elements as el
+
+        elements = el.library()
+    if strokes is None:
+        import cards
+
+        strokes = set(cards.strokes())
+    technique = technique or {}
+    out: list[str] = []
+    things: dict[str, dict] = {}
+    for t in plan.get("things") or []:
+        tid = t.get("id", "")
+        if not SLUG.match(tid):
+            out.append(f"thing id {tid!r} must be a lowercase slug like 'far-hill'")
+        if tid in things:
+            out.append(f"{tid}: two things have this id")
+        if not t.get("name"):
+            out.append(f"{tid}: a thing needs a name, as the page will say it")
+        if t.get("element") not in elements:
+            out.append(f"{tid}: its element {t.get('element')!r} isn't in techniques/elements. Pick the closest one "
+                       "and say in `why` what it lacks.")
+        if not isinstance(t.get("behind"), list):
+            out.append(f"{tid}: say what is behind it (`behind`): the ids of the things already painted that it "
+                       "sits on, or [] when it goes on bare canvas")
+        for key in ("plain", "called"):
+            if key in t and not (isinstance(t[key], str) and t[key].strip()):
+                out.append(f"{tid}: `{key}` must be a short phrase, or left out")
+        things[tid] = t
+    if not things:
+        return ["the plan lists no things"]
+    stages = plan.get("stages") or []
+    all_steps = steps(plan)
+    if not all_steps:
+        return out + [plan2.NO_STAGES]
+    lo, hi = technique.get("v2_step_range") or (None, None)
+    if lo is not None and not lo <= len(all_steps) <= hi:
+        out.append(f"the plan has {len(all_steps)} steps; the technique wants {lo} to {hi}")
+    lo, hi = technique.get("v2_stage_range") or (None, None)
+    if lo is not None and not lo <= len(stages) <= hi:
+        out.append(f"the plan has {len(stages)} stages; the technique wants {lo} to {hi}")
+
+    paints: dict[str, dict] = {}
+    for p in plan.get("paints") or []:
+        name = p.get("name") or ""
+        if not name:
+            out.append("a paint has no name")
+            continue
+        if name in paints:
+            out.append(f"paint {name!r}: two paints have this name")
+        if not HEX.match(p.get("color") or ""):
+            out.append(f"paint {name!r}: give its rough color (`color`) as a hex like #a1b2c3. The paints are fitted "
+                       "to the painting from it.")
+        if not p.get("looks"):
+            out.append(f"paint {name!r}: say what it looks like (`looks`)")
+        paints[name] = p
+    for name, p in paints.items():
+        of = p.get("of")
+        if of and (of not in paints or of == name or paints[of].get("of")):
+            out.append(f"paint {name!r}: it's a lighter or darker version of {of!r}, which must be another paint "
+                       "that isn't itself a version of one")
+
+    ids: set[str] = set()
+    for st in stages:
+        if not SLUG.match(st.get("id", "")) or st.get("id") in ids:
+            out.append(f"stage id {st.get('id')!r} must be a lowercase slug no other stage or step has")
+        ids.add(st.get("id"))
+        if not st.get("name"):
+            out.append(f"{st.get('id')}: a stage needs a name")
+        if not st.get("steps"):
+            out.append(f"{st.get('id')}: a stage needs at least one step")
+    first: dict[str, int] = {}  # each thing's first step
+    last: dict[str, int] = {}
+    used: set[str] = set()
+    for i, s in enumerate(all_steps):
+        sid = s.get("id", "")
+        if not SLUG.match(sid) or sid in ids:
+            out.append(f"step id {sid!r} must be a lowercase slug no other stage or step has")
+        ids.add(sid)
+        for key in ("name", "after"):
+            if not s.get(key):
+                out.append(f"{sid}: no `{key}`" + (": say what the canvas shows when the step is done. A render is "
+                                                    "asked to take the painting back to it." if key == "after" else ""))
+        lays = s.get("lays") or []
+        if not lays:
+            out.append(f"{sid}: name the things this step lays paint on (`lays`)")
+        seen: set[str] = set()
+        for lay in lays:
+            if lay.get("thing") not in things:
+                out.append(f"{sid}: lays on {lay.get('thing')!r}, which isn't in things")
+                continue
+            if lay["thing"] in seen:
+                out.append(f"{sid}: lays on {lay['thing']} twice. One entry per thing: say all of it in `what`.")
+            if not lay.get("what"):
+                out.append(f"{sid}: say what it lays on {lay.get('thing')} (`what`)")
+            seen.add(lay["thing"])
+        for t in seen:
+            first.setdefault(t, i)
+            last[t] = i
+        mine = s.get("paints") or []
+        if not mine:
+            out.append(f"{sid}: name the paints this step uses")
+        if len(mine) > MAX_PAINTS and not s.get("blend"):
+            out.append(f"{sid}: {len(mine)} paints in one step. Split it, or mark it `\"blend\": true` if the "
+                       "colors are blended wet in one go.")
+        for p in mine:
+            if p not in paints:
+                out.append(f"{sid}: paint {p!r} isn't in the plan's paints")
+        used |= set(mine)
+        if s.get("stroke") not in strokes:
+            out.append(f"{sid}: its stroke {s.get('stroke')!r} isn't a card in techniques/strokes")
+        else:
+            mine_el = sorted({things[t].get("element") for t in seen if things[t].get("element") in elements})
+            allowed = {x for e in mine_el for st in elements[e].get("steps") or [] for x in _list(st.get("strokes"))}
+            if mine_el and s["stroke"] not in allowed:
+                out.append(f"{sid}: its stroke {s['stroke']!r} isn't one that {' or '.join(mine_el)} lists. Use one "
+                           f"of: {', '.join(sorted(allowed))}.")
+        if not s.get("brush"):
+            out.append(f"{sid}: name its brush")
+        if s.get("block_in"):
+            late = sorted(t for t in seen if first[t] != i)
+            if late:
+                out.append(f"{sid}: a block-in is a thing's first coat, and {', '.join(late)} "
+                           f"{'was' if len(late) == 1 else 'were'} painted before it. Take `block_in` off.")
+            if s.get("blend"):
+                out.append(f"{sid}: a block-in is one flat coat and a blend isn't. Keep one of `block_in` and `blend`.")
+    for tid in things:
+        if tid not in first:
+            out.append(f"{tid}: no step lays paint on it. Give it a step, or take it out of things.")
+    for name in paints:
+        if name not in used:
+            out.append(f"paint {name!r}: no step uses it. Name it in a step, or take it out of paints.")
+    for i, s in enumerate(all_steps):
+        if s.get("block_in"):
+            alone = sorted(t for t in things_of(s) if t in things and last.get(t) == i)
+            if alone:
+                out.append(f"{s.get('id')}: a block-in is flat, and no later step paints {', '.join(alone)}, so "
+                           f"{'it' if len(alone) == 1 else 'they'} would never look finished. Add the step that "
+                           "finishes it, or take `block_in` off.")
+    for tid, t in things.items():
+        for b in t.get("behind") if isinstance(t.get("behind"), list) else []:
+            if b not in things or b == tid:
+                out.append(f"{tid}: `behind` names {b!r}, which isn't another thing")
+            elif tid in first and b in first and first[b] >= first[tid]:
+                out.append(f"{tid}: `behind` names {b}, which is first painted in step {first[b] + 1}, not before "
+                           f"{tid}'s first step ({first[tid] + 1}). Back to front: what's behind is painted first.")
+
+    us = units(plan)
+    seen_units: dict[str, int] = {}
+    seen_names: set[str] = set()
+    per_thing: dict[str, int] = {}
+    for n, u in enumerate(us):
+        s = all_steps[u["steps"][0]]
+        own = not (s.get("unit") or "").strip()  # named after the one thing it starts
+        # a unit may take the name of a thing it starts (the tall grass, laid with more of the meadow)
+        others = set(things) - {t for t in u["things"] if per_thing.get(t, 0) == 0}
+        if not u["id"]:
+            why = ("it starts several things at once" if u["kind"] != "back" else
+                   f"it comes back to {', '.join(t for t in u['things'] if t in things)}")
+            out.append(f"{s.get('id')}: this step starts a new picture of its own ({why}). Name what it and the steps "
+                       f"with it add (`unit`), as the page will say it: \"The cow's shaggy coat\".")
+        elif u["id"] in seen_units or u["name"].strip().lower() in seen_names or (not own and (u["id"] in others or u["name"].lower() in
+                                                {(things[t].get("name") or "").strip().lower() for t in others})):
+            out.append(f"{s.get('id')}: its `unit` name {u['name']!r} is already the name of a thing or of another "
+                       "unit. Name what this one adds.")
+        for i in u["steps"][1:]:
+            if (all_steps[i].get("unit") or "").strip():
+                out.append(f"{all_steps[i].get('id')}: its `unit` is never read: it is in one picture with "
+                           f"{s.get('id')}, whose `unit` names them both. Take it off.")
+        if u["id"]:
+            seen_units[u["id"]] = n
+            seen_names.add(u["name"].strip().lower())
+        for t in u["things"]:
+            per_thing[t] = per_thing.get(t, 0) + 1
+    for tid, n in per_thing.items():
+        if n > 1 and tid in things and not (things[tid].get("plain") or "").strip():
+            out.append(f"{tid}: it is painted in {n} units, so say how it looks after the first (`plain`): \"the "
+                       "plain gray cat shape\". A render asked to keep it while it is still plain is told that name.")
+
+    target = technique.get("max_mixes")
+    near = closest(plan)
+    if target is not None and len(bases(plan)) > target and near and near[0] <= CLOSE:
+        de, a, b = near
+        out.append(f"{len(bases(plan))} paints to mix, above the technique's target of {target}, and {a!r} and {b!r} "
+                   f"are only Delta E {de:.1f} apart by their `color`. Use one for both; or, if one is the other "
+                   "with white or a dark added, give it `of` (the other's name), which isn't counted.")
+    return out
+
+
+def closest(plan: dict) -> tuple[float, str, str] | None:
+    """The two base paints nearest each other by their rough `color`: (Delta E, one's name, the other's)."""
+    mixes = [p for p in bases(plan) if p.get("name") and HEX.match(p.get("color") or "")]
+    pairs = [(_delta_e(a["color"], b["color"]), a["name"], b["name"]) for k, a in enumerate(mixes) for b in mixes[k + 1:]]
+    return min(pairs) if pairs else None
+
+
+def notes(plan: dict, technique: dict | None = None) -> dict:
+    """What `plan-check` reports beside problems: how many mixes the plan asks for, and each paint used again after
+    it has dried on the palette (design section 5: a painter's order pulls a mix's uses apart, so the words say
+    "mix it again")."""
+    all_steps = steps(plan)
+    uses: dict[str, list[int]] = {}
+    for i, s in enumerate(all_steps):
+        for p in s.get("paints") or []:
+            uses.setdefault(p, []).append(i + 1)
+    again = [{"paint": p, "steps": at, "mix_again_at": [b for a, b in zip(at, at[1:]) if b - a >= APART]}
+             for p, at in uses.items() if any(b - a >= APART for a, b in zip(at, at[1:]))]
+    target = (technique or {}).get("max_mixes")
+    n = len(bases(plan))
+    out = {"mixes": n, "max_mixes": target, "versions": len(plan.get("paints") or []) - n, "mix_again": again}
+    near = closest(plan)
+    if target is not None and n > target and not (near and near[0] <= CLOSE):
+        out["over_target"] = (f"{n} paints to mix, above the target of {target}, and no two are close enough to be "
+                              "one. Allowed: a lesson ends above the target rather than lose a color a painter can "
+                              "see.")
+    return out

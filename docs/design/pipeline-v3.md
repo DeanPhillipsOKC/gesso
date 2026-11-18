@@ -77,6 +77,10 @@ changes because of it:
   caught two of three known strays and found two more in #214's kept chain; it missed the cow's tall grass.
 - **`erase` reports a thing left standing (section 6, new).** It sees a whole thing left, not a faint one in part.
 
+**The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
+`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5). The spikes' three plans, with what was
+written by hand folded in, are `spike/tests/fixtures/plans3/`.
+
 ## 1. Why change
 
 v2 renders the finished painting once and cuts every step picture from it inside outlines. It stopped improving:
@@ -141,7 +145,7 @@ and the text review in a fresh context (the checker is in its place, as in #173'
 
 ## 5. The plan file (`plan.json`, version 3)
 
-The painter's plan from #172 (`spike/experiments/v3_plan_first_painter.md` is its brief), with three additions.
+The painter's plan from #172 (`spike/experiments/v3_plan_first_painter.md` was its brief), with additions.
 
 - **things:** `id`, `name`, `element` (the element technique it follows), `why`, and `left_out`. No boxes, no points.
 - **paints:** `name`, `looks` (in words), `things`.
@@ -151,25 +155,46 @@ The painter's plan from #172 (`spike/experiments/v3_plan_first_painter.md` is it
 A step may lay paint on more than one thing when that is one move. These were 4 of 69 steps in the three plans
 fitted, so they are allowed, not the point.
 
-**Added by this draft (guesses):**
+**What the plan carries beside #172's, as built (#219; `spike/plan3.py`, `tools.py plan-check`).** #210 and #214
+wrote these by hand beside the plan (`spike/experiments/v3_combined_plan.json`). Now the writer writes them, from
+the brief in `.claude/skills/paint-lesson/v3/plan-brief.md`:
 
-- **`behind` on every thing:** the things already painted that it sits on, or none for bare canvas. #204 worked
-  this out from boxes (`is_bare`), and its redo sentence names what is behind. A plan with no boxes has to say it.
-- **`color` on every paint:** a rough hex for the name. The paints are fitted from it in step 6. In #207 these
-  were written by hand.
-- **`plan_version: 3`.**
+- **`plan_version: 3`,** and v2's header: `photo`, `technique`, `technique_why`, `palette`.
+- **`behind` on every thing:** the things already painted that it sits on, or `[]` for bare canvas. #204 worked
+  this out from boxes (`is_bare`). Each must be first painted before the thing is.
+- **`plain` on a thing painted in more than one unit:** how it looks after its first ("the plain gray cat shape").
+  A request that keeps the thing while it is still plain calls it that (`early` in the spikes).
+- **`called` on a thing (optional):** a name for it in a request, when its own would mislead a render ("The sky
+  and trees through the window", when the trees are a thing of their own).
+- **`color` on every paint:** a rough hex for the name. The paints are fitted from it in step 6.
+- **`of` on a paint (optional):** it is a lighter or darker version of the paint named, and isn't counted as a mix.
+- **`block_in: true` on a step:** the thing's first coat, as one flat color. It must be the first step on each
+  thing it lays, not a blend, and each thing needs a later step. v2's "flat" isn't this (the birch grove's dark
+  leaf dabs, the cow's nose): a block-in is what the request of #217 describes, a whole thing as a paper-flat shape.
+- **`unit` on the first step of a unit** that isn't the start of one thing: a name for what the unit adds, as the
+  page says it ("The cow's shaggy coat"). A unit that starts one thing takes the thing's id and name.
+
+**Units** (`plan3.units`) are worked out from the plan, not written: section 6. `plan-check` prints them, with
+what each render will be asked for, so the writer sees which steps need a `unit` name.
 
 **The rules the plan is held to** are v2's and the owner's, unchanged: paint-along on a white canvas, back to front,
 12 to 24 steps in 4 to 9 stages, one move a step, technique from the element files and the cards, texture never in
 one step.
 
-**`plan-check` (step 3)** is #172's `painter-check` plus:
+**`plan-check` (step 3)** is #172's `painter-check` (ids, names, `lays`, paints, strokes, the technique's ranges),
+the fields above, and:
 
-- **At most 10 mixes.** The cow's plan names 17 paints. `docs/decisions.md` has 10 as a target, with lighter and
-  darker versions not counted and two paints a painter can tell apart never merged. **Open:** the writer isn't
-  held to it today, and nothing counts a plan's mixes before the paints are fitted.
-- **A mix whose uses are far apart.** A painter's order pulls a mix's uses apart (the cow's golden ochre is mixed
-  in step 1 and wanted in steps 3, 14, 15 and 24). The check lists them so the words can say "mix it again".
+- **A step's stroke is one its thing's element lists.** The brief said so and nothing checked it. All 69 steps of
+  the three spike plans pass.
+- **At most 10 mixes, as v2 holds it** (`docs/decisions.md`, 2026-11-12). Paints with `of` aren't counted. Above
+  the technique's `max_mixes`, the plan fails while two counted paints are within Delta E 12 by their rough
+  `color` (`plan3.CLOSE`), naming the closest pair: use one for both, or mark one `of` the other. With none that
+  close it passes, and `plan-check` says so (`over_target`). The three spike plans (17, 22 and 13 paints, written
+  before any count) all fail this, each with a close pair. **Not known:** whether a writer held to it lands near
+  10, and whether rough colors are good enough to judge "close" before the paints are fitted.
+- **A mix whose uses are far apart** is listed, not failed (`mix_again`): a paint used again three or more steps
+  after its last use (`plan3.APART`, a starting value). A painter's order pulls a mix's uses apart (the cow's
+  golden ochre is mixed in step 1 and wanted in steps 3, 14, 15 and 24), and the words say "mix it again".
 - **A step that changes nothing can't be told from the plan.** That is checked on the pictures (section 9).
 
 ## 6. The chain (`erase`)
@@ -197,15 +222,6 @@ with every unit after u erased. P[last] is the finish.
   thing back to how the plan's `after` describes it before this stage. The request is the `after` line of the step
   before the unit's first. It ends with the same list of what stays (#218): "Nothing else in the painting is
   touched."
-
-**What a block-in is made from (#217).** A block-in is the first unit of a thing in front, and its picture is
-what the "back" render of the thing's next unit leaves. So that request says what is left, from the plan: the
-block-in's paint by name and look, "the same from edge to edge, like a shape cut from colored paper", no shading,
-fold, texture, line or detail, and "None of this is painted yet, so none of it may show:" with the `what` of every
-later `lays` on the thing. Every later "back" request on the thing carries the same list, from its own unit on. No
-second render and no flat fill: both were tried (`docs/spikes/v3-block-in.md`). **Open:** a paper-flat coat leaves
-the thing's whole brush texture to the next step; a coat brushed in one color wasn't tried. A step that takes a
-thing's texture off (the blanket's knit) needed "what is left has no texture" written by hand.
 
 **What a block-in is made from (#217).** A block-in is the first unit of a thing in front, and its picture is
 what the "back" render of the thing's next unit leaves. So that request says what is left, from the plan: the

@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## Pipeline v3 (in progress, #219)
+Tools for a version 3 lesson, beside v2. No lesson is made with them yet, so the version stays where it is.
+- `plan-check`: a version 3 plan (`"plan_version": 3`: things with no boxes, what is behind each, a rough color a
+  paint, block-ins marked) checked against itself, the technique and the library, with the units its chain will
+  render, the mix count against the target of 10, and the paints to mix again.
+
 ## POC 1.12.1 (2026-11-16)
 - `check` fails a step whose paints are far from the color its own picture adds (#154). In
   `balloon-lavender_skill_20261116-153316` the balloon's blue stripes were listed in the field's Lavender purple

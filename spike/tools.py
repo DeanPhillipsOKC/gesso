@@ -1534,6 +1534,63 @@ def add_v2_tools(sub) -> None:
     p.set_defaults(func=check_tool)
 
 
+# ---------------------------------------------------------------------------
+# Pipeline v3: a painter's plan first, the finish erased backward to fit it (docs/design/pipeline-v3.md)
+# ---------------------------------------------------------------------------
+
+
+def _v3_plan(lesson: Path) -> tuple[dict, dict]:
+    """A version 3 lesson's plan as written and its technique, or a refusal that says what's missing. The plan may
+    still have problems: `plan-check` lists them."""
+    import plan3
+    import yaml
+
+    if not (lesson / "plan.json").exists():
+        raise Refused(f"no plan.json in {lesson}")
+    try:
+        plan = plan3.load(lesson)
+    except ValueError as e:
+        raise Refused(str(e))
+    path = ROOT / (plan.get("technique") or "")
+    if not plan.get("technique") or not path.is_file():
+        raise Refused(f"plan.json's \"technique\" ({plan.get('technique')!r}) isn't a file in the repo: name the "
+                      "approach, e.g. techniques/acrylic-paint-along-beginner.yaml")
+    return plan, yaml.safe_load(path.read_text(encoding="utf-8"))
+
+
+def plan_check_tool(a: argparse.Namespace) -> dict:
+    """What's wrong with a version 3 plan, each problem saying what to change, and the units its chain will render.
+    Design section 5."""
+    import elements
+    import plan3
+
+    lesson = Path(a.lesson)
+    plan, technique = _v3_plan(lesson)
+    wrong = plan3.problems(plan, technique, elements=elements.known(lesson))
+    steps = plan3.steps(plan)
+    units = [{"unit": n, "id": u["id"], "name": u["name"], "kind": u["kind"], "things": u["things"],
+              "steps": [steps[i].get("id") for i in u["steps"]]} for n, u in enumerate(plan3.units(plan))]
+    renders = max(0, len(units) - 1)
+    return {"problems": wrong, "ok": not wrong, "steps": len(steps), "stages": len(plan.get("stages") or []),
+            "units": units, "renders": renders, **plan3.notes(plan, technique),
+            "advice": ("Fix each problem as it says and run plan-check again. " if wrong else "") +
+                      f"The chain will make {renders} renders, one a unit after the first (`erase`). A unit named "
+                      "null needs its first step's `unit`.",
+            "cost_usd": 0.0}
+
+
+def add_v3_tools(sub) -> None:
+    p = sub.add_parser("plan-check", help="Free. v3: what's wrong with a version 3 plan, and the units its chain will render.",
+                       description="Checks plan.json (\"plan_version\": 3) against itself, the technique's ranges, the "
+                                   "element techniques and the stroke cards. Prints `problems`, each saying what to "
+                                   "change; `units`, one for each render the chain will make, with what the render is "
+                                   "asked for (`kind`: first, bare, behind, back); `mixes` against the technique's "
+                                   "`max_mixes`; and `mix_again`, the paints used again after they've dried on the "
+                                   "palette. It knows nothing of the picture.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=plan_check_tool)
+
+
 def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(prog="tools.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="tool", required=True, metavar="TOOL")
@@ -1541,6 +1598,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_render(sub)
     add_lesson_tools(sub)
     add_v2_tools(sub)
+    add_v3_tools(sub)
     p = sub.add_parser("engine", help="Free. Opt-in: one long-lived process that runs these tools and rebuilds only "
                                       "what changed (#176). Run `engine --help`; the tools work the same without it.",
                        add_help=False)
