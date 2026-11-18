@@ -1606,6 +1606,9 @@ def merge(lesson: Path, redraft, final: bool = False) -> dict:
         except ValueError as e:
             bad.append(f"{folder.name}: out.json isn't valid JSON ({e})")
             continue
+        if not (folder / "steps.json").exists():
+            bad.append(f"{folder.name}: no packet there (run packets)")
+            continue
         mine_ids = {s["id"] for s in json.loads((folder / "steps.json").read_text(encoding="utf-8"))["steps"]}
         bad += [f"{folder.name}: {b}" for b in _apply(text, wrote, mine_ids)]
     r = check_text(sheet, text, strict=True)

@@ -404,6 +404,26 @@ class EraseToolTests(unittest.TestCase):
         code, r = self.run_tool("--no-auto", "--max-cost", "0.01", "--redo", "4:stray")
         self.assertEqual(code, 2)
         self.assertIn("cap", r["refused"])
+        # a run refused at the cap leaves the chain before it whole: the later tools still read it
+        erase3.load(self.lesson, json.loads((self.lesson / "plan.json").read_text()))
+
+    def test_the_cap_is_the_chains_own_and_follows_its_size(self):
+        self.write(self.real_plan())
+        # the finish cost 90 cents before the chain: not the chain's, so the chain's default cap still lets it run
+        (self.lesson / "ledger.json").write_text(json.dumps({"calls": [
+            {"tool": "render", "step": "finish", "quality": "high", "cost_usd": 0.9, "seconds": 1}], "total_cost_usd": 0.9}))
+        code, r = self.run_tool("--no-auto")
+        self.assertEqual((code, r["paid"]), (0, 4), r)
+        # 4 renders: 2 x 2.5 cents x 4 + 7 = 27 cents for the chain. Each render here costs about 2.5 and reserves 7,
+        # so a fresh render fits while under 20 cents are spent: 4 made, then 4 more redos, and the ninth is refused
+        spent = lambda: sum(c["cost_usd"] for c in json.loads((self.lesson / "ledger.json").read_text())["calls"]  # noqa: E731
+                            if c["step"].startswith("erase-"))
+        code, r = self.run_tool("--no-auto", "--redo", "4:stray")
+        self.assertEqual(code, 0, r)
+        code, r = self.run_tool("--no-auto", "--redo", "4:left")
+        self.assertEqual(code, 2, r)
+        self.assertIn("cap", r["refused"])
+        self.assertLessEqual(spent(), 0.27)
 
     def test_a_picture_that_is_not_the_models_shape_goes_in_with_bands_and_comes_back_its_own_size(self):
         self.write(self.real_plan())

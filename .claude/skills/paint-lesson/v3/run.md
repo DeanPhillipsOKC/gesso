@@ -49,9 +49,10 @@ writers) is a subagent on Opus in a fresh context, given only what its step name
    then stop and ask.
 2. `erase --lesson <lesson>`. It renders every unit, last first, and asks again by itself for a thing a render
    left standing. If it stops on a network error, run it again the same way, **without `--redo`**: what is already
-   rendered costs nothing. If it is refused at its cost cap, don't run it again: the cap is twice the chain. When
-   the chain is whole (`chain/chain.json` is newer than the last render), go on with it as it is and record what
-   the last checker marked (D4). When it isn't, stop and tell whoever started you what was spent and why.
+   rendered costs nothing. If it is refused at its cost cap, don't run it again: the cap is twice the chain. A
+   refused run leaves the chain before it as it was. So when `chain/chain.json` exists, go on with that chain and
+   its `answers.json`, and record each unit whose redo didn't run (D4). When there is no `chain/chain.json`, stop
+   and tell whoever started you what was spent and why.
 3. Start one checker with: "Follow `.claude/skills/paint-lesson/v3/chain-check.md`. Folder:
    `<lesson>/chain/looks`." It writes `answers.json` there.
 4. For every unit it marked, in **one** run: `erase --lesson <lesson> --redo <unit>:stray,<unit>:left`

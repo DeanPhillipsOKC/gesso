@@ -466,7 +466,8 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     if v3:  # a version 3 run has two checkers in the text review's place (design sections 6 and 10)
         answers, looks = lesson / "chain" / "looks" / "answers.json", lesson / "chain" / "looks"
         try:
-            read = {x.get("look") for x in json.loads(answers.read_text(encoding="utf-8")) if isinstance(x, dict)}
+            said = json.loads(answers.read_text(encoding="utf-8"))
+            read = {x.get("look") for x in said if isinstance(x, dict)} if isinstance(said, list) else None
         except (OSError, ValueError):
             read = None
         if read is None:
