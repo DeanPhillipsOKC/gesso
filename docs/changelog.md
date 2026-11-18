@@ -8,9 +8,12 @@ like or contains, and the patch number for fixes. The numbers before 0.9.0 were 
 
 ## POC 2.0.1 (2026-11-18)
 - The fact sheet measures each thing by its own units only (#227). A unit that lays on two things was counted in
-  the first thing's place, so on the floating island the island measured 10.9 in wide (it is 4.3), and a writer's
-  right sentence about the doorway was taken out. A part's "'s" ("The stone's shadows and light") no longer makes
+  the first thing's place, so on the floating island the island measured 10 7/8 in wide (it is 4 1/4), and a
+  writer's right sentence about the doorway was taken out. A part's "'s" ("The stone's shadows and light") no longer makes
   a lone "s" count as naming that part.
+- Inches are ruler fractions, never decimals (owner's call). The writers' fact sheet gives each measure to the
+  nearest sixteenth ("2 3/4 in (2 13/16)", where it said "(2.82)"), and so do `check-text`'s messages. The
+  canvas-fit note says what was left out the same way.
 
 ## POC 2.0.0 (2026-11-18)
 Pipeline v3 (#219): `/paint-lesson <photo> --v3`. A painter's plan is written first, the finished painting is erased

@@ -150,7 +150,7 @@ class Fault159Tests(unittest.TestCase):
         r = vf.check_text(self.balloon, text(self.balloon, {"balloon-red": TIP_21}))
         bad = failed(r, "balloon-red")
         self.assertEqual([c["words"] for c in bad], ["just left of the center"])
-        self.assertIn("middle of the balloon is 3.8", bad[0]["sheet"])
+        self.assertIn("middle of the balloon is 3 13/16 in", bad[0]["sheet"])
         fixed = TIP_21.replace("just left of the center", "just right of the center")
         self.assertEqual(failed(vf.check_text(self.balloon, text(self.balloon, {"balloon-red": fixed}))), [])
         # without "just" too (M2 of the PR #182 review): the left-edge stripe doesn't make it right
@@ -230,7 +230,7 @@ class Fault159Tests(unittest.TestCase):
         t["steps"][1]["lines"] = [{"kind": "where", "text": WHERE_16}]
         bad = failed(vf.check_text(sheet, t))
         self.assertEqual([(c["kind"], c["words"]) for c in bad], [("edge", "right edge")])
-        self.assertIn("0.9 in from the right edge", bad[0]["why"])
+        self.assertIn("7/8 in from the right edge", bad[0]["why"])
         # the tool's own line for it passes
         self.assertIn("1 in from the right edge", st["where"])
         self.assertEqual(failed(vf.check_text(sheet, text(sheet, {}))), [])
@@ -419,6 +419,33 @@ class TwoThingsTests(unittest.TestCase):
         self.assertEqual(sheet["parts"]["sun"]["parent"], "sky")
 
 
+class RulerTests(unittest.TestCase):
+    """Inches as a ruler marks them, never decimals (owner, 2026-11-18)."""
+
+    def test_nearest_mark_in_lowest_terms(self):
+        for v, want in [(0, "0"), (0.03, "0"), (0.06, "1/16"), (0.5, "1/2"), (2.82, "2 13/16"), (4.27, "4 1/4"),
+                        (10.88, "10 7/8"), (11.59, "11 9/16"), (15.99, "16"), (-0.3, "-5/16")]:
+            self.assertEqual(vf.mark(v), want, v)
+
+    def test_where_lines_keep_the_quarter(self):
+        self.assertEqual([vf.ruler(v) for v in (2.82, 10.88, 0.1)], ["2 3/4", "11", "0"])
+        self.assertEqual(vf.q(2.82), "2 3/4 in (2 13/16)")
+
+    def test_no_decimal_inches_in_the_writers_facts_or_the_checkers_messages(self):
+        sheet = two_things_scene()
+        plan = {"stages": [{"id": "all", "steps": [{"id": st["id"]} for st in sheet["steps"]]}]}
+        for st in sheet["steps"]:
+            words = vf.facts_text(sheet, plan, st)
+            self.assertIn("(", words)
+            self.assertNotRegex(words, r"\d\.\d+\)? in\b")
+            self.assertNotRegex(words, r"\(\d+\.\d+\)")
+        bad = vf.check_text(sheet, text(sheet, {"block-in-frame": "The doorway's left side is about 4 in from the left "
+                                                                   "edge; its middle is 3 in from the left edge."}))
+        self.assertTrue(bad["failures"])
+        for c in bad["failures"]:
+            self.assertNotRegex(c["sheet"] + c["why"], r"\d\.\d+ in\b")
+
+
 class ClaimTests(unittest.TestCase):
     """What counts as a claim, and what doesn't."""
 
@@ -496,7 +523,7 @@ class ClaimTests(unittest.TestCase):
         line = vf.say(r["failures"][0])
         self.assertIn("step 3 (balloon-red), tip", line)
         self.assertIn('"just left of the center"', line)
-        self.assertIn("sheet: the middle of the balloon is 3.8", line)
+        self.assertIn("sheet: the middle of the balloon is 3 13/16 in", line)
 
     def test_surrounded_and_leave(self):
         """L3: a side of a part all round the thing says nothing ('right of the sky'); 'keep' isn't 'leave'."""

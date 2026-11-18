@@ -96,7 +96,7 @@ What it showed:
   island's place took in the doorway, because the stone's shading is one unit on both and is filed under the
   island. It cost one sentence a writer had right. That sentence also fell to a second fault: the "s" of "the
   doorway's" was read as naming "The stone's shadows and light". Now a unit on several things is no thing's child
-  on the sheet (the island measures 4.3 in, not 10.9), and a name's "'s" isn't a word of its own.
+  on the sheet (the island measures 4 1/4 in, not 10 7/8), and a name's "'s" isn't a word of its own.
 - **A plan's `after` can disagree with its own `behind`** (section 5, not fixed): the sea was given the sky as
   what is behind it, so the sky runs to the bottom edge, and the first steps' `after` lines say the bottom third is
   bare. The writers wrote to the pictures.

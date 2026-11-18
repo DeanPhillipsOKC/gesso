@@ -171,6 +171,10 @@ with the date.
   paint-along stays sketch-free, except that the stage that starts an object may open with "lightly chalk its
   outline first", from a transfer picture the tool makes. Placement is shown (an outline on the picture, a grid of
   quarters, inches from the canvas edges), never given as percentages.
+- **Inches are ruler fractions, never decimals (2026-11-18, owner's call).** An inch ruler is marked in quarters,
+  eighths and sixteenths, so a length anyone reads (the page, the writers' fact sheet, the checker's messages,
+  Claude's replies) is the nearest of those marks, in lowest terms ("2 13/16 in", "4 1/4 in"), not "2.82 in". The
+  steps' Where lines still say the quarter or the half inch, as "about" (`facts.ruler`, `facts.mark`).
 - **At most 10 mixes in a beginner lesson (2026-11-12, owner's call).** Paints are measured from the finish and
   the closest are merged to the limit, even if the finish loses a little color nuance. An accent (a sun, an eye
   light) is never merged away. A lighter or darker version of a part's main paint ("plus white") isn't counted as
