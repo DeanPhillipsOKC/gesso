@@ -280,6 +280,10 @@ with the date.
   until it signs off on every one. If nothing is medium or higher, there's no second review. Either way, Claude fixes
   the low findings it agrees with and merges once the tests pass and nothing blocks (owner: "If there are medium or
   high findings those are blockers").
+  **Only high findings block (2026-11-18, owner's call, during #219).** Three build pull requests each went through
+  two to four review rounds on medium findings. Owner: "This is taking a long time and consuming a lot of usage. If
+  the reviewer is being picky let's just not block on anything but high." So a high finding blocks the merge and
+  gets a second look; medium and low findings are fixed when Claude agrees with them, without another look.
   **Only when code changed (2026-11-16, owner's call; narrowed 2026-11-17).** Code means program files only: the
   Python and JavaScript under `spike/` (tests included). Docs, the skills' instructions, techniques, elements, stroke
   cards, palettes, bench results under `spike/experiments/bench/` (frozen pictures, traces, fault counts, scores,

@@ -79,7 +79,9 @@ changes because of it:
 
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
 `"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6); `paints`, `build-steps` and the bridge to `step-aids`,
-`mix` and `draft-text` (sections 7 to 9). The spikes' three plans, with what was
+`mix` and `draft-text` (sections 7 to 9); the fact sheet, the stage writers, `check-text`, `check`, the seal and
+the run's instructions (sections 10 and 11; `.claude/skills/paint-lesson/v3/run.md`, chosen by `--v3`). **Not done:**
+a whole lesson made by it from a photo. That is #219's acceptance run, and the first time its parts run together. The spikes' three plans, with what was
 written by hand folded in, are `spike/tests/fixtures/plans3/`. A step v2's cutter showed flat is a block-in there
 only when it is one by the plan's rule, so the cow has 14 units and the birch grove 17, where the spikes' chains
 had 17 and 19 (the cow's clouds, bushes and nose and the birch grove's canopy and bushes start with dabs or
@@ -422,6 +424,28 @@ As #173 ran it:
 
 The writer must see the pictures: most of what the graders credited in #173 came from them (card lines rewritten
 to match the picture, extras named), not from the numbers.
+
+**As built (#219; `spike/facts.py`, `tools.py packets` and `check-text`, `v3/writer-brief.md`).** The sheet, the
+checker and the writers' packets are #173's code, moved out of the experiments with its experiment commands left
+behind. `packets` writes `words/stage-NN/` (each step's `meant` is the plan's `after`). `check-text` drafts the
+lines again, lays every stage's `out.json` on them, and checks strictly; a failure goes to that stage's
+`feedback.md`; `--final` takes out a sentence that still fails (`words/dropped.json`). A writer's file is read as
+it comes: one that isn't JSON, or isn't the brief's shape, is a problem for that stage, never a crash. A writer
+can't rewrite the measured Where line. On a version 3 lesson a part's place on the sheet is what its unit changed
+as well as where it is on top at the end (section 9).
+
+**`check`, the seal and the page for a version 3 lesson (as built).** `check` runs `plan-check`'s rules on the
+plan, then v2's checks on the lesson in version 2's shape, less the ones that read an outline or v2's cutter
+(outline confidence, `bs.problems`, a pass far from its paint, the element's `show` order, the count of top-level
+parts). In their place: `build-steps`' two checks that must hold; and as notes, a paint far from its name, a step
+that changes almost nothing, and a step that turns a tenth of the picture from flat to textured (the step after a
+block-in, section 14: failing it would stop every lesson with a block-in). The seal asks for the chain checker's
+`answers.json` and for `check-text --final` where v2 asks for the text review. `lesson.json` keeps
+`"plan_version": 2`, which the page reads, and adds `"pipeline": 3`; the lessons site refuses a lesson that says
+so until the gate passes. `check` also checks the writers' words against the sheet as it is now, so words changed
+after `check-text --final` can't be sealed. `erase` caps the chain's own renders at twice what the chain costs
+once (5 cents a unit plus 7), whatever the lesson spent before it. Cards are shown as the general
+cards: `card-adapt` works, and the run doesn't use it.
 
 **Not solved:** the stroke cards' own words, where most teaching faults come from (a load word such as "creamy"
 that the step never explains). That is #175.

@@ -50,6 +50,8 @@ def on_site_era(run: Path) -> bool:
     (#141). A run with no version stamp is refused; every v2 run is stamped."""
     data = json.loads((run / "lesson.json").read_text(encoding="utf-8"))
     made = version_tuple(made_version(data))
+    if data.get("pipeline") == 3:  # made by pipeline v3, which isn't the pipeline until its gate passes (#219): its
+        return False               # page says plan_version 2 so the page code reads it, and the site would take it
     return data.get("plan_version") == 2 and made is not None and made >= FIRST_ON_SITE
 
 

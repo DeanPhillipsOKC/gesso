@@ -35,6 +35,8 @@ def plan() -> dict:
                 "stroke": stroke, "brush": "1/2 inch flat", "after": f"{name} is done.", **more}
 
     return {"plan_version": 3, "technique": "techniques/acrylic-paint-along-beginner.yaml",
+            "photo": "spike/tests/fixtures/finishes/chickadee.jpg", "subject": "A cat on a rug",
+            "focal_point": "the cat's eyes", "light": "from the upper left",
             "things": [{"id": "sky", "name": "The sky", "element": "sky-blend", "why": "blended wet", "behind": []},
                        {"id": "rug", "name": "The rug", "element": "simple-shape", "why": "one flat shape",
                         "behind": [], "plain": "the plain red rug"},
@@ -271,8 +273,17 @@ class ProblemsTests(unittest.TestCase):
             self.assertTrue(check(p), (key, value))
         self.assertEqual(check(plan(), {"v2_step_range": [3], "max_mixes": "10"}), [])  # a bad technique isn't the plan's
 
+    def test_the_header_the_page_reads(self):
+        p = plan()
+        del p["photo"]
+        p["light"] = " "
+        found = check(p)
+        self.assertEqual(len(found), 2, found)
+        self.assertIn("`photo`", found[0])
+        self.assertIn("`light`", found[1])
+
     def test_ids_things_and_steps(self):
-        self.assertEqual(check({"plan_version": 3}), ["the plan lists no things"])
+        self.assertEqual(check({"plan_version": 3})[-1], "the plan lists no things")
         p = plan()
         p["stages"] = []
         self.assertEqual(check(p), ["the plan has no stages with steps"])

@@ -183,6 +183,10 @@ def bases(plan: dict) -> list[dict]:
     return [p for p in plan.get("paints") or [] if not p.get("of")]
 
 
+HEADER = {"photo": "the photo's path, as the run gave it", "subject": "what the painting is of",
+          "focal_point": "where the eye should land", "light": "where the light comes from, in words"}
+
+
 def _range(x) -> tuple:
     ok = isinstance(x, (list, tuple)) and len(x) == 2 and all(isinstance(v, int) for v in x)
     return tuple(x) if ok else (None, None)
@@ -269,6 +273,9 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
     out = shape_problems(plan)
     if out:
         return out
+    for key, what in HEADER.items():  # the page and the receipt read these
+        if not _str(plan.get(key)):
+            out.append(f"the plan has no `{key}`: {what}")
     technique = technique if isinstance(technique, dict) else {}
     things: dict[str, dict] = {}
     for t in plan.get("things") or []:
