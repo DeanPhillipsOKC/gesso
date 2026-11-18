@@ -336,5 +336,29 @@
       }
     ],
     "known": 7
+  },
+  {
+    "slug": "birch-grove",
+    "title": "An autumn birch grove",
+    "subject": "An autumn birch grove with a leaf-covered path running back into misty woods, golden leaves overhead and the sun glowing through on the left",
+    "steps": 20,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.0",
+    "published": "2026-11-18",
+    "source": "birch-grove_skill_20261118-083834",
+    "versions": [
+      {
+        "id": "20261118-083834",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 08:38",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 20,
+        "href": "lessons/birch-grove/",
+        "current": true
+      }
+    ],
+    "known": 7
   }
 ]
