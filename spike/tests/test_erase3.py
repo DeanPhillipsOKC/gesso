@@ -69,12 +69,15 @@ def striped() -> np.ndarray:
 class Model:
     """Stands in for the image model: asked to erase unit n, it answers with the scene before unit n."""
 
-    def __init__(self, answers: dict[str, np.ndarray] | None = None):
+    def __init__(self, answers: dict[str, np.ndarray] | None = None, fail_at: str | None = None):
         self.calls: list[tuple[str, str, bool]] = []
         self.answers = answers or {}
         self.scene = pictures()
+        self.fail_at = fail_at
 
     def __call__(self, name, src, prompt, fresh):
+        if name == self.fail_at:
+            raise RuntimeError("the cost cap")
         self.calls.append((name, prompt, fresh))
         n = int(name[1:3])
         got = self.answers.get(name, self.scene[n - 1])
@@ -83,6 +86,7 @@ class Model:
 
 def chain(tmp, model=None, p=None, **more) -> tuple[dict, Model]:
     model = model or Model()
+    Image.fromarray(pictures()[-1]).save(Path(tmp) / "99_finish.png")
     return erase3.run(Path(tmp), p or plan(), pictures()[-1], model, **more), model
 
 
@@ -249,6 +253,30 @@ class ChainTests(unittest.TestCase):
         self.assertEqual(r["again"], {"2": ["left"]})
         self.assertEqual(r["rows"][1]["render"], "U02r")
         self.assertFalse(r["rows"][1]["ask_again"])
+        # the try that was thrown away was paid for too
+        self.assertEqual((r["renders"], r["paid"], r["cost_usd"]), (4, 5, 0.1))
+        self.assertEqual([t["render"] for t in r["rows"][1]["tries"]], ["U02", "U02r"])
+
+    def test_a_run_that_stops_partway_remembers_its_tries_and_pays_for_none_twice(self):
+        half = striped()
+        with self.assertRaises(RuntimeError):
+            chain(self.tmp, Model({"U02": half}, fail_at="U01"))
+        r, model = chain(self.tmp, Model({"U02": half}))
+        # the second run asks for the same try, and not as a fresh render: the cache has it
+        self.assertEqual([(c[0], c[2]) for c in model.calls], [("U04", False), ("U03", False), ("U02r", False),
+                                                               ("U01", False)])
+        self.assertEqual(r["again"], {"2": ["left"]})
+        with self.assertRaises(RuntimeError):
+            chain(tempfile.mkdtemp(), Model(fail_at="U02"), redo=None)
+        other = tempfile.mkdtemp()
+        chain(other)
+        for _ in range(2):  # an asked-for try whose run stops is a try all the same: the cap still holds
+            with self.assertRaises(RuntimeError):
+                chain(other, Model(fail_at="U02"), redo={3: "stray"})
+        with self.assertRaises(erase3.Refused):
+            chain(other, redo={3: "stray"})
+        r, model = chain(other)
+        self.assertEqual([(c[0], c[2]) for c in model.calls][:2], [("U04", False), ("U03rr", False)])
 
     def test_a_unit_still_left_after_its_tries_stays_and_is_reported(self):
         half = striped()
@@ -265,7 +293,7 @@ class ChainTests(unittest.TestCase):
         r, model = chain(self.tmp, redo={3: "stray"})
         self.assertEqual(r["again"], {"3": ["stray"]})
         self.assertEqual([(c[0], c[2]) for c in model.calls], [("U04", False), ("U03r", True), ("U02", False), ("U01", False)])
-        r, model = chain(self.tmp)  # run again with nothing new: the same requests, so the cache answers
+        r, model = chain(self.tmp)  # run again with nothing new: the same requests, none asked for fresh
         self.assertEqual([c[0] for c in model.calls][1], "U03r")
         self.assertFalse(any(c[2] for c in model.calls))
         chain(self.tmp, redo={3: "left"})
@@ -285,6 +313,20 @@ class ChainTests(unittest.TestCase):
         self.assertIn("other units", str(e.exception))
         with self.assertRaises(erase3.Refused):
             erase3.load(Path(tempfile.mkdtemp()), p)
+        other = tempfile.mkdtemp()
+        chain(other)
+        (Path(other) / "chain" / "looks" / "answers.json").write_text("[]")
+        (Path(other) / "chain" / "looks" / "kept").mkdir()
+        chain(other)  # a folder in looks/ is left alone, and the old answers go with the old pictures
+        self.assertFalse((Path(other) / "chain" / "looks" / "answers.json").exists())
+        q = plan()
+        step(q, "block-cat")["after"] = "A flat gray cat lies on the rug."  # the same units, another request
+        with self.assertRaises(erase3.Refused) as e:
+            erase3.load(Path(other), q)
+        self.assertIn("words changed", str(e.exception))
+        Image.fromarray(pictures()[-2]).save(Path(other) / "99_finish.png")
+        with self.assertRaises(erase3.Refused):
+            erase3.load(Path(other), plan())
         r = erase3.run(Path(self.tmp), p, pictures()[-1], Model({"U03": pictures()[2]}))
         self.assertEqual(r["again"], {})
 
@@ -345,6 +387,8 @@ class EraseToolTests(unittest.TestCase):
         code, r = self.run_tool("--redo", "9")
         self.assertEqual(code, 2)
         self.assertIn("<unit>:<why>", r["refused"])
+        self.assertIn("twice", self.run_tool("--redo", "2:stray,2:left")[1]["refused"])
+        self.assertIn("leave --redo out", self.run_tool("--probe", "4", "--redo", "2:left")[1]["refused"])
         code, r = self.run_tool("--probe", "4")
         self.assertEqual((code, r["probe"], r["kind"], r["cached"]), (0, 4, "back", True))  # the chain's own render
         self.assertTrue(Path(r["look"]).exists())
@@ -360,6 +404,12 @@ class EraseToolTests(unittest.TestCase):
         self.assertEqual(code, 0, r)
         self.assertEqual(Image.open(self.lesson / "chain" / "P00.png").size, (300, 320))
         self.assertEqual(Image.open(self.lesson / "chain" / "U04_in.png").size, (300, 320))
+        sent = self.client.images.sent[0]
+        self.assertIn("Keep the plain gray bands at the edges", sent["prompt"])
+        self.assertEqual(sent["size"], "1024x1024")
+        got = Image.open(io.BytesIO(sent["image"][1]))
+        self.assertEqual(got.size, (1024, 1024))
+        self.assertEqual(got.getpixel((5, 500)), tools.GRAY)
 
 if __name__ == "__main__":
     unittest.main()

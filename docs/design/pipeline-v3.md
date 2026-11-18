@@ -292,6 +292,15 @@ into what it sits on.
   renders of the blanket and the cat give a flat blanket and a flat cat from the second.
 - **`erase` asks again by itself for a thing left standing** (2% of the canvas, `LEFT`), on the spot, before the
   units before it are rendered from its picture. So a miss costs one render, not a render for every earlier unit.
+- **What is measured on which laying.** A thing left standing, and so `erase`'s own asking again, is measured on
+  the first laying, where each render was made. The pictures kept, `erased_share` and the checker's looks are the
+  second laying's. A unit between a block-in and a later stage of its thing (the cow's horns, between its block-in
+  and its coat) is rendered from the first laying's picture and laid on the second's. **No test or spike covers
+  how much those differ on a real chain.**
+- **A run that stops partway loses nothing.** Each try is written to `chain/tries.json` before its render and
+  ticked off after, so the next run asks for the same tries and pays for none twice. `chain.json` counts every
+  render paid for, the tries thrown away too. A chain is refused by the later tools when the finish or any
+  request has changed since it was made.
 - **Asking again says why:** `--redo 8:stray` or `8:left`, at most twice a unit. Each adds a sentence. For a
   layer left on a thing it is #217's hand-written "what is left has no texture"; the other three are this build's
   own and no spike ran them. A redo is a fresh render, not the cache's.

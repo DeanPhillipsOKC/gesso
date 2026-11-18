@@ -1714,14 +1714,17 @@ def _erase_render(lesson: Path, a: argparse.Namespace, client):
             prompt = prompt.replace("No text, signature", "Keep the plain gray bands at the edges exactly as they are. "
                                                           "No text, signature")
         raw = src.with_name(f"{name}_raw.png")
-        r = render_one(budget, f"erase-{name[:3]}", [src], prompt, raw, a.quality, ERASE_WHY, size, fresh=fresh,
-                       client=client)
+        try:
+            r = render_one(budget, f"erase-{name[:3]}", [src], prompt, raw, a.quality, ERASE_WHY, size, fresh=fresh,
+                           client=client)
+        finally:
+            if padded:
+                Image.fromarray(picture).save(src)
         got = Image.open(raw).convert("RGB")
         if got.size != frame.size:
             got = got.resize(frame.size, Image.LANCZOS)
         if padded:
             got = got.crop(box)
-            Image.fromarray(picture).save(src)
         if got.size != (picture.shape[1], picture.shape[0]):
             got = got.resize((picture.shape[1], picture.shape[0]), Image.LANCZOS)
         return np.array(got), {"seconds": r["seconds"], "cost_usd": r["cost_usd"], "cached": r["cached"]}
@@ -1741,6 +1744,8 @@ def erase_tool(a: argparse.Namespace, client=None) -> dict:
     us = plan3.units(plan)
     render = _erase_render(lesson, a, client)
     if a.probe is not None:
+        if a.redo:
+            raise Refused("--probe renders one unit from the finish and asks for nothing again: leave --redo out")
         if not 1 <= a.probe < len(us):
             raise Refused(f"there is no unit {a.probe} to probe: the chain renders units 1 to {len(us) - 1}")
         folder = lesson / "chain" / "probe"
@@ -1761,6 +1766,8 @@ def erase_tool(a: argparse.Namespace, client=None) -> dict:
         if not n.isdigit() or why not in erase3.WHY:
             raise Refused(f"--redo takes <unit>:<why>, comma-separated, why one of {', '.join(erase3.WHY)}: "
                           f"e.g. 8:stray,10:left. Got {word!r}.")
+        if int(n) in redo:
+            raise Refused(f"--redo names unit {n} twice: once a run, with the reason that matters more")
         redo[int(n)] = why
     try:
         r = erase3.run(lesson, plan, finish, render, redo, auto=not a.no_auto)

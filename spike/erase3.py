@@ -127,8 +127,8 @@ def _not_yet(steps: list[dict], u: dict) -> str:
     return "None of this is painted yet, so none of it may show: " + "; ".join(later) + ". "
 
 
-def _first_coat(plan: dict, steps: list[dict], us: list[dict], n: int, m: int) -> str:
-    """#217: what unit m's render leaves when it takes the first layer off block-in n: one flat coat."""
+def _first_coat(plan: dict, steps: list[dict], us: list[dict], n: int) -> str:
+    """#217: what a render leaves when it takes the first layer off block-in n: one flat coat."""
     s = steps[us[n]["steps"][0]]
     looks = {p["name"]: p.get("looks") or p["name"] for p in plan["paints"]}
     paints = " and ".join(f"{p} ({looks.get(p, p)})" for p in s["paints"])
@@ -202,7 +202,7 @@ def request(plan: dict, us: list[dict], n: int, why: tuple[str, ...] = ()) -> st
     for k in kept_whole(plan, us, n):
         # the first unit to come back to a block-in is the render that leaves it: it says what a block-in is (#217)
         if n == next(m for m in range(k + 1, len(us)) if set(us[m]["things"]) & set(us[k]["things"])):
-            text += _first_coat(plan, steps, us, k, n)
+            text += _first_coat(plan, steps, us, k)
     return text + _not_yet(steps, u) + again + END
 
 
@@ -388,10 +388,22 @@ def run(lesson: Path, plan: dict, finish: np.ndarray, render, redo: dict[int, st
     us = plan3.units(plan)
     folder = Path(lesson) / "chain"
     folder.mkdir(parents=True, exist_ok=True)
-    was = json.loads((folder / "chain.json").read_text(encoding="utf-8")) if (folder / "chain.json").exists() else {}
-    same = [(u["things"], u["steps"]) for u in us] == [(u["things"], u["steps"]) for u in was.get("units") or []]
+    # Every try is written down before its render and ticked off after it (chain/tries.json), so a run that stops
+    # partway (the cost cap, the network) neither forgets a try nor pays for it twice: the next run asks for the
+    # same tries, and one already rendered comes from the cache.
+    shape = [[u["things"], u["steps"]] for u in us]
+    tries = folder / "tries.json"
+    was = json.loads(tries.read_text(encoding="utf-8")) if tries.exists() else {}
+    same = was.get("units") == shape
     again: dict[int, list[str]] = {int(k): list(v) for k, v in (was.get("again") or {}).items()} if same else {}
-    fresh: set[int] = set()
+    rendered: set[str] = set(was.get("rendered") or []) if same else set()
+
+    def keep() -> None:
+        tmp = tries.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"units": shape, "again": {str(k): v for k, v in sorted(again.items())},
+                                   "rendered": sorted(rendered)}, indent=1), encoding="utf-8")
+        tmp.replace(tries)
+
     for n, why in (redo or {}).items():
         if not 1 <= n < len(us):
             raise Refused(f"there is no unit {n} to ask for again: the chain renders units 1 to {len(us) - 1}")
@@ -400,31 +412,41 @@ def run(lesson: Path, plan: dict, finish: np.ndarray, render, redo: dict[int, st
         if len(again.get(n, [])) >= TRIES:
             raise Refused(f"unit {n} ({us[n]['name']}) has been asked for again {TRIES} times already. Go on with it "
                           "as it is, and record it in notes.json as a known problem.")
+    for n, why in (redo or {}).items():
         again.setdefault(n, []).append(why)
-        fresh.add(n)
+    keep()
     last = len(us) - 1
     frozen = np.zeros(finish.shape[:2], bool)
     P, D, C = {last: finish}, {}, {}
     raws: dict[int, np.ndarray] = {}
     rows: dict[int, dict] = {}
     for n in range(last, 0, -1):
+        made = []  # every render made for this unit in this run: the one kept and the tries before it
         while True:
             name = f"U{n:02d}" + "r" * len(again.get(n, []))
             src = folder / f"{name}_in.png"
             _png(src, P[n])
-            raw, info = render(name, src, request(plan, us, n, tuple(again.get(n, []))), n in fresh)
+            # a try that was never rendered is a fresh render: a second try's request can be word for word the first's
+            raw, info = render(name, src, request(plan, us, n, tuple(again.get(n, []))),
+                               bool(again.get(n)) and name not in rendered)
+            rendered.add(name)
+            keep()
+            made.append({"render": name, "seconds": info["seconds"], "cost_usd": info["cost_usd"],
+                         "cached": bool(info.get("cached"))})
             left = None if us[n]["kind"] == "back" else left_standing(P[n], raw, changed(P[n], raw, frozen), frozen)
             if not (auto and left is not None and left >= LEFT and len(again.get(n, [])) < TRIES):
                 break
             again.setdefault(n, []).append("left")
-            fresh.add(n)
+            keep()
         raws[n] = raw
         before = frozen
         P[n - 1], D[n], C[n], frozen = _unit(plan, us, n, P[n], raw, frozen, None)
         rows[n] = {"unit": n, "id": us[n]["id"], "name": us[n]["name"], "kind": us[n]["kind"],
                    "things": us[n]["things"], "steps": [i + 1 for i in us[n]["steps"]], "render": name,
-                   "again": again.get(n, []), "seconds": info["seconds"], "cost_usd": info["cost_usd"],
-                   "cached": bool(info.get("cached")), "left_standing": left,
+                   "again": again.get(n, []), "tries": made,
+                   "seconds": round(sum(t["seconds"] for t in made), 1),
+                   "cost_usd": round(sum(t["cost_usd"] for t in made), 4),
+                   "cached": all(t["cached"] for t in made), "left_standing": left,
                    "ask_again": bool(left is not None and left >= LEFT),
                    # of the picture the guard kept as it was, the share the raw render had moved
                    "raw_moved_outside": moved(P[n], raw, ~bs.halo(D[n]) & ~before)}
@@ -432,9 +454,10 @@ def run(lesson: Path, plan: dict, finish: np.ndarray, render, redo: dict[int, st
     # the renders laid a second time, each thing that started as a block-in now known by its shape (#217)
     cores = {k: C[k] for n in range(1, len(us)) for k in kept_whole(plan, us, n)}
     ch = lay(plan, us, finish, raws, cores) if cores else {"P": P, "D": D, "C": C}
-    for old in list(folder.glob("[PDC][0-9][0-9].png")) + list((folder / "looks").glob("*")):
-        old.unlink()
     (folder / "looks").mkdir(exist_ok=True)
+    # the old chain's pictures go, and with them the checker's answers.json: it read other pictures
+    for old in list(folder.glob("[PDC][0-9][0-9].png")) + [f for f in (folder / "looks").iterdir() if f.is_file()]:
+        old.unlink()
     for n in range(len(us)):
         _png(folder / f"P{n:02d}.png", ch["P"][n])
         _png(folder / f"D{n:02d}.png", ch["D"][n])
@@ -451,11 +474,23 @@ def run(lesson: Path, plan: dict, finish: np.ndarray, render, redo: dict[int, st
     result = {"units": [{"id": u["id"], "name": u["name"], "kind": u["kind"], "things": u["things"],
                          "steps": u["steps"]} for u in us],
               "again": {str(k): v for k, v in sorted(again.items())},
-              "renders": len(ordered), "paid": sum(1 for r in ordered if not r["cached"]),
+              "made_for": made_for(plan, us, finish, again),
+              "renders": len(ordered), "paid": sum(1 for r in ordered for t in r["tries"] if not t["cached"]),
               "cost_usd": round(sum(r["cost_usd"] for r in ordered), 4),
               "render_seconds": round(sum(r["seconds"] for r in ordered), 1), "rows": ordered}
     (folder / "chain.json").write_text(json.dumps(result, indent=1), encoding="utf-8")
     return result
+
+
+def made_for(plan: dict, us: list[dict], finish: np.ndarray, again: dict[int, list[str]]) -> str:
+    """What a chain was made for: the finish and every request. A chain made for another finish, or for a plan
+    whose words changed, is stale even when its units are the same."""
+    import hashlib
+
+    h = hashlib.sha256(np.ascontiguousarray(finish).tobytes())
+    for n in range(1, len(us)):
+        h.update(request(plan, us, n, tuple(again.get(n, []))).encode("utf-8") + b"\0")
+    return h.hexdigest()
 
 
 def problems(result: dict) -> tuple[list[str], list[str]]:
@@ -483,5 +518,10 @@ def load(lesson: Path, plan: dict) -> list[dict]:
     kept = json.loads((folder / "chain.json").read_text(encoding="utf-8"))
     if [(u["things"], u["steps"]) for u in kept["units"]] != [(u["things"], u["steps"]) for u in us]:
         raise Refused("the chain was made for a plan with other units: run erase again")
+    finish = Path(lesson) / "99_finish.png"
+    again = {int(k): v for k, v in (kept.get("again") or {}).items()}
+    if not finish.exists() or kept.get("made_for") != made_for(plan, us, _read(finish), again):
+        raise Refused("the finish or the plan's words changed since the chain was made: run erase again (a request "
+                      "that didn't change costs nothing)")
     return [{"P": _read(folder / f"P{n:02d}.png"), "D": np.array(Image.open(folder / f"D{n:02d}.png")) > 0,
              "core": np.array(Image.open(folder / f"C{n:02d}.png")) > 0} for n in range(len(us))]
