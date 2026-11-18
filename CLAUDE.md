@@ -11,8 +11,8 @@ Project knowledge lives under `docs/`. Read it before making changes:
   before any pipeline issue. Pipeline v1 (a render per step) was removed in #82; it survives only as history.
 - `docs/design/pipeline-v3-plan.md`: the plan for pipeline v3 (a frozen bench, then spikes). Read it before any
   issue labeled for v3.
-- `docs/design/pipeline-v3.md`: the v3 design. Its gate passed on 2026-11-18 and v3 replaces v2; until
-  `/paint-lesson` runs it by default, `--v3` chooses it. Read it before any v3 issue.
+- `docs/design/pipeline-v3.md`: the v3 design. Its gate passed on 2026-11-18 and v3 replaces v2;
+  `/paint-lesson` runs it. Read it before any v3 issue.
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
   anything, and don't re-propose what it rules out.
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).

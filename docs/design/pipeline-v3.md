@@ -1,7 +1,7 @@
 # Pipeline v3: plan first, erase the finish back one stage at a time, write from what was measured
 
-**The gate passed (2026-11-18, owner's call; `docs/decisions.md`): v3 replaces v2.** Until `/paint-lesson` runs v3
-by default and v2 is removed, `--v3` still chooses it. Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
+**The gate passed (2026-11-18, owner's call; `docs/decisions.md`): v3 replaces v2.** `/paint-lesson` runs v3 with no
+flag (#236; `--v3` is kept and does nothing). v2's code is still in the repo until it is removed. Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
 (`pipeline-v3-plan.md`, Order, step 5). Each section says what is **proven** (a spike ran it and its write-up has the
 numbers), what is a **guess** (this draft's own joining of the pieces, run by nobody yet), and what is **open**.
 
@@ -80,7 +80,7 @@ changes because of it:
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
 `"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6); `paints`, `build-steps` and the bridge to `step-aids`,
 `mix` and `draft-text` (sections 7 to 9); the fact sheet, the stage writers, `check-text`, `check`, the seal and
-the run's instructions (sections 10 and 11; `.claude/skills/paint-lesson/v3/run.md`, chosen by `--v3`). **The first whole lesson (2026-11-18, #219's acceptance):** `floating-island_skill_20261118-044513`, from an
+the run's instructions (sections 10 and 11; `.claude/skills/paint-lesson/v3/run.md`; chosen by `--v3` then, the default since #236). **The first whole lesson (2026-11-18, #219's acceptance):** `floating-island_skill_20261118-044513`, from an
 AI-made picture that isn't on the bench, sealed hands-off. 24 steps in 7 stages, 19 units, 10 mixes. The chain: 18
 units, 19 renders (36 cents, 4 minutes); `erase` asked again by itself once, for clouds left standing; the checker
 marked none of 18. The three checks read 0, 0 and a median of 12.4 Lab units. The words: 171 claims, 14 failed, one
@@ -508,6 +508,10 @@ Then the site's lessons are rerun from their photos, and v2 is removed.
 **Passed 2026-11-18 (owner's call).** Five hands-off v3 lessons (the cow, the cat and the birch grove from the
 bench, then the chickadee and the lavender fields; #230 to #234). The owner: "Worlds better than v2", and yes to the
 gate with known problems missed: 4 to 7 a lesson, not under 2, most of them paints fitted far from their names.
+`/paint-lesson` runs v3 with no flag since #236, with two things the gate runs showed folded into its
+instructions: `check` runs right after `draft-text` (before the chain's checker and the words), so a paint merge it
+asks for costs no writer's words and no checker's answers; and each stage writer is told up front to name only its
+own step's paints and keep every line under 40 words. Still to do: rerun the site's lessons, remove v2.
 
 ## 14. Known risks
 

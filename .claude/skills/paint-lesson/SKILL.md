@@ -1,18 +1,20 @@
 ---
 name: paint-lesson
-description: Turns a photo into a step-by-step beginner acrylic painting lesson (Gesso pipeline v2). The finished painting is rendered once, and every step picture, close-up, and paint map is cut from it by free tools; Claude plans the parts and steps and writes what only this photo needs. Use when the owner runs /paint-lesson <photo>, or asks for a painting lesson from a photo.
+description: Turns a photo into a step-by-step beginner acrylic painting lesson (Gesso pipeline v3). A painter's plan is written first, the finished painting is erased backward by the image model one piece of the plan at a time, and every step picture comes from that chain; the words are written a stage at a time from the pictures and a measured fact sheet. Use when the owner runs /paint-lesson <photo>, or asks for a painting lesson from a photo.
 ---
 
 # paint-lesson
 
-You are the lesson pipeline. You look, plan, and write; `spike/tools.py` measures and draws. The finished painting
-is rendered once and every step is cut from it, so step pictures can't drift and a step can be as small as a
-beginner needs. The lesson has to stand on its own: once you seal it, nobody fixes it by hand.
+You are the lesson pipeline (version 3). You run the tools in `spike/tools.py` and start the helpers that plan,
+check and write; the tools measure and draw. The lesson has to stand on its own: once you seal it, nobody fixes it
+by hand.
 
-The design behind this is `docs/design/pipeline-v2.md`. You don't need to read it to run the skill.
+The design behind this is `docs/design/pipeline-v3.md`. You don't need to read it to run the skill.
 
-**How this skill is laid out.** This file is the spine. Each step's detail is in `steps/`. **Read a step's file when
-you start that step**, even if you read it earlier. Don't read ahead.
+**How this skill is laid out.** This file is the spine. Steps 0 and 1 are in `steps/`; the rest of the run is
+`v3/run.md`, which points back to `steps/8-finish.md` for the end. **Read a step's file when you start that step**,
+even if you read it earlier. Don't read ahead. The other files in `steps/` (2 to 7) are pipeline v2's and are not
+part of this run.
 
 ## Arguments
 - `<photo>` (required). Usually `photos/<name>.<ext>`: the site's pictures are kept there in git, so a fresh clone
@@ -28,23 +30,24 @@ you start that step**, even if you read it earlier. Don't read ahead.
   `technique_why`. Today only `acrylic-paint-along-beginner.yaml` has version 2 keys.
 - `--palette <name>` (optional): the painter's own tubes from `palettes/<name>.yaml`. Put `"palette": "<name>"` in
   plan.json.
-- `--v3` (optional): make the lesson with pipeline v3 (a painter's plan first, the finish erased backward to fit
-  it). It is built but not the pipeline yet. Do steps 0 and 1 here, then follow `v3/run.md` instead of steps 2 to 7.
-  Only when whoever started you asked for it.
+- `--v3` (optional, does nothing): v3 is the run with or without it. Older notes and commands still pass it.
 
 Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`.
 
 ## Rules for the whole run
 1. **Renders:** the finished painting, and only when needed the beginner version, the canvas extend, and one
-   background picture. No step is ever rendered. Pass `--max-cost 0.40` to every render.
-2. **Measure, don't guess.** Boxes and points come from `grid --percent` on the finish. Colors come from
-   `part-colors`.
+   background picture; then the chain, one low render a unit of the plan, about 2 cents each. `erase` caps the
+   chain's own spending by itself (twice what the chain costs once); pass it no `--max-cost`. Pass `--max-cost 0.40`
+   to every other render.
+2. **Measure, don't guess.** Nothing is measured with `grid` and there is no `part-colors`: the paints are fitted
+   by `paints`/`build-steps` from the chain, and every number in the words comes from the fact sheet `packets`
+   writes.
 3. **Every tool prints `problems`.** An empty list means go on. Otherwise each one says what to change: change it
    and run the tool again. The tools are free and take seconds, so loop until they're clean. Never edit a tool's
    output file by hand to make a problem go away.
 4. **Technique comes from the technique file, the research file, the element techniques, and the cards**
    (`techniques/elements/`, `techniques/strokes/`, `techniques/basics/`), not from memory. Every part follows an
-   element technique; when none fits, you draft one in the lesson folder and file it for the owner (step 2b).
+   element technique (the plan's writer picks them, `v3/plan-brief.md`).
    When you rely on something they don't cover, say so in `notes.json` under `learned`.
 5. **One move per step.** One brush, one stroke, one to three paints. If a step needs "then", it's two steps.
 6. **Don't flip a card's or an element's `checked`.** The owner does that after painting from it.
@@ -54,9 +57,10 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
    a tool is wrong, work within what the skill allows and report it. Scratch files and scripts go in
    `<lesson>/trials/`, nowhere else, and never keep the lesson's path in a shared file: other runs share the
    machine.
-9. **The order is fixed, and going back means running forward again.** After any change to `parts`: `outline`,
-   `paints`, `build-steps`, `step-aids`, `mix`, `draft-text`, `card-adapt`, `check`, in that order. After a change to `stages`
-   only: from `build-steps` on. Don't skip one because it ran before.
+9. **The order is fixed, and going back means running forward again.** After any change to `plan.json`:
+   `plan-check`, `erase`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, then the chain's checker and its
+   redos, then `packets`, the stage writers, `check-text`, and `check` again, in that order (`v3/run.md`). A chain
+   request that didn't change costs nothing the second time. Don't skip one because it ran before.
 10. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses until `check` is clean.
    After the seal, change nothing.
 
@@ -66,10 +70,4 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
 |---|---|---|
 | 0. Set up, check the photo, fit the canvas, beginner version | `steps/0-setup.md` | lesson folder, `00_*.png` |
 | 1. Reference and finished painting | `steps/1-reference-finish.md` | `00_reference.png`, `99_finish.png` |
-| 2. Parts, their element techniques, and outlines | `steps/2-parts.md` | `plan.json` (parts), `parts/`, `elements/` when one is drafted |
-| 3. Paints | `steps/3-paints.md` | `plan.json` (paints) |
-| 4. Stages and steps | `steps/4-stages.md` | `plan.json` (stages) |
-| 5. Step pictures and teaching pictures | `steps/5-pictures.md` | `NN_<id>.png`, `aids/` |
-| 6. Text | `steps/6-text.md` | `text.json` |
-| 7. Check, and the text review in a fresh context | `steps/7-review.md` | `review.json` |
-| 8. Diagrams, notes, seal, report | `steps/8-finish.md` | the sealed lesson |
+| A to E. The plan, the chain, the pictures, the words, the check and seal | `v3/run.md` | `plan.json`, `chain/`, `NN_<id>.png`, `aids/`, `words/`, `text.json`, `review.json`, the sealed lesson |
