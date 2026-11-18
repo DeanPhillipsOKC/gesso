@@ -1,0 +1,152 @@
+{
+  "photo": "snow-lantern",
+  "run": "snow-lantern_skill_20261118-165800",
+  "started": "2026-11-18 16:58",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "bd8278cebd0387e7",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.0.1",
+        "commit": "38f7b2b",
+        "dirty": false,
+        "published": "2026-11-18"
+      },
+      "made_with": {
+        "version": "POC 2.0.1",
+        "commit": "38f7b2b",
+        "published": "2026-11-18"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-18T17:28:38"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 19,
+        "words": 3240,
+        "tubes": 5,
+        "cost_usd": 0.675,
+        "minutes": 7.9,
+        "paid_renders": 33,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 5,
+        "minutes_total": 30.6,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-sky",
+          "name": "Blend the night sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-moon",
+          "name": "Circle in the moon",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dot-stars",
+          "name": "Dot in the stars",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "stamp-pines",
+          "name": "Stamp the dark pines",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-snow",
+          "name": "Lay in the snow in shadow blue",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-hollows",
+          "name": "Shade the hollows between drifts",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-fence",
+          "name": "Block in the post, arm and rails",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-fence",
+          "name": "Shade the dark side of the wood",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-fence",
+          "name": "Light the side facing the lantern",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-glass",
+          "name": "Block in the lantern glass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "glow-middle",
+          "name": "Glow the middle of the glass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-core",
+          "name": "Light the core",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "build-cap-base",
+          "name": "Build the brass cap and base",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "line-bars-hook",
+          "name": "Line the bars, ring and hook",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shine-brass",
+          "name": "Shine the brass edges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-in-caps-drift",
+          "name": "Lay in the snow caps and front drift",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "warm-glow-snow",
+          "name": "Scumble the warm light on the snow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "brighten-glow",
+          "name": "Brighten the middle of the glow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "white-snow-tops",
+          "name": "Dry-brush the white snow tops",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
