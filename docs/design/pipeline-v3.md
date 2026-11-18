@@ -51,8 +51,8 @@ section 12, step 4. What it showed, and what this draft changes because of it:
 - **Cost:** 14 to 18 renders, 25 to 33 cents and 3 to 4 minutes a lesson; the birch grove made 10 renders again.
 
 **The block-in was then tried four ways on the same three pictures (2026-11-18, #217,
-`docs/spikes/v3-block-in.md`). Verdict: adopt the fourth, on one clear win and two ties. That is Claude's call:
-the grading rule asks for most pictures** (both of the cat's graders preferred it; the cow's split; the birch
+`docs/spikes/v3-block-in.md`). Verdict: adopt the fourth, on one clear win and two ties. The grading rule asks
+for most pictures; the owner said "Adopt stands" on 2026-11-18** (both of the cat's graders preferred it; the cow's split; the birch
 grove's, where two steps of a small rock changed, said "none"; no grader chose #214's lesson). What this draft
 changes because of it:
 
