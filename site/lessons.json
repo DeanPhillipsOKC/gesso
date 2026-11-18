@@ -98,80 +98,6 @@
     "known": 2
   },
   {
-    "slug": "lavender-balloon",
-    "title": "A striped hot-air balloon over a lavender field at sunset",
-    "subject": "A striped hot-air balloon over a lavender field at sunset",
-    "steps": 24,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 1.12.1",
-    "published": "2026-11-16",
-    "source": "balloon-lavender_skill_20261116-171639",
-    "versions": [
-      {
-        "id": "20261116-171639",
-        "version": "POC 1.12.1",
-        "when": "2026-11-16 17:16",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/",
-        "current": true
-      },
-      {
-        "id": "20261116-153316",
-        "version": "POC 1.12.0",
-        "when": "2026-11-16 15:33",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261116-153316/",
-        "current": false
-      },
-      {
-        "id": "20261114-075951",
-        "version": "POC 1.8.0",
-        "when": "2026-11-14 07:59",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261114-075951/",
-        "current": false
-      },
-      {
-        "id": "20261113-174242",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:42",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261113-174242/",
-        "current": false
-      },
-      {
-        "id": "20261113-130631",
-        "version": "POC 1.0.1",
-        "when": "2026-11-13 13:06",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 23,
-        "href": "lessons/lavender-balloon/v/20261113-130631/",
-        "current": false
-      },
-      {
-        "id": "20261113-041226",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 21,
-        "href": "lessons/lavender-balloon/v/20261113-041226/",
-        "current": false
-      }
-    ],
-    "known": 7
-  },
-  {
     "slug": "floating-island",
     "title": "A floating rock island",
     "subject": "A floating rock island with a pink blossom tree and a waterfall pouring into a violet sea, and a stone doorway standing in the water with the setting sun glowing through it, under a crescent moon and pink sunset clouds.",
@@ -366,6 +292,90 @@
         "kind": "steps cut from the finish",
         "steps": 17,
         "href": "lessons/chickadee/v/20261113-041241/",
+        "current": false
+      }
+    ],
+    "known": 4
+  },
+  {
+    "slug": "lavender-balloon",
+    "title": "A striped hot-air balloon floating over a sunset valley",
+    "subject": "A striped hot-air balloon floating over a sunset valley, with violet mountains, a small lake, golden hills, a lone tree, and rows of lavender running toward the horizon.",
+    "steps": 24,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.0",
+    "published": "2026-11-18",
+    "source": "balloon-lavender_skill_20261118-094526",
+    "versions": [
+      {
+        "id": "20261118-094526",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 09:45",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/",
+        "current": true
+      },
+      {
+        "id": "20261116-171639",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 17:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261116-171639/",
+        "current": false
+      },
+      {
+        "id": "20261116-153316",
+        "version": "POC 1.12.0",
+        "when": "2026-11-16 15:33",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261116-153316/",
+        "current": false
+      },
+      {
+        "id": "20261114-075951",
+        "version": "POC 1.8.0",
+        "when": "2026-11-14 07:59",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261114-075951/",
+        "current": false
+      },
+      {
+        "id": "20261113-174242",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-174242/",
+        "current": false
+      },
+      {
+        "id": "20261113-130631",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 23,
+        "href": "lessons/lavender-balloon/v/20261113-130631/",
+        "current": false
+      },
+      {
+        "id": "20261113-041226",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/lavender-balloon/v/20261113-041226/",
         "current": false
       }
     ],
