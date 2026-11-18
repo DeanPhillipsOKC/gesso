@@ -1,0 +1,23 @@
+{
+  "steps": {
+    "block-in-blanket": {
+      "summary": "Fill the blanket's long, low rounded shape with flat Golden yellow.",
+      "tip": "Make it a long, low loaf: about 14 3/4 in wide and 5 1/4 in tall, its left side about 1 1/4 in from the left edge, running off at the right edge of the canvas. Round its left end into two stacked bulges where the blanket is folded, as the after picture shows. Leave a thin strip of the wooden windowsill showing under the yellow knit blanket.",
+      "paint_notes": [
+        "Golden yellow is see-through over the blue wall and the brown sill: paint it twice, letting the first coat dry."
+      ],
+      "lines": {
+        "8": "Fill the middle first with long side-to-side strokes, then shape the rounded left end and the top edge with curved strokes that follow the outline.",
+        "9": "It should leave one solid, even yellow shape with smooth rounded edges, with no wall or sill showing through."
+      }
+    },
+    "shade-blanket": {
+      "summary": "Tap Dark ochre loops into the blanket's sunken middle, raised edge and fold.",
+      "tip": "The blanket is a raised, rolled edge around a sunken middle with a fold across its front: tap the dark loops thickest where the after picture has them, in the sunken middle, under the rolled top and along the fold line. On the front, set the strokes in rows of V shapes like knit stitches; on the raised edge, run them up and down across it. Leave the yellow knit blanket showing on the tops of the rolls, where the light from the upper left falls."
+    },
+    "light-blanket": {
+      "summary": "Tap Pale yellow loops on the lit tops of the blanket's rolls.",
+      "tip": "The light comes from the upper left, so put most of the Pale yellow loops on the left side of the blanket's knit loops and along the tops of the rolls, as the after picture shows. Follow the same V rows on the front and the up-and-down strokes on the raised edge, and keep them off the sunken middle and the darker loops."
+    }
+  }
+}

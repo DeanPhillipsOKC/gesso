@@ -1,0 +1,203 @@
+{
+ "stage": 4,
+ "light": "A low setting sun at the right, just above the far mountains, lighting the cow from behind and to the right so the top of its head, its fringe and its right side glow gold",
+ "lesson": [
+  "step 1: Blend the sunset sky (The sunset sky)",
+  "step 2: Dry-brush the cloud streaks (The sunset clouds)",
+  "step 3: Light the tops of the clouds (The sunset clouds)",
+  "step 4: Lay in the far mountains (The far blue mountains)",
+  "step 5: Catch the sunset on the ridges (The far blue mountains)",
+  "step 6: Lay in the strip of lake (The glimpse of lake)",
+  "step 7: Lay in the hills and meadow (The green hills and meadow)",
+  "step 8: Darken the hill bands and meadow front (The green hills and meadow)",
+  "step 9: Dab the dark bushes on the hills (The dark bushes on the hills)",
+  "step 10: Block in the cow (The Highland cow)",
+  "step 11: Shade the side away from the light (The cow's shadows)",
+  "step 12: Block in the horns (The cow's horns)",
+  "step 13: Shade the horns and their tips (The horns' dark tips)",
+  "step 14: Pull the ginger locks (The cow's shaggy coat)",
+  "step 15: Pull the honey-gold locks (The cow's shaggy coat)",
+  "step 16: Flick the dark grass (The meadow's tall grass)",
+  "step 17: Flick the yellow-green grass (The meadow's tall grass)",
+  "step 18: Flick the golden grass (The meadow's tall grass)",
+  "step 19: Light the rim of the coat (The sunlit rim)",
+  "step 20: Light the tops of the horns (The light on the horns)",
+  "step 21: Paint the nose (The cow's face)",
+  "step 22: Light the top of the nose (The cow's face)",
+  "step 23: Line the nostrils and mouth (The cow's face)"
+ ],
+ "steps": [
+  {
+   "n": 7,
+   "id": "lay-hills-meadow",
+   "name": "Lay in the hills and meadow",
+   "part": "The green hills and meadow",
+   "paints": [
+    "Yellow green",
+    "Hill green"
+   ],
+   "brush": "1 inch flat",
+   "stroke": "horizontal-strokes",
+   "pair": "pair-07.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the far mountains and the lake, and the sunset clouds dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 3 1/2 in from the top edge."
+    },
+    {
+     "n": 3,
+     "kind": "paints",
+     "text": "Paints, darkest first: Hill green, then Yellow green. The paint map shows where each goes."
+    },
+    {
+     "n": 4,
+     "kind": "mix",
+     "text": "Mix enough Yellow green for this step and step 17; cover it between them."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1 inch flat."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Keep the brush flat and the strokes long, following the slope of the hills; in the meadow, stroke up and down on a slant."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave long sloping green bands on the hills and slanted grass-like streaks in the meadow, with slight streaks that follow the stroke."
+    }
+   ],
+   "meant": "Everything below the mountains is a smooth green base, lighter yellow-green on the far slopes and olive green lower down. There are no bands, bushes or grass marks yet, and no cow."
+  },
+  {
+   "n": 8,
+   "id": "darken-bands",
+   "name": "Darken the hill bands and meadow front",
+   "part": "The green hills and meadow",
+   "paints": [
+    "Deep green"
+   ],
+   "brush": "3/4 inch flat",
+   "stroke": "horizontal-strokes",
+   "pair": "pair-08.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the far mountains and the lake, and the sunset clouds dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 3 1/2 in from the top edge. The outline also runs under where the cow's horns will go: paint straight through there."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the far blue mountains, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Deep green."
+    },
+    {
+     "n": 5,
+     "kind": "mix",
+     "text": "Mix enough Deep green for this step and steps 9 and 16; cover it between them."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Keep the brush flat and the strokes long, following the slope of the hills; in the meadow, stroke up and down on a slant."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave darker sloping bands across the hills and a darker, streaky meadow front, with slight streaks that follow the stroke."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what step 7 painted showing around these marks, as in the Result picture."
+    }
+   ],
+   "meant": "The hills now have alternating dark and light green bands, and the meadow darkens toward the bottom of the canvas. There are no bushes or grass marks yet, and no cow."
+  },
+  {
+   "n": 9,
+   "id": "dab-bushes",
+   "name": "Dab the dark bushes on the hills",
+   "part": "The dark bushes on the hills",
+   "paints": [
+    "Deep green"
+   ],
+   "brush": "#6 round",
+   "stroke": "dabbing",
+   "pair": "pair-09.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the green hills and meadow, and the far mountains and the lake dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 4 in from the top edge and its bottom is about 7 1/2 in from the bottom edge."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the meadow's tall grass will go: paint straight through there. The outline also reaches onto the green hills and meadow, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Deep green."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #6 round. Load: A light load. No water on the brush: a wet one makes blobs."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave small, round dark bushes, solid in the middle with a soft, broken edge."
+    },
+    {
+     "n": 8,
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+    },
+    {
+     "n": 9,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "Small dark round bushes dot the green hills. The meadow is a plain green base with no grass marks, and there is no cow yet."
+  }
+ ],
+ "write_to": "out.json"
+}

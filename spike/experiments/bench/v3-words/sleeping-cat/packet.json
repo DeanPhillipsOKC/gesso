@@ -1,0 +1,621 @@
+{
+  "canvas_in": [
+    16.0,
+    12.0
+  ],
+  "finish": "finish.jpg",
+  "photo": "photo.jpg",
+  "picture": "sleeping-cat",
+  "steps": [
+    {
+      "brushes": "3/4 inch wash brush",
+      "group": "The view through the window",
+      "id": "blend-window-sky",
+      "lines": [
+        "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 1 1/4 in wide and 1 3/4 in tall.",
+        "Paints, top to bottom: Pale sky blue, then Warm white.",
+        "Mix enough Warm white for this step and steps 5, 15 and 21; cover it between them.",
+        "Brush: 3/4 inch wash brush. Load: Creamy paint. An even coat.",
+        "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times.",
+        "It should leave smooth bands of color, with a soft join where two wet colors meet.",
+        "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+        "Let it dry, then blend a new thin layer on top."
+      ],
+      "n": 1,
+      "name": "Blend the sky in the window",
+      "paints": [
+        {
+          "hex": "#a7d8f9",
+          "name": "Pale sky blue",
+          "recipe": "3 parts white, 1 part ultramarine, a touch of yellow"
+        },
+        {
+          "hex": "#fbf1da",
+          "name": "Warm white",
+          "recipe": "12 parts white, 1 part yellow, a touch of red"
+        }
+      ],
+      "pair": "pairs/01.jpg",
+      "picture": "steps/01.jpg",
+      "tip": "The light comes through this window from the upper left, so the sky is the brightest, coolest color here: keep it pale. The sky through the window reaches the left and top edges of the canvas; leave its ragged lower edge loose, as the after picture shows, because the leaves and the white window frame cover it later."
+    },
+    {
+      "brushes": "old stiff brush",
+      "group": "The view through the window",
+      "id": "dab-dark-leaves",
+      "lines": [
+        "Let the sky through the window dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 1 in from the left edge; it's about 1/4 in wide and 1 1/4 in tall.",
+        "The outline also runs under where the white window frame and the frame's shadows will go: paint straight through there.",
+        "The outline also reaches onto the sky through the window, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Paint: Leaf green.",
+        "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+      ],
+      "n": 2,
+      "name": "Dab the dark leaves",
+      "paints": [
+        {
+          "hex": "#83b5a2",
+          "name": "Leaf green",
+          "recipe": "3 parts white, 2 parts ultramarine, 1 part yellow"
+        }
+      ],
+      "pair": "pairs/02.jpg",
+      "picture": "steps/02.jpg",
+      "tip": "Tap the clumps in loose groups and leave small gaps of the pale sky through the window between them, as the after picture shows. Make the darkest, most solid tapping along the lower part of the clumps, away from the light at the upper left. The after picture shows these marks as a deeper blue-green over the sky rather than a clear green; match its darker patches and where it leaves the pale sky."
+    },
+    {
+      "brushes": "old stiff brush",
+      "group": "The view through the window",
+      "id": "dab-sunlit-leaves",
+      "lines": [
+        "Let the leaves outside the window and the sky through the window dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 1/2 in from the top edge, and its left side is about 1 in from the left edge; it's about 1/4 in wide and 1 1/4 in tall.",
+        "The outline also runs under where the white window frame and the frame's shadows will go: paint straight through there.",
+        "The outline also reaches onto the sky through the window, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Paint: Sunny leaf green.",
+        "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+        "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+        "It should leave dots or dappled patches that get more solid the more you tap.",
+        "Leave what step 2 painted showing around these marks, as in the Result picture.",
+        "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 3,
+      "name": "Dab the sunlit leaves",
+      "paints": [
+        {
+          "hex": "#95c24a",
+          "name": "Sunny leaf green",
+          "recipe": "2 parts yellow, 1 part ultramarine, 1 part white, a touch of burnt sienna"
+        }
+      ],
+      "pair": "pairs/03.jpg",
+      "picture": "steps/03.jpg",
+      "tip": "The light comes from the upper left, so tap the sunlit leaves only on the tops and left sides of the Leaf green clumps. Keep them few and small: the after picture barely changes from the step before, so leave most of the Leaf green clumps showing."
+    },
+    {
+      "brushes": "1 inch wide flat",
+      "group": "The wall and the window frame",
+      "id": "blend-wall",
+      "lines": [
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Inside the outlined area, all the way across from the top edge. Its bottom is about 6 in from the bottom edge.",
+        "The outline also runs under where the yellow knit blanket and the wooden windowsill will go: paint straight through there.",
+        "Paints, top to bottom: Wall blue, then Deep wall blue.",
+        "Brush: 1 inch wide flat. Load: Creamy paint. An even coat.",
+        "Start at the bottom with Deep wall blue and stroke side to side. Without rinsing, pick up Wall blue and paint above the Deep wall blue. Then stroke back and forth over the join several times.",
+        "It should leave smooth bands of color, with a soft join where two wet colors meet.",
+        "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+        "Let it dry, then blend a new thin layer on top."
+      ],
+      "n": 4,
+      "name": "Blend the blue wall",
+      "paints": [
+        {
+          "hex": "#5781b9",
+          "name": "Deep wall blue",
+          "recipe": "1 part ultramarine, 1 part white"
+        },
+        {
+          "hex": "#6d96c7",
+          "name": "Wall blue",
+          "recipe": "1 part ultramarine, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/04.jpg",
+      "picture": "steps/04.jpg",
+      "tip": "Run every stroke side to side, across the whole canvas, and keep them loose: the after picture keeps soft brush marks in the blue. Paint right up to the sky through the window and the leaves outside the window, and leave them showing. The blue also goes over where the white window frame will stand, as the after picture shows."
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The wall and the window frame",
+      "id": "block-in-frame",
+      "lines": [
+        "Let the blue wall dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 4 in wide and 8 in tall.",
+        "The outline also runs under where the yellow knit blanket and the wooden windowsill will go: paint straight through there.",
+        "The outline also reaches onto the blue wall, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Paint: Warm white.",
+        "Brush: 1/2 inch flat.",
+        "Start with the tall upright post as one straight band, pulled from the top edge down. Then add the crossbar and the ledge as straight bars running into the post.",
+        "It should leave a flat cream frame of straight bars with clean edges, with no shading yet.",
+        "Warm white is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+      ],
+      "n": 5,
+      "name": "Block in the window frame",
+      "paints": [
+        {
+          "hex": "#fbf1da",
+          "name": "Warm white",
+          "recipe": "12 parts white, 1 part yellow, a touch of red"
+        }
+      ],
+      "pair": "pairs/05.jpg",
+      "picture": "steps/05.jpg",
+      "tip": "Paint the tall upright post first, then the crossbar and the slanted ledge running into the post, as the after picture shows. Pull each bar along its length, and take the post on down to the bottom edge. Leave the sky through the window and the leaves outside the window showing between the bars."
+    },
+    {
+      "brushes": "1/4 inch flat",
+      "group": "The wall and the window frame",
+      "id": "shade-frame",
+      "lines": [
+        "Let the white window frame and the blue wall dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 4 1/2 in wide and 8 in tall.",
+        "The outline also runs under where the yellow knit blanket and the wooden windowsill will go: paint straight through there.",
+        "The outline also reaches onto the blue wall, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Paint: Lavender gray.",
+        "Brush: 1/4 inch flat.",
+        "Paint each shadow as a long straight band with the flat edge of the brush, pulling it the length of the bar in one stroke.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 6,
+      "name": "Shade the frame's inner sides",
+      "paints": [
+        {
+          "hex": "#8b8fae",
+          "name": "Lavender gray",
+          "recipe": "6 parts white, 3 parts ultramarine, 2 parts burnt sienna"
+        }
+      ],
+      "pair": "pairs/06.jpg",
+      "picture": "steps/06.jpg",
+      "tip": "The light comes from the window at the upper left, so keep a clean cream strip lit down the middle of the post and along the top of each bar; the shadows go on the sides and undersides, as the after picture shows. Pull each band the length of its bar, straight down the post and along the crossbar and ledge."
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The windowsill",
+      "id": "block-in-sill",
+      "lines": [
+        "Let the wall and the window frame dry to the touch first. A hair dryer on low speeds it up.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area, all the way across to the bottom edge. Its top is about 4 1/2 in from the bottom edge.",
+        "The outline also runs under where the yellow knit blanket and the sleeping tabby cat will go: paint straight through there.",
+        "The outline also reaches onto the frame's shadows and the white window frame, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Warm wood brown.",
+        "Mix enough Warm wood brown for this step and step 8; cover it between them.",
+        "Brush: 1 inch flat.",
+        "Lay one long band along the sill's top edge first, then fill in the rest of the sill in long side-to-side pieces that follow its slope.",
+        "It should leave one flat, solid Warm wood brown band with no white canvas showing between the pieces."
+      ],
+      "n": 7,
+      "name": "Block in the windowsill",
+      "paints": [
+        {
+          "hex": "#9a4526",
+          "name": "Warm wood brown",
+          "recipe": "2 parts red, 1 part ultramarine, a touch of yellow, a touch of white"
+        }
+      ],
+      "pair": "pairs/07.jpg",
+      "picture": "steps/07.jpg",
+      "tip": "The sill is about 16 in wide, reaching the left edge and the right edge of the canvas; its top edge runs from the foot of the white window frame and slopes down toward the right edge of the canvas, as the after picture shows. Run every stroke side to side along that slope. The after picture also shows a slightly darker band along the bottom edge of the canvas, the sill's front edge, and a thin dark lip under the white window frame; step 8 builds on both."
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The windowsill",
+      "id": "shade-sill",
+      "lines": [
+        "Let the wooden windowsill, and the wall and the window frame dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 1 1/2 in from the bottom edge, and its left side is at the left edge; it's about 1 1/2 in wide and 2 in tall.",
+        "The outline also runs under where the yellow knit blanket and the blanket's knit loops will go: paint straight through there.",
+        "The outline also reaches onto the wooden windowsill and the frame's shadows, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Warm wood brown.",
+        "Brush: 3/4 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+        "Light pressure, skimming the surface.",
+        "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+        "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+      ],
+      "n": 8,
+      "name": "Shade the sill's front edge",
+      "paints": [
+        {
+          "hex": "#9a4526",
+          "name": "Warm wood brown",
+          "recipe": "2 parts red, 1 part ultramarine, a touch of yellow, a touch of white"
+        }
+      ],
+      "pair": "pairs/08.jpg",
+      "picture": "steps/08.jpg",
+      "tip": "The light comes in through the window, so the shade goes mostly on the right side of the sill and along its front edge at the bottom edge of the canvas; leave the sunlit shapes near the white window frame as the plain base color, where the after picture has them, since step 9 lights them. Skim the strokes side to side along the sill's slope. The after picture also shows thin pale streaks marking the frame's shadow crossing the sunlit area and a few orange streaks near the front edge: copy them lightly as the after picture shows."
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The windowsill",
+      "id": "light-sill",
+      "lines": [
+        "Let the wooden windowsill, and the wall and the window frame dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its left side is at the left edge; it's about 6 1/2 in wide and 2 1/2 in tall.",
+        "The outline also runs under where the yellow knit blanket and the blanket's knit loops will go: paint straight through there.",
+        "The outline also reaches onto the wooden windowsill, painted already: there, only soften this paint into its edge and leave it showing.",
+        "Paint: Sunny peach.",
+        "Brush: 1/2 inch flat.",
+        "Lay the big lower patch first as one flat slanted shape, then the narrow upper strip, each in a few flat strokes along the sill's slope.",
+        "It should leave flat Sunny peach shapes with straight sides, step 8's shadow bar showing between them.",
+        "Leave what step 8 painted showing around these marks, as in the Result picture.",
+        "Sunny peach is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 9,
+      "name": "Lay the sunny patch on the sill",
+      "paints": [
+        {
+          "hex": "#f9aa75",
+          "name": "Sunny peach",
+          "recipe": "4 parts white, 2 parts red, 1 part yellow"
+        }
+      ],
+      "pair": "pairs/09.jpg",
+      "picture": "steps/09.jpg",
+      "tip": "This is the window light landing on the sill: its left side is at the left edge of the canvas and it's about 6 1/2 in wide. Lay the big lower patch first, then the narrow upper strip, whose top is about 7 3/4 in from the top edge and which is about 3 3/4 in wide. Leave step 8's dark bar of the frame's shadow showing between the two, and the thin streak near the left edge of the canvas, as the after picture shows."
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The blanket",
+      "id": "block-in-blanket",
+      "lines": [
+        "Let the windowsill, and the wall and the window frame dry to the touch first. A hair dryer on low speeds it up.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its right side is at the right edge; it's about 15 in wide and 5 1/2 in tall.",
+        "The outline also runs under where the sleeping tabby cat, and the cat's shading and white patches will go: paint straight through there.",
+        "The outline also reaches onto the wooden windowsill and the frame's shadows, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Golden yellow.",
+        "Brush: 1 inch flat.",
+        "Fill the middle first with long side-to-side strokes, then shape the rounded left end and the top edge with curved strokes that follow the outline.",
+        "It should leave one solid, even yellow shape with smooth rounded edges, with no wall or sill showing through."
+      ],
+      "n": 10,
+      "name": "Block in the blanket",
+      "paints": [
+        {
+          "hex": "#fdb703",
+          "name": "Golden yellow",
+          "recipe": "1 part yellow, a touch of red"
+        }
+      ],
+      "pair": "pairs/10.jpg",
+      "picture": "steps/10.jpg",
+      "tip": "Make it a long, low loaf: about 14 3/4 in wide and 5 1/4 in tall, its left side about 1 1/4 in from the left edge, running off at the right edge of the canvas. Round its left end into two stacked bulges where the blanket is folded, as the after picture shows. Leave a thin strip of the wooden windowsill showing under the yellow knit blanket."
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The blanket",
+      "id": "shade-blanket",
+      "lines": [
+        "Let the yellow knit blanket and the windowsill dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its right side is at the right edge; it's about 14 in wide and 5 in tall.",
+        "The outline also runs under where the sleeping tabby cat, and the cat's shading and white patches will go: paint straight through there.",
+        "The outline also reaches onto the yellow knit blanket, and the sill's shadow and sunlight, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Dark ochre.",
+        "Brush: #8 round. Load: Creamy paint, a full load.",
+        "Touch down with the tip, press so the belly spreads, then pull and lift so the stroke ends on the tip.",
+        "It should leave a teardrop or comma shape, wide where you pressed and pointed where you lifted.",
+        "Watch out: A blob instead of a teardrop. Too much paint, or too slow a lift. Fix: use less paint and lift faster."
+      ],
+      "n": 11,
+      "name": "Tap in the dark knit loops",
+      "paints": [
+        {
+          "hex": "#ec9604",
+          "name": "Dark ochre",
+          "recipe": "2 parts yellow, 1 part red, a touch of ultramarine"
+        }
+      ],
+      "pair": "pairs/11.jpg",
+      "picture": "steps/11.jpg",
+      "tip": "The blanket is a raised, rolled edge around a sunken middle with a fold across its front: tap the dark loops thickest where the after picture has them, in the sunken middle, under the rolled top and along the fold line. On the front, set the strokes in rows of V shapes like knit stitches; on the raised edge, run them up and down across it. Leave the yellow knit blanket showing on the tops of the rolls, where the light from the upper left falls."
+    },
+    {
+      "brushes": "#6 round",
+      "group": "The blanket",
+      "id": "light-blanket",
+      "lines": [
+        "Let the yellow knit blanket and the windowsill dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 2 1/2 in from the bottom edge, and its left side is about 6 1/2 in from the left edge; it's under 1/4 in wide and under 1/4 in tall.",
+        "The outline also runs under where the sleeping tabby cat, and the cat's stripes and pink ears will go: paint straight through there.",
+        "The outline also reaches onto the yellow knit blanket, and the sill's shadow and sunlight, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Pale yellow.",
+        "Brush: #6 round. Load: Creamy paint, a full load.",
+        "Touch down with the tip, press so the belly spreads, then pull and lift so the stroke ends on the tip.",
+        "It should leave a teardrop or comma shape, wide where you pressed and pointed where you lifted.",
+        "Leave what step 11 painted showing around these marks, as in the Result picture.",
+        "Watch out: A blob instead of a teardrop. Too much paint, or too slow a lift. Fix: use less paint and lift faster.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 12,
+      "name": "Tap in the light knit loops",
+      "paints": [
+        {
+          "hex": "#fab30f",
+          "name": "Pale yellow",
+          "recipe": "1 part yellow, a touch of red, a touch of burnt sienna"
+        }
+      ],
+      "pair": "pairs/12.jpg",
+      "picture": "steps/12.jpg",
+      "tip": "The light comes from the upper left, so put most of the Pale yellow loops on the left side of the blanket's knit loops and along the tops of the rolls, as the after picture shows. Follow the same V rows on the front and the up-and-down strokes on the raised edge, and keep them off the sunken middle and the darker loops."
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The cat's shape",
+      "id": "block-in-cat",
+      "lines": [
+        "Let the blanket and the windowsill dry to the touch first. A hair dryer on low speeds it up.",
+        "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+        "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its right side is at the right edge; it's about 15 in wide and 7 in tall.",
+        "Paint: Mid gray.",
+        "Brush: 1/2 inch flat.",
+        "Start with the big oval of the body. Then add the round head and its two pointed ears, and the curve of the back, in curved pieces like ( ), as the after picture shows.",
+        "It should leave one solid gray shape, its pieces joined with no gaps, as in the after picture."
+      ],
+      "n": 13,
+      "name": "Block in the curled cat",
+      "paints": [
+        {
+          "hex": "#888180",
+          "name": "Mid gray",
+          "recipe": "2 parts white, 1 part ultramarine, 1 part burnt sienna, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/13.jpg",
+      "picture": "steps/13.jpg",
+      "tip": "The sleeping tabby cat is about 15 in wide and 7 1/4 in tall: its top is about 1 1/4 in from the top edge, its left side about 1 in from the left edge, and its right side at the right edge. Give it the two pointed ears and the long, low curve of the back where the after picture has them. Its bottom tucks into the yellow knit blanket, so leave the blanket's front roll showing below the sleeping tabby cat."
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The cat's shape",
+      "id": "shade-cat",
+      "lines": [
+        "Let the sleeping tabby cat and the blanket dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its left side is about 3 1/2 in from the left edge; it's about 7 in wide and 4 in tall.",
+        "The outline also runs under where the cat's stripes and pink ears, and the cat's sleeping face will go: paint straight through there.",
+        "The outline also reaches onto the sleeping tabby cat and the blue wall, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Dark gray.",
+        "Brush: 1/2 inch flat.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+      ],
+      "n": 14,
+      "name": "Shade the cat's shadow side",
+      "paints": [
+        {
+          "hex": "#80787c",
+          "name": "Dark gray",
+          "recipe": "3 parts white, 2 parts ultramarine, 2 parts burnt sienna, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/14.jpg",
+      "picture": "steps/14.jpg",
+      "tip": "The after picture puts Dark gray over almost all of the sleeping tabby cat, not only inside the outlined area: leave the first gray showing only for the muzzle, the two front paws and the patch on its side, where the after picture has them. Pull a darker curved line where the head meets the body and along the tail wrapped in front of the body. Bend the strokes over the back, from the top of each curve down, and keep them off the blue wall."
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The cat's shape",
+      "id": "paint-white-patches",
+      "lines": [
+        "Let the sleeping tabby cat and the blanket dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its left side is about 3 1/2 in from the left edge; it's about 7 in wide and 4 in tall.",
+        "The outline also runs under where the cat's stripes and pink ears will go: paint straight through there.",
+        "The outline also reaches onto the yellow knit blanket and the sleeping tabby cat, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Warm white.",
+        "Brush: #8 round.",
+        "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+        "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+        "Leave what step 14 painted showing around these marks, as in the Result picture.",
+        "Warm white is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 15,
+      "name": "Paint the white patches",
+      "paints": [
+        {
+          "hex": "#fbf1da",
+          "name": "Warm white",
+          "recipe": "12 parts white, 1 part yellow, a touch of red"
+        }
+      ],
+      "pair": "pairs/15.jpg",
+      "picture": "steps/15.jpg",
+      "tip": "Fill the lighter gray spots step 14 left: the biggest mark (the muzzle and the two paws) is about 3 1/2 in wide, its left side about 3 1/4 in from the left edge, and the patch on its side has its middle about 9 1/4 in from the left edge. Paint the muzzle first, then the paws, leaving a thin gray line between the two paws and between the toes, as the after picture shows. Pull the side patch along the curve of the body with ragged, feathery ends so it melts into what step 14 painted."
+    },
+    {
+      "brushes": "1/4 inch angle",
+      "group": "The stripes and ears",
+      "id": "paint-stripes",
+      "lines": [
+        "Let the cat's shape and the blanket dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its right side is about 1 in from the right edge; it's about 13 1/2 in wide and 6 1/2 in tall.",
+        "The outline also runs under where the cat's sleeping face and the cat's fur will go: paint straight through there.",
+        "The outline also reaches onto the sleeping tabby cat and the blue wall, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Charcoal.",
+        "Mix enough Charcoal for this step and step 20; cover it between them.",
+        "Brush: 1/4 inch angle.",
+        "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+        "It should leave a line that starts wide and tapers to a point, curving around the cat's body as in the after picture."
+      ],
+      "n": 16,
+      "name": "Pull the dark tabby stripes",
+      "paints": [
+        {
+          "hex": "#695e5e",
+          "name": "Charcoal",
+          "recipe": "2 parts ultramarine, 2 parts burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/16.jpg",
+      "picture": "steps/16.jpg",
+      "tip": "Start each stripe wide along the top of the cat's back and pull it down around the body so it tapers to a point, following the curl of the cat; on the tail, pull short bands across it. On the head, the stripes run down from between the ears, and the after picture also darkens the ear rims and lays curved strokes where the closed eyes sit. Most of what this step adds is on the right side of the canvas, on the cat's back and tail; leave the white patches and paws clear."
+    },
+    {
+      "brushes": "#4 round",
+      "group": "The stripes and ears",
+      "id": "paint-ears",
+      "lines": [
+        "Let the cat's shape and the blanket dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its left side is about 1 1/4 in from the left edge; it's about 5 1/2 in wide and 4 in tall.",
+        "The outline also runs under where the cat's sleeping face and the cat's fur will go: paint straight through there.",
+        "The outline also reaches onto the cat's shading and white patches, and the yellow knit blanket, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Soft pink.",
+        "Mix enough Soft pink for this step and step 19; cover it between them.",
+        "Brush: #4 round. Load: Creamy paint, a full load.",
+        "Touch down with the tip at the base of the ear, press so the belly spreads, then pull up toward the ear's point and lift so the stroke ends on the tip.",
+        "It should leave a pointed shape, wide at the base of the ear and pointed at its tip.",
+        "Leave the gray rim and what step 16 painted showing around the pink, as in the Result picture.",
+        "Watch out: A pink blob that covers the rim. Too much paint, or too slow a lift. Fix: use less paint and lift faster.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 17,
+      "name": "Paint the pink inside the ears",
+      "paints": [
+        {
+          "hex": "#c58f84",
+          "name": "Soft pink",
+          "recipe": "6 parts white, 3 parts burnt sienna, 1 part red, 1 part ultramarine"
+        }
+      ],
+      "pair": "pairs/17.jpg",
+      "picture": "steps/17.jpg",
+      "tip": "One pink shape goes in each ear: the ear nearer the left edge has its left side about 1 1/4 in from the left edge and is about 2 in wide, and the other ear's pink sits where the after picture has it. Pull each stroke from the base of the ear up toward its point, and keep the gray rim and the dark stripes around it showing, as the after picture has it."
+    },
+    {
+      "brushes": "small fan brush",
+      "group": "The fur",
+      "id": "flick-fur",
+      "lines": [
+        "Let the stripes and ears, and the cat's shape dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 3 1/2 in from the top edge, and its left side is about 4 in from the left edge; it's about 2 1/2 in wide and 4 1/2 in tall.",
+        "The outline also runs under where the cat's sleeping face will go: paint straight through there.",
+        "The outline also reaches onto the sleeping tabby cat, and the cat's stripes and pink ears, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Light gray.",
+        "Brush: small fan brush. Load: A light load. Too much paint makes flat blobs.",
+        "A quick stroke from the base outward the way the fur lies, lifting off as it goes, so each mark thins at the tip.",
+        "It should leave tapered marks with broken tips, denser at the base.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 18,
+      "name": "Flick in the light fur",
+      "paints": [
+        {
+          "hex": "#766d6f",
+          "name": "Light gray",
+          "recipe": "1 part ultramarine, 1 part burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/18.jpg",
+      "picture": "steps/18.jpg",
+      "tip": "The window light falls on the cat's head, so put the most flicks there, where the after picture shows the head turning lighter gray. Flick the way the fur lies, following the curve of the back, and keep each mark small so the dark gray and the stripes show between them. Leave the face area plain: the eyes, nose and whiskers come later."
+    },
+    {
+      "brushes": "#4 round",
+      "group": "The sleeping face",
+      "id": "paint-nose",
+      "lines": [
+        "Let the fur, and the stripes and ears dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its left side is about 5 in from the left edge; it's about 1 1/4 in wide and 5 in tall.",
+        "The outline also reaches onto the sleeping tabby cat, and the cat's stripes and pink ears, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Soft pink.",
+        "Brush: #4 round. Load: Creamy paint, a full load.",
+        "Touch down with the tip, press so the belly spreads into a small rounded triangle, then pull down and lift so it ends on the tip.",
+        "It should leave a small rounded triangle, wide at the top and pointed at the bottom.",
+        "Watch out: A big blob instead of a small nose. Too much paint, or too slow a lift. Fix: use less paint and lift faster."
+      ],
+      "n": 19,
+      "name": "Paint the pink nose",
+      "paints": [
+        {
+          "hex": "#c58f84",
+          "name": "Soft pink",
+          "recipe": "6 parts white, 3 parts burnt sienna, 1 part red, 1 part ultramarine"
+        }
+      ],
+      "pair": "pairs/19.jpg",
+      "picture": "steps/19.jpg",
+      "tip": "The nose is tiny, a rounded triangle pointing down, sitting where the white muzzle meets the gray face, as the after picture shows. Make one press-and-lift and stop; a bigger nose makes the cat look awake. Leave the white of the muzzle showing all around it."
+    },
+    {
+      "brushes": "#1 liner",
+      "group": "The sleeping face",
+      "id": "line-eyes",
+      "lines": [
+        "Let the fur, and the stripes and ears dry to the touch first. A hair dryer on low speeds it up.",
+        "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its left side is about 1 in from the left edge; it's about 6 in wide and 5 1/2 in tall.",
+        "The outline also reaches onto the sleeping tabby cat, and the cat's stripes and pink ears, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Charcoal.",
+        "Brush: #1 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+        "Hold the brush upright, with light, steady pressure. Pull each eye as one smooth curve, starting thick and lightening toward its outer end so it tapers.",
+        "It should leave thin, curved lines.",
+        "Leave what step 19 painted showing around these marks, as in the Result picture.",
+        "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water."
+      ],
+      "n": 20,
+      "name": "Line the closed eyes and mouth",
+      "paints": [
+        {
+          "hex": "#695e5e",
+          "name": "Charcoal",
+          "recipe": "2 parts ultramarine, 2 parts burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/20.jpg",
+      "picture": "steps/20.jpg",
+      "tip": "Each closed eye is one smooth curve that bows downward, like a smile turned over: the eye nearer the window is the longer, flatter curve, and the other sits higher and slants, as the after picture shows. Paint the eyes first, then the tiny mouth line just under the nose. The after picture also shows a few faint white whisker lines beside the face already; leave them for step 21."
+    },
+    {
+      "brushes": "#1 liner",
+      "group": "The sleeping face",
+      "id": "line-whiskers",
+      "lines": [
+        "Let the fur, and the stripes and ears dry to the touch first. A hair dryer on low speeds it up.",
+        "Rinse the brush well first. Dirty water tints every color with the last one.",
+        "Inside the outlined area. Its bottom is about 5 1/2 in from the bottom edge, and its left side is about 5 1/2 in from the left edge; it's about 1/2 in wide and 1/4 in tall.",
+        "The outline also reaches onto the cat's shading and white patches, and the sleeping tabby cat, painted already: there, only soften this paint into their edge and leave them showing.",
+        "Paint: Warm white.",
+        "Brush: #1 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+        "Hold the brush upright, with light, steady pressure. Start each whisker at the muzzle and pull outward, starting thick and lightening so it tapers to a fine point. Let them fan apart and cross a little.",
+        "It should leave thin, tapering lines.",
+        "Leave what steps 19 and 20 painted showing around these marks, as in the Result picture.",
+        "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water.",
+        "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+      ],
+      "n": 21,
+      "name": "Pull the whiskers",
+      "paints": [
+        {
+          "hex": "#fbf1da",
+          "name": "Warm white",
+          "recipe": "12 parts white, 1 part yellow, a touch of red"
+        }
+      ],
+      "pair": "pairs/21.jpg",
+      "picture": "steps/21.jpg",
+      "tip": "Start each whisker at the muzzle and pull outward in a gentle curve, three or four on each side of the muzzle, fanning apart as they go, as the after picture shows. The longer ones sweep out across the gray cheek toward the white chest patch; the shorter ones sweep out over the top of the white paws. Keep them thin enough that the gray fur shows between them."
+    }
+  ],
+  "write_to": "faults.json"
+}

@@ -1,0 +1,170 @@
+{
+ "stage": 6,
+ "light": "Daylight from the window at the upper left, lighting the left of the cat's head, the top of the blanket and a patch of the sill",
+ "lesson": [
+  "step 1: Blend the sky in the window (The sky through the window)",
+  "step 2: Dab the dark leaves (The leaves outside the window)",
+  "step 3: Dab the sunlit leaves (The leaves outside the window)",
+  "step 4: Blend the blue wall (The blue wall)",
+  "step 5: Block in the window frame (The white window frame)",
+  "step 6: Shade the frame's inner sides (The frame's shadows)",
+  "step 7: Block in the windowsill (The wooden windowsill)",
+  "step 8: Shade the sill's front edge (The sill's shadow and sunlight)",
+  "step 9: Lay the sunny patch on the sill (The sill's shadow and sunlight)",
+  "step 10: Block in the blanket (The yellow knit blanket)",
+  "step 11: Tap in the dark knit loops (The blanket's knit loops)",
+  "step 12: Tap in the light knit loops (The blanket's knit loops)",
+  "step 13: Block in the curled cat (The sleeping tabby cat)",
+  "step 14: Shade the cat's shadow side (The cat's shading and white patches)",
+  "step 15: Paint the white patches (The cat's shading and white patches)",
+  "step 16: Pull the dark tabby stripes (The cat's stripes and pink ears)",
+  "step 17: Paint the pink inside the ears (The cat's stripes and pink ears)",
+  "step 18: Flick in the light fur (The cat's fur)",
+  "step 19: Paint the pink nose (The cat's sleeping face)",
+  "step 20: Line the closed eyes and mouth (The cat's sleeping face)",
+  "step 21: Pull the whiskers (The cat's sleeping face)"
+ ],
+ "steps": [
+  {
+   "n": 16,
+   "id": "paint-stripes",
+   "name": "Pull the dark tabby stripes",
+   "part": "The cat's stripes and pink ears",
+   "paints": [
+    "Charcoal"
+   ],
+   "brush": "1/4 inch angle",
+   "stroke": "thick-to-thin",
+   "pair": "pair-16.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the cat's shape and the blanket dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its right side is about 1 in from the right edge; it's about 13 1/2 in wide and 6 1/2 in tall."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also runs under where the cat's sleeping face and the cat's fur will go: paint straight through there."
+    },
+    {
+     "n": 5,
+     "kind": "where",
+     "text": "The outline also reaches onto the sleeping tabby cat and the blue wall, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 6,
+     "kind": "paints",
+     "text": "Paint: Charcoal."
+    },
+    {
+     "n": 7,
+     "kind": "mix",
+     "text": "Mix enough Charcoal for this step and step 20; cover it between them."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Brush: 1/4 inch angle."
+    },
+    {
+     "n": 9,
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+    },
+    {
+     "n": 10,
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point."
+    }
+   ],
+   "meant": "The cat has curving charcoal tabby stripes over its gray body, tail and head. The ears are gray inside; no fur flicks or face yet."
+  },
+  {
+   "n": 17,
+   "id": "paint-ears",
+   "name": "Paint the pink inside the ears",
+   "part": "The cat's stripes and pink ears",
+   "paints": [
+    "Soft pink"
+   ],
+   "brush": "#4 round",
+   "stroke": "press-and-lift",
+   "pair": "pair-17.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the cat's shape and the blanket dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its left side is about 1 1/4 in from the left edge; it's about 5 1/2 in wide and 4 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the cat's sleeping face and the cat's fur will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the cat's shading and white patches, and the yellow knit blanket, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Soft pink."
+    },
+    {
+     "n": 6,
+     "kind": "mix",
+     "text": "Mix enough Soft pink for this step and step 19; cover it between them."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Brush: #4 round. Load: Creamy paint, a full load."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Touch down with the tip, press so the belly spreads, then pull and lift so the stroke ends on the tip."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "It should leave a teardrop or comma shape, wide where you pressed and pointed where you lifted."
+    },
+    {
+     "n": 10,
+     "kind": "result",
+     "text": "Leave what step 16 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 11,
+     "kind": "watch",
+     "text": "Watch out: A blob instead of a teardrop. Too much paint, or too slow a lift. Fix: use less paint and lift faster."
+    },
+    {
+     "n": 12,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "Both ears are pink inside with a gray rim. The fur is still smooth and there is no face yet."
+  }
+ ],
+ "write_to": "out.json"
+}

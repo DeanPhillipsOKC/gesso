@@ -1,0 +1,17 @@
+{
+ "steps": {
+  "blend-sky": {
+   "summary": "Blend a soft haze of gold, blue and violet over the whole canvas.",
+   "tip": "The light comes from the low sun, shining out of the Pale gold glow, so keep that glow where the after picture has it and let Misty blue fill the rest. Blend mostly side to side, but the after picture already shows faint upright streaks of Blue-violet mist, like ghost trunks in the fog: drag a few down softly and let them stay blurred.",
+   "lines": {
+    "2": "Paints: Pale gold for the glow, Misty blue across the rest, and Blue-violet mist for the soft upright streaks, as the after picture shows.",
+    "7": "Start with Pale gold at the glow. Without rinsing, work Misty blue out from it, stroking back over the join. Then drag in upright Blue-violet mist streaks.",
+    "8": "It should leave a soft, even haze, with gentle joins where two wet colors meet."
+   }
+  },
+  "glow-sun": {
+   "summary": "Circle a glowing Sun cream sun in at the left edge of the canvas.",
+   "tip": "The sun is taller than it is wide: about 1 1/4 in wide and 2 1/4 in tall, at the left edge of the canvas, with its top about 1 1/4 in from the top edge. Start at its middle, about 2 1/4 in from the top edge, and circle outward, letting a few short strokes fan out from it like the rays in the after picture."
+  }
+ }
+}

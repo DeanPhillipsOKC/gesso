@@ -1,0 +1,16 @@
+[
+ {
+  "step": 4,
+  "id": "stamp-pines",
+  "field": "tip",
+  "sentence": "The firs stay flat dark with no light side for now; the after picture also shows reddish trunks inside some firs, so leave those gaps where the after picture has them.",
+  "why": "step 4 (stamp-pines), tip: \"inside some firs\" can't find 'some firs' on the sheet; sheet: nothing on the sheet"
+ },
+ {
+  "step": 6,
+  "id": "pull-middle-trunks",
+  "field": "tip",
+  "sentence": "Then pull the Blue-violet mist trunks beside it, each shorter and fainter than the last, as the after picture shows.",
+  "why": "step 6 (pull-middle-trunks), tip: \"beside it\" can't find 'it' on the sheet; sheet: nothing on the sheet"
+ }
+]

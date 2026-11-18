@@ -1,0 +1,90 @@
+{
+ "stage": 7,
+ "light": "Daylight from the window at the upper left, lighting the left of the cat's head, the top of the blanket and a patch of the sill",
+ "lesson": [
+  "step 1: Blend the sky in the window (The sky through the window)",
+  "step 2: Dab the dark leaves (The leaves outside the window)",
+  "step 3: Dab the sunlit leaves (The leaves outside the window)",
+  "step 4: Blend the blue wall (The blue wall)",
+  "step 5: Block in the window frame (The white window frame)",
+  "step 6: Shade the frame's inner sides (The frame's shadows)",
+  "step 7: Block in the windowsill (The wooden windowsill)",
+  "step 8: Shade the sill's front edge (The sill's shadow and sunlight)",
+  "step 9: Lay the sunny patch on the sill (The sill's shadow and sunlight)",
+  "step 10: Block in the blanket (The yellow knit blanket)",
+  "step 11: Tap in the dark knit loops (The blanket's knit loops)",
+  "step 12: Tap in the light knit loops (The blanket's knit loops)",
+  "step 13: Block in the curled cat (The sleeping tabby cat)",
+  "step 14: Shade the cat's shadow side (The cat's shading and white patches)",
+  "step 15: Paint the white patches (The cat's shading and white patches)",
+  "step 16: Pull the dark tabby stripes (The cat's stripes and pink ears)",
+  "step 17: Paint the pink inside the ears (The cat's stripes and pink ears)",
+  "step 18: Flick in the light fur (The cat's fur)",
+  "step 19: Paint the pink nose (The cat's sleeping face)",
+  "step 20: Line the closed eyes and mouth (The cat's sleeping face)",
+  "step 21: Pull the whiskers (The cat's sleeping face)"
+ ],
+ "steps": [
+  {
+   "n": 18,
+   "id": "flick-fur",
+   "name": "Flick in the light fur",
+   "part": "The cat's fur",
+   "paints": [
+    "Light gray"
+   ],
+   "brush": "small fan brush",
+   "stroke": "flicking",
+   "pair": "pair-18.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the stripes and ears, and the cat's shape dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 1/2 in from the top edge, and its left side is about 4 in from the left edge; it's about 2 1/2 in wide and 4 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the cat's sleeping face will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the sleeping tabby cat, and the cat's stripes and pink ears, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Light gray."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: small fan brush. Load: A light load. Too much paint makes flat blobs."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base."
+    },
+    {
+     "n": 9,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The cat's coat looks furry: light gray flicks over its back and head, the darker gray and stripes showing between. The face is still blank: no eyes, nose or whiskers."
+  }
+ ],
+ "write_to": "out.json"
+}

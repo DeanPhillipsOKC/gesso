@@ -1,0 +1,24 @@
+{
+  "steps": {
+    "paint-stripes": {
+      "summary": "Pull curved Charcoal tabby stripes over the gray cat's head, back and tail.",
+      "tip": "Start each stripe wide along the top of the cat's back and pull it down around the body so it tapers to a point, following the curl of the cat; on the tail, pull short bands across it. On the head, the stripes run down from between the ears, and the after picture also darkens the ear rims and lays curved strokes where the closed eyes sit. Most of what this step adds is on the right side of the canvas, on the cat's back and tail; leave the white patches and paws clear.",
+      "lines": {
+        "10": "It should leave a line that starts wide and tapers to a point, curving around the cat's body as in the after picture."
+      }
+    },
+    "paint-ears": {
+      "summary": "Fill the inside of both ears with Soft pink, leaving a gray rim.",
+      "tip": "One pink shape goes in each ear: the ear nearer the left edge has its left side about 1 1/4 in from the left edge and is about 2 in wide, and the other ear's pink sits where the after picture has it. Pull each stroke from the base of the ear up toward its point, and keep the gray rim and the dark stripes around it showing, as the after picture has it.",
+      "paint_notes": [
+        "Soft pink is a light color over darker gray: paint it twice, letting the first coat dry."
+      ],
+      "lines": {
+        "8": "Touch down with the tip at the base of the ear, press so the belly spreads, then pull up toward the ear's point and lift so the stroke ends on the tip.",
+        "9": "It should leave a pointed shape, wide at the base of the ear and pointed at its tip.",
+        "10": "Leave the gray rim and what step 16 painted showing around the pink, as in the Result picture.",
+        "11": "Watch out: A pink blob that covers the rim. Too much paint, or too slow a lift. Fix: use less paint and lift faster."
+      }
+    }
+  }
+}

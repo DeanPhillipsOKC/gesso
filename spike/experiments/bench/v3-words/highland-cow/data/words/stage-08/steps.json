@@ -1,0 +1,147 @@
+{
+ "stage": 8,
+ "light": "A low setting sun at the right, just above the far mountains, lighting the cow from behind and to the right so the top of its head, its fringe and its right side glow gold",
+ "lesson": [
+  "step 1: Blend the sunset sky (The sunset sky)",
+  "step 2: Dry-brush the cloud streaks (The sunset clouds)",
+  "step 3: Light the tops of the clouds (The sunset clouds)",
+  "step 4: Lay in the far mountains (The far blue mountains)",
+  "step 5: Catch the sunset on the ridges (The far blue mountains)",
+  "step 6: Lay in the strip of lake (The glimpse of lake)",
+  "step 7: Lay in the hills and meadow (The green hills and meadow)",
+  "step 8: Darken the hill bands and meadow front (The green hills and meadow)",
+  "step 9: Dab the dark bushes on the hills (The dark bushes on the hills)",
+  "step 10: Block in the cow (The Highland cow)",
+  "step 11: Shade the side away from the light (The cow's shadows)",
+  "step 12: Block in the horns (The cow's horns)",
+  "step 13: Shade the horns and their tips (The horns' dark tips)",
+  "step 14: Pull the ginger locks (The cow's shaggy coat)",
+  "step 15: Pull the honey-gold locks (The cow's shaggy coat)",
+  "step 16: Flick the dark grass (The meadow's tall grass)",
+  "step 17: Flick the yellow-green grass (The meadow's tall grass)",
+  "step 18: Flick the golden grass (The meadow's tall grass)",
+  "step 19: Light the rim of the coat (The sunlit rim)",
+  "step 20: Light the tops of the horns (The light on the horns)",
+  "step 21: Paint the nose (The cow's face)",
+  "step 22: Light the top of the nose (The cow's face)",
+  "step 23: Line the nostrils and mouth (The cow's face)"
+ ],
+ "steps": [
+  {
+   "n": 19,
+   "id": "rim-light-cow",
+   "name": "Light the rim of the coat",
+   "part": "The sunlit rim",
+   "paints": [
+    "Pale gold"
+   ],
+   "brush": "1/4 inch flat",
+   "stroke": "thick-to-thin",
+   "pair": "pair-19.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the meadow grass and the shaggy coat dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 2 in from the left edge; it's about 7 in wide and 8 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the highland cow and the cow's shaggy coat, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Pale gold."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Press the full width of the brush where the lock starts, then turn onto its edge and lighten the pressure as you pull outward along the lock."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave hairs that start wide and taper to a point."
+    },
+    {
+     "n": 8,
+     "kind": "coats",
+     "text": "Pale gold is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+    }
+   ],
+   "meant": "The cow's head, fringe and right side glow with a bright gold rim, much smaller than the locks under it. The horns have no light along their tops yet, and the cow has no nose."
+  },
+  {
+   "n": 20,
+   "id": "light-horns",
+   "name": "Light the tops of the horns",
+   "part": "The light on the horns",
+   "paints": [
+    "Cream gold"
+   ],
+   "brush": "#4 round",
+   "stroke": "curved-strokes",
+   "pair": "pair-20.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sunlit rim and the shaggy coat dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 5 in from the top edge, and its left side is about 5 in from the left edge; it's about 1/4 in wide and 1/4 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the horns' dark tips and the cow's horns, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Cream gold."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #4 round."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Bend every stroke with the horn: start near the head and follow the top of its curve out toward the tip."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave marks that bend with the horn, which is what makes it look round."
+    },
+    {
+     "n": 8,
+     "kind": "coats",
+     "text": "Cream gold is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+    },
+    {
+     "n": 9,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The horns have a pale cream light along their tops over the tan, with the dark tips and undersides still showing. The cow has no nose yet."
+  }
+ ],
+ "write_to": "out.json"
+}

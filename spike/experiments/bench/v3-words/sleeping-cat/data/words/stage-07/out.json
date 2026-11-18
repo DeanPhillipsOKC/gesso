@@ -1,0 +1,14 @@
+{
+ "steps": {
+  "flick-fur": {
+   "summary": "Flick light gray fur over the cat's head and back, stripes still showing.",
+   "tip": "The window light falls on the cat's head, so put the most flicks there, where the after picture shows the head turning lighter gray. Flick the way the fur lies, following the curve of the back, and keep each mark small so the dark gray and the stripes show between them. Leave the face area plain: the eyes, nose and whiskers come later.",
+   "paint_notes": [
+    "Light gray is thin over the dark gray. If a flick looks too faint, let it dry and flick the same spot again rather than loading more paint."
+   ],
+   "lines": {
+    "7": "A quick stroke from the base outward the way the fur lies, lifting off as it goes, so each mark thins at the tip."
+   }
+  }
+ }
+}

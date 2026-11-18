@@ -1,0 +1,168 @@
+{
+ "stage": 2,
+ "light": "A low setting sun at the right, just above the far mountains, lighting the cow from behind and to the right so the top of its head, its fringe and its right side glow gold",
+ "lesson": [
+  "step 1: Blend the sunset sky (The sunset sky)",
+  "step 2: Dry-brush the cloud streaks (The sunset clouds)",
+  "step 3: Light the tops of the clouds (The sunset clouds)",
+  "step 4: Lay in the far mountains (The far blue mountains)",
+  "step 5: Catch the sunset on the ridges (The far blue mountains)",
+  "step 6: Lay in the strip of lake (The glimpse of lake)",
+  "step 7: Lay in the hills and meadow (The green hills and meadow)",
+  "step 8: Darken the hill bands and meadow front (The green hills and meadow)",
+  "step 9: Dab the dark bushes on the hills (The dark bushes on the hills)",
+  "step 10: Block in the cow (The Highland cow)",
+  "step 11: Shade the side away from the light (The cow's shadows)",
+  "step 12: Block in the horns (The cow's horns)",
+  "step 13: Shade the horns and their tips (The horns' dark tips)",
+  "step 14: Pull the ginger locks (The cow's shaggy coat)",
+  "step 15: Pull the honey-gold locks (The cow's shaggy coat)",
+  "step 16: Flick the dark grass (The meadow's tall grass)",
+  "step 17: Flick the yellow-green grass (The meadow's tall grass)",
+  "step 18: Flick the golden grass (The meadow's tall grass)",
+  "step 19: Light the rim of the coat (The sunlit rim)",
+  "step 20: Light the tops of the horns (The light on the horns)",
+  "step 21: Paint the nose (The cow's face)",
+  "step 22: Light the top of the nose (The cow's face)",
+  "step 23: Line the nostrils and mouth (The cow's face)"
+ ],
+ "steps": [
+  {
+   "n": 2,
+   "id": "dry-brush-clouds",
+   "name": "Dry-brush the cloud streaks",
+   "part": "The sunset clouds",
+   "paints": [
+    "Warm peach",
+    "Dusky rose"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-02.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sky dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 in from the top edge."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the green hills and meadow, and the far blue mountains will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paints, darkest first: Dusky rose, then Warm peach. The paint map shows where each goes."
+    },
+    {
+     "n": 6,
+     "kind": "mix",
+     "text": "Mix enough Warm peach for this step and step 5; cover it between them."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 10,
+     "kind": "watch",
+     "text": "Watch out: Hard, solid clouds. Too much paint on the brush. Fix: wipe the brush nearly dry and use small circles with the tip, so the sky shows through the edges."
+    }
+   ],
+   "meant": "Soft, broken streaks of peach and dusky rose lie across the upper sky, with the blue showing through their edges. They have no gold tops yet. Below the sky the canvas is still white."
+  },
+  {
+   "n": 3,
+   "id": "light-cloud-tops",
+   "name": "Light the tops of the clouds",
+   "part": "The sunset clouds",
+   "paints": [
+    "Pale gold"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-03.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sky dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is at the top edge, and its right side is about 1/4 in from the right edge; it's about 10 in wide and 2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the green hills and meadow, and the far blue mountains will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Pale gold."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what step 2 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 10,
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+    },
+    {
+     "n": 11,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The cloud streaks have glowing gold tops over their peach and rose, the rose still showing underneath. Below the sky the canvas is still white."
+  }
+ ],
+ "write_to": "out.json"
+}

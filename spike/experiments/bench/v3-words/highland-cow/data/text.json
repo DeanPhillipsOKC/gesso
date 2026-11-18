@@ -1,0 +1,1572 @@
+{
+ "steps": [
+  {
+   "stage_id": "blend-sky",
+   "lines": [
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, top to bottom: Sky blue, Cream gold, then Pale gold.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Cream gold for this step and steps 6 and 20; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Pale gold for this step and steps 3 and 19; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat. Load: Creamy paint. An even coat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the darkest color and stroke side to side. Without rinsing, pick up the next lighter color and paint below it. Then stroke back up over the join several times.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave soft side-to-side bands of blue and gold over the whole canvas, with a soft join where two wet colors meet.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Let it dry, then blend a new thin layer on top.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Blend the sunset sky"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Cover the whole canvas in soft side-to-side bands of blue and gold sunset sky.",
+   "tip": "The light comes from a low setting sun at the right edge of the canvas, so keep the palest gold on the right side of the sky, where the after picture has it, and let the blue show more on the left side. Cover the whole canvas, about 12 in wide and 16 in tall, not just the top: the bands of Sky blue, Cream gold and Pale gold repeat all the way to the bottom edge, and the hills and cow will be painted over them later. Keep every stroke running side to side with a slight wave, like long thin clouds, rather than straight stripes.",
+   "paint_notes": [
+    "The after picture has a few warmer orange streaks low in the sky; these come from Cream gold laid a little thicker over the blue, and no extra paint is needed."
+   ]
+  },
+  {
+   "stage_id": "dry-brush-clouds",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the green hills and meadow, and the far blue mountains will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Dusky rose, then Warm peach. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Warm peach for this step and step 5; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Hard, solid clouds. Too much paint on the brush. Fix: wipe the brush nearly dry and skim long sideways strokes with the tip, so the sky shows through the edges.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Dry-brush the cloud streaks"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dry-brush thin peach and dusky rose cloud streaks across the sunset sky.",
+   "tip": "Run every stroke sideways, the long way across the sunset sky, so the streaks lie in thin flat bands like the after picture's. Lay the Dusky rose first in a few short streaks, then drag Warm peach along and between them, leaving the blue of the sunset sky showing through their broken edges."
+  },
+  {
+   "stage_id": "light-cloud-tops",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is at the top edge, and its right side is about 1/4 in from the right edge; it's about 10 in wide and 2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the green hills and meadow, and the far blue mountains will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 2 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Light the tops of the clouds"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Skim pale gold along the tops of the peach and rose cloud streaks.",
+   "tip": "The setting sun is at the right, so most of the gold goes on the right side of the sunset clouds and on the top edge of each streak, the side facing the sun. Keep the strokes sideways along each streak, and leave step 2's peach and rose cloud streaks showing underneath; the change is small, as the after picture shows."
+  },
+  {
+   "stage_id": "lay-mountains",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset clouds and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 2 1/2 in from the top edge and its bottom is about 4 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the green hills and meadow, and the sunlit rim will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Mountain blue, then Far violet. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Lay in the far mountains"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Paint two ranges of far mountains across the canvas, under the sunset sky.",
+   "tip": "Far violet makes the back range with its row of peaks, and Mountain blue makes the wide front band in front of it, as the after picture shows; the far blue mountains reach the left and right edges of the canvas. Keep the peaks low and gentle, with no warm light on them yet; the sunset comes later. Below the mountains the sunset sky still shows, as in the after picture; the hills cover it later.",
+   "paint_notes": [
+    "Far violet is pale and can let the orange sky show through: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "light-ridges",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunset clouds and the sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 2 1/2 in from the top edge and its bottom is about 3 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Warm peach.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 4 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Catch the sunset on the ridges"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Skim a faint warm peach glow along the tops of the far mountain ridges.",
+   "tip": "The sun is low at the right, so keep the peach to the peak tops and the edges facing the sun, most of it on the right side of the far blue mountains. It is very faint in the after picture, so less is better: skim along each ridge with the brush's edge and stop."
+  },
+  {
+   "stage_id": "lay-lake",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far blue mountains and the sunset clouds dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 4 1/2 in from the top edge, and its right side is at the right edge; it's about 2 in wide and 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the green hills and meadow, and the horns' dark tips will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sunset sky and the far blue mountains, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Cream gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Lay in the strip of lake"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Lay a thin pale gold strip of lake at the right edge, under the mountains.",
+   "tip": "The lake is a thin sliver: its top touches the bottom of the far blue mountains and it runs to the right edge of the canvas. Keep its top edge straight and level, since water lies flat, and let its left end taper to a point as the after picture shows.",
+   "paint_notes": [
+    "Cream gold is light over the blue sky: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "lay-hills-meadow",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far mountains and the lake, and the sunset clouds dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 3 1/2 in from the top edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Hill green, then Yellow green. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Yellow green for this step and step 17; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave long sloping green bands on the hills and slanted grass-like streaks in the meadow, with the sky colors still showing between them and slight streaks that follow the stroke.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Lay in the hills and meadow"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Lay green bands on the hills and slanted green streaks in the meadow.",
+   "tip": "The low sun is behind the far mountains, so use Yellow green along the tops of the hill bands and Hill green lower down. Pull the hill bands so they slope down toward the lake, and leave the sky colors showing between the bands and between the meadow streaks, as the after picture has it; the next step fills them.",
+   "paint_notes": [
+    "Yellow green is see-through over the blue and orange already there: where you want it solid, paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "darken-bands",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far mountains and the lake, and the sunset clouds dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 3 1/2 in from the top edge. The outline also runs under where the cow's horns will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the far blue mountains, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep green.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Deep green for this step and steps 9 and 16; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave flat, level bands that seem to stretch away, with slight streaks that follow the stroke.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave the lighter greens from step 7 showing between these marks, as in the Result picture.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Darken the hill bands and meadow front"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Darken a band under the mountains, the hill bands, and the meadow front.",
+   "tip": "Lay a dark strip right under the far blue mountains first, then the darker bands across the hills, then the meadow front, which is darkest near the bottom edge. Run the hill strokes down toward the lake and the meadow strokes on a slant, and fill the sky colors still showing between step 7's strokes, as the after picture has it, so no blue or orange is left below the mountains."
+  },
+  {
+   "stage_id": "dab-bushes",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the green hills and meadow, and the far mountains and the lake dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across. Its top is about 4 in from the top edge and its bottom is about 7 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the meadow's tall grass will go: paint straight through there. The outline also reaches onto the green hills and meadow, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Dab the dark bushes on the hills"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dab small dark round bushes in loose rows along the hill bands.",
+   "tip": "Dab the bushes in loose rows that follow the hill bands, sloping down toward the lake the way the bands do. Keep each bush small and leave the lighter green showing between them; none go down into the meadow."
+  },
+  {
+   "stage_id": "block-in-cow",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the hills and the meadow, and the far mountains and the lake dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 1/2 in from the bottom edge, and its left side is about 1 1/4 in from the left edge; it's about 7 1/2 in wide and 9 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the meadow's tall grass and the horns' dark tips will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the dark bushes on the hills, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Rust brown.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Rust brown for this step and step 14; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with the big oval of the body, then add the rounded head at its upper right.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Block in the cow"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Block in the whole cow as one flat Rust brown shape standing in the meadow.",
+   "tip": "The cow is about 7 3/4 in wide and 9 in tall, with most of it on the left side of the cow's area; the head is the rounded bump at the upper right of the shape, as the after picture shows. Fill the big body first, then add the head bump, and drag the bottom edge down in ragged points so it reads as long hair in the grass.",
+   "construct": {
+    "title": "Build the cow from simple pieces",
+    "paint": "Rust brown",
+    "stages": [
+     {
+      "caption": "A big tall oval for the body",
+      "add": [
+       {
+        "ellipse": [
+         42,
+         58,
+         34,
+         38
+        ]
+       }
+      ],
+      "arrows": [
+       "M 20 40 Q 14 60 24 82"
+      ]
+     },
+     {
+      "caption": "A round head at the top right",
+      "add": [
+       {
+        "ellipse": [
+         42,
+         58,
+         34,
+         38
+        ],
+        "done": true
+       },
+       {
+        "ellipse": [
+         74,
+         30,
+         16,
+         18
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Ragged strokes down the bottom edge",
+      "add": [
+       {
+        "ellipse": [
+         42,
+         58,
+         34,
+         38
+        ],
+        "done": true
+       },
+       {
+        "ellipse": [
+         74,
+         30,
+         16,
+         18
+        ],
+        "done": true
+       },
+       {
+        "path": "M 14 74 L 18 90 L 22 80 L 27 96 L 32 84 L 38 99 L 44 86 L 50 97 L 56 84 L 62 92 L 66 78 Z"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-cow",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the highland cow, and the hills and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 1 1/2 in from the left edge; it's about 7 in wide and 8 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the meadow's tall grass and the sunlit rim will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Dark umber.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Dark umber for this step and steps 13 and 23; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Shade the side away from the light"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull Dark umber shadows down the cow's left side, under its fringe and low on its body.",
+   "tip": "The light comes from the right, so most of the Dark umber goes on the left side of the cow, with a dark band under the fringe and low on the body; leave the right side of the cow plain Rust brown. Pull every stroke downward with the hair, and let some thin, dragged strokes streak the rest of the coat too, as the after picture shows."
+  },
+  {
+   "stage_id": "block-in-horns",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the cow's shadows and the highland cow dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 1/2 in wide and 3 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Horn tan.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Block in the horns"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Paint two pale Horn tan horns curving up and out from the top of the cow's head.",
+   "tip": "The horn on the left of the head is the bigger one, about 2 3/4 in tall, sweeping up to a point; the horn on the right of the head is smaller, about 2 in tall, curving out and then up. Start each one at the head and pull outward to the tip, keeping both smooth and flat.",
+   "paint_notes": [
+    "Horn tan is light and goes over the dark blue mountains and the Rust brown head: paint it twice, letting the first coat dry, so the horns look solid."
+   ],
+   "construct": {
+    "title": "Two curved horns off the top of the head",
+    "paint": "Horn tan",
+    "stages": [
+     {
+      "caption": "Left horn: out, then sweep up to a point",
+      "add": [
+       {
+        "ellipse": [
+         52,
+         78,
+         26,
+         20
+        ],
+        "done": true,
+        "paint": "Rust brown"
+       },
+       {
+        "path": "M 36 66 Q 14 60 12 12 Q 22 50 42 60 Z"
+       }
+      ],
+      "arrows": [
+       "M 34 62 Q 18 52 14 18"
+      ]
+     },
+     {
+      "caption": "Right horn: out to the side, curling up",
+      "add": [
+       {
+        "ellipse": [
+         52,
+         78,
+         26,
+         20
+        ],
+        "done": true,
+        "paint": "Rust brown"
+       },
+       {
+        "path": "M 36 66 Q 14 60 12 12 Q 22 50 42 60 Z",
+        "done": true
+       },
+       {
+        "path": "M 68 66 Q 92 66 90 34 Q 84 58 66 60 Z"
+       }
+      ],
+      "arrows": [
+       "M 70 64 Q 90 62 89 38"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-horns",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the cow's horns and the cow's shadows dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 in from the top edge, and its right side is about 2 1/2 in from the right edge; it's about 6 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Dark umber.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Shade the horns and their tips"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Darken the horns' undersides and tips with Dark umber, leaving their tops pale.",
+   "tip": "Put the Dark umber along the underside of each horn and darkest at the tip, so most of it is in the bottom half of the horns' dark tips. Leave a strip of the pale Horn tan showing along the top of both horns, as the after picture shows; it catches the light later."
+  },
+  {
+   "stage_id": "pull-orange-locks",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the cow and its horns, and the hills and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is about 1 3/4 in from the left edge; it's about 6 in wide and 6 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the sunlit rim and the cow's face will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the highland cow and the cow's shadows, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Rust brown.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush at the top of each lock, then turn onto its edge and lighten the pressure as you pull down the way the hair hangs.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull the ginger locks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull long ginger locks down the whole coat and the fringe over the eyes.",
+   "tip": "Start each lock high and pull it down the way the hair hangs: over the eyes on the fringe, and down the body to the ragged ends at the bottom. Leave thin dark gaps of the earlier coat showing between the locks so the coat reads as separate strands, as the after picture shows. Keep the face plain for now; the nose comes later.",
+   "paint_notes": [
+    "Rust brown only comes close to the ginger in the after picture, which is a little lighter and more orange; keep the strokes thin so the darker coat under them still shows in the gaps."
+   ]
+  },
+  {
+   "stage_id": "pull-gold-locks",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the cow and its horns, and the hills and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 6 in from the bottom edge, and its left side is about 2 1/2 in from the left edge; it's about 2 in wide and 4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the meadow's tall grass and the sunlit rim will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Honey gold.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Honey gold for this step and step 18; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave the ginger locks from step 14 and their dark gaps showing around these marks, as in the after picture.",
+     "edited": true
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Pull the honey-gold locks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull a few honey-gold locks on the fringe and the sunlit side of the coat.",
+   "tip": "The light comes from the right, so put these locks where it catches the hair: on the fringe and down the right side of the coat, with most of them on the right side of the shaggy coat. Pull each one down over a ginger lock from step 14, keeping them few and thin. The after picture also has one small Honey gold dab in the meadow, its middle about 11 1/4 in from the left edge; add it there."
+  },
+  {
+   "stage_id": "flick-dark-grass",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the cow and its horns, and the hills and the meadow dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 11 1/2 in wide and 6 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 fan. Load: A light load. Too much paint makes flat blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "A quick stroke upward from the base and slightly to the right, lifting off as it goes, so each mark thins at the top.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 fan",
+     "use": "Flick the dark grass"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Flicks scattered Deep green grass marks across the meadow, leaning to the right.",
+   "tip": "Lean every mark the same way, base low and tip up and to the right, as the after picture shows, so the meadow reads as grass bending in one breeze. Space the marks apart and leave the meadow's lighter green showing between them; the picture is scattered dark dabs, not a solid dark layer. Flick a few up against the bottom of the cow's shaggy coat, but leave its ragged bottom edge showing, as the after picture has it."
+  },
+  {
+   "stage_id": "flick-green-grass",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the dark grass marks dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": true
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 6 1/2 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Yellow green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 fan. Load: A light load. Too much paint makes flat blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 16 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 fan",
+     "use": "Flick the yellow-green grass"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Flicks Yellow green grass marks between the dark ones, thickest near the bottom.",
+   "tip": "Keep the same lean as the dark grass marks, tips up and to the right. Put these mostly between the dark grass marks rather than on top of them, so the dark ones still show as shadows in the grass. Most of the new marks go in the bottom half of the meadow; near the hills keep them few and short.",
+   "paint_notes": [
+    "Yellow green can look thin where it crosses a dark grass mark; let it dry and flick a second stroke over that spot."
+   ]
+  },
+  {
+   "stage_id": "flick-gold-grass",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the light green grass marks dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": true
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is at the left edge; it's about 11 1/2 in wide and 7 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Honey gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 fan. Load: A light load. Too much paint makes flat blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "A quick stroke upward from the base, lifting off as it goes, so each mark thins at the top.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave tapered marks with broken tips, denser at the base.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 16 and 17 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 fan",
+     "use": "Flick the golden grass"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Flicks Honey gold grass tips where the low sun catches the meadow.",
+   "tip": "The sun is low at the right, so put most of the gold marks on the right side of the meadow, as the after picture shows. Keep the same lean, tips up and to the right, and let the dark and light green grass marks show between the gold ones. A few gold marks at the left edge climb onto the green hills and meadow, where the after picture has them.",
+   "paint_notes": [
+    "Honey gold is see-through over the dark grass marks: where a gold mark crosses one, paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "rim-light-cow",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the meadow grass and the shaggy coat dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 in from the bottom edge, and its left side is about 2 in from the left edge; it's about 7 in wide and 8 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the highland cow and the cow's shaggy coat, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush on the outer edge of the coat, then turn onto its edge and lighten the pressure as you pull outward, the way the hair grows.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Pale gold is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Light the rim of the coat"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Edge the cow's head, fringe and sunlit side with a glowing gold rim.",
+   "tip": "The sun is low on the right, so most of this gold goes on the right half of the sunlit rim: along the top of the head, the fringe, and down the cow's right side, with only a thinner glow on the cow's back edge where the after picture has it. Start each stroke on the outer edge of the shaggy coat and pull outward, so the gold hairs stick out against the hills and sky. Keep the gold to a narrow rim and leave the ginger and honey-gold locks of the shaggy coat showing, as the after picture shows."
+  },
+  {
+   "stage_id": "light-horns",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunlit rim and the shaggy coat dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 5 in from the top edge, and its left side is about 5 in from the left edge; it's about 1/4 in wide and 1/4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the horns' dark tips and the cow's horns, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Cream gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Cream gold is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Light the tops of the horns"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Run a pale cream light along the tops of both horns.",
+   "tip": "The light comes from the right and above, so the cream goes only along the top of each horn's curve, on both the horn on the left side of the head and the one on the right side of the head, as the after picture shows. Keep each stroke thin and leave the tan undersides and the dark tips showing, so the horns still end in a dark point.",
+   "paint_notes": [
+    "Cream gold over the dark tan horn is see-through: paint it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "paint-nose",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunlit rim and the meadow grass dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 6 in from the bottom edge, and its right side is about 4 in from the right edge; it's about 2 1/2 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the highland cow and the cow's shaggy coat, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Rosy nose.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #6 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the nose"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Paint the cow's rounded muzzle tucked under the fringe.",
+   "tip": "Shape the nose as a rounded muzzle about 2 1/2 in tall, its middle about 7 1/4 in from the left edge and 8 1/2 in from the top edge, peeking out from under the fringe as the Where picture shows. Keep it a flat, soft pinkish brown with no highlight, nostrils or mouth yet; let the shaggy coat overlap its top edge so it sits under the hair."
+  },
+  {
+   "stage_id": "nose-shine",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunlit rim and the meadow grass dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 7 1/2 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 1/4 in wide and 3/4 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Nose pink.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #4 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 21 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Light the top of the nose"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Lay a pale pink band of light across the top of the nose.",
+   "tip": "The light comes from the low sun at the right, behind the cow, so the pale pink stays on the top of the nose only, where the after picture has it: its top is about 7 1/2 in from the top edge, and it's about 1 1/4 in wide and 3/4 in tall. Curve the short strokes over the rounded top and keep the Rosy nose showing around these strokes, as the after picture shows, so the nose still reads as round."
+  },
+  {
+   "stage_id": "nostrils-mouth",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunlit rim and the shaggy coat dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 6 in from the bottom edge, and its right side is about 4 in from the right edge; it's about 2 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the cow's shadows and the highland cow, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Dark umber.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #2 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave thin, flowing lines.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 21 and 22 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#2 liner",
+     "use": "Line the nostrils and mouth"
+    }
+   ],
+   "stroke_cards": [
+    "liner"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Line two dark nostrils and a gently wobbling mouth under the nose.",
+   "tip": "Paint the two nostrils first, as small commas at the bottom of the nose where the after picture has them, then the mouth line under the nose. Keep both thin so the Nose pink top and the Rosy nose stay showing. The after picture also turns the whole nose a slightly greyer pink with a darker shadow under the mouth; if yours looks too bright, a thin touch of Dark umber softened under the mouth gets you close."
+  }
+ ]
+}

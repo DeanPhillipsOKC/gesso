@@ -1,0 +1,27 @@
+{
+  "steps": {
+    "blend-wall": {
+      "summary": "Blend the blue wall across the top of the canvas, from the window to the right edge.",
+      "tip": "Run every stroke side to side, across the whole canvas, and keep them loose: the after picture keeps soft brush marks in the blue. Paint right up to the sky through the window and the leaves outside the window, and leave them showing. The blue also goes over where the white window frame will stand, as the after picture shows.",
+      "lines": {
+        "6": "Start at the bottom with Deep wall blue and stroke side to side. Without rinsing, pick up Wall blue and paint above the Deep wall blue. Then stroke back and forth over the join several times."
+      }
+    },
+    "block-in-frame": {
+      "summary": "Block in the cream window frame: the tall post, the crossbar and the ledge.",
+      "tip": "Paint the tall upright post first, then the crossbar and the slanted ledge running into the post, as the after picture shows. Pull each bar along its length, and take the post on down to the bottom edge. Leave the sky through the window and the leaves outside the window showing between the bars.",
+      "lines": {
+        "9": "Start with the tall upright post as one straight band, pulled from the top edge down. Then add the crossbar and the ledge as straight bars running into the post.",
+        "10": "It should leave a flat cream frame of straight bars with clean edges, with no shading yet."
+      }
+    },
+    "shade-frame": {
+      "summary": "Paint lavender shadow bands along the frame's inner sides and under its bars.",
+      "tip": "The light comes from the window at the upper left, so keep a clean cream strip lit down the middle of the post and along the top of each bar; the shadows go on the sides and undersides, as the after picture shows. Pull each band the length of its bar, straight down the post and along the crossbar and ledge. The after picture also shows a dark blue shadow strip on the wall beside the post, where the after picture has it.",
+      "lines": {
+        "7": "Paint each shadow as a long straight band with the flat edge of the brush, pulling it the length of the bar in one stroke.",
+        "8": "It should leave thin lavender bands along the frame's bars, with cream still showing next to the lavender."
+      }
+    }
+  }
+}

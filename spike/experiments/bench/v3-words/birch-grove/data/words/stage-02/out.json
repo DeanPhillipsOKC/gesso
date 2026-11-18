@@ -1,0 +1,29 @@
+{"steps": {
+  "pull-far-trunks": {
+    "summary": "Pull a few faint violet-gray trunks into the haze near the middle of the canvas.",
+    "tip": "These trunks sit far back in the mist, so keep them thin, pale and soft-edged, with no light side yet. Pull each one straight up and down where the Where picture shows; the misty far trunks are about 1 1/2 in wide and 2 3/4 in tall, their top about 3 1/2 in from the top edge. The after picture changes only a little, so leave the misty sky showing between the trunks.",
+    "lines": {
+      "8": "Press the full width of the brush at the bottom of the trunk, then turn onto its edge and lighten the pressure as you pull up.",
+      "9": "It should leave a thin trunk that starts wide at the bottom and tapers to a point at the top.",
+      "10": "Watch out: Trunks that look like stiff sticks, every one the same width. Fix: start thick at the bottom and taper, and let the trunks differ in width and lean a little."
+    }
+  },
+  "stamp-pines": {
+    "summary": "Stamp dark firs into the haze, with paler misty firs behind them.",
+    "tip": "Stamp the dark firs in Deep pine green first, then the paler hazy firs in Misty blue on the left side of the fir trees, where the after picture has them. Keep each fir narrow at its top and wider toward its bottom, letting the bottoms fade into the mist; most of the paint is on the right side of the fir trees, which reaches the right edge of the canvas. The firs stay flat dark with no light side for now; the after picture also shows reddish trunks inside some firs, so leave those gaps where the after picture has them."
+  },
+  "light-pines": {
+    "summary": "Tap lighter green needles on the left sides of the dark firs.",
+    "tip": "The light comes from the upper left, so tap Pine light green only on the left sides of the dark firs and leave their right sides dark. Most of it goes on the left side of the fir trees and in their bottom half, as the Where picture shows. Leave the pale hazy firs plain.",
+    "paint_notes": ["Pine light green over the dark green can sink in: if it disappears, let it dry and tap a second time."]
+  },
+  "pull-middle-trunks": {
+    "summary": "Pull a smoky-brown middle trunk and pale violet-gray trunks to its right.",
+    "tip": "Pull the tallest trunk first in Smoky brown, where the after picture has it; its top is about 3/4 in from the top edge. Then pull the Blue-violet mist trunks beside it, each shorter and fainter than the last, as the after picture shows. Pull every trunk from its thick bottom up to a thin top, plain with no bark marks.",
+    "lines": {
+      "5": "Press the full width of the brush at the bottom of the trunk, then turn onto its edge and lighten the pressure as you pull up.",
+      "6": "It should leave a trunk that starts wide at the bottom and tapers toward the top.",
+      "7": "Watch out: Trunks that look like stiff sticks, every one the same width. Fix: start thick at the bottom and taper, and let each trunk differ in width and height."
+    }
+  }
+}}

@@ -1,0 +1,23 @@
+{"steps": {
+ "block-in-sill": {
+  "summary": "Paint the wooden windowsill flat Warm wood brown across the bottom of the canvas.",
+  "tip": "The sill is about 16 in wide, reaching the left edge and the right edge of the canvas; its top edge runs from the foot of the white window frame and slopes down toward the right edge of the canvas, as the after picture shows. Run every stroke side to side along that slope. The after picture also shows a slightly darker band along the bottom edge of the canvas, the sill's front edge, and a thin dark lip under the white window frame; step 8 builds on both.",
+  "lines": {
+   "9": "Lay one long band along the sill's top edge first, then fill in the rest of the sill in long side-to-side pieces that follow its slope.",
+   "10": "It should leave one flat, solid Warm wood brown band with no white canvas showing between the pieces."
+  }
+ },
+ "shade-sill": {
+  "summary": "Dry-brush the sill's shadow and darken its front edge with Warm wood brown.",
+  "tip": "The light comes in through the window, so the shade goes mostly on the right side of the sill and along its front edge at the bottom edge of the canvas; leave the sunlit shapes near the white window frame as the plain base color, where the after picture has them, since step 9 lights them. Skim the strokes side to side along the sill's slope. The after picture also shows thin pale streaks marking the frame's shadow crossing the sunlit area and a few orange streaks near the front edge: copy them lightly as the after picture shows.",
+  "paint_notes": ["Warm wood brown dry-brushed over the same Warm wood brown only darkens it a little: let the first pass dry and skim a second over the shadow side to get as dark as the after picture."]
+ },
+ "light-sill": {
+  "summary": "Lay the Sunny peach patches of window sunlight on the left of the sill.",
+  "tip": "This is the window light landing on the sill: its left side is at the left edge of the canvas and it's about 6 1/2 in wide. Lay the big lower patch first, then the narrow upper strip, whose top is about 7 3/4 in from the top edge and which is about 3 3/4 in wide. Leave step 8's dark bar of the frame's shadow showing between the two, and the thin streak near the left edge of the canvas, as the after picture shows.",
+  "lines": {
+   "7": "Lay the big lower patch first as one flat slanted shape, then the narrow upper strip, each in a few flat strokes along the sill's slope.",
+   "8": "It should leave flat Sunny peach shapes with straight sides, step 8's shadow bar showing between them."
+  }
+ }
+}}

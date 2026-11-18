@@ -1,0 +1,26 @@
+{
+ "steps": {
+  "lay-floor": {
+   "summary": "Lay the sunny forest floor across the bottom: dark brown in front, gold at the back.",
+   "tip": "Carry the forest floor out to the left, right and bottom edges of the canvas, with its top about 7 in from the top edge, as the after picture shows. Lay the Leaf brown in front first, then pull the Golden ochre in behind it toward the misty far trunks, brightest where the low sun at the upper left lights it. Leave thin gaps of the misty blue showing between the strokes, where the after picture has its cool shadow bands across the ground.",
+   "paint_notes": [
+    "Golden ochre is see-through over the blue mist: paint it twice where it should glow, letting the first coat dry."
+   ],
+   "lines": {
+    "9": "It should leave long, level bands of gold and brown that seem to stretch away, with cool streaks of mist between them, as the after picture shows."
+   }
+  },
+  "pull-path": {
+   "summary": "Pull a mauve path from the front of the ground back to a thin thread in the mist.",
+   "tip": "The path's top is about 7 1/2 in from the top edge, where it thins to a thread in the mist, and it widens as it comes down to the bottom edge of the canvas, with most of it in the bottom half of the path. Pull every stroke from the wide front back toward that thin end, and keep the edges soft so the forest floor's gold blends into the path's sides.",
+   "paint_notes": [
+    "Path mauve is lighter than the Leaf brown under it in front: paint it twice there, letting the first coat dry."
+   ],
+   "lines": {
+    "7": "Mark the path's end on the horizon and fan two faint chalk lines from it for its sides. Pull strokes between them, wide in front, thin at the dot.",
+    "8": "It should leave a band that narrows toward one point, which is what makes the path lie down and recede.",
+    "9": "Watch out: the path's sides run parallel, so it stands up like a wall. Fix: mark the dot and the two side lines first. It takes a minute."
+   }
+  }
+ }
+}

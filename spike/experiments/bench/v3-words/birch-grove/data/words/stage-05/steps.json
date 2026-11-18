@@ -1,0 +1,209 @@
+{
+ "stage": 5,
+ "light": "The low sun at the upper left, shining through the leaves, so the left sides of the trunks and leaves are lit and the right side of the wood stays cool and shaded",
+ "lesson": [
+  "step 1: Blend the misty sky over the whole canvas (The misty sky)",
+  "step 2: Circle in the glowing sun (The sun)",
+  "step 3: Pull the misty far trunks (The misty far trunks)",
+  "step 4: Stamp the fir trees (The fir trees)",
+  "step 5: Tap light on the firs' left sides (The fir trees)",
+  "step 6: Pull the middle trunks (The middle trunks)",
+  "step 7: Lay in the forest floor (The forest floor)",
+  "step 8: Pull the path back into the mist (The path)",
+  "step 9: Dab the dark leaves everywhere (The autumn leaves)",
+  "step 10: Dab the golden leaves everywhere (The autumn leaves)",
+  "step 11: Tap the sunlit leaves near the sun (The autumn leaves)",
+  "step 12: Block in the mossy rock (The mossy rock)",
+  "step 13: Shade the rock's underside (The rock's shadow and light)",
+  "step 14: Light the top of the rock (The rock's shadow and light)",
+  "step 15: Pull the pale birch trunks (The front birch trunks)",
+  "step 16: Shade the right side of the birches (The birches' shading and bark patches)",
+  "step 17: Lay the dark bark patches (The birches' shading and bark patches)",
+  "step 18: Line the thin bark marks (The thin bark lines)",
+  "step 19: Catch the sunlight on the birches (The sunlight on the birches)",
+  "step 20: Tap the sunlit leaves on the ground (The sunlit leaves on the ground)"
+ ],
+ "steps": [
+  {
+   "n": 12,
+   "id": "block-in-rock",
+   "name": "Block in the mossy rock",
+   "part": "The mossy rock",
+   "paints": [
+    "Moss green"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "build-from-pieces",
+   "pair": "pair-12.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the autumn leaves and the forest floor dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is about 2 in from the right edge; it's about 3 in wide and 1 1/2 in tall."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Moss green."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+    }
+   ],
+   "meant": "A flat moss-green boulder shape sits on the leaves right of the path, with no shading or light."
+  },
+  {
+   "n": 13,
+   "id": "shade-rock",
+   "name": "Shade the rock's underside",
+   "part": "The rock's shadow and light",
+   "paints": [
+    "Deep pine green"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-13.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the mossy rock and the autumn leaves dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is about 2 1/2 in from the right edge; it's about 2 1/2 in wide and 1 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the birches' shading and bark patches, and the front birch trunks will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the mossy rock and the autumn leaves, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Deep pine green."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+    }
+   ],
+   "meant": "The boulder is dark blue-green underneath and on its right side, with no light on top yet."
+  },
+  {
+   "n": 14,
+   "id": "light-rock",
+   "name": "Light the top of the rock",
+   "part": "The rock's shadow and light",
+   "paints": [
+    "Moss light"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-14.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the mossy rock and the autumn leaves dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 in from the right edge; it's about 1 3/4 in wide and 1 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the front birch trunks, and the birches' shading and bark patches will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the autumn leaves and the mossy rock, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Moss light."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what step 13 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 10,
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+    },
+    {
+     "n": 11,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The boulder's top and left side catch a pale sage light, with the dark still under it."
+  }
+ ],
+ "write_to": "out.json"
+}

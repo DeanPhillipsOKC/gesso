@@ -1,0 +1,202 @@
+{
+ "stage": 9,
+ "light": "A low setting sun at the right, just above the far mountains, lighting the cow from behind and to the right so the top of its head, its fringe and its right side glow gold",
+ "lesson": [
+  "step 1: Blend the sunset sky (The sunset sky)",
+  "step 2: Dry-brush the cloud streaks (The sunset clouds)",
+  "step 3: Light the tops of the clouds (The sunset clouds)",
+  "step 4: Lay in the far mountains (The far blue mountains)",
+  "step 5: Catch the sunset on the ridges (The far blue mountains)",
+  "step 6: Lay in the strip of lake (The glimpse of lake)",
+  "step 7: Lay in the hills and meadow (The green hills and meadow)",
+  "step 8: Darken the hill bands and meadow front (The green hills and meadow)",
+  "step 9: Dab the dark bushes on the hills (The dark bushes on the hills)",
+  "step 10: Block in the cow (The Highland cow)",
+  "step 11: Shade the side away from the light (The cow's shadows)",
+  "step 12: Block in the horns (The cow's horns)",
+  "step 13: Shade the horns and their tips (The horns' dark tips)",
+  "step 14: Pull the ginger locks (The cow's shaggy coat)",
+  "step 15: Pull the honey-gold locks (The cow's shaggy coat)",
+  "step 16: Flick the dark grass (The meadow's tall grass)",
+  "step 17: Flick the yellow-green grass (The meadow's tall grass)",
+  "step 18: Flick the golden grass (The meadow's tall grass)",
+  "step 19: Light the rim of the coat (The sunlit rim)",
+  "step 20: Light the tops of the horns (The light on the horns)",
+  "step 21: Paint the nose (The cow's face)",
+  "step 22: Light the top of the nose (The cow's face)",
+  "step 23: Line the nostrils and mouth (The cow's face)"
+ ],
+ "steps": [
+  {
+   "n": 21,
+   "id": "paint-nose",
+   "name": "Paint the nose",
+   "part": "The cow's face",
+   "paints": [
+    "Rosy nose"
+   ],
+   "brush": "#6 round",
+   "stroke": "curved-strokes",
+   "pair": "pair-21.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sunlit rim and the meadow grass dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 6 in from the bottom edge, and its right side is about 4 in from the right edge; it's about 2 1/2 in wide and 2 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the highland cow and the cow's shaggy coat, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Rosy nose."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #6 round."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Bend every stroke with the shape: curve them around the rounded end of the muzzle, from the top of the nose down."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+    }
+   ],
+   "meant": "A flat pinkish-brown rounded nose sits under the fringe, with no highlight, nostrils or mouth."
+  },
+  {
+   "n": 22,
+   "id": "nose-shine",
+   "name": "Light the top of the nose",
+   "part": "The cow's face",
+   "paints": [
+    "Nose pink"
+   ],
+   "brush": "#4 round",
+   "stroke": "curved-strokes",
+   "pair": "pair-22.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sunlit rim and the meadow grass dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 7 1/2 in from the top edge, and its right side is about 4 in from the right edge; it's about 1 1/4 in wide and 3/4 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the green hills and meadow, and the highland cow, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Nose pink."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #4 round."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Bend every stroke with the shape: lay short strokes across the top of the nose, curving them over its rounded top."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "Leave what step 21 painted showing around these marks, as in the Result picture."
+    }
+   ],
+   "meant": "The nose has a pale pink top over the pinkish brown. It has no nostrils or mouth yet."
+  },
+  {
+   "n": 23,
+   "id": "nostrils-mouth",
+   "name": "Line the nostrils and mouth",
+   "part": "The cow's face",
+   "paints": [
+    "Dark umber"
+   ],
+   "brush": "#2 liner",
+   "stroke": "liner",
+   "pair": "pair-23.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sunlit rim and the shaggy coat dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 6 in from the bottom edge, and its right side is about 4 in from the right edge; it's about 2 in wide and 2 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the cow's shadows and the highland cow, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Dark umber."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #2 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Curve each nostril as a short comma, and wobble the mouth line a little so it doesn't look ruled."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave thin, flowing lines."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "Leave what steps 21 and 22 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water."
+    },
+    {
+     "n": 10,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The finished painting: the cow has dark nostrils and a mouth line under its pink nose, under a glowing fringe, in a golden meadow below the sunset."
+  }
+ ],
+ "write_to": "out.json"
+}

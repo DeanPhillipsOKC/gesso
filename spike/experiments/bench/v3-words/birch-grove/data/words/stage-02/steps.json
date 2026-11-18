@@ -1,0 +1,291 @@
+{
+ "stage": 2,
+ "light": "The low sun at the upper left, shining through the leaves, so the left sides of the trunks and leaves are lit and the right side of the wood stays cool and shaded",
+ "lesson": [
+  "step 1: Blend the misty sky over the whole canvas (The misty sky)",
+  "step 2: Circle in the glowing sun (The sun)",
+  "step 3: Pull the misty far trunks (The misty far trunks)",
+  "step 4: Stamp the fir trees (The fir trees)",
+  "step 5: Tap light on the firs' left sides (The fir trees)",
+  "step 6: Pull the middle trunks (The middle trunks)",
+  "step 7: Lay in the forest floor (The forest floor)",
+  "step 8: Pull the path back into the mist (The path)",
+  "step 9: Dab the dark leaves everywhere (The autumn leaves)",
+  "step 10: Dab the golden leaves everywhere (The autumn leaves)",
+  "step 11: Tap the sunlit leaves near the sun (The autumn leaves)",
+  "step 12: Block in the mossy rock (The mossy rock)",
+  "step 13: Shade the rock's underside (The rock's shadow and light)",
+  "step 14: Light the top of the rock (The rock's shadow and light)",
+  "step 15: Pull the pale birch trunks (The front birch trunks)",
+  "step 16: Shade the right side of the birches (The birches' shading and bark patches)",
+  "step 17: Lay the dark bark patches (The birches' shading and bark patches)",
+  "step 18: Line the thin bark marks (The thin bark lines)",
+  "step 19: Catch the sunlight on the birches (The sunlight on the birches)",
+  "step 20: Tap the sunlit leaves on the ground (The sunlit leaves on the ground)"
+ ],
+ "steps": [
+  {
+   "n": 3,
+   "id": "pull-far-trunks",
+   "name": "Pull the misty far trunks",
+   "part": "The misty far trunks",
+   "paints": [
+    "Blue-violet mist"
+   ],
+   "brush": "1/4 inch flat",
+   "stroke": "thick-to-thin",
+   "pair": "pair-03.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the misty sky dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 1/2 in from the top edge, and its left side is about 6 1/2 in from the left edge; it's about 1 1/2 in wide and 2 1/2 in tall."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves and the front birch trunks will go: paint straight through there."
+    },
+    {
+     "n": 5,
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 6,
+     "kind": "paints",
+     "text": "Paint: Blue-violet mist."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point."
+    },
+    {
+     "n": 10,
+     "kind": "watch",
+     "text": "Watch out: Branches that look like stiff sticks. Every branch the same width and straight. Fix: start thick at the trunk and taper. Let branches fork in different directions and overlap."
+    }
+   ],
+   "meant": "Thin pale violet-gray trunks stand faintly in the haze across the canvas, soft and plain. No firs, ground, leaves or birches yet."
+  },
+  {
+   "n": 4,
+   "id": "stamp-pines",
+   "name": "Stamp the fir trees",
+   "part": "The fir trees",
+   "paints": [
+    "Deep pine green",
+    "Misty blue"
+   ],
+   "brush": "fan brush",
+   "stroke": "fan-tapping",
+   "pair": "pair-04.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the misty sky dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its right side is at the right edge; it's about 6 1/2 in wide and 6 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves, and the birches' shading and bark patches will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky and the misty far trunks, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paints, darkest first: Deep pine green, then Misty blue. The paint map shows where each goes."
+    },
+    {
+     "n": 6,
+     "kind": "mix",
+     "text": "Mix enough Deep pine green for this step and step 13; cover it between them."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down."
+    },
+    {
+     "n": 9,
+     "kind": "how",
+     "text": "Short strokes in different directions make a rough texture."
+    },
+    {
+     "n": 10,
+     "kind": "result",
+     "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed."
+    },
+    {
+     "n": 11,
+     "kind": "watch",
+     "text": "Watch out: A heavy, solid top. Too much pressure or paint at the start of the tree. Fix: add fine branches with a small round instead of more fan marks."
+    }
+   ],
+   "meant": "Dark blue-green firs stand on the right and pale blue hazy firs in the center, each one flat dark with no lighter side. No ground, leaves or birches."
+  },
+  {
+   "n": 5,
+   "id": "light-pines",
+   "name": "Tap light on the firs' left sides",
+   "part": "The fir trees",
+   "paints": [
+    "Pine light green"
+   ],
+   "brush": "fan brush",
+   "stroke": "fan-tapping",
+   "pair": "pair-05.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the misty far trunks and the misty sky dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its right side is about 3 in from the right edge; it's about 4 in wide and 5 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves, and the rock's shadow and light will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Pine light green."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Short strokes in different directions make a rough texture."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed."
+    },
+    {
+     "n": 10,
+     "kind": "result",
+     "text": "Leave what step 4 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 11,
+     "kind": "watch",
+     "text": "Watch out: Heavy, clumpy marks. The paint is too thick, the bristles are clumped, or you stamped with the side. Fix: thin the paint a little, spread the fan, and stamp with the middle tips."
+    }
+   ],
+   "meant": "The near firs have lighter green needles on their left sides, with the dark still showing on the right. The hazy center firs stay plain."
+  },
+  {
+   "n": 6,
+   "id": "pull-middle-trunks",
+   "name": "Pull the middle trunks",
+   "part": "The middle trunks",
+   "paints": [
+    "Smoky brown",
+    "Blue-violet mist"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "thick-to-thin",
+   "pair": "pair-06.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the misty far trunks and the misty sky dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 5 in wide and 8 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "paints",
+     "text": "Paints, darkest first: Blue-violet mist, then Smoky brown. The paint map shows where each goes."
+    },
+    {
+     "n": 4,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+    },
+    {
+     "n": 6,
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point."
+    },
+    {
+     "n": 7,
+     "kind": "watch",
+     "text": "Watch out: Branches that look like stiff sticks. Every branch the same width and straight. Fix: start thick at the trunk and taper. Let branches fork in different directions and overlap."
+    },
+    {
+     "n": 8,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The middle trunks stand by the far end of the path: a smoky-brown one in the center and pale violet-gray ones to its right, plain with no bark marks. Still no ground, leaves or birches."
+  }
+ ],
+ "write_to": "out.json"
+}

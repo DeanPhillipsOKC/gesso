@@ -1,0 +1,211 @@
+{
+ "stage": 4,
+ "light": "The low sun at the upper left, shining through the leaves, so the left sides of the trunks and leaves are lit and the right side of the wood stays cool and shaded",
+ "lesson": [
+  "step 1: Blend the misty sky over the whole canvas (The misty sky)",
+  "step 2: Circle in the glowing sun (The sun)",
+  "step 3: Pull the misty far trunks (The misty far trunks)",
+  "step 4: Stamp the fir trees (The fir trees)",
+  "step 5: Tap light on the firs' left sides (The fir trees)",
+  "step 6: Pull the middle trunks (The middle trunks)",
+  "step 7: Lay in the forest floor (The forest floor)",
+  "step 8: Pull the path back into the mist (The path)",
+  "step 9: Dab the dark leaves everywhere (The autumn leaves)",
+  "step 10: Dab the golden leaves everywhere (The autumn leaves)",
+  "step 11: Tap the sunlit leaves near the sun (The autumn leaves)",
+  "step 12: Block in the mossy rock (The mossy rock)",
+  "step 13: Shade the rock's underside (The rock's shadow and light)",
+  "step 14: Light the top of the rock (The rock's shadow and light)",
+  "step 15: Pull the pale birch trunks (The front birch trunks)",
+  "step 16: Shade the right side of the birches (The birches' shading and bark patches)",
+  "step 17: Lay the dark bark patches (The birches' shading and bark patches)",
+  "step 18: Line the thin bark marks (The thin bark lines)",
+  "step 19: Catch the sunlight on the birches (The sunlight on the birches)",
+  "step 20: Tap the sunlit leaves on the ground (The sunlit leaves on the ground)"
+ ],
+ "steps": [
+  {
+   "n": 9,
+   "id": "dab-dark-leaves",
+   "name": "Dab the dark leaves everywhere",
+   "part": "The autumn leaves",
+   "paints": [
+    "Burnt orange",
+    "Moss green",
+    "Leaf brown"
+   ],
+   "brush": "old stiff brush",
+   "stroke": "dabbing",
+   "pair": "pair-09.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the forest floor and the far woods dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas."
+    },
+    {
+     "n": 3,
+     "kind": "paints",
+     "text": "Paints, darkest first: Moss green, Burnt orange, then Leaf brown. The paint map shows where each goes."
+    },
+    {
+     "n": 4,
+     "kind": "mix",
+     "text": "Mix enough Moss green for this step and steps 12 and 16; cover it between them."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap."
+    },
+    {
+     "n": 8,
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+    }
+   ],
+   "meant": "Burnt orange dabs hang in the treetops, fill the bushes by the path (with a moss-green bush right of the path), and scatter with brown over the ground and path. No yellow leaves, rock or birches yet."
+  },
+  {
+   "n": 10,
+   "id": "dab-mid-leaves",
+   "name": "Dab the golden leaves everywhere",
+   "part": "The autumn leaves",
+   "paints": [
+    "Golden yellow"
+   ],
+   "brush": "old stiff brush",
+   "stroke": "dabbing",
+   "pair": "pair-10.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the forest floor and the far woods dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom. Its left side is about 1/2 in from the left edge and its right side is about 2 1/2 in from the right edge."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the birches' shading and bark patches, and the front birch trunks will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the sun and the misty sky, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Golden yellow."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what step 9 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 10,
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+    }
+   ],
+   "meant": "Golden yellow leaves cover most of the treetops, bushes and ground, with orange and brown still showing between them. No pale gold leaves, rock or birches."
+  },
+  {
+   "n": 11,
+   "id": "dab-sunlit-canopy",
+   "name": "Tap the sunlit leaves near the sun",
+   "part": "The autumn leaves",
+   "paints": [
+    "Pale gold"
+   ],
+   "brush": "old stiff brush",
+   "stroke": "dabbing",
+   "pair": "pair-11.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the forest floor and the far woods dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom from the left edge. Its right side is about 2 1/2 in from the right edge."
+    },
+    {
+     "n": 3,
+     "kind": "paints",
+     "text": "Paint: Pale gold."
+    },
+    {
+     "n": 4,
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+    },
+    {
+     "n": 6,
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 8,
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+    },
+    {
+     "n": 9,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "Pale gold leaves catch the light in the treetops and bush tops on the left near the sun. The leaves on the ground have no pale gold yet; no rock or birches."
+  }
+ ],
+ "write_to": "out.json"
+}
