@@ -153,6 +153,15 @@ class Steps3Tests(unittest.TestCase):
         kinds = {x["id"]: (x["kind"], x.get("parent")) for x in view["parts"]}
         self.assertEqual(kinds["cat"], ("marks", "rug"))
         self.assertEqual(kinds["the-cat-s-eyes"], ("marks", "rug"))
+        # a blend of four paints with another step of its thing after it in the stage: the blend is a unit alone
+        p = plan()
+        p["paints"] += [{"name": "Gold", "looks": "x", "color": "#d0a020"}, {"name": "Teal", "looks": "x", "color": "#208080"}]
+        step(p, "blend-sky")["paints"] = ["Sky blue", "Gold", "Teal", "Shadow"]
+        p["stages"][0]["steps"].append(dict(step(p, "light-cat"), id="sky-glow", lays=[{"thing": "sky", "what": "x"}],
+                                            paints=["Pale gray"], unit="The glow"))
+        p["things"][0]["plain"] = "the plain sky"
+        self.assertEqual([u["steps"] for u in plan3.units(p)][:2], [[0], [1]])
+        self.assertEqual(plan2.problems(view_of(p)), [])
 
     def test_build_steps_keeps_what_the_later_tools_read_and_refuses_it_stale(self):
         with self.assertRaises(lesson3.Stale) as e:

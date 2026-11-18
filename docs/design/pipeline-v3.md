@@ -180,7 +180,8 @@ the brief in `.claude/skills/paint-lesson/v3/plan-brief.md`:
 - **`unit` on the first step of a unit** that isn't the start of one thing: a name for what the unit adds, as the
   page says it ("The cow's shaggy coat"). A unit that starts one thing takes the thing's id and name.
 
-**Units** (`plan3.units`) are worked out from the plan, not written: section 6. `plan-check` prints them, with
+**Units** (`plan3.units`) are worked out from the plan, not written: section 6. A blend is a unit by itself, as a
+block-in is: colors worked wet into each other can't be cut apart by paint. `plan-check` prints them, with
 what each render will be asked for, so the writer sees which steps need a `unit` name.
 
 **The rules the plan is held to** are v2's and the owner's, unchanged: paint-along on a white canvas, back to front,
