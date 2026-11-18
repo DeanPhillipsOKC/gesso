@@ -2389,6 +2389,330 @@
    "why": "The tip says to pull the tallest Smoky brown trunk first, with its top about 3/4 in from the top edge, inside the area 2 1/2 in from the left edge. Picture 2 has that tall tapering trunk reaching near the top. Picture 1's trunks stop far too low, Picture 3 paints outside the area among the right-hand pines, and Picture 4 repaints the ground.",
    "cost_usd": 0.04331,
    "seconds": 7.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.4,
+   "probs": {
+    "place": 0.04,
+    "half": 0.52,
+    "real": 0.4,
+    "other": 0.04
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step says to tap Pine light green inside the outlined area, which takes in the middle firs, and only on the left sides of the dark firs while leaving the pale hazy firs plain; Pictures 1 and 4 instead add dark blobs or trunks out on the left, and Picture 2 looks the more restrained of the two that stay on the firs.",
+   "cost_usd": 0.04898,
+   "seconds": 10.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.76,
+   "probs": {
+    "half": 0.14,
+    "place": 0.06,
+    "real": 0.76,
+    "other": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a mauve path just right of center that narrows to a thread at its far end and widens toward the bottom edge: Picture 3 does this; Picture 1's sides run nearly parallel (the 'wall' mistake the step warns about), Picture 2's path is too far left, and Picture 4 already has the autumn leaves from a later step.",
+   "cost_usd": 0.04661,
+   "seconds": 8.3
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.85,
+   "probs": {
+    "other": 0.04,
+    "place": 0.06,
+    "real": 0.85,
+    "half": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to dab dark Moss green bushes, Burnt orange and Leaf brown across the leaf floor reaching all four edges, with only a few dabs in the treetops, and that matches picture 3; picture 4 covers only the right half, picture 2 has blotches painted over the sky and trees, and picture 1 uses sparse bright yellow leaves instead of the dark mixes.",
+   "cost_usd": 0.04369,
+   "seconds": 7.4
+  },
+  {
+   "picture": "birch-grove",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "real": 0.88,
+    "place": 0.02,
+    "half": 0.05,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one solid, flat moss-green dome about 3 in wide by 1 1/2 in tall, right of the path, with its right side about 2 in from the right edge and its bottom about 3 1/2 in up; only Picture 1 fits, while 2 is left of the path, 3 is too narrow, and 4 is shaded rather than one flat color.",
+   "cost_usd": 0.04236,
+   "seconds": 6.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.54,
+   "probs": {
+    "place": 0.03,
+    "half": 0.4,
+    "other": 0.03,
+    "real": 0.54
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for light dabs of pale gold on the sunlit upper-left leaf clusters and the top of the big bush, with no dark blobs (ruling out 1) and nothing on the ground (ruling out 3); picture 4 shows that dappled pale gold, including on the bush top, a little more clearly than picture 2.",
+   "cost_usd": 0.04537,
+   "seconds": 9.1
+  },
+  {
+   "picture": "birch-grove",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.35,
+   "probs": {
+    "half": 0.55,
+    "place": 0.03,
+    "real": 0.35,
+    "other": 0.07
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for a full golden mound on the bush nearest the sun, golden leaves hanging from the top edge, and only scattered leaves elsewhere, while keeping about 1/2 in clear at the left edge, about 2 1/2 in clear at the right, and leaving the sun showing; Picture 1 fits this best, Picture 3 runs into the left margin and over the sun, Picture 2 covers the right trees, and Picture 4 smothers the sun without building a mound.",
+   "cost_usd": 0.05023,
+   "seconds": 11.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.65,
+   "probs": {
+    "half": 0.22,
+    "place": 0.03,
+    "real": 0.65,
+    "other": 0.1
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for feathery dry-brushed Deep pine green on the right-side rock, darkest along the top and down the far side with the left kept lightest; Picture 3 shows that, while Picture 1 puts the dark marks toward the left and middle, Picture 2 paints in the wrong place, and Picture 4 barely adds any shading.",
+   "cost_usd": 0.04375,
+   "seconds": 7.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.47,
+   "probs": {
+    "place": 0.04,
+    "half": 0.45,
+    "real": 0.47,
+    "other": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for only a few faint dry-brushed touches on the top-left of the existing rock, about 3 in from the right edge, with the result looking almost the same as before; that rules out Picture 4, which already has the later birch trunks, and Picture 1, which puts a new mossy mark at the far left, but Pictures 2 and 3 both show only a subtle lightening on the rock and I could not tell them apart with confidence.",
+   "cost_usd": 0.04411,
+   "seconds": 8.1
+  },
+  {
+   "picture": "birch-grove",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.08,
+    "real": 0.8,
+    "place": 0.05,
+    "other": 0.07
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for solid gray trunks: two large ones on the left leaning slightly right, a trunk about 1 1/4 in wide centered near 14 1/4 in from the left, and a thin one down the right edge, with no bark markings yet; only Picture 2 shows all of these.",
+   "cost_usd": 0.04422,
+   "seconds": 8.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.82,
+   "probs": {
+    "half": 0.08,
+    "other": 0.03,
+    "place": 0.07,
+    "real": 0.82
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for dry-brushed Birch shadow down most of each front trunk across the whole width, with the biggest shading on the trunk about 2 1/2 in from the left; only Picture 4 does that. Picture 1 skips the left trunks, Picture 3 paints new trunks over the background, and Picture 2 shows black bark marks instead of soft shading.",
+   "cost_usd": 0.04588,
+   "seconds": 7.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.22,
+   "probs": {
+    "half": 0.6,
+    "place": 0.08,
+    "other": 0.1,
+    "real": 0.22
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for feathery, broken, see-through Birch white mostly down the left sides of the two big left-half birches, with the ground leaves left alone; Picture 1 fits that best, while Picture 2 goes on solid across many trunks, Picture 3 changes the leaf-covered ground, and Picture 4 shows little added light on the big left birches.",
+   "cost_usd": 0.04273,
+   "seconds": 6.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.3,
+   "probs": {
+    "real": 0.3,
+    "half": 0.5,
+    "place": 0.05,
+    "other": 0.15
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The tip asks for a few fine, thin bark lines so the result looks almost the same as before with the trunks still pale, which rules out Picture 3 (it adds whole new trunks) and makes Picture 4 (heavy dark marking) unlikely; Picture 2 seems to show slight added lines, while Picture 1 looks unchanged.",
+   "cost_usd": 0.04373,
+   "seconds": 7.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "place": 0.05,
+    "other": 0.07,
+    "half": 0.18,
+    "real": 0.7
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for short dark Bark-dark patches across every trunk in the 15 \u00d7 10 1/2 in area, with the trunk feet going almost solid dark. Picture 4 does this on all the trunks. Picture 3 leaves most trunks bare, Picture 2's patches are grey rather than dark, and Picture 1 adds new trunks the step never mentions.",
+   "cost_usd": 0.04648,
+   "seconds": 9.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.12,
+   "probs": {
+    "half": 0.7,
+    "other": 0.12,
+    "real": 0.12,
+    "place": 0.06
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for separate pale-gold leaf dabs mostly in the right half and thickest on the path, with only a few near the left edge, and Picture 1 shows exactly that; Picture 2 adds too little, Picture 3 spreads the dabs across the left as well, and Picture 4 changes the trunks and the rock beyond the leaf area.",
+   "cost_usd": 0.04374,
+   "seconds": 7.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "header",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "other": 0.03,
+    "real": 0.88,
+    "place": 0.05,
+    "half": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to lay in the far mountains, and only picture 2 shows a complete mountain range in the far violet and mountain blue mixes across the canvas near the horizon; picture 1 has barely a sliver, picture 4 stops partway across, and picture 3 puts the shapes low in the canvas where far mountains would not sit.",
+   "cost_usd": 0.03647,
+   "seconds": 5.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "header",
+   "rep": 1,
+   "p_real": 0.2,
+   "probs": {
+    "real": 0.2,
+    "other": 0.02,
+    "half": 0.18,
+    "place": 0.6
+   },
+   "pick": "place",
+   "hit": false,
+   "why": "The step asks for pale gold on the tops of the clouds, and Picture 4 shows clear pale gold highlights along the upper edges of the cloud bands, while Pictures 1 and 3 barely change and Picture 2 adds mountains the step never mentions.",
+   "cost_usd": 0.0402,
+   "seconds": 7.0
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "header",
+   "rep": 1,
+   "p_real": 0.6,
+   "probs": {
+    "place": 0.22,
+    "real": 0.6,
+    "half": 0.1,
+    "other": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for dry-brushed streaks in both warm peach and dusky rose across the clouds, and Picture 2 shows those thin broken streaks throughout; Picture 3 stops at the top band, Picture 4 uses only yellowish dabs with no rose, and Picture 1 looks heavier than a dry-brush pass.",
+   "cost_usd": 0.0402,
+   "seconds": 7.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "header",
+   "rep": 1,
+   "p_real": 0.78,
+   "probs": {
+    "place": 0.12,
+    "real": 0.78,
+    "other": 0.04,
+    "half": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to blend the whole sunset sky with sky blue, cream gold and pale gold, so the answer should be a full, smoothly blended canvas, not a partial band (4) or patchy, unblended strokes (3); Picture 2 has the same top as Picture 4 and keeps the sun glow at upper right, while Picture 1 looks like it is flipped upside down.",
+   "cost_usd": 0.04196,
+   "seconds": 7.7
   }
  ],
  "carry": [
@@ -2615,6 +2939,132 @@
    "d_result_after": 5.09,
    "render_usd": 0.016,
    "seconds": 14.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "file": "17-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.325,
+   "d_before_after": 1.71,
+   "d_result_after": 3.82,
+   "render_usd": 0.016,
+   "seconds": 14.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "file": "18-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.292,
+   "d_before_after": 2.93,
+   "d_result_after": 7.89,
+   "render_usd": 0.016,
+   "seconds": 14.4
+  },
+  {
+   "picture": "highland-cow",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "file": "19-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.134,
+   "d_before_after": 2.01,
+   "d_result_after": 6.6,
+   "render_usd": 0.016,
+   "seconds": 13.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "file": "20-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.001,
+   "d_before_after": 0.14,
+   "d_result_after": 4.39,
+   "render_usd": 0.016,
+   "seconds": 12.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "file": "21-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.0,
+   "d_before_after": 0.12,
+   "d_result_after": 8.75,
+   "render_usd": 0.016,
+   "seconds": 11.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 22,
+   "condition": "words",
+   "rep": 1,
+   "file": "22-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.004,
+   "d_before_after": 0.09,
+   "d_result_after": 7.54,
+   "render_usd": 0.016,
+   "seconds": 13.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "file": "01-words-r1.png",
+   "beats": 1.0,
+   "toward": -0.226,
+   "where": 0.586,
+   "d_before_after": 0.25,
+   "d_result_after": 0.3,
+   "render_usd": 0.016,
+   "seconds": 9.1
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "file": "02-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.408,
+   "d_before_after": 0.24,
+   "d_result_after": 0.69,
+   "render_usd": 0.016,
+   "seconds": 8.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 23,
+   "condition": "words",
+   "rep": 1,
+   "file": "23-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.026,
+   "d_before_after": 0.28,
+   "d_result_after": 6.51,
+   "render_usd": 0.016,
+   "seconds": 15.4
   }
  ],
  "carry_grades": [],
@@ -3408,6 +3858,168 @@
    "cache_read_tokens": 0,
    "output_tokens": 323,
    "cost_usd": 0.04331
+  },
+  {
+   "label": "pick words birch-grove 5 r1",
+   "seconds": 10.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4669,
+   "cache_read_tokens": 0,
+   "output_tokens": 581,
+   "cost_usd": 0.04898
+  },
+  {
+   "label": "pick words birch-grove 8 r1",
+   "seconds": 8.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4653,
+   "cache_read_tokens": 0,
+   "output_tokens": 469,
+   "cost_usd": 0.04661
+  },
+  {
+   "label": "pick words birch-grove 9 r1",
+   "seconds": 7.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4685,
+   "cache_read_tokens": 0,
+   "output_tokens": 310,
+   "cost_usd": 0.04369
+  },
+  {
+   "label": "pick words birch-grove 12 r1",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4511,
+   "cache_read_tokens": 0,
+   "output_tokens": 313,
+   "cost_usd": 0.04236
+  },
+  {
+   "label": "pick words birch-grove 11 r1",
+   "seconds": 9.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4543,
+   "cache_read_tokens": 0,
+   "output_tokens": 451,
+   "cost_usd": 0.04537
+  },
+  {
+   "label": "pick words birch-grove 10 r1",
+   "seconds": 11.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4590,
+   "cache_read_tokens": 0,
+   "output_tokens": 675,
+   "cost_usd": 0.05023
+  },
+  {
+   "label": "pick words birch-grove 13 r1",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4638,
+   "cache_read_tokens": 0,
+   "output_tokens": 332,
+   "cost_usd": 0.04375
+  },
+  {
+   "label": "pick words birch-grove 14 r1",
+   "seconds": 8.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4665,
+   "cache_read_tokens": 0,
+   "output_tokens": 339,
+   "cost_usd": 0.04411
+  },
+  {
+   "label": "pick words birch-grove 15 r1",
+   "seconds": 8.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4491,
+   "cache_read_tokens": 0,
+   "output_tokens": 414,
+   "cost_usd": 0.04422
+  },
+  {
+   "label": "pick words birch-grove 16 r1",
+   "seconds": 7.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4707,
+   "cache_read_tokens": 0,
+   "output_tokens": 411,
+   "cost_usd": 0.04588
+  },
+  {
+   "label": "pick words birch-grove 19 r1",
+   "seconds": 6.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4565,
+   "cache_read_tokens": 0,
+   "output_tokens": 310,
+   "cost_usd": 0.04273
+  },
+  {
+   "label": "pick words birch-grove 18 r1",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4678,
+   "cache_read_tokens": 0,
+   "output_tokens": 315,
+   "cost_usd": 0.04373
+  },
+  {
+   "label": "pick words birch-grove 17 r1",
+   "seconds": 9.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4492,
+   "cache_read_tokens": 0,
+   "output_tokens": 527,
+   "cost_usd": 0.04648
+  },
+  {
+   "label": "pick words birch-grove 20 r1",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4629,
+   "cache_read_tokens": 0,
+   "output_tokens": 335,
+   "cost_usd": 0.04374
+  },
+  {
+   "label": "pick header highland-cow 4 r1",
+   "seconds": 5.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4185,
+   "cache_read_tokens": 0,
+   "output_tokens": 149,
+   "cost_usd": 0.03647
+  },
+  {
+   "label": "pick header highland-cow 3 r1",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4121,
+   "cache_read_tokens": 0,
+   "output_tokens": 361,
+   "cost_usd": 0.0402
+  },
+  {
+   "label": "pick header highland-cow 2 r1",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4142,
+   "cache_read_tokens": 0,
+   "output_tokens": 353,
+   "cost_usd": 0.0402
+  },
+  {
+   "label": "pick header highland-cow 1 r1",
+   "seconds": 7.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 4216,
+   "cache_read_tokens": 0,
+   "output_tokens": 411,
+   "cost_usd": 0.04196
   }
  ]
 }
