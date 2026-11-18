@@ -6,6 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 2.0.1 (2026-11-18)
+- The fact sheet measures each thing by its own units only (#227). A unit that lays on two things was counted in
+  the first thing's place, so on the floating island the island measured 10.9 in wide (it is 4.3), and a writer's
+  right sentence about the doorway was taken out. A part's "'s" ("The stone's shadows and light") no longer makes
+  a lone "s" count as naming that part.
+
 ## POC 2.0.0 (2026-11-18)
 Pipeline v3 (#219): `/paint-lesson <photo> --v3`. A painter's plan is written first, the finished painting is erased
 backward by the image model one piece of the plan at a time, and every step picture comes from that chain; the words

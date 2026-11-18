@@ -92,9 +92,11 @@ What it showed:
   Seven of 20 paints were still fitted 26 to 36 units from the plan's rough color, and are on the page as known
   problems.
 - **The run can't be one subagent** (the skill, fixed): a subagent can't start the helpers.
-- **The sheet measures a thing too wide when a later unit lays on two things** (section 9, not fixed): the
+- **The sheet measured a thing too wide when a later unit lays on two things** (section 9, fixed in #227): the
   island's place took in the doorway, because the stone's shading is one unit on both and is filed under the
-  island. It cost one sentence a writer had right.
+  island. It cost one sentence a writer had right. That sentence also fell to a second fault: the "s" of "the
+  doorway's" was read as naming "The stone's shadows and light". Now a unit on several things is no thing's child
+  on the sheet (the island measures 4.3 in, not 10.9), and a name's "'s" isn't a word of its own.
 - **A plan's `after` can disagree with its own `behind`** (section 5, not fixed): the sea was given the sky as
   what is behind it, so the sky runs to the bottom edge, and the first steps' `after` lines say the bottom third is
   bare. The writers wrote to the pictures.
@@ -426,6 +428,8 @@ the spikes kept by hand is worked out:
   things was an object unless a hand-kept list said otherwise (the birch grove's path, sun and branches);
 - a unit's box, and its shape for the fact sheet, is what it changed (core first), not only where it is still on
   top at the end (#214).
+- on the fact sheet, a unit that lays on several things has no parent: each thing's place is its own units'
+  shapes, and the unit's place is its own (#227). `v3/plan.json` still files it under the first thing.
 
 ## 10. Words
 

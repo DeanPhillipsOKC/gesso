@@ -341,6 +341,84 @@ class Fault159Tests(unittest.TestCase):
         self.assertEqual([(p["id"], p["paints"]) for p in r["paint_faults"]], [("lavender-dark", ["Shadow violet"])])
 
 
+def two_things_scene():
+    """A version 3 lesson made up to the floating island's measures (#227): an island 4 to 8 in across, a doorway
+    frame 11.5 to 14.5 in, and one later unit, "The stone's shadows and light", that lays on both and is filed under
+    the island (`steps3.as_v2`'s parent is the part that started its first thing)."""
+    paints = {"sky": ("Sunset rose", "#e8a0a0"), "stone": ("Warm stone", "#9a8a78"),
+              "shade": ("Stone shadow", "#4a4038")}
+    sky, island, frame = box(0, 0, 16, 12), box(4, 4, 8, 7), box(11.5, 4.5, 14.5, 9)
+    shade = (island & box(0, 5.5, 16, 12)) | (frame & box(0, 0, 12.5, 12))
+    parts = [("sky", "The sunset sky", "area", None, ["sky"], sky),
+             ("island", "The floating rock island", "object", None, ["island"], island),
+             ("frame", "The stone doorway frame", "object", None, ["frame"], frame),
+             ("the-stone-s-shadows-and-light", "The stone's shadows and light", "marks", "island",
+              ["island", "frame"], shade)]
+    steps = [("blend-sky", "sky", "full", ["sky"], sky), ("block-in-island", "island", "full", ["stone"], island),
+             ("block-in-frame", "frame", "full", ["stone"], frame),
+             ("shade-stone", "the-stone-s-shadows-and-light", "full", ["shade"], shade)]
+    shape = (12 * PX, 16 * PX)
+    owner = np.zeros(shape, np.int32)
+    for k, p in enumerate(parts):
+        owner[p[-1]] = k
+    plan = {"parts": [{"id": pid, "name": n, "kind": kind, "thing": th, **({"parent": parent} if parent else {})}
+                      for pid, n, kind, parent, th, _m in parts],
+            "paints": [{"id": c, "name": n, "hex": h} for c, (n, h) in paints.items()],
+            "stages": [{"id": "all", "name": "All", "steps": [{"id": sid, "name": sid, "part": part, "show": show,
+                                                                 "paints": ps} for sid, part, show, ps, _w in steps]}]}
+    pic = np.empty(shape + (3,), np.uint8)
+    pic[:] = WHITE
+    pictures = []
+    for _sid, _part, _show, ps, where in steps:
+        pic = pic.copy()
+        pic[where] = rgb(paints[ps[0]][1])
+        pictures.append(pic)
+    masks = [p[-1].copy() for p in parts]  # one step a unit
+    return vf.make_sheet(plan, pictures, masks, owner, None, CANVAS, shapes=[p[-1] for p in parts])
+
+
+class TwoThingsTests(unittest.TestCase):
+    """A unit that lays on two things is neither thing's for the sheet (#227: the floating island measured 11 in wide,
+    and a writer's right sentence about the doorway was taken out)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.sheet = two_things_scene()
+
+    def test_each_things_place_is_its_own(self):
+        island, frame = self.sheet["parts"]["island"], self.sheet["parts"]["frame"]
+        self.assertEqual((island["left"], island["wide"]), (4.0, 4.0))
+        self.assertEqual((frame["left"], frame["wide"]), (11.5, 3.0))
+        shade = self.sheet["parts"]["the-stone-s-shadows-and-light"]
+        self.assertIsNone(shade["parent"])
+        self.assertEqual((shade["left"], shade["wide"]), (4.0, 8.5))  # its own place is on both
+
+    def test_the_doorway_sentence_passes(self):
+        tip = ("Paint the two posts first as straight upright bars: the doorway's left side is about 11 1/2 in from "
+               "the left edge, and its right side is about 1 1/2 in from the right edge.")
+        r = vf.check_text(self.sheet, text(self.sheet, {"block-in-frame": tip}), strict=True)
+        self.assertEqual(failed(r), [])
+        self.assertEqual(len([c for c in r["claims"] if c["field"] == "tip"]), 2)
+        wrong = tip.replace("11 1/2", "4")  # and the island's place isn't the doorway's
+        self.assertEqual([c["words"] for c in failed(vf.check_text(self.sheet, text(self.sheet, {
+            "block-in-frame": wrong})))], ["about 4 in from the left edge"])
+
+    def test_a_possessive_s_names_no_part(self):
+        """"The stone's shadows and light" isn't named by the "s" of "the doorway's"."""
+        lesson = vf.Lesson(self.sheet)
+        self.assertEqual(lesson.mentions("the doorway's left side"), [])
+        self.assertEqual({pid for _a, _b, pid in lesson.mentions("the stone's shadows")},
+                         {"the-stone-s-shadows-and-light"})
+
+    def test_a_version_2_sheet_keeps_its_parents(self):
+        """With no shapes (version 2), a part keeps its parent, as before."""
+        sheet = scene([("sky", "Sunset sky", "area", None, box(0, 0, 16, 12)),
+                       ("sun", "The sun", "marks", "sky", ellipse(8, 3, 1, 1))],
+                      [("sky", "sky", "flat", ["s"], box(0, 0, 16, 12)), ("sun", "sun", "pass", ["s"], ellipse(8, 3, 1, 1))],
+                      {"s": ("Sunset orange", "#f08a3c")})
+        self.assertEqual(sheet["parts"]["sun"]["parent"], "sky")
+
+
 class ClaimTests(unittest.TestCase):
     """What counts as a claim, and what doesn't."""
 

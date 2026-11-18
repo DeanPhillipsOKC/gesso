@@ -297,6 +297,11 @@ def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], 
     hexes = {c["id"]: c["hex"] for c in plan.get("paints") or []}
     seen = bs.visible(plan, owner, masks)
     owner_c = aids.to_canvas(owner, canvas_box)
+    if shapes is not None:
+        # a version 3 unit on several things (the stone's shading on the island and the doorway) is filed under the
+        # first of them, but it isn't that thing's: each thing's place is its own units' shapes only (#227)
+        parts = [{k: v for k, v in p.items() if k != "parent"} if len(p.get("thing") or []) > 1 else p
+                 for p in parts]
     index = {p["id"]: i for i, p in enumerate(parts)}
     part_facts = {}
     fam = {p["id"]: np.isin(owner_c, bs._family(parts, k)) for k, p in enumerate(parts)}
@@ -576,7 +581,8 @@ class Lesson:
         pats = []
         for pid, p in self.parts.items():
             name = re.sub(r"^the\s+", "", p["name"].lower()).strip()
-            words = [w for w in re.findall(r"[a-z]+", name) if w not in STOP]
+            # "stone's" is the word "stone": a lone "s" would name the part in "the doorway's" (#227)
+            words = [w for w in re.findall(r"[a-z]+", re.sub(r"['\u2019]s\b", "", name)) if w not in STOP]
             alts = {re.escape(name), re.escape(pid.replace("-", " ")), re.escape(pid)}
             heads = {words[-1]} if words else set()
             if " and " in name:
