@@ -1,0 +1,177 @@
+{
+  "photo": "chickadee",
+  "run": "chickadee_skill_20261118-091227",
+  "started": "2026-11-18 09:12",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "192d39ead11b0db4",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.0.0",
+        "commit": "9eb15cf",
+        "dirty": false,
+        "published": "2026-11-18"
+      },
+      "made_with": {
+        "version": "POC 2.0.0",
+        "commit": "9eb15cf",
+        "published": "2026-11-18"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-18T09:44:32"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 24,
+        "words": 4147,
+        "tubes": 5,
+        "cost_usd": 0.533,
+        "minutes": 7.0,
+        "paid_renders": 28,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 4,
+        "minutes_total": 32.1,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-sky",
+          "name": "Blend the blue and gold sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-sun",
+          "name": "Circle in the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-far-trunks",
+          "name": "Pull the hazy far trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-dark-far-leaves",
+          "name": "Dab the red-orange far leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-light-far-leaves",
+          "name": "Dab the light orange over the far leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-branch",
+          "name": "Block in the trunk and branch",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-leaves",
+          "name": "Block in the hanging leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-leaves",
+          "name": "Shade the leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-leaves",
+          "name": "Light the leaves' sunny edges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-branch",
+          "name": "Shade the trunk and branch",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-branch",
+          "name": "Catch the sun on the branch",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "line-twigs-stems-veins",
+          "name": "Line the twigs, stems and veins",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-chickadee",
+          "name": "Block in the chickadee",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-chickadee",
+          "name": "Shade the bird's underside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-white-patches",
+          "name": "Paint the white cheek and chest",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-cap-bib",
+          "name": "Paint the black cap and bib",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-wing-tail",
+          "name": "Paint the gray wing and tail",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "line-wing-feathers",
+          "name": "Pull the dark wing feather lines",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-belly-feathers",
+          "name": "Flick the belly feathers",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-wing-feathers",
+          "name": "Flick light into the wing and tail",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-lit-chest",
+          "name": "Flick the sunlit edge of the chest",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-eye-beak",
+          "name": "Paint the eye and beak",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "line-legs-feet",
+          "name": "Line the legs and feet",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dot-eye-shine",
+          "name": "Dot the light in the eye",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
