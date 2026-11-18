@@ -101,10 +101,8 @@ Don't Read the renders yourself to second-guess the checker, and never edit a fi
    `card-adapt` and step 6c are not part of this run: a note that a card is shown as the general card is fine.
 2. `steps/8-finish.md` from 8a: diagrams, notes (`steps/notes.md`; `merged_parts` is `{}`, and every helper you
    started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`.
-3. **Don't put a version 3 lesson on the lessons site** (no `site-add`, no `site-refresh`; both refuse it) until
-   the owner says the gate has passed. Give whoever started you `lesson-standalone.html`. `publish` has recorded
-   the run in `site/history/<photo stem>/<run folder>/`, as it does every run: say so in the report, so whoever
-   started you commits it.
+3. Put the sealed lesson on the lessons site as `steps/8-finish.md` 8c says (owner, 2026-11-18: a version 3
+   lesson goes on the site like any other).
 4. Report as 8d says, and add: the units and renders; what the chain cost and how many renders were asked again
    and why; what the checker marked each round; the mixes count against 10; how many sentences `check-text` took
    out; every Known problem.

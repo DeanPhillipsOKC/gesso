@@ -6,8 +6,12 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
-## Pipeline v3 (in progress, #219)
-Tools for a version 3 lesson, beside v2. No lesson is made with them yet, so the version stays where it is.
+## POC 2.0.0 (2026-11-18)
+Pipeline v3 (#219): `/paint-lesson <photo> --v3`. A painter's plan is written first, the finished painting is erased
+backward by the image model one piece of the plan at a time, and every step picture comes from that chain; the words
+are written a stage at a time from the pictures and a measured fact sheet. Without `--v3` a lesson is still made by
+pipeline v2, which is unchanged. The first v3 lesson is the floating island. The owner named it 2.0.0 and put it on
+the site on 2026-11-18, before v3's gate: v2 stays the default until the gate passes.
 - `plan-check`: a version 3 plan (`"plan_version": 3`: things with no boxes, what is behind each, a rough color a
   paint, block-ins marked) checked against itself, the technique and the library, with the units its chain will
   render, the mix count against the target of 10, and the paints to mix again.

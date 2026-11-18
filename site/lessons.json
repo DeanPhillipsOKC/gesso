@@ -278,5 +278,29 @@
       }
     ],
     "known": 7
+  },
+  {
+    "slug": "floating-island",
+    "title": "A floating rock island",
+    "subject": "A floating rock island with a pink blossom tree and a waterfall pouring into a violet sea, and a stone doorway standing in the water with the setting sun glowing through it, under a crescent moon and pink sunset clouds.",
+    "steps": 24,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.0",
+    "published": "2026-11-18",
+    "source": "floating-island_skill_20261118-044513",
+    "versions": [
+      {
+        "id": "20261118-044513",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 04:45",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 24,
+        "href": "lessons/floating-island/",
+        "current": true
+      }
+    ],
+    "known": 18
   }
 ]
