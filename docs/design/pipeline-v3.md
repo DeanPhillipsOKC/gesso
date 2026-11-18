@@ -51,9 +51,10 @@ section 12, step 4. What it showed, and what this draft changes because of it:
 - **Cost:** 14 to 18 renders, 25 to 33 cents and 3 to 4 minutes a lesson; the birch grove made 10 renders again.
 
 **The block-in was then tried four ways on the same three pictures (2026-11-18, #217,
-`docs/spikes/v3-block-in.md`). Verdict: adopt the fourth, on one clear win and two ties** (both of the cat's
-graders preferred it; the cow's split; the birch grove's, where two steps of a small rock changed, said "none"; no
-grader preferred #214's lesson). What this draft changes because of it:
+`docs/spikes/v3-block-in.md`). Verdict: adopt the fourth, on one clear win and two ties. That is Claude's call:
+the grading rule asks for most pictures** (both of the cat's graders preferred it; the cow's split; the birch
+grove's, where two steps of a small rock changed, said "none"; no grader chose #214's lesson). What this draft
+changes because of it:
 
 - **A block-in is made by its own render, asked for as one flat coat (section 6, changed).** The request that
   leaves it names its paint, says it is one color from edge to edge, and lists what the plan paints on the thing
@@ -63,7 +64,7 @@ grader preferred #214's lesson). What this draft changes because of it:
 - **A "back" render is kept over the whole thing, not only where it changed by a lot (section 6, changed).** The
   guard threw away a render that took the blanket's knit off, and kept a flat coat only in patches.
 - **The step after a block-in is now the big jump (section 8, not solved).** It brings the thing's brush texture
-  on a step that names one shading paint; it was every grader's worst step of the new lessons.
+  on a step that names one shading paint; it was among every cat and cow grader's worst steps of the new lessons.
 - **Cost:** none. The same renders, asked differently.
 
 ## 1. Why change

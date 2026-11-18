@@ -8,19 +8,20 @@ birch grove's rock. The code is `spike/experiments/v3_block_in.py`, the numbers 
 the scores `spike/experiments/bench/scores/s217-block-in.json`. It is experiment code: no lesson tool, the skill,
 or the site changed. It reads #214's chains and pays only for the renders it makes again.
 
-**Verdict: adopt way 4, and it is short of the 2026-11-17 rule's letter.** Way 4 is two changes to the chain, at
-no extra render: every "back" request says what is left and lists what the plan hasn't painted yet, and a thing's
-render is kept over the whole thing, not only where it changed by a lot. Blind graders compared the lesson made
-with it against #214's on three pictures. Both of the sleeping cat's graders preferred it (clearly). The highland
-cow's split (one for it, slightly; one "none"), which the rule counts as a tie. Both of the birch grove's said
-"none": only the rock's two steps differ there. That is preferred on one picture of three and a tie on two, where
-the rule asks for most pictures. No grader preferred #214's lesson on any picture. I call it adopt because the one
-picture where it changed two whole things is the clear win, the ties are where it changed little, and it costs
-nothing more. The owner may read one of three as not enough.
+**Verdict: adopt way 4. That is Claude's call, not the 2026-11-17 rule's: the rule isn't met.** Way 4 is two
+changes to the chain, at no extra render: every "back" request says what is left and lists what the plan hasn't
+painted yet, and a thing's render is kept over the whole thing, not only where it changed by a lot. Blind graders
+compared the lesson made with it against #214's on three pictures. Both of the sleeping cat's graders preferred it
+(clearly). The highland cow's split: one for it, slightly; one "none", leaning slightly to #214's. The rule counts
+a split as a tie. Both of the birch grove's said "none" (one leaning slightly to way 4): only the rock's two steps
+differ there. That is preferred on one picture of three and a tie on two, and the rule asks for most pictures. No
+grader chose #214's lesson on any picture. The reasons for adopting anyway: the one picture where it changed two
+whole things is the clear win, the ties are where it changed little, and it costs nothing more. They are reasons,
+not a result, and the owner may read one of three as not enough.
 
 **It moves the fault as well as fixing it.** The block-in is now flat and agrees with its words. The step after
-it is now the big jump: on every picture the graders' worst step of the new lesson is that one (the cat's 11 and
-15, the cow's 10).
+it is now the big jump: on the cat and the cow it is among every grader's worst steps of the new lesson (the cat's
+11 and 15, the cow's 10). On the birch grove the graders' worst steps are ones both lessons share.
 
 ## What was wrong, and it wasn't the request alone
 
@@ -139,22 +140,26 @@ the birch grove 21 of 22 step pictures are the same file. Scores are real / pain
 | Birch grove | g1 | 3 / 3 / 3 | 3 / 3 / 3 | none | a toss-up |
 | Birch grove | g2 | 3 / 3 / 3 | 3 / 3 / 3 | none | a toss-up |
 
-**What they credited.** The cat "builds the blanket in honest stages: a flat shape, then folds, then dark
-stitches, then light stitches", and its cat "starts as a truly flat gray silhouette, and the stripes, ears and
-face each come in on their own step". Against #214's cat: step 14 is "magic" (pink ears, closed eyes and toes on a
-one-gray step), step 10 goes from bare sill to a knitted blanket, and steps 12, 13, 18 and 19 barely change. The
-cow's second grader: way 4 "gives the painter an honest flat block-in before its one magic step".
+**What they credited.** The cat's second grader: "The blanket is built in honest stages (flat yellow shape, then
+folds and fuzz, then dark stitches, then light stitches), and the cat starts as a truly flat gray silhouette, with
+stripes, pink ears and face each arriving on their own step." Against #214's cat, in their reports: step 14 is
+magic (pink ears, closed eyes and toes on a one-gray step), step 10 goes from bare sill to a knitted blanket, and
+steps 12, 13, 18 and 19 barely change. The cow's second grader: way 4 "gives a real flat block-in before its one
+magic step". The cow's first grader leaned the other way: #214's lesson "spreads the cow build a little more
+evenly, but the edge is small".
 
-**What they marked way 4 down for.** The same on every picture:
+**What they marked way 4 down for:**
 
 - **The step after the block-in is now the big jump.** The cat's step 11 turns the whole flat blanket fuzzy with
   one ochre; the cow's step 10 goes from a flat cut-out to a shaded cow with a fringe, ears, hair texture and an
   orange glow that its one dark paint can't make. Both cow graders' worst step of the new lesson is 10, and both
-  cat graders named 15 and 11.
+  cat graders named 15 and 11. No birch grove grader named the rock's steps among the worst.
 - **Flat cut-out patches on the cat's step 15.** A unit of two steps is cut between them by nearest paint, so the
-  shade step leaves the places the white will go as hard-edged flat gray, with a small violet triangle at the nose:
-  "marks no brush makes". Over a flat block-in that cut shows; over #214's textured one it didn't.
-- **The flat coat itself can look pasted:** the rock's dome "looks like a smooth pasted blob rather than brushwork".
+  shade step leaves the places the white will go as hard-edged flat gray, with a small violet triangle at the nose
+  that, in the first grader's words, "no brush makes". Over a flat block-in that cut shows; over #214's textured
+  one it didn't.
+- **The flat coat itself can look pasted:** the rock's dome "looks like a smooth pasted blob rather than
+  brushwork", and its outline changes on the shade step.
 - Paintable and agree are still 3 at best, and the cow's agree is 2 on both sides.
 
 ## Cost
