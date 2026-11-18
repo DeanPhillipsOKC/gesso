@@ -1,7 +1,7 @@
 # Pipeline v3: plan first, erase the finish back one stage at a time, write from what was measured
 
-**A draft (2026-11-17, #210). Not approved, and not the pipeline.** v2 (`pipeline-v2.md`) is the pipeline until the
-gate in section 13 passes and the owner agrees. This file is written from the spikes that ended in adopt
+**The gate passed (2026-11-18, owner's call; `docs/decisions.md`): v3 replaces v2.** Until `/paint-lesson` runs v3
+by default and v2 is removed, `--v3` still chooses it. Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
 (`pipeline-v3-plan.md`, Order, step 5). Each section says what is **proven** (a spike ran it and its write-up has the
 numbers), what is a **guess** (this draft's own joining of the pieces, run by nobody yet), and what is **open**.
 
@@ -504,6 +504,10 @@ From `pipeline-v3-plan.md`, with the 2026-11-17 change to who grades:
 - **the owner grades one finished lesson** and agrees.
 
 Then the site's lessons are rerun from their photos, and v2 is removed.
+
+**Passed 2026-11-18 (owner's call).** Five hands-off v3 lessons (the cow, the cat and the birch grove from the
+bench, then the chickadee and the lavender fields; #230 to #234). The owner: "Worlds better than v2", and yes to the
+gate with known problems missed: 4 to 7 a lesson, not under 2, most of them paints fitted far from their names.
 
 ## 14. Known risks
 
