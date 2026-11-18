@@ -13,6 +13,9 @@ Claude Code in between, the same calls would cost about $3.50 (below).
 
 No verdict: this only measures.
 
+**The owner's aim (2026-11-18, `docs/decisions.md`):** under $1 of Claude a lesson would be ideal. It's not a hard
+limit, and quality comes first.
+
 ## How it ran
 
 - **A helper is one call to Claude, or a short conversation of them,** through Claude Code's one-shot mode
