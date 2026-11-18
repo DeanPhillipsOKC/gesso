@@ -28,6 +28,9 @@ you start that step**, even if you read it earlier. Don't read ahead.
   `technique_why`. Today only `acrylic-paint-along-beginner.yaml` has version 2 keys.
 - `--palette <name>` (optional): the painter's own tubes from `palettes/<name>.yaml`. Put `"palette": "<name>"` in
   plan.json.
+- `--v3` (optional): make the lesson with pipeline v3 (a painter's plan first, the finish erased backward to fit
+  it). It is built but not the pipeline yet. Do steps 0 and 1 here, then follow `v3/run.md` instead of steps 2 to 7.
+  Only when whoever started you asked for it.
 
 Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`.
 

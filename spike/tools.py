@@ -452,7 +452,7 @@ def busy_problems(lesson: Path, notes: dict) -> list[str]:
             for role, what in want if not isinstance(got.get(role), dict)]
 
 
-def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict) -> list[str]:
+def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict, v3: bool = False) -> list[str]:
     """What stops a lesson being sealed hands-off: the rules the skill asks for, checked instead of remembered
     (two hands-off runs, 2026-11-12, each let a small rule slip late in a long run).
     There's no image review, no regions, and no word limit on a step (design section 13)."""
@@ -464,7 +464,13 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
     for key in ("finish_issues", "text_issues"):
         if key not in review:
             out.append(f"review.json has no {key} (an empty list if there were none)")
-    if not (lesson / "trials" / "review" / "review.json").exists():
+    if v3:  # a version 3 run has two checkers in the text review's place (design sections 6 and 10)
+        if not (lesson / "chain" / "looks" / "answers.json").exists():
+            out.append("the chain's checker hasn't read the chain as it is now: no chain/looks/answers.json "
+                       "(v3/chain-check.md)")
+        if not (lesson / "words" / "dropped.json").exists():
+            out.append("the words haven't had their last check: run check-text --final")
+    elif not (lesson / "trials" / "review" / "review.json").exists():
         out.append(f"the text review ({review_step}) hasn't run: no trials/review/review.json")
     for key in NOTES_REQUIRED:
         if not notes.get(key):
@@ -570,6 +576,8 @@ def publish(a: argparse.Namespace) -> dict:
         # beside the keys every reader of lesson.json uses: the plan's stages, for the page's headings, and the aids
         "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
+    if raw.get("made_from") == 3:  # made by pipeline v3 and read by the page in version 2's shape
+        lesson_data["pipeline"] = 3
     if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
         lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
     if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
@@ -621,7 +629,8 @@ def publish(a: argparse.Namespace) -> dict:
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
         # what check already reports (in its own words) is left out of the seal's list so it isn't said twice
         problems = seal_problems(lesson, plan, text, review, notes,
-                                 {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
+                                 {k: v for k, v in result.items() if k not in CHECKED},
+                                 v3=raw.get("made_from") == 3) + result["check"]
         if problems:
             raise Refused("not sealed; fix these and run publish --final again: " + " | ".join(problems))
         provenance.seal(lesson, lesson_data)
@@ -1336,6 +1345,9 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
     path = lesson / "text.json"
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
     text = draft_text.merge(old, drafted)
+    if plan.get("made_from") == 3:  # the receipt says how a version 3 step picture was made
+        for t in text["steps"]:
+            t["reason"] = V3_REASON
     path.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
     todo = [f"{t['stage_id']}: " + " and ".join(k for k in draft_text.KEEP if not (t.get(k) or "").strip())
             for t in text["steps"] if any(not (t.get(k) or "").strip() for k in draft_text.KEEP)]
@@ -1356,11 +1368,16 @@ def card_adapt_tool(a: argparse.Namespace) -> dict:
     import publish2
 
     lesson = Path(a.lesson)
+    import plan3
+
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
-    if not plan2.is_v2(lesson):
-        raise Refused("card-adapt is for a version 2 lesson (plan.json with \"plan_version\": 2)")
-    plan = plan2.load(lesson)
+    if plan3.is_v3(lesson):
+        plan = _v3_kept(lesson, pictures=False)["plan"]
+    elif not plan2.is_v2(lesson):
+        raise Refused("card-adapt is for a version 2 or 3 lesson (plan.json with \"plan_version\": 2 or 3)")
+    else:
+        plan = plan2.load(lesson)
     steps = bs.flat_steps(plan)
     path = lesson / "text.json"
     text = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"steps": []}
@@ -1385,11 +1402,13 @@ def check_tool(a: argparse.Namespace) -> dict:
     import plan2
 
     lesson = Path(a.lesson)
+    import plan3
+
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
-    if not plan2.is_v2(lesson):
-        raise Refused("check is for a version 2 lesson (plan.json with \"plan_version\": 2); version 1 lessons "
-                      "can't be checked any more (#82); make the lesson again with /paint-lesson")
+    if not plan2.is_v2(lesson) and not plan3.is_v3(lesson):
+        raise Refused("check is for a version 2 or 3 lesson (plan.json with \"plan_version\": 2 or 3); version 1 "
+                      "lessons can't be checked any more (#82); make the lesson again with /paint-lesson")
     r = checks.run(lesson)
     # `problems` is `failures` under the name every other v2 tool prints (the skill: "every tool prints problems")
     return {"problems": r["failures"], "failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],
@@ -1785,7 +1804,67 @@ def erase_tool(a: argparse.Namespace, client=None) -> dict:
                       "picture."}
 
 
+V3_REASON = "the finish erased back to this step by the image model, a render a stage of a thing"
+WRITER_BRIEF = ROOT / ".claude" / "skills" / "paint-lesson" / "v3" / "writer-brief.md"
+
+
+def packets_tool(a: argparse.Namespace) -> dict:
+    """The fact sheet and one writer's packet a stage, under <lesson>/words/. Design section 10."""
+    import facts
+    import plan3
+
+    lesson = Path(a.lesson)
+    if not (lesson / "text.json").exists():
+        raise Refused(f"no text.json in {lesson}: run draft-text first (the packets hold each step's drafted lines)")
+    extra = None
+    if plan3.is_v3(lesson):  # what the plan says each step is for, beside what its picture shows
+        extra = {s["id"]: {"meant": s.get("after", "")} for s in plan3.steps(plan3.load(lesson))}
+    work = facts.packets(lesson, WRITER_BRIEF, extra)
+    stages = sorted(str(f) for f in work.glob("stage-*") if f.is_dir())
+    return {"sheet": str(work / "sheet.json"), "stages": stages,
+            "advice": f"Start one writer a stage, all {len(stages)} at once, each in a fresh context with only its "
+                      "folder: it reads brief.md there and writes out.json. Then run check-text.", "cost_usd": 0.0}
+
+
+def check_text_tool(a: argparse.Namespace) -> dict:
+    """The writers' words into text.json, every number and side checked against the fact sheet. Design section 10."""
+    import facts
+
+    lesson = Path(a.lesson)
+    if not (lesson / facts.WORK).is_dir() or not (lesson / "text.json").exists():
+        raise Refused(f"no writers' packets in {lesson}: run draft-text, then packets")
+    r = facts.merge(lesson, lambda: draft_text_tool(a), final=a.final)
+    wrong = [f"{name}: its writer wrote no out.json" for name in r["missing"]] + r["bad"]
+    wrong += [f"{sid}: no summary or no tip from its writer" for sid in r["unwritten"]]
+    if not a.final:
+        wrong += r["failed"]
+    return {"problems": wrong, "ok": not wrong, "claims": r["claims"], "failures": r["failures"],
+            "dropped": r["dropped"], "left_failing": r["after"],
+            "stages_with_feedback": [f"stage-{k:02d}" for k in r["stages_with_feedback"]],
+            "advice": ("Send each stage in stages_with_feedback back to its writer once: it reads feedback.md in its "
+                       "folder and writes out.json again. Then run check-text --final, which takes out any sentence "
+                       "that still fails." if not a.final else
+                       "Sentences that still failed were taken out (words/dropped.json). A stage with a missing or "
+                       "unusable out.json needs its writer again. Then run check."), "cost_usd": 0.0}
+
+
 def add_v3_tools(sub) -> None:
+    p = sub.add_parser("packets", help="Free. v3: the fact sheet and one writer's packet a stage, for the stage writers.",
+                       description="Measures the fact sheet from the step pictures (words/sheet.json) and writes "
+                                   "words/stage-NN/ for every stage: brief.md, steps.json (each step's paints, brush, "
+                                   "stroke, drafted lines, and what the plan says it is for), facts.md (the sheet's "
+                                   "rows as sentences), a before-and-after picture a step, the photo and the finish. "
+                                   "Run after draft-text.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=packets_tool)
+    p = sub.add_parser("check-text", help="Free. v3: the writers' words into text.json, each number and side checked against the sheet.",
+                       description="Drafts the lines again, lays every stage's words/stage-NN/out.json on them, and "
+                                   "checks every number, side and position the writers wrote against the fact sheet. "
+                                   "A failure is written to that stage's feedback.md for its writer, once. --final "
+                                   "takes out any sentence that still fails (words/dropped.json).")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--final", action="store_true", help="take out the sentences that still fail, after the one fix round")
+    p.set_defaults(func=check_text_tool)
     p = sub.add_parser("erase", help="PAID, one low render a unit. v3: erase the finish backward by the plan's units (the chain).",
                        description="Makes <lesson>/chain/: P<nn>.png (the picture with every unit after nn erased), "
                                    "D<nn>.png (what unit nn adds), C<nn>.png (its core), chain.json, chain.jpg and "

@@ -218,13 +218,31 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     import tools
 
     lesson = Path(lesson)
-    plan = plan2.load(lesson)
-    technique = _technique(lesson, plan)
-    failures = list(plan2.problems(plan, technique))
+    import plan3
+
+    v3 = plan3.is_v3(lesson)
     notes = []
-    if failures:
-        return {"failures": failures + ["fix plan.json first; the other checks need a plan that loads"], "notes": notes}
-    failures += counts(plan, technique)
+    if v3:  # the plan's own checks, then the lesson in version 2's shape, as its build-steps kept it
+        import lesson3
+
+        raw = plan3.load(lesson)
+        technique = _technique(lesson, raw)
+        failures = list(plan3.problems(raw, technique))
+        if failures:
+            return {"failures": failures + ["fix plan.json first (plan-check); the other checks need a plan that "
+                                            "loads"], "notes": notes}
+        try:
+            plan = lesson3.read(lesson, pictures=False)["plan"]
+        except lesson3.Stale as e:
+            return {"failures": [str(e)], "notes": notes}
+    else:
+        plan = plan2.load(lesson)
+        technique = _technique(lesson, plan)
+        failures = list(plan2.problems(plan, technique))
+        if failures:
+            return {"failures": failures + ["fix plan.json first; the other checks need a plan that loads"],
+                    "notes": notes}
+        failures += counts(plan, technique)
     known = cards.strokes()
     failures += strokes_and_brushes(plan, known)
     failures += paint_names(plan)
@@ -233,13 +251,37 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     import elements
 
     failures += elements.problems()
-    failures += elements.plan_problems(plan, lesson=lesson)
+    if not v3:  # a version 3 step is held to its element's strokes by plan-check; its `show` isn't the writer's
+        failures += elements.plan_problems(plan, lesson=lesson)
 
     built = built if built is not None else build(lesson, plan)
     steps = bs.flat_steps(plan)
     names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
     if built is None:
-        failures.append(f"no outlines that fit the plan: run outline --lesson {lesson}, then build-steps")
+        failures.append(f"no outlines that fit the plan: run outline --lesson {lesson}, then build-steps" if not v3
+                        else f"no step pictures that fit the plan and the chain: run build-steps --lesson {lesson}")
+    elif v3:
+        import steps3
+
+        owner, pictures, rows, masks = built
+        # what build-steps measured (design section 8): the two checks that must hold, and what is only reported
+        bad, said = steps3.problems(json.loads((lesson / "v3" / "build.json").read_text(encoding="utf-8")))
+        failures += bad
+        notes += said
+        # reported for a version 3 lesson, not failed: the step after a block-in is the known big jump (#217), and
+        # its fix is a new plan and a new chain
+        notes += [f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one step"
+                  for j in texture_jumps(lesson, plan)]
+        import canvas as cv
+        try:
+            canvas_box, canvas = _canvas(lesson)
+        except cv.NoCanvas as err:
+            failures.append(str(err))
+            built = None
+        else:
+            drafted = {d["stage_id"]: d["lines"]
+                       for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson,
+                                                 owner=owner)}
     else:
         owner, pictures, rows, masks = built
         stats_path = lesson / "parts" / "stats.json"

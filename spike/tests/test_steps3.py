@@ -6,6 +6,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -18,6 +19,7 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 
+import checks  # noqa: E402
 import erase3  # noqa: E402
 import lesson3  # noqa: E402
 import lessons  # noqa: E402
@@ -215,6 +217,14 @@ class V3ToolsTests(unittest.TestCase):
         cls.patch = mock.patch.object(tools, "_v3_plan", lambda lesson: (json.loads((lesson / "plan.json").read_text()), {}))
         cls.patch.start()
         cls.addClassCleanup(cls.patch.stop)
+        real = checks._technique
+
+        def no_ranges(lesson, plan):  # the made-up plan has 6 steps; the real technique wants 12 to 24
+            return {k: v for k, v in real(lesson, plan).items() if k not in ("v2_step_range", "v2_stage_range")}
+
+        cls.patch2 = mock.patch.object(checks, "_technique", no_ranges)
+        cls.patch2.start()
+        cls.addClassCleanup(cls.patch2.stop)
 
     def tool(self, name: str, *more: str) -> tuple[int, dict]:
         buf, err = io.StringIO(), io.StringIO()
@@ -250,6 +260,7 @@ class V3ToolsTests(unittest.TestCase):
         self.assertTrue({"where", "paints", "how"} <= kinds, kinds)
         cat = next(t for t in text["steps"] if t["stage_id"] == "block-cat")
         self.assertTrue(any(x["kind"] == "chalk" for x in cat["lines"]))  # a blocked-in thing in front: its outline
+        self.words_check_and_seal()
         # the plan changes: what was kept is stale, and every later tool says so
         p = json.loads((self.lesson / "plan.json").read_text())
         step(p, "light-cat")["name"] = "Light the cat's back"
@@ -257,6 +268,70 @@ class V3ToolsTests(unittest.TestCase):
         code, r = self.tool("step-aids")
         self.assertEqual(code, 2)
         self.assertIn("changed since", r["refused"])
+
+    def words_check_and_seal(self):
+        """packets, the writers' words, check-text with one fix round, check, and what the seal asks of a v3 run."""
+        self.assertIn("run draft-text, then packets", self.tool("check-text")[1]["refused"])
+        code, r = self.tool("packets")
+        self.assertEqual((code, len(r["stages"])), (0, 3))
+        words = self.lesson / "words"
+        stage = json.loads((words / "stage-03" / "steps.json").read_text())
+        self.assertEqual([s["id"] for s in stage["steps"]], ["shadows", "light-cat", "cat-eyes"])
+        self.assertEqual(stage["steps"][0]["meant"], "Glaze the shadows is done.")  # the plan's `after`
+        for name in ("brief.md", "facts.md", "pair-04.jpg", "finish.jpg"):
+            self.assertTrue((words / "stage-03" / name).exists(), name)
+        sheet = json.loads((words / "sheet.json").read_text())
+        # a unit that comes back to a thing is measured by what it changed (#214): the eyes, not a speck
+        self.assertAlmostEqual(sheet["parts"]["the-cat-s-eyes"]["wide"], 70 / 480 * 12, delta=0.3)
+
+        def write(k: int, steps: dict) -> None:
+            (words / f"stage-{k:02d}" / "out.json").write_text(json.dumps({"steps": steps}), encoding="utf-8")
+
+        plain = lambda what: {"summary": f"Paint {what}.", "tip": "Work from the top down."}  # noqa: E731
+        write(1, {"blend-sky": plain("the sky")})
+        write(2, {"block-rug": plain("the rug"), "block-cat": {**plain("the cat"), "lines": {"1": "x", "99": "y"}}})
+        (words / "stage-03" / "out.json").write_text("{not json", encoding="utf-8")
+        code, r = self.tool("check-text")
+        self.assertEqual(code, 0)
+        self.assertFalse(r["ok"])
+        self.assertTrue(any("stage-03: out.json isn't valid JSON" in x for x in r["problems"]))
+        self.assertTrue(any("block-cat: no line 99" in x for x in r["problems"]))
+        self.assertEqual(r["stages_with_feedback"], ["stage-02", "stage-03"])
+        self.assertIn("no line 99", (words / "stage-02" / "feedback.md").read_text())
+        # the one fix round: stage 2 drops its bad line; stage 3 writes a size the sheet doesn't have
+        write(2, {"block-rug": plain("the rug"), "block-cat": plain("the cat")})
+        write(3, {"shadows": plain("the shadows"), "light-cat": plain("the light"),
+                  "cat-eyes": {"summary": "Dot the eyes.", "tip": "The eyes are about 9 in wide. Keep them dark."}})
+        code, r = self.tool("check-text")
+        self.assertGreaterEqual(r["failures"], 1)  # the size, and its quarrel with the measured Where line
+        self.assertEqual(r["stages_with_feedback"], ["stage-03"])
+        self.assertIn("9 in", (words / "stage-03" / "feedback.md").read_text())
+        code, r = self.tool("check-text", "--final")
+        self.assertEqual((r["ok"], r["dropped"], r["left_failing"]), (True, 1, 0), r)
+        text = {t["stage_id"]: t for t in json.loads((self.lesson / "text.json").read_text())["steps"]}
+        self.assertEqual(text["cat-eyes"]["tip"], "Keep them dark.")
+        self.assertEqual(text["cat-eyes"]["reason"], tools.V3_REASON)
+        self.assertEqual(json.loads((words / "dropped.json").read_text())[0]["id"], "cat-eyes")
+        self.assertEqual(self.tool("card-adapt")[0], 0)
+        code, r = self.tool("check")
+        self.assertEqual(code, 0)
+        self.assertEqual([x for x in r["problems"] if "card" not in x], [], r["problems"])
+        # the seal: a version 3 run needs the chain's checker and the words' last check, not the text review
+        review = {"finish_issues": [], "text_issues": []}
+        (self.lesson / "review.json").write_text(json.dumps(review), encoding="utf-8")
+        plan_model = tools.load_plan(self.lesson)[1]
+        asks = lambda v3: [x for x in tools.seal_problems(self.lesson, plan_model, text, review, {}, {}, v3=v3)  # noqa: E731
+                           if "checker" in x or "check-text" in x or "text review" in x]
+        self.assertEqual(len(asks(True)), 1)
+        self.assertIn("chain/looks/answers.json", asks(True)[0])
+        (self.lesson / "chain" / "looks" / "answers.json").write_text("[]", encoding="utf-8")
+        self.assertEqual(asks(True), [])
+        self.assertIn("text review", asks(False)[0])
+        os.environ.setdefault("GESSO_HISTORY", str(self.lesson / "history"))
+        code, r = self.tool("publish")
+        self.assertEqual(code, 0, r)
+        data = json.loads((self.lesson / "lesson.json").read_text())
+        self.assertEqual((data["plan_version"], data["pipeline"], len(data["stages"])), (2, 3, 6))
 
 
 if __name__ == "__main__":

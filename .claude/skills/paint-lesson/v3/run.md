@@ -1,0 +1,101 @@
+# The version 3 run (`/paint-lesson <photo> --v3`)
+
+Pipeline v3 is built but **not the pipeline yet**: it becomes it when its gate passes and the owner agrees
+(`docs/design/pipeline-v3.md`, section 13). Follow this file only when whoever started you asked for a version 3
+lesson (`--v3`). Otherwise the run is SKILL.md's.
+
+A version 3 lesson is planned first, by a painter's eye, and the pictures are made to fit the plan: the finished
+painting is erased backward by the image model, one piece of the plan at a time, and every step picture comes from
+that chain. No outlines are drawn. You run the tools and start the helpers; you write none of the plan, the
+requests or the step words yourself.
+
+SKILL.md's rules for the whole run stand, except:
+
+- **Rule 1 (renders):** the chain is rendered too, one low render a unit of the plan, about 2 cents each. Pass
+  `--max-cost 0.80` to `erase`, and `--max-cost 0.40` to every other render as before.
+- **Rule 2:** nothing is measured with `grid`, and there is no `part-colors`.
+- **Rule 9 (the order):** after any change to `plan.json`: `plan-check`, `erase`, `build-steps`, `step-aids`, `mix`,
+  `draft-text`, `packets`, `check-text`, `check`. A request that didn't change costs nothing the second time.
+
+**Lessons are made on Opus** (`docs/decisions.md`, 2026-11-17). If you aren't an Opus model, start this run as one
+subagent on Opus and pass on its report. Every helper below (the plan's writer, the chain's checker, the stage
+writers) is a subagent on Opus in a fresh context, given only what its step names.
+
+## Steps
+
+| Step | Makes |
+|---|---|
+| 0, 1 | as `steps/0-setup.md` and `steps/1-reference-finish.md`: the lesson folder, the canvas, the finish |
+| A. The painter's plan | `plan.json` (`"plan_version": 3`) |
+| B. The chain | `chain/` |
+| C. Step pictures, teaching pictures, recipes, drafted lines | `NN_<id>.png`, `aids/`, `mixes.json`, `text.json` |
+| D. The words | `words/`, `text.json` |
+| E. Check, diagrams, notes, seal, report | the sealed lesson |
+
+### A. The painter's plan
+
+1. Start one writer with: "Follow `.claude/skills/paint-lesson/v3/plan-brief.md`. Lesson folder: `<lesson>`. Photo:
+   `<the photo's path, as step 0 left it>`. Technique: `techniques/acrylic-paint-along-beginner.yaml`." Add the
+   palette's name when the painter uses their own tubes. Don't pass it your read of the picture.
+2. When it replies, run `plan-check --lesson <lesson>` yourself. `problems` must be empty. If it isn't, send the
+   list back to the same writer once. If it still isn't, fix what is left yourself, as each problem says.
+3. Read `units` and `renders` in what `plan-check` printed: that is the chain's size.
+
+### B. The chain
+
+1. **Say the size before you spend it.** One line to whoever started you: how many renders, about how many cents
+   (2 a render) and minutes (a quarter of a minute a render). Go on without waiting, unless `renders` is over 20:
+   then stop and ask.
+2. `erase --lesson <lesson> --max-cost 0.80`. It renders every unit, last first, and asks again by itself for a
+   thing a render left standing. If it stops (the cost cap, the network), run it again the same way, **without
+   `--redo`**: what is already rendered costs nothing.
+3. Start one checker with: "Follow `.claude/skills/paint-lesson/v3/chain-check.md`. Folder:
+   `<lesson>/chain/looks`." It writes `answers.json` there.
+4. For every unit it marked, in **one** run: `erase --lesson <lesson> --max-cost 0.80 --redo <unit>:stray,<unit>:left`
+   (the unit's number is the digits of its `look`; `left` when it answered left, else `stray`). Every unit before
+   a redone one is rendered again. Then the checker again, on the new looks.
+5. At most two rounds of step 4. `erase` refuses a unit that has had two more tries. What is still marked after
+   that, and everything `erase` lists under `left`, stays: write each into `review.json` as step D4 says.
+
+Don't Read the renders yourself to second-guess the checker, and never edit a file in `chain/`.
+
+### C. Pictures, recipes, drafted lines
+
+1. `build-steps --lesson <lesson>`. `problems` must be empty (it only isn't when the chain's files don't belong
+   together: run `erase` again). `notes` are faults that would need a new plan and a new chain: a paint fitted far
+   from its name, a color the finish doesn't have, a step that changes almost nothing. For a paint far from its
+   name, change the paint's `name` and `looks` in `plan.json` to what its fitted color is, when the new name still
+   suits every step that uses it (free: the units don't change, so `erase` then pays nothing). Leave the rest and
+   record each (D4).
+2. `step-aids`, then `mix`, then `draft-text`, each with `--lesson <lesson>`.
+
+### D. The words
+
+1. `packets --lesson <lesson>`. It writes one folder a stage under `words/`.
+2. Start **one writer a stage, all at once**, each with: "Follow `brief.md` in `<lesson>/words/stage-NN`. Read only
+   that folder. Write `out.json` there."
+3. `check-text --lesson <lesson>`. For each stage in `stages_with_feedback`, send its writer back once: "Read
+   `feedback.md` in your folder and write `out.json` again." Then `check-text --lesson <lesson> --final`, which
+   takes out any sentence that still fails. If `problems` still names a stage with a missing or unusable
+   `out.json`, start a new writer for that stage and run `check-text --final` again.
+4. Write `<lesson>/review.json`:
+   ```json
+   {"finish_issues": ["from step 1's finish check, or an empty list"],
+    "text_issues": [{"step_id": "<the step it shows on>", "kind": "chain | paint | step | words",
+                     "problem": "what a painter will see", "action": "left: <why it stays>"}]}
+   ```
+   One entry for each: a unit the checker still marks or `erase` lists under `left` (on that unit's first step);
+   a `notes` line of `build-steps` or `check` you left; a sentence in `words/dropped.json` whose loss leaves a
+   step's tip empty. Every `left` shows on the page under Known problems.
+
+### E. Check, diagrams, notes, seal, report
+
+1. `check --lesson <lesson>`. Fix each problem as it says and run the tools after that point again (rule 9).
+   `card-adapt` and step 6c are not part of this run: a note that a card is shown as the general card is fine.
+2. `steps/8-finish.md` from 8a: diagrams, notes (`steps/notes.md`; `merged_parts` is `{}`, and every helper you
+   started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`.
+3. **Don't put a version 3 lesson on the lessons site** (no `site-add`, no `site-refresh`) until the owner says
+   the gate has passed. Give whoever started you `lesson-standalone.html`.
+4. Report as 8d says, and add: the units and renders; what the chain cost and how many renders were asked again
+   and why; what the checker marked each round; the mixes count against 10; how many sentences `check-text` took
+   out; every Known problem.
