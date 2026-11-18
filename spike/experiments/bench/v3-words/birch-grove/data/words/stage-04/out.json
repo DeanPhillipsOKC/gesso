@@ -1,0 +1,23 @@
+{"steps": {
+ "dab-dark-leaves": {
+  "summary": "Dab the dark leaves over the ground, the bushes by the path and a few treetops.",
+  "tip": "Most of what this step adds is in the bottom half of the canvas: the leaf floor and the bushes beside the path, with a few dabs hanging in the treetops near the top edge, as the after picture has them. Tap the Moss green bush first, where the after picture has it, then the Burnt orange, then scatter Leaf brown over the ground and the path. Leave small gaps where the forest floor peeks through between the dabs, as the after picture shows."
+ },
+ "dab-mid-leaves": {
+  "summary": "Dab golden leaves over the treetops, the bushes and the ground.",
+  "tip": "Most of what this step adds is in the left half of the canvas, the side nearest the sun. Build the big bush nearest the sun into a full golden mound and hang golden leaves down from the top edge, as the after picture shows. Elsewhere on the ground and bushes, tap only scattered leaves so the darker leaves from step 9 still show between them.",
+  "lines": {
+   "1": "Let the dark leaves from step 9 dry to the touch first. A hair dryer on low speeds it up."
+  }
+ },
+ "dab-sunlit-canopy": {
+  "summary": "Tap pale gold on the leaves nearest the sun in the treetops and the bush.",
+  "tip": "The light comes from the upper left, so keep this paint near the sun: almost all of it is in the left half and the top half of the canvas. Tap it on the tops and sunny sides of the golden leaf clusters and the top of the big golden bush, and leave the ground without any, as the after picture shows.",
+  "paint_notes": [
+   "Pale gold can look thin over the darker leaves; where a spot should read bright, tap it twice, letting the first coat dry."
+  ],
+  "lines": {
+   "1": "Let the golden leaves from step 10 dry to the touch first. A hair dryer on low speeds it up."
+  }
+ }
+}}

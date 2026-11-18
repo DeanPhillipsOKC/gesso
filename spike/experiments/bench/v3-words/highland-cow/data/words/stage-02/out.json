@@ -1,0 +1,15 @@
+{
+  "steps": {
+    "dry-brush-clouds": {
+      "summary": "Dry-brush thin peach and dusky rose cloud streaks across the sunset sky.",
+      "tip": "Run every stroke sideways, the long way across the sunset sky, so the streaks lie in thin flat bands like the after picture's. Lay the Dusky rose first in a few short streaks, then drag Warm peach along and between them, leaving the blue of the sunset sky showing through their broken edges.",
+      "lines": {
+        "10": "Watch out: Hard, solid clouds. Too much paint on the brush. Fix: wipe the brush nearly dry and skim long sideways strokes with the tip, so the sky shows through the edges."
+      }
+    },
+    "light-cloud-tops": {
+      "summary": "Skim pale gold along the tops of the peach and rose cloud streaks.",
+      "tip": "The setting sun is at the right, so most of the gold goes on the right side of the sunset clouds and on the top edge of each streak, the side facing the sun. Keep the strokes sideways along each streak, and leave step 2's peach and rose cloud streaks showing underneath; the change is small, as the after picture shows."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{"steps": {
+ "block-in-cow": {
+  "summary": "Block in the whole cow as one flat Rust brown shape standing in the meadow.",
+  "tip": "The cow is about 7 3/4 in wide and 9 in tall, with most of it on the left side of the cow's area; the head is the rounded bump at the upper right of the shape, as the after picture shows. Fill the big body first, then add the head bump, and drag the bottom edge down in ragged points so it reads as long hair in the grass.",
+  "lines": {
+   "9": "Start with the big oval of the body, then add the rounded head at its upper right."
+  }
+ },
+ "shade-cow": {
+  "summary": "Pull Dark umber shadows down the cow's left side, under its fringe and low on its body.",
+  "tip": "The light comes from the right, so most of the Dark umber goes on the left side of the cow, with a dark band under the fringe and low on the body; leave the right side of the cow plain Rust brown. Pull every stroke downward with the hair, and let some thin, dragged strokes streak the rest of the coat too, as the after picture shows."
+ },
+ "block-in-horns": {
+  "summary": "Paint two pale Horn tan horns curving up and out from the top of the cow's head.",
+  "tip": "The horn on the left of the head is the bigger one, about 2 3/4 in tall, sweeping up to a point; the horn on the right of the head is smaller, about 2 in tall, curving out and then up. Start each one at the head and pull outward to the tip, keeping both smooth and flat.",
+  "paint_notes": [
+   "Horn tan is light and goes over the dark blue mountains and the Rust brown head: paint it twice, letting the first coat dry, so the horns look solid."
+  ]
+ },
+ "shade-horns": {
+  "summary": "Darken the horns' undersides and tips with Dark umber, leaving their tops pale.",
+  "tip": "Put the Dark umber along the underside of each horn and darkest at the tip, so most of it is in the bottom half of the horns' dark tips. Leave a strip of the pale Horn tan showing along the top of both horns, as the after picture shows; it catches the light later."
+ }
+}}

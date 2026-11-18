@@ -1,0 +1,31 @@
+{
+  "canvas": {
+    "w_in": 16.0,
+    "h_in": 12.0,
+    "orientation": "landscape"
+  },
+  "crop_box": [
+    86,
+    0,
+    1451,
+    1024
+  ],
+  "mode": "crop",
+  "lost_share": 0.111,
+  "frame_size": [
+    1536,
+    1024
+  ],
+  "canvas_box": [
+    0.056,
+    0.0,
+    0.9447,
+    1.0
+  ],
+  "needs_render": false,
+  "chosen": "default",
+  "input": "photos/birch-grove.jpg",
+  "frame": "output/birch-grove_skill_20261118-083834/00_canvas_frame.png",
+  "why": "the path running back into the misty woods between the big front birch trunks",
+  "grid_note": "Each 10% is 1.6 in across and 1.2 in down."
+}

@@ -1,0 +1,25 @@
+{
+  "steps": {
+    "lay-hills-meadow": {
+      "summary": "Lay green bands on the hills and slanted green streaks in the meadow.",
+      "tip": "The low sun is behind the far mountains, so use Yellow green along the tops of the hill bands and Hill green lower down. Pull the hill bands so they slope down toward the lake, and leave the sky colors showing between the bands and between the meadow streaks, as the after picture has it; the next step fills them.",
+      "paint_notes": [
+        "Yellow green is see-through over the blue and orange already there: where you want it solid, paint it twice, letting the first coat dry."
+      ],
+      "lines": {
+        "7": "It should leave long sloping green bands on the hills and slanted grass-like streaks in the meadow, with the sky colors still showing between them and slight streaks that follow the stroke."
+      }
+    },
+    "darken-bands": {
+      "summary": "Darken a band under the mountains, the hill bands, and the meadow front.",
+      "tip": "Lay a dark strip right under the far blue mountains first, then the darker bands across the hills, then the meadow front, which is darkest near the bottom edge. Run the hill strokes down toward the lake and the meadow strokes on a slant, and fill the sky colors still showing between step 7's strokes, as the after picture has it, so no blue or orange is left below the mountains.",
+      "lines": {
+        "9": "Leave the lighter greens from step 7 showing between these marks, as in the Result picture."
+      }
+    },
+    "dab-bushes": {
+      "summary": "Dab small dark round bushes in loose rows along the hill bands.",
+      "tip": "Dab the bushes in loose rows that follow the hill bands, sloping down toward the lake the way the bands do. Keep each bush small and leave the lighter green showing between them; none go down into the meadow."
+    }
+  }
+}

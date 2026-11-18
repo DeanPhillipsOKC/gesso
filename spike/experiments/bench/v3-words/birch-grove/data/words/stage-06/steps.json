@@ -1,0 +1,255 @@
+{
+ "stage": 6,
+ "light": "The low sun at the upper left, shining through the leaves, so the left sides of the trunks and leaves are lit and the right side of the wood stays cool and shaded",
+ "lesson": [
+  "step 1: Blend the misty sky over the whole canvas (The misty sky)",
+  "step 2: Circle in the glowing sun (The sun)",
+  "step 3: Pull the misty far trunks (The misty far trunks)",
+  "step 4: Stamp the fir trees (The fir trees)",
+  "step 5: Tap light on the firs' left sides (The fir trees)",
+  "step 6: Pull the middle trunks (The middle trunks)",
+  "step 7: Lay in the forest floor (The forest floor)",
+  "step 8: Pull the path back into the mist (The path)",
+  "step 9: Dab the dark leaves everywhere (The autumn leaves)",
+  "step 10: Dab the golden leaves everywhere (The autumn leaves)",
+  "step 11: Tap the sunlit leaves near the sun (The autumn leaves)",
+  "step 12: Block in the mossy rock (The mossy rock)",
+  "step 13: Shade the rock's underside (The rock's shadow and light)",
+  "step 14: Light the top of the rock (The rock's shadow and light)",
+  "step 15: Pull the pale birch trunks (The front birch trunks)",
+  "step 16: Shade the right side of the birches (The birches' shading and bark patches)",
+  "step 17: Lay the dark bark patches (The birches' shading and bark patches)",
+  "step 18: Line the thin bark marks (The thin bark lines)",
+  "step 19: Catch the sunlight on the birches (The sunlight on the birches)",
+  "step 20: Tap the sunlit leaves on the ground (The sunlit leaves on the ground)"
+ ],
+ "steps": [
+  {
+   "n": 15,
+   "id": "pull-birches",
+   "name": "Pull the pale birch trunks",
+   "part": "The front birch trunks",
+   "paints": [
+    "Birch gray"
+   ],
+   "brush": "1 inch flat",
+   "stroke": "thick-to-thin",
+   "pair": "pair-15.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the autumn leaves and the forest floor dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Birch gray."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1 inch flat."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point."
+    }
+   ],
+   "meant": "Five plain pale gray-white birch trunks stand over the scene, from the ground to the top edge, with no shading or bark marks."
+  },
+  {
+   "n": 16,
+   "id": "shade-birches",
+   "name": "Shade the right side of the birches",
+   "part": "The birches' shading and bark patches",
+   "paints": [
+    "Birch shadow",
+    "Moss green"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-16.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the front birch trunks and the autumn leaves dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1 1/4 in from the bottom edge."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the autumn leaves and the front birch trunks, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paints, darkest first: Moss green, then Birch shadow. The paint map shows where each goes."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 8,
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+    }
+   ],
+   "meant": "Each birch has a lavender-gray shadow down its right side and moss green at its foot. No bark marks yet."
+  },
+  {
+   "n": 17,
+   "id": "mark-bark",
+   "name": "Lay the dark bark patches",
+   "part": "The birches' shading and bark patches",
+   "paints": [
+    "Bark dark"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "thick-to-thin",
+   "pair": "pair-17.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the front birch trunks and the autumn leaves dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 15 in wide and 10 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "paints",
+     "text": "Paint: Bark dark."
+    },
+    {
+     "n": 4,
+     "kind": "mix",
+     "text": "Mix enough Bark dark for this step and step 18; cover it between them."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Press the full width of the brush for the thick part, then turn onto its edge or tip and lighten the pressure. With an angle brush, the lighter you press, the thinner the line."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave a line that starts wide and tapers to a point."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "Leave what step 16 painted showing around these marks, as in the Result picture."
+    }
+   ],
+   "meant": "Broken black-brown bark patches cross each trunk, heavier near the base, with dark trunk feet. No thin bark lines or bright light yet."
+  },
+  {
+   "n": 18,
+   "id": "line-bark",
+   "name": "Line the thin bark marks",
+   "part": "The thin bark lines",
+   "paints": [
+    "Bark dark"
+   ],
+   "brush": "#2 liner",
+   "stroke": "liner",
+   "pair": "pair-18.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the birches' shading and bark patches, and the front birch trunks dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1 1/4 in from the bottom edge, and its right side is at the right edge; it's about 13 1/2 in wide and 7 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the sunlight on the birches and the sunlit leaves on the ground will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the birches' shading and bark patches, and the front birch trunks, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Bark dark."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: #2 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave thin, flowing lines."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water."
+    },
+    {
+     "n": 10,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "Thin dark bark lines run across the trunks between the patches. The trunks' left edges are not yet bright."
+  }
+ ],
+ "write_to": "out.json"
+}

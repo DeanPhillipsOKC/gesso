@@ -1,0 +1,34 @@
+{
+ "steps": {
+  "pull-birches": {
+   "summary": "Pull five plain pale gray birch trunks, each widest at its foot.",
+   "tip": "Pull each trunk from its foot up to the top edge, widest at the foot and narrowing a little as it rises; most of it is on the left side, where the two big trunks lean slightly to the right. The trunk whose middle is about 14 1/4 in from the left edge is about 1 1/4 in wide, and a thin one runs down the right edge (of the canvas). The after picture also shows the thin middle trunks between them a little paler and sharper: leave yours as they are.",
+   "paint_notes": [
+    "Birch gray is pale over the orange autumn leaves: if the orange shows through, paint it twice, letting the first coat dry."
+   ],
+   "lines": {
+    "6": "Press the full width of the brush at the foot of each trunk, then pull straight up toward the top edge, easing the pressure a little so the trunk narrows as it rises.",
+    "7": "It should leave a solid trunk that's widest at its foot and a little narrower toward its top."
+   }
+  },
+  "shade-birches": {
+   "summary": "Dry-brush lavender-gray shadow down the birches, leaving pale patches.",
+   "tip": "The light comes from the upper left, so keep the shadow heaviest on the right side of each trunk. The after picture drags Birch shadow down over most of each trunk, leaving ragged pale patches of the front birch trunks showing, more of them on the left side of each trunk; stroke down the length of the trunk. The biggest shading, on the trunk whose middle is about 2 1/2 in from the left edge, is about 9 3/4 in tall; keep the Moss green to a light touch at each trunk's foot, where the after picture barely shows it."
+  },
+  "mark-bark": {
+   "summary": "Lay broken black-brown bark patches across the trunks, heaviest at the feet.",
+   "tip": "Lay each patch across the trunk, not along it, and let it break off before it crosses the whole width; most of it is in the bottom half, where the feet of the trunks go almost solid dark as the after picture shows. On the big trunk whose middle is about 2 in from the left edge the patches run about 8 1/4 in tall; keep the patches on the upper trunks small and spaced apart.",
+   "lines": {
+    "6": "Press the full width of the brush across the trunk for the thick end of a patch, then lift onto its edge so the patch ends in a point.",
+    "7": "It should leave short dark patches across the trunk, wide at one end and pointed at the other."
+   }
+  },
+  "line-bark": {
+   "summary": "Add thin dark bark lines across the trunks between the patches.",
+   "tip": "Pull short, thin lines across each trunk between the Bark dark patches, wobbling as they go; most of it is on the left side and in the top half. Keep them few and fine: the after picture looks almost the same as the before, so stop while the trunks still read pale. Leave the left edges of the trunks as they are; their sunlight comes in step 19.",
+   "lines": {
+    "7": "Hold the brush upright, with light, steady pressure. Pull each line across the trunk, starting thick and lightening as you go, and wobble the edges a little."
+   }
+  }
+ }
+}

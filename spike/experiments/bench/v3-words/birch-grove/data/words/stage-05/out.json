@@ -1,0 +1,24 @@
+{"steps": {
+ "block-in-rock": {
+  "summary": "Block in the mossy rock as one flat, low Moss green dome right of the path.",
+  "tip": "The mossy rock is a low dome about 3 in wide and 1 1/2 in tall, so twice as wide as it is tall, with a rounded top and a nearly flat bottom. It sits right of the path, its bottom about 3 1/2 in from the bottom edge. Run the strokes around the curve of the top, and keep it one flat color: the shading and light come in the next two steps.",
+  "lines": {
+   "6": "Start with a low oval for the body of the rock. Then add the rest in curved pieces on each side, like ( ), smaller toward the edges, until it reads as one dome.",
+   "7": "It should leave one solid, flat dome with its pieces joined and no gaps, as in the after picture."
+  }
+ },
+ "shade-rock": {
+  "summary": "Dry-brush Deep pine green shadow over the rock so it turns dark and rounded.",
+  "tip": "The light comes from the upper left, so keep the left side of the mossy rock the lightest and put the Deep pine green where the after picture has it, darkest along the top and down the far side of the dome. Skim the strokes around the curve of the rock, not straight across it. Leave plenty of the mossy rock showing between the marks so it reads as broken, mossy stone.",
+  "paint_notes": [
+   "The after picture also shows cool grey stone patches on the rock that Deep pine green can't make on its own; dry-brushing it thinly so the mossy rock and the canvas texture show through comes close."
+  ]
+ },
+ "light-rock": {
+  "summary": "Skim a few pale Moss light touches on the top of the rock where the sun hits.",
+  "tip": "The light is from the upper left, so these touches go on the top of the rock, most of it on the left side of the rock's shadow and light, never on the shaded far side. The change is small: the after picture looks almost the same as the before, so stop after a few light touches rather than covering the dome.",
+  "paint_notes": [
+   "Moss light is pale paint over darker paint and may sink in; if it barely shows, let it dry and skim a second pass on the same spots."
+  ]
+ }
+}}

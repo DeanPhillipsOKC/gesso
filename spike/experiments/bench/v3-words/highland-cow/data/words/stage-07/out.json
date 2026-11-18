@@ -1,0 +1,31 @@
+{
+ "steps": {
+  "flick-dark-grass": {
+   "summary": "Flicks scattered Deep green grass marks across the meadow, leaning to the right.",
+   "tip": "Lean every mark the same way, base low and tip up and to the right, as the after picture shows, so the meadow reads as grass bending in one breeze. Space the marks apart and leave the meadow's lighter green showing between them; the picture is scattered dark dabs, not a solid dark layer. Flick a few up against the bottom of the cow's shaggy coat, but leave its ragged bottom edge showing, as the after picture has it.",
+   "lines": {
+    "6": "A quick stroke upward from the base and slightly to the right, lifting off as it goes, so each mark thins at the top."
+   }
+  },
+  "flick-green-grass": {
+   "summary": "Flicks Yellow green grass marks between the dark ones, thickest near the bottom.",
+   "tip": "Keep the same lean as the dark grass marks, tips up and to the right. Put these mostly between the dark grass marks rather than on top of them, so the dark ones still show as shadows in the grass. Most of the new marks go in the bottom half of the meadow; near the hills keep them few and short.",
+   "paint_notes": [
+    "Yellow green can look thin where it crosses a dark grass mark; let it dry and flick a second stroke over that spot."
+   ],
+   "lines": {
+    "1": "Let the dark grass marks dry to the touch first. A hair dryer on low speeds it up."
+   }
+  },
+  "flick-gold-grass": {
+   "summary": "Flicks Honey gold grass tips where the low sun catches the meadow.",
+   "tip": "The sun is low at the right, so put most of the gold marks on the right side of the meadow, as the after picture shows. Keep the same lean, tips up and to the right, and let the dark and light green grass marks show between the gold ones. A few gold marks at the left edge climb onto the green hills and meadow, where the after picture has them.",
+   "paint_notes": [
+    "Honey gold is see-through over the dark grass marks: where a gold mark crosses one, paint it twice, letting the first coat dry."
+   ],
+   "lines": {
+    "1": "Let the light green grass marks dry to the touch first. A hair dryer on low speeds it up."
+   }
+  }
+ }
+}

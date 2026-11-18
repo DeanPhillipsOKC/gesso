@@ -1,0 +1,27 @@
+{"steps": {
+ "paint-nose": {
+  "summary": "Press a small Soft pink nose onto the white muzzle, just under the closed eyes.",
+  "tip": "The nose is tiny, a rounded triangle pointing down, sitting where the white muzzle meets the gray face, as the after picture shows. Make one press-and-lift and stop; a bigger nose makes the cat look awake. Leave the white of the muzzle showing all around it.",
+  "lines": {
+   "6": "Touch down with the tip, press so the belly spreads into a small rounded triangle, then pull down and lift so it ends on the tip.",
+   "7": "It should leave a small rounded triangle, wide at the top and pointed at the bottom.",
+   "8": "Watch out: A big blob instead of a small nose. Too much paint, or too slow a lift. Fix: use less paint and lift faster."
+  }
+ },
+ "line-eyes": {
+  "summary": "Pull two curved Charcoal lines for the closed eyes and a tiny mouth under the nose.",
+  "tip": "Each closed eye is one smooth curve that bows downward, like a smile turned over: the eye nearer the window is the longer, flatter curve, and the other sits higher and slants, as the after picture shows. Paint the eyes first, then the tiny mouth line just under the nose. The after picture also shows a few faint white whisker lines beside the face already; leave them for step 21.",
+  "lines": {
+   "6": "Hold the brush upright, with light, steady pressure. Pull each eye as one smooth curve, starting thick and lightening toward its outer end so it tapers.",
+   "7": "It should leave thin, curved lines."
+  }
+ },
+ "line-whiskers": {
+  "summary": "Pull thin Warm white whiskers fanning out from the muzzle on both sides.",
+  "tip": "Start each whisker at the muzzle and pull outward in a gentle curve, three or four on each side of the muzzle, fanning apart as they go, as the after picture shows. The longer ones sweep out across the gray cheek toward the white chest patch; the shorter ones sweep out over the top of the white paws. Keep them thin enough that the gray fur shows between them.",
+  "lines": {
+   "7": "Hold the brush upright, with light, steady pressure. Start each whisker at the muzzle and pull outward, starting thick and lightening so it tapers to a fine point. Let them fan apart and cross a little.",
+   "8": "It should leave thin, tapering lines."
+  }
+ }
+}}

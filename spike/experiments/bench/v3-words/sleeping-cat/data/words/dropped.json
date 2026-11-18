@@ -1,0 +1,16 @@
+[
+ {
+  "step": 6,
+  "id": "shade-frame",
+  "field": "tip",
+  "sentence": "The after picture also shows a dark blue shadow strip on the wall beside the post, where the after picture has it.",
+  "why": "step 6 (shade-frame), tip: \"beside the post\" can't find 'the post' on the sheet; sheet: nothing on the sheet"
+ },
+ {
+  "step": 6,
+  "id": "shade-frame",
+  "field": "line 8 (result)",
+  "sentence": "It should leave thin lavender bands along the frame's bars, with cream still showing next to the lavender.",
+  "why": "step 6 (shade-frame), line 8 (result): \"next to the lavender\" can't find 'the lavender' on the sheet; sheet: nothing on the sheet"
+ }
+]

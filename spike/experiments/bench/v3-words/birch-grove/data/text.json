@@ -1,0 +1,1344 @@
+{
+ "steps": [
+  {
+   "stage_id": "blend-sky",
+   "lines": [
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints: Pale gold for the glow, Misty blue across the rest, and Blue-violet mist for the soft upright streaks, as the after picture shows.",
+     "edited": true
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Pale gold for this step and steps 11 and 20; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Blue-violet mist for this step and steps 3 and 6; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Misty blue for this step and step 4; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 1/2 inch flat. Load: Creamy paint. An even coat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with Pale gold at the glow. Without rinsing, work Misty blue out from it, stroking back over the join. Then drag in upright Blue-violet mist streaks.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a soft, even haze, with gentle joins where two wet colors meet.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blending after the paint has started to drag. Acrylic sets in minutes, and scrubbing setting paint lifts it and leaves streaks. Fix: stop as soon as it drags.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Let it dry, then blend a new thin layer on top.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 1/2 inch flat",
+     "use": "Blend the misty sky over the whole canvas"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Blend a soft haze of gold, blue and violet over the whole canvas.",
+   "tip": "The light comes from the low sun, shining out of the Pale gold glow, so keep that glow where the after picture has it and let Misty blue fill the rest. Blend mostly side to side, but the after picture already shows faint upright streaks of Blue-violet mist, like ghost trunks in the fog: drag a few down softly and let them stay blurred."
+  },
+  {
+   "stage_id": "glow-sun",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush fully first: this is the lightest paint yet.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its left side is at the left edge; it's about 1 1/4 in wide and 2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the birches' shading and bark patches, and the autumn leaves will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Sun cream.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #8 round.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Small circles with the tip of the brush make a bumpy edge. Around a bright spot, circular strokes move outward from it.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a bumpy, soft edge.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: The edge is too hard. Fix: soften it with lighter passes. Smudging with a finger works too.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Circle in the glowing sun"
+    }
+   ],
+   "stroke_cards": [
+    "small-circles"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Circle a glowing Sun cream sun in at the left edge of the canvas.",
+   "tip": "The sun is taller than it is wide: about 1 1/4 in wide and 2 1/4 in tall, at the left edge of the canvas, with its top about 1 1/4 in from the top edge. Start at its middle, about 2 1/4 in from the top edge, and circle outward, letting a few short strokes fan out from it like the rays in the after picture."
+  },
+  {
+   "stage_id": "pull-far-trunks",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3 1/2 in from the top edge, and its left side is about 6 1/2 in from the left edge; it's about 1 1/2 in wide and 2 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves and the front birch trunks will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Blue-violet mist.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush at the bottom of the trunk, then turn onto its edge and lighten the pressure as you pull up.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a thin trunk that starts wide at the bottom and tapers to a point at the top.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Trunks that look like stiff sticks, every one the same width. Fix: start thick at the bottom and taper, and let the trunks differ in width and lean a little.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch flat",
+     "use": "Pull the misty far trunks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull a few faint violet-gray trunks into the haze near the middle of the canvas.",
+   "tip": "These trunks sit far back in the mist, so keep them thin, pale and soft-edged, with no light side yet. Pull each one straight up and down where the Where picture shows; the misty far trunks are about 1 1/2 in wide and 2 3/4 in tall, their top about 3 1/2 in from the top edge. The after picture changes only a little, so leave the misty sky showing between the trunks."
+  },
+  {
+   "stage_id": "stamp-pines",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its right side is at the right edge; it's about 6 1/2 in wide and 6 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves, and the birches' shading and bark patches will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky and the misty far trunks, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Deep pine green, then Misty blue. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Deep pine green for this step and step 13; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Short strokes in different directions make a rough texture.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: A heavy, solid top. Too much pressure or paint at the start of the tree. Fix: add fine branches with a small round instead of more fan marks.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Stamp the fir trees"
+    }
+   ],
+   "stroke_cards": [
+    "fan-tapping"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Stamp dark firs into the haze, with paler misty firs behind them.",
+   "tip": "Stamp the dark firs in Deep pine green first, then the paler hazy firs in Misty blue on the left side of the fir trees, where the after picture has them. Keep each fir narrow at its top and wider toward its bottom, letting the bottoms fade into the mist; most of the paint is on the right side of the fir trees, which reaches the right edge of the canvas."
+  },
+  {
+   "stage_id": "light-pines",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty far trunks and the misty sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its right side is about 3 in from the right edge; it's about 4 in wide and 5 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves, and the rock's shadow and light will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky, painted already: there, only soften this paint into its edge and leave it showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pine light green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: fan brush. Load: Thin paint. Stroke the brush on the palette until the bristles fan out.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Stamp only the tips, using the middle of the fan, not the side bristles. For a shape that widens, work from the top down in a zigzag and press harder as you go down.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Short strokes in different directions make a rough texture.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave clusters of fine, needle-like marks, light at the top and heavier where pressed.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 4 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Heavy, clumpy marks. The paint is too thick, the bristles are clumped, or you stamped with the side. Fix: thin the paint a little, spread the fan, and stamp with the middle tips.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Tap light on the firs' left sides"
+    }
+   ],
+   "stroke_cards": [
+    "fan-tapping"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Tap lighter green needles on the left sides of the dark firs.",
+   "tip": "The light comes from the upper left, so tap Pine light green only on the left sides of the dark firs and leave their right sides dark. Most of it goes on the left side of the fir trees and in their bottom half, as the Where picture shows. Leave the pale hazy firs plain.",
+   "paint_notes": [
+    "Pine light green over the dark green can sink in: if it disappears, let it dry and tap a second time."
+   ]
+  },
+  {
+   "stage_id": "pull-middle-trunks",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the misty far trunks and the misty sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its left side is about 2 1/2 in from the left edge; it's about 5 in wide and 8 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Blue-violet mist, then Smoky brown. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush at the bottom of the trunk, then turn onto its edge and lighten the pressure as you pull up.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a trunk that starts wide at the bottom and tapers toward the top.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Trunks that look like stiff sticks, every one the same width. Fix: start thick at the bottom and taper, and let each trunk differ in width and height.",
+     "edited": true
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull the middle trunks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull a smoky-brown middle trunk and pale violet-gray trunks to its right.",
+   "tip": "Pull the tallest trunk first in Smoky brown, where the after picture has it; its top is about 3/4 in from the top edge. Pull every trunk from its thick bottom up to a thin top, plain with no bark marks."
+  },
+  {
+   "stage_id": "lay-floor",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the far woods and the misty sky dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is at the bottom edge, and its left side is about 3/4 in from the left edge; it's about 12 in wide and 5 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves, and the birches' shading and bark patches will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the misty sky and the fir trees, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Leaf brown, then Golden ochre. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Leaf brown for this step and step 9; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Keep the brush level and the strokes long, left and right.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave long, level bands of gold and brown that seem to stretch away, with cool streaks of mist between them, as the after picture shows.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Lay in the forest floor"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Lay the sunny forest floor across the bottom: dark brown in front, gold at the back.",
+   "tip": "Carry the forest floor out to the left, right and bottom edges of the canvas, with its top about 7 in from the top edge, as the after picture shows. Lay the Leaf brown in front first, then pull the Golden ochre in behind it toward the misty far trunks, brightest where the low sun at the upper left lights it. Leave thin gaps of the misty blue showing between the strokes, where the after picture has its cool shadow bands across the ground.",
+   "paint_notes": [
+    "Golden ochre is see-through over the blue mist: paint it twice where it should glow, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "pull-path",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the forest floor and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 2 in from the bottom edge, and its right side is about 5 1/2 in from the right edge; it's about 2 in wide and 1 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the autumn leaves and the sunlit leaves on the ground will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the forest floor and the misty sky, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Path mauve.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Mark the path's end on the horizon and fan two faint chalk lines from it for its sides. Pull strokes between them, wide in front, thin at the dot.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a band that narrows toward one point, which is what makes the path lie down and recede.",
+     "edited": true
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: the path's sides run parallel, so it stands up like a wall. Fix: mark the dot and the two side lines first. It takes a minute.",
+     "edited": true
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Pull the path back into the mist"
+    }
+   ],
+   "stroke_cards": [
+    "toward-vanishing-point"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull a mauve path from the front of the ground back to a thin thread in the mist.",
+   "tip": "The path's top is about 7 1/2 in from the top edge, where it thins to a thread in the mist, and it widens as it comes down to the bottom edge of the canvas, with most of it in the bottom half of the path. Pull every stroke from the wide front back toward that thin end, and keep the edges soft so the forest floor's gold blends into the path's sides.",
+   "paint_notes": [
+    "Path mauve is lighter than the Leaf brown under it in front: paint it twice there, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "dab-dark-leaves",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the forest floor and the far woods dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Moss green, Burnt orange, then Leaf brown. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Moss green for this step and steps 12 and 16; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the dark leaves everywhere"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dab the dark leaves over the ground, the bushes by the path and a few treetops.",
+   "tip": "Most of what this step adds is in the bottom half of the canvas: the leaf floor and the bushes beside the path, with a few dabs hanging in the treetops near the top edge, as the after picture has them. Tap the Moss green bush first, where the after picture has it, then the Burnt orange, then scatter Leaf brown over the ground and the path. Leave small gaps where the forest floor peeks through between the dabs, as the after picture shows."
+  },
+  {
+   "stage_id": "dab-mid-leaves",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the dark leaves from step 9 dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": true
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom. Its left side is about 1/2 in from the left edge and its right side is about 2 1/2 in from the right edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the birches' shading and bark patches, and the front birch trunks will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the sun and the misty sky, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Golden yellow.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 9 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the golden leaves everywhere"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dab golden leaves over the treetops, the bushes and the ground.",
+   "tip": "Most of what this step adds is in the left half of the canvas, the side nearest the sun. Build the big bush nearest the sun into a full golden mound and hang golden leaves down from the top edge, as the after picture shows. Elsewhere on the ground and bushes, tap only scattered leaves so the darker leaves from step 9 still show between them."
+  },
+  {
+   "stage_id": "dab-sunlit-canopy",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the golden leaves from step 10 dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": true
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, top to bottom from the left edge. Its right side is about 2 1/2 in from the right edge.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: old stiff brush. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what steps 9 and 10 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Tap the sunlit leaves near the sun"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Tap pale gold on the leaves nearest the sun in the treetops and the bush.",
+   "tip": "The light comes from the upper left, so keep this paint near the sun: almost all of it is in the left half and the top half of the canvas. Tap it on the tops and sunny sides of the golden leaf clusters and the top of the big golden bush, and leave the ground without any, as the after picture shows.",
+   "paint_notes": [
+    "Pale gold can look thin over the darker leaves; where a spot should read bright, tap it twice, letting the first coat dry."
+   ]
+  },
+  {
+   "stage_id": "block-in-rock",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the autumn leaves and the forest floor dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is about 2 in from the right edge; it's about 3 in wide and 1 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Moss green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Start with a low oval for the body of the rock. Then add the rest in curved pieces on each side, like ( ), smaller toward the edges, until it reads as one dome.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave one solid, flat dome with its pieces joined and no gaps, as in the after picture.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Block in the mossy rock"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Block in the mossy rock as one flat, low Moss green dome right of the path.",
+   "tip": "The mossy rock is a low dome about 3 in wide and 1 1/2 in tall, so twice as wide as it is tall, with a rounded top and a nearly flat bottom. It sits right of the path, its bottom about 3 1/2 in from the bottom edge. Run the strokes around the curve of the top, and keep it one flat color: the shading and light come in the next two steps."
+  },
+  {
+   "stage_id": "shade-rock",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the mossy rock and the autumn leaves dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is about 2 1/2 in from the right edge; it's about 2 1/2 in wide and 1 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the birches' shading and bark patches, and the front birch trunks will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the mossy rock and the autumn leaves, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Deep pine green.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Shade the rock's underside"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dry-brush Deep pine green shadow over the rock so it turns dark and rounded.",
+   "tip": "The light comes from the upper left, so keep the left side of the mossy rock the lightest and put the Deep pine green where the after picture has it, darkest along the top and down the far side of the dome. Skim the strokes around the curve of the rock, not straight across it. Leave plenty of the mossy rock showing between the marks so it reads as broken, mossy stone.",
+   "paint_notes": [
+    "The after picture also shows cool grey stone patches on the rock that Deep pine green can't make on its own; dry-brushing it thinly so the mossy rock and the canvas texture show through comes close."
+   ]
+  },
+  {
+   "stage_id": "light-rock",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the mossy rock and the autumn leaves dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its right side is about 3 in from the right edge; it's about 1 3/4 in wide and 1 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the front birch trunks, and the birches' shading and bark patches will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the autumn leaves and the mossy rock, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Moss light.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 13 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Light the top of the rock"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Skim a few pale Moss light touches on the top of the rock where the sun hits.",
+   "tip": "The light is from the upper left, so these touches go on the top of the rock, most of it on the left side of the rock's shadow and light, never on the shaded far side. The change is small: the after picture looks almost the same as the before, so stop after a few light touches rather than covering the dome.",
+   "paint_notes": [
+    "Moss light is pale paint over darker paint and may sink in; if it barely shows, let it dry and skim a second pass on the same spots."
+   ]
+  },
+  {
+   "stage_id": "pull-birches",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the autumn leaves and the forest floor dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. It reaches all four edges of the canvas.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Birch gray.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush at the foot of each trunk, then pull straight up toward the top edge, easing the pressure a little so the trunk narrows as it rises.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave a solid trunk that's widest at its foot and a little narrower toward its top.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Pull the pale birch trunks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Pull five plain pale gray birch trunks, each widest at its foot.",
+   "tip": "Pull each trunk from its foot up to the top edge, widest at the foot and narrowing a little as it rises; most of it is on the left side, where the two big trunks lean slightly to the right. The trunk whose middle is about 14 1/4 in from the left edge is about 1 1/4 in wide, and a thin one runs down the right edge (of the canvas). The after picture also shows the thin middle trunks between them a little paler and sharper: leave yours as they are.",
+   "paint_notes": [
+    "Birch gray is pale over the orange autumn leaves: if the orange shows through, paint it twice, letting the first coat dry."
+   ],
+   "construct": {
+    "title": "Each birch trunk from two simple pieces",
+    "paint": "Birch gray",
+    "stages": [
+     {
+      "caption": "A long bar, a little wider at the bottom, leaning slightly",
+      "add": [
+       {
+        "path": "M 44 2 L 54 2 L 60 86 L 40 86 Z"
+       }
+      ],
+      "arrows": [
+       "M 50 84 L 49 6"
+      ]
+     },
+     {
+      "caption": "A short flare where it meets the ground",
+      "add": [
+       {
+        "path": "M 44 2 L 54 2 L 60 86 L 40 86 Z",
+        "done": true
+       },
+       {
+        "path": "M 40 80 Q 38 92 30 96 L 70 96 Q 62 92 60 80 Z"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-birches",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the front birch trunks and the autumn leaves dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1 1/4 in from the bottom edge.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the autumn leaves and the front birch trunks, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paints, darkest first: Moss green, then Birch shadow. The paint map shows where each goes.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Shade the right side of the birches"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dry-brush lavender-gray shadow down the birches, leaving pale patches.",
+   "tip": "The light comes from the upper left, so keep the shadow heaviest on the right side of each trunk. The after picture drags Birch shadow down over most of each trunk, leaving ragged pale patches of the front birch trunks showing, more of them on the left side of each trunk; stroke down the length of the trunk. The biggest shading, on the trunk whose middle is about 2 1/2 in from the left edge, is about 9 3/4 in tall; keep the Moss green to a light touch at each trunk's foot, where the after picture barely shows it."
+  },
+  {
+   "stage_id": "mark-bark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the front birch trunks and the autumn leaves dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 15 in wide and 10 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Bark dark.",
+     "edited": false
+    },
+    {
+     "kind": "mix",
+     "text": "Mix enough Bark dark for this step and step 18; cover it between them.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Press the full width of the brush across the trunk for the thick end of a patch, then lift onto its edge so the patch ends in a point.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave short dark patches across the trunk, wide at one end and pointed at the other.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "Leave what step 16 painted showing around these marks, as in the Result picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Lay the dark bark patches"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Lay broken black-brown bark patches across the trunks, heaviest at the feet.",
+   "tip": "Lay each patch across the trunk, not along it, and let it break off before it crosses the whole width; most of it is in the bottom half, where the feet of the trunks go almost solid dark as the after picture shows. On the big trunk whose middle is about 2 in from the left edge the patches run about 8 1/4 in tall; keep the patches on the upper trunks small and spaced apart."
+  },
+  {
+   "stage_id": "line-bark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the birches' shading and bark patches, and the front birch trunks dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1 1/4 in from the bottom edge, and its right side is at the right edge; it's about 13 1/2 in wide and 7 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the sunlight on the birches and the sunlit leaves on the ground will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the birches' shading and bark patches, and the front birch trunks, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Bark dark.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #2 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. Pull each line across the trunk, starting thick and lightening as you go, and wobble the edges a little.",
+     "edited": true
+    },
+    {
+     "kind": "result",
+     "text": "It should leave thin, flowing lines.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#2 liner",
+     "use": "Line the thin bark marks"
+    }
+   ],
+   "stroke_cards": [
+    "liner"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Add thin dark bark lines across the trunks between the patches.",
+   "tip": "Pull short, thin lines across each trunk between the Bark dark patches, wobbling as they go; most of it is on the left side and in the top half. Keep them few and fine: the after picture looks almost the same as the before, so stop while the trunks still read pale. Leave the left edges of the trunks as they are; their sunlight comes in step 19."
+  },
+  {
+   "stage_id": "light-bark",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the birch trunks and the autumn leaves dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is at the top edge, and its right side is at the right edge; it's about 14 1/2 in wide and 8 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also runs under where the sunlit leaves on the ground will go: paint straight through there.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the birches' shading and bark patches, and the autumn leaves, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Birch white.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Light pressure, skimming the surface.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Catch the sunlight on the birches"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Dry-brush Birch white sunlight down the left side of each birch trunk.",
+   "tip": "The light comes from the upper left, so skim the Birch white down the left side of each birch only, pulling from the top down, and leave the right side of each trunk in shade. Most of it goes on the two big birches in the left half of the canvas, as the after picture shows. Skip over the dark bark patches and let them show through."
+  },
+  {
+   "stage_id": "tap-sunlit-leaves",
+   "lines": [
+    {
+     "kind": "dry",
+     "text": "Let the sunlight on the birches and the birch trunks dry to the touch first. A hair dryer on low speeds it up.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1/2 in from the bottom edge, and its left side is at the left edge; it's about 15 1/2 in wide and 3 1/2 in tall.",
+     "edited": false
+    },
+    {
+     "kind": "where",
+     "text": "The outline also reaches onto the autumn leaves and the forest floor, painted already: there, only soften this paint into their edge and leave them showing.",
+     "edited": false
+    },
+    {
+     "kind": "paints",
+     "text": "Paint: Pale gold.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Brush: #12 round. Load: A light load. No water on the brush: a wet one makes blobs.",
+     "edited": false
+    },
+    {
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets.",
+     "edited": false
+    },
+    {
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap.",
+     "edited": false
+    },
+    {
+     "kind": "coats",
+     "text": "Pale gold is much lighter than what it goes over: expect two or three thin coats, letting each dry.",
+     "edited": false
+    },
+    {
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again.",
+     "edited": false
+    },
+    {
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture.",
+     "edited": false
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#12 round",
+     "use": "Tap the sunlit leaves on the ground"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "summary": "Tap Pale gold sunlit leaves across the path and the front of the ground.",
+   "tip": "Most of the Pale gold goes in the right half, thickest on the path, where the after picture has it, with only a few scattered leaves near the left edge. Tap separate leaf-sized dabs, not a solid band, and leave the darker leaves showing between them so the ground still reads as a pile of leaves."
+  }
+ ]
+}

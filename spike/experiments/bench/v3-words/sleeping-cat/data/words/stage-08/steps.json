@@ -1,0 +1,215 @@
+{
+ "stage": 8,
+ "light": "Daylight from the window at the upper left, lighting the left of the cat's head, the top of the blanket and a patch of the sill",
+ "lesson": [
+  "step 1: Blend the sky in the window (The sky through the window)",
+  "step 2: Dab the dark leaves (The leaves outside the window)",
+  "step 3: Dab the sunlit leaves (The leaves outside the window)",
+  "step 4: Blend the blue wall (The blue wall)",
+  "step 5: Block in the window frame (The white window frame)",
+  "step 6: Shade the frame's inner sides (The frame's shadows)",
+  "step 7: Block in the windowsill (The wooden windowsill)",
+  "step 8: Shade the sill's front edge (The sill's shadow and sunlight)",
+  "step 9: Lay the sunny patch on the sill (The sill's shadow and sunlight)",
+  "step 10: Block in the blanket (The yellow knit blanket)",
+  "step 11: Tap in the dark knit loops (The blanket's knit loops)",
+  "step 12: Tap in the light knit loops (The blanket's knit loops)",
+  "step 13: Block in the curled cat (The sleeping tabby cat)",
+  "step 14: Shade the cat's shadow side (The cat's shading and white patches)",
+  "step 15: Paint the white patches (The cat's shading and white patches)",
+  "step 16: Pull the dark tabby stripes (The cat's stripes and pink ears)",
+  "step 17: Paint the pink inside the ears (The cat's stripes and pink ears)",
+  "step 18: Flick in the light fur (The cat's fur)",
+  "step 19: Paint the pink nose (The cat's sleeping face)",
+  "step 20: Line the closed eyes and mouth (The cat's sleeping face)",
+  "step 21: Pull the whiskers (The cat's sleeping face)"
+ ],
+ "steps": [
+  {
+   "n": 19,
+   "id": "paint-nose",
+   "name": "Paint the pink nose",
+   "part": "The cat's sleeping face",
+   "paints": [
+    "Soft pink"
+   ],
+   "brush": "#4 round",
+   "stroke": "press-and-lift",
+   "pair": "pair-19.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the fur, and the stripes and ears dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 3/4 in from the top edge, and its left side is about 5 in from the left edge; it's about 1 1/4 in wide and 5 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the sleeping tabby cat, and the cat's stripes and pink ears, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Soft pink."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #4 round. Load: Creamy paint, a full load."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Touch down with the tip, press so the belly spreads, then pull and lift so the stroke ends on the tip."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave a teardrop or comma shape, wide where you pressed and pointed where you lifted."
+    },
+    {
+     "n": 8,
+     "kind": "watch",
+     "text": "Watch out: A blob instead of a teardrop. Too much paint, or too slow a lift. Fix: use less paint and lift faster."
+    }
+   ],
+   "meant": "The cat has a small pink nose. No closed eyes, mouth or whiskers yet."
+  },
+  {
+   "n": 20,
+   "id": "line-eyes",
+   "name": "Line the closed eyes and mouth",
+   "part": "The cat's sleeping face",
+   "paints": [
+    "Charcoal"
+   ],
+   "brush": "#1 liner",
+   "stroke": "liner",
+   "pair": "pair-20.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the fur, and the stripes and ears dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its left side is about 1 in from the left edge; it's about 6 in wide and 5 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the sleeping tabby cat, and the cat's stripes and pink ears, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Charcoal."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #1 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave thin, flowing lines."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "Leave what step 19 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water."
+    }
+   ],
+   "meant": "The cat's eyes are two curved closed lines and it has a small mouth under the pink nose. No whiskers yet."
+  },
+  {
+   "n": 21,
+   "id": "line-whiskers",
+   "name": "Pull the whiskers",
+   "part": "The cat's sleeping face",
+   "paints": [
+    "Warm white"
+   ],
+   "brush": "#1 liner",
+   "stroke": "liner",
+   "pair": "pair-21.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the fur, and the stripes and ears dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "rinse",
+     "text": "Rinse the brush well first. Dirty water tints every color with the last one."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 5 1/2 in from the bottom edge, and its left side is about 5 1/2 in from the left edge; it's about 1/2 in wide and 1/4 in tall."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the cat's shading and white patches, and the sleeping tabby cat, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Warm white."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: #1 liner. Load: Thin paint. Swirl the brush in water, then in the paint. Add water if the line skips. Reload often."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Hold the brush upright, with light, steady pressure. For a tapering line, start thick and lighten as you go. Let lines fork in different directions and overlap, and wobble the edges a little."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave thin, flowing lines."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what steps 19 and 20 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 10,
+     "kind": "watch",
+     "text": "Watch out: Skippy, broken lines. The paint is too thick. Fix: add water."
+    },
+    {
+     "n": 11,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The finished painting: the gray tabby asleep on its yellow knit blanket, with long white whiskers out from its muzzle."
+  }
+ ],
+ "write_to": "out.json"
+}

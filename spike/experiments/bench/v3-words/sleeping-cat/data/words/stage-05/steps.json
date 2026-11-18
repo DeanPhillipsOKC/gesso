@@ -1,0 +1,205 @@
+{
+ "stage": 5,
+ "light": "Daylight from the window at the upper left, lighting the left of the cat's head, the top of the blanket and a patch of the sill",
+ "lesson": [
+  "step 1: Blend the sky in the window (The sky through the window)",
+  "step 2: Dab the dark leaves (The leaves outside the window)",
+  "step 3: Dab the sunlit leaves (The leaves outside the window)",
+  "step 4: Blend the blue wall (The blue wall)",
+  "step 5: Block in the window frame (The white window frame)",
+  "step 6: Shade the frame's inner sides (The frame's shadows)",
+  "step 7: Block in the windowsill (The wooden windowsill)",
+  "step 8: Shade the sill's front edge (The sill's shadow and sunlight)",
+  "step 9: Lay the sunny patch on the sill (The sill's shadow and sunlight)",
+  "step 10: Block in the blanket (The yellow knit blanket)",
+  "step 11: Tap in the dark knit loops (The blanket's knit loops)",
+  "step 12: Tap in the light knit loops (The blanket's knit loops)",
+  "step 13: Block in the curled cat (The sleeping tabby cat)",
+  "step 14: Shade the cat's shadow side (The cat's shading and white patches)",
+  "step 15: Paint the white patches (The cat's shading and white patches)",
+  "step 16: Pull the dark tabby stripes (The cat's stripes and pink ears)",
+  "step 17: Paint the pink inside the ears (The cat's stripes and pink ears)",
+  "step 18: Flick in the light fur (The cat's fur)",
+  "step 19: Paint the pink nose (The cat's sleeping face)",
+  "step 20: Line the closed eyes and mouth (The cat's sleeping face)",
+  "step 21: Pull the whiskers (The cat's sleeping face)"
+ ],
+ "steps": [
+  {
+   "n": 13,
+   "id": "block-in-cat",
+   "name": "Block in the curled cat",
+   "part": "The sleeping tabby cat",
+   "paints": [
+    "Mid gray"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "build-from-pieces",
+   "pair": "pair-13.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the blanket and the windowsill dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its right side is at the right edge; it's about 15 in wide and 7 in tall."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Mid gray."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+    }
+   ],
+   "meant": "A flat mid-gray curled cat shape lies on the blanket, with no shading, white patches, stripes, ears' pink or face."
+  },
+  {
+   "n": 14,
+   "id": "shade-cat",
+   "name": "Shade the cat's shadow side",
+   "part": "The cat's shading and white patches",
+   "paints": [
+    "Dark gray"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "curved-strokes",
+   "pair": "pair-14.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sleeping tabby cat and the blanket dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its left side is about 3 1/2 in from the left edge; it's about 7 in wide and 4 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the cat's stripes and pink ears, and the cat's sleeping face will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the sleeping tabby cat and the blue wall, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Dark gray."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+    }
+   ],
+   "meant": "The gray cat has a dark underside, tail and fold behind its head, mid gray still on top. No white patches, stripes or face yet."
+  },
+  {
+   "n": 15,
+   "id": "paint-white-patches",
+   "name": "Paint the white patches",
+   "part": "The cat's shading and white patches",
+   "paints": [
+    "Warm white"
+   ],
+   "brush": "#8 round",
+   "stroke": "curved-strokes",
+   "pair": "pair-15.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sleeping tabby cat and the blanket dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its left side is about 3 1/2 in from the left edge; it's about 7 in wide and 4 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the cat's stripes and pink ears will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the yellow knit blanket and the sleeping tabby cat, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Warm white."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: #8 round."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Bend every stroke with the shape: from the top of each bump down along its curve, and around a round shape."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave marks that bend with the shape, which is what makes it look round or sloped."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what step 14 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 10,
+     "kind": "coats",
+     "text": "Warm white is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+    },
+    {
+     "n": 11,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The gray cat now has a white muzzle, a white patch on its side and two white front paws. No stripes, pink ears or face yet."
+  }
+ ],
+ "write_to": "out.json"
+}

@@ -1,0 +1,16 @@
+{"steps": {
+  "blend-window-sky": {
+    "summary": "Blend pale blue sky into the window corner, lighter toward its bottom.",
+    "tip": "The light comes through this window from the upper left, so the sky is the brightest, coolest color here: keep it pale. The sky through the window reaches the left and top edges of the canvas; leave its ragged lower edge loose, as the after picture shows, because the leaves and the white window frame cover it later.",
+    "paint_notes": []
+  },
+  "dab-dark-leaves": {
+    "summary": "Tap dark Leaf green leaf clumps over the sky in the window corner.",
+    "tip": "Tap the clumps in loose groups and leave small gaps of the pale sky through the window between them, as the after picture shows. Make the darkest, most solid tapping along the lower part of the clumps, away from the light at the upper left. The after picture shows these marks as a deeper blue-green over the sky rather than a clear green; match its darker patches and where it leaves the pale sky."
+  },
+  "dab-sunlit-leaves": {
+    "summary": "Tap Sunny leaf green on the tops of the dark leaf clumps.",
+    "tip": "The light comes from the upper left, so tap the sunlit leaves only on the tops and left sides of the Leaf green clumps. Keep them few and small: the after picture barely changes from the step before, so leave most of the Leaf green clumps showing.",
+    "paint_notes": ["Sunny leaf green is see-through over the darker Leaf green: tap it twice, letting the first coat dry."]
+  }
+}}

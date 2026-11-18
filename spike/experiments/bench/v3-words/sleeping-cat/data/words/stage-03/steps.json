@@ -1,0 +1,225 @@
+{
+ "stage": 3,
+ "light": "Daylight from the window at the upper left, lighting the left of the cat's head, the top of the blanket and a patch of the sill",
+ "lesson": [
+  "step 1: Blend the sky in the window (The sky through the window)",
+  "step 2: Dab the dark leaves (The leaves outside the window)",
+  "step 3: Dab the sunlit leaves (The leaves outside the window)",
+  "step 4: Blend the blue wall (The blue wall)",
+  "step 5: Block in the window frame (The white window frame)",
+  "step 6: Shade the frame's inner sides (The frame's shadows)",
+  "step 7: Block in the windowsill (The wooden windowsill)",
+  "step 8: Shade the sill's front edge (The sill's shadow and sunlight)",
+  "step 9: Lay the sunny patch on the sill (The sill's shadow and sunlight)",
+  "step 10: Block in the blanket (The yellow knit blanket)",
+  "step 11: Tap in the dark knit loops (The blanket's knit loops)",
+  "step 12: Tap in the light knit loops (The blanket's knit loops)",
+  "step 13: Block in the curled cat (The sleeping tabby cat)",
+  "step 14: Shade the cat's shadow side (The cat's shading and white patches)",
+  "step 15: Paint the white patches (The cat's shading and white patches)",
+  "step 16: Pull the dark tabby stripes (The cat's stripes and pink ears)",
+  "step 17: Paint the pink inside the ears (The cat's stripes and pink ears)",
+  "step 18: Flick in the light fur (The cat's fur)",
+  "step 19: Paint the pink nose (The cat's sleeping face)",
+  "step 20: Line the closed eyes and mouth (The cat's sleeping face)",
+  "step 21: Pull the whiskers (The cat's sleeping face)"
+ ],
+ "steps": [
+  {
+   "n": 7,
+   "id": "block-in-sill",
+   "name": "Block in the windowsill",
+   "part": "The wooden windowsill",
+   "paints": [
+    "Warm wood brown"
+   ],
+   "brush": "1 inch flat",
+   "stroke": "build-from-pieces",
+   "pair": "pair-07.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the wall and the window frame dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "chalk",
+     "text": "Optional: lightly chalk its outline first, from the transfer outline in Before you start, measuring from the canvas edges with a ruler."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "Inside the outlined area, all the way across to the bottom edge. Its top is about 4 1/2 in from the bottom edge."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also runs under where the yellow knit blanket and the sleeping tabby cat will go: paint straight through there."
+    },
+    {
+     "n": 5,
+     "kind": "where",
+     "text": "The outline also reaches onto the frame's shadows and the white window frame, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 6,
+     "kind": "paints",
+     "text": "Paint: Warm wood brown."
+    },
+    {
+     "n": 7,
+     "kind": "mix",
+     "text": "Mix enough Warm wood brown for this step and step 8; cover it between them."
+    },
+    {
+     "n": 8,
+     "kind": "how",
+     "text": "Brush: 1 inch flat."
+    },
+    {
+     "n": 9,
+     "kind": "how",
+     "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+    },
+    {
+     "n": 10,
+     "kind": "result",
+     "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+    }
+   ],
+   "meant": "A flat warm-brown sill runs across the bottom of the canvas under the window and the wall, with no shading or sunny patch. No blanket or cat yet."
+  },
+  {
+   "n": 8,
+   "id": "shade-sill",
+   "name": "Shade the sill's front edge",
+   "part": "The sill's shadow and sunlight",
+   "paints": [
+    "Warm wood brown"
+   ],
+   "brush": "3/4 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-08.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the wooden windowsill, and the wall and the window frame dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1 1/2 in from the bottom edge, and its left side is at the left edge; it's about 1 1/2 in wide and 2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the yellow knit blanket and the blanket's knit loops will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the wooden windowsill and the frame's shadows, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Warm wood brown."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 3/4 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+    }
+   ],
+   "meant": "The sill has a darker front edge and a dark patch across its middle, warm brown on top. No sunny patch, blanket or cat yet."
+  },
+  {
+   "n": 9,
+   "id": "light-sill",
+   "name": "Lay the sunny patch on the sill",
+   "part": "The sill's shadow and sunlight",
+   "paints": [
+    "Sunny peach"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "build-from-pieces",
+   "pair": "pair-09.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the wooden windowsill, and the wall and the window frame dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its left side is at the left edge; it's about 6 1/2 in wide and 2 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the yellow knit blanket and the blanket's knit loops will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the wooden windowsill, painted already: there, only soften this paint into its edge and leave it showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Sunny peach."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Start with one simple shape (an oval, a circle, or a rectangle). Then add the rest in curved pieces on each side, like ( ), smaller toward the edges."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave a shape made of distinct curved segments with small gaps or overlaps between them."
+    },
+    {
+     "n": 9,
+     "kind": "result",
+     "text": "Leave what step 8 painted showing around these marks, as in the Result picture."
+    },
+    {
+     "n": 10,
+     "kind": "coats",
+     "text": "Sunny peach is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+    },
+    {
+     "n": 11,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "The sill is finished: warm brown with a dark front edge and a peach patch of sunlight at the left, crossed by the frame's shadow. No blanket or cat yet."
+  }
+ ],
+ "write_to": "out.json"
+}

@@ -1,0 +1,154 @@
+{
+ "stage": 7,
+ "light": "The low sun at the upper left, shining through the leaves, so the left sides of the trunks and leaves are lit and the right side of the wood stays cool and shaded",
+ "lesson": [
+  "step 1: Blend the misty sky over the whole canvas (The misty sky)",
+  "step 2: Circle in the glowing sun (The sun)",
+  "step 3: Pull the misty far trunks (The misty far trunks)",
+  "step 4: Stamp the fir trees (The fir trees)",
+  "step 5: Tap light on the firs' left sides (The fir trees)",
+  "step 6: Pull the middle trunks (The middle trunks)",
+  "step 7: Lay in the forest floor (The forest floor)",
+  "step 8: Pull the path back into the mist (The path)",
+  "step 9: Dab the dark leaves everywhere (The autumn leaves)",
+  "step 10: Dab the golden leaves everywhere (The autumn leaves)",
+  "step 11: Tap the sunlit leaves near the sun (The autumn leaves)",
+  "step 12: Block in the mossy rock (The mossy rock)",
+  "step 13: Shade the rock's underside (The rock's shadow and light)",
+  "step 14: Light the top of the rock (The rock's shadow and light)",
+  "step 15: Pull the pale birch trunks (The front birch trunks)",
+  "step 16: Shade the right side of the birches (The birches' shading and bark patches)",
+  "step 17: Lay the dark bark patches (The birches' shading and bark patches)",
+  "step 18: Line the thin bark marks (The thin bark lines)",
+  "step 19: Catch the sunlight on the birches (The sunlight on the birches)",
+  "step 20: Tap the sunlit leaves on the ground (The sunlit leaves on the ground)"
+ ],
+ "steps": [
+  {
+   "n": 19,
+   "id": "light-bark",
+   "name": "Catch the sunlight on the birches",
+   "part": "The sunlight on the birches",
+   "paints": [
+    "Birch white"
+   ],
+   "brush": "1/2 inch flat",
+   "stroke": "dry-brush",
+   "pair": "pair-19.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the birch trunks and the autumn leaves dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its top is at the top edge, and its right side is at the right edge; it's about 14 1/2 in wide and 8 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also runs under where the sunlit leaves on the ground will go: paint straight through there."
+    },
+    {
+     "n": 4,
+     "kind": "where",
+     "text": "The outline also reaches onto the birches' shading and bark patches, and the autumn leaves, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 5,
+     "kind": "paints",
+     "text": "Paint: Birch white."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Brush: 1/2 inch flat. Load: Wiped nearly dry. Only the tip goes in the paint, and no water on the brush. It should feel dry and hard to apply."
+    },
+    {
+     "n": 7,
+     "kind": "how",
+     "text": "Light pressure, skimming the surface."
+    },
+    {
+     "n": 8,
+     "kind": "result",
+     "text": "It should leave feathery, broken, see-through marks that catch the canvas texture. Never a solid area."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: It went on solid. The brush was too loaded. Fix: let it dry, then dry-brush the base color back over part of it."
+    }
+   ],
+   "meant": "Near-white light runs down the left side of each birch, with the right sides still lavender gray. The ground leaves have no pale gold yet."
+  },
+  {
+   "n": 20,
+   "id": "tap-sunlit-leaves",
+   "name": "Tap the sunlit leaves on the ground",
+   "part": "The sunlit leaves on the ground",
+   "paints": [
+    "Pale gold"
+   ],
+   "brush": "#12 round",
+   "stroke": "dabbing",
+   "pair": "pair-20.jpg",
+   "lines": [
+    {
+     "n": 1,
+     "kind": "dry",
+     "text": "Let the sunlight on the birches and the birch trunks dry to the touch first. A hair dryer on low speeds it up."
+    },
+    {
+     "n": 2,
+     "kind": "where",
+     "text": "Inside the outlined area. Its bottom is about 1/2 in from the bottom edge, and its left side is at the left edge; it's about 15 1/2 in wide and 3 1/2 in tall."
+    },
+    {
+     "n": 3,
+     "kind": "where",
+     "text": "The outline also reaches onto the autumn leaves and the forest floor, painted already: there, only soften this paint into their edge and leave them showing."
+    },
+    {
+     "n": 4,
+     "kind": "paints",
+     "text": "Paint: Pale gold."
+    },
+    {
+     "n": 5,
+     "kind": "how",
+     "text": "Brush: #12 round. Load: A light load. No water on the brush: a wet one makes blobs."
+    },
+    {
+     "n": 6,
+     "kind": "how",
+     "text": "Tap with the tip of the brush. The more you tap one spot, the more solid it gets."
+    },
+    {
+     "n": 7,
+     "kind": "result",
+     "text": "It should leave dots or dappled patches that get more solid the more you tap."
+    },
+    {
+     "n": 8,
+     "kind": "coats",
+     "text": "Pale gold is much lighter than what it goes over: expect two or three thin coats, letting each dry."
+    },
+    {
+     "n": 9,
+     "kind": "watch",
+     "text": "Watch out: Blobs instead of dots. The brush is too wet or holds too much paint. Fix: wipe most of the paint off on a paper towel and tap again."
+    },
+    {
+     "n": 10,
+     "kind": "step-back",
+     "text": "Step back, squint, or take a photo to see it whole, and compare the big shapes with the picture."
+    }
+   ],
+   "meant": "Pale gold leaves glint across the front of the ground, the path, and around the trunk feet and the rock. The painting is finished."
+  }
+ ],
+ "write_to": "out.json"
+}
