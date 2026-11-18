@@ -266,6 +266,14 @@ with the date.
   show). What follows from the gate (`docs/design/pipeline-v3.md`, section 13): `/paint-lesson` runs v3 by default,
   the site's lessons are rerun from their photos, and v2 is removed. Those are separate changes, not done by this
   decision.
+- **v4 aims at under $1 of Claude a lesson, and it isn't a gate yet (2026-11-18, owner's call, after #241).** The
+  baseline is $4.94 a lesson at the API's rates, about $3.50 through the API itself (`docs/spikes/v4-loop-baseline.md`).
+  Asked for a cost target, the owner said: "Reluctant to set a target because I don't want to sacrifice quality so
+  early in a POC. But I think if we could get text inference costs under $1 per lesson plan, that would be ideal.
+  But again, not a hard-fast limit because I want to see how far we can take this thing. I want to see how capable
+  we can make it before we find ways to save costs and make it marketable." So $1 of Claude a lesson (text, not
+  renders) is what a cost cut aims for, never a reason to make a lesson worse. Quality first still stands: a cut
+  counts only when the graders find the lesson no worse. #240's gate stays open until the owner sets one.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
