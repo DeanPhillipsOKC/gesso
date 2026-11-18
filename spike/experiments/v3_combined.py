@@ -14,6 +14,8 @@ fact sheet and writers of #173 can read, with a thing's shape taken from what it
     python spike/experiments/v3_combined.py merge highland-cow [--final]   # the writers' words in, checked
     python spike/experiments/v3_combined.py page highland-cow              # the lesson as a page
     python spike/experiments/v3_combined.py results highland-cow           # writes v3_combined.json
+    python spike/experiments/v3_combined.py --stays erase birch-grove      # PAID: #218's requests, in runs/stays/
+    python spike/experiments/v3_combined.py --stays looks birch-grove      # a picture a unit for the checker to read
 
 Words:
     unit      a run of steps in one stage on the same thing (`units` in v4_forward.py). One render a unit.
@@ -23,6 +25,10 @@ Words:
     behind    the unit's things are new and sit on things already painted: the render paints those, by name.
     back      a thing in the unit was painted in an earlier unit (the cow's coat over its shape): the render takes it
               back to how the plan says it looked before this unit. Untested before this spike.
+
+    --stays   #218: the "behind" and "back" requests also name what stays, from the things already painted, and no
+              hand-written `say` sentence is read. Its chains go in runs/stays/, so #214's stay as they were (a kept
+              render is checked against its request, and v3_block_in.py reads them).
 
 Pictures and numbers go in spike/experiments/bench/runs/combined/<picture>/ (git-ignored).
 """
@@ -51,6 +57,8 @@ import v4_forward as fw  # noqa: E402
 
 BENCH = peel.BENCH
 OUT = BENCH / "runs" / "combined"
+STAYS = False  # --stays: #218's requests (see the top of this file)
+LEFT = 0.02  # share of the canvas: this much left standing beside what a render removed, and the unit is reported
 LITTLE = 0.002  # a step that changes less than this share of the canvas is reported (design section 8, check 4)
 
 
@@ -65,7 +73,9 @@ def load(picture: str) -> dict:
     # window" as what is behind the trees, #214)
     d["painter"]["called"] = extra.get("called") or {}
     d["painter"]["flat"] = sorted(flats(d))  # the block-ins
-    d["painter"]["say"] = extra.get("say") or {}
+    # a sentence written by hand for one unit (#214). #218's requests name what stays themselves and read none
+    d["painter"]["say"] = {} if STAYS else extra.get("say") or {}
+    d["painter"]["stays"] = STAYS
     return d
 
 
@@ -127,6 +137,19 @@ def _state(after: str) -> str:
     return ". ".join(s.strip().rstrip(".") for s in keep if s.strip()) + "."
 
 
+def _only(remove: str, others: str, painter: dict) -> str:
+    """#218, for a "behind" request: all of the thing goes, and what stays, by name."""
+    if not painter.get("stays"):
+        return ""
+    text = (f"All of this goes: {remove}. Every part of it and every one of them, the dark, the faint and the small "
+            "ones too, so that no shape of them is left. ")
+    if others:
+        text += (f"Nothing else goes. These are already painted and stay exactly as they are, wherever they can be "
+                 f"seen now: {others}. None of them is removed, moved or painted again in another shape, and nothing "
+                 "is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. ")
+    return text
+
+
 def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str]], again: int = 0) -> str:
     steps = fw.flat(painter)
     name = {t["id"]: t["name"] for t in painter["things"]}
@@ -138,6 +161,10 @@ def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str
         name.update({t: w for t, w in (painter.get("early") or {}).items() if t in later})
     done = [t for v in us[:n] for t in v["things"]]
     stays = list(dict.fromkeys(done))
+    # #218: what a "behind" or a "back" request says must stay: every other thing already painted, by the name the
+    # rest of the request uses for it. #214's renders that removed the bushes and the fallen leaves took the woods
+    # behind and the rock beside them; each needed a sentence by hand that named them.
+    others = "; ".join(name[t] for t in stays if t not in u["things"])
     end = ("Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that "
            "is already bare stays bare. No text, signature, or watermark.")
     # a sentence written by hand for one unit, keyed by its first step: what a probe showed the request left open
@@ -156,7 +183,7 @@ def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str
                 "Behind them there is only this: " + "; ".join(name[b] for b in back) + ". Paint that there, plain "
                 "and empty, as it is in the open places of the painting, in the same colors and the same brushwork. "
                 "Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, "
-                "outline, or shadow of what you removed. " + end)
+                "outline, or shadow of what you removed. " + _only(remove, others, painter) + end)
     mine = [steps[i] for i in u["steps"]]
     first = u["steps"][0]
     moves = " ".join(f"({k + 1}) " + "; ".join(lay["what"] for lay in s["lays"]) + "." for k, s in enumerate(mine))
@@ -172,6 +199,9 @@ def prompt_for(painter: dict, us: list[dict], n: int, behind: dict[str, list[str
             "Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork "
             "already there beside it. " + f"{things} stay where they are, at the same size and outline; only the "
             "last layer of paint on them goes. ")
+    if painter.get("stays") and others:
+        text += (f"Nothing else in the painting is touched. These stay exactly as they are now: {others}. None of them "
+                 "is removed, moved or painted again in another shape. ")
     if again:
         text += ("Take all of that layer off: none of its strokes, lights or details may still show. Add no new "
                  "detail in its place. ")
@@ -200,6 +230,74 @@ def erase_one(src: np.ndarray, raw: np.ndarray, bare: bool, frozen: np.ndarray) 
     grown = bs.halo(d) & ~frozen
     out[frozen] = canvas
     return out, grown
+
+
+def left_standing(src: np.ndarray, raw: np.ndarray, D: np.ndarray, frozen: np.ndarray) -> float:
+    """#218, check 3, with no outline: the share of the canvas, just outside what a render removed (`D`), that still
+    looks like what was removed and not like what the render put in its place. Each pixel of a band around `D` is
+    compared with the picture nearby inside `D`, before (the thing) and after (what is behind it). A thing removed
+    whole leaves a band of background, which is like the after; a thing left standing in part (the birch grove's
+    dark firs, #214) leaves more of itself beside the hole. Only for a thing that goes ("bare" and "behind"): a layer
+    that comes off ("back") leaves the same thing beside it, and this reads high on good renders."""
+    if not D.any():
+        return 0.0
+    a = bs.ol.lab(cv2.GaussianBlur(src, (0, 0), ws.BLUR)).astype(np.float32)
+    b = bs.ol.lab(cv2.GaussianBlur(raw, (0, 0), ws.BLUR)).astype(np.float32)
+    w = D.astype(np.float32)
+    near = cv2.GaussianBlur(w, (0, 0), 41)[..., None] + 1e-6
+    was, now = cv2.GaussianBlur(a * w[..., None], (0, 0), 41) / near, cv2.GaussianBlur(b * w[..., None], (0, 0), 41) / near
+    band = (cv2.dilate(D.astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (61, 61))) > 0) & ~D & ~frozen
+    dist = lambda x, y: np.sqrt(((x - y) ** 2).sum(2))  # noqa: E731
+    like = band & (dist(a, was) + 6 < dist(a, now)) & (dist(was, now) > 12)
+    like = cv2.morphologyEx(like.astype(np.uint8), cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9)))
+    return round(float(like.mean()), 4)
+
+
+def asked(d: dict, us: list[dict], n: int) -> dict:
+    """What unit n's render was asked for, for a checker: what goes, and the other things already painted."""
+    steps, painter = fw.flat(d["painter"]), d["painter"]
+    name = {t["id"]: t["name"] for t in painter["things"]}
+    name.update(painter.get("called") or {})
+    kind = kind_of(us, n, d["behind"])
+    mine = "; ".join(name[t] for t in us[n]["things"])
+    if kind == "back":
+        moves = "; ".join(lay["what"] for i in us[n]["steps"] for lay in steps[i]["lays"])
+        goes = f"only the last layer of paint on: {mine}. That layer was: {moves}. The things themselves stay."
+    else:
+        goes = f"all of: {mine}. What is behind shows in its place."
+    stays = [name[t] for t in dict.fromkeys(t for v in us[:n] for t in v["things"]) if t not in us[n]["things"]]
+    return {"unit": n, "kind": kind, "goes": goes, "stays": stays}
+
+
+def look(src: np.ndarray, out: np.ndarray, D: np.ndarray, width: int = 784) -> np.ndarray:
+    """#218, check 2: one picture a unit for a checker's eye: before, after, and the before with the kept change
+    tinted. No measure tried could tell a stray change from the thing's own (docs/spikes/v3-stays.md); a reader with
+    the list of what stays can. A wide picture's three are stacked, a tall one's are side by side."""
+    tint = src.copy()
+    tint[D] = (0.45 * tint[D] + 0.55 * np.array([255, 0, 255])).astype(np.uint8)
+    h = round(width * src.shape[0] / src.shape[1])
+    cells = [cv2.resize(x, (width, h), interpolation=cv2.INTER_AREA) for x in (src, out, tint)]
+    wide = src.shape[1] > src.shape[0]
+    gap = np.full((8, width, 3) if wide else (h, 8, 3), 255, np.uint8)
+    return (np.vstack if wide else np.hstack)([cells[0], gap, cells[1], gap, cells[2]])
+
+
+def looks(picture: str) -> Path:
+    """A chain's looks and what each unit was asked for (looks/U<nn>.jpg, looks/asked.json)."""
+    d = load(picture)
+    us = units(d["painter"], flats(d))
+    folder = OUT / picture
+    er = json.loads((folder / "erase.json").read_text())
+    (folder / "looks").mkdir(exist_ok=True)
+    rows = []
+    for n in range(1, len(us)):
+        name = f"U{n:02d}" + "r" * int(er["redone"].get(str(n), 0))
+        src = np.array(Image.open(folder / f"{name}_in.png").convert("RGB"))
+        out = np.array(Image.open(folder / f"P{n - 1:02d}.png").convert("RGB"))
+        Image.fromarray(look(src, out, np.load(folder / f"D{n:02d}.npy"))).save(folder / "looks" / f"U{n:02d}.jpg", quality=88)
+        rows.append(asked(d, us, n))
+    (folder / "looks" / "asked.json").write_text(json.dumps(rows, indent=1))
+    return folder / "looks"
 
 
 def probe(picture: str, n: int, quality: str = "low", again: int = 0) -> dict:
@@ -266,6 +364,8 @@ def erase(picture: str, quality: str = "low", redo: dict[int, int] | None = None
         again = redone.get(n, 0)
         name = f"U{n:02d}" + "r" * again
         raw, info = peel.render("gpt-image", P[n], prompt_for(painter, us, n, d["behind"], again), folder, name, quality)
+        # check 3 (#218): a thing that was to go and was left standing in part. Reported, not asked for again here
+        left = None if kind == "back" else left_standing(P[n], raw, ws.diff_mask(P[n], raw, None, frozen), frozen)
         P[n - 1], D = erase_one(P[n], raw, kind == "bare", frozen)
         if kind == "bare":
             frozen |= D
@@ -275,7 +375,8 @@ def erase(picture: str, quality: str = "low", redo: dict[int, int] | None = None
         raws[n] = raw
         rows.append({"unit": n, "kind": kind, "things": us[n]["things"], "steps": [i + 1 for i in us[n]["steps"]],
                      "redo": again, "seconds": info["seconds"], "cost_usd": info["cost_usd"],
-                     "erased_share": round(float(D.mean()), 4),
+                     "erased_share": round(float(D.mean()), 4), "left_standing": left,
+                     "ask_again": bool(left is not None and left >= LEFT),
                      # of the picture the guard kept as it was, the share the raw render had moved
                      "raw_moved_outside": peel.moved(P[n], raw, ~bs.halo(D) & ~frozen)})
         print(json.dumps(rows[-1]), flush=True)
@@ -284,6 +385,7 @@ def erase(picture: str, quality: str = "low", redo: dict[int, int] | None = None
     np.save(folder / "C00.npy", D0)
     Image.fromarray(finish).save(folder / f"P{len(us) - 1:02d}.png")
     result = {"picture": picture, "quality": quality, "units": us, "redone": redone, "thrown": thrown,
+              "ask_again": sorted(r["unit"] for r in rows if r["ask_again"]),
               "renders": len(rows), "cost_usd": round(sum(r["cost_usd"] for r in rows), 4),
               "thrown_cost_usd": round(sum(t["cost_usd"] for t in thrown), 4),
               "render_seconds": round(sum(r["seconds"] for r in rows), 1), "rows": rows}
@@ -677,6 +779,7 @@ def grade_folders(pictures: list[str], out: Path, seed: int = 214) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--stays", action="store_true", help="#218's requests; the chains go in runs/stays/")
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("units")
     p.add_argument("picture")
@@ -692,7 +795,7 @@ def main() -> None:
     p = sub.add_parser("merge")
     p.add_argument("picture")
     p.add_argument("--final", action="store_true")
-    for name in ("page", "results"):
+    for name in ("page", "results", "looks"):
         p = sub.add_parser(name)
         p.add_argument("picture")
     p = sub.add_parser("lesson")
@@ -703,7 +806,12 @@ def main() -> None:
     p = sub.add_parser("build")
     p.add_argument("picture")
     args = ap.parse_args()
-    if args.cmd == "units":
+    if args.stays:
+        global STAYS, OUT
+        STAYS, OUT = True, BENCH / "runs" / "stays"
+    if args.cmd == "looks":
+        print(looks(args.picture))
+    elif args.cmd == "units":
         d = load(args.picture)
         us = units(d["painter"], flats(d))
         for n in range(len(us) - 1, -1, -1):
@@ -713,7 +821,7 @@ def main() -> None:
     elif args.cmd == "erase":
         r = erase(args.picture, redo={int(x.split(":")[0]): int((x.split(":") + ["1"])[1])
                                       for x in args.redo.split(",") if x})
-        print(json.dumps({k: r[k] for k in ("renders", "cost_usd", "thrown_cost_usd", "render_seconds")}))
+        print(json.dumps({k: r[k] for k in ("renders", "cost_usd", "thrown_cost_usd", "render_seconds", "ask_again")}))
     elif args.cmd == "build":
         _, _, info = build(args.picture)
         print(json.dumps({k: info[k] for k in ("steps", "final_gap", "outside_unit_max", "steps_that_change_little",
