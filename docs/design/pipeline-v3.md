@@ -207,6 +207,15 @@ second render and no flat fill: both were tried (`docs/spikes/v3-block-in.md`). 
 the thing's whole brush texture to the next step; a coat brushed in one color wasn't tried. A step that takes a
 thing's texture off (the blanket's knit) needed "what is left has no texture" written by hand.
 
+**What a block-in is made from (#217).** A block-in is the first unit of a thing in front, and its picture is
+what the "back" render of the thing's next unit leaves. So that request says what is left, from the plan: the
+block-in's paint by name and look, "the same from edge to edge, like a shape cut from colored paper", no shading,
+fold, texture, line or detail, and "None of this is painted yet, so none of it may show:" with the `what` of every
+later `lays` on the thing. Every later "back" request on the thing carries the same list, from its own unit on. No
+second render and no flat fill: both were tried (`docs/spikes/v3-block-in.md`). **Open:** a paper-flat coat leaves
+the thing's whole brush texture to the next step; a coat brushed in one color wasn't tried. A step that takes a
+thing's texture off (the blanket's knit) needed "what is left has no texture" written by hand.
+
 **The third kind is this draft's main guess.** #204 erased whole things only. Its write-up names this as the next
 thing to try ("a chain that erases a thing's detail before the thing ... is the same tool pointed one level down").
 S4 (#169) tried rendered stages inside a part, with separate renders and no guard of this kind, and the owner
