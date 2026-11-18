@@ -6755,6 +6755,62 @@
    "d_result_after": 3.7,
    "render_usd": 0.015,
    "seconds": 15.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "no_place",
+   "rep": 1,
+   "file": "01-no_place-r1.png",
+   "beats": 1.0,
+   "toward": 0.221,
+   "where": 1.0,
+   "d_before_after": 39.38,
+   "d_result_after": 30.67,
+   "render_usd": 0.016,
+   "seconds": 11.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "no_place",
+   "rep": 1,
+   "file": "04-no_place-r1.png",
+   "beats": 0.25,
+   "toward": -0.186,
+   "where": 0.03,
+   "d_before_after": 8.47,
+   "d_result_after": 10.05,
+   "render_usd": 0.015,
+   "seconds": 11.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "no_place",
+   "rep": 1,
+   "file": "08-no_place-r1.png",
+   "beats": 0.25,
+   "toward": 0.027,
+   "where": 0.483,
+   "d_before_after": 14.93,
+   "d_result_after": 14.53,
+   "render_usd": 0.015,
+   "seconds": 12.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "no_place",
+   "rep": 1,
+   "file": "11-no_place-r1.png",
+   "beats": 0.75,
+   "toward": 0.112,
+   "where": 0.751,
+   "d_before_after": 4.72,
+   "d_result_after": 4.2,
+   "render_usd": 0.015,
+   "seconds": 13.1
   }
  ],
  "carry_grades": [],
@@ -9115,5 +9171,333 @@
    "output_tokens": 408,
    "cost_usd": 0.04425
   }
- ]
+ ],
+ "report": {
+  "graders": {
+   "highland-cow": {
+    "worst_steps": [
+     8,
+     14,
+     22,
+     23
+    ],
+    "lesson": [
+     {
+      "grader": 1,
+      "real": 3,
+      "paintable": 3,
+      "agree": 2
+     },
+     {
+      "grader": 2,
+      "real": 3,
+      "paintable": 3,
+      "agree": 2
+     }
+    ]
+   },
+   "sleeping-cat": {
+    "worst_steps": [
+     4,
+     8,
+     14,
+     16
+    ],
+    "lesson": [
+     {
+      "grader": 2,
+      "real": 3,
+      "paintable": 3,
+      "agree": 2
+     },
+     {
+      "grader": 1,
+      "real": 3,
+      "paintable": 3,
+      "agree": 2
+     }
+    ]
+   },
+   "birch-grove": {
+    "worst_steps": [
+     9,
+     15,
+     16,
+     17
+    ],
+    "lesson": [
+     {
+      "grader": 2,
+      "real": 3,
+      "paintable": 3,
+      "agree": 2
+     },
+     {
+      "grader": 1,
+      "real": 3,
+      "paintable": 3,
+      "agree": 2
+     }
+    ]
+   }
+  },
+  "pick": {
+   "words": {
+    "n": 88,
+    "mean": 0.675,
+    "hits": 74
+   },
+   "header": {
+    "n": 64,
+    "mean": 0.526,
+    "hits": 44
+   },
+   "no_place": {
+    "n": 24,
+    "mean": 0.637,
+    "hits": 19
+   },
+   "wrong_side": {
+    "n": 24,
+    "mean": 0.45,
+    "hits": 14
+   },
+   "no_direction": {
+    "n": 24,
+    "mean": 0.691,
+    "hits": 20
+   },
+   "vs_words": {
+    "header": {
+     "steps": 64,
+     "mean_a": 0.658,
+     "mean_b": 0.526,
+     "change": -0.132,
+     "fell": 53,
+     "rose": 9
+    },
+    "no_place": {
+     "steps": 24,
+     "mean_a": 0.718,
+     "mean_b": 0.637,
+     "change": -0.081,
+     "fell": 17,
+     "rose": 5
+    },
+    "wrong_side": {
+     "steps": 24,
+     "mean_a": 0.718,
+     "mean_b": 0.45,
+     "change": -0.268,
+     "fell": 15,
+     "rose": 8
+    },
+    "no_direction": {
+     "steps": 24,
+     "mean_a": 0.718,
+     "mean_b": 0.691,
+     "change": -0.027,
+     "fell": 12,
+     "rose": 9
+    }
+   },
+   "agree_with_graders": {
+    "spearman": 0.09,
+    "steps": 64,
+    "in_lowest_third": 1,
+    "of": 12,
+    "chance": "a third"
+   },
+   "by_picture": {
+    "highland-cow": 0.647,
+    "sleeping-cat": 0.72,
+    "birch-grove": 0.607
+   },
+   "repeat": {
+    "steps": 24,
+    "spearman": 0.9,
+    "mean_abs_diff": 0.043
+   },
+   "picked_when_wrong": {
+    "place": 1,
+    "half": 13,
+    "other": 0
+   }
+  },
+  "carry_measure": {
+   "words": {
+    "n": 64,
+    "mean": 0.652
+   },
+   "header": {
+    "n": 24,
+    "mean": 0.49
+   },
+   "no_place": {
+    "n": 2,
+    "mean": 0.625
+   },
+   "vs_words": {
+    "header": {
+     "steps": 24,
+     "mean_a": 0.698,
+     "mean_b": 0.49,
+     "change": -0.208,
+     "fell": 11,
+     "rose": 1
+    },
+    "no_place": {
+     "steps": 2,
+     "mean_a": 0.625,
+     "mean_b": 0.625,
+     "change": 0.0,
+     "fell": 0,
+     "rose": 0
+    }
+   },
+   "agree_with_graders": {
+    "spearman": 0.11,
+    "steps": 64,
+    "in_lowest_third": 4,
+    "of": 12,
+    "chance": "a third"
+   },
+   "by_picture": {
+    "highland-cow": 0.609,
+    "sleeping-cat": 0.726,
+    "birch-grove": 0.625
+   }
+  },
+  "carry_toward": {
+   "words": {
+    "n": 64,
+    "mean": -0.565
+   },
+   "header": {
+    "n": 24,
+    "mean": -0.448
+   },
+   "no_place": {
+    "n": 2,
+    "mean": 0.018
+   },
+   "vs_words": {
+    "header": {
+     "steps": 24,
+     "mean_a": -0.25,
+     "mean_b": -0.448,
+     "change": -0.199,
+     "fell": 12,
+     "rose": 4
+    },
+    "no_place": {
+     "steps": 2,
+     "mean_a": 0.089,
+     "mean_b": 0.018,
+     "change": -0.071,
+     "fell": 2,
+     "rose": 0
+    }
+   },
+   "agree_with_graders": {
+    "spearman": -0.1,
+    "steps": 64,
+    "in_lowest_third": 3,
+    "of": 12,
+    "chance": "a third"
+   },
+   "by_picture": {
+    "highland-cow": -0.65,
+    "sleeping-cat": -0.47,
+    "birch-grove": -0.566
+   }
+  },
+  "carry_where": {
+   "words": {
+    "n": 64,
+    "mean": 0.331
+   },
+   "header": {
+    "n": 24,
+    "mean": 0.296
+   },
+   "no_place": {
+    "n": 2,
+    "mean": 0.515
+   },
+   "vs_words": {
+    "header": {
+     "steps": 24,
+     "mean_a": 0.446,
+     "mean_b": 0.296,
+     "change": -0.15,
+     "fell": 16,
+     "rose": 6
+    },
+    "no_place": {
+     "steps": 2,
+     "mean_a": 0.644,
+     "mean_b": 0.515,
+     "change": -0.13,
+     "fell": 1,
+     "rose": 0
+    }
+   },
+   "agree_with_graders": {
+    "spearman": 0.02,
+    "steps": 64,
+    "in_lowest_third": 3,
+    "of": 12,
+    "chance": "a third"
+   },
+   "by_picture": {
+    "highland-cow": 0.243,
+    "sleeping-cat": 0.427,
+    "birch-grove": 0.332
+   }
+  },
+  "carry_grade": {
+   "vs_words": {},
+   "agree_with_graders": {
+    "spearman": null,
+    "steps": 0,
+    "in_lowest_third": 0,
+    "of": 0,
+    "chance": "a third"
+   },
+   "by_picture": {}
+  },
+  "cost": {
+   "pick": {
+    "calls": 224,
+    "usd": 9.537,
+    "usd_a_call": 0.0426,
+    "seconds_a_call": 7.6
+   },
+   "carry_grade": {
+    "calls": 0,
+    "usd": 0,
+    "usd_a_call": null,
+    "seconds_a_call": null
+   },
+   "graders": {
+    "calls": 6,
+    "usd": 1.542,
+    "usd_a_call": 0.2571,
+    "seconds_a_call": 28.6
+   },
+   "worsen": {
+    "calls": 6,
+    "usd": 1.016,
+    "usd_a_call": 0.1693,
+    "seconds_a_call": 49.7
+   },
+   "carry_renders": {
+    "renders": 90,
+    "usd": 1.422,
+    "usd_a_render": 0.0158,
+    "seconds_a_render": 13.2
+   }
+  }
+ }
 }
