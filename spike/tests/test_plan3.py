@@ -217,6 +217,9 @@ class ProblemsTests(unittest.TestCase):
         self.one(p, "'Pale gray'", "Take `of` off")
         p["paints"][4].update(color="#e2a39c", of="Rug red")  # a pink is the red with white
         self.assertEqual(check(p, None), [])
+        p["paints"][1]["color"] = "#c8902a"
+        p["paints"][4].update(color="#f5f0ea")  # a cream is an ochre with a lot of white
+        self.assertEqual(check(p, None), [])
 
     def test_a_block_in_is_a_unit_by_itself_whatever_comes_before_it(self):
         p = plan()
@@ -252,7 +255,7 @@ class ProblemsTests(unittest.TestCase):
             p[key][i][field] = value
             found = check(p)
             self.assertTrue(found and all(f"`{field}`" in x for x in found), (field, value, found))
-        for field, value in (("id", None), ("stroke", ["glazing"]), ("unit", 3), ("paints", "Sky blue"),
+        for field, value in (("id", None), ("block_in", "no"), ("blend", 1), ("stroke", ["glazing"]), ("unit", 3), ("paints", "Sky blue"),
                              ("paints", [["Sky blue"]]), ("lays", "sky"), ("lays", [{"thing": ["sky"], "what": "x"}])):
             p = plan()
             step(p, "light-cat")[field] = value
@@ -329,11 +332,12 @@ class PlanCheckToolTests(unittest.TestCase):
         code, r = self.run_tool({"plan_version": 2})
         self.assertEqual(code, 2)
         self.assertIn("isn't a version 3 plan", r["refused"])
-        p = plan()
-        p["technique"] = "techniques/nope.yaml"
-        code, r = self.run_tool(p)
-        self.assertEqual(code, 2)
-        self.assertIn("technique", r["refused"])
+        for name in ("techniques/nope.yaml", "/etc/hostname", "docs/decisions.md"):
+            p = plan()
+            p["technique"] = name
+            code, r = self.run_tool(p)
+            self.assertEqual(code, 2, name)
+            self.assertIn("technique", r["refused"])
 
     def test_it_refuses_a_file_that_is_not_a_plan_and_lists_a_malformed_one(self):
         for text in ("{not json", "[]", json.dumps({"plan_version": 3, "technique": 5})):

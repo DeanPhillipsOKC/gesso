@@ -1554,11 +1554,14 @@ def _v3_plan(lesson: Path) -> tuple[dict, dict]:
     if not isinstance(plan, dict) or plan.get("plan_version") != 3:
         raise Refused(f"{lesson}/plan.json isn't a version 3 plan (no \"plan_version\": 3)")
     name = plan.get("technique")
-    if not isinstance(name, str) or not name or not (ROOT / name).is_file():
-        raise Refused(f"plan.json's \"technique\" ({name!r}) isn't a file in the repo: name the approach, e.g. "
+    path = (ROOT / name).resolve() if isinstance(name, str) and name else None
+    if path is None or not path.is_file() or (ROOT / "techniques").resolve() not in path.parents:
+        raise Refused(f"plan.json's \"technique\" ({name!r}) isn't a file in techniques/: name the approach, e.g. "
                       "techniques/acrylic-paint-along-beginner.yaml")
-    technique = yaml.safe_load((ROOT / name).read_text(encoding="utf-8"))
-    return plan, technique if isinstance(technique, dict) else {}
+    technique = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(technique, dict):
+        raise Refused(f"{name} isn't a technique file (it has no keys)")
+    return plan, technique
 
 
 def plan_check_tool(a: argparse.Namespace) -> dict:

@@ -155,8 +155,10 @@ def _version(color: str, of: str) -> bool:
     if abs(l1 - l2) < LIGHTER:
         return False
     c1, c2 = math.hypot(a1, b1), math.hypot(a2, b2)
-    if c1 < GRAY or c2 < GRAY:  # a gray has no hue: its versions are grays too
-        return max(c1, c2) < 2 * GRAY
+    if c2 < GRAY:  # a gray has no hue: its versions are grays too
+        return c1 < 2 * GRAY
+    if c1 < GRAY:  # nearly white or nearly black: a strong color with a lot of white or dark in it (a cream of an ochre)
+        return True
     turn = abs(math.degrees(math.atan2(b1, a1) - math.atan2(b2, a2))) % 360
     return min(turn, 360 - turn) <= HUE
 
@@ -215,7 +217,13 @@ def shape_problems(plan) -> list[str]:
     def names(holder: dict, key: str, where: str) -> None:
         got = holder.get(key)
         if got is not None and not (isinstance(got, list) and all(_str(x) for x in got)):
-            out.append(f"{where}`{key}` must be a list of names in quotes, like [\"sky\"], not {got!r}")
+            like = '["Sky blue"]' if key == "paints" else '["sky"]'
+            out.append(f"{where}`{key}` must be a list of names in quotes, like {like}, not {got!r}")
+
+    def flag(holder: dict, keys: tuple, where: str) -> None:
+        for k in keys:
+            if k in holder and not isinstance(holder[k], bool):
+                out.append(f"{where}`{k}` must be true or false (no quotes), not {holder[k]!r}")
 
     for t in rows(plan, "things", ""):
         where = f"thing {t.get('id')!r}: "
@@ -230,6 +238,7 @@ def shape_problems(plan) -> list[str]:
             where = f"step {s.get('id')!r}: "
             text(s, ("id", "name", "after", "stroke", "brush", "unit"), where, need=("id",))
             names(s, "paints", where)
+            flag(s, ("block_in", "blend"), where)
             for lay in rows(s, "lays", where):
                 text(lay, ("thing", "what"), where + "in `lays`, ", need=("thing",))
     return out
