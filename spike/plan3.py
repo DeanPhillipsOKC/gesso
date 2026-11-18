@@ -92,8 +92,8 @@ def _runs(plan: dict) -> list[dict]:
 
 def units(plan: dict) -> list[dict]:
     """The plan's units in painting order: {"stage", "things", "steps" (indexes into `steps`), "kind", "id",
-    "name"}. A run of steps is cut where a step's paints are all ones the unit has used already, and after a
-    block-in (`units` in spike/experiments/v3_combined.py, #210).
+    "name"}. A run of steps is cut where a step's paints are all ones the unit has used already, and before
+    and after a block-in (`units` in spike/experiments/v3_combined.py, #210).
 
     A unit that starts one thing takes that thing's id and name. Any other unit (a later stage of a thing, or one
     that starts several things at once) is named by its first step's `unit`; `problems` asks for it."""
@@ -106,7 +106,8 @@ def units(plan: dict) -> list[dict]:
         for i in run["steps"]:
             s = all_steps[i]
             paints = set(s.get("paints") or [])
-            if cur["steps"] and (paints <= used or all_steps[cur["steps"][-1]].get("id") in block_in):
+            if cur["steps"] and (paints <= used or s.get("id") in block_in
+                                 or all_steps[cur["steps"][-1]].get("id") in block_in):
                 out.append(cur)
                 cur, used = {"stage": run["stage"], "things": [], "steps": []}, set()
             cur["steps"].append(i)
@@ -138,6 +139,28 @@ def _list(x) -> list:
     return x if isinstance(x, list) else [] if x is None else [x]
 
 
+HUE = 40.0  # degrees: a paint this far round the color wheel from another isn't that paint with white or a dark added
+GRAY = 12.0  # Lab chroma: under this a color has no hue to compare
+LIGHTER = 4.0  # Lab L: a version of a paint is at least this much lighter or darker than it
+
+
+def _version(color: str, of: str) -> bool:
+    """Could `color` be `of` with white or a dark added? By the rough colors: the same hue (when both have one), and
+    lighter or darker. White and darks pull chroma down, so chroma isn't compared."""
+    import math
+
+    import mixing
+
+    (l1, a1, b1), (l2, a2, b2) = mixing._lab(mixing.hex_rgb(color)), mixing._lab(mixing.hex_rgb(of))
+    if abs(l1 - l2) < LIGHTER:
+        return False
+    c1, c2 = math.hypot(a1, b1), math.hypot(a2, b2)
+    if c1 < GRAY or c2 < GRAY:  # a gray has no hue: its versions are grays too
+        return max(c1, c2) < 2 * GRAY
+    turn = abs(math.degrees(math.atan2(b1, a1) - math.atan2(b2, a2))) % 360
+    return min(turn, 360 - turn) <= HUE
+
+
 def _delta_e(a: str, b: str) -> float:
     import mixing  # only here: the rest of this file needs no color math
 
@@ -147,6 +170,69 @@ def _delta_e(a: str, b: str) -> float:
 def bases(plan: dict) -> list[dict]:
     """The paints that count as a mix of their own: not a lighter or darker version of another (`of`)."""
     return [p for p in plan.get("paints") or [] if not p.get("of")]
+
+
+def _range(x) -> tuple:
+    ok = isinstance(x, (list, tuple)) and len(x) == 2 and all(isinstance(v, int) for v in x)
+    return tuple(x) if ok else (None, None)
+
+
+def _target(technique: dict | None) -> int | None:
+    t = (technique or {}).get("max_mixes") if isinstance(technique, dict) else None
+    return t if isinstance(t, int) else None
+
+
+def _str(x) -> bool:
+    return isinstance(x, str) and bool(x.strip())
+
+
+def shape_problems(plan) -> list[str]:
+    """What's wrong with the file's shape: a value of the wrong type anywhere the rules read. A plan is written by
+    a writer and read as it comes, so `problems` runs its rules only on a plan this passes, and `units` and `notes`
+    are only for such a plan."""
+    if not isinstance(plan, dict):
+        return ["plan.json must be an object: {\"plan_version\": 3, \"things\": [...], \"paints\": [...], "
+                "\"stages\": [...]}"]
+    out: list[str] = []
+
+    def rows(holder: dict, key: str, where: str) -> list[dict]:
+        got = holder.get(key)
+        if got is None:
+            return []
+        if not isinstance(got, list):
+            out.append(f"{where}`{key}` must be a list")
+            return []
+        bad = [x for x in got if not isinstance(x, dict)]
+        if bad:
+            out.append(f"{where}every entry of `{key}` must be an object like {{...}}, not {bad[0]!r}")
+        return [x for x in got if isinstance(x, dict)]
+
+    def text(holder: dict, keys: tuple, where: str, need: tuple = ()) -> None:
+        for k in keys:
+            if (k in holder or k in need) and not _str(holder.get(k)):
+                out.append(f"{where}`{k}` must be a word or a phrase in quotes, not {holder.get(k)!r}")
+
+    def names(holder: dict, key: str, where: str) -> None:
+        got = holder.get(key)
+        if got is not None and not (isinstance(got, list) and all(_str(x) for x in got)):
+            out.append(f"{where}`{key}` must be a list of names in quotes, like [\"sky\"], not {got!r}")
+
+    for t in rows(plan, "things", ""):
+        where = f"thing {t.get('id')!r}: "
+        text(t, ("id", "name", "element", "plain", "called"), where, need=("id", "name", "element"))
+        names(t, "behind", where)
+    for p in rows(plan, "paints", ""):
+        where = f"paint {p.get('name')!r}: "
+        text(p, ("name", "looks", "color", "of"), where, need=("name",))
+    for st in rows(plan, "stages", ""):
+        text(st, ("id", "name"), f"stage {st.get('id')!r}: ", need=("id",))
+        for s in rows(st, "steps", f"stage {st.get('id')!r}: "):
+            where = f"step {s.get('id')!r}: "
+            text(s, ("id", "name", "after", "stroke", "brush", "unit"), where, need=("id",))
+            names(s, "paints", where)
+            for lay in rows(s, "lays", where):
+                text(lay, ("thing", "what"), where + "in `lays`, ", need=("thing",))
+    return out
 
 
 def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict] | None = None,
@@ -162,8 +248,10 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
         import cards
 
         strokes = set(cards.strokes())
-    technique = technique or {}
-    out: list[str] = []
+    out = shape_problems(plan)
+    if out:
+        return out
+    technique = technique if isinstance(technique, dict) else {}
     things: dict[str, dict] = {}
     for t in plan.get("things") or []:
         tid = t.get("id", "")
@@ -173,15 +261,14 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
             out.append(f"{tid}: two things have this id")
         if not t.get("name"):
             out.append(f"{tid}: a thing needs a name, as the page will say it")
+        elif t["name"].strip().lower() in {(x.get("name") or "").strip().lower() for x in things.values()}:
+            out.append(f"{tid}: another thing is already named {t['name']!r}. Give each thing its own name.")
         if t.get("element") not in elements:
             out.append(f"{tid}: its element {t.get('element')!r} isn't in techniques/elements. Pick the closest one "
                        "and say in `why` what it lacks.")
         if not isinstance(t.get("behind"), list):
             out.append(f"{tid}: say what is behind it (`behind`): the ids of the things already painted that it "
                        "sits on, or [] when it goes on bare canvas")
-        for key in ("plain", "called"):
-            if key in t and not (isinstance(t[key], str) and t[key].strip()):
-                out.append(f"{tid}: `{key}` must be a short phrase, or left out")
         things[tid] = t
     if not things:
         return ["the plan lists no things"]
@@ -189,10 +276,10 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
     all_steps = steps(plan)
     if not all_steps:
         return out + [plan2.NO_STAGES]
-    lo, hi = technique.get("v2_step_range") or (None, None)
+    lo, hi = _range(technique.get("v2_step_range"))
     if lo is not None and not lo <= len(all_steps) <= hi:
         out.append(f"the plan has {len(all_steps)} steps; the technique wants {lo} to {hi}")
-    lo, hi = technique.get("v2_stage_range") or (None, None)
+    lo, hi = _range(technique.get("v2_stage_range"))
     if lo is not None and not lo <= len(stages) <= hi:
         out.append(f"the plan has {len(stages)} stages; the technique wants {lo} to {hi}")
 
@@ -215,6 +302,10 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
         if of and (of not in paints or of == name or paints[of].get("of")):
             out.append(f"paint {name!r}: it's a lighter or darker version of {of!r}, which must be another paint "
                        "that isn't itself a version of one")
+        elif of and HEX.match(p.get("color") or "") and HEX.match(paints[of].get("color") or "") \
+                and not _version(p["color"], paints[of]["color"]):
+            out.append(f"paint {name!r}: `of` says it is {of!r} with white or a dark added, but by their `color` it "
+                       f"is another hue, or no lighter or darker. Take `of` off: it is a mix of its own.")
 
     ids: set[str] = set()
     for st in stages:
@@ -266,11 +357,12 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
         if s.get("stroke") not in strokes:
             out.append(f"{sid}: its stroke {s.get('stroke')!r} isn't a card in techniques/strokes")
         else:
-            mine_el = sorted({things[t].get("element") for t in seen if things[t].get("element") in elements})
-            allowed = {x for e in mine_el for st in elements[e].get("steps") or [] for x in _list(st.get("strokes"))}
-            if mine_el and s["stroke"] not in allowed:
-                out.append(f"{sid}: its stroke {s['stroke']!r} isn't one that {' or '.join(mine_el)} lists. Use one "
-                           f"of: {', '.join(sorted(allowed))}.")
+            for e in sorted({things[t].get("element") for t in seen if things[t].get("element") in elements}):
+                allowed = {x for st in elements[e].get("steps") or [] for x in _list(st.get("strokes"))}
+                if s["stroke"] not in allowed:
+                    out.append(f"{sid}: its stroke {s['stroke']!r} isn't one that {e} lists. Use one of: "
+                               f"{', '.join(sorted(allowed))}." + (" A step that crosses things is one move: a "
+                               "stroke every one of their elements lists." if len(seen) > 1 else ""))
         if not s.get("brush"):
             out.append(f"{sid}: name its brush")
         if s.get("block_in"):
@@ -310,19 +402,21 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
         own = not (s.get("unit") or "").strip()  # named after the one thing it starts
         # a unit may take the name of a thing it starts (the tall grass, laid with more of the meadow)
         others = set(things) - {t for t in u["things"] if per_thing.get(t, 0) == 0}
-        if not u["id"]:
+        if not own and not u["id"]:
+            out.append(f"{s.get('id')}: its `unit` name {u['name']!r} needs letters or digits in it")
+        elif not u["id"]:
             why = ("it starts several things at once" if u["kind"] != "back" else
                    f"it comes back to {', '.join(t for t in u['things'] if t in things)}")
             out.append(f"{s.get('id')}: this step starts a new picture of its own ({why}). Name what it and the steps "
                        f"with it add (`unit`), as the page will say it: \"The cow's shaggy coat\".")
-        elif u["id"] in seen_units or u["name"].strip().lower() in seen_names or (not own and (u["id"] in others or u["name"].lower() in
-                                                {(things[t].get("name") or "").strip().lower() for t in others})):
+        elif not own and (u["id"] in seen_units or u["name"].strip().lower() in seen_names or u["id"] in others
+                          or u["name"].strip().lower() in {(things[t].get("name") or "").strip().lower() for t in others}):
             out.append(f"{s.get('id')}: its `unit` name {u['name']!r} is already the name of a thing or of another "
                        "unit. Name what this one adds.")
         for i in u["steps"][1:]:
             if (all_steps[i].get("unit") or "").strip():
-                out.append(f"{all_steps[i].get('id')}: its `unit` is never read: it is in one picture with "
-                           f"{s.get('id')}, whose `unit` names them both. Take it off.")
+                out.append(f"{all_steps[i].get('id')}: its `unit` is never read: it shares one picture with "
+                           f"{s.get('id')}, and that step names it. Take it off.")
         if u["id"]:
             seen_units[u["id"]] = n
             seen_names.add(u["name"].strip().lower())
@@ -333,7 +427,7 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
             out.append(f"{tid}: it is painted in {n} units, so say how it looks after the first (`plain`): \"the "
                        "plain gray cat shape\". A render asked to keep it while it is still plain is told that name.")
 
-    target = technique.get("max_mixes")
+    target = _target(technique)
     near = closest(plan)
     if target is not None and len(bases(plan)) > target and near and near[0] <= CLOSE:
         de, a, b = near
@@ -361,7 +455,7 @@ def notes(plan: dict, technique: dict | None = None) -> dict:
             uses.setdefault(p, []).append(i + 1)
     again = [{"paint": p, "steps": at, "mix_again_at": [b for a, b in zip(at, at[1:]) if b - a >= APART]}
              for p, at in uses.items() if any(b - a >= APART for a, b in zip(at, at[1:]))]
-    target = (technique or {}).get("max_mixes")
+    target = _target(technique)
     n = len(bases(plan))
     out = {"mixes": n, "max_mixes": target, "versions": len(plan.get("paints") or []) - n, "mix_again": again}
     near = closest(plan)

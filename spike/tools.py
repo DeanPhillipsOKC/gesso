@@ -1548,14 +1548,17 @@ def _v3_plan(lesson: Path) -> tuple[dict, dict]:
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
     try:
-        plan = plan3.load(lesson)
+        plan = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
     except ValueError as e:
-        raise Refused(str(e))
-    path = ROOT / (plan.get("technique") or "")
-    if not plan.get("technique") or not path.is_file():
-        raise Refused(f"plan.json's \"technique\" ({plan.get('technique')!r}) isn't a file in the repo: name the "
-                      "approach, e.g. techniques/acrylic-paint-along-beginner.yaml")
-    return plan, yaml.safe_load(path.read_text(encoding="utf-8"))
+        raise Refused(f"plan.json isn't valid JSON: {e}")
+    if not isinstance(plan, dict) or plan.get("plan_version") != 3:
+        raise Refused(f"{lesson}/plan.json isn't a version 3 plan (no \"plan_version\": 3)")
+    name = plan.get("technique")
+    if not isinstance(name, str) or not name or not (ROOT / name).is_file():
+        raise Refused(f"plan.json's \"technique\" ({name!r}) isn't a file in the repo: name the approach, e.g. "
+                      "techniques/acrylic-paint-along-beginner.yaml")
+    technique = yaml.safe_load((ROOT / name).read_text(encoding="utf-8"))
+    return plan, technique if isinstance(technique, dict) else {}
 
 
 def plan_check_tool(a: argparse.Namespace) -> dict:
@@ -1566,7 +1569,10 @@ def plan_check_tool(a: argparse.Namespace) -> dict:
 
     lesson = Path(a.lesson)
     plan, technique = _v3_plan(lesson)
-    wrong = plan3.problems(plan, technique, elements=elements.known(lesson))
+    wrong = plan3.problems(plan, technique, elements=elements.library())
+    if plan3.shape_problems(plan):  # nothing more can be read from it
+        return {"problems": wrong, "ok": False, "advice": "Fix the file's shape as each problem says, then run "
+                "plan-check again for the rest.", "cost_usd": 0.0}
     steps = plan3.steps(plan)
     units = [{"unit": n, "id": u["id"], "name": u["name"], "kind": u["kind"], "things": u["things"],
               "steps": [steps[i].get("id") for i in u["steps"]]} for n, u in enumerate(plan3.units(plan))]

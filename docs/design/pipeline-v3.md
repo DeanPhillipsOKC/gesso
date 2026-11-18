@@ -79,7 +79,10 @@ changes because of it:
 
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
 `"plan_version": 3`: the plan file, its brief and `plan-check` (section 5). The spikes' three plans, with what was
-written by hand folded in, are `spike/tests/fixtures/plans3/`.
+written by hand folded in, are `spike/tests/fixtures/plans3/`. A step v2's cutter showed flat is a block-in there
+only when it is one by the plan's rule, so the cow has 14 units and the birch grove 17, where the spikes' chains
+had 17 and 19 (the cow's clouds, bushes and nose and the birch grove's canopy and bushes start with dabs or
+streaks, not a flat shape). The sleeping cat's 15 are the spike's.
 
 ## 1. Why change
 
@@ -168,8 +171,10 @@ the brief in `.claude/skills/paint-lesson/v3/plan-brief.md`:
   and trees through the window", when the trees are a thing of their own).
 - **`color` on every paint:** a rough hex for the name. The paints are fitted from it in step 6.
 - **`of` on a paint (optional):** it is a lighter or darker version of the paint named, and isn't counted as a mix.
+  `plan-check` holds it to that by the rough colors: the same hue within 40 degrees (a gray stays a gray), and
+  lighter or darker by 4 L or more (`plan3.HUE`, `LIGHTER`, starting values).
 - **`block_in: true` on a step:** the thing's first coat, as one flat color. It must be the first step on each
-  thing it lays, not a blend, and each thing needs a later step. v2's "flat" isn't this (the birch grove's dark
+  thing it lays, not a blend, and each thing needs a later step. It is a unit by itself. v2's "flat" isn't this (the birch grove's dark
   leaf dabs, the cow's nose): a block-in is what the request of #217 describes, a whole thing as a paper-flat shape.
 - **`unit` on the first step of a unit** that isn't the start of one thing: a name for what the unit adds, as the
   page says it ("The cow's shaggy coat"). A unit that starts one thing takes the thing's id and name.
@@ -184,8 +189,8 @@ one step.
 **`plan-check` (step 3)** is #172's `painter-check` (ids, names, `lays`, paints, strokes, the technique's ranges),
 the fields above, and:
 
-- **A step's stroke is one its thing's element lists.** The brief said so and nothing checked it. All 69 steps of
-  the three spike plans pass.
+- **A step's stroke is one its thing's element lists,** and for a step that crosses things, one every one of
+  their elements lists. The brief said so and nothing checked it. All 69 steps of the three spike plans pass.
 - **At most 10 mixes, as v2 holds it** (`docs/decisions.md`, 2026-11-12). Paints with `of` aren't counted. Above
   the technique's `max_mixes`, the plan fails while two counted paints are within Delta E 12 by their rough
   `color` (`plan3.CLOSE`), naming the closest pair: use one for both, or mark one `of` the other. With none that

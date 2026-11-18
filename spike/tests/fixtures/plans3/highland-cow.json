@@ -288,8 +288,7 @@
      ],
      "stroke": "dry-brush",
      "brush": "1/2 inch flat",
-     "after": "Soft, broken horizontal cloud streaks lie over the dry sky, apricot near the sun and grayish violet higher up, with the sky showing through their edges. Their tops are not yet lit. Below the middle is still bare.",
-     "block_in": true
+     "after": "Soft, broken horizontal cloud streaks lie over the dry sky, apricot near the sun and grayish violet higher up, with the sky showing through their edges. Their tops are not yet lit. Below the middle is still bare."
     },
     {
      "id": "light-cloud-tops",
@@ -305,8 +304,7 @@
      ],
      "stroke": "dry-brush",
      "brush": "1/2 inch flat",
-     "after": "Each cloud streak now has a glowing gold top edge, with its darker apricot or violet still showing underneath. The sky is finished; the lower half is bare.",
-     "unit": "The cloud tops"
+     "after": "Each cloud streak now has a glowing gold top edge, with its darker apricot or violet still showing underneath. The sky is finished; the lower half is bare."
     }
    ]
   },
@@ -393,8 +391,7 @@
      ],
      "stroke": "dabbing",
      "brush": "old stiff 1/2 inch flat",
-     "after": "The hillside is dappled with dark green clumps in rows that follow the slope, with the lighter green showing between them. The meadow below and where the cow goes are unchanged.",
-     "block_in": true
+     "after": "The hillside is dappled with dark green clumps in rows that follow the slope, with the lighter green showing between them. The meadow below and where the cow goes are unchanged."
     },
     {
      "id": "tap-sunlit-bushes",
@@ -410,8 +407,7 @@
      ],
      "stroke": "dabbing",
      "brush": "old stiff 1/2 inch flat",
-     "after": "The tops of the bushes on the sun side catch yellow-green light, with most of each clump still dark. The background is finished; the cow's place is still plain green.",
-     "unit": "The sunlit bush tops"
+     "after": "The tops of the bushes on the sun side catch yellow-green light, with most of each clump still dark. The background is finished; the cow's place is still plain green."
     }
    ]
   },

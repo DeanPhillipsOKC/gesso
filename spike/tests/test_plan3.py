@@ -155,7 +155,7 @@ class ProblemsTests(unittest.TestCase):
         del p["things"][2]["plain"]
         self.one(p, "cat", "`plain`", "3 units")
         p["things"][2]["plain"] = " "
-        self.assertTrue(any("short phrase" in x for x in check(p)))
+        self.assertTrue(any("`plain` must be a word or a phrase" in x for x in check(p)))
 
     def test_a_paint_needs_a_rough_color_and_a_step(self):
         p = plan()
@@ -181,6 +181,7 @@ class ProblemsTests(unittest.TestCase):
         p = plan()
         step(p, "light-cat")["stroke"] = "liner-lines"
         self.one(p, "light-cat", "'liner-lines'", "furry-animal", "build-from-pieces, dabbing, glazing")
+        self.assertNotIn("crosses", check(p)[0])
         step(p, "light-cat")["stroke"] = "scumble"
         self.one(p, "light-cat", "isn't a card")
 
@@ -207,6 +208,61 @@ class ProblemsTests(unittest.TestCase):
         p = plan()
         step(p, "cat-eyes")["paints"] = ["Rug red"]
         self.assertEqual(plan3.notes(p, TECH)["mix_again"], [{"paint": "Rug red", "steps": [2, 6], "mix_again_at": [6]}])
+
+    def test_a_version_of_a_paint_is_that_paint_lighter_or_darker(self):
+        p = plan()
+        p["paints"][4].update(color="#2a8a2a")  # a green "of" a gray
+        self.one(p, "'Pale gray'", "`of`", "Take `of` off")
+        p["paints"][4].update(color="#8c8c8c")  # the same gray: no lighter, no darker
+        self.one(p, "'Pale gray'", "Take `of` off")
+        p["paints"][4].update(color="#e2a39c", of="Rug red")  # a pink is the red with white
+        self.assertEqual(check(p, None), [])
+
+    def test_a_block_in_is_a_unit_by_itself_whatever_comes_before_it(self):
+        p = plan()
+        st = p["stages"][1]["steps"]
+        glaze = dict(step(p, "light-cat"), id="rug-glaze", lays=[{"thing": "rug", "what": "x"}], paints=["Rug red"],
+                     stroke="glazing")
+        both = dict(step(p, "shadows"), id="both", unit="Both")
+        del st[0]["block_in"]
+        p["stages"][1]["steps"] = [st[0], glaze, st[1], both]
+        ids = [[plan3.steps(p)[i]["id"] for i in u["steps"]] for u in plan3.units(p)]
+        self.assertIn(["block-cat"], ids)
+
+    def test_a_step_that_crosses_things_uses_a_stroke_all_their_elements_list(self):
+        p = plan()
+        step(p, "shadows")["stroke"] = "dabbing"  # the cat's element lists it, the rug's doesn't
+        self.one(p, "shadows", "simple-shape", "crosses things")
+
+    def test_two_things_with_one_name_and_a_unit_name_with_no_letters(self):
+        p = plan()
+        p["things"][1]["name"] = "The cat"
+        self.one(p, "cat", "already named 'The cat'")
+        p = plan()
+        step(p, "cat-eyes")["unit"] = "!!!"
+        self.one(p, "cat-eyes", "letters or digits")
+
+    def test_a_malformed_plan_is_listed_not_raised(self):
+        self.assertIn("must be an object", check([])[0])
+        bad = [("things", 0, "id", None), ("things", 0, "id", 5), ("things", 0, "element", ["sky-blend"]),
+               ("things", 0, "behind", [["sky"]]), ("things", 0, "name", 4), ("things", 0, "plain", 3),
+               ("paints", 0, "name", ["x"]), ("paints", 0, "color", 5), ("paints", 4, "of", ["Cat gray"])]
+        for key, i, field, value in bad:
+            p = plan()
+            p[key][i][field] = value
+            found = check(p)
+            self.assertTrue(found and all(f"`{field}`" in x for x in found), (field, value, found))
+        for field, value in (("id", None), ("stroke", ["glazing"]), ("unit", 3), ("paints", "Sky blue"),
+                             ("paints", [["Sky blue"]]), ("lays", "sky"), ("lays", [{"thing": ["sky"], "what": "x"}])):
+            p = plan()
+            step(p, "light-cat")[field] = value
+            self.assertTrue(check(p), (field, value))
+        for key, value in (("things", {"sky": 1}), ("things", ["sky"]), ("paints", ["Sky blue"]), ("stages", ["x"]),
+                           ("stages", [{"id": "a", "name": "A", "steps": "x"}])):
+            p = plan()
+            p[key] = value
+            self.assertTrue(check(p), (key, value))
+        self.assertEqual(check(plan(), {"v2_step_range": [3], "max_mixes": "10"}), [])  # a bad technique isn't the plan's
 
     def test_ids_things_and_steps(self):
         self.assertEqual(check({"plan_version": 3}), ["the plan lists no things"])
@@ -239,7 +295,7 @@ class BenchPlansTests(unittest.TestCase):
             self.assertIn("above the technique's target of 10", found[0])
 
     def test_their_units(self):
-        want = {"highland-cow": 16, "sleeping-cat": 15, "birch-grove": 19}
+        want = {"highland-cow": 14, "sleeping-cat": 15, "birch-grove": 17}
         for name, n in want.items():
             us = plan3.units(json.loads((PLANS / f"{name}.json").read_text(encoding="utf-8")))
             self.assertEqual(len(us), n, name)
@@ -278,6 +334,22 @@ class PlanCheckToolTests(unittest.TestCase):
         code, r = self.run_tool(p)
         self.assertEqual(code, 2)
         self.assertIn("technique", r["refused"])
+
+    def test_it_refuses_a_file_that_is_not_a_plan_and_lists_a_malformed_one(self):
+        for text in ("{not json", "[]", json.dumps({"plan_version": 3, "technique": 5})):
+            with tempfile.TemporaryDirectory() as tmp:
+                (Path(tmp) / "plan.json").write_text(text, encoding="utf-8")
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    code = tools.main(["plan-check", "--lesson", tmp])
+                self.assertEqual(code, 2, text)
+                self.assertIn("refused", json.loads(buf.getvalue()))
+        p = plan()
+        p["things"][0]["id"] = None
+        code, r = self.run_tool(p)
+        self.assertEqual(code, 0)
+        self.assertFalse(r["ok"])
+        self.assertNotIn("units", r)
 
     def test_the_version_2_tools_refuse_a_version_3_plan(self):
         with tempfile.TemporaryDirectory() as tmp:

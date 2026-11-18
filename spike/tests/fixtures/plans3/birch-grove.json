@@ -436,7 +436,7 @@
      "brush": "1/2 inch old stiff brush",
      "after": "Loose orange-gold clumps hang across the top and down the left side, with gaps where the gold glow and blue sky show through. The sun stays clear.",
      "why": "The canopy sits behind the near trunks, so its darks go on before them.",
-     "block_in": true
+     "unit": "The canopy and the bushes"
     },
     {
      "id": "dab-dark-bushes",
@@ -454,8 +454,7 @@
      "stroke": "dabbing",
      "brush": "1/2 inch old stiff brush",
      "after": "Low olive and dark blue-green clumps sit along both sides of the path where it meets the far woods, darkest under the firs. The path stays open between them.",
-     "why": "The bushes' darks go on before their gold, the same way as the canopy.",
-     "block_in": true
+     "why": "The bushes' darks go on before their gold, the same way as the canopy."
     },
     {
      "id": "dab-mid-leaves",
@@ -476,8 +475,7 @@
      "stroke": "dabbing",
      "brush": "1/2 inch old stiff brush",
      "after": "The canopy and bushes turn golden: yellow over most of each clump, the orange or olive still showing underneath and on the right. The gaps of sky stay open.",
-     "why": "One move: the same brush loaded with the same golden yellow taps the mid value onto both leaf masses.",
-     "unit": "The golden leaves"
+     "why": "One move: the same brush loaded with the same golden yellow taps the mid value onto both leaf masses."
     }
    ]
   },
