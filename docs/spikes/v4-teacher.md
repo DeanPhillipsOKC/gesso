@@ -10,7 +10,11 @@ variant: `spike/experiments/v4_teacher/<variant>.json`. Run on 2026-11-18.
 builds on. Drop the other three.** Its words scored higher than v3's on all three bench pictures in the student test
 (+0.21 over the 64 steps, about two standard errors), and every blind grader preferred them (6 of 6, none for v3).
 They fix three of v3's four words that point the wrong way, use half as many words, and cost less than v3's stage
-writers. Two cautions come with it. The gain clears the 0.25 bar on one lesson only (the cow): on the cat and the birch
+writers. Choosing it over one writer a stage in free prose (`stage-free`) rests on cost and the graders, not on the
+student test: stage-free scored about the same (+0.18, a third of a standard error less), did better on the cow, and
+by the 0.25 rule fixed all four of v3's word faults. It costs $2.19 a lesson against $1.30, and the graders preferred
+it 5 of 6 against 6 of 6. Lesson-free gained nothing on the student test, and stage-slots was no better than
+stage-free and cost more. Two cautions come with it. The gain clears the 0.25 bar on one lesson only (the cow): on the cat and the birch
 grove it is inside the run-to-run spread. And both tests read the words without the outline and paint map the
 real page shows, which v3's words lean on (see Limits). Three things are needed before it goes into a lesson run (see
 "Before it goes into a run").
@@ -107,14 +111,16 @@ the student test also asks where the paint goes, and lesson-free said that least
 | cow 2, cloud streaks | 0.60 | 0.12 | 0.50 | 0.55 | 0.55 | 0.52 |
 | cat 2, dark leaves | 0.55 | 0.15 | 0.62 | 0.66 | 0.78 | 0.75 |
 | birch 10, golden leaves | 0.65 | 0.35 | 0.75 | 0.68 | 0.68 | 0.82 |
-| birch 20, sunlit leaves | 0.45 | 0.15 | 0.22 | 0.22 | 0.14 | 0.18 |
+| birch 20, sunlit leaves | 0.45 | 0.12 | 0.22 | 0.22 | 0.14 | 0.18 |
 
 (The chance the reader gave the real after. A word fault is 0.25 or more below the header.)
 
 - **Three of v3's four faults are fixed by every variant.** v3's measured box said the paint covered less than the
   picture (cow 2's streaks "about 2 in from the top edge", cat 2's leaves "about 1/4 in wide"). The teacher, seeing
   the change picture, says where the streaks run down the sky and where the leaves hang.
-- **Birch 20 is still a fault**, in every variant. The teacher says "most of it goes on the right side of the
+- **Birch 20 is still a fault for the lesson writers**, and only just not one for the stage writers (0.22 against the
+  header's 0.45: 0.23 below it, against the 0.25 rule). By the rule the stage writers fixed all four. In every variant
+  the reader still picked the half-done picture first. The teacher says "most of it goes on the right side of the
   canvas" (true by the sheet's halves, so the check passes it) and "leave the very front clear". The change spreads
   across the whole band of ground, left side too. The reader picked the half-done picture, as it did for v3.
 - **On all 64 steps, lesson-slots has that one fault, where v3 had four.** Its pick score is 0.70 against v3's 0.66
@@ -192,14 +198,14 @@ Carry graded v3's 4 and the teacher's 3 on this step: one step is inside the 0.5
 | lesson-free | 12, 9, 6 | 0 | 44, 22, 43 |
 | lesson-slots | 1, 9, 17 | 0 | 43, 40, 66 |
 
-- **One round of feedback fixes nearly everything.** At most one sentence a lesson was taken out, as with v3. About
+- **One round of feedback fixes nearly everything.** At most one sentence a lesson was taken out (v3's writers had two taken out on the cat and two on the birch grove). About
   half of the first failures were numbers the sheet contradicts (a distance from the wrong edge, a size of the wrong
   thing). The rest were references the sheet can't find.
 - **What it can't find is where inside a thing the paint goes.** The references it failed to find, across all 12
   lessons: pronouns ("it" 8 times, "them", "that"), and pieces of a thing the sheet doesn't name: each ear, the
   muzzle, the nose, the chin, the back, the body, the tip, the fringe, the blanket's roll, the gold glow, the bands,
   the far peaks, the second dark fir. A place named without a side word isn't a claim at all, so "where the chin
-  meets the blanket" or "the crescent behind the head" goes unchecked. That is why the teacher's lessons make 40 to
+  meets the blanket" or "the crescent behind the head" goes unchecked. That is why the teacher's lessons make 22 to
   66 checkable claims against v3's 100 to 115. The words now say more about place, and the sheet checks less of it.
 - **To check a teacher, the sheet would need:**
   1. **the pieces of a thing**, named the way a painter names them (the cat's head, ears, back, belly, tail, paws;
@@ -222,10 +228,10 @@ rates):
 | Words | calls | pictures sent | words written | Claude, a lesson | of it, the feedback |
 |---|---|---|---|---|---|
 | v3's stage writers (the loop baseline, the cat) | 12 | | about 5,240 on the page | $1.42 | $0.21 |
-| stage-free | 13 | 58 | 2,990 | $2.19 | $0.24 |
-| stage-slots | 14 | 58 | 3,630 | $2.37 | $0.34 |
-| lesson-free | 2 | 44 | 2,270 | $1.09 | $0.20 |
-| **lesson-slots** | 2 | 44 | 2,650 | **$1.30** | $0.28 |
+| stage-free | 13 | 59 | 2,990 | $2.19 | $0.24 |
+| stage-slots | 14 | 59 | 3,630 | $2.37 | $0.34 |
+| lesson-free | 2 | 45 | 2,270 | $1.09 | $0.20 |
+| **lesson-slots** | 2 | 45 | 2,650 | **$1.30** | $0.28 |
 
 A stage writer costs more than v3's because it is sent the whole plan, the photo and the finish, and two pictures a
 step. One writer for the lesson reads those once. Its longest call took three minutes, against 70 seconds for a
@@ -257,7 +263,10 @@ Each is small. None is needed for W2, which builds on the writer as it is here.
 - One run of each variant a step. The gain clears the 0.25 bar on one lesson (the cow). On the cat and the birch
   grove lesson-slots is up by 0.17, inside the spread.
 - A blind grader sees the two lessons' words step by step under one picture, not as two folders, so they read
-  closer together than the brief's two-folder form.
+  closer together than the brief's two-folder form. The graders saw only each step's after picture, not the
+  before-and-after pair. The A/B was blind (no side was named, and v3 was A for one grader and B for the other on
+  every picture), but the two styles are easy to tell apart, and v3's numbered lines with a tip and outline lines
+  read as the template the graders marked down.
 - The writers ran once each. A second run of lesson-slots would show how much of the free-prose-against-slots
   difference is the writer's spread.
 - Pick ran on all 64 steps for lesson-slots only. The other variants' faults were checked on v3's four steps.

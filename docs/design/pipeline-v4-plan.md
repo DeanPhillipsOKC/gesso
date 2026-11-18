@@ -85,7 +85,8 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   **Done 2026-11-18 (`docs/spikes/v4-teacher.md`): adopt one writer for the whole lesson, in fixed lines** (First,
   Start, Strokes, Where the paint sits, Leave, Stop when). Carry: 3.43, 3.38, 3.20 against v3's 3.15, 3.21, 3.03
   (+0.21 over the 64 steps, clearing the 0.25 bar on the cow only). The blind graders preferred it 6 of 6. One word
-  fault left of v3's four. Half v3's words, $1.30 a lesson against $1.42. The sheet can't check where inside a thing
+  fault left of v3's four. Half v3's words, $1.30 a lesson against $1.42. A writer a stage in free prose scored about
+  the same (+0.18) for $2.19, so the choice between them is cost, not score. The sheet can't check where inside a thing
   the paint goes: it would need a thing's pieces (ears, back, tail) and the share of a step's paint on each.
 - **W2. The lesson has an arc (#255).** An opening that names the two or three skills this painting teaches and
   shows the road to the finish, stage openers that say what the stage is for, and steps that point back ("the
