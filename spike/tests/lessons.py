@@ -71,6 +71,9 @@ def chain_into(name: str, folder: Path) -> None:
     (folder / "chain" / "chain.json").write_text(json.dumps(kept, indent=1), encoding="utf-8")
     if (src / "answers.json").exists():
         shutil.copyfile(src / "answers.json", folder / "chain" / "looks" / "answers.json")
+    for n in range(1, len(ps)):  # a look a unit, as erase leaves them, so the seal's "every unit" rule has units
+        Image.open(folder / "chain" / f"P{n:02d}.png").convert("RGB").resize((64, 43)).save(
+            folder / "chain" / "looks" / f"U{n:02d}.jpg")
 
 
 def words_into(name: str, folder: Path) -> None:

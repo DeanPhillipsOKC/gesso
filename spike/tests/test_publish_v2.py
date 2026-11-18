@@ -417,8 +417,11 @@ class PublishV2Tests(unittest.TestCase):
         text[ids[3]].pop("lines")
         self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [f"{ids[3]}: text.json has no lines"])
         self.assertIn("review.json has no text_issues", " ".join(tools.seal_problems(lesson, plan, text, {}, notes, {})))
+        answers = lesson / "chain" / "looks" / "answers.json"
+        answers.write_text(json.dumps(json.loads(answers.read_text(encoding="utf-8"))[1:]), encoding="utf-8")
+        self.assertIn("doesn't answer for every unit", " ".join(tools.seal_problems(lesson, plan, text, review, notes, {})))
         (lesson / "words" / "dropped.json").unlink()
-        (lesson / "chain" / "looks" / "answers.json").unlink()
+        answers.unlink()
         (lesson / "review.json").unlink()
         said = " | ".join(tools.seal_problems(lesson, plan, text, review, notes, {}))
         self.assertIn("run check-text --final", said)
