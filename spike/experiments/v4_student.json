@@ -4711,6 +4711,474 @@
    "why": "The step says to cover the whole canvas to all four edges, which rules out the half-painted picture 4 and the patchy picture 3; picture 2 keeps the blue-and-gold bands soft with the pale sun glow at the right, and picture 1 looks like the same canvas turned upside down.",
    "cost_usd": 0.0438,
    "seconds": 6.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.92,
+   "probs": {
+    "other": 0.02,
+    "real": 0.92,
+    "place": 0.03,
+    "half": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step places the mountains all the way across, with the top about 2 1/2 in and the bottom about 4 1/2 in from the top edge (roughly 100\u2013180 px), and only Picture 2 shows a full-width Far violet range with a Mountain blue band at that height; Picture 4 stops partway, Picture 3 sits far too low and Picture 1 barely starts.",
+   "cost_usd": 0.04191,
+   "seconds": 7.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.72,
+   "probs": {
+    "real": 0.72,
+    "half": 0.18,
+    "place": 0.05,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step puts Dark umber mostly on the left side, with a band under the fringe and low on the body, and also asks for thin dragged strokes across the rest of the coat; Picture 1 does both inside the original outline, while Picture 2 leaves the right half flat with a hard edge, Picture 3 paints outside the outlined area, and Picture 4 adds horns instead of shading.",
+   "cost_usd": 0.04296,
+   "seconds": 7.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 16,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.43,
+   "probs": {
+    "half": 0.42,
+    "place": 0.1,
+    "real": 0.43,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for scattered tapered deep-green flicks with the lighter meadow showing between them and the cow's ragged bottom edge left visible; that rules out Picture 4, whose strokes are light yellow-green, and Picture 2, which puts dark marks onto the cow's coat, but leaves Pictures 1 and 3 too close to separate.",
+   "cost_usd": 0.04364,
+   "seconds": 8.5
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 7,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.94,
+   "probs": {
+    "real": 0.94,
+    "place": 0.02,
+    "other": 0.02,
+    "half": 0.02
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one flat, solid band across the full width from the left edge to the right edge at the bottom of the canvas, with its top about 4 1/2 in up and sloping down to the right, and with no canvas showing; only picture 1 matches, while 2 puts the band at the top, 3 is patchy with gaps, and 4 covers only the right part.",
+   "cost_usd": 0.03991,
+   "seconds": 5.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 5,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "other": 0.04,
+    "real": 0.88,
+    "half": 0.04,
+    "place": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a flat cream frame with no shading yet, sitting at the top-left edges, with the post taken all the way to the bottom edge; only Picture 2 does all of that, while 1 is already shaded, 3 stops short of the bottom, and 4 is on the right side.",
+   "cost_usd": 0.04073,
+   "seconds": 6.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 23,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.45,
+   "probs": {
+    "place": 0.04,
+    "other": 0.06,
+    "real": 0.45,
+    "half": 0.45
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step puts small comma nostrils at the bottom of the existing nose and a thin mouth line under it, with the nose a greyer pink and a darker shadow under the mouth; pictures 3 and 4 both show this and I can't reliably tell them apart, while picture 2 is unchanged and picture 1 adds dark marks in the wrong spot, left of the nose.",
+   "cost_usd": 0.04381,
+   "seconds": 7.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 19,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.4,
+   "probs": {
+    "real": 0.4,
+    "other": 0.08,
+    "place": 0.04,
+    "half": 0.48
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for a narrow pale-gold rim of tapered strokes, mostly along the head, fringe and the cow's right side, with the ginger locks left showing; Pictures 1 and 4 both show that, while Picture 2 barely changed and Picture 3 repainted the cow's shape, and I lean slightly to 4 because its gold looks a bit more confined to the rim.",
+   "cost_usd": 0.0438,
+   "seconds": 9.1
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 10,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.92,
+   "probs": {
+    "place": 0.02,
+    "other": 0.03,
+    "real": 0.92,
+    "half": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one solid, even golden-yellow loaf about 15 in wide and 5 1/2 in tall, its bottom about 1 in from the bottom edge with a thin strip of sill showing below, running off the right edge with a rounded, two-bulge left end; picture 3 matches this, while 1 is placed too high on the wall, 2 is textured and patchy, and 4 is a partial square-edged block.",
+   "cost_usd": 0.04018,
+   "seconds": 6.6
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 1,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "place": 0.03,
+    "real": 0.7,
+    "other": 0.07,
+    "half": 0.2
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step puts a pale blue-to-warm-white blend at the top-left corner, about 1 1/4 in wide (about 50 px) and 1 3/4 in tall (about 70 px); Picture 2 matches that size and its smooth pale gradient, while Picture 1 is in the wrong corner, Picture 3 is too dark and blotchy, and Picture 4 is too narrow.",
+   "cost_usd": 0.04597,
+   "seconds": 8.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 16,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "place": 0.03,
+    "other": 0.02,
+    "half": 0.15,
+    "real": 0.8
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The tip asks for tapering charcoal stripes on the back and tail plus stripes between the ears, darker ear rims and strokes at the closed eyes, all on the existing cat shape, and only picture 4 does all of that; picture 3 skips the head, picture 1 reshapes the cat, and picture 2 adds pink ears instead of stripes.",
+   "cost_usd": 0.0422,
+   "seconds": 6.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 13,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "half": 0.03,
+    "real": 0.88,
+    "other": 0.03,
+    "place": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one solid gray cat shape about 15 in wide, with its top about 1 1/4 in from the top edge, its left side about 1 in in, two pointed ears and a curved back, and the blanket's front roll left showing; only Picture 2 does all of that, while 1 has the wrong shape, 3 is patchy and broken, and 4 has no ears and covers the blanket roll.",
+   "cost_usd": 0.04235,
+   "seconds": 7.3
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 18,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.48,
+   "probs": {
+    "other": 0.05,
+    "place": 0.02,
+    "real": 0.48,
+    "half": 0.45
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to put small light-gray flicks mostly on the head and to leave the face plain, so Picture 1 is out for adding a pink nose and Picture 2 is out for its messy, misplaced marks; Pictures 3 and 4 both show a lighter, softly flicked head and I could not reliably tell them apart.",
+   "cost_usd": 0.04282,
+   "seconds": 6.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 4,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.85,
+   "probs": {
+    "real": 0.85,
+    "half": 0.07,
+    "place": 0.03,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The outlined area's right side is at the right edge and holds most of the paint, which only Picture 1 shows with full stamped firs, narrow at the top and wider below.",
+   "cost_usd": 0.04134,
+   "seconds": 6.7
+  },
+  {
+   "picture": "birch-grove",
+   "n": 1,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.78,
+   "probs": {
+    "other": 0.02,
+    "place": 0.18,
+    "half": 0.02,
+    "real": 0.78
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to cover the whole canvas to all four edges with a Pale gold glow, Misty blue elsewhere and soft Blue-violet streaks; only Pictures 2 and 4 are fully covered, and Picture 4's upper-left glow matches the partial versions, so it is the likely result.",
+   "cost_usd": 0.04477,
+   "seconds": 7.1
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 21,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.25,
+   "probs": {
+    "place": 0.05,
+    "half": 0.15,
+    "other": 0.55,
+    "real": 0.25
+   },
+   "pick": "other",
+   "hit": false,
+   "why": "The step limits the whiskers to a tiny 1/2 by 1/4 in area at the muzzle, about 5 1/2 in from the left and bottom edges, so the right canvas should show only small, subtle marks there; Picture 3 fits that best, while Pictures 2 and 4 spread long whiskers well past it and Picture 1 puts them out on the body.",
+   "cost_usd": 0.0482,
+   "seconds": 10.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.82,
+   "probs": {
+    "other": 0.04,
+    "place": 0.08,
+    "real": 0.82,
+    "half": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to dab dark leaves across the whole outlined area reaching all four edges, mostly the leaf floor and the bushes beside the path, with only a few dabs in the treetops; Picture 3 does this, while 4 covers only the right half, 2 has smeared blobs over the trees, and 1 uses bright yellow leaves that leave most of the floor bare.",
+   "cost_usd": 0.04266,
+   "seconds": 6.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 6,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.12,
+    "real": 0.8,
+    "place": 0.05,
+    "other": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The tip says to pull the tallest Smoky brown trunk first with its top about 3/4 in from the top edge, inside the area starting 2 1/2 in from the left; Picture 2 has that tall tapering trunk, while Picture 1's trunks stop low, Picture 3 changes the trees on the right outside the area, and Picture 4 repaints the ground.",
+   "cost_usd": 0.04263,
+   "seconds": 8.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 11,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.4,
+   "probs": {
+    "place": 0.03,
+    "half": 0.55,
+    "other": 0.02,
+    "real": 0.4
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for light dotted pale-gold taps kept near the sun in the left and top half with no paint on the ground, which rules out the dark blobs in 1 and the green blob on the ground in 3, and 2 fits a little better than 4 because its taps stay more to the upper left.",
+   "cost_usd": 0.0458,
+   "seconds": 8.4
+  },
+  {
+   "picture": "birch-grove",
+   "n": 15,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.75,
+   "probs": {
+    "half": 0.12,
+    "real": 0.75,
+    "place": 0.05,
+    "other": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for solid, unmarked birch-gray trunks, mostly on the left with two big right-leaning ones, plus a trunk about 1 1/4 in wide near 14 1/4 in and a thin one down the right edge; Picture 2 has all of these, while 1 lacks the right-side trunks, 3 has the big trunks on the wrong side, and 4 adds bark markings.",
+   "cost_usd": 0.04603,
+   "seconds": 8.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 17,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.75,
+   "probs": {
+    "place": 0.05,
+    "other": 0.05,
+    "half": 0.15,
+    "real": 0.75
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for short, pointed dark patches across all the front birch trunks inside the 15 \u00d7 10 1/2 in area, with the feet going almost solid dark; Picture 4 does that, Picture 3 leaves some trunks untouched, Picture 2 has only a faint brown tint instead of dark patches, and Picture 1 adds new trunks instead of only marking the existing ones.",
+   "cost_usd": 0.04582,
+   "seconds": 8.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 20,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.14,
+   "probs": {
+    "half": 0.72,
+    "other": 0.06,
+    "real": 0.14,
+    "place": 0.08
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The tip puts most of the Pale gold as separate dabs on the right half and path with only a few near the left edge: Picture 1 does this, Picture 3 spreads pale leaves across the left too, Picture 2 adds almost nothing, and Picture 4 also changes the trunks and rock outside the outlined ground area.",
+   "cost_usd": 0.04131,
+   "seconds": 6.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "words",
+   "rep": 2,
+   "p_real": 0.86,
+   "probs": {
+    "half": 0.04,
+    "real": 0.86,
+    "other": 0.02,
+    "place": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to paint the deep green all the way to the bottom edge and fill every sky colour still showing so no blue or orange is left below the mountains; only Picture 2 does this, while 1 leaves the bottom unpainted, 4 leaves gaps, and 3 adds trees instead.",
+   "cost_usd": 0.04128,
+   "seconds": 5.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 2,
+   "p_real": 0.92,
+   "probs": {
+    "other": 0.02,
+    "real": 0.92,
+    "place": 0.03,
+    "half": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to paint 'all the way across' between about 2 1/2 and 4 1/2 in from the top edge, reaching both left and right edges, which only Picture 2 does.",
+   "cost_usd": 0.04041,
+   "seconds": 6.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 13,
+   "condition": "words",
+   "rep": 2,
+   "p_real": 0.82,
+   "probs": {
+    "half": 0.12,
+    "other": 0.03,
+    "place": 0.03,
+    "real": 0.82
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to put Dark umber along the underside and dark tips of both horns while leaving a pale strip on top, which Picture 4 shows; Picture 1 shades only one horn, Picture 3 paints extra horns, and Picture 2 repaints the fur instead.",
+   "cost_usd": 0.04032,
+   "seconds": 6.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "words",
+   "rep": 2,
+   "p_real": 0.82,
+   "probs": {
+    "real": 0.82,
+    "half": 0.12,
+    "place": 0.03,
+    "other": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to put most of the Dark umber on the left, with a dark band under the fringe and low on the body, and to streak thin dragged strokes over the rest of the coat; Picture 1 does this, while 2 stops at a hard line and leaves the rest bare, 3 shades the lit right side, and 4 adds horns with no shading.",
+   "cost_usd": 0.04236,
+   "seconds": 6.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 2,
+   "p_real": 0.8,
+   "probs": {
+    "place": 0.12,
+    "real": 0.8,
+    "other": 0.03,
+    "half": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to cover the whole canvas to every edge in soft side-to-side bands, starting with Sky blue at the top, and to keep the palest gold glow on the right; Picture 2 does all of this, while Picture 1 looks upside down with its glow at the bottom, Picture 4 stops partway down, and Picture 3 leaves patchy gaps.",
+   "cost_usd": 0.04479,
+   "seconds": 6.9
   }
  ],
  "carry": [
@@ -5679,6 +6147,132 @@
    "d_result_after": 3.09,
    "render_usd": 0.015,
    "seconds": 12.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 19,
+   "condition": "header",
+   "rep": 1,
+   "file": "19-header-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.168,
+   "d_before_after": 2.01,
+   "d_result_after": 5.65,
+   "render_usd": 0.015,
+   "seconds": 13.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 23,
+   "condition": "header",
+   "rep": 1,
+   "file": "23-header-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.028,
+   "d_before_after": 0.28,
+   "d_result_after": 7.59,
+   "render_usd": 0.015,
+   "seconds": 12.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 16,
+   "condition": "header",
+   "rep": 1,
+   "file": "16-header-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.088,
+   "d_before_after": 0.82,
+   "d_result_after": 4.55,
+   "render_usd": 0.015,
+   "seconds": 14.6
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 1,
+   "condition": "header",
+   "rep": 1,
+   "file": "01-header-r1.png",
+   "beats": 0.75,
+   "toward": -1.0,
+   "where": 0.014,
+   "d_before_after": 0.25,
+   "d_result_after": 8.0,
+   "render_usd": 0.015,
+   "seconds": 9.6
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 7,
+   "condition": "header",
+   "rep": 1,
+   "file": "07-header-r1.png",
+   "beats": 0.25,
+   "toward": -0.054,
+   "where": 0.081,
+   "d_before_after": 24.85,
+   "d_result_after": 26.2,
+   "render_usd": 0.015,
+   "seconds": 11.3
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 10,
+   "condition": "header",
+   "rep": 1,
+   "file": "10-header-r1.png",
+   "beats": 0.25,
+   "toward": 0.069,
+   "where": 0.464,
+   "d_before_after": 34.66,
+   "d_result_after": 32.28,
+   "render_usd": 0.014,
+   "seconds": 12.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 5,
+   "condition": "header",
+   "rep": 1,
+   "file": "05-header-r1.png",
+   "beats": 0.0,
+   "toward": -1.0,
+   "where": 0.175,
+   "d_before_after": 8.3,
+   "d_result_after": 17.25,
+   "render_usd": 0.015,
+   "seconds": 14.5
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 13,
+   "condition": "header",
+   "rep": 1,
+   "file": "13-header-r1.png",
+   "beats": 1.0,
+   "toward": 0.511,
+   "where": 0.534,
+   "d_before_after": 19.23,
+   "d_result_after": 9.41,
+   "render_usd": 0.015,
+   "seconds": 12.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 16,
+   "condition": "header",
+   "rep": 1,
+   "file": "16-header-r1.png",
+   "beats": 0.75,
+   "toward": 0.011,
+   "where": 0.724,
+   "d_before_after": 3.97,
+   "d_result_after": 3.93,
+   "render_usd": 0.015,
+   "seconds": 13.8
   }
  ],
  "carry_grades": [],
@@ -7633,6 +8227,240 @@
    "cache_read_tokens": 0,
    "output_tokens": 295,
    "cost_usd": 0.0438
+  },
+  {
+   "label": "pick no_direction highland-cow 4 r1",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4610,
+   "cache_read_tokens": 0,
+   "output_tokens": 251,
+   "cost_usd": 0.04191
+  },
+  {
+   "label": "pick no_direction highland-cow 11 r1",
+   "seconds": 7.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4497,
+   "cache_read_tokens": 0,
+   "output_tokens": 349,
+   "cost_usd": 0.04296
+  },
+  {
+   "label": "pick no_direction highland-cow 16 r1",
+   "seconds": 8.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4474,
+   "cache_read_tokens": 0,
+   "output_tokens": 392,
+   "cost_usd": 0.04364
+  },
+  {
+   "label": "pick no_direction sleeping-cat 7 r1",
+   "seconds": 5.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4600,
+   "cache_read_tokens": 0,
+   "output_tokens": 155,
+   "cost_usd": 0.03991
+  },
+  {
+   "label": "pick no_direction sleeping-cat 5 r1",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4580,
+   "cache_read_tokens": 0,
+   "output_tokens": 204,
+   "cost_usd": 0.04073
+  },
+  {
+   "label": "pick no_direction highland-cow 23 r1",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4660,
+   "cache_read_tokens": 0,
+   "output_tokens": 326,
+   "cost_usd": 0.04381
+  },
+  {
+   "label": "pick no_direction highland-cow 19 r1",
+   "seconds": 9.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4596,
+   "cache_read_tokens": 0,
+   "output_tokens": 351,
+   "cost_usd": 0.0438
+  },
+  {
+   "label": "pick no_direction sleeping-cat 10 r1",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4577,
+   "cache_read_tokens": 0,
+   "output_tokens": 178,
+   "cost_usd": 0.04018
+  },
+  {
+   "label": "pick no_direction sleeping-cat 1 r1",
+   "seconds": 8.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4568,
+   "cache_read_tokens": 0,
+   "output_tokens": 471,
+   "cost_usd": 0.04597
+  },
+  {
+   "label": "pick no_direction sleeping-cat 16 r1",
+   "seconds": 6.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4647,
+   "cache_read_tokens": 0,
+   "output_tokens": 251,
+   "cost_usd": 0.0422
+  },
+  {
+   "label": "pick no_direction sleeping-cat 13 r1",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4523,
+   "cache_read_tokens": 0,
+   "output_tokens": 308,
+   "cost_usd": 0.04235
+  },
+  {
+   "label": "pick no_direction sleeping-cat 18 r1",
+   "seconds": 6.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4559,
+   "cache_read_tokens": 0,
+   "output_tokens": 317,
+   "cost_usd": 0.04282
+  },
+  {
+   "label": "pick no_direction birch-grove 4 r1",
+   "seconds": 6.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 4697,
+   "cache_read_tokens": 0,
+   "output_tokens": 188,
+   "cost_usd": 0.04134
+  },
+  {
+   "label": "pick no_direction birch-grove 1 r1",
+   "seconds": 7.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4700,
+   "cache_read_tokens": 0,
+   "output_tokens": 358,
+   "cost_usd": 0.04477
+  },
+  {
+   "label": "pick no_direction sleeping-cat 21 r1",
+   "seconds": 10.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4644,
+   "cache_read_tokens": 0,
+   "output_tokens": 552,
+   "cost_usd": 0.0482
+  },
+  {
+   "label": "pick no_direction birch-grove 9 r1",
+   "seconds": 6.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4697,
+   "cache_read_tokens": 0,
+   "output_tokens": 254,
+   "cost_usd": 0.04266
+  },
+  {
+   "label": "pick no_direction birch-grove 6 r1",
+   "seconds": 8.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4578,
+   "cache_read_tokens": 0,
+   "output_tokens": 300,
+   "cost_usd": 0.04263
+  },
+  {
+   "label": "pick no_direction birch-grove 11 r1",
+   "seconds": 8.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4537,
+   "cache_read_tokens": 0,
+   "output_tokens": 475,
+   "cost_usd": 0.0458
+  },
+  {
+   "label": "pick no_direction birch-grove 15 r1",
+   "seconds": 8.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4505,
+   "cache_read_tokens": 0,
+   "output_tokens": 499,
+   "cost_usd": 0.04603
+  },
+  {
+   "label": "pick no_direction birch-grove 17 r1",
+   "seconds": 8.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4519,
+   "cache_read_tokens": 0,
+   "output_tokens": 483,
+   "cost_usd": 0.04582
+  },
+  {
+   "label": "pick no_direction birch-grove 20 r1",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4605,
+   "cache_read_tokens": 0,
+   "output_tokens": 223,
+   "cost_usd": 0.04131
+  },
+  {
+   "label": "pick words highland-cow 8 r2",
+   "seconds": 5.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 4591,
+   "cache_read_tokens": 0,
+   "output_tokens": 227,
+   "cost_usd": 0.04128
+  },
+  {
+   "label": "pick words highland-cow 4 r2",
+   "seconds": 6.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4608,
+   "cache_read_tokens": 0,
+   "output_tokens": 177,
+   "cost_usd": 0.04041
+  },
+  {
+   "label": "pick words highland-cow 13 r2",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4446,
+   "cache_read_tokens": 0,
+   "output_tokens": 237,
+   "cost_usd": 0.04032
+  },
+  {
+   "label": "pick words highland-cow 11 r2",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4557,
+   "cache_read_tokens": 0,
+   "output_tokens": 295,
+   "cost_usd": 0.04236
+  },
+  {
+   "label": "pick words highland-cow 1 r2",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4785,
+   "cache_read_tokens": 0,
+   "output_tokens": 325,
+   "cost_usd": 0.04479
   }
  ]
 }
