@@ -247,6 +247,13 @@ with the date.
   coat, every "back" request lists what isn't painted yet, and a thing's render is kept over the whole thing
   (`docs/spikes/v3-block-in.md`). It goes into the v3 build (#219). The step after a block-in is now the big jump,
   and that is not solved.
+- **Pipeline v3 lessons go on the site, as POC 2.0.0 (2026-11-18, owner's call, after #219).** The first whole v3
+  lesson (the floating island) was kept off the site by Claude's reading of "nothing a spike tries becomes the
+  pipeline until the v3 gate passes". Owner: "Just publish it as 2.0.0 please. That way I don't have to republish it
+  again." So a sealed hands-off v3 lesson goes on the site like any other, and v3 is POC 2.0.0. The floating island
+  was sealed by the 1.12.1 code that first held v3 (commit 9d0a377) and carries the 2.0.0 name with that commit, as
+  the three v2 gate runs carried 1.0.0. Not decided by this: v2 is still what `/paint-lesson` runs without `--v3`,
+  and the gate (the bench, the owner's grade) still decides when v3 replaces it.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

@@ -363,11 +363,9 @@ class V3ToolsTests(unittest.TestCase):
         self.assertEqual(code, 0, r)
         data = json.loads((self.lesson / "lesson.json").read_text())
         self.assertEqual((data["plan_version"], data["pipeline"], len(data["stages"])), (2, 3, 6))
-        # the lessons site takes no version 3 lesson before the gate, whatever its plan_version says
+        # the lessons site takes a version 3 lesson like any other (owner, 2026-11-18)
         import site_lessons
 
-        self.assertFalse(site_lessons.on_site_era(self.lesson))
-        (self.lesson / "lesson.json").write_text(json.dumps({k: v for k, v in data.items() if k != "pipeline"}))
         self.assertTrue(site_lessons.on_site_era(self.lesson))
         # packets made again throw the old words away, and check-text refuses words written for other pictures
         self.tool("packets")
