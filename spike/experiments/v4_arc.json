@@ -1,0 +1,2365 @@
+{
+ "arc": {
+  "arc-add": {
+   "birch-grove": {
+    "first": {
+     "opening": {
+      "skills": [
+       {
+        "card": "dabbing",
+        "steps": [
+         9,
+         10,
+         11,
+         20
+        ],
+        "how": "You learn to build leaves dark to light with a dry stiff brush, tapping each lighter mix over the last and leaving the darker taps showing."
+       },
+       {
+        "card": "thick-to-thin",
+        "steps": [
+         3,
+         6,
+         15,
+         17
+        ],
+        "how": "You learn to press the full brush width at a trunk's foot and lift onto the edge, so every trunk, from the faint far ones to the big birches, tapers on its own."
+       },
+       {
+        "card": "dry-brush",
+        "steps": [
+         13,
+         14,
+         16,
+         19
+        ],
+        "how": "You learn to skim a nearly dry brush so shade and light go on broken and see-through, giving the rock and the birches their rough, glowing look."
+       }
+      ],
+      "road": "We start by blending the whole canvas into a soft gold-to-blue haze. Then we build the woods from the misty back toward us: far trunks, firs, the floor and path, and all the autumn leaves in dabbing passes from dark to light. The rock comes next, and the big birch trunks go on last, straight over everything. That way you never paint around them, and the strongest darks and lights land at the end."
+     },
+     "stages": {
+      "the-sky": {
+       "for": "This stage lays the soft misty haze that sits behind everything, with the sun glowing in it.",
+       "end": "The whole canvas is a soft haze, warm gold by a small cream sun melting into cool blue and blue-violet, with no trees or ground yet."
+      },
+      "far-woods": {
+       "for": "This stage builds the far, misty woods: pale far trunks, the firs, and the plain middle trunks.",
+       "end": "Faint violet trunks and dark firs stand in the haze, the near firs lit on their sunny side, with plain middle trunks by the far end of the path's spot."
+      },
+      "the-ground": {
+       "for": "This stage lays the forest floor and pulls the path back into the mist.",
+       "end": "Striped gold and brown ground runs toward the mist, with a mauve-brown path narrowing to a thin thread in the haze."
+      },
+      "autumn-leaves": {
+       "for": "This stage dabs every autumn leaf, in the treetops, the bushes and on the ground, from dark to light.",
+       "end": "Orange and golden leaves fill the treetops, the bushes and the ground, with pale gold catching the light near the sun."
+      },
+      "the-rock": {
+       "for": "This stage builds the mossy boulder by the path and gives it shade and light.",
+       "end": "A mossy boulder sits on the leaves by the path, dark and mottled in shade, with a thin rim of pale sage light."
+      },
+      "the-birches": {
+       "for": "This stage paints the big birch trunks straight over the scene, then shades them and marks their bark.",
+       "end": "Big pale birches stand over the whole wood, streaked lavender gray in shade, with black-brown bark patches and thin dark marks."
+      },
+      "last-lights": {
+       "for": "This stage adds the brightest lights: sun on the birches and on the leaves on the ground.",
+       "end": "The birches gleam near-white on their sunny side and pale gold leaves glint along the path and the ground, and the painting is finished."
+      }
+     },
+     "steps": {
+      "pull-middle-trunks": {
+       "back": {
+        "step": 3,
+        "text": "The same thick-to-thin pull you used for the far trunk, now on a wider brush and a little darker."
+       }
+      },
+      "pull-birches": {
+       "back": {
+        "step": 6,
+        "text": "The same press-and-lift pull you used for the middle trunks, now with a bigger brush and solid pale paint."
+       }
+      },
+      "shade-birches": {
+       "back": {
+        "step": 13,
+        "text": "The same dry skim you used to shade the rock, now in long strokes down each trunk."
+       }
+      },
+      "tap-sunlit-leaves": {
+       "back": {
+        "step": 11,
+        "text": "The same light, dry tap of Pale gold you gave the treetops near the sun, now on the leaves on the ground."
+       }
+      }
+     }
+    },
+    "arc": {
+     "opening": {
+      "skills": [
+       {
+        "card": "dabbing",
+        "steps": [
+         9,
+         10,
+         11,
+         20
+        ],
+        "how": "You learn to build leaves dark to light with a dry stiff brush, tapping each lighter mix over the last and leaving the darker taps showing."
+       },
+       {
+        "card": "thick-to-thin",
+        "steps": [
+         3,
+         6,
+         15,
+         17
+        ],
+        "how": "You learn to press the full brush width at a trunk's foot and lift onto the edge, so every trunk, from the faint far ones to the big birches, tapers on its own."
+       },
+       {
+        "card": "dry-brush",
+        "steps": [
+         13,
+         14,
+         16,
+         19
+        ],
+        "how": "You learn to skim a nearly dry brush so shade and light go on broken and see-through, giving the rock and the birches their rough, glowing look."
+       }
+      ],
+      "road": "We start by blending the whole canvas into a soft gold-to-blue haze. Then we build the woods from the misty back toward us: far trunks, firs, the floor and path, and all the autumn leaves in dabbing passes from dark to light. The rock comes next, and the big birch trunks go on last, straight over everything. That way you never paint around them, and the strongest darks and lights land at the end."
+     },
+     "stages": {
+      "the-sky": {
+       "for": "This stage lays the soft misty haze that sits behind everything, with the sun glowing in it.",
+       "end": "The whole canvas is a soft haze, warm gold by a small cream sun melting into cool blue and blue-violet, with no trees or ground yet."
+      },
+      "far-woods": {
+       "for": "This stage builds the far, misty woods: pale far trunks, the firs, and the plain middle trunks.",
+       "end": "Faint violet trunks and dark firs stand in the haze, the near firs lit on their sunny side, with plain middle trunks by the far end of the path's spot."
+      },
+      "the-ground": {
+       "for": "This stage lays the forest floor and pulls the path back into the mist.",
+       "end": "Striped gold and brown ground runs toward the mist, with a mauve-brown path narrowing to a thin thread in the haze."
+      },
+      "autumn-leaves": {
+       "for": "This stage dabs every autumn leaf, in the treetops, the bushes and on the ground, from dark to light.",
+       "end": "Orange and golden leaves fill the treetops, the bushes and the ground, with pale gold catching the light near the sun."
+      },
+      "the-rock": {
+       "for": "This stage builds the mossy boulder by the path and gives it shade and light.",
+       "end": "A mossy boulder sits on the leaves by the path, dark and mottled in shade, with a thin rim of pale sage light."
+      },
+      "the-birches": {
+       "for": "This stage paints the big birch trunks straight over the scene, then shades them and marks their bark.",
+       "end": "Big pale birches stand over the whole wood, streaked lavender gray in shade, with black-brown bark patches and thin dark marks."
+      },
+      "last-lights": {
+       "for": "This stage adds the brightest lights: sun on the birches and on the leaves on the ground.",
+       "end": "The birches gleam near-white on their sunny side and pale gold leaves glint along the path and the ground, and the painting is finished."
+      }
+     }
+    },
+    "final": {
+     "blend-sky": [
+      {
+       "kind": "start",
+       "text": "Start in the sky's upper left corner with Pale gold, where the sun's glow will be. Lay Misty blue across the middle of the canvas, then Blue-violet mist down the right side and along the bottom."
+      },
+      {
+       "kind": "strokes",
+       "text": "Stroke side to side with the full width of the brush. Without rinsing, pick up the next colour and lay it so it touches the band before. Then stroke back over each join while it's still wet."
+      },
+      {
+       "kind": "inside",
+       "text": "The gold stays in the upper left, because the low sun is there. The colours cool to blue and blue-violet as they move away from it, so the right side and the lower part of the canvas read as cool, shaded haze."
+      },
+      {
+       "kind": "leave",
+       "text": "No white canvas shows anywhere. The haze reaches all four edges."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the whole canvas is one soft haze: warm gold in the upper left melting into blue and blue-violet, with soft joins and no hard lines."
+      }
+     ],
+     "glow-sun": [
+      {
+       "kind": "first",
+       "text": "Let the misty sky dry."
+      },
+      {
+       "kind": "start",
+       "text": "Put the brush tip in the gold glow at the left edge. The sun's top is about 1 1/4 in from the top edge, and it is about 1 1/4 in wide."
+      },
+      {
+       "kind": "strokes",
+       "text": "Make small circles with the tip, working outward from the brightest middle, so the edge stays bumpy and soft."
+      },
+      {
+       "kind": "inside",
+       "text": "Sun cream sits only in this small disk against the left edge, where the light comes from."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave all the gold and blue haze around it untouched."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop at a small, soft cream glow cut off by the left edge, with a bumpy rim. A beginner often makes the edge hard and round: soften it with lighter circles."
+      }
+     ],
+     "pull-far-trunks": [
+      {
+       "kind": "first",
+       "text": "Let the sky dry."
+      },
+      {
+       "kind": "start",
+       "text": "This far trunk stands near the middle of the canvas. Its top is about 3 1/2 in from the top edge, and the whole shape starts about 6 1/2 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Begin at the trunk's foot, pressing the full brush width, then turn onto the edge and lighten the pressure as you pull up to a thin tip. Add one soft, short branch shape to the side of the trunk."
+      },
+      {
+       "kind": "inside",
+       "text": "It is all one pale Blue-violet mist, with no light side. At that distance it melts into the haze."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the haze all around it, and keep the edges soft."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when there is one pale violet trunk, about 1 1/2 in across with its branch, flaring a little at the foot. It should read as faint and plain."
+      }
+     ],
+     "stamp-pines": [
+      {
+       "kind": "first",
+       "text": "Let the sky and far trunk dry."
+      },
+      {
+       "kind": "start",
+       "text": "The firs fill the right side of the canvas. Their tallest top is about 3/4 in from the top edge, and the group runs from about 9 1/4 in from the left edge all the way to the right edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Work each fir from its tip down in a zigzag, stamping with the middle of the fan and pressing harder as you go down so it widens."
+      },
+      {
+       "kind": "inside",
+       "text": "Use Deep pine green for the big near firs. Use Misty blue for the smaller hazy firs between and behind them. Each one is flat, with no lighter side yet."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the haze showing in the gaps between the firs and all over the left side of the canvas."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when there is a row of dark firs with a misty blue band behind them, and ragged bottoms fading into the mist. Clumpy marks mean the paint is too thick."
+      }
+     ],
+     "light-pines": [
+      {
+       "kind": "first",
+       "text": "Let the firs dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start low on the left side of the fir trees. The biggest patch starts about 8 in from the left edge, with its top about 5 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap with the middle of the fan in short strokes in different directions. Fill the pale gaps where the haze still shows between the firs."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of this Pine light green goes on the left side and in the bottom half of the fir trees. It thickens the lower fir mass, plus a few small taps among the firs."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the fir tips and the dark firs on the right untouched."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the gaps at the base of the firs are closed into a fuller, rougher mass. Only a few patches change."
+      }
+     ],
+     "pull-middle-trunks": [
+      {
+       "kind": "first",
+       "text": "Let the firs dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the tallest trunk. Its left side is about 2 3/4 in from the left edge, its top is about 3/4 in from the top edge, and it is about 8 in tall."
+      },
+      {
+       "kind": "back",
+       "step": 3,
+       "text": "The same thick-to-thin pull you used for the far trunk, now on a wider brush and a little darker."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull each trunk thick to thin: press the full width at the foot, then turn to the edge and lighten as you rise."
+      },
+      {
+       "kind": "inside",
+       "text": "Use Smoky brown for the tall trunk. Use Blue-violet mist for the three shorter, softer trunks, each with a blurry crown, reaching toward the firs. The farther ones are paler."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the haze between the trunks, and the firs, untouched."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when there are four plain trunks in a loose row across the left half of the woods, the tall one the darkest, with no bark marks."
+      }
+     ],
+     "lay-floor": [
+      {
+       "kind": "first",
+       "text": "Let the trunks and firs dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start along the back of the ground, about 7 in from the top edge, just where the firs and trunks meet the mist."
+      },
+      {
+       "kind": "strokes",
+       "text": "Keep the brush level and pull long strokes left and right. Lay band after band down to the bottom edge, from the left edge to the right edge."
+      },
+      {
+       "kind": "inside",
+       "text": "Use Golden ochre for the sunny bands and Leaf brown for the shadow bands between them. The shadow bands get darker and wider toward the bottom, where the ground is nearest."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the trunks' feet and the bases of the firs sitting on the ground line. Don't paint up into the mist."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the whole lower part of the canvas is striped ground, lighter and smoother at the back and darker in front."
+      }
+     ],
+     "pull-path": [
+      {
+       "kind": "first",
+       "text": "Let the floor dry."
+      },
+      {
+       "kind": "start",
+       "text": "Mark one dot at the path's far end, about 7 1/2 in from the top edge. The path's middle is about 9 3/4 in from the left edge. Fan a few faint lines from the dot toward the front of the ground."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull each stroke along its line, wide in front and thin as it nears the dot. The path bends gently as it narrows."
+      },
+      {
+       "kind": "inside",
+       "text": "Path mauve sits only on the track, widest where it is nearest."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the ground's gold bands showing on both sides of the path, and a little at its front edges."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when there is a mauve-brown track running from the front of the ground up into the mist. Avoid parallel edges: mark the dot first."
+      }
+     ],
+     "dab-dark-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the path and floor dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the ground at the bottom edge, where the leaves are biggest. Most of this step is in the bottom half of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap with the tip of a dry stiff brush. Use bigger dabs in front and smaller ones toward the mist."
+      },
+      {
+       "kind": "inside",
+       "text": "Use Burnt orange and Leaf brown to carpet the ground and the path. Use Burnt orange for the bushes along the path, and Moss green for the big dark bush in front of the firs. Up top, tap a few loose Burnt orange clusters, one at the top edge starting about 10 3/4 in from the left edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the path's line showing through the leaves, and leave the firs' tips and the mist uncovered."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the ground and bushes are thick with dark leaves and the treetops have only a sprinkle. Blobs mean the brush is too wet."
+      }
+     ],
+     "dab-mid-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the dark leaves dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start in the treetops at the top edge. Most of this step is on the left side of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap the same way, light and dry, building leafy clusters through the treetops."
+      },
+      {
+       "kind": "inside",
+       "text": "Golden yellow fills the treetop leaves across the top and the big bush on the left side of the canvas. That bush patch is about 7 in wide, and its top is about 2 in from the top edge. Scatter separate dabs over the ground and path, with a few on the bushes in front of the firs."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the orange and brown dabs showing between the gold ones on the ground, and the firs clear."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the canopy and the left bush glow gold and the ground has gold leaves dotted through the darker ones."
+      }
+     ],
+     "dab-sunlit-canopy": [
+      {
+       "kind": "first",
+       "text": "Let the golden leaves dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start next to the sun at the left edge. Nearly all of this step sits in the top half and on the left side of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap lightly with a nearly dry brush on top of the gold clusters."
+      },
+      {
+       "kind": "inside",
+       "text": "Pale gold goes only on the treetop leaves nearest the sun. The biggest spread starts about 1 in from the left edge and is about 6 1/2 in wide, because those leaves face the light."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the Golden yellow and Burnt orange showing under and around each tap, and leave the ground leaves alone."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the upper left canopy shimmers pale and sunlit while the right treetops stay deeper gold."
+      }
+     ],
+     "block-in-rock": [
+      {
+       "kind": "first",
+       "text": "Let the leaves dry."
+      },
+      {
+       "kind": "start",
+       "text": "The rock sits right of the path. Its left side is about 10 3/4 in from the left edge and its top is about 7 in from the top edge. It is about 3 in wide and 1 1/2 in tall."
+      },
+      {
+       "kind": "strokes",
+       "text": "Paint one wide low oval first, then add smaller curved pieces at each end, like ( )."
+      },
+      {
+       "kind": "inside",
+       "text": "Fill the whole boulder flat with Moss green, including a small lump at its back end."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the leaves around its base. Don't paint them over."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when there is one flat moss-green boulder lying on the leaves, with no shading yet."
+      }
+     ],
+     "shade-rock": [
+      {
+       "kind": "first",
+       "text": "Let the rock dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start where the rock meets the leaves. The rock's shadow and light is about 2 1/2 in wide, and its left side is about 11 1/4 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Dip only the tip, wipe it, and skim lightly along the rock's length in several passes."
+      },
+      {
+       "kind": "inside",
+       "text": "Deep pine green covers most of the boulder: its underside, its far end and much of its body. That side faces away from the low sun."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the Moss green showing along the rock's upper left edge, and let it show through in places."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the rock reads dark, broken and mottled, with green only along its upper left rim. If it goes on solid, the brush was too loaded."
+      }
+     ],
+     "light-rock": [
+      {
+       "kind": "first",
+       "text": "Let the shading dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the rock's upper left edge. This light is about 1 3/4 in wide, and its top is about 7 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "With a dry brush, skim one light stroke along the top of the rock, then add a tiny touch further along."
+      },
+      {
+       "kind": "inside",
+       "text": "Moss light sits only on the rock's upper left rim, where the sun from the upper left catches it."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the whole dark body of the rock showing."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop at one thin pale rim of light along the top of the rock. It should be a line, not a patch."
+      }
+     ],
+     "pull-birches": [
+      {
+       "kind": "first",
+       "text": "Let everything dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the foot of each big trunk, low on the leaves. Most of this step is on the left side of the canvas: one trunk at the left edge, and two big ones leaning toward the path left of the path."
+      },
+      {
+       "kind": "back",
+       "step": 6,
+       "text": "The same press-and-lift pull you used for the middle trunks, now with a bigger brush and solid pale paint."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the full brush width at the flared foot and pull straight up to the top edge, tapering slightly."
+      },
+      {
+       "kind": "inside",
+       "text": "Use Birch gray, flat and solid. Add two more front birch trunks at the right edge of the canvas. Pull a few slim trunks among the woods too."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the leaves around each trunk's foot. Paint straight over the sky and the canopy."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when there are five flat gray front birch trunks from the leaves to the top edge, with no shading."
+      }
+     ],
+     "shade-birches": [
+      {
+       "kind": "first",
+       "text": "Let the trunks dry completely."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge on the big trunks left of the path. The shading's bottom is about 1 1/4 in from the bottom edge."
+      },
+      {
+       "kind": "back",
+       "step": 13,
+       "text": "The same dry skim you used to shade the rock, now in long strokes down each trunk."
+      },
+      {
+       "kind": "strokes",
+       "text": "With a dry brush, skim down each trunk in long, light strokes, building in passes."
+      },
+      {
+       "kind": "inside",
+       "text": "Birch shadow covers most of each trunk, in a streaky lavender gray. Touch Moss green into the feet of the front birch trunks."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave ragged Birch gray patches showing through, scattered up each trunk and broad at the foot."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when every trunk is lavender gray with irregular pale patches. It should never be a solid coat."
+      }
+     ],
+     "mark-bark": [
+      {
+       "kind": "first",
+       "text": "Let the shading dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the foot of the big left trunk. Most of this step is on the left side of the canvas and in the bottom half."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the brush's full width to set each patch, then lift onto the edge so it tapers off across the trunk."
+      },
+      {
+       "kind": "inside",
+       "text": "Bark dark goes in short bands across the front birch trunks. The bands are scattered up high and heavier near the base, where they merge into dark trunk feet. Do the front birch trunks at the right edge too."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave plenty of pale trunk showing between the patches."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when every birch has broken black-brown bands and dark feet, the left trunks the heaviest."
+      }
+     ],
+     "line-bark": [
+      {
+       "kind": "first",
+       "text": "Let the bark patches dry, or the lines will spread."
+      },
+      {
+       "kind": "start",
+       "text": "Start high on the big trunk nearest the left edge. Most of this step is on the left side of the canvas and in the top half."
+      },
+      {
+       "kind": "strokes",
+       "text": "Hold the liner upright, with thin inky paint, and pull many short lines down the trunk with light, steady pressure. Wobble them and let them overlap."
+      },
+      {
+       "kind": "inside",
+       "text": "Bark dark lines gather down the darker middle of each trunk, between the patches, building a streaky texture. Add some on the trunks at the right edge too."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the pale edges of each trunk and its feet clear."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the trunks' shadowed middles look streaked and rough. Reload often."
+      }
+     ],
+     "light-bark": [
+      {
+       "kind": "first",
+       "text": "Let the bark marks dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge on the two big front birch trunks that lean toward the path. Most of this step is on the left side of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Dip only the tip, wipe it, and skim long, light strokes down each trunk."
+      },
+      {
+       "kind": "inside",
+       "text": "Birch white catches on the sunny side and middle of the front birch trunks, broken over the patches in places, because the sun is at the upper left. Do the front birch trunks at the right edge too."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the dark patches peeking through, and leave the trunk feet darker."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the birches gleam near-white in broken streaks down their lengths, with shadow and bark still showing."
+      }
+     ],
+     "tap-sunlit-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the trunks dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the path where it meets the ground. The band of leaves runs with its top about 8 in from the top edge and its bottom about 1/2 in from the bottom edge."
+      },
+      {
+       "kind": "back",
+       "step": 11,
+       "text": "The same light, dry tap of Pale gold you gave the treetops near the sun, now on the leaves on the ground."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap with the round's tip, light and dry, in separate leaf-sized dabs."
+      },
+      {
+       "kind": "inside",
+       "text": "Pale gold sits in a band along the path and across the ground, around the feet of the front birch trunks. Most of it goes on the right side of the canvas, where the sunlit path opens."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the darker leaves showing between every dab, and leave the very front clear."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when gold leaves glint along the path and around the trunk feet. The painting is finished."
+      }
+     ]
+    },
+    "check": {
+     "text_failures_first": 0,
+     "arc_failures_first": 0,
+     "arc_failed_first": [],
+     "text_failed_first": [],
+     "text_failures_second": 0,
+     "arc_failures_second": 0,
+     "arc_taken_out": [],
+     "text_taken_out": [],
+     "left_failing": 0,
+     "claims_final": 66
+    },
+    "backs": 4,
+    "words_count": 2567,
+    "arc_words": 443
+   },
+   "highland-cow": {
+    "first": {
+     "opening": {
+      "skills": [
+       {
+        "card": "thick-to-thin",
+        "steps": [
+         14,
+         15,
+         19
+        ],
+        "how": "You press the full brush and lift as you pull, so each lock of the cow's coat starts wide and tapers to a point, first in ginger, then in honey gold, then as the bright sunlit rim."
+       },
+       {
+        "card": "flicking",
+        "steps": [
+         16,
+         17,
+         18
+        ],
+        "how": "You flick quick upward strokes that thin as you lift off, building the tall meadow grass in three passes from dark to gold, with the dark always showing between the marks."
+       },
+       {
+        "card": "curved-strokes",
+        "steps": [
+         11,
+         13,
+         20,
+         21,
+         22
+        ],
+        "how": "You bend every stroke with the shape, which makes the cow's coat, its horns and its nose look round instead of flat."
+       }
+      ],
+      "road": "You start with the sky, then the clouds, the far mountains and the lake, then the green hills: big, quick shapes that are hard to get wrong. That leaves most of your time for the cow, built the way a teacher would: a flat rust shape, its shadows, the horns, then locks of hair in lighter passes. The meadow grass is flicked over the cow's legs next. The sunlit rim and the face come last, so you finish on the part the eye goes to."
+     },
+     "stages": {
+      "the-sky": {
+       "for": "This stage covers the white canvas with one smooth sunset sky, blended while it's wet.",
+       "end": "The whole canvas is soft bands of blue and gold sky, with no clouds yet."
+      },
+      "the-clouds": {
+       "for": "This stage adds soft, broken sunset clouds with a dry brush and catches the sun on them.",
+       "end": "Broken streaks of peach and rose cross the sky with small gold caps, and the blue shows between them."
+      },
+      "the-mountains": {
+       "for": "This stage lays the far mountains and the strip of lake over the dry sky, farthest range first.",
+       "end": "Two flat blue mountain ranges with a faint warm edge cross the sky, a pale sliver of lake shines at their foot, and the sunset sky still fills the rest of the canvas."
+      },
+      "the-hills": {
+       "for": "This stage covers the ground with green, darkens the bands of the hills and dots in the far bushes.",
+       "end": "Green hills with dark bands and rows of round bushes roll down to a wide green meadow, and there is no cow yet."
+      },
+      "the-cow": {
+       "for": "This stage builds the cow as a flat shape, shades it, and sets its two horns on its head.",
+       "end": "A rust cow with deep brown shade stands in the meadow with two shaded tan horns, and it has no locks or face yet."
+      },
+      "the-coat": {
+       "for": "This stage turns the flat cow into a shaggy one with long tapering locks.",
+       "end": "The coat hangs in long ginger locks with a few honey-gold ones and dark gaps between them, and the fringe covers the eyes."
+      },
+      "the-meadow": {
+       "for": "This stage fills the meadow with tall grass, flicked over the cow's legs.",
+       "end": "Dark, yellow-green and golden grass marks fill the meadow and hide the cow's legs."
+      },
+      "the-last-lights": {
+       "for": "This stage catches the low sun on the edges of the coat and along the horns.",
+       "end": "The cow's head, fringe and sunlit edges glow gold, and each horn has a thin pale line of light, but the face has no nose yet."
+      },
+      "the-face": {
+       "for": "This stage paints the nose and mouth, the last part of the focal point.",
+       "end": "The cow has a pink nose with a pale shine, dark nostrils and a mouth line, and the painting is finished."
+      }
+     },
+     "steps": {
+      "light-cloud-tops": {
+       "back": {
+        "step": 2,
+        "text": "This is the same dry brush you used for the cloud streaks, now with gold and only on their upper edges."
+       }
+      },
+      "light-ridges": {
+       "back": {
+        "step": 3,
+        "text": "The same dry skim you used to light the clouds, now even lighter, so the peach is just a faint edge."
+       }
+      },
+      "block-in-horns": {
+       "back": {
+        "step": 10,
+        "text": "You build the horns from pieces just like the cow: one simple base shape first, then curved pieces off it."
+       }
+      },
+      "shade-horns": {
+       "back": {
+        "step": 11,
+        "text": "The same Dark umber and curved strokes you used to shade the cow, now with a small brush along each horn."
+       }
+      },
+      "flick-green-grass": {
+       "back": {
+        "step": 16,
+        "text": "The same quick upward flick as the dark grass, now in Yellow green and fitted between the dark marks."
+       }
+      },
+      "rim-light-cow": {
+       "back": {
+        "step": 15,
+        "text": "The same thick-to-thin stroke as the honey-gold locks, now brighter and much smaller, only on the sunlit edges."
+       }
+      }
+     }
+    },
+    "arc": {
+     "opening": {
+      "skills": [
+       {
+        "card": "thick-to-thin",
+        "steps": [
+         14,
+         15,
+         19
+        ],
+        "how": "You press the full brush and lift as you pull, so each lock of the cow's coat starts wide and tapers to a point, first in ginger, then in honey gold, then as the bright sunlit rim."
+       },
+       {
+        "card": "flicking",
+        "steps": [
+         16,
+         17,
+         18
+        ],
+        "how": "You flick quick upward strokes that thin as you lift off, building the tall meadow grass in three passes from dark to gold, with the dark always showing between the marks."
+       },
+       {
+        "card": "curved-strokes",
+        "steps": [
+         11,
+         13,
+         20,
+         21,
+         22
+        ],
+        "how": "You bend every stroke with the shape, which makes the cow's coat, its horns and its nose look round instead of flat."
+       }
+      ],
+      "road": "You start with the sky, then the clouds, the far mountains and the lake, then the green hills: big, quick shapes that are hard to get wrong. That leaves most of your time for the cow, built the way a teacher would: a flat rust shape, its shadows, the horns, then locks of hair in lighter passes. The meadow grass is flicked over the cow's legs next. The sunlit rim and the face come last, so you finish on the part the eye goes to."
+     },
+     "stages": {
+      "the-sky": {
+       "for": "This stage covers the white canvas with one smooth sunset sky, blended while it's wet.",
+       "end": "The whole canvas is soft bands of blue and gold sky, with no clouds yet."
+      },
+      "the-clouds": {
+       "for": "This stage adds soft, broken sunset clouds with a dry brush and catches the sun on them.",
+       "end": "Broken streaks of peach and rose cross the sky with small gold caps, and the blue shows between them."
+      },
+      "the-mountains": {
+       "for": "This stage lays the far mountains and the strip of lake over the dry sky, farthest range first.",
+       "end": "Two flat blue mountain ranges with a faint warm edge cross the sky, a pale sliver of lake shines at their foot, and the sunset sky still fills the rest of the canvas."
+      },
+      "the-hills": {
+       "for": "This stage covers the ground with green, darkens the bands of the hills and dots in the far bushes.",
+       "end": "Green hills with dark bands and rows of round bushes roll down to a wide green meadow, and there is no cow yet."
+      },
+      "the-cow": {
+       "for": "This stage builds the cow as a flat shape, shades it, and sets its two horns on its head.",
+       "end": "A rust cow with deep brown shade stands in the meadow with two shaded tan horns, and it has no locks or face yet."
+      },
+      "the-coat": {
+       "for": "This stage turns the flat cow into a shaggy one with long tapering locks.",
+       "end": "The coat hangs in long ginger locks with a few honey-gold ones and dark gaps between them, and the fringe covers the eyes."
+      },
+      "the-meadow": {
+       "for": "This stage fills the meadow with tall grass, flicked over the cow's legs.",
+       "end": "Dark, yellow-green and golden grass marks fill the meadow and hide the cow's legs."
+      },
+      "the-last-lights": {
+       "for": "This stage catches the low sun on the edges of the coat and along the horns.",
+       "end": "The cow's head, fringe and sunlit edges glow gold, and each horn has a thin pale line of light, but the face has no nose yet."
+      },
+      "the-face": {
+       "for": "This stage paints the nose and mouth, the last part of the focal point.",
+       "end": "The cow has a pink nose with a pale shine, dark nostrils and a mouth line, and the painting is finished."
+      }
+     }
+    },
+    "final": {
+     "blend-sky": [
+      {
+       "kind": "start",
+       "text": "Lay Sky blue in a broad band across the middle of the canvas, from the left edge to the right edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull long side-to-side strokes. Without rinsing, work Cream gold into the blue's upper and lower edges. Then add Pale gold near the top edge and across the lower part of the canvas, stroking back over each join while it's wet."
+      },
+      {
+       "kind": "inside",
+       "text": "Keep the gold brightest at the right edge near the top, where the sun sets. Bring a thin strip of blue back along the bottom edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave no bare canvas. The sky covers everything, and later paint goes over it."
+      },
+      {
+       "kind": "stop",
+       "text": "The whole canvas, 12 in wide and 16 in tall, is soft bands of gold, blue and gold. If a hard line shows where two colors meet, add more of the lighter color there and blend again."
+      }
+     ],
+     "dry-brush-clouds": [
+      {
+       "kind": "first",
+       "text": "Let the sky dry completely, or the dry brush will smear it."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge with thin Warm peach streaks that run all the way across the sunset clouds."
+      },
+      {
+       "kind": "strokes",
+       "text": "Dip only the tip of the dry brush in paint. Skim long, slightly slanted strokes side to side with light pressure, so the marks break up on the canvas texture."
+      },
+      {
+       "kind": "inside",
+       "text": "Put Warm peach on the tops of the streaks and Dusky rose along their undersides, in groups down the canvas. The biggest group is about 10 in wide, and its top is about 6 1/2 in from the top edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the sky's blue and gold showing between the streaks and through their broken edges."
+      },
+      {
+       "kind": "stop",
+       "text": "Soft, broken bands of peach and rose cross the canvas from the top edge downward. None of them is solid."
+      }
+     ],
+     "light-cloud-tops": [
+      {
+       "kind": "first",
+       "text": "The cloud streaks must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the upper edge of a peach streak near the top edge."
+      },
+      {
+       "kind": "back",
+       "step": 2,
+       "text": "This is the same dry brush you used for the cloud streaks, now with gold and only on their upper edges."
+      },
+      {
+       "kind": "strokes",
+       "text": "Use the dry brush with only its tip in Pale gold and no water. Skim short side-to-side strokes along the upper edge of each streak."
+      },
+      {
+       "kind": "inside",
+       "text": "Gold goes only on the upper edges of the streaks. Put a little more on the right side of the sunset clouds, where the sun sets."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the Dusky rose undersides and the blue between the streaks untouched."
+      },
+      {
+       "kind": "stop",
+       "text": "Small, broken gold caps sit on the streaks all down the canvas, with the rose still showing underneath."
+      }
+     ],
+     "lay-mountains": [
+      {
+       "kind": "first",
+       "text": "Let the sky and clouds dry."
+      },
+      {
+       "kind": "start",
+       "text": "Begin with Far violet for the far peaks. Their top is about 2 1/2 in from the top edge, and they run across the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Keep the brush level and pull long strokes left and right. Let the upper edge rise and dip into a few soft peaks, then fill in downward."
+      },
+      {
+       "kind": "inside",
+       "text": "Lay Mountain blue over the foot of the violet as a nearer, wider ridge that reaches the left and right edges. Make it darkest along its lower edge, where the hills will start."
+      },
+      {
+       "kind": "leave",
+       "text": "Keep the gold sky showing over the violet peaks, and keep the violet tops showing over the Mountain blue."
+      },
+      {
+       "kind": "stop",
+       "text": "Two flat mountain bands cross the canvas, pale violet behind and slate blue in front, with no texture. The sky still shows lower down."
+      }
+     ],
+     "light-ridges": [
+      {
+       "kind": "first",
+       "text": "The mountains must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the Far violet peak nearest the right edge, where the sun sets."
+      },
+      {
+       "kind": "back",
+       "step": 3,
+       "text": "The same dry skim you used to light the clouds, now even lighter, so the peach is just a faint edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Use the dry brush with only its tip in Warm peach. Skim a few short strokes along the very top of the ridge with feather-light pressure."
+      },
+      {
+       "kind": "inside",
+       "text": "Only the ridge tops facing the sun get peach. Put most of it on the right side of the far blue mountains, plus one small touch on a middle peak."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the rest of both ranges in their flat violet and blue."
+      },
+      {
+       "kind": "stop",
+       "text": "A few faint warm edges catch the peaks. If it reads as a stripe, there was too much paint on the brush."
+      }
+     ],
+     "lay-lake": [
+      {
+       "kind": "first",
+       "text": "Let the Mountain blue ridge dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the right edge, at the foot of the Mountain blue ridge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull short level strokes in from the right edge, keeping the brush flat and the strip thin."
+      },
+      {
+       "kind": "inside",
+       "text": "The lake is a thin wedge about 2 in wide. It is thickest at the right edge and tapers to a point where it meets the mountains."
+      },
+      {
+       "kind": "leave",
+       "text": "Keep the dark blue ridge line crisp where it meets the lake."
+      },
+      {
+       "kind": "stop",
+       "text": "A short, pale cream sliver of water shines at the right edge, at the foot of the mountains."
+      }
+     ],
+     "lay-hills-meadow": [
+      {
+       "kind": "first",
+       "text": "Let the mountains and lake dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with Yellow green at the left edge, at the foot of the mountains. The top of the hills is about 3 1/2 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull long level strokes across, tilting them down toward the right so the slopes roll. Build the hill bands one after another, then lay a wide band of Hill green across the meadow."
+      },
+      {
+       "kind": "inside",
+       "text": "The far slopes are the lighter Yellow green, and the meadow is Hill green. Lower down, lay the strokes more loosely and let them stay broken."
+      },
+      {
+       "kind": "leave",
+       "text": "Let the sky show in streaks between the hill bands and in gaps across the lower meadow. The next step fills them."
+      },
+      {
+       "kind": "stop",
+       "text": "Green covers most of the canvas below the far blue mountains, down to the bottom edge, still broken with sky. The lake stays clear."
+      }
+     ],
+     "darken-bands": [
+      {
+       "kind": "first",
+       "text": "The first greens must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start just below the far blue mountains with a dark ridge that runs from the left edge to the lake."
+      },
+      {
+       "kind": "strokes",
+       "text": "Use long, level strokes left and right, following each hill band down toward the right."
+      },
+      {
+       "kind": "inside",
+       "text": "Fill the sky gaps between the hill bands. Then lay dark green down the lower meadow to the bottom edge. Most of it goes in the bottom half, where the meadow is nearest."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the light green tops of the hill bands, the wide sunlit band across the middle of the meadow, and the lake."
+      },
+      {
+       "kind": "stop",
+       "text": "No sky shows below the far blue mountains. The hills have dark and light bands, with a bright meadow band and darker grass toward the bottom edge."
+      }
+     ],
+     "dab-bushes": [
+      {
+       "kind": "first",
+       "text": "Let the hill bands dry so the dabs stay crisp."
+      },
+      {
+       "kind": "start",
+       "text": "Start near the left edge on the top hill band, about 4 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Wipe the brush nearly dry and tap with the tip. Make round clumps in short rows that follow each band down toward the right."
+      },
+      {
+       "kind": "inside",
+       "text": "Set the clumps along the dark edge of each band, making them smaller toward the far slopes. None go in the meadow."
+      },
+      {
+       "kind": "leave",
+       "text": "Keep the light green band tops showing around the clumps, and leave the meadow plain."
+      },
+      {
+       "kind": "stop",
+       "text": "Rows of dark round bushes run across the hills from edge to edge. If you get blobs, wipe the brush on a paper towel and tap again."
+      }
+     ],
+     "block-in-cow": [
+      {
+       "kind": "first",
+       "text": "The hills and meadow must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with a big upright oval for the body, its left side about 1 1/4 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Add curved pieces around the oval, like ( ), pulling every stroke downward the way the hair hangs. Add a rounded cap for the head and fringe at the top, on the side toward the lake."
+      },
+      {
+       "kind": "inside",
+       "text": "It is one flat Rust brown shape, about 7 1/2 in wide and 9 in tall. Give the head a small bump for the chin, and end the bottom in pointed strands in the meadow."
+      },
+      {
+       "kind": "leave",
+       "text": "Let the grass show between the pointed strands, and keep the edges shaggy, not smooth."
+      },
+      {
+       "kind": "stop",
+       "text": "A flat rust silhouette of a shaggy cow stands in the meadow, head high toward the lake. A blob is right for now."
+      }
+     ],
+     "shade-cow": [
+      {
+       "kind": "first",
+       "text": "Let the Rust brown dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start where the head meets the top of the back, then pull down the left side of the Highland cow."
+      },
+      {
+       "kind": "strokes",
+       "text": "Curve each stroke down the coat the way the hair falls, starting at the top of each bulge."
+      },
+      {
+       "kind": "inside",
+       "text": "Go darkest on the side away from the sun, where the fringe meets the face, in a long gap down the middle of the coat, and where the chin meets the chest. Most of it is in the left half of the cow's shadows. Light strokes over the rest give texture."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave a strip of plain Rust brown down the sunlit edge of the chest."
+      },
+      {
+       "kind": "stop",
+       "text": "The cow is shaggy rust with deep brown shade. The sunlit chest edge stays plain."
+      }
+     ],
+     "block-in-horns": [
+      {
+       "kind": "first",
+       "text": "The coat must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the wide base of the tall horn, where the head meets the top of the back."
+      },
+      {
+       "kind": "back",
+       "step": 10,
+       "text": "You build the horns from pieces just like the cow: one simple base shape first, then curved pieces off it."
+      },
+      {
+       "kind": "strokes",
+       "text": "Lay the wide base piece, then add curving pieces that taper to a point. The tall horn rises almost straight up, its top about 2 1/2 in from the top edge. The short horn sweeps out toward the lake and turns up."
+      },
+      {
+       "kind": "inside",
+       "text": "Fill each horn flat with Horn tan, wide at the head and narrow at the tip."
+      },
+      {
+       "kind": "leave",
+       "text": "Keep the sky and mountains crisp around both horns."
+      },
+      {
+       "kind": "stop",
+       "text": "Two flat, pale tan horns stand on the head, with no shading."
+      }
+     ],
+     "shade-horns": [
+      {
+       "kind": "first",
+       "text": "Let the Horn tan dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the point of the tall horn."
+      },
+      {
+       "kind": "back",
+       "step": 11,
+       "text": "The same Dark umber and curved strokes you used to shade the cow, now with a small brush along each horn."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull curved strokes from the tip back along the horn's underside, following its bend and pressing lighter as you near the head."
+      },
+      {
+       "kind": "inside",
+       "text": "Put dark brown on both tips and along the undersides, the edges away from the sun, fading it out along the curve."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave pale tan along the top of each horn and at its base."
+      },
+      {
+       "kind": "stop",
+       "text": "Both horns look round, with dark tips and undersides and pale tan tops."
+      }
+     ],
+     "pull-orange-locks": [
+      {
+       "kind": "first",
+       "text": "The shadows and horns must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top of the fringe, between the horns, and pull locks down over the head."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the full brush width at the top of each lock, then turn onto the edge and lighten as you pull down, so it tapers to a point."
+      },
+      {
+       "kind": "inside",
+       "text": "Hang locks down the fringe, the head and the whole coat, curving with its roundness. Put fewer on the shade side, and let the fringe locks fall over the horn bases."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave dark brown gaps between the locks, and leave a few spots of the earlier coat on the chest."
+      },
+      {
+       "kind": "stop",
+       "text": "The coat reads as long ginger locks over dark, with the fringe hanging over the eyes and no gold yet."
+      }
+     ],
+     "pull-gold-locks": [
+      {
+       "kind": "first",
+       "text": "Let the ginger locks dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with a small lock about 3/4 in wide on the top of the back, its top about 6 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Use short thick-to-thin strokes: full width at the top, then onto the edge and lighter as you pull down."
+      },
+      {
+       "kind": "inside",
+       "text": "Add only a handful: a few down the shade side of the coat, one on the ear at the end of the fringe, and a couple of small touches in the grass past the chest."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave nearly all the ginger locks and dark gaps as they are."
+      },
+      {
+       "kind": "stop",
+       "text": "A few honey-gold locks catch the light, and the coat still reads mostly ginger."
+      }
+     ],
+     "flick-dark-grass": [
+      {
+       "kind": "first",
+       "text": "The meadow and the bottom of the coat must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the biggest marks at the bottom edge, near the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Load lightly and flick quickly upward from the base, lifting off so each mark thins at the top. Slant the marks the same way as the grass already there."
+      },
+      {
+       "kind": "inside",
+       "text": "Scatter marks across the meadow below and beside the Highland cow, with more toward the bottom edge. A few touch the coat's pointed strands, and they thin out as you go up."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave plenty of the green meadow showing between the marks."
+      },
+      {
+       "kind": "stop",
+       "text": "Dark slanted grass marks dot the lower meadow. Flat blobs mean too much paint on the brush."
+      }
+     ],
+     "flick-green-grass": [
+      {
+       "kind": "first",
+       "text": "Let the dark grass dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the bottom edge and work up between the dark marks."
+      },
+      {
+       "kind": "back",
+       "step": 16,
+       "text": "The same quick upward flick as the dark grass, now in Yellow green and fitted between the dark marks."
+      },
+      {
+       "kind": "strokes",
+       "text": "Flick quickly upward from the base and lift off, slanting the marks the same way as the dark ones."
+      },
+      {
+       "kind": "inside",
+       "text": "Pack the marks densest toward the bottom of the meadow and thin them out as you go up. Let a few cross the pointed strands at the bottom of the coat."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the dark marks showing between them."
+      },
+      {
+       "kind": "stop",
+       "text": "The lower meadow is a weave of dark and yellow-green slanted marks."
+      }
+     ],
+     "flick-gold-grass": [
+      {
+       "kind": "first",
+       "text": "Let the green grass dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the left edge beside the cow, at the top of the meadow's tall grass, about 7 1/4 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Flick quickly upward from the base and lift off, slanting the marks with the other grass."
+      },
+      {
+       "kind": "inside",
+       "text": "Put clumps along the top of the meadow beside the cow, most on the right side of the meadow's tall grass, and more along the bottom edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave dark and yellow-green marks showing between them, and keep the gold off the cow."
+      },
+      {
+       "kind": "stop",
+       "text": "Golden grass catches the low sun across the meadow."
+      }
+     ],
+     "rim-light-cow": [
+      {
+       "kind": "first",
+       "text": "The coat and grass must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the top of the fringe, between the horns, about 4 1/2 in from the top edge."
+      },
+      {
+       "kind": "back",
+       "step": 15,
+       "text": "The same thick-to-thin stroke as the honey-gold locks, now brighter and much smaller, only on the sunlit edges."
+      },
+      {
+       "kind": "strokes",
+       "text": "Use short thick-to-thin strokes: press, then turn onto the edge and lift, so each touch of light tapers to a point down the hair."
+      },
+      {
+       "kind": "inside",
+       "text": "Light the edges facing the sun: the top of the fringe and head, the top of the back, the outer edge of the head and chest, and down the sunlit front. Most of it is in the right half of the sunlit rim, with a few small touches on the shade side."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the shade side, the face where the fringe meets it, and the dark gaps alone."
+      },
+      {
+       "kind": "stop",
+       "text": "The cow glows along its sunlit edges, with ginger and brown inside the rim."
+      }
+     ],
+     "light-horns": [
+      {
+       "kind": "first",
+       "text": "Let the horn shading dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the base of the tall horn, on its upper edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull one curved stroke along the top of the horn toward the tip, following its bend. Do the same on the short horn, whose middle is about 8 3/4 in from the left edge."
+      },
+      {
+       "kind": "inside",
+       "text": "Cream gold goes only along the upper, sunlit edge of each horn."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the dark tips and undersides showing."
+      },
+      {
+       "kind": "stop",
+       "text": "Each horn has a thin pale line of light along its top and looks round."
+      }
+     ],
+     "paint-nose": [
+      {
+       "kind": "first",
+       "text": "The rim light must be dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the rounded muzzle at the end of the head, where the fringe ends, on the side toward the lake. Its right side is about 4 in from the right edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Curve strokes around the roundness of the muzzle, then pull one curved line back along the jaw and add a small dab further down the jaw."
+      },
+      {
+       "kind": "inside",
+       "text": "Rosy nose fills the muzzle, plus a small patch on the face where the fringe ends."
+      },
+      {
+       "kind": "leave",
+       "text": "Keep the fringe locks over the face."
+      },
+      {
+       "kind": "stop",
+       "text": "A flat, pinkish-brown nose ends the face, with no shine or nostrils."
+      }
+     ],
+     "nose-shine": [
+      {
+       "kind": "first",
+       "text": "Let the Rosy nose dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the top of the nose, whose top is about 7 1/2 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Make one or two short curved strokes across the top of the nose, following its roundness."
+      },
+      {
+       "kind": "inside",
+       "text": "Nose pink sits only on the top of the nose, between where the nostrils will go, in a patch about 1 1/4 in wide."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the Rosy nose showing all around it."
+      },
+      {
+       "kind": "stop",
+       "text": "The nose has a soft pale top and reads round."
+      }
+     ],
+     "nostrils-mouth": [
+      {
+       "kind": "first",
+       "text": "The nose must be dry, or the lines will spread."
+      },
+      {
+       "kind": "start",
+       "text": "Start with a nostril at each lower corner of the nose."
+      },
+      {
+       "kind": "strokes",
+       "text": "Thin the Dark umber with water, hold the brush upright and pull short curved lines with light, steady pressure. Reload often, and add water if a line skips."
+      },
+      {
+       "kind": "inside",
+       "text": "Paint two dark nostrils, a short mouth line just past the nose, and a few lines darkening the jaw where it meets the chest."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the pale top of the nose and the pinkish brown between the nostrils."
+      },
+      {
+       "kind": "stop",
+       "text": "The face is finished, with dark nostrils and a mouth line on the pink nose."
+      }
+     ]
+    },
+    "check": {
+     "text_failures_first": 0,
+     "arc_failures_first": 0,
+     "arc_failed_first": [],
+     "text_failed_first": [],
+     "text_failures_second": 0,
+     "arc_failures_second": 0,
+     "arc_taken_out": [],
+     "text_taken_out": [],
+     "left_failing": 0,
+     "claims_final": 43
+    },
+    "backs": 6,
+    "words_count": 2674,
+    "arc_words": 518
+   },
+   "sleeping-cat": {
+    "first": {
+     "opening": {
+      "skills": [
+       {
+        "card": "build-from-pieces",
+        "steps": [
+         5,
+         6,
+         7,
+         9,
+         10,
+         13
+        ],
+        "how": "Every big shape here starts as one simple rectangle, oval or circle with the rest added in pieces, from the window frame's bars to the curled cat."
+       },
+       {
+        "card": "press-and-lift",
+        "steps": [
+         11,
+         12,
+         17,
+         19
+        ],
+        "how": "One touch, press and lift makes a comma: rows of them turn flat yellow into chunky knit, and tiny ones fill the ears and the nose."
+       },
+       {
+        "card": "curved-strokes",
+        "steps": [
+         14,
+         15
+        ],
+        "how": "Bending each stroke with the round of the body is what turns a flat gray shape into a soft, curled, sleeping cat."
+       }
+      ],
+      "road": "You start with the far things a beginner can't spoil: the sky and leaves through the window, then the blue wall. Next come the window frame and the sill, which sit nearer, and then the blanket as the cat's bed. The cat goes on last as one plain gray shape, then gets its shading, white patches, stripes and fur. That way the final steps all go to its sleeping face."
+     },
+     "stages": {
+      "the-window-view": {
+       "for": "This stage paints the farthest thing in the picture, the soft sky and leaves seen through the window.",
+       "end": "A small corner of soft blue sky and dappled leaves sits on otherwise bare white canvas."
+      },
+      "the-wall-and-frame": {
+       "for": "This stage covers the bare canvas with the blue wall and stands the cream window frame over it.",
+       "end": "A brushy blue wall fills the canvas, and a crisp cream frame with lavender shadows stands over the leafy view."
+      },
+      "the-sill": {
+       "for": "This stage builds the wooden sill the blanket and cat will rest on, with the window light falling across it.",
+       "end": "A warm brown sill runs the width of the canvas, streaky with grain and crossed by bright peach patches of window light."
+      },
+      "the-blanket": {
+       "for": "This stage gives the cat its bed, a golden blanket made to look knitted with little commas of dark and light.",
+       "end": "A chunky golden knit blanket lies on the sill, ochre in its dips and glowing at the end nearest the window."
+      },
+      "the-cat-shape": {
+       "for": "This stage builds the cat as one gray shape and makes it look round with shading and white patches.",
+       "end": "A plain gray curled cat sleeps on the blanket, darker on its far end and tail, with a white muzzle, white paws and a white side patch."
+      },
+      "the-markings": {
+       "for": "This stage turns the gray cat into a tabby with tapered stripes and gives it pink ears.",
+       "end": "Charcoal stripes wrap around the curled cat, and both ears are soft pink inside a gray rim."
+      },
+      "the-fur": {
+       "for": "This stage softens the smooth gray coat into fur with quick, light flicks.",
+       "end": "Light gray flicks make the coat look soft and furry, the stripes still clear and the face still blank."
+      },
+      "the-face": {
+       "for": "This stage spends its last careful strokes on the sleeping face, the heart of the painting.",
+       "end": "The finished painting: the tabby asleep on its knit blanket, eyes closed, with a pink nose and white whiskers fanning out."
+      }
+     },
+     "steps": {
+      "blend-wall": {
+       "back": {
+        "step": 1,
+        "text": "This is the same wet side-to-side blend you used for the sky. Now it uses two blues and a wider brush."
+       }
+      },
+      "block-in-cat": {
+       "back": {
+        "step": 10,
+        "text": "Build the cat the way you built the blanket: one big oval first, then the smaller pieces around it."
+       }
+      },
+      "paint-ears": {
+       "back": {
+        "step": 11,
+        "text": "These are the same press-and-lift commas you used for the knit loops, now small with a little round."
+       }
+      },
+      "line-eyes": {
+       "back": {
+        "step": 16,
+        "text": "This is the same Charcoal you used for the stripes, now thinned with water for the liner."
+       }
+      },
+      "line-whiskers": {
+       "back": {
+        "step": 20,
+        "text": "Hold the liner upright as you did for the eye lines, now with thinned Warm white."
+       }
+      }
+     }
+    },
+    "arc": {
+     "opening": {
+      "skills": [
+       {
+        "card": "build-from-pieces",
+        "steps": [
+         5,
+         6,
+         7,
+         9,
+         10,
+         13
+        ],
+        "how": "Every big shape here starts as one simple rectangle, oval or circle with the rest added in pieces, from the window frame's bars to the curled cat."
+       },
+       {
+        "card": "press-and-lift",
+        "steps": [
+         11,
+         12,
+         17,
+         19
+        ],
+        "how": "One touch, press and lift makes a comma: rows of them turn flat yellow into chunky knit, and tiny ones fill the ears and the nose."
+       },
+       {
+        "card": "curved-strokes",
+        "steps": [
+         14,
+         15
+        ],
+        "how": "Bending each stroke with the round of the body is what turns a flat gray shape into a soft, curled, sleeping cat."
+       }
+      ],
+      "road": "You start with the far things a beginner can't spoil: the sky and leaves through the window, then the blue wall. Next come the window frame and the sill, which sit nearer, and then the blanket as the cat's bed. The cat goes on last as one plain gray shape, then gets its shading, white patches, stripes and fur. That way the final steps all go to its sleeping face."
+     },
+     "stages": {
+      "the-window-view": {
+       "for": "This stage paints the farthest thing in the picture, the soft sky and leaves seen through the window.",
+       "end": "A small corner of soft blue sky and dappled leaves sits on otherwise bare white canvas."
+      },
+      "the-wall-and-frame": {
+       "for": "This stage covers the bare canvas with the blue wall and stands the cream window frame over it.",
+       "end": "A brushy blue wall fills the canvas, and a crisp cream frame with lavender shadows stands over the leafy view."
+      },
+      "the-sill": {
+       "for": "This stage builds the wooden sill the blanket and cat will rest on, with the window light falling across it.",
+       "end": "A warm brown sill runs the width of the canvas, streaky with grain and crossed by bright peach patches of window light."
+      },
+      "the-blanket": {
+       "for": "This stage gives the cat its bed, a golden blanket made to look knitted with little commas of dark and light.",
+       "end": "A chunky golden knit blanket lies on the sill, ochre in its dips and glowing at the end nearest the window."
+      },
+      "the-cat-shape": {
+       "for": "This stage builds the cat as one gray shape and makes it look round with shading and white patches.",
+       "end": "A plain gray curled cat sleeps on the blanket, darker on its far end and tail, with a white muzzle, white paws and a white side patch."
+      },
+      "the-markings": {
+       "for": "This stage turns the gray cat into a tabby with tapered stripes and gives it pink ears.",
+       "end": "Charcoal stripes wrap around the curled cat, and both ears are soft pink inside a gray rim."
+      },
+      "the-fur": {
+       "for": "This stage softens the smooth gray coat into fur with quick, light flicks.",
+       "end": "Light gray flicks make the coat look soft and furry, the stripes still clear and the face still blank."
+      },
+      "the-face": {
+       "for": "This stage spends its last careful strokes on the sleeping face, the heart of the painting.",
+       "end": "The finished painting: the tabby asleep on its knit blanket, eyes closed, with a pink nose and white whiskers fanning out."
+      }
+     }
+    },
+    "final": {
+     "blend-window-sky": [
+      {
+       "kind": "start",
+       "text": "Start in the upper left corner of the canvas with Pale sky blue, right at the top edge and the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Stroke side to side across the corner. Then, without rinsing, pick up Warm white, paint it in at the foot of the patch, and stroke back up over the join while both are wet."
+      },
+      {
+       "kind": "inside",
+       "text": "The blue stays at the top of the patch and the Warm white goes in low down, so the sky gets lighter toward its bottom, the way a sky does near the horizon."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the rest of the canvas bare white. The patch is only about 1 1/4 in wide and 1 3/4 in tall, with a soft, bumpy lower edge."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the corner is a smooth pale blue with no hard line where the two colors meet. If a hard line shows, add a little more Warm white at the join and blend again."
+      }
+     ],
+     "dab-dark-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the sky patch dry to the touch."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top of the sky patch, in the upper left corner of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Wipe most of the Leaf green off on a paper towel, then tap straight down with the tip of the stiff brush. Work down the patch's ragged outer edge, and let a short tail of taps trail down from it."
+      },
+      {
+       "kind": "inside",
+       "text": "Tap the upper part of the patch more often so it goes nearly solid. Tap less toward its bottom, so small gaps of pale sky still peek through."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the palest bit of sky showing low in the patch, and keep the rest of the canvas bare."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the corner reads as a darker clump over pale sky, with soft dappled edges. If you get blobs, the brush is too wet: wipe it and tap again."
+      }
+     ],
+     "dab-sunlit-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the Leaf green taps dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the top of the dark clump, about 1/2 in from the top edge and about 1 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "With almost no Sunny leaf green on the stiff brush, tap just a few times with its tip, and keep each tap small."
+      },
+      {
+       "kind": "inside",
+       "text": "Put it only on the tops of the clump, where daylight catches the leaves. It is a tiny touch, about 1/4 in wide."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave almost all of the Leaf green and the pale sky showing. Don't cover the clump."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop after a handful of taps. The corner should look nearly the same as before, just a hint brighter on top."
+      }
+     ],
+     "blend-wall": [
+      {
+       "kind": "first",
+       "text": "Let the window corner dry completely so the blue doesn't drag into it."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge, next to the window view, with Deep wall blue."
+      },
+      {
+       "kind": "back",
+       "step": 1,
+       "text": "This is the same wet side-to-side blend you used for the sky. Now it uses two blues and a wider brush."
+      },
+      {
+       "kind": "strokes",
+       "text": "Stroke side to side in long, wide rows down the canvas. Without rinsing, pick up Wall blue and carry it toward the right edge, stroking back over each join while it's wet. Let some strokes slant so the wall looks brushed."
+      },
+      {
+       "kind": "inside",
+       "text": "The deeper blue stays near the window and Wall blue spreads over the rest. Paint straight through where the frame, sill, blanket and cat will go, down to the bottom edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the window view in the upper left corner of the canvas showing, and paint carefully around its edge."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when everything except the window view is blue, out to every edge of the canvas, with no hard lines between the two blues."
+      }
+     ],
+     "block-in-frame": [
+      {
+       "kind": "first",
+       "text": "Let the wall dry fully. White over damp blue goes streaky."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the wide upright post, a tall rectangle of Warm white from the top edge down to the bottom edge. Its right side is about 3 3/4 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull each stroke straight down the post with the flat, keeping its edge crisp against the wall. Then add the other pieces: a narrower post in the upper part of the window, a thin crossbar across the view, and lower down a thicker slanted ledge that runs out to the left edge of the canvas."
+      },
+      {
+       "kind": "inside",
+       "text": "Keep every piece one flat Warm white, with no shading yet."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave sky and leaves showing in the two panes the crossbar makes. Leave blue wall in the corner where the ledge and the post meet, down at the bottom edge."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a flat cream frame stands crisp over the view and the wall, reaching the top and bottom edges."
+      }
+     ],
+     "shade-frame": [
+      {
+       "kind": "first",
+       "text": "Let the white frame dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge, on the half of the wide post that faces the wall."
+      },
+      {
+       "kind": "strokes",
+       "text": "Lay each band in pieces with the small flat. Pull straight down the posts and straight along the crossbar and the ledge, keeping to their edges."
+      },
+      {
+       "kind": "inside",
+       "text": "The bands go on the faces turned away from the daylight: the wall-facing half of the wide post, the edge of the narrow post, the underside of the crossbar and the front of the slanted ledge. Then pull one long band down the wall where it meets the wide post, from the top edge to the bottom edge, for the frame's shadow."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave cream showing on the window-facing half of each post, and leave a slim cream wedge where the ledge meets the post."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the frame looks solid and squared, cream on one face and lavender on the other, with a dark band down the wall along the wide post."
+      }
+     ],
+     "block-in-sill": [
+      {
+       "kind": "first",
+       "text": "Let the frame and wall dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the long slanted top of the sill. Its top line begins about 7 1/4 in from the top edge, at the foot of the window frame, and slopes gently down toward the right edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Fill that slanted rectangle with long side-to-side strokes of Warm wood brown, running along the length of the sill like wood grain. Then add the front edge as a strip across the bottom of the canvas, and a small raised lip at the left edge where the sill meets the ledge."
+      },
+      {
+       "kind": "inside",
+       "text": "It is all one flat brown for now, covering the wall and the foot of the frame down to the bottom edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the wall and the frame untouched above the sill's top line, and keep that line straight."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a flat brown sill runs across the canvas from the left edge to the right edge, with its front edge still readable as a separate strip."
+      }
+     ],
+     "shade-sill": [
+      {
+       "kind": "first",
+       "text": "Let the brown sill dry completely, or the dry brush will lift it."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the sill top at the foot of the window frame, where the sill meets the wall."
+      },
+      {
+       "kind": "strokes",
+       "text": "Put only the tip of the dry brush in Warm wood brown and wipe it. Skim long, light strokes along the grain, the length of the sill, out to the right edge of the canvas. Build it up in several light passes."
+      },
+      {
+       "kind": "inside",
+       "text": "Lay the streaks thickest along the back of the sill, across the far stretch of its top and along the front edge, so those parts read as shade. Near the window, skim around the slanted shapes where the sunlight will fall: two long slanted pieces split by a thin diagonal bar."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave those sunny shapes plain, and leave a few bits of the front edge broken, where the paint skips."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the sill looks streaky and grained, with the sun shapes still clear near the window. If a patch goes solid, let it dry and dry-brush back over part of it."
+      }
+     ],
+     "light-sill": [
+      {
+       "kind": "first",
+       "text": "Let the dry-brushed streaks dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the biggest sunny shape, the long slanted wedge on the sill top near the window. Its bottom is about 1 in from the bottom edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Lay Sunny peach in flat pieces with the small flat. Block in the wedge first, then a narrow slanted bar nearer the wall, then a small piece at the left edge of the canvas. Run each stroke along the slant of the window light."
+      },
+      {
+       "kind": "inside",
+       "text": "The peach goes where daylight through the panes lands on the sill. It slants away from the window and breaks into ragged bits at the far tip of the wedge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the brown bands between the pieces showing. They are the shadows of the frame's posts and crossbar."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the sill shows three bright peach patches split by brown bands, reading as window light on wood."
+      }
+     ],
+     "block-in-blanket": [
+      {
+       "kind": "first",
+       "text": "Let the sill dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with a long, low oval of Golden yellow across the lower middle of the canvas. Its left side is about 1 1/4 in from the left edge, and it runs all the way to the right edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Fill the oval with big flat strokes. Then, at the end nearest the window, add the curved roll and the folded front edge as two rounded pieces, like ( ). Carry the yellow across where the cat will lie."
+      },
+      {
+       "kind": "inside",
+       "text": "Keep it one flat yellow with no shading. The two bumps at the window end show the roll sitting on the fold."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the sunny peach patches showing on the sill near the window, and a thin line of dark sill showing along the blanket's bottom edge."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a smooth, solid golden shape lies on the sill, its bottom about 1 in from the bottom edge."
+      }
+     ],
+     "shade-blanket": [
+      {
+       "kind": "first",
+       "text": "Let the Golden yellow dry fully."
+      },
+      {
+       "kind": "start",
+       "text": "Start along the back rim of the blanket, at the end nearest the window."
+      },
+      {
+       "kind": "strokes",
+       "text": "Load the round full of Dark ochre and make short commas: touch the tip down, press, then pull and lift. Run them in rows along the roll's length, and on the front fold set them in little V pairs, like knit stitches."
+      },
+      {
+       "kind": "inside",
+       "text": "Pack them thickest in the blanket's hollow middle, along the inner side of the back rim, and in the creases of the front fold, where the knit turns away from the light."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave gold showing on the top of the roll, on the flat bed in the middle, and between every loop."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the whole blanket reads as chunky knit, gold on the tops and ochre in the dips, out to the right edge. If you get blobs, use less paint and lift faster."
+      }
+     ],
+     "light-blanket": [
+      {
+       "kind": "first",
+       "text": "Let the dark loops dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the rounded end of the blanket nearest the window, on the top of the roll."
+      },
+      {
+       "kind": "strokes",
+       "text": "Load the smaller round with Pale yellow and make short press-and-lift commas, the same way as the dark loops but smaller."
+      },
+      {
+       "kind": "inside",
+       "text": "Crowd them on the rounded end facing the window, where daylight hits the knit. Then scatter just a few dots and commas over the flat bed and along the front fold."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave most of the dark ochre loops and the gold showing. This is a light sprinkle, not a coat."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the window end of the blanket glows and the rest just sparkles here and there."
+      }
+     ],
+     "block-in-cat": [
+      {
+       "kind": "first",
+       "text": "Let the blanket dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with a big oval of Mid gray for the curled body, sitting in the hollow of the blanket and reaching the right edge of the canvas. Then add a circle for the head at the end nearest the window."
+      },
+      {
+       "kind": "back",
+       "step": 10,
+       "text": "Build the cat the way you built the blanket: one big oval first, then the smaller pieces around it."
+      },
+      {
+       "kind": "strokes",
+       "text": "Build the rest from pieces: two triangles for the ears, one standing up from the top of the head and one pointing toward the window, then curved pieces for the tail and the paws. Let your strokes follow the curl of the fur."
+      },
+      {
+       "kind": "inside",
+       "text": "Keep it all one flat gray. The shading comes next."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the blanket's front roll and fold showing in front of the cat, with a thin rim of gold where the body meets the blanket."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a flat gray curled-cat shape lies on the blanket, its bottom about 3 1/2 in from the bottom edge."
+      }
+     ],
+     "shade-cat": [
+      {
+       "kind": "first",
+       "text": "Let the Mid gray dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with Dark gray in the deep curve behind the head, where the head tucks against the body."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull curved strokes down that crescent, from the top of the body toward the blanket. Then sweep around the round end of the body and along the tail, bending every stroke with the shape."
+      },
+      {
+       "kind": "inside",
+       "text": "Dark gray goes on the far round end of the body, along the tail lying in front, where the chin meets the blanket, and in the crescent behind the head. These are the parts turned away from the window light."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the head, the ears and the top of the body Mid gray. Also leave the muzzle, the paws and a patch on the side plain gray, ready for the white."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the cat looks round: light on its head and top, dark around its back end and tail, with a few soft gray flecks where the two meet."
+      }
+     ],
+     "paint-white-patches": [
+      {
+       "kind": "first",
+       "text": "Let the dark gray dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the muzzle and chin, the patch between the face and the paws. Its left side is about 3 1/4 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Curve each Warm white stroke with the round of the shape: around the muzzle, over each front paw from its top down, and down the side patch along the fur."
+      },
+      {
+       "kind": "inside",
+       "text": "White goes on the muzzle and chin, on the two front paws tucked at the chin, and on a pointed patch on the side, its middle about 9 1/4 in from the left edge, where the chest fur shows."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave a thin gray line between the two paws, and another between the paws and the chin, so they stay separate."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop after 2 or 3 thin coats, when the patches are bright and solid with soft, furry points along their edges. One thick coat goes streaky."
+      }
+     ],
+     "paint-stripes": [
+      {
+       "kind": "first",
+       "text": "Let the white dry fully."
+      },
+      {
+       "kind": "start",
+       "text": "Start with short Charcoal stripes on the top of the head, between the ears."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the full width of the angle brush to start each stripe, then turn it onto its edge and lighten up so the stripe tapers. On the body, curve each stripe around the round, from the spine down toward the blanket. On the tail, pull short bands across it."
+      },
+      {
+       "kind": "inside",
+       "text": "Stripes go on the forehead, the cheeks, all over the body and in bands along the tail. Make them broadest on the shadowed end of the body. Darken the rims of the ears too."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the white muzzle, paws and side patch clean, and leave plenty of gray between the stripes."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the cat clearly reads as a tabby, its stripes wrapping around the curl."
+      }
+     ],
+     "paint-ears": [
+      {
+       "kind": "first",
+       "text": "Let the stripes dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start in the ear that points toward the window. Its middle is about 2 1/4 in from the left edge."
+      },
+      {
+       "kind": "back",
+       "step": 11,
+       "text": "These are the same press-and-lift commas you used for the knit loops, now small with a little round."
+      },
+      {
+       "kind": "strokes",
+       "text": "Touch the round's tip down near the ear's base, press, then pull toward the tip and lift, so each mark points into the corner of the ear."
+      },
+      {
+       "kind": "inside",
+       "text": "Fill that ear with Soft pink, then the ear on the top of the head, whose middle is about 6 1/4 in from the left edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave a gray rim showing all around each ear."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when both ears are soft pink with a gray rim and come to a point at the tips."
+      }
+     ],
+     "flick-fur": [
+      {
+       "kind": "first",
+       "text": "Let the pink and the stripes dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the top of the head and the top of the curled back, where the window light hits."
+      },
+      {
+       "kind": "strokes",
+       "text": "With very little Light gray on the fan brush, flick short, quick strokes, lifting off each one so it thins at the end. Follow the way the fur lies around the curl."
+      },
+      {
+       "kind": "inside",
+       "text": "Flick over the head, the back, the round of the body and the tail, so the gray between the stripes turns into lighter, softer fur. Let some flicks cross the stripe edges to break them up."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the stripes mostly dark, the white patches and pink ears untouched, and the face blank."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the coat looks soft and furry and the stripes are still clear. Flat blobs mean too much paint, so wipe the brush."
+      }
+     ],
+     "paint-nose": [
+      {
+       "kind": "first",
+       "text": "Let the fur flicks dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start on the white muzzle, just over the paws, with a small triangle nose. Its middle is about 5 3/4 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Touch the round's tip down at the nose's point, press so the mark widens, then lift. Two or three tiny strokes make the triangle, wide end up."
+      },
+      {
+       "kind": "inside",
+       "text": "Then add a few small touches of Soft pink along the tips and inner edges of both ears to deepen them."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave white all around the nose."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a small, neat pink nose sits on the muzzle."
+      }
+     ],
+     "line-eyes": [
+      {
+       "kind": "first",
+       "text": "Let the nose and the fur dry. Liner lines spread on wet paint."
+      },
+      {
+       "kind": "start",
+       "text": "Start with the eye nearest the window, a gentle curved line where the gray cheek meets the white muzzle."
+      },
+      {
+       "kind": "back",
+       "step": 16,
+       "text": "This is the same Charcoal you used for the stripes, now thinned with water for the liner."
+      },
+      {
+       "kind": "strokes",
+       "text": "Thin the Charcoal with water and hold the liner upright. Pull each line with light, steady pressure, starting a little thicker and easing off to a thin end."
+      },
+      {
+       "kind": "inside",
+       "text": "Line both closed eyes, then a tiny mouth line from the point of the pink nose and a few short lines on the cheek past the second eye. Add a dark shadow where the chin tucks into the paws, and a thin dark edge along the outer rims of both ears."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the pink nose and the white muzzle clean."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the face looks peacefully asleep. Add water if a line skips."
+      }
+     ],
+     "line-whiskers": [
+      {
+       "kind": "first",
+       "text": "Let the charcoal lines dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the edge of the white muzzle, near the nose."
+      },
+      {
+       "kind": "back",
+       "step": 20,
+       "text": "Hold the liner upright as you did for the eye lines, now with thinned Warm white."
+      },
+      {
+       "kind": "strokes",
+       "text": "Thin the Warm white and hold the liner upright. Pull each whisker out from the muzzle in one steady stroke, lightening as you go so it tapers, and reload often."
+      },
+      {
+       "kind": "inside",
+       "text": "Fan three or four whiskers across the cheek and over the paws toward the window, reaching to about 2 3/4 in from the left edge. Fan three or four more out the other side of the muzzle, across the cheek."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the eye lines and the nose untouched, and let a few whiskers cross the stripes."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when thin, light whiskers fan out from both sides of the muzzle, and the painting is finished."
+      }
+     ]
+    },
+    "check": {
+     "text_failures_first": 0,
+     "arc_failures_first": 0,
+     "arc_failed_first": [],
+     "text_failed_first": [],
+     "text_failures_second": 0,
+     "arc_failures_second": 0,
+     "arc_taken_out": [],
+     "text_taken_out": [],
+     "left_failing": 0,
+     "claims_final": 40
+    },
+    "backs": 5,
+    "words_count": 3008,
+    "arc_words": 450
+   }
+  }
+ },
+ "calls": [
+  {
+   "variant": "arc-add",
+   "picture": "birch-grove",
+   "label": "first words",
+   "seconds": 24.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 27560,
+   "cache_read_tokens": 0,
+   "output_tokens": 2261,
+   "cost_usd": 0.26571,
+   "pictures": 9,
+   "picture_tokens": 4968
+  },
+  {
+   "variant": "arc-add",
+   "picture": "highland-cow",
+   "label": "first words",
+   "seconds": 31.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 29165,
+   "cache_read_tokens": 0,
+   "output_tokens": 2996,
+   "cost_usd": 0.29325,
+   "pictures": 11,
+   "picture_tokens": 5788
+  },
+  {
+   "variant": "arc-add",
+   "picture": "sleeping-cat",
+   "label": "first words",
+   "seconds": 35.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 27439,
+   "cache_read_tokens": 0,
+   "output_tokens": 3351,
+   "cost_usd": 0.28654,
+   "pictures": 10,
+   "picture_tokens": 5378
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "sleeping-cat",
+   "label": "first words",
+   "seconds": 108.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 85306,
+   "cache_read_tokens": 0,
+   "output_tokens": 10623,
+   "cost_usd": 0.89492,
+   "pictures": 44,
+   "picture_tokens": 40633
+  }
+ ],
+ "ab": []
+}
