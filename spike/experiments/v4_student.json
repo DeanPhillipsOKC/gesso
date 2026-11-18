@@ -4567,6 +4567,150 @@
    "why": "The outlined area sits about 2 1/2 in from the right edge and is about 5 in wide, so the new smoky-brown and blue-violet trunks belong in the middle-right among the firs, as in Picture 3, not on the far left as in Pictures 1 and 2; Picture 4 instead repaints the ground, which the step never asks for.",
    "cost_usd": 0.04355,
    "seconds": 8.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "wrong_side",
+   "rep": 1,
+   "p_real": 0.75,
+   "probs": {
+    "other": 0.05,
+    "place": 0.12,
+    "real": 0.75,
+    "half": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for Moss green bushes, then Burnt orange, then Leaf brown dabbed over the ground and path in an area reaching all four edges; Picture 3 shows that with dotted gaps, while Picture 4 stops halfway across, Picture 2 smears blobs into the sky, and Picture 1 uses bright yellow instead of the dark mixes.",
+   "cost_usd": 0.04314,
+   "seconds": 7.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 11,
+   "condition": "wrong_side",
+   "rep": 1,
+   "p_real": 0.57,
+   "probs": {
+    "place": 0.03,
+    "half": 0.37,
+    "other": 0.03,
+    "real": 0.57
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The tip asks for light dabs of pale gold kept almost entirely in the right half and bottom half, on the tops and sunny sides of the leaf clusters; Picture 4 seems to show that lightening around the right-side clusters, Picture 2's pale strokes sit more in the upper left, and Pictures 1 and 3 show dark blobs and a solid green shape instead of tapped pale dots.",
+   "cost_usd": 0.04612,
+   "seconds": 9.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 17,
+   "condition": "wrong_side",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "place": 0.04,
+    "other": 0.06,
+    "half": 0.1,
+    "real": 0.8
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for short dark Bark dark patches across all the front birch trunks, with the feet going almost solid dark, and specifically names the big trunk about 2 in from the right edge as getting patches; only Picture 4 shows that, while Picture 3 skips the right trunk, Picture 2 has hardly any dark, and Picture 1 adds new trunks that weren't there.",
+   "cost_usd": 0.04406,
+   "seconds": 7.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 15,
+   "condition": "wrong_side",
+   "rep": 1,
+   "p_real": 0.1,
+   "probs": {
+    "half": 0.04,
+    "real": 0.1,
+    "place": 0.8,
+    "other": 0.06
+   },
+   "pick": "place",
+   "hit": false,
+   "why": "The tip puts most of the solid, unmarked trunks on the right, with two big trunks leaning slightly left, a thin trunk down the left edge, and a trunk about 1 1/4 in wide centred about 1 3/4 in from the left edge; only Picture 3 shows that layout, while 1 and 2 put the big trunks on the left and 4 adds bark markings the step doesn't call for.",
+   "cost_usd": 0.04713,
+   "seconds": 9.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 20,
+   "condition": "wrong_side",
+   "rep": 1,
+   "p_real": 0.3,
+   "probs": {
+    "half": 0.5,
+    "other": 0.15,
+    "real": 0.3,
+    "place": 0.05
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for separate, light Pale gold leaf-sized dabs, thickest on the path, with darker leaves still showing between them; Picture 1 shows that most closely, Picture 3 looks heavier and more band-like, Picture 2 barely changed, and Picture 4 repaints far beyond the outlined ground area.",
+   "cost_usd": 0.04686,
+   "seconds": 8.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "half": 0.04,
+    "real": 0.88,
+    "other": 0.02,
+    "place": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to paint all the way across to the bottom edge and fill the sky colors between step 7's strokes so no blue or orange is left below the mountains; only Picture 2 does that, since 1 stops above the bottom, 4 leaves patches of sky color, and 3 adds trees instead.",
+   "cost_usd": 0.04073,
+   "seconds": 5.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 13,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.84,
+   "probs": {
+    "half": 0.1,
+    "other": 0.03,
+    "place": 0.03,
+    "real": 0.84
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to put Dark umber along the underside and darkest at the tips of both horns while leaving a pale strip on top; Picture 4 does this on both horns, Picture 1 shades only the left horn, Picture 3 adds extra horns, and Picture 2 repaints the fur instead.",
+   "cost_usd": 0.03988,
+   "seconds": 6.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "no_direction",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "place": 0.12,
+    "real": 0.8,
+    "other": 0.02,
+    "half": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to cover the whole canvas to all four edges, which rules out the half-painted picture 4 and the patchy picture 3; picture 2 keeps the blue-and-gold bands soft with the pale sun glow at the right, and picture 1 looks like the same canvas turned upside down.",
+   "cost_usd": 0.0438,
+   "seconds": 6.9
   }
  ],
  "carry": [
@@ -5465,6 +5609,76 @@
    "d_result_after": 5.02,
    "render_usd": 0.016,
    "seconds": 13.0
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "header",
+   "rep": 1,
+   "file": "01-header-r1.png",
+   "beats": 0.0,
+   "toward": -0.149,
+   "where": 0.516,
+   "d_before_after": 39.38,
+   "d_result_after": 45.25,
+   "render_usd": 0.015,
+   "seconds": 9.4
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "header",
+   "rep": 1,
+   "file": "11-header-r1.png",
+   "beats": 0.75,
+   "toward": 0.335,
+   "where": 0.646,
+   "d_before_after": 4.72,
+   "d_result_after": 3.14,
+   "render_usd": 0.015,
+   "seconds": 13.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "header",
+   "rep": 1,
+   "file": "08-header-r1.png",
+   "beats": 0.0,
+   "toward": -0.316,
+   "where": 0.337,
+   "d_before_after": 14.93,
+   "d_result_after": 19.65,
+   "render_usd": 0.015,
+   "seconds": 13.4
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "header",
+   "rep": 1,
+   "file": "04-header-r1.png",
+   "beats": 0.25,
+   "toward": -0.381,
+   "where": 0.232,
+   "d_before_after": 8.47,
+   "d_result_after": 11.7,
+   "render_usd": 0.015,
+   "seconds": 14.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 13,
+   "condition": "header",
+   "rep": 1,
+   "file": "13-header-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.152,
+   "d_before_after": 0.41,
+   "d_result_after": 3.09,
+   "render_usd": 0.015,
+   "seconds": 12.1
   }
  ],
  "carry_grades": [],
@@ -7347,6 +7561,78 @@
    "cache_read_tokens": 0,
    "output_tokens": 336,
    "cost_usd": 0.04355
+  },
+  {
+   "label": "pick wrong_side birch-grove 9 r1",
+   "seconds": 7.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4649,
+   "cache_read_tokens": 0,
+   "output_tokens": 297,
+   "cost_usd": 0.04314
+  },
+  {
+   "label": "pick wrong_side birch-grove 11 r1",
+   "seconds": 9.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4559,
+   "cache_read_tokens": 0,
+   "output_tokens": 482,
+   "cost_usd": 0.04612
+  },
+  {
+   "label": "pick wrong_side birch-grove 17 r1",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4536,
+   "cache_read_tokens": 0,
+   "output_tokens": 388,
+   "cost_usd": 0.04406
+  },
+  {
+   "label": "pick wrong_side birch-grove 15 r1",
+   "seconds": 9.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4515,
+   "cache_read_tokens": 0,
+   "output_tokens": 550,
+   "cost_usd": 0.04713
+  },
+  {
+   "label": "pick wrong_side birch-grove 20 r1",
+   "seconds": 8.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4619,
+   "cache_read_tokens": 0,
+   "output_tokens": 495,
+   "cost_usd": 0.04686
+  },
+  {
+   "label": "pick no_direction highland-cow 8 r1",
+   "seconds": 5.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4530,
+   "cache_read_tokens": 0,
+   "output_tokens": 224,
+   "cost_usd": 0.04073
+  },
+  {
+   "label": "pick no_direction highland-cow 13 r1",
+   "seconds": 6.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4412,
+   "cache_read_tokens": 0,
+   "output_tokens": 229,
+   "cost_usd": 0.03988
+  },
+  {
+   "label": "pick no_direction highland-cow 1 r1",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4736,
+   "cache_read_tokens": 0,
+   "output_tokens": 295,
+   "cost_usd": 0.0438
   }
  ]
 }
