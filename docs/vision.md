@@ -56,24 +56,31 @@ not the other way around.
 It will be slow, maybe several minutes per lesson. That's fine. It shows progress as stages
 finish, and a finished lesson is saved so it never has to be made twice.
 
-### The proof of concept today: the paint-lesson skill, pipeline v2 (2026-11-13)
+### The proof of concept today: the paint-lesson skill, pipeline v3 (2026-11-18)
 
 Until the app exists, lessons are made by a Claude Code skill, `/paint-lesson <photo>`
-(`.claude/skills/paint-lesson/SKILL.md`), with free tools in `spike/tools.py`. It runs pipeline v2
-(`docs/design/pipeline-v2.md`; the owner passed its gate on 2026-11-13, POC 1.0.0):
+(`.claude/skills/paint-lesson/SKILL.md`), with free tools in `spike/tools.py`. It runs pipeline v3
+(`docs/design/pipeline-v3.md`; the owner passed its gate on 2026-11-18, POC 2.0.0):
 
-- **The finish is rendered once, and every step is cut from it.** Claude lists the picture's parts back to
-  front; a local outline model finds each part's exact shape; `build-steps` lays the parts on a white canvas in
-  painting order, a flat coat and then one pass per paint. Nothing can drift between steps, splitting a step is
-  free, and a lesson is 12 to 24 small steps in 4 to 9 stages. The only other renders are, when needed, a
-  beginner version, a canvas extend, and one background picture.
-- **Paints are measured, not guessed.** Each part's colors come from the finish, merged toward 10 mixes, and
-  every recipe is computed from the palette's tubes.
+- **A painter's plan comes first.** A helper in a fresh context writes the plan: the things in the picture back to
+  front, what is behind each, a rough color for each paint, and small steps in stages, each following an element
+  technique and a stroke card. `plan-check` holds it to the technique and says how many renders the chain needs.
+- **The finish is erased backward, one piece of the plan at a time.** `erase` asks the image model, a low render a
+  unit, to take the last unit out of the picture before it; of each render only what changed by a lot is kept, so
+  nothing moves between steps. A checker in a fresh context reads the chain, and a unit it marks is asked for
+  again. About 2 cents a render, 16 or so a lesson.
+- **Paints are fitted to the chain.** Each of the plan's paints is fitted to what its units changed, and every
+  recipe is computed from the palette's tubes.
 - **Teaching pictures and text come from data.** Each step gets a Where outline, a close-up and a paint map where
-  they help, and a hand-checked stroke card. `draft-text` writes the lines that are data; Claude adds what only
-  this photo needs. `check` measures everything it can, and a text review runs once in a fresh context.
+  they help, and a hand-checked stroke card. `draft-text` writes the lines that are data; one writer a stage writes
+  each step's summary and tip from a measured fact sheet, and `check-text` checks every number and side in them.
 - **Sealed lessons go on the lessons site** (`docs/lessons-site.md`), and every run is kept in the lesson
   history.
+
+Pipeline v2 (2026-11-13 to 2026-11-18, POC 1.0.0 to 2.0.1) rendered the finish once too, and cut every step from it
+inside part outlines that a local outline model found, with paints measured inside them. The owner found v3's
+lessons "worlds better than v2", and v2 was removed (#238); its design is kept as history in
+`docs/design/pipeline-v2.md`.
 
 Before v2, the same skill ran pipeline v1 (2026-11-10 to 2026-11-12, up to POC 0.26.1): it rendered every
 step, then spent most of a run repairing what the image model moved between renders (image reviews, redos, a

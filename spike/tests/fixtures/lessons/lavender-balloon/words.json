@@ -1,0 +1,201 @@
+{
+ "stage-01": {
+  "steps": {
+   "blend-sky": {
+    "summary": "Blend a smooth sunset sky of blue, orange and gold across the canvas.",
+    "tip": "The light comes from a low setting sun a little left of center, behind everything, so keep the brightest gold glow where the after picture has it. Stroke side to side all the way across. The after picture carries the paint down to the bottom edge, repeating blue then orange lower down, as the Where picture shows.",
+    "lines": {
+     "3": "Paints, top to bottom: Sky blue, then Sunset orange, with Warm gold blended in as a glow where the after picture has it."
+    }
+   },
+   "lay-clouds": {
+    "summary": "Dab soft coral clouds across the sky, leaving sky showing between them.",
+    "tip": "Most of the clouds go on the right side of the canvas: the biggest mass has its left side about 8 in from the left edge and reaches the top edge. Work in small circles and keep each cloud's edge bumpy. The after picture repeats clouds lower down too, as the Where picture shows."
+   },
+   "light-cloud-edges": {
+    "summary": "Skim gold and orange along the cloud edges that face the low sun.",
+    "tip": "The sun sits low, so light the lower edges of the clouds, the edges facing it. Most of this paint goes on the left side of the canvas. Leave the clouds' middles showing as they were.",
+    "lines": {
+     "1": "Let the sunset clouds dry to the touch first. A hair dryer on low speeds it up."
+    }
+   },
+   "paint-sun": {
+    "summary": "Paint a small pale sun disk low in the sky, with a short glowing streak.",
+    "tip": "This sun is the light for the whole painting, so keep it a small round disk, about 3/4 in wide. The after picture also adds a short glowing streak below the sun, as the Where picture shows: dab it lightly with the same paint.",
+    "paint_notes": [
+     "Pale sun yellow is see-through over the darker sky: paint the disk twice, letting the first coat dry."
+    ]
+   }
+  }
+ },
+ "stage-02": {
+  "steps": {
+   "lay-mountains": {
+    "summary": "Paint one flat band of soft violet mountains all the way across, under the sun.",
+    "tip": "The sun sits behind the far violet mountains, so keep them one flat, soft Hill violet with no highlights. Their top dips lowest just under the setting sun, as the Where picture shows. The sunset colors under them stay as they are.",
+    "lines": {
+     "10": "Bend every stroke with the shape: from the top of each peak down along its slope.",
+     "11": "It should leave marks that bend with the slopes, which is what makes the mountains look sloped."
+    }
+   },
+   "shade-ridges": {
+    "summary": "Darken the lower mountain slopes with Deep violet, leaving the dip by the sun pale.",
+    "tip": "The light comes from behind, so the slopes facing you sit in shade. The after picture has two dark patches: one reaching the left edge of the canvas, about 6 1/4 in wide, and one about 9 1/4 in wide.",
+    "lines": {
+     "7": "Keep the brush nearly level and the strokes long, tilting a little with each slope.",
+     "8": "It should leave darker violet slopes low on the mountains, with slight streaks that follow the stroke."
+    }
+   },
+   "lay-lake": {
+    "summary": "Streak a thin violet lake under the mountains with a gold glint below the sun.",
+    "tip": "Lay the Hill violet first, then pull the Warm gold glint straight under the setting sun in short level strokes. The after picture also shows low dark shore strips on each side of the glint.",
+    "paint_notes": [
+     "Warm gold over the violet is see-through: paint the glint twice, letting the first coat dry."
+    ],
+    "lines": {
+     "5": "Paints: Hill violet for the water, then Warm gold for the glint under the sun."
+    }
+   }
+  }
+ },
+ "stage-03": {
+  "steps": {
+   "lay-hills": {
+    "summary": "Blend Golden ochre and Olive green rolling hills across the canvas to the bottom edge.",
+    "tip": "The sun is behind the far violet mountains, so Golden ochre goes on each hill's crest and Olive green in its hollow. Paint to the left, right and bottom edges of the canvas; leave the little lake showing.",
+    "paint_notes": [
+     "Golden ochre is see-through over the earlier sunset colors: paint it twice, letting the first coat dry."
+    ],
+    "lines": {
+     "5": "Paints: Golden ochre on the hill crests, Olive green in the hollows.",
+     "7": "Lay Golden ochre along each crest, stroking side to side with the hill's curve. Without rinsing, pick up Olive green for each crest's hollow. Then stroke back over the join several times."
+    }
+   },
+   "texture-hills": {
+    "summary": "Dry-brush broken Warm gold grass strokes over the sunlit hill crests.",
+    "tip": "The light comes from behind the hills, so Warm gold goes on the crests and the big slope, as the after picture shows. Skim along each hill's curve and leave the darker hollows and farthest hills smooth.",
+    "lines": {
+     "7": "Light pressure, skimming the surface side to side along each hill's curve."
+    }
+   }
+  }
+ },
+ "stage-04": {
+  "steps": {
+   "pull-trunk": {
+    "summary": "Pull a short Bark brown trunk with a few forked branch stubs on the right hilltop.",
+    "tip": "The light comes from behind the tree, so its left side will be the lit side later; keep the trunk one flat dark Bark brown now. Pull each stroke up from the hilltop, thick at the base and tapering, then fork two or three short branches up and out. The canopy covers their tips in the next step, so keep them short, as the after picture shows."
+   },
+   "dab-dark-greens": {
+    "summary": "Tap the dark Tree green canopy on the trunk and bush clumps along the hill folds.",
+    "tip": "Tap the canopy first, sitting on the tree trunk: about 3 3/4 in wide and 3 in tall, its left side about 12 1/4 in from the left edge. Then tap the bushes as rounded clumps with flat bottoms that sit along the hill folds, as the Where picture shows. Leave the golden rolling hills showing between the clumps, and leave the trunk showing under the canopy."
+   },
+   "dab-mid-greens": {
+    "summary": "Tap a middle green over the tops and left sides of the canopy and bushes.",
+    "tip": "The sun is behind the tree, so the lighter green goes on the tops and left sides of the canopy and of each bush, the sides facing the sun. Leave the dark green from step 11 showing underneath and on the right side of each clump, as the after picture shows.",
+    "paint_notes": [
+     "The after picture adds a middle green, not a brown: keep your Bark brown light and green enough to match the picture's green, and test a tap on your palette first."
+    ]
+   },
+   "dab-sunlit-greens": {
+    "summary": "Tap a few Sunlit green leaves on the sides of the tree and bushes facing the sun.",
+    "tip": "Keep to the light: tap the Sunlit green on the left side of the canopy and on the tops and left sides of the bushes, where the after picture has it. Use only a few small taps, most of them on the left side of the canvas. Leave the middle and dark greens showing around these taps, as the after picture shows, so each clump stays round."
+   }
+  }
+ },
+ "stage-05": {
+  "steps": {
+   "lay-lavender-field": {
+    "summary": "Paints the smooth purple field across the bottom of the canvas, lighter at the back.",
+    "tip": "Its top is about 7 1/4 in from the top edge, a nearly level line covering the lower golden hills and bushes. Keep it lighter at the back and darker toward the bottom edge, with no rows yet.",
+    "lines": {
+     "7": "Start with Lavender purple along the top of the field and stroke side to side. Without rinsing, pick up Shadow purple and paint below it to the bottom edge. Then stroke back up over the join several times.",
+     "9": "Watch out: A hard line where the two purples meet. Fix: add more Lavender purple at the join and blend again."
+    }
+   },
+   "pull-soil": {
+    "summary": "Pulls two warm dirt paths that narrow toward one point at the back of the field.",
+    "tip": "Two paths only, placed as the Where picture shows. Pull each from the bottom edge up to the point where they meet, wide in front and thin at the back.",
+    "lines": {
+     "7": "Mark one dot at the top of the lavender field, between the paths. Draw two faint chalk lines fanning out from it. Pull each path's strokes along its line, wide in front and thin near the dot.",
+     "9": "Watch out: The paths run parallel or cross each other. Fix: mark the dot and the two lines first. It takes a minute."
+    }
+   },
+   "stamp-dark-lavender": {
+    "summary": "Stamps rows of blunt Lavender purple blocks running back between the dirt paths.",
+    "tip": "Run each row along the same fan as the dirt paths, toward where they meet. Stamp small near the back and bigger toward the bottom edge, keeping the paths clear and the dark field showing between rows.",
+    "paint_notes": [
+     "Lavender purple can look see-through over the dark field; if a stamp looks thin, stamp it again once the first coat is dry."
+    ],
+    "lines": {
+     "8": "Leave the dirt paths and the dark field showing around these marks, as in the Result picture.",
+     "9": "Watch out: Stamps fill the whole field. Fix: leave dark showing between the rows. That dark is what gives each row depth."
+    }
+   },
+   "stamp-mid-lavender": {
+    "summary": "Stamps Mid lavender over the upper part of each row's stamps.",
+    "tip": "Put the Mid lavender on the top of each row, where the low sun behind the field catches it, with smaller stamps toward the back. Leave the darker stamps and dark field showing underneath, as the after picture shows.",
+    "lines": {
+     "7": "Leave the dirt paths and the darker stamps from step 16 showing around these marks, as in the Result picture."
+    }
+   },
+   "tip-lavender": {
+    "summary": "Taps Pale lilac tips on the tops of the lavender rows to finish the field.",
+    "tip": "The low sun is behind the field, so tap Pale lilac only on the tops of the stamps, never down their sides. Keep tips small and scattered; the after picture puts some on the far rows too.",
+    "lines": {
+     "7": "Leave the dirt paths and the darker stamps from steps 16 and 17 showing around these marks, as in the Result picture."
+    }
+   }
+  }
+ },
+ "stage-06": {
+  "steps": {
+   "build-balloon": {
+    "summary": "Block in the balloon as one flat Warm gold shape over the sky.",
+    "tip": "The balloon is about 3 in wide and 3 3/4 in tall, its top about 1/4 in from the top edge. Make it round at the top, narrowing to a neck, with a gold dab below for the basket.",
+    "paint_notes": [
+     "Warm gold can let the blue sky show through: paint it twice, letting the first coat dry."
+    ],
+    "lines": {
+     "7": "Start with one big oval for the round top. Then add curved pieces on each side, like ( ), narrowing down to the neck.",
+     "8": "It should leave one solid gold balloon shape, wide at the top and narrow at the neck."
+    }
+   },
+   "paint-red-stripes": {
+    "summary": "Pull the first Balloon red stripes down the gold balloon, top to neck.",
+    "tip": "The long middle stripe is about 1/2 in wide and 2 1/2 in tall. Most of the red is on the right side of the balloon; its left side gets only broken bits, as the after picture shows.",
+    "lines": {
+     "5": "Bend every stroke with the balloon: start at its top and pull down along its curve to the neck.",
+     "6": "It should leave stripes that bend with the balloon, which is what makes it look round."
+    }
+   },
+   "paint-blue-stripes": {
+    "summary": "Balloon blue stripes; the after picture looks almost the same as before.",
+    "tip": "The after picture shows almost no change, so leave the balloon as it is. The blue stripes show up in the next step's picture, curving from top to neck between the red stripes.",
+    "lines": {
+     "7": "Bend every stroke with the balloon: start at its top and pull down along its curve to the neck.",
+     "8": "It should leave stripes that bend with the balloon, which is what makes it look round."
+    }
+   },
+   "shade-balloon": {
+    "summary": "Lay in the dark blue and red stripes, darkest on the left side of the balloon.",
+    "tip": "The sun lights the right side of the balloon, so its left side stays darkest. The after picture adds Deep blue stripes, fills out the red ones with Deep red, and darkens the neck.",
+    "lines": {
+     "5": "Bend every stroke with the balloon: start at its top and pull down along its curve to the neck.",
+     "6": "It should leave stripes that bend with the balloon, which is what makes it look round."
+    }
+   },
+   "light-balloon": {
+    "summary": "Dry-brush warm light onto the stripes, strongest on the right side of the balloon.",
+    "tip": "The sun lights the right side of the balloon: keep the brightest Sunset orange along it. Skim Pale sun yellow down the gold stripes. The after picture also shows faint pale ropes and basket under the neck."
+   },
+   "add-basket": {
+    "summary": "Paint the ropes and the little Bark brown basket under the balloon.",
+    "tip": "Paint the band at the neck first, about 1/2 in wide. Then pull thin ropes down to the basket, about 1/4 in wide and 1/2 in tall, its top about 3 1/2 in from the top edge.",
+    "lines": {
+     "7": "Hold the brush upright, with light, steady pressure. Pull each rope as one thin line from the neck down to the basket, and lighten as you go."
+    }
+   }
+  }
+ }
+}

@@ -14,6 +14,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -32,7 +33,7 @@ import lessons  # noqa: E402
 import loads  # noqa: E402
 import publish2  # noqa: E402
 import tools  # noqa: E402
-from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
+from lessons import CANVAS, NAMES  # noqa: E402
 
 TECHNIQUE = yaml.safe_load((tools.ROOT / "techniques" / "acrylic-paint-along-beginner.yaml").read_text(encoding="utf-8"))
 PERCENT = re.compile(r"%|percent", re.I)
@@ -63,7 +64,7 @@ class DraftTests(unittest.TestCase):
         cls.built, cls.owners = {}, {}
         for name in NAMES:
             plan, pictures, _, masks = lessons.built(name)
-            cls.owners[name] = lessons.fixture(name)[2]
+            cls.owners[name] = lessons.owner(name)
             cls.built[name] = (plan, pictures, masks, dt.draft(plan, pictures, masks, None, CANVAS, owner=cls.owners[name]))
 
     def test_every_step_has_lines_in_the_tables_order_none_long_none_with_percentages(self):
@@ -89,18 +90,17 @@ class DraftTests(unittest.TestCase):
 
     def test_let_it_dry_follows_the_paint_underneath(self):
         d = by_id(self.built["chickadee"][3])
-        self.assertNotIn("dry", kinds(d["sky-blend"]))  # nothing under the first step
-        self.assertEqual(d["sun"]["lines"][0]["text"], dt.DRY.format(what="the misty sunset sky"))  # this stage: the part
-        self.assertEqual(d["trunks"]["lines"][0]["text"], dt.DRY.format(what="the misty sky"))  # another stage: its name
-        self.assertIn("the black cap and bib", d["bird-cheek"]["lines"][0]["text"])  # inside a stage: the part's name
-        self.assertIn("the branch", d["bird-feet"]["lines"][0]["text"])  # the feet cross the branch and the bird
-        self.assertIn("the chickadee", d["bird-feet"]["lines"][0]["text"])
+        self.assertNotIn("dry", kinds(d["blend-sky"]))  # nothing under the first step
+        self.assertEqual(d["paint-sun"]["lines"][0]["text"], dt.DRY.format(what="the blue and gold sky"))
+        self.assertEqual(d["pull-far-trunks"]["lines"][0]["text"], dt.DRY.format(what="the sky and the sun"))
+        self.assertIn("the chickadee", d["shade-chickadee"]["lines"][0]["text"])  # inside a stage: the part's name
+        self.assertIn("the far woods", d["shade-chickadee"]["lines"][0]["text"])  # and what it sits over
 
     def test_rinse_before_a_far_color_or_the_lightest_yet(self):
         d = by_id(self.built["chickadee"][3])
-        self.assertEqual([x["text"] for x in d["sun"]["lines"] if x["kind"] == "rinse"], [dt.RINSE_LIGHT])
-        self.assertEqual([x["text"] for x in d["bird-cheek"]["lines"] if x["kind"] == "rinse"], [dt.RINSE])  # black, then white
-        self.assertNotIn("rinse", kinds(d["branch-mid"]))  # bark brown to bark tan
+        self.assertEqual([x["text"] for x in d["paint-white-patches"]["lines"] if x["kind"] == "rinse"], [dt.RINSE_LIGHT])
+        self.assertEqual([x["text"] for x in d["dab-dark-far-leaves"]["lines"] if x["kind"] == "rinse"], [dt.RINSE])
+        self.assertNotIn("rinse", kinds(d["paint-sun"]))  # pale yellow again, then sun cream
 
     def test_chalk_only_where_an_object_with_no_parent_starts(self):
         for name, (plan, _, _, drafted) in self.built.items():
@@ -118,48 +118,43 @@ class DraftTests(unittest.TestCase):
             self.assertTrue(" ".join(x["text"] for x in d["lines"] if x["kind"] == "where").startswith(
                 aids.where_words(m, CANVAS)))  # what the finish shows of it, then why the outline is bigger if it is
         sized = by_id(drafted)
-        where = next(x["text"] for x in sized["bird-body"]["lines"] if x["kind"] == "where")
+        where = next(x["text"] for x in sized["block-in-chickadee"]["lines"] if x["kind"] == "where")
         self.assertRegex(where, r"\d in from the (top|left) edge")
-        self.assertNotIn("the whole canvas", " ".join(x["text"] for x in sized["branch-dark"]["lines"]))  # thin, all 4 edges
+        self.assertNotIn("the whole canvas", " ".join(x["text"] for x in sized["block-in-branch"]["lines"]))
 
     def test_where_leaves_out_stray_specks_far_from_the_part(self):
-        # #90: two specks of the bird by the trunk put the chickadee's body "at the left edge, 8 1/2 in wide". The
-        # specks are the body's in the outlines and in its step's area, so the words (what the finish shows of the
-        # step, #126) would reach them; and the outline then reaches past the words, which isn't to be explained.
+        # #90: two specks of a thing far from it put its words at the canvas's edge. Specks of the bird added to its
+        # block-in's area and to its shape leave the words where they were.
         plan, pictures, masks, drafted = self.built["chickadee"]
-        i = [s["id"] for s in bs.flat_steps(plan)].index("bird-body")
+        i = [s["id"] for s in bs.flat_steps(plan)].index("block-in-chickadee")
         part = [p["id"] for p in plan["parts"]].index(bs.flat_steps(plan)[i]["part"])
         owner, specked = self.owners["chickadee"].copy(), [m.copy() for m in masks]
         h, w = owner.shape
         for y, x in ((h // 2, 0), (h - 4, w // 2)):  # at the left edge, and at the bottom
             specked[i][y:y + 3, x:x + 3] = True
             owner[y:y + 3, x:x + 3] = part
-        where = lambda entries: [x["text"] for x in by_id(entries)["bird-body"]["lines"] if x["kind"] == "where"]
+        where = lambda entries: [x["text"] for x in by_id(entries)["block-in-chickadee"]["lines"] if x["kind"] == "where"]
         self.assertEqual(where(dt.draft(plan, pictures, specked, None, CANVAS, owner=owner)), where(drafted))
         self.assertNotIn("at the left edge", " ".join(where(drafted)))
-        # the fixtures' own specks (review of #143): the lavender's paths reached the left edge, 12 in wide, and the
-        # sailboat's sun path was "explained" as reaching onto the water, both by specks
-        paths = " ".join(x["text"] for x in by_id(self.built["lavender-balloon"][3])["paths"]["lines"] if x["kind"] == "where")
-        self.assertIn("its right side is about 1 3/4 in from the right edge; it's about 8 1/2 in wide", paths)
-        sun_path = " ".join(x["text"] for x in by_id(self.built["red-sailboat"][3])["path-dark"]["lines"])
-        self.assertNotIn("reaches onto the water", sun_path)
 
     def test_paints_go_darkest_first_and_a_blend_top_to_bottom(self):
         plan = self.built["red-sailboat"][0]
         d = by_id(self.built["red-sailboat"][3])
         names = publish2.paint_names(plan)
-        self.assertEqual(next(x["text"] for x in d["sky-blend"]["lines"] if x["kind"] == "paints"),
-                         f"Paints, top to bottom: {names['sky-1']}, {names['sky-2']}, then {names['sky-3']}.")
-        leaves = by_id(self.built["chickadee"][3])["leaves-shape"]
+        self.assertEqual(next(x["text"] for x in d["blend-sky"]["lines"] if x["kind"] == "paints"),
+                         f"Paints, top to bottom: {names['pale-gold']}, {names['sky-violet']}, {names['sunset-pink']}, "
+                         f"then {names['sunset-orange']}.")
+        leaves = by_id(self.built["chickadee"][3])["block-in-leaves"]
         names = publish2.paint_names(self.built["chickadee"][0])
-        self.assertIn(f"darkest first: {names['leaves-1']}, then {names['foliage-1']}", leaves["lines"][3]["text"])
+        paints = next(x["text"] for x in leaves["lines"] if x["kind"] == "paints")
+        self.assertIn(f"darkest first: {names['red-orange']}, then {names['golden-yellow']}", paints)
 
     def test_a_paint_used_again_is_mixed_once_for_all_its_steps(self):
         plan, _, _, drafted = self.built["chickadee"]
         names = publish2.paint_names(plan)
-        mix = [x["text"] for x in by_id(drafted)["branch-dark"]["lines"] if x["kind"] == "mix"]
-        self.assertEqual(mix, [f"Mix enough {names['branch-1']} for this step and step 18; cover it between them."])
-        self.assertNotIn("mix", kinds(by_id(drafted)["bird-feet"]))  # its second use: the page says "from step 5"
+        mix = [x["text"] for x in by_id(drafted)["shade-branch"]["lines"] if x["kind"] == "mix"]
+        self.assertEqual(mix, [f"Mix enough {names['dark-brown']} for this step and step 12; cover it between them."])
+        self.assertNotIn("mix", kinds(by_id(drafted)["line-twigs-stems-veins"]))  # its second use: "from step 11"
 
     def test_how_result_and_watch_out_are_the_cards_own_words(self):
         import elements
@@ -188,10 +183,10 @@ class DraftTests(unittest.TestCase):
 
     def test_a_layer_left_showing_and_light_over_dark_are_measured(self):
         d = by_id(self.built["chickadee"][3])
-        self.assertIn(dt.LEAVE_SHOWING.format(steps="step 5"), [x["text"] for x in d["branch-mid"]["lines"]])
-        self.assertIn("coats", kinds(d["bird-cheek"]))  # cheek white over the black cap
-        self.assertNotIn("coats", kinds(d["bird-body"]))  # a mid value over the background
-        self.assertNotIn("coats", kinds(d["sky-blend"]))  # over white canvas
+        self.assertIn(dt.LEAVE_SHOWING.format(steps="steps 8 and 9"), [x["text"] for x in d["shade-branch"]["lines"]])
+        self.assertIn("coats", kinds(d["light-branch"]))  # warm buff over the dark branch
+        self.assertNotIn("coats", kinds(d["block-in-chickadee"]))  # the same buff over the far woods
+        self.assertNotIn("coats", kinds(d["blend-sky"]))  # over white canvas
 
     def test_step_back_at_the_end_of_every_stage(self):
         for name, (plan, _, _, drafted) in self.built.items():
@@ -200,10 +195,10 @@ class DraftTests(unittest.TestCase):
 
     def test_left_out_names_each_card_field_the_research_lacks(self):
         gaps = dt.left_out(self.built["chickadee"][0])
-        self.assertIn("card x-stroke has no mistakes, so no watch-out line", gaps["sky-blend"])
+        self.assertIn("card x-stroke has no mistakes, so no watch-out line", gaps["blend-sky"])
         plan = copy.deepcopy(self.built["chickadee"][0])
         plan["stages"][0]["steps"][0]["stroke"] = "no-such-card"
-        self.assertIn("no stroke card", dt.left_out(plan)["sky-blend"][0])
+        self.assertIn("no stroke card", dt.left_out(plan)["blend-sky"][0])
 
     def test_a_long_card_text_is_split_between_sentences(self):
         text = " ".join(["One two three four five six seven eight nine ten."] * 5)
@@ -216,9 +211,8 @@ class DraftTests(unittest.TestCase):
         return " ".join(x["text"] for x in d["lines"] if x["kind"] == "where")
 
     def test_where_gives_the_visible_horizon_not_the_paint_under_later_parts(self):
-        # #126: the sky is painted past the horizon on purpose (covers), the water's coat lays the hill's rim back,
-        # and both used to be measured whole, so the inches were off. On a 14 x 11 canvas the lines must place the
-        # horizon the finished painting shows, within 1/2 in.
+        # #126: the sky is painted past the horizon on purpose, under the sea, and was measured whole, so the inches
+        # were off. The lines must place the horizon the finished painting shows, within 1/2 in.
         plan, _, _, _ = self.built["red-sailboat"]
         owner = self.owners["red-sailboat"]
         idx = {p["id"]: i for i, p in enumerate(plan["parts"])}
@@ -233,19 +227,13 @@ class DraftTests(unittest.TestCase):
             v = int(m[1]) + (int(m[2]) / int(m[3]) if m[2] else 0)
             return v if m[4] == "top" else CANVAS["h_in"] - v
 
-        sky = self.where_line("red-sailboat", "sky-blend")
+        sky = self.where_line("red-sailboat", "blend-sky")
         self.assertLessEqual(abs(inches_down(sky, "bottom") - sky_bottom), 0.5, sky)
-        self.assertIn("Paint a little past its bottom, under where the far hill and shore, and the water will go.", sky)
-        for step in ("water-coat", "water-light"):
-            water = self.where_line("red-sailboat", step)
-            self.assertLessEqual(abs(inches_down(water, "top") - water_top), 0.5, water)
-        # the coat's outline reached 1 1/2 in up the hill's foot, laying back stray pieces of the hill that the hill's
-        # own step had shown as a fill (PR #142 review gave it a line). Since #153 those pieces are the hill's, painted
-        # with it, so the coat leaves the hill alone and the line doesn't send the painter up it
-        self.assertNotIn("reaches onto the far hill", self.where_line("red-sailboat", "water-coat"))
-        # an object is placed by its own outline, not its soft rim or the paint run under the hill
-        self.assertIn("about 3/4 in wide and 3/4 in tall", self.where_line("red-sailboat", "sun"))
-
+        self.assertIn("The outline also runs under where the sea", sky)
+        water = self.where_line("red-sailboat", "lay-in-water")
+        self.assertLessEqual(abs(inches_down(water, "top") - water_top), 0.5, water)
+        # a small thing is placed by its own shape, not its soft rim
+        self.assertIn("about 3/4 in wide", self.where_line("red-sailboat", "paint-sun"))
 
 class VisibleTests(unittest.TestCase):
     """build_steps.visible and draft_text.past_words on a made-up scene (#126)."""
@@ -351,29 +339,12 @@ class MergeTests(unittest.TestCase):
         self.assertEqual(dt.merge(mine, self.drafted())["steps"][0]["brushes"], [{"brush": "liner", "use": "the twigs"}])
 
 
+@lessons.slow
 class CheckPartsTests(unittest.TestCase):
-    """Each check on its own, with a plan or text built to fail it."""
+    """Each check on its own, with a plan (a fixture's, in version 2's shape) or text built to fail it."""
 
     def plan(self, name="red-sailboat"):
-        return fixture(name)[1]
-
-    def test_step_and_stage_counts_and_parts_against_the_technique(self):
-        self.assertEqual(checks.counts(self.plan(), TECHNIQUE), [])
-        plan = self.plan()
-        plan["stages"] = plan["stages"][:2]  # 3 steps in 2 stages
-        out = " ".join(checks.counts(plan, TECHNIQUE))
-        self.assertIn("3 steps; the technique wants 12 to 24. Split", out)
-        self.assertIn("2 stages; the technique wants 4 to 9", out)
-        plan = self.plan()
-        plan["stages"] = [{"id": f"s{i}", "name": "x", "steps": [s]} for i, s in
-                          enumerate(s for st in plan["stages"] for s in st["steps"])]  # 14 stages
-        plan["stages"][0]["steps"] *= 12  # 25 steps
-        out = " ".join(checks.counts(plan, TECHNIQUE))
-        self.assertIn("25 steps; the technique wants 12 to 24. Merge", out)
-        self.assertIn("14 stages; the technique wants 4 to 9. Group", out)
-        plan = self.plan()
-        plan["parts"] += [{"id": f"extra-{i}", "kind": "object", "box": [0, 0, 0.1, 0.1]} for i in range(3)]
-        self.assertIn("parts with no parent", " ".join(checks.counts(plan, TECHNIQUE)))
+        return lessons.built(name)[0]
 
     def test_a_stroke_with_no_card_an_unknown_brush_and_a_brush_the_card_doesnt_use(self):
         known = cards.strokes()
@@ -384,11 +355,12 @@ class CheckPartsTests(unittest.TestCase):
         steps[1]["brush"] = "my favorite brush"
         steps[2]["stroke"] = "press-and-lift"  # a round brush's stroke, with a 3/4 inch flat
         steps[3].pop("stroke")
+        steps[2]["brush"] = "3/4 inch flat"
         out = checks.strokes_and_brushes(plan, known)
-        self.assertIn("sky-blend: stroke 'swoosh' has no card", out[0])
-        self.assertIn("sun: brush 'my favorite brush' isn't one spike/brushes.py knows", out[1])
-        self.assertIn("hill: stroke press-and-lift is done with a round brush (its card), not a flat", out[2])
-        self.assertIn("water-coat: no stroke", out[3])
+        self.assertIn(f"{steps[0]['id']}: stroke 'swoosh' has no card", out[0])
+        self.assertIn(f"{steps[1]['id']}: brush 'my favorite brush' isn't one spike/brushes.py knows", out[1])
+        self.assertIn(f"{steps[2]['id']}: stroke press-and-lift is done with a round brush (its card), not a flat", out[2])
+        self.assertIn(f"{steps[3]['id']}: no stroke", out[3])
 
     def test_a_paint_no_step_uses(self):
         for name in ("chickadee", "lavender-balloon", "red-sailboat"):
@@ -411,7 +383,7 @@ class CheckPartsTests(unittest.TestCase):
         self.assertEqual(checks.paint_names(self.plan()), [])
         plan = self.plan()
         plan["paints"][0].pop("name")
-        self.assertIn("paint sky-1: no name in plan.json", checks.paint_names(plan)[0])
+        self.assertIn(f"paint {plan['paints'][0]['id']}: no name in plan.json", checks.paint_names(plan)[0])
 
     def test_text_for_claude_percentages_long_lines_and_stale_drafts(self):
         plan = self.plan()
@@ -516,19 +488,15 @@ class TextToolTests(unittest.TestCase):
         self.write_text(lesson, text)
         return text
 
-    # Real findings on the fixtures, reported by check rather than hidden (see the issue's close-out):
-    # the sailboat's lighter water and the lavender's mid dabs each turn over 10% of the picture from flat to
-    # textured in one step, and the lavender's balloon teal can't be mixed from the five tubes with no paint note.
-    # The lavender fixture's rows and balloon don't follow their element techniques (#12; see
-    # test_elements.PlanTests.test_the_fixture_findings).
-    KNOWN = {"chickadee": [], "red-sailboat": [],
-             "lavender-balloon": ["lavender: ", "balloon: ", "paint Balloon teal can't be mixed"]}
+    # Real findings on the fixtures, reported by check rather than hidden: the sailboat's deep teal can't be mixed
+    # from the five tubes, and no paint note says so (the run that made the fixture had one)
+    KNOWN = {"chickadee": [], "lavender-balloon": [], "red-sailboat": ["paint Deep teal can't be mixed"]}
 
     def test_after_draft_text_check_leaves_only_summary_and_tip_and_the_known_findings(self):
         for name in NAMES:
             r = self.results[(name, "check")]
             self.assertEqual(r["problems"], r["failures"])  # "every tool prints problems"; failures stays for publish
-            plan = fixture(name)[1]
+            plan = lessons.built(name)[0]
             n = len(bs.flat_steps(plan))
             rest = [f for f in r["failures"] if not re.match(r"^[a-z0-9-]+: no (summary|tip) in text.json", f)]
             self.assertEqual(len(r["failures"]) - len(rest), 2 * n, name)
@@ -548,7 +516,7 @@ class TextToolTests(unittest.TestCase):
         self.assertEqual(code, 0, r)
         html = (lesson / "lesson.html").read_text(encoding="utf-8")
         self.assertEqual(html.count("id='basic-paint-load'"), 1)  # the card, in Before you start
-        plan = fixture("chickadee")[1]
+        plan = lessons.built("chickadee")[0]
         known = cards.strokes()
         seen = 0
         for i, s in enumerate(bs.flat_steps(plan)):
@@ -590,26 +558,22 @@ class TextToolTests(unittest.TestCase):
         plan["stages"][0]["steps"][1]["brush"] = "#8 round"
         (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
         out = run_tool("check", "--lesson", str(lesson))[1]["failures"]
-        self.assertIn("sun: its drafted lines don't match the plan and pictures any more. Run draft-text again "
+        self.assertIn("plan.json or the chain changed since the step pictures were made", out[0])
+        code, r = run_tool("build-steps", "--lesson", str(lesson))  # the brush isn't in the chain's requests
+        self.assertEqual(code, 0, r)
+        out = run_tool("check", "--lesson", str(lesson))[1]["failures"]
+        self.assertIn("paint-sun: its drafted lines don't match the plan and pictures any more. Run draft-text again "
                       "(lines marked \"edited\": true are kept).", out)
 
-    def test_outline_and_step_picture_problems_are_gathered(self):
+    def test_a_step_picture_build_steps_didnt_write_is_reported(self):
         lesson = self.copy("red-sailboat")
         self.fill_in(lesson)
-        plan = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
-        stats = [{"id": p["id"], "kind": p["kind"], "confidence": 0.5 if p["id"] == "sail" else None, "share": 0.1,
-                  "pieces": 1, "box_fill": 0.5} for p in plan["parts"]]
-        (lesson / "parts" / "stats.json").write_text(json.dumps(stats), encoding="utf-8")
-        Image.fromarray(np.zeros((786, 1000, 3), np.uint8)).save(lesson / "05_water-light.png")
+        first = sorted(lesson.glob("05_*.png"))[0]
+        with Image.open(first) as img:
+            size = img.size
+        Image.fromarray(np.zeros((size[1], size[0], 3), np.uint8)).save(first)
         out = run_tool("check", "--lesson", str(lesson))[1]["failures"]
-        self.assertIn("sail: the outline model is unsure (confidence 0.5)", " ".join(out))
-        self.assertIn("05_water-light.png doesn't match the plan: run build-steps, then step-aids, again", out)
-        # a step that adds nothing: the sun path's dark dashes again, right after them
-        plan["stages"][2]["steps"].insert(3, dict(plan["stages"][2]["steps"][2], id="path-again"))
-        (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
-        out = run_tool("check", "--lesson", str(lesson))[1]["failures"]
-        self.assertIn("path-again: changes almost nothing", " ".join(out))
-        self.assertIn("path-again: no drafted lines in text.json. Run draft-text.", out)
+        self.assertIn(f"{first.name} isn't the file build-steps wrote", " ".join(out))
 
     def test_a_paint_name_inside_a_longer_paint_name_is_not_that_paint(self):
         paints = {"Sea turquoise": {}, "Light sea turquoise": {}, "Hull red": {}}
@@ -635,29 +599,37 @@ class TextToolTests(unittest.TestCase):
 
     def test_publish_reports_the_same_texture_jumps_as_check(self):
         lesson = self.copy("chickadee")
-        plan = fixture("chickadee")[1]
+        plan = lessons.built("chickadee")[0]
         steps = bs.flat_steps(plan)
-        every = tools.texture_jumps(lesson, [lesson / f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)])
-        self.assertIn("branch-dark", [j["step"] for j in every])  # a flat coat measures its new edge, not texture
-        code, r = run_tool("publish", "--lesson", str(lesson))
-        self.assertEqual(code, 0, r)
-        self.assertEqual(r["texture_jumps"], checks.texture_jumps(lesson, plan))
-        self.assertNotIn("branch-dark", [j["step"] for j in r["texture_jumps"]])
+        full = next(s["id"] for s in steps if s.get("show", "full") == "full")
+        blend = next(s["id"] for s in steps if s.get("show") == "blend")
+        jumps = [{"step": full, "share": 0.2}, {"step": blend, "share": 0.3}]
+        with mock.patch.object(tools, "texture_jumps", lambda lesson, paths: jumps):
+            code, r = run_tool("publish", "--lesson", str(lesson))
+            self.assertEqual(code, 0, r)
+            self.assertEqual(r["texture_jumps"], checks.texture_jumps(lesson, plan))
+            self.assertEqual([j["step"] for j in r["texture_jumps"]], [full])  # a blend is one wet move
+            notes = checks.run(lesson)["notes"]
+        self.assertIn(f"{full}: turns 20% of the picture from flat to textured in one step", notes)  # a note, not a failure
 
     def test_what_publish_counts_is_in_the_list(self):
         lesson = self.copy("chickadee")
         text = self.fill_in(lesson)
-        names = publish2.paint_names(fixture("chickadee")[1])
-        text["steps"][0]["lines"].append({"kind": "how", "text": f"Add a touch of {names['leaves-1']}.", "edited": True})
+        plan = lessons.built("chickadee")[0]
+        names = publish2.paint_names(plan)
+        steps = bs.flat_steps(plan)
+        other = next(c["id"] for c in plan["paints"] if c["id"] not in steps[0]["paints"])
+        one, two = [c["id"] for c in plan["paints"] if not c.get("of")][:2]
+        text["steps"][0]["lines"].append({"kind": "how", "text": f"Add a touch of {names[other]}.", "edited": True})
         text["steps"][1]["construct"] = {"title": "x", "stages": []}
         # a diagram may give a paint's id; one that's no paint's name, id or hex is listed (#91)
-        text["steps"][2]["construct"] = {"title": "y", "paint": "leaves-1", "stages": [
+        text["steps"][2]["construct"] = {"title": "y", "paint": other, "stages": [
             {"add": [{"circle": [50, 50, 10]}, {"circle": [20, 20, 5], "paint": "Mystery"}]}]}
         self.write_text(lesson, text)
         mixes = json.loads((lesson / "mixes.json").read_text(encoding="utf-8"))
-        a, b = names["sky-1"], names["sky-2"]
+        a, b = names[one], names[two]
         mixes[b]["parts"] = mixes[a]["parts"]
-        mixes[names["sun-1"]]["reachable"] = False
+        mixes[names[other]]["reachable"] = False
         (lesson / "mixes.json").write_text(json.dumps(mixes), encoding="utf-8")
         shutil.rmtree(lesson / "aids")
         (lesson / "lesson-standalone.html").write_text("x" * 2000, encoding="utf-8")
@@ -666,10 +638,10 @@ class TextToolTests(unittest.TestCase):
             out = checks.run(lesson)["failures"]
         finally:
             publish2.MAX_PAGE_BYTES = old
-        self.assertIn(f"sky-blend: its text names {names['leaves-1']}, which isn't one of its paints", " ".join(out))
+        self.assertIn(f"{steps[0]['id']}: its text names {names[other]}, which isn't one of its paints", " ".join(out))
         self.assertIn(f"paints {a} and {b} mix to the same color", " ".join(out))
-        self.assertIn(f"paint {names['sun-1']} can't be mixed from these tubes and no step's paint_notes says so", " ".join(out))
-        self.assertIn("sun: has a diagram that notes.json's beginner_check.diagrams doesn't explain", " ".join(out))
+        self.assertIn(f"paint {names[other]} can't be mixed from these tubes and no step's paint_notes says so", " ".join(out))
+        self.assertIn(f"{steps[1]['id']}: has a diagram that notes.json's beginner_check.diagrams doesn't explain", " ".join(out))
         self.assertIn("aids/aids.json is missing or was made for other steps: run step-aids", out)
         self.assertIn("the page is 0.0 MB, over 0.001 MB", " ".join(out))
         third = text["steps"][2]["stage_id"]
@@ -695,26 +667,26 @@ class TextToolTests(unittest.TestCase):
         plan["stages"][0]["steps"][0]["paints"] = ["mauve"]
         (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
         out = checks.run(lesson)["failures"]
-        self.assertIn("sky-blend: paint 'mauve' isn't in paints", " ".join(out))
+        self.assertIn("blend-sky: paint 'mauve' isn't in the plan's paints", " ".join(out))
         self.assertIn("fix plan.json first", out[-1])
 
     def test_publish_runs_check_and_final_refuses_while_anything_fails(self):
         lesson = self.copy("red-sailboat")
         code, r = run_tool("publish", "--lesson", str(lesson))
         self.assertEqual(code, 0, r)
-        self.assertIn("sun: no tip in text.json. Write one to three sentences only this photo needs (which way the "
-                      "strokes run here, which side the light is on, what to leave showing).", r["check"])
+        self.assertIn("paint-sun: no tip in text.json. Write one to three sentences only this photo needs (which way "
+                      "the strokes run here, which side the light is on, what to leave showing).", r["check"])
         self.assertNotIn("long_steps", json.dumps(r["check"]))
         data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))
         sun = data["stages"][1]
-        self.assertEqual(sun["lines"], [{"kind": x["kind"], "text": x["text"]} for x in by_id(self.text(lesson)["steps"])["sun"]["lines"]])
+        self.assertEqual(sun["lines"], [{"kind": x["kind"], "text": x["text"]} for x in by_id(self.text(lesson)["steps"])["paint-sun"]["lines"]])
         self.assertEqual(sun["stroke_cards"], ["small-circles"])
         html = (lesson / "lesson.html").read_text(encoding="utf-8")
         self.assertIn(f"<li>{sun['lines'][0]['text']}</li>", html)
         self.assertNotIn('class="where-words"', html)  # the drafted where line says it; not twice
         code, r = run_tool("publish", "--lesson", str(lesson), "--final")
         self.assertEqual(code, 2)
-        self.assertIn("sun: no tip in text.json", r["refused"])
+        self.assertIn("paint-sun: no tip in text.json", r["refused"])
         self.assertEqual(r["refused"].count("texture_jumps"), 0)  # said once, in check's words
 
     def test_publish_outside_output_leaves_the_history_alone(self):
@@ -738,7 +710,7 @@ class TextToolTests(unittest.TestCase):
             (Path(d) / "plan.json").write_text(json.dumps({"steps": []}), encoding="utf-8")
             code, r = run_tool("check", "--lesson", d)
         self.assertEqual(code, 2)
-        self.assertIn("version 2", r["refused"])
+        self.assertIn("version 3", r["refused"])
 
 
 if __name__ == "__main__":

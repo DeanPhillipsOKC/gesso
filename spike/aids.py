@@ -1,5 +1,5 @@
-"""Teaching pictures for every step, all free and all from the outlines (pipeline v2, docs/design/pipeline-v2.md
-section 10).
+"""Teaching pictures for every step, all free, from what build-steps kept (docs/design/pipeline-v3.md section 9;
+written for pipeline v2, docs/design/pipeline-v2.md section 10, and kept when v2 went, #238).
 
     make(plan, pictures, masks, canvas_box, canvas, out) -> aids.json's contents, with its pictures written to out/
     where_words(area, canvas)                             -> "Inside the outlined area. Its top is about 2 in ..."
@@ -7,7 +7,8 @@ section 10).
 
 A step picture shows the canvas after the step. A beginner also needs to see where this step's paint goes, a closer
 look when it's small, and which paint goes where. Each of those is cut from what build-steps already knows: every
-step's painted area (`build_steps.build`'s third value) and its picture. Nothing is inferred or rendered.
+step's painted area (lesson3's masks) and its picture. Nothing is inferred or rendered. The plan is in version 2's
+shape (steps3.as_v2): a part a unit.
 
 - Where (every step): the step's painted area as an SVG path, drawn on the page over the picture before the step.
 - Close-up (an area under CLOSE_UP of the canvas): before and after, cropped to the area with a margin.
@@ -30,7 +31,7 @@ import numpy as np
 from PIL import Image
 
 import build_steps as bs
-import outline as ol
+import from_finish as ff
 from from_finish import CANVAS, hex_lab
 
 VIEW = 1000  # the page's picture coordinates: this many units along the canvas's long side
@@ -295,7 +296,7 @@ def paint_map(colors: np.ndarray, area: np.ndarray, hexes: list[str]) -> np.ndar
     """Which of the paints each pixel of the area is nearest to, smoothed into patches: an index into hexes per
     pixel, and -1 outside the area."""
     long_side = max(area.shape)
-    L = ol.lab(cv2.GaussianBlur(colors, (0, 0), max(1.0, 0.003 * long_side)))
+    L = ff.lab(cv2.GaussianBlur(colors, (0, 0), max(1.0, 0.003 * long_side)))
     d = np.stack([((L - hex_lab(c)) ** 2).sum(2) for c in hexes])
     near = d.argmin(0).astype(np.uint8)
     near = cv2.medianBlur(near, min(_odd(PATCH * long_side), 255))

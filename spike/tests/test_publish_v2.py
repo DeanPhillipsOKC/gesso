@@ -23,13 +23,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import numpy as np  # noqa: E402
-from PIL import Image  # noqa: E402
 
+import build_steps as bs  # noqa: E402
+import cards  # noqa: E402
 import history  # noqa: E402
 import lessons  # noqa: E402
 import tools  # noqa: E402
-from test_pipeline_v2 import NAMES, fixture  # noqa: E402
+from lessons import NAMES  # noqa: E402
 
 FIX = Path(__file__).resolve().parent / "fixtures"
 V1 = json.loads((FIX / "expected" / "v1-lesson.json").read_text(encoding="utf-8"))  # what version 1 readers get
@@ -78,7 +78,7 @@ class PublishV2Tests(unittest.TestCase):
     def test_every_version_1_key_keeps_its_type_and_the_new_keys_sit_beside_them(self):
         v1_stage = V1["stages"][0]
         for name in NAMES:
-            data, plan = self.data(name), fixture(name)[1]
+            data, plan = self.data(name), lessons.built(name)[0]
             steps = [s for st in plan["stages"] for s in st["steps"]]
             self.assertEqual(data["plan_version"], 2)
             for key, value in V1.items():
@@ -95,7 +95,7 @@ class PublishV2Tests(unittest.TestCase):
                 for key, value in v1_stage.items():
                     self.assertIn(key, s, f"{name} {s['id']}: no {key}")
                     self.assertIsInstance(s[key], type(value), f"{name} {s['id']}: {key}")
-                self.assertEqual(s["image"], f"{i + 1:02d}_{step['id']}.png")
+                self.assertEqual(s["image"], f"canvas/{i + 1:02d}_{step['id']}.png")  # cropped to the canvas
                 self.assertTrue(all(isinstance(x, str) for x in s["steps"]))
                 self.assertEqual(s["steps"], [step["name"]])  # no text yet: a draft, its name only
                 self.assertTrue(all(set(t) == {"name", "how"} for t in s["strokes"]))
@@ -107,23 +107,23 @@ class PublishV2Tests(unittest.TestCase):
                 self.assertEqual(s["made_with"], "composite:from-finish")
                 self.assertEqual((s["part"], s["show"]), (step["part"], step["show"]))
                 self.assertEqual(s["stroke_cards"], [step["stroke"]])  # every fixture stroke has a card
-                self.assertTrue(s["strokes"][0]["how"])  # the card's motion
+                self.assertEqual(s["strokes"][0]["how"], cards.strokes()[step["stroke"]].get("motion", ""))
             self.assertEqual(data["groups"], [{"id": st["id"], "name": st["name"], "steps": [s["id"] for s in st["steps"]]}
                                               for st in plan["stages"]])
             self.assertEqual([s["group"] for s in data["stages"]],
                              [st["id"] for st in plan["stages"] for _ in st["steps"]])
 
-    def test_the_last_step_is_its_own_picture_a_copy_of_the_finish(self):
+    def test_the_last_step_is_its_own_picture_and_ends_on_the_finish(self):
         for name in NAMES:
-            lesson = self.lessons[name]
-            last = self.data(name)["stages"][-1]["image"]
+            last = Path(self.data(name)["stages"][-1]["image"]).name
             self.assertNotEqual(last, "99_finish.png")
-            a = np.asarray(Image.open(lesson / last))
-            self.assertTrue((a == np.asarray(Image.open(lesson / "99_finish.png"))).all())
+            self.assertTrue((self.lessons[name] / last).exists())
+            # within the chain's guard, the last step is the finish (design section 8, check 1)
+            self.assertLessEqual(self.results[(name, "build-steps")]["checks"]["final_gap"], 0.0005, name)
 
     def test_mix_keeps_the_measured_hex_and_solves_every_paint(self):
         for name in NAMES:
-            plan = fixture(name)[1]
+            plan = lessons.built(name)[0]
             mixes = json.loads((self.lessons[name] / "mixes.json").read_text(encoding="utf-8"))
             self.assertEqual(len(mixes), len(plan["paints"]))
             r = self.results[(name, "mix")]
@@ -135,7 +135,7 @@ class PublishV2Tests(unittest.TestCase):
 
     def test_a_paint_with_no_name_uses_its_id(self):
         import publish2
-        plan = fixture("red-sailboat")[1]
+        plan = lessons.built("red-sailboat")[0]
         plan["paints"][0].pop("name")
         plan["paints"][2]["name"] = plan["paints"][1]["name"]
         names = publish2.paint_names(plan)
@@ -154,7 +154,7 @@ class PublishV2Tests(unittest.TestCase):
                 heads = [html.index(f'id="stage-{g["id"]}"') for g in data["groups"]] + [len(html)]
                 self.assertEqual(heads[:-1], sorted(heads[:-1]))
                 for k, g in enumerate(data["groups"]):
-                    self.assertIn(f'>{g["name"]} <span class="small">{len(g["steps"])} step', html)
+                    self.assertIn(f'>{html_escape(g["name"])} <span class="small">{len(g["steps"])} step', html)
                     for sid in g["steps"]:
                         at = html.index(f'id="step-{num[sid]}"')
                         self.assertTrue(heads[k] < at < heads[k + 1], f"{name}: step {sid} isn't under {g['id']}")
@@ -298,8 +298,8 @@ class PublishV2Tests(unittest.TestCase):
             self.assertNotIn('<p class="label">Tubes</p>', kit)
             for t in data["tubes"]:
                 self.assertNotIn(f"<li>{t}</li>", kit, name)
-            # #122: every lesson has a canvas size (the fixtures get the default), and the steps measure in inches
-            self.assertIn("<li>A 14 x 11 in canvas, landscape (hang it that way). Using another size? Scale every "
+            # #122: every lesson has a canvas size, and the steps measure in inches
+            self.assertIn("<li>A 16 x 12 in canvas, landscape (hang it that way). Using another size? Scale every "
                           "measurement.</li>", kit, name)
             self.assertIn("<li>A ruler</li>", kit, name)
             self.assertNotIn("tape", kit.lower(), name)
@@ -331,20 +331,24 @@ class PublishV2Tests(unittest.TestCase):
                           r'<span class=small>optional</span></summary>(.*?)</details>', start, re.S)
             self.assertTrue(m, name)
             self.assertIn("The transfer outline", m.group(1))
-            self.assertIn("On your 14 x 11 in canvas the grid lines are 3 1/2 in apart across and 2 3/4 in apart "
-                          "down.", m.group(1))
+            self.assertIn("On your 16 x 12 in canvas the grid lines are 4 in apart across and 3 in apart down.",
+                          m.group(1))
             self.assertIn("measuring from the edges with a ruler", m.group(1))
             self.assertNotIn('class="tape"', html)
             self.assertEqual(html.count('class="transfer"'), 1)
 
-    def test_a_lesson_published_without_a_canvas_gets_the_default_size_for_its_shape(self):
-        # #122: the fixtures have no canvas.json and no --canvas. 1000 x 786 is the shape of 14 x 11 in.
+    def test_the_canvas_is_canvas_json_and_a_lesson_without_one_is_refused(self):
+        # #122: the run's fit-canvas picked the standard size closest to the photo; with no canvas.json, a finish
+        # that isn't a standard canvas's shape can't say where in inches
         for name in NAMES:
             info = json.loads((self.lessons[name] / "canvas.json").read_text(encoding="utf-8"))
-            self.assertEqual(info["chosen"], "default", name)
-            self.assertEqual(info["canvas"], {"w_in": 14.0, "h_in": 11.0, "orientation": "landscape"}, name)
-            self.assertEqual(info["canvas_box"], [0.0, 0.0, 1.0, 1.0], name)  # the shape fits: nothing is cropped
+            self.assertEqual((info["chosen"], info["canvas"]), ("default", lessons.CANVAS), name)
             self.assertEqual(self.data(name)["canvas"], info["canvas"], name)
+        lesson = self.copy("chickadee")
+        (lesson / "canvas.json").unlink()
+        code, r = run_tool("publish", "--lesson", str(lesson))
+        self.assertEqual(code, 2)
+        self.assertIn("Run fit-canvas", r["refused"])
 
     def test_no_tape_anywhere_on_a_version_2_page_and_close_ups_give_inches(self):
         for name in NAMES:
@@ -352,16 +356,16 @@ class PublishV2Tests(unittest.TestCase):
             self.assertNotRegex(html, r"(?i)\btape\b", name)
             stages = self.data(name)["stages"]
             if any(s["aids"].get("closeup") for s in stages):
-                self.assertIn("The dotted lines are every 1 3/4 in across and 1 3/8 in down.", html, name)
+                self.assertIn("The dotted lines are every 2 in across and 1 1/2 in down.", html, name)
             self.assertNotIn("halfway between", html)
 
     # --- text, drafts, and the seal ---
 
     def test_text_fills_a_step_a_step_without_it_is_a_draft_and_the_seal_needs_text(self):
         lesson = self.copy("red-sailboat")
-        plan = fixture("red-sailboat")[1]
+        plan = lessons.built("red-sailboat")[0]
         ids = [s["id"] for st in plan["stages"] for s in st["steps"]]
-        text = {"steps": [{"stage_id": "sky-blend", "summary": "Blend the sky from violet down to gold.",
+        text = {"steps": [{"stage_id": "blend-sky", "summary": "Blend the sky from violet down to gold.",
                            "tip": "Keep the horizon glow lightest.",
                            "lines": [{"kind": "paints", "text": "Sky 1, Sky 2, then Sky 3.", "edited": False},
                                      {"kind": "how", "text": "Long strokes side to side.", "edited": False},
@@ -373,9 +377,9 @@ class PublishV2Tests(unittest.TestCase):
         code, r = run_tool("publish", "--lesson", str(lesson), "--final")
         self.assertEqual(code, 2)
         refused = r["refused"]
-        self.assertIn("text.json has no step water-coat", refused)
-        self.assertIn("text.json has no step sun", refused)  # a draft step can't be sealed
-        self.assertNotIn("sky-blend: text.json has no", refused)
+        self.assertIn("text.json has no step lay-in-water", refused)
+        self.assertIn("text.json has no step paint-sun", refused)  # a draft step can't be sealed
+        self.assertNotIn("blend-sky: text.json has no", refused)
         for gone in ("review_issues", "regions", "long_steps", "strokes"):
             self.assertNotIn(gone, refused)
         data = json.loads((lesson / "lesson.json").read_text(encoding="utf-8"))  # written before the seal's check
@@ -387,14 +391,14 @@ class PublishV2Tests(unittest.TestCase):
         self.assertEqual(sky["brush_list"], [{"brush": "1 inch flat", "use": "the whole sky"}])
         self.assertEqual(sky["stroke_cards"], ["wet-blend"])
         self.assertEqual(sky["strokes"][0]["name"], "Wet-on-wet blend")
-        self.assertEqual(sun["steps"], ["Paint the sun"])
+        self.assertEqual(sun["steps"], [plan["stages"][0]["steps"][1]["name"]])  # a draft: its name only
         self.assertTrue(sun["colors"])
         html = (lesson / "lesson.html").read_text(encoding="utf-8")
         self.assertIn("<li>Long strokes side to side.</li>", html)
         self.assertIn("<b>Tip:</b> Keep the horizon glow lightest.", html)
         self.assertEqual(len(ids), len(data["stages"]))
 
-    def test_the_seal_for_version_2_needs_text_and_two_reviews_not_regions(self):
+    def test_the_seal_needs_text_notes_and_both_checkers_not_regions(self):
         lesson = self.copy("lavender-balloon")
         raw, plan, _ = tools.load_plan(lesson)
         ids = [s.id for s in plan.steps]
@@ -402,23 +406,25 @@ class PublishV2Tests(unittest.TestCase):
                       "made_with": "composite:from-finish"} for sid in ids}
         review = {"finish_issues": [], "text_issues": []}
         (lesson / "review.json").write_text(json.dumps(review), encoding="utf-8")
-        (lesson / "trials" / "review").mkdir(parents=True)
-        (lesson / "trials" / "review" / "review.json").write_text("{}", encoding="utf-8")
+        (lesson / "words").mkdir(exist_ok=True)
+        (lesson / "words" / "dropped.json").write_text("[]", encoding="utf-8")  # check-text --final ran
         notes = {"read": "x", "technique": {"why": "x"}, "order": "x", "steps": {sid: "x" for sid in ids},
                  "beginner_check": {"summary": "x", "diagrams": {}, "no_diagram": {sid: "x" for sid in ids}}}
         self.assertIn("beginner_version.busy has no photo number", " ".join(
             tools.seal_problems(lesson, plan, text, review, notes, {})))  # #109: step 0c measures the photo
         notes["beginner_version"] = {"made": False, "busy": {"photo": {"fine_texture": 0.004}}}
-        self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [])
+        self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [])  # answers.json is the run's
         text[ids[3]].pop("lines")
         self.assertEqual(tools.seal_problems(lesson, plan, text, review, notes, {}), [f"{ids[3]}: text.json has no lines"])
         self.assertIn("review.json has no text_issues", " ".join(tools.seal_problems(lesson, plan, text, {}, notes, {})))
-        shutil.rmtree(lesson / "trials" / "review")
-        (lesson / "review.json").unlink(missing_ok=True)
+        (lesson / "words" / "dropped.json").unlink()
+        (lesson / "chain" / "looks" / "answers.json").unlink()
+        (lesson / "review.json").unlink()
         said = " | ".join(tools.seal_problems(lesson, plan, text, review, notes, {}))
-        self.assertIn("the text review (step 7b) hasn't run", said)  # the v2 skill's step, not v1's 6b
-        self.assertIn("review.json is missing (step 7b)", said)
-        self.assertNotIn("6b", said)
+        self.assertIn("run check-text --final", said)
+        self.assertIn("the chain's checker hasn't read the chain", said)
+        self.assertIn("review.json is missing (v3/run.md step D4)", said)
+        self.assertNotIn("text review", said)  # pipeline v2's step 7b is gone (#238)
 
     def test_a_review_by_the_session_that_wrote_the_text_is_a_known_problem(self):
         import known_problems
@@ -460,15 +466,6 @@ class PublishV2Tests(unittest.TestCase):
         self.assertEqual(history.metrics(V1, None, "x_skill_20261112-090000", at)["minutes_total"], 21.5)
         self.assertNotIn("minutes_total", history.metrics(V1, None))
 
-    def test_step_pairs_reads_a_version_2_lesson(self):
-        lesson = self.copy("red-sailboat")
-        code, r = run_tool("step-pairs", "--lesson", str(lesson))
-        self.assertEqual(code, 0, r)
-        self.assertEqual(r["sheets"], 14)
-        packet = json.loads((lesson / "trials" / "review" / "packet.json").read_text(encoding="utf-8"))
-        self.assertEqual(packet["steps"][0]["what_to_do"], ["Blend the sunset sky"])
-        self.assertTrue(all(s["paints"] for s in packet["steps"]))
-
     def test_the_embed_and_the_notes_read_a_version_2_lesson(self):
         for name in NAMES:
             lesson, data = self.lessons[name], self.data(name)
@@ -483,7 +480,7 @@ class PublishV2Tests(unittest.TestCase):
     def test_notes_in_any_shape_never_stop_a_publish(self):
         # the lavender balloon's beginner_version came back as a list, and publish crashed (2026-11-13)
         lesson = self.copy("lavender-balloon")
-        ids = [s["id"] for st in fixture("lavender-balloon")[1]["stages"] for s in st["steps"]]
+        ids = [s["id"] for st in lessons.built("lavender-balloon")[0]["stages"] for s in st["steps"]]
         notes = {"beginner_version": ["Dropped the village", "Merged the mountains"], "photo_prep": ["cropped"],
                  "canvas_fit": "fitted to 16 x 20", "technique": "the paint-along", "read": ["a balloon", "lavender"],
                  "order": {"first": "the sky"}, "steps": ["x"], "beginner_check": "no step needs a diagram",
@@ -507,11 +504,11 @@ class PublishV2Tests(unittest.TestCase):
         code, _ = run_tool("publish", "--lesson", str(lesson))
         self.assertEqual(code, 0)
         site = self.root / "site"
-        r = site_lessons.add(lesson, "chickadee-v2", site)
-        self.assertEqual(r["url_path"], "/lessons/chickadee-v2/")
+        r = site_lessons.add(lesson, "chickadee-v3", site)
+        self.assertEqual(r["url_path"], "/lessons/chickadee-v3/")
         entry = json.loads((site / "lessons.json").read_text(encoding="utf-8"))[0]
         self.assertEqual(entry["steps"], len(self.data("chickadee")["stages"]))  # however many the plan has
-        self.assertEqual(site_lessons.kind(self.data("chickadee")), "steps cut from the finish")
+        self.assertEqual(site_lessons.kind(self.data("chickadee")), "steps erased back from the finish")
 
     # --- refusals ---
 
@@ -539,7 +536,7 @@ class PublishV2Tests(unittest.TestCase):
             self.assertIn(text, html)
 
     def test_a_diagram_given_a_paint_id_draws_in_that_paint_on_the_page(self):  # #91
-        paint = json.loads((self.lessons["red-sailboat"] / "plan.json").read_text(encoding="utf-8"))["paints"][0]
+        paint = lessons.built("red-sailboat")[0]["paints"][0]  # the plan in version 2's shape: paints have ids
         lesson, _ = self.diagram_lesson({"paint": paint["id"], "stages": [{"add": [{"rect": [10, 10, 50, 40]}]}]})
         code, r = run_tool("publish", "--lesson", str(lesson))
         self.assertEqual(code, 0, r)
@@ -589,24 +586,58 @@ class PublishV2Tests(unittest.TestCase):
             for tool in ("publish", "mix"):
                 code, r = run_tool(tool, "--lesson", d)
                 self.assertEqual(code, 2)
-                self.assertIn("version 2", r["refused"])
+                self.assertIn("isn't a version 3 plan", r["refused"])
 
     def test_publish_before_build_steps_says_to_run_it(self):
         with tempfile.TemporaryDirectory() as d:
-            lesson = lessons.lesson("red-sailboat", "outlined", Path(d))
+            lesson = lessons.lesson("red-sailboat", "chained", Path(d))
             code, r = run_tool("publish", "--lesson", str(lesson))
             self.assertEqual(code, 2)
-            self.assertIn("Run build-steps", r["refused"])
+            self.assertIn("run build-steps", r["refused"])
 
-    def test_a_broken_version_2_plan_is_refused_with_what_to_change(self):
+    def test_a_broken_plan_is_refused_with_what_to_change(self):
         lesson = self.copy("red-sailboat")
         plan = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
         plan["stages"][0]["steps"][0]["paints"] = ["mauve"]
         (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
-        for tool in ("mix", "publish"):
+        for tool in ("mix", "publish"):  # what build-steps kept is stale, and build-steps says what's wrong
             code, r = run_tool(tool, "--lesson", str(lesson))
             self.assertEqual(code, 2)
-            self.assertTrue(re.search(r"fix plan.json first: .*'mauve' isn't in paints", r["refused"]), r)
+            self.assertIn("plan.json or the chain changed since the step pictures were made", r["refused"])
+        code, r = run_tool("build-steps", "--lesson", str(lesson))
+        self.assertEqual(code, 2)
+        self.assertTrue(re.search(r"fix plan.json first .*'mauve' isn't in the plan's paints", r["refused"]), r)
+
+
+
+@lessons.slow
+class SealTests(unittest.TestCase):
+    """#238's acceptance, in the suite: a fixture lesson runs from its chain to the seal, every tool v3's run uses."""
+
+    def test_a_fixture_runs_from_its_chain_to_the_seal(self):
+        with tempfile.TemporaryDirectory() as d:
+            old = os.environ.get("GESSO_HISTORY")
+            os.environ["GESSO_HISTORY"] = str(Path(d) / "history")
+            try:
+                lesson = lessons.lesson("chickadee", "worded", Path(d))  # plan-check to check-text --final
+                code, r = run_tool("check", "--lesson", str(lesson))
+                self.assertEqual((code, r["problems"]), (0, []))
+                ids = [s["id"] for s in bs.flat_steps(lessons.built("chickadee")[0])]
+                (lesson / "review.json").write_text(json.dumps({"finish_issues": [], "text_issues": []}),
+                                                    encoding="utf-8")
+                (lesson / "notes.json").write_text(json.dumps({
+                    "read": "x", "technique": {"why": "x"}, "order": "x", "steps": {i: "x" for i in ids},
+                    "beginner_check": {"summary": "x", "diagrams": {}, "no_diagram": {i: "x" for i in ids}},
+                    "beginner_version": {"made": False, "busy": {"photo": {"fine_texture": 0.004}}}}), encoding="utf-8")
+                code, r = run_tool("publish", "--lesson", str(lesson), "--final")
+            finally:
+                if old is None:
+                    os.environ.pop("GESSO_HISTORY", None)
+                else:
+                    os.environ["GESSO_HISTORY"] = old
+            self.assertEqual(code, 0, r)
+            self.assertTrue((lesson / "sealed.json").exists())
+            self.assertEqual(r["provenance"]["kind"], "hands-off")
 
 
 if __name__ == "__main__":

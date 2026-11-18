@@ -13,8 +13,7 @@ The design behind this is `docs/design/pipeline-v3.md`. You don't need to read i
 
 **How this skill is laid out.** This file is the spine. Steps 0 and 1 are in `steps/`; the rest of the run is
 `v3/run.md`, which points back to `steps/8-finish.md` for the end. **Read a step's file when you start that step**,
-even if you read it earlier. Don't read ahead. The other files in `steps/` (2 to 7) are pipeline v2's and are not
-part of this run.
+even if you read it earlier. Don't read ahead. Pipeline v2's steps 2 to 7 were removed with v2 (#238).
 
 ## Arguments
 - `<photo>` (required). Usually `photos/<name>.<ext>`: the site's pictures are kept there in git, so a fresh clone

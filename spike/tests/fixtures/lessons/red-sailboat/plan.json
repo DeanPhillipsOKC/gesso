@@ -1,0 +1,705 @@
+{
+ "plan_version": 3,
+ "photo": "photos/red-sailboat.png",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "A sunset sea with one small boat is the classic beginner paint-along: one wet sky blend, flat far land, horizontal water, then a simple boat and its reflection on top.",
+ "subject": "A small red sailboat with white sails on a calm teal sea at sunset, a purple hill on the far shore and the sun low over the water",
+ "focal_point": "The red sailboat and its white sails, with the sun's gold path on the water leading across to it",
+ "light": "The low sun just above the horizon, left of center, behind the scene; the boat's lit side is the left side, toward the sun.",
+ "why": "We start with the whole sunset sky in one fast wet blend, then the sun, the far hill and the shore line while the canvas is still simple. The sea goes over the lower sky in horizontal strokes, then the sun's path, and only then the boat, built from simple triangles and a curved hull, shaded and lit. The reflection and the last sparkles come once everything above the water is dry, so the boat stays the star.",
+ "things": [
+  {
+   "id": "sky",
+   "name": "The sunset sky",
+   "element": "sky-blend",
+   "why": "A smooth sunset from violet at the top through pink and orange to gold at the horizon, blended wet in one go.",
+   "behind": []
+  },
+  {
+   "id": "sun",
+   "name": "The sun",
+   "element": "simple-shape",
+   "why": "A small pale yellow disk, flat in the picture.",
+   "behind": [
+    "sky"
+   ]
+  },
+  {
+   "id": "hill",
+   "name": "The purple hill",
+   "element": "far-hills",
+   "why": "One big far hill on the left, a simple shape with a soft lighter slope and no texture.",
+   "behind": [
+    "sky"
+   ],
+   "plain": "the plain flat purple hill"
+  },
+  {
+   "id": "shore",
+   "name": "The far shore line",
+   "element": "far-hills",
+   "why": "A thin dark blue-violet strip of far land along the whole horizon, flat with no texture.",
+   "behind": [
+    "sky",
+    "hill"
+   ],
+   "called": "the dark strip of far shore along the horizon"
+  },
+  {
+   "id": "water",
+   "name": "The sea",
+   "element": "water",
+   "why": "Open calm water under a sunset, painted in horizontal strokes with lighter streaks and ripple dashes.",
+   "behind": [
+    "sky"
+   ],
+   "plain": "the plain teal sea, lighter near the shore and deeper at the bottom, with no streaks or ripples"
+  },
+  {
+   "id": "sun-path",
+   "name": "The sun's path on the water",
+   "element": "sun-path",
+   "why": "The gold path under the low sun, narrow at the horizon and wider toward the bottom, in two layers.",
+   "behind": [
+    "water"
+   ],
+   "plain": "the first orange-gold dashes of the path, with no pale yellow on them",
+   "called": "the orange and gold dashes of sunlight on the water under the sun"
+  },
+  {
+   "id": "sails",
+   "name": "The white sails",
+   "element": "shaped-object",
+   "why": "Two triangles with a shadow side and a lit side, built from simple pieces.",
+   "behind": [
+    "sky",
+    "shore",
+    "water"
+   ],
+   "plain": "two plain pale gray sail triangles with no shading"
+  },
+  {
+   "id": "hull",
+   "name": "The red hull",
+   "element": "shaped-object",
+   "why": "A curved boat hull, built from a long shape, then shaded underneath and lit along its top rim.",
+   "behind": [
+    "water"
+   ],
+   "plain": "the plain flat red hull shape"
+  },
+  {
+   "id": "mast",
+   "name": "The mast and boom",
+   "element": "fine-lines",
+   "why": "The thin brown mast and the boom along the foot of the sail, painted with a liner over dry paint.",
+   "behind": [
+    "sky",
+    "sails",
+    "hull"
+   ]
+  },
+  {
+   "id": "reflection",
+   "name": "The boat's reflection",
+   "element": "reflection",
+   "why": "The hull, sails and mast pulled straight down under the boat, softer than the boat, then crossed with ripples.",
+   "behind": [
+    "water"
+   ],
+   "plain": "a soft red streak straight under the hull, with nothing below it yet",
+   "called": "the boat's red, white and brown reflection in the water below it"
+  }
+ ],
+ "paints": [
+  {
+   "name": "Sky violet",
+   "looks": "a soft blue-violet: the top of the sky, and the lit top of the hill",
+   "color": "#8a6cc8",
+   "things": [
+    "sky",
+    "hill"
+   ]
+  },
+  {
+   "name": "Sunset pink",
+   "looks": "a warm coral pink, the band between the violet and the orange",
+   "color": "#ef7468",
+   "things": [
+    "sky"
+   ]
+  },
+  {
+   "name": "Sunset orange",
+   "looks": "a bright warm orange, the middle of the sky and the first layer of the sun's path",
+   "color": "#f38a3a",
+   "things": [
+    "sky",
+    "sun-path"
+   ]
+  },
+  {
+   "name": "Pale gold",
+   "looks": "a warm yellow-gold, the sky low at the horizon and the gold in the sun's path",
+   "color": "#f6b95a",
+   "things": [
+    "sky",
+    "sun-path"
+   ]
+  },
+  {
+   "name": "Pale sun yellow",
+   "looks": "Pale gold with lots of white: a pale lemon cream",
+   "color": "#f9e8a6",
+   "of": "Pale gold",
+   "things": [
+    "sun",
+    "sun-path"
+   ]
+  },
+  {
+   "name": "Hill purple",
+   "looks": "a muted blue-purple, the far hill",
+   "color": "#6a54a8",
+   "things": [
+    "hill"
+   ]
+  },
+  {
+   "name": "Dark indigo",
+   "looks": "Hill purple with more blue and a touch of burnt sienna: a dark blue-violet",
+   "color": "#3f3f7c",
+   "of": "Hill purple",
+   "things": [
+    "shore"
+   ]
+  },
+  {
+   "name": "Teal",
+   "looks": "a clear blue-green, the main color of the sea",
+   "color": "#2c9ea6",
+   "things": [
+    "water",
+    "reflection"
+   ]
+  },
+  {
+   "name": "Deep teal",
+   "looks": "Teal with more blue: the deeper water at the bottom and the dark ripples",
+   "color": "#1f7a8c",
+   "of": "Teal",
+   "things": [
+    "water"
+   ]
+  },
+  {
+   "name": "Light teal",
+   "looks": "Teal with white: the lighter streaks near the shore",
+   "color": "#5cc2bf",
+   "of": "Teal",
+   "things": [
+    "water"
+   ]
+  },
+  {
+   "name": "Sail gray",
+   "looks": "white with a touch of violet: a pale lilac gray",
+   "color": "#dcd8e3",
+   "things": [
+    "sails"
+   ]
+  },
+  {
+   "name": "Sail shadow",
+   "looks": "Sail gray with a little more violet: a soft gray-lilac",
+   "color": "#b7b0c6",
+   "of": "Sail gray",
+   "things": [
+    "sails"
+   ]
+  },
+  {
+   "name": "Warm cream",
+   "looks": "Pale sun yellow with more white: an off-white cream",
+   "color": "#f7f0dc",
+   "of": "Pale gold",
+   "things": [
+    "sails"
+   ]
+  },
+  {
+   "name": "Reflection white",
+   "looks": "Sail gray with a touch of the dark added: a little darker than the sails",
+   "color": "#c8c4cf",
+   "of": "Sail gray",
+   "things": [
+    "reflection"
+   ]
+  },
+  {
+   "name": "Boat red",
+   "looks": "a strong warm red, the hull",
+   "color": "#c8251e",
+   "things": [
+    "hull"
+   ]
+  },
+  {
+   "name": "Deep red",
+   "looks": "Boat red with a touch of burnt sienna and blue: a deep red for the hull's underside and its reflection",
+   "color": "#8e1a18",
+   "of": "Boat red",
+   "things": [
+    "hull",
+    "reflection"
+   ]
+  },
+  {
+   "name": "Light red",
+   "looks": "Boat red with white: a pinkish red for the top rim",
+   "color": "#e8756a",
+   "of": "Boat red",
+   "things": [
+    "hull"
+   ]
+  },
+  {
+   "name": "Mast brown",
+   "looks": "burnt sienna with a little blue: a dark warm brown",
+   "color": "#6a4636",
+   "things": [
+    "mast"
+   ]
+  },
+  {
+   "name": "Reflection brown",
+   "looks": "Mast brown with a little white: a soft gray-brown",
+   "color": "#8a7468",
+   "of": "Mast brown",
+   "things": [
+    "reflection"
+   ]
+  },
+  {
+   "name": "Titanium white",
+   "looks": "pure white from the tube",
+   "color": "#fbfaf5",
+   "things": [
+    "sun-path"
+   ]
+  }
+ ],
+ "stages": [
+  {
+   "id": "the-sky",
+   "name": "The sunset sky",
+   "steps": [
+    {
+     "id": "blend-sky",
+     "name": "Blend the sunset sky",
+     "lays": [
+      {
+       "thing": "sky",
+       "what": "the whole sky in level bands, violet at the top, then coral pink, then orange, then gold low down, run past the horizon to the bottom edge"
+      }
+     ],
+     "paints": [
+      "Sky violet",
+      "Sunset pink",
+      "Sunset orange",
+      "Pale gold"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "wide flat",
+     "after": "The whole canvas is a smooth sunset: violet at the top, coral pink, then orange, and warm gold from the horizon down to the bottom edge. No sun, land, water or boat yet.",
+     "why": "The sky goes on first and runs past the horizon so the sea can be painted straight over it."
+    },
+    {
+     "id": "paint-sun",
+     "name": "Paint the sun disk",
+     "lays": [
+      {
+       "thing": "sun",
+       "what": "a small round pale yellow sun just above the horizon, left of center"
+      }
+     ],
+     "paints": [
+      "Pale sun yellow"
+     ],
+     "stroke": "small-circles",
+     "brush": "#6 round",
+     "after": "A small pale yellow sun sits in the orange sky just above the horizon, left of center. The rest is the blended sunset, with no land, water or boat."
+    }
+   ]
+  },
+  {
+   "id": "the-far-land",
+   "name": "The far hill and shore",
+   "steps": [
+    {
+     "id": "lay-in-hill",
+     "name": "Lay in the purple hill",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "hill",
+       "what": "the whole far hill on the left as one flat blue-purple shape, a long gentle slope down to the right"
+      }
+     ],
+     "paints": [
+      "Hill purple"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "3/4 inch flat",
+     "after": "A flat purple hill rises on the left and slopes down toward the sun, with no lighter slope. The sky and sun are done; below the horizon is still the gold sky."
+    },
+    {
+     "id": "light-hill",
+     "name": "Light the hill's sunward slope",
+     "lays": [
+      {
+       "thing": "hill",
+       "what": "a soft lighter violet along the top and the right-hand slope that faces the sun"
+      }
+     ],
+     "paints": [
+      "Sky violet"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat",
+     "after": "The purple hill has a soft lighter top and right slope facing the sun, darker low on the left. No shore strip, water or boat yet.",
+     "unit": "The hill's lit slope"
+    },
+    {
+     "id": "lay-in-shore",
+     "name": "Pull the dark shore line across",
+     "lays": [
+      {
+       "thing": "shore",
+       "what": "a thin dark blue-violet strip across the whole width along the horizon, over the foot of the hill"
+      }
+     ],
+     "paints": [
+      "Dark indigo"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat",
+     "after": "A thin dark blue-violet shore line runs across the whole canvas at the horizon, over the foot of the hill. Below it is still the gold sky, with no water."
+    }
+   ]
+  },
+  {
+   "id": "the-sea",
+   "name": "The sea",
+   "steps": [
+    {
+     "id": "lay-in-water",
+     "name": "Blend in the teal sea",
+     "lays": [
+      {
+       "thing": "water",
+       "what": "the whole sea below the shore line in level strokes, a clear teal near the shore deepening to deep teal at the bottom edge"
+      }
+     ],
+     "paints": [
+      "Teal",
+      "Deep teal"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "wide flat",
+     "after": "Everything below the shore line is a plain teal sea, lighter near the shore and deeper at the bottom, with no lighter streaks, ripples, sun path or boat.",
+     "why": "Everything above the water is done and dry, so the sea goes on now, straight over the lower sky."
+    },
+    {
+     "id": "streak-light-water",
+     "name": "Streak in the lighter water",
+     "lays": [
+      {
+       "thing": "water",
+       "what": "loose level streaks of light teal across the sea, most near the shore"
+      }
+     ],
+     "paints": [
+      "Light teal"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat",
+     "after": "The teal sea has loose lighter streaks, most of them near the shore. No ripple dashes, sun path or boat yet.",
+     "unit": "The sea's streaks and ripples"
+    },
+    {
+     "id": "dash-ripples",
+     "name": "Dash in the dark ripples",
+     "lays": [
+      {
+       "thing": "water",
+       "what": "short level deep teal dashes, small and close near the shore, longer and wider apart toward the bottom"
+      }
+     ],
+     "paints": [
+      "Deep teal"
+     ],
+     "stroke": "horizontal-dashes",
+     "brush": "flat (on its edge)",
+     "after": "The sea is finished with light streaks and dark ripple dashes, smaller near the shore. No sun path, boat or reflection on it."
+    }
+   ]
+  },
+  {
+   "id": "the-sun-path",
+   "name": "The sun's path",
+   "steps": [
+    {
+     "id": "lay-path",
+     "name": "Dash in the orange path",
+     "lays": [
+      {
+       "thing": "sun-path",
+       "what": "level orange and gold dashes straight below the sun, narrow at the shore and wider toward the bottom of the canvas"
+      }
+     ],
+     "paints": [
+      "Sunset orange",
+      "Pale gold"
+     ],
+     "stroke": "horizontal-dashes",
+     "brush": "flat (on its edge)",
+     "after": "A path of orange-gold dashes runs down the sea from below the sun, narrow at the shore and wider lower down, with teal between the dashes and no pale yellow centers yet."
+    },
+    {
+     "id": "brighten-path",
+     "name": "Brighten the middle of the path",
+     "lays": [
+      {
+       "thing": "sun-path",
+       "what": "smaller pale yellow dashes down the middle of the path, brightest just under the sun"
+      }
+     ],
+     "paints": [
+      "Pale sun yellow"
+     ],
+     "stroke": "horizontal-dashes",
+     "brush": "small round",
+     "after": "The sun's path glows pale yellow down its middle, orange-gold at its edges. The right side of the sea is still empty teal, with no boat."
+    }
+   ]
+  },
+  {
+   "id": "the-boat",
+   "name": "The sailboat",
+   "steps": [
+    {
+     "id": "block-in-sails",
+     "name": "Block in the two sails",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "sails",
+       "what": "two tall triangles in pale lilac gray on the right, a big one and a smaller one in front, built from two simple triangles side by side"
+      }
+     ],
+     "paints": [
+      "Sail gray"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "Two flat pale gray sail triangles stand on the right, over the sky, the shore line and the sea, with no shading. No hull, mast or reflection yet."
+    },
+    {
+     "id": "shade-sails",
+     "name": "Shade the sails' shadow side",
+     "lays": [
+      {
+       "thing": "sails",
+       "what": "soft gray-lilac on the right half of each sail, away from the sun, and along the mast"
+      }
+     ],
+     "paints": [
+      "Sail shadow"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "1/4 inch flat",
+     "after": "Each sail has a soft gray-lilac shadow side on the right, away from the sun. The lit sides are still plain pale gray, and there is no hull or mast.",
+     "unit": "The sails' shadow and light"
+    },
+    {
+     "id": "light-sails",
+     "name": "Light the sunward side of the sails",
+     "lays": [
+      {
+       "thing": "sails",
+       "what": "warm cream on the left side of each sail, facing the sun, covering less than the gray"
+      }
+     ],
+     "paints": [
+      "Warm cream"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/4 inch flat",
+     "after": "The sails are finished: warm cream on the left facing the sun, gray-lilac on the right. Below them the sea is still empty, with no hull."
+    },
+    {
+     "id": "block-in-hull",
+     "name": "Block in the red hull",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "hull",
+       "what": "the whole hull as one flat red shape under the sails: a long box with a curved bottom and a point at the left bow"
+      }
+     ],
+     "paints": [
+      "Boat red"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "A flat red hull shape sits on the water under the sails, with no shading, rim, mast or reflection."
+    },
+    {
+     "id": "shade-hull",
+     "name": "Shade the bottom of the hull",
+     "lays": [
+      {
+       "thing": "hull",
+       "what": "deep red along the bottom curve of the hull and at the stern on the right"
+      }
+     ],
+     "paints": [
+      "Deep red"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#6 round",
+     "after": "The red hull is darker along its bottom curve and stern. Its top rim is still plain red, and there is no mast.",
+     "unit": "The hull's shading and rim"
+    },
+    {
+     "id": "light-hull-rim",
+     "name": "Line the hull's top rim",
+     "lays": [
+      {
+       "thing": "hull",
+       "what": "a thin light red line along the top edge of the hull"
+      }
+     ],
+     "paints": [
+      "Light red"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "The hull is finished, with a light top rim and a dark bottom. The sails have no mast or boom yet, and there is no reflection."
+    },
+    {
+     "id": "line-mast",
+     "name": "Line in the mast and boom",
+     "lays": [
+      {
+       "thing": "mast",
+       "what": "the brown mast straight up from the hull past the top of the sails, and the boom along the foot of the big sail"
+      }
+     ],
+     "paints": [
+      "Mast brown"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "The boat is finished: a brown mast rises from the hull above the sails, with a boom along the foot of the sail. The water under the boat is plain teal with no reflection."
+    }
+   ]
+  },
+  {
+   "id": "the-reflection",
+   "name": "The boat's reflection",
+   "steps": [
+    {
+     "id": "pull-red-reflection",
+     "name": "Pull down the red reflection",
+     "lays": [
+      {
+       "thing": "reflection",
+       "what": "soft deep red streaks pulled straight down from the waterline under the hull, a short band"
+      }
+     ],
+     "paints": [
+      "Deep red"
+     ],
+     "stroke": "pull-down",
+     "brush": "flat",
+     "after": "A soft deep red streak lies straight under the hull. There is no white or brown in the reflection yet."
+    },
+    {
+     "id": "pull-sail-reflection",
+     "name": "Pull down the sails' reflection",
+     "lays": [
+      {
+       "thing": "reflection",
+       "what": "soft pale gray-white streaks pulled down below the red, narrowing to a point well down the sea"
+      }
+     ],
+     "paints": [
+      "Reflection white"
+     ],
+     "stroke": "pull-down",
+     "brush": "flat",
+     "after": "Below the red streak, a soft pale reflection of the sails narrows downward. There is no mast line in it and no ripples across it."
+    },
+    {
+     "id": "zigzag-mast-reflection",
+     "name": "Zigzag the mast's reflection",
+     "lays": [
+      {
+       "thing": "reflection",
+       "what": "a wavy gray-brown line straight down the middle of the sail reflection"
+      }
+     ],
+     "paints": [
+      "Reflection brown"
+     ],
+     "stroke": "zigzag",
+     "brush": "small round",
+     "after": "A wavy gray-brown mast line runs down the middle of the pale reflection. The reflection has no ripple dashes across it yet."
+    },
+    {
+     "id": "cross-reflection",
+     "name": "Cross the reflection with ripples",
+     "lays": [
+      {
+       "thing": "reflection",
+       "what": "a few level teal dashes across the dry reflection, breaking it up"
+      }
+     ],
+     "paints": [
+      "Teal"
+     ],
+     "stroke": "horizontal-dashes",
+     "brush": "small round",
+     "after": "The boat's reflection is broken by level teal ripples and reads as water. The sun's path has no white sparkles yet."
+    }
+   ]
+  },
+  {
+   "id": "the-last-lights",
+   "name": "The last lights",
+   "steps": [
+    {
+     "id": "sparkle-path",
+     "name": "Add a few sparkles",
+     "lays": [
+      {
+       "thing": "sun-path",
+       "what": "a few tiny white asterisks beside the brightest part of the sun's path"
+      }
+     ],
+     "paints": [
+      "Titanium white"
+     ],
+     "stroke": "sparkle",
+     "brush": "10/0 liner",
+     "after": "The painting is finished: a few tiny white sparkles glint beside the brightest part of the sun's path.",
+     "unit": "The sparkles on the water"
+    }
+   ]
+  }
+ ]
+}

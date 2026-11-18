@@ -103,7 +103,6 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
 
 1. `check --lesson <lesson>` again. Fix each problem as it says and run the tools after that point again (rule 9).
    A line it finds over 40 words goes back to that stage's writer to shorten, then `check-text --final` again.
-   `card-adapt` and step 6c are not part of this run: a note that a card is shown as the general card is fine.
 2. `steps/8-finish.md` from 8a: diagrams, notes (`steps/notes.md`; `merged_parts` is `{}`, and every helper you
    started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`.
 3. Put the sealed lesson on the lessons site as `steps/8-finish.md` 8c says (owner, 2026-11-18: a version 3

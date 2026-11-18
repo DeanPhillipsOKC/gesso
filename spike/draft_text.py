@@ -1,4 +1,5 @@
-"""Every step's lines drafted from data (pipeline v2, docs/design/pipeline-v2.md section 10, "Step text").
+"""Every step's lines drafted from data (docs/design/pipeline-v3.md section 10; written for pipeline v2,
+docs/design/pipeline-v2.md section 10, "Step text", and kept when v2 went, #238).
 
     draft(plan, pictures, masks, canvas_box, canvas, owner=) -> one text.json entry per step: its lines, brushes, cards
     merge(old, drafted)                               -> text.json's contents: the draft, with what Claude wrote kept
@@ -6,11 +7,11 @@
 
 Until version 2, Claude wrote every lesson's text from scratch and cut it to a word limit, so what a beginner was
 told changed from run to run and often left out the basics (when to let it dry, rinsing, which paint first, how to
-load the brush). Here each line comes from something already measured or checked: the plan, the step masks
-(`build_steps.build`), the outlines (`aids.where_words`), the paints, the technique file, and the hand-checked stroke
-and basics cards. Nothing here is painting advice of its own: a line the data can't give is left out, and
-`left_out` says which and why. Claude then writes each step's `summary` and `tip`, and corrects any drafted line
-against the step picture, marking it `"edited": true`; `merge` never touches those.
+load the brush). Here each line comes from something already measured or checked: the plan (in version 2's shape,
+steps3.as_v2), the step masks build-steps kept (lesson3), the Where words (`aids.where_words`), the paints, the
+technique file, and the hand-checked stroke and basics cards. Nothing here is painting advice of its own: a line
+the data can't give is left out, and `left_out` says which and why. The stage writers then write each step's
+`summary` and `tip` (facts.py); `merge` never touches those, or a line marked `"edited": true`.
 
 The same plan and pictures give the same lines, byte for byte.
 """
@@ -26,8 +27,7 @@ import build_steps as bs
 import cards
 import loads
 import mixing
-import outline as ol
-import paints as measured
+import from_finish as ff
 import publish2
 
 KINDS = ("dry", "rinse", "chalk", "where", "paints", "mix", "how", "result", "coats", "watch", "step-back")
@@ -108,7 +108,7 @@ def paint_order(step: dict, hexes: dict[str, str], picture: np.ndarray | None, m
         ys = np.arange(labels.shape[0])[:, None]
         mean_y = [float((ys * (labels == k)).sum() / max(1, (labels == k).sum())) for k in range(len(ids))]
         return [ids[k] for k in sorted(range(len(ids)), key=lambda k: (mean_y[k], k))]
-    return sorted(ids, key=lambda c: (measured.lightness(hexes[c]), ids.index(c)))
+    return sorted(ids, key=lambda c: (mixing.lightness(hexes[c]), ids.index(c)))
 
 
 def _card_brush_kinds(card: dict) -> set[str]:
@@ -217,7 +217,7 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
         # rinse: a far color from the last one on the brush, or the lightest paint yet
         if order and prev_last is not None:
             first = hexes[order[0]]
-            if measured.lightness(first) > lightest:
+            if mixing.lightness(first) > lightest:
                 lines.append({"kind": "rinse", "text": RINSE_LIGHT, "edited": False})
             elif mixing.delta_e(first, hexes[prev_last]) > RINSE_DE:
                 lines.append({"kind": "rinse", "text": RINSE, "edited": False})
@@ -282,10 +282,10 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
         # coats: a paint much lighter than what it goes over
         if mask.any():
             labels = aids.paint_map(pic, mask, [hexes[c] for c in order]) if len(order) > 1 else None
-            L_before = ol.lab(before)[..., 0]
+            L_before = ff.lab(before)[..., 0]
             for k, c in enumerate(order):
                 where = mask if labels is None else labels == k
-                if where.any() and measured.lightness(hexes[c]) - float(np.median(L_before[where])) > LIGHT_OVER_DARK:
+                if where.any() and mixing.lightness(hexes[c]) - float(np.median(L_before[where])) > LIGHT_OVER_DARK:
                     lines.append({"kind": "coats", "text": COATS.format(paint=names[c]), "edited": False})
                     break
 
@@ -301,7 +301,7 @@ def draft(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], canva
 
         if order:
             prev_last = order[-1]
-            lightest = max(lightest, *(measured.lightness(hexes[c]) for c in order))
+            lightest = max(lightest, *(mixing.lightness(hexes[c]) for c in order))
         entry = {"stage_id": s["id"], "lines": lines,
                  "brushes": [{"brush": brush, "use": s.get("name") or s["id"]}] if brush else [],
                  "stroke_cards": [s["stroke"]] if s.get("stroke") in known else [],

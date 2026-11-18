@@ -1,0 +1,198 @@
+{
+ "stage-01": {
+  "steps": {
+   "blend-sky": {
+    "summary": "Blends violet, pink, orange and gold sunset bands across the whole canvas.",
+    "tip": "The light comes from the low sun behind the scene, so the brightest gold band goes where the after picture has it. Stroke side to side all the way across. After the gold, the bands run back through orange and pink to violet at the bottom edge.",
+    "lines": {
+     "3": "Paints, top to bottom: Sky violet, Sunset pink, Sunset orange, then Pale gold. After the Pale gold, go back through Sunset orange and Sunset pink to Sky violet at the bottom edge.",
+     "8": "Start at the top edge with Sky violet and stroke side to side. Without rinsing, pick up the next color and paint the next band down. Then stroke back up over the join several times."
+    }
+   },
+   "paint-sun": {
+    "summary": "Paints a small, round pale yellow sun in the orange sky.",
+    "tip": "Keep it a round disk, about 3/4 in wide and 3/4 in tall; its middle is about 7 3/4 in from the left edge and 5 in from the top edge. Leave the orange sky around the sun showing, with no glow added.",
+    "paint_notes": [
+     "Pale sun yellow is see-through over the orange sky: paint it twice, letting the first coat dry."
+    ],
+    "lines": {
+     "6": "Small circles with the tip of the brush, working from the middle of the sun outward, keep its edge round and soft.",
+     "7": "It should leave a round disk with a soft edge."
+    }
+   }
+  }
+ },
+ "stage-02": {
+  "steps": {
+   "lay-in-hill": {
+    "summary": "Paint a flat purple hill that rises from the left edge and slopes down toward the sun.",
+    "tip": "Start the hill at the left edge of the canvas, about 8 in wide and 1 1/2 in tall. Let its top rise to one peak, then run a long, low slope down toward the sun, as the after picture shows. Keep it one flat color with no lighter slope yet.",
+    "paint_notes": [
+     "If the sunset sky shows through, let the first coat dry and paint it a second time."
+    ],
+    "lines": {
+     "8": "Bend every stroke with the shape: start at the peak and follow each slope's curve down."
+    }
+   },
+   "light-hill": {
+    "summary": "Skim lighter violet along the hill's ridge and the slope that faces the sun.",
+    "tip": "The light comes from the sun, so skim the lighter strokes right over the purple hill, on the slope that faces the sun and along the ridge, and leave the lower part darker, as the after picture shows. The after picture also lightens the ridge from the peak to the left edge of the canvas. Pull each stroke down the slope.",
+    "lines": {
+     "9": "Watch out: It went on solid. The brush was too loaded. Fix: dab it off while wet with a damp paper towel, wipe the brush nearly dry, and skim again."
+    }
+   },
+   "lay-in-shore": {
+    "summary": "Pull a thin dark band across the whole canvas at the foot of the hill.",
+    "tip": "Keep it thin, about 1/2 in tall, and level from the left edge to the right edge of the canvas. Run it right over the foot of the purple hill, as the after picture shows. A slightly bumpy top edge reads as a far tree line; keep the bottom edge straight."
+   }
+  }
+ },
+ "stage-03": {
+  "steps": {
+   "lay-in-water": {
+    "summary": "Blends the teal sea from the far shore line down to the bottom edge.",
+    "tip": "Keep every stroke level, so the top of the sea stays a straight line under the far shore line. The after picture already shows a few faint lighter streaks and a soft glow below the sun; leave those for steps 7 and 9.",
+    "lines": {
+     "7": "Start at the top with Teal and stroke side to side. Without rinsing, pick up Deep teal and paint the lower part of the sea, down to the bottom edge. Then stroke back up over the join several times."
+    },
+    "paint_notes": [
+     "Deep teal is as close as these tubes come. It reads a little grayer and softer than the deep teal in the after picture, and that's fine."
+    ]
+   },
+   "streak-light-water": {
+    "summary": "Streaks Light teal across the sea, most of it near the far shore line.",
+    "tip": "Run every streak level, left and right, never at a slant. Most of what it adds is in the top half, close under the far shore line, with a few longer streaks lower down. The after picture also shows a bright path below the sun; that comes in steps 9 and 10, so paint only the streaks here.",
+    "paint_notes": [
+     "Light teal can look thin over the deeper sea. Let the first coat dry and stroke over a streak again where it needs to read lighter."
+    ]
+   },
+   "dash-ripples": {
+    "summary": "Dashes Deep teal ripples across the sea, small near the shore and bigger lower.",
+    "tip": "Keep the dashes level and short. Most of what it adds is in the bottom half, where the dashes grow longer and wider apart. Leave the bright path below the sun showing, as the after picture has it."
+   }
+  }
+ },
+ "stage-04": {
+  "steps": {
+   "lay-path": {
+    "summary": "Dashes of orange and gold run down the sea below the sun, widening as they come forward.",
+    "tip": "Keep the path below the sun: its middle is about 7 1/2 in from the left edge. Dash in Sunset orange, then touch Pale gold into each dash's middle. Leave the pale strip under the sun alone.",
+    "lines": {
+     "7": "It should leave short, flat, level marks with gaps of the sea showing between them, as in the after picture."
+    }
+   },
+   "brighten-path": {
+    "summary": "Pale yellow dashes light the middle of the path and spread it wider across the sea.",
+    "tip": "The path widens: its left side is about 2 3/4 in from the left edge, and it's about 7 in wide. Brightest dashes go below the sun, fainter ones to the sides. Leave step 9's orange at the edges.",
+    "paint_notes": [
+     "Pale sun yellow is see-through over the teal sea. Where the after picture's middle is brightest, paint it twice, letting the first coat dry."
+    ]
+   }
+  }
+ },
+ "stage-05": {
+  "steps": {
+   "block-in-sails": {
+    "summary": "Block in the two pale gray sails as one tall triangle over the sky and sea.",
+    "tip": "The light comes from the low sun on the left, behind the scene. Together the sails make one tall triangle about 2 3/4 in wide and 3 1/2 in tall, its middle about 12 3/4 in from the left edge. Keep a sharp point at the top and a flat base, as the after picture shows.",
+    "paint_notes": [
+     "Sail gray is pale over the orange sky and teal sea: paint it twice, letting the first coat dry, until it looks solid like the after picture."
+    ],
+    "lines": {
+     "7": "Paint one sail as a tall, thin triangle with a straight base. Then paint the second sail, leaving a hairline gap between the two as the after picture shows.",
+     "8": "It should leave two flat, pale gray triangles that meet at the top point, with no shading yet."
+    }
+   },
+   "shade-sails": {
+    "summary": "Stroke soft gray-lilac shadow down the sails, away from the sun.",
+    "tip": "The sun is on the left, so the shadow belongs on the side away from it: most of what this step adds is on the right side of the sails. Paint over the sails there. Run every stroke from the top point down toward the base.",
+    "lines": {
+     "2": "Rinse the brush fully first.",
+     "8": "Pull each stroke from the top point of a sail down toward its base, following the slant of its edge.",
+     "9": "It should leave soft streaks that run down the sails, with their pale first coat still showing between them."
+    }
+   },
+   "light-sails": {
+    "summary": "Dry-brush warm cream on the sails' sunward side to catch the sunset.",
+    "tip": "The sun is on the left, so this cream goes on the sunward side of each sail, where the after picture has it. Skim it downward, from the top point toward the base, and leave the Sail shadow streaks showing on the shadow side."
+   },
+   "block-in-hull": {
+    "summary": "Block in the long, flat red hull under the sails.",
+    "tip": "The red hull is about 3 1/4 in wide and 3/4 in tall, a little wider than the white sails, with its top touching their base. Keep its top edge straight and level, and curve only the bottom.",
+    "paint_notes": [
+     "Boat red can look see-through over the teal sea: paint it twice, letting the first coat dry, until it looks solid like the after picture."
+    ],
+    "lines": {
+     "8": "Lay one long, flat band first. Then round its bottom edge up at both ends, so the ends taper as the after picture shows.",
+     "9": "It should leave a long, solid red hull with a straight top and a curved bottom."
+    }
+   },
+   "shade-hull": {
+    "summary": "Darken the bottom of the red hull with deep red strokes.",
+    "tip": "Keep the Deep red low on the red hull, along its bottom curve, and leave a band of the Boat red showing along the top. Run the strokes along the hull's length, not up and down.",
+    "lines": {
+     "6": "Pull each stroke along the length of the hull, following the curve of its bottom edge.",
+     "7": "It should leave a darker band along the bottom of the hull that bends with its curve, which makes it look rounded."
+    }
+   },
+   "light-hull-rim": {
+    "summary": "Line a thin light red rim along the top of the hull.",
+    "tip": "The rim catches the low sun from the left, so it is the hull's brightest edge. Keep it one thin line along the top edge of the red hull, as the after picture shows, not a band.",
+    "lines": {
+     "6": "Hold the brush upright, with light, steady pressure. Pull one thin line along the top edge of the red hull, reloading and picking up where it ends.",
+     "7": "It should leave a thin, light line along the hull's top edge."
+    }
+   },
+   "line-mast": {
+    "summary": "Line in the straight brown mast and the boom along the sails' base.",
+    "tip": "The mast runs straight up the gap between the white sails, from the red hull to where the after picture has its tip. Paint the mast first, then the boom out along the base of the sails, as the after picture shows.",
+    "lines": {
+     "7": "Hold the brush upright, with light, steady pressure. Pull the mast as one straight line, top to bottom, then the boom as one short line. A ruler's edge helps keep them straight.",
+     "8": "It should leave thin, straight lines."
+    }
+   }
+  }
+ },
+ "stage-06": {
+  "steps": {
+   "pull-red-reflection": {
+    "summary": "Pull a soft, broken Deep red streak straight down under the red hull.",
+    "tip": "The reflection sits straight under the red hull, touching it, and is about 2 1/2 in wide. Most of it is on the left side of the boat's reflection. Keep it broken, as the after picture shows.",
+    "lines": {
+     "6": "Stroke straight down, starting just below the red hull.",
+     "8": "Watch out: The reflection is as sharp and detailed as the boat, like a mirror or a second picture. Fix: fewer details, softer edges, a thin dry brush."
+    }
+   },
+   "pull-sail-reflection": {
+    "summary": "Pull pale streaks straight down below the red streak for the sails' reflection.",
+    "tip": "Start each stroke just under the Deep red marks and let the marks narrow as they go down, like an upside-down sail. Leave teal gaps between the streaks, as the after picture shows.",
+    "lines": {
+     "6": "Stroke straight down, starting just below the Deep red marks."
+    }
+   },
+   "zigzag-mast-reflection": {
+    "summary": "Wiggle a thin wavy line down the middle of the pale reflection for the mast.",
+    "tip": "Run the line down the middle of the white reflection marks, right under the mast, thin and broken. The after picture also deepens the band just under the red hull; go over it lightly.",
+    "lines": {
+     "6": "A wavy line straight down the middle of the white reflection marks, under the mast. Ripples bend straight lines."
+    }
+   },
+   "cross-reflection": {
+    "summary": "Break up the boat's reflection with small level Teal dashes.",
+    "tip": "Lay the dashes level, never tilted, across the Reflection white and Reflection brown marks. Use only a few; most of the reflection stays showing, as the after picture shows."
+   }
+  }
+ },
+ "stage-07": {
+  "steps": {
+   "sparkle-path": {
+    "summary": "Dab a few tiny white sparkles onto the lower part of the sun's path.",
+    "tip": "Keep the sparkles on the sun's path on the water, under the sun, with their middle about 7 in from the left edge. Touch the liner's tip down in short sideways flecks, three or so across the path, and stop there. Leave the rest of the sun's path as it is, so the sparkles stay few and small.",
+    "lines": {
+     "6": "It should leave a few tiny flecks of light on the sun's path, small enough to miss at arm's length.",
+     "7": "Titanium white is much lighter than what it goes over: if a fleck looks faint once dry, touch it again rather than making it bigger."
+    }
+   }
+  }
+ }
+}

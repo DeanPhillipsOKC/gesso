@@ -1,35 +1,23 @@
-"""The version 2 lesson plan: parts, paints, stages, and small steps (docs/design/pipeline-v2.md section 5).
+"""The plan in version 2's shape: parts, paints, stages, and small steps (docs/design/pipeline-v2.md section 5).
 
     problems(plan) -> what's wrong with the plan, each with what to change (empty when it's fine)
 
-A version 1 plan lists steps with rough boxes, and every step picture is rendered. A version 2 plan lists the
-picture's parts back to front, and each step paints inside one part, so the pictures can be cut from the finish.
+Pipeline v2's plan, written by hand, listed the picture's parts back to front, each step painting inside one part.
+v2 went in #238, but its later tools (step-aids, draft-text, check, publish) still read a plan of this shape: a
+version 3 plan put in it by steps3.as_v2, a part a unit. `problems` holds that shape to what those tools need;
+build-steps refuses a lesson whose plan doesn't fit it (lesson3.make).
 """
 
 from __future__ import annotations
 
-import json
 import re
-from pathlib import Path
 
 KINDS = ("area", "object", "thin", "marks")
 SHOWS = ("flat", "pass", "full", "blend")
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 MAX_PAINTS = 3  # paints in one step, except a blend
-NO_STAGES = "the plan has no stages with steps"  # all that's wrong with a plan between `paints` and its stages
-
-
-def load(lesson: Path) -> dict:
-    plan = json.loads((Path(lesson) / "plan.json").read_text(encoding="utf-8"))
-    if plan.get("plan_version") != 2:
-        raise ValueError(f"{lesson}/plan.json isn't a version 2 plan (no \"plan_version\": 2)")
-    return plan
-
-
-def is_v2(lesson: Path) -> bool:
-    path = Path(lesson) / "plan.json"
-    return path.exists() and json.loads(path.read_text(encoding="utf-8")).get("plan_version") == 2
+NO_STAGES = "the plan has no stages with steps"
 
 
 def steps(plan: dict) -> list[dict]:
@@ -41,8 +29,7 @@ def _boxes_ok(boxes) -> bool:
 
 
 def parts_problems(plan: dict) -> list[str]:
-    """What's wrong with the plan's parts alone: all `outline` and `part-colors` need, before there are paints or
-    stages. `problems` includes these."""
+    """What's wrong with the plan's parts alone. `problems` includes these."""
     out: list[str] = []
     parts = plan.get("parts") or []
     if not parts:
@@ -87,11 +74,9 @@ def parts_problems(plan: dict) -> list[str]:
     return out
 
 
-def problems(plan: dict, technique: dict | None = None) -> list[str]:
-    """What's wrong with a version 2 plan: its parts (parts_problems), its paints, and its stages and steps. With the
-    technique, also more base mixes than its `max_mixes` while two could still merge by `paints`' rules: neither
-    is an accent or was made by `paints --add`, they're at most paints.MAX_MERGE apart, and at most one of them is
-    a paint a step uses (that one is never merged away). Two paints a pass was split into stay apart."""
+def problems(plan: dict) -> list[str]:
+    """What's wrong with a plan in version 2's shape: its parts (parts_problems), its paints, and its stages and
+    steps."""
     out = parts_problems(plan)
     if out == ["the plan has no parts"]:
         return out
@@ -103,26 +88,11 @@ def problems(plan: dict, technique: dict | None = None) -> list[str]:
         if not HEX.match(c.get("hex", "")):
             out.append(f"paint {c.get('id')}: hex must look like #a1b2c3")
         if c.get("sample_x") is None or c.get("sample_y") is None:
-            out.append(f"paint {c.get('id')}: no sample_x/sample_y (a spot of it in the finish). Run paints, which "
-                       "measures them.")
+            out.append(f"paint {c.get('id')}: no sample_x/sample_y (a spot of it in the finish)")
         paints[c.get("id")] = c
     for c in paints.values():
         if c.get("of") and c["of"] not in paints:
             out.append(f"paint {c.get('id')}: it's a tint or shade of {c['of']!r}, which isn't in paints")
-    bases = [c for c in paints.values() if not c.get("of") and HEX.match(c.get("hex", ""))]
-    target = (technique or {}).get("max_mixes")
-    if target is not None and len(bases) > target:
-        import paints as measured  # only here: it needs OpenCV, and the rest of this file doesn't
-
-        everything = [c for c in paints.values() if HEX.match(c.get("hex", ""))]
-        # what `paints` would still merge: never a paint a step uses into another, never one `paints --add` made
-        used = {c for s in steps(plan) for c in s.get("paints") or []}
-        added = {c["id"] for c in everything if c.get("added")}
-        pairs = measured.mergeable(bases, measured.accents(everything), used, added)
-        if pairs:  # over the target with nothing close enough left to merge is allowed (design section 9)
-            de, a, b = min((measured.mixing.delta_e(a["hex"], b["hex"]), a["id"], b["id"]) for a, b in pairs)
-            out.append(f"{len(bases)} paints to mix, above the technique's target of {target}, and {a} and {b} are only "
-                       f"Delta E {de:.1f} apart, close enough to merge. Run paints again.")
     all_steps = steps(plan)
     if not all_steps:
         return out + [NO_STAGES]

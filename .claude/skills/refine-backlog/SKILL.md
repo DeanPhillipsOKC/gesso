@@ -13,7 +13,7 @@ below is `gh api`. Shell variables don't carry over between commands, so start e
 `REPO=DeanPhillipsOKC/gesso;` (an empty `$REPO` gives a 404 on `repos//issues`).
 
 Before you start, read `docs/backlog.md`, `docs/decisions.md`, and `docs/vision.md` if you haven't this session.
-Read `docs/design/pipeline-v2.md` (all of it) before refining any pipeline v2 issue, and `docs/lessons-site.md`
+Read `docs/design/pipeline-v3.md` (all of it) before refining any pipeline issue, and `docs/lessons-site.md`
 before any issue about `site/`. If an issue asks for something `docs/decisions.md` rules out, flag it to the owner
 instead of writing a spec.
 

@@ -1,0 +1,710 @@
+{
+ "plan_version": 3,
+ "photo": "photos/chickadee.jpg",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "A soft blended background with a few big shapes in front of it suits back-to-front painting, and the chickadee is built from simple pieces and marks a beginner can make.",
+ "subject": "A black-capped chickadee perched on a curved brown branch in autumn, with red and gold leaves hanging nearby and a low sun glowing through hazy orange woods",
+ "focal_point": "The chickadee's black cap, white cheek and dark eye, just left of the sun",
+ "light": "From the low sun at the upper right, behind and to the right of the bird: lit edges face up and to the right, shadows fall on the lower left of every form",
+ "why": "We start with the whole background blended wet in one go, then the sun, the hazy far trunks and the soft autumn dabs, so everything behind is done before anything sharp goes on. Then the branch and the hanging leaves are blocked in and given their dark and light, and most of the lesson goes to the chickadee: its shape, its pale patches, its black and gray markings, its feathers, and the face last, so the focal point gets the most care.",
+ "things": [
+  {
+   "id": "sky",
+   "name": "The blue and gold sky",
+   "element": "sky-blend",
+   "why": "The whole background is a soft blend from blue to gold, laid wet in one go behind everything.",
+   "behind": [],
+   "called": "the smooth blue and gold background color"
+  },
+  {
+   "id": "sun",
+   "name": "The low sun",
+   "element": "simple-shape",
+   "why": "A small pale disk with a soft glow, painted in small circles in one move.",
+   "behind": [
+    "sky"
+   ]
+  },
+  {
+   "id": "far-trunks",
+   "name": "The hazy far trunks",
+   "element": "trunks-branches",
+   "why": "Far trunks in a wood, pulled once in a soft blue-gray with no bark detail because they are far away.",
+   "behind": [
+    "sky"
+   ]
+  },
+  {
+   "id": "far-leaves",
+   "name": "The far autumn leaves",
+   "element": "foliage",
+   "why": "Hazy autumn woods: soft dabbed patches, dark first then lighter, with no sharp leaf shapes.",
+   "behind": [
+    "sky",
+    "far-trunks"
+   ],
+   "plain": "scattered soft red-orange dabs",
+   "called": "the soft orange and red-orange patches in the background"
+  },
+  {
+   "id": "branch",
+   "name": "The trunk and curved branch",
+   "element": "shaped-object",
+   "why": "The trunk and the thick arching perch are one solid shape a teacher builds from bands, then shades below and lights on top, with the twigs added last by liner; trunks-branches has no shading step for wood this close.",
+   "behind": [
+    "sky",
+    "far-trunks",
+    "far-leaves"
+   ],
+   "plain": "the plain mid-brown trunk and branch shape"
+  },
+  {
+   "id": "leaves",
+   "name": "The hanging leaves",
+   "element": "shaped-object",
+   "why": "Each big leaf is a shaped object built from a teardrop and lobes, then shaded, lit, and given its stem and veins.",
+   "behind": [
+    "sky",
+    "far-leaves",
+    "branch"
+   ],
+   "plain": "four flat leaf shapes, two golden yellow and two red-orange",
+   "called": "the four big hanging leaves"
+  },
+  {
+   "id": "chickadee",
+   "name": "The chickadee",
+   "element": "furry-animal",
+   "why": "The closest fit: the bird is built as a shape, shaded, given pale patches and its black and gray markings, feathered with flicks, and the face last. It lacks only that it is written for fur; the flicks here are feathers, lying down and back from the head.",
+   "behind": [
+    "sky",
+    "far-leaves",
+    "branch"
+   ],
+   "plain": "the plain warm buff bird shape",
+   "left_out": "The fine barbs of each wing and tail feather and the thin white feather edges; the wing and tail are suggested with a few dark lines and light flicks."
+  },
+  {
+   "id": "feet",
+   "name": "The legs and feet",
+   "element": "fine-lines",
+   "why": "Thin dark legs and toes gripping the branch, a few liner lines over dry paint.",
+   "behind": [
+    "branch",
+    "chickadee"
+   ]
+  }
+ ],
+ "paints": [
+  {
+   "name": "Soft blue-gray",
+   "looks": "a soft cool blue-gray: the blue at the edges of the background, and the chickadee's wing and tail",
+   "color": "#7f9fd8",
+   "things": [
+    "sky",
+    "chickadee"
+   ]
+  },
+  {
+   "name": "Golden orange",
+   "looks": "a warm golden orange, the haze across the middle of the background",
+   "color": "#f2a444",
+   "things": [
+    "sky"
+   ]
+  },
+  {
+   "name": "Pale yellow",
+   "looks": "a pale warm yellow, the glow around the sun",
+   "color": "#fbe08c",
+   "things": [
+    "sky",
+    "sun"
+   ]
+  },
+  {
+   "name": "Sun cream",
+   "looks": "Pale yellow with much more white, the sun's disk",
+   "color": "#fff4cf",
+   "of": "Pale yellow",
+   "things": [
+    "sun"
+   ]
+  },
+  {
+   "name": "Hazy blue",
+   "looks": "Soft blue grayed with a touch of burnt sienna, the far trunks",
+   "color": "#6f82b0",
+   "of": "Soft blue-gray",
+   "things": [
+    "far-trunks"
+   ]
+  },
+  {
+   "name": "Red-orange",
+   "looks": "a strong warm red-orange, the red leaves and the dark far leaf patches",
+   "color": "#e3582a",
+   "things": [
+    "far-leaves",
+    "leaves"
+   ]
+  },
+  {
+   "name": "Light orange",
+   "looks": "Golden orange with white, the lighter far leaf patches",
+   "color": "#f7b766",
+   "of": "Golden orange",
+   "things": [
+    "far-leaves"
+   ]
+  },
+  {
+   "name": "Bark brown",
+   "looks": "a mid warm brown, the trunk and branch",
+   "color": "#8a5a36",
+   "things": [
+    "branch"
+   ]
+  },
+  {
+   "name": "Dark brown",
+   "looks": "Bark brown darkened with blue, a deep red-brown for bark shadows, twigs, stems and veins",
+   "color": "#4e2e1c",
+   "of": "Bark brown",
+   "things": [
+    "branch",
+    "leaves"
+   ]
+  },
+  {
+   "name": "Warm buff",
+   "looks": "a warm golden buff: the chickadee's belly and flanks, and the sunlit top of the branch",
+   "color": "#e3b878",
+   "things": [
+    "branch",
+    "chickadee"
+   ]
+  },
+  {
+   "name": "Golden yellow",
+   "looks": "a rich golden yellow: the two gold leaves and their lit edges",
+   "color": "#f4b828",
+   "things": [
+    "leaves"
+   ]
+  },
+  {
+   "name": "Deep gold",
+   "looks": "Golden yellow darkened with burnt sienna, the shade on the gold leaves",
+   "color": "#d98a1c",
+   "of": "Golden yellow",
+   "things": [
+    "leaves"
+   ]
+  },
+  {
+   "name": "Deep red",
+   "looks": "Red-orange darkened with burnt sienna, the shade on the red leaves",
+   "color": "#b8381e",
+   "of": "Red-orange",
+   "things": [
+    "leaves"
+   ]
+  },
+  {
+   "name": "Coral orange",
+   "looks": "Red-orange with white, the lit edges of the red leaves",
+   "color": "#f2834e",
+   "of": "Red-orange",
+   "things": [
+    "leaves"
+   ]
+  },
+  {
+   "name": "Golden buff",
+   "looks": "Warm buff with a touch of burnt sienna: the shaded underside of the bird and the feather flicks on the belly",
+   "color": "#c48f52",
+   "of": "Warm buff",
+   "things": [
+    "chickadee"
+   ]
+  },
+  {
+   "name": "Warm white",
+   "looks": "Warm buff with a lot of white, a creamy white for the cheek, chest, sunlit edge and eye shine",
+   "color": "#f8f0de",
+   "of": "Warm buff",
+   "things": [
+    "chickadee"
+   ]
+  },
+  {
+   "name": "Soft black",
+   "looks": "a soft blue-black, the cap, bib, eye and beak",
+   "color": "#1f1f26",
+   "things": [
+    "chickadee"
+   ]
+  },
+  {
+   "name": "Dark slate",
+   "looks": "Soft blue-gray darkened with sienna: the wing feather lines and flicks, and the legs",
+   "color": "#474d5c",
+   "of": "Soft blue-gray",
+   "things": [
+    "chickadee",
+    "feet"
+   ]
+  }
+ ],
+ "stages": [
+  {
+   "id": "the-sky",
+   "name": "The sky and the sun",
+   "steps": [
+    {
+     "id": "blend-sky",
+     "name": "Blend the blue and gold sky",
+     "lays": [
+      {
+       "thing": "sky",
+       "what": "the whole canvas: soft blue at the left, the top left and along the bottom, warming to golden orange across the middle and up the right, and pale yellow in the upper right where the sun will be"
+      }
+     ],
+     "paints": [
+      "Soft blue-gray",
+      "Golden orange",
+      "Pale yellow"
+     ],
+     "blend": true,
+     "stroke": "x-stroke",
+     "brush": "1 inch flat",
+     "after": "The whole canvas is a soft criss-cross blend: blue on the left, at the top left and along the bottom, golden orange across the middle and right, pale yellow in the upper right. There is no sun disk, no trees, leaves, branch or bird yet.",
+     "why": "Everything else sits on this, so it goes on first and right past where the branch and bird will be."
+    },
+    {
+     "id": "paint-sun",
+     "name": "Circle in the sun",
+     "lays": [
+      {
+       "thing": "sun",
+       "what": "a round pale cream disk in the upper right, with a ring of pale yellow circles around it fading into the gold"
+      }
+     ],
+     "paints": [
+      "Sun cream",
+      "Pale yellow"
+     ],
+     "stroke": "small-circles",
+     "brush": "#10 round",
+     "after": "A soft pale cream sun glows in the upper right, ringed by pale yellow that melts into the golden sky. The rest of the canvas is still the plain blended sky."
+    }
+   ]
+  },
+  {
+   "id": "the-far-woods",
+   "name": "The far woods",
+   "steps": [
+    {
+     "id": "pull-far-trunks",
+     "name": "Pull the hazy far trunks",
+     "lays": [
+      {
+       "thing": "far-trunks",
+       "what": "two tall soft blue-gray trunks in the right third running top to bottom, a few thinner fainter ones beside them, and faint trunk shapes low at the left and bottom middle"
+      }
+     ],
+     "paints": [
+      "Hazy blue"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/2 inch flat",
+     "after": "Soft hazy blue-gray trunks stand in the right third and faintly at the lower left and bottom, with soft edges and no bark. The sky and sun show everywhere else."
+    },
+    {
+     "id": "dab-dark-far-leaves",
+     "name": "Dab the red-orange far leaves",
+     "lays": [
+      {
+       "thing": "far-leaves",
+       "what": "loose patches of red-orange dabs scattered across the background: down the left side, across the middle, around the far trunks at the right and along the bottom, with sky showing between"
+      }
+     ],
+     "paints": [
+      "Red-orange"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "Soft red-orange dabbed patches are scattered over the background on the left, middle, right and bottom, with blue and gold sky between them. No lighter orange on them yet."
+    },
+    {
+     "id": "dab-light-far-leaves",
+     "name": "Dab the light orange over the far leaves",
+     "lays": [
+      {
+       "thing": "far-leaves",
+       "what": "lighter orange dabs over most of each patch, more on the upper and right sides facing the sun, leaving red-orange showing underneath"
+      }
+     ],
+     "paints": [
+      "Light orange"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "The far leaf patches are soft orange with red-orange still showing at their lower edges, like hazy autumn woods. The background is finished; the canvas has no branch, leaves or bird yet."
+    }
+   ]
+  },
+  {
+   "id": "the-branch-and-leaves",
+   "name": "The branch and leaves",
+   "steps": [
+    {
+     "id": "block-in-branch",
+     "name": "Block in the trunk and branch",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "branch",
+       "what": "the whole trunk and branch as one flat mid-brown shape: first the trunk as a long band up the left edge, then the thick branch arching from its base across to the right and thinning to a point, then the thin side branch at the top left"
+      }
+     ],
+     "paints": [
+      "Bark brown"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "A flat mid-brown trunk rises up the left side, and a flat brown branch arches from its base across the canvas to the lower right, with a thin side branch at the top left. No shading, light, twigs or leaves yet."
+    },
+    {
+     "id": "block-in-leaves",
+     "name": "Block in the hanging leaves",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "leaves",
+       "what": "four flat leaves, each a center teardrop with a pointed lobe on each side: a golden yellow leaf and a red-orange leaf at the top left, a golden yellow and a red-orange leaf hanging below the branch at the right"
+      }
+     ],
+     "paints": [
+      "Golden yellow",
+      "Red-orange"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#8 round",
+     "after": "Four flat leaf shapes hang in place, two golden yellow and two red-orange, with no stems, veins, shading or light. The branch is still plain flat brown."
+    },
+    {
+     "id": "shade-leaves",
+     "name": "Shade the leaves",
+     "unit": "The branch and leaves' shading and light",
+     "lays": [
+      {
+       "thing": "leaves",
+       "what": "deep gold along the center and the shaded left side of each gold leaf, deep red along the center and the shaded left side of each red leaf"
+      }
+     ],
+     "paints": [
+      "Deep gold",
+      "Deep red"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/4 inch flat",
+     "after": "Each leaf has a darker side and center, deep gold on the gold leaves and deep red on the red ones, with its main color still showing on the right. No light edges, stems or veins yet."
+    },
+    {
+     "id": "light-leaves",
+     "name": "Light the leaves' sunny edges",
+     "lays": [
+      {
+       "thing": "leaves",
+       "what": "light gold on the upper right edges and tips of the gold leaves, coral orange on the upper right edges of the red leaves"
+      }
+     ],
+     "paints": [
+      "Golden yellow",
+      "Coral orange"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/4 inch flat",
+     "after": "The leaves have a dark side, a middle, and a light edge facing the sun. They still have no stems or veins."
+    },
+    {
+     "id": "shade-branch",
+     "name": "Shade the trunk and branch",
+     "lays": [
+      {
+       "thing": "branch",
+       "what": "dark brown along the underside of the branch and down the left side of the trunk, in broken bark patches"
+      }
+     ],
+     "paints": [
+      "Dark brown"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat",
+     "after": "The branch and trunk are dark brown underneath and on the left in broken patches, mid brown on top. No light on top and no twigs yet."
+    },
+    {
+     "id": "light-branch",
+     "name": "Catch the sun on the branch",
+     "lays": [
+      {
+       "thing": "branch",
+       "what": "warm tan along the top of the branch, brightest where it arches under the bird, and down the right side of the trunk"
+      }
+     ],
+     "paints": [
+      "Warm buff"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/4 inch flat",
+     "after": "The top of the branch and the right side of the trunk catch warm tan light, over mid brown, over dark brown below. The thin twigs at the branch's end are not there yet."
+    },
+    {
+     "id": "line-twigs-stems-veins",
+     "name": "Line the twigs, stems and veins",
+     "lays": [
+      {
+       "thing": "branch",
+       "what": "the thin twigs forking off the right end of the branch, tapering to points"
+      },
+      {
+       "thing": "leaves",
+       "what": "each leaf's thin stem curving up to the branch, and a center vein with a few side veins in each leaf"
+      }
+     ],
+     "paints": [
+      "Dark brown"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "Thin dark twigs fork off the right end of the branch, and each leaf hangs from the wood on a thin stem with a dark center vein and side veins. The branch and leaves are finished; the bird is not painted yet.",
+     "why": "One move: the same liner and the same thinned dark brown, done in one pass while it is loaded.",
+     "unit": "The twigs, stems and veins"
+    }
+   ]
+  },
+  {
+   "id": "the-chickadee-shape",
+   "name": "The chickadee's shape",
+   "steps": [
+    {
+     "id": "block-in-chickadee",
+     "name": "Block in the chickadee",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "the whole bird as one flat warm buff shape: a big oval body on the branch first, then a round head at its upper right, then the long tail as a tapering wedge out to the lower left"
+      }
+     ],
+     "paints": [
+      "Warm buff"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "A flat warm buff bird shape sits on the branch: round body, round head, long tail to the left. No shading, cap, cheek, wing, eye, beak or legs yet."
+    },
+    {
+     "id": "shade-chickadee",
+     "name": "Shade the bird's underside",
+     "unit": "The chickadee's shading",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "buff shadow curved along the lower belly, the left flank and under the head, leaving warm buff on the lit right side"
+      }
+     ],
+     "paints": [
+      "Golden buff"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "1/2 inch flat",
+     "after": "The buff bird is darker along its belly, left side and under the head, lighter on the right. Still no cap, cheek, wing or face."
+    },
+    {
+     "id": "paint-white-patches",
+     "name": "Paint the white cheek and chest",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "a creamy white cheek patch across the side of the head and the white front of the chest under it, in 2 to 3 thin coats"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The head has a creamy white cheek and the front of the chest is creamy white, fading into the buff belly. The cap, bib and wing are not painted yet."
+    }
+   ]
+  },
+  {
+   "id": "the-markings",
+   "name": "The chickadee's markings",
+   "steps": [
+    {
+     "id": "paint-cap-bib",
+     "name": "Paint the black cap and bib",
+     "unit": "The chickadee's markings",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "the black cap over the top of the head down to the eye line, and the black bib under the beak down the throat, leaving the white cheek between them"
+      }
+     ],
+     "paints": [
+      "Soft black"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#6 round",
+     "after": "The head has a black cap and a black bib with the white cheek between them. No eye or beak yet, and the wing is still buff."
+    },
+    {
+     "id": "paint-wing-tail",
+     "name": "Paint the gray wing and tail",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "the gray wing curving along the bird's back from below the cap to the tail, and the long gray tail out to the lower left"
+      }
+     ],
+     "paints": [
+      "Soft blue-gray"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "1/4 inch flat",
+     "after": "A smooth blue-gray wing lies along the back and the gray tail points to the lower left, with no feather lines yet."
+    },
+    {
+     "id": "line-wing-feathers",
+     "name": "Pull the dark wing feather lines",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "a few dark tapering lines along the wing and tail where the long feathers overlap, following their direction down and back"
+      }
+     ],
+     "paints": [
+      "Dark slate"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/4 inch angle",
+     "after": "The wing and tail show a few dark feather lines on the gray. The belly and chest have no feather flicks yet."
+    }
+   ]
+  },
+  {
+   "id": "the-feathers",
+   "name": "The feathers",
+   "steps": [
+    {
+     "id": "flick-belly-feathers",
+     "name": "Flick the belly feathers",
+     "unit": "The chickadee's feathers",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "short light buff flicks over the belly and flank, lying down and back from the head, leaving the darker buff showing between them"
+      }
+     ],
+     "paints": [
+      "Golden buff"
+     ],
+     "stroke": "flicking",
+     "brush": "small fan",
+     "after": "The buff belly looks soft and feathery with darker buff between the flicks. The wing is still plain gray with dark lines, and there is no face."
+    },
+    {
+     "id": "flick-wing-feathers",
+     "name": "Flick light into the wing and tail",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "light gray flicks along the edges of the wing feathers and down the tail, leaving the dark lines showing"
+      }
+     ],
+     "paints": [
+      "Dark slate"
+     ],
+     "stroke": "flicking",
+     "brush": "small fan",
+     "after": "The wing and tail have light gray feather edges beside the dark lines. The chest's sunlit edge is not brightened yet."
+    },
+    {
+     "id": "flick-lit-chest",
+     "name": "Flick the sunlit edge of the chest",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "a few creamy white flicks only on the right edge of the chest and cheek, facing the sun"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "flicking",
+     "brush": "small fan",
+     "after": "The bird's right edge glows creamy white where the sun catches it. There is still no eye, beak or legs."
+    }
+   ]
+  },
+  {
+   "id": "the-face-and-feet",
+   "name": "The face and feet",
+   "steps": [
+    {
+     "id": "paint-eye-beak",
+     "name": "Paint the eye and beak",
+     "unit": "The chickadee's face and feet",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "a small round black eye where the cap meets the white cheek, and a short pointed black beak at the front of the head"
+      }
+     ],
+     "paints": [
+      "Soft black"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#2 round",
+     "after": "The bird has a round dark eye at the edge of its cap and a short pointed beak. No shine in the eye and no legs yet."
+    },
+    {
+     "id": "line-legs-feet",
+     "name": "Line the legs and feet",
+     "lays": [
+      {
+       "thing": "feet",
+       "what": "two thin dark legs from the belly down to the branch, and the curled toes gripping over the top of the branch"
+      }
+     ],
+     "paints": [
+      "Dark slate"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "Two thin dark legs come down from the belly and the toes curl over the branch. Only the eye shine is missing."
+    },
+    {
+     "id": "dot-eye-shine",
+     "name": "Dot the light in the eye",
+     "lays": [
+      {
+       "thing": "chickadee",
+       "what": "one tiny creamy white catch light in the upper right of the eye"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "dotting",
+     "brush": "#2 round",
+     "after": "The finished painting: the eye shines with a tiny light, and the chickadee sits on its sunlit branch among the hanging leaves and the glowing autumn woods."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,797 @@
+{
+ "plan_version": 3,
+ "photo": "photos/balloon-lavender.png",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "A sunset landscape of big, simple bands (sky, mountains, golden hills, lavender rows) is exactly what a back-to-front paint-along teaches, and every texture is one repeated mark a beginner can make.",
+ "subject": "A striped hot-air balloon floating over a sunset valley, with violet mountains, a small lake, golden hills, a lone tree, and rows of lavender running toward the horizon.",
+ "focal_point": "The striped balloon high on the left, with the low sun and the lavender rows leading the eye back to the middle.",
+ "light": "A low setting sun just above the mountains, a little left of center, lights everything from behind: lit edges face the sun (the lower edges of the clouds, the right side of the balloon, the left side of the tree).",
+ "why": "We go back to front: the sunset sky and clouds first, then the far mountains and lake, the golden hills, the tree and bushes, and the lavender field, each painted straight over the dry layer behind it. The balloon, the focal point, comes last over the dry sky so the painter can give it full attention, with its stripes, shading and light as separate steps.",
+ "things": [
+  {
+   "id": "sky",
+   "name": "The sunset sky",
+   "element": "sky-blend",
+   "why": "A smooth gradient from blue at the top to orange and gold at the horizon, blended wet in one go.",
+   "behind": []
+  },
+  {
+   "id": "clouds",
+   "name": "The sunset clouds",
+   "element": "clouds",
+   "why": "Soft coral clouds on the dry sky, lit on the edges that face the sun.",
+   "behind": [
+    "sky"
+   ],
+   "plain": "the plain coral-red cloud shapes with no lit edges",
+   "left_out": "The many small separate cloud puffs are merged into a few big soft masses."
+  },
+  {
+   "id": "sun",
+   "name": "The setting sun",
+   "element": "simple-shape",
+   "why": "A small pale disk that is flat in the picture.",
+   "behind": [
+    "sky"
+   ],
+   "left_out": "The soft glow ring around the sun is left to the sky blend."
+  },
+  {
+   "id": "mountains",
+   "name": "The far violet mountains",
+   "element": "far-hills",
+   "why": "A far range painted as big soft shapes, with darker lower ridges in front and no texture.",
+   "behind": [
+    "sky",
+    "clouds"
+   ],
+   "plain": "the plain violet mountain range, one flat color"
+  },
+  {
+   "id": "lake",
+   "name": "The little lake",
+   "element": "water",
+   "why": "A thin strip of far water catching the sun; only its base is needed at this distance.",
+   "behind": [
+    "sky",
+    "mountains"
+   ],
+   "left_out": "Ripples and a separate sun path on the lake are too small to paint; the gold glint goes in with the base."
+  },
+  {
+   "id": "hills",
+   "name": "The golden rolling hills",
+   "element": "field-grass",
+   "why": "Sunlit fields, gold on the crests and olive in the hollows, with a little texture on the near slope.",
+   "behind": [
+    "sky",
+    "mountains",
+    "lake"
+   ],
+   "plain": "the plain gold-to-olive hills with no grass strokes"
+  },
+  {
+   "id": "trunk",
+   "name": "The tree trunk",
+   "element": "trunks-branches",
+   "why": "One trunk and a few branches pulled thick to thin before the canopy goes over them.",
+   "behind": [
+    "sky",
+    "mountains",
+    "hills"
+   ],
+   "left_out": "The light on the bark is left out; the trunk stays one dark brown."
+  },
+  {
+   "id": "canopy",
+   "name": "The tree's canopy",
+   "element": "foliage",
+   "why": "A big leafy mass tapped dark, then mid, then a few sunlit taps on the side facing the sun.",
+   "behind": [
+    "sky",
+    "clouds",
+    "mountains",
+    "hills",
+    "trunk"
+   ],
+   "plain": "the dark green canopy, all one dark",
+   "called": "the leafy top of the lone tree"
+  },
+  {
+   "id": "bushes",
+   "name": "The bushes on the hills",
+   "element": "foliage",
+   "why": "Small dark clumps along the hill folds, tapped like the canopy but smaller.",
+   "behind": [
+    "hills"
+   ],
+   "plain": "the dark green bush clumps"
+  },
+  {
+   "id": "lavender",
+   "name": "The lavender field",
+   "element": "flower-rows",
+   "why": "Rows of lavender stamped dark, mid and light over a dry purple field, aimed at one point.",
+   "behind": [
+    "hills",
+    "bushes"
+   ],
+   "plain": "the plain dark purple field with no stamped rows"
+  },
+  {
+   "id": "paths",
+   "name": "The dirt paths between the rows",
+   "element": "soil-rows",
+   "why": "The near soil is wide enough to be its own part, warm orange strips running back to one point.",
+   "behind": [
+    "lavender"
+   ],
+   "left_out": "The shading and light down the paths are left out; one warm strip is enough."
+  },
+  {
+   "id": "balloon",
+   "name": "The hot-air balloon",
+   "element": "round-object",
+   "why": "A round striped shape built from a center oval and curved side pieces, shaded and lit, with its basket as the small detail.",
+   "behind": [
+    "sky",
+    "clouds"
+   ],
+   "plain": "the plain golden balloon shape with no stripes",
+   "left_out": "The thin seams between stripes and the band at the balloon's mouth are left out."
+  }
+ ],
+ "paints": [
+  {
+   "name": "Sky blue",
+   "looks": "a soft cornflower blue, the top of the sky",
+   "color": "#6f86c8",
+   "things": [
+    "sky"
+   ]
+  },
+  {
+   "name": "Balloon blue",
+   "looks": "Sky blue made deeper with more blue, for the balloon's blue stripes",
+   "color": "#2f63a6",
+   "of": "Sky blue",
+   "things": [
+    "balloon"
+   ]
+  },
+  {
+   "name": "Deep blue",
+   "looks": "Balloon blue darkened further, for the shadow side of the blue stripes",
+   "color": "#1f3f78",
+   "of": "Sky blue",
+   "things": [
+    "balloon"
+   ]
+  },
+  {
+   "name": "Sunset orange",
+   "looks": "a bright warm orange, the middle of the sky",
+   "color": "#f4883a",
+   "things": [
+    "sky",
+    "clouds",
+    "balloon"
+   ]
+  },
+  {
+   "name": "Warm soil",
+   "looks": "Sunset orange darkened with brown, an earthy orange for the paths",
+   "color": "#b8602e",
+   "of": "Sunset orange",
+   "things": [
+    "paths"
+   ]
+  },
+  {
+   "name": "Warm gold",
+   "looks": "a warm golden yellow, the sky near the horizon",
+   "color": "#f6b93a",
+   "things": [
+    "sky",
+    "clouds",
+    "lake",
+    "hills",
+    "balloon"
+   ]
+  },
+  {
+   "name": "Pale sun yellow",
+   "looks": "Warm gold with a lot of white, almost cream",
+   "color": "#fbeaa8",
+   "of": "Warm gold",
+   "things": [
+    "sun",
+    "balloon"
+   ]
+  },
+  {
+   "name": "Golden ochre",
+   "looks": "Warm gold dulled with a touch of brown, the crests of the hills",
+   "color": "#d9a62a",
+   "of": "Warm gold",
+   "things": [
+    "hills"
+   ]
+  },
+  {
+   "name": "Coral red",
+   "looks": "a warm pinkish red, the body of the clouds",
+   "color": "#ef5a4a",
+   "things": [
+    "clouds"
+   ]
+  },
+  {
+   "name": "Balloon red",
+   "looks": "Coral red made deeper, a strong red for the balloon's stripes",
+   "color": "#c8322e",
+   "of": "Coral red",
+   "things": [
+    "balloon"
+   ]
+  },
+  {
+   "name": "Deep red",
+   "looks": "Balloon red darkened, for the shadow side of the red stripes",
+   "color": "#8e2424",
+   "of": "Coral red",
+   "things": [
+    "balloon"
+   ]
+  },
+  {
+   "name": "Hill violet",
+   "looks": "a soft blue-violet, the far mountains",
+   "color": "#7a68b4",
+   "things": [
+    "mountains",
+    "lake"
+   ]
+  },
+  {
+   "name": "Deep violet",
+   "looks": "Hill violet darkened, the lower, nearer ridges",
+   "color": "#4a3f86",
+   "of": "Hill violet",
+   "things": [
+    "mountains"
+   ]
+  },
+  {
+   "name": "Olive green",
+   "looks": "a dull yellow-green, the shaded hollows of the hills",
+   "color": "#8a8a2e",
+   "things": [
+    "hills"
+   ]
+  },
+  {
+   "name": "Tree green",
+   "looks": "a deep dark green, the shadows of the tree and bushes",
+   "color": "#2f4a2c",
+   "things": [
+    "canopy",
+    "bushes"
+   ]
+  },
+  {
+   "name": "Sunlit green",
+   "looks": "Tree green with more white and yellow, the leaves facing the sun",
+   "color": "#8a9a4a",
+   "of": "Tree green",
+   "things": [
+    "canopy",
+    "bushes"
+   ]
+  },
+  {
+   "name": "Bark brown",
+   "looks": "a dark reddish brown, the trunk and the basket",
+   "color": "#5a3220",
+   "things": [
+    "trunk",
+    "balloon",
+    "canopy",
+    "bushes"
+   ]
+  },
+  {
+   "name": "Lavender purple",
+   "looks": "a strong blue-purple, the lavender blooms",
+   "color": "#7a52c8",
+   "things": [
+    "lavender"
+   ]
+  },
+  {
+   "name": "Shadow purple",
+   "looks": "Lavender purple darkened, the dark field under the rows",
+   "color": "#4a2f8a",
+   "of": "Lavender purple",
+   "things": [
+    "lavender"
+   ]
+  },
+  {
+   "name": "Mid lavender",
+   "looks": "Lavender purple with white, the middle value of the blooms",
+   "color": "#9a78dc",
+   "of": "Lavender purple",
+   "things": [
+    "lavender"
+   ]
+  },
+  {
+   "name": "Pale lilac",
+   "looks": "Lavender purple with a lot of white and a touch of red, the lit tips",
+   "color": "#c8a8ec",
+   "of": "Lavender purple",
+   "things": [
+    "lavender"
+   ]
+  }
+ ],
+ "stages": [
+  {
+   "id": "the-sunset-sky",
+   "name": "The sunset sky",
+   "steps": [
+    {
+     "id": "blend-sky",
+     "name": "Blend the sunset sky",
+     "lays": [
+      {
+       "thing": "sky",
+       "what": "the whole sky: blue at the top, orange in the middle, warm gold at the horizon, run down past the mountains to below the hill line"
+      }
+     ],
+     "paints": [
+      "Sky blue",
+      "Sunset orange",
+      "Warm gold"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "2 inch wide flat",
+     "after": "The top two thirds of the canvas is a smooth sky, blue at the top, orange in the middle and gold low down. There are no clouds, sun or land; the bottom third is bare white canvas.",
+     "why": "The sky is farthest away, and running it past the horizon keeps the strokes long."
+    },
+    {
+     "id": "lay-clouds",
+     "name": "Lay in the coral clouds",
+     "lays": [
+      {
+       "thing": "clouds",
+       "what": "big soft coral-red cloud masses across the upper sky, flat at the bottom with bumpy tops, sky showing between them"
+      }
+     ],
+     "paints": [
+      "Coral red"
+     ],
+     "stroke": "small-circles",
+     "brush": "#10 round",
+     "after": "Soft coral-red cloud masses float across the upper sky with blue and orange sky showing between them. The clouds have no lighter edges yet; there is no sun and no land."
+    },
+    {
+     "id": "light-cloud-edges",
+     "name": "Light the cloud edges facing the sun",
+     "lays": [
+      {
+       "thing": "clouds",
+       "what": "orange and gold dry-brushed on the lower edges of the clouds that face the sun, the coral left in the middle of each"
+      }
+     ],
+     "paints": [
+      "Sunset orange",
+      "Warm gold"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch old stiff flat",
+     "after": "The clouds glow orange and gold along the edges facing the sun, with coral red still in their middles. There is no sun disk and no land yet."
+    },
+    {
+     "id": "paint-sun",
+     "name": "Paint the sun disk",
+     "lays": [
+      {
+       "thing": "sun",
+       "what": "a small pale cream circle just above where the mountains will dip, a little left of center"
+      }
+     ],
+     "paints": [
+      "Pale sun yellow"
+     ],
+     "stroke": "small-circles",
+     "brush": "#6 round",
+     "after": "A small pale cream sun sits low in the gold sky, a little left of center. Below the sky the canvas is still bare."
+    }
+   ]
+  },
+  {
+   "id": "the-far-mountains",
+   "name": "The far mountains and lake",
+   "steps": [
+    {
+     "id": "lay-mountains",
+     "name": "Lay in the violet mountains",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "mountains",
+       "what": "the whole far range as one flat soft violet, two peaks on the left, a dip at the sun, a long ridge on the right, run down below where the hills will go"
+      }
+     ],
+     "paints": [
+      "Hill violet"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "3/4 inch flat",
+     "after": "A flat soft violet mountain range runs across the canvas just under the sun, with no darker ridges. Below it the canvas is still bare.",
+     "why": "The mountains are the next layer forward, painted over the dry sky."
+    },
+    {
+     "id": "shade-ridges",
+     "name": "Darken the lower ridges",
+     "lays": [
+      {
+       "thing": "mountains",
+       "what": "deeper violet on the lower, nearer ridges and the slopes turned away from the sun"
+      }
+     ],
+     "paints": [
+      "Deep violet"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat",
+     "after": "The mountains have darker violet ridges low down in front of the paler peaks. There is no lake and no land in front yet.",
+     "unit": "The darker mountain ridges"
+    },
+    {
+     "id": "lay-lake",
+     "name": "Streak in the little lake",
+     "lays": [
+      {
+       "thing": "lake",
+       "what": "a thin flat strip of water under the sun at the foot of the mountains, violet at the ends and gold in the middle where the sun glints"
+      }
+     ],
+     "paints": [
+      "Hill violet",
+      "Warm gold"
+     ],
+     "blend": true,
+     "stroke": "horizontal-strokes",
+     "brush": "1/2 inch flat",
+     "after": "A thin lake lies under the sun at the foot of the mountains, violet at the ends with a gold glint in the middle. The rest of the bottom half is still bare."
+    }
+   ]
+  },
+  {
+   "id": "the-golden-hills",
+   "name": "The golden hills",
+   "steps": [
+    {
+     "id": "lay-hills",
+     "name": "Blend in the golden hills",
+     "lays": [
+      {
+       "thing": "hills",
+       "what": "the rolling hills from the lake down to below where the lavender starts: golden ochre on the crests and the big slope on the right, olive green in the hollows"
+      }
+     ],
+     "paints": [
+      "Golden ochre",
+      "Olive green"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "3/4 inch wash brush",
+     "after": "Rolling hills cover the middle of the canvas, gold on the crests and the big right-hand slope, olive in the hollows, smooth with no grass strokes, no tree and no bushes. The bottom of the canvas is bare."
+    },
+    {
+     "id": "texture-hills",
+     "name": "Dry-brush the sunlit grass",
+     "lays": [
+      {
+       "thing": "hills",
+       "what": "light gold dry-brushed in short sloping strokes over the near hill crests and the big right-hand slope, the far hills left smooth"
+      }
+     ],
+     "paints": [
+      "Warm gold"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch old stiff flat",
+     "after": "The near hill crests and the big right-hand slope show broken light-gold grass strokes; the far hills stay smooth. There is no tree or bushes yet, and the bottom of the canvas is bare.",
+     "unit": "The sunlit grass on the hills"
+    }
+   ]
+  },
+  {
+   "id": "the-tree-and-bushes",
+   "name": "The tree and bushes",
+   "steps": [
+    {
+     "id": "pull-trunk",
+     "name": "Pull the tree trunk",
+     "lays": [
+      {
+       "thing": "trunk",
+       "what": "the lone tree's trunk on the right hilltop, wide at the base and splitting into a few branches that taper upward"
+      }
+     ],
+     "paints": [
+      "Bark brown"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/4 inch angle",
+     "after": "A bare dark brown trunk with a few tapering branches stands on the right hilltop against the sky. There are no leaves or bushes, and the bottom of the canvas is bare."
+    },
+    {
+     "id": "dab-dark-greens",
+     "name": "Dab the dark greens",
+     "lays": [
+      {
+       "thing": "canopy",
+       "what": "the whole rounded tree canopy over the branches, tapped in dark green with a few gaps"
+      },
+      {
+       "thing": "bushes",
+       "what": "small dark green clumps along the folds of the hills and the bottom edge of the golden slopes"
+      }
+     ],
+     "paints": [
+      "Tree green"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff round brush",
+     "after": "The tree has a full dark green canopy, and dark green bush clumps sit along the hill folds, all one flat dark with no lighter leaves. The bottom of the canvas is bare.",
+     "why": "One loaded stiff brush and one dark green taps the canopy and every bush the same way.",
+     "unit": "The tree's canopy and the bushes"
+    },
+    {
+     "id": "dab-mid-greens",
+     "name": "Dab the middle greens",
+     "lays": [
+      {
+       "thing": "canopy",
+       "what": "mid green taps over most of the canopy, more on the left, leaving dark on the right and underneath"
+      },
+      {
+       "thing": "bushes",
+       "what": "mid green taps on the tops of the bush clumps, dark left at their bases"
+      }
+     ],
+     "paints": [
+      "Bark brown"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff round brush",
+     "after": "The canopy and bushes have mid green over their tops and left sides with dark green still under them. There are no sunlit leaves yet, and the bottom of the canvas is bare."
+    },
+    {
+     "id": "dab-sunlit-greens",
+     "name": "Tap the sunlit leaves",
+     "lays": [
+      {
+       "thing": "canopy",
+       "what": "a few light yellow-green taps on the left side and top of the canopy, facing the sun"
+      },
+      {
+       "thing": "bushes",
+       "what": "a few light yellow-green taps on the sun side of the bush tops"
+      }
+     ],
+     "paints": [
+      "Sunlit green"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff round brush",
+     "after": "The tree and bushes catch a few light yellow-green leaves on the side facing the sun, with mid and dark green still showing. The bottom of the canvas is bare."
+    }
+   ]
+  },
+  {
+   "id": "the-lavender-field",
+   "name": "The lavender field",
+   "steps": [
+    {
+     "id": "lay-lavender-field",
+     "name": "Lay in the purple field",
+     "lays": [
+      {
+       "thing": "lavender",
+       "what": "the whole bottom of the canvas from the foot of the hills down: lavender purple at the back blending into dark shadow purple in front"
+      }
+     ],
+     "paints": [
+      "Lavender purple",
+      "Shadow purple"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "2 inch wide flat",
+     "after": "The bottom third of the canvas is a smooth purple field, lighter at the back and darker in front, with no rows, stamps or paths.",
+     "why": "The field goes on first and dries, so the rows are stamped over it and never painted around."
+    },
+    {
+     "id": "pull-soil",
+     "name": "Pull in the dirt paths",
+     "lays": [
+      {
+       "thing": "paths",
+       "what": "warm orange-brown strips between the rows, two wide paths in front and thin strips at the sides, all aimed at one dot below the center of the hills"
+      }
+     ],
+     "paints": [
+      "Warm soil"
+     ],
+     "stroke": "toward-vanishing-point",
+     "brush": "1/2 inch flat",
+     "after": "Warm orange-brown dirt strips fan out from one point below the hills across the dark purple field, wide in front and thin at the back. There are no lavender stamps yet.",
+     "unit": "The dirt paths and lavender rows"
+    },
+    {
+     "id": "stamp-dark-lavender",
+     "name": "Stamp the dark lavender rows",
+     "lays": [
+      {
+       "thing": "lavender",
+       "what": "blunt lavender purple stamps along every row between the paths, small and tight at the back, big and wide apart in front"
+      }
+     ],
+     "paints": [
+      "Lavender purple"
+     ],
+     "stroke": "stamp",
+     "brush": "#12 bright",
+     "after": "Rows of blunt lavender purple stamps run back between the dirt paths, small at the back and big in front, with the dark field showing between them. There is no lighter lavender yet."
+    },
+    {
+     "id": "stamp-mid-lavender",
+     "name": "Stamp the middle lavender",
+     "lays": [
+      {
+       "thing": "lavender",
+       "what": "mid lavender stamps over most of each row, the dark left at the bottom of every row and between the stamps"
+      }
+     ],
+     "paints": [
+      "Mid lavender"
+     ],
+     "stroke": "stamp",
+     "brush": "#12 bright",
+     "after": "The rows are mostly mid lavender with dark purple still at the bottom of each row and between the stamps. There are no pale tips yet."
+    },
+    {
+     "id": "tip-lavender",
+     "name": "Tip the lavender tops with light",
+     "lays": [
+      {
+       "thing": "lavender",
+       "what": "a few pale lilac stamps on the tops of the middle and front rows only, the back rows left without"
+      }
+     ],
+     "paints": [
+      "Pale lilac"
+     ],
+     "stroke": "stamp",
+     "brush": "#12 bright",
+     "after": "The middle and front rows have pale lilac tips on top, with mid and dark lavender below them; the far rows have none. The field is finished; the sky above has no balloon yet."
+    }
+   ]
+  },
+  {
+   "id": "the-balloon",
+   "name": "The hot-air balloon",
+   "steps": [
+    {
+     "id": "build-balloon",
+     "name": "Build the balloon shape",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "balloon",
+       "what": "the whole balloon as one flat warm gold shape: a center oval, curved ( ) pieces on each side, narrowing to a small neck at the bottom"
+      }
+     ],
+     "paints": [
+      "Warm gold"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "A flat warm gold balloon shape floats in the upper left sky, with no stripes, shading or basket.",
+     "why": "The focal point goes on last, over the dry sky, so it stays crisp."
+    },
+    {
+     "id": "paint-red-stripes",
+     "name": "Paint the red stripes",
+     "lays": [
+      {
+       "thing": "balloon",
+       "what": "red stripes curving from the top of the balloon down to the neck, gold left between them"
+      }
+     ],
+     "paints": [
+      "Balloon red"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The gold balloon has curved red stripes running from top to neck. There are no blue stripes, shading or basket yet.",
+     "unit": "The balloon's stripes, shading and basket"
+    },
+    {
+     "id": "paint-blue-stripes",
+     "name": "Paint the blue stripes",
+     "lays": [
+      {
+       "thing": "balloon",
+       "what": "blue stripes curving from top to neck between some of the red and gold ones"
+      }
+     ],
+     "paints": [
+      "Balloon blue"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The balloon is striped red, gold and blue from top to neck, all flat with no shading or light. There is no basket yet."
+    },
+    {
+     "id": "shade-balloon",
+     "name": "Shade the left side of the balloon",
+     "lays": [
+      {
+       "thing": "balloon",
+       "what": "a darker crescent down the left side and across the bottom, deep red on the red stripes and deep blue on the blue ones"
+      }
+     ],
+     "paints": [
+      "Deep red",
+      "Deep blue"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The balloon's left side and bottom are darker, so it starts to look round. The right side is still flat color and there is no basket."
+    },
+    {
+     "id": "light-balloon",
+     "name": "Light the side facing the sun",
+     "lays": [
+      {
+       "thing": "balloon",
+       "what": "pale yellow and orange dry-brushed in curved strokes on the right side of the balloon toward the sun, the bottom quarter left dark"
+      }
+     ],
+     "paints": [
+      "Pale sun yellow",
+      "Sunset orange"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/4 inch old stiff flat",
+     "after": "The balloon glows on its right side with pale yellow and orange over the stripes, dark on the left and bottom. It has no ropes or basket yet."
+    },
+    {
+     "id": "add-basket",
+     "name": "Add the ropes and basket",
+     "lays": [
+      {
+       "thing": "balloon",
+       "what": "a few thin ropes from the balloon's neck down to a small brown basket built of short strokes"
+      }
+     ],
+     "paints": [
+      "Bark brown"
+     ],
+     "stroke": "liner",
+     "brush": "#1 liner",
+     "after": "Thin ropes hang from the balloon's neck to a small brown basket. The painting is finished."
+    }
+   ]
+  }
+ ]
+}

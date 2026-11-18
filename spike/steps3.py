@@ -4,15 +4,15 @@ sections 7 to 9).
     fit(plan, us, ch)        -> each paint's color in this painting, fitted to what the units changed
     build(plan, finish, ch)  -> the step pictures, where each step lays paint, and the checks' numbers
     owner_from(ch)           -> which unit each pixel of the finish belongs to
-    as_v2(plan, ...)         -> the plan in the shape the version 2 tools read (a part a unit)
+    as_v2(plan, ...)         -> the plan in the shape the later tools read (a part a unit)
 
-A version 2 lesson measures paints inside outlines and cuts each step from the finish. Here the chain already holds
+Pipeline v2 measured paints inside outlines and cut each step from the finish (removed in #238). Here the chain holds
 a picture for the end of every unit (P[n]) and what the unit adds (D[n]): the plan names the paints and each is
 fitted to the changes; a unit's last step is P[n] exactly; an earlier step of the unit shows the pixels nearest
 its own paints. No outline model runs: a unit's shape is the core of what its render changed.
 
-The teaching pictures, the drafted lines, the recipes and the page are the version 2 tools' own code, reading the
-plan through `as_v2` and the shapes through `owner_from` (as the spikes ran them, #210 and #214).
+The teaching pictures, the drafted lines, the recipes and the page were written for v2, and read the plan through
+`as_v2` and the shapes through `owner_from` (as the spikes ran them, #210 and #214).
 """
 
 from __future__ import annotations
@@ -23,7 +23,6 @@ import numpy as np
 import build_steps as bs
 import erase3
 import from_finish as ff
-import outline as ol
 import plan3
 
 REFIT = 2  # rounds of "each pixel to its nearest paint, each paint to the middle of its pixels"
@@ -44,7 +43,7 @@ def _dist(lab: np.ndarray, hx: str) -> np.ndarray:
 
 def nearest(content: np.ndarray, hexes: list[str]) -> np.ndarray:
     """Which of `hexes` each pixel is nearest, smoothed so a pass arrives as marks, not as single pixels."""
-    lab = ol.lab(cv2.GaussianBlur(content, (0, 0), 1.0))
+    lab = ff.lab(cv2.GaussianBlur(content, (0, 0), 1.0))
     return cv2.medianBlur(np.stack([_dist(lab, h) for h in hexes]).argmin(0).astype(np.uint8), bs.SMOOTH)
 
 
@@ -59,7 +58,7 @@ def fit_paints(content: np.ndarray, where: np.ndarray, seeds: dict[str, str]) ->
     if not where.any() or not names:
         return hexes
     px = cv2.GaussianBlur(content, (0, 0), 1.0)[where]
-    lab = ol.lab(px[None])[0].astype(np.float32)
+    lab = ff.lab(px[None])[0].astype(np.float32)
     for _ in range(REFIT):
         dist = np.stack([_dist(lab, hexes[n]) for n in names])
         near = dist.argmin(0)
@@ -87,7 +86,7 @@ def fit(plan: dict, us: list[dict], ch: list[dict]) -> tuple[dict[str, str], lis
         names = unit_paints(steps, u)
         hexes = fit_paints(ch[n]["P"], ch[n]["D"], {p: seeds[p] for p in names})
         near = nearest(ch[n]["P"], [hexes[p] for p in names])
-        lab = ol.lab(cv2.GaussianBlur(ch[n]["P"], (0, 0), 1.0))
+        lab = ff.lab(cv2.GaussianBlur(ch[n]["P"], (0, 0), 1.0))
         per_unit.append(hexes)
         for j, p in enumerate(names):  # how much of the unit's change is this paint: nearest it, and like it
             laid.setdefault(p, []).append((int((ch[n]["D"] & (near == j) & (_dist(lab, hexes[p]) <= REACH)).sum()), n))
@@ -125,7 +124,7 @@ def build(plan: dict, finish: np.ndarray, ch: list[dict]) -> dict:
         content, D = ch[n]["P"], ch[n]["D"]
         names = unit_paints(steps, u)
         near = nearest(content, [per_unit[n][p] for p in names])
-        lab = ol.lab(cv2.GaussianBlur(content, (0, 0), 1.0))
+        lab = ff.lab(cv2.GaussianBlur(content, (0, 0), 1.0))
         first = {p: next(i for i in u["steps"] if p in steps[i]["paints"]) for p in names}
         for i in u["steps"]:
             s = steps[i]
@@ -264,7 +263,7 @@ def as_v2(plan: dict, us: list[dict], ch: list[dict], hexes: dict[str, str], own
             started.setdefault(x, u["id"])
         for i in u["steps"]:
             part_of[i] = u["id"]
-    lab = ol.lab(cv2.GaussianBlur(finish, (0, 0), 1.0))
+    lab = ff.lab(cv2.GaussianBlur(finish, (0, 0), 1.0))
     order = [p["id"] for p in parts]
     by_name = {p["name"]: p for p in plan["paints"]}
     paints = []

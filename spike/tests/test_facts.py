@@ -635,6 +635,7 @@ class WriterTests(unittest.TestCase):
         self.assertEqual(vf._apply(t, {"steps": {"sky": {"lines": {"six": "x"}}}}), ["sky: no line six"])
 
 
+@lessons.slow
 class FixtureTests(unittest.TestCase):
     """The three fixture lessons after draft-text: every claim in their Where lines passes (they're measured with
     the same measure as the sheet), and nothing in the drafted lines is flagged."""

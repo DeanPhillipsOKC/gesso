@@ -131,6 +131,11 @@ def _lab(rgb) -> tuple[float, float, float]:
     return 116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)
 
 
+def lightness(h: str) -> float:
+    """A hex color's lightness (Lab L, 0 to 100)."""
+    return _lab(hex_rgb(h))[0]
+
+
 def delta_e(c1, c2) -> float:
     """CIEDE2000 between two colors (#hex or RGB tuples)."""
     if isinstance(c1, str):

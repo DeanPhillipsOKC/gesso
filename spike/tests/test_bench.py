@@ -274,31 +274,22 @@ class FrozenBenchTests(unittest.TestCase):
 
 @lessons.slow
 class BenchToolsTests(unittest.TestCase):
-    """A built folder takes the v2 tools from the parts step on: the fixture's plan and outlines build its steps."""
+    """A built folder takes the run from the plan on: a version 3 plan written into it passes plan-check, which
+    sizes the chain before anything is rendered."""
 
-    def test_build_steps_runs_on_a_built_folder(self):
+    def test_plan_check_runs_on_a_built_folder(self):
         tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp, True)
         bench.freeze(sealed(tmp, full=True), bench=tmp / "bench")
         lesson = bench.build("chickadee", tmp / "b", "20261116-100000", bench=tmp / "bench")
         info = json.loads((lesson / "bench.json").read_text())
-        plan = json.loads((FIX / "plans" / "chickadee.json").read_text())
+        plan = json.loads((lessons.FIX / "chickadee" / "plan.json").read_text())
         plan["photo"] = info["plan_photo"]
         (lesson / "plan.json").write_text(json.dumps(plan))
-        (lesson / "parts").mkdir()
-        shutil.copyfile(FIX / "owners" / "chickadee.png", lesson / "parts" / "owner.png")
-        old = os.environ.get("GESSO_HISTORY")
-        os.environ["GESSO_HISTORY"] = str(tmp / "history")
-        try:
-            code, out = lessons.run_tool("build-steps", "--lesson", str(lesson))
-        finally:
-            if old is None:
-                os.environ.pop("GESSO_HISTORY", None)
-            else:
-                os.environ["GESSO_HISTORY"] = old
-        self.assertEqual(code, 0, out)
-        self.assertEqual(len(out["steps"]), sum(len(st["steps"]) for st in plan["stages"]))
-        self.assertTrue(all((lesson / s).exists() for s in out["steps"]))
+        code, out = lessons.run_tool("plan-check", "--lesson", str(lesson))
+        self.assertEqual((code, out["problems"]), (0, []), out)
+        self.assertEqual(out["renders"], len(out["units"]) - 1)
+        self.assertTrue((lesson / "99_finish.png").exists())  # what erase starts from
 
 
 if __name__ == "__main__":

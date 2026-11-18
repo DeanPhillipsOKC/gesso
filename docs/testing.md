@@ -4,8 +4,8 @@ The tests are in `spike/tests/` (`unittest`, no network, no API key, no model fi
 
 | Set | Command | When | Time on 4 cores |
 |---|---|---|---|
-| Quick | `python spike/tests/suite.py --quick` | after every code change, while working | about 11 seconds |
-| Full | `python spike/tests/suite.py` | before merging a pull request that changes code | about 1 1/2 minutes |
+| Quick | `python spike/tests/suite.py --quick` | after every code change, while working | about 13 seconds |
+| Full | `python spike/tests/suite.py` | before merging a pull request that changes code | about 2 minutes |
 
 Run tests only when a change could cause a regression (owner's call, 2026-11-17). Code means program files: the
 Python and JavaScript under `spike/`. A pull request that changes no code (docs, skills' instructions, techniques,
@@ -22,21 +22,19 @@ results in about 5 minutes; use it when a test misbehaves only under the runner.
 
 ## How the suite is kept fast (#87)
 
-- **The fixture lessons are built once per run.** `spike/tests/lessons.py` builds each of the three fixtures
-  (chickadee, lavender balloon, red sailboat) through the tools once, in stages (`outlined`, `aided`, `published`,
-  `checked`), into a folder all the workers share, and hands each test a copy. A test that needs a fixture lesson
-  asks for one with `lessons.lesson(name, stage)`; it doesn't run `build-steps`, `step-aids`, `mix`, or `publish`
-  on a fresh folder unless that tool is what it tests.
-- **`build_steps.build` remembers its last few answers in a process.** Every tool on a version 2 lesson builds the
-  steps (build-steps, step-aids, draft-text, check, and publish through check); with the same inputs in one
-  process, the second and later builds are a copy of the first. From the command line each tool is its own
-  process, so nothing changes there. Its key covers the inputs and the tuned numbers in `build_steps`, `from_finish`,
-  and `outline`; a test that patches one of their functions should clear `build_steps._built` first.
+- **The fixture lessons are built once per run.** The three fixtures (chickadee, lavender balloon, red sailboat) are
+  sealed version 3 runs made small: each one's plan, canvas, chain, chain checker's answers and stage writers'
+  words, at 0.4 of the size (`spike/tests/fixtures/lessons/`, made by `spike/tests/make_fixtures.py`).
+  `spike/tests/lessons.py` builds each through the tools once, in stages (`chained`, `built`, `published`,
+  `checked`, `worded`), into a folder all the workers share, and hands each test a copy. A test that needs a
+  fixture lesson asks for one with `lessons.lesson(name, stage)`, and for what build-steps kept with
+  `lessons.built(name)`; it doesn't run `build-steps`, `step-aids`, `mix`, or `publish` on a fresh folder unless
+  that tool is what it tests.
 - **Stroke cards and element files are parsed once per process** (`spike/yaml_files.py`), and again only when a file
   changes. publish used to parse all 28 stroke cards about 60 times.
 - **Classes run in parallel**, one worker per core, the slow ones first.
-- **The quick set leaves out the classes marked `@lessons.slow`**: the ones that build or publish a fixture lesson,
-  or run the outline model. Mark a new class slow when it takes more than a second or two.
+- **The quick set leaves out the classes marked `@lessons.slow`**: the ones that build or publish a fixture lesson.
+  Mark a new class slow when it takes more than a second or two.
 
-When adding a test, prefer a small made-up scene (like `scene()` in `test_pipeline_v2.py`) where the real picture
-isn't the point, and a shared fixture lesson where it is.
+When adding a test, prefer a small made-up scene (like test_erase3's scene and stand-in model, which
+`test_steps3.py` runs the tools on) where the real picture isn't the point, and a shared fixture lesson where it is.

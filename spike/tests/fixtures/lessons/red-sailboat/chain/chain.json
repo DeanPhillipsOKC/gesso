@@ -1,0 +1,192 @@
+{
+ "units": [
+  {
+   "id": "sky",
+   "name": "The sunset sky",
+   "kind": "first",
+   "things": [
+    "sky"
+   ],
+   "steps": [
+    0
+   ]
+  },
+  {
+   "id": "sun",
+   "name": "The sun",
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "steps": [
+    1
+   ]
+  },
+  {
+   "id": "hill",
+   "name": "The purple hill",
+   "kind": "behind",
+   "things": [
+    "hill"
+   ],
+   "steps": [
+    2
+   ]
+  },
+  {
+   "id": "the-hill-s-lit-slope",
+   "name": "The hill's lit slope",
+   "kind": "back",
+   "things": [
+    "hill"
+   ],
+   "steps": [
+    3
+   ]
+  },
+  {
+   "id": "shore",
+   "name": "The far shore line",
+   "kind": "behind",
+   "things": [
+    "shore"
+   ],
+   "steps": [
+    4
+   ]
+  },
+  {
+   "id": "water",
+   "name": "The sea",
+   "kind": "behind",
+   "things": [
+    "water"
+   ],
+   "steps": [
+    5
+   ]
+  },
+  {
+   "id": "the-sea-s-streaks-and-ripples",
+   "name": "The sea's streaks and ripples",
+   "kind": "back",
+   "things": [
+    "water"
+   ],
+   "steps": [
+    6,
+    7
+   ]
+  },
+  {
+   "id": "sun-path",
+   "name": "The sun's path on the water",
+   "kind": "behind",
+   "things": [
+    "sun-path"
+   ],
+   "steps": [
+    8,
+    9
+   ]
+  },
+  {
+   "id": "sails",
+   "name": "The white sails",
+   "kind": "behind",
+   "things": [
+    "sails"
+   ],
+   "steps": [
+    10
+   ]
+  },
+  {
+   "id": "the-sails-shadow-and-light",
+   "name": "The sails' shadow and light",
+   "kind": "back",
+   "things": [
+    "sails"
+   ],
+   "steps": [
+    11,
+    12
+   ]
+  },
+  {
+   "id": "hull",
+   "name": "The red hull",
+   "kind": "behind",
+   "things": [
+    "hull"
+   ],
+   "steps": [
+    13
+   ]
+  },
+  {
+   "id": "the-hull-s-shading-and-rim",
+   "name": "The hull's shading and rim",
+   "kind": "back",
+   "things": [
+    "hull"
+   ],
+   "steps": [
+    14,
+    15
+   ]
+  },
+  {
+   "id": "mast",
+   "name": "The mast and boom",
+   "kind": "behind",
+   "things": [
+    "mast"
+   ],
+   "steps": [
+    16
+   ]
+  },
+  {
+   "id": "reflection",
+   "name": "The boat's reflection",
+   "kind": "behind",
+   "things": [
+    "reflection"
+   ],
+   "steps": [
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "id": "the-sparkles-on-the-water",
+   "name": "The sparkles on the water",
+   "kind": "back",
+   "things": [
+    "sun-path"
+   ],
+   "steps": [
+    21
+   ]
+  }
+ ],
+ "again": {
+  "1": [
+   "left"
+  ],
+  "5": [
+   "left",
+   "left"
+  ],
+  "6": [
+   "left"
+  ],
+  "7": [
+   "left",
+   "left"
+  ]
+ }
+}

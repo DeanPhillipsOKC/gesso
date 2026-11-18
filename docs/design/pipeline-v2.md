@@ -1,5 +1,12 @@
 # Pipeline v2: paint the finish once, cut every step from it
 
+**History: this is no longer the pipeline.** Pipeline v3 replaced it when v3's gate passed on 2026-11-18
+(`docs/design/pipeline-v3.md`), and v2's own code went in #238: the parts with boxes and points, `outline` and its
+model, `part-colors`, measured paints (`paints`), the step cutter in `build_steps.py`, the background render,
+adapted cards (`card-adapt`), the text review (`step-pairs`) and its skill steps 2 to 7. What v2 built after the
+step pictures still runs, reading a v3 plan in v2's shape (`steps3.as_v2`): the teaching pictures (section 10's
+aids), the drafted lines, `check`, `mix` and the page. Its runs stay in the lesson history and on the site.
+
 Design, 2026-11-12. The owner approved the direction that day (`docs/decisions.md`, "Pipeline v2"). Part 1 is
 built and tested (`docs/spikes/outlines.md`: read it, and look at its pictures). This file is the plan the
 remaining issues build. If an issue and this file disagree, this file wins; fix the issue.

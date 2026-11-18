@@ -1,4 +1,4 @@
-"""A version 3 lesson as the version 2 tools read it (docs/design/pipeline-v3.md, sections 7 to 9).
+"""A version 3 lesson as the later tools read it, in version 2's shape (docs/design/pipeline-v3.md, sections 7 to 9).
 
     make(lesson, plan, finish) -> build-steps for a version 3 lesson: step pictures, shapes, the plan's v2 shape
     read(lesson)               -> what it kept, for step-aids, draft-text, mix, check and publish

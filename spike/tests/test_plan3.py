@@ -370,32 +370,25 @@ class PlanCheckToolTests(unittest.TestCase):
         self.assertFalse(r["ok"])
         self.assertNotIn("units", r)
 
-    def test_a_version_2_tool_still_refuses_a_plan_that_is_not_json(self):
-        for tool in ("build-steps", "step-aids", "paints", "draft-text", "mix", "check"):
-            with tempfile.TemporaryDirectory() as tmp:
-                (Path(tmp) / "plan.json").write_text('{"plan_version": 2, ', encoding="utf-8")
-                self.assertIsNone(plan3.version(Path(tmp)))
-                buf = io.StringIO()
-                with contextlib.redirect_stdout(buf):
-                    try:
-                        code = tools.main([tool, "--lesson", tmp])
-                    except ValueError as e:  # mix, publish and check never refused this; they still don't
-                        self.assertIn(tool, ("mix", "check"), e)
-                        continue
-                self.assertEqual(code, 2, tool)
-                self.assertIn("refused", json.loads(buf.getvalue()))
+    def test_the_step_tools_refuse_a_plan_that_is_not_json_or_not_version_3(self):
+        for text in ('{"plan_version": 3, ', json.dumps({"plan_version": 2, "parts": [], "stages": []})):
+            for tool in ("build-steps", "step-aids", "draft-text", "mix", "check", "publish"):
+                with tempfile.TemporaryDirectory() as tmp:
+                    (Path(tmp) / "plan.json").write_text(text, encoding="utf-8")
+                    buf = io.StringIO()
+                    with contextlib.redirect_stdout(buf):
+                        try:
+                            code = tools.main([tool, "--lesson", tmp])
+                        except ValueError as e:  # check reads the plan itself and never refused bad JSON
+                            self.assertEqual((tool, text[-2:]), ("check", ", "), e)
+                            continue
+                    self.assertEqual(code, 2, (tool, text))
+                    self.assertIn("refused", json.loads(buf.getvalue()))
 
-    def test_outline_refuses_a_version_3_plan(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            (Path(tmp) / "plan.json").write_text(json.dumps(plan()), encoding="utf-8")
-            self.assertEqual(plan3.version(Path(tmp)), 3)
-            self.assertTrue(plan3.is_v3(Path(tmp)))
-            buf = io.StringIO()
-            with contextlib.redirect_stdout(buf):
-                code = tools.main(["outline", "--lesson", tmp])  # outlines are version 2's alone
-            self.assertEqual(code, 2)
-            self.assertIn("isn't a version 2 plan", json.loads(buf.getvalue())["refused"])
-        self.assertIsNone(plan3.version(Path(tmp)))
+    def test_v2s_tools_are_gone(self):  # #238: outlines, measured paints, the background render, adapted cards
+        for tool in ("outline", "part-colors", "paints", "background", "card-adapt", "step-pairs", "engine"):
+            with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                tools.build_parser().parse_args([tool, "--lesson", "x"])
 
 
 if __name__ == "__main__":

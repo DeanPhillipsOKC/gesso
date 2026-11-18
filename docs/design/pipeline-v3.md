@@ -1,7 +1,7 @@
 # Pipeline v3: plan first, erase the finish back one stage at a time, write from what was measured
 
 **The gate passed (2026-11-18, owner's call; `docs/decisions.md`): v3 replaces v2.** `/paint-lesson` runs v3 with no
-flag (#236; `--v3` is kept and does nothing). v2's code is still in the repo until it is removed. Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
+flag (#236; `--v3` is kept and does nothing). v2's code was removed in #238 (section 11). Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
 (`pipeline-v3-plan.md`, Order, step 5). Each section says what is **proven** (a spike ran it and its write-up has the
 numbers), what is a **guess** (this draft's own joining of the pieces, run by nobody yet), and what is **open**.
 
@@ -351,10 +351,10 @@ paints, and each is fitted to the finish.
   gray darker than the cat's coat, no paint as pale as the plan's "Pale gold"). The plan is changed, not the finish.
 - Recipes are computed as in v2 (`mix`, Mixbox), and every step lists its own paints and recipes.
 
-**As built (#219; `steps3.fit`, `tools.py paints` and `build-steps`).** The fit is `fit_paints` of #207, a unit at a
+**As built (#219; `steps3.fit` and `build-steps`).** The fit is `fit_paints` of #207, a unit at a
 time, over the unit's whole change. The lesson's one color for a paint is its fit in the unit that lays the most of
-it (a tie goes to the earlier unit). `paints` on a version 3 lesson only reports; `build-steps` fits again and keeps
-the colors. Two things are reported, not failed: a paint fitted more than 25 Lab units from the plan's rough color
+it (a tie goes to the earlier unit). `build-steps` fits them and keeps the colors (a `paints` tool that only
+reported them went with v2's in #238). Two things are reported, not failed: a paint fitted more than 25 Lab units from the plan's rough color
 (`far_from_name`: five of the sleeping cat's 22), and a paint fewer than 20 pixels came to (`not_in_finish`). A
 plan's `color`, name or `looks` can be changed without a new chain. Two paints whose names differ only in
 punctuation are refused by `plan-check`.
@@ -466,14 +466,15 @@ block-in, section 14: failing it would stop every lesson with a block-in). The s
 POC 2.0.0; the site refused one for a day, by Claude's reading of the gate). `check` also checks the writers' words against the sheet as it is now, so words changed
 after `check-text --final` can't be sealed. `erase` caps the chain's own renders at twice what the chain costs
 once (5 cents a unit plus 7), whatever the lesson spent before it. Cards are shown as the general
-cards: `card-adapt` works, and the run doesn't use it.
+cards (`card-adapt`, which v3's run never used, went with v2 in #238).
 
 **Not solved:** the stroke cards' own words, where most teaching faults come from (a load word such as "creamy"
 that the step never explains). That is #175.
 
 ## 11. What goes, and what stays
 
-**Goes from the run** (the code stays until the gate passes, as v1's did):
+**Goes from the run.** The code stayed until the gate passed, as v1's did, and was removed in #238, with the
+spike scripts under `spike/experiments/` that were built on it (their results and write-ups are kept):
 
 - parts with boxes and points, `outline`, the outline model, and the fix rounds;
 - what's-behind fills: rims, strays, row fills, borrowed texture, and the background render;
@@ -484,8 +485,10 @@ that the step never explains). That is #175.
 techniques, stroke cards and research; Mixbox recipes; inches, never percent; construction diagrams; notes, seal,
 publish, the history and the site; hands-off runs only on the site; lessons made on Opus.
 
-**`build_steps.py` holds about 34 tuned numbers,** most named after one past failure. v3's step pictures need the
-guard's four and the core's one.
+**`build_steps.py` held about 34 tuned numbers,** most named after one past failure. v3's step pictures need the
+guard's four and the core's one; since #238 it holds only the helpers v3 uses (`make_background`, `halo`,
+`visible`, the contact sheet). The opt-in engine (#176, verdict open, never part of this design) ran v2's tool
+order and went too.
 
 ## 12. Build order
 
@@ -515,7 +518,8 @@ gate with known problems missed: 4 to 7 a lesson, not under 2, most of them pain
 `/paint-lesson` runs v3 with no flag since #236, with two things the gate runs showed folded into its
 instructions: `check` runs right after `draft-text` (before the chain's checker and the words), so a paint merge it
 asks for costs no writer's words and no checker's answers; and each stage writer is told up front to name only its
-own step's paints and keep every line under 40 words. Still to do: rerun the site's lessons, remove v2.
+own step's paints and keep every line under 40 words. v2 was removed in #238. Still to do: rerun the site's
+lessons.
 
 ## 14. Known risks
 

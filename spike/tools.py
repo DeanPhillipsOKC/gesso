@@ -27,11 +27,6 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-if __name__ == "__main__" and sys.argv[1:2] == ["engine"]:  # the engine (#176): its client needs nothing below
-    import engine
-
-    sys.exit(engine.main(sys.argv[2:]))
-
 from run import IMAGE_MODEL, ROOT, Ledger, edit_image, png_bytes, size_for  # noqa: E402
 
 CACHE_DIR = ROOT / "output" / ".render-cache"
@@ -259,42 +254,26 @@ def add_render(sub) -> None:
 # Lesson files (#10): plan.json in, step images and lesson.html out
 # ---------------------------------------------------------------------------
 #
-# <lesson>/plan.json     written by the skill: "plan_version": 2, parts, paints, stages, plus "photo" and
-#                        "technique" paths (relative to the repo); docs/design/pipeline-v2.md section 5
-# <lesson>/99_finish.png the finished painting; every step is cut from it
-# <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is a copy of the finish)
+# <lesson>/plan.json     written by the plan's writer: "plan_version": 3, things, paints, stages, plus "photo" and
+#                        "technique" paths (relative to the repo); docs/design/pipeline-v3.md section 5
+# <lesson>/99_finish.png the finished painting; the chain (chain/) erases it backward, a unit of the plan a render
+# <lesson>/v3/plan.json  the plan in version 2's shape (steps3.as_v2), what the later tools read; build-steps keeps it
+# <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is the finish)
 # <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, summary, tip, lines: [{kind, text,
-#                        edited}], brushes: [{brush, use}], made_with, reason}], card_text: {step id: {card id:
-#                        the card adapted for this painting}}}; design section 10
+#                        edited}], brushes: [{brush, use}], made_with, reason}]}; design section 10
 # <lesson>/review.json   written by the skill: {"finish_issues": [...], "text_issues": [...]}
 
 
 def load_plan(lesson: Path):
-    """(plan.json as written, the plan as the LessonPlan model mix, publish, and the seal read, the technique). The
-    plan is checked with plan2.problems and seen through publish2.as_v1 (design section 13). A version 1 plan is
-    refused: that pipeline was removed (#82)."""
+    """(the plan in version 2's shape as build-steps kept it, the plan as the LessonPlan model mix, publish, and the
+    seal read, the technique). Only a version 3 lesson: versions 1 and 2 were removed (#82, #238)."""
     import yaml
-    import plan2
     import publish2
 
-    import plan3
-
-    if plan3.is_v3(lesson):  # a version 3 lesson: its plan in version 2's shape, as its build-steps kept it
-        raw = _v3_kept(lesson, pictures=False)["plan"]
-        technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
-        if raw.get("palette"):
-            technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
-        return raw, publish2.as_v1(raw), technique
-    raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
-    if not plan2.is_v2(lesson):
-        raise Refused("plan.json isn't a version 2 plan (no \"plan_version\": 2). Version 1 lessons can't be published "
-                      "or mixed any more (#82); make the lesson again with /paint-lesson.")
+    raw = _v3_kept(lesson, pictures=False)["plan"]
     technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
     if raw.get("palette"):  # the painter's own tubes (palettes/<name>.yaml) instead of the technique's five
         technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
-    wrong = plan2.problems(raw)
-    if wrong:
-        raise Refused("fix plan.json first: " + " | ".join(wrong))
     return raw, publish2.as_v1(raw), technique
 
 
@@ -395,29 +374,6 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
     return mixes
 
 
-def _paints_v3(lesson: Path, a: argparse.Namespace) -> dict:
-    """paints for a version 3 lesson: each of the plan's paints fitted to what its units changed, and a report of a
-    paint fitted far from its name. It writes nothing: build-steps fits them again and keeps them. Design section 7."""
-    import erase3
-    import plan3
-    import steps3
-
-    if getattr(a, "add", None):
-        raise Refused("paints --add is for a version 2 lesson. A version 3 plan names its own paints: add the paint "
-                      "to plan.json and to the step that lays it.")
-    plan, _, _ = _v3_ready(lesson)
-    us = plan3.units(plan)
-    try:
-        ch = erase3.load(lesson, plan)
-    except erase3.Refused as e:
-        raise Refused(str(e))
-    _, _, rows = steps3.fit(plan, us, ch)
-    notes = steps3.problems({"final_gap": 0, "outside_unit_max": 0, "rows": [], "paints": rows, "little": []})[1]
-    return {"paints": rows, "problems": [], "notes": notes,
-            "advice": "Each note is a known problem for the page (review.json). A paint's name and `looks` are in "
-                      "the chain's requests, so renaming one renders part of the chain again.", "cost_usd": 0.0}
-
-
 def mix_tool(a: argparse.Namespace) -> dict:
     """Compute the paint recipes for a lesson, so the skill can see them before writing the step text."""
     lesson = Path(a.lesson)
@@ -451,34 +407,31 @@ def busy_problems(lesson: Path, notes: dict) -> list[str]:
             for role, what in want if not isinstance(got.get(role), dict)]
 
 
-def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict, v3: bool = False) -> list[str]:
+def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, checks: dict) -> list[str]:
     """What stops a lesson being sealed hands-off: the rules the skill asks for, checked instead of remembered
     (two hands-off runs, 2026-11-12, each let a small rule slip late in a long run).
     There's no image review, no regions, and no word limit on a step (design section 13)."""
     out = []
     ids = [s.id for s in plan.steps]
-    review_step = "step 7b"  # the skill's text review
     if not (lesson / "review.json").exists():
-        out.append("review.json is missing (step 7b)")
+        out.append("review.json is missing (v3/run.md step D4)")
     for key in ("finish_issues", "text_issues"):
         if key not in review:
             out.append(f"review.json has no {key} (an empty list if there were none)")
-    if v3:  # a version 3 run has two checkers in the text review's place (design sections 6 and 10)
-        answers, looks = lesson / "chain" / "looks" / "answers.json", lesson / "chain" / "looks"
-        try:
-            said = json.loads(answers.read_text(encoding="utf-8"))
-            read = {x.get("look") for x in said if isinstance(x, dict)} if isinstance(said, list) else None
-        except (OSError, ValueError):
-            read = None
-        if read is None:
-            out.append("the chain's checker hasn't read the chain as it is now: no chain/looks/answers.json that can "
-                       "be read (v3/chain-check.md)")
-        elif {f.stem for f in looks.glob("U[0-9][0-9].jpg")} - read:
-            out.append("chain/looks/answers.json doesn't answer for every unit: send the checker again")
-        if not (lesson / "words" / "dropped.json").exists():
-            out.append("the words haven't had their last check: run check-text --final")
-    elif not (lesson / "trials" / "review" / "review.json").exists():
-        out.append(f"the text review ({review_step}) hasn't run: no trials/review/review.json")
+    # two checkers look at the run (design sections 6 and 10): the chain's, and the words' last check
+    answers, looks = lesson / "chain" / "looks" / "answers.json", lesson / "chain" / "looks"
+    try:
+        said = json.loads(answers.read_text(encoding="utf-8"))
+        read = {x.get("look") for x in said if isinstance(x, dict)} if isinstance(said, list) else None
+    except (OSError, ValueError):
+        read = None
+    if read is None:
+        out.append("the chain's checker hasn't read the chain as it is now: no chain/looks/answers.json that can "
+                   "be read (v3/chain-check.md)")
+    elif {f.stem for f in looks.glob("U[0-9][0-9].jpg")} - read:
+        out.append("chain/looks/answers.json doesn't answer for every unit: send the checker again")
+    if not (lesson / "words" / "dropped.json").exists():
+        out.append("the words haven't had their last check: run check-text --final")
     for key in NOTES_REQUIRED:
         if not notes.get(key):
             out.append(f"notes.json is missing {key} (step 8)")
@@ -559,8 +512,7 @@ def publish(a: argparse.Namespace) -> dict:
 
     view = canvas_view(lesson, [p.name for p in paths])
     prune_canvas_view(lesson, [p.name for p in paths])
-    stages = publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson,
-                             text_all.get("card_text"))
+    stages = publish2.stages(raw, text, paints, [view.get(p.name, p.name) for p in paths], technique, lesson)
     from version import stamp
     old = lesson / "lesson.json"
     from version import with_made
@@ -568,7 +520,7 @@ def publish(a: argparse.Namespace) -> dict:
     previous = old_stamp.get("version", "before stamps") if old_stamp is not None else None
     lesson_data = {
         "gesso": with_made(stamp(), old_stamp or None),
-        "canvas": _v2_canvas(lesson)[1],
+        "canvas": _lesson_canvas(lesson)[1],
         "photo": photo.name, "photo_file": photo_copy.name if photo_copy.exists() else "", "technique": technique["id"], "mode": "paint-lesson skill", "variant": "claude-code",
         "quality": raw.get("quality", "low"), "image_model": IMAGE_MODEL, "claude_model": f"{CLAUDE_MODEL} (Claude Code)",
         "photo_read": {"subject": plan.subject, "focal_point": plan.focal_point, "light": plan.light,
@@ -583,8 +535,7 @@ def publish(a: argparse.Namespace) -> dict:
         # beside the keys every reader of lesson.json uses: the plan's stages, for the page's headings, and the aids
         "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
-    if raw.get("made_from") == 3:  # made by pipeline v3 and read by the page in version 2's shape
-        lesson_data["pipeline"] = 3
+    lesson_data["pipeline"] = 3  # made by pipeline v3 and read by the page in version 2's shape
     if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
         lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
     if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
@@ -636,8 +587,7 @@ def publish(a: argparse.Namespace) -> dict:
     if getattr(a, "final", False):  # the skill's last publish: check everything, then seal it hands-off
         # what check already reports (in its own words) is left out of the seal's list so it isn't said twice
         problems = seal_problems(lesson, plan, text, review, notes,
-                                 {k: v for k, v in result.items() if k not in CHECKED},
-                                 v3=raw.get("made_from") == 3) + result["check"]
+                                 {k: v for k, v in result.items() if k not in CHECKED}) + result["check"]
         if problems:
             raise Refused("not sealed; fix these and run publish --final again: " + " | ".join(problems))
         provenance.seal(lesson, lesson_data)
@@ -872,13 +822,6 @@ def add_lesson_tools(sub) -> None:
         return {"canvas": canvas_view(Path(a.lesson), a.images) or "no canvas crop needed", "cost_usd": 0.0}
     p.set_defaults(func=_view)
 
-    p = sub.add_parser("step-pairs", help="Free. Before/after/what-changed sheets for every step, for the step review (#24).",
-                       description="After publish: writes <lesson>/trials/review/NN_<id>.png (before, after, and a measured "
-                                   "change map, all on a 10% grid) and packet.json with each step's text and the "
-                                   "technique's stroke_results. A fresh reviewer follows .claude/skills/paint-lesson/step-review.md.")
-    p.add_argument("--lesson", required=True)
-    p.set_defaults(func=lambda a: __import__("step_review").packet(Path(a.lesson)))
-
     p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
                        description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "
                                    "installed, trials/diagrams.png, so you can check each diagram against its step.")
@@ -1007,259 +950,38 @@ def add_filters(sub) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Pipeline v2: outlines, and step pictures cut from the finish (docs/design/pipeline-v2.md)
+# The step tools: a lesson's step pictures, teaching pictures, drafted lines and checks, from its chain. The later
+# tools read the plan in version 2's shape (steps3.as_v2), as build-steps kept it (lesson3)
 # ---------------------------------------------------------------------------
-
-
-def _v2(lesson: Path):
-    """A version 2 lesson's plan and finish, or a refusal that says what's missing."""
-    import plan2
-    import plan3
-    from filters import load
-
-    if not (lesson / "plan.json").exists():
-        raise Refused(f"no plan.json in {lesson}")
-    if plan3.is_v3(lesson):  # a version 3 lesson, read in version 2's shape (what its build-steps kept)
-        return _v3_kept(lesson, pictures=False)["plan"], load(lesson / "99_finish.png", max_side=100_000)
-    try:
-        plan = plan2.load(lesson)
-    except ValueError as e:
-        raise Refused(str(e))
-    wrong = plan2.problems(plan)
-    if wrong:
-        raise Refused("fix plan.json first: " + " | ".join(wrong))
-    finish = lesson / "99_finish.png"
-    if not finish.exists():
-        raise Refused(f"no 99_finish.png in {lesson}")
-    return plan, load(finish, max_side=100_000)
 
 
 def _v3_kept(lesson: Path, pictures: bool = True) -> dict:
     """What build-steps kept for a version 3 lesson (lesson3.read), or a refusal that says what to run."""
     import lesson3
+    import plan3
 
+    if not (lesson / "plan.json").exists():
+        raise Refused(f"no plan.json in {lesson}")
+    if not plan3.is_v3(lesson):
+        raise Refused(f"{lesson}/plan.json isn't a version 3 plan (no \"plan_version\": 3). Version 1 and 2 lessons "
+                      "can't be built, checked or published any more (#82, #238); make the lesson again with "
+                      "/paint-lesson")
     try:
         return lesson3.read(lesson, pictures)
     except lesson3.Stale as e:
         raise Refused(str(e))
 
 
-def _read_owner(lesson: Path, plan: dict):
-    import numpy as np
-    from PIL import Image
-
-    path = lesson / "parts" / "owner.png"
-    if not path.exists():
-        raise Refused(f"no outlines yet: run outline --lesson {lesson} first")
-    owner = np.array(Image.open(path)).astype("int32")
-    if owner.max() >= len(plan["parts"]):
-        raise Refused("parts/owner.png is from a different part list: run outline again")
-    return owner
-
-
-_outline_model = None  # the engine's kept outline model (#176, spike/engine.py); None: load one for this call
-
-
-def outline_tool(a: argparse.Namespace) -> dict:
-    """Write parts/<id>.png, parts/owner.png, and parts/preview.jpg for a version 2 plan."""
-    import numpy as np
-    import outline as ol
-    from PIL import Image
-
-    lesson = Path(a.lesson)
-    plan, finish = _v2_parts_only(lesson)  # outline runs before there are paints or stages (design section 4)
-    try:
-        masks, owner, stats = ol.outline(finish, plan["parts"], _outline_model() if _outline_model else ol.Sam())
-    except ol.NoModel as e:
-        raise Refused(str(e))
-    except ValueError as e:
-        raise Refused(str(e))
-    folder = lesson / "parts"
-    folder.mkdir(exist_ok=True)
-    for old in folder.glob("*.png"):
-        old.unlink()
-    Image.fromarray(owner.astype(np.uint8)).save(folder / "owner.png")
-    for pid, m in masks.items():
-        Image.fromarray((m * 255).astype(np.uint8)).save(folder / f"{pid}.png")
-    Image.fromarray(ol.preview(finish, plan["parts"], owner)).save(folder / "preview.jpg", quality=88)
-    (folder / "stats.json").write_text(json.dumps(stats, indent=1), encoding="utf-8")
-    return {"preview": str(folder / "preview.jpg"), "parts": stats, "problems": ol.problems(plan["parts"], stats),
-            "advice": "Read the preview once. Fix any part that's visibly wrong (its box, points, or colors) and run "
-                      "this again: at most 2 rounds per part.", "cost_usd": 0.0}
-
-
-def part_colors_tool(a: argparse.Namespace) -> dict:
-    """Each part's main colors, measured from the finish inside its outline."""
-    import paints
-
-    lesson = Path(a.lesson)
-    plan, finish = _v2_parts_only(lesson)
-    owner = _read_owner(lesson, plan)
-    out = {p["id"]: paints.part_colors(finish, owner == k, a.colors) for k, p in enumerate(plan["parts"])}
-    return {"colors": out, "advice": "Darkest first, with each color's share of the part and a spot (0-1) inside it.",
-            "cost_usd": 0.0}
-
-
-def paints_tool(a: argparse.Namespace) -> dict:
-    """Measure the plan's paints from the finish, mark tints and shades, merge the rest to the technique's
-    max_mixes, and write them (and the steps pointed at them) into plan.json. Design section 9."""
-    import mixing
-    import paints
-    import plan2
-    import yaml
-    from PIL import Image
-
-    lesson = Path(a.lesson)
-    import plan3
-
-    if plan3.is_v3(lesson):
-        return _paints_v3(lesson, a)
-    plan, finish = _v2_parts_only(lesson)
-    owner = _read_owner(lesson, plan)
-    if owner.shape != finish.shape[:2]:
-        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
-    technique = yaml.safe_load((ROOT / plan["technique"]).read_text(encoding="utf-8")) if plan.get("technique") else {}
-    tubes = load_palette(plan["palette"])[0] if plan.get("palette") else technique.get("palette") or []
-    try:
-        white = next((mixing.tube_rgb(t) for t in tubes if "white" in t.lower()), (255, 255, 255))
-        colored = [t for t in tubes if "white" not in t.lower()]
-        dark = min(colored, key=lambda t: mixing._lab(mixing.tube_rgb(t))[0]) if colored else None
-    except mixing.UnknownTube as e:
-        raise Refused(str(e))
-    max_mixes = technique.get("max_mixes")
-    tubes = (white, mixing.tube_rgb(dark) if dark else (20, 20, 22), dark or "black")
-    if a.add:
-        try:
-            r = paints.add(finish, plan, owner, a.add, max_mixes, *tubes)
-        except ValueError as e:
-            raise Refused(str(e))
-    else:
-        r = paints.measure(finish, plan, owner, max_mixes, *tubes)
-    plan["paints"] = r["paints"]  # never the steps: which paints a step uses is Claude's to choose
-    (lesson / "plan.json").write_text(json.dumps(plan, indent=1) + "\n", encoding="utf-8")
-    (lesson / "trials").mkdir(exist_ok=True)
-    sheet = lesson / "trials" / "paints.jpg"
-    Image.fromarray(paints.swatch_sheet(finish, plan["parts"], r["paints"], r["shares"])).save(sheet, quality=90)
-    names = {p["id"]: p.get("name") or p["id"] for p in r["paints"]}
-    merged = [f"{', '.join(m['parts'])}: {m['hex']}" + (f" ({m['id']})" if m.get("id") else "")
-              + f" merged into {m['into']}, {m['delta_e']} apart" + (", in the same part" if m["same_part"] else "")
-              for m in r["merges"]]
-    changed = [f"{c['id']} moved Delta E {c['delta_e']} ({c['from']} to {c['to']})"
-               + ("; it keeps its name" if c["name_kept"] else "; name it again (and its used_for)")
-               for c in r["changed"]]
-    removed = [f"{x['id']} removed: its parts ({', '.join(x['parts']) or 'none'}) are gone"
-               + (f"; steps that still name it: {', '.join(x['steps'])}. Point them at another paint." if x["steps"] else "")
-               for x in r["removed"]]
-    bases = paints.base_mixes(r["paints"])
-    over = []
-    if r["over_target"]:
-        over = [f"{len(bases)} base mixes, above the target of {max_mixes}. Every pair left is an accent, a paint a "
-                f"step uses, a paint paints --add made, or more than Delta E {paints.MAX_MERGE:g} apart. That's "
-                "allowed; don't raise max_mixes or merge by hand."]
-        over += [f"{names[o['id']]} stays" + "".join(f" ({why})" for why, on in (("an accent", o["accent"]),
-                 ("a step uses it", o["used"]), ("added", o["added"])) if on)
-                 + f": nearest is {names[o['nearest']]}, {o['delta_e']} away" for o in r["over_target"]]
-    problems = plan2.problems(plan, technique)
-    if not plan2.steps(plan):  # paints runs before the stages are written: that's not a problem yet
-        problems = [p for p in problems if p != plan2.NO_STAGES]
-    problems = r.get("problems", []) + problems
-    if r["first"]:
-        advice = ("First measurement. Read the sheet. Name each paint and say what it's for; then write the stages, "
-                  "each step choosing from these paints. Run paints again only after outline changes the parts.")
-    elif a.add:
-        advice = (f"Point the step that should use {r['added']} at it (split a pass in two: darker paint first), name "
-                  "it, then run build-steps." if len(r["new"]) == 1 else
-                  f"Added {', '.join(r['new'])}: a color for each of the part's colors no paint came within Delta E "
-                  f"{paints.MAX_MERGE:g} of (a stripe each). Point each step at the one its picture shows, name them, "
-                  "then run build-steps." if r["new"] else "Nothing was added: see problems.")
-    else:
-        advice = ("Measured again: every paint kept its id; no paint a step uses was merged or moved to another step. "
-                  "Name any paint that lost its name, give each new paint a step, then run build-steps.")
-    return {"paints": [{k: p[k] for k in ("id", "name", "hex", "of", "plus", "parts", "added") if k in p}
-                       for p in r["paints"]],
-            "first": r["first"], "base_mixes": len(bases), "max_mixes": max_mixes, "merged": merged,
-            "changed": changed, "kept": r["kept"], "new": r["new"], "removed": removed, "added": r.get("added"),
-            "accents": r["accents"], "kept_names": r["kept_names"], "sheet": str(sheet), "over_target": over,
-            "problems": problems, "advice": advice, "cost_usd": 0.0}
-
-
-def _v2_parts_only(lesson: Path):
-    """Like _v2, for the tools that run before the plan has paints and steps (outline, part-colors, paints): only
-    the parts must be right."""
-    import plan2
-    from filters import load
-
-    if not (lesson / "plan.json").exists():
-        raise Refused(f"no plan.json in {lesson}")
-    try:
-        plan = plan2.load(lesson)
-    except ValueError as e:
-        raise Refused(str(e))
-    wrong = plan2.parts_problems(plan)
-    if wrong:
-        raise Refused("fix plan.json's parts first: " + " | ".join(wrong))
-    finish = lesson / "99_finish.png"
-    if not finish.exists():
-        raise Refused(f"no 99_finish.png in {lesson}")
-    return plan, load(finish, max_side=100_000)
-
-
 def save_png(rgb, path: Path) -> None:
-    """A step picture as a PNG. The engine (#176) swaps in one that keeps each picture's bytes, so a step that
-    didn't change isn't encoded again."""
+    """A step picture as a PNG."""
     from PIL import Image
 
     Image.fromarray(rgb).save(path)
 
 
 def build_steps_tool(a: argparse.Namespace) -> dict:
-    """Write NN_<step id>.png for every step of a version 2 plan, cut from the finish. No renders."""
-    import build_steps as bs
-    from filters import load
-    from PIL import Image
-
-    lesson = Path(a.lesson)
-    import plan3
-
-    if plan3.is_v3(lesson):
-        return _build_steps_v3(lesson)
-    plan, finish = _v2(lesson)
-    owner = _read_owner(lesson, plan)
-    if owner.shape != finish.shape[:2]:
-        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
-    plate = lesson / "98_background.png"
-    background = load(plate, max_side=100_000) if plate.exists() else None
-    pictures, rows, _ = bs.build(finish, plan, owner, background)
-    steps = bs.flat_steps(plan)
-    for old in lesson.glob("[0-9][0-9]_*.png"):
-        if not old.name.startswith(("00_", "98_", "99_")):
-            old.unlink()
-    names = []
-    for i, (pic, s) in enumerate(zip(pictures, steps)):
-        name = f"{i + 1:02d}_{s['id']}.png"
-        save_png(pic, lesson / name)
-        names.append(name)
-    (lesson / "trials").mkdir(exist_ok=True)
-    sheet = lesson / "trials" / "steps.jpg"
-    Image.fromarray(bs.contact_sheet(pictures, steps)).save(sheet, quality=88)
-    front = round(float((~bs.back_parts(plan["parts"]))[owner].mean()), 3)
-    advice = "Read the sheet. Every step should add one thing; nothing else should change."
-    if background is None and front > bs.NEEDS_BACKGROUND:
-        advice += (f" Objects cover {front:.0%} of the picture and there's no 98_background.png, so what's behind them "
-                   "is a rough fill until they're painted: a blurred ghost of them shows in every step before their "
-                   "own. Run background (one render, about 2 cents), then build-steps again (design section 7).")
-    faint = bs.faint_ghosts(plan, rows)
-    if faint:
-        advice += " Look for these on the sheet: " + "; ".join(faint) + "."
-    return {"steps": names, "sheet": str(sheet), "rows": rows, "problems": bs.problems(plan, rows),
-            "objects_share": front, "background": plate.name if background is not None else None,
-            "needs_background": background is None and front > bs.NEEDS_BACKGROUND,
-            "advice": advice, "cost_usd": 0.0}
-
-
-def _build_steps_v3(lesson: Path) -> dict:
-    """build-steps for a version 3 lesson: the paints fitted to the chain, a step picture a step, and what the later
-    tools read (lesson3.make). Design sections 7 and 8."""
+    """build-steps: the paints fitted to the chain, a step picture a step, and what the later tools read
+    (lesson3.make). Design sections 7 and 8."""
     import build_steps as bs
     import erase3
     import lesson3
@@ -1267,6 +989,7 @@ def _build_steps_v3(lesson: Path) -> dict:
     import steps3
     from PIL import Image
 
+    lesson = Path(a.lesson)
     plan, _, finish = _v3_ready(lesson)
     try:
         built = lesson3.make(lesson, plan, finish, save_png)
@@ -1284,8 +1007,8 @@ def _build_steps_v3(lesson: Path) -> dict:
                       "step-aids, mix, draft-text.", "cost_usd": 0.0}
 
 
-def _v2_canvas(lesson: Path) -> tuple[list | None, dict]:
-    """A version 2 lesson's canvas box and size: canvas.json, or the default size picked now (#122)."""
+def _lesson_canvas(lesson: Path) -> tuple[list | None, dict]:
+    """A lesson's canvas box and size: canvas.json, or the default size picked now (#122)."""
     import canvas as cv
     import checks
 
@@ -1297,35 +1020,17 @@ def _v2_canvas(lesson: Path) -> tuple[list | None, dict]:
 
 def step_aids_tool(a: argparse.Namespace) -> dict:
     """Write aids/: every step's teaching pictures (where its paint goes, a close-up, a paint map) and the transfer
-    outline, from the outlines, the plan, and the step pictures. No renders, the same bytes every run."""
+    outline, from what build-steps kept. No renders, the same bytes every run."""
     import aids
-    import build_steps as bs
-    import numpy as np
-    from filters import load
 
     lesson = Path(a.lesson)
-    plan, finish = _v2(lesson)
-    owner = _read_owner(lesson, plan)
-    if owner.shape != finish.shape[:2]:
-        raise Refused("parts/owner.png doesn't match 99_finish.png's size: run outline again")
-    steps = bs.flat_steps(plan)
-    names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
-    missing = [n for n in names if not (lesson / n).exists()]
-    if missing:
-        raise Refused(f"missing step pictures {missing}: run build-steps --lesson {lesson} first")
-    plate = lesson / "98_background.png"
-    if plan.get("made_from") == 3:  # a version 3 lesson's steps are its build-steps' own: read, never cut again
-        kept = _v3_kept(lesson)
-        built, masks = kept["pictures"], kept["masks"]
-    else:
-        built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
-    pictures = [load(lesson / n, max_side=100_000) for n in names]
-    stale = [n for n, p, b in zip(names, pictures, built) if p.shape != b.shape or not np.array_equal(p, b)]
-    if stale:
-        raise Refused(f"the step pictures don't match the plan ({stale[0]} first): run build-steps --lesson {lesson} again")
-    canvas_box, canvas = _v2_canvas(lesson)
+    kept = _v3_kept(lesson)
+    plan = kept["plan"]
+    names = kept["build"]["steps"]
+    canvas_box, canvas = _lesson_canvas(lesson)
     view = canvas_view(lesson, names)
-    data = aids.make(plan, pictures, masks, owner, canvas_box, canvas, lesson / "aids", [view.get(n, n) for n in names])
+    data = aids.make(plan, kept["pictures"], kept["masks"], kept["owner"], canvas_box, canvas, lesson / "aids",
+                     [view.get(n, n) for n in names])
     (lesson / "aids" / "aids.json").write_text(json.dumps(data, indent=1), encoding="utf-8")
     rows = data["steps"]
     return {"aids": str(lesson / "aids" / "aids.json"), "steps": len(rows),
@@ -1335,99 +1040,54 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
 
 
 def draft_text_tool(a: argparse.Namespace) -> dict:
-    """Write text.json's lines for every step from data: the plan, the step masks, the outlines, the paints, the
-    technique, and the cards. Keeps every summary, tip, and edited line Claude wrote. Design section 10."""
-    import checks
+    """Write text.json's lines for every step from data: the plan, the step masks, the shapes, the paints, the
+    technique, and the cards. Keeps every summary, tip, and edited line already there. Design section 10."""
     import draft_text
 
     lesson = Path(a.lesson)
-    plan, _ = _v2(lesson)
-    _read_owner(lesson, plan)
-    built = checks.build(lesson, plan)
-    if built is None:
-        raise Refused("parts/owner.png doesn't match 99_finish.png or the plan: run outline again")
-    owner, pictures, _, masks = built
-    canvas_box, canvas = _v2_canvas(lesson)
-    drafted = draft_text.draft(plan, pictures, masks, canvas_box, canvas, lesson=lesson, owner=owner)
+    kept = _v3_kept(lesson)
+    plan = kept["plan"]
+    canvas_box, canvas = _lesson_canvas(lesson)
+    drafted = draft_text.draft(plan, kept["pictures"], kept["masks"], canvas_box, canvas, lesson=lesson,
+                               owner=kept["owner"])
     path = lesson / "text.json"
     old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
     text = draft_text.merge(old, drafted)
-    if plan.get("made_from") == 3:  # the receipt says how a version 3 step picture was made
-        for t in text["steps"]:
-            t["reason"] = V3_REASON
+    for t in text["steps"]:  # the receipt says how the step picture was made
+        t["reason"] = V3_REASON
     path.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
     todo = [f"{t['stage_id']}: " + " and ".join(k for k in draft_text.KEEP if not (t.get(k) or "").strip())
             for t in text["steps"] if any(not (t.get(k) or "").strip() for k in draft_text.KEEP)]
     return {"text": str(path), "steps": len(text["steps"]), "lines": sum(len(t["lines"]) for t in text["steps"]),
             "edited_kept": sum(1 for t in text["steps"] for x in t["lines"] if x.get("edited")),
             "for_claude": todo, "left_out": draft_text.left_out(plan),
-            "advice": "Read each step's lines against its picture. Write its summary (under 90 characters) and tip (one "
-                      "to three sentences only this photo needs). Correct a drafted line in place and mark it "
-                      "\"edited\": true; draft-text keeps it. Then run check.", "cost_usd": 0.0}
-
-
-def card_adapt_tool(a: argparse.Namespace) -> dict:
-    """Start the cards adapted for this painting (#96): for each card a step opens, a copy of the general card's
-    fields in text.json's card_text, for the run to reword in step 6c. Never overwrites a copy already there."""
-    import build_steps as bs
-    import cards
-    import plan2
-    import publish2
-
-    lesson = Path(a.lesson)
-    import plan3
-
-    if not (lesson / "plan.json").exists():
-        raise Refused(f"no plan.json in {lesson}")
-    if plan3.is_v3(lesson):
-        plan = _v3_kept(lesson, pictures=False)["plan"]
-    elif not plan2.is_v2(lesson):
-        raise Refused("card-adapt is for a version 2 or 3 lesson (plan.json with \"plan_version\": 2 or 3)")
-    else:
-        plan = plan2.load(lesson)
-    steps = bs.flat_steps(plan)
-    path = lesson / "text.json"
-    text = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"steps": []}
-    r = cards.adapt_lesson(text, steps, cards.strokes())
-    path.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
-    names = publish2.paint_names(plan)
-    by_step = {s["id"]: s for s in steps}
-    todo = [{"at": f"card_text.{x}", "part": by_step[x.split(".")[0]].get("part"),
-             "paints": [names.get(c, c) for c in by_step[x.split(".")[0]].get("paints") or []]}
-            for x in r["added"] + r["kept"]]
-    return {"text": str(path), **r, "cards": todo,
-            "advice": "Edit each copy for this painting (skill step 6c): swap the subject words in every field and the "
-                      "diagram's paints for the step's paints by name, and change the diagram's example shape to this "
-                      "part's where it's wrong. Keep every field, the brush, the mistakes (drop one that can't happen "
-                      "here, add none), and the diagram's stages and arrows. Take out what stale lists. Then run check.",
-            "cost_usd": 0.0}
+            "advice": "Run check, then the chain's checker; the stage writers write each step's summary and tip "
+                      "(packets, v3/run.md step D).", "cost_usd": 0.0}
 
 
 def check_tool(a: argparse.Namespace) -> dict:
-    """Every measured check on a version 2 lesson, each failure saying what to change. Design section 12."""
+    """Every measured check on a lesson, each failure saying what to change. Design section 8."""
     import checks
-    import plan2
-
-    lesson = Path(a.lesson)
     import plan3
 
+    lesson = Path(a.lesson)
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
-    if not plan2.is_v2(lesson) and not plan3.is_v3(lesson):
-        raise Refused("check is for a version 2 or 3 lesson (plan.json with \"plan_version\": 2 or 3); version 1 "
-                      "lessons can't be checked any more (#82); make the lesson again with /paint-lesson")
+    if not plan3.is_v3(lesson):
+        raise Refused("check is for a version 3 lesson (plan.json with \"plan_version\": 3); version 1 and 2 lessons "
+                      "can't be checked any more (#82, #238); make the lesson again with /paint-lesson")
     r = checks.run(lesson)
-    # `problems` is `failures` under the name every other v2 tool prints (the skill: "every tool prints problems")
+    # `problems` is `failures` under the name every other tool prints (the skill: "every tool prints problems")
     return {"problems": r["failures"], "failures": r["failures"], "notes": r["notes"], "ok": not r["failures"],
             "advice": "Fix each failure as it says, then run check again. publish --final won't seal while any is left.",
             "cost_usd": 0.0}
 
 
-GRAY = (128, 128, 128)  # the bands around a finish that isn't the image model's shape
+GRAY = (128, 128, 128)  # the bands around a picture that isn't the image model's shape
 
 
 def _to_frame(finish, size: str):
-    """The finish placed in the image model's frame (bands of gray where the shapes differ), and where it sits."""
+    """The picture placed in the image model's frame (bands of gray where the shapes differ), and where it sits."""
     from PIL import Image
 
     fw, fh = (int(x) for x in size.split("x"))
@@ -1438,58 +1098,6 @@ def _to_frame(finish, size: str):
     frame = Image.new("RGB", (fw, fh), GRAY)
     frame.paste(Image.fromarray(finish).resize((nw, nh), Image.LANCZOS), (x0, y0))
     return frame, (x0, y0, x0 + nw, y0 + nh)
-
-
-def background_tool(a: argparse.Namespace, client=None) -> dict:
-    """PAID, one render: the finish with everything in front taken out, for what's behind the objects."""
-    import build_steps as bs
-    import numpy as np
-    from filters import load
-    from PIL import Image
-
-    lesson = Path(a.lesson)
-    import plan3
-
-    if plan3.is_v3(lesson):
-        raise Refused("background is for a version 2 lesson. A version 3 lesson's chain (erase) already holds what is "
-                      "behind each thing.")
-    plan, finish = _v2(lesson)
-    owner = _read_owner(lesson, plan)
-    parts = plan["parts"]
-    is_back = bs.back_parts(parts)
-    front = ~is_back[owner]
-    if not front.any():
-        raise Refused("this plan has no objects in front of the background, so there's nothing to take out")
-    out = lesson / "98_background.png"
-    if out.exists() and not a.redo:
-        raise Refused(f"{out.name} already exists. Pass --redo to render it once more.")
-    name = lambda p: p.get("name") or p["id"]  # noqa: E731
-    remove = [name(p) for k, p in enumerate(parts) if not is_back[k] and not p.get("parent")]
-    keep = [name(p) for k, p in enumerate(parts) if is_back[k]]
-    size = size_for(lesson / "99_finish.png")
-    frame, box = _to_frame(finish, size)
-    padded = box != (0, 0) + frame.size
-    (lesson / "trials").mkdir(exist_ok=True)
-    frame_path = lesson / "trials" / "background_in.png"
-    frame.save(frame_path)
-    prompt = ("This is an acrylic painting. Remove these things from it completely: " + "; ".join(remove) + ". "
-              "Where they were, paint what is behind them: continue the background (" + "; ".join(keep) + ") exactly as it "
-              "is around them, in the same colors and the same brushwork. Leave no trace, outline, or shadow of what "
-              "you removed. Change nothing else: everything that stays keeps its exact place, shape, and color. "
-              + ("Keep the plain gray bands at the edges exactly as they are. " if padded else "")
-              + "No text, signature, or watermark.")
-    raw = lesson / "trials" / "background_raw.png"
-    budget = Budget(lesson, a.max_cost, 1)  # one render and at most one redo
-    r = render_one(budget, "background", [frame_path], prompt, raw, a.quality,
-                   "what's behind the objects isn't in the finish, and they cover too much of it for a fill",
-                   size, fresh=a.redo, client=client)
-    got = Image.open(raw).convert("RGB")
-    if got.size != frame.size:
-        got = got.resize(frame.size, Image.LANCZOS)
-    Image.fromarray(np.array(got.crop(box).resize((finish.shape[1], finish.shape[0]), Image.LANCZOS))).save(out)
-    problems, numbers = bs.background_problems(finish, load(out, max_side=100_000), front)
-    return {**r, "out": str(out), "removed": remove, "problems": problems, **numbers,
-            "advice": "Run build-steps again and Read the sheet: no trace of the objects before their own steps."}
 
 
 def cards_tool(a: argparse.Namespace) -> dict:
@@ -1505,7 +1113,7 @@ def cards_tool(a: argparse.Namespace) -> dict:
 
 
 def elements_tool(a: argparse.Namespace) -> dict:
-    """The element techniques (#12): the library to pick from, and with --lesson, how the plan's picks fit."""
+    """The element techniques (#12): the library to pick from (plan-check holds a plan's picks to it)."""
     import elements
 
     lesson = Path(a.lesson) if a.lesson else None
@@ -1523,10 +1131,6 @@ def elements_tool(a: argparse.Namespace) -> dict:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(elements.page(), encoding="utf-8")
         out["out"] = str(path)
-    if lesson:
-        plan, _ = _v2(lesson)
-        out["picks"] = elements.picks(plan)
-        out["problems"] += elements.plan_problems(plan, lesson=lesson)
     return out
 
 
@@ -1548,7 +1152,7 @@ def busy_tool(a: argparse.Namespace) -> dict:
     return {**r, "problems": [], "cost_usd": 0.0}
 
 
-def add_v2_tools(sub) -> None:
+def add_step_tools(sub) -> None:
     p = sub.add_parser("busy", help="Free. How much of a picture is fine texture, and where: for the beginner-sized check.",
                        description="Measures the canvas part of the picture (canvas.json's canvas_box) at 1000 px on the "
                                    "long side: fine_texture is the share of 40 px tiles dense with edges (stalks, grass, "
@@ -1564,61 +1168,27 @@ def add_v2_tools(sub) -> None:
                         "00_canvas_fit.png (the photo), 00_beginner.png, and 99_finish.png; its number replaces that "
                         "role's")
     p.set_defaults(func=busy_tool)
-    p = sub.add_parser("elements", help="Free. v2: the element techniques to pick per part, and how the plan's picks fit.",
-                       description="Lists techniques/elements (and a lesson's drafted ones): what each is for, which part "
-                                   "kinds, and its steps in order with the shows and stroke cards each may use. With "
-                                   "--lesson, also every part's pick and what doesn't fit (a part with no element, steps "
-                                   "that don't follow theirs, a drafted one not filed yet). --out writes one page of "
-                                   "them all for the owner to check.")
+    p = sub.add_parser("elements", help="Free. The element techniques a plan picks from, one per thing.",
+                       description="Lists techniques/elements (and, with --lesson, the lesson's drafted ones in "
+                                   "<lesson>/elements/): what each is for, which kinds of thing, and its steps in order "
+                                   "with the stroke cards each may use. plan-check holds the plan's picks to them. --out "
+                                   "writes one page of them all for the owner to check.")
     p.add_argument("--lesson")
     p.add_argument("--out")
     p.set_defaults(func=elements_tool)
-    p = sub.add_parser("outline", help="Free. v2: find every part's exact outline in the finished painting.",
-                       description="For a version 2 plan (plan.json with parts). Writes parts/<id>.png, parts/owner.png, and "
-                                   "parts/preview.jpg (the finish with each part tinted and labeled). Downloads the outline "
-                                   "model (345 MB) to models/ the first time.")
-    p.add_argument("--lesson", required=True)
-    p.set_defaults(func=outline_tool)
-    p = sub.add_parser("part-colors", help="Free. v2: each part's main colors, measured inside its outline.",
-                       description="Run after outline. Use it to choose a part's paints, and to give a marks part its "
-                                   "colors_in / colors_out when points can't be trusted to land on the paint.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--colors", type=int, default=3, help="colors per part (default 3)")
-    p.set_defaults(func=part_colors_tool)
-    p = sub.add_parser("paints", help="Free. v2: measure the plan's paints from the finish and merge them toward max_mixes.",
-                       description="Run after outline; no stages needed. First run (no paints yet): each part gets the "
-                                   "fewest colors that fit (ids <part>-<n>, darkest first; a tint or shade of a part's "
-                                   "main paint gets \"of\" and \"plus\" and doesn't count), merged toward the technique's "
-                                   "max_mixes (never two far apart: it says what kept it over). Run again after outline "
-                                   "changes: every paint is measured again and keeps its id (and its name when it moved "
-                                   "under Delta E 3); a paint a step uses is never merged; a paint whose part is gone is "
-                                   "removed. Never changes the steps. --add <part>: one more measured color for that "
-                                   "part, nothing merged. Writes trials/paints.jpg.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--add", metavar="PART", help="give this part one more measured color (to split a pass, or for a "
-                                                  "dropped part it now carries); never merges anything")
-    p.set_defaults(func=paints_tool)
-    p = sub.add_parser("background", help="PAID, one render. v2: the finish with the objects taken out, for what's behind them.",
-                       description="Run when build-steps prints \"needs_background\": true. Writes 98_background.png; "
-                                   "build-steps then uses only its pixels behind the objects, so the render can't move "
-                                   "or recolor anything else. Counted in the lesson's ledger and cached like any render.")
-    p.add_argument("--lesson", required=True)
-    p.add_argument("--quality", choices=QUALITIES, default="low")
-    p.add_argument("--redo", action="store_true", help="render it once more (one redo at most)")
-    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST, help=f"dollar cap per lesson (default {DEFAULT_MAX_COST:.2f})")
-    p.set_defaults(func=background_tool)
     p = sub.add_parser("cards", help="Free. One page of every stroke card and basics card, for the owner to check.",
                        description="Writes techniques/strokes/*.yaml and techniques/basics/*.yaml as one HTML page, each "
                                    "card with its sources and what the research didn't cover.")
     p.add_argument("--out", required=True)
     p.set_defaults(func=cards_tool)
-    p = sub.add_parser("build-steps", help="Free. v2: cut every step picture from the finished painting.",
-                       description="Run after outline. Writes NN_<step id>.png for every step and trials/steps.jpg (all of "
-                                   "them on one sheet). Uses 98_background.png (the finish with the objects taken out) for "
-                                   "what's behind objects when it exists.")
+    p = sub.add_parser("build-steps", help="Free. Fit the paints to the chain and make every step picture from it.",
+                       description="Run after erase. Fits each of the plan's paints to what its units changed, writes "
+                                   "NN_<step id>.png for every step (a unit's last step is the chain's picture) and "
+                                   "trials/steps.jpg (all of them on one sheet), and keeps what the later tools read "
+                                   "(v3/, parts/owner.png). `notes` are faults only a new plan and chain can fix.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=build_steps_tool)
-    p = sub.add_parser("step-aids", help="Free. v2: every step's teaching pictures (where, close-up, paint map) and the transfer outline.",
+    p = sub.add_parser("step-aids", help="Free. Every step's teaching pictures (where, close-up, paint map) and the transfer outline.",
                        description="Run after build-steps. Writes aids/aids.json and its pictures: each step's painted "
                                    "area as an outline for the page, a close-up of small areas, a paint map where a step "
                                    "or part has 2 or more paints, the position in words (inches on the canvas from "
@@ -1626,25 +1196,18 @@ def add_v2_tools(sub) -> None:
                                    "shape, or is refused), and aids/transfer.png.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=step_aids_tool)
-    p = sub.add_parser("draft-text", help="Free. v2: draft every step's lines in text.json from the plan, outlines, paints, and cards.",
+    p = sub.add_parser("draft-text", help="Free. Draft every step's lines in text.json from the plan, the step pictures, the paints, and the cards.",
                        description="Run after build-steps (and step-aids). Writes text.json's lines for every step: let "
                                    "it dry, rinse, the optional chalk outline, where, the paints in order, mix once, the "
                                    "brush, load, and motion, what it should leave, two or three coats, watch out, and "
                                    "step back. Never overwrites a summary, a tip, or a line marked \"edited\": true.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=draft_text_tool)
-    p = sub.add_parser("card-adapt", help="Free. v2: copy each stroke card a step opens into text.json's card_text, to adapt for this painting.",
-                       description="Run after draft-text. For each card a step opens (the first step using it), copies "
-                                   "the general card's motion, result, then, mistakes, and diagram into text.json under "
-                                   "card_text.<step id>.<card id>, with \"from\": the card's id. The run then rewords "
-                                   "each for this painting (skill step 6c). A copy already there is never overwritten.")
-    p.add_argument("--lesson", required=True)
-    p.set_defaults(func=card_adapt_tool)
-    p = sub.add_parser("check", help="Free. v2: every measured check (plan, outlines, steps, cards, text, recipes), each saying what to change.",
-                       description="Gathers the plan, outline, step picture, and card checks, the step and stage counts, "
-                                   "strokes and brushes, texture jumps, the text (percentages, long lines, missing "
-                                   "summaries and tips, stale drafts), and what publish counts. publish runs it; "
-                                   "publish --final won't seal a version 2 lesson while anything fails.")
+    p = sub.add_parser("check", help="Free. Every measured check (plan, steps, cards, text, recipes), each saying what to change.",
+                       description="Gathers the plan's and the step pictures' checks, strokes and brushes, the cards, "
+                                   "the text (percentages, long lines, missing summaries and tips, stale drafts, every "
+                                   "number against the fact sheet), and what publish counts. publish runs it; publish "
+                                   "--final won't seal a lesson while anything fails.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=check_tool)
 
@@ -1917,24 +1480,16 @@ def build_parser() -> argparse.ArgumentParser:
     add_filters(sub)
     add_render(sub)
     add_lesson_tools(sub)
-    add_v2_tools(sub)
+    add_step_tools(sub)
     add_v3_tools(sub)
-    p = sub.add_parser("engine", help="Free. Opt-in: one long-lived process that runs these tools and rebuilds only "
-                                      "what changed (#176). Run `engine --help`; the tools work the same without it.",
-                       add_help=False)
-    p.add_argument("args", nargs=argparse.REMAINDER)
     return ap
 
 
 def main(argv: list[str] | None = None, client=None) -> int:
-    words = sys.argv[1:] if argv is None else list(argv)
-    if words[:1] == ["engine"]:  # spike/engine.py reads its own arguments and prints what the tool it runs prints
-        import engine
-        return engine.main(words[1:])
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "background", "erase") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "erase") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2

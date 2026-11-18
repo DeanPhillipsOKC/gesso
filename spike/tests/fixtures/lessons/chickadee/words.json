@@ -1,0 +1,206 @@
+{
+ "stage-01": {
+  "steps": {
+   "blend-sky": {
+    "summary": "Cover the whole canvas with a blue sky streaked with soft gold.",
+    "tip": "The light comes from the low sun you paint in step 2, behind the bird. Lay Soft blue-gray first, then cross Golden orange and Pale yellow streaks through it while wet, leaning the way the after picture shows.",
+    "lines": {
+     "2": "Paints: Soft blue-gray over most of the canvas, with Golden orange and a little Pale yellow streaked through it, as the after picture shows."
+    }
+   },
+   "paint-sun": {
+    "summary": "Circle a pale glowing sun into the golden sky, near the top edge.",
+    "tip": "Its middle is about 10 1/4 in from the left edge, and its top is at the top edge. Circle the Pale yellow glow first, then a small Sun cream disk in the middle of the Pale yellow glow, as the after picture shows.",
+    "paint_notes": [
+     "Sun cream over the sky can look thin: paint the disk twice, letting the first coat dry."
+    ]
+   }
+  }
+ },
+ "stage-02": {
+  "steps": {
+   "pull-far-trunks": {
+    "summary": "Pull soft, hazy trunks from the top edge to the bottom edge, right of the low sun.",
+    "tip": "Pull the tall trunks first, then a fainter, thinner trunk where the after picture has it. Keep their edges soft and add no bark: they sit far back in the haze.",
+    "lines": {
+     "7": "Press the full width of the flat at the bottom of each trunk and pull up to the top edge, easing the pressure so it narrows a little. Add short side branches with the brush's edge.",
+     "8": "It should leave soft trunks a little wider at the bottom, with short forked branches.",
+     "9": "Watch out: Trunks that look like stiff, hard-edged sticks. Fix: soften their edges with a dry brush, and let the short branches fork in different directions."
+    }
+   },
+   "dab-dark-far-leaves": {
+    "summary": "Dab ragged red-orange clumps of far leaves over the sky and the trunks.",
+    "tip": "Dab ragged clumps, not even dots, most of them in the top half, with the blue and gold sky between. One sits left of the low sun, its top about 2 3/4 in from the top edge.",
+    "paint_notes": [
+     "Red-orange can look thin over the blue; tap a second time once the first coat dries where a patch should be solid."
+    ],
+    "lines": {
+     "10": "It should leave dappled patches with the sky showing between them. The after picture also shows a short, faint trunk under the small patch near the bottom edge."
+    }
+   },
+   "dab-light-far-leaves": {
+    "summary": "Dab light orange over the far leaves and around the low sun for a warm glow.",
+    "tip": "Dab on the top and right side of each step 4 patch, toward the low sun, and leave their lower edges showing. Then spread soft orange around and below the low sun, as the after picture shows.",
+    "paint_notes": [
+     "Light orange is see-through over the darker patches: paint it twice, letting the first coat dry."
+    ],
+    "lines": {
+     "1": "Let step 4's patches, and the sky and the sun dry to the touch first. A hair dryer on low speeds it up."
+    }
+   }
+  }
+ },
+ "stage-03": {
+  "steps": {
+   "block-in-branch": {
+    "summary": "Paint the trunk up the left side and the branch arching across to the lower right.",
+    "tip": "Paint the trunk first, from the bottom edge up to the top edge. Then pull the branch out from the trunk's base in one long arch that thins to a point, as the Where picture shows.",
+    "lines": {
+     "6": "Paint the trunk as one long band, then the branch as one arching band from its base, tapering to a point. Stroke along the length of the wood.",
+     "7": "It should leave a flat, even brown trunk and branch with smooth edges."
+    }
+   },
+   "block-in-leaves": {
+    "summary": "Paint four flat leaves, two gold and two red, where the Where picture has them.",
+    "tip": "The top gold leaf's top is at the top edge. Place the red leaf and the other gold and red pair as the Where picture shows. Leave sky between leaves and wood.",
+    "lines": {
+     "7": "Paint each leaf as a pointed shape with a few jagged points along its edge, like a maple leaf. Start in its middle and pull out to each point.",
+     "8": "It should leave four flat leaf shapes with jagged, pointed edges."
+    }
+   },
+   "shade-leaves": {
+    "summary": "Skim darker paint into the shaded side and center of each leaf.",
+    "tip": "The light comes from the upper right, so shadow falls on the left side of each leaf. Skim Deep gold onto the gold leaves and Deep red onto the red ones, keeping each leaf's right side its first color."
+   },
+   "light-leaves": {
+    "summary": "Skim light along the sunny upper-right edges of the four leaves.",
+    "tip": "Keep to the side facing the sun, the upper right of each leaf: Golden yellow on the gold leaves, Coral orange on the red ones. The after picture also adds tiny light specks along the trunk and branch."
+   },
+   "shade-branch": {
+    "summary": "Skim Dark brown down the trunk's left side and along the branch's underside.",
+    "tip": "Shadows fall on the lower left, so the dark goes on the left side of the trunk and the underside of the branch. Stroke along the length of the wood, and leave the top of the branch untouched.",
+    "lines": {
+     "9": "Leave the top of the branch and the right side of the trunk in their first brown around these marks, as in the Result picture."
+    }
+   },
+   "light-branch": {
+    "summary": "Skim Warm buff along the top of the branch and the right side of the trunk.",
+    "tip": "The sun is at the upper right, so the light lands only on the top of the branch and the right side of the trunk. Stroke along the wood, keeping the dark underside showing.",
+    "lines": {
+     "11": "Leave the dark underside and the brown middle of the branch showing, as in the Result picture."
+    }
+   },
+   "line-twigs-stems-veins": {
+    "summary": "Line a side branch, twigs, leaf stems, and the veins in each leaf.",
+    "tip": "Work wood first, leaves last: the thin side branch from the trunk up to the top edge, the twigs off the branch's tip out to the right edge, each leaf's stem, then a center vein and side veins.",
+    "lines": {
+     "7": "Hold the brush upright, with light, steady pressure. Pull each twig and stem out from the wood, starting thick and lightening as you go. Let twigs fork, and wobble the edges a little."
+    }
+   }
+  }
+ },
+ "stage-04": {
+  "steps": {
+   "block-in-chickadee": {
+    "summary": "Fill the whole chickadee shape, body, head and tail, in flat Warm buff.",
+    "tip": "Keep it one flat silhouette: a round body with its bottom resting on the trunk and curved branch, a smaller round head, and a long tapering tail, as the after picture shows. Its middle is about 6 3/4 in from the left edge. Pull the tail strokes along its length toward its tip.",
+    "paint_notes": [
+     "Warm buff is light over the blue and orange woods: paint it twice, letting the first coat dry, until none of them shows through."
+    ],
+    "lines": {
+     "7": "Start with the round body, then add the smaller round head and the long tail onto it, as the after picture has them, so the pieces join into one shape.",
+     "8": "It should leave one flat, smooth buff shape with no gaps and no woods showing through."
+    }
+   },
+   "shade-chickadee": {
+    "summary": "Shade the belly and underside of the chickadee with Golden buff.",
+    "tip": "The light comes from the upper right, so keep this shade low on the round belly and away from the sunny chest, as the after picture shows. Curve each stroke around the belly. Add only a few faint strokes over the head and back, where the after picture has them."
+   },
+   "paint-white-patches": {
+    "summary": "Paint the white cheek band across the chickadee's head in Warm white.",
+    "tip": "The after picture puts the white mostly in one band across the head, facing the light, with only a faint light touch on the chest. Curve the strokes around the head.",
+    "paint_notes": [
+     "Warm white is see-through over the shaded buff: paint the cheek twice, letting the first coat dry, so it reads clean white."
+    ]
+   }
+  }
+ },
+ "stage-05": {
+  "steps": {
+   "paint-cap-bib": {
+    "summary": "Paints the black cap and bib, and dark streaks along the wing and tail.",
+    "tip": "Paint the cap first, its size and spot as the Where picture shows. Then the bib under the white cheek, about 1 3/4 in wide, leaving the cheek showing between them. The after picture also adds dark streaks along the wing and tail; their left side is about 2 3/4 in from the left edge.",
+    "lines": {
+     "7": "Curve the cap's strokes around the round head, and pull the bib's strokes down along the chest's curve. Pull the wing streaks toward the tail's point, as the Where picture shows."
+    }
+   },
+   "paint-wing-tail": {
+    "summary": "Touches soft blue-gray onto the back of the cheek, the back and the tail's tip.",
+    "tip": "The after picture adds only small touches: a gray edge at the back of the white cheek, a few dabs on the back, and gray strokes over the tail's tip. The tail strokes start about 2 1/4 in from the left edge and run toward its point.",
+    "lines": {
+     "5": "Stroke along the tail toward its point, and set the back's dabs along its curve, as the Where picture shows."
+    }
+   },
+   "line-wing-feathers": {
+    "summary": "Paints the wing and tail slate gray with darker feather lines running to the tail.",
+    "tip": "The after picture turns the whole wing and tail slate gray, covering the earlier streaks, with darker feather lines running down toward the tail's point. Keep the wing's upper edge lightest: the light comes from the low sun, up and to the right of the chickadee.",
+    "lines": {
+     "10": "Leave the black cap and bib and the white cheek showing; this paint covers the earlier streaks on the wing and tail, as in the Result picture."
+    }
+   }
+  }
+ },
+ "stage-06": {
+  "steps": {
+   "flick-belly-feathers": {
+    "summary": "Flick Golden buff feathers over the round belly so it looks soft.",
+    "tip": "The light comes from the upper right, so keep the lower left of the belly darker and let the darker buff show between flicks. Most of what this adds sits in the bottom half of the chickadee's feathers.",
+    "lines": {
+     "6": "A quick stroke from the base along the belly's round curve, lifting off as it goes, so each mark thins at its tip."
+    }
+   },
+   "flick-wing-feathers": {
+    "summary": "Flick Dark slate along the wing and tail to separate the feathers.",
+    "tip": "Most of it lands on the left half of the chickadee's feathers, on the wing and tail. The after picture shows lighter gray edges between the dark marks; leave that gray showing.",
+    "lines": {
+     "7": "A quick stroke from the shoulder down toward the tail tip, lifting off as it goes, so each mark thins at its end."
+    }
+   },
+   "flick-lit-chest": {
+    "summary": "Flick Warm white where the low sun catches the edge of the chest.",
+    "tip": "The sun is at the upper right, so most of it goes on the right side of the chickadee's feathers, along the chest's edge. A few flicks also touch the tail tip, as the Where picture shows.",
+    "paint_notes": [
+     "Warm white can look thin over the buff: flick a second pass where it is brightest, letting the first dry."
+    ],
+    "lines": {
+     "7": "A quick stroke from the base along the chest's curve, lifting off as it goes, so each mark thins at its tip."
+    }
+   }
+  }
+ },
+ "stage-07": {
+  "steps": {
+   "paint-eye-beak": {
+    "summary": "Paint the chickadee's round dark eye and short pointed beak.",
+    "tip": "Set the eye at the edge of the black cap, just behind the beak, and point the beak toward the low sun, as the after picture shows. Dot the eye first, then press and lift the beak to a point. The after picture already shows the legs and feet and a tiny light in the eye; those come in the next two steps.",
+    "lines": {
+     "8": "The beak should be a short teardrop, wide at the head and pointed where you lifted. The eye should be a small round dot."
+    }
+   },
+   "line-legs-feet": {
+    "summary": "Line two thin legs down from the belly and curl the toes over the branch.",
+    "tip": "The step 22 picture already shows the legs, so the after picture changes little: go over them with Dark slate, matching their place. Pull each leg straight down from the belly, then curl short toes over the top of the branch.",
+    "lines": {
+     "6": "Hold the brush upright, with light, steady pressure. Pull each leg down from the belly, then curl three or four short toes over the branch, wobbling the edges a little."
+    }
+   },
+   "dot-eye-shine": {
+    "summary": "Dot a tiny light in the chickadee's eye to finish the painting.",
+    "tip": "One tiny dot only, on the eye's side toward the sun, where the after picture has it, keeping to the low sun's light. The step 22 picture already shows this light, so the after picture looks almost the same. Leave the rest of the eye dark.",
+    "lines": {
+     "6": "It should leave one tiny, round, slightly raised dot."
+    }
+   }
+  }
+ }
+}

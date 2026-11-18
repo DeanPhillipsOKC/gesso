@@ -1,18 +1,20 @@
 # Gesso
 
 Turns a photo into a step-by-step painting lesson (acrylic or oil) at the painter's skill level.
-Proof of concept: lessons are made by the `/paint-lesson` skill (pipeline v2) and its tools in `spike/`; no app
+Proof of concept: lessons are made by the `/paint-lesson` skill (pipeline v3) and its tools in `spike/`; no app
 code yet.
 
 Project knowledge lives under `docs/`. Read it before making changes:
 
 - `docs/vision.md`: what we're building and why, how the pipeline works, and the milestones.
-- `docs/design/pipeline-v2.md`: the pipeline (render the finish once, cut every step from it). Read all of it
-  before any pipeline issue. Pipeline v1 (a render per step) was removed in #82; it survives only as history.
+- `docs/design/pipeline-v2.md`: history. Pipeline v2 (render the finish once, cut every step from it) was removed
+  in #238, as v1 (a render per step) was in #82. Its later tools (step-aids, draft-text, check, publish) still run,
+  reading a v3 plan in v2's shape, so its sections on them still describe that code.
 - `docs/design/pipeline-v3-plan.md`: the plan for pipeline v3 (a frozen bench, then spikes). Read it before any
   issue labeled for v3.
-- `docs/design/pipeline-v3.md`: the v3 design. Its gate passed on 2026-11-18 and v3 replaces v2;
-  `/paint-lesson` runs it. Read it before any v3 issue.
+- `docs/design/pipeline-v3.md`: the pipeline (a painter's plan, the finish erased back a unit at a time, words from a
+  measured fact sheet). Its gate passed on 2026-11-18 and `/paint-lesson` runs it. Read all of it before any
+  pipeline issue.
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
   anything, and don't re-propose what it rules out.
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).
