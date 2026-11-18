@@ -97,8 +97,9 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   −0.22 (± 0.10, down on all three). The blind graders saw no difference in 10 of 12 reads and preferred the words
   without the arc in the other 2: their rubric scores whether a step can be painted, and it doesn't reward polish.
   arc-add's fall is on steps early in a stage, where the stage opener's "By its end" sentence describes a canvas
-  several steps ahead. What would settle it: the owner reads one lesson's arc, then a $0.65 rerun without the end
-  sentence.
+  several steps ahead. The owner read the cat's lesson ("it looks good") and approved a rerun with the end sentence
+  on the stage's last step only: those 40 steps then score exactly lesson-slots' (0.00 ± 0.10), so arc-add in that
+  form is no worse to paint from. Adopting it waits on the owner, since it doesn't raise the score.
 
 ## Wave 2: showing the motion
 

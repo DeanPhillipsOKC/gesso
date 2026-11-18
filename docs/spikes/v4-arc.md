@@ -22,6 +22,15 @@ arc-add is parked rather than dropped for two reasons:
   stage opener's "By its end: ..." sentence describes a canvas several steps ahead. The image model seems to paint
   toward that canvas.
 
+**Update, after the owner read the sleeping cat's lesson ("it looks good") and approved the rerun: the end sentence
+was the cause.** With the stage's end sentence shown only above its last step (`arc-add-noend`), the 40 steps that
+aren't last in their stage score exactly what lesson-slots' words do (0.00 ± 0.10; the cow's 14 steps 3.43 against
+arc-add's 2.79). Over the whole lesson that comes to 3.39, 3.38 and 3.15 against 3.43, 3.38 and 3.20: level, inside
+the spread. So **arc-add with the end sentence on the stage's last step is no worse to paint from**, the graders call
+it a toss-up, and the owner liked how it reads. It still doesn't raise the student's score, which the plan's rule for
+a words spike asks for. Whether that is enough to adopt it is the owner's call (the arc was never going to move a
+test of one step at a time). See "The rerun" below.
+
 ## What was run
 
 Both variants are built on the teacher spike's adopted writer (`lesson-slots`, `docs/spikes/v4-teacher.md`) and
@@ -179,7 +188,31 @@ arc-add's one call costs a fifth of the writer, mostly to read the plan and the 
 of renders** (128, at the plan's $2 a spike) and $12.33 of Claude at the API's rates, through `claude -p` on the
 subscription: the writers $4.79, the blind graders $3.74, carry's grader $3.80.
 
-## What would settle it
+## The rerun (the stage's end sentence on its last step only)
+
+The owner read the sleeping cat's whole lesson (`docs/spikes/v4-arc-sleeping-cat.md`) and approved $0.65 more of
+renders. arc-add's words are unchanged. Above every step the student now reads only the stage's `for` sentence,
+except on the stage's last step, which keeps "By its end" (its own after picture). The last steps' prompts are the
+same as before, so only the 40 steps that aren't last were rendered again (`v4_arc.py packets` writes them as
+`arc-add-noend`).
+
+| The 40 steps not last in their stage | cow (14) | cat (13) | birch (13) | all 40, against lesson-slots |
+|---|---|---|---|---|
+| lesson-slots | 3.43 | 3.23 | 3.15 | |
+| arc-add, end sentence on every step | 2.79 | 3.23 | 3.23 | −0.20 |
+| arc-add, end sentence on the last step only | **3.43** | 3.23 | 3.15 | **0.00 (± 0.10)** |
+
+The whole lesson with the rerun's 40 steps in place: 3.39 (cow), 3.38 (cat), 3.15 (birch), against lesson-slots'
+3.43, 3.38 and 3.20. $0.63 of renders and $1.20 of carry's grader, so the spike's renders came to $2.66.
+
+The caution: each is one render run, and on the cow a whole run's mean moves about 0.13 between runs. A recovery from
+2.79 to exactly the baseline on 14 steps is far outside that, so the end sentence is the likely cause. It is still one
+run.
+
+What it means for the page: a stage opener says what the stage is for at its top, and its end goes with the stage's
+last step (or as that step's picture, which the page already shows). Each step is about only that step.
+
+## What would settle it (written before the rerun)
 
 1. **The owner reads one lesson's arc**, the sleeping cat's above, and says whether a lesson that opens this way is
    better to read or to learn from. No Claude test here measures that, and it was the reason for the spike.
