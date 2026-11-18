@@ -78,7 +78,7 @@ changes because of it:
 - **`erase` reports a thing left standing (section 6, new).** It sees a whole thing left, not a faint one in part.
 
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
-`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5). The spikes' three plans, with what was
+`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6). The spikes' three plans, with what was
 written by hand folded in, are `spike/tests/fixtures/plans3/`. A step v2's cutter showed flat is a block-in there
 only when it is one by the plan's rule, so the cow has 14 units and the birch grove 17, where the spikes' chains
 had 17 and 19 (the cow's clouds, bushes and nose and the birch grove's canopy and bushes start with dabs or
@@ -273,6 +273,33 @@ grass came off; the hillside and the meadow are one unit, so nothing here can te
 faint, soft things on a sky (the cow's clouds 49% unchanged, the birch grove's far trunks 44%). What is left shows
 in step 1. **Open:** a second edit model for those (it needs a host and a key), or a plan that folds a faint thing
 into what it sits on.
+
+**As built (#219; `spike/erase3.py`, `tools.py erase`, `.claude/skills/paint-lesson/v3/chain-check.md`).**
+
+- **The requests of #217 and #218 are joined here for the first time.** Every request names what stays (#218).
+  Every "back" request says "take all of that layer off" and lists what isn't painted yet from its own unit on
+  (#217). The first unit to come back to a block-in also says what a block-in is. No sentence is written by hand.
+  **Run by nobody yet:** the two spikes each ran with the other's wording off.
+- **A thing's name in a request.** `called` when the plan gives one. A thing that has had only its first unit and
+  has more to come is named by its `plain` name, in every kind of request. The spikes did this only where a thing
+  went, and by a hand-kept list.
+- **Kept over the whole thing, from the same renders.** The chain is laid twice. The first laying is the guard's
+  alone, and finds each blocked-in thing's core when the chain erases it. The second lays every "back" render on
+  such a thing over that core, holes filled, as well as where it changed by a lot. #217 rendered each of a thing's
+  stages again, from the picture the kept-whole stage above it left. Here each render is made from the first
+  laying's picture, where a flat coat may still be in patches. **Not graded.** Checked without a render: the
+  sleeping cat's stored renders of #214 give #214's chain pixel for pixel from the first laying, and #217's
+  renders of the blanket and the cat give a flat blanket and a flat cat from the second.
+- **`erase` asks again by itself for a thing left standing** (2% of the canvas, `LEFT`), on the spot, before the
+  units before it are rendered from its picture. So a miss costs one render, not a render for every earlier unit.
+- **Asking again says why:** `--redo 8:stray` or `8:left`, at most twice a unit. Each adds a sentence. For a
+  layer left on a thing it is #217's hand-written "what is left has no texture"; the other three are this build's
+  own and no spike ran them. A redo is a fresh render, not the cache's.
+- **The same picture and request cost nothing twice** (the render cache), so `erase` run again pays only for what
+  changed, and a probe of the last unit is the chain's own render.
+- **The guard's sizes follow the picture:** they are pixels of a picture 1536 on its long side, scaled.
+- **The checker reads the second laying's pictures,** so a blocked-in thing drawn again without its layer shows
+  as all changed. Its brief says that isn't a stray change, and it now answers "left" for a layer too.
 
 **Cost and time.** 1.8 cents and about 14 seconds a render in #204, one after another. A plan-first plan makes
 about 11 units where v2's plan made 6 to 8: about 20 cents and 2 1/2 minutes a lesson, where v2 spends about
