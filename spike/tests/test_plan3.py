@@ -355,14 +355,14 @@ class PlanCheckToolTests(unittest.TestCase):
         self.assertFalse(r["ok"])
         self.assertNotIn("units", r)
 
-    def test_the_version_2_tools_refuse_a_version_3_plan(self):
+    def test_outline_refuses_a_version_3_plan(self):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / "plan.json").write_text(json.dumps(plan()), encoding="utf-8")
             self.assertEqual(plan3.version(Path(tmp)), 3)
             self.assertTrue(plan3.is_v3(Path(tmp)))
             buf = io.StringIO()
             with contextlib.redirect_stdout(buf):
-                code = tools.main(["build-steps", "--lesson", tmp])
+                code = tools.main(["outline", "--lesson", tmp])  # outlines are version 2's alone
             self.assertEqual(code, 2)
             self.assertIn("isn't a version 2 plan", json.loads(buf.getvalue())["refused"])
         self.assertIsNone(plan3.version(Path(tmp)))
