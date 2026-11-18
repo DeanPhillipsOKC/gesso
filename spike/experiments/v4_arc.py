@@ -502,32 +502,39 @@ def opening_text(arc: dict) -> str:
     return "\n".join(out)
 
 
-def stage_text(stage: dict, o: dict) -> str:
-    return f"This stage, {stage['name']}: {o.get('for', '')} By its end: {o.get('end', '')}".strip()
+def stage_text(stage: dict, o: dict, end: bool = True) -> str:
+    out = f"This stage, {stage['name']}: {o.get('for', '')}"
+    return (out + (f" By its end: {o.get('end', '')}" if end else "")).strip()
 
 
-def intros(picture: str, arc: dict) -> dict[int, str]:
-    """Each step's stage opener, as the student reads it above the step."""
+def intros(picture: str, arc: dict, end_on_last: bool = False) -> dict[int, str]:
+    """Each step's stage opener, as the student reads it above the step. With `end_on_last`, the stage's end
+    sentence is said only above its last step, where it is that step's own after picture."""
     out = {}
     for st in stages_of(picture):
         o = (arc.get("stages") or {}).get(st["id"]) or {}
         if o.get("for") or o.get("end"):
-            for s in st["steps"]:
-                out[s["n"]] = stage_text(st, o)
+            for i, s in enumerate(st["steps"]):
+                out[s["n"]] = stage_text(st, o, end=not end_on_last or i == len(st["steps"]) - 1)
     return out
+
+
+NOEND = "arc-add-noend"  # arc-add's words, the stage's end sentence only above its last step (the rerun)
 
 
 def packets(args):
     st = state()
-    for variant, pics in st["arc"].items():
-        for pic, rec in pics.items():
+    runs = [(v, v, False) for v in st["arc"]] + ([("arc-add", NOEND, True)] if "arc-add" in st["arc"] else [])
+    for source, variant, end_on_last in runs:
+        for pic, rec in st["arc"][source].items():
             les = json.loads(json.dumps(teacher.packet(pic)))
-            intro = intros(pic, rec["arc"])
+            intro = intros(pic, rec["arc"], end_on_last)
             for s in les["steps"]:
                 s["lines"] = page_lines(rec["final"].get(s["id"]) or [])
                 s["tip"] = ""
                 s["intro"] = intro.get(s["n"], "")
             les["opening"] = opening_text(rec["arc"])
+            les["not_last"] = [x["n"] for stg in stages_of(pic) for x in stg["steps"][:-1]]
             d = WORK / "words" / variant / pic
             d.mkdir(parents=True, exist_ok=True)
             (d / "packet.json").write_text(json.dumps(les, indent=1))
