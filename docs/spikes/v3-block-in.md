@@ -19,6 +19,8 @@ grader chose #214's lesson on any picture. The reasons for adopting anyway: the 
 whole things is the clear win, the ties are where it changed little, and it costs nothing more. They are reasons,
 not a result, and the owner may read one of three as not enough.
 
+**The owner's answer (2026-11-18): "Adopt stands."** It is recorded in `docs/decisions.md` and goes into the build (#219).
+
 **It moves the fault as well as fixing it.** The block-in is now flat and agrees with its words. The step after
 it is now the big jump: on the cat and the cow it is among every grader's worst steps of the new lesson (the cat's
 11 and 15, the cow's 10). On the birch grove the graders' worst steps are ones both lessons share.
@@ -223,3 +225,28 @@ sentence was taken out. The cow 124, 3, 0. The birch grove 123, 0.
 It needs #214's chains in `spike/experiments/bench/runs/combined/` (git-ignored; 25 to 33 cents a picture to make
 again with `v3_combined.py erase`). A render already in `runs/block-in/<picture>/renders/` is used, not paid for
 again.
+
+## What the next v3 session needs to know
+
+None of this is in the design. It is for #218 (stray changes) and #219 (the build).
+
+- **On disk, git-ignored, only while the container that made them lives:** #214's chains in
+  `spike/experiments/bench/runs/combined/`; this spike's renders in `runs/block-in/<picture>/renders/`
+  (`w4_U<nn>_raw.png` is the raw render, its `.json` holds the request); way 4's chains in
+  `runs/block-in/way4/<picture>/` and its three lessons in `runs/block-in/way4/lessons/`. The chains of ways 1 to 3
+  were deleted for space; `try sleeping-cat 7,10` builds them again from the kept renders at no cost.
+- **The disk is nearly full** (about 280 MB free of the session's allowance). `runs/` holds about 12 GB of older
+  spikes' pictures (`paints-first`, `edges`, `peel`, `combined`, `stages`). A lesson folder is about 140 MB, so a
+  new one needs something removed first. A full disk shows as test failures in `test_bench`, not as a clear error.
+- **#218 and the guard are the same code.** `v3_combined.erase_one` keeps only the strong change, with no box. #217
+  needs more kept (the whole thing, for a "back" unit); #218 needs less kept (nothing far from the thing). The
+  thing's shape that #217 uses (`keep` in `v3_block_in.py`: the solid core of what the thing's block-in unit adds,
+  plus the render's strong change) is also a place to start for "far from the thing".
+- **`assemble` in `v3_block_in.py` makes part of a chain again without paying for the rest:** it takes new pictures
+  for a row of units and measures their changes again as every pixel that differs. Use it to try a guard on kept
+  renders before spending on new ones.
+- **A unit's change measured as "every pixel that differs" makes `changed` in `build.json` read as the whole thing.**
+  Use `seen` (`v3_block_in.py`) for how much a step changes.
+- **The stage writers still get wrong sizes for a returning unit** from the fact sheet. Telling them to leave those
+  sizes out (the prompt this spike used) cut first-check failures to 12 of 381 claims across the three lessons.
+- **In this container** `test_v3_edges.MatteTests` fails with or without changes (`pymatting` isn't installed).

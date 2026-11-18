@@ -241,6 +241,12 @@ with the date.
   `/paint-lesson` (#214). The gate is unchanged: the owner still grades one finished lesson at the end.
   **About 29 cents of renders a lesson is fine (2026-11-17, owner's call):** "29 cents is fine." This answers the
   design's open question on whether a chain's cost is low enough.
+  **The flat block-in is adopted on one win and two ties (2026-11-18, owner's call, #217):** "Adopt stands." The
+  spike's graders preferred the new lesson on the sleeping cat only and tied on the cow and the birch grove, which
+  is short of the grading rule (most pictures). The owner adopted it anyway: a block-in is asked for as one flat
+  coat, every "back" request lists what isn't painted yet, and a thing's render is kept over the whole thing
+  (`docs/spikes/v3-block-in.md`). It goes into the v3 build (#219). The step after a block-in is now the big jump,
+  and that is not solved.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
