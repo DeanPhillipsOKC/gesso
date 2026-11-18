@@ -61,7 +61,7 @@ Nothing in Waves 1 and 2 starts until Y1 exists, or the words get judged the way
   agrees with the graders and what each costs. Its baseline is v3's words on the three bench pictures v3's gate
   used (the highland cow, the sleeping cat, the birch grove).
   **Done 2026-11-18 (`docs/spikes/v4-student-test.md`): both forms are adopted.** Carry it out, graded, is the
-  score (v3's words: 3.13, 3.36 and 3.18 of 5). Pick one of four, beside the step's header alone, finds words that
+  score (v3's words: 3.15, 3.21 and 3.03 of 5, graded alone). Pick one of four, beside the step's header alone, finds words that
   point the wrong way. Neither measures stroke direction yet.
 - **Y2. The owner paints one (`human`, #252).** The owner and their partner paint the sleeping cat from its v3
   lesson and note each step where the words left them guessing. This is the only test that isn't a stand-in. It

@@ -616,8 +616,11 @@ CARRY_GRADE_SYSTEM = (
     "order. You don't see the lesson's words. You have no tools.")
 
 
-def grade_carry_one(pic: str, n: int):
-    rows = [r for r in state()["carry"] if r["picture"] == pic and r["n"] == n]
+def grade_carry_one(pic: str, n: int, solo: tuple | None = None):
+    """Grade a step's results in one call, or with `solo` (condition, rep) that one result alone (`grade-carry
+    --solo`: a result graded beside worse ones scores higher than graded alone, so a baseline is graded alone)."""
+    rows = [r for r in state()["carry"] if r["picture"] == pic and r["n"] == n
+            and (solo is None or (r["condition"], r["rep"]) == tuple(solo))]
     rng = random.Random(f"grade-{pic}-{n}-{SEED}")
     rng.shuffle(rows)
     before, after = before_after(pic, n)
@@ -638,13 +641,19 @@ def grade_carry_one(pic: str, n: int):
     for i, row in enumerate(rows, 1):
         if str(i) in sc:
             add("carry_grades", {"picture": pic, "n": n, "condition": row["condition"], "rep": row["rep"],
-                                 "grade": int(sc[str(i)]), "batch": len(rows), "cost_usd": round(r["cost_usd"] / len(rows), 5)})
+                                 "grade": int(sc[str(i)]), "batch": len(rows), "solo": solo is not None,
+                                 "cost_usd": round(r["cost_usd"] / len(rows), 5)})
     print(f"grade-carry {pic} {n:2d}: {len(rows)} results, ${r['cost_usd']:.3f}")
 
 
 def grade_carry(args):
-    done = {(r["picture"], r["n"]) for r in state()["carry_grades"]}
-    jobs = sorted({(r["picture"], r["n"]) for r in state()["carry"]} - done)
+    if args.solo:
+        done = {(r["picture"], r["n"], r["condition"], r["rep"]) for r in state()["carry_grades"] if r.get("solo")}
+        jobs = sorted((r["picture"], r["n"], (r["condition"], r["rep"])) for r in state()["carry"]
+                      if r["condition"] == args.solo and (r["picture"], r["n"], r["condition"], r["rep"]) not in done)
+    else:
+        done = {(r["picture"], r["n"]) for r in state()["carry_grades"] if not r.get("solo")}
+        jobs = sorted({(r["picture"], r["n"]) for r in state()["carry"]} - done)
     if args.picture:
         jobs = [j for j in jobs if j[0] == args.picture]
     print(f"{len(jobs)} steps to grade")
@@ -797,7 +806,8 @@ def report(args) -> dict:
     out["carry_measure"] = form(st["carry"], "beats")
     out["carry_toward"] = form(st["carry"], "toward")
     out["carry_where"] = form(st["carry"], "where")
-    out["carry_grade"] = form(st["carry_grades"], "grade")
+    out["carry_grade"] = form([r for r in st["carry_grades"] if not r.get("solo")], "grade")
+    out["carry_grade_solo"] = form([r for r in st["carry_grades"] if r.get("solo")], "grade")
     calls = st["calls"]
 
     def claude(prefix):
@@ -840,6 +850,7 @@ def main(argv=None):
             p.add_argument("--budget", type=float, default=5.0, help="stop before rendering past this spend")
     gc = sub.add_parser("grade-carry")
     gc.add_argument("--picture", choices=PICTURES)
+    gc.add_argument("--solo", choices=CONDITIONS, help="grade each of this condition's results alone")
     gc.add_argument("--workers", type=int, default=6)
     gr = sub.add_parser("graders")
     gr.add_argument("--workers", type=int, default=6)

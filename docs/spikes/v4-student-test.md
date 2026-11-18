@@ -6,7 +6,7 @@ Its test: `spike/tests/test_v4_student.py`. Every answer, measure, grade and cal
 
 **Verdict: adopt both forms, with different jobs.** **Carry it out** (the image model does the step's words on the
 before picture, and a blind grader scores the result) is v4's score: it falls on every worsening that changes a
-picture, and it is the only form that agrees at all with the blind graders. **Pick one of four** is the cheap fault
+picture, and it is the only form whose per-step scores rank the steps the way the blind graders do (Spearman 0.44). **Pick one of four** is the cheap fault
 finder: its repeat runs agree closely, and the steps where it scores *below the header alone* are steps whose
 words point the painter the wrong way. Neither form measures stroke direction yet.
 
@@ -52,8 +52,11 @@ change nothing else. That is one low-quality edit a step. The result is compared
   try). Then: of the before picture and the three near misses, the share the result is closer to the real after
   than to, on blurred colour. Two more are in the file, `toward` (how far it got from before to after) and `where`
   (overlap of the changed areas), but both are swamped by how much the model repaints.
-- **a grader**: one call a step. It sees the before picture, the real after and that step's results unlabelled, in
-  shuffled order, and never the words. It scores each result 1 to 5 for doing the step the way the picture shows.
+- **a grader**: it sees the before picture, the real after and results unlabelled, and never the words or which
+  words made a result, and scores each 1 to 5 for doing the step the way the picture shows. It ran two ways. For
+  the baseline, every result of v3's words was graded alone, one call each (`grade-carry --solo words`). For the
+  worsened words, all of a step's results were graded together in one call, in shuffled order, so each step's
+  worsened results are graded against its real-words result.
 
 ### The words: as they are, and made worse
 
@@ -90,23 +93,29 @@ Joined across the two graders, that makes 12 worst steps.
 
 | | pick (chance on the real after) | carry, measure (`beats`) | carry, grader (1 to 5) |
 |---|---|---|---|
-| all 64 steps, words | 0.68 (74 of 88 readers' top choice is the real one) | 0.65 | 3.31 |
-| highland cow | 0.65 | 0.59 | 3.13 |
-| sleeping cat | 0.72 | 0.71 | 3.36 |
-| birch grove | 0.61 | 0.63 | 3.18 |
+| all 64 steps, words | 0.68 (74 of 88 readers' top choice is the real one) | 0.65 | 3.22 |
+| highland cow | 0.65 | 0.59 | 3.15 |
+| sleeping cat | 0.72 | 0.71 | 3.21 |
+| birch grove | 0.61 | 0.63 | 3.03 |
 
 (The means run over 88 answers: 64 steps once and the 24 subset steps a second time. The per-lesson numbers are
-step means, with the two runs averaged.) This is what W1 and W2's words get measured against.
+step means, with the two runs averaged. The grades are the ones graded alone.) This is what W1 and W2's words get
+measured against.
+
+Graded together with the step's other results, the 24 subset steps' real-words results averaged 3.54. Graded alone
+they averaged 3.50, so grading beside worse results raised them only a little. They score above the other 40 steps
+(about 3.0) because they are easier for the image model, not because of how they were graded.
 
 ### Does the score follow the words?
 
-The change against v3's words, on the same steps, and on how many steps it fell or rose:
+The change against v3's words, on the same steps, and on how many steps it fell or rose (carry's grades here are
+the ones from a step's results graded together):
 
 | Words | pick | carry, measure | carry, grader |
 |---|---|---|---|
 | header only | **−0.13** (53 fell, 9 rose, of 64) | **−0.18** (12 fell, 3 rose, of 24) | **−0.92** (15 fell, 3 rose) |
 | no_place | −0.08 (17 fell, 5 rose) | **−0.18** (11 fell, 2 rose) | **−0.67** (14 fell, 2 rose) |
-| wrong_side | **−0.27** (15 fell, 8 rose) | **−0.22** (11 fell, 2 rose) | **−0.88** (15 fell, 2 rose) |
+| wrong_side | −0.27 (15 fell, 8 rose) | **−0.22** (11 fell, 2 rose) | **−0.88** (15 fell, 2 rose) |
 | no_direction | −0.03 (12 fell, 9 rose) | +0.01 (5 fell, 3 rose) | +0.13 (3 fell, 7 rose) |
 
 - **Both forms fall when the words are taken away or turned around.** Carry falls on all three of header,
@@ -114,7 +123,7 @@ The change against v3's words, on the same steps, and on how many steps it fell 
   a place (the mirrored one most of all).
 - **The header alone gets far on pick: 0.53, against 0.25 for a guess.** The step name and paints rule out the
   mirrored and next-step pictures on their own. The words add 0.13. Carry's header floor is lower in comparison
-  (2.6 against 3.3 on the grader).
+  (2.6 against 3.5 on the grader, on the same 24 steps).
 - **Neither form moves when the stroke direction is taken out.** Part of that is v3's words: they hardly say a
   direction (the 24 steps lost a phrase or two each, often only "bend every stroke with the shape"). Part is the
   forms themselves: a reader can't see a stroke's direction in a 640-pixel picture, and the image model paints its
@@ -122,7 +131,7 @@ The change against v3's words, on the same steps, and on how many steps it fell 
   try is a near miss with the strokes turned 90 degrees.
 - **The image model sometimes paints from sense, not from the words.** Cat step 13 with the sides swapped still
   put the cat on the blanket, smaller. The header alone gave a curled cat with a face. That is the risk the plan
-  named, and the grader caught it (3 and 2, against 5 for the real words):
+  named, and the grader caught it (3 and 2, against 5 and 4 for the real words' two runs):
 
 ![Cat step 13 carried out on each kind of words](v4-student-carry-cat.jpg)
 
@@ -132,10 +141,11 @@ The change against v3's words, on the same steps, and on how many steps it fell 
 |---|---|---|
 | pick | 0.90 | 0.04 |
 | carry, measure | 0.74 | 0.12 |
-| carry, grader | 0.73 | 0.33 points |
+| carry, grader (each graded alone) | 0.81 | 0.29 points |
 
-For a lesson mean over about 21 steps, carry's spread is about 0.07 grader points. A words spike has to beat v3 by
-clearly more than that.
+The two runs' grades of a step differ with a standard deviation of 0.54 points. Over a lesson of about 21 steps, the
+lesson means of two runs differ by about 0.12 (one standard deviation). That includes both the image model's spread
+and the grader's. A words spike has to beat v3 by about 0.25, twice that, before it counts.
 
 ### Does it find the steps the blind graders marked worst?
 
@@ -143,13 +153,15 @@ clearly more than that.
 |---|---|---|
 | pick | 0.09 | 1 |
 | carry, measure | 0.12 | 5 |
-| carry, grader | **0.42** | **6** |
+| carry, grader (each graded alone) | 0.44 | 7 |
 
 **Pick doesn't find them.** The graders' worst steps are mostly big jumps and picture faults: cat 4 (the whole wall
 at once), cow 8, cat 14, birch 9. Those steps have long, specific words and a big change, so a reader picks their
 after easily. Pick asks whether the words point at the right picture. The graders ask whether a beginner could get
 there. Carry comes closer because a big jump is as hard for the image model as it is for a painter. Some of
-carry's agreement therefore comes from how hard the step is, not from the words.
+carry's agreement therefore comes from how hard the step is, not from the words. The Spearman is the evidence here.
+The count is weak: 7 or more of 12 would happen by chance about 7% of the time. (The lowest third breaks ties by
+step number, which leaves pick's count of 1 uncertain: it averages about 1.7 with ties broken at random.)
 
 **What pick does find: words that point the wrong way.** On four steps the words score at least 0.25 *below* the
 header alone, and in each one the reader picked the half-done picture because the words say the paint covers less
@@ -175,25 +187,30 @@ The owner's notes from painting the cat aren't in yet. When they arrive, check t
 
 ## Cost
 
-Of this spike: **$2.92 of renders** (184, under the owner's $5 for this issue), and $14.50 of Claude at the API's
-rates (pick $9.54, carry's grader $2.41, the blind graders $1.54, the worsened words $1.02). All of it went through
+Of this spike: **$2.92 of renders** (184, under the owner's $5 for this issue), and $17.10 of Claude at the API's
+rates (pick $9.54, carry's grader $5.00 with the re-grade alone, the blind graders $1.54, the worsened words
+$1.02). All of it went through
 `claude -p` on the subscription, logged call by call in `calls`.
 
 Of one lesson of about 21 steps, as v4's spikes would run it:
 
 | Form | Claude | renders | seconds a step | wall time, 6 at once |
 |---|---|---|---|---|
-| pick | about $0.90 (4.3 cents a reader) | none | 7.6 | about 30 s |
-| carry | about $0.61 (2.9 cents a single-result grade) | about $0.33 (1.6 cents an edit) | 13 render + 7.5 grade | about 1 min |
-| both | about $1.50 | about $0.33 | | |
+| pick, words and header (42 readers) | about $1.80 (4.3 cents a reader) | none | 7.6 | about 1 min |
+| carry, graded alone | about $0.62 (3.0 cents a grade) | about $0.33 (1.6 cents an edit) | 13 render + 7 grade | about 1 min |
+| both | about $2.40 | about $0.33 | | |
+
+The header run doesn't change when only the words do, so a words spike can reuse v3's header answers in this file
+and pay for the words half only (about $0.90).
 
 Most of a pick reader's cost is the cache write of Claude Code's own system additions and five pictures. Through
 the API, with a short system prompt, it would be about half.
 
 ## How v4's spikes use it
 
-- **Score:** carry, graded. Report each lesson's mean grade beside v3's (3.13, 3.36, 3.18), from one run a lesson
-  and with the same grader brief. A words spike counts as better only by more than the 0.07 spread. Carry's
+- **Score:** carry, each result graded alone. Report each lesson's mean grade beside v3's (3.15, 3.21, 3.03), from
+  one run a lesson and with the same grader brief. A words spike counts as better only by about 0.25 or more (twice
+  the 0.12 run-to-run spread of a lesson mean). Carry's
   measure goes beside it as a check that needs no Claude.
 - **Faults:** pick, with the header run. Every step whose words score 0.25 or more below its header is listed as a
   word fault to fix: words pointing the wrong way.
@@ -204,7 +221,9 @@ the API, with a short system prompt, it would be about half.
 ## Limits
 
 - One run of each form a step, plus a second on 24 steps. The worsened words ran on 24 steps, not all 64.
-- Carry's grader sees all of a step's results together, so on the 24 steps its grades are relative to each other
-  (on the other 40 it grades one result alone).
-- The near misses are only as hard as stated: the header alone already scores 0.53 on pick.
+- The worsened words' grades come from a step's results graded together, so they are relative to each other.
+- The near misses are only as hard as stated: the header alone already scores 0.53 on pick. On a lesson's last step
+  the "step before's change" is laid onto that step's own before picture, which already holds it, so on 3 of the 64
+  steps that choice is the unchanged before picture.
+- Three of pick's four word faults rest on one reader. Only birch 20 was read twice, and both reads agreed.
 - A student made of models is not a painter. #252 is the check.
