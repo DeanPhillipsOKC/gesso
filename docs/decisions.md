@@ -266,6 +266,17 @@ with the date.
   show). What follows from the gate (`docs/design/pipeline-v3.md`, section 13): `/paint-lesson` runs v3 by default,
   the site's lessons are rerun from their photos, and v2 is removed. Those are separate changes, not done by this
   decision.
+- **v4 is a lesson you can paint from; cost is a track inside it (2026-11-18, owner's call; replaces #240's "v4 is
+  the loop at a measured cost").** The owner on v3's lessons: "I feel like the images have come a long way, but the
+  text has kind of lagged. The text isn't very exciting to read, and I don't feel like it's very helpful. I haven't
+  got a chance to paint with these tutorials yet, but the text doesn't look like it's going to help us recreate the
+  images." Asked whether v4 should be "a lesson you can actually paint from" (a teacher writes each step and the
+  fact sheet checks it, the lesson has an arc, a step shows where the strokes go, and a student test with only the
+  before picture and the words is the yardstick), with cost as a track inside it, the owner said yes. Asked to
+  paint one lesson with their partner, the owner said yes too (#252). The plan is
+  `docs/design/pipeline-v4-plan.md`. It is spikes first, then a design written from what they adopt, as v3 was:
+  the owner's order is spikes, their results, a design document by Fable, the build by Opus. v3's step pictures
+  stay. Not decided by this: v4's gate (the plan proposes one), and the easel coach (#257), which is parked.
 - **v4 aims at under $1 of Claude a lesson, and it isn't a gate yet (2026-11-18, owner's call, after #241).** The
   baseline is $4.94 a lesson at the API's rates, about $3.50 through the API itself (`docs/spikes/v4-loop-baseline.md`).
   Asked for a cost target, the owner said: "Reluctant to set a target because I don't want to sacrifice quality so
