@@ -33,6 +33,13 @@ say with the paints it names, then compare their canvas with the step's after pi
   what it teaches (the motion, the load) and keep load words exactly as drafted ("Load: Creamy paint, a full
   load."). `""` drops a line that doesn't apply. Never rewrite the Where line.
 
+**Two limits the last check holds you to:**
+
+- **Name only the step's own paints.** A step's words name only paints in that step's `paints`. An earlier step's
+  marks are named by their paint only to say where ("left of the Deep balloon red stripe"), never as a paint to
+  load. A paint the step doesn't list sends the words back.
+- **Every line under 40 words**, a rewritten line included. Split or cut a longer one.
+
 The words must match the after picture: what it adds, where, and what stays as it was. If the picture adds
 something the step's paints and words don't cover, say what the picture shows rather than ignore it.
 
