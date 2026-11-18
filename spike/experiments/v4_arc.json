@@ -6032,13 +6032,13 @@
    "arc-whole": {
     "pictures": {
      "highland-cow": {
-      "carry_grade": null,
-      "graded": 0,
-      "vs_base": null,
-      "rose": 0,
-      "fell": 0,
+      "carry_grade": 3.13,
+      "graded": 23,
+      "vs_base": -0.3,
+      "rose": 3,
+      "fell": 11,
       "backs": 7,
-      "vs_base_on_back_steps": null,
+      "vs_base_on_back_steps": -0.14,
       "check": {
        "text_failures_first": 4,
        "arc_failures_first": 0,
@@ -6122,13 +6122,13 @@
       ]
      },
      "sleeping-cat": {
-      "carry_grade": null,
-      "graded": 0,
-      "vs_base": null,
-      "rose": 0,
-      "fell": 0,
+      "carry_grade": 3.24,
+      "graded": 21,
+      "vs_base": -0.14,
+      "rose": 2,
+      "fell": 6,
       "backs": 4,
-      "vs_base_on_back_steps": null,
+      "vs_base_on_back_steps": -0.5,
       "check": {
        "text_failures_first": 6,
        "arc_failures_first": 0,
@@ -6212,13 +6212,13 @@
       ]
      },
      "birch-grove": {
-      "carry_grade": null,
-      "graded": 0,
-      "vs_base": null,
-      "rose": 0,
-      "fell": 0,
+      "carry_grade": 3.0,
+      "graded": 20,
+      "vs_base": -0.2,
+      "rose": 2,
+      "fell": 6,
       "backs": 6,
-      "vs_base_on_back_steps": null,
+      "vs_base_on_back_steps": 0.0,
       "check": {
        "text_failures_first": 8,
        "arc_failures_first": 1,
@@ -6302,9 +6302,11 @@
       ]
      }
     },
+    "vs_base_all": -0.219,
+    "vs_base_se": 0.098,
     "claude_usd_a_lesson": 1.313,
     "calls": 6,
-    "renders_usd": 0.362
+    "renders_usd": 1.008
    }
   }
  }

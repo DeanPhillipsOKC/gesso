@@ -91,6 +91,14 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
 - **W2. The lesson has an arc (#255).** An opening that names the two or three skills this painting teaches and
   shows the road to the finish, stage openers that say what the stage is for, and steps that point back ("the
   same dry brush as the sill"). After W1, since it builds on W1's writer.
+  **Done 2026-11-18 (`docs/spikes/v4-arc.md`): park the arc added by a second call on top of the writer's words
+  (`arc-add`, +$0.28 a lesson); drop the arc written in with the steps (`arc-whole`).** Neither raised a score.
+  Carry against lesson-slots: arc-add −0.16 (± 0.09; the cow −0.43, the cat and the birch grove level), arc-whole
+  −0.22 (± 0.10, down on all three). The blind graders saw no difference in 10 of 12 reads and preferred the words
+  without the arc in the other 2: their rubric scores whether a step can be painted, and it doesn't reward polish.
+  arc-add's fall is on steps early in a stage, where the stage opener's "By its end" sentence describes a canvas
+  several steps ahead. What would settle it: the owner reads one lesson's arc, then a $0.65 rerun without the end
+  sentence.
 
 ## Wave 2: showing the motion
 
