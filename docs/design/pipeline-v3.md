@@ -50,6 +50,23 @@ section 12, step 4. What it showed, and what this draft changes because of it:
   at the end. The sheet should measure what the unit changed.
 - **Cost:** 14 to 18 renders, 25 to 33 cents and 3 to 4 minutes a lesson; the birch grove made 10 renders again.
 
+**The block-in was then tried four ways on the same three pictures (2026-11-18, #217,
+`docs/spikes/v3-block-in.md`). Verdict: adopt the fourth, on one clear win and two ties. The grading rule asks
+for most pictures; the owner said "Adopt stands" on 2026-11-18** (both of the cat's graders preferred it; the cow's split; the birch
+grove's, where two steps of a small rock changed, said "none"; no grader chose #214's lesson). What this draft
+changes because of it:
+
+- **A block-in is made by its own render, asked for as one flat coat (section 6, changed).** The request that
+  leaves it names its paint, says it is one color from edge to edge, and lists what the plan paints on the thing
+  later. A second render for the block-in gave the same picture for one render more; a flat fill gave a slab.
+- **Every "back" request lists what isn't painted yet (section 6, changed).** That took the cat's ears and eyes
+  off its earlier steps and gave the blanket's stitches and the cat's fur their own steps.
+- **A "back" render is kept over the whole thing, not only where it changed by a lot (section 6, changed).** The
+  guard threw away a render that took the blanket's knit off, and kept a flat coat only in patches.
+- **The step after a block-in is now the big jump (section 8, not solved).** It brings the thing's brush texture
+  on a step that names one shading paint; it was among every cat and cow grader's worst steps of the new lessons.
+- **Cost:** none. The same renders, asked differently.
+
 ## 1. Why change
 
 v2 renders the finished painting once and cuts every step picture from it inside outlines. It stopped improving:
@@ -168,6 +185,15 @@ with every unit after u erased. P[last] is the finish.
   thing back to how the plan's `after` describes it before this stage. The request is the `after` line of the step
   before the unit's first.
 
+**What a block-in is made from (#217).** A block-in is the first unit of a thing in front, and its picture is
+what the "back" render of the thing's next unit leaves. So that request says what is left, from the plan: the
+block-in's paint by name and look, "the same from edge to edge, like a shape cut from colored paper", no shading,
+fold, texture, line or detail, and "None of this is painted yet, so none of it may show:" with the `what` of every
+later `lays` on the thing. Every later "back" request on the thing carries the same list, from its own unit on. No
+second render and no flat fill: both were tried (`docs/spikes/v3-block-in.md`). **Open:** a paper-flat coat leaves
+the thing's whole brush texture to the next step; a coat brushed in one color wasn't tried. A step that takes a
+thing's texture off (the blanket's knit) needed "what is left has no texture" written by hand.
+
 **The third kind is this draft's main guess.** #204 erased whole things only. Its write-up names this as the next
 thing to try ("a chain that erases a thing's detail before the thing ... is the same tool pointed one level down").
 S4 (#169) tried rendered stages inside a part, with separate renders and no guard of this kind, and the owner
@@ -181,6 +207,13 @@ changed by 20 or more). D[u] is that change. Every other pixel stays as it was.
 - #204 also required the strong change to start inside the plan's loose box. v3's plan has no box. **Guess:** the
   guard holds without one, as it did going forward in #207. If a render changes something far from its thing, the
   place to catch it is step 5.
+- **A "back" render is kept over the whole thing (#217).** Keeping only the strong change is right for a thing
+  that goes and wrong for a layer that comes off: a flat coat is close in color to the brushwork it replaces, so
+  the guard kept it in patches, and it dropped a smooth blanket for a knitted one whole. The thing's shape is the
+  solid core of what its block-in unit adds, holes filled, plus the render's strong change. That shape is known
+  only once the chain has erased the thing, so `erase` lays each stage's render over it in a second pass, with no
+  new render. **Known cost:** the thing is drawn again at every stage, so its outline and brushwork can shift
+  between steps (the birch grove's rock narrows on its shade step).
 - The guard's four numbers were set on three pictures. They need the bench.
 
 **Step 5: look once.** Claude reads the chain sheet. A unit is asked for again, at most twice, when it painted a
@@ -227,6 +260,9 @@ them. The combined lesson is the test.
 2. No step changes a pixel outside what its unit adds.
 3. Every pixel a step lays is within a set distance of a paint that step names. **Not measured by any spike.** It
    starts as a number that is reported, not a failure.
+
+**Open after #217:** with a flat block-in, the cut between two steps of one unit by nearest paint shows. The
+cat's shade step left the places its white goes as hard-edged flat gray, and both of its graders marked it down.
 
 Two more, from faults the graders named:
 
@@ -315,7 +351,9 @@ Then the site's lessons are rerun from their photos, and v2 is removed.
 - **Faint things won't erase,** so a first step can still show too much.
 - **More renders:** 25 to 33 cents and 3 to 4 minutes of chain a lesson, one after another (#214), and more when a
   unit is asked again.
-- **Block-ins that arrive finished,** and the near-empty steps after them (#214).
+- **The step after a block-in is a big jump** (#217). #214's block-ins arrived finished; asked for flat, they
+  leave the thing's texture and form to the next step. Small steps (a rim light, a nose highlight, a mouth line)
+  still change almost nothing.
 - **Claude's graders are not the owner.** Every adopt this draft rests on is Claude's grade. On S4 Claude liked the
   stages and the owner preferred v2.
 - **Every spike score was 2 to 4 out of 5.** Each adopted piece was the better of two flawed lessons, not a good
