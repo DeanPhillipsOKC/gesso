@@ -16,17 +16,17 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-import yaml  # noqa: E402
 
 import elements as el  # noqa: E402
+import lessons  # noqa: E402
 import tools  # noqa: E402
 
-FIX = Path(__file__).resolve().parent / "fixtures" / "plans"
 NAMES = ("chickadee", "red-sailboat", "lavender-balloon")
 
 
 def plan(name: str) -> dict:
-    return json.loads((FIX / f"{name}.json").read_text(encoding="utf-8"))
+    """The fixture's plan in version 2's shape, as build-steps kept it: a part a unit, each with its element."""
+    return lessons.built(name)[0]
 
 
 def step(sid: str, show: str, stroke: str, paints=("p",)) -> dict:
@@ -179,24 +179,6 @@ class MatchTests(unittest.TestCase):
         _, wrong = el.match(steps, ball, {"gold": 60.0, "red": 45.0})
         self.assertIn("missing that one", wrong[0])
 
-    def test_elements_lesson_says_to_change_the_show_on_the_lavender_plan(self):
-        # the lavender fixture with its fields' darken pass set to show full, as the hands-off run had it
-        p = plan("lavender-balloon")
-        shade = next(s for st in p["stages"] for s in st["steps"] if s["id"] == "fields-shade")
-        with tempfile.TemporaryDirectory() as d:
-            # the tools want the name; the picture isn't read for this, and PIL reads a JPEG by its bytes
-            (Path(d) / "99_finish.png").write_bytes((FIX.parent / "finishes" / "lavender-balloon.jpg").read_bytes())
-            for show in ("pass", "full"):
-                shade["show"] = show
-                (Path(d) / "plan.json").write_text(json.dumps(p), encoding="utf-8")
-                code, out = run_tool("elements", "--lesson", d)
-                self.assertEqual(code, 0, out)
-                said = [x for x in out["problems"] if x.startswith("fields:")]
-                if show == "pass":
-                    self.assertEqual(said, [])
-            self.assertEqual(len(said), 1, out["problems"])
-            self.assertIn("Change fields-shade's show from full to pass, and keep its paints", said[0])
-
     def test_a_ripple_pass_is_the_ripple_step_and_shows_its_mistake(self):
         water = el.library()["water"]
         steps = [step("base", "flat", "horizontal-strokes", ["d"]), step("light", "pass", "horizontal-strokes", ["l"]),
@@ -208,7 +190,16 @@ class MatchTests(unittest.TestCase):
         marked = el.step_elements(p, el.library())
         self.assertEqual(marked["rip"]["mistake"]["mistake"], "Ripple lines the same length everywhere.")
 
-    def test_check_and_the_page_use_the_same_fit(self):
+    def test_the_same_plan_gives_the_same_fit(self):
+        a = el.match(ROWS, self.rows, LIGHT)
+        self.assertEqual(a, el.match(copy.deepcopy(ROWS), self.rows, LIGHT))
+
+
+@lessons.slow
+class FixtureTests(unittest.TestCase):
+    """The fixtures' plans in version 2's shape, as the page reads them: every unit's element fits its steps."""
+
+    def test_the_page_uses_the_same_fit_as_match(self):
         for name in NAMES:
             p = plan(name)
             light = el.plan_lightness(p)
@@ -218,105 +209,14 @@ class MatchTests(unittest.TestCase):
                 where, _ = el.match(steps, el.library()[part["element"]], light)
                 self.assertEqual([marked[s["id"]]["slot"] for s in steps], where, (name, part["id"]))
 
-    def test_the_same_plan_gives_the_same_fit(self):
-        a = el.match(ROWS, self.rows, LIGHT)
-        self.assertEqual(a, el.match(copy.deepcopy(ROWS), self.rows, LIGHT))
-
-
-class PlanTests(unittest.TestCase):
-    def test_every_fixture_part_names_an_element_with_a_reason(self):
-        lib = el.library()
-        for name in NAMES:
-            p = plan(name)
-            self.assertTrue(p["technique_why"])
-            for part in p["parts"]:
-                self.assertIn(part["element"], lib, (name, part["id"]))
-                self.assertTrue(part["element_why"])
-
-    def test_the_fixture_findings(self):
-        """The chickadee and sailboat follow their elements. The lavender fixture doesn't, as the owner found
-        (#12): its rows are dabbed, not stamped, with no separate dark bloom pass; its balloon goes straight to the
-        stripes and basket. Its fields, a coat then a darker front, follow field-grass."""
-        self.assertEqual(el.plan_problems(plan("chickadee"), el.library()), [])
-        self.assertEqual(el.plan_problems(plan("red-sailboat"), el.library()), [])
-        out = el.plan_problems(plan("lavender-balloon"), el.library())
-        self.assertEqual([x.split(":")[0] for x in out], ["lavender", "balloon"])
-
-    def test_no_element_no_reason_wrong_kind_and_unknown(self):
-        p = plan("red-sailboat")
-        p.pop("technique_why")
-        parts = {x["id"]: x for x in p["parts"]}
-        parts["sky"].pop("element")
-        parts["sun"].pop("element_why")
-        parts["hill"]["element"] = "reflection"  # a marks element on an area
-        parts["mast"]["element"] = "rigging"
-        out = " | ".join(el.plan_problems(p, el.library()))
-        for want in ("no technique_why", "sky: no element", "sun: no element_why", "hill: element reflection is for marks",
-                     "mast: element 'rigging' isn't in"):
-            self.assertIn(want, out)
-
-    def test_a_drafted_element_counts_once_filed(self):
+    def test_picks_are_listed_with_a_reason(self):
         p = plan("chickadee")
-        p["parts"][6]["element"] = "scaled-body"  # the bird
-        with tempfile.TemporaryDirectory() as tmp:
-            lesson = Path(tmp)
-            (lesson / "elements").mkdir()
-            draft = {k: v for k, v in el.library()["shaped-object"].items() if not k.startswith("_")}
-            draft.update(id="scaled-body", name="A scaled body", drafted=True, checked=False,
-                         sources=["general painting practice; the research has no section on scales"])
-            path = lesson / "elements" / "scaled-body.yaml"
-            path.write_text(yaml.safe_dump(draft), encoding="utf-8")
-            out = el.plan_problems(p, lesson=lesson)
-            self.assertEqual(len(out), 1)
-            self.assertIn("isn't filed for the owner yet", out[0])
-            draft["filed"] = "https://github.com/DeanPhillipsOKC/gesso/issues/999"
-            path.write_text(yaml.safe_dump(draft), encoding="utf-8")
-            self.assertEqual(el.plan_problems(p, lesson=lesson), [])
-            marked = el.step_elements(p, el.known(lesson))
-            self.assertTrue(marked["bird-body"]["drafted"])
-            self.assertFalse(marked["sky-blend"]["drafted"])
-            # a draft no part uses is reported
-            (lesson / "elements" / "spare.yaml").write_text(yaml.safe_dump({**draft, "id": "spare"}), encoding="utf-8")
-            self.assertTrue(any("spare.yaml was drafted but no part uses it" in x for x in el.plan_problems(p, lesson=lesson)))
-            (lesson / "elements" / "spare.yaml").unlink()
-            # a new id missing drafted: true is told so, not blamed on an id clash
-            nodraft = {**draft, "id": "scales"}
-            nodraft.pop("drafted")
-            (lesson / "elements" / "scales.yaml").write_text(yaml.safe_dump(nodraft), encoding="utf-8")
-            p["parts"][5]["element"] = "scales"  # the leaves
-            out = el.plan_problems(p, lesson=lesson)
-            self.assertTrue(any("needs drafted: true" in x for x in out))
-            self.assertFalse(any("library element's id" in x for x in out))
-            (lesson / "elements" / "scales.yaml").unlink()
-            p["parts"][5]["element"] = "shaped-object"
-            # a draft can't take a library id
-            clash = lesson / "elements" / "foliage.yaml"
-            clash.write_text(yaml.safe_dump({**draft, "id": "foliage"}), encoding="utf-8")
-            p["parts"][3]["element"] = "foliage"
-            self.assertTrue(any("library element's id" in x for x in el.plan_problems(p, lesson=lesson)))
-
-    def test_a_draft_later_added_to_the_library_as_it_was_is_no_clash(self):
-        p = plan("chickadee")
-        with tempfile.TemporaryDirectory() as tmp:
-            lesson = Path(tmp)
-            (lesson / "elements").mkdir()
-            same = {k: v for k, v in el.library()["foliage"].items() if not k.startswith("_")}
-            same.update(drafted=True, filed="https://github.com/DeanPhillipsOKC/gesso/issues/999")
-            (lesson / "elements" / "foliage.yaml").write_text(yaml.safe_dump(same), encoding="utf-8")
-            self.assertEqual(el.plan_problems(p, lesson=lesson), [])
-            same["rules"] = ["changed since"]
-            (lesson / "elements" / "foliage.yaml").write_text(yaml.safe_dump(same), encoding="utf-8")
-            out = el.plan_problems(p, lesson=lesson)
-            self.assertEqual(len(out), 1)
-            self.assertIn("library element's id", out[0])
-
-    def test_an_elements_mistake_is_the_watch_line_and_picks_are_listed(self):
-        marked = el.step_elements(plan("lavender-balloon"), el.library())
-        self.assertEqual(marked["sky-blend"]["mistake"]["mistake"], "Blending after the paint has started to drag.")
-        picks = el.picks(plan("chickadee"))
-        self.assertEqual([x["part"] for x in picks], [x["id"] for x in plan("chickadee")["parts"]])
+        picks = el.picks(p)
+        self.assertEqual([x["part"] for x in picks], [x["id"] for x in p["parts"]])
         self.assertTrue(all(x["element"] and x["why"] for x in picks))
 
+
+class ToolTests(unittest.TestCase):
     def test_the_tool_lists_the_library_and_writes_the_page(self):
         with tempfile.TemporaryDirectory() as tmp:
             code, r = run_tool("elements", "--out", str(Path(tmp) / "elements.html"))

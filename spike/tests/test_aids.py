@@ -25,7 +25,7 @@ import aids  # noqa: E402
 import build_steps as bs  # noqa: E402
 import lessons  # noqa: E402
 import tools  # noqa: E402
-from test_pipeline_v2 import CANVAS, NAMES, fixture  # noqa: E402
+from lessons import CANVAS, NAMES  # noqa: E402
 
 PERCENT = re.compile(r"%|percent", re.I)
 
@@ -46,7 +46,7 @@ class AidsTests(unittest.TestCase):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.built = {}
         for name in NAMES:
-            owner = fixture(name)[2]
+            owner = lessons.owner(name)
             plan, pictures, _, masks = lessons.built(name)
             names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(bs.flat_steps(plan))]
             out = Path(cls.tmp.name) / name / "aids"
@@ -246,20 +246,20 @@ class StepAidsToolTests(unittest.TestCase):
 
     def test_step_aids_before_build_steps_is_refused(self):
         with tempfile.TemporaryDirectory() as d:
-            code, r = run_tool("step-aids", "--lesson", str(self.lesson(d, "outlined")))
+            code, r = run_tool("step-aids", "--lesson", str(self.lesson(d, "chained")))
             self.assertEqual(code, 2)
             self.assertIn("run build-steps", r["refused"])
 
     def test_a_canvas_cropped_from_the_frame_gives_canvas_pictures_and_inches(self):
         with tempfile.TemporaryDirectory() as d:
-            lesson = self.lesson(d, "aided")  # build-steps doesn't read canvas.json; step-aids does
+            lesson = self.lesson(d, "built")  # build-steps doesn't read canvas.json; step-aids does
             box = [0.1, 0.05, 0.9, 0.95]
             (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 10, "h_in": 8.5, "orientation": "landscape"},
                                                             "canvas_box": box}), encoding="utf-8")
             code, r = run_tool("step-aids", "--lesson", str(lesson))
             self.assertEqual(code, 0, r)
             data = json.loads((lesson / "aids" / "aids.json").read_text(encoding="utf-8"))
-            steps = bs.flat_steps(fixture("red-sailboat")[1])
+            steps = bs.flat_steps(lessons.built("red-sailboat")[0])
             self.assertEqual([x["id"] for x in data["steps"]], [s["id"] for s in steps])
             vw, vh = data["view"]
             with Image.open(lesson / data["steps"][0]["image"]) as shown:  # the canvas crop the page shows
@@ -268,20 +268,20 @@ class StepAidsToolTests(unittest.TestCase):
             words = " ".join(x["where_words"] for x in data["steps"])
             self.assertIn(" in from the ", words)
             self.assertNotRegex(words, PERCENT)
-            sun = next(x for x in data["steps"] if x["id"] == "sun")
+            sun = next(x for x in data["steps"] if x["id"] == "paint-sun")
             with Image.open(lesson / sun["closeup"]["after"]) as img:
                 self.assertLessEqual(max(img.size), aids.CLOSE_PX)
 
     def test_step_pictures_that_dont_match_the_plan_are_refused(self):
         with tempfile.TemporaryDirectory() as d:
-            lesson = self.lesson(d, "aided")
+            lesson = self.lesson(d, "built")
             first = sorted(lesson.glob("01_*.png"))[0]
             with Image.open(first) as img:
                 size = img.size
             Image.new("RGB", size, (0, 0, 0)).save(first)
             code, r = run_tool("step-aids", "--lesson", str(lesson))
             self.assertEqual(code, 2)
-            self.assertIn("don't match the plan", r["refused"])
+            self.assertIn("isn't the file build-steps wrote", r["refused"])
 
 
 if __name__ == "__main__":

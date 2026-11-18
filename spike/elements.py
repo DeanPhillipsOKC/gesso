@@ -1,15 +1,13 @@
 """Element techniques: how a kind of part is usually painted (a sky, foliage, lavender rows, a reflection), as
-fixed data the plan follows (#12, docs/design/pipeline-v2.md section 10).
+fixed data the plan follows (#12; docs/design/pipeline-v3.md section 5: plan-check holds a plan's picks to them).
 
     library()              -> {id: element}      techniques/elements/*.yaml
     drafted(lesson)        -> {id: element}      <lesson>/elements/*.yaml, drafted during a run
     problems(library)      -> what's wrong with the element files themselves
-    plan_problems(plan, known, lesson) -> what's wrong with the plan's picks and the steps that follow them
     match(steps, element, hexes) -> (slot of each step, or None, and what doesn't fit)
     page()                 -> one HTML page of every element, for the owner to check
 
-A part names its element (`"element": "<id>"`, with `"element_why"`: one line on why it fits this part at this
-level). The element lists the part's steps in order, each with the kinds of `show` and the stroke cards it may use
+A thing names its element (`"element": "<id>"`, with `"why"`: one line on why it fits this thing at this level). The element lists the part's steps in order, each with the kinds of `show` and the stroke cards it may use
 and the value it paints (dark, mid, light). Steps marked `optional` may be left out; `repeat` may be two or more
 steps in a row (one per stripe, one per paint). So the plan still chooses the paints and how many passes, but not a
 different way to paint the thing: the lavender rows are always flat rows, then dark, mid, and light stamps
@@ -209,7 +207,7 @@ def match(steps: list[dict], element: dict, lightness: dict[str, float] | None =
                        f"Change {who['id']}'s show from {who.get('show', 'full')} to {show}, and keep its paints.")
         else:
             out.append(f"{said} If {light['id']} is a different step, the part is missing that one: add "
-                       "it (paints --add gives the part a lighter or darker color). Or swap the two steps' paints.")
+                       "it. Or swap the two steps' paints.")
     return where, out
 
 
@@ -279,60 +277,6 @@ def _first_misfit(steps, slots, fits) -> dict | None:
 def _step_lightness(step: dict, lightness: dict[str, float]) -> float | None:
     vals = [lightness[c] for c in step.get("paints") or [] if c in lightness]
     return sum(vals) / len(vals) if vals else None
-
-
-def plan_problems(plan: dict, elements: dict[str, dict] | None = None, lesson: Path | None = None) -> list[str]:
-    """What's wrong with a version 2 plan's technique picks: `technique_why`, every part's `element` and
-    `element_why`, an element for another kind of part, steps that don't follow the element, and a drafted element
-    that's broken or not filed for the owner yet."""
-    elements = known(lesson) if elements is None else elements
-    out: list[str] = []
-    if not (plan.get("technique_why") or "").strip():
-        out.append("no technique_why: one line on why this approach fits the picture and the level")
-    lightness = plan_lightness(plan)
-    by_part: dict[str, list[dict]] = {}
-    for st in plan.get("stages") or []:
-        for s in st.get("steps") or []:
-            by_part.setdefault(s.get("part"), []).append(s)
-    used_drafts = set()
-    for p in plan.get("parts") or []:
-        pid = p.get("id", "")
-        eid = p.get("element")
-        if not eid:
-            out.append(f"{pid}: no element. Pick the element technique that fits it (tools.py elements lists them) and "
-                       "say why in element_why, or draft one in the lesson's elements/ folder.")
-            continue
-        el = elements.get(eid)
-        if el is None:
-            out.append(f"{pid}: element {eid!r} isn't in techniques/elements or the lesson's elements/ folder")
-            continue
-        if el.get("_draft_clash"):
-            used_drafts.add(eid)  # the part does use the lesson's draft; the clash is the only problem
-            out.append(f"{pid}: elements/{eid}.yaml in the lesson has a library element's id. Give the draft its own id.")
-        if el.get("drafted"):
-            used_drafts.add(eid)
-        if not (p.get("element_why") or "").strip():
-            out.append(f"{pid}: no element_why: one line on why {eid} fits this part")
-        kinds = _list(el.get("kinds"))
-        if kinds and p.get("kind") not in kinds:
-            out.append(f"{pid}: element {eid} is for {' or '.join(kinds)} parts, and {pid} is {p.get('kind')}. Pick "
-                       "another element, or change the part's kind.")
-        mine = by_part.get(pid)
-        if mine:
-            _, wrong = match(mine, el, lightness)
-            out += [f"{pid}: {w}" for w in wrong]
-    if lesson is not None:
-        drafts = drafted(lesson)
-        out += problems(drafts, draft=True)
-        lib = library()
-        for eid in sorted(set(drafts) - used_drafts - {k for k, d in drafts.items() if k in lib and same_as_library(d, lib[k])}):
-            out.append(f"elements/{eid}.yaml was drafted but no part uses it. Delete it, or name it on the part it was "
-                       "drafted for.")
-        for eid in sorted(used_drafts):
-            if not (drafts.get(eid) or {}).get("filed"):
-                out.append(f"elements/{eid}.yaml was drafted for this lesson and isn't filed for the owner yet. File it "
-                           "now, as step 2b says (search first; reuse a matching issue), and put its url in filed.")
-    return out
 
 
 def plan_lightness(plan: dict) -> dict[str, float] | None:

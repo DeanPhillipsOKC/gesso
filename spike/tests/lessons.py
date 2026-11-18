@@ -1,20 +1,22 @@
 """The three fixture lessons, built once per test run and shared by every test that needs one (#87).
 
-    built(name)          -> (plan, pictures, rows, masks): build_steps.build on the fixture
+    built(name)          -> (plan, pictures, rows, masks): what build-steps kept for the fixture (lesson3.read)
     lesson(name, stage)  -> a fresh copy of the fixture's lesson folder after that stage's tools, to change freely
     results(name, stage) -> {tool: what it printed} for the tools of that stage and the ones before it
     history(name)        -> the GESSO_HISTORY folder the "published" stage recorded into
 
-The stages, each run on the one before it, as the skill runs the tools:
+Each fixture is a sealed version 3 run made small (fixtures/lessons/<name>/, tests/make_fixtures.py): its plan, its
+canvas, its chain, the chain checker's answers and the stage writers' words. The stages, each run on the one before
+it, as the skill runs the tools:
 
-    outlined   the fixture plan, finish, and saved outlines (what outline leaves)
-    aided      + build-steps, step-aids, mix
+    chained    the plan, canvas, finish and chain (what erase leaves)
+    built      + build-steps, step-aids, mix
     published  + publish (no step text: every step a draft)
-    checked    + draft-text, check (aided, then the text tools; no publish)
+    checked    + draft-text, check (built, then the text tools; no publish)
+    worded     + packets, the writers' words, check-text --final (checked, then the words)
 
-Building a fixture is about 10 seconds a lesson, and publish builds on top of it; before this, test classes each built
-all three from scratch. A stage is built the first time a test asks for it and kept in GESSO_TEST_CACHE, a folder the
-runner (tests/suite.py) makes for one run and its workers share. A plain `python -m unittest` works too: without the
+A stage is built the first time a test asks for it and kept in GESSO_TEST_CACHE, a folder the runner
+(tests/suite.py) makes for one run and its workers share. A plain `python -m unittest` works too: without the
 variable the cache is a temp folder for this process. A lock per fixture keeps two workers from building the same one.
 """
 
@@ -26,7 +28,6 @@ import fcntl
 import io
 import json
 import os
-import pickle
 import shutil
 import sys
 import tempfile
@@ -39,24 +40,53 @@ sys.path.insert(0, str(HERE))
 import numpy as np  # noqa: E402
 from PIL import Image  # noqa: E402
 
-import build_steps as bs  # noqa: E402
+import erase3  # noqa: E402
+import lesson3  # noqa: E402
+import plan3  # noqa: E402
 import tools  # noqa: E402
 
-FIX = HERE / "fixtures"
+FIX = HERE / "fixtures" / "lessons"
 NAMES = ["chickadee", "lavender-balloon", "red-sailboat"]
+CANVAS = {"w_in": 16.0, "h_in": 12.0, "orientation": "landscape"}  # every fixture's canvas (canvas.json)
 
 
-def fixture(name: str):
-    """(finish, plan, owner) of a fixture: a finished painting from the lessons site, its version 2 plan, and the
-    outlines the model gave for it (fixtures/owners/)."""
-    finish = np.array(Image.open(FIX / "finishes" / f"{name}.jpg").convert("RGB"))
-    plan = json.loads((FIX / "plans" / f"{name}.json").read_text(encoding="utf-8"))
-    owner = np.array(Image.open(FIX / "owners" / f"{name}.png")).astype(np.int32)
-    return finish, plan, owner
+def chain_into(name: str, folder: Path) -> None:
+    """The fixture as erase leaves it: plan.json, canvas.json, 99_finish.png (the last picture of the chain) and
+    chain/, with its made_for worked out for this finish."""
+    src = FIX / name
+    (folder / "chain" / "looks").mkdir(parents=True)
+    plan = json.loads((src / "plan.json").read_text(encoding="utf-8"))
+    for f in ("plan.json", "canvas.json"):
+        shutil.copyfile(src / f, folder / f)
+    ps = sorted((src / "chain").glob("P[0-9][0-9].jpg"))
+    for p in ps:
+        Image.open(p).convert("RGB").save(folder / "chain" / f"{p.stem}.png")
+        for kind in "DC":
+            shutil.copyfile(src / "chain" / f"{kind}{p.stem[1:]}.png", folder / "chain" / f"{kind}{p.stem[1:]}.png")
+    shutil.copyfile(folder / "chain" / f"{ps[-1].stem}.png", folder / "99_finish.png")
+    kept = json.loads((src / "chain" / "chain.json").read_text(encoding="utf-8"))
+    again = {int(k): v for k, v in (kept.get("again") or {}).items()}
+    finish = np.array(Image.open(folder / "99_finish.png").convert("RGB"))
+    kept["made_for"] = erase3.made_for(plan, plan3.units(plan), finish, again)
+    (folder / "chain" / "chain.json").write_text(json.dumps(kept, indent=1), encoding="utf-8")
+    if (src / "answers.json").exists():
+        shutil.copyfile(src / "answers.json", folder / "chain" / "looks" / "answers.json")
+    for n in range(1, len(ps)):  # a look a unit, as erase leaves them, so the seal's "every unit" rule has units
+        Image.open(folder / "chain" / f"P{n:02d}.png").convert("RGB").resize((64, 43)).save(
+            folder / "chain" / "looks" / f"U{n:02d}.jpg")
+
+
+def words_into(name: str, folder: Path) -> None:
+    """The stage writers' out.json from the run the fixture was made from, into the packets' folders."""
+    for stage, out in json.loads((FIX / name / "words.json").read_text(encoding="utf-8")).items():
+        if (folder / "words" / stage).is_dir():
+            (folder / "words" / stage / "out.json").write_text(json.dumps(out), encoding="utf-8")
+
 
 FOLDER = "{name}_skill_20261112-090000"  # a run time in the name: history counts minutes from it
-STAGES = {"outlined": (None, ()), "aided": ("outlined", ("build-steps", "step-aids", "mix")),
-          "published": ("aided", ("publish",)), "checked": ("aided", ("draft-text", "check"))}
+STAGES = {"chained": (None, ()), "built": ("chained", ("build-steps", "step-aids", "mix")),
+          "published": ("built", ("publish",)), "checked": ("built", ("draft-text", "check")),
+          "worded": ("checked", ("packets", words_into, "check-text --final"))}
 
 
 def _root() -> Path:
@@ -80,7 +110,7 @@ def _locked(name: str):
 
 
 def slow(cls):
-    """Marks a test class that takes seconds (builds or publishes a fixture, runs the outline model): tests/suite.py
+    """Marks a test class that takes seconds (builds or publishes a fixture): tests/suite.py
     --quick leaves it out."""
     cls.slow = True
     return cls
@@ -105,23 +135,21 @@ def _stage(name: str, stage: str) -> Path:
     before, run = STAGES[stage]
     shutil.rmtree(folder.parent, ignore_errors=True)  # what a build that failed part way left
     if before is None:
-        finish, plan, owner = fixture(name)
-        (folder / "parts").mkdir(parents=True)
-        (folder / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
-        Image.fromarray(finish).save(folder / "99_finish.png")
-        Image.fromarray(owner.astype(np.uint8)).save(folder / "parts" / "owner.png")
+        chain_into(name, folder)
         results = {}
     else:
         shutil.copytree(_stage(name, before), folder)
         results = json.loads((folder.parent.parent / before / "results.json").read_text(encoding="utf-8"))
-        built(name)  # saved for the other workers, and in this process's memo for the tools below
         old = os.environ.get("GESSO_HISTORY")
         os.environ["GESSO_HISTORY"] = str(history(name))
         try:
             for tool in run:
-                code, r = run_tool(tool, "--lesson", str(folder))
+                if callable(tool):
+                    tool(name, folder)
+                    continue
+                code, r = run_tool(*tool.split()[:1], "--lesson", str(folder), *tool.split()[1:])
                 assert code == 0, (name, tool, r)
-                results[tool] = r
+                results[tool.split()[0]] = r
         finally:
             if old is None:
                 os.environ.pop("GESSO_HISTORY", None)
@@ -131,47 +159,26 @@ def _stage(name: str, stage: str) -> Path:
     return folder
 
 
-def _prime(name: str) -> None:
-    """Put the fixture's saved build, if this run has one, in build_steps' memo: a tool run on the fixture in this
-    process then doesn't build it again."""
-    finish, plan, owner = fixture(name)
-    key = bs._key(finish, plan, owner, None)
-    path = _root() / name / "build.npz"
-    if key not in bs._built and path.exists():
-        _load(key, path)
-
-
-def _load(key: str, path: Path) -> None:
-    with np.load(path) as saved:
-        rows = pickle.loads((path.parent / "rows.pickle").read_bytes())
-        bs._built[key] = (list(saved["pictures"]), rows, list(saved["masks"]))
-
-
 def built(name: str) -> tuple[dict, list[np.ndarray], list[dict], list[np.ndarray]]:
-    """(plan, pictures, rows, masks) of build_steps.build on the fixture, each call a fresh copy."""
-    finish, plan, owner = fixture(name)
-    key = bs._key(finish, plan, owner, None)
-    if key not in bs._built:
-        path = _root() / name / "build.npz"
-        with _locked(f"{name}-build"):
-            if not path.exists():
-                pictures, rows, masks = bs.build(finish, plan, owner)
-                tmp = path.with_suffix(".tmp.npz")
-                path.parent.mkdir(parents=True, exist_ok=True)
-                np.savez(tmp, pictures=np.stack(pictures), masks=np.stack(masks))
-                (path.parent / "rows.pickle").write_bytes(pickle.dumps(rows))
-                tmp.rename(path)
-        if key not in bs._built:
-            _load(key, path)
-    pictures, rows, masks = bs.build(finish, plan, owner)  # the memo's copy
-    return plan, pictures, rows, masks
+    """(plan, pictures, rows, masks): what build-steps kept for the fixture, the plan in version 2's shape (the
+    shape step-aids, draft-text, check and publish read). Each call a fresh copy."""
+    with _locked(name):
+        src = _stage(name, "built")
+    kept = lesson3.read(src)
+    return kept["plan"], kept["pictures"], kept["rows"], kept["masks"]
+
+
+def owner(name: str) -> np.ndarray:
+    """Which unit (the plan's part, in version 2's shape) each pixel of the fixture's finish belongs to."""
+    with _locked(name):
+        src = _stage(name, "built")
+    return lesson3.read(src, pictures=False)["owner"]
 
 
 def lesson(name: str, stage: str, into: Path | None = None) -> Path:
     """A copy of the fixture lesson after `stage`, in its own new folder (under `into` when given)."""
     with _locked(name):
         src = _stage(name, stage)
-    _prime(name)
     if into is not None:
         Path(into).mkdir(parents=True, exist_ok=True)
     dst = Path(tempfile.mkdtemp(dir=into)) / src.name

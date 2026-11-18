@@ -250,17 +250,13 @@ class V3ToolsTests(unittest.TestCase):
             code, r = self.tool(name)
             self.assertEqual(code, 2, name)
             self.assertIn("run build-steps", r["refused"])
-        code, r = self.tool("paints")
-        self.assertEqual((code, len(r["paints"]), r["notes"]), (0, 5, []))
-        self.assertIn("version 2 lesson", self.tool("paints", "--add", "cat")[1]["refused"])
-        self.assertIn("version 2 lesson", self.tool("background")[1]["refused"])
-        self.assertIn("isn't a version 2 plan", self.tool("outline")[1]["refused"])
         code, r = self.tool("build-steps")
         self.assertEqual((code, r["problems"], r["notes"]), (0, [], []))
+        self.assertEqual(len(r["paints"]), 5)
         self.assertEqual(r["checks"]["final_gap"], 0.0)
         self.assertEqual(len(r["steps"]), 6)
         self.assertTrue((self.lesson / "trials" / "steps.jpg").exists())
-        with mock.patch("build_steps.build", side_effect=AssertionError("a version 3 step was cut again")):
+        with mock.patch("steps3.build", side_effect=AssertionError("a step was cut again after build-steps")):
             code, r = self.tool("step-aids")
             self.assertEqual((code, r["steps"]), (0, 6))
             code, r = self.tool("mix")
@@ -340,24 +336,22 @@ class V3ToolsTests(unittest.TestCase):
         write(1, {"blend-sky": plain("the sky")})
         code, r = self.tool("check-text", "--final")
         self.assertTrue(r["ok"], r)
-        self.assertEqual(self.tool("card-adapt")[0], 0)
         code, r = self.tool("check")
         self.assertEqual(code, 0)
-        self.assertEqual([x for x in r["problems"] if "card" not in x], [], r["problems"])
+        self.assertEqual(r["problems"], [])
         # the seal: a version 3 run needs the chain's checker and the words' last check, not the text review
         review = {"finish_issues": [], "text_issues": []}
         (self.lesson / "review.json").write_text(json.dumps(review), encoding="utf-8")
         plan_model = tools.load_plan(self.lesson)[1]
-        asks = lambda v3: [x for x in tools.seal_problems(self.lesson, plan_model, text, review, {}, {}, v3=v3)  # noqa: E731
-                           if "checker" in x or "check-text" in x or "text review" in x]
-        self.assertEqual(len(asks(True)), 1)
-        self.assertIn("chain/looks/answers.json", asks(True)[0])
+        asks = lambda: [x for x in tools.seal_problems(self.lesson, plan_model, text, review, {}, {})  # noqa: E731
+                        if "checker" in x or "check-text" in x or "text review" in x]
+        self.assertEqual(len(asks()), 1)
+        self.assertIn("chain/looks/answers.json", asks()[0])
         (self.lesson / "chain" / "looks" / "answers.json").write_text("[]", encoding="utf-8")
-        self.assertIn("doesn't answer for every unit", asks(True)[0])
+        self.assertIn("doesn't answer for every unit", asks()[0])
         (self.lesson / "chain" / "looks" / "answers.json").write_text(
             json.dumps([{"look": f"U{n:02d}", "stray": False, "left": False} for n in range(1, 5)]), encoding="utf-8")
-        self.assertEqual(asks(True), [])
-        self.assertIn("text review", asks(False)[0])
+        self.assertEqual(asks(), [])
         os.environ.setdefault("GESSO_HISTORY", str(self.lesson / "history"))
         code, r = self.tool("publish")
         self.assertEqual(code, 0, r)

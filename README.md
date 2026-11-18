@@ -4,11 +4,12 @@ Turn a photo into a step-by-step painting lesson at your skill level, in acrylic
 shows what the canvas should look like when you finish it and how to get there.
 
 Unlike asking an image model to "show the steps," Gesso plans the painting the way a teacher
-would, using real techniques for the medium and the painter's level. The finished painting is rendered
-once, and every step is cut from it with free tools, so steps can't drift.
+would, using real techniques for the medium and the painter's level. A painter's plan comes first; the finished
+painting is rendered once and erased backward by the image model, one piece of the plan at a time, and every step
+picture comes from that chain, so steps can't drift.
 
 Early days: see [the vision](docs/vision.md) for where it's headed, and
-[pipeline v2](docs/design/pipeline-v2.md) for how lessons are made now.
+[pipeline v3](docs/design/pipeline-v3.md) for how lessons are made now.
 
 ## Making a lesson
 

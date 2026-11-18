@@ -1,6 +1,6 @@
 """A lesson's words from a measured fact sheet, and a checker for every number and side in them
 (docs/design/pipeline-v3.md, section 10; from spike S8, #173, spike/experiments/v3_facts.py, which this file was
-moved from with its experiment commands left behind).
+moved from with its experiment commands left behind; the script went with v2 in #238).
 
     lesson_sheet(lesson)      -> the fact sheet, measured from the step pictures
     packets(lesson, ...)      -> one writer's packet a stage under <lesson>/words/
@@ -394,18 +394,12 @@ def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], 
 
 
 def lesson_sheet(lesson: Path) -> tuple[dict, dict]:
-    """(sheet, plan in version 2's shape) for a lesson folder of either version, built as `check` builds it."""
-    import checks
-    import plan3
+    """(sheet, plan in version 2's shape) for a lesson folder, from what build-steps kept, as `check` builds it."""
     import tools
 
     lesson = Path(lesson)
-    plan, _ = tools._v2(lesson)
-    built = checks.build(lesson, plan)
-    if built is None:
-        raise tools.Refused(f"no step pictures that fit the plan in {lesson}: run build-steps")
-    owner, pictures, _rows, masks = built
-    shapes = tools._v3_kept(lesson, pictures=False)["shapes"] if plan3.is_v3(lesson) else None
+    kept = tools._v3_kept(lesson)
+    plan, owner, pictures, masks, shapes = kept["plan"], kept["owner"], kept["pictures"], kept["masks"], kept["shapes"]
     box, canvas = canvas_of(lesson, pictures[0].shape)
     return make_sheet(plan, pictures, masks, owner, box, canvas, shapes), plan
 

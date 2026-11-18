@@ -276,28 +276,14 @@ def stroke_folds(lesson: dict, i: int, known: dict, folder: Path | None = None, 
         if not card:
             continue
         if first[c] == i:
-            mine = (s.get("card_text") or {}).get(c)
-            if cards.unchanged(card, mine):  # card-adapt's copy, never edited: it's the general card
-                mine = None
             here = here_view(lesson, i, folder, embed)
             d = diagram_step(lesson, i)
             point = ""
             if d is not None:
                 where = "this step's Diagram, below" if d == i else f'the Diagram in <a href="#step-{d + 1}">step {d + 1}</a>'
                 point = f"<p class='small'>For this shape, see {where}: how to build it from simple pieces.</p>"
-            if mine:  # the card adapted for this painting (#96): its words and diagram, the general card one tap away
-                general = f"general-{c}"
-                banner = (f"<p class='unchecked'>Adapted for this painting from the {e(card['name'])} card, not checked "
-                          f"yet</p><p class='small'><a href='#{general}'>The general {e(card['name'])} card</a> "
-                          f"(<a href='{REPO_CARDS}{e(c)}.yaml'>its file</a>)</p>")
-                body = (cards.stroke_html(cards.adapted(card, mine), f"{c}-{i + 1}", paints, here, banner) + point
-                        + f'<details class="aid general" id="{general}"><summary>The general {e(card["name"])} card'
-                          f'</summary><div class="aid-body">'
-                          f'{cards.stroke_html(card, f"{c}-{i + 1}-general", anchor=general + "-card")}</div></details>')
-                hint = "how to do it here, adapted for this painting, not checked yet"
-            else:
-                body = cards.stroke_html(card, f"{c}-{i + 1}", paints, here) + point
-                hint = "how to do it" + ("" if card.get("checked") else ", not checked yet")
+            body = cards.stroke_html(card, f"{c}-{i + 1}", paints, here) + point
+            hint = "how to do it" + ("" if card.get("checked") else ", not checked yet")
             out.append(fold(f"Stroke: {card['name']}", hint, body, open_=True, cls="stroke"))
         else:
             out.append(f'<p class="strokelink">Stroke: <a href="#stroke-{e(c)}">{e(card["name"])}</a>, '

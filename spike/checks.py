@@ -1,13 +1,12 @@
-"""Every measured check on a version 2 lesson, in one list (pipeline v2, docs/design/pipeline-v2.md section 12).
+"""Every measured check on a lesson, in one list (docs/design/pipeline-v3.md, sections 8 and 10).
 
     run(lesson, text=None, built=None) -> {"failures": [...], "notes": [...]}
 
-Version 1 caught drift, shape changes, and split edges with two image review rounds, redos, and a lock. Version 2
-step pictures are cut from one finish inside real outlines, so those can't happen; what's left to catch is measured
-here instead: the plan, the outlines, the step pictures, the stroke cards, the drafted text, and what `publish`
-already counted. Each failure names the step, part, or paint and says what to change. `publish` runs this for a
-version 2 lesson and `publish --final` won't seal one while anything fails. `notes` are things worth knowing that
-aren't failures.
+The plan, the step pictures build-steps made from the chain, the stroke cards, the drafted text and the writers'
+words against the fact sheet, and what `publish` already counted. Each failure names the step, thing or paint and
+says what to change. `publish` runs this and `publish --final` won't seal a lesson while anything fails. `notes` are
+things worth knowing that aren't failures. The checks read the plan in version 2's shape (steps3.as_v2), as
+build-steps kept it (lesson3); versions 1 and 2 were removed (#82, #238).
 """
 
 from __future__ import annotations
@@ -15,8 +14,6 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-
-import numpy as np
 
 PERCENT = re.compile(r"\d\s*%|\bper\s?cent\b", re.I)
 # #122: steps say where in inches; the tape marks are gone. Only placing by tape is flagged, so a real tip such as
@@ -38,63 +35,23 @@ def _technique(lesson: Path, plan: dict) -> dict:
 
 
 def build(lesson: Path, plan: dict):
-    """(owner, pictures, rows, masks) for a version 2 lesson, as build-steps makes them; None without outlines."""
-    import build_steps as bs
-    from filters import load
+    """(owner, pictures, rows, masks) as build-steps kept them for the lesson; None when they are missing or stale."""
+    import lesson3
 
-    if plan.get("made_from") == 3:  # a version 3 lesson, in version 2's shape: what its build-steps kept
-        import lesson3
-
-        try:
-            kept = lesson3.read(lesson)
-        except lesson3.Stale:
-            return None
-        return kept["owner"], kept["pictures"], kept["rows"], kept["masks"]
-    path = lesson / "parts" / "owner.png"
-    finish_path = lesson / "99_finish.png"
-    if not path.exists() or not finish_path.exists():
+    try:
+        kept = lesson3.read(lesson)
+    except lesson3.Stale:
         return None
-    from PIL import Image
-
-    owner = np.array(Image.open(path)).astype("int32")
-    finish = load(finish_path, max_side=100_000)
-    if owner.max() >= len(plan["parts"]) or owner.shape != finish.shape[:2]:
-        return None
-    plate = lesson / "98_background.png"
-    pictures, rows, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
-    return owner, pictures, rows, masks
+    return kept["owner"], kept["pictures"], kept["rows"], kept["masks"]
 
 
 def _canvas(lesson: Path) -> tuple[list | None, dict]:
     """canvas.json's canvas box and size. A lesson with none gets the default size (canvas.lesson_canvas), or
-    canvas.NoCanvas is raised: every version 2 step says where in inches (#122)."""
+    canvas.NoCanvas is raised: every step says where in inches (#122)."""
     import canvas as cv
 
     info = cv.lesson_canvas(lesson)
     return info.get("canvas_box"), info["canvas"]
-
-
-def counts(plan: dict, technique: dict) -> list[str]:
-    """Steps, stages, and top-level parts against the technique's version 2 limits."""
-    out = []
-    steps = [s for st in plan.get("stages") or [] for s in st.get("steps") or []]
-    lo, hi = technique.get("v2_step_range") or (None, None)
-    if lo is not None and not lo <= len(steps) <= hi:
-        out.append(f"the plan has {len(steps)} steps; the technique wants {lo} to {hi}. "
-                   + ("Split the biggest steps into smaller moves (a coat, then one pass per paint)." if len(steps) < lo
-                      else "Merge passes that add little, or drop a part the picture doesn't need."))
-    lo, hi = technique.get("v2_stage_range") or (None, None)
-    n = len(plan.get("stages") or [])
-    if lo is not None and not lo <= n <= hi:
-        out.append(f"the plan has {n} stages; the technique wants {lo} to {hi}. "
-                   + ("Split a stage that paints two things into one stage each." if n < lo
-                      else "Group neighboring stages that paint the same thing."))
-    top = [p["id"] for p in plan.get("parts") or [] if not p.get("parent")]
-    most = (technique.get("detail_budget") or {}).get("max_parts")
-    if most is not None and len(top) > most:
-        out.append(f"{len(top)} parts with no parent ({', '.join(top)}); the technique's detail budget is {most}. Make "
-                   "small things children of the part they sit on, or merge parts (a pass can carry a color).")
-    return out
 
 
 def strokes_and_brushes(plan: dict, known: dict) -> list[str]:
@@ -170,14 +127,13 @@ def paint_names(plan: dict) -> list[str]:
         missing = [k for k in ("name", "used_for") if not c.get(k)]
         if missing:
             out.append(f"paint {c['id']}: no {' or '.join(missing)} in plan.json. Name it as a painter would "
-                       "(\"Bark brown\") and say what it's for; paints writes ids only.")
+                       "(\"Bark brown\") and say what it's for.")
     return out
 
 
 def unused_paints(plan: dict) -> list[str]:
-    """#136: a paint no step uses, such as one `paints --add` made for a step that was dropped. `paints` never
-    merges an added paint, so nothing else would clear it, and the painter would see a mix they never use. A paint
-    a used tint or shade is made from (its `of`) counts as used."""
+    """#136: a paint no step uses would show the painter a mix they never use. A paint a used tint or shade is made
+    from (its `of`) counts as used."""
     import plan2
 
     used = {c for s in plan2.steps(plan) for c in s.get("paints") or []}
@@ -191,12 +147,10 @@ def unused_paints(plan: dict) -> list[str]:
 
 
 def texture_jumps(lesson: Path, plan: dict) -> list[dict]:
-    """tools.texture_jumps over a version 2 lesson's step pictures, for `full` steps only: a part that goes from
-    bare canvas to finished texture in one step. A `blend` is one wet move by definition. A `flat` coat is flat by construction (what's measured
-    there is its new edge), and a `pass` is one paint in one stroke, which is how a texture is taught: a dab pass
-    over a whole lavender field is one move however much of the picture it covers. Holding passes to the 10% rule
-    sent three of the first six hands-off runs round the tools three times each with no clean fix (2026-11-13).
-    `check` and `publish` both report this list for version 2."""
+    """tools.texture_jumps over a lesson's step pictures, for `full` steps only: a thing that goes from bare canvas
+    to finished texture in one step. A `blend` is one wet move by definition, a `flat` coat is flat by construction,
+    and a `pass` is one paint in one stroke, which is how a texture is taught (2026-11-13). `check` reports it as a
+    note: the step after a block-in is the known big jump (#217), and its fix is a new plan and a new chain."""
     import build_steps as bs
     import tools
 
@@ -207,121 +161,52 @@ def texture_jumps(lesson: Path, plan: dict) -> list[dict]:
 
 
 def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
-    """Every check on a version 2 lesson. `text` is text.json's steps by id (read from the lesson when None),
-    `built` is build()'s result when the caller already has it."""
+    """Every check on a lesson. `text` is text.json's steps by id (read from the lesson when None), `built` is
+    build()'s result when the caller already has it."""
     import build_steps as bs
+    import canvas as cv
     import cards
     import draft_text
-    import outline as ol
-    import plan2
+    import elements
+    import facts
+    import lesson3
+    import plan3
     import publish2
+    import steps3
     import tools
 
     lesson = Path(lesson)
-    import plan3
-
-    v3 = plan3.is_v3(lesson)
     notes = []
-    if v3:  # the plan's own checks, then the lesson in version 2's shape, as its build-steps kept it
-        import lesson3
-
-        raw = plan3.load(lesson)
-        technique = _technique(lesson, raw)
-        failures = list(plan3.problems(raw, technique))
-        if failures:
-            return {"failures": failures + ["fix plan.json first (plan-check); the other checks need a plan that "
-                                            "loads"], "notes": notes}
-        try:
-            plan = lesson3.read(lesson, pictures=False)["plan"]
-        except lesson3.Stale as e:
-            return {"failures": [str(e)], "notes": notes}
-    else:
-        plan = plan2.load(lesson)
-        technique = _technique(lesson, plan)
-        failures = list(plan2.problems(plan, technique))
-        if failures:
-            return {"failures": failures + ["fix plan.json first; the other checks need a plan that loads"],
-                    "notes": notes}
-        failures += counts(plan, technique)
+    raw = plan3.load(lesson)  # the plan's own checks, then the lesson in version 2's shape, as build-steps kept it
+    technique = _technique(lesson, raw)
+    failures = list(plan3.problems(raw, technique))
+    if failures:
+        return {"failures": failures + ["fix plan.json first (plan-check); the other checks need a plan that "
+                                        "loads"], "notes": notes}
+    try:
+        plan = lesson3.read(lesson, pictures=False)["plan"]
+    except lesson3.Stale as e:
+        return {"failures": [str(e)], "notes": notes}
     known = cards.strokes()
     failures += strokes_and_brushes(plan, known)
     failures += paint_names(plan)
     failures += unused_paints(plan)
     failures += cards.problems(known)
-    import elements
-
-    failures += elements.problems()
-    if not v3:  # a version 3 step is held to its element's strokes by plan-check; its `show` isn't the writer's
-        failures += elements.plan_problems(plan, lesson=lesson)
+    failures += elements.problems()  # a step is held to its element's strokes by plan-check
 
     built = built if built is not None else build(lesson, plan)
     steps = bs.flat_steps(plan)
     names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
     if built is None:
-        failures.append(f"no outlines that fit the plan: run outline --lesson {lesson}, then build-steps" if not v3
-                        else f"no step pictures that fit the plan and the chain: run build-steps --lesson {lesson}")
-    elif v3:
-        import steps3
-
+        failures.append(f"no step pictures that fit the plan and the chain: run build-steps --lesson {lesson}")
+    else:
         owner, pictures, rows, masks = built
         # what build-steps measured (design section 8): the two checks that must hold, and what is only reported
         bad, said = steps3.problems(json.loads((lesson / "v3" / "build.json").read_text(encoding="utf-8")))
         failures += bad
         notes += said
-        # reported for a version 3 lesson, not failed: the step after a block-in is the known big jump (#217), and
-        # its fix is a new plan and a new chain
         notes += [f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one step"
                   for j in texture_jumps(lesson, plan)]
-        import canvas as cv
-        try:
-            canvas_box, canvas = _canvas(lesson)
-        except cv.NoCanvas as err:
-            failures.append(str(err))
-            built = None
-        else:
-            drafted = {d["stage_id"]: d["lines"]
-                       for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson,
-                                                 owner=owner)}
-            # every number and side a writer wrote, against the fact sheet as it is now (design section 10): the
-            # words can change after check-text's last check (a tool run again, a tip fixed by hand)
-            import facts
-
-            t_path = lesson / "text.json"
-            if t_path.exists():
-                sheet = facts.make_sheet(plan, pictures, masks, owner, canvas_box, canvas,
-                                         lesson3.read(lesson, pictures=False)["shapes"])
-                words = json.loads(t_path.read_text(encoding="utf-8"))
-                for c in facts._writers(words, facts.check_text(sheet, words, strict=True)["failures"]):
-                    failures.append(f"{facts.say(c)} Run check-text, then check-text --final.")
-    else:
-        owner, pictures, rows, masks = built
-        stats_path = lesson / "parts" / "stats.json"
-        if stats_path.exists():
-            stats = json.loads(stats_path.read_text(encoding="utf-8"))
-        else:
-            stats = [{"confidence": None, **x} for x in ol.owner_stats(plan["parts"], owner)]
-            notes.append("no parts/stats.json: the outline checks were measured from parts/owner.png, without the "
-                         "outline model's confidence")
-        failures += ol.problems(plan["parts"], stats)
-        failures += bs.problems(plan, rows)
-        import paints
-
-        failures += paints.wrong_paints(plan, pictures, masks)  # #154: a step's paint far from what it shows
-        notes += bs.faint_ghosts(plan, rows)
-        missing = [n for n in names if not (lesson / n).exists()]
-        if missing:
-            failures.append(f"missing step pictures {missing[:3]}{' ...' if len(missing) > 3 else ''}: run build-steps")
-        else:
-            from filters import load
-
-            stale = next((n for n, p in zip(names, pictures)
-                          if not np.array_equal(load(lesson / n, max_side=100_000), p)), None)
-            if stale:
-                failures.append(f"{stale} doesn't match the plan: run build-steps, then step-aids, again")
-            for j in texture_jumps(lesson, plan):
-                failures.append(f"{j['step']}: turns {j['share']:.0%} of the picture from flat to textured in one "
-                                "step. Make it two or more steps: a flat coat in the part's main paint, then a pass per paint (run paints --add for the part if it has only one), then build-steps.")
-        import canvas as cv
         try:
             canvas_box, canvas = _canvas(lesson)
         except cv.NoCanvas as err:
@@ -330,7 +215,16 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
         else:
             drafted = {d["stage_id"]: d["lines"]
                        for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson,
-                                                        owner=owner)}
+                                                 owner=owner)}
+            # every number and side a writer wrote, against the fact sheet as it is now (design section 10): the
+            # words can change after check-text's last check (a tool run again, a tip fixed by hand)
+            t_path = lesson / "text.json"
+            if t_path.exists():
+                sheet = facts.make_sheet(plan, pictures, masks, owner, canvas_box, canvas,
+                                         lesson3.read(lesson, pictures=False)["shapes"])
+                words = json.loads(t_path.read_text(encoding="utf-8"))
+                for c in facts._writers(words, facts.check_text(sheet, words, strict=True)["failures"]):
+                    failures.append(f"{facts.say(c)} Run check-text, then check-text --final.")
     text_path = lesson / "text.json"
     if text is None:
         text = ({t["stage_id"]: t for t in json.loads(text_path.read_text(encoding="utf-8"))["steps"]}
@@ -340,16 +234,6 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
         redrafted = {sid: draft_text.merge_lines((text.get(sid) or {}).get("lines") or [], lines)
                      for sid, lines in drafted.items()}
     failures += text_problems(plan, text, redrafted)
-    import construct
-
-    # cards adapted for this painting (#96): a note for a card shown general, a failure for one that drifted
-    card_text = (json.loads(text_path.read_text(encoding="utf-8")).get("card_text") if text_path.exists() else None)
-    named = publish2.paint_names(plan)
-    diagram_paints = construct.lookup([{"id": c["id"], "name": named[c["id"]], "hex": c["hex"]}
-                                       for c in plan.get("paints") or []])
-    bad, later = cards.adapted_problems(card_text, steps, known, diagram_paints)
-    failures += bad
-    notes += later
     gaps = draft_text.left_out(plan, known)
     if gaps:
         notes.append("lines the data can't give (none drafted): "

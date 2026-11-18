@@ -22,8 +22,8 @@ thing, so the chain is laid twice from the same renders (`lay`): once to find ea
 renders whole.
 
 The requests are the ones the spikes ended on (spike/experiments/v3_combined.py with `--stays`, #218; the block-in
-and the list of what isn't painted yet from v3_block_in.py's way 4, #217). The two were never run together before
-this file.
+and the list of what isn't painted yet from v3_block_in.py's way 4, #217; both scripts went with v2 in #238, their
+results and write-ups are kept). The two were never run together before this file.
 """
 
 from __future__ import annotations
@@ -37,7 +37,6 @@ from PIL import Image
 
 import build_steps as bs
 import from_finish as ff
-import outline as ol
 import plan3
 
 # The guard's numbers, set on three pictures (#204, #210). Lab units, and pixels of a picture 1536 on its long side.
@@ -88,7 +87,7 @@ def _ellipse(n: float, shape: tuple) -> np.ndarray:
 
 
 def _lab(img: np.ndarray, blur: float = BLUR) -> np.ndarray:
-    return ol.lab(cv2.GaussianBlur(img, (0, 0), blur * max(img.shape[:2]) / LONG)).astype(np.float32)
+    return ff.lab(cv2.GaussianBlur(img, (0, 0), blur * max(img.shape[:2]) / LONG)).astype(np.float32)
 
 
 # ---------------------------------------------------------------------------

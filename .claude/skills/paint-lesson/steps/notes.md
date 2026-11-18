@@ -38,6 +38,6 @@ complete now. Plain words, a sentence or two each:
   and with a beginner version its `beginner` and `finish` numbers too; if you lost them rewriting the notes, run
   `busy` again.
 - List every filter you looked at, kept or not, with its image path relative to the lesson. Step pictures aren't
-  filters: they're cut from the finish, so they get no `filters` entry.
-- `merged_parts` is an empty object when no part was dropped in step 2c.
+  filters: they come from the chain, so they get no `filters` entry.
+- `merged_parts` is an empty object: a version 3 run drops no part.
 - Every technique in `techniques/` you didn't pick goes in `considered`.

@@ -57,10 +57,8 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
    changed, the edges continue the scene, nothing new appeared. Redo once at most.
 4. From here on, "the photo" is `00_canvas_fit.png` (or `00_canvas_frame.png` when no render was needed). Renders
    and step images stay in the model's frame; `publish` crops every step to the canvas for the painter.
-5. Keep two coordinate systems apart: `looks_like` and render prompts describe the frame; the step text describes
-   the canvas. Before writing text, run `canvas-view 99_finish.png --lesson <lesson>` and measure on
-   `canvas/99_finish.png` with `grid --percent`. (Those shares are for the plan only; the step text says where in
-   inches, from `draft-text`, never in percentages or by tape marks.)
+5. Keep two coordinate systems apart: render prompts describe the frame; the step text describes the canvas, and
+   says where in inches (from `draft-text` and the fact sheet), never in percentages or by tape marks.
 6. Record `canvas_fit` in `notes.json`: `{"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...", "lost":
    "the right 15% of empty water"}`. A length in it is a ruler fraction to the nearest sixteenth ("about 5/8 in"),
    never a decimal ("0.6 in"): the page shows it.

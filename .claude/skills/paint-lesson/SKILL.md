@@ -13,8 +13,7 @@ The design behind this is `docs/design/pipeline-v3.md`. You don't need to read i
 
 **How this skill is laid out.** This file is the spine. Steps 0 and 1 are in `steps/`; the rest of the run is
 `v3/run.md`, which points back to `steps/8-finish.md` for the end. **Read a step's file when you start that step**,
-even if you read it earlier. Don't read ahead. The other files in `steps/` (2 to 7) are pipeline v2's and are not
-part of this run.
+even if you read it earlier. Don't read ahead. Pipeline v2's steps 2 to 7 were removed with v2 (#238).
 
 ## Arguments
 - `<photo>` (required). Usually `photos/<name>.<ext>`: the site's pictures are kept there in git, so a fresh clone
@@ -35,12 +34,12 @@ part of this run.
 Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`.
 
 ## Rules for the whole run
-1. **Renders:** the finished painting, and only when needed the beginner version, the canvas extend, and one
-   background picture; then the chain, one low render a unit of the plan, about 2 cents each. `erase` caps the
+1. **Renders:** the finished painting, and only when needed the beginner version, and the canvas extend; then
+   the chain, one low render a unit of the plan, about 2 cents each. `erase` caps the
    chain's own spending by itself (twice what the chain costs once); pass it no `--max-cost`. Pass `--max-cost 0.40`
    to every other render.
 2. **Measure, don't guess.** Nothing is measured with `grid` and there is no `part-colors`: the paints are fitted
-   by `paints`/`build-steps` from the chain, and every number in the words comes from the fact sheet `packets`
+   by `build-steps` from the chain, and every number in the words comes from the fact sheet `packets`
    writes.
 3. **Every tool prints `problems`.** An empty list means go on. Otherwise each one says what to change: change it
    and run the tool again. The tools are free and take seconds, so loop until they're clean. Never edit a tool's

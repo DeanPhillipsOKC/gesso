@@ -1,0 +1,166 @@
+{
+ "units": [
+  {
+   "id": "sky",
+   "name": "The blue and gold sky",
+   "kind": "first",
+   "things": [
+    "sky"
+   ],
+   "steps": [
+    0
+   ]
+  },
+  {
+   "id": "sun",
+   "name": "The low sun",
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "steps": [
+    1
+   ]
+  },
+  {
+   "id": "far-trunks",
+   "name": "The hazy far trunks",
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "steps": [
+    2
+   ]
+  },
+  {
+   "id": "far-leaves",
+   "name": "The far autumn leaves",
+   "kind": "behind",
+   "things": [
+    "far-leaves"
+   ],
+   "steps": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "branch",
+   "name": "The trunk and curved branch",
+   "kind": "behind",
+   "things": [
+    "branch"
+   ],
+   "steps": [
+    5
+   ]
+  },
+  {
+   "id": "leaves",
+   "name": "The hanging leaves",
+   "kind": "behind",
+   "things": [
+    "leaves"
+   ],
+   "steps": [
+    6
+   ]
+  },
+  {
+   "id": "the-branch-and-leaves-shading-and-light",
+   "name": "The branch and leaves' shading and light",
+   "kind": "back",
+   "things": [
+    "leaves",
+    "branch"
+   ],
+   "steps": [
+    7,
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "id": "the-twigs-stems-and-veins",
+   "name": "The twigs, stems and veins",
+   "kind": "back",
+   "things": [
+    "branch",
+    "leaves"
+   ],
+   "steps": [
+    11
+   ]
+  },
+  {
+   "id": "chickadee",
+   "name": "The chickadee",
+   "kind": "behind",
+   "things": [
+    "chickadee"
+   ],
+   "steps": [
+    12
+   ]
+  },
+  {
+   "id": "the-chickadee-s-shading",
+   "name": "The chickadee's shading",
+   "kind": "back",
+   "things": [
+    "chickadee"
+   ],
+   "steps": [
+    13,
+    14
+   ]
+  },
+  {
+   "id": "the-chickadee-s-markings",
+   "name": "The chickadee's markings",
+   "kind": "back",
+   "things": [
+    "chickadee"
+   ],
+   "steps": [
+    15,
+    16,
+    17
+   ]
+  },
+  {
+   "id": "the-chickadee-s-feathers",
+   "name": "The chickadee's feathers",
+   "kind": "back",
+   "things": [
+    "chickadee"
+   ],
+   "steps": [
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "id": "the-chickadee-s-face-and-feet",
+   "name": "The chickadee's face and feet",
+   "kind": "back",
+   "things": [
+    "chickadee",
+    "feet"
+   ],
+   "steps": [
+    21,
+    22,
+    23
+   ]
+  }
+ ],
+ "again": {
+  "3": [
+   "left"
+  ]
+ }
+}
