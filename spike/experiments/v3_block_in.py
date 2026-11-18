@@ -7,13 +7,15 @@ ways, without paying for the chain again:
            and lists, from the plan, what isn't painted yet.
     way 2  a second render for the block-in alone: from the picture the "back" render left, the thing is asked for
            as one flat coat of its paint.
-    way 3  no render: a flat coat of the block-in's fitted paint over the unit's change.
-    way 4  way 1, and its list of what isn't painted yet on every later stage of the thing too (added by this spike
-           when the first three left the later steps as they were).
+    way 3  no render: a flat coat of the block-in's fitted paint over the solid shape of what the unit adds.
+    way 4  way 1, and its list of what isn't painted yet on every later stage of the thing too, each stage's render
+           kept over the whole thing (added by this spike when the first three left the later steps as they were).
+           Adopted: docs/spikes/v3-block-in.md.
 
     python spike/experiments/v3_block_in.py prompts sleeping-cat 7        # the two requests for unit 7; no render
     python spike/experiments/v3_block_in.py try sleeping-cat 7,10         # PAID: ways 1 and 2 (2 renders a unit), way 3
-    python spike/experiments/v3_block_in.py try highland-cow 8 --ways 3   # one way only
+    python spike/experiments/v3_block_in.py try sleeping-cat 7,10 --ways 4 --smooth 9   # PAID: way 4
+    python spike/experiments/v3_block_in.py try highland-cow 8 --ways 4 --far           # PAID: the cow's units 9 to 15
     python spike/experiments/v3_block_in.py sheet sleeping-cat 7,10       # the thing's steps, #214's row and a row a way
     python spike/experiments/v3_block_in.py lesson sleeping-cat           # way 4's lesson folder; #214's words kept
     python spike/experiments/v3_block_in.py merge sleeping-cat [--final]  # the writers' words in, checked
@@ -26,8 +28,8 @@ Words:
     P[u], D[u] as in v3_combined.py: the picture after unit u, and what unit u adds.
 
 A way gives a new P[u] for the block-in. The pictures under it stay (P[u-1] is the thing gone, whatever the thing
-looked like), and so do the pictures over it. Only D[u] and D[u+1] are measured again, so the next step now brings
-everything the block-in no longer shows.
+looked like), and so do the pictures over it. Only the changes of the units made again and the one over them are
+measured again, so the next step now brings everything the block-in no longer shows.
 
 Pictures and numbers go in spike/experiments/bench/runs/block-in/ (git-ignored).
 """

@@ -1,0 +1,218 @@
+{
+ "format": "gesso-ab-grades/1",
+ "graded_by": "claude: two fresh blind graders a picture on Opus (spike/experiments/bench/ab_grader.md), sides swapped for the second; folders named pair-NN so the experiment's name wasn't shown",
+ "mode": "pair",
+ "round": "s217-block-in",
+ "pictures": [
+  {
+   "picture": "sleeping-cat",
+   "variant": "way4",
+   "lessons": {
+    "214": "sleeping-cat-combined (runs/combined)",
+    "way4": "sleeping-cat-combined (runs/block-in/way4)"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-04",
+     "prefer": "way4",
+     "note": "The two lessons share most steps, but B breaks two of the owner's hard rules in its main subjects: a flat-to-finished jump on the blanket, and the ears and eyes showing on the cat many steps before their own steps. A's faults (a hard-edged reserve patch and a blotchy stitch step) mislead less. Clear, not overwhelming.",
+     "scores": {
+      "way4": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        15,
+        11,
+        12
+       ],
+       "note": "The build is gradual and every big part starts flat: a flat yellow blanket, then shading, then dark and light stitches, and a flat gray cat silhouette before any shading. Step 15 leaves hard, cut-out flat-gray shapes for the muzzle, chest and paws, with a pale halo and a small lavender triangle that no brush makes. Step 11 turns the smooth yellow into an all-over fuzzy texture with one ochre, and step 12's stitches come out as blotches rather than teardrops. Steps 1-9 and 16-23 are sound."
+      },
+      "214": {
+       "real": 3,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        14,
+        10,
+        18
+       ],
+       "note": "Step 14 is magic: one flat Mid fur gray gives a shaded, brushy cat with pink ears and closed eyes already painted, so steps 18 and 21 then have almost nothing to add. Step 10 jumps from bare sill to an almost finished knitted blanket with a single yellow and a 1 inch flat, leaving a smooth hollow with ghost dots; after that, steps 12 and 13 barely change. The window, wall, sill and late face steps are fine and match A."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-06",
+     "prefer": "way4",
+     "note": "B paces the two hard objects, the blanket and the cat, the way a painter would build them, and its pictures match what each step names. A's step 14 shows the face and pink ears on a step that names only gray, and its step 10 jumps to a finished blanket texture. Clear preference for B.",
+     "scores": {
+      "214": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        14,
+        10,
+        12
+       ],
+       "note": "Steps 1-9 are sound and match B exactly. Step 10 jumps from bare sill to a fully knitted, textured blanket bed in one 'golden yellow rolls' step, with stray star marks in the hollow. Step 14, 'all one gray', shows a modeled cat with pink ears, closed eyes and toes already in, which is magic the tip admits to. That also leaves step 18 (pink ears) and part of 21 with almost nothing to do, and steps 12-13 barely change."
+      },
+      "way4": {
+       "real": 4,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        15,
+        11,
+        13
+       ],
+       "note": "Steps 1-9 are the same as A. The blanket is built in honest stages (flat yellow shape, then folds and fuzz, then dark stitches, then light stitches), and the cat starts as a truly flat gray silhouette, with stripes, pink ears and face each arriving on their own step. Weak spots: step 15 leaves hard-edged flat cut-out patches with a small violet triangle ghost where the nose goes. Step 11 roughens the whole blanket in one pass, and step 13 changes the front rolls more than 'a few light stitches'."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "highland-cow",
+   "variant": "way4",
+   "lessons": {
+    "214": "highland-cow-combined (runs/combined)",
+    "way4": "highland-cow-combined (runs/block-in/way4)"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-05",
+     "prefer": "none",
+     "note": "The two lessons differ only in the cow steps (9-19), and each has one serious owner-flagged fault there. In A, the face is on the canvas from step 9, before its steps. In B, step 10 jumps from flat to finished-looking using one dark paint. A spreads the cow build a little more evenly, but the edge is small, so this is a toss-up.",
+     "scores": {
+      "214": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        9,
+        16,
+        14
+       ],
+       "note": "Steps 1-8 are the same picture and words in both lessons: steps 2-3 barely change, and step 6 already has a gold grass patch on the left. Step 9 is called a solid Rust brown block-in, but its picture already has a sculpted fringe, ears and a muzzle. That muzzle stays on the canvas from step 9 to step 15, before the nose step. Then step 16 pastes a flat pink sticker-like nose over it, and step 14 jumps to a fully lit gold coat in one pass."
+      },
+      "way4": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        10,
+        16,
+        18
+       ],
+       "note": "Same shared steps 1-8 and the same grass passes 20-24 as A. Step 9 is an honest flat block-in, though it is a uniform cutout. Step 10 then goes from that flat shape to a shaded cow with fringe, ears, hair texture and an orange glow using only Deep red-brown, which is a big jump with magic (its own words admit it). The nose at step 16 is the same flat sticker, step 18 reshapes the whole nose and lip under a step for two dots, and step 17's outlined area (8 x 9 in) is wrong for a tiny highlight."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-03",
+     "prefer": "way4",
+     "note": "Half of each lesson is identical, and from step 11 on the two run nearly frame for frame, so the choice rests on how the cow starts. A gives a real flat block-in before its one magic step, while B's very first cow step is the magic one and its next step shows nothing, so A is easier to follow. The edge is slight.",
+     "scores": {
+      "way4": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 2,
+       "worst_steps": [
+        10,
+        6,
+        24
+       ],
+       "note": "Steps 1-8 are the same pictures as B: step 6 lays the whole meadow with golden streaks and dark grass marks at the bottom long before the grass steps, and steps 3, 8, 15, 17 and 24 change almost nothing (24 is pixel-identical to 23). A's cow block-in (9) is an honest flat rust silhouette a beginner can paint, but step 10 then jumps to fringe, ears, face shading, hair texture and an orange glow from one dark paint, which the words admit. The face steps mostly agree, though step 17's area (8 x 9 in for a nose highlight) is wrong and 18 also brings in the mouth line."
+      },
+      "214": {
+       "real": 3,
+       "paintable": 2,
+       "agree": 2,
+       "worst_steps": [
+        9,
+        10,
+        19
+       ],
+       "note": "Steps 1-8 are the same as A, with the same early meadow in step 6 and the same near-empty steps (3, 8, 15, 17, 24). The cow arrives in step 9 already furry, with the fringe over the face and a shaped muzzle, all from one Rust brown, so the block-in is a flat-to-finished jump. Step 10 then asks for a 3 1/2 in shadow but the picture barely changes, and step 19 asks for mouth, chin and darkened hairs that the picture hardly shows; B's Dark umber recipe also mixes to an olive tan, not a dark."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "picture": "birch-grove",
+   "variant": "way4",
+   "lessons": {
+    "214": "birch-grove-combined (runs/combined)",
+    "way4": "birch-grove-combined (runs/block-in/way4)"
+   },
+   "graders": [
+    {
+     "grader": "g1",
+     "folder": "pair-01",
+     "prefer": "none",
+     "note": "The two lessons are identical except for the mossy rock in steps 11-12, about 2 of 22 steps and a small part of the canvas. B's flat-then-shade split is easier to follow than A's near-finished rock followed by a near-empty step 12. But B's flat dome looks less painted, so its edge is small and I call it a toss-up that leans slightly toward B.",
+     "scores": {
+      "214": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        5,
+        13,
+        1
+       ],
+       "note": "Most steps read as a believable half-done painting and the late steps (bark, branches, fallen leaves) follow their words well. It is pulled down by things that show up early or by magic: dark fir-shaped blotches and a horizon band are already in the step 1 sky, step 2's sun hardly shows, and then a hard white sun disk appears at the left edge in step 5 where only Pale gold rays are named. In step 13 the distant thin birches arrive already barked. Step 11 builds the rock almost finished in one go, so step 12 adds a mark you can barely see."
+      },
+      "way4": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        5,
+        13,
+        1
+       ],
+       "note": "It is the same lesson as A except for the rock (steps 11-12), so it has the same problems: the ghost firs in step 1, the sun disk appearing in step 5, and the distant birches showing up already barked in step 13. The rock is staged better for a beginner: a flat gray-green dome first, then the shading, with words that match each picture. But the step 11 dome looks like a smooth pasted blob rather than brushwork, and in step 12 the dome's right end sinks into the bushes, so the rock's outline changes (the words do cover this)."
+      }
+     }
+    },
+    {
+     "grader": "g2",
+     "folder": "pair-02",
+     "prefer": "none",
+     "note": "The two lessons differ only in the rock (step 11 picture, steps 11-12 words); the other 21 pictures and the rest of the text are identical. A's flat rock that changes shape in step 12 and B's rock done in one step followed by a near-empty step 12 are about equally costly, so this is a toss-up.",
+     "scores": {
+      "way4": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        13,
+        5,
+        1
+       ],
+       "note": "Every picture except step 11 is identical to B, so A carries the same faults: ghost tree shapes already in the step 1 backdrop, a sun disc that only shows up with the gold rays in step 5 (step 2's sun picture shows almost nothing), and step 13 adding several thin midground birches with dark bark marks that the words (five flat pale trunks) never mention. Its own difference is the rock: step 11 is a smooth, airbrushed-looking olive blob that matches its 'one flat gray-green' words, but step 12 then reshapes it (different outline, base and peak) while only telling you to shade it."
+      },
+      "214": {
+       "real": 3,
+       "paintable": 3,
+       "agree": 3,
+       "worst_steps": [
+        13,
+        5,
+        1
+       ],
+       "note": "Same shared faults as A: ghost trees in step 1, the sun appearing with the rays in step 5 rather than in step 2, and unmentioned midground birches in step 13. Its rock is painted to its final shape and two tones in step 11, which the words cover (Olive, then Misty blue on the sun side), so nothing moves; but step 12 then shows almost no change for a step that names Deep blue-green shading, which leaves the painter unsure what to do."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
