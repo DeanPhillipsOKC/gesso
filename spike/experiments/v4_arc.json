@@ -4263,6 +4263,930 @@
     "backs": 7,
     "words_count": 2656,
     "arc_words": 437
+   },
+   "birch-grove": {
+    "first": {
+     "opening": {
+      "skills": [
+       {
+        "card": "dabbing",
+        "steps": [
+         9,
+         10,
+         11,
+         20
+        ],
+        "how": "You build every leaf in the painting by tapping a dry brush: dark first, then golden, then a few pale lights, always leaving the earlier taps showing between the new ones."
+       },
+       {
+        "card": "thick-to-thin",
+        "steps": [
+         3,
+         6,
+         15,
+         17
+        ],
+        "how": "You press the full width of a flat brush and then ease onto its edge, which gives trunks that flare at the foot and taper up, and bark patches that end in a point."
+       },
+       {
+        "card": "dry-brush",
+        "steps": [
+         13,
+         14,
+         16,
+         19
+        ],
+        "how": "You skim a nearly dry brush so the paint breaks up, shading and lighting the rock and the birches without hiding what is underneath."
+       }
+      ],
+      "road": "We start with one soft haze of gold and blue over the whole canvas, because it sits behind everything. Then we build the woods from the misty back toward us: far trunks, firs, the ground and the path. Next come all the autumn leaves in three dabbing passes, dark to light, and then the rock. The big birch trunks go on last, straight over everything, so you never have to paint around them and the strongest darks and lights land at the end."
+     },
+     "stages": {
+      "the-sky": {
+       "for": "This stage lays the soft misty haze that glows through the whole painting, and the sun that lights it.",
+       "end": "The canvas is one soft gold-to-blue mist with a small bright sun glowing in the gold corner."
+      },
+      "far-woods": {
+       "for": "This stage fills the misty distance with pale far trunks, flat firs and a few nearer trunks, so the wood has depth before anything close is painted.",
+       "end": "Pale trunks and dark firs stand in the haze, the firs with a little green light on their sunny sides."
+      },
+      "the-ground": {
+       "for": "This stage lays the forest floor flat and pulls a path back into the mist, so the ground lies down and leads the eye in.",
+       "end": "A striped gold and brown floor fills the lower canvas, with a mauve path narrowing back into the mist."
+      },
+      "autumn-leaves": {
+       "for": "This stage covers the treetops, bushes and ground with autumn leaves in three dabbing passes, dark, golden, then pale.",
+       "end": "Golden leaves hang in the treetops, fill a bright bush by the path and carpet the ground, with orange and brown showing between them and pale lights near the sun."
+      },
+      "the-rock": {
+       "for": "This stage sets a mossy boulder among the leaves and gives it a dark underside and a lit crest.",
+       "end": "A dark, mottled green rock sits in the leaves by the path, with a thin pale light along its crest."
+      },
+      "the-birches": {
+       "for": "This stage paints the big birch trunks straight over everything, then shades them and marks their bark.",
+       "end": "Five big birches stand in front of the woods, lavender gray in shadow, with black bark patches and dark feet."
+      },
+      "last-lights": {
+       "for": "This stage adds the brightest sunlight last, on the birches and on the leaves at your feet.",
+       "end": "The birches shine near-white on their sunny edges and pale gold leaves glint across the ground: the painting is finished."
+      }
+     },
+     "steps": {
+      "blend-sky": {
+       "first": "",
+       "start": "Start with the darkest colour, Blue-violet mist, low on the canvas and at the right edge of the canvas, then work in Misty blue across the middle and Pale gold in the upper left corner of the canvas.",
+       "strokes": "Long side-to-side strokes with the 1 1/2 inch flat, right across the canvas. Without rinsing, pick up the next lighter colour, lay it next to the last band, then stroke back and forth over the join while both are wet.",
+       "inside": "The gold glows strongest in the corner where the sun will be, with a few softer gold patches lower down; blue fills the middle and blue-violet gathers far from the sun.",
+       "leave": "Leave no white canvas: the haze goes straight through where the trees and ground will be.",
+       "stop": "Stop when the whole canvas is a soft haze with no hard line between colours. If one shows, add more of the lighter colour at the join and blend again."
+      },
+      "glow-sun": {
+       "first": "Let the sky dry to the touch, so the cream stays bright instead of mixing into the blue.",
+       "start": "Start at the left edge of the canvas, in the middle of the gold glow; the sun's top is about 1 1/4 in from the top edge.",
+       "strokes": "Small circles with the tip of the #8 round, working outward from the brightest point so the edge stays bumpy and soft.",
+       "inside": "Keep it a small disk set against the left edge of the canvas, as if the sun is just peeking in, brightest at its centre.",
+       "leave": "Leave the gold glow around the sun as it is; only the disk gets Sun cream.",
+       "stop": "Stop when a bright cream patch about 1 1/4 in wide glows with a rayed, soft edge. If the edge looks hard, soften it with lighter circles."
+      },
+      "pull-far-trunks": {
+       "first": "Let the sky dry first, so the trunk stays soft without lifting the haze.",
+       "start": "Start at the trunk's foot, where it spreads into a soft blot of mist; its middle is about 7 1/4 in from the left edge.",
+       "strokes": "Press the full width of the 1/4 inch flat at the foot, then turn onto its edge and lighten as you pull up, so the trunk tapers to a thin line; its top is about 3 1/2 in from the top edge.",
+       "inside": "Add one short soft offshoot near the upper trunk, like a branch fading in the haze. One colour, no texture: at this distance the trunk stays plain.",
+       "leave": "Leave all the haze around it untouched.",
+       "stop": "Stop when one faint violet-gray trunk, about 1 1/2 in wide with its soft blots, stands in the mist."
+      },
+      "stamp-pines": {
+       "first": "Let the sky and the far trunk dry.",
+       "start": "Start at the tip of the tallest fir, about 3/4 in from the top edge; the group runs from about 9 1/4 in from the left edge out to the right edge of the canvas.",
+       "strokes": "Spread the fan on the palette and stamp only its middle tips. Work each fir from its tip down in a zigzag, pressing harder as you go so it widens toward its base.",
+       "inside": "Deep pine green for the big near firs; Misty blue for the smaller hazy firs at the end nearest the centre of the canvas and in the gaps between the dark ones.",
+       "leave": "Leave the mist showing in gaps between the firs and along their feet.",
+       "stop": "Stop when a row of flat, needle-edged firs stands in the haze, with no lighter side yet. If marks go clumpy, thin the paint and stamp with the middle tips."
+      },
+      "light-pines": {
+       "first": "Let the firs dry, so the new taps sit on top.",
+       "back": {
+        "step": 4,
+        "text": "The same fan tapping you used for the firs, now with Pine light green and only a few taps."
+       },
+       "start": "Start at the foot of the firs nearest the centre of the canvas: the biggest patch has its left side about 8 in from the left edge and its top about 5 in from the top edge.",
+       "strokes": "Stamp the middle tips of the fan in short taps in different directions, so the patch looks like rough needles.",
+       "inside": "Most of it on the left side and in the bottom half of the fir trees, the sun side where they stand in the mist. Add one narrow strip down a middle fir and a few small tufts at the feet of the tall firs.",
+       "leave": "Leave the dark on the rest of every fir, and the fir tips plain.",
+       "stop": "Stop with a few separate patches, never a coat over the firs."
+      },
+      "pull-middle-trunks": {
+       "first": "Let the firs dry.",
+       "back": {
+        "step": 3,
+        "text": "The same press-then-taper pull as the far trunk, now with a wider brush and two colours."
+       },
+       "start": "Start with Smoky brown at the foot of the tallest trunk, its middle about 3 1/4 in from the left edge; it is about 8 in tall.",
+       "strokes": "Press the full width of the 1/2 inch flat at the foot, then turn onto the edge and lighten as you pull up to its thin top.",
+       "inside": "Then pull three shorter Blue-violet mist trunks between it and the fir trees, each fading at its crown into a soft blot of mist. No bark marks or branches.",
+       "leave": "Leave the haze between the trunks clear.",
+       "stop": "Stop when four plain trunks stand in the mist, the Smoky brown one darkest and tallest."
+      },
+      "lay-floor": {
+       "first": "Let the trunks and firs dry, so their feet stay crisp where the ground meets them.",
+       "start": "Start with Golden ochre at the back of the ground, along a line about 7 in from the top edge.",
+       "strokes": "Keep the 3/4 inch flat level and pull long strokes left and right, all the way across the canvas.",
+       "inside": "Lighter and smoother at the back; work toward the bottom edge, adding Leaf brown in long bands so the front grows darker and rougher, with stripes of ochre between them like sunlight falling between shadows.",
+       "leave": "Leave the sky, trunks and firs above the ground line as they are.",
+       "stop": "Stop when the ground is covered edge to edge in level gold and brown stripes, about 5 in tall, with no path yet."
+      },
+      "pull-path": {
+       "first": "Let the floor dry, so the chalk lines show and the mauve stays clean.",
+       "start": "Mark one dot where the path vanishes into the mist, near the middle of the canvas; the path's middle is about 9 3/4 in from the left edge. Fan three to five faint chalk lines from it to the bottom edge.",
+       "strokes": "Pull the 1/2 inch flat along each line, from the bottom edge back toward the dot, wide in front and thin near the dot.",
+       "inside": "The path is widest where it meets the bottom edge and pinches to a thread at the dot.",
+       "leave": "Leave a small island of floor inside the front of the path, and the floor on either side.",
+       "stop": "Stop when the bands narrow toward one point. If rows run parallel, check them with the brush handle held from the dot."
+      },
+      "dab-dark-leaves": {
+       "first": "Let the path dry.",
+       "start": "Start at the bottom edge with big Burnt orange and Leaf brown dabs over the ground and the path.",
+       "strokes": "Tap with the tip of the stiff brush, no water. Make the dabs smaller as you go back toward the far end of the path.",
+       "inside": "Most of it in the bottom half of the autumn leaves. Build Burnt orange mounds for the bushes on both sides of the path, and a big Moss green bush right of the path, reaching up to the firs. Then scatter broken dabs in the treetops, with one clump at the top edge, its left side about 10 3/4 in from the left edge.",
+       "leave": "Leave the far end of the path and the mist clear.",
+       "stop": "Stop when the ground is a dark carpet. If dabs turn to blobs, wipe the brush and tap again."
+      },
+      "dab-mid-leaves": {
+       "first": "Let the dark leaves dry.",
+       "back": {
+        "step": 9,
+        "text": "The same dry tap you used for the dark leaves, now with Golden yellow."
+       },
+       "start": "Start at the top of the big bush left of the path; this patch reaches the left edge of the canvas, its top about 2 in from the top edge.",
+       "strokes": "Tap the tip of the dry stiff brush; tap more where you want it solid.",
+       "inside": "Most of it on the left side, nearer the sun: a solid golden bush left of the path, hanging clusters along the top edge, a few dabs on the bush right of the path, and loose single dabs on the ground, smaller toward the far end of the path.",
+       "leave": "Leave plenty of Burnt orange and Leaf brown showing between the golden dabs.",
+       "stop": "Stop when golden leaves glow over the darks. If a patch goes solid, break it with a few darker taps."
+      },
+      "dab-sunlit-canopy": {
+       "first": "Let the golden leaves dry.",
+       "start": "Start at the top edge near the sun, at the left edge of the canvas, on the golden treetop clusters.",
+       "strokes": "Light taps with the tip of the dry stiff brush, just a few per cluster.",
+       "inside": "Most of it on the left side and in the top half of the autumn leaves, on the edges of the clusters facing the sun, thinning out farther from it.",
+       "leave": "Leave the Golden yellow and orange showing under and around each pale tap, and leave the ground alone.",
+       "stop": "Stop when the treetops near the sun sparkle with pale gold and the leaves farther away stay golden."
+      },
+      "block-in-rock": {
+       "first": "Let the leaves dry where the rock goes.",
+       "start": "Start with one wide low oval right of the path; its bottom is about 3 1/2 in from the bottom edge and its right side about 2 in from the right edge.",
+       "strokes": "Lay the oval with the 1/2 inch flat, then add smaller curved pieces, like ( ), at each end.",
+       "inside": "One flat colour all over, a low boulder about 3 in wide sitting in the leaves at the foot of the moss-green bush.",
+       "leave": "Leave the leaves around its base; let a few overlap its lower edge.",
+       "stop": "Stop when a flat moss-green boulder shape sits by the path, with no shading or light."
+      },
+      "shade-rock": {
+       "first": "Let the Moss green dry, so the dark skims instead of mixing.",
+       "start": "Start where the mossy rock sits on the leaves, along its base.",
+       "strokes": "Only the tip of the dry 1/2 inch flat in Deep pine green; skim lightly across the stone so the strokes break up.",
+       "inside": "Heaviest along its base and at the end away from the sun, lighter toward the crest, where the light will go.",
+       "leave": "Leave Moss green peeking through the dark everywhere, most on the crest facing the sun.",
+       "stop": "Stop when the rock looks dark and mottled, not solid. If it went on solid, let it dry and skim Moss green back over part of it."
+      },
+      "light-rock": {
+       "first": "Let the shading dry.",
+       "back": {
+        "step": 13,
+        "text": "The same dry skim you used to shade the rock, now with Moss light."
+       },
+       "start": "Start at the end of the rock nearest the path, on its crest.",
+       "strokes": "Tip of the dry 1/2 inch flat only; drag it lightly along the crest of the mossy rock, letting it skip.",
+       "inside": "A thin streak along the crest, where it faces the sun, plus one or two tiny touches.",
+       "leave": "Leave the dark mottling over the rest of the rock.",
+       "stop": "Stop when a thin pale sage light, about 1 3/4 in wide, runs along the crest."
+      },
+      "pull-birches": {
+       "first": "Let all the leaves and the rock dry; the trunks go straight over them.",
+       "start": "Start at the foot of each trunk, down in the leaves, and pull up to the top edge.",
+       "strokes": "Press the full width of the 1 inch flat at the foot so it flares, then lighten as you pull up so the trunk tapers. For thin trunks, turn onto the edge.",
+       "inside": "Most of it on the left side of the canvas: a slim trunk at the left edge and two big leaning ones; then one trunk with its middle about 14 1/4 in from the left edge and one at the right edge of the canvas. Add a few thin pale trunks back among the treetops.",
+       "leave": "Leave the path, the rock and the misty centre open.",
+       "stop": "Stop with plain pale gray trunks, no shading or bark yet."
+      },
+      "shade-birches": {
+       "first": "Let the Birch gray dry completely.",
+       "start": "Start at the top edge, on the shadow side of each trunk, the side away from the sun.",
+       "strokes": "Only the tip of the dry 1/2 inch flat in Birch shadow; skim lightly down the length of each trunk.",
+       "inside": "Heavier down the shadow side, lighter toward the sunny edge. Skip often so broken pale patches stay. Add a little Moss green where each foot meets the leaves.",
+       "leave": "Leave pale gray patches all along each trunk; your lowest strokes end about 1 1/4 in from the bottom edge, so the flared feet stay mostly pale.",
+       "stop": "Stop when each trunk reads round, lavender gray with pale patches."
+      },
+      "mark-bark": {
+       "first": "Let the shading dry.",
+       "start": "Start at the foot of each big trunk, where the dark is heaviest.",
+       "strokes": "Press the 1/2 inch flat across the trunk for each patch, then lift onto its edge so the patch tapers to a point.",
+       "inside": "Most of it low on the trunks: the feet nearly all Bark dark, then broken patches climbing the trunk, smaller and farther apart as they go up. Curve them a little, so they wrap around the trunk.",
+       "leave": "Leave plenty of pale trunk between the patches.",
+       "stop": "Stop when every trunk has dark feet and broken black-brown bands, no thin lines yet."
+      },
+      "line-bark": {
+       "first": "Let the bark patches dry; liner lines spread on wet paint.",
+       "back": {
+        "step": 17,
+        "text": "The same Bark dark as the patches, now thinned for the liner."
+       },
+       "start": "Start near the top of the big leaning trunks, on the shadow side, between the patches.",
+       "strokes": "Swirl the #2 liner in water, then in the paint. Hold it upright with light, steady pressure; make short lines that fork, overlap and wobble. Reload often; add water if a line skips.",
+       "inside": "Most of it in the top half of the thin bark lines, linking the patches into rough bark texture down each trunk's shadow side.",
+       "leave": "Leave the sunny edge of each trunk clean.",
+       "stop": "Stop when the shadow side of each trunk looks rough and barky."
+      },
+      "light-bark": {
+       "first": "Let the bark marks dry.",
+       "start": "Start at the top edge, on the sunny edge of each trunk.",
+       "strokes": "Only the tip of the dry 1/2 inch flat in Birch white; skim lightly down the trunk so it catches the texture.",
+       "inside": "Down the sunny edge of every birch, over the marks in places; most of it on the left side of the canvas, where the big trunks are. Your lowest strokes end about 3 1/2 in from the bottom edge.",
+       "leave": "Leave the shadow side lavender and the dark feet untouched.",
+       "stop": "Stop when each trunk has a bright, broken light running down its sunny edge, never solid. If it went on solid, let it dry and skim lavender back over part of it."
+      },
+      "tap-sunlit-leaves": {
+       "first": "Let the ground leaves and trunk feet dry.",
+       "back": {
+        "step": 11,
+        "text": "The same Pale gold taps you put near the sun, now on the ground with the #12 round."
+       },
+       "start": "Start at the feet of the big trunks, about 8 in from the top edge, and work across.",
+       "strokes": "Tap with the tip of the dry #12 round, one dab per leaf.",
+       "inside": "A band across the ground: around each trunk's foot, along the path to its far end, and around the rock's base. Tap the path's dabs thickest.",
+       "leave": "Leave the orange and brown leaves showing between, and the strip of ground along the bottom edge mostly as it is.",
+       "stop": "Stop when pale gold leaves glint across the ground. The painting is finished."
+      }
+     }
+    },
+    "arc": {
+     "opening": {
+      "skills": [
+       {
+        "card": "dabbing",
+        "steps": [
+         9,
+         10,
+         11,
+         20
+        ],
+        "how": "You build every leaf in the painting by tapping a dry brush: dark first, then golden, then a few pale lights, always leaving the earlier taps showing between the new ones."
+       },
+       {
+        "card": "thick-to-thin",
+        "steps": [
+         3,
+         6,
+         15,
+         17
+        ],
+        "how": "You press the full width of a flat brush and then ease onto its edge, which gives trunks that flare at the foot and taper up, and bark patches that end in a point."
+       },
+       {
+        "card": "dry-brush",
+        "steps": [
+         13,
+         14,
+         16,
+         19
+        ],
+        "how": "You skim a nearly dry brush so the paint breaks up, shading and lighting the rock and the birches without hiding what is underneath."
+       }
+      ],
+      "road": "We start with one soft haze of gold and blue over the whole canvas, because it sits behind everything. Then we build the woods from the misty back toward us: far trunks, firs, the ground and the path. Next come all the autumn leaves in three dabbing passes, dark to light, and then the rock. The big birch trunks go on last, straight over everything, so you never have to paint around them and the strongest darks and lights land at the end."
+     },
+     "stages": {
+      "the-sky": {
+       "for": "This stage lays the soft misty haze that glows through the whole painting, and the sun that lights it.",
+       "end": "The canvas is one soft gold-to-blue mist with a small bright sun glowing in the gold corner."
+      },
+      "far-woods": {
+       "for": "This stage fills the misty distance with pale far trunks, flat firs and a few nearer trunks, so the wood has depth before anything close is painted.",
+       "end": "Pale trunks and dark firs stand in the haze, the firs with a little green light on their sunny sides."
+      },
+      "the-ground": {
+       "for": "This stage lays the forest floor flat and pulls a path back into the mist, so the ground lies down and leads the eye in.",
+       "end": "A striped gold and brown floor fills the ground, with a mauve path narrowing back into the mist."
+      },
+      "autumn-leaves": {
+       "for": "This stage covers the treetops, bushes and ground with autumn leaves in three dabbing passes, dark, golden, then pale.",
+       "end": "Golden leaves hang in the treetops, fill a bright bush by the path and carpet the ground, with orange and brown showing between them and pale lights near the sun."
+      },
+      "the-rock": {
+       "for": "This stage sets a mossy boulder among the leaves and gives it a dark underside and a lit crest.",
+       "end": "A dark, mottled green rock sits in the leaves by the path, with a thin pale light along its crest."
+      },
+      "the-birches": {
+       "for": "This stage paints the big birch trunks straight over everything, then shades them and marks their bark.",
+       "end": "Five big birches stand in front of the woods, lavender gray in shadow, with black bark patches and dark feet."
+      },
+      "last-lights": {
+       "for": "This stage adds the brightest sunlight last, on the birches and on the leaves at your feet.",
+       "end": "The birches shine near-white on their sunny edges and pale gold leaves glint across the ground: the painting is finished."
+      }
+     }
+    },
+    "final": {
+     "blend-sky": [
+      {
+       "kind": "start",
+       "text": "Start with the darkest colour, Blue-violet mist, low on the canvas and at the right edge of the canvas, then work in Misty blue across the middle and Pale gold in the upper left corner of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Long side-to-side strokes with the 1 1/2 inch flat, right across the canvas. Without rinsing, pick up the next lighter colour, lay it so it meets the wet colour, then stroke back and forth over the join while both are wet."
+      },
+      {
+       "kind": "inside",
+       "text": "The gold glows strongest in the corner where the sun will be, with a few softer gold patches lower down; blue fills the middle and blue-violet gathers far from the sun."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave no white canvas: the haze goes straight through where the trees and ground will be."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the whole canvas is a soft haze with no hard line between colours. If one shows, add more of the lighter colour at the join and blend again."
+      }
+     ],
+     "glow-sun": [
+      {
+       "kind": "first",
+       "text": "Let the sky dry to the touch, so the cream stays bright instead of mixing into the blue."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the left edge of the canvas, in the middle of the gold glow; the sun's top is about 1 1/4 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Small circles with the tip of the #8 round, working outward from the brightest point so the edge stays bumpy and soft."
+      },
+      {
+       "kind": "inside",
+       "text": "Keep it a small disk set against the left edge of the canvas, as if the sun is just peeking in, brightest at its centre."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the gold glow around the sun as it is; only the disk gets Sun cream."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a bright cream patch about 1 1/4 in wide glows with a rayed, soft edge. If the edge looks hard, soften it with lighter circles."
+      }
+     ],
+     "pull-far-trunks": [
+      {
+       "kind": "first",
+       "text": "Let the sky dry first, so the trunk stays soft without lifting the haze."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the trunk's foot, where it spreads into a soft blot of mist; its middle is about 7 1/4 in from the left edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the full width of the 1/4 inch flat at the foot, then turn onto its edge and lighten as you pull up, so the trunk tapers to a thin line; its top is about 3 1/2 in from the top edge."
+      },
+      {
+       "kind": "inside",
+       "text": "Add one short soft offshoot near the upper trunk, like a branch fading in the haze. One colour, no texture: at this distance the trunk stays plain."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave all the haze around it untouched."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when one faint violet-gray trunk, about 1 1/2 in wide with its soft blots, stands in the mist."
+      }
+     ],
+     "stamp-pines": [
+      {
+       "kind": "first",
+       "text": "Let the sky and the far trunk dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the tip of the tallest fir, about 3/4 in from the top edge; the group runs from about 9 1/4 in from the left edge out to the right edge of the canvas."
+      },
+      {
+       "kind": "strokes",
+       "text": "Spread the fan on the palette and stamp only its middle tips. Work each fir from its tip down in a zigzag, pressing harder as you go so it widens toward its base."
+      },
+      {
+       "kind": "inside",
+       "text": "Deep pine green for the big near firs; Misty blue for the smaller hazy firs at the end nearest the centre of the canvas and in the gaps between the dark ones."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the mist showing in gaps between the firs and along their feet."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a row of flat, needle-edged firs stands in the haze, with no lighter side yet. If marks go clumpy, thin the paint and stamp with the middle tips."
+      }
+     ],
+     "light-pines": [
+      {
+       "kind": "first",
+       "text": "Let the firs dry, so the new taps sit on top."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the foot of the firs nearest the centre of the canvas: the biggest patch has its left side about 8 in from the left edge and its top about 5 in from the top edge."
+      },
+      {
+       "kind": "back",
+       "step": 4,
+       "text": "The same fan tapping you used for the firs, now with Pine light green and only a few taps."
+      },
+      {
+       "kind": "strokes",
+       "text": "Stamp the middle tips of the fan in short taps in different directions, so the patch looks like rough needles."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it on the left side and in the bottom half of the fir trees, the sun side where they stand in the mist. Add one narrow strip down a middle fir and a few small tufts at the feet of the tall firs."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the dark on the rest of every fir, and the fir tips plain."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop with a few separate patches, never a coat over the firs."
+      }
+     ],
+     "pull-middle-trunks": [
+      {
+       "kind": "first",
+       "text": "Let the firs dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start with Smoky brown at the foot of the tallest trunk, its middle about 3 1/4 in from the left edge; it is about 8 in tall."
+      },
+      {
+       "kind": "back",
+       "step": 3,
+       "text": "The same press-then-taper pull as the far trunk, now with a wider brush and two colours."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the full width of the 1/2 inch flat at the foot, then turn onto the edge and lighten as you pull up to its thin top."
+      },
+      {
+       "kind": "inside",
+       "text": "Then pull three shorter Blue-violet mist trunks between it and the fir trees, each fading at its crown into a soft blot of mist. No bark marks or branches."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the haze between the trunks clear."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when four plain trunks stand in the mist, the Smoky brown one darkest and tallest."
+      }
+     ],
+     "lay-floor": [
+      {
+       "kind": "first",
+       "text": "Let the trunks and firs dry, so their feet stay crisp where the ground meets them."
+      },
+      {
+       "kind": "start",
+       "text": "Start with Golden ochre at the back of the ground, along a line about 7 in from the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Keep the 3/4 inch flat level and pull long strokes left and right, all the way across the canvas."
+      },
+      {
+       "kind": "inside",
+       "text": "Lighter and smoother at the back; work toward the bottom edge, adding Leaf brown in long bands so the front grows darker and rougher, with stripes of ochre between them like sunlight falling between shadows."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the sky, trunks and firs above the ground line as they are."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the whole ground is covered in level gold and brown stripes, with no path yet."
+      }
+     ],
+     "pull-path": [
+      {
+       "kind": "first",
+       "text": "Let the floor dry, so the chalk lines show and the mauve stays clean."
+      },
+      {
+       "kind": "start",
+       "text": "Mark one dot where the path vanishes into the mist, near the middle of the canvas; the path's middle is about 9 3/4 in from the left edge. Fan three to five faint chalk lines from it toward you, down to the front of the ground."
+      },
+      {
+       "kind": "strokes",
+       "text": "Pull the 1/2 inch flat along each line, from the front back toward the dot, wide in front and thin near the dot."
+      },
+      {
+       "kind": "inside",
+       "text": "The path is widest at the front of the ground and pinches to a thread at the dot."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave a small island of floor inside the front of the path, and the floor on either side."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the bands narrow toward one point. If rows run parallel, check them with the brush handle held from the dot."
+      }
+     ],
+     "dab-dark-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the path dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the bottom edge with big Burnt orange and Leaf brown dabs over the ground and the path."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap with the tip of the stiff brush, no water. Make the dabs smaller as you go back toward the far end of the path."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it in the bottom half of the autumn leaves. Build Burnt orange mounds for the bushes along the path, and a big Moss green bush where the path meets the firs, reaching up into them. Then scatter broken dabs in the treetops, with one clump at the top edge, its left side about 10 3/4 in from the left edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the far end of the path and the mist clear."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the ground is a dark carpet. If dabs turn to blobs, wipe the brush and tap again."
+      }
+     ],
+     "dab-mid-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the dark leaves dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top of the big bush left of the path; this patch reaches the left edge of the canvas, its top about 2 in from the top edge."
+      },
+      {
+       "kind": "back",
+       "step": 9,
+       "text": "The same dry tap you used for the dark leaves, now with Golden yellow."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap the tip of the dry stiff brush; tap more where you want it solid."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it on the left side, nearer the sun: a solid golden bush by the path, hanging clusters in the treetops, a few dabs on the moss-green bush, and loose single dabs on the ground, smaller toward the far end of the path."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave plenty of Burnt orange and Leaf brown showing between the golden dabs."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when golden leaves glow over the darks. If a patch goes solid, break it with a few darker taps."
+      }
+     ],
+     "dab-sunlit-canopy": [
+      {
+       "kind": "first",
+       "text": "Let the golden leaves dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge near the sun, at the left edge of the canvas, on the golden treetop clusters."
+      },
+      {
+       "kind": "strokes",
+       "text": "Light taps with the tip of the dry stiff brush, just a few per cluster."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it on the left side and in the top half of the autumn leaves, on the edges of the clusters facing the sun, thinning out farther from it."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the Golden yellow and orange showing under and around each pale tap, and leave the ground alone."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the treetops near the sun sparkle with pale gold and the leaves farther away stay golden."
+      }
+     ],
+     "block-in-rock": [
+      {
+       "kind": "first",
+       "text": "Let the leaves dry where the rock goes."
+      },
+      {
+       "kind": "start",
+       "text": "Start with one wide low oval right of the path; its bottom is about 3 1/2 in from the bottom edge and its right side about 2 in from the right edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Lay the oval with the 1/2 inch flat, then add smaller curved pieces, like ( ), at each end."
+      },
+      {
+       "kind": "inside",
+       "text": "One flat colour all over, a low boulder about 3 in wide sitting in the leaves at the foot of the moss-green bush."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the leaves around its base; let a few overlap its lower edge."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a flat moss-green boulder shape sits by the path, with no shading or light."
+      }
+     ],
+     "shade-rock": [
+      {
+       "kind": "first",
+       "text": "Let the Moss green dry, so the dark skims instead of mixing."
+      },
+      {
+       "kind": "start",
+       "text": "Start where the mossy rock sits on the leaves, along its base."
+      },
+      {
+       "kind": "strokes",
+       "text": "Only the tip of the dry 1/2 inch flat in Deep pine green; skim lightly across the stone so the strokes break up."
+      },
+      {
+       "kind": "inside",
+       "text": "Heaviest along its base and at the end away from the sun, lighter toward the crest, where the light will go."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave Moss green peeking through the dark everywhere, most on the crest facing the sun."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the rock looks dark and mottled, not solid. If it went on solid, let it dry and skim Moss green back over part of it."
+      }
+     ],
+     "light-rock": [
+      {
+       "kind": "first",
+       "text": "Let the shading dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the end of the rock nearest the path, on its crest."
+      },
+      {
+       "kind": "back",
+       "step": 13,
+       "text": "The same dry skim you used to shade the rock, now with Moss light."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tip of the dry 1/2 inch flat only; drag it lightly along the crest of the mossy rock, letting it skip."
+      },
+      {
+       "kind": "inside",
+       "text": "A thin streak along the crest, where it faces the sun, plus one or two tiny touches."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the dark mottling over the rest of the rock."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when a thin pale sage light, about 1 3/4 in wide, runs along the crest."
+      }
+     ],
+     "pull-birches": [
+      {
+       "kind": "first",
+       "text": "Let all the leaves and the rock dry; the trunks go straight over them."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the foot of each trunk, down in the leaves, and pull up to the top edge."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the full width of the 1 inch flat at the foot so it flares, then lighten as you pull up so the trunk tapers. For thin trunks, turn onto the edge."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it on the left side of the canvas: a slim trunk at the left edge and two big leaning ones; then one trunk with its middle about 14 1/4 in from the left edge and one at the right edge of the canvas. Add a few thin pale trunks back among the treetops."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the path, the rock and the misty centre open."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop with plain pale gray trunks, no shading or bark yet."
+      }
+     ],
+     "shade-birches": [
+      {
+       "kind": "first",
+       "text": "Let the Birch gray dry completely."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge, on the shadow side of each trunk, the side away from the sun."
+      },
+      {
+       "kind": "strokes",
+       "text": "Only the tip of the dry 1/2 inch flat in Birch shadow; skim lightly down the length of each trunk."
+      },
+      {
+       "kind": "inside",
+       "text": "Heavier down the shadow side, lighter toward the sunny edge. Skip often so broken pale patches stay. Add a little Moss green where each foot meets the leaves."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave pale gray patches all along each trunk; your lowest strokes end about 1 1/4 in from the bottom edge, so the flared feet stay mostly pale."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when each trunk reads round, lavender gray with pale patches."
+      }
+     ],
+     "mark-bark": [
+      {
+       "kind": "first",
+       "text": "Let the shading dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the foot of each big trunk, where the dark is heaviest."
+      },
+      {
+       "kind": "strokes",
+       "text": "Press the 1/2 inch flat across the trunk for each patch, then lift onto its edge so the patch tapers to a point."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it low on the trunks: the feet nearly all Bark dark, then broken patches climbing the trunk, smaller and farther apart as they go up. Curve them a little, so they wrap around the trunk."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave plenty of pale trunk between the patches."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when every trunk has dark feet and broken black-brown bands, no thin lines yet."
+      }
+     ],
+     "line-bark": [
+      {
+       "kind": "first",
+       "text": "Let the bark patches dry; liner lines spread on wet paint."
+      },
+      {
+       "kind": "start",
+       "text": "Start near the top of the big leaning trunks, on the shadow side, between the patches."
+      },
+      {
+       "kind": "back",
+       "step": 17,
+       "text": "The same Bark dark as the patches, now thinned for the liner."
+      },
+      {
+       "kind": "strokes",
+       "text": "Swirl the #2 liner in water, then in the paint. Hold it upright with light, steady pressure; make short lines that fork, overlap and wobble. Reload often; add water if a line skips."
+      },
+      {
+       "kind": "inside",
+       "text": "Most of it in the top half of the thin bark lines, linking the patches into rough bark texture down each trunk's shadow side."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the sunny edge of each trunk clean."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when the shadow side of each trunk looks rough and barky."
+      }
+     ],
+     "light-bark": [
+      {
+       "kind": "first",
+       "text": "Let the bark marks dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the top edge, on the sunny edge of each trunk."
+      },
+      {
+       "kind": "strokes",
+       "text": "Only the tip of the dry 1/2 inch flat in Birch white; skim lightly down the trunk so it catches the texture."
+      },
+      {
+       "kind": "inside",
+       "text": "Down the sunny edge of every birch, over the marks in places; most of it on the left side of the canvas, where the big trunks are. Your lowest strokes end about 3 1/2 in from the bottom edge."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the shadow side lavender and the dark feet untouched."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when each trunk has a bright, broken light running down its sunny edge, never solid. If it went on solid, let it dry and skim lavender back over part of it."
+      }
+     ],
+     "tap-sunlit-leaves": [
+      {
+       "kind": "first",
+       "text": "Let the ground leaves and trunk feet dry."
+      },
+      {
+       "kind": "start",
+       "text": "Start at the feet of the big trunks, about 8 in from the top edge, and work across."
+      },
+      {
+       "kind": "back",
+       "step": 11,
+       "text": "The same Pale gold taps you put near the sun, now on the ground with the #12 round."
+      },
+      {
+       "kind": "strokes",
+       "text": "Tap with the tip of the dry #12 round, one dab per leaf."
+      },
+      {
+       "kind": "inside",
+       "text": "A band across the ground: around each trunk's foot, along the path to its far end, and around the rock's base. Tap the path's dabs thickest."
+      },
+      {
+       "kind": "leave",
+       "text": "Leave the orange and brown leaves showing between, and the strip of ground along the bottom edge mostly as it is."
+      },
+      {
+       "kind": "stop",
+       "text": "Stop when pale gold leaves glint across the ground. The painting is finished."
+      }
+     ]
+    },
+    "check": {
+     "text_failures_first": 8,
+     "arc_failures_first": 1,
+     "arc_failed_first": [
+      {
+       "where": "stage the-ground.end",
+       "what": "an opener says no number and no side word",
+       "sentence": "A striped gold and brown floor fills the lower canvas, with a mauve path narrowing back into the mist."
+      }
+     ],
+     "text_failed_first": [
+      {
+       "step": 1,
+       "why": "step 1 (blend-sky), line 2 (strokes): \"next to the last band\" can't find 'the last band' on the sheet; sheet: nothing on the sheet"
+      },
+      {
+       "step": 7,
+       "why": "step 7 (lay-floor), line 6 (stop): \"about 5 in tall\" says 5 in tall; sheet: The sunlit leaves on the ground: nearest tall 3 1/2 in"
+      },
+      {
+       "step": 7,
+       "why": "step 7 (lay-floor), line 6 (stop): \"edge to edge\" says it reaches the left and right edges (its left side is 1/16 in from the left edge; its right side is 1/2 in from the right edge); sheet: The sunlit leaves on the ground reaches left"
+      },
+      {
+       "step": 8,
+       "why": "step 8 (pull-path), line 2 (start): \"bottom edge\" says it reaches the bottom edge (its bottom side is 1 5/16 in from the bottom edge); sheet: The thin bark lines reaches right"
+      },
+      {
+       "step": 9,
+       "why": "step 9 (dab-dark-leaves), line 4 (inside): \"right of the path\" says right of the path; sheet: this step's area is above, below, left of, right of the path, 0 in apart down, 0 in apart across, touching"
+      },
+      {
+       "step": 10,
+       "why": "step 10 (dab-mid-leaves), line 5 (inside): \"top edge\" says it reaches the top edge (its top side is 1 1/16 in from the top edge); sheet: The sun reaches left"
+      },
+      {
+       "step": 10,
+       "why": "step 10 (dab-mid-leaves), line 5 (inside): \"left of the path\" says left of the path; sheet: The sun is level with the path"
+      },
+      {
+       "step": 10,
+       "why": "step 10 (dab-mid-leaves), line 5 (inside): \"right of the path\" says right of the path; sheet: The sun is level with the path"
+      }
+     ],
+     "text_failures_second": 0,
+     "arc_failures_second": 0,
+     "arc_taken_out": [],
+     "text_taken_out": [],
+     "left_failing": 0,
+     "claims_final": 47
+    },
+    "backs": 6,
+    "words_count": 2527,
+    "arc_words": 460
    }
   }
  },
@@ -4368,6 +5292,19 @@
    "cache_read_tokens": 97775,
    "output_tokens": 7412,
    "cost_usd": 0.31826,
+   "pictures": 0,
+   "picture_tokens": 0
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "birch-grove",
+   "label": "feedback",
+   "seconds": 54.7,
+   "input_tokens": 4,
+   "cache_write_tokens": 17882,
+   "cache_read_tokens": 86812,
+   "output_tokens": 7421,
+   "cost_usd": 0.30885,
    "pictures": 0,
    "picture_tokens": 0
   }
@@ -4588,6 +5525,787 @@
    "note": "Both lessons use identical pictures and identical core instructions. B only adds an overview, stage summaries and cross-references. That is a small comfort for a beginner, not a reason to paint from one over the other, so this is a toss-up.",
    "cost_usd": 0.31972,
    "seconds": 27.6
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "sleeping-cat",
+   "grader": 2,
+   "A": "arc-whole",
+   "B": "lesson-slots",
+   "prefer": "B",
+   "preferred": "lesson-slots",
+   "scores": {
+    "arc-whole": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      6,
+      8
+     ],
+     "note": "The pictures are shared, so both lessons carry the same faults. Steps 2 and 3 show no green leaves, step 4 shows the leaves suddenly appearing as the wall goes on, with a faint frame-post band already in the wall, and step 14 has pale ghosts where the white patches will go. A's words often miss what the picture does: no word for the dark wall shadow in step 6, step 8's shading doesn't explain the sun-shape outlines, and step 7 says to leave the foot of the frame that the picture covers. It also repeats confusing filler like 'most of what you add is in the right half of the cat's stripes and pink ears.'"
+    },
+    "lesson-slots": {
+     "real": 3,
+     "paintable": 4,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      2,
+      14
+     ],
+     "note": "The same picture faults apply: there are no visible leaves until step 4, where they appear by magic, and step 14 shows ghosted white areas. B's words track the pictures more closely. They name the wall shadow band in step 6, they tell the painter to skim around the sun shapes in step 8, and step 3 admits the canvas should look nearly the same. Step 14 also tells the painter to leave the patches and flecks. The measurements and placements are concrete enough to paint from on a phone."
+    }
+   },
+   "note": "The step pictures are identical, so the choice comes down to words agreeing with pictures, and B explains more of what each picture actually shows (steps 2, 3, 6, 8, 14, 16). Neither set of words can fix the step 4 magic leaves or the step 14 ghosts. The preference is slight but real: B's words are more accurate, not just longer.",
+   "cost_usd": 0.29917,
+   "seconds": 22.0
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "highland-cow",
+   "grader": 2,
+   "A": "arc-whole",
+   "B": "lesson-slots",
+   "prefer": "none",
+   "preferred": "none",
+   "scores": {
+    "arc-whole": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      14,
+      22
+     ],
+     "note": "The pictures are shared and mostly read as a real half-done painting, but step 7's mottled green patches and step 8's leap to a fully textured meadow and reshaped ridge are hard to follow. Step 14 names Rust brown, the cow's own base colour, yet the picture shows much lighter ginger locks. Step 22's 'Nose pink' is an olive green (#777a4d) called pale pink. Step 11 also says to leave plain rust on the sunny side while the picture is textured all over."
+    },
+    "lesson-slots": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      14,
+      22
+     ],
+     "note": "Same pictures, so the same faults: step 8's big jump, step 14's Rust brown locks that show as light ginger, and step 22's green 'Nose pink'. Its words fit a few pictures slightly better, such as texture across the coat in step 11 and sky still showing in step 4. It has no opening overview, and some of its measurements (step 2's cloud group) don't help much."
+    }
+   },
+   "note": "Both lessons share every picture and the same paint lists, and their words differ only in small phrasing, with small gains and losses on each side. Neither fixes the shared problems at steps 8, 14 and 22, so this is a toss-up.",
+   "cost_usd": 0.32178,
+   "seconds": 22.3
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "highland-cow",
+   "grader": 1,
+   "A": "lesson-slots",
+   "B": "arc-whole",
+   "prefer": "none",
+   "preferred": "none",
+   "scores": {
+    "lesson-slots": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      7,
+      21,
+      22
+     ],
+     "note": "The step pictures are shared, so A and B carry the same flaws. Step 7 has cut-out blotches of sky that no brush makes, step 8 jumps from those patches to a fully textured meadow, and step 21 brings the muzzle, eye area and chin into focus on a step that only names a nose colour. Step 22's 'Nose pink' is a greenish-grey recipe (#777a4d) while the picture shows a pale whitish patch. A's words fit the pictures a little better: the blue band in the middle at step 1, 'light strokes over the rest give texture' at step 11, and the jaw line at step 21."
+    },
+    "arc-whole": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      7,
+      21,
+      22
+     ],
+     "note": "B has the same picture problems as A: blotchy sky gaps at step 7, the big meadow jump at step 8, the face appearing at step 21, and the 'Nose pink' that mixes grey-green at step 22. Its openers and 'as in step N' links help a beginner. Some lines fit the pictures less well, though: step 1 says to start blue at the top, but the picture's top is gold, and step 11 says to leave plain rust on the sunny side, but the picture is textured all over."
+    }
+   },
+   "note": "Both lessons share every picture, and their words differ only in small placement details, each with a few lines that fit better or worse. A matches the pictures marginally more often and B explains its steps a little better; neither gap is big enough to change what a beginner ends up painting. This is a toss-up.",
+   "cost_usd": 0.32501,
+   "seconds": 24.4
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "sleeping-cat",
+   "grader": 1,
+   "A": "lesson-slots",
+   "B": "arc-whole",
+   "prefer": "A",
+   "preferred": "lesson-slots",
+   "scores": {
+    "lesson-slots": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      2,
+      11
+     ],
+     "note": "The pictures are the same for both lessons. Steps 2 and 3 show no green at all: the corner only turns a darker blue, and step 3 matches step 2. The leaves first appear in step 4, which only names wall blues. Step 11 jumps from a flat oval to a knitted blanket with a new hollow. A's words are specific, with sizes and places, and they cover most of what the pictures show: the hard sun shapes in step 8, the pale ghost patches left for the white in step 14, and the cheek lines in step 20."
+    },
+    "arc-whole": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      2,
+      16
+     ],
+     "note": "B has the same picture problems: no green in steps 2 and 3, leaves that appear by magic in step 4, and the jump in step 11. B's words are vaguer and several carry garbled lines like 'most of what you add is in the right half of the cat's stripes and pink ears' (steps 6, 8, 14, 15, 16), which would confuse a beginner. B never explains the pale ghost patches in step 14 or the sun-shape blocks in step 8. The opening and stage notes are pleasant but don't fix what the steps show."
+    }
+   },
+   "note": "The pictures are the same, so the choice rests on the words. A's words match the pictures more often and give a beginner places and sizes to aim for. B's steps carry template nonsense and leave visible things unexplained. The edge is clear but modest, because the shared picture faults in steps 2 to 4 and 11 hurt both lessons equally.",
+   "cost_usd": 0.30421,
+   "seconds": 24.9
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "birch-grove",
+   "grader": 1,
+   "A": "arc-whole",
+   "B": "lesson-slots",
+   "prefer": "none",
+   "preferred": "none",
+   "scores": {
+    "arc-whole": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      4,
+      9
+     ],
+     "note": "The pictures are shared with B and look like a real painting in progress from step 7 on, but there are problems. Step 1 already shows violet trunk ghosts and gold patches where the trees will go. Step 4's firs come with red-brown trunks that neither listed paint makes, and step 9 jumps from a flat floor to whole bushes, a carpet and treetop leaves in one go. A's words match the pictures a little more closely (the five birch positions in step 15, the moss bush reaching into the firs in step 9). It shares B's mismatches: step 5 and step 18 show almost no visible change, and the 'pale sage' rock light in step 14 is mixed as a brown."
+    },
+    "lesson-slots": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      4,
+      9
+     ],
+     "note": "It has the same pictures, so the same faults: trunk ghosts in step 1, unexplained brown fir trunks in step 4, and a big jump in step 9. B's words are plainer and fit some steps well, such as the dark mottled rock in step 13. A few spots are looser or contradictory: in step 15, 'two more trunks at the right edge' doesn't match where the trunks are. In step 20, 'leave the very front clear' conflicts with a band that ends 1/2 in from the bottom, and 'most on the right side' doesn't match a picture with gold across the whole path."
+    }
+   },
+   "note": "Both lessons show the same pictures and paints, so the choice rests on the words alone. A's words are slightly more exact about placement, but B's are no worse in any way that would stop a beginner, and both share the same picture faults (steps 1, 4, 9). Any edge is small, so this is a toss-up.",
+   "cost_usd": 0.30309,
+   "seconds": 26.3
+  },
+  {
+   "variant": "arc-whole",
+   "picture": "birch-grove",
+   "grader": 2,
+   "A": "lesson-slots",
+   "B": "arc-whole",
+   "prefer": "none",
+   "preferred": "none",
+   "scores": {
+    "lesson-slots": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      9,
+      15,
+      17
+     ],
+     "note": "The pictures carry the problems, and both lessons share them. Step 1 already shows faint violet trunks. Step 9 jumps from a striped floor to a full leaf carpet, bushes and treetop clusters, and the middle trunks change with no instruction. Step 15 brings in slim background birches that already have bark marks, though the words only say flat gray. Step 17 goes from lavender trunks to finished bark in one pass. Step 16's title says 'right side' but the words say Birch shadow covers most of each trunk; that matches the picture but confuses the instruction."
+    },
+    "arc-whole": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      9,
+      15,
+      17
+     ],
+     "note": "These are the same pictures, so they have the same flaws: ghost trunks in step 1, the big jump at step 9 with trunks changing unasked, the slim birches in step 15 that already have bark, and the leap to finished bark at step 17. The words are slightly more specific in places: step 1 names the lower gold patches, step 15 places the right trunk at 14 1/4 in, and step 8 mentions the path's island. The opening and 'As in step N' notes are polish, and they don't fix anything the pictures get wrong."
+    }
+   },
+   "note": "Both lessons use the same step pictures, and their words differ only in small wording and placement details; neither one explains the magic or jumps at steps 9, 15 and 17. B's slightly tighter placements are a small edge, not a reason to paint from it. This is a toss-up.",
+   "cost_usd": 0.31289,
+   "seconds": 29.4
   }
- ]
+ ],
+ "report": {
+  "base": {
+   "highland-cow": 3.43,
+   "sleeping-cat": 3.38,
+   "birch-grove": 3.2
+  },
+  "variants": {
+   "arc-add": {
+    "pictures": {
+     "highland-cow": {
+      "carry_grade": 3.0,
+      "graded": 23,
+      "vs_base": -0.43,
+      "rose": 2,
+      "fell": 11,
+      "backs": 6,
+      "vs_base_on_back_steps": -0.5,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 43
+      },
+      "words": 2674,
+      "arc_words": 518,
+      "claude_usd": 0.293,
+      "ab": [
+       {
+        "grader": 1,
+        "A": "lesson-slots",
+        "B": "arc-add",
+        "preferred": "none",
+        "note": "Both lessons share every picture and nearly every word. B only adds framing text: an opening, stage summaries and cross-references to earlier steps. That is polish in the words, not a difference in what the beginner would paint from. I'm clear there is no real difference."
+       },
+       {
+        "grader": 2,
+        "A": "arc-add",
+        "B": "lesson-slots",
+        "preferred": "none",
+        "note": "The pictures and the core step words are the same in both. The only difference is A's extra framing text (an overview, stage openers and cross-references), which is slightly friendlier to read but changes nothing a painter would see or do differently. This is a toss-up, so no preference."
+       }
+      ],
+      "ab_scores": [
+       {
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          7,
+          8,
+          21
+         ],
+         "note": "The sky, mountains, horns and grass passes read as a real painting in progress. Three things sink it. Step 7's hill and meadow layer is torn, stencil-like patches that no brush makes. Step 8 jumps from those patches to a fully textured meadow. The head reads as a faceless back view until step 21, when a whole face appears on a step that names only a nose. Step 22 calls a green-grey mix (#777a4d) 'Nose pink', and step 15 shows almost no visible change."
+        },
+        "arc-add": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          7,
+          8,
+          21
+         ],
+         "note": "The pictures, paints and core words are the same as A, so it has the same faults. These are the patchy step 7, the big jump at step 8, the face appearing at step 21, and the green 'Nose pink' at step 22. The added opening, stage openers and 'As in step N' lines are accurate and mildly helpful. None of them fixes what the pictures show."
+        }
+       },
+       {
+        "arc-add": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          7,
+          8,
+          22
+         ],
+         "note": "The sky, clouds, mountains, horns and grass passes build up plausibly, but the step pictures carry three real problems. Step 7 is a patchy, cut-out-looking green with blotches no brush makes. Step 8 then jumps to fully textured banded hills and a finished-looking meadow, and adds a dark far ridge. The cow reads as a back view until the nose steps (21\u201323), where a face appears; step 22's 'Nose pink' recipe (#777a4d) is a dull green that doesn't match the pale highlight shown."
+        },
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          7,
+          8,
+          22
+         ],
+         "note": "B has the same pictures and the same step words as A, so it has the same problems: the blotchy step 7, the big jump at step 8, the cow seeming to turn around once the face goes in, and step 22's greenish 'Nose pink'. It lacks A's overview, stage summaries and 'As in step N' reminders, but those don't fix what the pictures show."
+        }
+       }
+      ]
+     },
+     "sleeping-cat": {
+      "carry_grade": 3.38,
+      "graded": 21,
+      "vs_base": 0.0,
+      "rose": 2,
+      "fell": 2,
+      "backs": 5,
+      "vs_base_on_back_steps": 0.0,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 40
+      },
+      "words": 3008,
+      "arc_words": 450,
+      "claude_usd": 0.287,
+      "ab": [
+       {
+        "grader": 2,
+        "A": "arc-add",
+        "B": "lesson-slots",
+        "preferred": "none",
+        "note": "Both lessons use identical pictures and paints, and the step words are the same apart from A's extra framing and cross-references. Those are word polish that doesn't fix any picture-versus-word mismatch. That makes it a toss-up, and I'm sure there is no real difference."
+       },
+       {
+        "grader": 1,
+        "A": "lesson-slots",
+        "B": "arc-add",
+        "preferred": "none",
+        "note": "Both lessons use identical pictures and identical core instructions. B only adds an overview, stage summaries and cross-references. That is a small comfort for a beginner, not a reason to paint from one over the other, so this is a toss-up."
+       }
+      ],
+      "ab_scores": [
+       {
+        "arc-add": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          4,
+          2,
+          11
+         ],
+         "note": "Steps 2 and 3 name green leaf dabs, but the picture only darkens the blue patch. The leaves then appear by magic in step 4, the wall step, alongside a pale ghost of the frame post. Step 11 jumps from flat yellow to finished knit with a new hollow bed shape. Step 18's 'Light gray' is darker than the coat it lightens, and whiskers show up in step 20 before step 21 paints them. The middle steps (frame, sill, cat block-in, whites, stripes, ears, nose) read well."
+        },
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          4,
+          2,
+          11
+         ],
+         "note": "Same pictures, paints and step words as A, so the same faults: missing leaves in steps 2-3 that appear in step 4, the frame ghost in step 4, the knit jump in step 11, the mislabelled Light gray in step 18 and early whiskers in step 20. It lacks A's opening, stage summaries and 'As in step N' notes. None of those change what the beginner paints or compares against."
+        }
+       },
+       {
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          4,
+          11,
+          16
+         ],
+         "note": "The middle stretch (sill, blanket block, flat cat, white patches) builds believably, but the window view does not match its steps. Steps 2 and 3 name greens and the picture stays blue; then the green leaves appear on step 4, which names only wall blues, and step 4 also shows a ghost of the frame post. Step 11 jumps from flat gold to a finished knit blanket and reshapes it, and step 16 brings in the fur texture that step 18 is supposed to add, so step 18 barely changes anything. Step 8's dry-brushed brown also somehow leaves lighter sun shapes."
+        },
+        "arc-add": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          4,
+          11,
+          16
+         ],
+         "note": "The pictures are the same as A's, so the same faults decide it: leaves appearing on the wall step, a frame ghost in step 4, the step 11 jump to finished knit, and the fur arriving early in step 16. The opening, the stage summaries and the 'As in step N' links are accurate and mildly helpful. They don't fix what the pictures show, so the scores are no higher."
+        }
+       }
+      ]
+     },
+     "birch-grove": {
+      "carry_grade": 3.2,
+      "graded": 20,
+      "vs_base": 0.0,
+      "rose": 4,
+      "fell": 5,
+      "backs": 4,
+      "vs_base_on_back_steps": 0.25,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 66
+      },
+      "words": 2567,
+      "arc_words": 443,
+      "claude_usd": 0.266,
+      "ab": [
+       {
+        "grader": 1,
+        "A": "arc-add",
+        "B": "lesson-slots",
+        "preferred": "none",
+        "note": "The step pictures, paints and core words are identical. A only adds an overview, stage summaries and cross-references, which is polish in the words and not a difference in what the painter sees or does. A toss-up; at most A has a small edge, which the brief says not to count."
+       },
+       {
+        "grader": 2,
+        "A": "lesson-slots",
+        "B": "arc-add",
+        "preferred": "none",
+        "note": "Both lessons share every picture and every paint, and the step instructions are word for word the same. B only adds framing text, which the rubric says not to reward over what the pictures show. I'm confident there is no real difference between them."
+       }
+      ],
+      "ab_scores": [
+       {
+        "arc-add": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          9,
+          4,
+          1
+         ],
+         "note": "The pictures are the same as B's, so the same faults decide it. Step 1's haze already holds violet trunk ghosts, which spoils steps 3 and 6. Step 4 shows red-brown fir trunks that no named paint makes. Step 9 jumps from bare striped ground to leaves, bushes and greenery all at once. Several recipes don't match what the pictures show (Smoky brown is grey but the trunk is red; Moss light is brown but the rim is sage), and steps 3, 5, 18 and 19 barely change the canvas. The opening, stage notes and 'As in step N' reminders help a little, but they don't fix any of this."
+        },
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          9,
+          4,
+          1
+         ],
+         "note": "Same pictures, paints and step words as A, just without the opening, stage notes and back-references. It has the same problems: trunk ghosts in step 1, unpainted fir trunks in step 4, the jump in step 9, and paint colours that don't match the pictures in steps 6, 9 and 14. The missing extras make it a little barer to follow, but no step is harder to paint."
+        }
+       },
+       {
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          1,
+          9,
+          4
+         ],
+         "note": "The step pictures read as a believable build and the late birch steps work well, but step 1's haze already holds violet trunks and gold patches that the lesson only adds in steps 3 and 6. Step 4's firs have red-brown trunks that neither of its paints makes, and step 9 is a large jump: the whole ground and bushes fill with leaves, including blue-grey dabs no paint covers, while the far trunks fade. Several steps barely change (3, 14, 18), and some mixes don't match their words: Moss light is brown rather than pale, and Birch white is darker than Birch gray, though it is meant to gleam near-white."
+        },
+        "arc-add": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          1,
+          9,
+          4
+         ],
+         "note": "The pictures, paints and step words are the same as A's, so the same problems apply: trunks ghosted into step 1, unexplained red fir trunks in step 4, a big leaf jump in step 9, and mixes that don't match their names. The only additions are an overview at the start, a short opener for each stage and 'As in step N' cross-references. These are pleasant to read, but they change nothing a beginner sees or paints."
+        }
+       }
+      ]
+     }
+    },
+    "vs_base_all": -0.156,
+    "vs_base_se": 0.087,
+    "claude_usd_a_lesson": 0.282,
+    "calls": 3,
+    "renders_usd": 1.018
+   },
+   "arc-whole": {
+    "pictures": {
+     "highland-cow": {
+      "carry_grade": null,
+      "graded": 0,
+      "vs_base": null,
+      "rose": 0,
+      "fell": 0,
+      "backs": 7,
+      "vs_base_on_back_steps": null,
+      "check": {
+       "text_failures_first": 4,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 4,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 29
+      },
+      "words": 2656,
+      "arc_words": 437,
+      "claude_usd": 1.465,
+      "ab": [
+       {
+        "grader": 2,
+        "A": "arc-whole",
+        "B": "lesson-slots",
+        "preferred": "none",
+        "note": "Both lessons share every picture and the same paint lists, and their words differ only in small phrasing, with small gains and losses on each side. Neither fixes the shared problems at steps 8, 14 and 22, so this is a toss-up."
+       },
+       {
+        "grader": 1,
+        "A": "lesson-slots",
+        "B": "arc-whole",
+        "preferred": "none",
+        "note": "Both lessons share every picture, and their words differ only in small placement details, each with a few lines that fit better or worse. A matches the pictures marginally more often and B explains its steps a little better; neither gap is big enough to change what a beginner ends up painting. This is a toss-up."
+       }
+      ],
+      "ab_scores": [
+       {
+        "arc-whole": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          8,
+          14,
+          22
+         ],
+         "note": "The pictures are shared and mostly read as a real half-done painting, but step 7's mottled green patches and step 8's leap to a fully textured meadow and reshaped ridge are hard to follow. Step 14 names Rust brown, the cow's own base colour, yet the picture shows much lighter ginger locks. Step 22's 'Nose pink' is an olive green (#777a4d) called pale pink. Step 11 also says to leave plain rust on the sunny side while the picture is textured all over."
+        },
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          8,
+          14,
+          22
+         ],
+         "note": "Same pictures, so the same faults: step 8's big jump, step 14's Rust brown locks that show as light ginger, and step 22's green 'Nose pink'. Its words fit a few pictures slightly better, such as texture across the coat in step 11 and sky still showing in step 4. It has no opening overview, and some of its measurements (step 2's cloud group) don't help much."
+        }
+       },
+       {
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          7,
+          21,
+          22
+         ],
+         "note": "The step pictures are shared, so A and B carry the same flaws. Step 7 has cut-out blotches of sky that no brush makes, step 8 jumps from those patches to a fully textured meadow, and step 21 brings the muzzle, eye area and chin into focus on a step that only names a nose colour. Step 22's 'Nose pink' is a greenish-grey recipe (#777a4d) while the picture shows a pale whitish patch. A's words fit the pictures a little better: the blue band in the middle at step 1, 'light strokes over the rest give texture' at step 11, and the jaw line at step 21."
+        },
+        "arc-whole": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          7,
+          21,
+          22
+         ],
+         "note": "B has the same picture problems as A: blotchy sky gaps at step 7, the big meadow jump at step 8, the face appearing at step 21, and the 'Nose pink' that mixes grey-green at step 22. Its openers and 'as in step N' links help a beginner. Some lines fit the pictures less well, though: step 1 says to start blue at the top, but the picture's top is gold, and step 11 says to leave plain rust on the sunny side, but the picture is textured all over."
+        }
+       }
+      ]
+     },
+     "sleeping-cat": {
+      "carry_grade": null,
+      "graded": 0,
+      "vs_base": null,
+      "rose": 0,
+      "fell": 0,
+      "backs": 4,
+      "vs_base_on_back_steps": null,
+      "check": {
+       "text_failures_first": 6,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 6,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 20
+      },
+      "words": 2346,
+      "arc_words": 387,
+      "claude_usd": 1.136,
+      "ab": [
+       {
+        "grader": 2,
+        "A": "arc-whole",
+        "B": "lesson-slots",
+        "preferred": "lesson-slots",
+        "note": "The step pictures are identical, so the choice comes down to words agreeing with pictures, and B explains more of what each picture actually shows (steps 2, 3, 6, 8, 14, 16). Neither set of words can fix the step 4 magic leaves or the step 14 ghosts. The preference is slight but real: B's words are more accurate, not just longer."
+       },
+       {
+        "grader": 1,
+        "A": "lesson-slots",
+        "B": "arc-whole",
+        "preferred": "lesson-slots",
+        "note": "The pictures are the same, so the choice rests on the words. A's words match the pictures more often and give a beginner places and sizes to aim for. B's steps carry template nonsense and leave visible things unexplained. The edge is clear but modest, because the shared picture faults in steps 2 to 4 and 11 hurt both lessons equally."
+       }
+      ],
+      "ab_scores": [
+       {
+        "arc-whole": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 2,
+         "worst_steps": [
+          4,
+          6,
+          8
+         ],
+         "note": "The pictures are shared, so both lessons carry the same faults. Steps 2 and 3 show no green leaves, step 4 shows the leaves suddenly appearing as the wall goes on, with a faint frame-post band already in the wall, and step 14 has pale ghosts where the white patches will go. A's words often miss what the picture does: no word for the dark wall shadow in step 6, step 8's shading doesn't explain the sun-shape outlines, and step 7 says to leave the foot of the frame that the picture covers. It also repeats confusing filler like 'most of what you add is in the right half of the cat's stripes and pink ears.'"
+        },
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 4,
+         "agree": 3,
+         "worst_steps": [
+          4,
+          2,
+          14
+         ],
+         "note": "The same picture faults apply: there are no visible leaves until step 4, where they appear by magic, and step 14 shows ghosted white areas. B's words track the pictures more closely. They name the wall shadow band in step 6, they tell the painter to skim around the sun shapes in step 8, and step 3 admits the canvas should look nearly the same. Step 14 also tells the painter to leave the patches and flecks. The measurements and placements are concrete enough to paint from on a phone."
+        }
+       },
+       {
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          4,
+          2,
+          11
+         ],
+         "note": "The pictures are the same for both lessons. Steps 2 and 3 show no green at all: the corner only turns a darker blue, and step 3 matches step 2. The leaves first appear in step 4, which only names wall blues. Step 11 jumps from a flat oval to a knitted blanket with a new hollow. A's words are specific, with sizes and places, and they cover most of what the pictures show: the hard sun shapes in step 8, the pale ghost patches left for the white in step 14, and the cheek lines in step 20."
+        },
+        "arc-whole": {
+         "real": 3,
+         "paintable": 2,
+         "agree": 2,
+         "worst_steps": [
+          4,
+          2,
+          16
+         ],
+         "note": "B has the same picture problems: no green in steps 2 and 3, leaves that appear by magic in step 4, and the jump in step 11. B's words are vaguer and several carry garbled lines like 'most of what you add is in the right half of the cat's stripes and pink ears' (steps 6, 8, 14, 15, 16), which would confuse a beginner. B never explains the pale ghost patches in step 14 or the sun-shape blocks in step 8. The opening and stage notes are pleasant but don't fix what the steps show."
+        }
+       }
+      ]
+     },
+     "birch-grove": {
+      "carry_grade": null,
+      "graded": 0,
+      "vs_base": null,
+      "rose": 0,
+      "fell": 0,
+      "backs": 6,
+      "vs_base_on_back_steps": null,
+      "check": {
+       "text_failures_first": 8,
+       "arc_failures_first": 1,
+       "arc_failed_first": 1,
+       "text_failed_first": 8,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 47
+      },
+      "words": 2527,
+      "arc_words": 460,
+      "claude_usd": 1.338,
+      "ab": [
+       {
+        "grader": 1,
+        "A": "arc-whole",
+        "B": "lesson-slots",
+        "preferred": "none",
+        "note": "Both lessons show the same pictures and paints, so the choice rests on the words alone. A's words are slightly more exact about placement, but B's are no worse in any way that would stop a beginner, and both share the same picture faults (steps 1, 4, 9). Any edge is small, so this is a toss-up."
+       },
+       {
+        "grader": 2,
+        "A": "lesson-slots",
+        "B": "arc-whole",
+        "preferred": "none",
+        "note": "Both lessons use the same step pictures, and their words differ only in small wording and placement details; neither one explains the magic or jumps at steps 9, 15 and 17. B's slightly tighter placements are a small edge, not a reason to paint from it. This is a toss-up."
+       }
+      ],
+      "ab_scores": [
+       {
+        "arc-whole": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          1,
+          4,
+          9
+         ],
+         "note": "The pictures are shared with B and look like a real painting in progress from step 7 on, but there are problems. Step 1 already shows violet trunk ghosts and gold patches where the trees will go. Step 4's firs come with red-brown trunks that neither listed paint makes, and step 9 jumps from a flat floor to whole bushes, a carpet and treetop leaves in one go. A's words match the pictures a little more closely (the five birch positions in step 15, the moss bush reaching into the firs in step 9). It shares B's mismatches: step 5 and step 18 show almost no visible change, and the 'pale sage' rock light in step 14 is mixed as a brown."
+        },
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          1,
+          4,
+          9
+         ],
+         "note": "It has the same pictures, so the same faults: trunk ghosts in step 1, unexplained brown fir trunks in step 4, and a big jump in step 9. B's words are plainer and fit some steps well, such as the dark mottled rock in step 13. A few spots are looser or contradictory: in step 15, 'two more trunks at the right edge' doesn't match where the trunks are. In step 20, 'leave the very front clear' conflicts with a band that ends 1/2 in from the bottom, and 'most on the right side' doesn't match a picture with gold across the whole path."
+        }
+       },
+       {
+        "lesson-slots": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          9,
+          15,
+          17
+         ],
+         "note": "The pictures carry the problems, and both lessons share them. Step 1 already shows faint violet trunks. Step 9 jumps from a striped floor to a full leaf carpet, bushes and treetop clusters, and the middle trunks change with no instruction. Step 15 brings in slim background birches that already have bark marks, though the words only say flat gray. Step 17 goes from lavender trunks to finished bark in one pass. Step 16's title says 'right side' but the words say Birch shadow covers most of each trunk; that matches the picture but confuses the instruction."
+        },
+        "arc-whole": {
+         "real": 3,
+         "paintable": 3,
+         "agree": 3,
+         "worst_steps": [
+          9,
+          15,
+          17
+         ],
+         "note": "These are the same pictures, so they have the same flaws: ghost trunks in step 1, the big jump at step 9 with trunks changing unasked, the slim birches in step 15 that already have bark, and the leap to finished bark at step 17. The words are slightly more specific in places: step 1 names the lower gold patches, step 15 places the right trunk at 14 1/4 in, and step 8 mentions the path's island. The opening and 'As in step N' notes are polish, and they don't fix anything the pictures get wrong."
+        }
+       }
+      ]
+     }
+    },
+    "claude_usd_a_lesson": 1.313,
+    "calls": 6,
+    "renders_usd": 0.362
+   }
+  }
+ }
 }
