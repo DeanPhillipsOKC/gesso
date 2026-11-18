@@ -1,0 +1,713 @@
+{
+ "plan_version": 3,
+ "photo": "spike/experiments/bench/pictures/highland-cow/photo.jpg",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "A sky, far hills, a near hillside and a field with one animal in front: paint-along, back to front, on a white canvas is the beginner approach that fits, with the cow and the grass in front of it last.",
+ "subject": "A shaggy ginger Highland cow standing in tall summer grass on a hillside at sunset, with blue-violet mountains, a sliver of loch and a gold and blue sky behind it",
+ "focal_point": "The cow's face: the pink-brown nose and the golden fringe falling over the eyes, with the horns curving up on either side",
+ "light": "A low setting sun from the right and slightly behind the cow, so the sky is brightest low on the right, the top of the head, the fringe and the cow's right-hand edge glow with a gold rim, the left and front of the coat fall into shadow, and the grass tips catch gold",
+ "why": "Paint the scene back to front on white: the sky straight through, then the mountains and loch, then one blended green ground that runs behind where the cow will stand. The cow is built as a shape, shaded, given its horns, then its locks are pulled down in two lighter passes and the sun's rim is laid on hair and horns together, before the face. The tall grass goes on last, over the cow's legs, in passes from dark to gold, so most of the steps go to the cow and the grass in front.",
+ "things": [
+  {
+   "id": "sky",
+   "name": "The sunset sky",
+   "element": "sky-blend",
+   "why": "A smooth gradient from soft blue at the top to pale gold and apricot low on the right, blended wet in one go.",
+   "behind": []
+  },
+  {
+   "id": "clouds",
+   "name": "The gold cloud streaks",
+   "element": "clouds",
+   "why": "Thin, soft streaks laid on the dry sky with a nearly dry brush, then lit on their top edges.",
+   "left_out": "The brightest white edges (the clouds' optional third step): these are thin far streaks, and a gold top edge is enough.",
+   "behind": [
+    "sky"
+   ],
+   "plain": "the flat gray-violet cloud shapes"
+  },
+  {
+   "id": "mountains",
+   "name": "The blue-violet mountains",
+   "element": "far-hills",
+   "why": "Far ranges as big flat shapes, the farthest palest and the nearer ridge darker and bluer.",
+   "left_out": "Separate shadow and light sides on the ranges: in the finish they are two flat values, and a beginner keeps far hills simple.",
+   "behind": [
+    "sky"
+   ]
+  },
+  {
+   "id": "loch",
+   "name": "The sliver of loch",
+   "element": "water",
+   "why": "A small strip of water seen past the slope on the right, one pale horizontal lay-in.",
+   "left_out": "Ripples and lighter streaks: the strip is too small and far for them.",
+   "behind": []
+  },
+  {
+   "id": "hillside",
+   "name": "The green hillside behind the cow",
+   "element": "field-grass",
+   "why": "The rolling slope between the mountains and the cow, a field laid in lighter and yellower toward the sun.",
+   "behind": []
+  },
+  {
+   "id": "bushes",
+   "name": "The dark bushes on the hillside",
+   "element": "foliage",
+   "why": "The dark green clumps dappled over the slope read as low bushes: dark dabs first, then a few sunlit taps.",
+   "left_out": "The middle-value leaves (foliage's optional middle step): the hillside green under them already plays the middle value.",
+   "behind": [
+    "hillside"
+   ],
+   "plain": "the dark bush clumps, with no light on them"
+  },
+  {
+   "id": "meadow",
+   "name": "The tall grass in front",
+   "element": "field-grass",
+   "why": "Foreground grass: a dark green base, then flicked blades from dark to gold over it and over the cow's legs.",
+   "left_out": "The seed heads and single fine stalks in the photo: a beginner makes the grass from flicked blades only.",
+   "behind": [],
+   "plain": "the plain green meadow, smooth, with no grass blades"
+  },
+  {
+   "id": "cow",
+   "name": "The Highland cow",
+   "element": "shaggy-animal",
+   "why": "A long-haired animal whose coat hangs in locks, exactly what this element is for: shape, shadow, locks, lit rim, face.",
+   "left_out": "A painted eye: in the finish the eyes are hidden under the fringe, so only a dark touch shows where one peeks out. The legs and hooves are lost in the grass.",
+   "behind": [
+    "hillside",
+    "bushes",
+    "meadow"
+   ],
+   "plain": "the plain rust-brown cow shape"
+  },
+  {
+   "id": "horns",
+   "name": "The horns",
+   "element": "shaped-object",
+   "why": "Two curved tapering shapes built from pieces, shaded underneath and lit on top.",
+   "behind": [
+    "sky",
+    "mountains",
+    "hillside"
+   ],
+   "plain": "the plain pale horn shapes"
+  }
+ ],
+ "paints": [
+  {
+   "name": "Soft sky blue",
+   "looks": "a soft, slightly grayed mid blue, the top of the sky",
+   "things": [
+    "sky"
+   ],
+   "color": "#8fa9c9"
+  },
+  {
+   "name": "Pale gold",
+   "looks": "a pale warm yellow, almost cream, the lightest color in the picture",
+   "things": [
+    "sky",
+    "clouds",
+    "cow",
+    "horns",
+    "meadow"
+   ],
+   "color": "#f3dc9c"
+  },
+  {
+   "name": "Warm apricot",
+   "looks": "a soft orange-peach, the sunset glow low on the right and in the clouds",
+   "things": [
+    "sky",
+    "clouds"
+   ],
+   "color": "#eeb072"
+  },
+  {
+   "name": "Hazy blue-violet",
+   "looks": "a light grayed blue-violet, the farthest mountains and the shadowed undersides of the clouds",
+   "things": [
+    "clouds",
+    "mountains"
+   ],
+   "color": "#9a9bb8"
+  },
+  {
+   "name": "Deep slate blue",
+   "looks": "a darker, stronger blue-violet, the nearer mountain ridge",
+   "things": [
+    "mountains"
+   ],
+   "color": "#56678f"
+  },
+  {
+   "name": "Pale lavender-white",
+   "looks": "a very pale lavender, almost white, the light on the loch",
+   "things": [
+    "loch"
+   ],
+   "color": "#e6e2ee"
+  },
+  {
+   "name": "Sunlit yellow-green",
+   "looks": "a warm, light yellow-green, grass where the sun hits",
+   "things": [
+    "hillside",
+    "bushes",
+    "meadow"
+   ],
+   "color": "#a8ad4f"
+  },
+  {
+   "name": "Olive green",
+   "looks": "a mid, slightly dull olive green, the body of the grass",
+   "things": [
+    "hillside",
+    "meadow"
+   ],
+   "color": "#6f7a3a"
+  },
+  {
+   "name": "Deep grass green",
+   "looks": "a dark, cool blue-green, the bushes and the shadows in the grass",
+   "things": [
+    "hillside",
+    "bushes",
+    "meadow"
+   ],
+   "color": "#2f4a3c"
+  },
+  {
+   "name": "Rust brown",
+   "looks": "a warm mid red-brown, the main color of the cow's coat",
+   "things": [
+    "cow"
+   ],
+   "color": "#8a4a26"
+  },
+  {
+   "name": "Deep red-brown",
+   "looks": "a dark reddish brown, the shadow side of the coat and the undersides of the horns",
+   "things": [
+    "cow",
+    "horns"
+   ],
+   "color": "#4f2617"
+  },
+  {
+   "name": "Horn taupe",
+   "looks": "a soft grayish tan, the horns",
+   "things": [
+    "horns"
+   ],
+   "color": "#a08e7c"
+  },
+  {
+   "name": "Copper orange",
+   "looks": "a bright warm orange-brown, the first locks of hair",
+   "things": [
+    "cow"
+   ],
+   "color": "#c2692a"
+  },
+  {
+   "name": "Golden ochre",
+   "looks": "a strong warm gold, the sunlit locks and the gold grass blades",
+   "things": [
+    "cow",
+    "meadow"
+   ],
+   "color": "#d9a03a"
+  },
+  {
+   "name": "Rosy brown",
+   "looks": "a muted pinkish brown, the cow's nose",
+   "things": [
+    "cow"
+   ],
+   "color": "#a8705f"
+  },
+  {
+   "name": "Pale rose",
+   "looks": "the rosy brown with white, a soft light pink-tan for the top of the nose",
+   "things": [
+    "cow"
+   ],
+   "color": "#dcae9f"
+  },
+  {
+   "name": "Dark umber",
+   "looks": "a near-black warm brown, the nostrils, the eye and the mouth",
+   "things": [
+    "cow"
+   ],
+   "color": "#2c1b13"
+  }
+ ],
+ "stages": [
+  {
+   "id": "the-sky",
+   "name": "The sky",
+   "steps": [
+    {
+     "id": "blend-sky",
+     "name": "Blend the sunset sky",
+     "lays": [
+      {
+       "thing": "sky",
+       "what": "the whole sky: soft blue across the top, easing into pale gold through the middle and warm apricot low on the right where the sun is, run down past the mountain line to about the middle of the canvas"
+      }
+     ],
+     "paints": [
+      "Soft sky blue",
+      "Pale gold",
+      "Warm apricot"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "1 inch flat",
+     "after": "The top half of the canvas is a smooth sky, blue at the top, gold in the middle and glowing apricot low on the right; its colors run a little past where the mountains will go. The bottom half is bare white.",
+     "why": "The farthest thing goes first, and it runs past the horizon so nothing has to be painted around."
+    },
+    {
+     "id": "streak-clouds",
+     "name": "Dry-brush the cloud streaks",
+     "lays": [
+      {
+       "thing": "clouds",
+       "what": "long thin streaks across the sky: apricot streaks low and toward the right, a few hazy blue-violet streaks higher on the left as the shadowed undersides"
+      }
+     ],
+     "paints": [
+      "Warm apricot",
+      "Hazy blue-violet"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat",
+     "after": "Soft, broken horizontal cloud streaks lie over the dry sky, apricot near the sun and grayish violet higher up, with the sky showing through their edges. Their tops are not yet lit. Below the middle is still bare."
+    },
+    {
+     "id": "light-cloud-tops",
+     "name": "Light the tops of the clouds",
+     "lays": [
+      {
+       "thing": "clouds",
+       "what": "a thin pale gold edge along the top of each streak, more on the streaks nearest the sun on the right"
+      }
+     ],
+     "paints": [
+      "Pale gold"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat",
+     "after": "Each cloud streak now has a glowing gold top edge, with its darker apricot or violet still showing underneath. The sky is finished; the lower half is bare."
+    }
+   ]
+  },
+  {
+   "id": "the-far-land",
+   "name": "The mountains and the loch",
+   "steps": [
+    {
+     "id": "lay-in-mountains",
+     "name": "Lay in the mountain ranges",
+     "lays": [
+      {
+       "thing": "mountains",
+       "what": "the farthest range in hazy blue-violet along the horizon, then the nearer, lower ridge overlapping it in deep slate blue, sloping down toward the right"
+      }
+     ],
+     "paints": [
+      "Hazy blue-violet",
+      "Deep slate blue"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat",
+     "after": "A band of soft mountains crosses the canvas just above the middle: a pale blue-violet far range with a darker blue ridge in front of it. No texture. Below them the canvas is still white, with sky color showing at the top edge of the white.",
+     "why": "Back to front: the mountains overlap the sky, the nearer ridge overlaps the far range."
+    },
+    {
+     "id": "streak-loch",
+     "name": "Streak in the loch",
+     "lays": [
+      {
+       "thing": "loch",
+       "what": "a short, thin pale strip of water at the right edge, tucked under the nearer ridge"
+      }
+     ],
+     "paints": [
+      "Pale lavender-white"
+     ],
+     "stroke": "horizontal-strokes",
+     "brush": "1/4 inch flat",
+     "after": "A small pale sliver of loch shines at the right edge under the dark ridge. Everything below the mountains is still bare."
+    }
+   ]
+  },
+  {
+   "id": "the-green-ground",
+   "name": "The green slope and the meadow",
+   "steps": [
+    {
+     "id": "lay-in-ground",
+     "name": "Lay in the hillside and the meadow",
+     "lays": [
+      {
+       "thing": "hillside",
+       "what": "the rolling slope just under the mountains, sunlit yellow-green blending into olive green, sloping down from left to right"
+      },
+      {
+       "thing": "meadow",
+       "what": "the whole lower half of the canvas, olive green blending down into deep grass green at the bottom edge, straight through where the cow will stand"
+      }
+     ],
+     "paints": [
+      "Sunlit yellow-green",
+      "Olive green",
+      "Deep grass green"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "1 inch flat",
+     "after": "The whole bottom half is covered in green: lighter and yellower just under the mountains, olive through the middle, dark green at the bottom. It is smooth, with no bushes, blades or cow yet.",
+     "why": "One loaded brush blends the ground from back to front in one go; the cow is painted over it.",
+     "unit": "The hillside and the meadow"
+    },
+    {
+     "id": "dab-dark-bushes",
+     "name": "Dab the dark bushes on the hillside",
+     "lays": [
+      {
+       "thing": "bushes",
+       "what": "scattered dark clumps across the hillside, in loose rows that follow the slope, smaller and closer together toward the mountains"
+      }
+     ],
+     "paints": [
+      "Deep grass green"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff 1/2 inch flat",
+     "after": "The hillside is dappled with dark green clumps in rows that follow the slope, with the lighter green showing between them. The meadow below and where the cow goes are unchanged."
+    },
+    {
+     "id": "tap-sunlit-bushes",
+     "name": "Tap the sun on the bushes",
+     "lays": [
+      {
+       "thing": "bushes",
+       "what": "a few light taps on the right-hand, sunward tops of the clumps"
+      }
+     ],
+     "paints": [
+      "Sunlit yellow-green"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff 1/2 inch flat",
+     "after": "The tops of the bushes on the sun side catch yellow-green light, with most of each clump still dark. The background is finished; the cow's place is still plain green."
+    }
+   ]
+  },
+  {
+   "id": "the-cow-shape",
+   "name": "The cow's shape and horns",
+   "steps": [
+    {
+     "id": "block-in-cow",
+     "name": "Block in the cow",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "the whole cow in rust brown: a big tall oval for the body left of center, the head as a smaller rounded shape to the upper right of it, a curved cap for the fringe over the head, an ear on each side, and short pieces for the legs going down into the grass, every stroke curving down the way the hair hangs"
+      }
+     ],
+     "paints": [
+      "Rust brown"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "A flat rust-brown cow shape stands over the green: body, head, fringe and ears, legs fading into the meadow. No horns, no shadow, no locks, no face yet.",
+     "why": "Big shape first, built from simple pieces, before any shading or hair.",
+     "block_in": true
+    },
+    {
+     "id": "shade-cow",
+     "name": "Shade the cow's shadow side",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "long downward curves of deep red-brown on the left and front of the body, under the head and the fringe, down the chest and low on the belly and legs, leaving the rust showing on the sun side to the right"
+      }
+     ],
+     "paints": [
+      "Deep red-brown"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "1/2 inch flat",
+     "after": "The cow has a dark side: the left of the body, the chest, under the chin and under the fringe are deep red-brown, the right side still flat rust. It looks rounded but still smooth, with no locks.",
+     "unit": "The cow's shading"
+    },
+    {
+     "id": "block-in-horns",
+     "name": "Block in the horns",
+     "lays": [
+      {
+       "thing": "horns",
+       "what": "the two horns in horn taupe, each built as a thick piece at the head and curving pieces that taper upward: the left horn sweeps up high, the right one curves out and up"
+      }
+     ],
+     "paints": [
+      "Horn taupe"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#6 round",
+     "after": "Two flat grayish-tan horns curve up from either side of the head, over the hillside and mountains. They have no shading yet.",
+     "why": "The horns go on before the locks so the fringe can fall over their bases.",
+     "block_in": true
+    },
+    {
+     "id": "shade-horns",
+     "name": "Shade the undersides of the horns",
+     "lays": [
+      {
+       "thing": "horns",
+       "what": "deep red-brown along the underside of each horn's curve, at its base by the head and darker toward the tips"
+      }
+     ],
+     "paints": [
+      "Deep red-brown"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#4 round",
+     "after": "Each horn has a dark underside and darker tip, the taupe showing along the top. The horns look round but are not yet lit.",
+     "unit": "The horns' undersides"
+    }
+   ]
+  },
+  {
+   "id": "the-shaggy-coat",
+   "name": "The shaggy coat",
+   "steps": [
+    {
+     "id": "pull-copper-locks",
+     "name": "Pull the copper locks",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "long tapering locks of copper orange hanging down over the body, the head and the fringe, following the body's curve, with gaps so the darker coat shows, fewer on the shadow side; the fringe locks fall over the bases of the horns"
+      }
+     ],
+     "paints": [
+      "Copper orange"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/2 inch angle",
+     "after": "The cow's coat now hangs in copper locks over the dark and rust base, which still shows in the gaps, most of all on the left. The fringe covers the eyes and the horn bases. No gold yet.",
+     "why": "The locks build lighter over the dry shaded base, darkest first.",
+     "unit": "The cow's shaggy coat"
+    },
+    {
+     "id": "pull-golden-locks",
+     "name": "Pull the sunlit golden locks",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "fewer, shorter golden locks over the copper, on the top of the head, the fringe and the right side of the body and chest that face the sun"
+      }
+     ],
+     "paints": [
+      "Golden ochre"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/4 inch angle",
+     "after": "Gold locks glow on the fringe, the top of the head and the sun side of the cow, covering less than the copper; the left side stays mostly copper and dark. The coat looks shaggy but has no bright rim yet."
+    },
+    {
+     "id": "catch-rim-light",
+     "name": "Catch the sun's rim on the hair and horns",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "short broken pale gold touches running off the edges that face the sun: the top of the fringe, the right ear and cheek, and the right-hand outline of the chest and body"
+      },
+      {
+       "thing": "horns",
+       "what": "a thin pale gold light along the top edge of each horn's curve"
+      }
+     ],
+     "paints": [
+      "Pale gold"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/4 inch flat",
+     "after": "A glowing pale gold rim outlines the cow on the sun side and along the top of the fringe, and the tops of both horns are lit; the darker locks show through the broken strokes. Light over dark may need a second thin coat once dry. The face is still unpainted.",
+     "why": "The same low sun lights the hair and the horns: one brush of pale gold, dry-brushed along every edge that faces it."
+    }
+   ]
+  },
+  {
+   "id": "the-face",
+   "name": "The face",
+   "steps": [
+    {
+     "id": "paint-nose",
+     "name": "Paint the nose",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "the broad muzzle under the fringe, a rounded shape in rosy brown, wider at the bottom"
+      }
+     ],
+     "paints": [
+      "Rosy brown"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#4 round",
+     "after": "A rounded pink-brown nose sits under the fringe on the right of the head. It has no nostrils, no light and no mouth yet.",
+     "unit": "The cow's nose and face"
+    },
+    {
+     "id": "light-nose",
+     "name": "Light the top of the nose",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "a small curved touch of pale rose across the top of the nose, on the sun side"
+      }
+     ],
+     "paints": [
+      "Pale rose"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#2 round",
+     "after": "The top of the nose is lit pale pink, with the rosy brown still showing around and below it. Still no nostrils or mouth."
+    },
+    {
+     "id": "dot-nostrils-eye",
+     "name": "Dot the nostrils and the eye",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "two dark nostrils on the front of the nose, and a small dark touch where the left eye peeks out under the fringe"
+      }
+     ],
+     "paints": [
+      "Dark umber"
+     ],
+     "stroke": "dotting",
+     "brush": "brush handle end",
+     "after": "The nose has two dark nostrils and a dark eye shows under the fringe to the left of the nose. The mouth line is not there yet."
+    },
+    {
+     "id": "line-mouth",
+     "name": "Line the mouth and chin",
+     "lays": [
+      {
+       "thing": "cow",
+       "what": "a short curved mouth line under the nose and a thin dark line under the chin"
+      }
+     ],
+     "paints": [
+      "Dark umber"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "The face is finished: nose, nostrils, the hint of an eye and a mouth line. The cow's legs and lower body still sit on plain green with no grass in front.",
+     "unit": "The cow's mouth"
+    }
+   ]
+  },
+  {
+   "id": "the-tall-grass",
+   "name": "The tall grass in front",
+   "steps": [
+    {
+     "id": "flick-dark-blades",
+     "name": "Flick the dark grass blades",
+     "lays": [
+      {
+       "thing": "meadow",
+       "what": "dark green blades flicked up all over the meadow and over the cow's lower legs and belly, so the cow stands in the grass, longest at the bottom of the canvas"
+      }
+     ],
+     "paints": [
+      "Deep grass green"
+     ],
+     "stroke": "flicking",
+     "brush": "1 inch fan",
+     "after": "Dark blades cover the meadow and hide the cow's legs and the bottom of its belly. The grass reads as dark and dense, with no light blades yet.",
+     "why": "What's in front of the subject goes on after it, darkest marks first.",
+     "unit": "The grass blades"
+    },
+    {
+     "id": "flick-olive-blades",
+     "name": "Flick the olive blades",
+     "lays": [
+      {
+       "thing": "meadow",
+       "what": "olive green blades over most of the meadow, including over the cow's lower legs, leaving the dark blades showing between them"
+      }
+     ],
+     "paints": [
+      "Olive green"
+     ],
+     "stroke": "flicking",
+     "brush": "1 inch fan",
+     "after": "The meadow has olive blades over the dark ones, so the grass has depth; the dark still shows between them. It is still all green, with no gold."
+    },
+    {
+     "id": "flick-yellow-green-blades",
+     "name": "Flick the sunlit green blades",
+     "lays": [
+      {
+       "thing": "meadow",
+       "what": "fewer yellow-green blades, more toward the right where the sun is and across the upper meadow"
+      }
+     ],
+     "paints": [
+      "Sunlit yellow-green"
+     ],
+     "stroke": "flicking",
+     "brush": "1 inch fan",
+     "after": "Sunlit yellow-green blades lighten the meadow toward the right and the top, covering less than the olive. No gold blades yet."
+    },
+    {
+     "id": "flick-gold-blades",
+     "name": "Flick the golden blades",
+     "lays": [
+      {
+       "thing": "meadow",
+       "what": "scattered gold blades, larger and farther apart at the bottom, smaller and closer up the meadow, some crossing in front of the cow's legs and belly"
+      }
+     ],
+     "paints": [
+      "Golden ochre"
+     ],
+     "stroke": "flicking",
+     "brush": "1/2 inch fan",
+     "after": "Gold blades catch the sun all over the meadow and in front of the cow, with the greens showing between them. Only the brightest tips are missing."
+    },
+    {
+     "id": "flick-brightest-tips",
+     "name": "Flick the brightest grass tips",
+     "lays": [
+      {
+       "thing": "meadow",
+       "what": "a few pale gold flicks on the tips of the tallest gold blades, mostly on the sun side and in front of the cow"
+      }
+     ],
+     "paints": [
+      "Pale gold"
+     ],
+     "stroke": "flicking",
+     "brush": "1/2 inch fan",
+     "after": "The finished painting: a few blade tips glow pale gold in the foreground, the brightest touches in the grass, matching the gold rim on the cow.",
+     "why": "The last step is the brightest highlights."
+    }
+   ]
+  }
+ ]
+}
