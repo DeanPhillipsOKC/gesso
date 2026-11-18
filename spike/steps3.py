@@ -170,8 +170,9 @@ def problems(built: dict) -> tuple[list[str], list[str]]:
                    "files don't belong together: run erase again.")
     for r in built["paints"]:
         if r["not_in_finish"]:
-            notes.append(f"paint {r['paint']!r}: almost nothing in the painting is this color where the plan lays it. "
-                         "The plan names a color the finish doesn't have.")
+            notes.append(f"paint {r['paint']!r}: almost nothing where the plan lays it is within {REACH:g} Lab units of "
+                         f"the plan's {r['color']}, so it keeps that color. Either the finish doesn't have this "
+                         "paint there, or the plan's rough color is too far from it.")
         elif r["far_from_name"]:
             notes.append(f"paint {r['paint']!r} was fitted to {r['hex']}, {r['moved']:.0f} Lab units from the plan's "
                          f"{r['color']}: check that its name still says what it looks like.")
