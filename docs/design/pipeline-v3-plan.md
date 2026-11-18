@@ -146,6 +146,7 @@ and the owner's A/B.
   words, and must say what the after picture will show, or pick it out of four. Where it can't, the words
   are at fault. A dearer form for the bench only: the image model carries out the words on the before
   picture and the result is compared with the real after.
+  Not run in v3. Moved to v4 as its yardstick on 2026-11-18 (`pipeline-v4-plan.md`, Y1).
 - **S10. Cards that fit (#175).** Stroke cards and pictures still disagree (dry brush promised, solid coral shown).
   If S4 or S5 works, cut each card's example from the lesson's own layer.
 
