@@ -10,15 +10,17 @@ and `spike/experiments/v3_stays.py`, the numbers `spike/experiments/v3_stays.jso
 **Verdict: adopt the requests and the look; the stray check by measure is dropped.**
 
 - **Requests that name what stays: adopt.** The birch grove's chain, made again with none of the four `say`
-  sentences, held: 18 renders, none made again, and blind checkers marked no stray change in it. On #214's chain
-  of the same picture they marked the two known ones and two more nobody had listed.
+  sentences, held: blind checkers marked no stray change in its 18 renders. In #214's 18 kept renders of the same
+  picture they marked two strays nobody had listed, and they marked the two known ones among its thrown renders
+  and its probe. One picture, one chain.
 - **A check for a thing left standing: adopt as a report.** One measure, no outline. It flags the one known bad
-  render (the firs left standing) and none of the other 47 it applies to. It does not see a faint thing left in
-  part (the far trunks).
+  render (the firs left standing) and none of the other 47 it applies to. That is one example, and its line was
+  set on the same renders. It does not see a faint thing left in part (the far trunks).
 - **A check for stray changes by measure: drop.** Five measures were tried and none tells the three known bad
   renders from good ones. In its place: one look picture a unit, read by a checker in a fresh context with the list
   of what stays. Blind, it caught two of the three known strays and found two real ones in #214's kept chain. It
-  missed the cow's tall grass.
+  missed the cow's tall grass, and seven of its nine other marks were not looked at again, so how often it marks
+  wrongly isn't known.
 
 So a chain can run with nobody watching more safely than before, and not safely yet: one of three known strays
 gets past everything here.
@@ -41,7 +43,8 @@ Without `--stays` the requests are as they were, word for word, so #214's kept r
 ![#218's chain: the picture after each unit, and the raw renders under them](v3-stays-chain.jpg)
 
 **The birch grove's chain again:** 18 renders, 33.7 cents, 243 seconds, no render made again (#214: 18 kept and 10
-made again, 50.3 cents). Where #214 needed a sentence:
+made again, 50.3 cents). Nothing in the chain asks again for a stray, so "none made again" says only that the
+left-standing report didn't fire; that the requests held is the checkers' reading. Where #214 needed a sentence:
 
 | #214's sentence by hand | What #218's render did with none |
 |---|---|
@@ -62,7 +65,7 @@ No lesson was built from this chain and no grader saw it. "Held" means the chain
 
 77 renders: #214's three chains (48 kept), the birch grove's 10 thrown renders and its leaves probe, and #218's 18.
 Four are known bad from #214's write-up: three strays (the bushes' first render, the leaves' probe, the cow's tall
-grass) and one left standing (the far firs' first render). The other 73 are counted as good, which the checkers
+grass) and one left standing (the far firs' render in the second chain, `thrown09_U02`). The other 73 are counted as good, which the checkers
 showed is not quite true.
 
 ### Stray changes: five measures, none works
@@ -88,7 +91,9 @@ prompts): it caught the bushes and the firs left standing, and missed the rock a
 `looks` writes one picture a unit (before, after, the change tinted) and what the unit was asked for and what
 stays. Four checkers, each in a fresh context on Opus with `v3_stays_checker.md`, read the 77 looks in four
 folders outside the repository (`/tmp/g218/`), named r01, r02, ... in a seeded shuffle, with nothing that says
-which render is which. The key was moved to another folder before any checker started.
+which render is which. The key was moved to another folder by hand before any checker started (the code writes it beside the folders).
+A folder holds several renders of one unit (kept, thrown, #218's), so a checker could compare them; that shows
+they are different tries, not which is bad.
 
 | | Known bad | Marked | Others marked |
 |---|---|---|---|
