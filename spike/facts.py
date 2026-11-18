@@ -297,6 +297,11 @@ def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], 
     hexes = {c["id"]: c["hex"] for c in plan.get("paints") or []}
     seen = bs.visible(plan, owner, masks)
     owner_c = aids.to_canvas(owner, canvas_box)
+    if shapes is not None:
+        # a version 3 unit on several things (the stone's shading on the island and the doorway) is filed under the
+        # first of them, but it isn't that thing's: each thing's place is its own units' shapes only (#227)
+        parts = [{k: v for k, v in p.items() if k != "parent"} if len(p.get("thing") or []) > 1 else p
+                 for p in parts]
     index = {p["id"]: i for i, p in enumerate(parts)}
     part_facts = {}
     fam = {p["id"]: np.isin(owner_c, bs._family(parts, k)) for k, p in enumerate(parts)}
@@ -576,7 +581,8 @@ class Lesson:
         pats = []
         for pid, p in self.parts.items():
             name = re.sub(r"^the\s+", "", p["name"].lower()).strip()
-            words = [w for w in re.findall(r"[a-z]+", name) if w not in STOP]
+            # "stone's" is the word "stone": a lone "s" would name the part in "the doorway's" (#227)
+            words = [w for w in re.findall(r"[a-z]+", re.sub(r"['\u2019]s\b", "", name)) if w not in STOP]
             alts = {re.escape(name), re.escape(pid.replace("-", " ")), re.escape(pid)}
             heads = {words[-1]} if words else set()
             if " and " in name:
@@ -669,7 +675,7 @@ def _positions(t: dict, cw: float, ch: float) -> dict[str, list[float]]:
 
 def _fmt(vals: list[float], said: float) -> str:
     near = sorted({round(v, 2) for v in vals}, key=lambda v: abs(v - said))[:3]
-    return ", ".join(f"{v:g} in" for v in near) if near else "nothing"
+    return ", ".join(f"{mark(v)} in" for v in near) if near else "nothing"
 
 
 class Reader:
@@ -875,7 +881,7 @@ class Reader:
         what = f"{who}" + (f", its {anchor}" if anchor and cue and cue.startswith("from") else "")
         c = self.claim("length", field, sentence, (m.start(), m.end() + extra), ok,
                        f"{what}: nearest {cue or 'length'} {_fmt(cands, said)}" if cue else "no axis, edge or size named",
-                       "" if ok else (f"says {said:g} in" + (f" {cue}" if cue else "") if cue else
+                       "" if ok else (f"says {mark(said)} in" + (f" {cue}" if cue else "") if cue else
                                       "a length with nothing named to measure it against"))
         # a size of the step's own thing (for `agree`): said in a Where line, or of the step's part by name or as
         # "it", not of one piece of it ("each", "at the bottom", "a bell-shaped glass")
@@ -969,7 +975,7 @@ class Reader:
                     vals.append(v if e in ("top", "left") else full - v)
             ok = bool(vals) and min(vals) <= aids.EDGE_SHARE * (self.ch if e in ("top", "bottom") else self.cw)
             return self.claim("edge", field, sentence, m, ok,
-                              f"{who}'s {a} is " + ", ".join(f"{v:.2f}" for v in vals) + f" in from the {e} edge",
+                              f"{who}'s {a} is " + ", ".join(mark(v) for v in vals) + f" in from the {e} edge",
                               "" if ok else f"says its {a} is at the {e} edge")
         if (own_edge or not ok) and part_words and reach and who == "this step" and not self.st["first_of_part"] \
                 and self.part and not field.endswith("(where)"):
@@ -986,7 +992,7 @@ class Reader:
         why = ""
         if not ok:
             t = next((t for t in things if "wide" in t), None)
-            dist = "; ".join(f"its {s} side is {t[s]:g} in from the {s} edge" for s in sides) if t else ""
+            dist = "; ".join(f"its {s} side is {mark(t[s])} in from the {s} edge" for s in sides) if t else ""
             why = ("says it " + ("reaches" if reach else "stops short of") + " the " + " and ".join(sides) + " edge"
                    + ("s" if len(sides) > 1 else "") + (f" ({dist})" if dist else ""))
         sheet = f"{who} reaches " + (", ".join(sorted(has)) or "no edge") + (
@@ -1046,7 +1052,7 @@ class Reader:
         else:
             mids = [t["cx"] for t in things if "cx" in t]
         ok = any((v < c if side == "left" else v > c) and (not q or abs(v - c) <= JUST * width) for v in mids)
-        sheet = f"{ref} is {c:.2f} in from the left edge; {who}'s middles: " + ", ".join(f"{v:.2f}" for v in mids)
+        sheet = f"{ref} is {mark(c)} in from the left edge; {who}'s middles: " + ", ".join(f"{mark(v)} in" for v in mids)
         return self.claim("center", field, sentence, m, ok, sheet, "" if ok else f"says {q or ''}{side} of the middle")
 
     def _resolve_ref(self, ref: str, prev):
@@ -1114,9 +1120,9 @@ class Reader:
                                        "inside" if inward else "outside"}))
                 break
             ok = any(rel in w for _c, w in found)
-            sheet = (f"{ref['what']} at " + ", ".join(f"{r['from']:g}-{r['to']:g} in" for r in ref["items"])
+            sheet = (f"{ref['what']} at " + ", ".join(f"{mark(r['from'])} to {mark(r['to'])} in" for r in ref["items"])
                      + "; this step's " + ("touching " if near else "") + "stripes: "
-                     + (", ".join(f"{c['from']:g}-{c['to']:g} in ({', '.join(sorted(w - {'beside', 'next to'}))})"
+                     + (", ".join(f"{mark(c['from'])} to {mark(c['to'])} in ({', '.join(sorted(w - {'beside', 'next to'}))})"
                                   for c, w in found) or "none"))
             return self.claim("relation", field, sentence, m, ok, sheet,
                               "" if ok else f"says {q + ' ' if q else ''}{rel} {ref['what']}"), ref
@@ -1147,8 +1153,8 @@ class Reader:
             ok = None  # L3: it's all round this thing (the sky round a balloon): a side says nothing checkable
         shown = sorted(words - {"beside", "next to", "outside"})
         sheet = (f"{who} is {', '.join(shown) or 'level with'} {p['name'].lower()}"
-                 + (f", {g['down']:g} in apart down" if g["down"] is not None else "")
-                 + (f", {g['across']:g} in apart across" if g["across"] is not None else "")
+                 + (f", {mark(g['down'])} in apart down" if g["down"] is not None else "")
+                 + (f", {mark(g['across'])} in apart across" if g["across"] is not None else "")
                  + (", touching" if fact["touches"] else ""))
         return self.claim("relation", field, sentence, m, ok, sheet,
                           "" if ok else f"says {q + ' ' if q else ''}{rel} {p['name'].lower()}"), ref
@@ -1174,7 +1180,7 @@ class Reader:
 
         cand = [t for t in things if "cx" in t]
         ok = any(fits(t) for t in cand)
-        sheet = f"{who}: " + "; ".join(f"{t['what']} centered {t['cx']:g} in from the left, {t['cy']:g} in from the top"
+        sheet = f"{who}: " + "; ".join(f"{t['what']} centered {mark(t['cx'])} in from the left, {mark(t['cy'])} in from the top"
                                        for t in cand[:3])
         return self.claim("position", field, sentence, m, ok, sheet, "" if ok else "says " + " ".join(want))
 
@@ -1226,7 +1232,7 @@ def agree(claims: list[dict]) -> list[dict]:
         if hi["said"] - lo["said"] > tol(hi["said"]):
             out.append({"step": lo["step"], "id": lo["id"], "field": f"{lo['field']} and {hi['field']}", "kind": "agree",
                         "words": f"{lo['words']} / {hi['words']}", "sentence": f"{lo['sentence']} / {hi['sentence']}",
-                        "ok": False, "sheet": f"one says {lo['said']:g} in {cue}, the other {hi['said']:g} in",
+                        "ok": False, "sheet": f"one says {mark(lo['said'])} in {cue}, the other {mark(hi['said'])} in",
                         "why": "two sizes of the same thing disagree within the step", "span": (0, 0)})
     return out
 
@@ -1284,12 +1290,21 @@ SWAP_IO = {"inside": "outside", "outside": "inside"}
 SHIFTS = {"length +1 in": 1.0, "length -1 in": -1.0, "length +1/2 in": 0.5, "length -1/2 in": -0.5}
 
 
-def ruler(v: float) -> str:
-    """A length as a Where line says it, to the quarter inch: '1 3/4', '3'."""
-    q = round(v * 4) / 4
-    whole, frac = int(q), q - int(q)
-    f = {0.25: "1/4", 0.5: "1/2", 0.75: "3/4"}.get(round(frac, 2), "")
-    return f"{whole} {f}".strip() if whole else (f or "0")
+def ruler(v: float, per: int = 4) -> str:
+    """A length as a ruler shows it: to the nearest 1/`per` inch, the fraction in its lowest terms. A Where line says
+    it to the quarter ('1 3/4', '3'); a measure is given to the sixteenth (`mark`): an inch ruler has quarters,
+    eighths and sixteenths, never hundredths (owner, 2026-11-18)."""
+    n = round(abs(v) * per)
+    whole, num, den = n // per, n % per, per
+    while num and num % 2 == 0 and den % 2 == 0:
+        num, den = num // 2, den // 2
+    out = " ".join(x for x in (str(whole) if whole else "", f"{num}/{den}" if num else "") if x) or "0"
+    return "-" + out if v < 0 and out != "0" else out
+
+
+def mark(v: float) -> str:
+    """A measured length to the nearest sixteenth of an inch: '2 13/16', '4 1/4'."""
+    return ruler(v, 16)
 
 
 PAIRS = re.compile(r"\b(?:top|bottom|left|right|side|up|down)\s+(?:to|and)\s+(?:top|bottom|left|right|side|up|down)\b",
@@ -1297,8 +1312,9 @@ PAIRS = re.compile(r"\b(?:top|bottom|left|right|side|up|down)\s+(?:to|and)\s+(?:
 
 
 def q(v: float | None) -> str:
-    """A measured length for the writer: the ruler value it may say, and the measure: '2 3/4 in (2.82)'."""
-    return "?" if v is None else f"{ruler(v)} in ({v:.2f})"
+    """A measured length for the writer: the quarter it may say, and the measure to the sixteenth: '2 3/4 in
+    (2 13/16)'."""
+    return "?" if v is None else f"{ruler(v)} in ({mark(v)})"
 
 
 def _box_words(f: dict, of: str) -> str:
@@ -1339,8 +1355,9 @@ def facts_text(sheet: dict, plan: dict, st: dict) -> str:
                 + (f"it reaches the {', '.join(e)} edge{'s' if len(e) > 1 else ''}" if e else "it reaches no canvas edge"))
         h = a.get("halves")
         if h and part:
-            line += (f". Of what it adds inside {st['part_name']}: {h['left']:.2f} in the left half, {h['right']:.2f} "
-                     f"in the right half, {h['top']:.2f} in the top half, {h['bottom']:.2f} in the bottom half")
+            line += (f". Of what it adds inside {st['part_name']}: the share of it in the left half "
+                     f"{h['left']:.2f}, the right half {h['right']:.2f}, the top half {h['top']:.2f}, the bottom half "
+                     f"{h['bottom']:.2f}")
         head.append(line + ".")
     if st.get("marks") and (st["show"] == "pass" or len(st["marks"]) > 1):
         rows = []

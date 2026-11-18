@@ -49,7 +49,7 @@ Every number, side and position you write is checked by a tool against `facts.md
 fails.
 
 - **Use only numbers and sides that are on the sheet.** Say a length in the ruler value given first ("2 3/4 in"),
-  never the decimal in brackets.
+  not the finer measure in brackets ("2 13/16"). Never write a length as a decimal ("2.82 in").
 - **Say what each number measures**, in the sheet's words: "its top is about 1/2 in from the top edge", "about
   3 in wide", "its middle is about 8 in from the left edge". A bare "about 3 in" is a fault.
 - **Say what a side is of.** "Right of the hull", "on the right side of the balloon", "at the right edge (of the

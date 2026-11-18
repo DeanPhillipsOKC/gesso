@@ -62,7 +62,8 @@ Record it in `notes.json` as `photo_prep`, a dict: `{"subject": "...", "found": 
    `canvas/99_finish.png` with `grid --percent`. (Those shares are for the plan only; the step text says where in
    inches, from `draft-text`, never in percentages or by tape marks.)
 6. Record `canvas_fit` in `notes.json`: `{"canvas": "11 x 14 in, portrait", "mode": "crop", "why": "...", "lost":
-   "the right 15% of empty water"}`.
+   "the right 15% of empty water"}`. A length in it is a ruler fraction to the nearest sixteenth ("about 5/8 in"),
+   never a decimal ("0.6 in"): the page shows it.
 
 **Size changes the lesson, not just its shape.** Scale to the canvas's area:
 - Detail budget: under 120 sq in (10x10), `max_parts` minus 2. From 120 to 300 (11x14 is 154), as is. Over 300
