@@ -34,70 +34,6 @@
     "known": 3
   },
   {
-    "slug": "red-sailboat",
-    "title": "A small red sailboat",
-    "subject": "A small red sailboat with a white sail on teal water at sunset",
-    "steps": 16,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 1.12.1",
-    "published": "2026-11-16",
-    "source": "red-sailboat_skill_20261116-191627",
-    "versions": [
-      {
-        "id": "20261116-191627",
-        "version": "POC 1.12.1",
-        "when": "2026-11-16 19:16",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 16,
-        "href": "lessons/red-sailboat/",
-        "current": true
-      },
-      {
-        "id": "20261113-212457",
-        "version": "POC 1.4.0",
-        "when": "2026-11-13 21:24",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/red-sailboat/v/20261113-212457/",
-        "current": false
-      },
-      {
-        "id": "20261113-174242",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:42",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 18,
-        "href": "lessons/red-sailboat/v/20261113-174242/",
-        "current": false
-      },
-      {
-        "id": "20261113-130625",
-        "version": "POC 1.0.1",
-        "when": "2026-11-13 13:06",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 16,
-        "href": "lessons/red-sailboat/v/20261113-130625/",
-        "current": false
-      },
-      {
-        "id": "20261113-041240",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/red-sailboat/v/20261113-041240/",
-        "current": false
-      }
-    ],
-    "known": 2
-  },
-  {
     "slug": "floating-island",
     "title": "A floating rock island",
     "subject": "A floating rock island with a pink blossom tree and a waterfall pouring into a violet sea, and a stone doorway standing in the water with the setting sun glowing through it, under a crescent moon and pink sunset clouds.",
@@ -380,5 +316,79 @@
       }
     ],
     "known": 4
+  },
+  {
+    "slug": "red-sailboat",
+    "title": "A small red sailboat",
+    "subject": "A small red sailboat with white sails on a calm teal sea at sunset, a purple hill on the far shore and the sun low over the water",
+    "steps": 22,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.1",
+    "published": "2026-11-18",
+    "source": "red-sailboat_skill_20261118-161541",
+    "versions": [
+      {
+        "id": "20261118-161541",
+        "version": "POC 2.0.1",
+        "when": "2026-11-18 16:15",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 22,
+        "href": "lessons/red-sailboat/",
+        "current": true
+      },
+      {
+        "id": "20261116-191627",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 19:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 16,
+        "href": "lessons/red-sailboat/v/20261116-191627/",
+        "current": false
+      },
+      {
+        "id": "20261113-212457",
+        "version": "POC 1.4.0",
+        "when": "2026-11-13 21:24",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-212457/",
+        "current": false
+      },
+      {
+        "id": "20261113-174242",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/red-sailboat/v/20261113-174242/",
+        "current": false
+      },
+      {
+        "id": "20261113-130625",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 16,
+        "href": "lessons/red-sailboat/v/20261113-130625/",
+        "current": false
+      },
+      {
+        "id": "20261113-041240",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/red-sailboat/v/20261113-041240/",
+        "current": false
+      }
+    ],
+    "known": 9
   }
 ]
