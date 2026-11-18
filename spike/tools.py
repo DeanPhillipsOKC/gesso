@@ -277,6 +277,14 @@ def load_plan(lesson: Path):
     import plan2
     import publish2
 
+    import plan3
+
+    if plan3.is_v3(lesson):  # a version 3 lesson: its plan in version 2's shape, as its build-steps kept it
+        raw = _v3_kept(lesson, pictures=False)["plan"]
+        technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
+        if raw.get("palette"):
+            technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
+        return raw, publish2.as_v1(raw), technique
     raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
     if not plan2.is_v2(lesson):
         raise Refused("plan.json isn't a version 2 plan (no \"plan_version\": 2). Version 1 lessons can't be published "
@@ -385,6 +393,30 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
         mixes[p.name] = m
     (lesson / "mixes.json").write_text(json.dumps(mixes, indent=2), encoding="utf-8")
     return mixes
+
+
+def _paints_v3(lesson: Path, a: argparse.Namespace) -> dict:
+    """paints for a version 3 lesson: each of the plan's paints fitted to what its units changed, and a report of a
+    paint fitted far from its name. It writes nothing: build-steps fits them again and keeps them. Design section 7."""
+    import erase3
+    import plan3
+    import steps3
+
+    if getattr(a, "add", None):
+        raise Refused("paints --add is for a version 2 lesson. A version 3 plan names its own paints: add the paint "
+                      "to plan.json and to the step that lays it.")
+    plan, _, _ = _v3_ready(lesson)
+    us = plan3.units(plan)
+    try:
+        ch = erase3.load(lesson, plan)
+    except erase3.Refused as e:
+        raise Refused(str(e))
+    _, _, rows = steps3.fit(plan, us, ch)
+    notes = steps3.problems({"final_gap": 0, "outside_unit_max": 0, "rows": [], "paints": rows, "little": []})[1]
+    return {"paints": rows, "problems": [], "notes": notes,
+            "advice": "A paint fitted far from the plan's color may need a new name or `looks` in plan.json (free: "
+                      "the chain doesn't change). A paint the finish doesn't have can't be fixed here: record it in "
+                      "notes.json as a known problem.", "cost_usd": 0.0}
 
 
 def mix_tool(a: argparse.Namespace) -> dict:
@@ -966,10 +998,13 @@ def add_filters(sub) -> None:
 def _v2(lesson: Path):
     """A version 2 lesson's plan and finish, or a refusal that says what's missing."""
     import plan2
+    import plan3
     from filters import load
 
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
+    if plan3.is_v3(lesson):  # a version 3 lesson, read in version 2's shape (what its build-steps kept)
+        return _v3_kept(lesson, pictures=False)["plan"], load(lesson / "99_finish.png", max_side=100_000)
     try:
         plan = plan2.load(lesson)
     except ValueError as e:
@@ -981,6 +1016,16 @@ def _v2(lesson: Path):
     if not finish.exists():
         raise Refused(f"no 99_finish.png in {lesson}")
     return plan, load(finish, max_side=100_000)
+
+
+def _v3_kept(lesson: Path, pictures: bool = True) -> dict:
+    """What build-steps kept for a version 3 lesson (lesson3.read), or a refusal that says what to run."""
+    import lesson3
+
+    try:
+        return lesson3.read(lesson, pictures)
+    except lesson3.Stale as e:
+        raise Refused(str(e))
 
 
 def _read_owner(lesson: Path, plan: dict):
@@ -1049,6 +1094,10 @@ def paints_tool(a: argparse.Namespace) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
+    import plan3
+
+    if plan3.is_v3(lesson):
+        return _paints_v3(lesson, a)
     plan, finish = _v2_parts_only(lesson)
     owner = _read_owner(lesson, plan)
     if owner.shape != finish.shape[:2]:
@@ -1154,6 +1203,10 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
+    import plan3
+
+    if plan3.is_v3(lesson):
+        return _build_steps_v3(lesson)
     plan, finish = _v2(lesson)
     owner = _read_owner(lesson, plan)
     if owner.shape != finish.shape[:2]:
@@ -1188,6 +1241,33 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
             "advice": advice, "cost_usd": 0.0}
 
 
+def _build_steps_v3(lesson: Path) -> dict:
+    """build-steps for a version 3 lesson: the paints fitted to the chain, a step picture a step, and what the later
+    tools read (lesson3.make). Design sections 7 and 8."""
+    import build_steps as bs
+    import erase3
+    import lesson3
+    import plan3
+    import steps3
+    from PIL import Image
+
+    plan, _, finish = _v3_ready(lesson)
+    try:
+        built = lesson3.make(lesson, plan, finish, save_png)
+    except erase3.Refused as e:
+        raise Refused(str(e))
+    (lesson / "trials").mkdir(exist_ok=True)
+    sheet = lesson / "trials" / "steps.jpg"
+    Image.fromarray(bs.contact_sheet(built["pictures"], plan3.steps(plan))).save(sheet, quality=88)
+    bad, notes = steps3.problems(built)
+    return {"steps": built["steps"], "sheet": str(sheet), "rows": built["rows"], "paints": built["paints"],
+            "problems": bad, "notes": notes,
+            "checks": {k: built[k] for k in ("final_gap", "outside_unit_max", "from_its_paints_median")},
+            "advice": "Read the sheet. Every step should add one thing; nothing else should change. `notes` can't be "
+                      "fixed without a new plan and a new chain: record each in notes.json as a known problem. Then "
+                      "step-aids, mix, draft-text.", "cost_usd": 0.0}
+
+
 def _v2_canvas(lesson: Path) -> tuple[list | None, dict]:
     """A version 2 lesson's canvas box and size: canvas.json, or the default size picked now (#122)."""
     import canvas as cv
@@ -1218,7 +1298,11 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
     if missing:
         raise Refused(f"missing step pictures {missing}: run build-steps --lesson {lesson} first")
     plate = lesson / "98_background.png"
-    built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
+    if plan.get("made_from") == 3:  # a version 3 lesson's steps are its build-steps' own: read, never cut again
+        kept = _v3_kept(lesson)
+        built, masks = kept["pictures"], kept["masks"]
+    else:
+        built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
     pictures = [load(lesson / n, max_side=100_000) for n in names]
     stale = [n for n, p, b in zip(names, pictures, built) if p.shape != b.shape or not np.array_equal(p, b)]
     if stale:
@@ -1338,6 +1422,11 @@ def background_tool(a: argparse.Namespace, client=None) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
+    import plan3
+
+    if plan3.is_v3(lesson):
+        raise Refused("background is for a version 2 lesson. A version 3 lesson's chain (erase) already holds what is "
+                      "behind each thing.")
     plan, finish = _v2(lesson)
     owner = _read_owner(lesson, plan)
     parts = plan["parts"]

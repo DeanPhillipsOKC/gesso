@@ -42,6 +42,14 @@ def build(lesson: Path, plan: dict):
     import build_steps as bs
     from filters import load
 
+    if plan.get("made_from") == 3:  # a version 3 lesson, in version 2's shape: what its build-steps kept
+        import lesson3
+
+        try:
+            kept = lesson3.read(lesson)
+        except lesson3.Stale:
+            return None
+        return kept["owner"], kept["pictures"], kept["rows"], kept["masks"]
     path = lesson / "parts" / "owner.png"
     finish_path = lesson / "99_finish.png"
     if not path.exists() or not finish_path.exists():
