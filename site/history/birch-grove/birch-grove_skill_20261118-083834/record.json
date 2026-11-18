@@ -1,0 +1,157 @@
+{
+  "photo": "birch-grove",
+  "run": "birch-grove_skill_20261118-083834",
+  "started": "2026-11-18 08:38",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "48797d6a5d3714ea",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.0.0",
+        "commit": "0ea83dd",
+        "dirty": false,
+        "published": "2026-11-18"
+      },
+      "made_with": {
+        "version": "POC 2.0.0",
+        "commit": "0ea83dd",
+        "published": "2026-11-18"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-18T09:11:47"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 20,
+        "words": 3613,
+        "tubes": 5,
+        "cost_usd": 0.445,
+        "minutes": 5.5,
+        "paid_renders": 21,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 7,
+        "minutes_total": 33.2,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-sky",
+          "name": "Blend the misty sky over the whole canvas",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "glow-sun",
+          "name": "Circle in the glowing sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-far-trunks",
+          "name": "Pull the misty far trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "stamp-pines",
+          "name": "Stamp the fir trees",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-pines",
+          "name": "Tap light on the firs' left sides",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-middle-trunks",
+          "name": "Pull the middle trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-floor",
+          "name": "Lay in the forest floor",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-path",
+          "name": "Pull the path back into the mist",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-dark-leaves",
+          "name": "Dab the dark leaves everywhere",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-mid-leaves",
+          "name": "Dab the golden leaves everywhere",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-sunlit-canopy",
+          "name": "Tap the sunlit leaves near the sun",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-rock",
+          "name": "Block in the mossy rock",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-rock",
+          "name": "Shade the rock's underside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-rock",
+          "name": "Light the top of the rock",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-birches",
+          "name": "Pull the pale birch trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-birches",
+          "name": "Shade the right side of the birches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mark-bark",
+          "name": "Lay the dark bark patches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "line-bark",
+          "name": "Line the thin bark marks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-bark",
+          "name": "Catch the sunlight on the birches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tap-sunlit-leaves",
+          "name": "Tap the sunlit leaves on the ground",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
