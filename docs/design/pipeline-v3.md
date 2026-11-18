@@ -67,6 +67,16 @@ changes because of it:
   on a step that names one shading paint; it was among every cat and cow grader's worst steps of the new lessons.
 - **Cost:** none. The same renders, asked differently.
 
+**The requests were then made to name what stays, and two checks were tried (2026-11-18, #218,
+`docs/spikes/v3-stays.md`).** What this draft changes because of it:
+
+- **A "behind" and a "back" request list every other thing already painted, as what stays (section 6, changed).**
+  The birch grove's chain, made again with no sentence written by hand, held: 18 renders, none made again.
+- **No measure tells a stray change from the thing's own (section 6, not solved by measure).** Five were tried.
+  Step 5 is now a checker in a fresh context with one look picture a unit and the list of what stays. Blind, it
+  caught two of three known strays and found two more in #214's kept chain; it missed the cow's tall grass.
+- **`erase` reports a thing left standing (section 6, new).** It sees a whole thing left, not a faint one in part.
+
 ## 1. Why change
 
 v2 renders the finished painting once and cuts every step picture from it inside outlines. It stopped improving:
@@ -179,11 +189,14 @@ with every unit after u erased. P[last] is the finish.
 - **A thing on bare canvas** (`behind` is empty): remove it and leave bare white canvas. Canvas once bare stays bare.
 - **A thing with things behind it:** remove it and paint what is behind, named from `behind` ("Behind them there is
   only this: ..."). #204 found that "continue what is around" invites new things, and naming what is behind stops
-  it. So v3 names it from the first try, not only on a redo. **It also names what stays** (#214): a render that
-  removes the bushes will otherwise repaint the woods behind them.
+  it. So v3 names it from the first try, not only on a redo. **It also names what stays** (#214, built in #218):
+  all of the thing goes, "the dark, the faint and the small ones too", then every other thing already painted, by
+  name, stays exactly as it is wherever it can be seen, and nothing new is added anywhere. A render that removes
+  the bushes will otherwise repaint the woods behind them.
 - **A later stage of a thing already there** (the cow's coat, its face, the tall grass over the meadow): take the
   thing back to how the plan's `after` describes it before this stage. The request is the `after` line of the step
-  before the unit's first.
+  before the unit's first. It ends with the same list of what stays (#218): "Nothing else in the painting is
+  touched."
 
 **What a block-in is made from (#217).** A block-in is the first unit of a thing in front, and its picture is
 what the "back" render of the thing's next unit leaves. So that request says what is left, from the plan: the
@@ -206,7 +219,10 @@ changed by 20 or more). D[u] is that change. Every other pixel stays as it was.
 
 - #204 also required the strong change to start inside the plan's loose box. v3's plan has no box. **Guess:** the
   guard holds without one, as it did going forward in #207. If a render changes something far from its thing, the
-  place to catch it is step 5.
+  place to catch it is step 5. **#218 tried to catch it by measure and couldn't:** pieces apart from the main one,
+  weak pieces, the paint that was there, and a change inside another unit's core all score good renders as high as
+  the known bad ones. A stray is often one piece with the thing, in its colors, on things the request names as
+  behind; only its size differs, and the plan gives no size.
 - **A "back" render is kept over the whole thing (#217).** Keeping only the strong change is right for a thing
   that goes and wrong for a layer that comes off: a flat coat is close in color to the brushwork it replaces, so
   the guard kept it in patches, and it dropped a smooth blanket for a knitted one whole. The thing's shape is the
@@ -216,8 +232,14 @@ changed by 20 or more). D[u] is that change. Every other pixel stays as it was.
   between steps (the birch grove's rock narrows on its shade step).
 - The guard's four numbers were set on three pictures. They need the bench.
 
-**Step 5: look once.** Claude reads the chain sheet. A unit is asked for again, at most twice, when it painted a
-new thing where the old one was, or left the thing standing. Known and not solved: gpt-image won't fully remove
+**Step 5: look once (changed by #218).** Not Claude reading the chain sheet, where a cell is 256 pixels wide: a
+checker in a fresh context reads one look a unit (before, after, the change tinted) with what the unit was asked
+for and the list of what stays (`looks` in `v3_combined.py`, `v3_stays_checker.md`). A unit is asked for again, at
+most twice, when the checker marks a stray change or a thing left standing, or when `erase` reports the thing left
+standing (2% of the canvas or more beside the hole that still looks like what went). Read blind over 77 renders,
+the checker marked two of three known strays, the one known thing left, and nine of 73 others, of which at least
+two were real strays in #214's kept chain. **Open:** it missed the cow's bush rows, drawn again when the tall
+grass came off; the hillside and the meadow are one unit, so nothing here can tell that change from the grass's. Known and not solved: gpt-image won't fully remove
 faint, soft things on a sky (the cow's clouds 49% unchanged, the birch grove's far trunks 44%). What is left shows
 in step 1. **Open:** a second edit model for those (it needs a host and a key), or a plan that folds a faint thing
 into what it sits on.
@@ -349,6 +371,8 @@ Then the site's lessons are rerun from their photos, and v2 is removed.
 - **The plan asks for what the finish doesn't have.** A shade the finish has no color for, a rim light the locks
   already brought. Erasing by stage may give the plan its order back; it can't add a color.
 - **Faint things won't erase,** so a first step can still show too much.
+- **A stray change can still get through** (#218): what stays is in every request and a checker reads every unit,
+  and one of three known strays passed the checker. The requests were tried on one picture.
 - **More renders:** 25 to 33 cents and 3 to 4 minutes of chain a lesson, one after another (#214), and more when a
   unit is asked again.
 - **The step after a block-in is a big jump** (#217). #214's block-ins arrived finished; asked for flat, they

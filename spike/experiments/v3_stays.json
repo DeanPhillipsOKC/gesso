@@ -1,0 +1,3543 @@
+{
+ "issue": 218,
+ "known": [
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown01_U08",
+   "what": "stray"
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "probe/U15",
+   "what": "stray"
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U16rr",
+   "what": "stray"
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown09_U02",
+   "what": "left"
+  }
+ ],
+ "left_line": 0.02,
+ "measures": [
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U01",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "known": "",
+   "changed": 0.0215,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0007
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U02r",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "known": "",
+   "changed": 0.3181,
+   "apart": 0.012,
+   "weak_pieces": 0.012,
+   "off_color": 0.0002,
+   "left": 0.0045
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U03",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "known": "",
+   "changed": 0.0081,
+   "apart": 0.0026,
+   "weak_pieces": 0.0026,
+   "off_color": 0.0,
+   "left": 0.0001
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U04",
+   "unit": 4,
+   "kind": "behind",
+   "things": [
+    "sun-rays"
+   ],
+   "known": "",
+   "changed": 0.2164,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0414,
+   "left": 0.0057
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U05",
+   "unit": 5,
+   "kind": "behind",
+   "things": [
+    "forest-floor"
+   ],
+   "known": "",
+   "changed": 0.456,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0495,
+   "left": 0.0086
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U06",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "path"
+   ],
+   "known": "",
+   "changed": 0.0226,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U07",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "canopy"
+   ],
+   "known": "",
+   "changed": 0.2327,
+   "apart": 0.0916,
+   "weak_pieces": 0.0,
+   "off_color": 0.0823,
+   "left": 0.0004
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U08r",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "undergrowth"
+   ],
+   "known": "",
+   "changed": 0.1696,
+   "apart": 0.0845,
+   "weak_pieces": 0.0,
+   "off_color": 0.0023,
+   "left": 0.0035
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U09",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth"
+   ],
+   "known": "",
+   "changed": 0.3427,
+   "apart": 0.2122,
+   "weak_pieces": 0.0,
+   "off_color": 0.0973,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U10",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "rock"
+   ],
+   "known": "",
+   "changed": 0.0159,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0012
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U11",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "known": "",
+   "changed": 0.0003,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U12",
+   "unit": 12,
+   "kind": "behind",
+   "things": [
+    "birches"
+   ],
+   "known": "",
+   "changed": 0.2623,
+   "apart": 0.1556,
+   "weak_pieces": 0.0,
+   "off_color": 0.0418,
+   "left": 0.0093
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U13",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "known": "",
+   "changed": 0.2079,
+   "apart": 0.1482,
+   "weak_pieces": 0.0,
+   "off_color": 0.0005,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U14",
+   "unit": 14,
+   "kind": "behind",
+   "things": [
+    "branches"
+   ],
+   "known": "",
+   "changed": 0.0143,
+   "apart": 0.0094,
+   "weak_pieces": 0.0,
+   "off_color": 0.0028,
+   "left": 0.0114
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U15",
+   "unit": 15,
+   "kind": "behind",
+   "things": [
+    "fallen-leaves"
+   ],
+   "known": "",
+   "changed": 0.2434,
+   "apart": 0.0505,
+   "weak_pieces": 0.0013,
+   "off_color": 0.0008,
+   "left": 0.0036
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U16",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "known": "",
+   "changed": 0.0034,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U17",
+   "unit": 17,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "known": "",
+   "changed": 0.0427,
+   "apart": 0.0281,
+   "weak_pieces": 0.0,
+   "off_color": 0.0052,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "U18",
+   "unit": 18,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth",
+    "fallen-leaves"
+   ],
+   "known": "",
+   "changed": 0.3188,
+   "apart": 0.2361,
+   "weak_pieces": 0.1311,
+   "off_color": 0.0829,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown01_U08",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "undergrowth"
+   ],
+   "known": "stray",
+   "changed": 0.2958,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0123,
+   "left": 0.0093
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown02_U07",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "canopy"
+   ],
+   "known": "",
+   "changed": 0.2186,
+   "apart": 0.0858,
+   "weak_pieces": 0.0,
+   "off_color": 0.06,
+   "left": 0.0006
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown03_U06",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "path"
+   ],
+   "known": "",
+   "changed": 0.0109,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0002
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown04_U05",
+   "unit": 5,
+   "kind": "behind",
+   "things": [
+    "forest-floor"
+   ],
+   "known": "",
+   "changed": 0.4482,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.042,
+   "left": 0.0029
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown05_U04",
+   "unit": 4,
+   "kind": "behind",
+   "things": [
+    "sun-rays"
+   ],
+   "known": "",
+   "changed": 0.2532,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0447,
+   "left": 0.0015
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown06_U03",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "known": "",
+   "changed": 0.0043,
+   "apart": 0.0008,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown07_U02",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "known": "",
+   "changed": 0.2444,
+   "apart": 0.069,
+   "weak_pieces": 0.0,
+   "off_color": 0.0037,
+   "left": 0.0081
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown08_U01",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "known": "",
+   "changed": 0.0325,
+   "apart": 0.0015,
+   "weak_pieces": 0.0012,
+   "off_color": 0.0,
+   "left": 0.0032
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown09_U02",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "known": "left",
+   "changed": 0.2052,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0062,
+   "left": 0.0365
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "thrown10_U01",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "known": "",
+   "changed": 0.0135,
+   "apart": 0.0032,
+   "weak_pieces": 0.0032,
+   "off_color": 0.0,
+   "left": 0.0016
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "render": "probe/U15",
+   "unit": 15,
+   "kind": "behind",
+   "things": [
+    "fallen-leaves"
+   ],
+   "known": "stray",
+   "changed": 0.3001,
+   "apart": 0.0259,
+   "weak_pieces": 0.0011,
+   "off_color": 0.0056,
+   "left": 0.0021
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U01",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "clouds"
+   ],
+   "known": "",
+   "changed": 0.0961,
+   "apart": 0.0096,
+   "weak_pieces": 0.0,
+   "off_color": 0.002,
+   "left": 0.0109
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U02",
+   "unit": 2,
+   "kind": "back",
+   "things": [
+    "clouds"
+   ],
+   "known": "",
+   "changed": 0.0167,
+   "apart": 0.0076,
+   "weak_pieces": 0.0076,
+   "off_color": 0.0014,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U03",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "mountains"
+   ],
+   "known": "",
+   "changed": 0.0904,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0001,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U04",
+   "unit": 4,
+   "kind": "bare",
+   "things": [
+    "loch"
+   ],
+   "known": "",
+   "changed": 0.0027,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0001,
+   "left": 0.0031
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U05",
+   "unit": 5,
+   "kind": "bare",
+   "things": [
+    "hillside",
+    "meadow"
+   ],
+   "known": "",
+   "changed": 0.7231,
+   "apart": 0.0002,
+   "weak_pieces": 0.0,
+   "off_color": 0.0156,
+   "left": 0.0138
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U06",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "bushes"
+   ],
+   "known": "",
+   "changed": 0.1123,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.012,
+   "left": 0.0142
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U07",
+   "unit": 7,
+   "kind": "back",
+   "things": [
+    "bushes"
+   ],
+   "known": "",
+   "changed": 0.0122,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U08",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "cow"
+   ],
+   "known": "",
+   "changed": 0.2105,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0241,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U09",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "known": "",
+   "changed": 0.1322,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U10",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "horns"
+   ],
+   "known": "",
+   "changed": 0.0122,
+   "apart": 0.0051,
+   "weak_pieces": 0.0,
+   "off_color": 0.0003,
+   "left": 0.0009
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U11",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "horns"
+   ],
+   "known": "",
+   "changed": 0.0096,
+   "apart": 0.0043,
+   "weak_pieces": 0.0,
+   "off_color": 0.0002,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U12",
+   "unit": 12,
+   "kind": "back",
+   "things": [
+    "cow",
+    "horns"
+   ],
+   "known": "",
+   "changed": 0.1881,
+   "apart": 0.0012,
+   "weak_pieces": 0.0,
+   "off_color": 0.0076,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U13",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "known": "",
+   "changed": 0.0114,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0011,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U14",
+   "unit": 14,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "known": "",
+   "changed": 0.0031,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U15",
+   "unit": 15,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "known": "",
+   "changed": 0.0041,
+   "apart": 0.0025,
+   "weak_pieces": 0.0,
+   "off_color": 0.0009,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "render": "U16rr",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "meadow"
+   ],
+   "known": "stray",
+   "changed": 0.3003,
+   "apart": 0.029,
+   "weak_pieces": 0.0157,
+   "off_color": 0.0073,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U01",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "window-trees"
+   ],
+   "known": "",
+   "changed": 0.0535,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0006,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U02",
+   "unit": 2,
+   "kind": "bare",
+   "things": [
+    "wall"
+   ],
+   "known": "",
+   "changed": 0.4719,
+   "apart": 0.0013,
+   "weak_pieces": 0.0013,
+   "off_color": 0.0,
+   "left": 0.0087
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U03",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "window-frame"
+   ],
+   "known": "",
+   "changed": 0.1037,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0087,
+   "left": 0.0024
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U04",
+   "unit": 4,
+   "kind": "back",
+   "things": [
+    "window-frame"
+   ],
+   "known": "",
+   "changed": 0.0703,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0007,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U05",
+   "unit": 5,
+   "kind": "bare",
+   "things": [
+    "sill"
+   ],
+   "known": "",
+   "changed": 0.3857,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0163,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U06",
+   "unit": 6,
+   "kind": "back",
+   "things": [
+    "sill"
+   ],
+   "known": "",
+   "changed": 0.1466,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.018,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U07",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "blanket"
+   ],
+   "known": "",
+   "changed": 0.3824,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0263,
+   "left": 0.0
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U08",
+   "unit": 8,
+   "kind": "back",
+   "things": [
+    "blanket"
+   ],
+   "known": "",
+   "changed": 0.0948,
+   "apart": 0.0126,
+   "weak_pieces": 0.0126,
+   "off_color": 0.0078,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U09",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "blanket"
+   ],
+   "known": "",
+   "changed": 0.0296,
+   "apart": 0.021,
+   "weak_pieces": 0.0152,
+   "off_color": 0.0006,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U10",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "cat"
+   ],
+   "known": "",
+   "changed": 0.3696,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0189,
+   "left": 0.0043
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U11",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "known": "",
+   "changed": 0.102,
+   "apart": 0.0327,
+   "weak_pieces": 0.0321,
+   "off_color": 0.0085,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U12",
+   "unit": 12,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "known": "",
+   "changed": 0.1441,
+   "apart": 0.0659,
+   "weak_pieces": 0.0064,
+   "off_color": 0.0002,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U13",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "known": "",
+   "changed": 0.019,
+   "apart": 0.0012,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "render": "U14",
+   "unit": 14,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "known": "",
+   "changed": 0.0238,
+   "apart": 0.0172,
+   "weak_pieces": 0.0,
+   "off_color": 0.0005,
+   "left": null
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U01",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "known": "",
+   "changed": 0.0296,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0078
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U02",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "known": "",
+   "changed": 0.3668,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0016,
+   "left": 0.0059
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U03",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "known": "",
+   "changed": 0.0368,
+   "apart": 0.016,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0013
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U04",
+   "unit": 4,
+   "kind": "behind",
+   "things": [
+    "sun-rays"
+   ],
+   "known": "",
+   "changed": 0.467,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0396,
+   "left": 0.0122
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U05",
+   "unit": 5,
+   "kind": "behind",
+   "things": [
+    "forest-floor"
+   ],
+   "known": "",
+   "changed": 0.4518,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0507,
+   "left": 0.0039
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U06",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "path"
+   ],
+   "known": "",
+   "changed": 0.0142,
+   "apart": 0.007,
+   "weak_pieces": 0.0064,
+   "off_color": 0.0002,
+   "left": 0.0
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U07",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "canopy"
+   ],
+   "known": "",
+   "changed": 0.2048,
+   "apart": 0.0875,
+   "weak_pieces": 0.001,
+   "off_color": 0.0934,
+   "left": 0.0001
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U08",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "undergrowth"
+   ],
+   "known": "",
+   "changed": 0.1628,
+   "apart": 0.0806,
+   "weak_pieces": 0.0,
+   "off_color": 0.0002,
+   "left": 0.001
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U09",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth"
+   ],
+   "known": "",
+   "changed": 0.4909,
+   "apart": 0.0734,
+   "weak_pieces": 0.0,
+   "off_color": 0.1747,
+   "left": null
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U10",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "rock"
+   ],
+   "known": "",
+   "changed": 0.0098,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0001,
+   "left": 0.0023
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U11",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "known": "",
+   "changed": 0.0033,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": null
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U12",
+   "unit": 12,
+   "kind": "behind",
+   "things": [
+    "birches"
+   ],
+   "known": "",
+   "changed": 0.2386,
+   "apart": 0.113,
+   "weak_pieces": 0.0,
+   "off_color": 0.0164,
+   "left": 0.0087
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U13",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "known": "",
+   "changed": 0.2114,
+   "apart": 0.1528,
+   "weak_pieces": 0.0,
+   "off_color": 0.0005,
+   "left": null
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U14",
+   "unit": 14,
+   "kind": "behind",
+   "things": [
+    "branches"
+   ],
+   "known": "",
+   "changed": 0.0119,
+   "apart": 0.0087,
+   "weak_pieces": 0.0,
+   "off_color": 0.0006,
+   "left": 0.0099
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U15",
+   "unit": 15,
+   "kind": "behind",
+   "things": [
+    "fallen-leaves"
+   ],
+   "known": "",
+   "changed": 0.1882,
+   "apart": 0.0557,
+   "weak_pieces": 0.0054,
+   "off_color": 0.0005,
+   "left": 0.0054
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U16",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "known": "",
+   "changed": 0.0,
+   "apart": 0.0,
+   "weak_pieces": 0.0,
+   "off_color": 0.0,
+   "left": 0.0
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U17",
+   "unit": 17,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "known": "",
+   "changed": 0.0435,
+   "apart": 0.0281,
+   "weak_pieces": 0.003,
+   "off_color": 0.0056,
+   "left": null
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "render": "U18",
+   "unit": 18,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth",
+    "fallen-leaves"
+   ],
+   "known": "",
+   "changed": 0.1792,
+   "apart": 0.1414,
+   "weak_pieces": 0.1186,
+   "off_color": 0.0359,
+   "left": null
+  }
+ ],
+ "cores": [
+  {
+   "chain": "birch-grove, kept",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "render": "U01",
+   "changed": 0.0215,
+   "on_other": 0.021,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "render": "U02r",
+   "changed": 0.3181,
+   "on_other": 0.3161,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "render": "U03",
+   "changed": 0.0081,
+   "on_other": 0.0071,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 4,
+   "kind": "behind",
+   "things": [
+    "sun-rays"
+   ],
+   "render": "U04",
+   "changed": 0.2164,
+   "on_other": 0.2153,
+   "most_of_a_core": 0.333
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 5,
+   "kind": "behind",
+   "things": [
+    "forest-floor"
+   ],
+   "render": "U05",
+   "changed": 0.456,
+   "on_other": 0.4555,
+   "most_of_a_core": 0.106
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "path"
+   ],
+   "render": "U06",
+   "changed": 0.0226,
+   "on_other": 0.0217,
+   "most_of_a_core": 0.055
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "canopy"
+   ],
+   "render": "U07",
+   "changed": 0.2327,
+   "on_other": 0.2312,
+   "most_of_a_core": 1.0
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "undergrowth"
+   ],
+   "render": "U08r",
+   "changed": 0.1696,
+   "on_other": 0.1681,
+   "most_of_a_core": 0.208
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth"
+   ],
+   "render": "U09",
+   "changed": 0.3427,
+   "on_other": 0.0464,
+   "most_of_a_core": 1.0
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "rock"
+   ],
+   "render": "U10",
+   "changed": 0.0159,
+   "on_other": 0.0156,
+   "most_of_a_core": 0.109
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "render": "U11",
+   "changed": 0.0003,
+   "on_other": 0.0,
+   "most_of_a_core": 0.002
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 12,
+   "kind": "behind",
+   "things": [
+    "birches"
+   ],
+   "render": "U12",
+   "changed": 0.2623,
+   "on_other": 0.2583,
+   "most_of_a_core": 0.691
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "render": "U13",
+   "changed": 0.2079,
+   "on_other": 0.0155,
+   "most_of_a_core": 0.671
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 14,
+   "kind": "behind",
+   "things": [
+    "branches"
+   ],
+   "render": "U14",
+   "changed": 0.0143,
+   "on_other": 0.0104,
+   "most_of_a_core": 0.104
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 15,
+   "kind": "behind",
+   "things": [
+    "fallen-leaves"
+   ],
+   "render": "U15",
+   "changed": 0.2434,
+   "on_other": 0.2391,
+   "most_of_a_core": 0.586
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "render": "U16",
+   "changed": 0.0034,
+   "on_other": 0.0007,
+   "most_of_a_core": 0.027
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 17,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "render": "U17",
+   "changed": 0.0427,
+   "on_other": 0.0018,
+   "most_of_a_core": 0.099
+  },
+  {
+   "chain": "birch-grove, kept",
+   "unit": 18,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth",
+    "fallen-leaves"
+   ],
+   "render": "U18",
+   "changed": 0.3188,
+   "on_other": 0.1096,
+   "most_of_a_core": 0.536
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "render": "thrown08_U01",
+   "changed": 0.0325,
+   "on_other": 0.0312,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "render": "thrown07_U02",
+   "changed": 0.2444,
+   "on_other": 0.2429,
+   "most_of_a_core": 1.0
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "render": "thrown06_U03",
+   "changed": 0.0043,
+   "on_other": 0.0031,
+   "most_of_a_core": 0.016
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 4,
+   "kind": "behind",
+   "things": [
+    "sun-rays"
+   ],
+   "render": "thrown05_U04",
+   "changed": 0.2532,
+   "on_other": 0.2516,
+   "most_of_a_core": 0.716
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 5,
+   "kind": "behind",
+   "things": [
+    "forest-floor"
+   ],
+   "render": "thrown04_U05",
+   "changed": 0.4482,
+   "on_other": 0.4475,
+   "most_of_a_core": 0.047
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "path"
+   ],
+   "render": "thrown03_U06",
+   "changed": 0.0109,
+   "on_other": 0.0103,
+   "most_of_a_core": 0.026
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "canopy"
+   ],
+   "render": "thrown02_U07",
+   "changed": 0.2186,
+   "on_other": 0.2171,
+   "most_of_a_core": 0.406
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "undergrowth"
+   ],
+   "render": "thrown01_U08",
+   "changed": 0.2958,
+   "on_other": 0.294,
+   "most_of_a_core": 0.229
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth"
+   ],
+   "render": "U09",
+   "changed": 0.3427,
+   "on_other": 0.0374,
+   "most_of_a_core": 0.434
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "rock"
+   ],
+   "render": "U10",
+   "changed": 0.0159,
+   "on_other": 0.0156,
+   "most_of_a_core": 0.069
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "render": "U11",
+   "changed": 0.0003,
+   "on_other": 0.0,
+   "most_of_a_core": 0.002
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 12,
+   "kind": "behind",
+   "things": [
+    "birches"
+   ],
+   "render": "U12",
+   "changed": 0.2623,
+   "on_other": 0.2583,
+   "most_of_a_core": 0.375
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "render": "U13",
+   "changed": 0.2079,
+   "on_other": 0.0155,
+   "most_of_a_core": 0.339
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 14,
+   "kind": "behind",
+   "things": [
+    "branches"
+   ],
+   "render": "U14",
+   "changed": 0.0143,
+   "on_other": 0.0104,
+   "most_of_a_core": 0.058
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 15,
+   "kind": "behind",
+   "things": [
+    "fallen-leaves"
+   ],
+   "render": "U15",
+   "changed": 0.2434,
+   "on_other": 0.2391,
+   "most_of_a_core": 0.587
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "render": "U16",
+   "changed": 0.0034,
+   "on_other": 0.0007,
+   "most_of_a_core": 0.018
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 17,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "render": "U17",
+   "changed": 0.0427,
+   "on_other": 0.0018,
+   "most_of_a_core": 0.081
+  },
+  {
+   "chain": "birch-grove, first (the bushes' stray)",
+   "unit": 18,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth",
+    "fallen-leaves"
+   ],
+   "render": "U18",
+   "changed": 0.3188,
+   "on_other": 0.1075,
+   "most_of_a_core": 0.805
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "sun"
+   ],
+   "render": "thrown10_U01",
+   "changed": 0.0135,
+   "on_other": 0.0131,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 2,
+   "kind": "behind",
+   "things": [
+    "far-firs"
+   ],
+   "render": "thrown09_U02",
+   "changed": 0.2052,
+   "on_other": 0.2033,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "far-trunks"
+   ],
+   "render": "U03",
+   "changed": 0.0081,
+   "on_other": 0.0071,
+   "most_of_a_core": 0.028
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 4,
+   "kind": "behind",
+   "things": [
+    "sun-rays"
+   ],
+   "render": "U04",
+   "changed": 0.2164,
+   "on_other": 0.2153,
+   "most_of_a_core": 0.679
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 5,
+   "kind": "behind",
+   "things": [
+    "forest-floor"
+   ],
+   "render": "U05",
+   "changed": 0.456,
+   "on_other": 0.4555,
+   "most_of_a_core": 0.106
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "path"
+   ],
+   "render": "U06",
+   "changed": 0.0226,
+   "on_other": 0.0217,
+   "most_of_a_core": 0.055
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "canopy"
+   ],
+   "render": "U07",
+   "changed": 0.2327,
+   "on_other": 0.2312,
+   "most_of_a_core": 0.362
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "undergrowth"
+   ],
+   "render": "U08r",
+   "changed": 0.1696,
+   "on_other": 0.1681,
+   "most_of_a_core": 0.208
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth"
+   ],
+   "render": "U09",
+   "changed": 0.3427,
+   "on_other": 0.0464,
+   "most_of_a_core": 0.444
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "rock"
+   ],
+   "render": "U10",
+   "changed": 0.0159,
+   "on_other": 0.0156,
+   "most_of_a_core": 0.109
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "render": "U11",
+   "changed": 0.0003,
+   "on_other": 0.0,
+   "most_of_a_core": 0.002
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 12,
+   "kind": "behind",
+   "things": [
+    "birches"
+   ],
+   "render": "U12",
+   "changed": 0.2623,
+   "on_other": 0.2583,
+   "most_of_a_core": 0.383
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "render": "U13",
+   "changed": 0.2079,
+   "on_other": 0.0155,
+   "most_of_a_core": 0.339
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 14,
+   "kind": "behind",
+   "things": [
+    "branches"
+   ],
+   "render": "U14",
+   "changed": 0.0143,
+   "on_other": 0.0104,
+   "most_of_a_core": 0.058
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 15,
+   "kind": "behind",
+   "things": [
+    "fallen-leaves"
+   ],
+   "render": "U15",
+   "changed": 0.2434,
+   "on_other": 0.2391,
+   "most_of_a_core": 0.586
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "rock"
+   ],
+   "render": "U16",
+   "changed": 0.0034,
+   "on_other": 0.0007,
+   "most_of_a_core": 0.027
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 17,
+   "kind": "back",
+   "things": [
+    "birches"
+   ],
+   "render": "U17",
+   "changed": 0.0427,
+   "on_other": 0.0018,
+   "most_of_a_core": 0.085
+  },
+  {
+   "chain": "birch-grove, second (firs left)",
+   "unit": 18,
+   "kind": "back",
+   "things": [
+    "canopy",
+    "undergrowth",
+    "fallen-leaves"
+   ],
+   "render": "U18",
+   "changed": 0.3188,
+   "on_other": 0.1096,
+   "most_of_a_core": 0.536
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "clouds"
+   ],
+   "render": "U01",
+   "changed": 0.0961,
+   "on_other": 0.0951,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 2,
+   "kind": "back",
+   "things": [
+    "clouds"
+   ],
+   "render": "U02",
+   "changed": 0.0167,
+   "on_other": 0.0087,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "mountains"
+   ],
+   "render": "U03",
+   "changed": 0.0904,
+   "on_other": 0.0904,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 4,
+   "kind": "bare",
+   "things": [
+    "loch"
+   ],
+   "render": "U04",
+   "changed": 0.0027,
+   "on_other": 0.0024,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 5,
+   "kind": "bare",
+   "things": [
+    "hillside",
+    "meadow"
+   ],
+   "render": "U05",
+   "changed": 0.7231,
+   "on_other": 0.7229,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 6,
+   "kind": "behind",
+   "things": [
+    "bushes"
+   ],
+   "render": "U06",
+   "changed": 0.1123,
+   "on_other": 0.1105,
+   "most_of_a_core": 0.155
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 7,
+   "kind": "back",
+   "things": [
+    "bushes"
+   ],
+   "render": "U07",
+   "changed": 0.0122,
+   "on_other": 0.0117,
+   "most_of_a_core": 0.017
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 8,
+   "kind": "behind",
+   "things": [
+    "cow"
+   ],
+   "render": "U08",
+   "changed": 0.2105,
+   "on_other": 0.21,
+   "most_of_a_core": 0.291
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "render": "U09",
+   "changed": 0.1322,
+   "on_other": 0.0,
+   "most_of_a_core": 0.183
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "horns"
+   ],
+   "render": "U10",
+   "changed": 0.0122,
+   "on_other": 0.0122,
+   "most_of_a_core": 0.032
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "horns"
+   ],
+   "render": "U11",
+   "changed": 0.0096,
+   "on_other": 0.0022,
+   "most_of_a_core": 0.028
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 12,
+   "kind": "back",
+   "things": [
+    "cow",
+    "horns"
+   ],
+   "render": "U12",
+   "changed": 0.1881,
+   "on_other": 0.0037,
+   "most_of_a_core": 0.275
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "render": "U13",
+   "changed": 0.0114,
+   "on_other": 0.0,
+   "most_of_a_core": 0.016
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 14,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "render": "U14",
+   "changed": 0.0031,
+   "on_other": 0.0,
+   "most_of_a_core": 0.004
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 15,
+   "kind": "back",
+   "things": [
+    "cow"
+   ],
+   "render": "U15",
+   "changed": 0.0041,
+   "on_other": 0.0,
+   "most_of_a_core": 0.008
+  },
+  {
+   "chain": "highland-cow",
+   "unit": 16,
+   "kind": "back",
+   "things": [
+    "meadow"
+   ],
+   "render": "U16rr",
+   "changed": 0.3003,
+   "on_other": 0.0096,
+   "most_of_a_core": 0.053
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 1,
+   "kind": "behind",
+   "things": [
+    "window-trees"
+   ],
+   "render": "U01",
+   "changed": 0.0535,
+   "on_other": 0.0533,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 2,
+   "kind": "bare",
+   "things": [
+    "wall"
+   ],
+   "render": "U02",
+   "changed": 0.4719,
+   "on_other": 0.4719,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 3,
+   "kind": "behind",
+   "things": [
+    "window-frame"
+   ],
+   "render": "U03",
+   "changed": 0.1039,
+   "on_other": 0.1037,
+   "most_of_a_core": 0.322
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 4,
+   "kind": "back",
+   "things": [
+    "window-frame"
+   ],
+   "render": "U04",
+   "changed": 0.0703,
+   "on_other": 0.0234,
+   "most_of_a_core": 0.133
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 5,
+   "kind": "bare",
+   "things": [
+    "sill"
+   ],
+   "render": "U05",
+   "changed": 0.3857,
+   "on_other": 0.3857,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 6,
+   "kind": "back",
+   "things": [
+    "sill"
+   ],
+   "render": "U06",
+   "changed": 0.1466,
+   "on_other": 0.0,
+   "most_of_a_core": 0.0
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 7,
+   "kind": "behind",
+   "things": [
+    "blanket"
+   ],
+   "render": "U07",
+   "changed": 0.3824,
+   "on_other": 0.3823,
+   "most_of_a_core": 0.749
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 8,
+   "kind": "back",
+   "things": [
+    "blanket"
+   ],
+   "render": "U08",
+   "changed": 0.0948,
+   "on_other": 0.0022,
+   "most_of_a_core": 0.148
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 9,
+   "kind": "back",
+   "things": [
+    "blanket"
+   ],
+   "render": "U09",
+   "changed": 0.0296,
+   "on_other": 0.0039,
+   "most_of_a_core": 0.07
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 10,
+   "kind": "behind",
+   "things": [
+    "cat"
+   ],
+   "render": "U10",
+   "changed": 0.3696,
+   "on_other": 0.3689,
+   "most_of_a_core": 0.623
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 11,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "render": "U11",
+   "changed": 0.102,
+   "on_other": 0.0,
+   "most_of_a_core": 0.185
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 12,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "render": "U12",
+   "changed": 0.1441,
+   "on_other": 0.0,
+   "most_of_a_core": 0.241
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 13,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "render": "U13",
+   "changed": 0.019,
+   "on_other": 0.0003,
+   "most_of_a_core": 0.061
+  },
+  {
+   "chain": "sleeping-cat",
+   "unit": 14,
+   "kind": "back",
+   "things": [
+    "cat"
+   ],
+   "render": "U14",
+   "changed": 0.0238,
+   "on_other": 0.0001,
+   "most_of_a_core": 0.054
+  }
+ ],
+ "checkers": [
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U06",
+   "unit": 6,
+   "known": "",
+   "set": "set-01",
+   "look": "r01",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U11",
+   "unit": 11,
+   "known": "",
+   "set": "set-01",
+   "look": "r02",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U01",
+   "unit": 1,
+   "known": "",
+   "set": "set-01",
+   "look": "r03",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U09",
+   "unit": 9,
+   "known": "",
+   "set": "set-01",
+   "look": "r04",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown06_U03",
+   "unit": 3,
+   "known": "",
+   "set": "set-01",
+   "look": "r05",
+   "stray": false,
+   "left": true,
+   "why": "Most far pale birch trunks still stand: the ones on the left edge, left of center, and the tall ones on the right."
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U17",
+   "unit": 17,
+   "known": "",
+   "set": "set-01",
+   "look": "r06",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U06",
+   "unit": 6,
+   "known": "",
+   "set": "set-01",
+   "look": "r07",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U02r",
+   "unit": 2,
+   "known": "",
+   "set": "set-01",
+   "look": "r08",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U18",
+   "unit": 18,
+   "known": "",
+   "set": "set-01",
+   "look": "r09",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U18",
+   "unit": 18,
+   "known": "",
+   "set": "set-01",
+   "look": "r10",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown10_U01",
+   "unit": 1,
+   "known": "",
+   "set": "set-01",
+   "look": "r11",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U08r",
+   "unit": 8,
+   "known": "",
+   "set": "set-01",
+   "look": "r12",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U16",
+   "unit": 16,
+   "known": "",
+   "set": "set-01",
+   "look": "r13",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U15",
+   "unit": 15,
+   "known": "",
+   "set": "set-01",
+   "look": "r14",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown09_U02",
+   "unit": 2,
+   "known": "left",
+   "set": "set-01",
+   "look": "r15",
+   "stray": false,
+   "left": true,
+   "why": "The far misty firs on the right half, including the dark fir right of center, are still standing."
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown03_U06",
+   "unit": 6,
+   "known": "",
+   "set": "set-01",
+   "look": "r16",
+   "stray": false,
+   "left": true,
+   "why": "The lower stretch of the path running toward the viewer in the center foreground is still there."
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U16",
+   "unit": 16,
+   "known": "",
+   "set": "set-01",
+   "look": "r17",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U09",
+   "unit": 9,
+   "known": "",
+   "set": "set-01",
+   "look": "r18",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U02",
+   "unit": 2,
+   "known": "",
+   "set": "set-01",
+   "look": "r19",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U04",
+   "unit": 4,
+   "known": "",
+   "set": "set-01",
+   "look": "r20",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U14",
+   "unit": 14,
+   "known": "",
+   "set": "set-01",
+   "look": "r21",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown05_U04",
+   "unit": 4,
+   "known": "",
+   "set": "set-01",
+   "look": "r22",
+   "stray": true,
+   "left": false,
+   "why": "The sun at the top left is gone in picture 2."
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U07",
+   "unit": 7,
+   "known": "",
+   "set": "set-01",
+   "look": "r23",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown02_U07",
+   "unit": 7,
+   "known": "",
+   "set": "set-01",
+   "look": "r24",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U12",
+   "unit": 12,
+   "known": "",
+   "set": "set-02",
+   "look": "r01",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown07_U02",
+   "unit": 2,
+   "known": "",
+   "set": "set-02",
+   "look": "r02",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U03",
+   "unit": 3,
+   "known": "",
+   "set": "set-02",
+   "look": "r03",
+   "stray": false,
+   "left": true,
+   "why": "the thin pale birch trunk high in the upper center, and a small one left of the dark fir, still stand"
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U07",
+   "unit": 7,
+   "known": "",
+   "set": "set-02",
+   "look": "r04",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U17",
+   "unit": 17,
+   "known": "",
+   "set": "set-02",
+   "look": "r05",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U11",
+   "unit": 11,
+   "known": "",
+   "set": "set-02",
+   "look": "r06",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U10",
+   "unit": 10,
+   "known": "",
+   "set": "set-02",
+   "look": "r07",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown08_U01",
+   "unit": 1,
+   "known": "",
+   "set": "set-02",
+   "look": "r08",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U01",
+   "unit": 1,
+   "known": "",
+   "set": "set-02",
+   "look": "r09",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U05",
+   "unit": 5,
+   "known": "",
+   "set": "set-02",
+   "look": "r10",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U03",
+   "unit": 3,
+   "known": "",
+   "set": "set-02",
+   "look": "r11",
+   "stray": false,
+   "left": true,
+   "why": "the top of the tall pale trunk right of center and the small pale trunk left of the dark fir still stand"
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U08",
+   "unit": 8,
+   "known": "",
+   "set": "set-02",
+   "look": "r12",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "probe/U15",
+   "unit": 15,
+   "known": "stray",
+   "set": "set-02",
+   "look": "r13",
+   "stray": true,
+   "left": false,
+   "why": "the mossy rock right of the path is gone"
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U05",
+   "unit": 5,
+   "known": "",
+   "set": "set-02",
+   "look": "r14",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown01_U08",
+   "unit": 8,
+   "known": "stray",
+   "set": "set-02",
+   "look": "r15",
+   "stray": true,
+   "left": false,
+   "why": "the far misty firs right of the path are gone and new tree trunks stand in their place"
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U15",
+   "unit": 15,
+   "known": "",
+   "set": "set-02",
+   "look": "r16",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U13",
+   "unit": 13,
+   "known": "",
+   "set": "set-02",
+   "look": "r17",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U13",
+   "unit": 13,
+   "known": "",
+   "set": "set-02",
+   "look": "r18",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U14",
+   "unit": 14,
+   "known": "",
+   "set": "set-02",
+   "look": "r19",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U04",
+   "unit": 4,
+   "known": "",
+   "set": "set-02",
+   "look": "r20",
+   "stray": true,
+   "left": false,
+   "why": "the sun at top left is gone"
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "thrown04_U05",
+   "unit": 5,
+   "known": "",
+   "set": "set-02",
+   "look": "r21",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "218",
+   "picture": "birch-grove",
+   "stem": "U10",
+   "unit": 10,
+   "known": "",
+   "set": "set-02",
+   "look": "r22",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "birch-grove",
+   "stem": "U12",
+   "unit": 12,
+   "known": "",
+   "set": "set-02",
+   "look": "r23",
+   "stray": true,
+   "left": false,
+   "why": "the far pale birch trunks in the middle distance either side of the path are gone"
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U16rr",
+   "unit": 16,
+   "known": "stray",
+   "set": "set-03",
+   "look": "r01",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U03",
+   "unit": 3,
+   "known": "",
+   "set": "set-03",
+   "look": "r02",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U06",
+   "unit": 6,
+   "known": "",
+   "set": "set-03",
+   "look": "r03",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U11",
+   "unit": 11,
+   "known": "",
+   "set": "set-03",
+   "look": "r04",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U02",
+   "unit": 2,
+   "known": "",
+   "set": "set-03",
+   "look": "r05",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U13",
+   "unit": 13,
+   "known": "",
+   "set": "set-03",
+   "look": "r06",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U01",
+   "unit": 1,
+   "known": "",
+   "set": "set-03",
+   "look": "r07",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U08",
+   "unit": 8,
+   "known": "",
+   "set": "set-03",
+   "look": "r08",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U07",
+   "unit": 7,
+   "known": "",
+   "set": "set-03",
+   "look": "r09",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U12",
+   "unit": 12,
+   "known": "",
+   "set": "set-03",
+   "look": "r10",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U09",
+   "unit": 9,
+   "known": "",
+   "set": "set-03",
+   "look": "r11",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U10",
+   "unit": 10,
+   "known": "",
+   "set": "set-03",
+   "look": "r12",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U15",
+   "unit": 15,
+   "known": "",
+   "set": "set-03",
+   "look": "r13",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U04",
+   "unit": 4,
+   "known": "",
+   "set": "set-03",
+   "look": "r14",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U14",
+   "unit": 14,
+   "known": "",
+   "set": "set-03",
+   "look": "r15",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "highland-cow",
+   "stem": "U05",
+   "unit": 5,
+   "known": "",
+   "set": "set-03",
+   "look": "r16",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U08",
+   "unit": 8,
+   "known": "",
+   "set": "set-04",
+   "look": "r01",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U12",
+   "unit": 12,
+   "known": "",
+   "set": "set-04",
+   "look": "r02",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U09",
+   "unit": 9,
+   "known": "",
+   "set": "set-04",
+   "look": "r03",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U14",
+   "unit": 14,
+   "known": "",
+   "set": "set-04",
+   "look": "r04",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U10",
+   "unit": 10,
+   "known": "",
+   "set": "set-04",
+   "look": "r05",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U13",
+   "unit": 13,
+   "known": "",
+   "set": "set-04",
+   "look": "r06",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U05",
+   "unit": 5,
+   "known": "",
+   "set": "set-04",
+   "look": "r07",
+   "stray": true,
+   "left": false,
+   "why": "the white front face of the window frame's ledge, lower left under the window, is gone and shows bare canvas"
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U03",
+   "unit": 3,
+   "known": "",
+   "set": "set-04",
+   "look": "r08",
+   "stray": true,
+   "left": false,
+   "why": "the treetops in the upper window pane, at the top right near the post, are gone and replaced by sky"
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U07",
+   "unit": 7,
+   "known": "",
+   "set": "set-04",
+   "look": "r09",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U01",
+   "unit": 1,
+   "known": "",
+   "set": "set-04",
+   "look": "r10",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U04",
+   "unit": 4,
+   "known": "",
+   "set": "set-04",
+   "look": "r11",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U06",
+   "unit": 6,
+   "known": "",
+   "set": "set-04",
+   "look": "r12",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U02",
+   "unit": 2,
+   "known": "",
+   "set": "set-04",
+   "look": "r13",
+   "stray": false,
+   "left": false,
+   "why": ""
+  },
+  {
+   "run": "214",
+   "picture": "sleeping-cat",
+   "stem": "U11",
+   "unit": 11,
+   "known": "",
+   "set": "set-04",
+   "look": "r14",
+   "stray": false,
+   "left": false,
+   "why": ""
+  }
+ ],
+ "chain_218": {
+  "picture": "birch-grove",
+  "renders": 18,
+  "cost_usd": 0.3372,
+  "thrown": [],
+  "thrown_cost_usd": 0,
+  "redone": {},
+  "render_seconds": 242.9,
+  "ask_again": [],
+  "rows": [
+   {
+    "unit": 18,
+    "kind": "back",
+    "things": [
+     "canopy",
+     "undergrowth",
+     "fallen-leaves"
+    ],
+    "steps": [
+     22
+    ],
+    "redo": 0,
+    "erased_share": 0.293,
+    "left_standing": null,
+    "ask_again": false,
+    "seconds": 16.1,
+    "cost_usd": 0.0195,
+    "request": "This is an unfinished acrylic painting, made in stages. Take it back one stage: un-paint only the paint that was laid last, on The golden birch canopy; The yellow bushes along the path; The carpet of fallen leaves. The paint to take off: (1) a few pale taps on the canopy clumps nearest the sun and on their left edges; a few pale taps on the tops of the bushes on the left of the path; scattered pale leaves on the path and on the sunlit ground on the left, fewer in front. Before that paint went on, the painting looked like this: The left edge of every trunk glows near-white, breaking over a few dark marks, while the right side stays gray-brown. the trunks look round and sunlit. The golden birch canopy: The canopy and bushes turn golden: yellow over most of each clump, the orange or olive still showing underneath and on the right. The gaps of sky stay open. The yellow bushes along the path: The canopy and bushes turn golden: yellow over most of each clump, the orange or olive still showing underneath and on the right. The gaps of sky stay open. The carpet of fallen leaves: Golden leaves gather along the path and the left side. the orange and dark dabs still show beneath and around them, more on the right. Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork already there beside it. The golden birch canopy; The yellow bushes along the path; The carpet of fallen leaves stay where they are, at the same size and outline; only the last layer of paint on them goes. Nothing else in the painting is touched. These stay exactly as they are now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; The mossy rock; The near birch trunks; The dark branches. None of them is removed, moved or painted again in another shape. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 17,
+    "kind": "back",
+    "things": [
+     "birches"
+    ],
+    "steps": [
+     21
+    ],
+    "redo": 0,
+    "erased_share": 0.1025,
+    "left_standing": null,
+    "ask_again": false,
+    "seconds": 15.7,
+    "cost_usd": 0.0189,
+    "request": "This is an unfinished acrylic painting, made in stages. Take it back one stage: un-paint only the paint that was laid last, on The near birch trunks. The paint to take off: (1) a broken strip down the left side of each trunk, facing the sun, over some of the dry marks. Before that paint went on, the painting looked like this: The rock's top and left catch a broken yellow-green moss light. its middle stays gray-green and its right side blue-gray. The near birch trunks: Uneven dark marks break across every trunk, some only partway, sparse and small near the top and dense near the ground, where each trunk ends in dark. The pale bark shows in big gaps. Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork already there beside it. The near birch trunks stay where they are, at the same size and outline; only the last layer of paint on them goes. Nothing else in the painting is touched. These stay exactly as they are now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; The golden birch canopy; The yellow bushes along the path; The mossy rock; The dark branches; The carpet of fallen leaves. None of them is removed, moved or painted again in another shape. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 16,
+    "kind": "back",
+    "things": [
+     "rock"
+    ],
+    "steps": [
+     20
+    ],
+    "redo": 0,
+    "erased_share": 0.0,
+    "left_standing": null,
+    "ask_again": false,
+    "seconds": 12.5,
+    "cost_usd": 0.0188,
+    "request": "This is an unfinished acrylic painting, made in stages. Take it back one stage: un-paint only the paint that was laid last, on The mossy rock. The paint to take off: (1) the top and left of the rock, facing the sun. Before that paint went on, the painting looked like this: Golden leaves gather along the path and the left side. the orange and dark dabs still show beneath and around them, more on the right. The mossy rock: The rock's right side and base are a cool blue-gray, curving with its shape. the gray-green top and left still show. It now looks round. Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork already there beside it. The mossy rock stay where they are, at the same size and outline; only the last layer of paint on them goes. Nothing else in the painting is touched. These stay exactly as they are now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; The golden birch canopy; The yellow bushes along the path; The near birch trunks; The dark branches; The carpet of fallen leaves. None of them is removed, moved or painted again in another shape. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 15,
+    "kind": "behind",
+    "things": [
+     "fallen-leaves"
+    ],
+    "steps": [
+     17,
+     18,
+     19
+    ],
+    "redo": 0,
+    "erased_share": 0.2737,
+    "left_standing": 0.0054,
+    "ask_again": false,
+    "seconds": 12.2,
+    "cost_usd": 0.0188,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: The carpet of fallen leaves. Behind them there is only this: the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: The carpet of fallen leaves. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; the orange-gold canopy clumps; the dark bushes along the path; the plain gray-green rock; the plain pale birch trunks; The dark branches. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 14,
+    "kind": "behind",
+    "things": [
+     "branches"
+    ],
+    "steps": [
+     16
+    ],
+    "redo": 0,
+    "erased_share": 0.0347,
+    "left_standing": 0.0099,
+    "ask_again": false,
+    "seconds": 15.5,
+    "cost_usd": 0.0187,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: The dark branches. Behind them there is only this: the orange-gold canopy clumps; The misty sky and glow. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: The dark branches. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; the orange-gold canopy clumps; the dark bushes along the path; the plain gray-green rock; the plain pale birch trunks. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 13,
+    "kind": "back",
+    "things": [
+     "birches"
+    ],
+    "steps": [
+     14,
+     15
+    ],
+    "redo": 0,
+    "erased_share": 0.2926,
+    "left_standing": null,
+    "ask_again": false,
+    "seconds": 13.5,
+    "cost_usd": 0.019,
+    "request": "This is an unfinished acrylic painting, made in stages. Take it back one stage: un-paint only the paint that was laid last, on The near birch trunks. The paint to take off: (1) a strip down the right side of each trunk, away from the sun, darker toward the base. (2) broken dark marks across each trunk, more and bigger toward the base, and the solid dark at each trunk's foot. Before that paint went on, the painting looked like this: Five pale gray-white trunks stand from the bottom edge to the top, painted straight over the canopy, the ground and the bushes, three on the left and two on the right framing the path. They are flat, with no marks. Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork already there beside it. The near birch trunks stay where they are, at the same size and outline; only the last layer of paint on them goes. Nothing else in the painting is touched. These stay exactly as they are now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; The golden birch canopy; The yellow bushes along the path; The mossy rock. None of them is removed, moved or painted again in another shape. What is left where the paint came off is a first coat: smooth, flat and softly blended, with no separate strokes, blades, dabs or texture in it. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 12,
+    "kind": "behind",
+    "things": [
+     "birches"
+    ],
+    "steps": [
+     13
+    ],
+    "redo": 0,
+    "erased_share": 0.3168,
+    "left_standing": 0.0087,
+    "ask_again": false,
+    "seconds": 13.2,
+    "cost_usd": 0.0189,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: the plain pale birch trunks. Behind them there is only this: the orange-gold canopy clumps; The misty sky and glow; The far misty firs; the dark bushes along the path; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: the plain pale birch trunks. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; the orange-gold canopy clumps; the dark bushes along the path; the plain gray-green rock. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 11,
+    "kind": "back",
+    "things": [
+     "rock"
+    ],
+    "steps": [
+     12
+    ],
+    "redo": 0,
+    "erased_share": 0.0069,
+    "left_standing": null,
+    "ask_again": false,
+    "seconds": 13.7,
+    "cost_usd": 0.0187,
+    "request": "This is an unfinished acrylic painting, made in stages. Take it back one stage: un-paint only the paint that was laid last, on The mossy rock. The paint to take off: (1) the right side and the bottom of the rock, away from the sun. Before that paint went on, the painting looked like this: A low gray-green dome sits right of the path, flat at the bottom, over the bushes behind it. It is one flat color. Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork already there beside it. The mossy rock stay where they are, at the same size and outline; only the last layer of paint on them goes. Nothing else in the painting is touched. These stay exactly as they are now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; The golden birch canopy; The yellow bushes along the path. None of them is removed, moved or painted again in another shape. What is left where the paint came off is a first coat: smooth, flat and softly blended, with no separate strokes, blades, dabs or texture in it. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 10,
+    "kind": "behind",
+    "things": [
+     "rock"
+    ],
+    "steps": [
+     11
+    ],
+    "redo": 0,
+    "erased_share": 0.015,
+    "left_standing": 0.0023,
+    "ask_again": false,
+    "seconds": 14.8,
+    "cost_usd": 0.0187,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: the plain gray-green rock. Behind them there is only this: the dark bushes along the path; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: the plain gray-green rock. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; the orange-gold canopy clumps; the dark bushes along the path. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 9,
+    "kind": "back",
+    "things": [
+     "canopy",
+     "undergrowth"
+    ],
+    "steps": [
+     10
+    ],
+    "redo": 0,
+    "erased_share": 0.5584,
+    "left_standing": null,
+    "ask_again": false,
+    "seconds": 14.9,
+    "cost_usd": 0.0191,
+    "request": "This is an unfinished acrylic painting, made in stages. Take it back one stage: un-paint only the paint that was laid last, on The golden birch canopy; The yellow bushes along the path. The paint to take off: (1) golden yellow over most of each canopy clump, more toward the sun, the orange showing underneath and on the side away from the sun; golden yellow over the tops of the bushes, more on the left, the olive showing at their feet. Before that paint went on, the painting looked like this: Low olive and dark blue-green clumps sit along both sides of the path where it meets the far woods, darkest under the firs. The path stays open between them. The golden birch canopy: Loose orange-gold clumps hang across the top and down the left side, with gaps where the gold glow and blue sky show through. The sun stays clear. Where you take paint off, show what was under it at that earlier stage, in the colors and brushwork already there beside it. The golden birch canopy; The yellow bushes along the path stay where they are, at the same size and outline; only the last layer of paint on them goes. Nothing else in the painting is touched. These stay exactly as they are now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path. None of them is removed, moved or painted again in another shape. What is left where the paint came off is a first coat: smooth, flat and softly blended, with no separate strokes, blades, dabs or texture in it. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 8,
+    "kind": "behind",
+    "things": [
+     "undergrowth"
+    ],
+    "steps": [
+     9
+    ],
+    "redo": 0,
+    "erased_share": 0.1936,
+    "left_standing": 0.001,
+    "ask_again": false,
+    "seconds": 12.3,
+    "cost_usd": 0.0188,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: the dark bushes along the path. Behind them there is only this: the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; The far misty firs; The misty sky and glow. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: the dark bushes along the path. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path; the orange-gold canopy clumps. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 7,
+    "kind": "behind",
+    "things": [
+     "canopy"
+    ],
+    "steps": [
+     8
+    ],
+    "redo": 0,
+    "erased_share": 0.2405,
+    "left_standing": 0.0001,
+    "ask_again": false,
+    "seconds": 12.3,
+    "cost_usd": 0.0186,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: the orange-gold canopy clumps. Behind them there is only this: The misty sky and glow. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: the orange-gold canopy clumps. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it; the plain light sandy path. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 6,
+    "kind": "behind",
+    "things": [
+     "path"
+    ],
+    "steps": [
+     7
+    ],
+    "redo": 0,
+    "erased_share": 0.0285,
+    "left_standing": 0.0,
+    "ask_again": false,
+    "seconds": 14.3,
+    "cost_usd": 0.0186,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: the plain light sandy path. Behind them there is only this: the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: the plain light sandy path. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze; the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 5,
+    "kind": "behind",
+    "things": [
+     "forest-floor"
+    ],
+    "steps": [
+     6
+    ],
+    "redo": 0,
+    "erased_share": 0.4677,
+    "left_standing": 0.0039,
+    "ask_again": false,
+    "seconds": 13.9,
+    "cost_usd": 0.0186,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it. Behind them there is only this: The misty sky and glow. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: the bare forest floor, orange gold at the back and rust brown in front, with no leaves on it. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks; The sun rays and haze. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 4,
+    "kind": "behind",
+    "things": [
+     "sun-rays"
+    ],
+    "steps": [
+     5
+    ],
+    "redo": 0,
+    "erased_share": 0.5117,
+    "left_standing": 0.0122,
+    "ask_again": false,
+    "seconds": 14.1,
+    "cost_usd": 0.0185,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: The sun rays and haze. Behind them there is only this: The misty sky and glow; The far misty firs; The far pale birch trunks. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: The sun rays and haze. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs; The far pale birch trunks. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 3,
+    "kind": "behind",
+    "things": [
+     "far-trunks"
+    ],
+    "steps": [
+     4
+    ],
+    "redo": 0,
+    "erased_share": 0.0799,
+    "left_standing": 0.0013,
+    "ask_again": false,
+    "seconds": 12.0,
+    "cost_usd": 0.0184,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: The far pale birch trunks. Behind them there is only this: The misty sky and glow; The far misty firs. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: The far pale birch trunks. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun; The far misty firs. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 2,
+    "kind": "behind",
+    "things": [
+     "far-firs"
+    ],
+    "steps": [
+     3
+    ],
+    "redo": 0,
+    "erased_share": 0.4035,
+    "left_standing": 0.0059,
+    "ask_again": false,
+    "seconds": 12.5,
+    "cost_usd": 0.0183,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: The far misty firs. Behind them there is only this: The misty sky and glow. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: The far misty firs. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow; The sun. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   },
+   {
+    "unit": 1,
+    "kind": "behind",
+    "things": [
+     "sun"
+    ],
+    "steps": [
+     2
+    ],
+    "redo": 0,
+    "erased_share": 0.0344,
+    "left_standing": 0.0078,
+    "ask_again": false,
+    "seconds": 9.4,
+    "cost_usd": 0.0183,
+    "request": "This is an unfinished acrylic painting. Remove these things from it completely: The sun. Behind them there is only this: The misty sky and glow. Paint that there, plain and empty, as it is in the open places of the painting, in the same colors and the same brushwork. Paint no new thing there: no trees, plants, rocks, animals, buildings or figures. Leave no trace, outline, or shadow of what you removed. All of this goes: The sun. Every part of it and every one of them, the dark, the faint and the small ones too, so that no shape of them is left. Nothing else goes. These are already painted and stay exactly as they are, wherever they can be seen now: The misty sky and glow. None of them is removed, moved or painted again in another shape, and nothing is added to them: no new trunk, tree, branch, bush, rock or animal anywhere in the painting. Change nothing else: everything that stays keeps its exact place, shape, and color, and any canvas that is already bare stays bare. No text, signature, or watermark."
+   }
+  ]
+ }
+}
