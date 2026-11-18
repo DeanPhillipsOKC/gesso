@@ -18,9 +18,12 @@ SKILL.md's rules for the whole run stand, except:
 - **Rule 9 (the order):** after any change to `plan.json`: `plan-check`, `erase`, `build-steps`, `step-aids`, `mix`,
   `draft-text`, `packets`, `check-text`, `check`. A request that didn't change costs nothing the second time.
 
-**Lessons are made on Opus** (`docs/decisions.md`, 2026-11-17). If you aren't an Opus model, start this run as one
-subagent on Opus and pass on its report. Every helper below (the plan's writer, the chain's checker, the stage
-writers) is a subagent on Opus in a fresh context, given only what its step names.
+**Lessons are made on Opus** (`docs/decisions.md`, 2026-11-17). Every helper below (the plan's writer, the chain's
+checker, the stage writers) is a subagent on Opus in a fresh context, given only what its step names. **Run this
+from the session the owner started, not from inside a subagent:** a subagent can't start the helpers (the first
+real run stopped at step A for that, #219). If you aren't an Opus model, you still run the tools and start the
+helpers yourself, and hand what takes a painter's judgment to one more Opus subagent: steps 0 and 1 before the
+plan, and E2 (diagrams, notes, the seal) at the end, with what happened in between written out for it.
 
 ## Steps
 
@@ -79,7 +82,9 @@ Don't Read the renders yourself to second-guess the checker, and never edit a fi
 3. `check-text --lesson <lesson>`. For each stage in `stages_with_feedback`, send its writer back once: "Read
    `feedback.md` in your folder and write `out.json` again." Then `check-text --lesson <lesson> --final`, which
    takes out any sentence that still fails. If `problems` still names a stage with a missing or unusable
-   `out.json`, start a new writer for that stage and run `check-text --final` again.
+   `out.json`, start a new writer for that stage and run `check-text --final` again. `check` (E1) may then name a
+   paint a writer's words mention that the step doesn't list: send that writer back for it, and run
+   `check-text --final` again.
 4. Write `<lesson>/review.json`:
    ```json
    {"finish_issues": ["from step 1's finish check, or an empty list"],
