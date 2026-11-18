@@ -80,8 +80,25 @@ changes because of it:
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
 `"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6); `paints`, `build-steps` and the bridge to `step-aids`,
 `mix` and `draft-text` (sections 7 to 9); the fact sheet, the stage writers, `check-text`, `check`, the seal and
-the run's instructions (sections 10 and 11; `.claude/skills/paint-lesson/v3/run.md`, chosen by `--v3`). **Not done:**
-a whole lesson made by it from a photo. That is #219's acceptance run, and the first time its parts run together. The spikes' three plans, with what was
+the run's instructions (sections 10 and 11; `.claude/skills/paint-lesson/v3/run.md`, chosen by `--v3`). **The first whole lesson (2026-11-18, #219's acceptance):** `floating-island_skill_20261118-044513`, from an
+AI-made picture that isn't on the bench, sealed hands-off. 24 steps in 7 stages, 19 units, 10 mixes. The chain: 18
+units, 19 renders (36 cents, 4 minutes); `erase` asked again by itself once, for clouds left standing; the checker
+marked none of 18. The three checks read 0, 0 and a median of 12.4 Lab units. The words: 171 claims, 14 failed, one
+fix round, one sentence taken out. 52 cents of renders in all, and about 35 minutes from the photo to the seal.
+What it showed:
+
+- **The paint fit read what was round a small thing, not the thing** (section 7, fixed): the moon's pale gold was
+  fitted to the sky's blue. A pixel further than 30 Lab units from a paint no longer counts as that paint's.
+  Seven of 20 paints were still fitted 26 to 36 units from the plan's rough color, and are on the page as known
+  problems.
+- **The run can't be one subagent** (the skill, fixed): a subagent can't start the helpers.
+- **The sheet measures a thing too wide when a later unit lays on two things** (section 9, not fixed): the
+  island's place took in the doorway, because the stone's shading is one unit on both and is filed under the
+  island. It cost one sentence a writer had right.
+- **A plan's `after` can disagree with its own `behind`** (section 5, not fixed): the sea was given the sky as
+  what is behind it, so the sky runs to the bottom edge, and the first steps' `after` lines say the bottom third is
+  bare. The writers wrote to the pictures.
+- **Steps that change little remain** (section 14): the lighter blossom dabs and the water's streaks. The spikes' three plans, with what was
 written by hand folded in, are `spike/tests/fixtures/plans3/`. A step v2's cutter showed flat is a block-in there
 only when it is one by the plan's rule, so the cow has 14 units and the birch grove 17, where the spikes' chains
 had 17 and 19 (the cow's clouds, bushes and nose and the birch grove's canopy and bushes start with dabs or

@@ -27,6 +27,7 @@ import outline as ol
 import plan3
 
 REFIT = 2  # rounds of "each pixel to its nearest paint, each paint to the middle of its pixels"
+REACH = 30.0  # Lab units: a pixel further than this from a paint isn't that paint, whatever else is in the unit
 FEW = 20  # a paint with fewer pixels than this near it in a unit keeps the color it came with
 LITTLE = 0.002  # a step that changes less than this share of the canvas is reported (design section 8, check 4)
 FAR = 25.0  # Lab units: a paint fitted this far from the plan's rough color, or a pixel this far from its step's paints
@@ -50,17 +51,22 @@ def nearest(content: np.ndarray, hexes: list[str]) -> np.ndarray:
 def fit_paints(content: np.ndarray, where: np.ndarray, seeds: dict[str, str]) -> dict[str, str]:
     """Each paint's color as it is in this picture: from its seed (the plan's rough `color`), each pixel of `where`
     goes to its nearest paint and each paint to the middle of its pixels (`fit_paints` in
-    spike/experiments/v4_forward.py). A paint with few pixels keeps its seed."""
+    spike/experiments/v4_forward.py), but only pixels within REACH of the paint count as its own. A unit's change
+    holds more than its paint: the sky a render drew again round a moon, the whole of a thing drawn again without
+    one layer. Without the reach the moon's pale gold was fitted to the sky's blue (the floating island, #219's
+    first real run). A paint with few pixels keeps its seed."""
     names, hexes = list(seeds), dict(seeds)
     if not where.any() or not names:
         return hexes
     px = cv2.GaussianBlur(content, (0, 0), 1.0)[where]
     lab = ol.lab(px[None])[0].astype(np.float32)
     for _ in range(REFIT):
-        near = np.stack([_dist(lab, hexes[n]) for n in names]).argmin(0)
+        dist = np.stack([_dist(lab, hexes[n]) for n in names])
+        near = dist.argmin(0)
         for j, n in enumerate(names):
-            if (near == j).sum() >= FEW:
-                hexes[n] = to_hex(np.median(px[near == j], axis=0))
+            mine = (near == j) & (dist[j] <= REACH)
+            if mine.sum() >= FEW:
+                hexes[n] = to_hex(np.median(px[mine], axis=0))
     return hexes
 
 
@@ -81,9 +87,10 @@ def fit(plan: dict, us: list[dict], ch: list[dict]) -> tuple[dict[str, str], lis
         names = unit_paints(steps, u)
         hexes = fit_paints(ch[n]["P"], ch[n]["D"], {p: seeds[p] for p in names})
         near = nearest(ch[n]["P"], [hexes[p] for p in names])
+        lab = ol.lab(cv2.GaussianBlur(ch[n]["P"], (0, 0), 1.0))
         per_unit.append(hexes)
-        for j, p in enumerate(names):
-            laid.setdefault(p, []).append((int((ch[n]["D"] & (near == j)).sum()), n))
+        for j, p in enumerate(names):  # how much of the unit's change is this paint: nearest it, and like it
+            laid.setdefault(p, []).append((int((ch[n]["D"] & (near == j) & (_dist(lab, hexes[p]) <= REACH)).sum()), n))
     one, rows = {}, []
     for p, seed in seeds.items():
         if p not in laid:
@@ -163,8 +170,9 @@ def problems(built: dict) -> tuple[list[str], list[str]]:
                    "files don't belong together: run erase again.")
     for r in built["paints"]:
         if r["not_in_finish"]:
-            notes.append(f"paint {r['paint']!r}: almost nothing in the painting is this color where the plan lays it. "
-                         "The plan names a color the finish doesn't have.")
+            notes.append(f"paint {r['paint']!r}: almost nothing where the plan lays it is within {REACH:g} Lab units of "
+                         f"the plan's {r['color']}, so it keeps that color. Either the finish doesn't have this "
+                         "paint there, or the plan's rough color is too far from it.")
         elif r["far_from_name"]:
             notes.append(f"paint {r['paint']!r} was fitted to {r['hex']}, {r['moved']:.0f} Lab units from the plan's "
                          f"{r['color']}: check that its name still says what it looks like.")

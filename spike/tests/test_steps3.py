@@ -66,19 +66,32 @@ class Steps3Tests(unittest.TestCase):
 
     def test_a_paint_far_from_its_name_and_a_paint_the_finish_lacks_are_reported(self):
         p = plan()
-        p["paints"][1]["color"] = "#2244cc"  # "Rug red" given as a blue: it is still fitted to the rug
+        p["paints"][1]["color"] = "#b06848"  # "Rug red" given as a dull orange-brown: it is still fitted to the rug
+        p["paints"][0]["color"] = "#22aa44"  # "Sky blue" given as a green: nothing in the sky is like that
         p["paints"].append({"name": "Lime", "looks": "x", "color": "#00ff00"})
         step(p, "light-cat")["paints"] = ["Pale gray", "Lime"]
         one, _, rows = steps3.fit(p, plan3.units(p), self.ch)
         by = {r["paint"]: r for r in rows}
         self.assertTrue(near(one["Rug red"], RUG))
-        self.assertTrue(by["Rug red"]["far_from_name"])
+        self.assertGreater(by["Rug red"]["moved"], 20)
         self.assertTrue(by["Lime"]["not_in_finish"])
         self.assertEqual(one["Lime"], "#00ff00")
+        self.assertTrue(by["Sky blue"]["not_in_finish"])  # a paint keeps its color where no pixel is like it
+        self.assertEqual(one["Sky blue"], "#22aa44")
+        rows[1]["far_from_name"] = True
         bad, notes = steps3.problems({**self.built, "paints": rows})
         self.assertEqual(bad, [])
         self.assertTrue(any("'Rug red' was fitted to" in n for n in notes))
         self.assertTrue(any("'Lime'" in n and "doesn't have" in n for n in notes))
+
+    def test_a_paint_is_not_fitted_to_what_else_its_units_change_holds(self):
+        # the cat's change, widened to take in the sky and rug round it, as a render that drew them again would
+        ch = [dict(c) for c in self.ch]
+        wide = np.zeros_like(ch[2]["D"])
+        wide[60:300, 100:400] = True
+        ch[2] = {**ch[2], "D": wide}
+        one, _, rows = steps3.fit(self.plan, plan3.units(self.plan), ch)
+        self.assertTrue(near(one["Cat gray"], CAT), one["Cat gray"])
 
     def test_the_three_checks_hold(self):
         b = self.built
