@@ -78,7 +78,8 @@ changes because of it:
 - **`erase` reports a thing left standing (section 6, new).** It sees a whole thing left, not a faint one in part.
 
 **The build into `/paint-lesson` has started (#219, section 12, step 4).** Built so far, beside v2 and chosen by
-`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5). The spikes' three plans, with what was
+`"plan_version": 3`: the plan file, its brief and `plan-check` (section 5); `erase` and the checker's brief (section 6); `paints`, `build-steps` and the bridge to `step-aids`,
+`mix` and `draft-text` (sections 7 to 9). The spikes' three plans, with what was
 written by hand folded in, are `spike/tests/fixtures/plans3/`. A step v2's cutter showed flat is a block-in there
 only when it is one by the plan's rule, so the cow has 14 units and the birch grove 17, where the spikes' chains
 had 17 and 19 (the cow's clouds, bushes and nose and the birch grove's canopy and bushes start with dabs or
@@ -179,7 +180,8 @@ the brief in `.claude/skills/paint-lesson/v3/plan-brief.md`:
 - **`unit` on the first step of a unit** that isn't the start of one thing: a name for what the unit adds, as the
   page says it ("The cow's shaggy coat"). A unit that starts one thing takes the thing's id and name.
 
-**Units** (`plan3.units`) are worked out from the plan, not written: section 6. `plan-check` prints them, with
+**Units** (`plan3.units`) are worked out from the plan, not written: section 6. A blend is a unit by itself, as a
+block-in is: colors worked wet into each other can't be cut apart by paint. `plan-check` prints them, with
 what each render will be asked for, so the writer sees which steps need a `unit` name.
 
 **The rules the plan is held to** are v2's and the owner's, unchanged: paint-along on a white canvas, back to front,
@@ -274,6 +276,42 @@ faint, soft things on a sky (the cow's clouds 49% unchanged, the birch grove's f
 in step 1. **Open:** a second edit model for those (it needs a host and a key), or a plan that folds a faint thing
 into what it sits on.
 
+**As built (#219; `spike/erase3.py`, `tools.py erase`, `.claude/skills/paint-lesson/v3/chain-check.md`).**
+
+- **The requests of #217 and #218 are joined here for the first time.** Every request names what stays (#218).
+  Every "back" request says "take all of that layer off" and lists what isn't painted yet from its own unit on
+  (#217). The first unit to come back to a block-in also says what a block-in is. No sentence is written by hand.
+  **Run by nobody yet:** the two spikes each ran with the other's wording off.
+- **A thing's name in a request.** `called` when the plan gives one. A thing that has had only its first unit and
+  has more to come is named by its `plain` name, in every kind of request. The spikes did this only where a thing
+  went, and by a hand-kept list.
+- **Kept over the whole thing, from the same renders.** The chain is laid twice. The first laying is the guard's
+  alone, and finds each blocked-in thing's core when the chain erases it. The second lays every "back" render on
+  such a thing over that core, holes filled, as well as where it changed by a lot. #217 rendered each of a thing's
+  stages again, from the picture the kept-whole stage above it left. Here each render is made from the first
+  laying's picture, where a flat coat may still be in patches. **Not graded.** Checked without a render: the
+  sleeping cat's stored renders of #214 give #214's chain pixel for pixel from the first laying, and #217's
+  renders of the blanket and the cat give a flat blanket and a flat cat from the second.
+- **`erase` asks again by itself for a thing left standing** (2% of the canvas, `LEFT`), on the spot, before the
+  units before it are rendered from its picture. So a miss costs one render, not a render for every earlier unit.
+- **What is measured on which laying.** A thing left standing, and so `erase`'s own asking again, is measured on
+  the first laying, where each render was made. The pictures kept, `erased_share` and the checker's looks are the
+  second laying's. A unit between a block-in and a later stage of its thing (the cow's horns, between its block-in
+  and its coat) is rendered from the first laying's picture and laid on the second's. **No test or spike covers
+  how much those differ on a real chain.**
+- **A run that stops partway loses nothing.** Each try is written to `chain/tries.json` before its render and
+  ticked off after, so the next run asks for the same tries and pays for none twice. `chain.json` counts every
+  render paid for, the tries thrown away too. A chain is refused by the later tools when the finish or any
+  request has changed since it was made.
+- **Asking again says why:** `--redo 8:stray` or `8:left`, at most twice a unit. Each adds a sentence. For a
+  layer left on a thing it is #217's hand-written "what is left has no texture"; the other three are this build's
+  own and no spike ran them. A redo is a fresh render, not the cache's.
+- **The same picture and request cost nothing twice** (the render cache), so `erase` run again pays only for what
+  changed, and a probe of the last unit is the chain's own render.
+- **The guard's sizes follow the picture:** they are pixels of a picture 1536 on its long side, scaled.
+- **The checker reads the second laying's pictures,** so a blocked-in thing drawn again without its layer shows
+  as all changed. Its brief says that isn't a stray change, and it now answers "left" for a layer too.
+
 **Cost and time.** 1.8 cents and about 14 seconds a render in #204, one after another. A plan-first plan makes
 about 11 units where v2's plan made 6 to 8: about 20 cents and 2 1/2 minutes a lesson, where v2 spends about
 2 cents on one background render. The owner opened "more or dearer renders (cost stays low)" to v3 spikes; whether
@@ -292,6 +330,14 @@ paints, and each is fitted to the finish.
   gray darker than the cat's coat, no paint as pale as the plan's "Pale gold"). The plan is changed, not the finish.
 - Recipes are computed as in v2 (`mix`, Mixbox), and every step lists its own paints and recipes.
 
+**As built (#219; `steps3.fit`, `tools.py paints` and `build-steps`).** The fit is `fit_paints` of #207, a unit at a
+time, over the unit's whole change. The lesson's one color for a paint is its fit in the unit that lays the most of
+it (a tie goes to the earlier unit). `paints` on a version 3 lesson only reports; `build-steps` fits again and keeps
+the colors. Two things are reported, not failed: a paint fitted more than 25 Lab units from the plan's rough color
+(`far_from_name`: five of the sleeping cat's 22), and a paint fewer than 20 pixels came to (`not_in_finish`). A
+plan's `color`, name or `looks` can be changed without a new chain. Two paints whose names differ only in
+punctuation are refused by `plan-check`.
+
 ## 8. Step pictures (`build-steps`)
 
 For each unit, in painting order, from P[u] and D[u]:
@@ -305,6 +351,9 @@ Because units are smaller than things, fewer steps are cut this way: on the cow'
 step, and no unit has more than 5. The big jumps the graders marked down in #204 (flat to finished in a step, a
 face on a step that names a gold) were inside units that were whole things. **Guess:** smaller units remove most of
 them. The combined lesson is the test.
+
+**As built (#219; `steps3.build`).** A block-in is always a unit by itself (section 5), so no step is a flat coat
+cut by v2's rule: a unit's last step is P[u], and an earlier step shows the pixels nearest its own paints.
 
 **The three checks** (`pipeline-v3-plan.md`), run on every lesson:
 
@@ -323,6 +372,12 @@ Two more, from faults the graders named:
 5. **A first step that shows too much:** step 1's picture is compared with the plan's first `after`. This one is
    Claude's eye at step 5, not a measure.
 
+**As built:** checks 1 and 2 fail `build-steps` (they hold by construction, so a failure means the chain's files
+don't belong together). Check 3, a paint far from its name and check 4 are `notes`: fixing one needs a new plan and
+a new chain. Check 4 measures what a painter would see (`seen`: a change of 9 Lab units or more after the guard's
+blur), because a thing drawn again by a render moves every pixel a little; the spikes counted any pixel 6 levels
+off.
+
 ## 9. Teaching pictures and the fact sheet
 
 v2 draws these from outlines. In v3 a step's area is what the step laid, and a thing's shape is the core of its
@@ -337,6 +392,21 @@ unit's change. **All of this section is a guess:** no spike measured a Where lin
   IoU with v2's outlines ran from 0.17 to 0.88 in #204). So places are measured on the core, not the whole change.
 - **The sheet's own fixes,** from #173: halves and middles measured on a thing's main body; one size for a step's
   area, not two that can disagree; facts for the pieces of a thing.
+
+**As built (#219; `steps3.as_v2`, `spike/lesson3.py`), for the teaching pictures, the recipes and the drafted
+lines.** `build-steps` keeps the plan in version 2's shape (`v3/plan.json`: a part a unit), which unit each pixel
+belongs to (`parts/owner.png`), where each step lays paint and each unit's shape (`v3/masks.npz`), and the checks'
+numbers (`v3/build.json`). `step-aids`, `mix` and `draft-text` are v2's own code reading those; they never cut a
+version 3 step, and they refuse what was kept when the plan, the finish, the chain or a kept file has changed. What
+the spikes kept by hand is worked out:
+
+- a unit that comes back to a thing, and a new thing painted in several steps, is `marks`; its parent is the part
+  that started the thing (or what is behind it), and never another `marks` part;
+- a new thing that starts as a block-in on things already painted is an `object`, and the page offers its outline
+  to chalk. Every other new thing is an `area`. **Differs from the spikes,** where every new thing on painted
+  things was an object unless a hand-kept list said otherwise (the birch grove's path, sun and branches);
+- a unit's box, and its shape for the fact sheet, is what it changed (core first), not only where it is still on
+  top at the end (#214).
 
 ## 10. Words
 

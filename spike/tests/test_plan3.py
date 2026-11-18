@@ -162,6 +162,10 @@ class ProblemsTests(unittest.TestCase):
         p["paints"][0]["color"] = "blue"
         self.one(p, "'Sky blue'", "`color`", "hex")
         p = plan()
+        p["paints"].append({"name": "Cat-gray", "looks": "x", "color": "#112233"})
+        step(p, "light-cat")["paints"] = ["Pale gray", "Cat-gray"]
+        self.one(p, "'Cat-gray'", "too like the name 'Cat gray'", tech=None)
+        p = plan()
         p["paints"].append({"name": "Spare", "looks": "x", "color": "#112233"})
         self.one(p, "'Spare'", "no step uses it", tech=None)
 
@@ -355,14 +359,29 @@ class PlanCheckToolTests(unittest.TestCase):
         self.assertFalse(r["ok"])
         self.assertNotIn("units", r)
 
-    def test_the_version_2_tools_refuse_a_version_3_plan(self):
+    def test_a_version_2_tool_still_refuses_a_plan_that_is_not_json(self):
+        for tool in ("build-steps", "step-aids", "paints", "draft-text", "mix", "check"):
+            with tempfile.TemporaryDirectory() as tmp:
+                (Path(tmp) / "plan.json").write_text('{"plan_version": 2, ', encoding="utf-8")
+                self.assertIsNone(plan3.version(Path(tmp)))
+                buf = io.StringIO()
+                with contextlib.redirect_stdout(buf):
+                    try:
+                        code = tools.main([tool, "--lesson", tmp])
+                    except ValueError as e:  # mix, publish and check never refused this; they still don't
+                        self.assertIn(tool, ("mix", "check"), e)
+                        continue
+                self.assertEqual(code, 2, tool)
+                self.assertIn("refused", json.loads(buf.getvalue()))
+
+    def test_outline_refuses_a_version_3_plan(self):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / "plan.json").write_text(json.dumps(plan()), encoding="utf-8")
             self.assertEqual(plan3.version(Path(tmp)), 3)
             self.assertTrue(plan3.is_v3(Path(tmp)))
             buf = io.StringIO()
             with contextlib.redirect_stdout(buf):
-                code = tools.main(["build-steps", "--lesson", tmp])
+                code = tools.main(["outline", "--lesson", tmp])  # outlines are version 2's alone
             self.assertEqual(code, 2)
             self.assertIn("isn't a version 2 plan", json.loads(buf.getvalue())["refused"])
         self.assertIsNone(plan3.version(Path(tmp)))

@@ -11,6 +11,13 @@ Tools for a version 3 lesson, beside v2. No lesson is made with them yet, so the
 - `plan-check`: a version 3 plan (`"plan_version": 3`: things with no boxes, what is behind each, a rough color a
   paint, block-ins marked) checked against itself, the technique and the library, with the units its chain will
   render, the mix count against the target of 10, and the paints to mix again.
+- `erase`: the chain. One low render a unit of the plan, each made from the last picture, with every request
+  written from the plan (what goes, what is behind, what stays, what a block-in is, what isn't painted yet). Of
+  each render only what changed by a lot is kept; a render on a blocked-in thing is kept over the whole thing. A
+  thing left standing is asked for again by itself, and `--redo` asks again for what a checker marks.
+- `paints` and `build-steps` on a version 3 lesson: each paint fitted to what its units changed, a step picture a
+  step from the chain, the three checks, and reports of a paint far from its name and a step that changes almost
+  nothing. `step-aids`, `mix` and `draft-text` read a version 3 lesson through what `build-steps` keeps.
 
 ## POC 1.12.1 (2026-11-16)
 - `check` fails a step whose paints are far from the color its own picture adds (#154). In

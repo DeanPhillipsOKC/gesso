@@ -11,7 +11,8 @@ is erased backward a unit at a time (`erase`), and a thing's shape is what its r
 
 Words:
     thing     something the painter paints, as a painter names it (the sky, the cow). No box, no outline.
-    unit      a run of steps in one stage on the same thing. One render a unit. A block-in is a unit by itself, and
+    unit      a run of steps in one stage on the same thing. One render a unit. A block-in or a blend is a unit by
+              itself, and
               so is a step whose paints its unit has all used already (two steps of one render that share a paint
               can't be told apart in it).
     kind      what a unit's render is asked for: "first" (the first unit: never erased), "bare" (its things are new
@@ -34,7 +35,13 @@ APART = 3  # a paint used again this many steps or more after its last use has d
 def version(lesson: Path) -> int | None:
     """The lesson's plan version (2 or 3), or None when it has no plan.json."""
     path = Path(lesson) / "plan.json"
-    return json.loads(path.read_text(encoding="utf-8")).get("plan_version") if path.exists() else None
+    if not path.exists():
+        return None
+    try:
+        plan = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:  # not JSON: no version. The tool that reads the plan next says what is wrong with it
+        return None
+    return plan.get("plan_version") if isinstance(plan, dict) else None
 
 
 def is_v3(lesson: Path) -> bool:
@@ -93,12 +100,14 @@ def _runs(plan: dict) -> list[dict]:
 def units(plan: dict) -> list[dict]:
     """The plan's units in painting order: {"stage", "things", "steps" (indexes into `steps`), "kind", "id",
     "name"}. A run of steps is cut where a step's paints are all ones the unit has used already, and before
-    and after a block-in (`units` in spike/experiments/v3_combined.py, #210).
+    and after a block-in or a blend (`units` in spike/experiments/v3_combined.py, #210).
 
     A unit that starts one thing takes that thing's id and name. Any other unit (a later stage of a thing, or one
     that starts several things at once) is named by its first step's `unit`; `problems` asks for it."""
     all_steps = steps(plan)
-    block_in = {s.get("id") for s in all_steps if s.get("block_in")}
+    # alone in its unit: a block-in, and a blend (colors worked wet into each other can't be told apart by paint, so
+    # no other step can share its render)
+    block_in = {s.get("id") for s in all_steps if s.get("block_in") or s.get("blend")}
     out: list[dict] = []
     for run in _runs(plan):
         cur: dict = {"stage": run["stage"], "things": [], "steps": []}
@@ -300,6 +309,12 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
             continue
         if name in paints:
             out.append(f"paint {name!r}: two paints have this name")
+        elif slug(name) in {slug(x) for x in paints}:
+            other = next(x for x in paints if slug(x) == slug(name))
+            out.append(f"paint {name!r}: too like the name {other!r} (the tools tell paints apart by their letters "
+                       "and digits). Rename one.")
+        elif not slug(name):
+            out.append(f"paint {name!r}: a paint's name needs letters or digits in it")
         if not HEX.match(p.get("color") or ""):
             out.append(f"paint {name!r}: give its rough color (`color`) as a hex like #a1b2c3. The paints are fitted "
                        "to the painting from it.")

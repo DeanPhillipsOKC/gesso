@@ -38,6 +38,7 @@ class FakeImages:
         if self.before_edit:
             self.before_edit()
         self.calls += 1
+        self.sent = getattr(self, "sent", []) + [kwargs]
         buf = io.BytesIO()
         Image.new("RGB", (8, 8), (self.calls * 20 % 255, 100, 150)).save(buf, format="PNG")
         data = type("D", (), {"b64_json": base64.b64encode(buf.getvalue()).decode()})()

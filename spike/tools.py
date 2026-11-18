@@ -277,6 +277,14 @@ def load_plan(lesson: Path):
     import plan2
     import publish2
 
+    import plan3
+
+    if plan3.is_v3(lesson):  # a version 3 lesson: its plan in version 2's shape, as its build-steps kept it
+        raw = _v3_kept(lesson, pictures=False)["plan"]
+        technique = yaml.safe_load((ROOT / raw["technique"]).read_text(encoding="utf-8"))
+        if raw.get("palette"):
+            technique["palette"], technique["palette_name"] = load_palette(raw["palette"])
+        return raw, publish2.as_v1(raw), technique
     raw = json.loads((lesson / "plan.json").read_text(encoding="utf-8"))
     if not plan2.is_v2(lesson):
         raise Refused("plan.json isn't a version 2 plan (no \"plan_version\": 2). Version 1 lessons can't be published "
@@ -385,6 +393,30 @@ def compute_mixes(lesson: Path, plan, technique) -> dict[str, dict]:
         mixes[p.name] = m
     (lesson / "mixes.json").write_text(json.dumps(mixes, indent=2), encoding="utf-8")
     return mixes
+
+
+def _paints_v3(lesson: Path, a: argparse.Namespace) -> dict:
+    """paints for a version 3 lesson: each of the plan's paints fitted to what its units changed, and a report of a
+    paint fitted far from its name. It writes nothing: build-steps fits them again and keeps them. Design section 7."""
+    import erase3
+    import plan3
+    import steps3
+
+    if getattr(a, "add", None):
+        raise Refused("paints --add is for a version 2 lesson. A version 3 plan names its own paints: add the paint "
+                      "to plan.json and to the step that lays it.")
+    plan, _, _ = _v3_ready(lesson)
+    us = plan3.units(plan)
+    try:
+        ch = erase3.load(lesson, plan)
+    except erase3.Refused as e:
+        raise Refused(str(e))
+    _, _, rows = steps3.fit(plan, us, ch)
+    notes = steps3.problems({"final_gap": 0, "outside_unit_max": 0, "rows": [], "paints": rows, "little": []})[1]
+    return {"paints": rows, "problems": [], "notes": notes,
+            "advice": "A paint fitted far from the plan's color may need a new name or `looks` in plan.json (free: "
+                      "the chain doesn't change). A paint the finish doesn't have can't be fixed here: record it in "
+                      "notes.json as a known problem.", "cost_usd": 0.0}
 
 
 def mix_tool(a: argparse.Namespace) -> dict:
@@ -966,10 +998,13 @@ def add_filters(sub) -> None:
 def _v2(lesson: Path):
     """A version 2 lesson's plan and finish, or a refusal that says what's missing."""
     import plan2
+    import plan3
     from filters import load
 
     if not (lesson / "plan.json").exists():
         raise Refused(f"no plan.json in {lesson}")
+    if plan3.is_v3(lesson):  # a version 3 lesson, read in version 2's shape (what its build-steps kept)
+        return _v3_kept(lesson, pictures=False)["plan"], load(lesson / "99_finish.png", max_side=100_000)
     try:
         plan = plan2.load(lesson)
     except ValueError as e:
@@ -981,6 +1016,16 @@ def _v2(lesson: Path):
     if not finish.exists():
         raise Refused(f"no 99_finish.png in {lesson}")
     return plan, load(finish, max_side=100_000)
+
+
+def _v3_kept(lesson: Path, pictures: bool = True) -> dict:
+    """What build-steps kept for a version 3 lesson (lesson3.read), or a refusal that says what to run."""
+    import lesson3
+
+    try:
+        return lesson3.read(lesson, pictures)
+    except lesson3.Stale as e:
+        raise Refused(str(e))
 
 
 def _read_owner(lesson: Path, plan: dict):
@@ -1049,6 +1094,10 @@ def paints_tool(a: argparse.Namespace) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
+    import plan3
+
+    if plan3.is_v3(lesson):
+        return _paints_v3(lesson, a)
     plan, finish = _v2_parts_only(lesson)
     owner = _read_owner(lesson, plan)
     if owner.shape != finish.shape[:2]:
@@ -1154,6 +1203,10 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
+    import plan3
+
+    if plan3.is_v3(lesson):
+        return _build_steps_v3(lesson)
     plan, finish = _v2(lesson)
     owner = _read_owner(lesson, plan)
     if owner.shape != finish.shape[:2]:
@@ -1188,6 +1241,33 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
             "advice": advice, "cost_usd": 0.0}
 
 
+def _build_steps_v3(lesson: Path) -> dict:
+    """build-steps for a version 3 lesson: the paints fitted to the chain, a step picture a step, and what the later
+    tools read (lesson3.make). Design sections 7 and 8."""
+    import build_steps as bs
+    import erase3
+    import lesson3
+    import plan3
+    import steps3
+    from PIL import Image
+
+    plan, _, finish = _v3_ready(lesson)
+    try:
+        built = lesson3.make(lesson, plan, finish, save_png)
+    except erase3.Refused as e:
+        raise Refused(str(e))
+    (lesson / "trials").mkdir(exist_ok=True)
+    sheet = lesson / "trials" / "steps.jpg"
+    Image.fromarray(bs.contact_sheet(built["pictures"], plan3.steps(plan))).save(sheet, quality=88)
+    bad, notes = steps3.problems(built)
+    return {"steps": built["steps"], "sheet": str(sheet), "rows": built["rows"], "paints": built["paints"],
+            "problems": bad, "notes": notes,
+            "checks": {k: built[k] for k in ("final_gap", "outside_unit_max", "from_its_paints_median")},
+            "advice": "Read the sheet. Every step should add one thing; nothing else should change. `notes` can't be "
+                      "fixed without a new plan and a new chain: record each in notes.json as a known problem. Then "
+                      "step-aids, mix, draft-text.", "cost_usd": 0.0}
+
+
 def _v2_canvas(lesson: Path) -> tuple[list | None, dict]:
     """A version 2 lesson's canvas box and size: canvas.json, or the default size picked now (#122)."""
     import canvas as cv
@@ -1218,7 +1298,11 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
     if missing:
         raise Refused(f"missing step pictures {missing}: run build-steps --lesson {lesson} first")
     plate = lesson / "98_background.png"
-    built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
+    if plan.get("made_from") == 3:  # a version 3 lesson's steps are its build-steps' own: read, never cut again
+        kept = _v3_kept(lesson)
+        built, masks = kept["pictures"], kept["masks"]
+    else:
+        built, _, masks = bs.build(finish, plan, owner, load(plate, max_side=100_000) if plate.exists() else None)
     pictures = [load(lesson / n, max_side=100_000) for n in names]
     stale = [n for n, p, b in zip(names, pictures, built) if p.shape != b.shape or not np.array_equal(p, b)]
     if stale:
@@ -1338,6 +1422,11 @@ def background_tool(a: argparse.Namespace, client=None) -> dict:
     from PIL import Image
 
     lesson = Path(a.lesson)
+    import plan3
+
+    if plan3.is_v3(lesson):
+        raise Refused("background is for a version 2 lesson. A version 3 lesson's chain (erase) already holds what is "
+                      "behind each thing.")
     plan, finish = _v2(lesson)
     owner = _read_owner(lesson, plan)
     parts = plan["parts"]
@@ -1542,7 +1631,6 @@ def add_v2_tools(sub) -> None:
 def _v3_plan(lesson: Path) -> tuple[dict, dict]:
     """A version 3 lesson's plan as written and its technique, or a refusal that says what's missing. The plan may
     still have problems: `plan-check` lists them."""
-    import plan3
     import yaml
 
     if not (lesson / "plan.json").exists():
@@ -1588,7 +1676,134 @@ def plan_check_tool(a: argparse.Namespace) -> dict:
             "cost_usd": 0.0}
 
 
+def _v3_ready(lesson: Path):
+    """A version 3 lesson's plan with nothing wrong in it, and its finish, or a refusal."""
+    import elements
+    import plan3
+    from filters import load
+
+    plan, technique = _v3_plan(lesson)
+    wrong = plan3.problems(plan, technique, elements=elements.library())
+    if wrong:
+        raise Refused("fix plan.json first (plan-check lists everything): " + " | ".join(wrong[:3]))
+    finish = lesson / "99_finish.png"
+    if not finish.exists():
+        raise Refused(f"no 99_finish.png in {lesson}")
+    return plan, technique, load(finish, max_side=100_000)
+
+
+ERASE_WHY = ("v3: every step picture is the finish erased backward by the image model, one render a unit of the plan "
+             "(docs/design/pipeline-v3.md, section 6)")
+
+
+def _erase_render(lesson: Path, a: argparse.Namespace, client):
+    """The chain's renderer: one edit of a picture under the lesson's cost cap, in the ledger and the render cache,
+    the answer brought back to the picture's own size."""
+    import numpy as np
+    from PIL import Image
+
+    budget = Budget(lesson, a.max_cost, 10 ** 6)  # `erase` counts a unit's tries itself (erase3.TRIES)
+
+    def render(name: str, src: Path, prompt: str, fresh: bool):
+        picture = np.array(Image.open(src).convert("RGB"))
+        size = size_for(src)
+        frame, box = _to_frame(picture, size)
+        padded = box != (0, 0) + frame.size
+        if padded:  # a picture that isn't the image model's shape goes in with gray bands, as `background` sends it
+            frame.save(src)
+            prompt = prompt.replace("No text, signature", "Keep the plain gray bands at the edges exactly as they are. "
+                                                          "No text, signature")
+        raw = src.with_name(f"{name}_raw.png")
+        try:
+            r = render_one(budget, f"erase-{name[:3]}", [src], prompt, raw, a.quality, ERASE_WHY, size, fresh=fresh,
+                           client=client)
+        finally:
+            if padded:
+                Image.fromarray(picture).save(src)
+        got = Image.open(raw).convert("RGB")
+        if got.size != frame.size:
+            got = got.resize(frame.size, Image.LANCZOS)
+        if padded:
+            got = got.crop(box)
+        if got.size != (picture.shape[1], picture.shape[0]):
+            got = got.resize((picture.shape[1], picture.shape[0]), Image.LANCZOS)
+        return np.array(got), {"seconds": r["seconds"], "cost_usd": r["cost_usd"], "cached": r["cached"]}
+
+    return render
+
+
+def erase_tool(a: argparse.Namespace, client=None) -> dict:
+    """PAID, one low render a unit: the finish erased backward by the plan's units, chained and guarded by the
+    change. Design section 6."""
+    import erase3
+    import plan3
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    plan, _, finish = _v3_ready(lesson)
+    us = plan3.units(plan)
+    render = _erase_render(lesson, a, client)
+    if a.probe is not None:
+        if a.redo:
+            raise Refused("--probe renders one unit from the finish and asks for nothing again: leave --redo out")
+        if not 1 <= a.probe < len(us):
+            raise Refused(f"there is no unit {a.probe} to probe: the chain renders units 1 to {len(us) - 1}")
+        folder = lesson / "chain" / "probe"
+        folder.mkdir(parents=True, exist_ok=True)
+        name = f"U{a.probe:02d}"
+        src = folder / f"{name}_in.png"
+        Image.fromarray(finish).save(src)
+        raw, info = render(name, src, erase3.request(plan, us, a.probe), False)
+        out, D = erase3.erase_one(finish, raw, us[a.probe]["kind"] == "bare", finish[..., 0] < 0)
+        Image.fromarray(erase3.look(finish, out, D)).save(folder / f"{name}.jpg", quality=88)
+        return {"probe": a.probe, "name": us[a.probe]["name"], "kind": us[a.probe]["kind"],
+                "look": str(folder / f"{name}.jpg"), "erased_share": round(float(D.mean()), 4), **info,
+                "advice": "Read the look: the finish, the unit erased from it, and what changed in magenta. A probe "
+                          "erases one unit from the finish alone; only the last unit's is the chain's own render."}
+    redo: dict[int, str] = {}
+    for word in [w for w in (a.redo or "").split(",") if w.strip()]:
+        n, _, why = word.strip().partition(":")
+        if not n.isdigit() or why not in erase3.WHY:
+            raise Refused(f"--redo takes <unit>:<why>, comma-separated, why one of {', '.join(erase3.WHY)}: "
+                          f"e.g. 8:stray,10:left. Got {word!r}.")
+        if int(n) in redo:
+            raise Refused(f"--redo names unit {n} twice: once a run, with the reason that matters more")
+        redo[int(n)] = why
+    try:
+        r = erase3.run(lesson, plan, finish, render, redo, auto=not a.no_auto)
+    except erase3.Refused as e:
+        raise Refused(str(e))
+    todo, kept = erase3.problems(r)
+    return {"renders": r["renders"], "paid": r["paid"], "cost_usd": r["cost_usd"], "render_seconds": r["render_seconds"],
+            "again": r["again"], "problems": todo, "left": kept, "sheet": str(lesson / "chain" / "chain.jpg"),
+            "looks": str(lesson / "chain" / "looks"),
+            "rows": [{k: x[k] for k in ("unit", "name", "kind", "again", "left_standing", "erased_share", "kept_whole",
+                                         "cached")} for x in r["rows"]],
+            "advice": "Have a checker in a fresh context read chain/looks/ (v3/chain-check.md). Ask again for each unit "
+                      "it marks, in one run: erase --redo <unit>:stray or <unit>:left. A unit is asked again at most "
+                      f"{erase3.TRIES} times; every unit before it in painting order is rendered again from its new "
+                      "picture."}
+
+
 def add_v3_tools(sub) -> None:
+    p = sub.add_parser("erase", help="PAID, one low render a unit. v3: erase the finish backward by the plan's units (the chain).",
+                       description="Makes <lesson>/chain/: P<nn>.png (the picture with every unit after nn erased), "
+                                   "D<nn>.png (what unit nn adds), C<nn>.png (its core), chain.json, chain.jpg and "
+                                   "looks/ (one picture a unit for the checker, with asked.json). One render a unit "
+                                   "after the first, each made from the last picture; of each only what changed by a "
+                                   "lot is kept. The same picture and request come back from the render cache for "
+                                   "nothing, so running it again pays only for what changed. A unit whose thing was "
+                                   "left standing is asked for again by itself. plan-check prints the number of "
+                                   "renders before any is paid for (about 2 cents each).")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--redo", help="units to ask for again and why, e.g. 8:stray,10:left (left: part of it was left "
+                                  "standing; stray: the render changed something else)")
+    p.add_argument("--probe", type=int, help="render this one unit erased from the finish alone, to see whether its "
+                                             "request works, into chain/probe/")
+    p.add_argument("--no-auto", action="store_true", help="don't ask again by itself for a unit left standing")
+    p.add_argument("--quality", choices=QUALITIES, default="low")
+    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST, help=f"dollar cap per lesson (default {DEFAULT_MAX_COST:.2f})")
+    p.set_defaults(func=erase_tool)
     p = sub.add_parser("plan-check", help="Free. v3: what's wrong with a version 3 plan, and the units its chain will render.",
                        description="Checks plan.json (\"plan_version\": 3) against itself, the technique's ranges, the "
                                    "element techniques and the stroke cards. Prints `problems`, each saying what to "
@@ -1623,7 +1838,7 @@ def main(argv: list[str] | None = None, client=None) -> int:
     a = build_parser().parse_args(argv)
     started = time.time()
     try:
-        result = a.func(a, client=client) if a.tool in ("render", "background") else a.func(a)
+        result = a.func(a, client=client) if a.tool in ("render", "background", "erase") else a.func(a)
     except Refused as e:
         emit({"refused": str(e)})
         return 2
