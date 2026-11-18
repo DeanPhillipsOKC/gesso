@@ -1,39 +1,5 @@
 [
   {
-    "slug": "snow-lantern",
-    "title": "A brass lantern glowing on a snow-capped wooden post at night",
-    "subject": "A brass lantern glowing on a snow-capped wooden post at night",
-    "steps": 20,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 1.12.1",
-    "published": "2026-11-16",
-    "source": "snow-lantern_skill_20261116-191628",
-    "versions": [
-      {
-        "id": "20261116-191628",
-        "version": "POC 1.12.1",
-        "when": "2026-11-16 19:16",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 20,
-        "href": "lessons/snow-lantern/",
-        "current": true
-      },
-      {
-        "id": "20261113-175843",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:58",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 21,
-        "href": "lessons/snow-lantern/v/20261113-175843/",
-        "current": false
-      }
-    ],
-    "known": 3
-  },
-  {
     "slug": "floating-island",
     "title": "A floating rock island",
     "subject": "A floating rock island with a pink blossom tree and a waterfall pouring into a violet sea, and a stone doorway standing in the water with the setting sun glowing through it, under a crescent moon and pink sunset clouds.",
@@ -390,5 +356,49 @@
       }
     ],
     "known": 9
+  },
+  {
+    "slug": "snow-lantern",
+    "title": "A glowing brass lantern hanging from a snowy wooden post on a moonlit winter nig",
+    "subject": "A glowing brass lantern hanging from a snowy wooden post on a moonlit winter night, with dark pines and rolling snow behind",
+    "steps": 19,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.1",
+    "published": "2026-11-18",
+    "source": "snow-lantern_skill_20261118-165800",
+    "versions": [
+      {
+        "id": "20261118-165800",
+        "version": "POC 2.0.1",
+        "when": "2026-11-18 16:58",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 19,
+        "href": "lessons/snow-lantern/",
+        "current": true
+      },
+      {
+        "id": "20261116-191628",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 19:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 20,
+        "href": "lessons/snow-lantern/v/20261116-191628/",
+        "current": false
+      },
+      {
+        "id": "20261113-175843",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/snow-lantern/v/20261113-175843/",
+        "current": false
+      }
+    ],
+    "known": 5
   }
 ]
