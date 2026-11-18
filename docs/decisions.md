@@ -285,6 +285,13 @@ with the date.
   we can make it before we find ways to save costs and make it marketable." So $1 of Claude a lesson (text, not
   renders) is what a cost cut aims for, never a reason to make a lesson worse. Quality first still stands: a cut
   counts only when the graders find the lesson no worse. #240's gate stays open until the owner sets one.
+- **A teacher writes v4's steps: one writer for the whole lesson, in fixed lines (2026-11-18, owner's call, after
+  #254).** The writer sees each step's before and after pictures, a picture of only what it changed, the fact sheet,
+  the stroke card and the whole plan, and fills the same lines for every step: First, Start, Strokes, Where the paint
+  sits, Leave, Stop when. check-text still holds every number and side to the sheet (`docs/spikes/v4-teacher.md`).
+  The owner accepted the verdict knowing the student test's gain clears its 0.25 bar on the cow only, and that
+  neither test showed the page's outline and paint map. A writer a stage and free prose were dropped. W2 builds on
+  this writer.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

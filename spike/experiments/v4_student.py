@@ -32,6 +32,13 @@ student's scores are checked against their `worst_steps`.
 Pictures and readers' folders go in a work folder outside the repository (`--work`, by default
 `<temp>/gesso-v4-student`); every answer, measure and call's tokens go in `spike/experiments/v4_student.json`.
 Experiment code: it reads the frozen bench and changes no tool.
+
+A words spike scores its own words the same way (#254): `--words-from <folder>` reads each step's lines and tip
+from `<folder>/<picture>/packet.json` (the bench packet's shape; the header, pictures and near misses stay the
+bench's), and `--results <file>` keeps its answers apart from v3's. Its carry results go in `<work>/carry-<file's
+stem>`, and its near misses are the ones `prepare` made for v3 (read from `v4_student.json`).
+
+    .venv/bin/python spike/experiments/v4_student.py --words-from <folder> --results <file> carry --condition words
 """
 from __future__ import annotations
 
@@ -56,6 +63,8 @@ sys.path.insert(0, str(ROOT / "spike"))
 BENCH = HERE / "bench" / "v3-words"
 PICTURES = ["highland-cow", "sleeping-cat", "birch-grove"]
 RESULTS = HERE / "v4_student.json"
+BASE_RESULTS = RESULTS  # v3's: where `prepare` keeps the near misses
+WORDS_FROM: Path | None = None  # another lesson's words (`--words-from`): <folder>/<picture>/packet.json
 WORK = Path(tempfile.gettempdir()) / "gesso-v4-student"
 SEED = 174
 BLANK = (246, 246, 246)  # the packet's blank canvas (packet.py's pair for step 1)
@@ -78,7 +87,18 @@ def lesson(picture: str) -> dict:
 
 
 def step_of(picture: str, n: int) -> dict:
-    return next(s for s in lesson(picture)["steps"] if s["n"] == n)
+    """A step as the bench packet has it, with its lines and tip from `WORDS_FROM` when that is set."""
+    s = next(s for s in lesson(picture)["steps"] if s["n"] == n)
+    if WORDS_FROM is None:
+        return s
+    other = json.loads((WORDS_FROM / picture / "packet.json").read_text())
+    w = next(x for x in other["steps"] if x["n"] == n)
+    return {**s, "lines": w["lines"], "tip": w.get("tip") or ""}
+
+
+def carry_dir() -> Path:
+    """Where carry's results go: `<work>/carry`, or `<work>/carry-<results stem>` for another lesson's words."""
+    return WORK / ("carry" if RESULTS == BASE_RESULTS else f"carry-{RESULTS.stem}")
 
 
 def load(path: Path):
@@ -300,6 +320,8 @@ def state() -> dict:
             _STATE.setdefault(k, {})
         for k in ("pick", "carry", "carry_grades", "graders", "calls"):
             _STATE.setdefault(k, [])
+        if not _STATE["prepared"] and RESULTS != BASE_RESULTS and BASE_RESULTS.exists():
+            _STATE["prepared"] = json.loads(BASE_RESULTS.read_text())["prepared"]  # the same near misses as v3's
     return _STATE
 
 
@@ -330,7 +352,9 @@ def save():
                                 merged[pic][kk] = vv
                 else:
                     disk[k] = v
-            RESULTS.write_text(json.dumps(disk, indent=1) + "\n")
+            tmp = RESULTS.with_suffix(".json.tmp")  # written whole, then moved: a full disk can't cut the file short
+            tmp.write_text(json.dumps(disk, indent=1) + "\n")
+            tmp.replace(RESULTS)
         _NEW.clear()
         _STATE = disk
 
@@ -574,7 +598,7 @@ def carry_one(pic: str, n: int, condition: str, rep: int):
     s = step_of(pic, n)
     words, header = words_for(pic, n, condition)
     before, after = before_after(pic, n)
-    d = WORK / "carry" / pic
+    d = carry_dir() / pic
     d.mkdir(parents=True, exist_ok=True)
     src = d / f"{n:02d}-before.png"
     before.save(src)
@@ -627,7 +651,7 @@ def grade_carry_one(pic: str, n: int, solo: tuple | None = None):
     blocks = (text_block("Before the step:") + picture_block(before, GRADE_SIDE)
               + text_block("After the step, the lesson's own picture:") + picture_block(after, GRADE_SIDE))
     for i, r in enumerate(rows, 1):
-        blocks += text_block(f"Result {i}:") + picture_block(load(WORK / "carry" / pic / r["file"]), GRADE_SIDE)
+        blocks += text_block(f"Result {i}:") + picture_block(load(carry_dir() / pic / r["file"]), GRADE_SIDE)
     blocks += text_block(
         "For each result, score 1 to 5 how close it comes to doing this step the way the lesson's picture shows it: "
         "the same things painted, in the same places, about the same colours and amount, with the step's kind of "
@@ -828,9 +852,11 @@ def report(args) -> dict:
 
 
 def main(argv=None):
-    global WORK
+    global WORK, RESULTS, WORDS_FROM, _STATE
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--work", type=Path, default=WORK)
+    ap.add_argument("--words-from", type=Path, help="read each step's lines and tip from <folder>/<picture>/packet.json")
+    ap.add_argument("--results", type=Path, help="the results file (default: v4_student.json)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("prepare")
     sub.add_parser("worsen")
@@ -857,6 +883,12 @@ def main(argv=None):
     sub.add_parser("report")
     args = ap.parse_args(argv)
     WORK = args.work
+    if args.words_from and not args.results:
+        ap.error("--words-from needs --results, so v3's answers stay apart")
+    WORDS_FROM = args.words_from.resolve() if args.words_from else None
+    if args.results:
+        RESULTS = args.results.resolve()
+        _STATE = None
     {"prepare": prepare, "worsen": worsen, "sheet": sheet, "pick": pick, "carry": carry,
      "grade-carry": grade_carry, "graders": graders, "report": report}[args.cmd](args)
 

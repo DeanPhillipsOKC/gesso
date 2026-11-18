@@ -1,0 +1,4737 @@
+{
+ "prepared": {
+  "highland-cow": {
+   "1": {
+    "area": 1.0,
+    "place": "mirrored top to bottom",
+    "other_step": 2,
+    "place_iou": 1.0,
+    "other_iou": 0.441,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "2": {
+    "area": 0.4407,
+    "place": "mirrored side to side",
+    "other_step": 3,
+    "place_iou": 0.486,
+    "other_iou": 0.149,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "3": {
+    "area": 0.1316,
+    "place": "mirrored side to side",
+    "other_step": 4,
+    "place_iou": 0.169,
+    "other_iou": 0.146,
+    "order": [
+     "real",
+     "other",
+     "half",
+     "place"
+    ]
+   },
+   "4": {
+    "area": 0.1521,
+    "place": "mirrored top to bottom",
+    "other_step": 5,
+    "place_iou": 0.0,
+    "other_iou": 0.013,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "5": {
+    "area": 0.0025,
+    "place": "mirrored side to side",
+    "other_step": 6,
+    "place_iou": 0.0,
+    "other_iou": 0.0,
+    "order": [
+     "other",
+     "real",
+     "half",
+     "place"
+    ]
+   },
+   "6": {
+    "area": 0.0105,
+    "place": "mirrored side to side",
+    "other_step": 7,
+    "place_iou": 0.0,
+    "other_iou": 0.006,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "7": {
+    "area": 0.6026,
+    "place": "mirrored side to side",
+    "other_step": 8,
+    "place_iou": 0.72,
+    "other_iou": 0.518,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "8": {
+    "area": 0.5307,
+    "place": "mirrored side to side",
+    "other_step": 9,
+    "place_iou": 0.665,
+    "other_iou": 0.172,
+    "order": [
+     "half",
+     "real",
+     "other",
+     "place"
+    ]
+   },
+   "9": {
+    "area": 0.1204,
+    "place": "mirrored side to side",
+    "other_step": 10,
+    "place_iou": 0.222,
+    "other_iou": 0.111,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "10": {
+    "area": 0.2756,
+    "place": "mirrored side to side",
+    "other_step": 11,
+    "place_iou": 0.49,
+    "other_iou": 0.81,
+    "order": [
+     "place",
+     "half",
+     "real",
+     "other"
+    ]
+   },
+   "11": {
+    "area": 0.2507,
+    "place": "mirrored side to side",
+    "other_step": 12,
+    "place_iou": 0.327,
+    "other_iou": 0.022,
+    "order": [
+     "real",
+     "half",
+     "place",
+     "other"
+    ]
+   },
+   "12": {
+    "area": 0.019,
+    "place": "mirrored side to side",
+    "other_step": 13,
+    "place_iou": 0.0,
+    "other_iou": 0.892,
+    "order": [
+     "other",
+     "real",
+     "half",
+     "place"
+    ]
+   },
+   "13": {
+    "area": 0.018,
+    "place": "mirrored side to side",
+    "other_step": 14,
+    "place_iou": 0.0,
+    "other_iou": 0.013,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "14": {
+    "area": 0.1981,
+    "place": "mirrored side to side",
+    "other_step": 15,
+    "place_iou": 0.318,
+    "other_iou": 0.022,
+    "order": [
+     "real",
+     "half",
+     "other",
+     "place"
+    ]
+   },
+   "15": {
+    "area": 0.0095,
+    "place": "mirrored side to side",
+    "other_step": 16,
+    "place_iou": 0.015,
+    "other_iou": 0.0,
+    "order": [
+     "real",
+     "half",
+     "other",
+     "place"
+    ]
+   },
+   "16": {
+    "area": 0.075,
+    "place": "mirrored side to side",
+    "other_step": 17,
+    "place_iou": 0.1,
+    "other_iou": 0.072,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "17": {
+    "area": 0.1585,
+    "place": "mirrored side to side",
+    "other_step": 18,
+    "place_iou": 0.294,
+    "other_iou": 0.312,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   },
+   "18": {
+    "area": 0.1705,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.209,
+    "other_iou": 0.004,
+    "order": [
+     "real",
+     "place",
+     "half",
+     "other"
+    ]
+   },
+   "19": {
+    "area": 0.1309,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.466,
+    "other_iou": 0.012,
+    "order": [
+     "real",
+     "other",
+     "place",
+     "half"
+    ]
+   },
+   "20": {
+    "area": 0.0103,
+    "place": "mirrored side to side",
+    "other_step": 21,
+    "place_iou": 0.0,
+    "other_iou": 0.0,
+    "order": [
+     "other",
+     "half",
+     "place",
+     "real"
+    ]
+   },
+   "21": {
+    "area": 0.0082,
+    "place": "mirrored side to side",
+    "other_step": 22,
+    "place_iou": 0.02,
+    "other_iou": 0.057,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "22": {
+    "area": 0.0025,
+    "place": "mirrored side to side",
+    "other_step": 23,
+    "place_iou": 0.0,
+    "other_iou": 0.075,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "23": {
+    "area": 0.0176,
+    "place": "mirrored side to side",
+    "other_step": 22,
+    "place_iou": 0.248,
+    "other_iou": 0.075,
+    "order": [
+     "place",
+     "other",
+     "real",
+     "half"
+    ]
+   }
+  },
+  "sleeping-cat": {
+   "1": {
+    "area": 0.0113,
+    "place": "mirrored side to side",
+    "other_step": 2,
+    "place_iou": 0.0,
+    "other_iou": 0.769,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "2": {
+    "area": 0.0147,
+    "place": "mirrored side to side",
+    "other_step": 3,
+    "place_iou": 0.0,
+    "other_iou": 0.0,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "3": {
+    "area": 0.0,
+    "place": "mirrored side to side",
+    "other_step": 4,
+    "place_iou": 1.0,
+    "other_iou": 0.0,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "4": {
+    "area": 0.9909,
+    "place": "rolled half the canvas sideways",
+    "other_step": 5,
+    "place_iou": 0.982,
+    "other_iou": 0.166,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "5": {
+    "area": 0.1659,
+    "place": "mirrored side to side",
+    "other_step": 6,
+    "place_iou": 0.0,
+    "other_iou": 0.78,
+    "order": [
+     "other",
+     "real",
+     "half",
+     "place"
+    ]
+   },
+   "6": {
+    "area": 0.1904,
+    "place": "mirrored side to side",
+    "other_step": 7,
+    "place_iou": 0.0,
+    "other_iou": 0.136,
+    "order": [
+     "other",
+     "half",
+     "real",
+     "place"
+    ]
+   },
+   "7": {
+    "area": 0.3537,
+    "place": "mirrored top to bottom",
+    "other_step": 8,
+    "place_iou": 0.0,
+    "other_iou": 0.611,
+    "order": [
+     "real",
+     "place",
+     "other",
+     "half"
+    ]
+   },
+   "8": {
+    "area": 0.2163,
+    "place": "mirrored side to side",
+    "other_step": 9,
+    "place_iou": 0.323,
+    "other_iou": 0.058,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "9": {
+    "area": 0.0764,
+    "place": "mirrored side to side",
+    "other_step": 10,
+    "place_iou": 0.0,
+    "other_iou": 0.14,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "10": {
+    "area": 0.4281,
+    "place": "mirrored top to bottom",
+    "other_step": 11,
+    "place_iou": 0.133,
+    "other_iou": 0.696,
+    "order": [
+     "place",
+     "other",
+     "real",
+     "half"
+    ]
+   },
+   "11": {
+    "area": 0.2979,
+    "place": "mirrored side to side",
+    "other_step": 12,
+    "place_iou": 0.513,
+    "other_iou": 0.015,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "12": {
+    "area": 0.0284,
+    "place": "mirrored side to side",
+    "other_step": 13,
+    "place_iou": 0.03,
+    "other_iou": 0.022,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "13": {
+    "area": 0.4217,
+    "place": "mirrored top to bottom",
+    "other_step": 14,
+    "place_iou": 0.626,
+    "other_iou": 0.374,
+    "order": [
+     "half",
+     "real",
+     "other",
+     "place"
+    ]
+   },
+   "14": {
+    "area": 0.1576,
+    "place": "mirrored side to side",
+    "other_step": 15,
+    "place_iou": 0.126,
+    "other_iou": 0.01,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "15": {
+    "area": 0.0573,
+    "place": "mirrored side to side",
+    "other_step": 16,
+    "place_iou": 0.106,
+    "other_iou": 0.028,
+    "order": [
+     "place",
+     "other",
+     "real",
+     "half"
+    ]
+   },
+   "16": {
+    "area": 0.3038,
+    "place": "mirrored side to side",
+    "other_step": 17,
+    "place_iou": 0.372,
+    "other_iou": 0.021,
+    "order": [
+     "place",
+     "other",
+     "half",
+     "real"
+    ]
+   },
+   "17": {
+    "area": 0.0257,
+    "place": "mirrored side to side",
+    "other_step": 18,
+    "place_iou": 0.0,
+    "other_iou": 0.149,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "18": {
+    "area": 0.0949,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.055,
+    "other_iou": 0.019,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "19": {
+    "area": 0.0062,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.0,
+    "other_iou": 0.034,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "20": {
+    "area": 0.025,
+    "place": "mirrored side to side",
+    "other_step": 21,
+    "place_iou": 0.03,
+    "other_iou": 0.012,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "21": {
+    "area": 0.0055,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.0,
+    "other_iou": 0.012,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   }
+  },
+  "birch-grove": {
+   "1": {
+    "area": 1.0,
+    "place": "mirrored side to side",
+    "other_step": 2,
+    "place_iou": 1.0,
+    "other_iou": 0.018,
+    "order": [
+     "other",
+     "place",
+     "half",
+     "real"
+    ]
+   },
+   "2": {
+    "area": 0.0178,
+    "place": "mirrored side to side",
+    "other_step": 3,
+    "place_iou": 0.0,
+    "other_iou": 0.0,
+    "order": [
+     "real",
+     "other",
+     "place",
+     "half"
+    ]
+   },
+   "3": {
+    "area": 0.0331,
+    "place": "mirrored side to side",
+    "other_step": 4,
+    "place_iou": 0.194,
+    "other_iou": 0.004,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   },
+   "4": {
+    "area": 0.2122,
+    "place": "mirrored side to side",
+    "other_step": 5,
+    "place_iou": 0.0,
+    "other_iou": 0.058,
+    "order": [
+     "real",
+     "half",
+     "place",
+     "other"
+    ]
+   },
+   "5": {
+    "area": 0.0152,
+    "place": "mirrored side to side",
+    "other_step": 6,
+    "place_iou": 0.0,
+    "other_iou": 0.0,
+    "order": [
+     "place",
+     "half",
+     "real",
+     "other"
+    ]
+   },
+   "6": {
+    "area": 0.0483,
+    "place": "mirrored side to side",
+    "other_step": 7,
+    "place_iou": 0.0,
+    "other_iou": 0.018,
+    "order": [
+     "half",
+     "real",
+     "place",
+     "other"
+    ]
+   },
+   "7": {
+    "area": 0.4184,
+    "place": "mirrored top to bottom",
+    "other_step": 8,
+    "place_iou": 0.0,
+    "other_iou": 0.232,
+    "order": [
+     "real",
+     "place",
+     "other",
+     "half"
+    ]
+   },
+   "8": {
+    "area": 0.0971,
+    "place": "mirrored side to side",
+    "other_step": 9,
+    "place_iou": 0.177,
+    "other_iou": 0.154,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "9": {
+    "area": 0.631,
+    "place": "mirrored side to side",
+    "other_step": 10,
+    "place_iou": 0.629,
+    "other_iou": 0.305,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "10": {
+    "area": 0.3758,
+    "place": "mirrored side to side",
+    "other_step": 11,
+    "place_iou": 0.231,
+    "other_iou": 0.352,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "11": {
+    "area": 0.1963,
+    "place": "mirrored side to side",
+    "other_step": 12,
+    "place_iou": 0.199,
+    "other_iou": 0.0,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   },
+   "12": {
+    "area": 0.0229,
+    "place": "mirrored side to side",
+    "other_step": 13,
+    "place_iou": 0.0,
+    "other_iou": 0.629,
+    "order": [
+     "real",
+     "place",
+     "half",
+     "other"
+    ]
+   },
+   "13": {
+    "area": 0.0144,
+    "place": "mirrored side to side",
+    "other_step": 14,
+    "place_iou": 0.0,
+    "other_iou": 0.122,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "14": {
+    "area": 0.0045,
+    "place": "mirrored side to side",
+    "other_step": 15,
+    "place_iou": 0.0,
+    "other_iou": 0.003,
+    "order": [
+     "place",
+     "half",
+     "real",
+     "other"
+    ]
+   },
+   "15": {
+    "area": 0.4357,
+    "place": "mirrored side to side",
+    "other_step": 16,
+    "place_iou": 0.415,
+    "other_iou": 0.467,
+    "order": [
+     "half",
+     "real",
+     "place",
+     "other"
+    ]
+   },
+   "16": {
+    "area": 0.2044,
+    "place": "mirrored side to side",
+    "other_step": 17,
+    "place_iou": 0.254,
+    "other_iou": 0.37,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "17": {
+    "area": 0.1502,
+    "place": "mirrored side to side",
+    "other_step": 18,
+    "place_iou": 0.122,
+    "other_iou": 0.136,
+    "order": [
+     "place",
+     "other",
+     "half",
+     "real"
+    ]
+   },
+   "18": {
+    "area": 0.0738,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.112,
+    "other_iou": 0.479,
+    "order": [
+     "real",
+     "half",
+     "place",
+     "other"
+    ]
+   },
+   "19": {
+    "area": 0.1244,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.104,
+    "other_iou": 0.002,
+    "order": [
+     "half",
+     "place",
+     "other",
+     "real"
+    ]
+   },
+   "20": {
+    "area": 0.1322,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.273,
+    "other_iou": 0.002,
+    "order": [
+     "half",
+     "other",
+     "real",
+     "place"
+    ]
+   }
+  }
+ },
+ "worsened": {},
+ "pick": [
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.9,
+   "probs": {
+    "other": 0.02,
+    "real": 0.9,
+    "place": 0.04,
+    "half": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says the far peaks top out about 2 1/2 in from the top edge and both bands run across the canvas to the left and right edges, which only Picture 2 shows: Picture 1 has barely a sliver, Picture 3 puts the bands far too low, and Picture 4 stops partway across.",
+   "cost_usd": 0.03829,
+   "seconds": 5.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.9,
+   "probs": {
+    "place": 0.04,
+    "real": 0.9,
+    "other": 0.02,
+    "half": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for the whole canvas to be covered, with the gold brightest at the right edge near the top where the sun sets and a thin strip of blue along the bottom edge; only Picture 2 shows this, while Picture 1 puts the sun low on the right and Pictures 3 and 4 leave bare canvas.",
+   "cost_usd": 0.04117,
+   "seconds": 5.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "other": 0.02,
+    "real": 0.88,
+    "place": 0.04,
+    "half": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a thin cream wedge that starts at the right edge at the foot of the mountains and tapers to a point; only Picture 2 shows that, since Picture 3 puts it at the left edge, Picture 4 floats a small patch away from the right edge, and Picture 1 paints far more than the lake.",
+   "cost_usd": 0.04004,
+   "seconds": 5.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.45,
+   "probs": {
+    "other": 0.03,
+    "real": 0.45,
+    "half": 0.45,
+    "place": 0.07
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks only for a few faint peach edges on the sunlit ridge tops, mostly on the right with one small touch on a middle peak; that rules out Picture 1, which adds a lake, and Picture 4, which puts peach on the far-left ridge, but I could not tell Pictures 2 and 3 apart.",
+   "cost_usd": 0.04098,
+   "seconds": 7.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.42,
+   "probs": {
+    "real": 0.42,
+    "other": 0.02,
+    "half": 0.42,
+    "place": 0.14
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to skim small, broken Pale gold caps only along the upper edges of the streaks and leave the blue and rose untouched: Picture 2 adds mountains, Picture 4 lays heavier gold that runs into the blue, and Pictures 1 and 3 both show subtle caps that I cannot reliably tell apart.",
+   "cost_usd": 0.04138,
+   "seconds": 8.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.52,
+   "probs": {
+    "place": 0.3,
+    "real": 0.52,
+    "half": 0.08,
+    "other": 0.1
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for broken peach-topped, rose-undersided streaks in groups from the top edge down, with the biggest group starting about 6 1/2 in down; Picture 3 stops after the top band, Picture 4 has peach blobs with no rose, and Picture 2's streaks read as lighter and more broken than Picture 1's heavier patches.",
+   "cost_usd": 0.04376,
+   "seconds": 8.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "place": 0.08,
+    "real": 0.8,
+    "other": 0.01,
+    "half": 0.11
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to stop when rows of dark round bushes run across the hills from edge to edge, starting at the left on the top band, without repainting the hills or touching the meadow; only Picture 2 does this, while Picture 4 covers only the right side, Picture 1 reshapes the hills, and Picture 3 is a big blob.",
+   "cost_usd": 0.03925,
+   "seconds": 5.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.86,
+   "probs": {
+    "half": 0.06,
+    "real": 0.86,
+    "other": 0.02,
+    "place": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says no sky may show below the far blue mountains and the dark green must go down the lower meadow to the bottom edge; only Picture 2 does both, while 1 and 4 still show sky gaps at the bottom and 3 adds trees instead of filling the gaps.",
+   "cost_usd": 0.03973,
+   "seconds": 6.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.74,
+   "probs": {
+    "half": 0.04,
+    "place": 0.14,
+    "real": 0.74,
+    "other": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says the hills start about 3 1/2 in from the top (about 140 px), the slopes tilt down to the right with sky streaks between the bands, the meadow below stays broken, and the lake stays clear; only Picture 3 shows all of these, since Picture 1 starts the green far too low, Picture 2 paints over the lake, and Picture 4 adds dark finished hills and solid meadow beyond this step.",
+   "cost_usd": 0.04268,
+   "seconds": 6.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "place": 0.04,
+    "half": 0.03,
+    "real": 0.88,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one flat Rust brown shape about 7 1/2 in wide, starting about 1 1/4 in from the left edge, with the head cap on the lake (right) side; only Picture 3 fits, since 1 has the head on the wrong side and starts too far right, 2 is far too narrow, and 4 is shaded rather than flat.",
+   "cost_usd": 0.04151,
+   "seconds": 5.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.82,
+   "probs": {
+    "real": 0.82,
+    "half": 0.1,
+    "place": 0.04,
+    "other": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for deep umber shade mainly on the left side, at the fringe and face, down the middle of the coat and at the chin, with light texture strokes over the rest and the cow's shape unchanged; Picture 1 matches this, while Picture 2 leaves the whole right half flat, Picture 3 reshapes the cow and leaves the left side plain, and Picture 4 adds horns with no shading.",
+   "cost_usd": 0.0403,
+   "seconds": 5.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.84,
+   "probs": {
+    "other": 0.06,
+    "real": 0.84,
+    "half": 0.03,
+    "place": 0.07
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for two flat, pale tan horns with no shading, the tall one rising almost straight up and the short one sweeping toward the lake; only Picture 2 fits, while 1 is shaded, 3 has a single horn, and 4 reverses the horns so the short one sweeps away from the lake.",
+   "cost_usd": 0.04025,
+   "seconds": 6.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.86,
+   "probs": {
+    "half": 0.08,
+    "other": 0.03,
+    "place": 0.03,
+    "real": 0.86
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to put dark brown on both tips and along both undersides while leaving pale tan tops. Picture 4 does this on both horns; Picture 1 shades only the tall horn, Picture 3 adds extra horns, and Picture 2 repaints the fur instead.",
+   "cost_usd": 0.03858,
+   "seconds": 5.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "real": 0.88,
+    "half": 0.05,
+    "other": 0.03,
+    "place": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to hang tapered rust locks from the fringe between the horns down over the head and the whole coat, with dark gaps left between them; Picture 1 does this, while 2 covers only the lower coat, 3 adds just a few dabs, and 4 repaints the animal facing forward with stray marks.",
+   "cost_usd": 0.03942,
+   "seconds": 5.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.17,
+   "probs": {
+    "half": 0.18,
+    "place": 0.55,
+    "real": 0.17,
+    "other": 0.1
+   },
+   "pick": "place",
+   "hit": false,
+   "why": "The step calls for thin, slanted deep-green flicks that touch the coat's pointed strands and warns that flat blobs mean too much paint, which favours Picture 2's elongated marks over the blob-like dots in 1 and 3, while 4 shows light yellow-green strokes rather than dark ones.",
+   "cost_usd": 0.04313,
+   "seconds": 7.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.45,
+   "probs": {
+    "real": 0.45,
+    "half": 0.2,
+    "other": 0.05,
+    "place": 0.3
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for only a handful of small thick-to-thin honey-gold locks on the coat, the ear and the grass past the chest while leaving everything else alone, which rules out Picture 3's dark grass spots and makes Picture 4's round coat blob doubtful, leaving Picture 1's subtle touches as the best fit.",
+   "cost_usd": 0.04544,
+   "seconds": 9.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "real": 0.7,
+    "place": 0.05,
+    "half": 0.22,
+    "other": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for gold flicks along the meadow top beside the cow, most of them on the right side and more along the bottom, with the cow kept clean; Picture 1 fits best, while Picture 3 leaves the right side mostly green, Picture 2 paints over the cow, and Picture 4 puts the gold on the cow instead of the grass.",
+   "cost_usd": 0.04146,
+   "seconds": 7.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.28,
+   "probs": {
+    "place": 0.15,
+    "half": 0.5,
+    "other": 0.07,
+    "real": 0.28
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for olive yellow-green flicks packed densest at the bottom and thinning upward, with the dark marks still showing and only a few crossing the coat's strands; Picture 1 covers too much of the coat, Picture 3 uses too bright a yellow spread evenly, and Picture 4 lacks the bottom-heavy density that Picture 2 shows.",
+   "cost_usd": 0.04656,
+   "seconds": 9.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.46,
+   "probs": {
+    "other": 0.04,
+    "half": 0.46,
+    "place": 0.04,
+    "real": 0.46
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step only lays a thin cream-gold line along the top of the two existing horns, so Picture 3 is out because it adds extra horns and Picture 1 is out because it repaints the face; Pictures 2 and 4 both show only faint lightening on the horn tops, and I can't tell them apart.",
+   "cost_usd": 0.04101,
+   "seconds": 7.4
+  },
+  {
+   "picture": "highland-cow",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.5,
+   "probs": {
+    "real": 0.5,
+    "other": 0.04,
+    "place": 0.04,
+    "half": 0.42
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step adds pale-gold tapered light along the sun-facing top, outer head, chest and front while leaving the shade side and face alone; Picture 2 is unchanged and Picture 3 reshapes the head, so it is 1 or 4, and 1 seems to keep the light more on the rim and chest and away from the face.",
+   "cost_usd": 0.04274,
+   "seconds": 9.4
+  },
+  {
+   "picture": "highland-cow",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "place": 0.05,
+    "real": 0.7,
+    "half": 0.17,
+    "other": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a flat rosy muzzle about 4 in from the right edge, a curved line pulled back along the jaw plus a small dab, and no shine; Picture 2 shows that, while 4 has a whitish shine, 1 puts a bright line on the wrong side of the face, and 3 lacks the jaw line.",
+   "cost_usd": 0.04225,
+   "seconds": 8.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 23,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.45,
+   "probs": {
+    "place": 0.04,
+    "other": 0.06,
+    "real": 0.45,
+    "half": 0.45
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for two dark nostrils and a short mouth line on a pink nose, with the jaw darkened where it meets the chest; pictures 3 and 4 both show this and look almost identical to me, picture 2 is unchanged, and picture 1 paints a second, misplaced nose.",
+   "cost_usd": 0.04228,
+   "seconds": 9.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "place": 0.03,
+    "real": 0.7,
+    "other": 0.07,
+    "half": 0.2
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a soft, smoothly blended pale-blue patch in the upper LEFT corner, about 1 1/4 in wide by 1 3/4 in tall, getting lighter at its bumpy lower edge: Picture 1 is in the wrong corner, Picture 3 has hard, blotchy joins, and Picture 4 is too narrow, so Picture 2 fits best.",
+   "cost_usd": 0.04495,
+   "seconds": 8.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 22,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.5,
+   "probs": {
+    "other": 0.1,
+    "real": 0.5,
+    "place": 0.05,
+    "half": 0.35
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one or two short curved pale strokes across only the top of the nose, about 7 1/2 in down, with the rosy nose left showing around them; Picture 2 shows that most clearly, Picture 3 puts the stroke on the body, and Picture 1 repaints the whole muzzle.",
+   "cost_usd": 0.0445,
+   "seconds": 9.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.32,
+   "probs": {
+    "place": 0.32,
+    "real": 0.32,
+    "other": 0.04,
+    "half": 0.32
+   },
+   "pick": "place",
+   "hit": false,
+   "why": "The step asks for only a handful of tiny 1/4 in taps so the corner looks nearly the same as before, which rules out Picture 3 with its large yellow-green patches, but Pictures 1, 2 and 4 look identical to each other and to the starting canvas, so I can't tell them apart.",
+   "cost_usd": 0.0399,
+   "seconds": 6.2
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.75,
+   "probs": {
+    "other": 0.03,
+    "real": 0.75,
+    "place": 0.05,
+    "half": 0.17
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step wants dappled taps that are densest at the top of the corner patch, thinning toward the bottom with a short trailing tail, and the rest of the canvas left bare. Picture 2 matches this; Picture 4 puts the dark paint low and leaves the top pale, Picture 3 paints the right corner too, and Picture 1 is unchanged.",
+   "cost_usd": 0.04264,
+   "seconds": 8.1
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.85,
+   "probs": {
+    "other": 0.02,
+    "place": 0.08,
+    "real": 0.85,
+    "half": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to stop when everything except the window view is blue out to every edge with no hard lines; only Picture 3 shows that, while Picture 2 has a hard vertical seam, Picture 4 leaves the left half bare, and Picture 1 shows a cream frame instead of the wall.",
+   "cost_usd": 0.04233,
+   "seconds": 7.3
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.94,
+   "probs": {
+    "real": 0.94,
+    "place": 0.02,
+    "other": 0.02,
+    "half": 0.02
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for one flat brown sill whose top line starts about 7 1/4 in down at the foot of the frame, slopes down to the right, runs from the left edge to the right edge with a readable front strip, and leaves everything above that line untouched, which only Picture 1 shows; Picture 2 puts the sill at the top, Picture 3 is patchy and incomplete, and Picture 4 does not reach the left edge.",
+   "cost_usd": 0.0392,
+   "seconds": 4.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "other": 0.04,
+    "real": 0.88,
+    "half": 0.04,
+    "place": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one flat Warm white frame with no shading, its post's right side about 3 3/4 in from the left edge and running from the top edge to the bottom edge, and only Picture 2 does all of that: Picture 1 is shaded, Picture 3 stops short of the bottom, and Picture 4 sits on the right side.",
+   "cost_usd": 0.04003,
+   "seconds": 5.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.87,
+   "probs": {
+    "other": 0.02,
+    "half": 0.08,
+    "real": 0.87,
+    "place": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for lavender bands on every shaded face (wall-facing half of the wide post, narrow post edge, crossbar underside, ledge front) plus one long shadow band down the wall 'from the top edge to the bottom edge'; only Picture 3 has all of these, while Picture 2 starts the wall band partway down and leaves the upper post and crossbar unshaded, and Pictures 1 and 4 add a floor or a second window the step never mentions.",
+   "cost_usd": 0.04258,
+   "seconds": 8.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.86,
+   "probs": {
+    "place": 0.04,
+    "real": 0.86,
+    "half": 0.06,
+    "other": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for dry-brushed grain streaks along the whole sill out to the right edge, darkest along the back and front edge, with the two slanted sun pieces and thin diagonal bar left plain near the window; only Picture 2 shows that, while 3 streaks just the right half, 1 puts the shapes on the far right, and 4 paints bright sun shapes with no streaking.",
+   "cost_usd": 0.04156,
+   "seconds": 7.3
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.82,
+   "probs": {
+    "place": 0.04,
+    "real": 0.82,
+    "half": 0.12,
+    "other": 0.02
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for three peach patches on the sill near the window: the big slanted wedge, a narrow bar nearer the wall, and a small piece at the left edge, all split by brown frame-shadow bands, and only Picture 2 shows this. Picture 3 leaves the wedge cut off unfinished, Picture 1 puts the light far from the window, and Picture 4 is a yellow blob over everything.",
+   "cost_usd": 0.04274,
+   "seconds": 7.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "place": 0.03,
+    "other": 0.04,
+    "real": 0.88,
+    "half": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for one flat, unshaded golden oval lying on the sill, starting about 1 1/4 in from the left edge, running to the right edge, with two rounded bumps at the window end and its bottom about 1 in up; only Picture 3 shows this, while 1 sits too high on the wall, 2 is textured and shaded, and 4 is a squared-off block starting mid-canvas.",
+   "cost_usd": 0.03847,
+   "seconds": 5.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "other": 0.03,
+    "real": 0.88,
+    "place": 0.05,
+    "half": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to cover the whole blanket out to the right edge with ochre loops packed in the hollow, back rim and front-fold creases while staying within the blanket; Picture 2 does this, while 1 barely started, 4 left the window end bare, and 3 spilled paint past the blanket's outline.",
+   "cost_usd": 0.03796,
+   "seconds": 5.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.12,
+    "place": 0.06,
+    "real": 0.8,
+    "other": 0.02
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to crowd small pale-yellow commas on the rounded end facing the window so it glows, with only a light sprinkle elsewhere; Picture 3 shows that, while 1 looks barely changed, 2 puts the light strokes on the far right end, and 4 adds an unrelated grey cat shape.",
+   "cost_usd": 0.04016,
+   "seconds": 6.1
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.85,
+   "probs": {
+    "half": 0.08,
+    "other": 0.02,
+    "place": 0.05,
+    "real": 0.85
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step puts Dark gray in the crescent behind the head, around the far round end, along the tail and at the chin while leaving the head and top Mid gray; only picture 4 does all of that, since picture 1 skips the crescent and tail, picture 3 darkens the head, and picture 2 adds the white instead.",
+   "cost_usd": 0.04003,
+   "seconds": 6.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.9,
+   "probs": {
+    "place": 0.03,
+    "other": 0.02,
+    "half": 0.05,
+    "real": 0.9
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for Charcoal stripes on the forehead and cheeks, wrapping over the whole body, banding the tail, and darkening the ear rims, while the white muzzle, paws and side patch stay clean; Picture 4 does all of this, Picture 3 stripes only part of the body, Picture 2 adds pink ears and no stripes, and Picture 1 changes the cat's pose.",
+   "cost_usd": 0.0387,
+   "seconds": 5.2
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.85,
+   "probs": {
+    "half": 0.03,
+    "real": 0.85,
+    "other": 0.04,
+    "place": 0.08
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one flat gray curled-cat shape with its head toward the window, two ears, the blanket's front roll and a gold rim left showing, and its bottom about 3 1/2 in up; Picture 2 matches all of this, while Picture 4 covers the front roll and sits too low, Picture 1 is not a cat shape, and Picture 3 is patchy and not flat.",
+   "cost_usd": 0.0414,
+   "seconds": 7.2
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.93,
+   "probs": {
+    "place": 0.02,
+    "other": 0.01,
+    "real": 0.93,
+    "half": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step puts white on the muzzle and chin, on both front paws with thin gray lines left between them, and on a pointed side patch centred about 9 1/4 in from the left; only Picture 3 has all three, while 4 has no side patch, 1 has the white in the wrong places, and 2 adds stripes instead.",
+   "cost_usd": 0.04065,
+   "seconds": 6.1
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "half": 0.05,
+    "place": 0.03,
+    "real": 0.7,
+    "other": 0.22
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to fill both the window-side ear (about 2 1/4 in from the left) and the top-of-head ear (about 6 1/4 in) with soft pink that comes to a point at the tips, leaving a gray rim; Picture 3 does this, while Picture 1 paints only one ear, Picture 2 paints in the wrong places, and Picture 4's pink is paler and fills less of each ear.",
+   "cost_usd": 0.04248,
+   "seconds": 7.5
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.49,
+   "probs": {
+    "other": 0.04,
+    "place": 0.02,
+    "real": 0.49,
+    "half": 0.45
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to leave the face blank and flick only light fur between the stripes, which rules out Picture 1 with its painted nose and Picture 2 with its extra cat shapes; Pictures 3 and 4 both show soft lighter fur with clear stripes and look nearly the same, so I can't separate them with confidence.",
+   "cost_usd": 0.04115,
+   "seconds": 6.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.9,
+   "probs": {
+    "other": 0.02,
+    "place": 0.06,
+    "half": 0.02,
+    "real": 0.9
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step puts the gold in the upper left and has the haze cover the whole canvas with no white showing; picture 4 matches this, while 2 has the gold in the upper right and 1 and 3 leave white canvas.",
+   "cost_usd": 0.03831,
+   "seconds": 4.6
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.12,
+    "other": 0.05,
+    "place": 0.03,
+    "real": 0.8
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to line both closed eyes and add a few short lines on the cheek past the second eye; Picture 4 does this, while Picture 1 lines only one eye, Picture 2 adds whiskers, and Picture 3 paints a second face.",
+   "cost_usd": 0.03979,
+   "seconds": 5.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.46,
+   "probs": {
+    "other": 0.05,
+    "place": 0.03,
+    "real": 0.46,
+    "half": 0.46
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for only a small, neat pink triangle nose on the white muzzle with white left around it (plus slight ear touches); Pictures 3 and 4 both show exactly that, while Picture 1 also adds closed eyes and whiskers and Picture 2 scatters pink spots across the body instead of painting a nose.",
+   "cost_usd": 0.03989,
+   "seconds": 6.5
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.72,
+   "probs": {
+    "place": 0.04,
+    "half": 0.18,
+    "other": 0.06,
+    "real": 0.72
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for thin light whiskers fanning from both sides of the muzzle, with one set reaching toward the window to about 2 3/4 in from the left edge; Picture 4 shows both sets, while 2 looks one-sided, 1 puts the strokes out on the body, and 3 shows almost no whiskers.",
+   "cost_usd": 0.04103,
+   "seconds": 7.1
+  },
+  {
+   "picture": "birch-grove",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.7,
+   "probs": {
+    "real": 0.7,
+    "other": 0.03,
+    "place": 0.02,
+    "half": 0.25
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for a small, soft, bumpy cream disk against the left edge with its top about 1 1/4 in (about 50 px) down. Picture 1 fits that best, Picture 4's glow sits too high, Picture 3 puts it at the right edge, and Picture 2 adds no sun.",
+   "cost_usd": 0.0415,
+   "seconds": 7.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.85,
+   "probs": {
+    "real": 0.85,
+    "half": 0.07,
+    "place": 0.03,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says the firs run from about 9 1/4 in all the way to the right edge with the left side left as haze, which only Picture 1 shows; Picture 2 stops short of the edge, Picture 3 puts the firs on the left, and Picture 4 has only clumpy marks.",
+   "cost_usd": 0.0399,
+   "seconds": 5.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.33,
+   "probs": {
+    "place": 0.25,
+    "half": 0.4,
+    "other": 0.02,
+    "real": 0.33
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for one faint, plain, pale blue-violet trunk near the middle (top about 3 1/2 in down, starting about 6 1/2 in from the left) that melts into the haze; that rules out the dark detailed pines in 3, and 2 seems to best match the soft, modest placement, though I couldn't confidently tell 2, 1 and 4 apart.",
+   "cost_usd": 0.04453,
+   "seconds": 8.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.94,
+   "probs": {
+    "real": 0.94,
+    "place": 0.02,
+    "other": 0.02,
+    "half": 0.02
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to lay striped ground bands from about 7 in down to the bottom edge and from the left edge to the right edge, leaving the trunks' feet on the ground line; only Picture 1 does that, while 2 paints the top, 3 makes only a narrow path, and 4 covers only the right half.",
+   "cost_usd": 0.0384,
+   "seconds": 4.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.12,
+    "real": 0.8,
+    "place": 0.04,
+    "other": 0.04
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The tall Smoky brown trunk must start about 3/4 in from the top and run about 8 in down near 2 3/4 in from the left edge, which Picture 2 shows; Picture 1's trunk starts far too low, Picture 3 paints over the firs, and Picture 4 repaints the misty ground, which the step says to leave untouched.",
+   "cost_usd": 0.04136,
+   "seconds": 6.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.64,
+   "probs": {
+    "place": 0.03,
+    "half": 0.3,
+    "real": 0.64,
+    "other": 0.03
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step places the biggest patch about 8 in from the left and 5 in from the top, low on the firs' left side, to close the pale haze gaps at their base; Picture 3 fills that lower-left fir mass, Picture 2 changes mostly higher and further right, and Pictures 1 and 4 add dark blobs or red trunks away from the firs.",
+   "cost_usd": 0.04551,
+   "seconds": 9.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "other": 0.05,
+    "place": 0.08,
+    "real": 0.8,
+    "half": 0.07
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to carpet the whole ground and path with dark burnt orange and leaf brown dabs, keep the path's line, and leave the mist uncovered with only a sprinkle of clusters up top; Picture 3 does this, while Picture 4 covers only the right side, Picture 2 has dark blotches over the mist, and Picture 1 uses sparse bright yellow leaves heavy in the upper left.",
+   "cost_usd": 0.04361,
+   "seconds": 7.3
+  },
+  {
+   "picture": "birch-grove",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.82,
+   "probs": {
+    "half": 0.1,
+    "place": 0.03,
+    "real": 0.82,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for a big gold bush about 7 in wide on the left side, along with a gold canopy, gold dots through the ground, and the firs left clear; only Picture 3 shows all of these, while 1 has only a narrow bush, 4 has no left bush, and 2 puts the bush on the right and paints over the firs.",
+   "cost_usd": 0.04086,
+   "seconds": 7.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.32,
+   "probs": {
+    "place": 0.03,
+    "half": 0.62,
+    "other": 0.03,
+    "real": 0.32
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step puts pale gold only on the upper-left treetop leaves near the sun and keeps the right treetops deeper gold; Picture 2 lightens just the upper left, Picture 4 seems to lighten the right canopy too, and Pictures 1 and 3 add dark or green blobs the step never asks for.",
+   "cost_usd": 0.04172,
+   "seconds": 6.3
+  },
+  {
+   "picture": "birch-grove",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.88,
+   "probs": {
+    "real": 0.88,
+    "place": 0.02,
+    "half": 0.05,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a single flat moss-green boulder right of the path, starting about 10 3/4 in from the left (about 430 px), about 3 in wide and 1 1/2 in tall, with no shading: Picture 1 matches, Picture 2 is left of the path, Picture 3 is too narrow, and Picture 4 is shaded grey rather than flat Moss green.",
+   "cost_usd": 0.04078,
+   "seconds": 6.1
+  },
+  {
+   "picture": "birch-grove",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.6,
+   "probs": {
+    "half": 0.3,
+    "place": 0.08,
+    "real": 0.6,
+    "other": 0.02
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for a mauve track whose far-end dot sits about 7 1/2 in down with its middle near 9 3/4 in from the left, widening toward the front with gold left on both sides; Picture 3 fits that best, Picture 1's track stays narrow and almost parallel-edged, Picture 2's path sits too far left, and Picture 4 repaints the whole scene.",
+   "cost_usd": 0.04544,
+   "seconds": 9.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.78,
+   "probs": {
+    "half": 0.12,
+    "place": 0.03,
+    "real": 0.78,
+    "other": 0.07
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says deep pine green should cover most of the boulder at the right (left side about 11 1/4 in from the left edge) and leave green only along its upper left rim, in a dark, broken, mottled finish; Picture 3 matches that, while Picture 1 leaves too much green, Picture 4 barely darkens the rock, and Picture 2 paints the wrong spot.",
+   "cost_usd": 0.04046,
+   "seconds": 6.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.06,
+    "real": 0.8,
+    "place": 0.08,
+    "other": 0.06
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for five flat, unshaded gray front trunks: three on the left, including two leaning toward the path, plus two at the right edge, with a few slim trunks in the woods. Picture 2 has all of these; Picture 1 lacks the right-edge trunks, Picture 3 puts the big trunks beside the path instead, and Picture 4 adds bark shading.",
+   "cost_usd": 0.0414,
+   "seconds": 7.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.84,
+   "probs": {
+    "place": 0.03,
+    "other": 0.03,
+    "half": 0.1,
+    "real": 0.84
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step ends when every front birch, including the right-edge trunks, has broken black-brown bands and dark feet, with the left trunks heaviest; only Picture 4 shows that, while 3 leaves some trunks bare, 2 uses pale grey instead of bark dark, and 1 puts the dark on the wrong trunks.",
+   "cost_usd": 0.03995,
+   "seconds": 6.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.5,
+   "probs": {
+    "place": 0.08,
+    "half": 0.37,
+    "real": 0.5,
+    "other": 0.05
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step asks for one thin pale line of moss light on the rock's upper-left rim, about 7 in down, with the dark body left showing; Picture 4 adds unrelated tree trunks and Picture 1 puts the light far left of the rock, while 2 and 3 both change only the rock, and 3 looks slightly more like a thin rim than a patch, though that is hard to tell.",
+   "cost_usd": 0.04354,
+   "seconds": 8.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.8,
+   "probs": {
+    "half": 0.12,
+    "other": 0.03,
+    "place": 0.05,
+    "real": 0.8
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to stop only when every trunk is a streaky lavender gray with irregular pale patches. Picture 4 meets that, starting from the big trunks left of the path. Picture 1 leaves the big front-left trunks bare, Picture 3 shades the wrong places and leaves the main trunks plain, and Picture 2 adds black birch markings instead of lavender shading.",
+   "cost_usd": 0.04344,
+   "seconds": 7.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.4,
+   "probs": {
+    "real": 0.4,
+    "half": 0.35,
+    "place": 0.05,
+    "other": 0.2
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step calls for thin, short streaky lines down the shadowed middles of the existing trunks, mostly the left and upper ones, so it rules out Picture 3, which adds new trunks, and makes Picture 4's heavy bold patches unlikely; Pictures 1 and 2 both show only subtle changes and are hard to tell apart, so I leaned slightly toward 1.",
+   "cost_usd": 0.04324,
+   "seconds": 8.1
+  },
+  {
+   "picture": "birch-grove",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.6,
+   "probs": {
+    "half": 0.3,
+    "place": 0.04,
+    "other": 0.06,
+    "real": 0.6
+   },
+   "pick": "real",
+   "hit": true,
+   "why": "The step says to skim broken near-white streaks down the front birch trunks on the left and to 'do the front birch trunks at the right edge too'; Picture 4 brightens both, Picture 1 seems to skip the right-edge trunk, Picture 2 adds new trunks, and Picture 3 changes the path instead.",
+   "cost_usd": 0.04204,
+   "seconds": 7.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "p_real": 0.18,
+   "probs": {
+    "half": 0.62,
+    "other": 0.12,
+    "real": 0.18,
+    "place": 0.08
+   },
+   "pick": "half",
+   "hit": false,
+   "why": "The step asks for separate pale-gold dabs along the path and around the trunk feet, mostly on the right side, with the very front left clear: Picture 1 fits this, Picture 2 looks barely changed, Picture 3 spreads pale dabs into the left and front foreground, and Picture 4 repaints far more than the ground leaves.",
+   "cost_usd": 0.04182,
+   "seconds": 6.9
+  }
+ ],
+ "carry": [
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "file": "01-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.513,
+   "where": 1.0,
+   "d_before_after": 39.38,
+   "d_result_after": 19.19,
+   "render_usd": 0.016,
+   "seconds": 10.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "file": "04-words-r1.png",
+   "beats": 0.75,
+   "toward": 0.247,
+   "where": 0.522,
+   "d_before_after": 8.47,
+   "d_result_after": 6.38,
+   "render_usd": 0.016,
+   "seconds": 13.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "file": "06-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.077,
+   "d_before_after": 0.37,
+   "d_result_after": 1.7,
+   "render_usd": 0.015,
+   "seconds": 13.8
+  },
+  {
+   "picture": "highland-cow",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "file": "05-words-r1.png",
+   "beats": 0.75,
+   "toward": -1.0,
+   "where": 0.004,
+   "d_before_after": 0.09,
+   "d_result_after": 7.52,
+   "render_usd": 0.015,
+   "seconds": 13.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "file": "03-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.059,
+   "d_before_after": 1.91,
+   "d_result_after": 7.66,
+   "render_usd": 0.015,
+   "seconds": 15.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "file": "02-words-r1.png",
+   "beats": 0.25,
+   "toward": -0.487,
+   "where": 0.454,
+   "d_before_after": 6.74,
+   "d_result_after": 10.03,
+   "render_usd": 0.016,
+   "seconds": 15.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "file": "07-words-r1.png",
+   "beats": 0.75,
+   "toward": 0.125,
+   "where": 0.758,
+   "d_before_after": 19.15,
+   "d_result_after": 16.75,
+   "render_usd": 0.016,
+   "seconds": 12.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "file": "10-words-r1.png",
+   "beats": 0.75,
+   "toward": 0.215,
+   "where": 0.565,
+   "d_before_after": 11.23,
+   "d_result_after": 8.82,
+   "render_usd": 0.015,
+   "seconds": 13.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "file": "08-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.599,
+   "where": 0.809,
+   "d_before_after": 14.93,
+   "d_result_after": 5.99,
+   "render_usd": 0.015,
+   "seconds": 14.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "file": "12-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.063,
+   "d_before_after": 0.49,
+   "d_result_after": 4.92,
+   "render_usd": 0.015,
+   "seconds": 13.0
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "file": "11-words-r1.png",
+   "beats": 1.0,
+   "toward": -0.268,
+   "where": 0.442,
+   "d_before_after": 4.72,
+   "d_result_after": 5.99,
+   "render_usd": 0.015,
+   "seconds": 16.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "file": "13-words-r1.png",
+   "beats": 0.75,
+   "toward": -1.0,
+   "where": 0.065,
+   "d_before_after": 0.41,
+   "d_result_after": 4.52,
+   "render_usd": 0.015,
+   "seconds": 11.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "file": "14-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.257,
+   "d_before_after": 2.26,
+   "d_result_after": 5.22,
+   "render_usd": 0.015,
+   "seconds": 14.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "file": "15-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.004,
+   "d_before_after": 0.15,
+   "d_result_after": 4.52,
+   "render_usd": 0.015,
+   "seconds": 13.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "file": "16-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.068,
+   "d_before_after": 0.82,
+   "d_result_after": 7.21,
+   "render_usd": 0.015,
+   "seconds": 15.1
+  },
+  {
+   "picture": "highland-cow",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "file": "18-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.383,
+   "d_before_after": 2.93,
+   "d_result_after": 6.29,
+   "render_usd": 0.015,
+   "seconds": 13.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "file": "17-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.208,
+   "d_before_after": 1.71,
+   "d_result_after": 7.78,
+   "render_usd": 0.015,
+   "seconds": 18.0
+  },
+  {
+   "picture": "highland-cow",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "file": "09-words-r1.png",
+   "beats": 0.5,
+   "toward": -0.82,
+   "where": 0.215,
+   "d_before_after": 1.97,
+   "d_result_after": 3.58,
+   "render_usd": 0.015,
+   "seconds": 37.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "file": "19-words-r1.png",
+   "beats": 0.75,
+   "toward": -1.0,
+   "where": 0.148,
+   "d_before_after": 2.01,
+   "d_result_after": 6.45,
+   "render_usd": 0.015,
+   "seconds": 12.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "file": "20-words-r1.png",
+   "beats": 0.0,
+   "toward": -1.0,
+   "where": 0.005,
+   "d_before_after": 0.14,
+   "d_result_after": 8.42,
+   "render_usd": 0.015,
+   "seconds": 13.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "file": "21-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.0,
+   "d_before_after": 0.12,
+   "d_result_after": 6.55,
+   "render_usd": 0.015,
+   "seconds": 14.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "file": "01-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.177,
+   "where": 0.68,
+   "d_before_after": 0.25,
+   "d_result_after": 0.2,
+   "render_usd": 0.016,
+   "seconds": 7.6
+  },
+  {
+   "picture": "highland-cow",
+   "n": 22,
+   "condition": "words",
+   "rep": 1,
+   "file": "22-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.005,
+   "d_before_after": 0.09,
+   "d_result_after": 6.43,
+   "render_usd": 0.015,
+   "seconds": 13.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 23,
+   "condition": "words",
+   "rep": 1,
+   "file": "23-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.026,
+   "d_before_after": 0.28,
+   "d_result_after": 5.76,
+   "render_usd": 0.015,
+   "seconds": 12.2
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "file": "02-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.846,
+   "d_before_after": 0.24,
+   "d_result_after": 0.52,
+   "render_usd": 0.015,
+   "seconds": 9.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "file": "03-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.0,
+   "d_before_after": 0.0,
+   "d_result_after": 1.65,
+   "render_usd": 0.015,
+   "seconds": 7.9
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "file": "04-words-r1.png",
+   "beats": 0.75,
+   "toward": 0.609,
+   "where": 0.997,
+   "d_before_after": 48.92,
+   "d_result_after": 19.12,
+   "render_usd": 0.016,
+   "seconds": 10.6
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "file": "05-words-r1.png",
+   "beats": 0.25,
+   "toward": -0.557,
+   "where": 0.289,
+   "d_before_after": 8.3,
+   "d_result_after": 12.91,
+   "render_usd": 0.016,
+   "seconds": 13.3
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "file": "06-words-r1.png",
+   "beats": 0.5,
+   "toward": -0.146,
+   "where": 0.683,
+   "d_before_after": 4.78,
+   "d_result_after": 5.48,
+   "render_usd": 0.016,
+   "seconds": 11.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "file": "09-words-r1.png",
+   "beats": 1.0,
+   "toward": -0.641,
+   "where": 0.392,
+   "d_before_after": 2.04,
+   "d_result_after": 3.34,
+   "render_usd": 0.015,
+   "seconds": 11.2
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "file": "07-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.489,
+   "where": 0.369,
+   "d_before_after": 24.85,
+   "d_result_after": 12.71,
+   "render_usd": 0.016,
+   "seconds": 12.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "file": "08-words-r1.png",
+   "beats": 0.5,
+   "toward": -0.792,
+   "where": 0.242,
+   "d_before_after": 1.79,
+   "d_result_after": 3.21,
+   "render_usd": 0.016,
+   "seconds": 13.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "file": "11-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.012,
+   "where": 0.729,
+   "d_before_after": 4.43,
+   "d_result_after": 4.38,
+   "render_usd": 0.015,
+   "seconds": 11.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "file": "12-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.059,
+   "d_before_after": 0.31,
+   "d_result_after": 2.79,
+   "render_usd": 0.015,
+   "seconds": 14.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "file": "15-words-r1.png",
+   "beats": 1.0,
+   "toward": -0.916,
+   "where": 0.499,
+   "d_before_after": 1.64,
+   "d_result_after": 3.14,
+   "render_usd": 0.015,
+   "seconds": 11.7
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "file": "10-words-r1.png",
+   "beats": 0.25,
+   "toward": 0.444,
+   "where": 0.634,
+   "d_before_after": 34.66,
+   "d_result_after": 19.27,
+   "render_usd": 0.015,
+   "seconds": 20.4
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "file": "14-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.33,
+   "d_before_after": 1.51,
+   "d_result_after": 4.58,
+   "render_usd": 0.016,
+   "seconds": 14.3
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "file": "13-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.565,
+   "where": 0.678,
+   "d_before_after": 19.23,
+   "d_result_after": 8.36,
+   "render_usd": 0.015,
+   "seconds": 14.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "file": "17-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.071,
+   "d_before_after": 0.76,
+   "d_result_after": 6.83,
+   "render_usd": 0.015,
+   "seconds": 12.5
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "file": "16-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.133,
+   "where": 0.736,
+   "d_before_after": 3.97,
+   "d_result_after": 3.44,
+   "render_usd": 0.015,
+   "seconds": 16.0
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "file": "18-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.01,
+   "d_before_after": 0.78,
+   "d_result_after": 4.23,
+   "render_usd": 0.015,
+   "seconds": 14.6
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "file": "19-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.0,
+   "d_before_after": 0.14,
+   "d_result_after": 1.34,
+   "render_usd": 0.015,
+   "seconds": 14.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "file": "20-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.026,
+   "d_before_after": 0.37,
+   "d_result_after": 3.08,
+   "render_usd": 0.015,
+   "seconds": 14.8
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "file": "21-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.0,
+   "d_before_after": 0.11,
+   "d_result_after": 5.91,
+   "render_usd": 0.015,
+   "seconds": 15.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "file": "01-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.634,
+   "where": 1.0,
+   "d_before_after": 36.69,
+   "d_result_after": 13.44,
+   "render_usd": 0.016,
+   "seconds": 9.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "file": "02-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.034,
+   "d_before_after": 0.44,
+   "d_result_after": 4.42,
+   "render_usd": 0.015,
+   "seconds": 11.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "file": "04-words-r1.png",
+   "beats": 0.75,
+   "toward": 0.17,
+   "where": 0.766,
+   "d_before_after": 5.58,
+   "d_result_after": 4.63,
+   "render_usd": 0.016,
+   "seconds": 12.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "file": "03-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.202,
+   "d_before_after": 0.4,
+   "d_result_after": 1.29,
+   "render_usd": 0.015,
+   "seconds": 14.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "file": "06-words-r1.png",
+   "beats": 0.75,
+   "toward": -1.0,
+   "where": 0.137,
+   "d_before_after": 0.54,
+   "d_result_after": 2.6,
+   "render_usd": 0.016,
+   "seconds": 12.6
+  },
+  {
+   "picture": "birch-grove",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "file": "05-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.066,
+   "d_before_after": 0.2,
+   "d_result_after": 1.83,
+   "render_usd": 0.015,
+   "seconds": 13.7
+  },
+  {
+   "picture": "birch-grove",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "file": "07-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.579,
+   "where": 0.904,
+   "d_before_after": 15.06,
+   "d_result_after": 6.34,
+   "render_usd": 0.016,
+   "seconds": 14.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "file": "08-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.399,
+   "d_before_after": 0.89,
+   "d_result_after": 3.02,
+   "render_usd": 0.015,
+   "seconds": 12.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "file": "11-words-r1.png",
+   "beats": 0.25,
+   "toward": -0.78,
+   "where": 0.317,
+   "d_before_after": 2.87,
+   "d_result_after": 5.11,
+   "render_usd": 0.015,
+   "seconds": 12.5
+  },
+  {
+   "picture": "birch-grove",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "file": "12-words-r1.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.441,
+   "d_before_after": 0.68,
+   "d_result_after": 2.11,
+   "render_usd": 0.015,
+   "seconds": 12.4
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "file": "09-words-r1.png",
+   "beats": 0.5,
+   "toward": 0.233,
+   "where": 0.611,
+   "d_before_after": 18.97,
+   "d_result_after": 14.55,
+   "render_usd": 0.016,
+   "seconds": 14.2
+  },
+  {
+   "picture": "birch-grove",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "file": "14-words-r1.png",
+   "beats": 0.25,
+   "toward": -1.0,
+   "where": 0.0,
+   "d_before_after": 0.11,
+   "d_result_after": 3.95,
+   "render_usd": 0.015,
+   "seconds": 12.9
+  },
+  {
+   "picture": "birch-grove",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "file": "13-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.455,
+   "d_before_after": 0.28,
+   "d_result_after": 2.22,
+   "render_usd": 0.015,
+   "seconds": 12.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "file": "10-words-r1.png",
+   "beats": 0.5,
+   "toward": 0.118,
+   "where": 0.467,
+   "d_before_after": 13.42,
+   "d_result_after": 11.83,
+   "render_usd": 0.015,
+   "seconds": 15.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "file": "15-words-r1.png",
+   "beats": 0.25,
+   "toward": 0.087,
+   "where": 0.47,
+   "d_before_after": 13.23,
+   "d_result_after": 12.08,
+   "render_usd": 0.015,
+   "seconds": 16.1
+  },
+  {
+   "picture": "birch-grove",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "file": "17-words-r1.png",
+   "beats": 1.0,
+   "toward": 0.17,
+   "where": 0.612,
+   "d_before_after": 4.44,
+   "d_result_after": 3.69,
+   "render_usd": 0.015,
+   "seconds": 17.3
+  },
+  {
+   "picture": "birch-grove",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "file": "16-words-r1.png",
+   "beats": 0.5,
+   "toward": -0.381,
+   "where": 0.387,
+   "d_before_after": 3.32,
+   "d_result_after": 4.59,
+   "render_usd": 0.015,
+   "seconds": 17.8
+  },
+  {
+   "picture": "birch-grove",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "file": "19-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.472,
+   "d_before_after": 1.31,
+   "d_result_after": 3.02,
+   "render_usd": 0.015,
+   "seconds": 16.0
+  },
+  {
+   "picture": "birch-grove",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "file": "18-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.123,
+   "d_before_after": 0.65,
+   "d_result_after": 2.7,
+   "render_usd": 0.015,
+   "seconds": 16.3
+  },
+  {
+   "picture": "birch-grove",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "file": "20-words-r1.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.197,
+   "d_before_after": 1.54,
+   "d_result_after": 6.38,
+   "render_usd": 0.015,
+   "seconds": 15.6
+  }
+ ],
+ "carry_grades": [
+  {
+   "picture": "birch-grove",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0325
+  },
+  {
+   "picture": "birch-grove",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02684
+  },
+  {
+   "picture": "birch-grove",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02612
+  },
+  {
+   "picture": "birch-grove",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02895
+  },
+  {
+   "picture": "birch-grove",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02866
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02966
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03077
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02995
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02951
+  },
+  {
+   "picture": "highland-cow",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02905
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03049
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03077
+  },
+  {
+   "picture": "highland-cow",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03405
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0285
+  },
+  {
+   "picture": "highland-cow",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02824
+  },
+  {
+   "picture": "highland-cow",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0294
+  },
+  {
+   "picture": "highland-cow",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03114
+  },
+  {
+   "picture": "highland-cow",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "grade": 5,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02764
+  },
+  {
+   "picture": "highland-cow",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02983
+  },
+  {
+   "picture": "highland-cow",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02953
+  },
+  {
+   "picture": "highland-cow",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02828
+  },
+  {
+   "picture": "highland-cow",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0296
+  },
+  {
+   "picture": "highland-cow",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02874
+  },
+  {
+   "picture": "highland-cow",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03023
+  },
+  {
+   "picture": "highland-cow",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02907
+  },
+  {
+   "picture": "highland-cow",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02994
+  },
+  {
+   "picture": "highland-cow",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02902
+  },
+  {
+   "picture": "highland-cow",
+   "n": 22,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03219
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02845
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "grade": 1,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02784
+  },
+  {
+   "picture": "highland-cow",
+   "n": 23,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02956
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02837
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02874
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02807
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02934
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03124
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03012
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02858
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02897
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 11,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02986
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 12,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03003
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02999
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0285
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02884
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03069
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "grade": 5,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02732
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "grade": 5,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02843
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03039
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03108
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 21,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02874
+  },
+  {
+   "picture": "birch-grove",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02856
+  },
+  {
+   "picture": "birch-grove",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0286
+  },
+  {
+   "picture": "birch-grove",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02908
+  },
+  {
+   "picture": "birch-grove",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03007
+  },
+  {
+   "picture": "birch-grove",
+   "n": 10,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03098
+  },
+  {
+   "picture": "birch-grove",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02916
+  },
+  {
+   "picture": "birch-grove",
+   "n": 16,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02876
+  },
+  {
+   "picture": "birch-grove",
+   "n": 14,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03096
+  },
+  {
+   "picture": "birch-grove",
+   "n": 17,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02913
+  },
+  {
+   "picture": "birch-grove",
+   "n": 13,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02853
+  },
+  {
+   "picture": "birch-grove",
+   "n": 18,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0295
+  },
+  {
+   "picture": "birch-grove",
+   "n": 15,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03052
+  },
+  {
+   "picture": "birch-grove",
+   "n": 19,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02889
+  },
+  {
+   "picture": "birch-grove",
+   "n": 20,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03102
+  }
+ ],
+ "graders": [],
+ "calls": [
+  {
+   "label": "grade-carry birch-grove 2",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 204,
+   "cost_usd": 0.02855
+  },
+  {
+   "label": "grade-carry birch-grove 3",
+   "seconds": 6.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 2857,
+   "cache_read_tokens": 0,
+   "output_tokens": 258,
+   "cost_usd": 0.02802
+  },
+  {
+   "label": "grade-carry birch-grove 6",
+   "seconds": 7.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 337,
+   "cost_usd": 0.03118
+  },
+  {
+   "label": "grade-carry birch-grove 4",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3046,
+   "cache_read_tokens": 0,
+   "output_tokens": 233,
+   "cost_usd": 0.02904
+  },
+  {
+   "label": "grade-carry birch-grove 1",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 2994,
+   "cache_read_tokens": 0,
+   "output_tokens": 213,
+   "cost_usd": 0.02822
+  },
+  {
+   "label": "grade-carry birch-grove 5",
+   "seconds": 8.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3066,
+   "cache_read_tokens": 0,
+   "output_tokens": 398,
+   "cost_usd": 0.0325
+  },
+  {
+   "label": "grade-carry birch-grove 7",
+   "seconds": 6.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 2616,
+   "cache_read_tokens": 0,
+   "output_tokens": 295,
+   "cost_usd": 0.02684
+  },
+  {
+   "label": "grade-carry birch-grove 8",
+   "seconds": 7.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 2617,
+   "cache_read_tokens": 0,
+   "output_tokens": 259,
+   "cost_usd": 0.02612
+  },
+  {
+   "label": "grade-carry birch-grove 12",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 227,
+   "cost_usd": 0.02895
+  },
+  {
+   "label": "grade-carry birch-grove 11",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 2841,
+   "cache_read_tokens": 0,
+   "output_tokens": 296,
+   "cost_usd": 0.02866
+  },
+  {
+   "label": "grade-carry birch-grove 9",
+   "seconds": 7.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 2841,
+   "cache_read_tokens": 0,
+   "output_tokens": 346,
+   "cost_usd": 0.02966
+  },
+  {
+   "label": "grade-carry highland-cow 1",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 318,
+   "cost_usd": 0.03077
+  },
+  {
+   "label": "grade-carry highland-cow 2",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 274,
+   "cost_usd": 0.02995
+  },
+  {
+   "label": "grade-carry highland-cow 4",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 255,
+   "cost_usd": 0.02951
+  },
+  {
+   "label": "grade-carry highland-cow 5",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 229,
+   "cost_usd": 0.02905
+  },
+  {
+   "label": "grade-carry highland-cow 3",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3070,
+   "cache_read_tokens": 0,
+   "output_tokens": 296,
+   "cost_usd": 0.03049
+  },
+  {
+   "label": "grade-carry highland-cow 7",
+   "seconds": 7.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 318,
+   "cost_usd": 0.03077
+  },
+  {
+   "label": "grade-carry highland-cow 6",
+   "seconds": 9.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 482,
+   "cost_usd": 0.03405
+  },
+  {
+   "label": "grade-carry highland-cow 8",
+   "seconds": 6.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 203,
+   "cost_usd": 0.0285
+  },
+  {
+   "label": "grade-carry highland-cow 11",
+   "seconds": 5.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 187,
+   "cost_usd": 0.02824
+  },
+  {
+   "label": "grade-carry highland-cow 10",
+   "seconds": 6.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3074,
+   "cache_read_tokens": 0,
+   "output_tokens": 240,
+   "cost_usd": 0.0294
+  },
+  {
+   "label": "grade-carry highland-cow 9",
+   "seconds": 7.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 332,
+   "cost_usd": 0.03114
+  },
+  {
+   "label": "grade-carry highland-cow 12",
+   "seconds": 5.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 157,
+   "cost_usd": 0.02764
+  },
+  {
+   "label": "grade-carry highland-cow 13",
+   "seconds": 6.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3070,
+   "cache_read_tokens": 0,
+   "output_tokens": 263,
+   "cost_usd": 0.02983
+  },
+  {
+   "label": "grade-carry highland-cow 14",
+   "seconds": 6.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 253,
+   "cost_usd": 0.02953
+  },
+  {
+   "label": "grade-carry highland-cow 16",
+   "seconds": 5.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 192,
+   "cost_usd": 0.02828
+  },
+  {
+   "label": "grade-carry highland-cow 15",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 255,
+   "cost_usd": 0.0296
+  },
+  {
+   "label": "grade-carry highland-cow 17",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 215,
+   "cost_usd": 0.02874
+  },
+  {
+   "label": "grade-carry highland-cow 18",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 288,
+   "cost_usd": 0.03023
+  },
+  {
+   "label": "grade-carry highland-cow 19",
+   "seconds": 5.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 3078,
+   "cache_read_tokens": 0,
+   "output_tokens": 222,
+   "cost_usd": 0.02907
+  },
+  {
+   "label": "grade-carry highland-cow 20",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 275,
+   "cost_usd": 0.02994
+  },
+  {
+   "label": "grade-carry highland-cow 21",
+   "seconds": 6.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3074,
+   "cache_read_tokens": 0,
+   "output_tokens": 221,
+   "cost_usd": 0.02902
+  },
+  {
+   "label": "grade-carry highland-cow 22",
+   "seconds": 8.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 389,
+   "cost_usd": 0.03219
+  },
+  {
+   "label": "grade-carry sleeping-cat 1",
+   "seconds": 6.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 199,
+   "cost_usd": 0.02845
+  },
+  {
+   "label": "grade-carry sleeping-cat 2",
+   "seconds": 5.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 170,
+   "cost_usd": 0.02784
+  },
+  {
+   "label": "grade-carry highland-cow 23",
+   "seconds": 7.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3046,
+   "cache_read_tokens": 0,
+   "output_tokens": 259,
+   "cost_usd": 0.02956
+  },
+  {
+   "label": "grade-carry sleeping-cat 3",
+   "seconds": 5.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3070,
+   "cache_read_tokens": 0,
+   "output_tokens": 190,
+   "cost_usd": 0.02837
+  },
+  {
+   "label": "grade-carry sleeping-cat 4",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3046,
+   "cache_read_tokens": 0,
+   "output_tokens": 218,
+   "cost_usd": 0.02874
+  },
+  {
+   "label": "grade-carry sleeping-cat 7",
+   "seconds": 5.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3070,
+   "cache_read_tokens": 0,
+   "output_tokens": 175,
+   "cost_usd": 0.02807
+  },
+  {
+   "label": "grade-carry sleeping-cat 6",
+   "seconds": 6.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 242,
+   "cost_usd": 0.02934
+  },
+  {
+   "label": "grade-carry sleeping-cat 5",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 337,
+   "cost_usd": 0.03124
+  },
+  {
+   "label": "grade-carry sleeping-cat 8",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3066,
+   "cache_read_tokens": 0,
+   "output_tokens": 279,
+   "cost_usd": 0.03012
+  },
+  {
+   "label": "grade-carry sleeping-cat 9",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 207,
+   "cost_usd": 0.02858
+  },
+  {
+   "label": "grade-carry sleeping-cat 10",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3078,
+   "cache_read_tokens": 0,
+   "output_tokens": 217,
+   "cost_usd": 0.02897
+  },
+  {
+   "label": "grade-carry sleeping-cat 11",
+   "seconds": 6.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 268,
+   "cost_usd": 0.02986
+  },
+  {
+   "label": "grade-carry sleeping-cat 12",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3078,
+   "cache_read_tokens": 0,
+   "output_tokens": 270,
+   "cost_usd": 0.03003
+  },
+  {
+   "label": "grade-carry sleeping-cat 13",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 276,
+   "cost_usd": 0.02999
+  },
+  {
+   "label": "grade-carry sleeping-cat 14",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3074,
+   "cache_read_tokens": 0,
+   "output_tokens": 195,
+   "cost_usd": 0.0285
+  },
+  {
+   "label": "grade-carry sleeping-cat 15",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3066,
+   "cache_read_tokens": 0,
+   "output_tokens": 215,
+   "cost_usd": 0.02884
+  },
+  {
+   "label": "grade-carry sleeping-cat 16",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3070,
+   "cache_read_tokens": 0,
+   "output_tokens": 306,
+   "cost_usd": 0.03069
+  },
+  {
+   "label": "grade-carry sleeping-cat 17",
+   "seconds": 5.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 144,
+   "cost_usd": 0.02732
+  },
+  {
+   "label": "grade-carry sleeping-cat 19",
+   "seconds": 5.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 198,
+   "cost_usd": 0.02843
+  },
+  {
+   "label": "grade-carry sleeping-cat 18",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 296,
+   "cost_usd": 0.03039
+  },
+  {
+   "label": "grade-carry sleeping-cat 20",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 332,
+   "cost_usd": 0.03108
+  },
+  {
+   "label": "grade-carry sleeping-cat 21",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 212,
+   "cost_usd": 0.02874
+  },
+  {
+   "label": "grade-carry birch-grove 1",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 206,
+   "cost_usd": 0.02856
+  },
+  {
+   "label": "grade-carry birch-grove 4",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 205,
+   "cost_usd": 0.0286
+  },
+  {
+   "label": "grade-carry birch-grove 3",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 229,
+   "cost_usd": 0.02908
+  },
+  {
+   "label": "grade-carry birch-grove 6",
+   "seconds": 7.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 283,
+   "cost_usd": 0.03007
+  },
+  {
+   "label": "grade-carry birch-grove 10",
+   "seconds": 7.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 327,
+   "cost_usd": 0.03098
+  },
+  {
+   "label": "grade-carry birch-grove 2",
+   "seconds": 7.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3062,
+   "cache_read_tokens": 0,
+   "output_tokens": 233,
+   "cost_usd": 0.02916
+  },
+  {
+   "label": "grade-carry birch-grove 16",
+   "seconds": 5.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3074,
+   "cache_read_tokens": 0,
+   "output_tokens": 208,
+   "cost_usd": 0.02876
+  },
+  {
+   "label": "grade-carry birch-grove 14",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3046,
+   "cache_read_tokens": 0,
+   "output_tokens": 329,
+   "cost_usd": 0.03096
+  },
+  {
+   "label": "grade-carry birch-grove 17",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3058,
+   "cache_read_tokens": 0,
+   "output_tokens": 233,
+   "cost_usd": 0.02913
+  },
+  {
+   "label": "grade-carry birch-grove 13",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 206,
+   "cost_usd": 0.02853
+  },
+  {
+   "label": "grade-carry birch-grove 18",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3066,
+   "cache_read_tokens": 0,
+   "output_tokens": 248,
+   "cost_usd": 0.0295
+  },
+  {
+   "label": "grade-carry birch-grove 15",
+   "seconds": 7.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 3054,
+   "cache_read_tokens": 0,
+   "output_tokens": 304,
+   "cost_usd": 0.03052
+  },
+  {
+   "label": "grade-carry birch-grove 19",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3050,
+   "cache_read_tokens": 0,
+   "output_tokens": 224,
+   "cost_usd": 0.02889
+  },
+  {
+   "label": "grade-carry birch-grove 20",
+   "seconds": 7.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 3074,
+   "cache_read_tokens": 0,
+   "output_tokens": 321,
+   "cost_usd": 0.03102
+  },
+  {
+   "label": "pick words highland-cow 4 r1",
+   "seconds": 5.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4440,
+   "cache_read_tokens": 0,
+   "output_tokens": 138,
+   "cost_usd": 0.03829
+  },
+  {
+   "label": "pick words highland-cow 1 r1",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4513,
+   "cache_read_tokens": 0,
+   "output_tokens": 253,
+   "cost_usd": 0.04117
+  },
+  {
+   "label": "pick words highland-cow 6 r1",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4361,
+   "cache_read_tokens": 0,
+   "output_tokens": 257,
+   "cost_usd": 0.04004
+  },
+  {
+   "label": "pick words highland-cow 5 r1",
+   "seconds": 7.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4369,
+   "cache_read_tokens": 0,
+   "output_tokens": 301,
+   "cost_usd": 0.04098
+  },
+  {
+   "label": "pick words highland-cow 3 r1",
+   "seconds": 8.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4344,
+   "cache_read_tokens": 0,
+   "output_tokens": 331,
+   "cost_usd": 0.04138
+  },
+  {
+   "label": "pick words highland-cow 2 r1",
+   "seconds": 8.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4461,
+   "cache_read_tokens": 0,
+   "output_tokens": 403,
+   "cost_usd": 0.04376
+  },
+  {
+   "label": "pick words highland-cow 9 r1",
+   "seconds": 5.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 4380,
+   "cache_read_tokens": 0,
+   "output_tokens": 210,
+   "cost_usd": 0.03925
+  },
+  {
+   "label": "pick words highland-cow 8 r1",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4398,
+   "cache_read_tokens": 0,
+   "output_tokens": 227,
+   "cost_usd": 0.03973
+  },
+  {
+   "label": "pick words highland-cow 7 r1",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4457,
+   "cache_read_tokens": 0,
+   "output_tokens": 351,
+   "cost_usd": 0.04268
+  },
+  {
+   "label": "pick words highland-cow 10 r1",
+   "seconds": 5.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 4425,
+   "cache_read_tokens": 0,
+   "output_tokens": 305,
+   "cost_usd": 0.04151
+  },
+  {
+   "label": "pick words highland-cow 11 r1",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4367,
+   "cache_read_tokens": 0,
+   "output_tokens": 268,
+   "cost_usd": 0.0403
+  },
+  {
+   "label": "pick words highland-cow 12 r1",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4323,
+   "cache_read_tokens": 0,
+   "output_tokens": 283,
+   "cost_usd": 0.04025
+  },
+  {
+   "label": "pick words highland-cow 13 r1",
+   "seconds": 5.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4312,
+   "cache_read_tokens": 0,
+   "output_tokens": 204,
+   "cost_usd": 0.03858
+  },
+  {
+   "label": "pick words highland-cow 14 r1",
+   "seconds": 5.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4376,
+   "cache_read_tokens": 0,
+   "output_tokens": 220,
+   "cost_usd": 0.03942
+  },
+  {
+   "label": "pick words highland-cow 16 r1",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4360,
+   "cache_read_tokens": 0,
+   "output_tokens": 412,
+   "cost_usd": 0.04313
+  },
+  {
+   "label": "pick words highland-cow 15 r1",
+   "seconds": 9.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4367,
+   "cache_read_tokens": 0,
+   "output_tokens": 525,
+   "cost_usd": 0.04544
+  },
+  {
+   "label": "pick words highland-cow 18 r1",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4339,
+   "cache_read_tokens": 0,
+   "output_tokens": 337,
+   "cost_usd": 0.04146
+  },
+  {
+   "label": "pick words highland-cow 17 r1",
+   "seconds": 9.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4329,
+   "cache_read_tokens": 0,
+   "output_tokens": 596,
+   "cost_usd": 0.04656
+  },
+  {
+   "label": "pick words highland-cow 20 r1",
+   "seconds": 7.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4333,
+   "cache_read_tokens": 0,
+   "output_tokens": 317,
+   "cost_usd": 0.04101
+  },
+  {
+   "label": "pick words highland-cow 19 r1",
+   "seconds": 9.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4384,
+   "cache_read_tokens": 0,
+   "output_tokens": 383,
+   "cost_usd": 0.04274
+  },
+  {
+   "label": "pick words highland-cow 21 r1",
+   "seconds": 8.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4340,
+   "cache_read_tokens": 0,
+   "output_tokens": 376,
+   "cost_usd": 0.04225
+  },
+  {
+   "label": "pick words highland-cow 23 r1",
+   "seconds": 9.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4337,
+   "cache_read_tokens": 0,
+   "output_tokens": 379,
+   "cost_usd": 0.04228
+  },
+  {
+   "label": "pick words sleeping-cat 1 r1",
+   "seconds": 8.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4465,
+   "cache_read_tokens": 0,
+   "output_tokens": 461,
+   "cost_usd": 0.04495
+  },
+  {
+   "label": "pick words highland-cow 22 r1",
+   "seconds": 9.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4332,
+   "cache_read_tokens": 0,
+   "output_tokens": 492,
+   "cost_usd": 0.0445
+  },
+  {
+   "label": "pick words sleeping-cat 3 r1",
+   "seconds": 6.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4379,
+   "cache_read_tokens": 0,
+   "output_tokens": 243,
+   "cost_usd": 0.0399
+  },
+  {
+   "label": "pick words sleeping-cat 2 r1",
+   "seconds": 8.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4376,
+   "cache_read_tokens": 0,
+   "output_tokens": 381,
+   "cost_usd": 0.04264
+  },
+  {
+   "label": "pick words sleeping-cat 4 r1",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4458,
+   "cache_read_tokens": 0,
+   "output_tokens": 333,
+   "cost_usd": 0.04233
+  },
+  {
+   "label": "pick words sleeping-cat 7 r1",
+   "seconds": 4.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4452,
+   "cache_read_tokens": 0,
+   "output_tokens": 179,
+   "cost_usd": 0.0392
+  },
+  {
+   "label": "pick words sleeping-cat 5 r1",
+   "seconds": 5.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4433,
+   "cache_read_tokens": 0,
+   "output_tokens": 228,
+   "cost_usd": 0.04003
+  },
+  {
+   "label": "pick words sleeping-cat 6 r1",
+   "seconds": 8.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4464,
+   "cache_read_tokens": 0,
+   "output_tokens": 343,
+   "cost_usd": 0.04258
+  },
+  {
+   "label": "pick words sleeping-cat 8 r1",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4494,
+   "cache_read_tokens": 0,
+   "output_tokens": 280,
+   "cost_usd": 0.04156
+  },
+  {
+   "label": "pick words sleeping-cat 9 r1",
+   "seconds": 7.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4424,
+   "cache_read_tokens": 0,
+   "output_tokens": 367,
+   "cost_usd": 0.04274
+  },
+  {
+   "label": "pick words sleeping-cat 10 r1",
+   "seconds": 5.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4383,
+   "cache_read_tokens": 0,
+   "output_tokens": 170,
+   "cost_usd": 0.03847
+  },
+  {
+   "label": "pick words sleeping-cat 11 r1",
+   "seconds": 5.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4396,
+   "cache_read_tokens": 0,
+   "output_tokens": 139,
+   "cost_usd": 0.03796
+  },
+  {
+   "label": "pick words sleeping-cat 12 r1",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4357,
+   "cache_read_tokens": 0,
+   "output_tokens": 265,
+   "cost_usd": 0.04016
+  },
+  {
+   "label": "pick words sleeping-cat 14 r1",
+   "seconds": 6.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4425,
+   "cache_read_tokens": 0,
+   "output_tokens": 231,
+   "cost_usd": 0.04003
+  },
+  {
+   "label": "pick words sleeping-cat 16 r1",
+   "seconds": 5.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4406,
+   "cache_read_tokens": 0,
+   "output_tokens": 172,
+   "cost_usd": 0.0387
+  },
+  {
+   "label": "pick words sleeping-cat 13 r1",
+   "seconds": 7.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4409,
+   "cache_read_tokens": 0,
+   "output_tokens": 306,
+   "cost_usd": 0.0414
+  },
+  {
+   "label": "pick words sleeping-cat 15 r1",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4420,
+   "cache_read_tokens": 0,
+   "output_tokens": 264,
+   "cost_usd": 0.04065
+  },
+  {
+   "label": "pick words sleeping-cat 17 r1",
+   "seconds": 7.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4341,
+   "cache_read_tokens": 0,
+   "output_tokens": 387,
+   "cost_usd": 0.04248
+  },
+  {
+   "label": "pick words sleeping-cat 18 r1",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4405,
+   "cache_read_tokens": 0,
+   "output_tokens": 295,
+   "cost_usd": 0.04115
+  },
+  {
+   "label": "pick words birch-grove 1 r1",
+   "seconds": 4.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4510,
+   "cache_read_tokens": 0,
+   "output_tokens": 111,
+   "cost_usd": 0.03831
+  },
+  {
+   "label": "pick words sleeping-cat 20 r1",
+   "seconds": 5.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 4413,
+   "cache_read_tokens": 0,
+   "output_tokens": 224,
+   "cost_usd": 0.03979
+  },
+  {
+   "label": "pick words sleeping-cat 19 r1",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4345,
+   "cache_read_tokens": 0,
+   "output_tokens": 256,
+   "cost_usd": 0.03989
+  },
+  {
+   "label": "pick words sleeping-cat 21 r1",
+   "seconds": 7.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4358,
+   "cache_read_tokens": 0,
+   "output_tokens": 308,
+   "cost_usd": 0.04103
+  },
+  {
+   "label": "pick words birch-grove 2 r1",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4346,
+   "cache_read_tokens": 0,
+   "output_tokens": 336,
+   "cost_usd": 0.0415
+  },
+  {
+   "label": "pick words birch-grove 4 r1",
+   "seconds": 5.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4457,
+   "cache_read_tokens": 0,
+   "output_tokens": 212,
+   "cost_usd": 0.0399
+  },
+  {
+   "label": "pick words birch-grove 3 r1",
+   "seconds": 8.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4405,
+   "cache_read_tokens": 0,
+   "output_tokens": 464,
+   "cost_usd": 0.04453
+  },
+  {
+   "label": "pick words birch-grove 7 r1",
+   "seconds": 4.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4451,
+   "cache_read_tokens": 0,
+   "output_tokens": 139,
+   "cost_usd": 0.0384
+  },
+  {
+   "label": "pick words birch-grove 6 r1",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4464,
+   "cache_read_tokens": 0,
+   "output_tokens": 282,
+   "cost_usd": 0.04136
+  },
+  {
+   "label": "pick words birch-grove 5 r1",
+   "seconds": 9.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4375,
+   "cache_read_tokens": 0,
+   "output_tokens": 525,
+   "cost_usd": 0.04551
+  },
+  {
+   "label": "pick words birch-grove 9 r1",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4545,
+   "cache_read_tokens": 0,
+   "output_tokens": 362,
+   "cost_usd": 0.04361
+  },
+  {
+   "label": "pick words birch-grove 10 r1",
+   "seconds": 7.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 4396,
+   "cache_read_tokens": 0,
+   "output_tokens": 284,
+   "cost_usd": 0.04086
+  },
+  {
+   "label": "pick words birch-grove 11 r1",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 4394,
+   "cache_read_tokens": 0,
+   "output_tokens": 328,
+   "cost_usd": 0.04172
+  },
+  {
+   "label": "pick words birch-grove 12 r1",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4352,
+   "cache_read_tokens": 0,
+   "output_tokens": 298,
+   "cost_usd": 0.04078
+  },
+  {
+   "label": "pick words birch-grove 8 r1",
+   "seconds": 9.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4374,
+   "cache_read_tokens": 0,
+   "output_tokens": 522,
+   "cost_usd": 0.04544
+  },
+  {
+   "label": "pick words birch-grove 13 r1",
+   "seconds": 6.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 4377,
+   "cache_read_tokens": 0,
+   "output_tokens": 272,
+   "cost_usd": 0.04046
+  },
+  {
+   "label": "pick words birch-grove 15 r1",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 4411,
+   "cache_read_tokens": 0,
+   "output_tokens": 305,
+   "cost_usd": 0.0414
+  },
+  {
+   "label": "pick words birch-grove 17 r1",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4355,
+   "cache_read_tokens": 0,
+   "output_tokens": 255,
+   "cost_usd": 0.03995
+  },
+  {
+   "label": "pick words birch-grove 14 r1",
+   "seconds": 8.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 4346,
+   "cache_read_tokens": 0,
+   "output_tokens": 438,
+   "cost_usd": 0.04354
+  },
+  {
+   "label": "pick words birch-grove 16 r1",
+   "seconds": 7.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4429,
+   "cache_read_tokens": 0,
+   "output_tokens": 400,
+   "cost_usd": 0.04344
+  },
+  {
+   "label": "pick words birch-grove 18 r1",
+   "seconds": 8.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 4374,
+   "cache_read_tokens": 0,
+   "output_tokens": 412,
+   "cost_usd": 0.04324
+  },
+  {
+   "label": "pick words birch-grove 19 r1",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 4391,
+   "cache_read_tokens": 0,
+   "output_tokens": 345,
+   "cost_usd": 0.04204
+  },
+  {
+   "label": "pick words birch-grove 20 r1",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 4387,
+   "cache_read_tokens": 0,
+   "output_tokens": 336,
+   "cost_usd": 0.04182
+  }
+ ]
+}

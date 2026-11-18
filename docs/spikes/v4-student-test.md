@@ -217,6 +217,9 @@ the API, with a short system prompt, it would be about half.
 - **Run both on all steps.** Running the header on every step in carry too (another $0.33 of renders a lesson)
   would let carry list word faults as well. It wasn't run here.
 - **Not measured by either:** stroke direction. P1 (#256) needs its own near miss before it can be scored.
+- **New words, the same test:** `v4_student.py --words-from <folder> --results <file> carry --condition words`
+  reads each step's lines and tip from `<folder>/<picture>/packet.json` and keeps everything else v3's (the header,
+  pictures, near misses, briefs and grader). W1 ran it this way (`docs/spikes/v4-teacher.md`).
 
 ## Limits
 
