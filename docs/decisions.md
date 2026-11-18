@@ -254,6 +254,14 @@ with the date.
   was sealed by the 1.12.1 code that first held v3 (commit 9d0a377) and carries the 2.0.0 name with that commit, as
   the three v2 gate runs carried 1.0.0. Not decided by this: v2 is still what `/paint-lesson` runs without `--v3`,
   and the gate (the bench, the owner's grade) still decides when v3 replaces it.
+- **The v3 gate passed; v3 replaces v2 (2026-11-18, owner's call).** Five v3 lessons were made hands-off from this
+  session and put on the site: the highland cow, the sleeping cat and the birch grove (the bench), then the chickadee
+  and the lavender fields (#230 to #234). The owner looked at them and said: "Worlds better than v2." Asked whether
+  that passes the gate with the known-problems target missed, the owner said yes. Missed and accepted: known problems
+  per lesson stayed at 4 to 7, not under 2 (most are paints fitted far from their names, which the pictures don't
+  show). What follows from the gate (`docs/design/pipeline-v3.md`, section 13): `/paint-lesson` runs v3 by default,
+  the site's lessons are rerun from their photos, and v2 is removed. Those are separate changes, not done by this
+  decision.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
