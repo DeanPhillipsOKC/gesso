@@ -23,3 +23,8 @@ Project knowledge lives under `docs/`. Read it before making changes:
   backlog. Check open issues before starting new work. Issues labeled `human` aren't yours to do.
 
 Keep this file a thin pointer to `docs/`. Put new project knowledge there.
+
+## Replies
+
+The owner has ADHD. Put anything he has to do or answer at the very top of the reply, as a numbered list, before any
+explanation. Number it even when there is only one item. If nothing is needed, say that first.
