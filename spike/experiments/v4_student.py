@@ -771,6 +771,13 @@ def report(args) -> dict:
         common = sorted(set(s) & set(gmean))
         f["agree_with_graders"] = {"spearman": spearman([s[k] for k in common], [gmean[k] for k in common]),
                                    "steps": len(common), **finds_worst(s, worst)}
+        h = per_step(rows, key, "header")
+        lift = {k: s[k] - h[k] for k in s if k in h}  # what the words add over the header alone
+        if lift:
+            c2 = sorted(set(lift) & set(gmean))
+            f["lift_agree_with_graders"] = {"spearman": spearman([lift[k] for k in c2], [gmean[k] for k in c2]),
+                                            "steps": len(c2), **finds_worst(lift, worst),
+                                            "words_hurt": sorted(f"{p} {n}" for (p, n), v in lift.items() if v <= -0.25)}
         f["by_picture"] = {p: round(float(np.mean([v for (q, _), v in s.items() if q == p])), 3)
                            for p in PICTURES if any(q == p for q, _ in s)}
         reps = {}
