@@ -282,6 +282,17 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
             drafted = {d["stage_id"]: d["lines"]
                        for d in draft_text.draft(plan, pictures, masks, canvas_box, canvas, known, lesson,
                                                  owner=owner)}
+            # every number and side a writer wrote, against the fact sheet as it is now (design section 10): the
+            # words can change after check-text's last check (a tool run again, a tip fixed by hand)
+            import facts
+
+            t_path = lesson / "text.json"
+            if t_path.exists():
+                sheet = facts.make_sheet(plan, pictures, masks, owner, canvas_box, canvas,
+                                         lesson3.read(lesson, pictures=False)["shapes"])
+                words = json.loads(t_path.read_text(encoding="utf-8"))
+                for c in facts._writers(words, facts.check_text(sheet, words, strict=True)["failures"]):
+                    failures.append(f"{facts.say(c)} Run check-text, then check-text --final.")
     else:
         owner, pictures, rows, masks = built
         stats_path = lesson / "parts" / "stats.json"

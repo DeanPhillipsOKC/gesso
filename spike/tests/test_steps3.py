@@ -312,6 +312,21 @@ class V3ToolsTests(unittest.TestCase):
         self.assertEqual(text["cat-eyes"]["tip"], "Keep them dark.")
         self.assertEqual(text["cat-eyes"]["reason"], tools.V3_REASON)
         self.assertEqual(json.loads((words / "dropped.json").read_text())[0]["id"], "cat-eyes")
+        # the words laid again from out.json bring the failing sentence back: the last check no longer stands,
+        # and `check` (which the seal runs) says so
+        code, r = self.tool("check-text")
+        self.assertFalse((words / "dropped.json").exists())
+        self.assertTrue(any("9 in" in x and "check-text --final" in x for x in self.tool("check")[1]["problems"]))
+        # a writer's file is read as it comes: a line number that isn't one, another stage's step, an odd folder
+        write(1, {"blend-sky": {**plain("the sky"), "lines": {"\u00b2": "x"}}, "cat-eyes": plain("not mine")})
+        (words / "stage-x").mkdir()
+        code, r = self.tool("check-text")
+        self.assertEqual(code, 0)
+        self.assertTrue(any("no line" in x for x in r["problems"]))
+        self.assertTrue(any("no step cat-eyes in this stage" in x for x in r["problems"]))
+        write(1, {"blend-sky": plain("the sky")})
+        code, r = self.tool("check-text", "--final")
+        self.assertTrue(r["ok"], r)
         self.assertEqual(self.tool("card-adapt")[0], 0)
         code, r = self.tool("check")
         self.assertEqual(code, 0)
@@ -325,6 +340,9 @@ class V3ToolsTests(unittest.TestCase):
         self.assertEqual(len(asks(True)), 1)
         self.assertIn("chain/looks/answers.json", asks(True)[0])
         (self.lesson / "chain" / "looks" / "answers.json").write_text("[]", encoding="utf-8")
+        self.assertIn("doesn't answer for every unit", asks(True)[0])
+        (self.lesson / "chain" / "looks" / "answers.json").write_text(
+            json.dumps([{"look": f"U{n:02d}", "stray": False, "left": False} for n in range(1, 5)]), encoding="utf-8")
         self.assertEqual(asks(True), [])
         self.assertIn("text review", asks(False)[0])
         os.environ.setdefault("GESSO_HISTORY", str(self.lesson / "history"))
@@ -332,6 +350,18 @@ class V3ToolsTests(unittest.TestCase):
         self.assertEqual(code, 0, r)
         data = json.loads((self.lesson / "lesson.json").read_text())
         self.assertEqual((data["plan_version"], data["pipeline"], len(data["stages"])), (2, 3, 6))
+        # the lessons site takes no version 3 lesson before the gate, whatever its plan_version says
+        import site_lessons
+
+        self.assertFalse(site_lessons.on_site_era(self.lesson))
+        (self.lesson / "lesson.json").write_text(json.dumps({k: v for k, v in data.items() if k != "pipeline"}))
+        self.assertTrue(site_lessons.on_site_era(self.lesson))
+        # packets made again throw the old words away, and check-text refuses words written for other pictures
+        self.tool("packets")
+        self.assertFalse((words / "stage-01" / "out.json").exists())
+        sheet_path = words / "sheet.json"
+        sheet_path.write_text(sheet_path.read_text().replace('"w_in": 12.0', '"w_in": 11.0'), encoding="utf-8")
+        self.assertIn("run packets again", self.tool("check-text")[1]["refused"])
 
 
 if __name__ == "__main__":

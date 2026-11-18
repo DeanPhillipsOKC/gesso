@@ -441,7 +441,10 @@ parts). In their place: `build-steps`' two checks that must hold; and as notes, 
 that changes almost nothing, and a step that turns a tenth of the picture from flat to textured (the step after a
 block-in, section 14: failing it would stop every lesson with a block-in). The seal asks for the chain checker's
 `answers.json` and for `check-text --final` where v2 asks for the text review. `lesson.json` keeps
-`"plan_version": 2`, which the page and the site read, and adds `"pipeline": 3`. Cards are shown as the general
+`"plan_version": 2`, which the page reads, and adds `"pipeline": 3`; the lessons site refuses a lesson that says
+so until the gate passes. `check` also checks the writers' words against the sheet as it is now, so words changed
+after `check-text --final` can't be sealed. `erase` caps the chain's own renders at twice what the chain costs
+once (5 cents a unit plus 7), whatever the lesson spent before it. Cards are shown as the general
 cards: `card-adapt` works, and the run doesn't use it.
 
 **Not solved:** the stroke cards' own words, where most teaching faults come from (a load word such as "creamy"

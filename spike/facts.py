@@ -40,6 +40,10 @@ import draft_text
 import mixing
 import publish2
 
+class Stale(Exception):
+    """The writers' packets were made from other step pictures than the lesson has now."""
+
+
 WRITTEN = ("summary", "tip", "paint_notes")  # what a writer writes; never drafted
 PAIR_SIDE = 640  # pixels: the long side of each half of a before-and-after picture
 WORK = "words"  # <lesson>/words/: the sheet and the writers' packets
@@ -1437,14 +1441,15 @@ def packets(lesson: Path, brief: Path, extra: dict[str, dict] | None = None) -> 
     stage = _stage_of(plan)
     light = plan.get("light") or ""
     photo = next((lesson / n for n in PHOTOS if (lesson / n).exists()), None)
-    for old in work.glob("stage-*"):  # a stage the plan no longer has, and every old picture
+    for old in work.glob("stage-[0-9][0-9]"):  # a stage the plan no longer has
         if old.is_dir() and int(old.name[6:]) > len(plan["stages"]):
             shutil.rmtree(old)
     for k, stg in enumerate(plan["stages"], 1):
         folder = work / f"stage-{k:02d}"
         folder.mkdir(exist_ok=True)
-        for old in folder.glob("pair-*.jpg"):
-            old.unlink()
+        # the old pictures, and the old words: a writer's out.json was written for the packet before this one
+        for old in [*folder.glob("pair-*.jpg"), folder / "out.json", folder / "feedback.md"]:
+            old.unlink(missing_ok=True)
         steps, facts = [], [f"# Stage {k}: {stg.get('name') or stg['id']}", ""]
         for st in sheet["steps"]:
             if stage[st["id"]] != k:
@@ -1467,14 +1472,14 @@ def packets(lesson: Path, brief: Path, extra: dict[str, dict] | None = None) -> 
                                            encoding="utf-8")
         for src, dst in ((photo, "photo.jpg"), (lesson / "99_finish.png", "finish.jpg")):
             if src is not None and src.exists():
-                img = _crop(Image.open(src), box if src.name != "00_canvas_fit.png" else None).convert("RGB")
+                img = _crop(Image.open(src), box).convert("RGB")
                 img.thumbnail((900, 900))
                 img.save(folder / dst, quality=85)
         shutil.copy(brief, folder / "brief.md")
     return work
 
 
-def _apply(text: dict, out) -> list[str]:
+def _apply(text: dict, out, only: set[str] | None = None) -> list[str]:
     """One stage's out.json into text.json; returns what it couldn't use. A writer's file is read as it comes:
     anything that isn't the shape the brief gives is reported, never raised."""
     by_id = {t["stage_id"]: t for t in text["steps"]}
@@ -1484,8 +1489,8 @@ def _apply(text: dict, out) -> list[str]:
     bad = []
     for sid, w in steps.items():
         t = by_id.get(sid)
-        if t is None:
-            bad.append(f"no step {sid}")
+        if t is None or (only is not None and sid not in only):
+            bad.append(f"no step {sid} in this stage")
             continue
         if not isinstance(w, dict):
             bad.append(f"{sid}: its entry must be an object")
@@ -1507,7 +1512,7 @@ def _apply(text: dict, out) -> list[str]:
             bad.append(f"{sid}: lines must be {{\"<line number>\": \"the line rewritten\"}}")
             continue
         for n, new in lines.items():
-            j = int(n) - 1 if str(n).strip().isdigit() else -1
+            j = int(n) - 1 if re.fullmatch(r"[0-9]{1,4}", str(n).strip()) else -1
             if not 0 <= j < len(t["lines"]):
                 bad.append(f"{sid}: no line {n}")
             elif not isinstance(new, str):
@@ -1579,14 +1584,19 @@ def merge(lesson: Path, redraft, final: bool = False) -> dict:
     lesson = Path(lesson)
     work = lesson / WORK
     sheet, plan = lesson_sheet(lesson)  # measured now, not read back: the pictures may have been built again
-    (work / "sheet.json").write_text(json.dumps(sheet, indent=1), encoding="utf-8")
+    kept = work / "sheet.json"
+    if not kept.exists() or json.loads(kept.read_text(encoding="utf-8")) != json.loads(json.dumps(sheet)):
+        raise Stale("the step pictures changed since the writers' packets were made: run packets again, and the "
+                    "writers again")
+    if not final:  # the words are laid again from out.json: an earlier last check no longer speaks for them
+        (work / "dropped.json").unlink(missing_ok=True)
     text = _clear_written(json.loads((lesson / "text.json").read_text(encoding="utf-8")))
     _tool_text = lesson / "text.json"
     _tool_text.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
     redraft()  # back to the drafted lines, then each writer's words on them
     text = json.loads(_tool_text.read_text(encoding="utf-8"))
     bad, missing = [], []
-    for folder in sorted(work.glob("stage-*")):
+    for folder in sorted(work.glob("stage-[0-9][0-9]")):
         o = folder / "out.json"
         if not o.exists():
             missing.append(folder.name)
@@ -1596,7 +1606,8 @@ def merge(lesson: Path, redraft, final: bool = False) -> dict:
         except ValueError as e:
             bad.append(f"{folder.name}: out.json isn't valid JSON ({e})")
             continue
-        bad += [f"{folder.name}: {b}" for b in _apply(text, wrote)]
+        mine_ids = {s["id"] for s in json.loads((folder / "steps.json").read_text(encoding="utf-8"))["steps"]}
+        bad += [f"{folder.name}: {b}" for b in _apply(text, wrote, mine_ids)]
     r = check_text(sheet, text, strict=True)
     mine = _writers(text, r["failures"])
     stage = _stage_of(plan)
@@ -1617,7 +1628,7 @@ def merge(lesson: Path, redraft, final: bool = False) -> dict:
                 t["paint_notes"] = [x for x in t["paint_notes"] if x]
         (work / "dropped.json").write_text(json.dumps(dropped, indent=1), encoding="utf-8")
     _tool_text.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
-    for folder in work.glob("stage-*"):
+    for folder in work.glob("stage-[0-9][0-9]"):
         (folder / "feedback.md").unlink(missing_ok=True)
     if not final:
         for k in sorted({stage[c["id"]] for c in mine} | {int(b[6:8]) for b in bad}):

@@ -11,8 +11,9 @@ requests or the step words yourself.
 
 SKILL.md's rules for the whole run stand, except:
 
-- **Rule 1 (renders):** the chain is rendered too, one low render a unit of the plan, about 2 cents each. Pass
-  `--max-cost 0.80` to `erase`, and `--max-cost 0.40` to every other render as before.
+- **Rule 1 (renders):** the chain is rendered too, one low render a unit of the plan, about 2 cents each. `erase`
+  caps the chain's own spending by itself (twice what the chain costs once); pass it no `--max-cost`. Every other
+  render gets `--max-cost 0.40` as before.
 - **Rule 2:** nothing is measured with `grid`, and there is no `part-colors`.
 - **Rule 9 (the order):** after any change to `plan.json`: `plan-check`, `erase`, `build-steps`, `step-aids`, `mix`,
   `draft-text`, `packets`, `check-text`, `check`. A request that didn't change costs nothing the second time.
@@ -46,12 +47,14 @@ writers) is a subagent on Opus in a fresh context, given only what its step name
 1. **Say the size before you spend it.** One line to whoever started you: how many renders, about how many cents
    (2 a render) and minutes (a quarter of a minute a render). Go on without waiting, unless `renders` is over 20:
    then stop and ask.
-2. `erase --lesson <lesson> --max-cost 0.80`. It renders every unit, last first, and asks again by itself for a
-   thing a render left standing. If it stops (the cost cap, the network), run it again the same way, **without
-   `--redo`**: what is already rendered costs nothing.
+2. `erase --lesson <lesson>`. It renders every unit, last first, and asks again by itself for a thing a render
+   left standing. If it stops on a network error, run it again the same way, **without `--redo`**: what is already
+   rendered costs nothing. If it is refused at its cost cap, don't run it again: the cap is twice the chain. When
+   the chain is whole (`chain/chain.json` is newer than the last render), go on with it as it is and record what
+   the last checker marked (D4). When it isn't, stop and tell whoever started you what was spent and why.
 3. Start one checker with: "Follow `.claude/skills/paint-lesson/v3/chain-check.md`. Folder:
    `<lesson>/chain/looks`." It writes `answers.json` there.
-4. For every unit it marked, in **one** run: `erase --lesson <lesson> --max-cost 0.80 --redo <unit>:stray,<unit>:left`
+4. For every unit it marked, in **one** run: `erase --lesson <lesson> --redo <unit>:stray,<unit>:left`
    (the unit's number is the digits of its `look`; `left` when it answered left, else `stray`). Every unit before
    a redone one is rendered again. Then the checker again, on the new looks.
 5. At most two rounds of step 4. `erase` refuses a unit that has had two more tries. What is still marked after
@@ -63,10 +66,8 @@ Don't Read the renders yourself to second-guess the checker, and never edit a fi
 
 1. `build-steps --lesson <lesson>`. `problems` must be empty (it only isn't when the chain's files don't belong
    together: run `erase` again). `notes` are faults that would need a new plan and a new chain: a paint fitted far
-   from its name, a color the finish doesn't have, a step that changes almost nothing. For a paint far from its
-   name, change the paint's `name` and `looks` in `plan.json` to what its fitted color is, when the new name still
-   suits every step that uses it (free: the units don't change, so `erase` then pays nothing). Leave the rest and
-   record each (D4).
+   from its name, a color the finish doesn't have, a step that changes almost nothing. Change nothing for them (a
+   paint's name is in the chain's requests, so even a rename renders part of the chain again): record each (D4).
 2. `step-aids`, then `mix`, then `draft-text`, each with `--lesson <lesson>`.
 
 ### D. The words
@@ -94,8 +95,10 @@ Don't Read the renders yourself to second-guess the checker, and never edit a fi
    `card-adapt` and step 6c are not part of this run: a note that a card is shown as the general card is fine.
 2. `steps/8-finish.md` from 8a: diagrams, notes (`steps/notes.md`; `merged_parts` is `{}`, and every helper you
    started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`.
-3. **Don't put a version 3 lesson on the lessons site** (no `site-add`, no `site-refresh`) until the owner says
-   the gate has passed. Give whoever started you `lesson-standalone.html`.
+3. **Don't put a version 3 lesson on the lessons site** (no `site-add`, no `site-refresh`; both refuse it) until
+   the owner says the gate has passed. Give whoever started you `lesson-standalone.html`. `publish` has recorded
+   the run in `site/history/<photo stem>/<run folder>/`, as it does every run: say so in the report, so whoever
+   started you commits it.
 4. Report as 8d says, and add: the units and renders; what the chain cost and how many renders were asked again
    and why; what the checker marked each round; the mixes count against 10; how many sentences `check-text` took
    out; every Known problem.

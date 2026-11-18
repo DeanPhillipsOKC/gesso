@@ -480,7 +480,7 @@ class WriterTests(unittest.TestCase):
         bad = vf._apply(t, {"steps": {"balloon-shape": {"summary": "The balloon.", "tip": "Paint it at the right edge.",
                                                         "lines": {"9": "x"}},
                                       "nope": {"tip": "x"}}})
-        self.assertEqual(bad, ["balloon-shape: no line 9", "no step nope"])
+        self.assertEqual(bad, ["balloon-shape: no line 9", "no step nope in this stage"])
         self.assertEqual(t["steps"][1]["summary"], "The balloon.")
         r = vf.check_text(self.sheet, t, strict=True)
         fields = sorted(c["field"] for c in vf._writers(t, r["failures"]))

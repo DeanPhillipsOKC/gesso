@@ -414,9 +414,8 @@ def _paints_v3(lesson: Path, a: argparse.Namespace) -> dict:
     _, _, rows = steps3.fit(plan, us, ch)
     notes = steps3.problems({"final_gap": 0, "outside_unit_max": 0, "rows": [], "paints": rows, "little": []})[1]
     return {"paints": rows, "problems": [], "notes": notes,
-            "advice": "A paint fitted far from the plan's color may need a new name or `looks` in plan.json (free: "
-                      "the chain doesn't change). A paint the finish doesn't have can't be fixed here: record it in "
-                      "notes.json as a known problem.", "cost_usd": 0.0}
+            "advice": "Each note is a known problem for the page (review.json). A paint's name and `looks` are in "
+                      "the chain's requests, so renaming one renders part of the chain again.", "cost_usd": 0.0}
 
 
 def mix_tool(a: argparse.Namespace) -> dict:
@@ -465,9 +464,16 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         if key not in review:
             out.append(f"review.json has no {key} (an empty list if there were none)")
     if v3:  # a version 3 run has two checkers in the text review's place (design sections 6 and 10)
-        if not (lesson / "chain" / "looks" / "answers.json").exists():
-            out.append("the chain's checker hasn't read the chain as it is now: no chain/looks/answers.json "
-                       "(v3/chain-check.md)")
+        answers, looks = lesson / "chain" / "looks" / "answers.json", lesson / "chain" / "looks"
+        try:
+            read = {x.get("look") for x in json.loads(answers.read_text(encoding="utf-8")) if isinstance(x, dict)}
+        except (OSError, ValueError):
+            read = None
+        if read is None:
+            out.append("the chain's checker hasn't read the chain as it is now: no chain/looks/answers.json that can "
+                       "be read (v3/chain-check.md)")
+        elif {f.stem for f in looks.glob("U[0-9][0-9].jpg")} - read:
+            out.append("chain/looks/answers.json doesn't answer for every unit: send the checker again")
         if not (lesson / "words" / "dropped.json").exists():
             out.append("the words haven't had their last check: run check-text --final")
     elif not (lesson / "trials" / "review" / "review.json").exists():
@@ -1711,6 +1717,7 @@ def _v3_ready(lesson: Path):
     return plan, technique, load(finish, max_side=100_000)
 
 
+CHAIN_RENDER_USD = 0.025  # a low render of the chain, rounded up (1.8 to 2 cents in the spikes)
 ERASE_WHY = ("v3: every step picture is the finish erased backward by the image model, one render a unit of the plan "
              "(docs/design/pipeline-v3.md, section 6)")
 
@@ -1721,7 +1728,10 @@ def _erase_render(lesson: Path, a: argparse.Namespace, client):
     import numpy as np
     from PIL import Image
 
-    budget = Budget(lesson, a.max_cost, 10 ** 6)  # `erase` counts a unit's tries itself (erase3.TRIES)
+    # `erase` counts a unit's tries itself (erase3.TRIES). Its cap is the chain's own: what the lesson spent before
+    # the chain (the finish) isn't counted against it, so a cap sized to the chain means the same on every lesson
+    before = sum(c.get("cost_usd", 0) for c in LessonLedger(lesson).calls if not str(c.get("step", "")).startswith("erase-"))
+    budget = Budget(lesson, before + a.max_cost, 10 ** 6)
 
     def render(name: str, src: Path, prompt: str, fresh: bool):
         picture = np.array(Image.open(src).convert("RGB"))
@@ -1761,6 +1771,8 @@ def erase_tool(a: argparse.Namespace, client=None) -> dict:
     lesson = Path(a.lesson)
     plan, _, finish = _v3_ready(lesson)
     us = plan3.units(plan)
+    if a.max_cost is None:  # the chain once, every unit asked again once, and room for the last render's reserve
+        a.max_cost = round(2 * CHAIN_RENDER_USD * (len(us) - 1) + ESTIMATE_USD["low"], 2)
     render = _erase_render(lesson, a, client)
     if a.probe is not None:
         if a.redo:
@@ -1833,7 +1845,10 @@ def check_text_tool(a: argparse.Namespace) -> dict:
     lesson = Path(a.lesson)
     if not (lesson / facts.WORK).is_dir() or not (lesson / "text.json").exists():
         raise Refused(f"no writers' packets in {lesson}: run draft-text, then packets")
-    r = facts.merge(lesson, lambda: draft_text_tool(a), final=a.final)
+    try:
+        r = facts.merge(lesson, lambda: draft_text_tool(a), final=a.final)
+    except facts.Stale as e:
+        raise Refused(str(e))
     wrong = [f"{name}: its writer wrote no out.json" for name in r["missing"]] + r["bad"]
     wrong += [f"{sid}: no summary or no tip from its writer" for sid in r["unwritten"]]
     if not a.final:
@@ -1881,7 +1896,8 @@ def add_v3_tools(sub) -> None:
                                              "request works, into chain/probe/")
     p.add_argument("--no-auto", action="store_true", help="don't ask again by itself for a unit left standing")
     p.add_argument("--quality", choices=QUALITIES, default="low")
-    p.add_argument("--max-cost", type=float, default=DEFAULT_MAX_COST, help=f"dollar cap per lesson (default {DEFAULT_MAX_COST:.2f})")
+    p.add_argument("--max-cost", type=float, help="dollar cap on the chain's own renders, redos included (default: "
+                                                  "5 cents a unit plus 7, twice what the chain costs once)")
     p.set_defaults(func=erase_tool)
     p = sub.add_parser("plan-check", help="Free. v3: what's wrong with a version 3 plan, and the units its chain will render.",
                        description="Checks plan.json (\"plan_version\": 3) against itself, the technique's ranges, the "
