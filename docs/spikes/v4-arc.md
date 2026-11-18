@@ -151,7 +151,7 @@ The steps that point back:
 > - Step 21, Pull the whiskers. *As in step 20:* Hold the liner upright as you did for the eye lines, now with thinned
 >   Warm white.
 
-(`v4_arc.py show <picture>` prints any lesson's arc, both variants.)
+The whole lesson, every step with its picture: [v4-arc-sleeping-cat.md](v4-arc-sleeping-cat.md). (`v4_arc.py show <picture>` prints any lesson's arc, both variants.)
 
 ### The checks
 
