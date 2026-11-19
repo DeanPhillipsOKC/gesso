@@ -284,3 +284,6 @@ are faults in v3's pictures and paints, not in the arc, and are filed as #262.
 - Pick (one picture out of four) wasn't run. carry is the score the plan names, and the back lines say nothing about
   place, which is what pick catches.
 - As in W1, neither test shows the page's outline and paint map.
+- The opener check missed "under", "underneath" and "beside" during the runs (the student test's side words, which
+  it reused, don't hold them). Two arc-whole openers got through with one ("under a glowing fringe"). The check holds
+  them now (#263's review). No adopted words had one.

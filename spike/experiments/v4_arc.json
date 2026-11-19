@@ -8672,6 +8672,26 @@
     },
     "vs_base_all": -0.156,
     "vs_base_se": 0.087,
+    "vs_base_last_in_stage": {
+     "True": {
+      "steps": 24,
+      "mean": -0.08
+     },
+     "False": {
+      "steps": 40,
+      "mean": -0.2
+     }
+    },
+    "vs_base_has_back_line": {
+     "True": {
+      "steps": 15,
+      "mean": -0.13
+     },
+     "False": {
+      "steps": 49,
+      "mean": -0.16
+     }
+    },
     "claude_usd_a_lesson": 0.282,
     "calls": 3,
     "renders_usd": 1.018
@@ -8951,9 +8971,239 @@
     },
     "vs_base_all": -0.219,
     "vs_base_se": 0.098,
+    "vs_base_last_in_stage": {
+     "True": {
+      "steps": 24,
+      "mean": -0.08
+     },
+     "False": {
+      "steps": 40,
+      "mean": -0.3
+     }
+    },
+    "vs_base_has_back_line": {
+     "True": {
+      "steps": 17,
+      "mean": -0.18
+     },
+     "False": {
+      "steps": 47,
+      "mean": -0.23
+     }
+    },
     "claude_usd_a_lesson": 1.313,
     "calls": 6,
     "renders_usd": 1.008
+   },
+   "arc-add-long": {
+    "pictures": {
+     "highland-cow": {
+      "carry_grade": 3.26,
+      "graded": 23,
+      "vs_base": -0.17,
+      "rose": 3,
+      "fell": 8,
+      "backs": 13,
+      "vs_base_on_back_steps": -0.08,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 1,
+       "arc_failed_first": 1,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 43
+      },
+      "words": 2818,
+      "arc_words": 829,
+      "claude_usd": 0.479,
+      "ab": [],
+      "ab_scores": []
+     },
+     "sleeping-cat": {
+      "carry_grade": 3.48,
+      "graded": 21,
+      "vs_base": 0.1,
+      "rose": 4,
+      "fell": 3,
+      "backs": 13,
+      "vs_base_on_back_steps": 0.0,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 40
+      },
+      "words": 3239,
+      "arc_words": 687,
+      "claude_usd": 0.346,
+      "ab": [],
+      "ab_scores": []
+     },
+     "birch-grove": {
+      "carry_grade": 3.45,
+      "graded": 20,
+      "vs_base": 0.25,
+      "rose": 5,
+      "fell": 1,
+      "backs": 12,
+      "vs_base_on_back_steps": 0.33,
+      "check": {
+       "text_failures_first": 2,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 2,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 66
+      },
+      "words": 2761,
+      "arc_words": 702,
+      "claude_usd": 0.463,
+      "ab": [],
+      "ab_scores": []
+     }
+    },
+    "vs_base_all": 0.047,
+    "vs_base_se": 0.09,
+    "vs_base_last_in_stage": {
+     "True": {
+      "steps": 24,
+      "mean": 0.25
+     },
+     "False": {
+      "steps": 40,
+      "mean": -0.07
+     }
+    },
+    "vs_base_has_back_line": {
+     "True": {
+      "steps": 38,
+      "mean": 0.08
+     },
+     "False": {
+      "steps": 26,
+      "mean": 0.0
+     }
+    },
+    "claude_usd_a_lesson": 0.429,
+    "calls": 5,
+    "renders_usd": 1.018
+   },
+   "arc-add-noend": {
+    "pictures": {
+     "highland-cow": {
+      "carry_grade": 3.43,
+      "graded": 14,
+      "vs_base": 0.0,
+      "rose": 2,
+      "fell": 2,
+      "backs": 6,
+      "vs_base_on_back_steps": -0.25,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 43
+      },
+      "words": 2674,
+      "arc_words": 518,
+      "claude_usd": 0,
+      "ab": [],
+      "ab_scores": []
+     },
+     "sleeping-cat": {
+      "carry_grade": 3.23,
+      "graded": 13,
+      "vs_base": 0.0,
+      "rose": 2,
+      "fell": 2,
+      "backs": 5,
+      "vs_base_on_back_steps": 0.33,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 40
+      },
+      "words": 3008,
+      "arc_words": 450,
+      "claude_usd": 0,
+      "ab": [],
+      "ab_scores": []
+     },
+     "birch-grove": {
+      "carry_grade": 3.15,
+      "graded": 13,
+      "vs_base": 0.0,
+      "rose": 2,
+      "fell": 3,
+      "backs": 4,
+      "vs_base_on_back_steps": 0.5,
+      "check": {
+       "text_failures_first": 0,
+       "arc_failures_first": 0,
+       "arc_failed_first": 0,
+       "text_failed_first": 0,
+       "text_failures_second": 0,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "text_taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 66
+      },
+      "words": 2567,
+      "arc_words": 443,
+      "claude_usd": 0,
+      "ab": [],
+      "ab_scores": []
+     }
+    },
+    "vs_base_all": 0.0,
+    "vs_base_se": 0.101,
+    "vs_base_last_in_stage": {
+     "False": {
+      "steps": 40,
+      "mean": 0.0
+     }
+    },
+    "vs_base_has_back_line": {
+     "True": {
+      "steps": 9,
+      "mean": 0.11
+     },
+     "False": {
+      "steps": 31,
+      "mean": -0.03
+     }
+    },
+    "claude_usd_a_lesson": 0.0,
+    "calls": 0,
+    "renders_usd": 0.631
    }
   }
  }

@@ -55,6 +55,11 @@ class Checks(unittest.TestCase):
         self.assertEqual(got, [("opening.road", "The window is on the left side."),
                                ("stage the-sill.end", "The sill is about 2 in tall.")])
 
+    def test_under_and_beside_and_a_length_in_words_are_claims_too(self):
+        for sent in ("The shadow sits under the chin.", "Beside the window, the wall.", "It is about two inches wide."):
+            self.assertTrue(va.has_claim(sent), sent)
+        self.assertFalse(va.has_claim("The window light falls across the cat."))
+
     def test_a_back_line_must_share_a_card_or_a_paint_with_an_earlier_step(self):
         ok = arc(steps={"dab-sunlit-leaves": {"back": {"step": 2, "text": "The same tap as the dark leaves."}},
                         "light-sill": {"back": {"step": 7, "text": "The same brown."}}})

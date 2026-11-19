@@ -257,9 +257,14 @@ def whole_message(picture: str):
 
 
 # ---------------------------------------------------------------------------------------------------- the checks
+# The brief's side words that the student's SIDE_RE (made for swapping sides) doesn't hold, and lengths in words.
+MORE_SIDES = re.compile(r"\b(under|underneath|beneath|beside|besides?)\b|\b(one|two|three|four|five|six|seven|eight|nine|"
+                        r"ten|half|quarter)\s+(inch|inches)\b", re.I)
+
+
 def has_claim(sentence: str) -> bool:
     """A number or a side word: what an opener mustn't say."""
-    return bool(NUMBER_RE.search(sentence) or student.SIDE_RE.search(sentence))
+    return bool(NUMBER_RE.search(sentence) or student.SIDE_RE.search(sentence) or MORE_SIDES.search(sentence))
 
 
 def sentences(text: str) -> list[str]:
@@ -479,8 +484,8 @@ def write_one(variant: str, picture: str):
     gone_arc = take_out_arc(arc, a2)
     # a back line that check-text fails goes whole; any other failing sentence is taken out, as v4_teacher does
     for c in back_lines_gone(text, r2["failures"]):
-        if isinstance(arc.get("steps", {}).get(c["id"]), dict):
-            arc["steps"][c["id"]].pop("back", None)
+        w = arc.get("steps", {}).get(c["id"])
+        if isinstance(w, dict) and w.pop("back", None):  # counted once, and not if the arc's check took it out
             gone_arc.append({"where": f"step {c['id']}.back", "what": teacher.say(c), "sentence": c["sentence"]})
     words = compose(picture, variant, arc)
     text = text_for_check(picture, words)
@@ -724,23 +729,27 @@ def report(args) -> dict:
     base, _ = solo_grades(BASE_STUDENT)
     out = {"base": {p: round(float(np.mean([v for (q, _), v in base.items() if q == p])), 2) for p in PICTURES},
            "variants": {}}
-    for variant in VARIANTS:
-        if variant not in st["arc"]:
+    for variant in VARIANTS + [NOEND]:
+        source = "arc-add" if variant == NOEND else variant  # the rerun scores arc-add's words, its 40 steps not last
+        if source not in st["arc"]:
             continue
         gs, ss = solo_grades(STUDENT_DIR / f"{variant}.json")
         calls = [c for c in st["calls"] if c["variant"] == variant]
         v = {"pictures": {}}
-        diffs_all = []
+        diffs_all, split, with_back = [], [], []  # (the step is last in its stage / has a back line, its difference)
         for pic in PICTURES:
-            rec = st["arc"][variant].get(pic)
+            rec = st["arc"][source].get(pic)
             if not rec:
                 continue
             both = [k for k in gs if k[0] == pic and k in base]
+            last = {stg["steps"][-1]["n"] for stg in stages_of(pic) if stg["steps"]}
             diffs = [gs[k] - base[k] for k in both]
             diffs_all += diffs
+            split += [(k[1] in last, gs[k] - base[k]) for k in both]
             backs = {s["n"]: x for s in teacher.packet(pic)["steps"] for x in rec["final"].get(s["id"]) or []
                      if x["kind"] == "back"}
             back_diff = [gs[(pic, n)] - base[(pic, n)] for n in backs if (pic, n) in gs and (pic, n) in base]
+            with_back += [(k[1] in backs, gs[k] - base[k]) for k in both]
             g = [x for (p, _), x in gs.items() if p == pic]
             v["pictures"][pic] = {
                 "carry_grade": round(float(np.mean(g)), 2) if g else None, "graded": len(g),
@@ -759,6 +768,9 @@ def report(args) -> dict:
         if diffs_all:
             v["vs_base_all"] = round(float(np.mean(diffs_all)), 3)
             v["vs_base_se"] = round(float(np.std(diffs_all, ddof=1) / np.sqrt(len(diffs_all))), 3)
+        for name, pairs in (("last_in_stage", split), ("has_back_line", with_back)):
+            v[f"vs_base_{name}"] = {str(flag): {"steps": len(d), "mean": round(float(np.mean(d)), 2)}
+                                    for flag in (True, False) if (d := [x for f, x in pairs if f == flag])}
         v["claude_usd_a_lesson"] = round(sum(c["cost_usd"] for c in calls) / max(1, len(v["pictures"])), 3)
         v["calls"] = len(calls)
         v["renders_usd"] = round(sum(r["render_usd"] for r in ss.get("carry", [])), 3)
