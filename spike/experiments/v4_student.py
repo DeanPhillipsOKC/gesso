@@ -93,7 +93,7 @@ def step_of(picture: str, n: int) -> dict:
         return s
     other = json.loads((WORDS_FROM / picture / "packet.json").read_text())
     w = next(x for x in other["steps"] if x["n"] == n)
-    return {**s, "lines": w["lines"], "tip": w.get("tip") or ""}
+    return {**s, "lines": w["lines"], "tip": w.get("tip") or "", "intro": w.get("intro") or ""}
 
 
 def carry_dir() -> Path:
@@ -242,10 +242,14 @@ def has_sides(s: dict) -> bool:
 
 
 def step_text(s: dict, canvas_in, count: int, words: dict | None = None, header_only: bool = False) -> str:
-    """A step as the lesson page gives it, less its picture. `words` replaces its lines and tip."""
+    """A step as the lesson page gives it, less its picture. `words` replaces its lines and tip. A step's `intro`
+    (a words spike's stage opener, #255) is said above the step, as the page shows it at the top of the stage."""
     w = words or {"lines": s["lines"], "tip": s.get("tip") or ""}
     out = [f"The canvas is {canvas_in[0]:g} in wide and {canvas_in[1]:g} in tall. This is step {s['n']} of {count}.",
-           "", f"Step {s['n']}: {s['name']}"]
+           ""]
+    if s.get("intro"):
+        out += [s["intro"], ""]
+    out.append(f"Step {s['n']}: {s['name']}")
     if s.get("group"):
         out.append(f"Part of: {s['group']}")
     if s.get("paints"):

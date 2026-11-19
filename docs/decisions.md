@@ -292,6 +292,16 @@ with the date.
   The owner accepted the verdict knowing the student test's gain clears its 0.25 bar on the cow only, and that
   neither test showed the page's outline and paint map. A writer a stage and free prose were dropped. W2 builds on
   this writer.
+- **A v4 lesson has an arc, added by its own call after the writer (2026-11-19, owner's call, after #255).** One
+  Claude call reads the teacher's finished words, the plan, the cards, the photo, the finish and each stage's last
+  picture, and adds: an opening (a welcome, the light, two or three skills, each a stroke card the lesson uses with
+  its steps, and the road to the finish), a stage opener (what the stage is for, and where it ends, said after the
+  stage's last step rather than above every step), and an "As in step N" line on each step that repeats an earlier
+  step's stroke or paint. No step's own lines change, and the checks hold the arc to the cards and the sheet
+  (`docs/spikes/v4-arc.md`, `arc-add-long`). The owner asked for the longer opening and the callbacks after reading
+  the cat's lesson ("Overall big improvement"), and adopted it knowing the student test scores it level with the
+  teacher's words (+0.05 ± 0.09), short of the plan's rule that a words spike raise the score. It costs $0.43 of
+  Claude a lesson. The arc written into the writer's own call (`arc-whole`) was dropped.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
