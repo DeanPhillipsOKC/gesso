@@ -1,4 +1,4 @@
-# The sleeping cat, with its arc (v4 spike #255, arc-add)
+# The sleeping cat, with its arc (v4 spike #255, arc-add-long)
 
 The whole lesson as a painter would read it: the opening, each stage's opener, and every step's words (the teacher spike's words, with the arc's "As in step N" lines added). Pictures are v3's. Back to the write-up: [v4-arc.md](v4-arc.md).
 
@@ -6,19 +6,23 @@ The whole lesson as a painter would read it: the opening, each stage's opener, a
 
 Canvas: 16 in wide, 12 in tall. 21 steps.
 
-## What this painting teaches
+## Before you start
 
-- **Building from pieces** (steps 5, 6, 7, 9, 10, 13): Every big shape here starts as one simple rectangle, oval or circle with the rest added in pieces, from the window frame's bars to the curled cat.
-- **Press and lift** (steps 11, 12, 17, 19): One touch, press and lift makes a comma: rows of them turn flat yellow into chunky knit, and tiny ones fill the ears and the nose.
-- **Curved strokes** (steps 14, 15): Bending each stroke with the round of the body is what turns a flat gray shape into a soft, curled, sleeping cat.
+You're painting a gray tabby cat curled fast asleep on a golden knit blanket, on a wooden windowsill with a blue wall behind and leaves through the window. The heart of the painting is the sleeping face: the closed eyes, the pink nose, the whiskers and the white paws tucked at the chin. Soft daylight and warm colors give it a quiet, cozy mood.
 
-**The way there:** You start with the far things a beginner can't spoil: the sky and leaves through the window, then the blue wall. Next come the window frame and the sill, which sit nearer, and then the blanket as the cat's bed. The cat goes on last as one plain gray shape, then gets its shading, white patches, stripes and fur. That way the final steps all go to its sleeping face.
+**The light:** The daylight comes in through the window. It catches the cat's head and back, the rolled end of the blanket and a bright patch on the sill, while the parts turned away from the window fall into soft shadow.
+
+**What this painting teaches:**
+
+- **Building from pieces** (steps 5, 6, 7, 9, 10, 13): You start with a single simple shape, a rectangle, an oval or a circle, and add the rest in smaller pieces. It builds the window frame, the sill, the blanket and the cat, so every big shape in this painting starts as something easy. Soften where the pieces meet only where the shape should look smooth.
+- **Press and lift** (steps 11, 12, 17, 19): Touch down with the tip of a round brush, press so it spreads, then pull and lift to a point, which makes a little comma. Rows of these commas turn the flat blanket into chunky knit, and the same mark fills the cat's ears and shapes its nose. If you get blobs instead of commas, use less paint and lift faster.
+- **Side-to-side blend** (steps 1, 4): Stroke a color side to side, then, without rinsing, pick up the next color and stroke back over the join while both are wet. It gives you the soft sky through the window and the smooth blue wall, deep near the window and softer across the room. If a hard line shows where the colors meet, add a little more of the lighter color and blend again.
+
+**The way there:** You start with the view through the window, sky and leaves, because the farthest things are the hardest to spoil. Then the blue wall and the cream window frame go in front of that view, and the wooden sill with its patch of sunlight goes in front of them. The yellow blanket comes next as the cat's bed, its knit made from little dark and light loops. The cat is built last: a flat gray shape, then its shadow side and white patches, its stripes and pink ears, and a coat of soft fur. The sleeping face comes at the very end, so your most careful strokes go where every eye will look.
 
 ## The view through the window
 
-*This stage paints the farthest thing in the picture, the soft sky and leaves seen through the window.*
-
-*By its end:* A small corner of soft blue sky and dappled leaves sits on otherwise bare white canvas.
+*Paint the far view through the window: a pale sky with leaves dabbed over it.*
 
 ### Step 1: Blend the sky in the window
 
@@ -57,6 +61,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the Leaf green taps dry.
 - **Start:** Start on the top of the dark clump, about 1/2 in from the top edge and about 1 in from the left edge.
+- **As in step 2:** The same dry tapping you did for the dark leaves, with the same stiff brush, but now only a few tiny taps of the brighter green on the tops of the clumps.
 - **Strokes:** With almost no Sunny leaf green on the stiff brush, tap just a few times with its tip, and keep each tap small.
 - **Where the paint sits:** Put it only on the tops of the clump, where daylight catches the leaves. It is a tiny touch, about 1/4 in wide.
 - **Leave:** Leave almost all of the Leaf green and the pale sky showing. Don't cover the clump.
@@ -64,11 +69,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 3](../../spike/experiments/bench/v3-words/sleeping-cat/steps/03.jpg)
 
+*Where this stage ends:* A small patch of pale sky and soft leaves sits in the corner of an otherwise bare white canvas.
+
 ## The wall and the window frame
 
-*This stage covers the bare canvas with the blue wall and stands the cream window frame over it.*
-
-*By its end:* A brushy blue wall fills the canvas, and a crisp cream frame with lavender shadows stands over the leafy view.
+*Cover the rest of the canvas with the blue wall, then stand the cream window frame in front of the view.*
 
 ### Step 4: Blend the blue wall
 
@@ -78,7 +83,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the window corner dry completely so the blue doesn't drag into it.
 - **Start:** Start at the top edge, next to the window view, with Deep wall blue.
-- **As in step 1:** This is the same wet side-to-side blend you used for the sky. Now it uses two blues and a wider brush.
+- **As in step 1:** This is the same side-to-side blend as the window sky, only bigger: a wider brush, long rows, and deep blue melting into softer blue.
 - **Strokes:** Stroke side to side in long, wide rows down the canvas. Without rinsing, pick up Wall blue and carry it toward the right edge, stroking back over each join while it's wet. Let some strokes slant so the wall looks brushed.
 - **Where the paint sits:** The deeper blue stays near the window and Wall blue spreads over the rest. Paint straight through where the frame, sill, blanket and cat will go, down to the bottom edge.
 - **Leave:** Leave the window view in the upper left corner of the canvas showing, and paint carefully around its edge.
@@ -109,6 +114,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the white frame dry.
 - **Start:** Start at the top edge, on the half of the wide post that faces the wall.
+- **As in step 5:** You build the shadows from pieces just as you built the frame, now in narrow lavender bands with the smaller flat.
 - **Strokes:** Lay each band in pieces with the small flat. Pull straight down the posts and straight along the crossbar and the ledge, keeping to their edges.
 - **Where the paint sits:** The bands go on the faces turned away from the daylight: the wall-facing half of the wide post, the edge of the narrow post, the underside of the crossbar and the front of the slanted ledge. Then pull one long band down the wall where it meets the wide post, from the top edge to the bottom edge, for the frame's shadow.
 - **Leave:** Leave cream showing on the window-facing half of each post, and leave a slim cream wedge where the ledge meets the post.
@@ -116,11 +122,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 6](../../spike/experiments/bench/v3-words/sleeping-cat/steps/06.jpg)
 
+*Where this stage ends:* A brushy blue wall fills the canvas, and a cream frame with lavender shadows stands crisp around the window view.
+
 ## The windowsill
 
-*This stage builds the wooden sill the blanket and cat will rest on, with the window light falling across it.*
-
-*By its end:* A warm brown sill runs the width of the canvas, streaky with grain and crossed by bright peach patches of window light.
+*Lay the wooden sill across the canvas and give it a warm patch of window light.*
 
 ### Step 7: Block in the windowsill
 
@@ -130,6 +136,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the frame and wall dry.
 - **Start:** Start with the long slanted top of the sill. Its top line begins about 7 1/4 in from the top edge, at the foot of the window frame, and slopes gently down toward the right edge.
+- **As in step 5:** Like the window frame, the sill starts as a plain rectangle, this time in brown with the bigger flat and strokes running along the grain.
 - **Strokes:** Fill that slanted rectangle with long side-to-side strokes of Warm wood brown, running along the length of the sill like wood grain. Then add the front edge as a strip across the bottom of the canvas, and a small raised lip at the left edge where the sill meets the ledge.
 - **Where the paint sits:** It is all one flat brown for now, covering the wall and the foot of the frame down to the bottom edge.
 - **Leave:** Leave the wall and the frame untouched above the sill's top line, and keep that line straight.
@@ -145,6 +152,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the brown sill dry completely, or the dry brush will lift it.
 - **Start:** Start on the sill top at the foot of the window frame, where the sill meets the wall.
+- **As in step 7:** The same Warm wood brown you blocked the sill in with, but now on an almost dry brush, skimmed lightly so it streaks instead of covering.
 - **Strokes:** Put only the tip of the dry brush in Warm wood brown and wipe it. Skim long, light strokes along the grain, the length of the sill, out to the right edge of the canvas. Build it up in several light passes.
 - **Where the paint sits:** Lay the streaks thickest along the back of the sill, across the far stretch of its top and along the front edge, so those parts read as shade. Near the window, skim around the slanted shapes where the sunlight will fall: two long slanted pieces split by a thin diagonal bar.
 - **Leave:** Leave those sunny shapes plain, and leave a few bits of the front edge broken, where the paint skips.
@@ -167,11 +175,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 9](../../spike/experiments/bench/v3-words/sleeping-cat/steps/09.jpg)
 
+*Where this stage ends:* A warm brown sill runs across the canvas, grained and shaded, with bright peach window light lying on it.
+
 ## The blanket
 
-*This stage gives the cat its bed, a golden blanket made to look knitted with little commas of dark and light.*
-
-*By its end:* A chunky golden knit blanket lies on the sill, ochre in its dips and glowing at the end nearest the window.
+*Make the cat's bed: a rolled golden blanket that reads as chunky knit.*
 
 ### Step 10: Block in the blanket
 
@@ -181,6 +189,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the sill dry.
 - **Start:** Start with a long, low oval of Golden yellow across the lower middle of the canvas. Its left side is about 1 1/4 in from the left edge, and it runs all the way to the right edge.
+- **As in step 7:** You start the blanket the way you started the sill, with a single big shape, but this time it's a long oval with rounded pieces added at the window end.
 - **Strokes:** Fill the oval with big flat strokes. Then, at the end nearest the window, add the curved roll and the folded front edge as two rounded pieces, like ( ). Carry the yellow across where the cat will lie.
 - **Where the paint sits:** Keep it one flat yellow with no shading. The two bumps at the window end show the roll sitting on the fold.
 - **Leave:** Leave the sunny peach patches showing on the sill near the window, and a thin line of dark sill showing along the blanket's bottom edge.
@@ -211,6 +220,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the dark loops dry.
 - **Start:** Start on the rounded end of the blanket nearest the window, on the top of the roll.
+- **As in step 11:** The same press-and-lift commas as the dark loops, now smaller, paler and far fewer, made with the smaller round.
 - **Strokes:** Load the smaller round with Pale yellow and make short press-and-lift commas, the same way as the dark loops but smaller.
 - **Where the paint sits:** Crowd them on the rounded end facing the window, where daylight hits the knit. Then scatter just a few dots and commas over the flat bed and along the front fold.
 - **Leave:** Leave most of the dark ochre loops and the gold showing. This is a light sprinkle, not a coat.
@@ -218,11 +228,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 12](../../spike/experiments/bench/v3-words/sleeping-cat/steps/12.jpg)
 
+*Where this stage ends:* A golden knit blanket lies on the sill, ochre in its dips and glowing at the end that faces the window.
+
 ## The cat's shape
 
-*This stage builds the cat as one gray shape and makes it look round with shading and white patches.*
-
-*By its end:* A plain gray curled cat sleeps on the blanket, darker on its far end and tail, with a white muzzle, white paws and a white side patch.
+*Build the cat as a simple gray shape, round it with shadow and give it its white patches.*
 
 ### Step 13: Block in the curled cat
 
@@ -232,7 +242,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the blanket dry.
 - **Start:** Start with a big oval of Mid gray for the curled body, sitting in the hollow of the blanket and reaching the right edge of the canvas. Then add a circle for the head at the end nearest the window.
-- **As in step 10:** Build the cat the way you built the blanket: one big oval first, then the smaller pieces around it.
+- **As in step 10:** Just like the blanket, the cat begins as a big oval, now with a circle for the head and triangles for the ears added as pieces.
 - **Strokes:** Build the rest from pieces: two triangles for the ears, one standing up from the top of the head and one pointing toward the window, then curved pieces for the tail and the paws. Let your strokes follow the curl of the fur.
 - **Where the paint sits:** Keep it all one flat gray. The shading comes next.
 - **Leave:** Leave the blanket's front roll and fold showing in front of the cat, with a thin rim of gold where the body meets the blanket.
@@ -263,6 +273,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the dark gray dry.
 - **Start:** Start on the muzzle and chin, the patch between the face and the paws. Its left side is about 3 1/4 in from the left edge.
+- **As in step 14:** Bend these strokes with the shape the same way you did for the dark gray, but with a round brush, Warm white and thin coats.
 - **Strokes:** Curve each Warm white stroke with the round of the shape: around the muzzle, over each front paw from its top down, and down the side patch along the fur.
 - **Where the paint sits:** White goes on the muzzle and chin, on the two front paws tucked at the chin, and on a pointed patch on the side, its middle about 9 1/4 in from the left edge, where the chest fur shows.
 - **Leave:** Leave a thin gray line between the two paws, and another between the paws and the chin, so they stay separate.
@@ -270,11 +281,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 15](../../spike/experiments/bench/v3-words/sleeping-cat/steps/15.jpg)
 
+*Where this stage ends:* A smooth gray cat lies curled on the blanket, darker at its back end, with a white muzzle, white paws and a white chest patch.
+
 ## The stripes and ears
 
-*This stage turns the gray cat into a tabby with tapered stripes and gives it pink ears.*
-
-*By its end:* Charcoal stripes wrap around the curled cat, and both ears are soft pink inside a gray rim.
+*Turn the gray cat into a tabby with tapering stripes, and warm its ears with pink.*
 
 ### Step 16: Pull the dark tabby stripes
 
@@ -299,7 +310,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the stripes dry.
 - **Start:** Start in the ear that points toward the window. Its middle is about 2 1/4 in from the left edge.
-- **As in step 11:** These are the same press-and-lift commas you used for the knit loops, now small with a little round.
+- **As in step 11:** This is the comma you tapped into the blanket, now with a tiny round and Soft pink, each mark pointing into the corner of the ear.
 - **Strokes:** Touch the round's tip down near the ear's base, press, then pull toward the tip and lift, so each mark points into the corner of the ear.
 - **Where the paint sits:** Fill that ear with Soft pink, then the ear on the top of the head, whose middle is about 6 1/4 in from the left edge.
 - **Leave:** Leave a gray rim showing all around each ear.
@@ -307,11 +318,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 17](../../spike/experiments/bench/v3-words/sleeping-cat/steps/17.jpg)
 
+*Where this stage ends:* The cat wears dark stripes that wrap around its curl, and both ears are pink inside with a gray rim.
+
 ## The fur
 
-*This stage softens the smooth gray coat into fur with quick, light flicks.*
-
-*By its end:* Light gray flicks make the coat look soft and furry, the stripes still clear and the face still blank.
+*Soften the coat with light flicks so the cat looks furry instead of flat.*
 
 ### Step 18: Flick in the light fur
 
@@ -328,11 +339,11 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 ![After step 18](../../spike/experiments/bench/v3-words/sleeping-cat/steps/18.jpg)
 
+*Where this stage ends:* The coat looks soft and furry with the stripes still clear, and the face is still blank.
+
 ## The sleeping face
 
-*This stage spends its last careful strokes on the sleeping face, the heart of the painting.*
-
-*By its end:* The finished painting: the tabby asleep on its knit blanket, eyes closed, with a pink nose and white whiskers fanning out.
+*Bring the cat to life with its pink nose, closed eyes and long whiskers.*
 
 ### Step 19: Paint the pink nose
 
@@ -342,6 +353,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the fur flicks dry.
 - **Start:** Start on the white muzzle, just over the paws, with a small triangle nose. Its middle is about 5 3/4 in from the left edge.
+- **As in step 17:** The same Soft pink and small round you used inside the ears, pressed into a tiny triangle for the nose.
 - **Strokes:** Touch the round's tip down at the nose's point, press so the mark widens, then lift. Two or three tiny strokes make the triangle, wide end up.
 - **Where the paint sits:** Then add a few small touches of Soft pink along the tips and inner edges of both ears to deepen them.
 - **Leave:** Leave white all around the nose.
@@ -357,7 +369,7 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the nose and the fur dry. Liner lines spread on wet paint.
 - **Start:** Start with the eye nearest the window, a gentle curved line where the gray cheek meets the white muzzle.
-- **As in step 16:** This is the same Charcoal you used for the stripes, now thinned with water for the liner.
+- **As in step 16:** This is the Charcoal from the stripes, but thinned with water and pulled with the liner into fine lines instead of broad marks.
 - **Strokes:** Thin the Charcoal with water and hold the liner upright. Pull each line with light, steady pressure, starting a little thicker and easing off to a thin end.
 - **Where the paint sits:** Line both closed eyes, then a tiny mouth line from the point of the pink nose and a few short lines on the cheek past the second eye. Add a dark shadow where the chin tucks into the paws, and a thin dark edge along the outer rims of both ears.
 - **Leave:** Leave the pink nose and the white muzzle clean.
@@ -373,10 +385,12 @@ Canvas: 16 in wide, 12 in tall. 21 steps.
 
 - **First:** Let the charcoal lines dry.
 - **Start:** Start at the edge of the white muzzle, near the nose.
-- **As in step 20:** Hold the liner upright as you did for the eye lines, now with thinned Warm white.
+- **As in step 20:** The same liner and the same thinned, upright stroke as the eyes, now with Warm white and longer lines that taper away from the muzzle.
 - **Strokes:** Thin the Warm white and hold the liner upright. Pull each whisker out from the muzzle in one steady stroke, lightening as you go so it tapers, and reload often.
 - **Where the paint sits:** Fan three or four whiskers across the cheek and over the paws toward the window, reaching to about 2 3/4 in from the left edge. Fan three or four more out the other side of the muzzle, across the cheek.
 - **Leave:** Leave the eye lines and the nose untouched, and let a few whiskers cross the stripes.
 - **Stop when:** Stop when thin, light whiskers fan out from both sides of the muzzle, and the painting is finished.
 
 ![After step 21](../../spike/experiments/bench/v3-words/sleeping-cat/steps/21.jpg)
+
+*Where this stage ends:* The finished painting: a tabby fast asleep on its golden blanket, with peaceful closed eyes and fine white whiskers.

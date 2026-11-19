@@ -212,6 +212,29 @@ run.
 What it means for the page: a stage opener says what the stage is for at its top, and its end goes with the stage's
 last step (or as that step's picture, which the page already shows). Each step is about only that step.
 
+## A longer opening and more callbacks (`arc-add-long`, the owner's ask)
+
+The owner read the cat's whole lesson and asked: "Make the opening longer and add more step callbacks"
+(2026-11-19). arc-add's brief got one more section (`LONG` in the code):
+
+- the opening gains a **welcome** (what you're about to paint, its focal point, the mood) and **the light** (where it
+  comes from and what it does, named by its source, not by a side). Each skill's sentence becomes two or three
+  (what the stroke is, where it works in this painting, what to watch for), and the road four to six sentences;
+- a **back line on every step that repeats a stroke or a paint**, where saying so helps, pointing to the step a
+  painter would remember best. The old brief said about one step in four.
+
+| | steps pointing back (cow, cat, birch) | arc words | Claude, a lesson |
+|---|---|---|---|
+| arc-add | 6, 5, 4 | 518, 450, 443 | $0.28 |
+| arc-add-long | 13, 13, 12 | 829, 687, 702 | $0.43 |
+
+The checks failed 1, 0 and 2 things first time (an opener's side word, two of check-text's), and everything passed
+after feedback. The page now puts each stage's end after its last step, as the rerun found. The sleeping cat's whole
+lesson in this form: [v4-arc-sleeping-cat.md](v4-arc-sleeping-cat.md) (`v4_arc.py page <picture>`).
+
+**Not measured yet.** The callbacks are in the step lines, so the student test could move. A carry run of all 64
+steps is about $1 of renders.
+
 ## What would settle it (written before the rerun)
 
 1. **The owner reads one lesson's arc**, the sleeping cat's above, and says whether a lesson that opens this way is

@@ -69,7 +69,10 @@ STUDENT_DIR = HERE / "v4_arc"
 BASE = "lesson-slots"  # the teacher spike's adopted words: the baseline
 BASE_STUDENT = HERE / "v4_teacher" / f"{BASE}.json"
 WORK = Path(tempfile.gettempdir()) / "gesso-v4-arc"
-VARIANTS = ["arc-add", "arc-whole"]
+VARIANTS = ["arc-add", "arc-whole", "arc-add-long"]
+# arc-add-long (the owner, 2026-11-19, after reading the cat's lesson: "Make the opening longer and add more step
+# callbacks"): arc-add with a fuller opening (a welcome, the light, two or three sentences a skill, a longer road)
+# and a back line wherever a step repeats a stroke or a paint, not one step in four.
 SEED = 255
 LOCK = threading.Lock()
 NUMBER_RE = re.compile(r"\d")
@@ -167,8 +170,39 @@ With the arc, the reply's JSON is:
 Every step has its lines; `back` only where a step points back."""
 
 
-def add_brief() -> str:
-    return ADD_BRIEF.format(arc=ARC)
+LONG = """## Longer, and more steps that point back (this run)
+
+The owner read a lesson with a short opening and few back lines, and asked for more of both. So, in place of the
+lengths above:
+
+- **The opening is longer.** Add `welcome`: two or three sentences on what the painter is about to make and what
+  will make it sing (the subject, its focal point, the mood of the light), as a teacher would say it before the
+  first brushstroke. Add `light`: one or two sentences on where the light comes from in this painting and what it
+  does to the things in it, since many steps put paint where the light falls or doesn't (name the light by its
+  source, "the window light", "the low sun", not by a side). Each skill's `how` is two or three sentences: what the
+  stroke is, where in this painting it does its work, and what to watch for (from the card). `road` is four to six
+  sentences: every stage in order, what each one adds, and why the order (from the plan's `why`).
+- **More steps point back.** Give a back line to every step that repeats an earlier step's stroke card or one of
+  its paints, where saying so helps a beginner: they've done this, and here is what's different this time (the
+  paint, the brush, the size, where it goes). That is likely about half the steps. Skip a step only when the tie is
+  empty ("the same paint" with nothing else to say), and point to the earlier step a painter would remember best,
+  not always the one just before.
+
+The rules stay: no numbers and no side words in the opening or the stage openers, and a back line follows the
+step's rules.
+"""
+
+LONG_JSON = """With this run, the opening's JSON also has the welcome and the light:
+
+```json
+{"opening": {"welcome": "...", "light": "...", "skills": [{"card": "<card id>", "steps": [3, 8], "how": "..."}], "road": "..."}}
+```
+"""
+
+
+def add_brief(long: bool = False) -> str:
+    out = ADD_BRIEF.format(arc=ARC + ("\n" + LONG if long else ""))
+    return out + ("\n" + LONG_JSON if long else "")
 
 
 def whole_form() -> str:
@@ -190,7 +224,7 @@ def stage_pictures(picture: str) -> list[tuple[int, Path]]:
             for i, st in enumerate(stages_of(picture), 1) if st["steps"]]
 
 
-def add_message(picture: str):
+def add_message(picture: str, long: bool = False):
     from v4_loop import Message
     folders = teacher.stages(picture)
     ids, card_ids = set(), []
@@ -200,7 +234,7 @@ def add_message(picture: str):
             if s.get("stroke") and s["stroke"] not in card_ids:
                 card_ids.append(s["stroke"])
     m = Message().text("Follow the brief. Everything you need is in this message.")
-    m.text(f'<file name="brief.md">\n{add_brief()}\n</file>')
+    m.text(f'<file name="brief.md">\n{add_brief(long)}\n</file>')
     m.file(teacher.data(picture) / "plan.json", "plan.json")
     m.text(f'<file name="steps.md">\n{teacher.headers(picture, ids)}\n</file>')
     m.text(f'<file name="cards.md">\n{teacher.card_text(card_ids)}\n</file>')
@@ -263,6 +297,8 @@ def check_arc(picture: str, arc: dict) -> list[dict]:
     if not (op.get("road") or "").strip():
         out.append({"where": "opening.road", "what": "the road is missing"})
     claims("opening.road", op.get("road") or "")
+    for k in ("welcome", "light"):  # the long run's (arc-add-long)
+        claims(f"opening.{k}", op.get(k) or "")
     for st in stages:
         o = (arc.get("stages") or {}).get(st["id"]) or {}
         for k in ("for", "end"):
@@ -316,7 +352,7 @@ def compose(picture: str, variant: str, arc: dict) -> dict:
     out = {}
     for s in teacher.packet(picture)["steps"]:
         w = (arc.get("steps") or {}).get(s["id"]) or {}
-        slots = (base.get(s["id"]) or []) if variant == "arc-add" else teacher.lines_of("slots", w)
+        slots = (base.get(s["id"]) or []) if variant.startswith("arc-add") else teacher.lines_of("slots", w)
         out[s["id"]] = step_lines(slots, back_of(w))
     return out
 
@@ -356,8 +392,9 @@ def take_out_arc(arc: dict, fails: list[dict]) -> list[dict]:
                 drop_skills.add(i)
             gone.append(c)
         elif c.get("sentence"):
-            if w == "opening.road":
-                op["road"] = " ".join(x for x in sentences(op.get("road")) if x.strip() != c["sentence"].strip())
+            if w in ("opening.road", "opening.welcome", "opening.light"):
+                k = w.split(".")[1]
+                op[k] = " ".join(x for x in sentences(op.get(k)) if x.strip() != c["sentence"].strip())
             else:
                 sid, k = w[6:].rsplit(".", 1)
                 o = arc["stages"][sid]
@@ -422,7 +459,7 @@ def write_one(variant: str, picture: str):
     from v4_loop import Message
     whole = variant == "arc-whole"
     w = Writer(variant, picture, "lesson")
-    arc, _ = w.ask(whole_message(picture) if whole else add_message(picture), "first words")
+    arc, _ = w.ask(whole_message(picture) if whole else add_message(picture, variant == "arc-add-long"), "first words")
     arc = arc or {}
     first = json.loads(json.dumps(arc))
     words = compose(picture, variant, arc)
@@ -471,7 +508,7 @@ def write_one(variant: str, picture: str):
 
 def arc_words(arc: dict) -> int:
     op = arc.get("opening") or {}
-    txt = [op.get("road") or ""] + [sk.get("how") or "" for sk in op.get("skills") or []]
+    txt = [op.get(k) or "" for k in ("welcome", "light", "road")] + [sk.get("how") or "" for sk in op.get("skills") or []]
     txt += [o.get(k) or "" for o in (arc.get("stages") or {}).values() for k in ("for", "end")]
     return len(" ".join(txt).split())
 
@@ -493,7 +530,12 @@ def card_name(cid: str) -> str:
 
 def opening_text(arc: dict) -> str:
     op = arc.get("opening") or {}
-    out = ["What this painting teaches:"]
+    out = []
+    if op.get("welcome"):
+        out += [op["welcome"], ""]
+    if op.get("light"):
+        out += [f"The light: {op['light']}", ""]
+    out.append("What this painting teaches:")
     for sk in op.get("skills") or []:
         steps = ", ".join(str(n) for n in sk.get("steps") or [])
         out.append(f"- {card_name(sk['card'])} (steps {steps}): {sk.get('how', '')}")
@@ -524,7 +566,8 @@ NOEND = "arc-add-noend"  # arc-add's words, the stage's end sentence only above 
 
 def packets(args):
     st = state()
-    runs = [(v, v, False) for v in st["arc"]] + ([("arc-add", NOEND, True)] if "arc-add" in st["arc"] else [])
+    runs = [(v, v, v == "arc-add-long") for v in st["arc"]]  # the long run puts a stage's end on its last step
+    runs += [("arc-add", NOEND, True)] if "arc-add" in st["arc"] else []
     for source, variant, end_on_last in runs:
         for pic, rec in st["arc"][source].items():
             les = json.loads(json.dumps(teacher.packet(pic)))
@@ -557,6 +600,50 @@ def show(args):
                 if x["kind"] == "back":
                     print(f"- step {s['n']} ({s['name']}): As in step {x['step']}: {x['text']}")
         print()
+
+
+def page(args):
+    """A whole lesson as a painter reads it, with its arc and every step's picture, for the owner
+    (`docs/spikes/v4-arc-<picture>.md`). A stage's end goes after its last step (the rerun's finding)."""
+    pic, variant = args.picture, args.variant
+    rec = state()["arc"][variant][pic]
+    les, arc = teacher.packet(pic), rec["arc"]
+    rel = f"../../spike/experiments/bench/v3-words/{pic}"
+    out = [f"# The {pic.replace('-', ' ')}, with its arc (v4 spike #255, {variant})",
+           "", "The whole lesson as a painter would read it: the opening, each stage's opener, and every step's words "
+           "(the teacher spike's words, with the arc's \"As in step N\" lines added). Pictures are v3's. Back to the "
+           "write-up: [v4-arc.md](v4-arc.md).", "", f"![The photo]({rel}/photo.jpg)", "",
+           f"Canvas: {les['canvas_in'][0]:g} in wide, {les['canvas_in'][1]:g} in tall. {len(les['steps'])} steps.", ""]
+    op = arc.get("opening") or {}
+    out += ["## Before you start", ""]
+    if op.get("welcome"):
+        out += [op["welcome"], ""]
+    if op.get("light"):
+        out += [f"**The light:** {op['light']}", ""]
+    out += ["**What this painting teaches:**", ""]
+    out += [f"- **{card_name(sk['card'])}** (steps {', '.join(map(str, sk.get('steps') or []))}): {sk.get('how', '')}"
+            for sk in op.get("skills") or []]
+    if op.get("road"):
+        out += ["", f"**The way there:** {op['road']}"]
+    out.append("")
+    by = {s["id"]: s for s in les["steps"]}
+    for st in stages_of(pic):
+        o = (arc.get("stages") or {}).get(st["id"]) or {}
+        out += [f"## {st['name']}", "", f"*{o.get('for', '')}*", ""]
+        for x in st["steps"]:
+            s = by[x["id"]]
+            out += [f"### Step {s['n']}: {s['name']}", "",
+                    "**Paints:** " + "; ".join(f"{p['name']} ({p['recipe']})" for p in s.get("paints") or []), "",
+                    f"**Brush:** {s.get('brushes')}", ""]
+            for line in page_lines(rec["final"].get(s["id"]) or []):
+                k, _, t = line.partition(": ")
+                out.append(f"- **{k}:** {t}")
+            out += ["", f"![After step {s['n']}]({rel}/steps/{s['n']:02d}.jpg)", ""]
+        if o.get("end"):
+            out += [f"*Where this stage ends:* {o['end']}", ""]
+    path = ROOT / "docs" / "spikes" / f"v4-arc-{pic}.md"
+    path.write_text("\n".join(out))
+    print(path)
 
 
 # ------------------------------------------------------------------------------------------------- the blind graders
@@ -694,11 +781,14 @@ def main(argv=None):
     a = sub.add_parser("ab")
     a.add_argument("--variant", choices=VARIANTS, required=True)
     sub.add_parser("report")
+    pg = sub.add_parser("page")
+    pg.add_argument("picture", choices=PICTURES)
+    pg.add_argument("--variant", choices=VARIANTS, default="arc-add-long")
     s = sub.add_parser("show")
     s.add_argument("picture", choices=PICTURES)
     args = ap.parse_args(argv)
     WORK = args.work
-    {"write": write, "packets": packets, "ab": ab, "report": report, "show": show}[args.cmd](args)
+    {"write": write, "packets": packets, "ab": ab, "report": report, "show": show, "page": page}[args.cmd](args)
 
 
 if __name__ == "__main__":

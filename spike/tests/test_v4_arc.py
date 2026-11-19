@@ -102,6 +102,33 @@ class TakingOut(unittest.TestCase):
         self.assertEqual(len(gone), 4)
 
 
+class Long(unittest.TestCase):
+    """arc-add-long (the owner's ask, 2026-11-19): a welcome and a light line, held to the opening's rules."""
+
+    def test_the_welcome_and_the_light_say_no_number_and_no_side(self):
+        a = arc()
+        a["opening"]["welcome"] = "A sleeping cat in soft light. It is about 7 in wide."
+        a["opening"]["light"] = "The window light falls on the left side of the head."
+        got = [(c["where"], c["sentence"]) for c in va.check_arc(CAT, a)]
+        self.assertEqual(got, [("opening.welcome", "It is about 7 in wide."),
+                               ("opening.light", "The window light falls on the left side of the head.")])
+        va.take_out_arc(a, va.check_arc(CAT, a))
+        self.assertEqual(a["opening"]["welcome"], "A sleeping cat in soft light.")
+        self.assertEqual(a["opening"]["light"], "")
+
+    def test_the_opening_shows_the_welcome_and_the_light_first(self):
+        a = arc()
+        a["opening"]["welcome"] = "A sleeping cat."
+        a["opening"]["light"] = "The window light."
+        text = va.opening_text(a)
+        self.assertTrue(text.startswith("A sleeping cat."))
+        self.assertLess(text.index("The light: The window light."), text.index("What this painting teaches:"))
+
+    def test_the_long_brief_carries_the_ask(self):
+        self.assertIn("More steps point back", va.add_brief(True))
+        self.assertNotIn("More steps point back", va.add_brief())
+
+
 class Student(unittest.TestCase):
     def test_a_stage_opener_is_said_above_the_step(self):
         s = {"n": 4, "name": "Blend the wall", "lines": ["Start: at the top."], "intro": "This stage, the wall: ..."}
