@@ -626,7 +626,7 @@ def ab_one(variant: str, pic: str, g: int):
     without, the sides set by `g`. The words are the same on both sides; only the maps differ."""
     from v4_loop import Message, call_claude, cost, last_json
     les = packet(pic)
-    sides = ["map", "none"] if (g + random.Random(f"{pic}-{SEED}").randrange(2)) % 2 else ["none", "map"]
+    sides = ["map", "none"] if (g + random.Random(f"{variant}-{pic}-{SEED}").randrange(2)) % 2 else ["none", "map"]
     brief_text = (HERE / "bench" / "ab_grader.md").read_text().replace(
         "You were given a folder.", "You were given everything in this message, in place of a folder.")
     m = Message().text(f'<file name="ab_grader.md">\n{brief_text}\n</file>')
@@ -721,7 +721,7 @@ def report(args) -> dict:
         rec = {"grade": {p: round(float(np.mean([g for (pp, _), g in gr.items() if pp == p])), 2)
                          for p in PICTURES if any(pp == p for pp, _ in gr)},
                "against_baseline": paired(base, gr), "grain_against_baseline": paired(bg, vg),
-               "grain": round(float(np.mean(list(vg.values()))), 3) if vg else None,
+               "grain": round(float(np.mean([vg[k] for k in vg if k in bg])), 3) if vg else None,  # on the baseline's steps
                "renders_usd": round(sum(r["render_usd"] for r in ss["carry"]), 3),
                "grader_usd": round(sum(r["cost_usd"] for r in ss.get("carry_grades", [])), 3)}
         for p in PICTURES:
@@ -732,7 +732,8 @@ def report(args) -> dict:
         rec["disagrees"] = {f"{p} {n}": m["disagrees"] for p, pm in maps_.items() for n, m in pm.items()
                             if m.get("disagrees")}
         ab_ = [r for r in state()["ab"] if r["variant"] == v]
-        rec["ab"] = {p: [r["preferred"] for r in ab_ if r["picture"] == p] for p in PICTURES}
+        rec["ab"] = {p: [("map" if r["preferred"] == "map" else "no map") if r["prefer"] in ("A", "B") else "no difference"
+                     for r in ab_ if r["picture"] == p] for p in PICTURES}
         out["variants"][v] = rec
     update(lambda st: st.__setitem__("report", out))
     print(json.dumps(out, indent=1))

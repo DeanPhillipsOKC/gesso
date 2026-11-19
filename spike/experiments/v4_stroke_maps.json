@@ -14509,7 +14509,7 @@
      "rose": 24,
      "fell": 31
     },
-    "grain": 0.784,
+    "grain": 0.773,
     "renders_usd": 1.419,
     "grader_usd": 1.925,
     "against_baseline highland-cow": {
@@ -14536,9 +14536,18 @@
     "map_usd_a_lesson": 0.0,
     "disagrees": {},
     "ab": {
-     "highland-cow": [],
-     "sleeping-cat": [],
-     "birch-grove": []
+     "highland-cow": [
+      "no map",
+      "no map"
+     ],
+     "sleeping-cat": [
+      "no map",
+      "no map"
+     ],
+     "birch-grove": [
+      "no map",
+      "no map"
+     ]
     }
    },
    "writer": {
@@ -14561,7 +14570,7 @@
      "rose": 26,
      "fell": 30
     },
-    "grain": 0.749,
+    "grain": 0.741,
     "renders_usd": 1.419,
     "grader_usd": 1.908,
     "against_baseline highland-cow": {
@@ -14593,9 +14602,18 @@
      "birch-grove 1": "The words call for side-to-side strokes, but the after picture shows faint vertical streaks of colour in the haze."
     },
     "ab": {
-     "highland-cow": [],
-     "sleeping-cat": [],
-     "birch-grove": []
+     "highland-cow": [
+      "no difference",
+      "map"
+     ],
+     "sleeping-cat": [
+      "no difference",
+      "no difference"
+     ],
+     "birch-grove": [
+      "no difference",
+      "no difference"
+     ]
     }
    },
    "both": {
@@ -14618,7 +14636,7 @@
      "rose": 24,
      "fell": 33
     },
-    "grain": 0.763,
+    "grain": 0.762,
     "renders_usd": 1.419,
     "grader_usd": 1.906,
     "against_baseline highland-cow": {
@@ -14651,9 +14669,18 @@
      "birch-grove 15": "The program's arrows point down from the top, but the words say to pull up from each trunk's foot, so the arrows here run upward."
     },
     "ab": {
-     "highland-cow": [],
-     "sleeping-cat": [],
-     "birch-grove": []
+     "highland-cow": [
+      "map",
+      "map"
+     ],
+     "sleeping-cat": [
+      "no difference",
+      "no difference"
+     ],
+     "birch-grove": [
+      "no difference",
+      "no difference"
+     ]
     }
    }
   }

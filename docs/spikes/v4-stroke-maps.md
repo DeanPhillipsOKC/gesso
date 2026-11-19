@@ -6,7 +6,8 @@ tokens: `spike/experiments/v4_stroke_maps.json` (its `report` key holds the numb
 answers: `spike/experiments/v4_stroke_maps/map-<variant>.json`. Run on 2026-11-19.
 
 **Verdict: drop arrows from the change alone (`change`). Park the writer's arrows checked against the change
-(`both`). Drop the writer's arrows on their own (`writer`), since `both` matches them on every measure.** No map raised
+(`both`). Drop the writer's arrows on their own (`writer`), since `both` is level with or ahead of them on every measure but cost, by margins inside the noise, so `writer`
+has no case of its own.** No map raised
 the student's score: `both` +0.00 (± 0.08), `change` −0.06, `writer` −0.13 against the adopted words, with the bar at
 +0.25. Without a map the image model already runs its strokes the way the after picture does (0.78 on the new grain
 measure, where 1 means the same direction everywhere), so a map has little left to fix. The blind graders preferred
@@ -60,7 +61,7 @@ dabbing step.*
   mean of cos(2 × the angle between them), weighted by how clearly each tile has a grain. 1 is the same direction, 0
   no relation, −1 crossways. Check: the baseline's results score 0.78, and the same results turned 90 degrees score
   0.02.
-- **The blind graders** (`bench/ab_grader.md`, two a picture, sides swapped) see every step's picture and words once,
+- **The blind graders** (`bench/ab_grader.md`, two a picture, sides swapped between the two) see every step's picture and words once,
   and the map under the side that has one. They were asked to name any map that points the wrong way or sits on the
   wrong thing.
 
@@ -79,8 +80,9 @@ dabbing step.*
 
 - **No source clears the bar on any picture.** `both` gains most on the cow (+0.17) and is level overall.
 - **The birch grove falls with every source** (−0.15 to −0.30; over the three runs' 60 birch steps, 16 fell and 5 rose). Since that happens
-  whatever the arrows are, the likely cause is the second picture itself: the birch has many faint steps, and a pale
-  copy of the canvas beside it may pull the image model off them. A map with no arrows would test that (20 renders,
+  whatever the arrows are, the cause is either the second picture itself (the birch has many faint steps, and a pale
+  copy of the canvas beside it may pull the image model off them) or a high baseline run: all three are measured
+  against the same single run of the birch's no-map words, so these 60 comparisons share 20 baseline grades. A map with no arrows would test that (20 renders,
   about $0.45). It wasn't run.
 
 ### Does the image model run its strokes the right way? (the grain measure, 57 steps with a grain)
@@ -88,13 +90,13 @@ dabbing step.*
 | | grain | against no map | the 7 steps where no map scored under 0.5 |
 |---|---|---|---|
 | no map | 0.78 | | 0.24 |
-| `change` | 0.78 | −0.01 (± 0.02) | 0.20 |
-| `writer` | 0.75 | −0.04 (± 0.03) | 0.20 |
+| `change` | 0.77 | −0.01 (± 0.02) | 0.20 |
+| `writer` | 0.74 | −0.04 (± 0.03) | 0.20 |
 | `both` | 0.76 | −0.02 (± 0.02) | 0.22 |
 
 **The maps don't change which way the strokes run, not even on the steps that got it wrong.** The adopted words
 already say it ("Strokes: pull curved strokes down that crescent"), and the image model already follows them, so
-direction was not what held the student's score back. The low steps (cow 7 and 12, cat 1 and 18, birch 1 and 17) are
+direction was not what held the student's score back. The low steps (cow 7, 12 and 21, cat 1 and 18, birch 1 and 17) are
 faint or mixed changes, where a 1,024-pixel render's brushwork is mostly the image model's own.
 
 ### The blind graders
@@ -127,7 +129,7 @@ Asked to say so, the writers found 6 steps where the words' stroke direction and
 `writer`, 4 by `both`, two of them the same): cow 7 and 8 (the words say level strokes across the meadow, and the
 picture's lower meadow is steep diagonals), cow 15 (the locks slant, not straight down), cat 16 (the haunch stripes
 run nearly level), birch 1 (vertical streaks in the haze, against side to side) and birch 5 (taps that build into
-downward patches). In `both` the writer once kept the words over the picture: birch 15, "the words say to pull up from
+downward patches). In `both` the writer once kept the words over the change's arrows: birch 15, "the words say to pull up from
 each trunk's foot, so the arrows here run upward". That is the right call, since the picture can't show which way a
 stroke was pulled. Neither writer flagged the cat's step 4 (the wall: side to side in the words, diagonal in the
 picture, #262). It drew the words' side-to-side arrows. These are the same kind of fault as #262: the stroke card
@@ -144,9 +146,9 @@ and the picture don't match. A writer that reads both pictures can list them as 
 A render with a map costs 2.2 cents against 1.6 without, for the second picture. A step's call costs about what a
 student-test reader does, mostly Claude Code's own system additions and four pictures. A map from the writer that
 already writes the step (lesson-slots reads every step's before, after and change pictures) would add only the
-arrows' output tokens, a few cents a lesson.
+arrows' output tokens, a few cents a lesson (an estimate, not measured).
 
-Of this spike: **$4.26 of renders** (192, inside the owner's $4.30 for this issue, 2026-11-19) and $20.08 of Claude at
+Of this spike: **$4.26 of renders** (192, inside the owner's $4.30 for this issue, 2026-11-19) and $19.88 of Claude at
 the API's rates, all through `claude -p` on the subscription: the map writers $7.33, carry's grader $5.74, the blind
 graders $6.81.
 
@@ -172,7 +174,11 @@ they aren't.
 - The student is an image model, which paints its own brushwork. It can read a map's place and line, but nothing
   shows it reads a stroke's sense (which end it starts at). The grain measure is blind to sense too: it compares
   lines, mod 180 degrees.
-- A map was never tested without arrows, so the birch grove's fall can't be put on the second picture for certain.
+- A map was never tested without arrows, so the birch grove's fall can't be put on the second picture or on a high baseline run.
+- The A/B's sides were swapped between a picture's two graders, but which grader got the map first was seeded on
+  the picture alone, and it fell the same way on all three: grader 1 always had the map on A. `change` lost from both
+  positions and `both` won the cow from both, so position doesn't explain the results. The seed now includes the
+  variant.
 - The graders read 64 extra pictures a lesson. Several said the shared faults decided their scores, so a small help
   from the maps would show as "no difference".
 - The maps are drawn on the before picture. The real page would put the map beside the step's picture and the Where

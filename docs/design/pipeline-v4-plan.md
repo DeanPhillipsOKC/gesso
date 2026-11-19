@@ -115,7 +115,7 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   measure), so a map had little to fix. The blind graders preferred the lesson without change-only maps 6 of 6 (the
   change gives a stroke's line, not which end it starts, so grass, trunks and ears were drawn backwards), and `both`
   2 of 6 with 4 ties: it helps with place and misleads on dabbing steps. $1.33 of Claude a lesson as a call a step.
-  If it comes back: arrows from the lesson's writer, none for a dabbed stroke, the direction from the card.
+  If it comes back: arrows from the lesson's writer (a few cents a lesson, estimated), none for a dabbed stroke, the direction from the card.
 
 ## Wave 3: cost
 
