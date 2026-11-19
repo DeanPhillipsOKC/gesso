@@ -109,6 +109,13 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
 - **P1. Stroke maps (#256).** A few arrows drawn on the step's picture: where the first strokes go and which way
   they run. The chain already holds exactly which pixels each step changed. To find out: whether the arrows come
   from the change alone, from the writer naming them, or from both, and whether the student test reads them.
+  **Done 2026-11-19 (`docs/spikes/v4-stroke-maps.md`): drop arrows from the change alone, park the writer's arrows
+  checked against the change (`both`).** No map raised the student's score (`both` 0.00 ± 0.08, `change` −0.06,
+  `writer` −0.13): the image model already runs its strokes the way the after picture does (0.78 on a new grain
+  measure), so a map had little to fix. The blind graders preferred the lesson without change-only maps 6 of 6 (the
+  change gives a stroke's line, not which end it starts, so grass, trunks and ears were drawn backwards), and `both`
+  2 of 6 with 4 ties: it helps with place and misleads on dabbing steps. $1.33 of Claude a lesson as a call a step.
+  If it comes back: arrows from the lesson's writer (a few cents a lesson, estimated), none for a dabbed stroke, the direction from the card.
 
 ## Wave 3: cost
 
