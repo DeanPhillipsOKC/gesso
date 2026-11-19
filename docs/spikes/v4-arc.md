@@ -22,6 +22,10 @@ arc-add is parked rather than dropped for two reasons:
   stage opener's "By its end: ..." sentence describes a canvas several steps ahead. The image model seems to paint
   toward that canvas.
 
+**Second update: the owner asked for a longer opening and more callbacks (`arc-add-long`, below), called the result
+"overall big improvement", and approved testing it. It scores level with lesson-slots on the student test (+0.05 ±
+0.09), with 12 to 13 back lines a lesson and a stage's end on its last step.**
+
 **Update, after the owner read the sleeping cat's lesson ("it looks good") and approved the rerun: the end sentence
 was the cause.** With the stage's end sentence shown only above its last step (`arc-add-noend`), the 40 steps that
 aren't last in their stage score exactly what lesson-slots' words do (0.00 ± 0.10; the cow's 14 steps 3.43 against
@@ -232,8 +236,21 @@ The checks failed 1, 0 and 2 things first time (an opener's side word, two of ch
 after feedback. The page now puts each stage's end after its last step, as the rerun found. The sleeping cat's whole
 lesson in this form: [v4-arc-sleeping-cat.md](v4-arc-sleeping-cat.md) (`v4_arc.py page <picture>`).
 
-**Not measured yet.** The callbacks are in the step lines, so the student test could move. A carry run of all 64
-steps is about $1 of renders.
+**The student test (carry, graded alone, all 64 steps; the stage's end on its last step only):**
+
+| | cow | cat | birch | all 64, against lesson-slots | steps rose / fell |
+|---|---|---|---|---|---|
+| lesson-slots | 3.43 | 3.38 | 3.20 | | |
+| arc-add-long | 3.26 | 3.48 | 3.45 | **+0.05 (± 0.09)** | 12 / 12 |
+
+Level: no picture moves past the 0.25 bar except the birch grove, which reaches it (+0.25), and the cow is down 0.17,
+inside the spread. The 38 steps with a back line are +0.08 and the 26 without one are 0.00, so more callbacks cost
+the painter nothing on this test. $1.02 of renders and $1.90 of carry's grader, which brings the spike's renders to
+$3.68 (the owner said yes to more for testing).
+
+**What the owner found reading it (2026-11-19):** "Overall big improvement." Steps 2 to 4 of the cat don't match
+their pictures: the leaf steps show no green and the leaves arrive with the wall, whose strokes run diagonally. Those
+are faults in v3's pictures and paints, not in the arc, and are filed as #262.
 
 ## What would settle it (written before the rerun)
 
