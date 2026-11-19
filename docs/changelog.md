@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 2.0.2 (2026-11-19)
+- A shading or lighting paint keeps a color of its own (#250). A step that comes back to a thing (shade the cat,
+  light the sill, flick the fur) is fitted to the marks it laid, not to the whole thing its render drew again, so
+  its paint is darker or lighter than the block-in's, as its picture shows. `check` no longer asks to merge those
+  paints into the block-in's: on the sleeping cat it asked for three, and the steps then named the block-in's paint
+  under a picture of darker or lighter marks.
+
 ## POC 2.0.1 (2026-11-18)
 - The fact sheet measures each thing by its own units only (#227). A unit that lays on two things was counted in
   the first thing's place, so on the floating island the island measured 10 7/8 in wide (it is 4 1/4), and a

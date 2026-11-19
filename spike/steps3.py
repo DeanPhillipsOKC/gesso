@@ -27,6 +27,8 @@ import plan3
 
 REFIT = 2  # rounds of "each pixel to its nearest paint, each paint to the middle of its pixels"
 REACH = 30.0  # Lab units: a pixel further than this from a paint isn't that paint, whatever else is in the unit
+RIM = 2  # pixels: a stroke's soft edge, left out when a paint is fitted to what a unit moved
+AIM = 0.8  # a pixel counts for a paint only if the unit moved it this straight at the paint (a cosine)
 FEW = 20  # a paint with fewer pixels than this near it in a unit keeps the color it came with
 LITTLE = 0.002  # a step that changes less than this share of the canvas is reported (design section 8, check 4)
 FAR = 25.0  # Lab units: a paint fitted this far from the plan's rough color, or a pixel this far from its step's paints
@@ -47,23 +49,48 @@ def nearest(content: np.ndarray, hexes: list[str]) -> np.ndarray:
     return cv2.medianBlur(np.stack([_dist(lab, h) for h in hexes]).argmin(0).astype(np.uint8), bs.SMOOTH)
 
 
-def fit_paints(content: np.ndarray, where: np.ndarray, seeds: dict[str, str]) -> dict[str, str]:
+def _inside(mine: np.ndarray, where: np.ndarray) -> np.ndarray:
+    """`mine` (over the pixels of `where`) without its rim: a stroke's soft edge is part base coat, and a shading paint
+    fitted to it comes out nearly the block-in's color. A flat patch keeps its middle, as it was."""
+    full = np.zeros(where.shape, np.uint8)
+    full[where] = mine
+    k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2 * RIM + 1, 2 * RIM + 1))
+    return cv2.erode(full, k)[where] > 0
+
+
+def fit_paints(content: np.ndarray, where: np.ndarray, seeds: dict[str, str],
+               before: np.ndarray | None = None) -> dict[str, str]:
     """Each paint's color as it is in this picture: from its seed (the plan's rough `color`), each pixel of `where`
     goes to its nearest paint and each paint to the middle of its pixels (`fit_paints` in
     spike/experiments/v4_forward.py), but only pixels within REACH of the paint count as its own. A unit's change
     holds more than its paint: the sky a render drew again round a moon, the whole of a thing drawn again without
     one layer. Without the reach the moon's pale gold was fitted to the sky's blue (the floating island, #219's
-    first real run). A paint with few pixels keeps its seed."""
+    first real run).
+
+    With `before`, the picture before the unit (#250), a pixel counts for a paint only if the unit moved it
+    straight at the paint (AIM): the pale rim of a pink ear is nearer a light fur gray than the pink, but the ear
+    took it toward pink. And of those, only the middle (`_inside`, RIM): a stroke's soft edge is part base coat, and
+    a shading paint fitted to it comes out nearly the block-in's color. A paint with few pixels keeps its seed."""
     names, hexes = list(seeds), dict(seeds)
     if not where.any() or not names:
         return hexes
     px = cv2.GaussianBlur(content, (0, 0), 1.0)[where]
     lab = ff.lab(px[None])[0].astype(np.float32)
+    if before is not None:
+        was = ff.lab(cv2.GaussianBlur(before, (0, 0), 1.0)[where][None])[0].astype(np.float32)
+        went = np.sqrt(((lab - was) ** 2).sum(-1))  # how far the unit moved each pixel
     for _ in range(REFIT):
         dist = np.stack([_dist(lab, hexes[n]) for n in names])
         near = dist.argmin(0)
         for j, n in enumerate(names):
             mine = (near == j) & (dist[j] <= REACH)
+            if before is not None:
+                way = ff.hex_lab(hexes[n]).astype(np.float32) - was  # from each pixel as it was to the paint
+                along = ((lab - was) * way).sum(-1) / (np.sqrt((way ** 2).sum(-1)) + 1e-6)  # moved the paint's way
+                mine &= along >= AIM * went
+                inner = _inside(mine, where)
+                if inner.sum() >= FEW:
+                    mine = inner
             if mine.sum() >= FEW:
                 hexes[n] = to_hex(np.median(px[mine], axis=0))
     return hexes
@@ -73,23 +100,43 @@ def unit_paints(steps: list[dict], u: dict) -> list[str]:
     return list(dict.fromkeys(p for i in u["steps"] for p in steps[i]["paints"]))
 
 
+def before(ch: list[dict], n: int) -> np.ndarray:
+    """The picture before unit n: P[n-1], or bare canvas before the first."""
+    return ch[n - 1]["P"] if n else np.full_like(ch[n]["P"], ff.CANVAS)
+
+
+def what_moved(ch: list[dict], n: int) -> np.ndarray:
+    """What unit n really changed: the pixels of its change D[n] that P[n] moved from P[n-1] by erase3's WEAK or
+    more (from bare canvas for the first unit). A unit that comes back to a block-in is kept over the whole thing
+    (#217), so its D is the whole cat while the shading it lays is a few marks on it; fitted to all of D, a shading
+    or lighting paint came out the thing's own color and `check` asked to merge it into the block-in's (#250).
+    All of D when almost nothing in it moved."""
+    D = ch[n]["D"]
+    d = np.sqrt(((erase3._lab(before(ch, n)) - erase3._lab(ch[n]["P"])) ** 2).sum(2))
+    m = D & (d >= erase3.WEAK)
+    return m if m.sum() >= FEW else D
+
+
 def fit(plan: dict, us: list[dict], ch: list[dict]) -> tuple[dict[str, str], list[dict[str, str]], list[dict]]:
     """(each paint's one color for the lesson, each unit's own fit, a row a paint). A unit's paints are fitted to
-    its change. A paint several units use takes its color from the unit that lays the most of it. The rows report a
-    paint fitted far from the plan's rough color (`far_from_name`: its name may no longer suit it) and a paint
-    almost no pixel came to (`not_in_finish`: the plan names a color the finish doesn't have)."""
+    its change, except that a unit that comes back to a thing is fitted to what it moved (`what_moved`, #250). A
+    paint several units use takes its color from the unit that lays the most of it. The rows report a paint fitted
+    far from the plan's rough color (`far_from_name`: its name may no longer suit it) and a paint almost no pixel
+    came to (`not_in_finish`: the plan names a color the finish doesn't have)."""
     steps = plan3.steps(plan)
     seeds = {p["name"]: p["color"] for p in plan["paints"]}
     per_unit: list[dict[str, str]] = []
     laid: dict[str, list[tuple[int, int]]] = {}
     for n, u in enumerate(us):
         names = unit_paints(steps, u)
-        hexes = fit_paints(ch[n]["P"], ch[n]["D"], {p: seeds[p] for p in names})
+        back = u["kind"] == "back"  # a later stage of a thing: a few marks on it, though D is all of it (#250)
+        mine = what_moved(ch, n) if back else ch[n]["D"]
+        hexes = fit_paints(ch[n]["P"], mine, {p: seeds[p] for p in names}, before(ch, n) if back else None)
         near = nearest(ch[n]["P"], [hexes[p] for p in names])
         lab = ff.lab(cv2.GaussianBlur(ch[n]["P"], (0, 0), 1.0))
         per_unit.append(hexes)
         for j, p in enumerate(names):  # how much of the unit's change is this paint: nearest it, and like it
-            laid.setdefault(p, []).append((int((ch[n]["D"] & (near == j) & (_dist(lab, hexes[p]) <= REACH)).sum()), n))
+            laid.setdefault(p, []).append((int((mine & (near == j) & (_dist(lab, hexes[p]) <= REACH)).sum()), n))
     one, rows = {}, []
     for p, seed in seeds.items():
         if p not in laid:

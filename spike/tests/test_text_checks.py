@@ -490,7 +490,13 @@ class TextToolTests(unittest.TestCase):
 
     # Real findings on the fixtures, reported by check rather than hidden: the sailboat's deep teal can't be mixed
     # from the five tubes, and no paint note says so (the run that made the fixture had one)
-    KNOWN = {"chickadee": [], "lavender-balloon": [], "red-sailboat": ["paint Deep teal can't be mixed"]}
+    # Fitted to what their units moved (#250): the balloon's blue and the lavender's lighter purples are brighter
+    # than these tubes mix; the sailboat's light rim and light water aren't in its finish, so they keep the plan's
+    # rough colors, and the rim's is the sky's pink
+    KNOWN = {"chickadee": [], "lavender-balloon": ["paint Balloon blue can't be mixed", "paint Mid lavender can't be mixed",
+                                                   "paint Pale lilac can't be mixed"],
+             "red-sailboat": ["paints Sunset pink and Light red mix to the same color", "paint Deep teal can't be mixed",
+                              "paint Light teal can't be mixed"]}
 
     def test_after_draft_text_check_leaves_only_summary_and_tip_and_the_known_findings(self):
         for name in NAMES:
