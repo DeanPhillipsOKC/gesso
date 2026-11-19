@@ -10,14 +10,14 @@ answers are in `spike/experiments/v4_writer_cost/<variant>.json`. None of the le
 
 **Verdict: adopt the lean words (`lean`) and the lean finisher (`f-lean`); drop Sonnet on both sides, the split
 finisher and the finisher at low effort; park the words at low effort.** With the two adopted, the words and the
-finisher cost **$1.35 a lesson against $2.13** (−$0.79, −37%), and a whole lesson **about $3.07 of Claude at the
-API's rates**, against **$3.85** for Wave 1's words made the same way. That is still about three times the $1 aim.
+finisher cost **$1.34 a lesson against $2.14** (−$0.80, −37%), and a whole lesson **about $3.06 of Claude at the
+API's rates**, against **$3.86** for Wave 1's words made the same way (sums of the unrounded means). That is still about three times the $1 aim.
 
 - **The lean words are no worse.** The student test scores them level (3.29 against 3.21, +0.08 ± 0.10), and the
   blind graders saw no difference in 5 of 6 reads, preferring the baseline in the sixth ("slight, close to a
   toss-up"). They cost $0.85 a lesson against $1.33.
-- **The lean finisher is better, not just cheaper.** The graders preferred it 4 times and the baseline none, with 2
-  ties. It costs $0.50 against $0.80.
+- **The lean finisher is no worse.** The graders preferred it 4 times and the baseline none, with 2 ties, every win
+  slight. It costs $0.50 against $0.80.
 - **Sonnet is worse on both sides.** Its words fell 0.30 ± 0.11 on the student test (22 steps fell, 11 rose) and lost
   5 of 6 blind reads. Its finisher lost 5 of 6, with two diagrams that drew as error text. A smaller model would have
   been the owner's call anyway (`docs/decisions.md`, lessons are made on Opus); this says don't.
@@ -115,11 +115,11 @@ the chain's checker $0.34):
 | | Steps 0 to the checker | Words | Finisher | Lesson |
 |---|---|---|---|---|
 | C1's lesson (v3's stage writers) | $1.72 | $0.96 | $0.97 | $3.65 |
-| Wave 1's words, made as v4 runs them (the baseline here) | $1.72 | $1.33 | $0.80 | **$3.85** |
-| With `lean` and `f-lean` | $1.72 | $0.85 | $0.50 | **$3.07** |
+| Wave 1's words, made as v4 runs them (the baseline here) | $1.72 | $1.33 | $0.80 | **$3.86** |
+| With `lean` and `f-lean` | $1.72 | $0.85 | $0.50 | **$3.06** |
 | The new cat (below), made as the baseline | $1.33 | $1.42 | $0.64 | $3.39 |
 
-Against the $1 aim, $3.07 is about three times over. What's left, largest first: the plan's writer ($0.72 to
+Against the $1 aim, $3.06 is about three times over. What's left, largest first: the plan's writer ($0.72 to
 $1.03), the words ($0.85), the finisher ($0.50), steps 0 and 1 ($0.30 to $0.35) and the chain's checker ($0.31 to
 $0.34, #221's). Output is the biggest single part of the words: their calls write about 32,000 tokens a lesson in the
 baseline (half of it thinking) and 19,000 in `lean` (30% thinking). Lower effort is the obvious lever left there,
@@ -139,7 +139,7 @@ Wave 1's scores (3.43, 3.38, 3.20) don't compare.
 | `lean-sonnet` | 3.27 | 2.67 | 2.80 | 2.91 | **−0.30 (± 0.11)** | 11 / 22 |
 
 (± is one standard error of the mean step difference.) `lean` is level, inside one standard error. `lean-sonnet`
-fell on all three pictures, most on the birch grove (−0.50) and the cat (−0.33), about three standard errors in all.
+fell on all three pictures, most on the birch grove (−0.50) and the cat (−0.33), about 2.7 standard errors in all.
 `lean-low` had no student test: the render budget allowed three sets.
 
 ## The blind graders
@@ -174,6 +174,8 @@ lessons' diagrams and Known problems after the steps (the finisher's rounds).
 - **`f-lean-sonnet`'s cat** showed two diagrams as error text on the blanket steps, though `publish` counted all
   nine as drawn. So `f-lean`'s test for skipping the look (fewer drawn than written) can miss a diagram that draws
   badly. On Opus it didn't happen in three lessons.
+- **`lean-low` is parked, not dropped,** because it had no student test (the budget allowed three) and lost only 2 of
+  6 reads, both slight. `f-lean-low` is dropped: the finisher has no other test, and 3 of 6 reads went against it.
 - **`f-split` and `f-lean-low`** lost on the diagrams: fewer of them (`f-split` drew 3 on the cow against 7), and a
   Known problems list that "points to a nose diagram it doesn't have".
 
@@ -213,8 +215,8 @@ baseline's words and finisher.
 ## Spend
 
 Renders: **$3.75** (the new cat's chain $0.61, and the student test's three sets at $1.05 each), against the
-owner's ~$3.70. Claude, as charged: the new cat $1.35, the words and the finishers $12.59, the blind graders $7.22,
-the student test's graders $5.99: about $27.
+owner's ~$3.70. Claude, as charged: the new cat $1.35, the words and the finishers $19.81 (the new cat's included), the blind
+graders $7.22, the student test's graders $5.99: about $34.
 
 ## What's next
 
