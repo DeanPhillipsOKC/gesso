@@ -302,6 +302,13 @@ with the date.
   the cat's lesson ("Overall big improvement"), and adopted it knowing the student test scores it level with the
   teacher's words (+0.05 ± 0.09), short of the plan's rule that a words spike raise the score. It costs $0.43 of
   Claude a lesson. The arc written into the writer's own call (`arc-whole`) was dropped.
+- **Stroke maps are parked; arrows from the change alone are dropped (2026-11-19, owner accepted the verdict of
+  #256).** No map raised the student test's score (`docs/spikes/v4-stroke-maps.md`). Arrows traced from what a step
+  changed lost 6 of 6 blind reads: the change gives a stroke's line but not which end it starts, so they drew strokes
+  backwards. Don't re-propose them as a map's source. The writer's arrows checked against the change (`both`) are
+  parked: level on the student test, 2 of 6 graders for and 4 ties, $1.33 of Claude a lesson as a call a step. Bring
+  them back only with the write-up's three changes (arrows from the lesson's writer, none for a dabbed stroke, the
+  direction from the card) and after the owner's painting (#252) shows a painter guessed where strokes go.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
