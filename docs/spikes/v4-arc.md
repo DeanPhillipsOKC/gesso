@@ -6,10 +6,18 @@ a stage opener the student test can read above a step (`v4_student.step_text`, a
 `spike/experiments/v4_arc.json` (its `report` key holds the numbers below). The student test's answers:
 `spike/experiments/v4_arc/<variant>.json`. Run on 2026-11-18.
 
-**Verdict: park the arc added on top (`arc-add`), drop the arc written in with the steps (`arc-whole`).** Neither
-raised a score. Both made the student test worse, and arc-whole made it worse on all three pictures. The blind
-graders saw no difference in 10 of 12 reads, and the other 2 preferred the words without the arc. That is short of
-the plan's rule for adopting a words spike (the student's score rises, and the graders prefer it on most pictures).
+**Verdict (final, 2026-11-19, the owner's call): adopt the arc added by its own call after the writer, in its long
+form (`arc-add-long`), with a stage's end said after its last step. Drop the arc written into the writer's call
+(`arc-whole`).** The adopted form scores level with lesson-slots' words on the student test (+0.05 ± 0.09), the owner
+read the cat's lesson and called it "overall big improvement", and it costs $0.43 of Claude a lesson. It doesn't
+raise the student's score, which the plan's rule asks of a words spike: the owner adopted it knowing that
+(`docs/decisions.md`, 2026-11-19). How it got there is below, in order.
+
+**First verdict, before the owner read a lesson: park the arc added on top (`arc-add`), drop the arc written in with
+the steps (`arc-whole`).** Neither raised a score. Both made the student test worse, and arc-whole made it worse on
+all three pictures. The blind graders saw no difference in 10 of 12 reads, and the other 2 preferred the words
+without the arc. That is short of the plan's rule for adopting a words spike (the student's score rises, and the
+graders prefer it on most pictures).
 arc-add is parked rather than dropped for two reasons:
 
 - **Neither test can see what an arc is for.** The owner's complaint was "the text isn't very exciting to read".

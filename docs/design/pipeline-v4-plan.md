@@ -101,7 +101,8 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   on the stage's last step only: those 40 steps then score exactly lesson-slots' (0.00 ± 0.10), so arc-add in that
   form is no worse to paint from. The owner then asked for a longer opening and a callback on every step that repeats
   a stroke or a paint (`arc-add-long`, $0.43 a lesson): "overall big improvement", and level on the student test
-  (+0.05 ± 0.09). Adopting it waits on the owner, since it doesn't raise the score.
+  (+0.05 ± 0.09). **Adopted 2026-11-19 (owner's call, `docs/decisions.md`): the arc in its long form, added by its
+  own call after the writer.**
 
 ## Wave 2: showing the motion
 
