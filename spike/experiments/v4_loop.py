@@ -83,10 +83,18 @@ class Ledger:
             self.path.write_text(json.dumps(self.calls, indent=1))
 
 
-def call_claude(content: list[dict], system: str, *, session: str | None = None, cwd: Path) -> dict:
+# How Claude Code caches a call's input (#253, cut 2). "1h" is its default: every input token is written to the
+# hour-long cache, at twice the input rate. "5m" writes the five-minute cache (1.25 times), what a conversation that
+# goes on needs. "none" writes nothing, for input that is never read again. Both are Claude Code's own switches.
+CACHE_ENV = {"1h": {}, "5m": {"FORCE_PROMPT_CACHING_5M": "1"}, "none": {"DISABLE_PROMPT_CACHING": "1"}}
+
+
+def call_claude(content: list[dict], system: str, *, session: str | None = None, cwd: Path,
+                cache: str = "1h") -> dict:
     """One call to Claude: a user message (text and picture blocks, the Messages API's shape) and a system prompt;
-    with `session`, the message continues that conversation. Returns the reply's text, the session to continue,
-    the usage and the seconds. This is the one place that knows about Claude Code: an API client replaces it."""
+    with `session`, the message continues that conversation. `cache` is how its input is cached (CACHE_ENV).
+    Returns the reply's text, the session to continue, the usage and the seconds. This is the one place that knows
+    about Claude Code: an API client replaces it."""
     cmd = ["claude", "-p", "--input-format", "stream-json", "--output-format", "stream-json", "--verbose",
            "--model", MODEL, "--tools", "", "--strict-mcp-config", "--setting-sources", "",
            "--disable-slash-commands", "--system-prompt", system]
@@ -95,7 +103,10 @@ def call_claude(content: list[dict], system: str, *, session: str | None = None,
     msg = {"type": "user", "message": {"role": "user", "content": content}}
     t0 = time.time()
     for attempt in range(3):
-        r = subprocess.run(cmd, input=json.dumps(msg) + "\n", capture_output=True, text=True, cwd=cwd, timeout=1800)
+        r = subprocess.run(cmd, input=json.dumps(msg) + "\n", capture_output=True, text=True, cwd=cwd, timeout=1800,
+                           env={k: v for k, v in os.environ.items() if k not in ("FORCE_PROMPT_CACHING_5M",
+                                                                               "DISABLE_PROMPT_CACHING")}
+                           | CACHE_ENV[cache])
         result = None
         for line in r.stdout.splitlines():
             try:
@@ -162,18 +173,21 @@ class Helper:
         self.session: str | None = None
         self.turn = 0
 
-    def ask(self, m: Message, label: str) -> str:
+    def ask(self, m: Message, label: str, last: bool = False) -> str:
+        """`last`: nothing follows this message in the conversation, as far as the program knows beforehand."""
         self.turn += 1
         print(f"  [{self.name}] {label} ...", file=sys.stderr)
-        r = call_claude(m.blocks, self.system, session=self.session, cwd=self.run.cwd)
+        cache = ("none" if last else "5m") if "api-cache" in self.run.cuts else "1h"
+        r = call_claude(m.blocks, self.system, session=self.session, cwd=self.run.cwd, cache=cache)
         self.session = r["session"]
         u = r["usage"]
-        rec = {"helper": self.name, "label": label, "turn": self.turn, "session": r["session"],
+        rec = {"helper": self.name, "label": label, "turn": self.turn, "session": r["session"], "cache": cache,
                "seconds": r["seconds"], "input_tokens": u.get("input_tokens", 0),
                "cache_write_tokens": u.get("cache_creation_input_tokens", 0),
                "cache_read_tokens": u.get("cache_read_input_tokens", 0), "output_tokens": u.get("output_tokens", 0),
                "thinking_tokens": (u.get("output_tokens_details") or {}).get("thinking_tokens", 0),
-               "cost_usd": round(cost(u), 5), "cli_cost_usd": r["cli_cost_usd"],  # the session's total so far "model": r["model"],
+               "cost_usd": round(cost(u), 5), "cli_cost_usd": r["cli_cost_usd"],  # the session's total so far
+               "model": r["model"],
                "sent": {"pictures": m.pictures, "picture_tokens": m.picture_tokens, "text_chars": m.text_chars,
                         "system_chars": len(self.system) if self.turn == 1 else 0},
                "reply_chars": len(r["text"]), "at": datetime.now().isoformat(timespec="seconds")}
@@ -182,14 +196,14 @@ class Helper:
               f"in, {rec['output_tokens']} out, ${rec['cost_usd']:.3f}, {r['seconds']} s", file=sys.stderr)
         return r["text"]
 
-    def ask_json(self, m: Message, label: str):
-        text = self.ask(m, label)
+    def ask_json(self, m: Message, label: str, last: bool = False):
+        text = self.ask(m, label, last)
         try:
             return last_json(text)
         except ValueError as e:
             again = Message().text(f"Your reply had no JSON I could read ({e}). Send the same answer again as one "
                                    "```json block, and nothing else.")
-            return last_json(self.ask(again, label + " (JSON again)"))
+            return last_json(self.ask(again, label + " (JSON again)", True))
 
 
 def last_json(text: str):
@@ -209,9 +223,186 @@ def last_json(text: str):
     raise ValueError("no JSON found")
 
 
+# ------------------------------------------------------------------------------------------------- the cuts (#253)
+# Each is off unless named with --cuts, so a run with none is the baseline of #241.
+CUTS = {
+    "api-cache": "cache each call as the API would: the five-minute cache where the conversation goes on, none where "
+                 "nothing follows",
+    "plan-changes": "the plan's writer answers plan-check and check with changes to the plan, not the whole file",
+    "plan-picks": "the plan's writer is sent the library's list and asks for the files it picks",
+}
+
+CHANGES_FORMAT = """Reply with only the changes to plan.json, as one ```json block in this shape. Leave out every key \
+you don't need.
+{"top": {"<a plan field, such as why>": <its new value>},
+ "things": {"<thing id>": {<the fields to set>}},
+ "paints": {"<paint name>": {<the fields to set>}},
+ "rename_paints": {"<old name>": "<new name>"},
+ "stages": {"<stage id>": {<the fields to set, not its steps>}},
+ "steps": {"<step id>": {<the fields to set>}},
+ "add_stages": [{"after": "<stage id>", "stage": {<the whole stage, with its steps>}}],
+ "add_steps": [{"stage": "<stage id>", "after": "<step id>", "step": {<the whole step>}}],
+ "move_steps": [{"step": "<step id>", "stage": "<stage id>", "after": "<step id>"}]}
+- A field you set replaces what was there; a field set to null is removed.
+- A thing, paint, stage or step set to null is removed. A thing or paint under a new id or name is added whole.
+- `rename_paints` renames a paint everywhere it is named (steps, things, `of`). Renaming it to a paint that \
+already exists merges the two: the old one is removed and its steps use the other.
+- `after` is null for the first place in the stage (or the plan)."""
+
+
+def apply_plan_changes(plan: dict, ch: dict) -> dict:
+    """plan.json with the writer's changes (CHANGES_FORMAT) made. A reply that is a whole plan is taken as it is.
+    Raises ValueError, naming what doesn't apply, and leaves `plan` untouched."""
+    import copy
+    if isinstance(ch, dict) and isinstance(ch.get("stages"), list) and "things" in ch and "paints" in ch:
+        return ch
+    if not isinstance(ch, dict):
+        raise ValueError("the changes aren't a JSON object")
+    unknown = set(ch) - {"top", "things", "paints", "rename_paints", "stages", "steps", "add_stages", "add_steps",
+                         "move_steps"}
+    if unknown:
+        raise ValueError(f"unknown keys {sorted(unknown)}")
+    p = copy.deepcopy(plan)
+
+    def merge(obj: dict, fields: dict, what: str):
+        if not isinstance(fields, dict):
+            raise ValueError(f"{what}: the fields to set must be an object")
+        for k, v in fields.items():
+            if v is None:
+                obj.pop(k, None)
+            else:
+                obj[k] = v
+
+    merge(p, ch.get("top") or {}, "top")
+    for key, idk in (("things", "id"), ("paints", "name")):
+        items = p.setdefault(key, [])
+        for i, fields in (ch.get(key) or {}).items():
+            at = next((n for n, x in enumerate(items) if x.get(idk) == i), None)
+            if fields is None:
+                if at is None:
+                    raise ValueError(f"{key}: no {i!r} to remove")
+                items.pop(at)
+            elif at is None:
+                merge(new := {idk: i}, fields, f"{key} {i}")
+                items.append(new)
+            else:
+                merge(items[at], fields, f"{key} {i}")
+    for old, new in (ch.get("rename_paints") or {}).items():
+        names = [x.get("name") for x in p["paints"]]
+        if old not in names:
+            raise ValueError(f"rename_paints: no paint {old!r}")
+        if new in names and new != old:
+            keep = p["paints"][names.index(new)]
+            gone = p["paints"].pop(names.index(old))
+            keep["things"] = list(dict.fromkeys((keep.get("things") or []) + (gone.get("things") or [])))
+        else:
+            p["paints"][names.index(old)]["name"] = new
+        for x in p["paints"]:
+            if x.get("of") == old:
+                x["of"] = new
+            if x.get("of") == x.get("name"):
+                x.pop("of")
+        for st in p.get("stages") or []:
+            for step in st.get("steps") or []:
+                if old in (step.get("paints") or []):
+                    step["paints"] = list(dict.fromkeys(new if c == old else c for c in step["paints"]))
+    stages = p.setdefault("stages", [])
+
+    def stage(i):
+        for st in stages:
+            if st.get("id") == i:
+                return st
+        raise ValueError(f"no stage {i!r}")
+
+    def find(i):
+        for st in stages:
+            for n, step in enumerate(st.get("steps") or []):
+                if step.get("id") == i:
+                    return st, n
+        raise ValueError(f"no step {i!r}")
+
+    def place(lst: list, after, key="id", what="step"):
+        if after is None:
+            return 0
+        for n, x in enumerate(lst):
+            if x.get(key) == after:
+                return n + 1
+        raise ValueError(f"no {what} {after!r} to put it after")
+
+    for i, fields in (ch.get("stages") or {}).items():
+        if fields is None:
+            stages.remove(stage(i))
+        else:
+            if "steps" in fields:
+                raise ValueError(f"stages {i}: set its steps with steps, add_steps or move_steps")
+            merge(stage(i), fields, f"stage {i}")
+    for i, fields in (ch.get("steps") or {}).items():
+        st, n = find(i)
+        if fields is None:
+            st["steps"].pop(n)
+        else:
+            merge(st["steps"][n], fields, f"step {i}")
+    for a in ch.get("add_stages") or []:
+        if not isinstance(a.get("stage"), dict) or not a["stage"].get("id"):
+            raise ValueError("add_stages: each needs a whole stage with an id")
+        stages.insert(place(stages, a.get("after"), what="stage"), a["stage"])
+    for a in ch.get("add_steps") or []:
+        if not isinstance(a.get("step"), dict) or not a["step"].get("id"):
+            raise ValueError("add_steps: each needs a whole step with an id")
+        st = stage(a.get("stage"))
+        st.setdefault("steps", []).insert(place(st["steps"], a.get("after")), a["step"])
+    for a in ch.get("move_steps") or []:
+        st, n = find(a.get("step"))
+        step = st["steps"].pop(n)
+        to = stage(a.get("stage"))
+        to.setdefault("steps", []).insert(place(to["steps"], a.get("after")), step)
+    p["stages"] = [st for st in stages if st.get("steps")]  # a stage left with no steps goes
+    return p
+
+
+def heading(h: str) -> str:
+    return h.strip().lstrip("#").strip().lower()
+
+
+def stroke_list() -> str:
+    """Every stroke card in a line: its id, its name and the result it gives."""
+    import yaml
+    out = []
+    for f in sorted((ROOT / "techniques" / "strokes").glob("*.yaml")):
+        c = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        out.append(f"- {f.stem}: {c.get('name', '')}. {c.get('result', '')}".rstrip())
+    return "\n".join(out)
+
+
+def research_sections() -> dict:
+    """docs/research/acrylic-paint-along.md cut at its headings: "For Gesso" whole, every other numbered section
+    by its own heading and each of its ### headings (a ## heading is the whole section)."""
+    text = (ROOT / "docs" / "research" / "acrylic-paint-along.md").read_text(encoding="utf-8")
+    out, top, sub = {}, None, None
+    for line in text.splitlines():
+        if line.startswith("## "):
+            top, sub = line, None
+            key = "For Gesso" if line.strip() == "## For Gesso" else line
+            if line.strip() == "## Sources":
+                top = None
+                continue
+            out[key] = line + "\n"
+            continue
+        if top is None:
+            continue
+        tkey = "For Gesso" if top.strip() == "## For Gesso" else top
+        out[tkey] += line + "\n"
+        if line.startswith("### ") and tkey != "For Gesso":
+            sub = "  " + line
+            out[sub] = line + "\n"
+        elif sub and tkey != "For Gesso":
+            out[sub] += line + "\n"
+    return out
+
+
 # ------------------------------------------------------------------------------------------------------------- the run
 class Run:
-    def __init__(self, photo: str, lesson: Path):
+    def __init__(self, photo: str, lesson: Path, cuts: list[str] | tuple = ()):
         self.photo = photo
         self.lesson = lesson
         lesson.mkdir(parents=True, exist_ok=True)
@@ -220,7 +411,11 @@ class Run:
         self.state_path = lesson / "v4" / "state.json"
         self.state = json.loads(self.state_path.read_text()) if self.state_path.exists() else {
             "photo": photo, "started": datetime.now().isoformat(timespec="seconds"), "done": [], "phases": {},
-            "tools": []}
+            "tools": [], "cuts": sorted(cuts)}
+        self.cuts = set(self.state.get("cuts") or [])
+        unknown = self.cuts - set(CUTS)
+        if unknown:
+            raise SystemExit(f"unknown cuts: {sorted(unknown)} (known: {', '.join(CUTS)})")
         self.cwd = Path(tempfile.gettempdir()) / f"gesso-v4-{lesson.name}"  # outside the repo: no CLAUDE.md loads
         self.cwd.mkdir(exist_ok=True)
         self.log: list[str] = []
@@ -394,7 +589,7 @@ class Run:
             m.text("busy on the finish:\n" + json.dumps(self.tool("busy", fin, "--lesson", lesson)))
         m.text('Step 1b: compare the finish with the photo. Reply with {"flags": ["..."] (empty when nothing), '
                '"redo_prompt": null or the prompt for the one redo (its inputs are the finish and the photo)}')
-        e = h.ask_json(m, "1b finish check")
+        e = h.ask_json(m, "1b finish check", last=True)
         if e.get("flags") and e.get("redo_prompt"):
             shutil.copy(fin, self.L("trials/finish_try1.png"))
             self.tool("render", "--step", "finish", "--lesson", lesson, "--inputs", self.L("trials/finish_try1.png"),
@@ -413,6 +608,8 @@ class Run:
     def plan_message(self) -> Message:
         lesson = self.lesson
         m = Message().file(SKILL / "v3" / "plan-brief.md")
+        if "plan-picks" in self.cuts:
+            return self.picks_message(m)
         m.text(f"Lesson folder: {lesson.relative_to(ROOT)}. Photo: {Path(self.state['photo_used']).relative_to(ROOT)}. "
                f"Technique: {TECHNIQUE}.")
         m.picture(self.L("99_finish.png"), "99_finish.png").picture(self.state["photo_used"],
@@ -429,13 +626,83 @@ class Run:
                "```json block, then your brief's reply in a few lines. The program writes it and runs plan-check.")
         return m
 
+    def picks_message(self, m: Message) -> Message:
+        """#253, cut 4: the plan's writer is sent the library's list, not the library, and asks for what it picks."""
+        lesson = self.lesson
+        m.text(f"Lesson folder: {lesson.relative_to(ROOT)}. Photo: {Path(self.state['photo_used']).relative_to(ROOT)}. "
+               f"Technique: {TECHNIQUE}.")
+        m.picture(self.L("99_finish.png"), "99_finish.png").picture(self.state["photo_used"],
+                                                                     Path(self.state["photo_used"]).name)
+        m.file(self.L("canvas.json"), "canvas.json").file(ROOT / TECHNIQUE, TECHNIQUE)
+        el = subprocess.run(TOOLS + ["elements"], capture_output=True, text=True, cwd=ROOT).stdout
+        m.text("`spike/tools.py elements` printed:\n" + el)
+        m.text("`ls techniques/strokes/`, with each card's name and the result it gives:\n" + stroke_list())
+        research = research_sections()
+        m.text('docs/research/acrylic-paint-along.md, its "For Gesso" section:\n' + research["For Gesso"])
+        m.text("Its other sections:\n" + "\n".join(k for k in research if k != "For Gesso"))
+        m.text("Before you write the plan, ask for what you'll read: the element files of the things you'll paint, "
+               "the stroke card of every stroke you'll use, and the research sections your picture needs. The "
+               "program sends them, then you write the plan. You can ask once, so take every one you might use. "
+               'Reply with one ```json block: {"elements": ["<element id>"], "strokes": ["<card id>"], '
+               '"research": ["<a section heading, as listed>"]}')
+        return m
+
+    def picks_files(self, picks: dict) -> Message:
+        research = research_sections()
+        m = Message()
+        got = {"elements": [], "strokes": [], "research": [], "unknown": []}
+        for kind, folder in (("elements", "elements"), ("strokes", "strokes")):
+            for i in dict.fromkeys(picks.get(kind) or []):
+                f = ROOT / "techniques" / folder / f"{Path(str(i)).stem}.yaml"
+                if f.exists():
+                    m.file(f, f"techniques/{folder}/{f.name}")
+                    got[kind].append(f.stem)
+                else:
+                    got["unknown"].append(str(i))
+        for h in dict.fromkeys(picks.get("research") or []):
+            key = next((k for k in research if heading(k) == heading(str(h))), None)
+            if key and key != "For Gesso":
+                m.text(f"docs/research/acrylic-paint-along.md, {key.lstrip('#').strip()}:\n{research[key]}")
+                got["research"].append(key)
+            elif not key:
+                got["unknown"].append(str(h))
+        self.state["picks"] = got
+        if got["unknown"]:
+            m.text("Not found, so not sent: " + ", ".join(got["unknown"]))
+        m.text("These are the files you asked for. Write the plan now. Reply with the whole plan.json as one ```json "
+               "block, then your brief's reply in a few lines. The program writes it and runs plan-check.")
+        return m
+
     def write_plan(self, plan):
         (self.L("plan.json")).write_text(json.dumps(plan, indent=1))
+
+    def plan_fix(self, h: "Helper", ask: str, label: str):
+        """Send the plan's writer what a check found and write the plan it answers with. With cut 3 (#253) the
+        writer answers with changes to the plan, not the whole file again."""
+        if "plan-changes" not in self.cuts:
+            self.write_plan(h.ask_json(Message().text(ask + " Reply with the whole plan.json again."), label))
+            return
+        plan = json.loads(self.L("plan.json").read_text())
+        a = h.ask_json(Message().text(ask + "\n\n" + CHANGES_FORMAT), label)
+        for attempt in range(2):
+            try:
+                self.write_plan(apply_plan_changes(plan, a))
+                return
+            except ValueError as e:
+                if attempt:
+                    raise RuntimeError(f"the plan's changes don't apply: {e}")
+                a = h.ask_json(Message().text(f"Your changes don't apply to the plan: {e}\nThe plan is as it was "
+                                              "before them. Send the changes again, fixed, as one ```json block."),
+                               label + " (changes again)")
 
     def plan(self):
         h = Helper(self, "plan-writer", NO_TOOLS + "You are the plan's writer for a Gesso painting lesson.")
         self.helpers["plan-writer"] = h
-        self.write_plan(h.ask_json(self.plan_message(), "A1 the plan"))
+        if "plan-picks" in self.cuts:
+            picks = h.ask_json(self.plan_message(), "A0 the picks")
+            self.write_plan(h.ask_json(self.picks_files(picks), "A1 the plan"))
+        else:
+            self.write_plan(h.ask_json(self.plan_message(), "A1 the plan"))
         for rnd in range(3):
             pc = self.tool("plan-check", "--lesson", self.lesson, ok_refused=True)
             unnamed = [u["steps"][0] for u in pc.get("units") or [] if u.get("name") is None]
@@ -444,9 +711,8 @@ class Run:
                                                      + ", ".join(map(str, unnamed)))
             if not pc.get("problems") and "refused" not in pc:
                 break
-            self.write_plan(h.ask_json(Message().text("plan-check printed:\n" + json.dumps(pc) + "\n\nFix what "
-                                                      "`problems` lists. Reply with the whole plan.json again."),
-                                       f"A2 plan-check round {rnd + 1}"))
+            self.plan_fix(h, "plan-check printed:\n" + json.dumps(pc) + "\n\nFix what `problems` lists.",
+                          f"A2 plan-check round {rnd + 1}")
         else:
             pc = self.tool("plan-check", "--lesson", self.lesson, ok_refused=True)
             if pc.get("problems"):
@@ -499,15 +765,16 @@ class Run:
                 h.session = self.state.get("plan_session")
                 h.turn = 9
                 self.helpers["plan-writer"] = h
-            m = Message().text("`check` asks for this change to the plan:\n" + "\n".join(plan_asks) +
-                               "\n\nThe plan as it stands:\n" + self.L("plan.json").read_text() +
-                               "\n\nMake only that change. Reply with the whole plan.json again.")
-            self.write_plan(h.ask_json(m, "C3 merge asked by check"))
+            ask = "`check` asks for this change to the plan:\n" + "\n".join(plan_asks)
+            if "plan-changes" in self.cuts:  # the conversation already holds the plan and every change to it
+                ask += "\n\nMake only that change."
+            else:
+                ask += "\n\nThe plan as it stands:\n" + self.L("plan.json").read_text() + "\n\nMake only that change."
+            self.plan_fix(h, ask, "C3 merge asked by check")
             pc = self.tool("plan-check", "--lesson", self.lesson, ok_refused=True)
             if pc.get("problems"):
-                self.write_plan(h.ask_json(Message().text("plan-check printed:\n" + json.dumps(pc) +
-                                                          "\nFix it. Reply with the whole plan.json again."),
-                                           "C3 plan-check after the merge"))
+                self.plan_fix(h, "plan-check printed:\n" + json.dumps(pc) + "\nFix it.",
+                              "C3 plan-check after the merge")
             self.erase()
             return self.build_and_check()
         self.state["check_first"] = ck.get("problems")
@@ -521,7 +788,7 @@ class Run:
             for p in sorted(looks.glob("U*.jpg")):
                 m.picture(p, p.name)
             m.text("Reply with answers.json as one ```json block, then your one line. The program writes the file.")
-            answers = h.ask_json(m, f"C4 chain check round {rnd + 1}")
+            answers = h.ask_json(m, f"C4 chain check round {rnd + 1}", last=True)
             (looks / "answers.json").write_text(json.dumps(answers, indent=1))
             marked = [a for a in answers if a.get("stray") or a.get("left")]
             self.state.setdefault("checker", []).append([{"look": a["look"], "why": a.get("why"),
@@ -570,7 +837,7 @@ class Run:
             s = self.lesson / "words" / name
             out = writers[name].ask_json(Message().file(s / "feedback.md").text(
                 "Read feedback.md (above) and write out.json again: the whole file, as one ```json block."),
-                "D3 feedback")
+                "D3 feedback", last=True)
             (s / "out.json").write_text(json.dumps(out, indent=1))
 
         fb = ct.get("stages_with_feedback") or []
@@ -583,7 +850,7 @@ class Run:
             s = self.lesson / "words" / name
             w = Helper(self, f"writer-{name}-new", NO_TOOLS + "You write one stage of a Gesso lesson.")
             self.helpers[f"writer-{name}"] = w
-            (s / "out.json").write_text(json.dumps(w.ask_json(self.writer_message(s), "D3 new writer"), indent=1))
+            (s / "out.json").write_text(json.dumps(w.ask_json(self.writer_message(s), "D3 new writer", last=True), indent=1))
         if bad:
             self.tool("check-text", "--lesson", self.lesson, "--final")
         self.save()
@@ -619,7 +886,7 @@ class Run:
                                   if c["helper"] == f"writer-{name}"), None)
             msg = Message().text("The last check found this in your words:\n" + "\n".join(sent[name]) +
                                  "\n\nFix it and write the whole out.json again, as one ```json block.")
-            (s / "out.json").write_text(json.dumps(h.ask_json(msg, "E1 check's ask"), indent=1))
+            (s / "out.json").write_text(json.dumps(h.ask_json(msg, "E1 check's ask", last=True), indent=1))
 
         with ThreadPoolExecutor(len(sent)) as ex:
             list(ex.map(back, sent))
@@ -680,7 +947,7 @@ class Run:
                 break
             c = h.ask_json(Message().text("publish --final refused:\n" + str(fin["refused"])[:6000] +
                                           '\nReply with {"review": ..., "construct": ..., "notes": ...}, only what '
-                                          "changes, to fix it."), f"8c seal refused, round {rnd + 1}")
+                                          "changes, to fix it."), f"8c seal refused, round {rnd + 1}", last=True)
             self.apply_finish(c)
         self.save()
 
@@ -726,22 +993,58 @@ class Run:
 
 
 # ----------------------------------------------------------------------------------------------------------- report
+def _when(c: dict) -> tuple[float, float]:
+    end = datetime.fromisoformat(c["at"]).timestamp()
+    return end - c["seconds"], end
+
+
+def api_costs(calls: list[dict], without_claude_code: bool = False) -> list[float]:
+    """Each call priced as the API would charge it (#253, cut 2), from what it was sent and when. Input that the
+    conversation's next message reads within five minutes is written to the five-minute cache ($5 a million);
+    input nothing reads again is plain input ($4). What an earlier message wrote is read from the cache ($0.20)
+    when it was written under five minutes before, and sent again otherwise. Output is the same. With
+    `without_claude_code`, the 1,395 tokens Claude Code adds to a conversation's first message are left out."""
+    by_session: dict[str, list[int]] = {}
+    for n, c in enumerate(calls):
+        by_session.setdefault(c["session"], []).append(n)
+    out = [0.0] * len(calls)
+    for idx in by_session.values():
+        idx.sort(key=lambda n: _when(calls[n])[0])
+        for j, n in enumerate(idx):
+            c = calls[n]
+            start, end = _when(c)
+            new, read = c["input_tokens"] + c["cache_write_tokens"], c["cache_read_tokens"]
+            if j and start - _when(calls[idx[j - 1]])[1] > 300:
+                new, read = new + read, 0  # the five-minute cache is gone: what it held is sent again
+            if j == 0 and without_claude_code:
+                new = max(0, new - CLAUDE_CODE_ADDED)
+            follows = j + 1 < len(idx) and _when(calls[idx[j + 1]])[0] - end <= 300
+            out[n] = (new * (RATE["cache_write_5m"] if follows else RATE["input"]) + read * RATE["cache_read"]
+                      + c["output_tokens"] * RATE["output"]) / 1e6
+    return out
+
+
 def report(lesson: Path) -> dict:
     calls = json.loads((lesson / "v4" / "calls.json").read_text())
     state = json.loads((lesson / "v4" / "state.json").read_text())
     ledger = json.loads((lesson / "ledger.json").read_text()) if (lesson / "ledger.json").exists() else {}
     tot = lambda cs, k: sum(c[k] for c in cs)
+    for c, a, b in zip(calls, api_costs(calls), api_costs(calls, True)):
+        c["api_usd"], c["api_usd_no_cc"] = a, b
     by = {}
     for c in calls:
         kind = re.sub(r"-stage-\d\d.*|-\d+$", "", c["helper"])
         b = by.setdefault(kind, {"calls": 0, "input": 0, "cache_write": 0, "cache_read": 0, "output": 0,
-                                 "cost_usd": 0.0, "seconds": 0.0, "pictures": 0, "picture_tokens": 0})
+                                 "cost_usd": 0.0, "api_usd": 0.0, "api_usd_no_cc": 0.0, "seconds": 0.0,
+                                 "pictures": 0, "picture_tokens": 0})
         b["calls"] += 1
         b["input"] += c["input_tokens"]
         b["cache_write"] += c["cache_write_tokens"]
         b["cache_read"] += c["cache_read_tokens"]
         b["output"] += c["output_tokens"]
         b["cost_usd"] += c["cost_usd"]
+        b["api_usd"] += c["api_usd"]
+        b["api_usd_no_cc"] += c["api_usd_no_cc"]
         b["seconds"] += c["seconds"]
         b["pictures"] += c["sent"]["pictures"]
         b["picture_tokens"] += c["sent"]["picture_tokens"]
@@ -751,8 +1054,8 @@ def report(lesson: Path) -> dict:
     share = {"pictures": 0.0, "instructions_and_data": 0.0, "claude_code_added": 0.0, "written": 0.0}
     for c in calls:
         fresh = c["input_tokens"] + c["cache_write_tokens"]
-        fresh_cost = (c["input_tokens"] * RATE["input"] + c["cache_write_tokens"] * RATE["cache_write_1h"]) / 1e6
         read_cost = c["cache_read_tokens"] * RATE["cache_read"] / 1e6
+        fresh_cost = c["cost_usd"] - read_cost - c["output_tokens"] * RATE["output"] / 1e6  # as each was cached
         added = CLAUDE_CODE_ADDED if c["turn"] == 1 else 0
         pics = c["sent"]["picture_tokens"]
         rest = max(0, fresh - pics - added)
@@ -764,9 +1067,12 @@ def report(lesson: Path) -> dict:
         # what was cached was sent before in the same proportions, roughly
         share["instructions_and_data"] += read_cost
     for b in by.values():
-        b["cost_usd"] = round(b["cost_usd"], 3)
+        for k in ("cost_usd", "api_usd", "api_usd_no_cc"):
+            b[k] = round(b[k], 3)
         b["seconds"] = round(b["seconds"])
-    return {"lesson": str(lesson), "calls": len(calls), "claude_cost_usd": round(tot(calls, "cost_usd"), 3),
+    return {"lesson": str(lesson), "cuts": state.get("cuts") or [], "calls": len(calls),
+            "claude_cost_usd": round(tot(calls, "cost_usd"), 3),
+            "api_usd": round(tot(calls, "api_usd"), 3), "api_usd_no_cc": round(tot(calls, "api_usd_no_cc"), 3),
             # Claude Code's figure is the session's running total, so each session counts once, at its last call
             "claude_cli_cost_usd": round(sum({c["session"]: c["cli_cost_usd"] or 0 for c in calls}.values()), 3),
             "tokens": {"input": tot(calls, "input_tokens"), "cache_write": tot(calls, "cache_write_tokens"),
@@ -791,6 +1097,7 @@ def main(argv=None):
     r = sub.add_parser("run")
     r.add_argument("photo")
     r.add_argument("--lesson")
+    r.add_argument("--cuts", default="", help="comma-separated, from: " + ", ".join(CUTS))
     p = sub.add_parser("report")
     p.add_argument("lesson")
     a = ap.parse_args(argv)
@@ -799,7 +1106,8 @@ def main(argv=None):
         return
     stem = Path(a.photo).stem
     lesson = Path(a.lesson) if a.lesson else ROOT / "output" / f"{stem}_v4loop_{datetime.now():%Y%m%d-%H%M%S}"
-    Run(a.photo, lesson.resolve()).go()
+    cuts = [c for c in a.cuts.split(",") if c]
+    Run(a.photo, lesson.resolve(), cuts).go()
 
 
 if __name__ == "__main__":
