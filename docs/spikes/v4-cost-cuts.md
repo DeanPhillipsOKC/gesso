@@ -6,8 +6,9 @@ test is `spike/tests/test_v4_loop.py`. The numbers are in `spike/experiments/v4_
 cost by helper, and each call of the plan's writer; `ab`: every grader's answer). The lessons are in `output/*_v4loop_20261119-*`. None of them is on the
 site, since none was made by `/paint-lesson`.
 
-**Verdict: adopt cut 2 (the caching). Cuts 3 and 4 are the owner's call: no worse on the cow and the birch grove,
-worse on the cat in all 4 of its reads.** With all three, a lesson costs **$3.65 of Claude at the API's rates.** The
+**Verdict: adopt all three (the owner's call, 2026-11-19, `docs/decisions.md`).** Cut 2, the caching, on its own
+merits. Cuts 3 and 4 are no worse on the cow and the birch grove and worse on the cat in all 4 of its reads; the
+owner kept them on the reading below. With all three, a lesson costs **$3.65 of Claude at the API's rates.** The
 baseline is $5.35 as charged and $4.16 priced the API's way. Most of the drop from $5.35 is the pricing itself: cut 2
 is the baseline's own calls cached as the API would cache them (−$1.19). What cuts 3 and 4 change is the plan's
 writer. It went from $1.68 to $1.03, and its three runs with both cuts ($1.01 to $1.06) all came in under the
@@ -20,7 +21,7 @@ the baseline won all 4 reads. That was against the stronger of the cat's two bas
 graders gave two reasons. Under cut 3, a merge `check` asked for put the ears' pink into the cat's gray, which the
 baseline's writer obeys too. Under cuts 3 and 4, the chain's pictures. Neither points at the writer being sent less,
 but cut 3 changes how the writer answers that merge, so it can't be ruled out. The rule is that a cut making a
-lesson worse is dropped, so the owner decides whether the cat is that.
+lesson worse is dropped. The owner judged that the cat's loss isn't the cuts', and kept them.
 
 The $1 aim is still a long way off. What's left is the stage writers (about $1.00), the finisher (about $0.95) and
 the merges `check` asks for. Those are C3's and the loop's to cut, not these.

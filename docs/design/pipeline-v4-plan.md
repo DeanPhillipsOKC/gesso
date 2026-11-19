@@ -127,8 +127,8 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   $1.40 of the baseline); have the plan's writer answer `plan-check` and `check` with changes to the plan, not the
   whole file again (about $0.45); send the plan's writer the library's list and let it ask for the files it picks.
   These are built, not spiked, and each is measured against Y3.
-  **Done 2026-11-19 (`docs/spikes/v4-cost-cuts.md`): all three built (`v4_loop.py --cuts`); adopt the caching, and
-  the changes and the picks are the owner's call (worse on the cat).** With them a lesson is $3.65 at the API's rates
+  **Done 2026-11-19 (`docs/spikes/v4-cost-cuts.md`): all three built (`v4_loop.py --cuts`); adopt all three (owner's
+  call; the graders preferred the baseline on the cat).** With them a lesson is $3.65 at the API's rates
   (−$1.19 for the caching, −$0.37 for the changes, −$0.13 more for the picks). The plan's writer went from $1.68 to $1.03. The blind graders preferred the cut lessons
   7 times and the baseline 5, all 4 of the baseline's on the cat (a merge `check` asked for, and the chain's
   pictures). Two baseline runs made the same way split 2 of 2 on two of the three pictures, so one run a side can't

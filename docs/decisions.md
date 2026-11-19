@@ -309,6 +309,15 @@ with the date.
   parked: level on the student test, 2 of 6 graders for and 4 ties, $1.33 of Claude a lesson as a call a step. Bring
   them back only with the write-up's three changes (arrows from the lesson's writer, none for a dabbed stroke, the
   direction from the card) and after the owner's painting (#252) shows a painter guessed where strokes go.
+- **The three cost cuts that don't touch the words are adopted (2026-11-19, owner's call, after #253).** Calls are
+  cached as the API would cache them (the five-minute cache where a conversation goes on, none for a one-message
+  helper). The plan's writer answers `plan-check` and `check` with changes to the plan, not the whole file. It is sent
+  the library's list and asks for the files it picks. With all three a lesson is $3.65 of Claude at the API's rates,
+  against $4.16 for the baseline priced the same way, and the plan's writer goes from $1.68 to $1.03
+  (`docs/spikes/v4-cost-cuts.md`). The blind graders preferred the baseline on the cat in all 4 reads. The owner kept
+  the cuts anyway, on the write-up's reading: the cat's faults were a merge `check` asked for and the chain's
+  pictures, and two baseline runs made the same way also split 2 of 2 on two pictures. Owner: "Go with your
+  recommendations." They live in `spike/experiments/v4_loop.py` (`--cuts`) until v4 is built.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
