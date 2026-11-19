@@ -212,6 +212,71 @@ class Steps3Tests(unittest.TestCase):
         self.assertIn("changed since", str(e.exception))
 
 
+class ShadingPaintTests(unittest.TestCase):
+    """#250: a unit that comes back to a block-in is kept over the whole thing (#217), so its change is all of the
+    cat while it lays a few marks. A shading or lighting paint was fitted to all of it, came out the cat's own gray,
+    and `check` asked to merge it into the block-in's paint."""
+
+    def chain(self) -> tuple[dict, list[dict]]:
+        import cv2
+
+        rng = np.random.default_rng(250)
+        h, w = 200, 300
+        cat = np.zeros((h, w), bool)
+        cat[40:180, 50:250] = True
+        base = np.empty((h, w, 3), np.float32)
+        base[:] = steps3.ff.CANVAS
+        p0 = base.copy()
+        p0[cat] = CAT
+
+        def marks(img, rows, color):  # soft-edged strokes, then faint brushwork over the whole cat
+            m = np.zeros((h, w), np.float32)
+            for y in rows:
+                m[y:y + 10, 60:240] = 1.0
+            a = cv2.GaussianBlur(m, (0, 0), 2.0)[..., None] * cat[..., None]
+            out = img * (1 - a) + np.array(color, np.float32) * a
+            out[cat] += rng.normal(0, 2.5, (int(cat.sum()), 1))
+            return np.clip(out, 0, 255).astype(np.uint8)
+
+        p0 = np.clip(p0, 0, 255).astype(np.uint8)
+        p1 = marks(p0.astype(np.float32), range(130, 170, 16), SHADOW)  # shade the cat's belly
+        p2 = marks(p1.astype(np.float32), range(48, 90, 16), PALE)  # light its back
+        ch = [{"P": p, "D": cat, "core": cat} for p in (p0, p1, p2)]
+        paints = [{"name": "Cat gray", "looks": "x", "color": "#808080"},
+                  {"name": "Shadow gray", "looks": "x", "color": "#4a4040", "of": "Cat gray"},
+                  {"name": "Light gray", "looks": "x", "color": "#c0c0c0", "of": "Cat gray"}]
+        steps = [{"id": "block-in-cat", "paints": ["Cat gray"]}, {"id": "shade-cat", "paints": ["Shadow gray"]},
+                 {"id": "light-cat", "paints": ["Light gray"]}]
+        return {"paints": paints, "stages": [{"id": "cat", "steps": steps}]}, ch
+
+    def test_a_one_paint_shading_unit_keeps_a_paint_of_its_own(self):
+        import mixing
+
+        p, ch = self.chain()
+        us = [{"steps": [0], "kind": "bare"}, {"steps": [1], "kind": "back"}, {"steps": [2], "kind": "back"}]
+        one, _, rows = steps3.fit(p, us, ch)
+        self.assertTrue(near(one["Cat gray"], CAT), one["Cat gray"])
+        self.assertTrue(near(one["Shadow gray"], SHADOW, 12), one["Shadow gray"])
+        self.assertTrue(near(one["Light gray"], PALE, 12), one["Light gray"])
+        lightness = {n: steps3.ff.hex_lab(one[n])[0] for n in one}
+        self.assertLess(lightness["Shadow gray"], lightness["Cat gray"] - 20)
+        self.assertGreater(lightness["Light gray"], lightness["Cat gray"] + 20)
+        tubes = ["Titanium white", "Ultramarine blue", "Burnt sienna", "Cadmium yellow medium (hue)"]
+        self.assertEqual(tools.duplicate_recipes(mixing.solve_lesson(one, tubes)), [])
+        # fitted to all of what the units changed, as before #250: both come out the cat's own gray
+        with mock.patch.object(steps3, "what_moved", lambda ch, n: ch[n]["D"]), \
+                mock.patch.object(steps3, "before", lambda ch, n: None):
+            old, _, _ = steps3.fit(p, us, ch)
+        self.assertTrue(near(old["Shadow gray"], CAT, 12) and near(old["Light gray"], CAT, 12), old)
+
+    def test_a_unit_that_moved_almost_nothing_is_fitted_to_all_of_its_change(self):
+        p, ch = self.chain()
+        ch[1] = {**ch[1], "P": ch[0]["P"]}
+        self.assertTrue(np.array_equal(steps3.what_moved(ch, 1), ch[1]["D"]))
+        self.assertGreater(steps3.what_moved(ch, 2).mean(), 0)
+        self.assertLess(steps3.what_moved(ch, 2).mean(), ch[2]["D"].mean() / 2)
+
+
 @lessons.slow
 class V3ToolsTests(unittest.TestCase):
     """The version 2 tools on a version 3 lesson: each reads what build-steps kept, and none cuts a step again."""

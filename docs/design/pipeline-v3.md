@@ -359,6 +359,24 @@ reported them went with v2's in #238). Two things are reported, not failed: a pa
 plan's `color`, name or `looks` can be changed without a new chain. Two paints whose names differ only in
 punctuation are refused by `plan-check`.
 
+**Fixed (#250): a unit that comes back to a thing is fitted to what it moved, not to its whole change.** Such a
+unit is kept over the whole thing (#217), so a shading pass on the cat has the whole cat as its change while it lays
+a few marks. Fitted to all of it, a shading or lighting paint came out the thing's own color, and `check` asked to
+merge it into the block-in's paint: three merges on the cat's v4 baseline (#241), behind four of its six known
+problems. Now, for a `back` unit only (`steps3.what_moved`, `fit_paints` with `before`):
+
+- only the pixels the unit moved by erase's WEAK (9 Lab units) or more count, all of the change when fewer than 20 did;
+- a pixel counts for a paint only if the unit moved it straight at the paint (`AIM`, a cosine of 0.8): the pale rim
+  of a pink ear is nearer a light fur gray than the pink, but the ear moved it toward pink;
+- a paint's pixels lose a 2-pixel rim (`RIM`) before their middle is taken: a stroke's soft edge is part base coat.
+
+On the cat's v4 chain the sill's, blanket's and cat's shade and light paints now sit 5 to 20 lightness units from
+their block-ins, and `check` asks for none of those merges (it asks for one that is right: the cat's white and the
+frame's cream, one color in the finish). On the v3 cat the shading gray is darker than the coat, not the same. A
+`first`, `bare` or `behind` unit is fitted as before: there every pixel moved fully, and "what moved" adds nothing.
+A paint the unit doesn't move anything toward keeps the plan's rough color and is reported (`not_in_finish`), where
+it used to be fitted to whatever was nearest: on the red sailboat fixture, "Light red" was a dark #704044.
+
 ## 8. Step pictures (`build-steps`)
 
 For each unit, in painting order, from P[u] and D[u]:
