@@ -1741,6 +1741,154 @@
    "cost_usd": 0.2234,
    "seconds": 23.6,
    "pictures": 44
+  },
+  {
+   "round": "null",
+   "picture": "sleeping-cat",
+   "grader": 1,
+   "A": "sleeping-cat_v4loop_20261119-175436",
+   "B": "sleeping-cat_v4loop_20261119-175911",
+   "prefer": "none",
+   "preferred": "none",
+   "scores": {
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      17,
+      12
+     ],
+     "note": "From step 7 on the cat, blanket and face build up believably, but the window does not. Step 2's green never shows, and step 4 (the wall) also fills in the whole leafy view and leaves a reddish ghost and a hard white box. Step 5 shows wall bands it doesn't paint, step 12 shades the cat with the same Cat gray it was blocked in with, step 17 (fold shading) jumps straight to full knit texture, and whiskers appear in step 21 before step 22 paints them."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      11,
+      8
+     ],
+     "note": "The window has the same problem: steps 2 and 3 barely change the canvas, then step 4 (the wall) fills in the leaves by magic and leaves a ghost blotch and a dark box where the sill and frame shadow will go. Step 11 (crease shading) jumps to fully knitted rolls, and step 8 leaves flat patches with a white smear. Step 18's pink ears carry dark specks that step 19 cleans up unasked. The cat sequence (block, shade, white, stripes, ears, fur, face) is clean and in a sensible order."
+    }
+   },
+   "note": "Both lessons share the same faults: no visible progress in the window's first steps, magic leaves and ghosts on the wall step, and one blanket step that jumps from flat to full knit. A has a few more spots where the picture runs ahead of its words (steps 5, 12, 21); B has the step 4 ghost and the speckled ears in step 18. These differences are too small to count as a preference, so this is a toss-up.",
+   "cost_usd": 0.2405,
+   "seconds": 27.2,
+   "pictures": 47
+  },
+  {
+   "round": "null",
+   "picture": "sleeping-cat",
+   "grader": 2,
+   "A": "sleeping-cat_v4loop_20261119-175911",
+   "B": "sleeping-cat_v4loop_20261119-175436",
+   "prefer": "A",
+   "preferred": "baseline",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      2,
+      11
+     ],
+     "note": "From the wall step onward A reads as an honest build: frame, sill, sun patches, blanket, then cat in sensible layers, with each picture matching its paint. The opening is weak. Steps 2 and 3 name two greens but their pictures show no green at all. Step 4, the blue wall, then shows the leaves fully formed, plus a ghost frame shadow and a dark box on the wall. Step 11 also jumps from a flat gold to a fully knitted blanket in one ochre pass."
+    },
+    "cut": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      5,
+      17
+     ],
+     "note": "B has the same magic leaves at the wall step (4), plus a reddish ghost streak. Its lessons admit several more mismatches: step 5 shows two dark bands the step doesn't paint, step 17 shows the knit already done on a fold-shading step, and step 21 shows whiskers early. Paints and pictures disagree in places: step 12 'shades' with the same Cat gray as the base yet shows full modelling, and the 'Nose pink' recipe has no red. Step 2 visibly does nothing, and step 15's outlined area covers only a corner of the stripes it asks for."
+    }
+   },
+   "note": "Both share the early-window problems: green steps with no green, then leaves appearing on the wall step. B adds more magic and paint/picture mismatches later (steps 5, 12, 17, 21), where A stays clean from step 5 on apart from the blanket jump. A slight but real preference for A.",
+   "cost_usd": 0.2459,
+   "seconds": 30.7,
+   "pictures": 47
+  },
+  {
+   "round": "null",
+   "picture": "birch-grove",
+   "grader": 1,
+   "A": "birch-grove_v4loop_20261119-175914",
+   "B": "birch-grove_v4loop_20261119-175438",
+   "prefer": "A",
+   "preferred": "cut",
+   "scores": {
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      8,
+      20
+     ],
+     "note": "Step 1 already shows the far trunks and several pines through the mist. The tips of steps 1 and 3 admit those were there before their steps, and step 8's floor already has leaf shapes and a path track when the words say flat level bands. Step 20 names Sun cream for light on the bark, yet long dark branches appear. Apart from those, the middle and late steps build steadily: bushes, path, boulder, trunks, bark, then leaves, each a doable amount."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      5,
+      8
+     ],
+     "note": "Step 1 also ghosts reddish trunks into the sky, and step 2's rays are flat yellow blobs, not feathery dry-brush. The pines are the main problem: step 4 is hard vertical bars no fan brush makes, step 5 turns them into a misty grove with pale trunks, and step 8 (which names only an olive for the bushes) redraws them again as a lit, detailed group. From step 9 on the lesson is clean and close to the photo, with a good boulder sequence and bark build-up."
+    }
+   },
+   "note": "Both open with ghost trees in the first sky step, so neither is clean. B's early steps also have hard pine boxes and two unexplained pine redraws, which would confuse a beginner checking each step against its picture. A's faults are fewer and later, so I'd paint from A, but only slightly, since B's second half and finish are stronger.",
+   "cost_usd": 0.2381,
+   "seconds": 28.2,
+   "pictures": 46
+  },
+  {
+   "round": "null",
+   "picture": "birch-grove",
+   "grader": 2,
+   "A": "birch-grove_v4loop_20261119-175438",
+   "B": "birch-grove_v4loop_20261119-175914",
+   "prefer": "B",
+   "preferred": "cut",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      5,
+      8,
+      4
+     ],
+     "note": "Steps 4, 5 and 8 sink this lesson. Step 4 puts down hard flat dark blocks for the pines. Step 5 says only 'light side of the pines', yet its picture swaps in a whole new forest of tall pale trunks and differently shaped pines. Step 8 names only olive bushes, but full detailed dark pines appear on the right. Step 1 also shows ghost trees before they are painted, though the second half (trunks, bark, leaves) builds cleanly step by step."
+    },
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      8,
+      3
+     ],
+     "note": "Step 1's sky already holds a ghost forest: trunks, branches, small pines and even gold leaf flecks. Step 8 calls for flat level bands but shows a fully leafy floor before any leaf step. Step 3 adds small pines its words don't name, and step 5 shows almost no change. After that the order is steady and the pictures match the words: pines dark then light, path, boulder, flat trunks, shading, bark, twigs, leaves."
+    }
+   },
+   "note": "Both lessons have something on the canvas before its step. A's problems are bigger and come mid-lesson: whole groups of trees change or appear on steps that name something else. B's mostly sit in the first step's ghosting and a floor that looks textured too early, and it builds more honestly after that. A slight preference, not a clear one.",
+   "cost_usd": 0.2343,
+   "seconds": 25.6,
+   "pictures": 46
   }
  ]
 }
