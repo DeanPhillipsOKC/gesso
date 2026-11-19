@@ -69,6 +69,10 @@ Nothing in Waves 1 and 2 starts until Y1 exists, or the words get judged the way
   steps a real painter stumbles on.
 - **Y3. The cost baseline on the bench (#253).** `spike/experiments/v4_loop.py` on the three bench pictures, twice
   each, so a cut of 30 cents can be told from the spread between runs.
+  **Done 2026-11-19 (`docs/spikes/v4-cost-cuts.md`): $5.35 a lesson as charged, $4.16 priced as the API would charge
+  it.** Two runs of one picture differ by $0.37 to $1.16, mostly in how many merges `check` asks for and how many
+  rounds the chain's checker takes. A lesson's renders came to $0.55 to $0.95, not $0.35, since every merge renders
+  the chain again.
 
 The frozen bench, the blind A/B page and the graders' brief (`spike/experiments/bench/`) stay as they are. Y1 adds
 to them.
@@ -123,6 +127,12 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   $1.40 of the baseline); have the plan's writer answer `plan-check` and `check` with changes to the plan, not the
   whole file again (about $0.45); send the plan's writer the library's list and let it ask for the files it picks.
   These are built, not spiked, and each is measured against Y3.
+  **Done 2026-11-19 (`docs/spikes/v4-cost-cuts.md`): all three built (`v4_loop.py --cuts`); adopt, pending the
+  owner on the cat.** With them a lesson is $3.65 at the API's rates (−$1.19 for the caching, −$0.38 for the changes,
+  −$0.13 more for the picks). The plan's writer went from $1.68 to $1.03. The blind graders preferred the cut lessons
+  7 times and the baseline 5, all 4 of the baseline's on the cat (a merge `check` asked for, and the chain's
+  pictures). Two baseline runs made the same way split 2 of 2 on two of the three pictures, so one run a side can't
+  show a small effect.
 - **C2. A cheaper model or lower effort for the yes/no helpers** (the chain's checker, the feedback rounds). #221
   is the spike. It ends in a recommendation for the owner, since it changes "Claude does the checks".
 - **C3. The writers and the finisher** ($2.35 of the $4.94). Left until Wave 1 says what a writer is sent: cutting

@@ -1295,6 +1295,96 @@
      "api_usd": 0.3124
     }
    ]
+  },
+  "highland-cow_v4loop_20261119-191115": {
+   "picture": "highland-cow",
+   "cuts": [],
+   "sealed": false,
+   "calls": 28,
+   "charged_usd": 5.05,
+   "api_usd": 3.756,
+   "api_usd_no_cc": 3.677,
+   "renders_usd": 0.7908,
+   "tokens": {
+    "input": 88,
+    "cache_write": 398031,
+    "cache_read": 629020,
+    "output": 86975,
+    "thinking": 39422
+   },
+   "claude_seconds": 933,
+   "minutes": 33.7,
+   "steps": 19,
+   "stages": 8,
+   "renders": 12,
+   "merged": 1,
+   "checker_marks": [
+    1
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.481,
+     "api_usd": 0.35,
+     "api_usd_no_cc": 0.343,
+     "output": 6384
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.876,
+     "api_usd": 1.463,
+     "api_usd_no_cc": 1.456,
+     "output": 38746
+    },
+    "chain-checker": {
+     "calls": 1,
+     "cost_usd": 0.336,
+     "api_usd": 0.186,
+     "api_usd_no_cc": 0.18,
+     "output": 1745
+    },
+    "writer": {
+     "calls": 14,
+     "cost_usd": 1.316,
+     "api_usd": 0.924,
+     "api_usd_no_cc": 0.871,
+     "output": 18036
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 1.042,
+     "api_usd": 0.834,
+     "api_usd_no_cc": 0.827,
+     "output": 22064
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91799,
+     "read": 0,
+     "output": 23626,
+     "cost_usd": 1.2069,
+     "api_usd": 0.9315
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 25274,
+     "read": 91797,
+     "output": 7384,
+     "cost_usd": 0.36822,
+     "api_usd": 0.2924
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 15334,
+     "read": 117067,
+     "output": 7736,
+     "cost_usd": 0.30079,
+     "api_usd": 0.2395
+    }
+   ]
   }
  },
  "ab": [
@@ -1889,6 +1979,80 @@
    "cost_usd": 0.2343,
    "seconds": 25.6,
    "pictures": 46
+  },
+  {
+   "round": "null",
+   "picture": "highland-cow",
+   "grader": 1,
+   "A": "highland-cow_v4loop_20261119-191115",
+   "B": "highland-cow_v4loop_20261119-175434",
+   "prefer": "A",
+   "preferred": "cut",
+   "scores": {
+    "cut": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      12,
+      1,
+      8
+     ],
+     "note": "Most of the build reads as a real painting in progress: flat sky, hills, hillside, a flat cow block, shading, horns, locks, rim light, then three grass layers. The worst flaw is step 12, a 'rust-brown locks' step whose picture also paints the finished nose; step 15 then admits the nose is already there and changes almost nothing. Step 1 leaves ghost hill ridges in the blue, step 8 brings the face and a horn stub forward early, and steps 11 and 12 give tiny outlines for changes that cover far more."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      6,
+      15,
+      2
+     ],
+     "note": "Step 1 already paints clear hill ridges and the cloud streaks. That leaves steps 2, 3 and 5 (and later 14 and 16) with almost nothing to show. Step 6 says a 1 3/4 in loch, but its tip and picture turn the whole lower canvas into water and add a new hill range, all of it painted over the next step. Step 15 is a big jump: fringe, face and nose all appear under 'copper locks, mostly on the left'. Some recipes don't match their names: Cream gold has 2 parts ultramarine, and Dusky pink is just burnt sienna."
+    }
+   },
+   "note": "A has one clear piece of magic (the early nose) and a faint ghost in its sky. B has the same kind of ghost, plus a wrong loch step, a face-and-nose jump, several steps that change nothing, and more words that contradict their pictures. Clear preference for A.",
+   "cost_usd": 0.2298,
+   "seconds": 28.4,
+   "pictures": 44
+  },
+  {
+   "round": "null",
+   "picture": "highland-cow",
+   "grader": 2,
+   "A": "highland-cow_v4loop_20261119-175434",
+   "B": "highland-cow_v4loop_20261119-191115",
+   "prefer": "B",
+   "preferred": "cut",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      6,
+      15,
+      1
+     ],
+     "note": "Step 6's words ask for a small loch, about 1 3/4 in by 1/2 in, at the right edge, but the picture floods everything below the hills with water. In the same step a dark near ridge appears with no instruction. Step 15 is a big jump: 'pull copper locks' brings in the whole fringe, face and a brown nose, six steps before the nose step. Step 1 already shows ghost hill ridges in the blue before any hills are painted."
+    },
+    "cut": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      12,
+      8,
+      1
+     ],
+     "note": "The step pictures read as one painting building up steadily. The sky, hills, lake, clouds, hillside and scrub each arrive in their own step and match their words. The main faults are early face detail: the muzzle forms in step 8's shading, and a finished nose shows in step 12's rust locks, so step 15 has to admit the nose is already there. Step 1 has the same ghost ridges as A, and some outline sizes are wrong (step 11's 1/4 in, step 12's 3/4 in)."
+    }
+   },
+   "note": "B has no step as misleading as A's step 6 (a whole-canvas lake against words asking for a small one) and no jump as big as A's step 15. Both have ghost ridges in step 1 and show the nose before its step, so the edge is moderate rather than overwhelming. Preference is clear but not strong.",
+   "cost_usd": 0.2203,
+   "seconds": 26.1,
+   "pictures": 44
   }
  ]
 }
