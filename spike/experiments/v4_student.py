@@ -61,6 +61,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT / "spike"))
 
 BENCH = HERE / "bench" / "v3-words"
+DEFAULT_BENCH = BENCH  # #267: `--bench` reads another bench's lessons (v4_writer_cost.py's), with their own near misses
 PICTURES = ["highland-cow", "sleeping-cat", "birch-grove"]
 RESULTS = HERE / "v4_student.json"
 BASE_RESULTS = RESULTS  # v3's: where `prepare` keeps the near misses
@@ -324,7 +325,7 @@ def state() -> dict:
             _STATE.setdefault(k, {})
         for k in ("pick", "carry", "carry_grades", "graders", "calls"):
             _STATE.setdefault(k, [])
-        if not _STATE["prepared"] and RESULTS != BASE_RESULTS and BASE_RESULTS.exists():
+        if not _STATE["prepared"] and RESULTS != BASE_RESULTS and BASE_RESULTS.exists() and BENCH == DEFAULT_BENCH:
             _STATE["prepared"] = json.loads(BASE_RESULTS.read_text())["prepared"]  # the same near misses as v3's
     return _STATE
 
@@ -856,11 +857,13 @@ def report(args) -> dict:
 
 
 def main(argv=None):
-    global WORK, RESULTS, WORDS_FROM, _STATE
+    global WORK, RESULTS, WORDS_FROM, _STATE, BENCH
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--work", type=Path, default=WORK)
     ap.add_argument("--words-from", type=Path, help="read each step's lines and tip from <folder>/<picture>/packet.json")
     ap.add_argument("--results", type=Path, help="the results file (default: v4_student.json)")
+    ap.add_argument("--bench", type=Path, help="another bench folder (<folder>/<picture>/packet.json, steps/); its "
+                    "results file runs `prepare` for itself")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("prepare")
     sub.add_parser("worsen")
@@ -887,6 +890,10 @@ def main(argv=None):
     sub.add_parser("report")
     args = ap.parse_args(argv)
     WORK = args.work
+    if args.bench:
+        if not args.results:
+            ap.error("--bench needs --results, so v3's answers stay apart")
+        BENCH = args.bench.resolve()
     if args.words_from and not args.results:
         ap.error("--words-from needs --results, so v3's answers stay apart")
     WORDS_FROM = args.words_from.resolve() if args.words_from else None
