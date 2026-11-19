@@ -6,16 +6,21 @@ test is `spike/tests/test_v4_loop.py`. The numbers are in `spike/experiments/v4_
 cost by helper, and each call of the plan's writer; `ab`: every grader's answer). The lessons are in `output/*_v4loop_20261119-*`. None of them is on the
 site, since none was made by `/paint-lesson`.
 
-**Verdict: adopt all three cuts, with the cat left to the owner.** With the three, a lesson costs **$3.65 of Claude at
-the API's rates, against $5.35 as the baseline is charged and $4.16 priced as the API would charge it.** That's 32%
-off the bill as charged, and 12% off once the baseline is priced the API's way too. That 12% ($0.51) is less than
-the spread between two runs of the cow or the birch grove ($0.67 and $1.16). The plan's writer, where cuts 3 and 4 act, went from $1.68 to $1.03.
-All three of its runs came in under every baseline run. The blind graders preferred the cut lessons 7 times and the
-baseline 5, and they preferred the baseline on the cat in all 4 of its reads. The acceptance rule says a cut that makes a lesson
-worse is dropped. But the same graders, given two baseline lessons made exactly the same way, preferred one of them in 2 of 2 reads on
-two of the three pictures. So a 2-of-2 split between two runs isn't evidence that the method differs (below). The
-graders' reasons for the cat are a paint merge that `check` asked for and the chain's pictures, not the plan's
-writer.
+**Verdict: adopt cut 2 (the caching). Cuts 3 and 4 are the owner's call: no worse on the cow and the birch grove,
+worse on the cat in all 4 of its reads.** With all three, a lesson costs **$3.65 of Claude at the API's rates.** The
+baseline is $5.35 as charged and $4.16 priced the API's way. Most of the drop from $5.35 is the pricing itself: cut 2
+is the baseline's own calls cached as the API would cache them (−$1.19). What cuts 3 and 4 change is the plan's
+writer. It went from $1.68 to $1.03, and its three runs with both cuts ($1.01 to $1.06) all came in under the
+cheapest baseline run's $1.38. On the whole lesson the two cuts save $0.51 (12%), less than the spread between two
+runs of the cow or the birch grove ($0.67 and $1.16). So with three runs it isn't shown beyond the noise.
+
+The blind graders preferred the cut lessons 7 times and the baseline 5. On the cow and the birch grove the cuts won
+6 of 8 reads, but against baselines a same-method round (below) shows were the weaker of their two runs. On the cat
+the baseline won all 4 reads. That was against the stronger of the cat's two baseline runs. For the cat, the
+graders gave two reasons. Under cut 3, a merge `check` asked for put the ears' pink into the cat's gray, which the
+baseline's writer obeys too. Under cuts 3 and 4, the chain's pictures. Neither points at the writer being sent less,
+but cut 3 changes how the writer answers that merge, so it can't be ruled out. The rule is that a cut making a
+lesson worse is dropped, so the owner decides whether the cat is that.
 
 The $1 aim is still a long way off. What's left is the stage writers (about $1.00), the finisher (about $0.95) and
 the merges `check` asks for. Those are C3's and the loop's to cut, not these.
@@ -84,7 +89,7 @@ In dollars of Claude a lesson at Opus 5.5's published rates. "API" is the run pr
 |---|---|---|---|
 | Baseline, 6 runs | **$5.35** | **$4.16** | cow $0.67, cat $0.37, birch $1.16 |
 | Cut 2 (the baseline priced the API's way) | | $4.16, −$1.19 | |
-| Cut 3, 3 runs | | $3.78, −$0.38 | |
+| Cut 3, 3 runs | | $3.78, −$0.37 | |
 | Cuts 3 and 4, 3 runs | | **$3.65**, −$0.13 more | |
 
 The cat's #241 run, $4.94 charged and $3.58 at the API's rates, is inside this spread. Most of a run's spread comes
@@ -103,9 +108,9 @@ Only the plan's writer moves by more than its spread. Its calls, the API's way:
 
 | Call | Baseline | Cut 3 | Cuts 3 and 4 |
 |---|---|---|---|
-| The plan's first message (92,000 tokens sent) | $0.81 to $0.98 | $0.76 to $0.90 | picks $0.17 + plan $0.43 to $0.47 (30,000 + 25,000 tokens) |
-| A plan-check round | $0.25 to $0.29, 7,400 to 8,500 tokens written | $0.09 to $0.12, 160 to 750 written | $0.09 to $0.11, 200 to 1,400 written |
-| The merge `check` asks for | $0.25 to $0.71 | $0.47 to $0.57 | $0.31 |
+| The plan's first message (92,000 tokens sent) | $0.81 to $0.98 | $0.76 to $0.90 | picks $0.17 + plan $0.43 to $0.46 (30,000 + 25,000 tokens) |
+| A plan-check round | $0.26 to $0.29, 7,400 to 8,500 tokens written | $0.09 to $0.12, 160 to 750 written | $0.09 to $0.11, 200 to 1,400 written |
+| The merge `check` asks for | $0.24 to $0.71 | $0.47 to $0.57 | $0.31 |
 
 - **Cut 3** takes the writer's plan-check answer from the whole plan to a few changes: about $0.16 a round off, and
   about 18,000 fewer output tokens a run (93,000 to 75,000).
@@ -115,7 +120,7 @@ Only the plan's writer moves by more than its spread. Its calls, the API's way:
   number. That is fixed (`heading`).
 - **The merge got dearer under cut 2.** It comes after the chain, more than five minutes after the plan, so the
   five-minute cache is gone and the writer's whole conversation (75,000 to 113,000 tokens) is sent again. Priced
-  the API's way, the baseline's merges pay the same where they came late ($0.65 to $0.71). Two fixes, neither built:
+  the API's way, the baseline's merges pay the same where they came late ($0.68 to $0.71). Two fixes, neither built:
   the API's hour-long cache on the plan's first message only ($8 rather than $5 on about 30,000 tokens with cut 4,
   about $0.09), or a short fresh call for the merge with only the brief, the plan and the ask.
 
@@ -130,12 +135,16 @@ runs of each picture against each other, to see what the graders find when the m
 |---|---|---|---|---|---|
 | Cut 3 | cut, cut | baseline, baseline | cut, baseline | 3 / 3 / 0 | 2.67, 2.83 |
 | Cuts 3 and 4 | cut, cut | baseline, baseline | cut, cut | 4 / 2 / 0 | 3.00, 2.50 |
-| Null (baseline against baseline) | run 3, run 3 | run 1, none | run 2, run 2 | | |
+| Null (baseline against baseline) | run 3, run 3 | none, run 2 | run 2, run 2 | | |
 
 - **The null round:** both graders picked the same side on the cow and on the birch grove, though both sides were made
   the same way. Run to run, a lesson's chain and merges vary enough to decide a grader. So one run a side can't show a
   small effect of a cut in either direction. It also shows the cow and birch baselines the cuts were graded
-  against were the weaker run of their two. Some of the cuts' wins there are that draw.
+  against were the weaker run of their two, so some of the cuts' wins there are that draw. On the cat it went the
+  other way: the cuts were graded against the cat's stronger run (run 2).
+- **A limit on the null round:** the graders' brief says the two lessons were "made two different ways", which wasn't
+  true there and may push a grader to pick a side. So the null round shows the size of a run's draw, roughly, not
+  exactly.
 - **The cat, cut 3:** `check` asked to merge the ears' and nose's pink into the cat's gray (the mix fitter found they
   mixed the same), and the writer did, so those steps name a gray their pictures don't show. The graders marked
   that. It is #241's finding again: merges `check` asks for make known problems. The baseline's writer obeys the
@@ -143,8 +152,8 @@ runs of each picture against each other, to see what the graders find when the m
 - **The cat, cuts 3 and 4:** the graders' reasons are the chain's pictures: face features showing two or three steps
   early, a blotch on the wall, a jump on the blanket. The plan had 24 steps, the most of any run.
 
-So nothing the graders said points at the plan's writer being sent less or answering with changes. Whether the cat
-counts as "worse" is the owner's call (`docs/decisions.md`: a cost cut is adopted when the graders find it no worse).
+So nothing the graders said points at the plan's writer being sent less, though cut 3 changes how it answers the
+merge that hurt the cat's ears. Whether the cat counts as "worse" is the owner's call (`docs/decisions.md`: a cost cut is adopted when the graders find it no worse).
 
 The 18 graders cost $4.27 of Claude.
 
