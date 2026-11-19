@@ -177,7 +177,9 @@ class Helper:
         """`last`: nothing follows this message in the conversation, as far as the program knows beforehand."""
         self.turn += 1
         print(f"  [{self.name}] {label} ...", file=sys.stderr)
-        cache = ("none" if last else "5m") if "api-cache" in self.run.cuts else "1h"
+        # Claude Code's switch for no cache also stops a message reading what the conversation cached before it,
+        # so only a conversation's one and only message goes uncached; a last message later on still reads.
+        cache = ("none" if last and self.turn == 1 else "5m") if "api-cache" in self.run.cuts else "1h"
         r = call_claude(m.blocks, self.system, session=self.session, cwd=self.run.cwd, cache=cache)
         self.session = r["session"]
         u = r["usage"]
@@ -361,7 +363,8 @@ def apply_plan_changes(plan: dict, ch: dict) -> dict:
 
 
 def heading(h: str) -> str:
-    return h.strip().lstrip("#").strip().lower()
+    """A research heading as the writer may quote it: no #s, no section number, any case."""
+    return re.sub(r"^\d+\.\s*", "", h.strip().lstrip("#").strip()).lower()
 
 
 def stroke_list() -> str:
@@ -1016,6 +1019,12 @@ def api_costs(calls: list[dict], without_claude_code: bool = False) -> list[floa
             new, read = c["input_tokens"] + c["cache_write_tokens"], c["cache_read_tokens"]
             if j and start - _when(calls[idx[j - 1]])[1] > 300:
                 new, read = new + read, 0  # the five-minute cache is gone: what it held is sent again
+            elif j and c.get("cache") == "none":
+                # sent with Claude Code's cache switched off, so what the earlier messages cached was sent again;
+                # the API would have read it (#253's first cut runs, before the fix in Helper.ask)
+                p = calls[idx[j - 1]]
+                read = min(new, p["input_tokens"] + p["cache_write_tokens"] + p["cache_read_tokens"])
+                new -= read
             if j == 0 and without_claude_code:
                 new = max(0, new - CLAUDE_CODE_ADDED)
             follows = j + 1 < len(idx) and _when(calls[idx[j + 1]])[0] - end <= 300

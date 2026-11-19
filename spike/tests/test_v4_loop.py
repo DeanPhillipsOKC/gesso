@@ -118,6 +118,14 @@ class ApiCostTests(unittest.TestCase):
         self.assertAlmostEqual(cs[0], 4.00)  # nothing read it in time
         self.assertAlmostEqual(cs[1], 4.40)
 
+    def test_a_later_message_sent_uncached_is_priced_as_reading_the_conversation(self):
+        first = call("a", "2026-11-19T10:00:30", 30, 1, write=1_000_000)
+        late = call("a", "2026-11-19T10:02:00", 30, 2, inp=1_100_000)
+        late["cache"] = "none"
+        cs = vl.api_costs([first, late])
+        self.assertAlmostEqual(cs[0], 5.00)
+        self.assertAlmostEqual(cs[1], 0.40 + 0.20)
+
     def test_without_claude_code_leaves_out_its_first_message_lines(self):
         [c] = vl.api_costs([call("a", "2026-11-19T10:00:30", 30, 1, write=1_000_000)], without_claude_code=True)
         self.assertAlmostEqual(c, (1_000_000 - vl.CLAUDE_CODE_ADDED) * 4.00 / 1e6)
@@ -145,6 +153,7 @@ class LibraryTests(unittest.TestCase):
         self.assertIn(r[subs[0]].strip(), r[next(k for k in r if k.startswith("## 1."))])
         self.assertIn(r["  ### Dabbing and stippling"].strip(), r[top])
         self.assertEqual(vl.heading("### Dabbing and Stippling"), vl.heading("  ### Dabbing and stippling"))
+        self.assertEqual(vl.heading("Mixing"), vl.heading("## 6. Mixing"))
 
 
 if __name__ == "__main__":

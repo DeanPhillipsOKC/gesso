@@ -1,0 +1,1746 @@
+{
+ "runs": {
+  "birch-grove_v4loop_20261119-175438": {
+   "picture": "birch-grove",
+   "cuts": [],
+   "sealed": false,
+   "calls": 21,
+   "charged_usd": 4.678,
+   "api_usd": 3.46,
+   "api_usd_no_cc": 3.404,
+   "renders_usd": 0.5573,
+   "tokens": {
+    "input": 66,
+    "cache_write": 368216,
+    "cache_read": 700343,
+    "output": 79585,
+    "thinking": 27791
+   },
+   "claude_seconds": 791,
+   "minutes": 32.3,
+   "steps": 21,
+   "stages": 5,
+   "renders": 11,
+   "merged": 3,
+   "checker_marks": [
+    0
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.514,
+     "api_usd": 0.375,
+     "api_usd_no_cc": 0.368,
+     "output": 6875
+    },
+    "plan-writer": {
+     "calls": 4,
+     "cost_usd": 1.987,
+     "api_usd": 1.567,
+     "api_usd_no_cc": 1.561,
+     "output": 41327
+    },
+    "chain-checker": {
+     "calls": 1,
+     "cost_usd": 0.218,
+     "api_usd": 0.124,
+     "api_usd_no_cc": 0.118,
+     "output": 1482
+    },
+    "writer": {
+     "calls": 6,
+     "cost_usd": 1.057,
+     "api_usd": 0.688,
+     "api_usd_no_cc": 0.659,
+     "output": 13273
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 0.902,
+     "api_usd": 0.705,
+     "api_usd_no_cc": 0.698,
+     "output": 16628
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91783,
+     "read": 0,
+     "output": 17532,
+     "cost_usd": 1.0849,
+     "api_usd": 0.8096
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 18857,
+     "read": 91781,
+     "output": 8064,
+     "cost_usd": 0.33048,
+     "api_usd": 0.2739
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 17025,
+     "read": 110634,
+     "output": 7969,
+     "cost_usd": 0.31769,
+     "api_usd": 0.2666
+    },
+    {
+     "label": "C3 plan-check after the merge",
+     "sent": 9154,
+     "read": 127655,
+     "output": 7762,
+     "cost_usd": 0.25399,
+     "api_usd": 0.2174
+    }
+   ]
+  },
+  "birch-grove_v4loop_20261119-175914": {
+   "picture": "birch-grove",
+   "cuts": [],
+   "sealed": false,
+   "calls": 22,
+   "charged_usd": 5.813,
+   "api_usd": 4.622,
+   "api_usd_no_cc": 4.551,
+   "renders_usd": 0.9511,
+   "tokens": {
+    "input": 64,
+    "cache_write": 459581,
+    "cache_read": 591833,
+    "output": 100879,
+    "thinking": 47843
+   },
+   "claude_seconds": 1021,
+   "minutes": 46.0,
+   "steps": 22,
+   "stages": 6,
+   "renders": 16,
+   "merged": 1,
+   "checker_marks": [
+    4,
+    1,
+    4
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.537,
+     "api_usd": 0.396,
+     "api_usd_no_cc": 0.39,
+     "output": 7819
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.892,
+     "api_usd": 1.89,
+     "api_usd_no_cc": 1.883,
+     "output": 39099
+    },
+    "chain-checker": {
+     "calls": 3,
+     "cost_usd": 1.021,
+     "api_usd": 0.625,
+     "api_usd_no_cc": 0.609,
+     "output": 11464
+    },
+    "writer": {
+     "calls": 6,
+     "cost_usd": 1.151,
+     "api_usd": 0.733,
+     "api_usd_no_cc": 0.7,
+     "output": 15742
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 1.211,
+     "api_usd": 0.977,
+     "api_usd_no_cc": 0.97,
+     "output": 26755
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91797,
+     "read": 0,
+     "output": 22165,
+     "cost_usd": 1.17767,
+     "api_usd": 0.9023
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 23961,
+     "read": 91795,
+     "output": 8473,
+     "cost_usd": 0.37949,
+     "api_usd": 0.2837
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 17853,
+     "read": 115752,
+     "output": 8461,
+     "cost_usd": 0.33518,
+     "api_usd": 0.7036
+    }
+   ]
+  },
+  "birch-grove_v4loop_20261119-183424": {
+   "picture": "birch-grove",
+   "cuts": [
+    "api-cache",
+    "plan-changes"
+   ],
+   "sealed": true,
+   "calls": 22,
+   "charged_usd": 3.963,
+   "api_usd": 3.53,
+   "api_usd_no_cc": 3.449,
+   "renders_usd": 0.4482,
+   "tokens": {
+    "input": 181197,
+    "cache_write": 323885,
+    "cache_read": 208968,
+    "output": 78858,
+    "thinking": 42128
+   },
+   "claude_seconds": 846,
+   "minutes": 29.0,
+   "steps": 20,
+   "stages": 7,
+   "renders": 12,
+   "merged": 0,
+   "checker_marks": [
+    1,
+    1,
+    2
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.545,
+     "api_usd": 0.398,
+     "api_usd_no_cc": 0.391,
+     "output": 7852
+    },
+    "plan-writer": {
+     "calls": 2,
+     "cost_usd": 1.042,
+     "api_usd": 1.018,
+     "api_usd_no_cc": 1.011,
+     "output": 22193
+    },
+    "chain-checker": {
+     "calls": 3,
+     "cost_usd": 0.412,
+     "api_usd": 0.412,
+     "api_usd_no_cc": 0.396,
+     "output": 5361
+    },
+    "writer": {
+     "calls": 10,
+     "cost_usd": 1.147,
+     "api_usd": 0.907,
+     "api_usd_no_cc": 0.863,
+     "output": 19730
+    },
+    "finisher": {
+     "calls": 2,
+     "cost_usd": 0.816,
+     "api_usd": 0.795,
+     "api_usd_no_cc": 0.788,
+     "output": 23722
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91802,
+     "read": 0,
+     "output": 21948,
+     "cost_usd": 0.89797,
+     "api_usd": 0.898
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 24131,
+     "read": 91800,
+     "output": 245,
+     "cost_usd": 0.14391,
+     "api_usd": 0.1198
+    }
+   ]
+  },
+  "birch-grove_v4loop_20261119-183427": {
+   "picture": "birch-grove",
+   "cuts": [
+    "api-cache",
+    "plan-changes",
+    "plan-picks"
+   ],
+   "sealed": false,
+   "calls": 28,
+   "charged_usd": 4.967,
+   "api_usd": 3.676,
+   "api_usd_no_cc": 3.589,
+   "renders_usd": 0.5782,
+   "tokens": {
+    "input": 397630,
+    "cache_write": 368915,
+    "cache_read": 203844,
+    "output": 74539,
+    "thinking": 39462
+   },
+   "claude_seconds": 839,
+   "minutes": 35.7,
+   "steps": 20,
+   "stages": 8,
+   "renders": 12,
+   "merged": 1,
+   "checker_marks": [
+    1,
+    1,
+    1
+   ],
+   "picks": {
+    "elements": [
+     "sky-blend",
+     "clouds",
+     "trunks-branches",
+     "pines",
+     "foliage",
+     "birch-trunks",
+     "field-grass",
+     "soil-rows",
+     "shaped-object",
+     "round-object",
+     "simple-shape"
+    ],
+    "strokes": [
+     "side-to-side-blend",
+     "x-stroke",
+     "wet-blend",
+     "small-circles",
+     "dry-brush",
+     "scumbling",
+     "thick-to-thin",
+     "liner",
+     "press-and-lift",
+     "dabbing",
+     "fan-tapping",
+     "horizontal-strokes",
+     "toward-vanishing-point",
+     "curved-strokes",
+     "build-from-pieces",
+     "flicking",
+     "dotting",
+     "stamp",
+     "double-load"
+    ],
+    "research": [
+     "  ### Paint thickness and how much is on the brush",
+     "  ### Dabbing and stippling",
+     "  ### Tapping or stamping with a fan brush",
+     "  ### Dry brushing",
+     "  ### Scumbling",
+     "  ### Thick-to-thin stroke with a flat or angle",
+     "  ### Wet-on-wet blending",
+     "  ### The core pattern: dark base, then mid, then small light",
+     "  ### Clouds",
+     "  ### Trees",
+     "  ### Fields and grass",
+     "  ### Edges",
+     "## 5. Common beginner mistakes and the fixes instructors give",
+     "  ### Limited palettes",
+     "  ### Lightening and darkening",
+     "  ### Keeping colors clean"
+    ],
+    "unknown": []
+   },
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.533,
+     "api_usd": 0.387,
+     "api_usd_no_cc": 0.38,
+     "output": 7324
+    },
+    "plan-writer": {
+     "calls": 4,
+     "cost_usd": 1.151,
+     "api_usd": 1.056,
+     "api_usd_no_cc": 1.049,
+     "output": 18689
+    },
+    "chain-checker": {
+     "calls": 3,
+     "cost_usd": 0.419,
+     "api_usd": 0.419,
+     "api_usd_no_cc": 0.403,
+     "output": 5644
+    },
+    "writer": {
+     "calls": 11,
+     "cost_usd": 1.2,
+     "api_usd": 0.941,
+     "api_usd_no_cc": 0.892,
+     "output": 19790
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 1.663,
+     "api_usd": 0.873,
+     "api_usd_no_cc": 0.866,
+     "output": 23092
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A0 the picks",
+     "sent": 30054,
+     "read": 0,
+     "output": 820,
+     "cost_usd": 0.16667,
+     "api_usd": 0.1667
+    },
+    {
+     "label": "A1 the plan",
+     "sent": 26483,
+     "read": 30052,
+     "output": 16311,
+     "cost_usd": 0.46464,
+     "api_usd": 0.4646
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 18567,
+     "read": 56531,
+     "output": 1358,
+     "cost_usd": 0.1313,
+     "api_usd": 0.1127
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 76966,
+     "read": 0,
+     "output": 200,
+     "cost_usd": 0.38883,
+     "api_usd": 0.3119
+    }
+   ]
+  },
+  "highland-cow_v4loop_20261119-175434": {
+   "picture": "highland-cow",
+   "cuts": [],
+   "sealed": true,
+   "calls": 25,
+   "charged_usd": 5.379,
+   "api_usd": 4.426,
+   "api_usd_no_cc": 4.346,
+   "renders_usd": 0.779,
+   "tokens": {
+    "input": 76,
+    "cache_write": 415987,
+    "cache_read": 442180,
+    "output": 98138,
+    "thinking": 49205
+   },
+   "claude_seconds": 1028,
+   "minutes": 36.0,
+   "steps": 22,
+   "stages": 8,
+   "renders": 13,
+   "merged": 2,
+   "checker_marks": [
+    2
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.481,
+     "api_usd": 0.35,
+     "api_usd_no_cc": 0.343,
+     "output": 6378
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.977,
+     "api_usd": 1.979,
+     "api_usd_no_cc": 1.972,
+     "output": 42262
+    },
+    "chain-checker": {
+     "calls": 1,
+     "cost_usd": 0.363,
+     "api_usd": 0.201,
+     "api_usd_no_cc": 0.196,
+     "output": 1943
+    },
+    "writer": {
+     "calls": 14,
+     "cost_usd": 1.443,
+     "api_usd": 1.025,
+     "api_usd_no_cc": 0.972,
+     "output": 21209
+    },
+    "finisher": {
+     "calls": 2,
+     "cost_usd": 1.115,
+     "api_usd": 0.871,
+     "api_usd_no_cc": 0.864,
+     "output": 26346
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91806,
+     "read": 0,
+     "output": 26205,
+     "cost_usd": 1.25854,
+     "api_usd": 0.9831
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 27894,
+     "read": 91804,
+     "output": 7929,
+     "cost_usd": 0.40008,
+     "api_usd": 0.2885
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 16460,
+     "read": 119694,
+     "output": 8128,
+     "cost_usd": 0.31816,
+     "api_usd": 0.7072
+    }
+   ]
+  },
+  "highland-cow_v4loop_20261119-175908": {
+   "picture": "highland-cow",
+   "cuts": [],
+   "sealed": false,
+   "calls": 11,
+   "charged_usd": 3.356,
+   "api_usd": 2.712,
+   "api_usd_no_cc": 2.681,
+   "renders_usd": 0.8589,
+   "tokens": {
+    "input": 34,
+    "cache_write": 299416,
+    "cache_read": 306607,
+    "output": 44942,
+    "thinking": 17439
+   },
+   "claude_seconds": 438,
+   "minutes": 13.3,
+   "steps": 21,
+   "stages": 7,
+   "renders": 14,
+   "merged": 1,
+   "checker_marks": [
+    2,
+    1,
+    1
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.484,
+     "api_usd": 0.353,
+     "api_usd_no_cc": 0.346,
+     "output": 6555
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.724,
+     "api_usd": 1.732,
+     "api_usd_no_cc": 1.725,
+     "output": 33172
+    },
+    "chain-checker": {
+     "calls": 3,
+     "cost_usd": 1.147,
+     "api_usd": 0.626,
+     "api_usd_no_cc": 0.609,
+     "output": 5215
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91813,
+     "read": 0,
+     "output": 18566,
+     "cost_usd": 1.10582,
+     "api_usd": 0.8304
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 20407,
+     "read": 91811,
+     "output": 7361,
+     "cost_usd": 0.32882,
+     "api_usd": 0.2472
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 15266,
+     "read": 112214,
+     "output": 7245,
+     "cost_usd": 0.28945,
+     "api_usd": 0.6548
+    }
+   ]
+  },
+  "highland-cow_v4loop_20261119-183412": {
+   "picture": "highland-cow",
+   "cuts": [
+    "api-cache",
+    "plan-changes"
+   ],
+   "sealed": false,
+   "calls": 25,
+   "charged_usd": 5.077,
+   "api_usd": 3.763,
+   "api_usd_no_cc": 3.691,
+   "renders_usd": 0.824,
+   "tokens": {
+    "input": 362877,
+    "cache_write": 429161,
+    "cache_read": 203409,
+    "output": 71970,
+    "thinking": 38362
+   },
+   "claude_seconds": 797,
+   "minutes": 35.5,
+   "steps": 20,
+   "stages": 7,
+   "renders": 13,
+   "merged": 2,
+   "checker_marks": [
+    2
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.493,
+     "api_usd": 0.358,
+     "api_usd_no_cc": 0.351,
+     "output": 6727
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.541,
+     "api_usd": 1.407,
+     "api_usd_no_cc": 1.4,
+     "output": 19838
+    },
+    "chain-checker": {
+     "calls": 1,
+     "cost_usd": 0.194,
+     "api_usd": 0.194,
+     "api_usd_no_cc": 0.188,
+     "output": 1563
+    },
+    "writer": {
+     "calls": 11,
+     "cost_usd": 1.188,
+     "api_usd": 0.932,
+     "api_usd_no_cc": 0.887,
+     "output": 20704
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 1.662,
+     "api_usd": 0.872,
+     "api_usd_no_cc": 0.865,
+     "output": 23138
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91848,
+     "read": 0,
+     "output": 18014,
+     "cost_usd": 0.81952,
+     "api_usd": 0.8195
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 20063,
+     "read": 91846,
+     "output": 754,
+     "cost_usd": 0.13376,
+     "api_usd": 0.1137
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 113209,
+     "read": 0,
+     "output": 1070,
+     "cost_usd": 0.58744,
+     "api_usd": 0.4742
+    }
+   ]
+  },
+  "highland-cow_v4loop_20261119-183415": {
+   "picture": "highland-cow",
+   "cuts": [
+    "api-cache",
+    "plan-changes",
+    "plan-picks"
+   ],
+   "sealed": true,
+   "calls": 23,
+   "charged_usd": 4.027,
+   "api_usd": 3.535,
+   "api_usd_no_cc": 3.46,
+   "renders_usd": 0.5543,
+   "tokens": {
+    "input": 188564,
+    "cache_write": 362680,
+    "cache_read": 199127,
+    "output": 70996,
+    "thinking": 36844
+   },
+   "claude_seconds": 783,
+   "minutes": 34.7,
+   "steps": 22,
+   "stages": 7,
+   "renders": 15,
+   "merged": 3,
+   "checker_marks": [
+    2,
+    0
+   ],
+   "picks": {
+    "elements": [
+     "sky-blend",
+     "clouds",
+     "far-hills",
+     "water",
+     "simple-shape",
+     "foliage",
+     "field-grass",
+     "shaggy-animal",
+     "shaped-object",
+     "fine-lines"
+    ],
+    "strokes": [
+     "side-to-side-blend",
+     "x-stroke",
+     "wet-blend",
+     "small-circles",
+     "dry-brush",
+     "scumbling",
+     "horizontal-strokes",
+     "horizontal-dashes",
+     "curved-strokes",
+     "dabbing",
+     "fan-tapping",
+     "build-from-pieces",
+     "thick-to-thin",
+     "flicking",
+     "press-and-lift",
+     "liner",
+     "dotting"
+    ],
+    "research": [
+     "  ### Paint thickness and how much is on the brush",
+     "  ### Long horizontal stroke (sky and water blending)",
+     "  ### Dabbing and stippling",
+     "  ### Dry brushing",
+     "  ### Thick-to-thin stroke with a flat or angle",
+     "  ### Flicking (grass, fur)",
+     "  ### Liner work",
+     "  ### The core pattern: dark base, then mid, then small light",
+     "  ### Clouds",
+     "  ### Mountains and hills",
+     "  ### Fields and grass",
+     "  ### Trees",
+     "  ### Edges",
+     "  ### Color shift as it dries",
+     "  ### Painting over wet versus dry layers",
+     "  ### Limited palettes",
+     "  ### Lightening and darkening",
+     "  ### Keeping colors clean",
+     "## 5. Common beginner mistakes and the fixes instructors give"
+    ],
+    "unknown": []
+   },
+   "by_helper": {
+    "setup": {
+     "calls": 5,
+     "cost_usd": 0.502,
+     "api_usd": 0.366,
+     "api_usd_no_cc": 0.359,
+     "output": 7115
+    },
+    "plan-writer": {
+     "calls": 4,
+     "cost_usd": 1.104,
+     "api_usd": 1.012,
+     "api_usd_no_cc": 1.005,
+     "output": 17580
+    },
+    "chain-checker": {
+     "calls": 2,
+     "cost_usd": 0.455,
+     "api_usd": 0.455,
+     "api_usd_no_cc": 0.444,
+     "output": 4205
+    },
+    "writer": {
+     "calls": 10,
+     "cost_usd": 1.083,
+     "api_usd": 0.844,
+     "api_usd_no_cc": 0.801,
+     "output": 16510
+    },
+    "finisher": {
+     "calls": 2,
+     "cost_usd": 0.883,
+     "api_usd": 0.858,
+     "api_usd_no_cc": 0.851,
+     "output": 25586
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A0 the picks",
+     "sent": 30031,
+     "read": 0,
+     "output": 847,
+     "cost_usd": 0.16709,
+     "api_usd": 0.1671
+    },
+    {
+     "label": "A1 the plan",
+     "sent": 25123,
+     "read": 30029,
+     "output": 14859,
+     "cost_usd": 0.4288,
+     "api_usd": 0.4288
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 17583,
+     "read": 55148,
+     "output": 1028,
+     "cost_usd": 0.1195,
+     "api_usd": 0.1019
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 74342,
+     "read": 0,
+     "output": 846,
+     "cost_usd": 0.38863,
+     "api_usd": 0.3143
+    }
+   ]
+  },
+  "sleeping-cat_v4loop_20261119-175436": {
+   "picture": "sleeping-cat",
+   "cuts": [],
+   "sealed": false,
+   "calls": 25,
+   "charged_usd": 5.517,
+   "api_usd": 4.521,
+   "api_usd_no_cc": 4.45,
+   "renders_usd": 0.6454,
+   "tokens": {
+    "input": 80,
+    "cache_write": 433028,
+    "cache_read": 610607,
+    "output": 96516,
+    "thinking": 47278
+   },
+   "claude_seconds": 1002,
+   "minutes": 36.4,
+   "steps": 22,
+   "stages": 7,
+   "renders": 13,
+   "merged": 1,
+   "checker_marks": [
+    2
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 4,
+     "cost_usd": 0.419,
+     "api_usd": 0.302,
+     "api_usd_no_cc": 0.295,
+     "output": 5371
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.784,
+     "api_usd": 1.789,
+     "api_usd_no_cc": 1.782,
+     "output": 35496
+    },
+    "chain-checker": {
+     "calls": 1,
+     "cost_usd": 0.277,
+     "api_usd": 0.168,
+     "api_usd_no_cc": 0.162,
+     "output": 2922
+    },
+    "writer": {
+     "calls": 12,
+     "cost_usd": 1.408,
+     "api_usd": 0.99,
+     "api_usd_no_cc": 0.946,
+     "output": 21238
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 1.628,
+     "api_usd": 1.272,
+     "api_usd_no_cc": 1.265,
+     "output": 31489
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91865,
+     "read": 0,
+     "output": 19481,
+     "cost_usd": 1.12453,
+     "api_usd": 0.8489
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 21170,
+     "read": 91863,
+     "output": 7730,
+     "cost_usd": 0.34232,
+     "api_usd": 0.2577
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 16120,
+     "read": 113029,
+     "output": 8285,
+     "cost_usd": 0.31725,
+     "api_usd": 0.6823
+    }
+   ]
+  },
+  "sleeping-cat_v4loop_20261119-175911": {
+   "picture": "sleeping-cat",
+   "cuts": [],
+   "sealed": true,
+   "calls": 26,
+   "charged_usd": 5.636,
+   "api_usd": 4.147,
+   "api_usd_no_cc": 4.061,
+   "renders_usd": 0.6071,
+   "tokens": {
+    "input": 78,
+    "cache_write": 448435,
+    "cache_read": 481560,
+    "output": 97579,
+    "thinking": 40959
+   },
+   "claude_seconds": 979,
+   "minutes": 32.4,
+   "steps": 22,
+   "stages": 7,
+   "renders": 12,
+   "merged": 2,
+   "checker_marks": [
+    1,
+    1,
+    1
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 4,
+     "cost_usd": 0.444,
+     "api_usd": 0.324,
+     "api_usd_no_cc": 0.317,
+     "output": 6315
+    },
+    "plan-writer": {
+     "calls": 3,
+     "cost_usd": 1.79,
+     "api_usd": 1.384,
+     "api_usd_no_cc": 1.377,
+     "output": 35606
+    },
+    "chain-checker": {
+     "calls": 3,
+     "cost_usd": 0.686,
+     "api_usd": 0.383,
+     "api_usd_no_cc": 0.366,
+     "output": 3956
+    },
+    "writer": {
+     "calls": 13,
+     "cost_usd": 1.451,
+     "api_usd": 1.042,
+     "api_usd_no_cc": 0.995,
+     "output": 21428
+    },
+    "finisher": {
+     "calls": 3,
+     "cost_usd": 1.265,
+     "api_usd": 1.013,
+     "api_usd_no_cc": 1.006,
+     "output": 30274
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91881,
+     "read": 0,
+     "output": 19365,
+     "cost_usd": 1.12234,
+     "api_usd": 0.8467
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 20894,
+     "read": 91879,
+     "output": 8023,
+     "cost_usd": 0.34597,
+     "api_usd": 0.2833
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 16794,
+     "read": 112769,
+     "output": 8218,
+     "cost_usd": 0.32125,
+     "api_usd": 0.2541
+    }
+   ]
+  },
+  "sleeping-cat_v4loop_20261119-183418": {
+   "picture": "sleeping-cat",
+   "cuts": [
+    "api-cache",
+    "plan-changes"
+   ],
+   "sealed": false,
+   "calls": 30,
+   "charged_usd": 5.394,
+   "api_usd": 4.061,
+   "api_usd_no_cc": 3.976,
+   "renders_usd": 0.6158,
+   "tokens": {
+    "input": 420490,
+    "cache_write": 433088,
+    "cache_read": 284939,
+    "output": 74473,
+    "thinking": 37338
+   },
+   "claude_seconds": 854,
+   "minutes": 33.2,
+   "steps": 21,
+   "stages": 8,
+   "renders": 12,
+   "merged": 3,
+   "checker_marks": [
+    1,
+    1
+   ],
+   "picks": null,
+   "by_helper": {
+    "setup": {
+     "calls": 4,
+     "cost_usd": 0.411,
+     "api_usd": 0.292,
+     "api_usd_no_cc": 0.285,
+     "output": 4891
+    },
+    "plan-writer": {
+     "calls": 4,
+     "cost_usd": 1.476,
+     "api_usd": 1.456,
+     "api_usd_no_cc": 1.449,
+     "output": 16421
+    },
+    "chain-checker": {
+     "calls": 2,
+     "cost_usd": 0.278,
+     "api_usd": 0.278,
+     "api_usd_no_cc": 0.267,
+     "output": 3025
+    },
+    "writer": {
+     "calls": 15,
+     "cost_usd": 1.467,
+     "api_usd": 1.085,
+     "api_usd_no_cc": 1.032,
+     "output": 23693
+    },
+    "finisher": {
+     "calls": 5,
+     "cost_usd": 1.761,
+     "api_usd": 0.95,
+     "api_usd_no_cc": 0.944,
+     "output": 26443
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A1 the plan",
+     "sent": 91814,
+     "read": 0,
+     "output": 15242,
+     "cost_usd": 0.76391,
+     "api_usd": 0.7639
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 17180,
+     "read": 91812,
+     "output": 162,
+     "cost_usd": 0.1075,
+     "api_usd": 0.0903
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 109734,
+     "read": 0,
+     "output": 898,
+     "cost_usd": 0.56663,
+     "api_usd": 0.5666
+    },
+    {
+     "label": "C3 plan-check after the merge",
+     "sent": 2656,
+     "read": 109730,
+     "output": 119,
+     "cost_usd": 0.0376,
+     "api_usd": 0.035
+    }
+   ]
+  },
+  "sleeping-cat_v4loop_20261119-183421": {
+   "picture": "sleeping-cat",
+   "cuts": [
+    "api-cache",
+    "plan-changes",
+    "plan-picks"
+   ],
+   "sealed": true,
+   "calls": 24,
+   "charged_usd": 4.455,
+   "api_usd": 3.737,
+   "api_usd_no_cc": 3.663,
+   "renders_usd": 0.7658,
+   "tokens": {
+    "input": 188425,
+    "cache_write": 425906,
+    "cache_read": 123625,
+    "output": 77333,
+    "thinking": 41135
+   },
+   "claude_seconds": 846,
+   "minutes": 35.6,
+   "steps": 24,
+   "stages": 7,
+   "renders": 12,
+   "merged": 2,
+   "checker_marks": [
+    2
+   ],
+   "picks": {
+    "elements": [
+     "furry-animal",
+     "shaped-object",
+     "sky-blend",
+     "foliage",
+     "simple-shape",
+     "field-grass",
+     "fine-lines",
+     "round-object",
+     "trunks-branches"
+    ],
+    "strokes": [
+     "build-from-pieces",
+     "curved-strokes",
+     "dry-brush",
+     "flicking",
+     "thick-to-thin",
+     "press-and-lift",
+     "liner",
+     "dotting",
+     "dabbing",
+     "side-to-side-blend",
+     "x-stroke",
+     "wet-blend",
+     "horizontal-strokes",
+     "small-circles",
+     "scumbling",
+     "double-load"
+    ],
+    "research": [
+     "  ### Paint thickness and how much is on the brush",
+     "  ### Long horizontal stroke (sky and water blending)",
+     "  ### X stroke, criss-cross, slip-slap",
+     "  ### Double load and triple load",
+     "  ### Dabbing and stippling",
+     "  ### Dry brushing",
+     "  ### Scumbling",
+     "  ### Wet-on-wet blending",
+     "  ### Press and lift (comma, petal and leaf strokes)",
+     "  ### Thick-to-thin stroke with a flat or angle",
+     "  ### Flicking (grass, fur)",
+     "  ### Liner work",
+     "  ### Dotting",
+     "  ### Painting over wet versus dry layers",
+     "  ### Opacity of common beginner pigments",
+     "  ### The core pattern: dark base, then mid, then small light",
+     "  ### Trees",
+     "  ### Round objects (pumpkins, balloons, fruit)",
+     "  ### Edges",
+     "  ### Limited palettes",
+     "  ### Lightening and darkening",
+     "  ### Keeping colors clean"
+    ],
+    "unknown": [
+     "Common beginner mistakes and the fixes instructors give"
+    ]
+   },
+   "by_helper": {
+    "setup": {
+     "calls": 4,
+     "cost_usd": 0.422,
+     "api_usd": 0.302,
+     "api_usd_no_cc": 0.295,
+     "output": 5384
+    },
+    "plan-writer": {
+     "calls": 4,
+     "cost_usd": 1.12,
+     "api_usd": 1.028,
+     "api_usd_no_cc": 1.021,
+     "output": 18326
+    },
+    "chain-checker": {
+     "calls": 1,
+     "cost_usd": 0.139,
+     "api_usd": 0.139,
+     "api_usd_no_cc": 0.133,
+     "output": 1844
+    },
+    "writer": {
+     "calls": 13,
+     "cost_usd": 1.528,
+     "api_usd": 1.101,
+     "api_usd_no_cc": 1.054,
+     "output": 21552
+    },
+    "finisher": {
+     "calls": 2,
+     "cost_usd": 1.246,
+     "api_usd": 1.166,
+     "api_usd_no_cc": 1.159,
+     "output": 30227
+    }
+   },
+   "plan_calls": [
+    {
+     "label": "A0 the picks",
+     "sent": 29968,
+     "read": 0,
+     "output": 1107,
+     "cost_usd": 0.17198,
+     "api_usd": 0.172
+    },
+    {
+     "label": "A1 the plan",
+     "sent": 25076,
+     "read": 29966,
+     "output": 16216,
+     "cost_usd": 0.45569,
+     "api_usd": 0.4557
+    },
+    {
+     "label": "A2 plan-check round 1",
+     "sent": 18286,
+     "read": 55038,
+     "output": 197,
+     "cost_usd": 0.10637,
+     "api_usd": 0.0881
+    },
+    {
+     "label": "C3 merge asked by check",
+     "sent": 74067,
+     "read": 0,
+     "output": 806,
+     "cost_usd": 0.38645,
+     "api_usd": 0.3124
+    }
+   ]
+  }
+ },
+ "ab": [
+  {
+   "round": "cut3",
+   "picture": "highland-cow",
+   "grader": 1,
+   "A": "highland-cow_v4loop_20261119-183412",
+   "B": "highland-cow_v4loop_20261119-175434",
+   "prefer": "A",
+   "preferred": "cut",
+   "scores": {
+    "cut": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      11,
+      12,
+      19
+     ],
+     "note": "The pictures build like a real painting: sky, hills, loch, field, a flat cow block, horns, then locks. But step 11, titled for the horn tips, also shows streaky hair over the cow, and in step 12 the horns turn from flat cream to shaded with nothing in the words for it. Step 19 shows no visible change, and step 1 already shows sloping hill bands, a mild ghost the tip only half explains."
+    },
+    "baseline": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      6,
+      15,
+      21
+     ],
+     "note": "Most steps read cleanly, and the horn steps and grass layers are well paced. Step 6 contradicts itself: the words give a small strip at the right edge, but the tip and picture flood the whole lower canvas with water. Step 15 is magic, since a dark copper step shows the nose and muzzle coming in plus light gold locks. As a result step 21 paints a nose that is already there, inside an outline far too large for a nose. Steps 2, 3 and 5 show almost nothing, and step 3's 'Cream gold' recipe is mostly white and ultramarine, so it mixes a grey."
+    }
+   },
+   "note": "A's mismatches are smaller and come later: shading that shows up early, and one blank step. B has a self-contradicting loch step and a step where the face appears under a paint that can't make it. The finishes are of similar quality, so the edge is slight.",
+   "cost_usd": 0.2428,
+   "seconds": 33.4,
+   "pictures": 45
+  },
+  {
+   "round": "cut3",
+   "picture": "highland-cow",
+   "grader": 2,
+   "A": "highland-cow_v4loop_20261119-175434",
+   "B": "highland-cow_v4loop_20261119-183412",
+   "prefer": "B",
+   "preferred": "cut",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      15,
+      6,
+      13
+     ],
+     "note": "Step 15 is the lesson's big problem. It names only Copper rust, yet the whole face, fringe, golden locks and pink nose appear at once. That leaves steps 16 and 21 with almost nothing to do. Step 6's words describe a small loch strip, but its tip and picture fill the whole lower canvas with water. Steps 3, 5 and 14 show no visible change, and step 13's horns turn gold and brown, beyond a shadow."
+    },
+    "cut": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      11,
+      12,
+      19
+     ],
+     "note": "The cow builds in believable stages: flat block, shading, copper locks, golden locks, glow, nose, then features, so the face never jumps in. Step 11 has two problems: it asks the same Rust brown as the block to darken things, and it adds blotchy hair over the coat. In step 12 the horns change colour although the step is about coat shading. Step 19's stalks don't show, then appear in step 20 on the other side from where 19 put them."
+    }
+   },
+   "note": "B's subject is built gradually and its loch and hills match their words. A's step 15 jumps from a blob to a finished face with a single copper, and its loch step contradicts itself. Both lessons show ghost hill bands in the first sky step. B also has its own mismatches (11, 12, 19-20), but they are smaller. Fairly clear preference for B, not overwhelming.",
+   "cost_usd": 0.2355,
+   "seconds": 29.9,
+   "pictures": 45
+  },
+  {
+   "round": "cut3",
+   "picture": "sleeping-cat",
+   "grader": 1,
+   "A": "sleeping-cat_v4loop_20261119-183418",
+   "B": "sleeping-cat_v4loop_20261119-175911",
+   "prefer": "B",
+   "preferred": "baseline",
+   "scores": {
+    "cut": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      16,
+      20
+     ],
+     "note": "The pictures look like a real painting in progress, but the paints often don't match them. Step 2's green leaves change nothing, and step 4 (a wall step) makes the full tree view appear in the window. Step 16 names Cat gray and the ears turn pink with faint stripes added, step 19 brings in a white muzzle no step paints, and step 20 names Cat gray for a pink nose and also shows whiskers early. Shadow gray (14) and sunlit fur (18) use the same recipe as the base gray but come out darker and lighter."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      2,
+      11
+     ],
+     "note": "Step 4 is the weak point: the trees appear by magic during the wall step, and ghost blotches (a pinkish patch and a dark box) sit where the frame shadow will go, while the words contradict themselves on where the wall ends. Steps 2 and 3 leave almost no visible change, and step 11's deep ochre turns a flat block into a fully knitted blanket. From the cat on, the paints and pictures match well: pink ears and nose use Ear pink, and the muzzle, eyes and whiskers each arrive in their own step."
+    }
+   },
+   "note": "Both have the same weak start (leaves that don't show, then trees appearing in the wall step) and the same large jump to knit texture. B's cat steps name the paint the picture actually shows, while A has three or four steps naming gray for things that turn pink or white. Fairly clear preference for B, though B's step 4 ghosts keep it from being decisive.",
+   "cost_usd": 0.254,
+   "seconds": 35.1,
+   "pictures": 46
+  },
+  {
+   "round": "cut3",
+   "picture": "sleeping-cat",
+   "grader": 2,
+   "A": "sleeping-cat_v4loop_20261119-175911",
+   "B": "sleeping-cat_v4loop_20261119-183418",
+   "prefer": "A",
+   "preferred": "baseline",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      2,
+      11
+     ],
+     "note": "Steps 2 and 3 change almost nothing you can see, then step 4 (the blue wall) suddenly shows a full leafy view through the window plus a brownish blotch and dark mark where the frame and sill will go. Step 11 jumps from flat gold to fully knitted stitches in one ochre pass. From step 5 to the end, the steps follow each other cleanly, and the paints match the pictures, from the cat block-in through the whiskers."
+    },
+    "cut": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      16,
+      20
+     ],
+     "note": "Step 1 already shows a faint line where the sill will go. Step 4 (wall) shows a full tree view with no leaf paint, and step 5 shows the frame's dark shadow strip a step before it is named. Several cat steps name the wrong paint for what appears: step 16 says Cat gray but the ears turn pink and stripe lines appear; step 18's light flicks use the same Cat gray; step 20's nose is Cat gray but comes out pink, with whiskers already there. Step 19's picture also adds a white muzzle that step 15 said to leave gray."
+    }
+   },
+   "note": "Both lessons have the same early magic: leaves show up in the wall step. B adds repeated paint-versus-picture mismatches on the cat (ears, fur, nose) and features that appear before their steps (muzzle, whiskers), which would mislead a beginner. A's later half is clean. The preference is clear but not overwhelming.",
+   "cost_usd": 0.2449,
+   "seconds": 30.4,
+   "pictures": 46
+  },
+  {
+   "round": "cut3",
+   "picture": "birch-grove",
+   "grader": 1,
+   "A": "birch-grove_v4loop_20261119-183424",
+   "B": "birch-grove_v4loop_20261119-175438",
+   "prefer": "A",
+   "preferred": "cut",
+   "scores": {
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      18,
+      10
+     ],
+     "note": "Steps 11 to 17 build the boulder and birches cleanly, and they read like a real half-done painting. Step 1 already shows the misty trunks and none of the Warm gold it names. Steps 8 and 18 show outlined, ring-like leaf patches that no tapping brush makes, and step 10 quietly turns the tan path back into forest floor while its words are about sunbeams."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      5,
+      8,
+      4
+     ],
+     "note": "From step 9 on, B is clean and readable: the birches, branches and layered leaves build step by step and end close to the photo. The early pines break the lesson. Step 4 gives hard vertical boxes instead of fan-stamped clumps, step 5 swaps them for a whole misty pine forest, and step 8 puts detailed dark pines on the right under a step that names only Olive ochre for bushes. Step 1 already shows pinkish trunks, and the 'dry-brushed' rays in step 2 are a hard-edged splat."
+    }
+   },
+   "note": "A's faults are odd-looking leaf patches and one path that disappears; a beginner can still follow them. B's pine area changes shape twice with no instruction for it, which would stop the painter early in the lesson. B's later steps and finish are nicer, so the edge is slight.",
+   "cost_usd": 0.2237,
+   "seconds": 26.3,
+   "pictures": 44
+  },
+  {
+   "round": "cut3",
+   "picture": "birch-grove",
+   "grader": 2,
+   "A": "birch-grove_v4loop_20261119-175438",
+   "B": "birch-grove_v4loop_20261119-183424",
+   "prefer": "A",
+   "preferred": "baseline",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      8,
+      5,
+      4
+     ],
+     "note": "From step 9 on, A builds steadily. Bushes, boulder, flat cream trunks, bark, branches and three leaf layers each match their words and paints. The early steps are the problem. Step 1 already shows faint far trunks. Step 4's pines are hard dark boxes. Step 5, named for a sage light side, reshapes the pines and adds far trunks. Step 8 names only Olive ochre, yet a full dark spruce mass appears on the right. Step 19 also covers almost the whole floor in one go."
+    },
+    "cut": {
+     "real": 2,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      10,
+      8,
+      18
+     ],
+     "note": "Step 1 already shows clearly drawn birch trunks with branches, and step 3 then changes nothing. Step 8 adds dark branch lines and ring-outlined blobs that no tapping brush makes, and step 18 has the same ring stamps on the floor. Step 10 is named for sunbeams but erases most of the tan path from step 7. Step 14 turns the misty centre trunk into a full birch. The trunk, bark and boulder steps in the middle are clean and paintable."
+    }
+   },
+   "note": "Both lessons have ghosts in step 1 and some magic in the early steps. B has more such faults, and its faults reach later steps: the path vanishes in step 10, ring stamps appear in steps 8 and 18, the centre trunk changes in step 14, and step 3 does nothing. A's problems are mostly in steps 4 to 8 and it runs clean after that. Slight preference, not a strong one.",
+   "cost_usd": 0.2254,
+   "seconds": 26.6,
+   "pictures": 44
+  },
+  {
+   "round": "cut4",
+   "picture": "highland-cow",
+   "grader": 1,
+   "A": "highland-cow_v4loop_20261119-183415",
+   "B": "highland-cow_v4loop_20261119-175434",
+   "prefer": "A",
+   "preferred": "cut",
+   "scores": {
+    "cut": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      10,
+      19
+     ],
+     "note": "Most steps look like a real half-done painting, and the middle of the lesson works well: flat olive, tapped hillside, flat meadow, a flat cow block with legs, flat horns, then locks. Step 4's words give a bottom 5 in from the top, but its tip and picture carry violet ridges with gold streaks to the bottom edge, and step 3 already hints at those ridges. Step 10 names only Deep grass green, yet gold-lit grass appears. Step 19 names only liner lines, yet the whole muzzle comes into focus."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      1,
+      6,
+      15
+     ],
+     "note": "Step 1 names only sky colors, but layered hill ridges are already on the canvas, before any hill step. Step 6's words describe a sliver of loch about 1 3/4 in wide, while its tip and picture fill the lower canvas with water and add a dark near range. Step 15 names Copper rust, yet the nose and muzzle appear. Steps 2, 3, 5 and 16 show almost no change, so the painter can't check their work. The grass and rim-light steps at the end are good."
+    }
+   },
+   "note": "A has fewer and milder problems: its surprises are extra gold or detail, while B shows a thing early (step 1 ridges), contradicts itself badly on the loch, and brings the face in at a step naming copper. B's late grass and rim-light steps are nice but don't make up for that. Fairly clear, not overwhelming.",
+   "cost_usd": 0.2448,
+   "seconds": 29.7,
+   "pictures": 47
+  },
+  {
+   "round": "cut4",
+   "picture": "highland-cow",
+   "grader": 2,
+   "A": "highland-cow_v4loop_20261119-175434",
+   "B": "highland-cow_v4loop_20261119-183415",
+   "prefer": "B",
+   "preferred": "cut",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      15,
+      6,
+      1
+     ],
+     "note": "Step 15 names only Copper rust but its picture adds the whole face, a pink nose and golden locks, so steps 16 and 21 then change almost nothing. Step 6's words ask for a 1 3/4 in sliver of loch, while its tip and picture flood the whole lower canvas with water, and the darker near range appears there unasked. Step 1 already shows rolling hill ridges in the gray blue, and Sunlit olive is a muddy olive on the hillside in step 8 but a bright yellow-green meadow in step 9."
+    },
+    "cut": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      19,
+      4,
+      10
+     ],
+     "note": "The cow builds in order: flat silhouette, then shade, horns, ginger locks, gold locks, rim, nose, and no face shows before its step. The steps that do mislead: step 4's words stop the hills 5 in from the top while the tip and picture run them to the bottom edge, and ghost ridges already show in step 3. Step 10's dry-brushed dark green somehow brightens the meadow, and step 19 turns a pink sliver into a fully modelled muzzle using only a liner and Dark umber."
+    }
+   },
+   "note": "B's pictures follow its words more closely and build the cow without a magic jump, while A has a big one at step 15 and a contradictory loch at step 6. Both share recipe and colour mismatches and words that disagree on bounds, so this is a fairly clear preference, not overwhelming.",
+   "cost_usd": 0.2461,
+   "seconds": 31.7,
+   "pictures": 47
+  },
+  {
+   "round": "cut4",
+   "picture": "sleeping-cat",
+   "grader": 1,
+   "A": "sleeping-cat_v4loop_20261119-175911",
+   "B": "sleeping-cat_v4loop_20261119-183421",
+   "prefer": "A",
+   "preferred": "baseline",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      11,
+      15
+     ],
+     "note": "Steps 2 and 3 show almost no leaves, then step 4 (a wall blend) shows finished leaves in the window plus ghost frame and sill marks; that is magic and a pre-ghost at the start. Step 11 (ochre creases) shows the whole knit texture appearing at once, and step 15 adds fur texture across the whole cat, with an outline size that contradicts 'cover the whole cat'. From step 16 on, each step's picture matches its words and paints cleanly, apart from blotchy dark marks inside the ears in step 18."
+    },
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      20,
+      4,
+      16
+     ],
+     "note": "B shares A's step 2-4 problem: the leaves don't show until the wall step, and there are ghost marks. It also adds a dark triangle blotch on the wall that persists for many steps. Step 16 shows a mechanical stripe-pattern underpainting that is hard to read. Step 20 (fur flicks) shows the eyes, nose and whiskers appearing, and step 21 strengthens them, ahead of their own steps; the words admit this but it is still magic. 'Soft pink' has no white in its recipe, so it would mix orange-brown, not the pink shown, and step 23's outline (15 in wide) doesn't fit a nose."
+    }
+   },
+   "note": "Both have the same weak opening, with no visible leaves and then finished leaves on the wall step, and both have a knit-texture jump. B adds face features appearing two to three steps before they are painted, a wall blotch, a paint that can't make the colour shown, and an odd stripe-underpainting step. A's second half runs cleanly step by step, so I'd paint from A; a slight-to-clear preference.",
+   "cost_usd": 0.2509,
+   "seconds": 27.7,
+   "pictures": 49
+  },
+  {
+   "round": "cut4",
+   "picture": "sleeping-cat",
+   "grader": 2,
+   "A": "sleeping-cat_v4loop_20261119-183421",
+   "B": "sleeping-cat_v4loop_20261119-175911",
+   "prefer": "B",
+   "preferred": "baseline",
+   "scores": {
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      12,
+      20
+     ],
+     "note": "Steps 2 and 3 change almost nothing, then step 4 (the wall) brings in fully painted leaves along with ghost marks: a pink frame shadow, a dark box and a dark triangle that sits on the wall until step 15. Step 12 jumps from a flat mustard shape to finished braided knit on a step called fold shading. Step 20, a fan-brush gray, brings in the eyes, nose and whiskers, and step 21 strengthens them; both tips admit it. Step 23's outline is 15 in wide for a nose."
+    },
+    "baseline": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      18,
+      11
+     ],
+     "note": "B has the same early fault: steps 2 and 3 show almost no leaves, and step 4 brings them in with pink and dark ghost marks. After that it builds honestly. The sill shadow and sun patches match their words, and the blanket knit starts as ochre V marks before the gold commas. The cat goes base, shadow, white, stripes, ears, fur, then nose, eyes and whiskers each in its own step. Step 18 leaves odd dark blotches inside the pink ears, which step 19 quietly removes."
+    }
+   },
+   "note": "Both share the step-4 problem: leaves appear with the wall, and ghost marks show up early. B then builds the blanket and the cat's face step by step. A shows a jump at step 12 and has the face appear early at steps 20 and 21. Fairly clear preference for B, though not overwhelming.",
+   "cost_usd": 0.2456,
+   "seconds": 24.8,
+   "pictures": 49
+  },
+  {
+   "round": "cut4",
+   "picture": "birch-grove",
+   "grader": 1,
+   "A": "birch-grove_v4loop_20261119-175438",
+   "B": "birch-grove_v4loop_20261119-183427",
+   "prefer": "B",
+   "preferred": "cut",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      5,
+      8,
+      1
+     ],
+     "note": "The later steps (13-21: trunks, shading, bark, leaves) build cleanly and agree with their words. The early steps have magic. Step 1 already shows the far trunks. Step 4's pines are hard dark boxes, and step 5, a sage light-side step, repaints them as a full pine wood and adds the far trunks. Step 8, which names one olive bush colour, also turns the pines into detailed dark trees. Step 2's rays are solid yellow blotches, not dry-brushing."
+    },
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      6,
+      9
+     ],
+     "note": "Step 1 shows three trunks before their step, and step 6 leaves odd olive blotches floating across the mist. Step 9 says its paint goes mostly on the mist, yet the ground turns gold, which a beginner tapping pale dots wouldn't get. After that, each step matches its words. Pines, rust floor, path, boulder, trunks, bark and leaves arrive one at a time, with no repainting of earlier parts. The odd outline sizes in steps 3 and 11 don't match the pictures but are harmless."
+    }
+   },
+   "note": "Both lessons show trunks too early in step 1. A also repaints its pines twice in steps whose paints don't cover that, while B's slips are smaller and its pictures follow its words more closely from step 10 on. A slight preference for B, not a strong one.",
+   "cost_usd": 0.2198,
+   "seconds": 21.2,
+   "pictures": 44
+  },
+  {
+   "round": "cut4",
+   "picture": "birch-grove",
+   "grader": 2,
+   "A": "birch-grove_v4loop_20261119-183427",
+   "B": "birch-grove_v4loop_20261119-175438",
+   "prefer": "A",
+   "preferred": "cut",
+   "scores": {
+    "cut": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      6,
+      9
+     ],
+     "note": "Step 1 already shows three trunks in the sky blend; the tip admits they belong to step 3, so that is a thing on the canvas before its step. Step 6 leaves hard olive blotches floating in the mist and sky, and step 9's 'sunlit leaf tips' mostly turns the misty ground gold, which the step's name does not prepare the painter for. From the pines onward the steps build plainly and in order: canopy, floor, path, boulder, then the birches in flat, shade, bark and light, each matching its words."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 2,
+     "agree": 2,
+     "worst_steps": [
+      5,
+      4,
+      1
+     ],
+     "note": "Step 1 already holds a whole ghost forest of trunks and tree shapes. Step 4's pines are hard rectangular blocks no fan brush makes. Step 5 then swaps those blocks for a different pine stand with far trunks crossing it; the tip admits the trunks come in step 6, so it is magic. The pines change shape again at step 8 under a bush colour. The second half (floor, boulder, birches, layered leaves) is clean and close to the photo, but a beginner would be lost by step 5."
+    }
+   },
+   "note": "Both open with ghost trees in step 1. B's early sky-and-pines run has bigger problems: blocky stamps, then pines and trunks that appear and change with no instruction. A's faults (stray blotches, a mislabelled step 9) are milder and its build is steadier. B's finish is closer to the photo, but A is the one I could follow; a slight preference.",
+   "cost_usd": 0.2234,
+   "seconds": 23.6,
+   "pictures": 44
+  }
+ ]
+}

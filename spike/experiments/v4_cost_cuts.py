@@ -52,6 +52,7 @@ def summary(lessons: list[str]):
         r = v4_loop.report(lesson)
         state = json.loads((lesson / "v4" / "state.json").read_text())
         plan = json.loads((lesson / "plan.json").read_text())
+        calls = json.loads((lesson / "v4" / "calls.json").read_text())
         st["runs"][lesson.name] = {
             "picture": picture_of(lesson), "cuts": r["cuts"], "sealed": bool(state.get("sealed")),
             "calls": r["calls"], "charged_usd": r["claude_cost_usd"], "api_usd": r["api_usd"],
@@ -64,9 +65,8 @@ def summary(lessons: list[str]):
                           for k, v in r["by_helper"].items()},
             "plan_calls": [{"label": c["label"], "sent": c["input_tokens"] + c["cache_write_tokens"],
                             "read": c["cache_read_tokens"], "output": c["output_tokens"],
-                            "cost_usd": c["cost_usd"], "api_usd": round(c["api_usd"], 4)}
-                           for c in json.loads((lesson / "v4" / "calls.json").read_text())
-                           if c["helper"] == "plan-writer"]}
+                            "cost_usd": c["cost_usd"], "api_usd": round(api, 4)}
+                           for c, api in zip(calls, v4_loop.api_costs(calls)) if c["helper"] == "plan-writer"]}
     save(st)
     for name, r in sorted(st["runs"].items(), key=lambda x: (",".join(x[1]["cuts"]), x[1]["picture"])):
         print(f"{name:44} {','.join(r['cuts']) or 'baseline':34} charged ${r['charged_usd']:.2f}  api "
