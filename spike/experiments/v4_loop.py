@@ -45,6 +45,15 @@ MODEL = "opus"
 # The API's published rates for Claude Opus 5.5, dollars a million tokens (the claude-api skill, cached 2026-11-03).
 # Claude Code's own cost figure (`total_cost_usd`, costBasis "list") agrees with these on every call checked.
 RATE = {"input": 4.00, "output": 20.00, "cache_write_5m": 5.00, "cache_write_1h": 8.00, "cache_read": 0.20}
+# #267: Claude Sonnet 5.5's, from the same table: $2 in, $10 out, a cache read $0.10, the writes 1.25 and 2 times input.
+RATES = {"opus": RATE, "sonnet": {"input": 2.00, "output": 10.00, "cache_write_5m": 2.50, "cache_write_1h": 4.00,
+                                  "cache_read": 0.10}}
+
+
+def rates_of(model) -> dict:
+    """The rates for a call's model: a name ("sonnet", "opus") or the list Claude Code reports ("claude-sonnet-5-5")."""
+    names = " ".join(model) if isinstance(model, (list, tuple)) else str(model or "")
+    return RATES["sonnet"] if "sonnet" in names else RATE
 # A picture costs about width x height / 750 tokens once its long side is brought down to 1568 pixels. Checked on
 # this model with three of the lesson's own pictures: 1599, 2045 and 898 tokens measured, 1622, 2097, 878 by this.
 LONG_SIDE = 1568
@@ -58,7 +67,8 @@ def picture_tokens(w: int, h: int) -> int:
     return round(w * s * h * s / 750)
 
 
-def cost(u: dict) -> float:
+def cost(u: dict, model=None) -> float:
+    RATE = rates_of(model)
     cc = u.get("cache_creation") or {}
     w1h = cc.get("ephemeral_1h_input_tokens", 0)
     w5m = cc.get("ephemeral_5m_input_tokens", 0)
@@ -90,16 +100,18 @@ CACHE_ENV = {"1h": {}, "5m": {"FORCE_PROMPT_CACHING_5M": "1"}, "none": {"DISABLE
 
 
 def call_claude(content: list[dict], system: str, *, session: str | None = None, cwd: Path,
-                cache: str = "1h") -> dict:
+                cache: str = "1h", model: str | None = None, effort: str | None = None) -> dict:
     """One call to Claude: a user message (text and picture blocks, the Messages API's shape) and a system prompt;
     with `session`, the message continues that conversation. `cache` is how its input is cached (CACHE_ENV).
     Returns the reply's text, the session to continue, the usage and the seconds. This is the one place that knows
     about Claude Code: an API client replaces it."""
     cmd = ["claude", "-p", "--input-format", "stream-json", "--output-format", "stream-json", "--verbose",
-           "--model", MODEL, "--tools", "", "--strict-mcp-config", "--setting-sources", "",
+           "--model", model or MODEL, "--tools", "", "--strict-mcp-config", "--setting-sources", "",
            "--disable-slash-commands", "--system-prompt", system]
     if session:
         cmd += ["--resume", session]
+    if effort:  # #267: Claude Code's default is medium
+        cmd += ["--effort", effort]
     msg = {"type": "user", "message": {"role": "user", "content": content}}
     t0 = time.time()
     for attempt in range(3):
@@ -172,6 +184,8 @@ class Helper:
         self.run, self.name, self.system = run, name, system
         self.session: str | None = None
         self.turn = 0
+        self.model: str | None = None  # #267: None is Opus, Claude Code's default effort (medium)
+        self.effort: str | None = None
 
     def ask(self, m: Message, label: str, last: bool = False) -> str:
         """`last`: nothing follows this message in the conversation, as far as the program knows beforehand."""
@@ -180,7 +194,8 @@ class Helper:
         # Claude Code's switch for no cache also stops a message reading what the conversation cached before it,
         # so only a conversation's one and only message goes uncached; a last message later on still reads.
         cache = ("none" if last and self.turn == 1 else "5m") if "api-cache" in self.run.cuts else "1h"
-        r = call_claude(m.blocks, self.system, session=self.session, cwd=self.run.cwd, cache=cache)
+        r = call_claude(m.blocks, self.system, session=self.session, cwd=self.run.cwd, cache=cache, model=self.model,
+                        effort=self.effort)
         self.session = r["session"]
         u = r["usage"]
         rec = {"helper": self.name, "label": label, "turn": self.turn, "session": r["session"], "cache": cache,
@@ -188,7 +203,7 @@ class Helper:
                "cache_write_tokens": u.get("cache_creation_input_tokens", 0),
                "cache_read_tokens": u.get("cache_read_input_tokens", 0), "output_tokens": u.get("output_tokens", 0),
                "thinking_tokens": (u.get("output_tokens_details") or {}).get("thinking_tokens", 0),
-               "cost_usd": round(cost(u), 5), "cli_cost_usd": r["cli_cost_usd"],  # the session's total so far
+               "cost_usd": round(cost(u, r["model"]), 5), "effort": self.effort, "cli_cost_usd": r["cli_cost_usd"],  # the session's total so far
                "model": r["model"],
                "sent": {"pictures": m.pictures, "picture_tokens": m.picture_tokens, "text_chars": m.text_chars,
                         "system_chars": len(self.system) if self.turn == 1 else 0},
@@ -972,12 +987,15 @@ class Run:
             self.note("learned", learned)
 
     # ----------------------------------------------------------------------------------------- the whole run
-    def go(self):
+    def go(self, until: str | None = None):
         self.helpers: dict[str, Helper] = {}
         self.phase("setup", self.setup)
         self.phase("plan", self.plan)
         self.phase("chain", self.chain)
         self.phase("checker", self.checker)
+        if until == "checker":  # #267: the words and the finish are written by v4_writer_cost.py
+            self.save()
+            return
         self.phase("words", self.words)
         if "finish" not in self.state["done"]:
             self.note("learned", [
@@ -1028,6 +1046,7 @@ def api_costs(calls: list[dict], without_claude_code: bool = False) -> list[floa
             if j == 0 and without_claude_code:
                 new = max(0, new - CLAUDE_CODE_ADDED)
             follows = j + 1 < len(idx) and _when(calls[idx[j + 1]])[0] - end <= 300
+            RATE = rates_of(c.get("model"))
             out[n] = (new * (RATE["cache_write_5m"] if follows else RATE["input"]) + read * RATE["cache_read"]
                       + c["output_tokens"] * RATE["output"]) / 1e6
     return out
@@ -1107,6 +1126,7 @@ def main(argv=None):
     r.add_argument("photo")
     r.add_argument("--lesson")
     r.add_argument("--cuts", default="", help="comma-separated, from: " + ", ".join(CUTS))
+    r.add_argument("--until", choices=["checker"], help="stop after this phase (#267)")
     p = sub.add_parser("report")
     p.add_argument("lesson")
     a = ap.parse_args(argv)
@@ -1116,7 +1136,7 @@ def main(argv=None):
     stem = Path(a.photo).stem
     lesson = Path(a.lesson) if a.lesson else ROOT / "output" / f"{stem}_v4loop_{datetime.now():%Y%m%d-%H%M%S}"
     cuts = [c for c in a.cuts.split(",") if c]
-    Run(a.photo, lesson.resolve(), cuts).go()
+    Run(a.photo, lesson.resolve(), cuts).go(a.until)
 
 
 if __name__ == "__main__":

@@ -137,6 +137,14 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   is the spike. It ends in a recommendation for the owner, since it changes "Claude does the checks".
 - **C3. The writers and the finisher** ($2.35 of the $4.94). Left until Wave 1 says what a writer is sent: cutting
   a shape that is about to change is work done twice.
+  **Run 2026-11-19 (#267, `docs/spikes/v4-writer-cost.md`): adopt the lean words and the lean finisher, drop Sonnet,
+  the owner's call 2026-11-20.** With Wave 1's words a lesson is $3.86 at the API's rates; with the two cuts, $3.06. The lean
+  words (smaller pictures, a shorter fact sheet, feedback answered with only the changed steps, the arc as the
+  writer's next message) cost $0.85 against $1.33 and score level on the student test (+0.08 ± 0.10), with 5 of 6
+  blind reads tied. The lean finisher (smaller pictures, the diagram look only when one fails to draw) costs $0.50
+  against $0.80, and the graders preferred it 4 of 6, none for the baseline. Sonnet lost on both sides (the words
+  −0.30 ± 0.11, 5 of 6 reads for the baseline). Low effort and a split finisher were a little worse. After #250 a new
+  cat had no merge asked for.
 
 ## The later bet: an easel coach (#257, parked)
 
