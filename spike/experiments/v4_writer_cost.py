@@ -402,7 +402,8 @@ def as_arc_failure(c: dict) -> dict:
 
 # ------------------------------------------------------------------------------------------------- the words, written
 FINAL: dict[str, dict] = {}  # each picture's checked step lines, which v4_arc.compose reads as its `base_words`
-arc.base_words = lambda pic: FINAL[pic]
+_ARC_BASE_WORDS = arc.base_words  # v4_arc's own, for a picture this module wrote no words for (its tests)
+arc.base_words = lambda pic: FINAL[pic] if pic in FINAL else _ARC_BASE_WORDS(pic)
 
 
 def write_words(set_: str, variant: str, picture: str):

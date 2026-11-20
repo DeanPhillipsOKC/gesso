@@ -13,6 +13,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "experiments"))
 
 import v31_combined as v  # noqa: E402
+import v4_arc as arc  # noqa: E402
+import v4_student as student  # noqa: E402
 import v4_teacher as teacher  # noqa: E402
 import v4_writer_cost as wc  # noqa: E402
 
@@ -23,13 +25,15 @@ class BriefTests(unittest.TestCase):
         self.addCleanup(self.dir.cleanup)
         for target, attr, value in [(v, "RESULTS", Path(self.dir.name) / "r.json"), (wc, "RESULTS", wc.RESULTS),
                                     (wc, "WORK", Path(self.dir.name)), (teacher, "BRIEF", teacher.BRIEF),
-                                    (teacher, "BENCH", teacher.BENCH), (teacher, "WORK", teacher.WORK)]:
+                                    (teacher, "BENCH", teacher.BENCH), (teacher, "WORK", teacher.WORK),
+                                    (arc, "BENCH", arc.BENCH), (student, "BENCH", student.BENCH)]:
             p = mock.patch.object(target, attr, value)
             p.start()
             self.addCleanup(p.stop)
-        p = mock.patch.dict(teacher.FORM, dict(teacher.FORM))
-        p.start()
-        self.addCleanup(p.stop)
+        for d in (teacher.FORM, wc.WORD_VARIANTS, wc.SETS):  # setup() adds to these, and wc.point moves the benches
+            p = mock.patch.dict(d, dict(d))
+            p.start()
+            self.addCleanup(p.stop)
 
     def test_the_brief_gets_the_three_changes_once(self):
         v.setup()
