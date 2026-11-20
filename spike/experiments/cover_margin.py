@@ -84,7 +84,7 @@ PICTURES = ["highland-cow", "sleeping-cat", "birch-grove"]
 
 FILLS = ("canvas", "wash", "edge", "open", "line")
 MARGINS = (0.5, 0.75, 1.0)  # inches
-COVERS = ("all", "detail", "staged", "later")
+COVERS = ("all", "detail", "staged", "later", "next")
 VARIANTS = [f"{f}-{m:g}-{c}" for f in FILLS for m in MARGINS for c in COVERS]
 
 DETAIL = 3.0  # Lab units of `local` detail: a layer at or above this has detail where it is covered (flat coats
@@ -201,6 +201,20 @@ def later_stage(L: dict, u: int) -> np.ndarray:
     stages = [x.get("id") for x in L["plan"]["stages"]]
     at = np.array([stages.index(x["stage"]) for x in L["units"]] + [-1])
     return at[owner_map(L)] > at[u]
+
+
+def next_stage_paints(L: dict, u: int) -> np.ndarray:
+    """Where the next unit after u to lay paint is in the stage right after u's (the owner's ask on #289, after the
+    birch grove's mist stopped for undergrowth four steps away and left a white gap above the floor)."""
+    stages = [x.get("id") for x in L["plan"]["stages"]]
+    at = [stages.index(x["stage"]) for x in L["units"]]
+    laid = laid_by_unit(L)
+    nxt = np.full(laid[0].shape, -1, np.int32)
+    for k in range(len(laid) - 1, u, -1):
+        if at[k] > at[u]:  # work of the same stage is one passage with the layer (the cow's clouds on its sky)
+            nxt[laid[k]] = k
+    stage_of = np.array(at + [-1])
+    return stage_of[nxt] == at[u] + 1
 
 
 def covered(L: dict) -> list[np.ndarray]:
@@ -358,8 +372,10 @@ def variant_steps(L: dict, variant: str, base: list[np.ndarray] | None = None,
         detail = detail or layer_detail(L, cov)
         rich = np.array([r["detail"] for r in detail] + [False])  # index -1: bare canvas
         cov = [c & rich[t] for c, t in zip(cov, tops(L))]
-    if which in ("staged", "later"):  # a thing painted in the same stage is one passage with the layer (the clouds)
+    if which in ("staged", "later", "next"):  # a thing painted in the same stage is one passage with the layer
         cov = [c & later_stage(L, u) for u, c in enumerate(cov)]
+    if which == "next":  # bare canvas left only where the next stage paints it: no gap waits behind finished paint
+        cov = [c & next_stage_paints(L, u) for u, c in enumerate(cov)]
     if fill_kind == "line":
         want = [stop_line(L, c, margin) for c in cov]
     else:

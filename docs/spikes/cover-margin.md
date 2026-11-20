@@ -22,6 +22,11 @@ dropped. The third is the owner's own rule, and he likes its pictures.
   above the floor, left for undergrowth that isn't painted until four steps later. It saves about 1.4 canvases of
   painting on the cow and 0.3 on the birch grove. Neither test can credit that, and that saving is the owner's whole reason
   for #287. See "The owner's rule" below.
+- **`line-1-next` (the owner's rule with the gap fixed, at his ask): a tie on both pictures.** A layer stops only where
+  the next stage's paint lands, so no bare canvas waits behind finished paint. The cow's pictures are the same as
+  `line-1-later`'s; the birch grove's white gap is gone. The birch grove's blind reads: none, none, and both called the
+  bare lower canvas a little cleaner. The student test on the 12 changed steps: 2.92 against 3.12 (−0.21 ± 0.21), level
+  within its noise. See "The gap fixed" below.
 
 The owner looked at the first two versions' pictures. He said they didn't match what he meant: the issue's spec hadn't
 captured it. His notes are on #289.
@@ -288,4 +293,40 @@ the words of the step after a changed run need to follow (see "What it would tak
 
 **Cost of this round:** renders $0.42, and $0.18 for the baseline's second carries on the new steps. Claude: words $1.14,
 grading the carries $0.98 (plus $0.34 on the baseline side), blind reads $4.73 over two rounds.
+
+## The gap fixed (`line-1-next`)
+
+The owner asked for the birch grove's gap to be fixed and the version tested again.
+
+**The rule.** As `line-1-later`, and a layer stops only where the next thing painted there, from a later stage, is in
+the stage right after the layer's (`next_stage_paints`). Work in the layer's own stage doesn't count; on the cow, that
+work is the clouds on the sky. A first try counted it, and the cow's sky then swooped far down on the left where the
+clouds paint next. On the birch grove the mist now stops only above the floor, which the next stage paints, and the
+floor closes it in step 4. The undergrowth is four steps later, so the mist is painted there as before. The cow comes
+out exactly as `line-1-later`: its hills, hillside and meadow each come in the stage right after what they cover.
+Both checks hold. Only birch grove steps 1 to 3 change now; 28% of the mist step's paint is skipped (0.28 of a canvas).
+
+**What was run again.** Only the birch grove, since the cow's pictures didn't change and its words, carries and
+round 2 reads stand. Steps 1 to 3 were rewritten, and step 4, which starts from a changed canvas ($0.43). There were
+two carries of each of steps 1 to 4, and two blind reads with the sides swapped.
+
+**The student test** on what changed in this version (cow steps 1 to 8 from `line-1-later`, birch grove steps 1 to 4):
+
+| | baseline | `line-1-next` |
+|---|---|---|
+| cow (8 steps) | 3.31 | 3.06 |
+| birch grove (4 steps) | 2.75 | 2.62 |
+| all 12 | 3.12 | 2.92 (−0.21 ± 0.21) |
+
+**The blind A/B:** the birch grove none, none. "Leaving the lower canvas white in step 1 is sensible"; "Leaving the
+lower canvas bare in step 1 and painting the floor onto white in step 4 is a little cleaner for a beginner than putting
+ochre over wet-looking blue fog." The cow (round 2 of `line-1-later`, the same pictures and words): none, none.
+
+**Where that leaves it.** All four reads are ties, and the student test is level within its noise, a little below on
+average. The two tests can't credit the painting skipped: about 1.4 canvases on the cow and 0.3 on the birch grove.
+Spikes count only clear wins (`docs/decisions.md`, 2026-11-17), but here the yardstick can't see the benefit, so the
+call is the owner's. An adopt is a new pipeline version: a design by Fable comes first, and it has to cover the facts,
+the Where picture and the words of the step after a changed run ("What it would take").
+
+**Cost of this round:** renders $0.11; Claude: words $0.43, grading the carries $0.24, blind reads $0.99.
 

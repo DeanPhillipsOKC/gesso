@@ -9254,5 +9254,317 @@
     "baseline"
    ]
   }
+ },
+ "bench-next": {
+  "birch-grove": {
+   "variant": "line-1-next",
+   "changed": [
+    {
+     "n": 1,
+     "id": "blend-mist",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 7.677655677655678,
+      "bottom": 0.0,
+      "bare": 0.98,
+      "share": 0.316
+     }
+    },
+    {
+     "n": 2,
+     "id": "dab-dark-wood",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 7.677655677655678,
+      "bottom": 0.0,
+      "bare": 0.98,
+      "share": 0.316
+     }
+    },
+    {
+     "n": 3,
+     "id": "mist-wood-edge",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 7.677655677655678,
+      "bottom": 0.0,
+      "bare": 0.98,
+      "share": 0.316
+     }
+    }
+   ]
+  },
+  "highland-cow": {
+   "variant": "line-1-next",
+   "changed": [
+    {
+     "n": 1,
+     "id": "blend-sky",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 3.33984375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.774
+     }
+    },
+    {
+     "n": 2,
+     "id": "lay-clouds",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 3.33984375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.774
+     }
+    },
+    {
+     "n": 3,
+     "id": "light-clouds",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 3.33984375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.774
+     }
+    },
+    {
+     "n": 4,
+     "id": "lay-hills",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.65234375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.662
+     }
+    },
+    {
+     "n": 5,
+     "id": "shade-hills",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.65234375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.662
+     }
+    },
+    {
+     "n": 6,
+     "id": "lay-loch",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.65234375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.662
+     }
+    },
+    {
+     "n": 7,
+     "id": "lay-hillside",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.74609375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.286
+     }
+    }
+   ]
+  },
+  "sleeping-cat": {
+   "variant": "line-1-next",
+   "changed": []
+  }
+ },
+ "words-next": {
+  "birch-grove": {
+   "steps": {
+    "blend-mist": {
+     "first": "",
+     "start": "Start in the upper left corner of the canvas with Pale gold, crossing short X strokes in a patch about the size of your hand.",
+     "strokes": "Work outward in short crossing X strokes, picking up Haze blue as you move right and down, then Deep haze blue near the right edge of the canvas, crossing each color into the last while wet.",
+     "inside": "Keep the gold to the upper left corner of the canvas, where the low sun glows through the mist. The middle is pale blue-gray, and the deepest blue runs along the right edge of the canvas.",
+     "leave": "Carry the blend down to about 7 3/4 in from the top edge, letting its lower edge go soft and wavy. Leave the white canvas under that line bare, because the forest floor covers it later.",
+     "stop": "The upper canvas reads as one soft fog with no hard lines between colors. Smooth the criss-cross marks with a few long, light side-to-side strokes while wet. Don't let a stripe form where gold meets blue."
+    },
+    "dab-dark-wood": {
+     "first": "Let the misty blend from step 1 dry completely, so the dry brush skims over it instead of mixing in.",
+     "start": "Start at the right edge of the canvas, about 5 1/4 in from the top edge, which is the wood's thick middle. Put only the tip of the dry brush in the paint.",
+     "strokes": "Skim short, light, upright strokes in several passes, working up and leftward like clumps of far treetops. Let the top go ragged in little bumps.",
+     "inside": "Most of the paint goes on the wood's right side and low down, thickest at its bottom. Toward its left side, about 10 1/2 in from the left edge, it thins and breaks up where the fog eats into it.",
+     "leave": "Leave the fog showing through gaps along the ragged top and the left side of the wood, and keep the bare canvas under the wood untouched. Add one small lone dab higher up in the fog, as a distant treetop.",
+     "stop": "Stop when the wood is a soft dark mass about 5 1/2 in wide, its top about 2 3/4 in from the top edge, feathery and never solid. If it starts going on solid, put less paint on the brush tip."
+    },
+    "mist-wood-edge": {
+     "first": "Let the dark wood from step 2 dry completely, or this lighter paint will mix into it and turn muddy.",
+     "start": "Start at the wood's ragged left side, skimming the dry brush tip from the fog into the dark. The mist reaches out to about 9 in from the left edge.",
+     "strokes": "Skim short, light, upright strokes along the wood's left side and down its bottom. Then pull a crown of taller pointed treetops up behind the dark mass, reaching the top edge of the canvas.",
+     "inside": "The paint goes around the dark mass, not on its heart. It makes a misty fringe on the wood's left side and bottom, plus pale far treetops rising behind it, because farther trees sink into the fog.",
+     "leave": "Leave the darkest dark showing toward the right edge of the canvas, and let fog show through every broken mark. Let the ragged bottom fringe reach about 8 1/2 in from the top edge, no lower.",
+     "stop": "Stop when the wood melts into the fog on its left side and bottom, soft pale treetops rise to the top edge, and it stays darkest at the right edge. Don't cover the dark heart from step 2."
+    },
+    "lay-floor": {
+     "first": "Let the fog and the dark wood dry first, because the floor is painted right up against them.",
+     "start": "Start along the bottom edge of the canvas with the rust brown.",
+     "strokes": "Stroke side to side, from edge to edge. Without rinsing, take the warm ochre and paint from the rust band up to the fog's ragged bottom. Then stroke back over the join several times.",
+     "inside": "Keep the rust brown along the bottom edge and the warm ochre at the back by the fog. The far floor is paler in the mist, and the near floor is darker.",
+     "leave": "Keep the fog, the dark wood on the right and the pale trunks clean, but cover all the white canvas in the floor.",
+     "stop": "The floor reaches the left, right and bottom edges, and its top is about 7 1/4 in from the top edge, with the ochre melting into the rust. If you see a hard line between them, add more ochre there and blend again."
+    }
+   },
+   "note": "Things I couldn't fully square: the step 1 picture shows faint pale trunks and a pinkish patch at the left that no step 1 paint makes, and its gold glow is barely visible. The step 2 picture has ochre flecks in the dark wood that Dark blue-green alone won't give. Step 3's tall treetops rising to the top edge go beyond the plan's \"left edge and bottom\".",
+   "cost_usd": 0.2479,
+   "seconds": 53.8,
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 4949,
+    "cache_creation_input_tokens": 18608,
+    "cache_read_input_tokens": 0
+   },
+   "after": {
+    "steps": [
+     4
+    ],
+    "cost_usd": 0.1786
+   }
+  }
+ },
+ "ab_key-next": {
+  "birch-grove-g1": {
+   "picture": "birch-grove",
+   "grader": 1,
+   "A": "variant",
+   "B": "baseline"
+  },
+  "birch-grove-g2": {
+   "picture": "birch-grove",
+   "grader": 2,
+   "B": "variant",
+   "A": "baseline"
+  }
+ },
+ "ab-next": [
+  {
+   "folder": "birch-grove-g1",
+   "picture": "birch-grove",
+   "grader": 1,
+   "preferred": "none",
+   "scores": {
+    "variant": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      1,
+      6,
+      15
+     ],
+     "note": "Steps 5 to 20 are the same as B, word for word and picture for picture. Step 1's picture already shows ghost trunks and a pinkish blotch at the left that the words never mention, and the 'hand-sized gold patch' is barely there. Step 6 shows stark white trunks with branches and bark dots on a step that names soft haze blue and says no bark yet. Step 15 lays camouflage patches over whole trunks, not shade down one edge. The fallen-leaf steps on the path also show blue-gray dashes no paint covers. Leaving the lower canvas white in step 1 is sensible, and step 2's words cover the lone treetop dab the picture shows."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      1,
+      6,
+      15
+     ],
+     "note": "Same as A from step 5 on, so it carries the same step 6 and step 15 mismatches and the unnamed ochre flecks in the step 2 dark wood. Step 1's words do cover the pale ghost trunks ('upright streaks like far trunks') and the faint warmth, so that picture agrees a little better. But it has the beginner cover the whole canvas in blue only to paint the floor over it in step 4. Step 2's words leave out the lone high dab the picture shows."
+    }
+   },
+   "note": "The two lessons differ only in the words of steps 1 to 4, and the pictures are nearly the same. Each has a small edge: B explains the ghost trunks in step 1, while A avoids a wasted blue underlayer and names the step 2 dab. The real problems, step 6's early bark and white trunks and step 15's patchwork shading, are shared, so I'm fairly sure there is no real difference.",
+   "cost_usd": 0.4954
+  },
+  {
+   "folder": "birch-grove-g2",
+   "picture": "birch-grove",
+   "grader": 2,
+   "preferred": "none",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      15,
+      6
+     ],
+     "note": "Steps 5 to 20 are the same as B. Step 1 shows ghost trunks that are already well drawn, plus a pinkish blotch and a small hook mark where the dark wood will go. That is more than 'a few paler streaks', so things are on the canvas before their step. Step 15 shows camouflage patches over every whole trunk, not shading heaviest on the shaded edge. Step 6's far birches come out white, with notches and a branch, not thin Haze blue lines with no bark marks. Step 2's lone dark dab high in the fog is in the picture but not in A's words, and the dark wood has ochre flecks no named paint makes."
+    },
+    "variant": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      15,
+      6
+     ],
+     "note": "Steps 5 to 20 are the same as A, so the same problems carry over: the pre-drawn ghost trunks and blotch in step 1, the all-over camouflage in step 15, and the already-marked white far birches in step 6. Leaving the lower canvas bare in step 1 and painting the floor onto white in step 4 is a little cleaner for a beginner than putting ochre over wet-looking blue fog. B's words also name the lone dab (step 2) and the crown of pale treetops (step 3) that the pictures show."
+    }
+   },
+   "note": "The lessons differ only in steps 1 to 4, and there only slightly. B's words match its pictures a bit better: the lone dab, the treetop crown and the bare lower canvas. That edge is small, and both lessons share the bigger problems in steps 1, 6 and 15. It's a toss-up, leaning slightly toward B.",
+   "cost_usd": 0.4942
+  }
+ ],
+ "report-next": {
+  "variant": "line-1-next",
+  "note": "the cow's pictures are line-1-later's, so its words, carries and round 2 reads stand; only the birch grove was run again",
+  "student": {
+   "birch-grove": {
+    "steps": 4,
+    "baseline": 2.75,
+    "variant": 2.62
+   },
+   "all": {
+    "steps": 12,
+    "baseline": 3.12,
+    "variant": 2.92,
+    "gain": -0.21,
+    "se": 0.21
+   }
+  },
+  "ab": {
+   "birch-grove": [
+    "none",
+    "none"
+   ],
+   "highland-cow (line-1-later round 2)": [
+    "none",
+    "none"
+   ]
+  },
+  "spared": {
+   "birch-grove": {
+    "steps": {
+     "1": 0.28,
+     "3": 0.02
+    },
+    "canvas_total": 0.283
+   }
+  },
+  "cost": {
+   "words": 0.43,
+   "renders": 0.106,
+   "carry_grades": 0.24,
+   "graders": 0.99
+  }
  }
 }
