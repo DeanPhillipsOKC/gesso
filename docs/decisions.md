@@ -318,6 +318,16 @@ with the date.
   the cuts anyway, on the write-up's reading: the cat's faults were a merge `check` asked for and the chain's
   pictures, and two baseline runs made the same way also split 2 of 2 on two pictures. Owner: "Go with your
   recommendations." They live in `spike/experiments/v4_loop.py` (`--cuts`) until v4 is built.
+- **The lesson writer and the finisher are sent less, and stay on Opus (2026-11-20, owner accepted the verdict of
+  #267).** The writer gets its pictures at 512 pixels and a fact sheet without what its lines don't use, answers
+  check-text with only the steps it changes, and is asked for the arc as its conversation's next message. The finisher
+  gets the step pictures at 384 pixels and looks at its diagrams again only when one fails to draw. The words then
+  cost $0.85 a lesson against $1.33 and score level on the student test; the finisher $0.50 against $0.80, and the
+  blind graders found neither worse. A lesson is about $3.06 of Claude at the API's rates
+  (`docs/spikes/v4-writer-cost.md`). Claude Sonnet 5.5 made both worse (the words −0.30 on the student test, 5 of 6
+  blind reads for Opus on each), so don't re-propose it for writing or finishing. The finisher split in two or at low
+  effort is dropped; the words at low effort are parked (no student test, 2 of 6 reads against). Owner: "Yes. Accept
+  the verdict." They live in `spike/experiments/v4_writer_cost.py` until v4 is built.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

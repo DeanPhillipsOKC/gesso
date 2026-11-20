@@ -8,7 +8,7 @@ stops a lesson after the chain's checker, and `v4_student.py --bench` reads anot
 call; `words`, `finish`: what each variant wrote; `ab`: every grader; `report`: the sums below). The student test's
 answers are in `spike/experiments/v4_writer_cost/<variant>.json`. None of the lessons is on the site.
 
-**Verdict: adopt the lean words (`lean`) and the lean finisher (`f-lean`); drop Sonnet on both sides, the split
+**Verdict (accepted by the owner, 2026-11-20, `docs/decisions.md`): adopt the lean words (`lean`) and the lean finisher (`f-lean`); drop Sonnet on both sides, the split
 finisher and the finisher at low effort; park the words at low effort.** With the two adopted, the words and the
 finisher cost **$1.34 a lesson against $2.14** (−$0.80, −37%), and a whole lesson **about $3.06 of Claude at the
 API's rates**, against **$3.86** for Wave 1's words made the same way (sums of the unrounded means). That is still about three times the $1 aim.
