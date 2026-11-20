@@ -196,12 +196,46 @@ baseline's words and finisher.
 - **The teacher's words name paints a step doesn't list.** The baseline finisher's Known problems for the cat list
   nine: "the words name Cat gray, which isn't one of this step's paints" (the shading steps point back at the
   block-in's paint). v3's `check` catches that (`isn't one of its paints`) and sends the stage's writer back; W1's
-  check-text doesn't. v4's build needs the same check for the lesson writer.
+  check-text doesn't. Fixed by the paint check below (#270).
 - **The arc as the writer's next message failed its checks more often**: a feedback round on 3 of 3 lessons (7
   failures in all), against 1 of 3 as its own call (2). After the round none was left. Which checks failed first
   wasn't saved.
 - **`v4_loop.py` can't publish a v4 lesson whole**: `publish --final` holds v3's text rules. None of this spike's
   lessons is sealed.
+
+## The paint check (#270)
+
+Run on 2026-11-20. W1's check-text tests numbers and sides, not paint names, so the lesson writer's words named
+paints their step doesn't list, and the page then shows no recipe for them there. Read the same way as v3's `check`
+(`tools.paints_not_listed`, a sentence at a time), the words already made had **34 such sentences in `lean`** (cow 5,
+cat 12, birch 17) and 24 in the baseline. Nearly all point at paint already on the canvas: "The Wood brown must be
+dry", "Leave the Leaf green dots showing".
+
+The cut `paint-check` (variant `lean-paints`, `lean` with it) adds v3's check to the word flow:
+
+- **The writer**: after check-text's round, the check runs on the lines. What it finds goes back to the writer in
+  the same conversation as its own round (`W1 paints`), answered with only the steps that change (`feedback-changes`).
+  The brief for it: name one of the step's own paints if that is the one meant, or say it without the paint's name
+  ("the gray from step 5"). Then check-text runs again on the new words, and what fails either check is taken out.
+- **The arc**: its back lines are checked the same way, and what fails joins the arc's own round, so it costs no
+  extra call. A back line that still names one goes whole, as a back line check-text fails does.
+- **What still fails is taken out, not renamed** to a paint the step lists. A listed paint the writer didn't mean
+  would tell the painter to load the wrong color, which is worse than a sentence missing. Taking it out is also
+  what both checks already do with what fails. On these three lessons it never came to that.
+
+| | Cow | Cat | Birch | Mean |
+|---|---|---|---|---|
+| Sentences found after check-text | 6 | 22 | 2 | |
+| Left after the round | 0 | 0 | 0 | |
+| In the arc's back lines | 0 | 0 | 0 | |
+| **The paint round** | $0.07 | $0.10 | $0.04 | **$0.07** |
+| `lean-paints`, all the words | $0.96 | $1.24 | $0.97 | $1.05 |
+| `lean` (above) | $0.81 | $0.91 | $0.81 | $0.85 |
+
+**The round costs $0.07 a lesson** beside the lean words' $0.85, so the words come to about **$0.92**. The rest of
+the $1.05 is the writer's first call drawing differently (the cat's $0.71 against $0.52 in `lean`): one run a side,
+and none of it comes from the check, which runs after that call. The final words of all three have no step whose
+lines name a paint it doesn't list. The words were not graded again: the round only rewords the steps it names.
 
 ## Limits
 
@@ -220,7 +254,7 @@ graders $7.22, the student test's graders $5.99: about $34.
 
 ## What's next
 
-- Build `lean` and `f-lean` into v4 (`docs/design/pipeline-v4.md`), with the paint check above for the lesson writer.
+- Build `lean` and `f-lean` into v4 (`docs/design/pipeline-v4.md`), with the paint check (`paint-check`, #270).
 - The plan's writer is now the largest helper ($0.72 to $1.03). C1's two unbuilt fixes for its merge are moot where
   #250 removes the merge.
 - C2 (#221), the chain's checker on a smaller model, is the one model change still open. This spike's Sonnet result

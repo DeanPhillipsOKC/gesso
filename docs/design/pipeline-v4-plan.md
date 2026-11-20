@@ -144,7 +144,8 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   blind reads tied. The lean finisher (smaller pictures, the diagram look only when one fails to draw) costs $0.50
   against $0.80, and the graders preferred it 4 of 6, none for the baseline. Sonnet lost on both sides (the words
   −0.30 ± 0.11, 5 of 6 reads for the baseline). Low effort and a split finisher were a little worse. After #250 a new
-  cat had no merge asked for.
+  cat had no merge asked for. #270 added v3's paint check to the words (a paint a step doesn't list goes back to the
+  writer once): $0.07 a lesson, and none left on C1's three lessons.
 
 ## The later bet: an easel coach (#257, parked)
 
