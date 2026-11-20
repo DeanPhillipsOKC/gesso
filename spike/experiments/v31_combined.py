@@ -1,0 +1,190 @@
+"""The combined v3.1 lesson (`docs/design/pipeline-v3.1.md`, section 12, step 1; under #240).
+
+One lesson, the sleeping cat, with everything the design adopts run together for the first time: the lesson's
+writer in six lines with the lean cuts and the paint check (`v4_writer_cost.py`'s `lean-paints`), the long arc as
+its next message, the design's three changes to the writer's brief (section 5), and the lean finisher (`f-lean`)
+on those words. The pictures are the cat made for #267 after #250 (`v4_writer_cost.py`'s set `new`): no render
+is made.
+
+    .venv/bin/python spike/experiments/v31_combined.py words     # the writer, its checks, the arc
+    .venv/bin/python spike/experiments/v31_combined.py finish    # the finisher on those words
+    .venv/bin/python spike/experiments/v31_combined.py page      # docs/spikes/v31-combined-sleeping-cat.md
+    .venv/bin/python spike/experiments/v31_combined.py report
+
+Results go in `spike/experiments/v31_combined.json`, in `v4_writer_cost.json`'s shape. Experiment code: it changes
+no tool, and the lesson isn't sealed or put on the site.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+sys.path.insert(0, str(HERE))
+
+import v4_arc as arc  # noqa: E402
+import v4_loop as loop  # noqa: E402
+import v4_student as student  # noqa: E402
+import v4_teacher as teacher  # noqa: E402
+import v4_writer_cost as wc  # noqa: E402
+
+RESULTS = HERE / "v31_combined.json"
+SET, PICTURE, WORDS, FINISH = "new", "sleeping-cat", "v31", "f-lean"
+LESSON = "sleeping-cat_v4loop_20261119-215313"
+LINE_WORDS = 40
+PAGE = ROOT / "docs" / "spikes" / "v31-combined-sleeping-cat.md"
+PICS = ROOT / "docs" / "spikes" / "v31-combined"
+
+# The design's three changes to the writer's brief (section 5). Each is (the spike's words, the new words).
+BRIEF_CHANGES = [
+    # 3. the writer is told what the page shows beside its words
+    ("The step's own picture is shown too, but write so that the step can be done without looking at it: the painter\n"
+     "compares with it when they are done.",
+     "The step's own picture is shown too, but write so that the step can be done without looking at it: the painter\n"
+     "compares with it when they are done.\n\n"
+     "The page shows two more things you can point at. Beside each step is its **Where picture**: the canvas before\n"
+     "the step, dimmed, with the area this step paints outlined on it. Before step 1 there is an optional **transfer\n"
+     "outline**: the outlines of the main shapes on a grid of quarters, which the painter may have drawn on the canvas\n"
+     "in pencil. You may send the painter to either (\"inside the outline on the Where picture\"), once in a step and\n"
+     "only where it helps. It never replaces saying where the paint goes: the outline is the step's whole area, not\n"
+     "where inside it the paint sits."),
+    # 1. an earlier step's marks by their look and step, not their paint
+    ("- **Name parts by the sheet's names** (\"the balloon\", \"the rolling fields\"), and an earlier step's marks by their\n"
+     "  paint (\"the Deep balloon red stripe\"), so the tool can find what you mean.",
+     "- **Name parts by the sheet's names** (\"the balloon\", \"the rolling fields\"), so the tool can find what you mean.\n"
+     "- **Name an earlier step's marks by their look and their step** (\"the brown streaks from step 8\", \"the gray first\n"
+     "  coat\"), never by their paint's name: a second tool fails a sentence that names a paint its step doesn't list.\n"
+     "  The one exception is a side word that needs the name for the tool to find the marks (\"left of the Deep balloon\n"
+     "  red stripe\"); prefer a sentence that needs neither."),
+]
+FORM_CHANGE = ("one to three sentences each, under about 130 words in all.",
+               f"one to three sentences each, under about 130 words in all. No line is over {LINE_WORDS} words: a "
+               "tool counts them.")
+
+
+def setup():
+    """Point v4_writer_cost at this spike's results file and lesson, and put the brief's changes in."""
+    wc.RESULTS = RESULTS
+    wc.WORD_VARIANTS[WORDS] = wc.WORD_VARIANTS["lean-paints"]
+    if not RESULTS.exists():
+        RESULTS.write_text(json.dumps({"lessons": {SET: {PICTURE: LESSON}}}, indent=1) + "\n")
+    for old, new in BRIEF_CHANGES:
+        if new not in teacher.BRIEF:
+            assert teacher.BRIEF.count(old) == 1, old
+            teacher.BRIEF = teacher.BRIEF.replace(old, new)
+    old, new = FORM_CHANGE
+    if new not in teacher.FORM["slots"]:
+        assert teacher.FORM["slots"].count(old) == 1
+        teacher.FORM["slots"] = teacher.FORM["slots"].replace(old, new)
+    wc.point(SET)
+
+
+def words(args):
+    setup()
+    if PICTURE in wc.state()["words"].get(SET, {}).get(WORDS, {}) and not args.again:
+        return print("the words are written (--again writes them again)")
+    wc.write_words(SET, WORDS, PICTURE)
+
+
+def finish(args):
+    setup()
+    wc.finish_one(SET, WORDS, FINISH, PICTURE)
+
+
+def long_lines(rec: dict) -> list[tuple[str, str, int]]:
+    return [(sid, x["kind"], len(x["text"].split())) for sid, lines in rec["final"].items() for x in lines
+            if len(x["text"].split()) > LINE_WORDS]
+
+
+def report(args=None) -> dict:
+    setup()
+    st = wc.state()
+    rec = st["words"][SET][WORDS][PICTURE]
+    calls = st["calls"]
+    cost = loop.api_costs(calls)
+    by = {}
+    for c, d in zip(calls, cost):
+        by.setdefault((c.get("part"), c.get("label") or c.get("helper")), []).append(round(d, 3))
+    parts = {p: round(sum(d for c, d in zip(calls, cost) if c.get("part") == p), 2) for p in ("words", "finish")}
+    fin = st["finish"].get(SET, {}).get(f"{WORDS}+{FINISH}", {}).get(PICTURE)
+    out = {"steps": len(rec["final"]), "words": rec["words_count"], "arc_words": rec["arc_words"],
+           "back_lines": rec["backs"], "check": rec["check"], "lines_over_40_words": long_lines(rec),
+           "missing": rec["missing"], "cost_api": parts, "calls": {f"{k[0]}: {k[1]}": v for k, v in by.items()},
+           "finish": fin and {k: fin[k] for k in ("specced", "drawn", "looked", "publish_refused")},
+           "known_problems": fin and len((fin.get("review") or {}).get("text_issues") or [])}
+    print(json.dumps(out, indent=1))
+    return out
+
+
+def page(args):
+    """The whole lesson as a painter would read it, for the owner: the opening, each stage, every step's lines and
+    picture, then what the finisher listed as known problems."""
+    from PIL import Image
+    setup()
+    st = wc.state()
+    rec = st["words"][SET][WORDS][PICTURE]
+    fin = st["finish"].get(SET, {}).get(f"{WORDS}+{FINISH}", {}).get(PICTURE) or {}
+    les, a = teacher.packet(PICTURE), rec["arc"]
+    PICS.mkdir(parents=True, exist_ok=True)
+    for name in ["photo.jpg", "finish.jpg"] + [f"steps/{s['n']:02d}.jpg" for s in les["steps"]]:
+        im = Image.open(teacher.BENCH / PICTURE / name).convert("RGB")
+        im.thumbnail((560, 560))
+        im.save(PICS / Path(name).name, quality=78, optimize=True)
+    rel = PICS.name
+    out = ["# The sleeping cat as a v3.1 lesson (the combined lesson)", "",
+           "The whole lesson as a painter would read it, made the way `docs/design/pipeline-v3.1.md` describes "
+           "(section 12, step 1). The pictures are v3's. How it was made and what it cost: "
+           "[v31-combined.md](v31-combined.md).", "",
+           f"![The photo]({rel}/photo.jpg)", "",
+           f"Canvas: {les['canvas_in'][0]:g} in wide, {les['canvas_in'][1]:g} in tall. {len(les['steps'])} steps.", ""]
+    op = a.get("opening") or {}
+    out += ["## Before you start", ""]
+    if op.get("welcome"):
+        out += [op["welcome"], ""]
+    if op.get("light"):
+        out += [f"**The light:** {op['light']}", ""]
+    out += ["**What this painting teaches:**", ""]
+    out += [f"- **{arc.card_name(sk['card'])}** (steps {', '.join(map(str, sk.get('steps') or []))}): "
+            f"{sk.get('how', '')}" for sk in op.get("skills") or []]
+    if op.get("road"):
+        out += ["", f"**The way there:** {op['road']}"]
+    out.append("")
+    by = {s["id"]: s for s in les["steps"]}
+    for stg in arc.stages_of(PICTURE):
+        o = (a.get("stages") or {}).get(stg["id"]) or {}
+        out += [f"## {stg['name']}", "", f"*{o.get('for', '')}*", ""]
+        for x in stg["steps"]:
+            s = by[x["id"]]
+            out += [f"### Step {s['n']}: {s['name']}", "",
+                    "**Paints:** " + "; ".join(f"{p['name']} ({p['recipe']})" for p in s.get("paints") or []), "",
+                    f"**Brush:** {s.get('brushes')}", ""]
+            for line in arc.page_lines(rec["final"].get(s["id"]) or []):
+                k, _, t = line.partition(": ")
+                out.append(f"- **{k}:** {t}")
+            out += ["", f"![After step {s['n']}]({rel}/{s['n']:02d}.jpg)", ""]
+        if o.get("end"):
+            out += [f"*Where this stage ends:* {o['end']}", ""]
+    issues = (fin.get("review") or {}).get("text_issues") or []
+    if issues:
+        out += ["## Known problems", "", "What the finisher listed for this lesson:", ""]
+        out += [f"- **{i.get('step_id')}** ({i.get('kind')}): {i.get('problem')}" for i in issues]
+        out.append("")
+    PAGE.write_text("\n".join(out))
+    print(PAGE)
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    sub.add_parser("words").add_argument("--again", action="store_true")
+    for name in ("finish", "page", "report"):
+        sub.add_parser(name)
+    args = ap.parse_args(argv)
+    {"words": words, "finish": finish, "page": page, "report": report}[args.cmd](args)
+
+
+if __name__ == "__main__":
+    main()

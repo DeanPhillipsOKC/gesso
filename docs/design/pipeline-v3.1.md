@@ -1,6 +1,6 @@
 # Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
 
-**A draft (2026-11-20), not built.** It is the design the v4 plan's Order, step 5 asks for
+**A draft (2026-11-20), not built. The owner read it and merged it (#275), and set the gate (section 13).** It is the design the v4 plan's Order, step 5 asks for
 (`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't
 replace it. Read that file first: every section number below that isn't this file's own is v3's.
 
@@ -283,10 +283,11 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
 tools, and its rounds are one conversation. In the skill it is a subagent that reads `words/lesson/` and is sent
 back with a message. It should read the same files and write the same JSON, but nobody has run it.
 
-## 13. The gate (proposed; the owner sets it)
+## 13. The gate (set by the owner, 2026-11-20)
 
 The v4 plan proposed four lines. With no second pipeline to choose between, the gate is what lets the build's
-branch merge, so this draft changes one of them:
+branch merge, so this draft changed one of them, and the owner took it as written ("Default",
+`docs/decisions.md`):
 
 - three hands-off bench lessons (the cow, the cat, the birch grove) made from the branch, sealed;
 - the student test's score is no lower than v3's words on any of them, and higher across the three;
