@@ -33,6 +33,53 @@ def run(output: Path, name: str, version: str, made_with: str = "render", kind: 
     return d
 
 
+LANTERN = ("A glowing brass lantern hanging from a snowy wooden post on a moonlit winter night, with dark pines and "
+           "rolling snow behind")
+
+
+# words no title may end on, kept apart from site_lessons.DANGLING so a word missing there is caught
+ENDS = {"a", "an", "the", "and", "or", "of", "on", "in", "at", "from", "to", "by", "over", "under", "above", "below",
+        "beneath", "among", "around", "along", "between", "behind", "beside", "near", "into", "for", "its", "their"}
+
+
+class TileTitleTests(unittest.TestCase):  # #247
+    def test_a_short_subject_keeps_its_first_part(self):
+        self.assertEqual(site_lessons.tile_title("A small red sailboat with white sails, at sunset"),
+                         "A small red sailboat")
+
+    def test_a_long_subject_loses_its_last_phrase_not_half_a_word(self):
+        self.assertEqual(site_lessons.tile_title(LANTERN), "A glowing brass lantern hanging from a snowy wooden post")
+
+    def test_no_title_ends_in_a_cut_word_or_a_dangling_word(self):
+        subjects = [LANTERN, "word " * 40, "A long " + "very " * 20 + "tall tree on a hill",
+                    "Big " + "redwoods " * 12 + "and a small cabin on a hill"]
+        for subject in subjects:
+            for limit in range(20, 90):
+                title = site_lessons.tile_title(subject, limit)
+                first = subject.split(",")[0].split(" with ")[0]
+                self.assertLessEqual(len(title), limit)
+                self.assertTrue(first.startswith(title))
+                self.assertTrue(len(title) == len(first) or first[len(title)] == " ", (subject, limit, title))
+                self.assertNotIn(title.split(" ")[-1].lower(), ENDS)
+
+    def test_a_cut_never_leaves_a_preposition_before_a_dropped_article(self):  # #273 review
+        for subject in ("A fox standing in a misty forest clearing among the tall ferns and the fallen birch logs",
+                        "A row of red tulips growing in front of a mossy stone wall above the river at dawn today",
+                        "A lighthouse standing tall on a rocky point with the crashing waves beneath the dark sky"):
+            title = site_lessons.tile_title(subject, 60)
+            self.assertNotIn(title.split(" ")[-1].lower(), ENDS, title)
+
+    def test_doubled_spaces_and_a_huge_first_word(self):
+        self.assertEqual(site_lessons.tile_title("A  red   barn on a hill", 12), "A red barn")
+        title = site_lessons.tile_title("A" + "b" * 100, 40)
+        self.assertEqual(len(title), 40)
+        self.assertTrue(title.endswith("\u2026"))
+
+    def test_a_title_within_the_limit_is_left_whole(self):
+        title = "A gray tabby cat curled asleep on a yellow knit blanket on a wooden windowsill"  # 78 characters
+        self.assertEqual(site_lessons.tile_title(title + ", a blue wall behind"), title)
+
+
 class SiteVersionTests(unittest.TestCase):
     def setUp(self):
         tmp = Path(tempfile.mkdtemp())
@@ -226,17 +273,33 @@ class SiteVersionTests(unittest.TestCase):
                   for v in x["versions"]}
         self.assertFalse(listed & set(off))
 
-    def addable(self, d: Path) -> Path:
+    def addable(self, d: Path, subject: str = "Balloon") -> Path:
         """A run site_lessons.add can take: a subject and a finish picture, sealed again."""
         from PIL import Image
         data = json.loads((d / "lesson.json").read_text(encoding="utf-8"))
-        data["photo_read"] = {"subject": "Balloon"}
+        data["photo_read"] = {"subject": subject}
         (d / "lesson.json").write_text(json.dumps(data), encoding="utf-8")
         Image.new("RGB", (8, 8)).save(d / "f.png")
         if (d / "sealed.json").exists():
             (d / "sealed.json").unlink()
         provenance.seal(d, data)
         return d
+
+    def test_refresh_rebuilds_a_title_cut_mid_word(self):  # #247: the snow lantern's tile
+        from unittest import mock
+        first = self.addable(self.output / "balloon_skill_20261112-084806", LANTERN)
+        with mock.patch.object(site_lessons, "known_problems_for", return_value=0):
+            site_lessons.add(first, "lavender", self.site)
+            manifest = self.site / "lessons.json"
+            lessons = json.loads(manifest.read_text(encoding="utf-8"))
+            self.assertEqual(lessons[0]["title"], "A glowing brass lantern hanging from a snowy wooden post")
+            lessons[0]["title"] = LANTERN[:80]  # as the old [:80] made it
+            manifest.write_text(json.dumps(lessons), encoding="utf-8")
+            site_lessons.refresh(self.site, self.output)
+        entry = json.loads(manifest.read_text(encoding="utf-8"))[0]
+        self.assertEqual(entry["title"], "A glowing brass lantern hanging from a snowy wooden post")
+        self.assertIn(">A glowing brass lantern hanging from a snowy wooden post<",
+                      (self.site / "index.html").read_text(encoding="utf-8"))
 
     def test_tile_has_a_pick_list_with_the_current_version_selected(self):
         versions = site_lessons.add_versions(self.site, "lavender", "balloon_skill_20261111-142734", self.output)

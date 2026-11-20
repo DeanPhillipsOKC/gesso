@@ -21,7 +21,7 @@
         "current": true
       }
     ],
-    "known": 18
+    "known": 16
   },
   {
     "slug": "highland-cow",
@@ -89,7 +89,7 @@
         "current": false
       }
     ],
-    "known": 7
+    "known": 9
   },
   {
     "slug": "birch-grove",
@@ -359,7 +359,7 @@
   },
   {
     "slug": "snow-lantern",
-    "title": "A glowing brass lantern hanging from a snowy wooden post on a moonlit winter nig",
+    "title": "A glowing brass lantern hanging from a snowy wooden post",
     "subject": "A glowing brass lantern hanging from a snowy wooden post on a moonlit winter night, with dark pines and rolling snow behind",
     "steps": 19,
     "canvas": "16 x 12 in",
@@ -399,6 +399,6 @@
         "current": false
       }
     ],
-    "known": 5
+    "known": 6
   }
 ]
