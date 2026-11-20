@@ -158,3 +158,24 @@ class LibraryTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CheckerCostTests(unittest.TestCase):
+    """#268: Haiku's rates, and how a setting's answers are scored against Opus's."""
+
+    def test_haiku_rates(self):
+        u = {"input_tokens": 1_000_000, "output_tokens": 1_000_000}
+        self.assertAlmostEqual(vl.cost(u, ["claude-haiku-5-5"]), 0.60)
+        self.assertAlmostEqual(vl.cost(u, "sonnet"), 12.00)
+        self.assertAlmostEqual(vl.cost(u, ["claude-opus-5-5"]), 24.00)
+
+    def test_compare(self):
+        import v4_checker_cost as cc
+        ref = [{"look": "U01", "stray": False, "left": True}, {"look": "U02", "stray": False, "left": False},
+               {"look": "U03", "stray": True, "left": False}]
+        got = [{"look": "U01", "stray": False, "left": True}, {"look": "U02", "stray": True, "left": False},
+               {"look": "U03", "stray": False, "left": False}]
+        c = cc.compare(ref, got)
+        self.assertEqual((c["ref_marks"], c["caught"], c["agree_looks"]), (2, 1, 1))
+        self.assertEqual(c["missed"], ["U03:stray"])
+        self.assertEqual(c["added"], ["U02:stray"])
