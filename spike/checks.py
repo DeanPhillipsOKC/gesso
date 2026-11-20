@@ -85,6 +85,8 @@ def strokes_and_brushes(plan: dict, known: dict) -> list[str]:
 
 def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] | None) -> list[str]:
     """What Claude still has to write, percentages, long lines, and lines that no longer match the plan."""
+    import draft_text
+
     out = []
     for st in plan.get("stages") or []:
         for s in st.get("steps") or []:
@@ -95,11 +97,13 @@ def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] 
             if t is None or not t.get("lines"):
                 out.append(f"{sid}: no drafted lines in text.json. Run draft-text.")
                 continue
-            if not (t.get("summary") or "").strip():
+            if draft_text.written(t["lines"]):
+                pass  # the lesson writer's six lines hold what a summary and a tip held (v3.1; check's own rules: #277)
+            elif not (t.get("summary") or "").strip():
                 out.append(f"{sid}: no summary in text.json. Write one plain sentence, under {SUMMARY_CHARS} characters.")
             elif len(t["summary"]) > SUMMARY_CHARS:
                 out.append(f"{sid}: its summary is {len(t['summary'])} characters. Cut it under {SUMMARY_CHARS}.")
-            if not (t.get("tip") or "").strip():
+            if not draft_text.written(t["lines"]) and not (t.get("tip") or "").strip():
                 out.append(f"{sid}: no tip in text.json. Write one to three sentences only this photo needs (which way "
                            "the strokes run here, which side the light is on, what to leave showing).")
             for where, words in [("summary", t.get("summary") or ""), ("tip", t.get("tip") or "")] + \

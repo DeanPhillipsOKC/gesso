@@ -23,8 +23,8 @@ results in about 5 minutes; use it when a test misbehaves only under the runner.
 ## How the suite is kept fast (#87)
 
 - **The fixture lessons are built once per run.** The three fixtures (chickadee, lavender balloon, red sailboat) are
-  sealed version 3 runs made small: each one's plan, canvas, chain, chain checker's answers and stage writers'
-  words, at 0.4 of the size (`spike/tests/fixtures/lessons/`, made by `spike/tests/make_fixtures.py`).
+  sealed version 3 runs made small: each one's plan, canvas, chain, chain checker's answers and v3's stage
+  writers' words (a stand-in lesson writer turns them into v3.1's six lines, #276), at 0.4 of the size (`spike/tests/fixtures/lessons/`, made by `spike/tests/make_fixtures.py`).
   `spike/tests/lessons.py` builds each through the tools once, in stages (`chained`, `built`, `published`,
   `checked`, `worded`), into a folder all the workers share, and hands each test a copy. A test that needs a
   fixture lesson asks for one with `lessons.lesson(name, stage)`, and for what build-steps kept with

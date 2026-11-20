@@ -3,8 +3,8 @@
 moved from with its experiment commands left behind; the script went with v2 in #238).
 
     lesson_sheet(lesson)      -> the fact sheet, measured from the step pictures
-    packets(lesson, ...)      -> one writer's packet a stage under <lesson>/words/
-    merge(lesson, redraft)    -> the writers' words into text.json, every claim checked against the sheet
+    facts_text(sheet, ...)    -> one step's facts as plain sentences; lean() cuts what the lesson writer doesn't use
+    check_text(sheet, text)   -> every number and side in text.json's words, checked against the sheet
 
 **The sheet** is measured per step from the step pictures and the plan, with the measure the Where lines use
 (`build_steps.visible`, cropped to the canvas, without stray specks: `aids.main_area`), so a sheet and its Where
@@ -19,10 +19,8 @@ number), and checks each claim against the one fact on that step's sheet it name
 doesn't support it. A claim whose subject or reference it can't find on the sheet is `unresolved`, which fails when
 `strict`: a writer working from the sheet uses the sheet's own names.
 
-**The words:** `packets` writes one folder a stage with each step's before and after pictures, its drafted lines
-and its facts as plain sentences. A writer in a fresh context writes out.json there. `merge` puts every stage's
-out.json into text.json and checks it strictly; each failure goes back to its stage's writer once (feedback.md).
-`merge(final=True)` takes out any sentence that still fails and records it.
+**The words** are pipeline v3.1's (`lesson_words.py`): one writer for the lesson reads the sheet as plain
+sentences, and this checker holds what it writes. v3's one writer a stage (`packets` and `merge` here) went in #276.
 """
 
 from __future__ import annotations
@@ -40,12 +38,6 @@ import draft_text
 import mixing
 import publish2
 
-class Stale(Exception):
-    """The writers' packets were made from other step pictures than the lesson has now."""
-
-
-WRITTEN = ("summary", "tip", "paint_notes")  # what a writer writes; never drafted
-PAIR_SIDE = 640  # pixels: the long side of each half of a before-and-after picture
 WORK = "words"  # <lesson>/words/: the sheet and the writers' packets
 
 CHANGED = draft_text.SAME  # RGB levels: a pixel that moved less than this in a step isn't something the step added
@@ -1388,18 +1380,6 @@ def facts_text(sheet: dict, plan: dict, st: dict) -> str:
     return "\n".join(head)
 
 
-def _clear_written(text: dict) -> dict:
-    for t in text.get("steps") or []:
-        for k in WRITTEN:
-            t.pop(k, None)
-        t["lines"] = [x for x in t.get("lines") or [] if not x.get("edited")]
-    return text
-
-
-def _stage_of(plan: dict) -> dict[str, int]:
-    return {s["id"]: k for k, stage in enumerate(plan["stages"], 1) for s in stage["steps"]}
-
-
 def _crop(img, box: list[float] | None):
     """The canvas part of a picture in the image model's frame (the crop publish makes)."""
     if not box or list(box) == [0, 0, 1, 1]:
@@ -1408,131 +1388,29 @@ def _crop(img, box: list[float] | None):
     return img.crop((round(box[0] * W), round(box[1] * H), round(box[2] * W), round(box[3] * H)))
 
 
-def _pair(before, after):
-    """A step's canvas before it and after it, side by side and labeled."""
-    from PIL import Image, ImageDraw
-
-    after = after.convert("RGB")
-    k = PAIR_SIDE / max(after.size)
-    size = (round(after.width * k), round(after.height * k))
-    b = before.convert("RGB").resize(size, Image.LANCZOS) if before is not None else Image.new("RGB", size, (246,) * 3)
-    a = after.resize(size, Image.LANCZOS)
-    gap, label = 16, 28
-    out = Image.new("RGB", (size[0] * 2 + gap, size[1] + label), (255, 255, 255))
-    out.paste(b, (0, label))
-    out.paste(a, (size[0] + gap, label))
-    d = ImageDraw.Draw(out)
-    d.text((6, 6), "BEFORE (the step before)", fill=(0, 0, 0))
-    d.text((size[0] + gap + 6, 6), "AFTER (this step)", fill=(0, 0, 0))
-    return out
-
-
 PHOTOS = ("00_beginner.png", "00_canvas_frame.png", "00_canvas_fit.png", "photo.png")  # what the lesson is made from
 
 
-def packets(lesson: Path, brief: Path, extra: dict[str, dict] | None = None) -> Path:
-    """The lesson's sheet and one writer's packet per stage under <lesson>/words/. `brief`: the writer's brief,
-    copied into each. `extra`: more fields for a step's entry in steps.json, by step id (a version 3 lesson gives
-    each step the plan's `after` line as `meant`)."""
-    import shutil
+BRACKETS = re.compile(r" \((?:\d+ )?\d+(?:/\d+)?\)")  # "3 in (3 1/16)": the exact value a writer doesn't say
 
-    from PIL import Image
 
-    lesson = Path(lesson)
-    sheet, plan = lesson_sheet(lesson)
-    work = lesson / WORK
-    work.mkdir(parents=True, exist_ok=True)
-    (work / "sheet.json").write_text(json.dumps(sheet, indent=1), encoding="utf-8")
-    text = json.loads((lesson / "text.json").read_text(encoding="utf-8"))
-    by_id = {t["stage_id"]: t for t in text["steps"]}
-    box = canvas_of(lesson, (1, 1))[0]
-    pics = {s["id"]: lesson / f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(bs.flat_steps(plan))}
-    names = publish2.paint_names(plan)
-    outline = [f"step {s['n']}: {s['name']} ({s['part_name']})" for s in sheet["steps"]]
-    stage = _stage_of(plan)
-    light = plan.get("light") or ""
-    photo = next((lesson / n for n in PHOTOS if (lesson / n).exists()), None)
-    for old in work.glob("stage-[0-9][0-9]"):  # a stage the plan no longer has
-        if old.is_dir() and int(old.name[6:]) > len(plan["stages"]):
-            shutil.rmtree(old)
-    for k, stg in enumerate(plan["stages"], 1):
-        folder = work / f"stage-{k:02d}"
-        folder.mkdir(exist_ok=True)
-        # the old pictures, and the old words: a writer's out.json was written for the packet before this one
-        for old in [*folder.glob("pair-*.jpg"), folder / "out.json", folder / "feedback.md"]:
-            old.unlink(missing_ok=True)
-        steps, facts = [], [f"# Stage {k}: {stg.get('name') or stg['id']}", ""]
-        for st in sheet["steps"]:
-            if stage[st["id"]] != k:
+def lean(text: str) -> str:
+    """The fact sheet without what the lesson writer's lines don't use (#267's `facts-lean`, moved from
+    v4_writer_cost.lean_facts): the exact values in brackets, v3's Where line, the part as the finish shows it, and
+    the neighbours not painted yet. check-text still reads the whole sheet (sheet.json)."""
+    out = []
+    for line in text.splitlines():
+        if line.startswith("Where line (kept as it is"):
+            continue
+        if " as the finish shows it:" in line:
+            continue
+        if line.startswith("Next to it:"):
+            parts = [p for p in line[len("Next to it: "):].rstrip(".").split("; ") if "(not painted yet)" not in p]
+            if not parts:
                 continue
-            prev = sheet["steps"][st["n"] - 2]["id"] if st["n"] > 1 else None
-            before = _crop(Image.open(pics[prev]), box) if prev else None
-            pair = _pair(before, _crop(Image.open(pics[st["id"]]), box))
-            pair.save(folder / f"pair-{st['n']:02d}.jpg", quality=85)
-            ps = next(s for s in plan["stages"][k - 1]["steps"] if s["id"] == st["id"])
-            t = by_id[st["id"]]
-            steps.append({"n": st["n"], "id": st["id"], "name": st["name"], "part": st["part_name"],
-                          "paints": [names[c] for c in ps.get("paints") or []], "brush": ps.get("brush"),
-                          "stroke": ps.get("stroke"), "pair": f"pair-{st['n']:02d}.jpg",
-                          "lines": [{"n": j + 1, "kind": x.get("kind"), "text": x.get("text")}
-                                    for j, x in enumerate(t["lines"])], **((extra or {}).get(st["id"]) or {})})
-            facts += [facts_text(sheet, plan, st), ""]
-        (folder / "facts.md").write_text("\n".join(facts), encoding="utf-8")
-        (folder / "steps.json").write_text(json.dumps({"stage": k, "light": light, "lesson": outline,
-                                                       "steps": steps, "write_to": "out.json"}, indent=1),
-                                           encoding="utf-8")
-        for src, dst in ((photo, "photo.jpg"), (lesson / "99_finish.png", "finish.jpg")):
-            if src is not None and src.exists():
-                img = _crop(Image.open(src), box).convert("RGB")
-                img.thumbnail((900, 900))
-                img.save(folder / dst, quality=85)
-        shutil.copy(brief, folder / "brief.md")
-    return work
-
-
-def _apply(text: dict, out, only: set[str] | None = None) -> list[str]:
-    """One stage's out.json into text.json; returns what it couldn't use. A writer's file is read as it comes:
-    anything that isn't the shape the brief gives is reported, never raised."""
-    by_id = {t["stage_id"]: t for t in text["steps"]}
-    steps = out.get("steps") if isinstance(out, dict) else None
-    if not isinstance(steps, dict):
-        return ["out.json must be {\"steps\": {\"<step id>\": {\"summary\": ..., \"tip\": ...}}}"]
-    bad = []
-    for sid, w in steps.items():
-        t = by_id.get(sid)
-        if t is None or (only is not None and sid not in only):
-            bad.append(f"no step {sid} in this stage")
-            continue
-        if not isinstance(w, dict):
-            bad.append(f"{sid}: its entry must be an object")
-            continue
-        for k in ("summary", "tip"):
-            if k in w:
-                if isinstance(w[k], str):
-                    t[k] = w[k].strip()
-                else:
-                    bad.append(f"{sid}: {k} must be text")
-        notes = w.get("paint_notes")
-        if notes:
-            if isinstance(notes, list) and all(isinstance(x, str) for x in notes):
-                t["paint_notes"] = [x for x in notes if x.strip()]
-            else:
-                bad.append(f"{sid}: paint_notes must be a list of sentences")
-        lines = w.get("lines") or {}
-        if not isinstance(lines, dict):
-            bad.append(f"{sid}: lines must be {{\"<line number>\": \"the line rewritten\"}}")
-            continue
-        for n, new in lines.items():
-            j = int(n) - 1 if re.fullmatch(r"[0-9]{1,4}", str(n).strip()) else -1
-            if not 0 <= j < len(t["lines"]):
-                bad.append(f"{sid}: no line {n}")
-            elif not isinstance(new, str):
-                bad.append(f"{sid}: line {n} must be text")
-            elif t["lines"][j].get("kind") == "where":
-                bad.append(f"{sid}: line {n} is the Where line, which is measured: it stays as drafted")
-            else:
-                t["lines"][j] = {**t["lines"][j], "text": new.strip(), "edited": True}
-    return bad
+            line = "Next to it: " + "; ".join(parts) + "."
+        out.append(BRACKETS.sub("", line))
+    return "\n".join(out)
 
 
 def _parts(c: dict) -> list[tuple[str, str]]:
@@ -1585,79 +1463,3 @@ def _take_out(t: dict, field: str, sentence: str) -> bool:
     before = t["lines"][j]["text"]
     t["lines"][j]["text"] = _drop(before, sentence)
     return t["lines"][j]["text"] != before
-
-
-def merge(lesson: Path, redraft, final: bool = False) -> dict:
-    """Every stage's out.json into text.json, checked strictly. Writes feedback.md into each stage with a failure.
-    With `final`, a sentence that still fails is taken out (and recorded in words/dropped.json). `redraft()` drafts
-    text.json's lines again (the draft-text tool): the writers' words go onto fresh drafted lines every time, so
-    running this twice gives the same file."""
-    lesson = Path(lesson)
-    work = lesson / WORK
-    sheet, plan = lesson_sheet(lesson)  # measured now, not read back: the pictures may have been built again
-    kept = work / "sheet.json"
-    if not kept.exists() or json.loads(kept.read_text(encoding="utf-8")) != json.loads(json.dumps(sheet)):
-        raise Stale("the step pictures changed since the writers' packets were made: run packets again, and the "
-                    "writers again")
-    if not final:  # the words are laid again from out.json: an earlier last check no longer speaks for them
-        (work / "dropped.json").unlink(missing_ok=True)
-    text = _clear_written(json.loads((lesson / "text.json").read_text(encoding="utf-8")))
-    _tool_text = lesson / "text.json"
-    _tool_text.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
-    redraft()  # back to the drafted lines, then each writer's words on them
-    text = json.loads(_tool_text.read_text(encoding="utf-8"))
-    bad, missing = [], []
-    for folder in sorted(work.glob("stage-[0-9][0-9]")):
-        o = folder / "out.json"
-        if not o.exists():
-            missing.append(folder.name)
-            continue
-        try:
-            wrote = json.loads(o.read_text(encoding="utf-8"))
-        except ValueError as e:
-            bad.append(f"{folder.name}: out.json isn't valid JSON ({e})")
-            continue
-        if not (folder / "steps.json").exists():
-            bad.append(f"{folder.name}: no packet there (run packets)")
-            continue
-        mine_ids = {s["id"] for s in json.loads((folder / "steps.json").read_text(encoding="utf-8"))["steps"]}
-        bad += [f"{folder.name}: {b}" for b in _apply(text, wrote, mine_ids)]
-    r = check_text(sheet, text, strict=True)
-    mine = _writers(text, r["failures"])
-    stage = _stage_of(plan)
-    dropped = []
-    if final:
-        by_id = {t["stage_id"]: t for t in text["steps"]}
-        done = set()
-        for c in mine:
-            t = by_id[c["id"]]
-            for f, sent in _parts(c):
-                if not _owned(t, f) or (c["id"], f, sent) in done:
-                    continue
-                done.add((c["id"], f, sent))
-                if _take_out(t, f, sent):
-                    dropped.append({"step": c["step"], "id": c["id"], "field": f, "sentence": sent, "why": say(c)})
-        for t in text["steps"]:
-            if t.get("paint_notes"):
-                t["paint_notes"] = [x for x in t["paint_notes"] if x]
-        (work / "dropped.json").write_text(json.dumps(dropped, indent=1), encoding="utf-8")
-    _tool_text.write_text(json.dumps(text, indent=1) + "\n", encoding="utf-8")
-    for folder in work.glob("stage-[0-9][0-9]"):
-        (folder / "feedback.md").unlink(missing_ok=True)
-    if not final:
-        for k in sorted({stage[c["id"]] for c in mine} | {int(b[6:8]) for b in bad}):
-            lines = [f"- {say(c)}\n  in: \"{c['sentence']}\"" for c in mine if stage[c["id"]] == k]
-            lines += [f"- out.json: {b.split(': ', 1)[1]}" for b in bad if int(b[6:8]) == k]
-            (work / f"stage-{k:02d}" / "feedback.md").write_text(
-                "# The checker's failures in your words\n\nFix each one in out.json (write the whole file again): use "
-                "the fact the sheet gives, or say it without a number or a side.\n\n" + "\n".join(lines) + "\n",
-                encoding="utf-8")
-    after = check_text(sheet, text, strict=True)
-    unwritten = [t["stage_id"] for t in text["steps"] if not (t.get("summary") or "").strip()
-                 or not (t.get("tip") or "").strip()]
-    return {"lesson": lesson.name, "missing": missing, "bad": bad, "unwritten": unwritten, "failures": len(mine),
-            "failed": [say(c) for c in mine], "dropped": len(dropped),
-            "after": len(_writers(text, after["failures"])),
-            "claims": len([c for c in after["claims"] if c["field"].split()[0] in ("summary", "tip", "paint")
-                           or c["field"].startswith("line")]),
-            "stages_with_feedback": sorted({stage[c["id"]] for c in mine} | {int(b[6:8]) for b in bad}) if not final else []}
