@@ -2603,6 +2603,99 @@
    },
    "reply_chars": 7275,
    "at": "2026-11-20T12:38:20"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "birch-grove",
+   "part": "words",
+   "helper": "writer",
+   "label": "W2 arc",
+   "turn": 4,
+   "session": "dadccd14-c2ed-4d6b-8d33-bf398e7372ef",
+   "cache": "5m",
+   "seconds": 38.3,
+   "input_tokens": 4,
+   "cache_write_tokens": 7983,
+   "cache_read_tokens": 72697,
+   "output_tokens": 3594,
+   "thinking_tokens": 1128,
+   "cost_usd": 0.12635,
+   "effort": null,
+   "cli_cost_usd": 0.8840914,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 20323,
+    "system_chars": 0
+   },
+   "reply_chars": 6637,
+   "at": "2026-11-20T12:38:32"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "sleeping-cat",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 paints",
+   "turn": 3,
+   "session": "6829d36c-1dd6-4bd2-8247-51aa24443a01",
+   "cache": "5m",
+   "seconds": 21.7,
+   "input_tokens": 4,
+   "cache_write_tokens": 4538,
+   "cache_read_tokens": 83618,
+   "output_tokens": 2811,
+   "thinking_tokens": 47,
+   "cost_usd": 0.09565,
+   "effort": null,
+   "cli_cost_usd": 0.9824641999999999,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 4806,
+    "system_chars": 0
+   },
+   "reply_chars": 7674,
+   "at": "2026-11-20T12:38:42"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "birch-grove",
+   "part": "words",
+   "helper": "writer",
+   "label": "W2 arc feedback",
+   "turn": 5,
+   "session": "dadccd14-c2ed-4d6b-8d33-bf398e7372ef",
+   "cache": "5m",
+   "seconds": 19.6,
+   "input_tokens": 4,
+   "cache_write_tokens": 3923,
+   "cache_read_tokens": 80680,
+   "output_tokens": 2564,
+   "thinking_tokens": 101,
+   "cost_usd": 0.08705,
+   "effort": null,
+   "cli_cost_usd": 0.9711384,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 978,
+    "system_chars": 0
+   },
+   "reply_chars": 6633,
+   "at": "2026-11-20T12:38:51"
   }
  ],
  "ab": [
@@ -25590,6 +25683,1518 @@
      "backs": 15,
      "words_count": 2505,
      "arc_words": 705
+    },
+    "birch-grove": {
+     "first": {
+      "blend-sky": {
+       "first": "",
+       "start": "Start at the sun's glow high on the left side of the canvas with Sun cream, then work Warm gold out around it across the left half.",
+       "strokes": "Use short X strokes that cross each other, loading two colours at once where they meet. Bring Haze blue in from the right edge and across the top, and carry the whole blend down to the bottom edge.",
+       "inside": "Keep the palest cream around the sun, with gold spreading out from it and blue toward the right edge and lower down. The light comes from the upper left, so the glow sits there.",
+       "leave": "Leave no bare white canvas: the blend reaches the left, right, top and bottom edges.",
+       "stop": "While it is still wet, go over it with lighter, longer side-to-side strokes so the glow fades softly into the blue. The whole canvas reads as a misty glow, paler across the bottom, with no hard edges."
+      },
+      "brush-far-treeline": {
+       "first": "Let the sky dry completely, or the dry brush will drag it into streaks.",
+       "start": "Begin where the blue tree shapes are tallest, at the top edge on the right side of the canvas.",
+       "strokes": "Dip only the tip of the old stiff flat in Misty blue and wipe it nearly dry. Skim lightly downward in short, ragged strokes that make soft, rounded tree tops.",
+       "inside": "Most of it is on the right side. The shapes run from about 6 3/4 in from the left edge to the right edge. They are deepest near the right edge and thin to a faint band toward the middle, where the glow shines through.",
+       "leave": "Leave the sun's glow and the left side of the sky clear. Keep the bottoms of the shapes ragged so they fade into the mist.",
+       "stop": "Soft, broken blue tree shapes stand in the haze with mist below them. If it went on solid, the brush was too loaded: let it dry and skim more lightly next pass."
+      },
+      "pull-far-trunks": {
+       "first": "Let the blue tree shapes dry.",
+       "start": "Start at the top edge, in the glow, with the trunk whose middle is about 4 1/2 in from the left edge.",
+       "strokes": "Press the angle brush's full width at the top edge and pull straight down. Lighten the pressure as you go so the trunk thins and fades out, about 7 1/4 in tall.",
+       "inside": "Then add a short piece hanging from the top edge toward the middle of the canvas. Add a few short, soft trunk pieces lower down in the blue tree shapes. These are far trunks, so keep them pale and plain.",
+       "leave": "Leave the mist showing between them, and give them no bark marks.",
+       "stop": "One long, thin, pale trunk stands in the glow, and a few short trunk pieces show faintly in the blue haze."
+      },
+      "stamp-pines": {
+       "first": "Let the far trunks dry.",
+       "start": "Start at the tip of the tallest pine on the right side of the canvas, about 2 in from the top edge.",
+       "strokes": "Spread the fan and stamp only the middle tips, zigzagging from the tip down and pressing harder as you go, so each pine widens toward the bottom. Make three pines side by side, then part of one more at the right edge.",
+       "inside": "The pines run from about 10 1/2 in from the left edge to the right edge. Keep them one flat dark colour for now.",
+       "leave": "Leave the misty trunks and blue tree shapes showing around and above them. Keep the pines' bottoms ragged in the mist.",
+       "stop": "A group of dark blue-green pines, pointed on top and wide at the bottom. Heavy, clumpy marks mean the paint is too thick or you stamped with the side of the fan."
+      },
+      "tap-pine-light": {
+       "first": "Let the dark pines dry so the teal stays separate.",
+       "start": "Start at the feet of the pines, along the band about 7 1/2 in from the top edge, where they meet the mist.",
+       "strokes": "Fan-tap Pine teal in short strokes in different directions, all along the feet. Then add a patch where the smallest pine meets the mist toward the middle, and a few taps between the pine tips near the right edge.",
+       "inside": "The teal goes around the pines, not on them. It softens their feet into the mist and fills the gaps, so the dark trees sit back in the haze.",
+       "leave": "Leave the pine shapes themselves dark and uncovered.",
+       "stop": "The pines' bottoms melt into a teal mist, and their outlines look softer and further away."
+      },
+      "dab-bush-darks": {
+       "first": "Let the pines and mist dry.",
+       "start": "Start along the feet of the pines, on the right side of the canvas, dabbing a band of olive where they meet the mist.",
+       "strokes": "Tap lightly with the tip of the dry old flat. Then dab three small clumps across the misty ground and a clump at the left edge. Add thinner scattered dabs down to the bottom edge, then a loose, lacy scatter along the top of the canvas.",
+       "inside": "Most of it is in the bottom half: the heavy dabs are the undergrowth's shadow. The scatter along the top is only a dark lace for the leaves to sit on later.",
+       "leave": "Leave plenty of mist showing through the gaps, and keep the sun's glow clear.",
+       "stop": "Olive masses sit at the pines' feet, with small clumps on the misty ground and an olive lace up top. Blobs mean the brush is too wet."
+      },
+      "dab-canopy-darks": {
+       "first": "Let the olive dry.",
+       "start": "Start with the big bush mass at the left edge. Its top is about 5 1/4 in from the top edge, and it is about 8 in wide.",
+       "strokes": "Tap Leaf orange with the tip of the old flat, tapping a spot more where the bush should look solid.",
+       "inside": "Most of it is on the left side. After the bush mass, dab loose clusters hanging from the top edge over the olive lace, and a few small dabs on the olive at the pines' feet.",
+       "leave": "Leave olive showing along the bush's base, and sky between the clusters.",
+       "stop": "A warm orange bush mass glows at the left edge, with orange clusters hanging along the top of the canvas."
+      },
+      "dab-golden-leaves": {
+       "first": "Let the orange dry so the gold stays bright.",
+       "start": "Start in the canopy clusters at the top edge, near the sun on the left side of the canvas.",
+       "strokes": "Tap Golden yellow with the tip of the old flat in small, leaf-sized dabs.",
+       "inside": "Most of it is on the left side and in the top half. Cover most of each canopy cluster and the top of the orange bush mass, where the sun hits them. Only a few dabs go on the clusters toward the right edge.",
+       "leave": "Leave orange showing in the shadows of the clusters and along the bush's base, and sky between the leaves.",
+       "stop": "The canopy and the big bush glow golden, with orange still showing underneath."
+      },
+      "dab-sunlit-leaves": {
+       "first": "Let the golden leaves dry.",
+       "start": "Start in the canopy nearest the sun, at the left edge around the cream glow.",
+       "strokes": "Tap the tip of the #10 round lightly, dot by dot. Tap a spot more where it should glow strongest.",
+       "inside": "Then tap lemon over the top of the golden bush mass. Spread dappled patches over the misty ground below it, from the left edge across the canvas down to the bottom edge. Most of it is in the bottom half: this is sunlight lying on the mist.",
+       "leave": "Leave the gold and orange leaves showing under the taps, and blue mist between the lemon patches.",
+       "stop": "The canopy sparkles near the sun, and the misty ground glows in warm patches. There is no ground colour yet."
+      },
+      "dab-floor-darks": {
+       "first": "Let the lemon dry.",
+       "start": "Start at the left edge, about 7 1/4 in from the top edge, just under the golden bush mass.",
+       "strokes": "Tap Rust brown with the old flat in rows across the canvas, working down toward the bottom edge.",
+       "inside": "Cover the whole width from the left edge to the right edge, right down to the bottom edge. Make it dense enough that no mist shows, and tap over the bushes' ragged bottoms.",
+       "leave": "Leave the bush masses and the pines' teal feet showing above the floor.",
+       "stop": "The lower canvas is a dense, dappled rust-brown leaf floor. There is no path yet."
+      },
+      "pull-path": {
+       "first": "Let the floor dry, so the tan doesn't turn to mud.",
+       "start": "Mark one dot where the path disappears, in the gap at the foot of the bushes. Draw a few faint chalk lines fanning toward you from it.",
+       "strokes": "Pull each stroke along the lines, from the dot toward you, thin near the dot and wider in front.",
+       "inside": "This is only the far end of the path: a short strip whose middle is about 9 1/2 in from the left edge. It ends about 8 3/4 in from the top edge.",
+       "leave": "Leave the rust floor around it, and don't carry the path down to the bottom edge.",
+       "stop": "A short pale tan strip leads back into the gap and narrows to a point, plain with no leaves."
+      },
+      "block-in-boulder": {
+       "first": "Let the path dry.",
+       "start": "Start with a low dome right of the path at the pines' feet, its middle about 11 3/4 in from the left edge.",
+       "strokes": "Paint the dome first, then add a curved piece on each side of it, like ( ), smaller toward the ends.",
+       "inside": "Fill the whole boulder flat Olive moss, about 2 1/2 in wide, with a flat base sitting on the leaves.",
+       "leave": "Leave the rust floor showing all around it.",
+       "stop": "A plain, flat olive boulder shape sits right of the path, with no shading."
+      },
+      "shade-boulder": {
+       "first": "Let the olive dry.",
+       "start": "Start on the right side of the boulder, where it sits on the leaves.",
+       "strokes": "Bend every stroke with the dome: from the top of it down along its curve, and along the base.",
+       "inside": "Most of it is on the right side. Cover the boulder's shadow side and base, and bring curved strokes over most of the dome, because the light comes from the upper left.",
+       "leave": "Leave a little flat olive on the boulder's sunny shoulder, toward the glow.",
+       "stop": "The boulder reads dark and solid, with only a hint of olive on its sunny shoulder."
+      },
+      "light-boulder": {
+       "first": "Let the dark olive dry, or the moss will smear into it.",
+       "start": "Start on the boulder's sunny shoulder, toward the glow.",
+       "strokes": "With only the tip loaded, skim short, light dry-brush strokes along the top curve of the dome.",
+       "inside": "Most of it is on the left side of the boulder, along its top and down the sunny shoulder, where the sun falls.",
+       "leave": "Leave the dark side and base untouched.",
+       "stop": "A broken band of pale moss catches the light along the boulder's top, and the boulder looks round."
+      },
+      "pull-birches": {
+       "first": "Let everything dry: the trunks go over all of it.",
+       "start": "Start at the foot of the nearest big leaning trunk on the left side of the canvas, down in the leaves.",
+       "strokes": "Press the 3/4 inch flat's full width at the foot and pull up past the top edge, leaning slightly right. Lighten as you go so the trunk tapers. Pull a few thick branches out from the upper trunks the same way.",
+       "inside": "Make six trunks: a thin one near the left edge, two big leaning ones, and a thinner one whose middle is about 8 in from the left edge. Finish with two on the right side, the widest at the right edge.",
+       "leave": "Leave the boulder, path and leaves showing between the trunks.",
+       "stop": "Six flat, pale gray trunks with a few branches, most of it on the left side, with no shading yet."
+      },
+      "shade-birches": {
+       "first": "Let the trunks dry.",
+       "start": "Start at the top edge, on the biggest trunk on the left side.",
+       "strokes": "With the old flat nearly dry, skim Bark gray down each trunk and out along each branch, so it breaks into ragged strokes.",
+       "inside": "The gray covers most of each trunk's width, most of it on the left side, where the big trunks are.",
+       "leave": "Leave ragged pale flecks of the trunk colour all along each trunk. Keep the lowest part of each trunk, where it meets the leaves, pale.",
+       "stop": "The trunks look gray and flecked with pale bark. If a patch goes solid, the brush was too loaded."
+      },
+      "mark-birch-bark": {
+       "first": "Let the gray dry.",
+       "start": "Start at the foot of each trunk, where it meets the leaves, and press in a dark foot.",
+       "strokes": "For each bark mark, press the angle brush's full width, then turn onto its edge and lighten, so each short mark across the trunk tapers. Run thin dark lines along the branches.",
+       "inside": "Put more marks low on the trunks and fewer higher up. Most of it is in the bottom half and on the left side, where the big trunks stand.",
+       "leave": "Leave gray and pale bark showing between the marks.",
+       "stop": "The trunks read as birches, with broken dark marks and dark feet."
+      },
+      "dab-orange-leaves": {
+       "first": "Let the bark marks dry.",
+       "start": "Start at the far end of the path, about 7 3/4 in from the top edge, and work toward you.",
+       "strokes": "Tap Leaf orange with the old flat in leaf-sized dabs.",
+       "inside": "Cover most of the floor from the left edge to the right edge, down to the bottom edge. Spill onto the path and over the dark feet of the trunks. Most of it is on the right side.",
+       "leave": "Leave rust brown showing in the gaps.",
+       "stop": "The ground is a warm orange leaf carpet with rust in the gaps, and the trunk feet sit in the leaves."
+      },
+      "dab-gold-leaves": {
+       "first": "Let the orange dry.",
+       "start": "Start at the far end of the path, then work down along it and out across the floor.",
+       "strokes": "Tap the #10 round lightly in small leaf dabs.",
+       "inside": "Most of it is on the right side and in the top half. Make a band of gold down the path and across the floor at the trunks' feet, with a few dabs at the left edge and fewer toward the bottom edge.",
+       "leave": "Leave orange and rust showing between the gold.",
+       "stop": "Gold leaves catch the sun along the path and across the middle of the floor."
+      },
+      "light-birch-bark": {
+       "first": "Let the bark marks and leaves dry.",
+       "start": "Start at the top edge on the biggest trunk, on its sunny side, the side facing the glow.",
+       "strokes": "With the old flat nearly dry, skim Bark white down each trunk and along its branches, skipping lightly over the dark marks.",
+       "inside": "The light goes on the side of each trunk facing the sun, because the light comes from the upper left. Most of it is on the left side, where the big trunks stand.",
+       "leave": "Leave the shaded side of each trunk gray, and keep the dark feet dark.",
+       "stop": "Sunlit white birches with dark marks lean over the golden path into the misty grove."
+      }
+     },
+     "final_slots": {
+      "blend-sky": [
+       {
+        "kind": "start",
+        "text": "Start at the sun's glow high on the left side of the canvas with Sun cream, then work Warm gold out around it across the left half."
+       },
+       {
+        "kind": "strokes",
+        "text": "Use short X strokes that cross each other, loading two colours at once where they meet. Bring Haze blue in from the right edge and across the top, and carry the whole blend down to the bottom edge."
+       },
+       {
+        "kind": "inside",
+        "text": "Keep the palest cream around the sun, with gold spreading out from it and blue toward the right edge and lower down. The light comes from the upper left, so the glow sits there."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave no bare white canvas: the blend reaches the left, right, top and bottom edges."
+       },
+       {
+        "kind": "stop",
+        "text": "While it is still wet, go over it with lighter, longer side-to-side strokes so the glow fades softly into the blue. The whole canvas reads as a misty glow, paler across the bottom, with no hard edges."
+       }
+      ],
+      "brush-far-treeline": [
+       {
+        "kind": "first",
+        "text": "Let the sky dry completely, or the dry brush will drag it into streaks."
+       },
+       {
+        "kind": "start",
+        "text": "Begin where the blue tree shapes are tallest, at the top edge on the right side of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Dip only the tip of the old stiff flat in Misty blue and wipe it nearly dry. Skim lightly downward in short, ragged strokes that make soft, rounded tree tops."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the right side. The shapes run from about 6 3/4 in from the left edge to the right edge. They are deepest near the right edge and thin to a faint band toward the middle, where the glow shines through."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the sun's glow and the left side of the sky clear. Keep the bottoms of the shapes ragged so they fade into the mist."
+       },
+       {
+        "kind": "stop",
+        "text": "Soft, broken blue tree shapes stand in the haze, their ragged feet fading into mist. If it went on solid, the brush was too loaded: let it dry and skim more lightly next pass."
+       }
+      ],
+      "pull-far-trunks": [
+       {
+        "kind": "first",
+        "text": "Let the blue tree shapes dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge, in the glow, with the trunk whose middle is about 4 1/2 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the angle brush's full width at the top edge and pull straight down. Lighten the pressure as you go so the trunk thins and fades out, about 7 1/4 in tall."
+       },
+       {
+        "kind": "inside",
+        "text": "Then add a short piece hanging from the top edge toward the middle of the canvas. Add a few short, soft trunk pieces lower down in the blue tree shapes. These are far trunks, so keep them pale and plain."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the mist showing between them, and give them no bark marks."
+       },
+       {
+        "kind": "stop",
+        "text": "One long, thin, pale trunk stands in the glow, and a few short trunk pieces show faintly in the blue haze."
+       }
+      ],
+      "stamp-pines": [
+       {
+        "kind": "first",
+        "text": "Let the far trunks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the tip of the tallest pine on the right side of the canvas, about 2 in from the top edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Spread the fan and stamp only the middle tips, zigzagging from the tip down and pressing harder as you go, so each pine widens toward the bottom. Make three pines side by side, then part of one more at the right edge."
+       },
+       {
+        "kind": "inside",
+        "text": "The pines run from about 10 1/2 in from the left edge to the right edge. Keep them one flat dark colour for now."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the misty trunks and blue tree shapes showing around the pines. Keep the pines' bottoms ragged in the mist."
+       },
+       {
+        "kind": "stop",
+        "text": "A group of dark blue-green pines, pointed on top and wide at the bottom. Heavy, clumpy marks mean the paint is too thick or you stamped with the side of the fan."
+       }
+      ],
+      "tap-pine-light": [
+       {
+        "kind": "first",
+        "text": "Let the dark pines dry so the teal stays separate."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the feet of the pines, where they meet the mist."
+       },
+       {
+        "kind": "strokes",
+        "text": "Fan-tap Pine teal in short strokes in different directions, all along the feet. Then add a patch where the smallest pine meets the mist toward the middle, and a few taps between the pine tips near the right edge."
+       },
+       {
+        "kind": "inside",
+        "text": "The teal goes around the pines, not on them. It softens their feet into the mist and fills the gaps, so the dark trees sit back in the haze."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the pine shapes themselves dark and uncovered."
+       },
+       {
+        "kind": "stop",
+        "text": "The pines' bottoms melt into a teal mist, and their outlines look softer and further away."
+       }
+      ],
+      "dab-bush-darks": [
+       {
+        "kind": "first",
+        "text": "Let the pines and mist dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start along the feet of the pines, on the right side of the canvas, dabbing a band of olive where they meet the mist."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap lightly with the tip of the dry old flat. Then dab three small clumps across the misty ground and a clump at the left edge. Add thinner scattered dabs down to the bottom edge, then a loose, lacy scatter along the top of the canvas."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is in the bottom half: the heavy dabs are the undergrowth's shadow. The scatter along the top is only a dark lace for the leaves to sit on later."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave plenty of mist showing through the gaps, and keep the sun's glow clear."
+       },
+       {
+        "kind": "stop",
+        "text": "Olive masses sit at the pines' feet, with small clumps on the misty ground and an olive lace up top. Blobs mean the brush is too wet."
+       }
+      ],
+      "dab-canopy-darks": [
+       {
+        "kind": "first",
+        "text": "Let the olive dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the big bush mass at the left edge. Its top is about 5 1/4 in from the top edge, and it is about 8 in wide."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Leaf orange with the tip of the old flat, tapping a spot more where the bush should look solid."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the left side. After the bush mass, dab loose clusters hanging from the top edge over the olive lace, and a few small dabs on the olive at the pines' feet."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave olive showing along the bush's base, and sky between the clusters."
+       },
+       {
+        "kind": "stop",
+        "text": "A warm orange bush mass glows at the left edge, with orange clusters hanging along the top of the canvas."
+       }
+      ],
+      "dab-golden-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the orange dry so the gold stays bright."
+       },
+       {
+        "kind": "start",
+        "text": "Start in the canopy clusters at the top edge, near the sun on the left side of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Golden yellow with the tip of the old flat in small, leaf-sized dabs."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the left side and in the top half. Cover most of each canopy cluster and the top of the orange bush mass, where the sun hits them. Only a few dabs go on the clusters toward the right edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave orange showing in the shadows of the clusters and along the bush's base, and sky between the leaves."
+       },
+       {
+        "kind": "stop",
+        "text": "The canopy and the big bush glow golden, with orange still showing underneath."
+       }
+      ],
+      "dab-sunlit-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the golden leaves dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start in the canopy nearest the sun, at the left edge around the cream glow."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap the tip of the #10 round lightly, dot by dot. Tap a spot more where it should glow strongest."
+       },
+       {
+        "kind": "inside",
+        "text": "Then tap lemon over the top of the golden bush mass. Spread dappled patches over the misty ground, from the left edge across the canvas down to the bottom edge. Most of it is in the bottom half: this is sunlight lying on the mist."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gold and orange leaves showing under the taps, and blue mist between the lemon patches."
+       },
+       {
+        "kind": "stop",
+        "text": "The canopy sparkles near the sun, and the misty ground glows in warm patches. There is no ground colour yet."
+       }
+      ],
+      "dab-floor-darks": [
+       {
+        "kind": "first",
+        "text": "Let the lemon dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the left edge, about 7 1/4 in from the top edge, just under the golden bush mass."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Rust brown with the old flat in rows across the canvas, working down toward you."
+       },
+       {
+        "kind": "inside",
+        "text": "Cover the whole width of the canvas and all the way down, dense enough that no mist shows. Tap over the bushes' ragged bottoms as you go."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the bush masses and the pines' teal feet showing above the floor."
+       },
+       {
+        "kind": "stop",
+        "text": "The lower canvas is a dense, dappled rust-brown leaf floor. There is no path yet."
+       }
+      ],
+      "pull-path": [
+       {
+        "kind": "first",
+        "text": "Let the floor dry, so the tan doesn't turn to mud."
+       },
+       {
+        "kind": "start",
+        "text": "Mark one dot where the path disappears, in the gap at the foot of the bushes. Draw a few faint chalk lines fanning toward you from it."
+       },
+       {
+        "kind": "strokes",
+        "text": "Pull each stroke along the lines, from the dot toward you, thin near the dot and wider in front."
+       },
+       {
+        "kind": "inside",
+        "text": "This is only the far end of the path: a short strip whose middle is about 9 1/2 in from the left edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the rust floor around it, and keep the path short."
+       },
+       {
+        "kind": "stop",
+        "text": "A short pale tan strip leads back into the gap and narrows to a point, plain with no leaves."
+       }
+      ],
+      "block-in-boulder": [
+       {
+        "kind": "first",
+        "text": "Let the path dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with a low dome right of the path at the pines' feet, its middle about 11 3/4 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Paint the dome first, then add a curved piece on each side of it, like ( ), smaller toward the ends."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill the whole boulder flat Olive moss, about 2 1/2 in wide, with a flat base sitting on the leaves."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the rust floor showing all around it."
+       },
+       {
+        "kind": "stop",
+        "text": "A plain, flat olive boulder shape sits right of the path, with no shading."
+       }
+      ],
+      "shade-boulder": [
+       {
+        "kind": "first",
+        "text": "Let the olive dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the right side of the boulder, where it sits on the leaves."
+       },
+       {
+        "kind": "strokes",
+        "text": "Bend every stroke with the dome: from the top of it down along its curve, and along the base."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the right side. Cover the boulder's shadow side and base, and bring curved strokes over most of the dome, because the light comes from the upper left."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave a little flat olive on the boulder's sunny shoulder, toward the glow."
+       },
+       {
+        "kind": "stop",
+        "text": "The boulder reads dark and solid, with only a hint of olive on its sunny shoulder."
+       }
+      ],
+      "light-boulder": [
+       {
+        "kind": "first",
+        "text": "Let the dark shading from step 13 dry, or the moss will smear into it."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the boulder's sunny shoulder, toward the glow."
+       },
+       {
+        "kind": "strokes",
+        "text": "With only the tip loaded, skim short, light dry-brush strokes along the top curve of the dome."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the left side of the boulder, along its top and down the sunny shoulder, where the sun falls."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark side and base untouched."
+       },
+       {
+        "kind": "stop",
+        "text": "A broken band of pale moss catches the light along the boulder's top, and the boulder looks round."
+       }
+      ],
+      "pull-birches": [
+       {
+        "kind": "first",
+        "text": "Let everything dry: the trunks go over all of it."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the foot of the nearest big leaning trunk on the left side of the canvas, down in the leaves."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the 3/4 inch flat's full width at the foot and pull up past the top edge, leaning slightly right. Lighten as you go so the trunk tapers. Pull a few thick branches out from the upper trunks the same way."
+       },
+       {
+        "kind": "inside",
+        "text": "Make six trunks: a thin one near the left edge, two big leaning ones, and a thinner one standing at the gap where the path disappears. Finish with two on the right side, the widest at the right edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the boulder, path and leaves showing between the trunks."
+       },
+       {
+        "kind": "stop",
+        "text": "Six flat, pale gray trunks with a few branches, most of it on the left side, with no shading yet."
+       }
+      ],
+      "shade-birches": [
+       {
+        "kind": "first",
+        "text": "Let the trunks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge, on the biggest trunk on the left side."
+       },
+       {
+        "kind": "strokes",
+        "text": "With the old flat nearly dry, skim Bark gray down each trunk and out along each branch, so it breaks into ragged strokes."
+       },
+       {
+        "kind": "inside",
+        "text": "The gray covers most of each trunk's width, most of it on the left side, where the big trunks are."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave ragged pale flecks of the trunk colour all along each trunk. Keep the lowest part of each trunk, where it meets the leaves, pale."
+       },
+       {
+        "kind": "stop",
+        "text": "The trunks look gray and flecked with pale bark. If a patch goes solid, the brush was too loaded."
+       }
+      ],
+      "mark-birch-bark": [
+       {
+        "kind": "first",
+        "text": "Let the gray dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the foot of each trunk, where it meets the leaves, and press in a dark foot."
+       },
+       {
+        "kind": "strokes",
+        "text": "For each bark mark, press the angle brush's full width, then turn onto its edge and lighten, so each short mark across the trunk tapers. Run thin dark lines along the branches."
+       },
+       {
+        "kind": "inside",
+        "text": "Put more marks low on the trunks and fewer higher up. Most of it is in the bottom half and on the left side, where the big trunks stand."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave gray and pale bark showing between the marks."
+       },
+       {
+        "kind": "stop",
+        "text": "The trunks read as birches, with broken dark marks and dark feet."
+       }
+      ],
+      "dab-orange-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the bark marks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the far end of the path, about 7 3/4 in from the top edge, and work toward you."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Leaf orange with the old flat in leaf-sized dabs."
+       },
+       {
+        "kind": "inside",
+        "text": "Cover most of the floor from the left edge to the right edge, down to the bottom edge. Spill onto the path and over the dark feet of the trunks. Most of it is on the right side."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark leaf floor from step 10 showing in the gaps."
+       },
+       {
+        "kind": "stop",
+        "text": "The ground is a warm orange leaf carpet with darker leaves in the gaps, and the trunk feet sit in the leaves."
+       }
+      ],
+      "dab-gold-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the orange dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the far end of the path, then work down along it and out across the floor."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap the #10 round lightly in small leaf dabs."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the right side and in the top half. Make a band of gold down the path and across the floor at the trunks' feet, with a few dabs at the left edge and fewer toward the bottom edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave orange and rust showing between the gold."
+       },
+       {
+        "kind": "stop",
+        "text": "Gold leaves catch the sun along the path and across the middle of the floor."
+       }
+      ],
+      "light-birch-bark": [
+       {
+        "kind": "first",
+        "text": "Let the bark marks and leaves dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge on the biggest trunk, on its sunny side, the side facing the glow."
+       },
+       {
+        "kind": "strokes",
+        "text": "With the old flat nearly dry, skim Bark white down each trunk and along its branches, skipping lightly over the dark marks."
+       },
+       {
+        "kind": "inside",
+        "text": "The light goes on the side of each trunk facing the sun, because the light comes from the upper left. Most of it is on the left side, where the big trunks stand."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the shaded side of each trunk gray, and keep the dark feet dark."
+       },
+       {
+        "kind": "stop",
+        "text": "Sunlit white birches with dark marks lean over the golden path into the misty grove."
+       }
+      ]
+     },
+     "final": {
+      "blend-sky": [
+       {
+        "kind": "start",
+        "text": "Start at the sun's glow high on the left side of the canvas with Sun cream, then work Warm gold out around it across the left half."
+       },
+       {
+        "kind": "strokes",
+        "text": "Use short X strokes that cross each other, loading two colours at once where they meet. Bring Haze blue in from the right edge and across the top, and carry the whole blend down to the bottom edge."
+       },
+       {
+        "kind": "inside",
+        "text": "Keep the palest cream around the sun, with gold spreading out from it and blue toward the right edge and lower down. The light comes from the upper left, so the glow sits there."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave no bare white canvas: the blend reaches the left, right, top and bottom edges."
+       },
+       {
+        "kind": "stop",
+        "text": "While it is still wet, go over it with lighter, longer side-to-side strokes so the glow fades softly into the blue. The whole canvas reads as a misty glow, paler across the bottom, with no hard edges."
+       }
+      ],
+      "brush-far-treeline": [
+       {
+        "kind": "first",
+        "text": "Let the sky dry completely, or the dry brush will drag it into streaks."
+       },
+       {
+        "kind": "start",
+        "text": "Begin where the blue tree shapes are tallest, at the top edge on the right side of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Dip only the tip of the old stiff flat in Misty blue and wipe it nearly dry. Skim lightly downward in short, ragged strokes that make soft, rounded tree tops."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the right side. The shapes run from about 6 3/4 in from the left edge to the right edge. They are deepest near the right edge and thin to a faint band toward the middle, where the glow shines through."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the sun's glow and the left side of the sky clear. Keep the bottoms of the shapes ragged so they fade into the mist."
+       },
+       {
+        "kind": "stop",
+        "text": "Soft, broken blue tree shapes stand in the haze, their ragged feet fading into mist. If it went on solid, the brush was too loaded: let it dry and skim more lightly next pass."
+       }
+      ],
+      "pull-far-trunks": [
+       {
+        "kind": "first",
+        "text": "Let the blue tree shapes dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge, in the glow, with the trunk whose middle is about 4 1/2 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the angle brush's full width at the top edge and pull straight down. Lighten the pressure as you go so the trunk thins and fades out, about 7 1/4 in tall."
+       },
+       {
+        "kind": "inside",
+        "text": "Then add a short piece hanging from the top edge toward the middle of the canvas. Add a few short, soft trunk pieces lower down in the blue tree shapes. These are far trunks, so keep them pale and plain."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the mist showing between them, and give them no bark marks."
+       },
+       {
+        "kind": "stop",
+        "text": "One long, thin, pale trunk stands in the glow, and a few short trunk pieces show faintly in the blue haze."
+       }
+      ],
+      "stamp-pines": [
+       {
+        "kind": "first",
+        "text": "Let the far trunks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the tip of the tallest pine on the right side of the canvas, about 2 in from the top edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Spread the fan and stamp only the middle tips, zigzagging from the tip down and pressing harder as you go, so each pine widens toward the bottom. Make three pines side by side, then part of one more at the right edge."
+       },
+       {
+        "kind": "inside",
+        "text": "The pines run from about 10 1/2 in from the left edge to the right edge. Keep them one flat dark colour for now."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the misty trunks and blue tree shapes showing around the pines. Keep the pines' bottoms ragged in the mist."
+       },
+       {
+        "kind": "stop",
+        "text": "A group of dark blue-green pines, pointed on top and wide at the bottom. Heavy, clumpy marks mean the paint is too thick or you stamped with the side of the fan."
+       }
+      ],
+      "tap-pine-light": [
+       {
+        "kind": "first",
+        "text": "Let the dark pines dry so the teal stays separate."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the feet of the pines, where they meet the mist."
+       },
+       {
+        "kind": "back",
+        "step": 4,
+        "text": "This is the same fan tapping you used to stamp the pines, now with Pine teal, tapped into the mist around them instead of on the trees."
+       },
+       {
+        "kind": "strokes",
+        "text": "Fan-tap Pine teal in short strokes in different directions, all along the feet. Then add a patch where the smallest pine meets the mist toward the middle, and a few taps between the pine tips near the right edge."
+       },
+       {
+        "kind": "inside",
+        "text": "The teal goes around the pines, not on them. It softens their feet into the mist and fills the gaps, so the dark trees sit back in the haze."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the pine shapes themselves dark and uncovered."
+       },
+       {
+        "kind": "stop",
+        "text": "The pines' bottoms melt into a teal mist, and their outlines look softer and further away."
+       }
+      ],
+      "dab-bush-darks": [
+       {
+        "kind": "first",
+        "text": "Let the pines and mist dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start along the feet of the pines, on the right side of the canvas, dabbing a band of olive where they meet the mist."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap lightly with the tip of the dry old flat. Then dab three small clumps across the misty ground and a clump at the left edge. Add thinner scattered dabs down to the bottom edge, then a loose, lacy scatter along the top of the canvas."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is in the bottom half: the heavy dabs are the undergrowth's shadow. The scatter along the top is only a dark lace for the leaves to sit on later."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave plenty of mist showing through the gaps, and keep the sun's glow clear."
+       },
+       {
+        "kind": "stop",
+        "text": "Olive masses sit at the pines' feet, with small clumps on the misty ground and an olive lace up top. Blobs mean the brush is too wet."
+       }
+      ],
+      "dab-canopy-darks": [
+       {
+        "kind": "first",
+        "text": "Let the olive dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the big bush mass at the left edge. Its top is about 5 1/4 in from the top edge, and it is about 8 in wide."
+       },
+       {
+        "kind": "back",
+        "step": 6,
+        "text": "You dabbed the olive undergrowth with this same dry old flat. Now the colour is Leaf orange, and the taps build up into solid leaf masses."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Leaf orange with the tip of the old flat, tapping a spot more where the bush should look solid."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the left side. After the bush mass, dab loose clusters hanging from the top edge over the olive lace, and a few small dabs on the olive at the pines' feet."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave olive showing along the bush's base, and sky between the clusters."
+       },
+       {
+        "kind": "stop",
+        "text": "A warm orange bush mass glows at the left edge, with orange clusters hanging along the top of the canvas."
+       }
+      ],
+      "dab-golden-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the orange dry so the gold stays bright."
+       },
+       {
+        "kind": "start",
+        "text": "Start in the canopy clusters at the top edge, near the sun on the left side of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Golden yellow with the tip of the old flat in small, leaf-sized dabs."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the left side and in the top half. Cover most of each canopy cluster and the top of the orange bush mass, where the sun hits them. Only a few dabs go on the clusters toward the right edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave orange showing in the shadows of the clusters and along the bush's base, and sky between the leaves."
+       },
+       {
+        "kind": "stop",
+        "text": "The canopy and the big bush glow golden, with orange still showing underneath."
+       }
+      ],
+      "dab-sunlit-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the golden leaves dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start in the canopy nearest the sun, at the left edge around the cream glow."
+       },
+       {
+        "kind": "back",
+        "step": 8,
+        "text": "This is the same dabbing as the golden leaves, but with the small round brush, for smaller, brighter taps where the sun hits."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap the tip of the #10 round lightly, dot by dot. Tap a spot more where it should glow strongest."
+       },
+       {
+        "kind": "inside",
+        "text": "Then tap lemon over the top of the golden bush mass. Spread dappled patches over the misty ground, from the left edge across the canvas down to the bottom edge. Most of it is in the bottom half: this is sunlight lying on the mist."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gold and orange leaves showing under the taps, and blue mist between the lemon patches."
+       },
+       {
+        "kind": "stop",
+        "text": "The canopy sparkles near the sun, and the misty ground glows in warm patches. There is no ground colour yet."
+       }
+      ],
+      "dab-floor-darks": [
+       {
+        "kind": "first",
+        "text": "Let the lemon dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the left edge, about 7 1/4 in from the top edge, just under the golden bush mass."
+       },
+       {
+        "kind": "back",
+        "step": 6,
+        "text": "This is the same dry dabbing as the olive undergrowth, but this time keep tapping until the dabs close up and hide the mist completely."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Rust brown with the old flat in rows across the canvas, working down toward you."
+       },
+       {
+        "kind": "inside",
+        "text": "Cover the whole width of the canvas and all the way down, dense enough that no mist shows. Tap over the bushes' ragged bottoms as you go."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the bush masses and the pines' teal feet showing above the floor."
+       },
+       {
+        "kind": "stop",
+        "text": "The lower canvas is a dense, dappled rust-brown leaf floor. There is no path yet."
+       }
+      ],
+      "pull-path": [
+       {
+        "kind": "first",
+        "text": "Let the floor dry, so the tan doesn't turn to mud."
+       },
+       {
+        "kind": "start",
+        "text": "Mark one dot where the path disappears, in the gap at the foot of the bushes. Draw a few faint chalk lines fanning toward you from it."
+       },
+       {
+        "kind": "strokes",
+        "text": "Pull each stroke along the lines, from the dot toward you, thin near the dot and wider in front."
+       },
+       {
+        "kind": "inside",
+        "text": "This is only the far end of the path: a short strip whose middle is about 9 1/2 in from the left edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the rust floor around it, and keep the path short."
+       },
+       {
+        "kind": "stop",
+        "text": "A short pale tan strip leads back into the gap and narrows to a point, plain with no leaves."
+       }
+      ],
+      "block-in-boulder": [
+       {
+        "kind": "first",
+        "text": "Let the path dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with a low dome right of the path at the pines' feet, its middle about 11 3/4 in from the left edge."
+       },
+       {
+        "kind": "back",
+        "step": 6,
+        "text": "This is the same Olive moss you dabbed for the undergrowth. Here it goes on flat, in curved pieces, to build a solid shape."
+       },
+       {
+        "kind": "strokes",
+        "text": "Paint the dome first, then add a curved piece on each side of it, like ( ), smaller toward the ends."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill the whole boulder flat Olive moss, about 2 1/2 in wide, with a flat base sitting on the leaves."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the rust floor showing all around it."
+       },
+       {
+        "kind": "stop",
+        "text": "A plain, flat olive boulder shape sits right of the path, with no shading."
+       }
+      ],
+      "shade-boulder": [
+       {
+        "kind": "first",
+        "text": "Let the olive dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the right side of the boulder, where it sits on the leaves."
+       },
+       {
+        "kind": "strokes",
+        "text": "Bend every stroke with the dome: from the top of it down along its curve, and along the base."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the right side. Cover the boulder's shadow side and base, and bring curved strokes over most of the dome, because the light comes from the upper left."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave a little flat olive on the boulder's sunny shoulder, toward the glow."
+       },
+       {
+        "kind": "stop",
+        "text": "The boulder reads dark and solid, with only a hint of olive on its sunny shoulder."
+       }
+      ],
+      "light-boulder": [
+       {
+        "kind": "first",
+        "text": "Let the dark shading from step 13 dry, or the moss will smear into it."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the boulder's sunny shoulder, toward the glow."
+       },
+       {
+        "kind": "back",
+        "step": 2,
+        "text": "This is the same dry skim you used for the misty far trees: only the tip loaded, light pressure. Now it is Pale moss on the boulder's sunny shoulder."
+       },
+       {
+        "kind": "strokes",
+        "text": "With only the tip loaded, skim short, light dry-brush strokes along the top curve of the dome."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the left side of the boulder, along its top and down the sunny shoulder, where the sun falls."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark side and base untouched."
+       },
+       {
+        "kind": "stop",
+        "text": "A broken band of pale moss catches the light along the boulder's top, and the boulder looks round."
+       }
+      ],
+      "pull-birches": [
+       {
+        "kind": "first",
+        "text": "Let everything dry: the trunks go over all of it."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the foot of the nearest big leaning trunk on the left side of the canvas, down in the leaves."
+       },
+       {
+        "kind": "back",
+        "step": 3,
+        "text": "You pulled the far trunks thick to thin. This is the same stroke with a wider flat, pulled up from each trunk's foot instead of down."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the 3/4 inch flat's full width at the foot and pull up past the top edge, leaning slightly right. Lighten as you go so the trunk tapers. Pull a few thick branches out from the upper trunks the same way."
+       },
+       {
+        "kind": "inside",
+        "text": "Make six trunks: a thin one near the left edge, two big leaning ones, and a thinner one standing at the gap where the path disappears. Finish with two on the right side, the widest at the right edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the boulder, path and leaves showing between the trunks."
+       },
+       {
+        "kind": "stop",
+        "text": "Six flat, pale gray trunks with a few branches, most of it on the left side, with no shading yet."
+       }
+      ],
+      "shade-birches": [
+       {
+        "kind": "first",
+        "text": "Let the trunks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge, on the biggest trunk on the left side."
+       },
+       {
+        "kind": "back",
+        "step": 14,
+        "text": "This is the same dry brushing as the moss on the boulder, now skimmed down the length of each trunk so pale bark shows through."
+       },
+       {
+        "kind": "strokes",
+        "text": "With the old flat nearly dry, skim Bark gray down each trunk and out along each branch, so it breaks into ragged strokes."
+       },
+       {
+        "kind": "inside",
+        "text": "The gray covers most of each trunk's width, most of it on the left side, where the big trunks are."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave ragged pale flecks of the trunk colour all along each trunk. Keep the lowest part of each trunk, where it meets the leaves, pale."
+       },
+       {
+        "kind": "stop",
+        "text": "The trunks look gray and flecked with pale bark. If a patch goes solid, the brush was too loaded."
+       }
+      ],
+      "mark-birch-bark": [
+       {
+        "kind": "first",
+        "text": "Let the gray dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the foot of each trunk, where it meets the leaves, and press in a dark foot."
+       },
+       {
+        "kind": "back",
+        "step": 3,
+        "text": "This is the same angle brush and thick-to-thin stroke as the far trunks, but each mark is short and runs across the trunk."
+       },
+       {
+        "kind": "strokes",
+        "text": "For each bark mark, press the angle brush's full width, then turn onto its edge and lighten, so each short mark across the trunk tapers. Run thin dark lines along the branches."
+       },
+       {
+        "kind": "inside",
+        "text": "Put more marks low on the trunks and fewer higher up. Most of it is in the bottom half and on the left side, where the big trunks stand."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave gray and pale bark showing between the marks."
+       },
+       {
+        "kind": "stop",
+        "text": "The trunks read as birches, with broken dark marks and dark feet."
+       }
+      ],
+      "dab-orange-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the bark marks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the far end of the path, about 7 3/4 in from the top edge, and work toward you."
+       },
+       {
+        "kind": "back",
+        "step": 7,
+        "text": "This is the same Leaf orange and the same dry old flat as the canopy, now dabbed across the ground as fallen leaves."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap Leaf orange with the old flat in leaf-sized dabs."
+       },
+       {
+        "kind": "inside",
+        "text": "Cover most of the floor from the left edge to the right edge, down to the bottom edge. Spill onto the path and over the dark feet of the trunks. Most of it is on the right side."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark leaf floor from step 10 showing in the gaps."
+       },
+       {
+        "kind": "stop",
+        "text": "The ground is a warm orange leaf carpet with darker leaves in the gaps, and the trunk feet sit in the leaves."
+       }
+      ],
+      "dab-gold-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the orange dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the far end of the path, then work down along it and out across the floor."
+       },
+       {
+        "kind": "back",
+        "step": 8,
+        "text": "This is the Golden yellow that lit the canopy, now tapped with the small round brush as sunny leaves on the path."
+       },
+       {
+        "kind": "strokes",
+        "text": "Tap the #10 round lightly in small leaf dabs."
+       },
+       {
+        "kind": "inside",
+        "text": "Most of it is on the right side and in the top half. Make a band of gold down the path and across the floor at the trunks' feet, with a few dabs at the left edge and fewer toward the bottom edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave orange and rust showing between the gold."
+       },
+       {
+        "kind": "stop",
+        "text": "Gold leaves catch the sun along the path and across the middle of the floor."
+       }
+      ],
+      "light-birch-bark": [
+       {
+        "kind": "first",
+        "text": "Let the bark marks and leaves dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge on the biggest trunk, on its sunny side, the side facing the glow."
+       },
+       {
+        "kind": "back",
+        "step": 16,
+        "text": "This is the same dry skim you used to gray the trunks, now with Bark white and only on the side of each trunk facing the sun."
+       },
+       {
+        "kind": "strokes",
+        "text": "With the old flat nearly dry, skim Bark white down each trunk and along its branches, skipping lightly over the dark marks."
+       },
+       {
+        "kind": "inside",
+        "text": "The light goes on the side of each trunk facing the sun, because the light comes from the upper left. Most of it is on the left side, where the big trunks stand."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the shaded side of each trunk gray, and keep the dark feet dark."
+       },
+       {
+        "kind": "stop",
+        "text": "Sunlit white birches with dark marks lean over the golden path into the misty grove."
+       }
+      ]
+     },
+     "missing": [],
+     "arc": {
+      "opening": {
+       "welcome": "You are about to paint an autumn birch grove: white trunks leaning over a leaf-covered path that runs into a misty blue wood. The heart of the painting is the spot where the path disappears into the mist, framed by the birches. What makes it sing is the warm, hazy light glowing through the trees and catching on the leaves and bark.",
+       "light": "A low sun shines through the mist, so the glow, the brightest leaves and the sunlit bark all sit toward it. Each thing has a sunny side facing the glow and a shadow side away from it, and the far wood stays cool and blue in the haze.",
+       "skills": [
+        {
+         "card": "dabbing",
+         "steps": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          18,
+          19
+         ],
+         "how": "Dabbing is tapping with the tip of a dry brush to make dappled leaves instead of smooth paint. Keep the brush dry: a wet or overloaded brush makes blobs instead of dots."
+        },
+        {
+         "card": "dry-brush",
+         "steps": [
+          2,
+          14,
+          16,
+          20
+         ],
+         "how": "Dry brushing is skimming a nearly dry brush lightly over the surface so the paint breaks up and lets the earlier paint show through. It makes the misty far trees, the moss on the boulder, and the shading and sunlight on the birch bark. If it goes on solid, the brush held too much paint, so wipe it and skim more lightly."
+        },
+        {
+         "card": "thick-to-thin",
+         "steps": [
+          3,
+          15,
+          17
+         ],
+         "how": "Thick to thin means pressing the brush's full width, then easing onto its edge so the stroke tapers. It pulls the far misty trunks, the big birch trunks and their branches, and the short dark bark marks. Change your pressure slowly and smoothly, so each stroke narrows instead of stopping with a hard end."
+        }
+       ],
+       "road": "First you blend one soft, wet glow over the whole canvas, because the mist and the sun are what everything else sits in. Then you work forward one layer at a time: the hazy far trees and trunks, the dark pines, and the golden canopy and undergrowth. Next comes the rust leaf floor with the path running into the grove, and then the mossy boulder by the path. The birches go on last over all of it, since they are nearest to you. Fallen leaves tie the trunks into the ground, and a last touch of sun on the bark finishes the picture."
+      },
+      "stages": {
+       "the-misty-sky": {
+        "for": "This stage lays the glowing, misty light that the whole painting lives in.",
+        "end": "The canvas is one soft glow, cream around the sun and fading into haze blue, with faint pale trunks standing in the mist."
+       },
+       "the-far-wood": {
+        "for": "This stage builds the distant wood, soft and blue in the mist, so the painting gets its depth.",
+        "end": "Soft blue tree shapes and pale trunks stand in the haze, with a group of dark pines whose feet melt into a teal mist."
+       },
+       "the-golden-leaves": {
+        "for": "This stage brings in the warm autumn colour, building the undergrowth and canopy from dark dabs to bright ones.",
+        "end": "A golden canopy hangs through the glow, a big golden bush shines near the sun, and warm sunlight lies in patches across the misty ground."
+       },
+       "the-ground": {
+        "for": "This stage lays the leaf floor and the path that leads the eye into the grove.",
+        "end": "A dense rust-brown leaf floor fills the ground, with a short pale path vanishing into the gap between the bushes and the pines."
+       },
+       "the-boulder": {
+        "for": "This stage builds the mossy boulder and makes it look round with shadow and light.",
+        "end": "A rounded boulder sits by the path, dark on its shadow side with pale moss catching the sun."
+       },
+       "the-birches": {
+        "for": "This stage pulls the near birches over everything and turns them into real birch trunks.",
+        "end": "Six birch trunks lean over the grove, gray and flecked, with broken dark marks and dark feet in the leaves."
+       },
+       "the-fallen-leaves": {
+        "for": "This stage carpets the ground in fallen leaves and settles the trunks into it.",
+        "end": "The floor and path are a warm orange carpet with golden leaves catching the sun and darker leaves in the gaps."
+       },
+       "the-last-lights": {
+        "for": "This stage adds the final sunlight on the bark that makes the birches glow.",
+        "end": "The finished painting: sunlit birches lean over a golden leaf-covered path running into the misty blue grove."
+       }
+      }
+     },
+     "first_arc": {
+      "opening": {
+       "welcome": "You are about to paint an autumn birch grove: white trunks leaning over a leaf-covered path that runs into a misty blue wood. The heart of the painting is the spot where the path disappears into the mist, framed by the birches. What makes it sing is the warm, hazy light glowing through the trees and catching on the leaves and bark.",
+       "light": "A low sun shines through the mist, so the glow, the brightest leaves and the sunlit bark all sit toward it. Each thing has a sunny side facing the glow and a shadow side away from it, and the far wood stays cool and blue in the haze.",
+       "skills": [
+        {
+         "card": "dabbing",
+         "steps": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          18,
+          19
+         ],
+         "how": "Dabbing is tapping with the tip of a dry brush to make dappled leaves instead of smooth paint. It builds the undergrowth, the golden canopy and the whole leaf floor, always dark first and lighter on top, with the darker taps left showing. Keep the brush dry: a wet or overloaded brush makes blobs instead of dots."
+        },
+        {
+         "card": "dry-brush",
+         "steps": [
+          2,
+          14,
+          16,
+          20
+         ],
+         "how": "Dry brushing is skimming a nearly dry brush lightly over the surface so the paint breaks up and lets what is beneath show through. It makes the misty far trees, the moss on the boulder, and the shading and sunlight on the birch bark. If it goes on solid, the brush held too much paint, so wipe it and skim more lightly."
+        },
+        {
+         "card": "thick-to-thin",
+         "steps": [
+          3,
+          15,
+          17
+         ],
+         "how": "Thick to thin means pressing the brush's full width, then easing onto its edge so the stroke tapers. It pulls the far misty trunks, the big birch trunks and their branches, and the short dark bark marks. Change your pressure slowly and smoothly, so each stroke narrows instead of stopping with a hard end."
+        }
+       ],
+       "road": "First you blend one soft, wet glow over the whole canvas, because the mist and the sun are what everything else sits in. Then you work forward one layer at a time: the hazy far trees and trunks, the dark pines, and the golden canopy and undergrowth. Next comes the rust leaf floor with the path running into the grove, and then the mossy boulder beside it. The birches go on last over all of it, since they are nearest to you. Fallen leaves tie the trunks into the ground, and a last touch of sun on the bark finishes the picture."
+      },
+      "stages": {
+       "the-misty-sky": {
+        "for": "This stage lays the glowing, misty light that the whole painting lives in.",
+        "end": "The canvas is one soft glow, cream around the sun and fading into haze blue, with faint pale trunks standing in the mist."
+       },
+       "the-far-wood": {
+        "for": "This stage builds the distant wood, soft and blue in the mist, so the painting gets its depth.",
+        "end": "Soft blue tree shapes and pale trunks stand in the haze, with a group of dark pines whose feet melt into a teal mist."
+       },
+       "the-golden-leaves": {
+        "for": "This stage brings in the warm autumn colour, building the undergrowth and canopy from dark dabs to bright ones.",
+        "end": "A golden canopy hangs through the glow, a big golden bush shines near the sun, and warm sunlight lies in patches across the misty ground."
+       },
+       "the-ground": {
+        "for": "This stage lays the leaf floor and the path that leads the eye into the grove.",
+        "end": "A dense rust-brown leaf floor fills the ground, with a short pale path vanishing into the gap between the bushes and the pines."
+       },
+       "the-boulder": {
+        "for": "This stage builds the mossy boulder and makes it look round with shadow and light.",
+        "end": "A rounded boulder sits beside the path, dark on its shadow side with pale moss catching the sun."
+       },
+       "the-birches": {
+        "for": "This stage pulls the near birches over everything and turns them into real birch trunks.",
+        "end": "Six birch trunks lean over the grove, gray and flecked, with broken dark marks and dark feet in the leaves."
+       },
+       "the-fallen-leaves": {
+        "for": "This stage carpets the ground in fallen leaves and settles the trunks into it.",
+        "end": "The floor and path are a warm orange carpet with golden leaves catching the sun and darker leaves in the gaps."
+       },
+       "the-last-lights": {
+        "for": "This stage adds the final sunlight on the bark that makes the birches glow.",
+        "end": "The finished painting: sunlit birches lean over a golden leaf-covered path running into the misty blue grove."
+       }
+      },
+      "steps": {
+       "tap-pine-light": {
+        "back": {
+         "step": 4,
+         "text": "This is the same fan tapping you used to stamp the pines, now with Pine teal, tapped into the mist around them instead of on the trees."
+        }
+       },
+       "dab-canopy-darks": {
+        "back": {
+         "step": 6,
+         "text": "You dabbed the olive undergrowth with this same dry old flat. Now the colour is Leaf orange, and the taps build up into solid leaf masses."
+        }
+       },
+       "dab-sunlit-leaves": {
+        "back": {
+         "step": 8,
+         "text": "This is the same dabbing as the golden leaves, but with the small round brush, for smaller, brighter taps where the sun hits."
+        }
+       },
+       "dab-floor-darks": {
+        "back": {
+         "step": 6,
+         "text": "This is the same dry dabbing as the olive undergrowth, but this time keep tapping until the dabs close up and hide the mist completely."
+        }
+       },
+       "block-in-boulder": {
+        "back": {
+         "step": 6,
+         "text": "This is the same Olive moss you dabbed for the undergrowth. Here it goes on flat, in curved pieces, to build a solid shape."
+        }
+       },
+       "light-boulder": {
+        "back": {
+         "step": 2,
+         "text": "This is the same dry skim you used for the misty far trees: only the tip loaded, light pressure. Now it is Pale moss on the boulder's sunny shoulder."
+        }
+       },
+       "pull-birches": {
+        "back": {
+         "step": 3,
+         "text": "You pulled the far trunks thick to thin. This is the same stroke with a wider flat, pulled up from each trunk's foot instead of down."
+        }
+       },
+       "shade-birches": {
+        "back": {
+         "step": 14,
+         "text": "This is the same dry brushing as the moss on the boulder, now skimmed down the length of each trunk so pale bark shows through."
+        }
+       },
+       "mark-birch-bark": {
+        "back": {
+         "step": 3,
+         "text": "This is the same angle brush and thick-to-thin stroke as the far trunks, but each mark is short and runs across the trunk."
+        }
+       },
+       "dab-orange-leaves": {
+        "back": {
+         "step": 7,
+         "text": "This is the same Leaf orange and the same dry old flat as the canopy, now dabbed across the ground as fallen leaves."
+        }
+       },
+       "dab-gold-leaves": {
+        "back": {
+         "step": 8,
+         "text": "This is the Golden yellow that lit the canopy, now tapped with the small round brush as sunny leaves on the path."
+        }
+       },
+       "light-birch-bark": {
+        "back": {
+         "step": 16,
+         "text": "This is the same dry skim you used to gray the trunks, now with Bark white and only on the side of each trunk facing the sun."
+        }
+       }
+      }
+     },
+     "check": {
+      "failures_first": 8,
+      "failures_second": 0,
+      "taken_out": [],
+      "left_failing": 0,
+      "claims_final": 51,
+      "arc_text_failures_first": 0,
+      "arc_failures_first": 4,
+      "arc_failures_second": 1,
+      "arc_taken_out": [
+       {
+        "where": "opening.skill 1",
+        "what": "an opener says no number and no side word",
+        "sentence": "It builds the undergrowth, the golden canopy and the whole leaf floor, always dark first and then lighter, with the darker taps left showing."
+       }
+      ],
+      "back_left_failing": 0,
+      "paints_first": 2,
+      "paints_second": 0,
+      "paints_taken_out": [],
+      "arc_paints_first": 0,
+      "arc_paints_second": 0,
+      "paints_left": 0
+     },
+     "backs": 12,
+     "words_count": 2362,
+     "arc_words": 656
     }
    }
   },
