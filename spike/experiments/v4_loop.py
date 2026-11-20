@@ -268,6 +268,11 @@ stroke_list = plan_writer.stroke_list
 research_sections = plan_writer.research_sections
 
 
+# What `check` prints that only a change to plan.json fixes (run.md C3): it names plan.json, or it is a step whose
+# brush its stroke's card doesn't take (#278's cat: plan-check doesn't hold the brush, so it got to the seal).
+PLAN_ASK = re.compile(r"plan\.json|Change the brush, or the stroke")
+
+
 # ------------------------------------------------------------------------------------------------------------- the run
 class Run:
     def __init__(self, photo: str, lesson: Path, cuts: list[str] | tuple = tuple(CUTS)):
@@ -589,9 +594,11 @@ class Run:
         for t in ("step-aids", "mix", "draft-text"):
             self.tool(t, "--lesson", self.lesson)
         ck = self.tool("check", "--lesson", self.lesson, ok_refused=True)
-        plan_asks = [p for p in ck.get("problems") or [] if "plan.json" in p]
-        if plan_asks and not self.state.get("merged"):
-            self.state["merged"] = plan_asks
+        # run.md C3: act now on a problem that changes plan.json (a merge, or a brush its step's card doesn't take)
+        plan_asks = [p for p in ck.get("problems") or [] if PLAN_ASK.search(p)]
+        if plan_asks and len(self.state.get("plan_asks_rounds") or []) < 2:
+            self.state.setdefault("plan_asks_rounds", []).append(plan_asks)
+            self.state["merged"] = (self.state.get("merged") or []) + plan_asks
             h = self.helpers.get("plan-writer")
             if h is None:
                 h = Helper(self, "plan-writer", NO_TOOLS + "You are the plan's writer for a Gesso painting lesson.")
