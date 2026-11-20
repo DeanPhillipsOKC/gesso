@@ -2696,6 +2696,68 @@
    },
    "reply_chars": 6633,
    "at": "2026-11-20T12:38:51"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "sleeping-cat",
+   "part": "words",
+   "helper": "writer",
+   "label": "W2 arc",
+   "turn": 4,
+   "session": "6829d36c-1dd6-4bd2-8247-51aa24443a01",
+   "cache": "5m",
+   "seconds": 42.0,
+   "input_tokens": 4,
+   "cache_write_tokens": 11364,
+   "cache_read_tokens": 88156,
+   "output_tokens": 4296,
+   "thinking_tokens": 1595,
+   "cost_usd": 0.16039,
+   "effort": null,
+   "cli_cost_usd": 1.1428513999999999,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 23692,
+    "system_chars": 0
+   },
+   "reply_chars": 7476,
+   "at": "2026-11-20T12:39:24"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "sleeping-cat",
+   "part": "words",
+   "helper": "writer",
+   "label": "W2 arc feedback",
+   "turn": 5,
+   "session": "6829d36c-1dd6-4bd2-8247-51aa24443a01",
+   "cache": "5m",
+   "seconds": 20.8,
+   "input_tokens": 4,
+   "cache_write_tokens": 4440,
+   "cache_read_tokens": 99520,
+   "output_tokens": 2724,
+   "thinking_tokens": 24,
+   "cost_usd": 0.0966,
+   "effort": null,
+   "cli_cost_usd": 1.2394513999999999,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 418,
+    "system_chars": 0
+   },
+   "reply_chars": 7472,
+   "at": "2026-11-20T12:39:44"
   }
  ],
  "ab": [
@@ -27195,6 +27257,1771 @@
      "backs": 12,
      "words_count": 2362,
      "arc_words": 656
+    },
+    "sleeping-cat": {
+     "first": {
+      "blend-window-sky": {
+       "first": "",
+       "start": "Start with Sky blue in the corner where the top edge and the left edge of the canvas meet.",
+       "strokes": "Stroke side to side in short rows, working down. Without rinsing, pick up Pale sky blue for the lower rows, then stroke back up over the join while it is wet. If a hard line shows, add more Pale sky blue at the join and blend again.",
+       "inside": "The deepest blue goes nearest the top edge of the canvas and gets paler as you go down, the way a real sky lightens. The patch is about 1 1/4 in wide and about 3 1/4 in tall.",
+       "leave": "Leave a ragged, cloud-shaped gap of bare white inside the blue. Keep the rest of the canvas bare white.",
+       "stop": "Stop when there is one soft blue patch in the corner with wavy edges. It should be deeper at the top edge of the canvas and paler lower down, with no hard line between the two blues."
+      },
+      "dab-dark-leaves": {
+       "first": "Let the sky dry so the green stays green and doesn't mix into the blue.",
+       "start": "Make your first taps where the blue meets the white gap in the sky through the window, about 1 in from the top edge.",
+       "strokes": "Wipe the brush nearly dry. Tap straight down with its tip, and don't drag it.",
+       "inside": "Put just a few small Leaf green dots along that ragged edge. They are the first hint of leaves in shade.",
+       "leave": "Leave nearly all of the blue and the white gap untouched.",
+       "stop": "You'll see only a few tiny dots, and that is all this step is. If you get blobs, wipe the brush on a paper towel and tap again."
+      },
+      "dab-light-leaves": {
+       "first": "Let the Leaf green dots dry, so the light green sits on them and doesn't mix in.",
+       "start": "Start near the left edge of the canvas, about 2 1/2 in from the top edge, where the blue fades to pale.",
+       "strokes": "Wipe the brush nearly dry and tap with its tip, a little at a time.",
+       "inside": "Most taps go in the bottom half of the leaves outside the window. Add a couple beside the Leaf green dots for the sunny side of the clumps.",
+       "leave": "Leave the Leaf green dots showing, and keep the blue and the white gap clear.",
+       "stop": "Stop at a handful of small yellow-green specks. Keep it a light touch."
+      },
+      "blend-wall": {
+       "first": "Let the sky and the leaf dots dry before the wall comes up against them.",
+       "start": "Start with Sky blue at the top edge of the canvas, just right of the sky through the window.",
+       "strokes": "Lay short X strokes that cross each other, working across and down the whole canvas. While it is still wet, go back over it with lighter, longer side-to-side strokes to smooth it.",
+       "inside": "Use Sky blue for the paler wall near the top edge, Soft wall blue through the middle, and work Deep wall blue in toward the right edge of the canvas, where the corner is in shade away from the window. Paint straight through where the frame, sill, blanket and cat will go.",
+       "leave": "Leave the sky through the window and its leaf dots showing in the corner.",
+       "stop": "Stop when a smooth blue wall with faint criss-cross marks runs around the window view to the left, right and bottom edges of the canvas."
+      },
+      "block-in-frame": {
+       "first": "Let the wall dry so the cream bars stay clean.",
+       "start": "Start with the tall post: a long rectangle running down from the top edge of the canvas, just right of the sky through the window.",
+       "strokes": "Build the frame from rectangles. Do the post first, then a crossbar across the window, then a slanting bottom bar out to the left edge of the canvas. Pull each stroke the length of the bar and keep the edges straight.",
+       "inside": "Paint it all in flat Warm cream, with no shading yet. The whole frame is about 3 in wide and about 7 in tall.",
+       "leave": "Leave sky and leaves showing in a pane on each side of the crossbar, and the blue wall around the frame.",
+       "stop": "Stop when flat cream bars and a wide post frame the window view."
+      },
+      "shade-frame": {
+       "first": "Let the cream frame dry so the blue-gray doesn't streak into it.",
+       "start": "Start with the long strip on the inner side of the post, the side facing the room. It runs down from the top edge of the canvas, about 3 in to 4 1/2 in from the left edge.",
+       "strokes": "Pull long straight strokes down the strip, then shorter ones along each bar, one piece at a time.",
+       "inside": "The light comes in through the window, so the shade goes on the faces turned away from it: the strip down the post, about 9 in tall, a thin line along the post's window side, and the lower edges of the crossbar and bottom bar. Add a soft band on the wall where the bottom bar slants down to the left edge of the canvas.",
+       "leave": "Leave the cream faces of the bars and post showing.",
+       "stop": "Stop when the window has depth: a dark strip fading out down the wall, and thin shadow lines along the bars."
+      },
+      "light-frame": {
+       "first": "Let the Deep wall blue dry.",
+       "start": "Start at the top edge of the canvas, on the cream face of the post about 2 1/4 in from the left edge.",
+       "strokes": "Dip only the tip, wipe it nearly dry, and skim lightly along the length of each bar. Use several light passes, not one heavy one.",
+       "inside": "Catch the faces that look toward the window: the cream face of the post, and the upper faces of the crossbar and bottom bar.",
+       "leave": "Leave the cream middles and the Deep wall blue shadow lines showing.",
+       "stop": "Stop when the frame glows a little brighter. The change is gentle and broken, never a solid white stripe. If it goes on solid, let it dry and load less paint for the next pass."
+      },
+      "lay-in-sill": {
+       "first": "Let the frame and the wall dry.",
+       "start": "Start at the left edge of the canvas, just below the window frame, where the ledge meets the wall.",
+       "strokes": "Keep the brush level and pull long strokes from left to right, all the way to the right edge of the canvas, working down.",
+       "inside": "Fill the whole ledge with flat Wood brown, with its back line slanting gently down toward the right edge of the canvas. It is about 4 1/2 in tall and reaches the bottom edge of the canvas. Paint straight through where the blanket will go.",
+       "leave": "Leave the blue wall and the window frame clear.",
+       "stop": "Stop when a flat warm-brown band with level streaks fills the bottom of the canvas from edge to edge."
+      },
+      "darken-sill-edge": {
+       "first": "Let the Wood brown dry so the streaks stay crisp.",
+       "start": "Start at the bottom edge of the canvas, along the front of the sill.",
+       "strokes": "Pull long, level strokes from the left edge to the right edge, lightly enough that the paint lays down as streaky grain.",
+       "inside": "Cover the ledge with streaky Dark wood brown, darkest at the front, which is farthest from the light. Skip a long slanting patch running in from near the left edge of the canvas, where the sun falls, and let its far end break into ragged bits. Lay one thin slanting stripe across that patch near the left edge for a window bar's shadow.",
+       "leave": "Leave that sunny patch flat Wood brown.",
+       "stop": "Stop when grainy dark wood covers the sill from edge to edge, with a plain, lighter patch near the window."
+      },
+      "light-sill": {
+       "first": "Let the Dark wood brown dry.",
+       "start": "Start near the left edge of the canvas, about 8 1/2 in from the top edge, at the near end of the plain patch.",
+       "strokes": "With a nearly dry brush, skim lightly along the patch in several light passes, following its slant.",
+       "inside": "Fill the plain Wood brown patch left by the last step. This is the window's sunlight on the sill, so let it break into ragged bits at its far end. The patch is about 8 1/4 in wide.",
+       "leave": "Leave the thin slanting Dark wood brown stripe across it, and all the dark grain around it.",
+       "stop": "Stop when a glowing peachy band lies across the sill near the window, soft and a little broken, not a solid block."
+      },
+      "block-in-blanket": {
+       "first": "Let the sill dry.",
+       "start": "Start with a long rounded rectangle for the folded front. Its left end is about 1 1/4 in from the left edge, and it runs out to the right edge of the canvas.",
+       "strokes": "Build it from pieces: the big rectangle first, then curved ( ) pieces to round off its left end and the gently humped back line where it meets the wall.",
+       "inside": "Give it one flat coat of Mustard gold, with no folds or shading yet. Its top is about 6 in from the top edge.",
+       "leave": "Leave the wooden windowsill below the blanket and the sunny patch showing. Keep the edge against the wall clean.",
+       "stop": "Stop when a flat, soft-cornered gold shape, about 14 3/4 in wide, lies along the sill."
+      },
+      "shade-blanket": {
+       "first": "Let the Mustard gold dry.",
+       "start": "Start in the groove between the two folds, about 2 in from the left edge, and follow it across the blanket.",
+       "strokes": "Bend every stroke around each roll. Make short curved strokes from the crest of the roll down into the groove, side by side like the twists of a knit cable.",
+       "inside": "Darken the groove between the folds, the curl at the blanket's rounded left end, and the place where the front roll tucks against the sill, because these turn away from the window light. Cover the rolls with rows of curved knit strokes from end to end.",
+       "leave": "Leave Mustard gold showing on the crest of each roll, where the light hits.",
+       "stop": "Stop when the flat shape reads as two chunky knitted rolls with darker grooves between them."
+      },
+      "dark-stitches": {
+       "first": "Let the Dark gold folds dry.",
+       "start": "Start along the groove just inside the back roll, about 2 in from the left edge, and press a line of commas along its length.",
+       "strokes": "Touch down, press so the brush spreads, then pull and lift to a point. Set the commas in V pairs that follow the curve of each roll.",
+       "inside": "Put them in the gaps between the knit stitches, scattered along the front rolls, with more toward the right edge of the canvas. They deepen the shadows between the loops.",
+       "leave": "Leave plenty of gold stitches showing between the marks.",
+       "stop": "Stop when dark commas sit in the gaps all along the blanket and it looks knitted, not spotty. If you get blobs, use less paint and lift faster."
+      },
+      "light-stitches": {
+       "first": "Let the Dark gold commas dry.",
+       "start": "Start at the blanket's rounded left end, about 1 1/4 in from the left edge, and along the crest of the back roll.",
+       "strokes": "Press and lift each comma, setting them in V pairs along the curve of each roll.",
+       "inside": "Stamp them on the crowns of the stitches, more along the crest of each roll and its window end, because that is where the light lands.",
+       "leave": "Leave the Dark gold showing in the gaps and down in the folds.",
+       "stop": "Stop when the knit looks chunky and bright: sunny on the crests, dark in the grooves."
+      },
+      "block-in-cat": {
+       "first": "Let the blanket dry.",
+       "start": "Start with a big oval for the curled body, resting on the blanket and reaching toward the right edge of the canvas.",
+       "strokes": "Build it from pieces: the oval first, then a round head at the window end, two triangle ears, and curved ( ) pieces to round off the back and haunch.",
+       "inside": "Fill it all with one flat coat of Cat gray. The head comes to about 1 in from the left edge, against the window frame, and the tip of the raised ear is about 1 1/2 in from the top edge.",
+       "leave": "Leave the blanket below the cat showing, and keep the cat's outline smooth against the wall.",
+       "stop": "Stop at a flat gray silhouette of a curled cat with no markings yet."
+      },
+      "shade-cat": {
+       "first": "Let the Cat gray dry.",
+       "start": "Start on the cat's head, where the bands begin, about 2 3/4 in from the left edge.",
+       "strokes": "Bend each stroke around the cat's roundness: from the spine down and around the body toward the belly, and in arcs across the forehead and cheek.",
+       "inside": "Lay curved Dark gray bands across the head, body and haunch. Darken the dip where the head tucks into the body, which the window light can't reach, and outline the two front paws.",
+       "leave": "Leave Cat gray between the bands so the cat stays light, especially near the window.",
+       "stop": "Stop when soft, darker gray tabby bands wrap around the cat and it looks round."
+      },
+      "white-patches": {
+       "first": "Let the Dark gray dry, or the white will turn gray.",
+       "start": "Start with the muzzle and the two front paws, about 3 1/2 in from the left edge.",
+       "strokes": "Curve the strokes with the shape: down the muzzle into the chin, and around the round toes of each paw. Do 2 or 3 thin coats, letting each dry first.",
+       "inside": "White goes on the muzzle and chin, on the two paws tucked in front of the chin, and on a pointed chest patch in the curl of the body, about 8 in from the left edge.",
+       "leave": "Leave the gray and the Dark gray bands around the white shapes.",
+       "stop": "Stop when the muzzle, paws and chest patch are clean, solid white. If gray shows through, add another thin coat once it is dry."
+      },
+      "cat-stripes": {
+       "first": "Let the white dry completely.",
+       "start": "Start at the cat's spine, on the Dark gray bands across its back.",
+       "strokes": "Press the full width of the angle brush at the spine, then turn onto its edge and ease off as you pull down around the body, so each stripe tapers toward the belly. On the head, pull tapering bars out from the forehead.",
+       "inside": "Paint Charcoal stripes over the Dark gray bands on the head, body and tail, all the way across the cat, and darken the dip where the head tucks into the body.",
+       "leave": "Leave lighter gray between the stripes, and keep the white patches clean.",
+       "stop": "Stop when bold, tapering tabby stripes wrap around the cat."
+      },
+      "pink-ears": {
+       "first": "Let the Charcoal dry.",
+       "start": "Start with the raised ear, whose tip is about 1 1/2 in from the top edge. Then do the ear near the window, about 1 1/4 in from the left edge.",
+       "strokes": "Press the brush down at the base of each ear, then lift as you pull toward the tip, so the pink tapers to a point.",
+       "inside": "Pink fills the inside of each ear, where the thin skin shows.",
+       "leave": "Leave a gray rim all the way around each ear.",
+       "stop": "Stop when both ears are soft pink inside with gray edges."
+      },
+      "flick-fur": {
+       "first": "Let everything dry.",
+       "start": "Start on the cat's head and on the cheek nearest the window.",
+       "strokes": "Make quick, short flicks with a lightly loaded fan brush, lifting off at the end of each. Flick outward from the face on the head, and up from the belly toward the spine on the body.",
+       "inside": "Flick over the edges of the stripes and the darker shading on the head, along the ridge of the back, and in the dip where the head tucks into the body, so the hard edges soften into fur.",
+       "leave": "Leave the dark centre of each stripe and the white patches showing.",
+       "stop": "Stop when the stripes look fuzzy rather than painted on, and the cat looks furry."
+      },
+      "window-light": {
+       "first": "Let the fur flicks dry.",
+       "start": "Start on the rim of the raised ear, about 1 3/4 in from the top edge.",
+       "strokes": "Wipe the brush almost dry and skim lightly along each rim in a few light passes.",
+       "inside": "Skim the edges that face the window, because the light reaches them first: the ear rims, the crown of the head and the cheek, and a few spots along the ridge of the back.",
+       "leave": "Leave the gray and the stripes showing through the broken cream.",
+       "stop": "Stop at a faint warm glow on the ears, head and back. If it goes on solid, let it dry and load less paint next time."
+      },
+      "eyes-toes": {
+       "first": "Let the window light dry, or the lines will spread.",
+       "start": "Start with the closed eye nearer the window, on the cat's cheek.",
+       "strokes": "Thin the Charcoal with water, hold the liner upright, and pull each line with light, steady pressure, from thick to thin.",
+       "inside": "Paint two downward-curving lines for the closed eyes, short lines between the toes of each paw, and a few tiny touches in the dip where the head tucks into the body.",
+       "leave": "Leave the white muzzle and paws mostly clean.",
+       "stop": "Stop when the cat looks peacefully asleep. If a line skips, add water."
+      },
+      "paint-nose": {
+       "first": "Let the Charcoal lines dry.",
+       "start": "Start where the white muzzle narrows between the eyes.",
+       "strokes": "Touch down with the tip, press lightly so it spreads a little, then lift to make a tiny triangle.",
+       "inside": "Paint just one small pink nose.",
+       "leave": "Leave the white muzzle around it.",
+       "stop": "Stop when a small pink nose sits just above the mouth. Keep it tiny."
+      },
+      "whiskers": {
+       "first": "Let the nose dry.",
+       "start": "Start at the white muzzle, next to the pink nose.",
+       "strokes": "Thin the Pure white with water, hold the liner upright, and pull each whisker outward from the muzzle in a long, gentle curve, easing the pressure so it tapers.",
+       "inside": "Fan a few whiskers out from each side of the muzzle and across the cheeks. The ones near the window run out over the edge of the blanket.",
+       "leave": "Leave everything else as it is.",
+       "stop": "Stop at a few fine, wispy whiskers. The painting is finished."
+      }
+     },
+     "final_slots": {
+      "blend-window-sky": [
+       {
+        "kind": "start",
+        "text": "Start with Sky blue in the corner where the top edge and the left edge of the canvas meet."
+       },
+       {
+        "kind": "strokes",
+        "text": "Stroke side to side in short rows, working down. Without rinsing, pick up Pale sky blue for the lower rows, then stroke back up over the join while it is wet. If a hard line shows, add more Pale sky blue at the join and blend again."
+       },
+       {
+        "kind": "inside",
+        "text": "The deepest blue goes nearest the top edge of the canvas and gets paler as you go down, the way a real sky lightens. The patch is about 1 1/4 in wide and about 3 1/4 in tall."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave a ragged, cloud-shaped gap of bare white where no blue goes. Keep the rest of the canvas bare white."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when there is one soft blue patch in the corner with wavy edges. It should be deeper at the top edge of the canvas and paler lower down, with no hard line between the two blues."
+       }
+      ],
+      "dab-dark-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the sky dry so the green stays green and doesn't mix into the blue."
+       },
+       {
+        "kind": "start",
+        "text": "Make your first taps where the blue meets the white gap in the sky through the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Wipe the brush nearly dry. Tap straight down with its tip, and don't drag it."
+       },
+       {
+        "kind": "inside",
+        "text": "Put just a few small Leaf green dots along that ragged edge. They are the first hint of leaves in shade."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave nearly all of the blue and the white gap untouched."
+       },
+       {
+        "kind": "stop",
+        "text": "You'll see only a few tiny dots, and that is all this step is. If you get blobs, wipe the brush on a paper towel and tap again."
+       }
+      ],
+      "dab-light-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the green dots from step 2 dry, so the light green sits on them and doesn't mix in."
+       },
+       {
+        "kind": "start",
+        "text": "Start near the left edge of the canvas, about 2 1/2 in from the top edge, where the blue fades to pale."
+       },
+       {
+        "kind": "strokes",
+        "text": "Wipe the brush nearly dry and tap with its tip, a little at a time."
+       },
+       {
+        "kind": "inside",
+        "text": "Most taps go in the bottom half of the leaves outside the window. Add a couple more where the green dots from step 2 are, for the sunny side of the clumps."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the green dots from step 2 showing, and keep the blue and the white gap clear."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a handful of small yellow-green specks. Keep it a light touch."
+       }
+      ],
+      "blend-wall": [
+       {
+        "kind": "first",
+        "text": "Let the sky and the leaf dots dry before the wall comes up against them."
+       },
+       {
+        "kind": "start",
+        "text": "Start with Sky blue at the top edge of the canvas, just right of the sky through the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Lay short X strokes that cross each other, working across and down the whole canvas. While it is still wet, go back over it with lighter, longer side-to-side strokes to smooth it."
+       },
+       {
+        "kind": "inside",
+        "text": "Use Sky blue for the paler wall near the top edge, Soft wall blue through the middle, and work Deep wall blue in toward the right edge of the canvas, where the corner is in shade away from the window. Paint straight through where the frame, sill, blanket and cat will go."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the sky through the window and its leaf dots showing in the corner."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a smooth blue wall with faint criss-cross marks runs around the window view to the left, right and bottom edges of the canvas."
+       }
+      ],
+      "block-in-frame": [
+       {
+        "kind": "first",
+        "text": "Let the wall dry so the cream bars stay clean."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the tall post: a long rectangle running down from the top edge of the canvas, just right of the sky through the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Build the frame from rectangles. Do the post first, then a crossbar across the window, then a slanting bottom bar out to the left edge of the canvas. Pull each stroke the length of the bar and keep the edges straight."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint it all in flat Warm cream, with no shading yet. The whole frame is about 3 in wide and about 7 in tall."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave sky and leaves showing in a pane on each side of the crossbar, and the blue wall around the frame."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when flat cream bars and a wide post frame the window view."
+       }
+      ],
+      "shade-frame": [
+       {
+        "kind": "first",
+        "text": "Let the cream frame dry so the blue-gray doesn't streak into it."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the long strip on the inner side of the post, the side facing the room. It runs down from the top edge of the canvas, and its left side is about 3 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Pull long straight strokes down the strip, then shorter ones along each bar, one piece at a time."
+       },
+       {
+        "kind": "inside",
+        "text": "The light comes in through the window, so the shade goes on the faces turned away from it: the strip down the post, about 9 in tall, a thin line along the post's window side, and the lower edges of the crossbar and bottom bar. Add a soft band on the wall where the bottom bar slants down to the left edge of the canvas."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the cream faces of the bars and post showing."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the window has depth: a dark strip fading out down the wall, and thin shadow lines along the bars."
+       }
+      ],
+      "light-frame": [
+       {
+        "kind": "first",
+        "text": "Let the blue-gray shading from step 6 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge of the canvas, on the cream face of the post about 2 1/4 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Dip only the tip, wipe it nearly dry, and skim lightly along the length of each bar. Use several light passes, not one heavy one."
+       },
+       {
+        "kind": "inside",
+        "text": "Catch the faces that look toward the window: the cream face of the post, and the upper faces of the crossbar and bottom bar."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the cream middles and the blue-gray shadow lines from step 6 showing."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the frame glows a little brighter. The change is gentle and broken, never a solid white stripe. If it goes on solid, let it dry and load less paint for the next pass."
+       }
+      ],
+      "lay-in-sill": [
+       {
+        "kind": "first",
+        "text": "Let the frame and the wall dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the left edge of the canvas, just below the window frame, where the ledge meets the wall."
+       },
+       {
+        "kind": "strokes",
+        "text": "Keep the brush level and pull long strokes from left to right, all the way to the right edge of the canvas, working down."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill the whole ledge with flat Wood brown, with its back line slanting gently down toward the right edge of the canvas. It is about 4 1/2 in tall and reaches the bottom edge of the canvas. Paint straight through where the blanket will go."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the blue wall and the window frame clear."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a flat warm-brown band with level streaks fills the bottom of the canvas from edge to edge."
+       }
+      ],
+      "darken-sill-edge": [
+       {
+        "kind": "first",
+        "text": "Let the brown from step 8 dry so the streaks stay crisp."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the bottom edge of the canvas, along the front of the sill."
+       },
+       {
+        "kind": "strokes",
+        "text": "Pull long, level strokes from the left edge to the right edge, lightly enough that the paint lays down as streaky grain."
+       },
+       {
+        "kind": "inside",
+        "text": "Cover the ledge with streaky Dark wood brown, darkest at the front, which is farthest from the light. Skip a long slanting patch running in from near the left edge of the canvas, where the sun falls, and let its far end break into ragged bits. Lay one thin slanting stripe across that patch near the left edge for a window bar's shadow."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave that sunny patch as the plain brown from step 8."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when grainy dark wood covers the sill from edge to edge, with a plain, lighter patch near the window."
+       }
+      ],
+      "light-sill": [
+       {
+        "kind": "first",
+        "text": "Let the dark brown streaks from step 9 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start near the left edge of the canvas, about 8 1/2 in from the top edge, at the near end of the plain patch."
+       },
+       {
+        "kind": "strokes",
+        "text": "With a nearly dry brush, skim lightly along the patch in several light passes, following its slant."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill the plain brown patch left by the last step. This is the window's sunlight on the sill, so let it break into ragged bits at its far end. The patch is about 8 1/4 in wide."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the thin slanting dark stripe across the patch, and all the dark grain around it."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a glowing peachy band lies across the sill near the window, soft and a little broken, not a solid block."
+       }
+      ],
+      "block-in-blanket": [
+       {
+        "kind": "first",
+        "text": "Let the sill dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with a long rounded rectangle for the folded front. Its left end is about 1 1/4 in from the left edge, and it runs out to the right edge of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Build it from pieces: the big rectangle first, then curved ( ) pieces to round off its left end and the gently humped back line where it meets the wall."
+       },
+       {
+        "kind": "inside",
+        "text": "Give it one flat coat of Mustard gold, with no folds or shading yet. Its top is about 6 in from the top edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the wooden windowsill below the blanket and the sunny patch showing. Keep the edge against the wall clean."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a flat, soft-cornered gold shape, about 14 3/4 in wide, lies along the sill."
+       }
+      ],
+      "shade-blanket": [
+       {
+        "kind": "first",
+        "text": "Let the gold from step 11 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start in the groove between the two folds, about 2 in from the left edge, and follow it across the blanket."
+       },
+       {
+        "kind": "strokes",
+        "text": "Bend every stroke around each roll. Make short curved strokes from the crest of the roll down into the groove, side by side like the twists of a knit cable."
+       },
+       {
+        "kind": "inside",
+        "text": "Darken the groove between the folds, the curl at the blanket's rounded left end, and the place where the front roll tucks against the sill, because these turn away from the window light. Cover the rolls with rows of curved knit strokes from end to end."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gold from step 11 showing on the crest of each roll, where the light hits."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the flat shape reads as two chunky knitted rolls with darker grooves between them."
+       }
+      ],
+      "dark-stitches": [
+       {
+        "kind": "first",
+        "text": "Let the Dark gold folds dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start along the groove that runs the length of the blanket, about 2 in from the left edge, and press a line of commas along it."
+       },
+       {
+        "kind": "strokes",
+        "text": "Touch down, press so the brush spreads, then pull and lift to a point. Set the commas in V pairs that follow the curve of each roll."
+       },
+       {
+        "kind": "inside",
+        "text": "Put them in the gaps between the knit stitches, scattered along the front rolls, with more toward the right edge of the canvas. They deepen the shadows between the loops."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave plenty of gold stitches showing between the marks."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when dark commas sit in the gaps all along the blanket and it looks knitted, not spotty. If you get blobs, use less paint and lift faster."
+       }
+      ],
+      "light-stitches": [
+       {
+        "kind": "first",
+        "text": "Let the dark commas from step 13 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the blanket's rounded left end, about 1 1/4 in from the left edge, and along the crest of the back roll."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press and lift each comma, setting them in V pairs along the curve of each roll."
+       },
+       {
+        "kind": "inside",
+        "text": "Stamp them on the crowns of the stitches, more along the crest of each roll and its window end, because that is where the light lands."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark ochre from steps 12 and 13 showing in the gaps and down in the folds."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the knit looks chunky and bright: sunny on the crests, dark in the grooves."
+       }
+      ],
+      "block-in-cat": [
+       {
+        "kind": "first",
+        "text": "Let the blanket dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with a big oval for the curled body, resting on the blanket and reaching toward the right edge of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Build it from pieces: the oval first, then a round head at the window end, two triangle ears, and curved ( ) pieces to round off the back and haunch."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill it all with one flat coat of Cat gray. The head comes to about 1 in from the left edge, against the window frame, and the tip of the raised ear is about 1 1/2 in from the top edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the blanket below the cat showing, and keep the cat's outline smooth against the wall."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a flat gray silhouette of a curled cat with no markings yet."
+       }
+      ],
+      "shade-cat": [
+       {
+        "kind": "first",
+        "text": "Let the gray from step 15 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the cat's head, where the bands begin, about 2 3/4 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Bend each stroke around the cat's roundness: from the spine down and around the body toward the belly, and in arcs across the forehead and cheek."
+       },
+       {
+        "kind": "inside",
+        "text": "Lay curved Dark gray bands across the head, body and haunch. Darken the dip where the head tucks into the body, which the window light can't reach, and outline the two front paws."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the lighter gray from step 15 between the bands so the cat stays light, especially near the window."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when soft, darker gray tabby bands wrap around the cat and it looks round."
+       }
+      ],
+      "white-patches": [
+       {
+        "kind": "first",
+        "text": "Let the darker gray bands from step 16 dry, or the white will turn gray."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the muzzle and the two front paws, about 3 1/2 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Curve the strokes with the shape: down the muzzle into the chin, and around the round toes of each paw. Do 2 or 3 thin coats, letting each dry first."
+       },
+       {
+        "kind": "inside",
+        "text": "White goes on the muzzle and chin, on the two paws tucked in front of the chin, and on a pointed chest patch in the curl of the body, about 8 in from the left edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gray and the darker gray bands from step 16 around the white shapes."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the muzzle, paws and chest patch are clean, solid white. If gray shows through, add another thin coat once it is dry."
+       }
+      ],
+      "cat-stripes": [
+       {
+        "kind": "first",
+        "text": "Let the white dry completely."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the cat's spine, on the darker gray bands from step 16 across its back."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the full width of the angle brush at the spine, then turn onto its edge and ease off as you pull down around the body, so each stripe tapers toward the belly. On the head, pull tapering bars out from the forehead."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint Charcoal stripes over the darker gray bands from step 16 on the head, body and tail, out to the right edge of the canvas, and darken the dip where the head tucks into the body."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave lighter gray between the stripes, and keep the white patches clean."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when bold, tapering tabby stripes wrap around the cat."
+       }
+      ],
+      "pink-ears": [
+       {
+        "kind": "first",
+        "text": "Let the dark stripes from step 18 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the raised ear, whose tip is about 1 1/2 in from the top edge. Then do the ear near the window, about 1 1/4 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the brush down at the base of each ear, then lift as you pull toward the tip, so the pink tapers to a point."
+       },
+       {
+        "kind": "inside",
+        "text": "Pink fills the hollow of each ear, where the thin skin shows."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave a gray rim all the way around each ear."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when both ears are soft pink, each with a gray rim around it."
+       }
+      ],
+      "flick-fur": [
+       {
+        "kind": "first",
+        "text": "Let everything dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the cat's head and on the cheek nearest the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Make quick, short flicks with a lightly loaded fan brush, lifting off at the end of each. Flick outward from the face on the head, and up from the belly toward the spine on the body."
+       },
+       {
+        "kind": "inside",
+        "text": "Flick over the edges of the stripes and the darker shading on the head, along the ridge of the back, and in the dip where the head tucks into the body, so the hard edges soften into fur."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark centre of each stripe and the white patches showing."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the stripes look fuzzy rather than painted on, and the cat looks furry."
+       }
+      ],
+      "window-light": [
+       {
+        "kind": "first",
+        "text": "Let the fur flicks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the rim of the raised ear, about 1 3/4 in from the top edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Wipe the brush almost dry and skim lightly along each rim in a few light passes."
+       },
+       {
+        "kind": "inside",
+        "text": "Skim the edges that face the window, because the light reaches them first: the ear rims, the crown of the head and the cheek, and a few spots along the ridge of the back."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gray and the stripes showing through the broken cream."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a faint warm glow on the ears, head and back. If it goes on solid, let it dry and load less paint next time."
+       }
+      ],
+      "eyes-toes": [
+       {
+        "kind": "first",
+        "text": "Let the window light dry, or the lines will spread."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the closed eye nearer the window, on the cat's cheek."
+       },
+       {
+        "kind": "strokes",
+        "text": "Thin the Charcoal with water, hold the liner upright, and pull each line with light, steady pressure, from thick to thin."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint two downward-curving lines for the closed eyes, short lines between the toes of each paw, and a few tiny touches in the dip where the head tucks into the body."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the white muzzle and paws mostly clean."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the cat looks peacefully asleep. If a line skips, add water."
+       }
+      ],
+      "paint-nose": [
+       {
+        "kind": "first",
+        "text": "Let the dark eye lines from step 22 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start where the white muzzle narrows between the eyes."
+       },
+       {
+        "kind": "strokes",
+        "text": "Touch down with the tip, press lightly so it spreads a little, then lift to make a tiny triangle."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint just one small pink nose."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the white muzzle around it."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a small pink nose sits at the narrow end of the white muzzle. Keep it tiny."
+       }
+      ],
+      "whiskers": [
+       {
+        "kind": "first",
+        "text": "Let the nose dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the white muzzle, close to the nose."
+       },
+       {
+        "kind": "strokes",
+        "text": "Thin the Pure white with water, hold the liner upright, and pull each whisker outward from the muzzle in a long, gentle curve, easing the pressure so it tapers."
+       },
+       {
+        "kind": "inside",
+        "text": "Fan a few whiskers out from each side of the muzzle and across the cheeks. The ones near the window run out over the edge of the blanket."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave everything else as it is."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a few fine, wispy whiskers. The painting is finished."
+       }
+      ]
+     },
+     "final": {
+      "blend-window-sky": [
+       {
+        "kind": "start",
+        "text": "Start with Sky blue in the corner where the top edge and the left edge of the canvas meet."
+       },
+       {
+        "kind": "strokes",
+        "text": "Stroke side to side in short rows, working down. Without rinsing, pick up Pale sky blue for the lower rows, then stroke back up over the join while it is wet. If a hard line shows, add more Pale sky blue at the join and blend again."
+       },
+       {
+        "kind": "inside",
+        "text": "The deepest blue goes nearest the top edge of the canvas and gets paler as you go down, the way a real sky lightens. The patch is about 1 1/4 in wide and about 3 1/4 in tall."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave a ragged, cloud-shaped gap of bare white where no blue goes. Keep the rest of the canvas bare white."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when there is one soft blue patch in the corner with wavy edges. It should be deeper at the top edge of the canvas and paler lower down, with no hard line between the two blues."
+       }
+      ],
+      "dab-dark-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the sky dry so the green stays green and doesn't mix into the blue."
+       },
+       {
+        "kind": "start",
+        "text": "Make your first taps where the blue meets the white gap in the sky through the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Wipe the brush nearly dry. Tap straight down with its tip, and don't drag it."
+       },
+       {
+        "kind": "inside",
+        "text": "Put just a few small Leaf green dots along that ragged edge. They are the first hint of leaves in shade."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave nearly all of the blue and the white gap untouched."
+       },
+       {
+        "kind": "stop",
+        "text": "You'll see only a few tiny dots, and that is all this step is. If you get blobs, wipe the brush on a paper towel and tap again."
+       }
+      ],
+      "dab-light-leaves": [
+       {
+        "kind": "first",
+        "text": "Let the green dots from step 2 dry, so the light green sits on them and doesn't mix in."
+       },
+       {
+        "kind": "start",
+        "text": "Start near the left edge of the canvas, about 2 1/2 in from the top edge, where the blue fades to pale."
+       },
+       {
+        "kind": "back",
+        "step": 2,
+        "text": "This is the same dry tap you used for the shaded leaves, now with the lighter green for the sunny side."
+       },
+       {
+        "kind": "strokes",
+        "text": "Wipe the brush nearly dry and tap with its tip, a little at a time."
+       },
+       {
+        "kind": "inside",
+        "text": "Most taps go in the bottom half of the leaves outside the window. Add a couple more where the green dots from step 2 are, for the sunny side of the clumps."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the green dots from step 2 showing, and keep the blue and the white gap clear."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a handful of small yellow-green specks. Keep it a light touch."
+       }
+      ],
+      "blend-wall": [
+       {
+        "kind": "first",
+        "text": "Let the sky and the leaf dots dry before the wall comes up against them."
+       },
+       {
+        "kind": "start",
+        "text": "Start with Sky blue at the top edge of the canvas, just right of the sky through the window."
+       },
+       {
+        "kind": "back",
+        "step": 1,
+        "text": "Sky blue is the paint you blended into the window sky. This time you lay it with criss-cross X strokes, and across a much bigger area."
+       },
+       {
+        "kind": "strokes",
+        "text": "Lay short X strokes that cross each other, working across and down the whole canvas. While it is still wet, go back over it with lighter, longer side-to-side strokes to smooth it."
+       },
+       {
+        "kind": "inside",
+        "text": "Use Sky blue for the paler wall near the top edge, Soft wall blue through the middle, and work Deep wall blue in toward the right edge of the canvas, where the corner is in shade away from the window. Paint straight through where the frame, sill, blanket and cat will go."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the sky through the window and its leaf dots showing in the corner."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a smooth blue wall with faint criss-cross marks runs around the window view to the left, right and bottom edges of the canvas."
+       }
+      ],
+      "block-in-frame": [
+       {
+        "kind": "first",
+        "text": "Let the wall dry so the cream bars stay clean."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the tall post: a long rectangle running down from the top edge of the canvas, just right of the sky through the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Build the frame from rectangles. Do the post first, then a crossbar across the window, then a slanting bottom bar out to the left edge of the canvas. Pull each stroke the length of the bar and keep the edges straight."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint it all in flat Warm cream, with no shading yet. The whole frame is about 3 in wide and about 7 in tall."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave sky and leaves showing in a pane on each side of the crossbar, and the blue wall around the frame."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when flat cream bars and a wide post frame the window view."
+       }
+      ],
+      "shade-frame": [
+       {
+        "kind": "first",
+        "text": "Let the cream frame dry so the blue-gray doesn't streak into it."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the long strip on the inner side of the post, the side facing the room. It runs down from the top edge of the canvas, and its left side is about 3 in from the left edge."
+       },
+       {
+        "kind": "back",
+        "step": 4,
+        "text": "This is the Deep wall blue you worked into the shady corner of the wall, now laid in narrow strips on the frame's shadow sides."
+       },
+       {
+        "kind": "strokes",
+        "text": "Pull long straight strokes down the strip, then shorter ones along each bar, one piece at a time."
+       },
+       {
+        "kind": "inside",
+        "text": "The light comes in through the window, so the shade goes on the faces turned away from it: the strip down the post, about 9 in tall, a thin line along the post's window side, and the lower edges of the crossbar and bottom bar. Add a soft band on the wall where the bottom bar slants down to the left edge of the canvas."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the cream faces of the bars and post showing."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the window has depth: a dark strip fading out down the wall, and thin shadow lines along the bars."
+       }
+      ],
+      "light-frame": [
+       {
+        "kind": "first",
+        "text": "Let the blue-gray shading from step 6 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the top edge of the canvas, on the cream face of the post about 2 1/4 in from the left edge."
+       },
+       {
+        "kind": "strokes",
+        "text": "Dip only the tip, wipe it nearly dry, and skim lightly along the length of each bar. Use several light passes, not one heavy one."
+       },
+       {
+        "kind": "inside",
+        "text": "Catch the faces that look toward the window: the cream face of the post, and the upper faces of the crossbar and bottom bar."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the cream middles and the blue-gray shadow lines from step 6 showing."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the frame glows a little brighter. The change is gentle and broken, never a solid white stripe. If it goes on solid, let it dry and load less paint for the next pass."
+       }
+      ],
+      "lay-in-sill": [
+       {
+        "kind": "first",
+        "text": "Let the frame and the wall dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the left edge of the canvas, just below the window frame, where the ledge meets the wall."
+       },
+       {
+        "kind": "strokes",
+        "text": "Keep the brush level and pull long strokes from left to right, all the way to the right edge of the canvas, working down."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill the whole ledge with flat Wood brown, with its back line slanting gently down toward the right edge of the canvas. It is about 4 1/2 in tall and reaches the bottom edge of the canvas. Paint straight through where the blanket will go."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the blue wall and the window frame clear."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a flat warm-brown band with level streaks fills the bottom of the canvas from edge to edge."
+       }
+      ],
+      "darken-sill-edge": [
+       {
+        "kind": "first",
+        "text": "Let the brown from step 8 dry so the streaks stay crisp."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the bottom edge of the canvas, along the front of the sill."
+       },
+       {
+        "kind": "back",
+        "step": 8,
+        "text": "These are the same long, level strokes you used to lay in the sill, now with the darker brown and a lighter touch so they leave streaky grain."
+       },
+       {
+        "kind": "strokes",
+        "text": "Pull long, level strokes from the left edge to the right edge, lightly enough that the paint lays down as streaky grain."
+       },
+       {
+        "kind": "inside",
+        "text": "Cover the ledge with streaky Dark wood brown, darkest at the front, which is farthest from the light. Skip a long slanting patch running in from near the left edge of the canvas, where the sun falls, and let its far end break into ragged bits. Lay one thin slanting stripe across that patch near the left edge for a window bar's shadow."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave that sunny patch as the plain brown from step 8."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when grainy dark wood covers the sill from edge to edge, with a plain, lighter patch near the window."
+       }
+      ],
+      "light-sill": [
+       {
+        "kind": "first",
+        "text": "Let the dark brown streaks from step 9 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start near the left edge of the canvas, about 8 1/2 in from the top edge, at the near end of the plain patch."
+       },
+       {
+        "kind": "back",
+        "step": 7,
+        "text": "This is the same dry skim you used to light the window bars, with the same stiff brush, now laying sunlight across the sill."
+       },
+       {
+        "kind": "strokes",
+        "text": "With a nearly dry brush, skim lightly along the patch in several light passes, following its slant."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill the plain brown patch left by the last step. This is the window's sunlight on the sill, so let it break into ragged bits at its far end. The patch is about 8 1/4 in wide."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the thin slanting dark stripe across the patch, and all the dark grain around it."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a glowing peachy band lies across the sill near the window, soft and a little broken, not a solid block."
+       }
+      ],
+      "block-in-blanket": [
+       {
+        "kind": "first",
+        "text": "Let the sill dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with a long rounded rectangle for the folded front. Its left end is about 1 1/4 in from the left edge, and it runs out to the right edge of the canvas."
+       },
+       {
+        "kind": "back",
+        "step": 5,
+        "text": "You built the window frame from rectangles. Build the blanket the same way, but with the bigger brush and rounded pieces for its soft ends."
+       },
+       {
+        "kind": "strokes",
+        "text": "Build it from pieces: the big rectangle first, then curved ( ) pieces to round off its left end and the gently humped back line where it meets the wall."
+       },
+       {
+        "kind": "inside",
+        "text": "Give it one flat coat of Mustard gold, with no folds or shading yet. Its top is about 6 in from the top edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the wooden windowsill below the blanket and the sunny patch showing. Keep the edge against the wall clean."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a flat, soft-cornered gold shape, about 14 3/4 in wide, lies along the sill."
+       }
+      ],
+      "shade-blanket": [
+       {
+        "kind": "first",
+        "text": "Let the gold from step 11 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start in the groove between the two folds, about 2 in from the left edge, and follow it across the blanket."
+       },
+       {
+        "kind": "strokes",
+        "text": "Bend every stroke around each roll. Make short curved strokes from the crest of the roll down into the groove, side by side like the twists of a knit cable."
+       },
+       {
+        "kind": "inside",
+        "text": "Darken the groove between the folds, the curl at the blanket's rounded left end, and the place where the front roll tucks against the sill, because these turn away from the window light. Cover the rolls with rows of curved knit strokes from end to end."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gold from step 11 showing on the crest of each roll, where the light hits."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the flat shape reads as two chunky knitted rolls with darker grooves between them."
+       }
+      ],
+      "dark-stitches": [
+       {
+        "kind": "first",
+        "text": "Let the Dark gold folds dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start along the groove that runs the length of the blanket, about 2 in from the left edge, and press a line of commas along it."
+       },
+       {
+        "kind": "back",
+        "step": 12,
+        "text": "This is the same Dark gold you used to shade the folds, now pressed in as small commas with the round brush."
+       },
+       {
+        "kind": "strokes",
+        "text": "Touch down, press so the brush spreads, then pull and lift to a point. Set the commas in V pairs that follow the curve of each roll."
+       },
+       {
+        "kind": "inside",
+        "text": "Put them in the gaps between the knit stitches, scattered along the front rolls, with more toward the right edge of the canvas. They deepen the shadows between the loops."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave plenty of gold stitches showing between the marks."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when dark commas sit in the gaps all along the blanket and it looks knitted, not spotty. If you get blobs, use less paint and lift faster."
+       }
+      ],
+      "light-stitches": [
+       {
+        "kind": "first",
+        "text": "Let the dark commas from step 13 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the blanket's rounded left end, about 1 1/4 in from the left edge, and along the crest of the back roll."
+       },
+       {
+        "kind": "back",
+        "step": 13,
+        "text": "Use the same press-and-lift commas you just stamped, now in Bright gold on the crowns of the stitches."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press and lift each comma, setting them in V pairs along the curve of each roll."
+       },
+       {
+        "kind": "inside",
+        "text": "Stamp them on the crowns of the stitches, more along the crest of each roll and its window end, because that is where the light lands."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark ochre from steps 12 and 13 showing in the gaps and down in the folds."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the knit looks chunky and bright: sunny on the crests, dark in the grooves."
+       }
+      ],
+      "block-in-cat": [
+       {
+        "kind": "first",
+        "text": "Let the blanket dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with a big oval for the curled body, resting on the blanket and reaching toward the right edge of the canvas."
+       },
+       {
+        "kind": "strokes",
+        "text": "Build it from pieces: the oval first, then a round head at the window end, two triangle ears, and curved ( ) pieces to round off the back and haunch."
+       },
+       {
+        "kind": "inside",
+        "text": "Fill it all with one flat coat of Cat gray. The head comes to about 1 in from the left edge, against the window frame, and the tip of the raised ear is about 1 1/2 in from the top edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the blanket below the cat showing, and keep the cat's outline smooth against the wall."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a flat gray silhouette of a curled cat with no markings yet."
+       }
+      ],
+      "shade-cat": [
+       {
+        "kind": "first",
+        "text": "Let the gray from step 15 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the cat's head, where the bands begin, about 2 3/4 in from the left edge."
+       },
+       {
+        "kind": "back",
+        "step": 12,
+        "text": "These are the same curved strokes you used to shade the blanket's folds, now bent around the cat's round body and head."
+       },
+       {
+        "kind": "strokes",
+        "text": "Bend each stroke around the cat's roundness: from the spine down and around the body toward the belly, and in arcs across the forehead and cheek."
+       },
+       {
+        "kind": "inside",
+        "text": "Lay curved Dark gray bands across the head, body and haunch. Darken the dip where the head tucks into the body, which the window light can't reach, and outline the two front paws."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the lighter gray from step 15 between the bands so the cat stays light, especially near the window."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when soft, darker gray tabby bands wrap around the cat and it looks round."
+       }
+      ],
+      "white-patches": [
+       {
+        "kind": "first",
+        "text": "Let the darker gray bands from step 16 dry, or the white will turn gray."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the muzzle and the two front paws, about 3 1/2 in from the left edge."
+       },
+       {
+        "kind": "back",
+        "step": 7,
+        "text": "You skimmed Pure white dry and thin on the window bars. Here it goes on in smooth, solid coats instead."
+       },
+       {
+        "kind": "strokes",
+        "text": "Curve the strokes with the shape: down the muzzle into the chin, and around the round toes of each paw. Do 2 or 3 thin coats, letting each dry first."
+       },
+       {
+        "kind": "inside",
+        "text": "White goes on the muzzle and chin, on the two paws tucked in front of the chin, and on a pointed chest patch in the curl of the body, about 8 in from the left edge."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gray and the darker gray bands from step 16 around the white shapes."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the muzzle, paws and chest patch are clean, solid white. If gray shows through, add another thin coat once it is dry."
+       }
+      ],
+      "cat-stripes": [
+       {
+        "kind": "first",
+        "text": "Let the white dry completely."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the cat's spine, on the darker gray bands from step 16 across its back."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the full width of the angle brush at the spine, then turn onto its edge and ease off as you pull down around the body, so each stripe tapers toward the belly. On the head, pull tapering bars out from the forehead."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint Charcoal stripes over the darker gray bands from step 16 on the head, body and tail, out to the right edge of the canvas, and darken the dip where the head tucks into the body."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave lighter gray between the stripes, and keep the white patches clean."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when bold, tapering tabby stripes wrap around the cat."
+       }
+      ],
+      "pink-ears": [
+       {
+        "kind": "first",
+        "text": "Let the dark stripes from step 18 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the raised ear, whose tip is about 1 1/2 in from the top edge. Then do the ear near the window, about 1 1/4 in from the left edge."
+       },
+       {
+        "kind": "back",
+        "step": 14,
+        "text": "This is the same press-and-lift you used for the knit stitches, with the same round brush, now one soft pink stroke filling each ear."
+       },
+       {
+        "kind": "strokes",
+        "text": "Press the brush down at the base of each ear, then lift as you pull toward the tip, so the pink tapers to a point."
+       },
+       {
+        "kind": "inside",
+        "text": "Pink fills the hollow of each ear, where the thin skin shows."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave a gray rim all the way around each ear."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when both ears are soft pink, each with a gray rim around it."
+       }
+      ],
+      "flick-fur": [
+       {
+        "kind": "first",
+        "text": "Let everything dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the cat's head and on the cheek nearest the window."
+       },
+       {
+        "kind": "strokes",
+        "text": "Make quick, short flicks with a lightly loaded fan brush, lifting off at the end of each. Flick outward from the face on the head, and up from the belly toward the spine on the body."
+       },
+       {
+        "kind": "inside",
+        "text": "Flick over the edges of the stripes and the darker shading on the head, along the ridge of the back, and in the dip where the head tucks into the body, so the hard edges soften into fur."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the dark centre of each stripe and the white patches showing."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the stripes look fuzzy rather than painted on, and the cat looks furry."
+       }
+      ],
+      "window-light": [
+       {
+        "kind": "first",
+        "text": "Let the fur flicks dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start on the rim of the raised ear, about 1 3/4 in from the top edge."
+       },
+       {
+        "kind": "back",
+        "step": 10,
+        "text": "This is the same dry skim you used for the sunlight on the sill, now catching the window light on the cat's ears, head and back."
+       },
+       {
+        "kind": "strokes",
+        "text": "Wipe the brush almost dry and skim lightly along each rim in a few light passes."
+       },
+       {
+        "kind": "inside",
+        "text": "Skim the edges that face the window, because the light reaches them first: the ear rims, the crown of the head and the cheek, and a few spots along the ridge of the back."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the gray and the stripes showing through the broken cream."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a faint warm glow on the ears, head and back. If it goes on solid, let it dry and load less paint next time."
+       }
+      ],
+      "eyes-toes": [
+       {
+        "kind": "first",
+        "text": "Let the window light dry, or the lines will spread."
+       },
+       {
+        "kind": "start",
+        "text": "Start with the closed eye nearer the window, on the cat's cheek."
+       },
+       {
+        "kind": "back",
+        "step": 18,
+        "text": "This is the Charcoal from the tabby stripes, now thinned with water and pulled into fine lines with the liner."
+       },
+       {
+        "kind": "strokes",
+        "text": "Thin the Charcoal with water, hold the liner upright, and pull each line with light, steady pressure, from thick to thin."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint two downward-curving lines for the closed eyes, short lines between the toes of each paw, and a few tiny touches in the dip where the head tucks into the body."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the white muzzle and paws mostly clean."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when the cat looks peacefully asleep. If a line skips, add water."
+       }
+      ],
+      "paint-nose": [
+       {
+        "kind": "first",
+        "text": "Let the dark eye lines from step 22 dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start where the white muzzle narrows between the eyes."
+       },
+       {
+        "kind": "back",
+        "step": 19,
+        "text": "This is the same Soft pink and the same press-and-lift you used for the ears, now with a smaller brush and just one tiny mark."
+       },
+       {
+        "kind": "strokes",
+        "text": "Touch down with the tip, press lightly so it spreads a little, then lift to make a tiny triangle."
+       },
+       {
+        "kind": "inside",
+        "text": "Paint just one small pink nose."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave the white muzzle around it."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop when a small pink nose sits at the narrow end of the white muzzle. Keep it tiny."
+       }
+      ],
+      "whiskers": [
+       {
+        "kind": "first",
+        "text": "Let the nose dry."
+       },
+       {
+        "kind": "start",
+        "text": "Start at the white muzzle, close to the nose."
+       },
+       {
+        "kind": "back",
+        "step": 22,
+        "text": "Use the same liner stroke you used for the eyes, thinned and upright, now in Pure white and pulled out in long curves."
+       },
+       {
+        "kind": "strokes",
+        "text": "Thin the Pure white with water, hold the liner upright, and pull each whisker outward from the muzzle in a long, gentle curve, easing the pressure so it tapers."
+       },
+       {
+        "kind": "inside",
+        "text": "Fan a few whiskers out from each side of the muzzle and across the cheeks. The ones near the window run out over the edge of the blanket."
+       },
+       {
+        "kind": "leave",
+        "text": "Leave everything else as it is."
+       },
+       {
+        "kind": "stop",
+        "text": "Stop at a few fine, wispy whiskers. The painting is finished."
+       }
+      ]
+     },
+     "missing": [],
+     "arc": {
+      "opening": {
+       "welcome": "You're about to paint a gray tabby kitten asleep on a folded mustard knit blanket, on a wooden windowsill by a sunny window. The heart of the painting is the sleeping face: the closed eyes, the little pink nose and the white paws tucked in close. Everything else, from the soft blue wall to the chunky knit, is there to make that cozy, sleepy moment glow.",
+       "light": "Soft daylight pours in through the window and falls across the scene, catching the cat's head and ears, the crest of the blanket and the end of the sill nearest the glass. The faces turned away from the window, like the inner side of the frame, the grooves of the blanket and the curl of the cat's body, sink into cool shadow, and that contrast is what makes everything look round.",
+       "skills": [
+        {
+         "card": "build-from-pieces",
+         "steps": [
+          5,
+          6,
+          11,
+          15
+         ],
+         "how": "You build each big shape from simple pieces: rectangles for the window frame, a long rounded block for the blanket, and an oval, a circle and triangles for the cat. Starting from one simple shape and adding curved pieces keeps a hard subject easy. Watch that the pieces join cleanly, and leave them showing unless the shape should look smooth."
+        },
+        {
+         "card": "dry-brush",
+         "steps": [
+          7,
+          10,
+          21
+         ],
+         "how": "Dry brushing means dipping only the tip, wiping the brush nearly dry, and skimming it lightly so the paint breaks up on the canvas weave. It is how the window light lands here: on the lit faces of the frame, the patch of sun on the sill, and the rims of the cat's ears, head and back. If it goes on solid, the brush was too loaded, so build it up in several light passes instead."
+        },
+        {
+         "card": "press-and-lift",
+         "steps": [
+          13,
+          14,
+          19,
+          23
+         ],
+         "how": "You touch the brush down, press so it spreads, then pull and lift so the mark ends in a point, giving a teardrop or comma. Rows of these commas become the blanket's knit stitches, and the same motion fills the pink ears and presses in the nose. If you get blobs instead of teardrops, use less paint and lift faster."
+        }
+       ],
+       "road": "We paint from the back to the front, starting with what is farthest away. First comes the sky and a hint of leaves seen through the window, then the plain blue wall that fills most of the canvas. Next the window frame is blocked in, shaded and lit, and the wooden sill is laid in with its dark grain and its patch of sunlight. The blanket goes on after that, built up from flat gold to folds and knit stitches, because the cat lies in it. The cat comes last and gets the most steps: a flat gray shape, its shading, white patches, stripes and ears, then its fur, the window light, and finally the sleeping face and whiskers."
+      },
+      "stages": {
+       "the-window-view": {
+        "for": "This stage paints the farthest thing in the picture, the sky and leaves seen through the window, so everything else can sit in front of it.",
+        "end": "A small, soft blue patch of sky with a few green specks sits in the corner, and the rest of the canvas is still bare white."
+       },
+       "the-wall": {
+        "for": "This stage covers the canvas with the smooth blue wall that sits behind the window frame, the sill, the blanket and the cat.",
+        "end": "The whole canvas is a soft periwinkle wall with faint criss-cross marks, and the window view still shows in its corner."
+       },
+       "the-window-frame": {
+        "for": "This stage builds the cream window frame and gives it shadow and light, so the window looks deep and sunlit.",
+        "end": "A cream window frame, with blue-gray shadow sides and softly lit faces, stands between the window view and the blue wall."
+       },
+       "the-sill": {
+        "for": "This stage lays in the wooden windowsill the blanket will rest on, with dark grain at the front and a patch of window sunlight.",
+        "end": "A warm wooden sill runs across the canvas, grainy and dark at its front, with a glowing peach band of sunlight near the window."
+       },
+       "the-blanket": {
+        "for": "This stage builds the folded knit blanket from a flat gold shape up to chunky stitches, ready for the cat to lie in.",
+        "end": "A chunky mustard knit blanket lies on the sill as two soft rolls, with bright stitches on the crests and dark grooves between them."
+       },
+       "the-cat": {
+        "for": "This stage builds the sleeping cat from a flat gray shape, adding its roundness, white patches, tabby stripes and pink ears.",
+        "end": "A striped gray tabby lies curled on the blanket, with a white muzzle, paws and chest and pink ears, but no fur texture or face yet."
+       },
+       "the-light-and-face": {
+        "for": "This stage brings the cat to life with soft fur, the warm window light on its edges, and the sleeping face.",
+        "end": "The painting is finished: the furry tabby sleeps with closed eyes, a pink nose and fine white whiskers, with warm window light on its ears and back."
+       }
+      }
+     },
+     "first_arc": {
+      "opening": {
+       "welcome": "You're about to paint a gray tabby kitten asleep on a folded mustard knit blanket, on a wooden windowsill beside a sunny window. The heart of the painting is the sleeping face: the closed eyes, the little pink nose and the white paws tucked in close. Everything else, from the soft blue wall to the chunky knit, is there to make that cozy, sleepy moment glow.",
+       "light": "Soft daylight pours in through the window and falls across the scene, catching the cat's head and ears, the crest of the blanket and the end of the sill nearest the glass. The faces turned away from the window, like the inner side of the frame, the grooves of the blanket and the curl of the cat's body, sink into cool shadow, and that contrast is what makes everything look round.",
+       "skills": [
+        {
+         "card": "build-from-pieces",
+         "steps": [
+          5,
+          6,
+          11,
+          15
+         ],
+         "how": "You build each big shape from simple pieces: rectangles for the window frame, a long rounded block for the blanket, and an oval, a circle and triangles for the cat. Starting from one simple shape and adding curved pieces keeps a hard subject easy. Watch that the pieces join cleanly, and leave them showing unless the shape should look smooth."
+        },
+        {
+         "card": "dry-brush",
+         "steps": [
+          7,
+          10,
+          21
+         ],
+         "how": "Dry brushing means dipping only the tip, wiping the brush nearly dry, and skimming it lightly so the paint breaks up on the canvas weave. It is how the window light lands here: on the lit faces of the frame, the patch of sun on the sill, and the rims of the cat's ears, head and back. If it goes on solid, the brush was too loaded, so build it up in several light passes instead."
+        },
+        {
+         "card": "press-and-lift",
+         "steps": [
+          13,
+          14,
+          19,
+          23
+         ],
+         "how": "You touch the brush down, press so it spreads, then pull and lift so the mark ends in a point, giving a teardrop or comma. Rows of these commas become the blanket's knit stitches, and the same motion fills the pink ears and presses in the nose. If you get blobs instead of teardrops, use less paint and lift faster."
+        }
+       ],
+       "road": "We paint from the back to the front, starting with what is farthest away. First comes the sky and a hint of leaves seen through the window, then the plain blue wall that fills most of the canvas. Next the window frame is blocked in, shaded and lit, and the wooden sill is laid in with its dark grain and its patch of sunlight. The blanket goes on after that, built up from flat gold to folds and knit stitches, because the cat lies in it. The cat comes last and gets the most steps: a flat gray shape, its shading, white patches, stripes and ears, then its fur, the window light, and finally the sleeping face and whiskers."
+      },
+      "stages": {
+       "the-window-view": {
+        "for": "This stage paints the farthest thing in the picture, the sky and leaves seen through the window, so everything else can sit in front of it.",
+        "end": "A small, soft blue patch of sky with a few green specks sits in the corner, and the rest of the canvas is still bare white."
+       },
+       "the-wall": {
+        "for": "This stage covers the canvas with the smooth blue wall that sits behind the window frame, the sill, the blanket and the cat.",
+        "end": "The whole canvas is a soft periwinkle wall with faint criss-cross marks, and the window view still shows in its corner."
+       },
+       "the-window-frame": {
+        "for": "This stage builds the cream window frame and gives it shadow and light, so the window looks deep and sunlit.",
+        "end": "A cream window frame, with blue-gray shadow sides and softly lit faces, stands between the window view and the blue wall."
+       },
+       "the-sill": {
+        "for": "This stage lays in the wooden windowsill the blanket will rest on, with dark grain at the front and a patch of window sunlight.",
+        "end": "A warm wooden sill runs across the canvas, grainy and dark at its front, with a glowing peach band of sunlight near the window."
+       },
+       "the-blanket": {
+        "for": "This stage builds the folded knit blanket from a flat gold shape up to chunky stitches, ready for the cat to lie in.",
+        "end": "A chunky mustard knit blanket lies on the sill as two soft rolls, with bright stitches on the crests and dark grooves between them."
+       },
+       "the-cat": {
+        "for": "This stage builds the sleeping cat from a flat gray shape, adding its roundness, white patches, tabby stripes and pink ears.",
+        "end": "A striped gray tabby lies curled on the blanket, with a white muzzle, paws and chest and pink ears, but no fur texture or face yet."
+       },
+       "the-light-and-face": {
+        "for": "This stage brings the cat to life with soft fur, the warm window light on its edges, and the sleeping face.",
+        "end": "The painting is finished: the furry tabby sleeps with closed eyes, a pink nose and fine white whiskers, with warm window light on its ears and back."
+       }
+      },
+      "steps": {
+       "dab-light-leaves": {
+        "back": {
+         "step": 2,
+         "text": "This is the same dry tap you used for the shaded leaves, now with the lighter green for the sunny side."
+        }
+       },
+       "blend-wall": {
+        "back": {
+         "step": 1,
+         "text": "Sky blue is the paint you blended into the window sky. This time you lay it with criss-cross X strokes, and across a much bigger area."
+        }
+       },
+       "shade-frame": {
+        "back": {
+         "step": 4,
+         "text": "This is the Deep wall blue you worked into the shady corner of the wall, now laid in narrow strips on the frame's shadow sides."
+        }
+       },
+       "darken-sill-edge": {
+        "back": {
+         "step": 8,
+         "text": "These are the same long, level strokes you used to lay in the sill, now with the darker brown and a lighter touch so they leave streaky grain."
+        }
+       },
+       "light-sill": {
+        "back": {
+         "step": 7,
+         "text": "This is the same dry skim you used to light the window bars, with the same stiff brush, now laying sunlight across the sill."
+        }
+       },
+       "block-in-blanket": {
+        "back": {
+         "step": 5,
+         "text": "You built the window frame from rectangles. Build the blanket the same way, but with the bigger brush and rounded pieces for its soft ends."
+        }
+       },
+       "dark-stitches": {
+        "back": {
+         "step": 12,
+         "text": "This is the same Dark gold you used to shade the folds, now pressed in as small commas with the round brush."
+        }
+       },
+       "light-stitches": {
+        "back": {
+         "step": 13,
+         "text": "Use the same press-and-lift commas you just stamped, now in Bright gold on the crowns of the stitches."
+        }
+       },
+       "shade-cat": {
+        "back": {
+         "step": 12,
+         "text": "These are the same curved strokes you used to shade the blanket's folds, now bent around the cat's round body and head."
+        }
+       },
+       "white-patches": {
+        "back": {
+         "step": 7,
+         "text": "You skimmed Pure white dry and thin on the window bars. Here it goes on in smooth, solid coats instead."
+        }
+       },
+       "pink-ears": {
+        "back": {
+         "step": 14,
+         "text": "This is the same press-and-lift you used for the knit stitches, with the same round brush, now one soft pink stroke filling each ear."
+        }
+       },
+       "window-light": {
+        "back": {
+         "step": 10,
+         "text": "This is the same dry skim you used for the sunlight on the sill, now catching the window light on the cat's ears, head and back."
+        }
+       },
+       "eyes-toes": {
+        "back": {
+         "step": 18,
+         "text": "This is the Charcoal from the tabby stripes, now thinned with water and pulled into fine lines with the liner."
+        }
+       },
+       "paint-nose": {
+        "back": {
+         "step": 19,
+         "text": "This is the same Soft pink and the same press-and-lift you used for the ears, now with a smaller brush and just one tiny mark."
+        }
+       },
+       "whiskers": {
+        "back": {
+         "step": 22,
+         "text": "Use the same liner stroke you used for the eyes, thinned and upright, now in Pure white and pulled out in long curves."
+        }
+       }
+      }
+     },
+     "check": {
+      "failures_first": 11,
+      "failures_second": 0,
+      "taken_out": [],
+      "left_failing": 0,
+      "claims_final": 46,
+      "arc_text_failures_first": 0,
+      "arc_failures_first": 1,
+      "arc_failures_second": 0,
+      "arc_taken_out": [],
+      "back_left_failing": 0,
+      "paints_first": 22,
+      "paints_second": 0,
+      "paints_taken_out": [],
+      "arc_paints_first": 0,
+      "arc_paints_second": 0,
+      "paints_left": 0
+     },
+     "backs": 15,
+     "words_count": 2932,
+     "arc_words": 779
     }
    }
   },
@@ -37535,6 +39362,11 @@
         "picture_tokens": 4968
        }
       },
+      "by_label": {
+       "W1 words": 0.841,
+       "W1 feedback": 0.227,
+       "W2 arc": 0.238
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -37579,6 +39411,11 @@
         "thinking": 4293,
         "picture_tokens": 4968
        }
+      },
+      "by_label": {
+       "W1 words": 0.844,
+       "W1 feedback": 0.244,
+       "W2 arc": 0.253
       },
       "models": [
        "claude-opus-5-5"
@@ -37625,6 +39462,12 @@
         "picture_tokens": 5378
        }
       },
+      "by_label": {
+       "W1 words": 0.817,
+       "W1 feedback": 0.222,
+       "W2 arc": 0.236,
+       "W2 arc feedback": 0.081
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -37665,6 +39508,12 @@
         "picture_tokens": 27734
        }
       },
+      "by_label": {
+       "W1 words": 0.473,
+       "W1 feedback": 0.103,
+       "W2 arc": 0.147,
+       "W2 arc feedback": 0.089
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -37700,6 +39549,12 @@
         "picture_tokens": 17080
        }
       },
+      "by_label": {
+       "W1 words": 0.486,
+       "W1 feedback": 0.107,
+       "W2 arc": 0.133,
+       "W2 arc feedback": 0.088
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -37734,6 +39589,12 @@
         "thinking": 6330,
         "picture_tokens": 20260
        }
+      },
+      "by_label": {
+       "W1 words": 0.518,
+       "W1 feedback": 0.15,
+       "W2 arc": 0.15,
+       "W2 arc feedback": 0.093
       },
       "models": [
        "claude-opus-5-5"
@@ -37775,6 +39636,12 @@
         "picture_tokens": 20260
        }
       },
+      "by_label": {
+       "W1 words": 0.238,
+       "W1 feedback": 0.054,
+       "W2 arc": 0.07,
+       "W2 arc feedback": 0.044
+      },
       "models": [
        "claude-sonnet-5-5"
       ],
@@ -37810,6 +39677,12 @@
         "picture_tokens": 27734
        }
       },
+      "by_label": {
+       "W1 words": 0.245,
+       "W1 feedback": 0.071,
+       "W2 arc": 0.075,
+       "W2 arc (JSON again)": 0.042
+      },
       "models": [
        "claude-sonnet-5-5"
       ],
@@ -37844,6 +39717,12 @@
         "thinking": 7412,
         "picture_tokens": 17080
        }
+      },
+      "by_label": {
+       "W1 words": 0.244,
+       "W1 feedback": 0.067,
+       "W2 arc": 0.074,
+       "W2 arc feedback": 0.041
       },
       "models": [
        "claude-sonnet-5-5"
@@ -37885,6 +39764,12 @@
         "picture_tokens": 17080
        }
       },
+      "by_label": {
+       "W1 words": 0.357,
+       "W1 feedback": 0.056,
+       "W2 arc": 0.103,
+       "W2 arc feedback": 0.073
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -37919,6 +39804,12 @@
         "thinking": 932,
         "picture_tokens": 20260
        }
+      },
+      "by_label": {
+       "W1 words": 0.405,
+       "W1 feedback": 0.063,
+       "W2 arc": 0.113,
+       "W2 arc feedback": 0.078
       },
       "models": [
        "claude-opus-5-5"
@@ -37955,6 +39846,12 @@
         "picture_tokens": 27734
        }
       },
+      "by_label": {
+       "W1 words": 0.419,
+       "W1 feedback": 0.073,
+       "W2 arc": 0.113,
+       "W2 arc feedback": 0.074
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -37977,6 +39874,155 @@
      }
     },
     "api_usd_mean": 0.642
+   },
+   "c1:lean-paints": {
+    "pictures": {
+     "highland-cow": {
+      "api_usd": 0.956,
+      "calls": 5,
+      "by_helper": {
+       "writer": {
+        "calls": 5,
+        "api_usd": 0.956,
+        "charged_usd": 0.96,
+        "sent": 92965,
+        "read": 309103,
+        "output": 21684,
+        "thinking": 6955,
+        "picture_tokens": 27734
+       }
+      },
+      "by_label": {
+       "W1 words": 0.545,
+       "W1 feedback": 0.123,
+       "W1 paints": 0.066,
+       "W2 arc": 0.135,
+       "W2 arc feedback": 0.089
+      },
+      "models": [
+       "claude-opus-5-5"
+      ],
+      "words": 2505,
+      "arc_words": 705,
+      "backs": 15,
+      "check": {
+       "failures_first": 10,
+       "failures_second": 0,
+       "taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 40,
+       "arc_text_failures_first": 0,
+       "arc_failures_first": 4,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "back_left_failing": 0,
+       "paints_first": 6,
+       "paints_second": 0,
+       "paints_taken_out": 0,
+       "arc_paints_first": 0,
+       "arc_paints_second": 0,
+       "paints_left": 0
+      },
+      "missing": []
+     },
+     "birch-grove": {
+      "api_usd": 0.967,
+      "calls": 5,
+      "by_helper": {
+       "writer": {
+        "calls": 5,
+        "api_usd": 0.967,
+        "charged_usd": 0.971,
+        "sent": 84621,
+        "read": 276857,
+        "output": 24634,
+        "thinking": 11837,
+        "picture_tokens": 17080
+       }
+      },
+      "by_label": {
+       "W1 words": 0.577,
+       "W1 feedback": 0.141,
+       "W1 paints": 0.039,
+       "W2 arc": 0.126,
+       "W2 arc feedback": 0.083
+      },
+      "models": [
+       "claude-opus-5-5"
+      ],
+      "words": 2362,
+      "arc_words": 656,
+      "backs": 12,
+      "check": {
+       "failures_first": 8,
+       "failures_second": 0,
+       "taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 51,
+       "arc_text_failures_first": 0,
+       "arc_failures_first": 4,
+       "arc_failures_second": 1,
+       "arc_taken_out": 1,
+       "back_left_failing": 0,
+       "paints_first": 2,
+       "paints_second": 0,
+       "paints_taken_out": 0,
+       "arc_paints_first": 0,
+       "arc_paints_second": 0,
+       "paints_left": 0
+      },
+      "missing": []
+     },
+     "sleeping-cat": {
+      "api_usd": 1.235,
+      "calls": 5,
+      "by_helper": {
+       "writer": {
+        "calls": 5,
+        "api_usd": 1.235,
+        "charged_usd": 1.239,
+        "sent": 103978,
+        "read": 333497,
+        "output": 32644,
+        "thinking": 16048,
+        "picture_tokens": 20260
+       }
+      },
+      "by_label": {
+       "W1 words": 0.713,
+       "W1 feedback": 0.173,
+       "W1 paints": 0.096,
+       "W2 arc": 0.16,
+       "W2 arc feedback": 0.092
+      },
+      "models": [
+       "claude-opus-5-5"
+      ],
+      "words": 2932,
+      "arc_words": 779,
+      "backs": 15,
+      "check": {
+       "failures_first": 11,
+       "failures_second": 0,
+       "taken_out": 0,
+       "left_failing": 0,
+       "claims_final": 46,
+       "arc_text_failures_first": 0,
+       "arc_failures_first": 1,
+       "arc_failures_second": 0,
+       "arc_taken_out": 0,
+       "back_left_failing": 0,
+       "paints_first": 22,
+       "paints_second": 0,
+       "paints_taken_out": 0,
+       "arc_paints_first": 0,
+       "arc_paints_second": 0,
+       "paints_left": 0
+      },
+      "missing": []
+     }
+    },
+    "api_usd_mean": 1.053
    },
    "new:base": {
     "pictures": {
@@ -38004,6 +40050,12 @@
         "thinking": 3801,
         "picture_tokens": 5378
        }
+      },
+      "by_label": {
+       "W1 words": 0.844,
+       "W1 feedback": 0.226,
+       "W2 arc": 0.271,
+       "W2 arc feedback": 0.084
       },
       "models": [
        "claude-opus-5-5"
@@ -38047,6 +40099,10 @@
         "picture_tokens": 14248
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.688,
+       "8a look at the diagrams": 0.179
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38070,6 +40126,10 @@
         "picture_tokens": 13016
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.584,
+       "8a look at the diagrams": 0.168
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38092,6 +40152,10 @@
         "thinking": 7276,
         "picture_tokens": 13514
        }
+      },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.631,
+       "8a look at the diagrams": 0.153
       },
       "models": [
        "claude-opus-5-5"
@@ -38121,6 +40185,9 @@
         "picture_tokens": 2853
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.177
+      },
       "models": [
        "claude-sonnet-5-5"
       ],
@@ -38144,6 +40211,9 @@
         "picture_tokens": 3377
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.205
+      },
       "models": [
        "claude-sonnet-5-5"
       ],
@@ -38166,6 +40236,9 @@
         "thinking": 3790,
         "picture_tokens": 3115
        }
+      },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.211
       },
       "models": [
        "claude-sonnet-5-5"
@@ -38205,6 +40278,10 @@
         "picture_tokens": 2853
        }
       },
+      "by_label": {
+       "D4 review and 8b notes": 0.286,
+       "8a diagrams": 0.233
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38237,6 +40314,10 @@
         "thinking": 2161,
         "picture_tokens": 3115
        }
+      },
+      "by_label": {
+       "D4 review and 8b notes": 0.304,
+       "8a diagrams": 0.203
       },
       "models": [
        "claude-opus-5-5"
@@ -38271,6 +40352,10 @@
         "picture_tokens": 3377
        }
       },
+      "by_label": {
+       "D4 review and 8b notes": 0.334,
+       "8a diagrams": 0.298
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38299,6 +40384,9 @@
         "picture_tokens": 2853
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.482
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38322,6 +40410,9 @@
         "picture_tokens": 3115
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.499
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38344,6 +40435,9 @@
         "thinking": 6370,
         "picture_tokens": 3377
        }
+      },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.503
       },
       "models": [
        "claude-opus-5-5"
@@ -38373,6 +40467,9 @@
         "picture_tokens": 2853
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.305
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38396,6 +40493,9 @@
         "picture_tokens": 3115
        }
       },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.351
+      },
       "models": [
        "claude-opus-5-5"
       ],
@@ -38418,6 +40518,10 @@
         "thinking": 438,
         "picture_tokens": 3377
        }
+      },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.393,
+       "D4 review, 8a diagrams, 8b notes (JSON again)": 0.207
       },
       "models": [
        "claude-opus-5-5"
@@ -38446,6 +40550,10 @@
         "thinking": 6221,
         "picture_tokens": 14531
        }
+      },
+      "by_label": {
+       "D4 review, 8a diagrams, 8b notes": 0.475,
+       "8a look at the diagrams": 0.164
       },
       "models": [
        "claude-opus-5-5"
