@@ -300,6 +300,9 @@ Renders are beside that: $0.55 to $0.95 a lesson, unchanged.
   holds for the loop now and for the app's Worker later.
 - **So the loop is kept as the meter.** `v4_loop.py` follows `run.md` in code. After the build it follows the new
   `run.md`, and the cost of a v3.1 lesson is measured there.
+- **Measured after build 3 (#278, `docs/spikes/v31-build3-cat.md`):** the sleeping cat, sealed by the loop on the
+  new `run.md`, $2.98 at the API's rates ($1.36 to the chain's checker, $0.90 the words, $0.72 the finisher, which
+  looked at its diagrams once because three drew nothing). One run.
 
 ## 10. The yardstick
 

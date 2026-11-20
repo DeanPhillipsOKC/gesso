@@ -298,7 +298,9 @@ class Run:
 
     def tool(self, *args, ok_refused: bool = False) -> dict:
         t0 = time.time()
-        r = subprocess.run(TOOLS + [str(a) for a in args], capture_output=True, text=True, cwd=ROOT)
+        # publish records a run under output/ in site/history/; a loop lesson isn't a /paint-lesson run (#278)
+        env = {**os.environ, "GESSO_HISTORY": str(self.lesson / "v4" / "history")}
+        r = subprocess.run(TOOLS + [str(a) for a in args], capture_output=True, text=True, cwd=ROOT, env=env)
         secs = round(time.time() - t0, 1)
         out = {}
         for line in reversed(r.stdout.strip().splitlines()):
