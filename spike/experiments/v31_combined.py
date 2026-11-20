@@ -13,6 +13,7 @@ known problems are the sealed lesson's.
     .venv/bin/python spike/experiments/v31_combined.py finish                       # the cat's finisher
     .venv/bin/python spike/experiments/v31_combined.py page   --picture chickadee   # docs/spikes/v31-combined-<picture>.md
     .venv/bin/python spike/experiments/v31_combined.py report --picture chickadee
+    .venv/bin/python spike/experiments/v31_combined.py lesson --picture chickadee   # a whole lesson page to paint from
 
 Results go in `spike/experiments/v31_combined.json`, in `v4_writer_cost.json`'s shape. Experiment code: it changes
 no tool, and the lesson isn't sealed or put on the site.
@@ -217,17 +218,71 @@ def page(args):
     print(PAGE)
 
 
+def lesson_page(args):
+    """A sealed lesson's own page with the new words in place of the old, to paint from: a copy of the lesson with
+    the words in `text.json`, published (not sealed), so the outline, the Where pictures, the recipes, the cards and
+    the diagrams are the sealed lesson's. The page doesn't know an opening or a stage's lines yet (the design's
+    section 7), so the opening is put under "Before you start" and a stage's two lines among its first and last
+    steps' lines. The file goes in `output/v31-trial/`, which git ignores; it isn't put on the site."""
+    import html
+    setup()
+    if SET != "site":
+        raise SystemExit("a lesson page is made from a sealed lesson: the chickadee or the lavender balloon")
+    rec = wc.state()["words"][SET][WORDS][PICTURE]
+    les = wc.lesson_copy(SET, WORDS, "page", PICTURE)
+    keep = {x["stage_id"]: x.get("construct") for x in json.loads((les / "text.json").read_text())["steps"]}
+    wc.put_words(les, PICTURE, rec)
+    a, t = rec["arc"], json.loads((les / "text.json").read_text())
+    by = {x["stage_id"]: x for x in t["steps"]}
+    for x in t["steps"]:
+        if keep.get(x["stage_id"]):  # the sealed lesson's diagrams stay
+            x["construct"] = keep[x["stage_id"]]
+    for stg in arc.stages_of(PICTURE):
+        o = (a.get("stages") or {}).get(stg["id"]) or {}
+        ids = [x["id"] for x in stg["steps"] if x["id"] in by]
+        if ids and o.get("for"):
+            by[ids[0]]["lines"].insert(0, {"kind": "v4", "edited": True, "text": f"This stage ({stg['name']}): {o['for']}"})
+        if ids and o.get("end"):
+            by[ids[-1]]["lines"].append({"kind": "v4", "edited": True, "text": f"Where this stage ends: {o['end']}"})
+    (les / "text.json").write_text(json.dumps(t, indent=1))
+    pub = wc.tool(les, "publish", "--lesson", les)
+    e, op = html.escape, a.get("opening") or {}
+    block = ['<div class="v31-opening"><p><em>A trial page: pipeline v3.1\'s words on this lesson\'s own pictures. '
+             'Not sealed, and not on the lessons site.</em></p>']
+    if op.get("welcome"):
+        block.append(f"<p>{e(op['welcome'])}</p>")
+    if op.get("light"):
+        block.append(f"<p><b>The light:</b> {e(op['light'])}</p>")
+    if op.get("skills"):
+        block.append("<p><b>What this painting teaches:</b></p><ul>" + "".join(
+            f"<li><b>{e(arc.card_name(k['card']))}</b> (steps {', '.join(map(str, k.get('steps') or []))}): "
+            f"{e(k.get('how', ''))}</li>" for k in op["skills"]) + "</ul>")
+    if op.get("road"):
+        block.append(f"<p><b>The way there:</b> {e(op['road'])}</p>")
+    block.append("</div>")
+    mark = "<h2>Before you start</h2>"
+    page_html = (les / "lesson-standalone.html").read_text()
+    if page_html.count(mark) != 1:
+        raise SystemExit(f"the page has {page_html.count(mark)} 'Before you start' headings, not one")
+    out = ROOT / "output" / "v31-trial" / f"{PICTURE}-v31.html"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page_html.replace(mark, mark + "".join(block)))
+    print(json.dumps({"page": str(out), "mb": round(out.stat().st_size / 1e6, 1), "diagrams": pub.get("diagrams"),
+                      "refused": pub.get("refused")}))
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("words").add_argument("--again", action="store_true")
-    for name in ("bench", "finish", "page", "report"):
+    for name in ("bench", "finish", "page", "report", "lesson"):
         sub.add_parser(name)
     for p in sub.choices.values():
         p.add_argument("--picture", choices=list(LESSONS), default="sleeping-cat")
     args = ap.parse_args(argv)
     choose(args.picture)
-    {"bench": bench, "words": words, "finish": finish, "page": page, "report": report}[args.cmd](args)
+    {"bench": bench, "words": words, "finish": finish, "page": page, "report": report,
+     "lesson": lesson_page}[args.cmd](args)
 
 
 if __name__ == "__main__":
