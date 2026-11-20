@@ -9,7 +9,7 @@
       "strip": "strip-1.jpg",
       "published_with": {
         "version": "POC 2.0.2",
-        "commit": "2567277",
+        "commit": "17d6ebc",
         "dirty": false,
         "published": "2026-11-20"
       },
@@ -19,8 +19,8 @@
         "published": "2026-11-20"
       },
       "provenance": {
-        "kind": "unsealed",
-        "note": "not finished by the skill, or from before seals"
+        "kind": "hands-off",
+        "sealed": "2026-11-20T20:10:07"
       },
       "palette": "",
       "technique": "acrylic-paint-along-beginner",
@@ -39,7 +39,7 @@
         "redos": 0,
         "review_problems": 0,
         "text_problems": 2,
-        "minutes_total": 29.6,
+        "minutes_total": 34.2,
         "checks": {
           "long_steps": 0,
           "long_instructions": 0,
