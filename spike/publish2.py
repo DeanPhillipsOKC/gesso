@@ -100,7 +100,10 @@ def stages(plan: dict, text: dict[str, dict], paints: dict[str, dict], images: l
         t = text.get(s["id"]) or {}
         name = _name(s)
         # a line Claude emptied (edited, no text) is how a drafted line is taken out; it isn't shown
-        lines = [{"kind": x.get("kind", ""), "text": x.get("text", "")} for x in t.get("lines") or [] if x.get("text")]
+        # a back line ("As in step N", v3.1) keeps the step it points at
+        lines = [{"kind": x.get("kind", ""), "text": x.get("text", ""),
+                  **({"step": x["step"]} if isinstance(x.get("step"), int) else {})}
+                 for x in t.get("lines") or [] if x.get("text")]
         ids = t.get("stroke_cards") or ([s["stroke"]] if s.get("stroke") else [])
         brush = s.get("brush", "")
         watch = [x["text"] for x in lines if x["kind"] == "watch"]
