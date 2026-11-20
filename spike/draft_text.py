@@ -338,10 +338,21 @@ def _slots(lines: list[dict]) -> list[tuple[str, int]]:
     return out
 
 
+LESSON_KINDS = ("first", "start", "strokes", "inside", "leave", "stop", "back")  # the lesson writer's lines (v3.1)
+
+
+def written(lines: list[dict]) -> bool:
+    """Whether a step's lines are the lesson writer's (pipeline v3.1): its six lines replace the drafted ones."""
+    return any(x.get("edited") and x.get("kind") in LESSON_KINDS for x in lines or [])
+
+
 def merge_lines(old: list[dict], new: list[dict]) -> list[dict]:
     """The drafted lines, with every line Claude edited (`"edited": true`) kept in its place: an edited line replaces
     the drafted line in the same slot (the nth line of its kind); one with no such slot (a line Claude added) stays,
-    after the lines of its kind. An edited line with empty text removes the drafted line in its slot."""
+    after the lines of its kind. An edited line with empty text removes the drafted line in its slot. A step the
+    lesson's writer wrote (v3.1) keeps only the writer's lines: draft-text makes its header, not its words."""
+    if written(old):
+        return [x for x in old if x.get("edited")]
     edited = {slot: x for slot, x in zip(_slots(old), old) if x.get("edited")}
     out = []
     used = set()

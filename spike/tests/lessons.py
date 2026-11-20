@@ -6,14 +6,15 @@
     history(name)        -> the GESSO_HISTORY folder the "published" stage recorded into
 
 Each fixture is a sealed version 3 run made small (fixtures/lessons/<name>/, tests/make_fixtures.py): its plan, its
-canvas, its chain, the chain checker's answers and the stage writers' words. The stages, each run on the one before
+canvas, its chain, the chain checker's answers and v3's stage writers' words. The stages, each run on the one before
 it, as the skill runs the tools:
 
     chained    the plan, canvas, finish and chain (what erase leaves)
     built      + build-steps, step-aids, mix
     published  + publish (no step text: every step a draft)
     checked    + draft-text, check (built, then the text tools; no publish)
-    worded     + packets, the writers' words, check-text --final (checked, then the words)
+    worded     + packets, a stand-in lesson writer (v3.1, #276) through the words' rounds and the arc's, each
+               check-text (checked, then the words)
 
 A stage is built the first time a test asks for it and kept in GESSO_TEST_CACHE, a folder the runner
 (tests/suite.py) makes for one run and its workers share. A plain `python -m unittest` works too: without the
@@ -77,16 +78,66 @@ def chain_into(name: str, folder: Path) -> None:
 
 
 def words_into(name: str, folder: Path) -> None:
-    """The stage writers' out.json from the run the fixture was made from, into the packets' folders."""
-    for stage, out in json.loads((FIX / name / "words.json").read_text(encoding="utf-8")).items():
-        if (folder / "words" / stage).is_dir():
-            (folder / "words" / stage / "out.json").write_text(json.dumps(out), encoding="utf-8")
+    """A stand-in for the lesson's writer (no network): each step's six lines made from the words v3's stage writers
+    wrote for the run the fixture was made from (its summary starts the step, its tip says where the paint sits),
+    taken through every round of check-text as the skill would send the writer back (it answers by cutting a line
+    over 40 words to its first sentence, and changes nothing else, so what fails is taken out), then a stand-in arc
+    and its round."""
+    stage_words = json.loads((FIX / name / "words.json").read_text(encoding="utf-8"))
+    out = {}
+    for stage in stage_words.values():
+        for sid, w in (stage.get("steps") or {}).items():
+            out[sid] = {"first": "", "start": w.get("summary") or "Start where the after picture shows.",
+                        "strokes": "Pull the strokes the way the card says.",
+                        "inside": w.get("tip") or "Cover the area evenly.",
+                        "leave": "Leave the paint already there as it is.",
+                        "stop": "Stop when it matches the after picture.",
+                        **({"paint_notes": w["paint_notes"]} if w.get("paint_notes") else {})}
+    words = folder / "words" / "lesson"
+    (words / "out.json").write_text(json.dumps({"steps": out}), encoding="utf-8")
+    for _ in range(3):
+        code, r = run_tool("check-text", "--lesson", str(folder))
+        assert code == 0, r
+        if r.get("done"):
+            break
+        fix = {}
+        for sid, w in out.items():
+            cut = {k: (v.split(". ")[0].rstrip(".") + "." if isinstance(v, str) and len(v.split()) > 40 else v)
+                   for k, v in w.items()}
+            if cut != w:
+                fix[sid] = out[sid] = cut
+        (words / r["send_back"]).write_text(json.dumps({"steps": fix}), encoding="utf-8")
+    code, r = run_tool("check-text", "--lesson", str(folder), "--final")
+    assert code == 0 and r["ok"], r
+    plan = json.loads((folder / "plan.json").read_text(encoding="utf-8"))
+    steps = [s for st in plan["stages"] for s in st["steps"]]
+    cards = sorted({s["stroke"] for s in steps}, key=lambda c: -sum(s["stroke"] == c for s in steps))[:2]
+    back = {}
+    for n, s in enumerate(steps[1:], 2):
+        earlier = [k for k, e in enumerate(steps[:n - 1], 1) if e["stroke"] == s["stroke"]]
+        if earlier:
+            back[s["id"]] = {"back": {"step": earlier[-1], "text": "The same stroke as that step, in this step's "
+                                                                  "paint."}}
+    arc = {"opening": {"welcome": "A painting to make one stage at a time.", "light": "The light is the photo's.",
+                       "skills": [{"card": c, "steps": [k for k, s in enumerate(steps, 1) if s["stroke"] == c],
+                                   "how": "A stroke this lesson uses often."} for c in cards],
+                       "road": "Each stage adds its part of the painting, back to front."},
+           "stages": {st["id"]: {"for": "This stage adds its part of the painting.", "end": "Its part is done."}
+                      for st in plan["stages"]},
+           "steps": back}
+    (words / "arc.json").write_text(json.dumps(arc), encoding="utf-8")
+    code, r = run_tool("check-text", "--lesson", str(folder), "--arc")
+    assert code == 0, r
+    if r.get("send_back"):
+        (words / "arc-fix.json").write_text(json.dumps(arc), encoding="utf-8")
+    code, r = run_tool("check-text", "--lesson", str(folder), "--arc", "--final")
+    assert code == 0 and r["ok"], r
 
 
 FOLDER = "{name}_skill_20261112-090000"  # a run time in the name: history counts minutes from it
 STAGES = {"chained": (None, ()), "built": ("chained", ("build-steps", "step-aids", "mix")),
           "published": ("built", ("publish",)), "checked": ("built", ("draft-text", "check")),
-          "worded": ("checked", ("packets", words_into, "check-text --final"))}
+          "worded": ("checked", ("packets", words_into))}
 
 
 def _root() -> Path:

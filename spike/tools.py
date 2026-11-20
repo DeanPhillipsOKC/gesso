@@ -451,7 +451,11 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
             out.append(f"text.json has no step {sid}")
             continue
         # the text is its lines; its strokes come from the plan's stroke and the cards
+        import draft_text
+
         for key in ("summary", "lines", "brushes", "made_with"):
+            if key == "summary" and draft_text.written(t.get("lines")):
+                continue  # the lesson writer's six lines (v3.1); what the seal asks of them is #277's
             if not t.get(key):
                 out.append(f"{sid}: text.json has no {key}")
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
@@ -1061,7 +1065,7 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
     return {"text": str(path), "steps": len(text["steps"]), "lines": sum(len(t["lines"]) for t in text["steps"]),
             "edited_kept": sum(1 for t in text["steps"] for x in t["lines"] if x.get("edited")),
             "for_claude": todo, "left_out": draft_text.left_out(plan),
-            "advice": "Run check, then the chain's checker; the stage writers write each step's summary and tip "
+            "advice": "Run check, then the chain's checker; the lesson's writer writes each step's words "
                       "(packets, v3/run.md step D).", "cost_usd": 0.0}
 
 
@@ -1381,68 +1385,62 @@ def erase_tool(a: argparse.Namespace, client=None) -> dict:
 
 
 V3_REASON = "the finish erased back to this step by the image model, a render a stage of a thing"
-WRITER_BRIEF = ROOT / ".claude" / "skills" / "paint-lesson" / "v3" / "writer-brief.md"
 
 
 def packets_tool(a: argparse.Namespace) -> dict:
-    """The fact sheet and one writer's packet a stage, under <lesson>/words/. Design section 10."""
-    import facts
-    import plan3
+    """The fact sheet and the lesson writer's folder, words/lesson/. Design v3.1, section 5."""
+    import lesson_words
 
     lesson = Path(a.lesson)
     if not (lesson / "text.json").exists():
-        raise Refused(f"no text.json in {lesson}: run draft-text first (the packets hold each step's drafted lines)")
-    extra = None
-    if plan3.is_v3(lesson):  # what the plan says each step is for, beside what its picture shows
-        extra = {s["id"]: {"meant": s.get("after", "")} for s in plan3.steps(plan3.load(lesson))}
-    work = facts.packets(lesson, WRITER_BRIEF, extra)
-    stages = sorted(str(f) for f in work.glob("stage-*") if f.is_dir())
-    return {"sheet": str(work / "sheet.json"), "stages": stages,
-            "advice": f"Start one writer a stage, all {len(stages)} at once, each in a fresh context with only its "
-                      "folder: it reads brief.md there and writes out.json. Then run check-text.", "cost_usd": 0.0}
+        raise Refused(f"no text.json in {lesson}: run draft-text first (it makes each step's header)")
+    try:
+        r = lesson_words.packet(lesson)
+    except lesson_words.Refused as e:
+        raise Refused(str(e))
+    return {"problems": [], **r,
+            "advice": "Start one writer, in a fresh context, with: \"Follow brief.md in <lesson>/words/lesson. Read "
+                      "only that folder. Write out.json there.\" Then run check-text.", "cost_usd": 0.0}
 
 
 def check_text_tool(a: argparse.Namespace) -> dict:
-    """The writers' words into text.json, every number and side checked against the fact sheet. Design section 10."""
+    """The lesson writer's words into text.json, checked round by round against the fact sheet and the step's
+    paints; with --arc, the arc. Design v3.1, sections 5 and 6."""
     import facts
+    import lesson_words
 
     lesson = Path(a.lesson)
     if not (lesson / facts.WORK).is_dir() or not (lesson / "text.json").exists():
-        raise Refused(f"no writers' packets in {lesson}: run draft-text, then packets")
+        raise Refused(f"no writer's packet in {lesson}: run draft-text, then packets")
     try:
-        r = facts.merge(lesson, lambda: draft_text_tool(a), final=a.final)
-    except facts.Stale as e:
+        if a.arc:
+            r = lesson_words.arc_round(lesson, final=a.final)
+        else:
+            r = lesson_words.steps_round(lesson, lambda: draft_text_tool(a), final=a.final)
+    except lesson_words.Refused as e:
         raise Refused(str(e))
-    wrong = [f"{name}: its writer wrote no out.json" for name in r["missing"]] + r["bad"]
-    wrong += [f"{sid}: no summary or no tip from its writer" for sid in r["unwritten"]]
-    if not a.final:
-        wrong += r["failed"]
-    return {"problems": wrong, "ok": not wrong, "claims": r["claims"], "failures": r["failures"],
-            "dropped": r["dropped"], "left_failing": r["after"],
-            "stages_with_feedback": [f"stage-{k:02d}" for k in r["stages_with_feedback"]],
-            "advice": ("Send each stage in stages_with_feedback back to its writer once: it reads feedback.md in its "
-                       "folder and writes out.json again. Then run check-text --final, which takes out any sentence "
-                       "that still fails." if not a.final else
-                       "Sentences that still failed were taken out (words/dropped.json). A stage with a missing or "
-                       "unusable out.json needs its writer again. Then run check."), "cost_usd": 0.0}
+    return {**r, "cost_usd": 0.0}
 
 
 def add_v3_tools(sub) -> None:
-    p = sub.add_parser("packets", help="Free. v3: the fact sheet and one writer's packet a stage, for the stage writers.",
+    p = sub.add_parser("packets", help="Free. The fact sheet and the lesson writer's folder (words/lesson/).",
                        description="Measures the fact sheet from the step pictures (words/sheet.json) and writes "
-                                   "words/stage-NN/ for every stage: brief.md, steps.json (each step's paints, brush, "
-                                   "stroke, drafted lines, and what the plan says it is for), facts.md (the sheet's "
-                                   "rows as sentences), a before-and-after picture a step, the photo and the finish. "
-                                   "Run after draft-text.")
+                                   "words/lesson/ for the lesson's one writer: brief.md and arc-brief.md, steps.md "
+                                   "(each step's header and stroke card), cards.md, stages.md, plan.json, facts.md "
+                                   "(the sheet's rows as sentences, lean), a before-and-after picture and a change "
+                                   "picture a step, the photo and the finish. Run after draft-text.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=packets_tool)
-    p = sub.add_parser("check-text", help="Free. v3: the writers' words into text.json, each number and side checked against the sheet.",
-                       description="Drafts the lines again, lays every stage's words/stage-NN/out.json on them, and "
-                                   "checks every number, side and position the writers wrote against the fact sheet. "
-                                   "A failure is written to that stage's feedback.md for its writer, once. --final "
-                                   "takes out any sentence that still fails (words/dropped.json).")
+    p = sub.add_parser("check-text", help="Free. The lesson writer's words into text.json, round by round, each number and side checked against the sheet.",
+                       description="Lays words/lesson/out.json and the writer's answers (fix-1.json, fix-2.json) "
+                                   "into text.json as each step's six lines, and runs the next round: round 1 sends "
+                                   "back check-text's failures, round 2 the sentences that name a paint their step "
+                                   "doesn't list and the lines over 40 words (feedback.md says which file to write). "
+                                   "--final takes out any sentence that still fails (words/dropped.json). --arc does "
+                                   "the same for the arc (arc.json, arc-fix.json), and --arc --final writes it in.")
     p.add_argument("--lesson", required=True)
-    p.add_argument("--final", action="store_true", help="take out the sentences that still fail, after the one fix round")
+    p.add_argument("--final", action="store_true", help="take out the sentences that still fail, after the rounds")
+    p.add_argument("--arc", action="store_true", help="the arc's round (after check-text --final)")
     p.set_defaults(func=check_text_tool)
     p = sub.add_parser("erase", help="PAID, one low render a unit. v3: erase the finish backward by the plan's units (the chain).",
                        description="Makes <lesson>/chain/: P<nn>.png (the picture with every unit after nn erased), "
