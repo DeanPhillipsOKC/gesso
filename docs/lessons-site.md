@@ -49,7 +49,9 @@ rewritten (a run without one is skipped with a message). After a new run of a pi
 `python spike/tools.py site-refresh` and commit `site/`. It makes each tile open its newest hands-off run (owner,
 2026-11-13: "Should use newest untouched run"); the old default's page is kept at
 `lessons/<slug>/v/<its run time>/` and stays in the list. `site-add` makes a tile for a new picture. Setting a
-default by hand with `site-add` lasts only until the next `site-refresh`.
+default by hand with `site-add` lasts only until the next `site-refresh`. A refresh also rebuilds each tile's title
+from its run's subject when the run folder is in `output/` (#247), so a title edited by hand in `lessons.json` doesn't
+last either. A title is the subject's first part, ending on a whole word within 80 characters.
 
 A refresh only adds (#83). `output/` isn't in git, so a fresh checkout has none of the older runs: a version already
 in `lessons.json` whose page is under `site/` stays whether or not its run folder is here. Runs found in `output/`

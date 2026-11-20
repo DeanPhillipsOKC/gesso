@@ -37,6 +37,11 @@ LANTERN = ("A glowing brass lantern hanging from a snowy wooden post on a moonli
            "rolling snow behind")
 
 
+# words no title may end on, kept apart from site_lessons.DANGLING so a word missing there is caught
+ENDS = {"a", "an", "the", "and", "or", "of", "on", "in", "at", "from", "to", "by", "over", "under", "above", "below",
+        "beneath", "among", "around", "along", "between", "behind", "beside", "near", "into", "for", "its", "their"}
+
+
 class TileTitleTests(unittest.TestCase):  # #247
     def test_a_short_subject_keeps_its_first_part(self):
         self.assertEqual(site_lessons.tile_title("A small red sailboat with white sails, at sunset"),
@@ -55,7 +60,20 @@ class TileTitleTests(unittest.TestCase):  # #247
                 self.assertLessEqual(len(title), limit)
                 self.assertTrue(first.startswith(title))
                 self.assertTrue(len(title) == len(first) or first[len(title)] == " ", (subject, limit, title))
-                self.assertNotIn(title.split(" ")[-1].lower(), site_lessons.DANGLING)
+                self.assertNotIn(title.split(" ")[-1].lower(), ENDS)
+
+    def test_a_cut_never_leaves_a_preposition_before_a_dropped_article(self):  # #273 review
+        for subject in ("A fox standing in a misty forest clearing among the tall ferns and the fallen birch logs",
+                        "A row of red tulips growing in front of a mossy stone wall above the river at dawn today",
+                        "A lighthouse standing tall on a rocky point with the crashing waves beneath the dark sky"):
+            title = site_lessons.tile_title(subject, 60)
+            self.assertNotIn(title.split(" ")[-1].lower(), ENDS, title)
+
+    def test_doubled_spaces_and_a_huge_first_word(self):
+        self.assertEqual(site_lessons.tile_title("A  red   barn on a hill", 12), "A red barn")
+        title = site_lessons.tile_title("A" + "b" * 100, 40)
+        self.assertEqual(len(title), 40)
+        self.assertTrue(title.endswith("\u2026"))
 
     def test_a_title_within_the_limit_is_left_whole(self):
         title = "A gray tabby cat curled asleep on a yellow knit blanket on a wooden windowsill"  # 78 characters

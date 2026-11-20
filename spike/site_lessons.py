@@ -83,15 +83,17 @@ def kept_off_ids(site: Path, photo: str) -> tuple[str, ...]:
 
 TITLE_MAX = 80  # characters on a tile's title
 # words a title may not end on, and the words a trailing phrase is dropped at when the title is too long (#247)
-DANGLING = {"a", "an", "the", "and", "or", "of", "on", "in", "at", "from", "with", "by", "to", "into", "over",
-            "under", "near", "beside", "behind", "against", "across", "through"}
+DANGLING = {"a", "an", "the", "and", "or", "but", "of", "on", "in", "at", "from", "with", "by", "to", "into", "onto",
+            "over", "under", "near", "beside", "behind", "against", "across", "through", "above", "below", "beneath",
+            "among", "amid", "around", "along", "atop", "between", "toward", "towards", "upon", "past", "for", "as",
+            "its", "their", "his", "her", "while", "that", "where", "which", "who"}
 
 
 def tile_title(subject: str, limit: int = TITLE_MAX) -> str:
     """A tile's title from the plan's subject: the part before the first comma and before " with ". One longer than
     `limit` loses its last phrase (it ends before the last "on", "in", "from"... that leaves at least half the
     limit), or else is cut at the last whole word; it never ends mid-word or on a dangling "on a" or "and" (#247)."""
-    title = subject.split(",")[0].split(" with ")[0].strip()
+    title = " ".join(subject.split(",")[0].split(" with ")[0].split())  # doubled spaces would leave a gap
     if len(title) <= limit:
         return title
     words = title[:limit + 1].split(" ")[:-1]  # whole words only: the last piece may be cut
@@ -99,9 +101,10 @@ def tile_title(subject: str, limit: int = TITLE_MAX) -> str:
         if words[i].lower() in DANGLING and len(" ".join(words[:i])) >= limit // 2:
             words = words[:i]
             break
-    while len(words) > 1 and words[-1].lower() in DANGLING:
+    while words and words[-1].lower() in DANGLING:
         words.pop()
-    return " ".join(words) or title[:limit]  # one word longer than the limit: nothing whole to keep
+    # a first word longer than the limit leaves nothing whole to keep: cut it, and say so
+    return " ".join(words) or title[:limit - 1] + "\u2026"
 
 
 def add(lesson: Path, slug: str, site: Path = SITE) -> dict:
