@@ -1,8 +1,8 @@
-# Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
-
-**A draft (2026-11-20), being built on the branch `v3.1` (builds 1 to 3 done). The owner read it and merged it
-(#275), set the gate (section 13), and said go on the combined lesson (section 12, steps 1 and 2;
-`docs/spikes/v31-combined.md`).** It is the design the v4 plan's Order, step 5 asks for (`pipeline-v4-plan.md`),
+**Built (2026-11-20, POC 2.1.0).** The gate passed (section 13; `docs/spikes/v31-gate.md`) and the owner read the
+highland cow and said "Looks good". `v3.1` merged into main; `pipeline-v3.md`, sections 4 and 10, describe the
+pipeline as it now runs, and this file is the record of how it was designed and built. A draft (2026-11-20), built
+on the branch `v3.1` (#276 to #278). The owner read it and merged it (#275), set the gate (section 13), and said go
+on the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`). It is the design the v4 plan's Order, step 5 asks for (`pipeline-v4-plan.md`),
 written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't replace it. Read that file
 first: every section number below that isn't this file's own is v3's.
 
@@ -349,7 +349,7 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    - `run.md`, steps A, D and E;
    - the page, `check` and `publish --final` (section 7);
    - `v4_loop.py` brought into step with the new `run.md`.
-4. **The gate,** run from that branch before it merges (section 13; #279).
+4. **Done: passed (2026-11-20, #279, `docs/spikes/v31-gate.md`).** The gate, run from that branch before it merged.
 5. **Then** merge, stamp POC 2.1.0, write the changelog entry, and fold the as-built facts into `pipeline-v3.md`,
    sections 4 and 10, so one file still describes the pipeline. The site's lessons still wait to be rerun from
    v3's gate; rerun them once, after this.

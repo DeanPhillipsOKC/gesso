@@ -6,6 +6,24 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 2.1.0 (2026-11-20)
+Pipeline v3.1 (`docs/design/pipeline-v3.1.md`, #276 to #279): the words are taught, and every helper is sent less.
+No step picture changes; `lesson.json` keeps `"pipeline": 3`.
+- One writer writes the whole lesson, six lines a step: First, Start, Strokes, Where the paint sits, Leave, Stop when
+  (#276). It sees every step's before and after pictures and a picture of only what the step changed. A step's
+  summary and tip are gone. `check-text` holds every number and side to the fact sheet, then a round for a paint the
+  step doesn't list and a line over 40 words; what still fails is taken out.
+- The lesson has an arc (#276): "Before you start" (a welcome, the light, what this painting teaches, the way
+  there), a line at the top of each stage and one after its last step, and an "As in step N" line where a step
+  repeats an earlier stroke or paint.
+- The page shows the six lines with their labels, the opening and the stage lines; `check` and the seal hold them
+  (#277). Older lessons, with a summary and a tip, show as before.
+- The plan's writer is sent the library's list and asks for what it picks (`library`), and answers a check with
+  changes (`plan-change`) (#278). The finisher sees the step pictures at 384 pixels (`small-pictures`) and looks at
+  its diagrams again only when one draws nothing (`preview-diagrams`' `drawn`).
+- The gate's three lessons (the highland cow, the sleeping cat, the birch grove; `docs/spikes/v31-gate.md`) were made
+  by this code on the branch before the version was bumped, so they are stamped POC 2.0.2 with their commits.
+
 ## POC 2.0.2 (2026-11-19)
 - A shading or lighting paint keeps a color of its own (#250). A step that comes back to a thing (shade the cat,
   light the sill, flick the fur) is fitted to the marks it laid, not to the whole thing its render drew again, so

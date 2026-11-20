@@ -1,7 +1,7 @@
 # Gesso
 
 Turns a photo into a step-by-step painting lesson (acrylic or oil) at the painter's skill level.
-Proof of concept: lessons are made by the `/paint-lesson` skill (pipeline v3) and its tools in `spike/`; no app
+Proof of concept: lessons are made by the `/paint-lesson` skill (pipeline v3, with v3.1's changes) and its tools in `spike/`; no app
 code yet.
 
 Project knowledge lives under `docs/`. Read it before making changes:
@@ -15,8 +15,9 @@ Project knowledge lives under `docs/`. Read it before making changes:
 - `docs/design/pipeline-v3.md`: the pipeline (a painter's plan, the finish erased back a unit at a time, words from a
   measured fact sheet). Its gate passed on 2026-11-18 and `/paint-lesson` runs it. Read all of it before any
   pipeline issue.
-- `docs/design/pipeline-v3.1.md`: a draft, not built. The design from the v4 plan's spikes, as changes to v3 (one
-  teacher writes the words, the lesson gets an arc, every helper is sent less). Read it before building any of it.
+- `docs/design/pipeline-v3.1.md`: built (POC 2.1.0). The design from the v4 plan's spikes, as changes to v3 (one
+  teacher writes the words, the lesson gets an arc, every helper is sent less); `pipeline-v3.md` describes the run
+  as it is now. Read it before changing the words stage.
 - `docs/design/pipeline-v4-plan.md`: the plan for pipeline v4, a lesson you can paint from (a student test as the
   yardstick, then spikes on the words, stroke maps and cost). Read it before any issue under #240.
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
