@@ -82,9 +82,9 @@ RESULTS = HERE / "cover_margin.json"
 DOCS = ROOT / "docs" / "spikes"
 PICTURES = ["highland-cow", "sleeping-cat", "birch-grove"]
 
-FILLS = ("canvas", "wash", "edge", "open")
+FILLS = ("canvas", "wash", "edge", "open", "line")
 MARGINS = (0.5, 0.75, 1.0)  # inches
-COVERS = ("all", "detail", "staged")
+COVERS = ("all", "detail", "staged", "later")
 VARIANTS = [f"{f}-{m:g}-{c}" for f in FILLS for m in MARGINS for c in COVERS]
 
 DETAIL = 3.0  # Lab units of `local` detail: a layer at or above this has detail where it is covered (flat coats
@@ -306,6 +306,42 @@ def reaches_edge(L: dict, region: np.ndarray) -> np.ndarray:
     return keep[lab] & region
 
 
+LINE_REACH = 2.0  # inches: a layer stopped by `line` goes as deep as it is needed anywhere this far to each side
+LINE_RUN = 1.5  # inches: a cover reaching the bottom edge must run at least this far up a column to stop a layer
+
+
+def stop_line(L: dict, cov: np.ndarray, margin: float) -> np.ndarray:
+    """How hidden each pixel is under `line` (the owner's ask on #289: "extend a bit past where they were needed for
+    large areas that would be covered"). Only a cover that runs from the bottom edge of the canvas up counts. In each
+    column, the layer is painted down to the deepest point it is needed within LINE_REACH inches to either side, then
+    `margin` further, so its lower edge is a loose line past the valleys of what covers it, not the cover's outline.
+    The line is smoothed and wobbles a little; below it is bare canvas. Everything else is painted through."""
+    y0, y1, x0, x1 = L["crop"]
+    c = cov[y0:y1, x0:x1]
+    h, w = c.shape
+    ppi = L["ppi"]
+    # each column's covered run that reaches the bottom edge starts at `top` (h: none, or shorter than LINE_RUN)
+    run = np.zeros((h, w), bool)
+    run[-1] = c[-1]
+    for y in range(h - 2, -1, -1):
+        run[y] = run[y + 1] & c[y]
+    top = np.where(run.any(0), run.argmax(0), h).astype(np.float32)
+    top[(h - top) < LINE_RUN * ppi] = h
+    reach = max(1, int(LINE_REACH * ppi))
+    pad = np.pad(top, reach, mode="edge")
+    deep = np.array([pad[i:i + 2 * reach + 1].max() for i in range(w)], np.float32)  # needed this deep nearby
+    smooth = cv2.GaussianBlur(deep[None], (0, 0), sigmaX=reach / 2)[0]
+    smooth = np.maximum(smooth, top)  # smoothing never cuts into where the layer itself is needed
+    wob = _noise((1, w), (1, WOBBLE_SIZE * ppi), SEED)[0] * 3  # about -1..1 along the edge
+    stop = smooth + margin * ppi * (1 + WOBBLE * np.clip(wob, -1, 1))
+    rag = _noise((h, w), (0.02 * ppi, 0.12 * ppi), SEED + 1)
+    ys = np.arange(h, dtype=np.float32)[:, None]
+    hid = np.clip((ys - stop[None]) / (RAMP * ppi) + RAG * rag * 1.6, 0, 1) * run
+    out = np.zeros(cov.shape, np.float32)
+    out[y0:y1, x0:x1] = hid
+    return out
+
+
 def parse(variant: str) -> tuple[str, float, str]:
     fill, margin, cov = variant.split("-")
     return fill, float(margin), cov
@@ -322,9 +358,12 @@ def variant_steps(L: dict, variant: str, base: list[np.ndarray] | None = None,
         detail = detail or layer_detail(L, cov)
         rich = np.array([r["detail"] for r in detail] + [False])  # index -1: bare canvas
         cov = [c & rich[t] for c, t in zip(cov, tops(L))]
-    if which == "staged":  # a thing painted in the same stage is one passage with the layer (the cow's clouds)
+    if which in ("staged", "later"):  # a thing painted in the same stage is one passage with the layer (the clouds)
         cov = [c & later_stage(L, u) for u, c in enumerate(cov)]
-    want = [soft(c, margin * L["ppi"], L["ppi"]) for c in cov]
+    if fill_kind == "line":
+        want = [stop_line(L, c, margin) for c in cov]
+    else:
+        want = [soft(c, margin * L["ppi"], L["ppi"]) for c in cov]
     paint = main_paint(L)
     wash = np.array([ff.hex_lab(L["hexes"][p]) for p in paint])  # Lab, a unit's row
     wash_rgb = np.array([np.array(Image.new("RGB", (1, 1), L["hexes"][p]))[0, 0] for p in paint], np.float32)
@@ -341,7 +380,7 @@ def variant_steps(L: dict, variant: str, base: list[np.ndarray] | None = None,
         bare &= ~where
         hide = hide.copy()
         hide[where] = want[u][where]
-        if fill_kind in ("wash", "edge", "open"):
+        if fill_kind in ("wash", "edge", "open"):  # ("line" leaves bare canvas: the fill stays the canvas)
             fill = fill.copy()
             t = top_after[u][where]
             fill[where] = wash_rgb[np.maximum(t, 0)]
