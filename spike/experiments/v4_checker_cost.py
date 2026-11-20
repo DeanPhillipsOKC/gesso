@@ -285,9 +285,32 @@ def compare(ref: list[dict], got: list[dict]) -> dict:
     return out
 
 
+def reference(d: dict) -> dict[str, list[dict]]:
+    """Each round's marks that most of Opus's reads made: the loop's own answer and every opus-medium read here.
+    A mark is in when more than half the reads made it. Opus doesn't always agree with itself, so this, not the
+    loop's one read, is what a cheaper setting has to catch."""
+    out = {}
+    for f in all_rounds():
+        rnd = str(f.relative_to(BENCH))
+        reads = [json.loads((f / "opus.json").read_text())] + [x["answers"] for x in d.get("answers", [])
+                                                                if x["setting"] == "opus-medium" and x["round"] == rnd]
+        votes: dict[tuple, int] = {}
+        looks = sorted({a["look"] for r in reads for a in r})
+        for r in reads:
+            for lk, ks in _marks(r).items():
+                for k in ks:
+                    votes[(lk, k)] = votes.get((lk, k), 0) + 1
+        out[rnd] = {"reads": len(reads), "answers": [
+            {"look": lk, **{k: votes.get((lk, k), 0) * 2 > len(reads) for k in ("stray", "left")},
+             "votes": {k: votes.get((lk, k), 0) for k in ("stray", "left")}} for lk in looks]}
+    return out
+
+
 def summary(d: dict) -> dict:
-    rounds = {str(f.relative_to(BENCH)): json.loads((f / "opus.json").read_text()) for f in all_rounds()}
-    by = {}
+    ref = reference(d)
+    loop = {str(f.relative_to(BENCH)): json.loads((f / "opus.json").read_text()) for f in all_rounds()}
+    by: dict[str, list] = {"opus-loop": [{"setting": "opus-loop", "round": k, "answers": v, "cost_usd": 0,
+                                          "seconds": 0, "json_again": False} for k, v in loop.items()]}
     for x in d.get("answers", []):
         by.setdefault(x["setting"], []).append(x)
     res = {}
@@ -295,7 +318,7 @@ def summary(d: dict) -> dict:
         tot = {"calls": len(xs), "looks": 0, "ref_marks": 0, "caught": 0, "missed": [], "added": [],
                "agree_looks": 0, "cost_usd": 0.0, "seconds": 0.0, "json_again": 0}
         for x in xs:
-            c = compare(rounds[x["round"]], x["answers"])
+            c = compare(ref[x["round"]]["answers"], x["answers"])
             for k in ("looks", "ref_marks", "caught", "agree_looks"):
                 tot[k] += c[k]
             tot["missed"] += [f"{x['round']}/{m}" for m in c["missed"]]
@@ -306,20 +329,23 @@ def summary(d: dict) -> dict:
         n = len(xs)
         tot["cost_per_call"] = round(tot["cost_usd"] / n, 4)
         tot["seconds_per_call"] = round(tot["seconds"] / n, 1)
-        tot["recall_vs_loop"] = round(tot["caught"] / tot["ref_marks"], 3) if tot["ref_marks"] else None
+        tot["recall"] = round(tot["caught"] / tot["ref_marks"], 3) if tot["ref_marks"] else None
         tot["agree_share"] = round(tot["agree_looks"] / tot["looks"], 3) if tot["looks"] else None
         tot["cost_usd"] = round(tot["cost_usd"], 3)
         res[s] = tot
-    return res
+    return {"reference": ref, "settings": res}
 
 
 def cmd_report(a):
     d = load()
     d["summary"] = summary(d)
     save(d)
-    for s, t in d["summary"].items():
-        print(f"{s:15} calls {t['calls']:3}  recall {t['recall_vs_loop']}  agree {t['agree_share']}  "
-              f"missed {len(t['missed'])}  added {len(t['added'])}  ${t['cost_per_call']}/call  "
+    ref = d["summary"]["reference"]
+    print(f"{len(ref)} rounds, {sum(len(r['answers']) for r in ref.values())} looks, "
+          f"{sum(a['stray'] + a['left'] for r in ref.values() for a in r['answers'])} marks most Opus reads made")
+    for s, t in d["summary"]["settings"].items():
+        print(f"{s:14} calls {t['calls']:3}  caught {t['caught']}/{t['ref_marks']} ({t['recall']})  "
+              f"looks agreeing {t['agree_share']}  added {len(t['added'])}  ${t['cost_per_call']}/call  "
               f"{t['seconds_per_call']} s/call")
 
 

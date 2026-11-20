@@ -111,5 +111,5139 @@
    "last_round_vs_own_looks_mean_abs": 0.0,
    "note": null
   }
- ]
+ ],
+ "answers": [
+  {
+   "setting": "opus-medium",
+   "round": "highland-cow_v4loop_20261119-175434/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": true,
+     "why": "most of the gold cloud streaks are still there; only the two at the top left went, and the streaks across the middle and right of the sky remain"
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.19986,
+   "seconds": 26.4,
+   "output_tokens": 1917,
+   "input_tokens": 40380,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-medium",
+   "round": "highland-cow_v4loop_20261119-183412/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": true,
+     "left": false,
+     "why": "the thin seed-grass stems in the lower right corner are gone along with the heads, though the stems were to stay"
+    }
+   ],
+   "cost_usd": 0.20458,
+   "seconds": 27.6,
+   "output_tokens": 2154,
+   "input_tokens": 40375,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-medium",
+   "round": "highland-cow_v4loop_20261119-191115/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": true,
+     "why": "the rounded dusky mauve nose at the bottom of the cow's face is still plainly there in picture 2"
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.20301,
+   "seconds": 33.0,
+   "output_tokens": 2656,
+   "input_tokens": 37473,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-medium",
+   "round": "sleeping-cat_v4loop_20261119-183421/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": true,
+     "left": false,
+     "why": "the green leaves outside the window at upper left are gone, leaving a blank hole in the sky"
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": true,
+     "why": "the rows of deep-ochre V-pair stitch marks along each blanket roll are still plainly there; only the bright yellow commas went"
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.13435,
+   "seconds": 20.1,
+   "output_tokens": 1660,
+   "input_tokens": 25287,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-low",
+   "round": "highland-cow_v4loop_20261119-175434/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": true,
+     "why": "most of the gold cloud streaks across the middle and right of the sky are still there; only the two upper-left ones went"
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.18153,
+   "seconds": 16.0,
+   "output_tokens": 1012,
+   "input_tokens": 40323,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-low",
+   "round": "highland-cow_v4loop_20261119-183412/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": true,
+     "left": false,
+     "why": "the thin seed-grass stems in the bottom right corner are gone along with the heads"
+    }
+   ],
+   "cost_usd": 0.17992,
+   "seconds": 14.6,
+   "output_tokens": 921,
+   "input_tokens": 40374,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-low",
+   "round": "highland-cow_v4loop_20261119-191115/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": true,
+     "why": "the rounded mauve nose with its nostrils is still plainly there at the bottom of the cow's face in picture 2"
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.17343,
+   "seconds": 15.3,
+   "output_tokens": 1169,
+   "input_tokens": 37512,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "opus-low",
+   "round": "sleeping-cat_v4loop_20261119-183421/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": true,
+     "left": false,
+     "why": "the green leaves outside the window at upper left are gone, leaving only bare sky."
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": true,
+     "why": "the rows of deep-ochre V stitch marks along the blanket rolls are still plainly there; only the bright yellow was taken off."
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.12211,
+   "seconds": 13.1,
+   "output_tokens": 1061,
+   "input_tokens": 25222,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-medium",
+   "round": "highland-cow_v4loop_20261119-175434/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": true,
+     "why": "Gold streaks are still in the sky at upper right (right of center) and at the left edge about a quarter of the way down; only the top-left cloud and one mid-sky streak were removed."
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.094,
+   "seconds": 15.9,
+   "output_tokens": 1334,
+   "input_tokens": 40329,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-medium",
+   "round": "highland-cow_v4loop_20261119-183412/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": true,
+     "why": "the pinkish-brown nose with its nostrils and mouth line is still plainly there below the fringe"
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": true,
+     "left": false,
+     "why": "the thin seed stems at lower right, which were to stay, are gone along with the heads"
+    }
+   ],
+   "cost_usd": 0.10027,
+   "seconds": 19.3,
+   "output_tokens": 1945,
+   "input_tokens": 40410,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-medium",
+   "round": "highland-cow_v4loop_20261119-191115/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.09232,
+   "seconds": 17.5,
+   "output_tokens": 1723,
+   "input_tokens": 37544,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-medium",
+   "round": "sleeping-cat_v4loop_20261119-183421/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": true,
+     "left": false,
+     "why": "the green leaves outside the window at upper left are gone, leaving blank cream where they were"
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": true,
+     "why": "the deep-ochre knit stitches and rolls are still plainly there across the whole blanket"
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.06784,
+   "seconds": 15.7,
+   "output_tokens": 1733,
+   "input_tokens": 25254,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-low",
+   "round": "highland-cow_v4loop_20261119-175434/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": true,
+     "why": "several gold cloud streaks remain in the sky, e.g. at left (y~75), right (y~85) and across the middle (y~130)"
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.10019,
+   "seconds": 19.6,
+   "output_tokens": 1962,
+   "input_tokens": 40286,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-low",
+   "round": "highland-cow_v4loop_20261119-183412/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.10692,
+   "seconds": 24.9,
+   "output_tokens": 2607,
+   "input_tokens": 40424,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-low",
+   "round": "highland-cow_v4loop_20261119-191115/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.08713,
+   "seconds": 12.1,
+   "output_tokens": 1204,
+   "input_tokens": 37543,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "sonnet-low",
+   "round": "sleeping-cat_v4loop_20261119-183421/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": true,
+     "left": false,
+     "why": "the green leaves outside the window at the upper left are gone, not just the blue wall"
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": true,
+     "why": "the blanket still shows rows of ochre V-pair stitches along each roll"
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.0652,
+   "seconds": 13.9,
+   "output_tokens": 1475,
+   "input_tokens": 25227,
+   "model": [
+    "claude-sonnet-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-medium",
+   "round": "highland-cow_v4loop_20261119-175434/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": true,
+     "left": false,
+     "why": "the right horn's upper length and tip are tinted and lose their warm shading, though only the horn base over the head was to change"
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.00948,
+   "seconds": 56.7,
+   "output_tokens": 10888,
+   "input_tokens": 40320,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-medium",
+   "round": "highland-cow_v4loop_20261119-183412/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": true,
+     "why": "the olive flicks on the upper slope are still there, though the layer was to go"
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": true,
+     "left": false,
+     "why": "the thin seed-grass stems at lower right went with the seed heads"
+    }
+   ],
+   "cost_usd": 0.01153,
+   "seconds": 73.6,
+   "output_tokens": 14995,
+   "input_tokens": 40359,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-medium",
+   "round": "highland-cow_v4loop_20261119-191115/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": true,
+     "why": "the mauve nose below the fringe still shows in picture 2"
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.00671,
+   "seconds": 32.7,
+   "output_tokens": 5900,
+   "input_tokens": 37577,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-medium",
+   "round": "sleeping-cat_v4loop_20261119-183421/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": true,
+     "left": false,
+     "why": "the leaves outside the window at top left are gone"
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": true,
+     "why": "the V-paired knit stitches are still plainly on both rolls of the blanket"
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.00687,
+   "seconds": 44.2,
+   "output_tokens": 8688,
+   "input_tokens": 25261,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-high",
+   "round": "highland-cow_v4loop_20261119-175434/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": true,
+     "why": "the gold streaks across the middle and right of the sky still stand"
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": true,
+     "left": false,
+     "why": "the right horn is tinted along its length, from base to tip, though the horns are in stays"
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.01171,
+   "seconds": 75.3,
+   "output_tokens": 15371,
+   "input_tokens": 40293,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-high",
+   "round": "highland-cow_v4loop_20261119-183412/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": true,
+     "left": false,
+     "why": "magenta on the upper parts of both horns, which were to stay"
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U13",
+     "stray": true,
+     "left": false,
+     "why": "magenta on the cow's mouth and chin and on the tip of the right horn, which were to stay"
+    }
+   ],
+   "cost_usd": 0.01831,
+   "seconds": 138.4,
+   "output_tokens": 28533,
+   "input_tokens": 40417,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-high",
+   "round": "highland-cow_v4loop_20261119-191115/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": true,
+     "left": false,
+     "why": "the left curved horn, from its tip down to the head, changed color"
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.01698,
+   "seconds": 127.6,
+   "output_tokens": 26447,
+   "input_tokens": 37524,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  },
+  {
+   "setting": "haiku-high",
+   "round": "sleeping-cat_v4loop_20261119-183421/round-1",
+   "rep": 1,
+   "answers": [
+    {
+     "look": "U01",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U02",
+     "stray": true,
+     "left": false,
+     "why": "the leaves outside the window (green foliage at top left) are gone"
+    },
+    {
+     "look": "U03",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U04",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U05",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U06",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U07",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U08",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U09",
+     "stray": false,
+     "left": true,
+     "why": "the knit stitch rows on both blanket rolls are still plainly there; only the bright yellow top marks are mostly gone"
+    },
+    {
+     "look": "U10",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U11",
+     "stray": false,
+     "left": false,
+     "why": ""
+    },
+    {
+     "look": "U12",
+     "stray": false,
+     "left": false,
+     "why": ""
+    }
+   ],
+   "cost_usd": 0.00773,
+   "seconds": 50.9,
+   "output_tokens": 10402,
+   "input_tokens": 25276,
+   "model": [
+    "claude-haiku-5-5"
+   ],
+   "json_again": false
+  }
+ ],
+ "summary": {
+  "reference": {
+   "birch-grove_v4loop_20261119-175438/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "birch-grove_v4loop_20261119-175914/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U15",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U16",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "birch-grove_v4loop_20261119-175914/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U15",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U16",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "birch-grove_v4loop_20261119-175914/round-3": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U15",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U16",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     }
+    ]
+   },
+   "birch-grove_v4loop_20261119-183424/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "birch-grove_v4loop_20261119-183424/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "birch-grove_v4loop_20261119-183424/round-3": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "highland-cow_v4loop_20261119-175434/round-1": {
+    "reads": 2,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 2
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     }
+    ]
+   },
+   "highland-cow_v4loop_20261119-183412/round-1": {
+    "reads": 2,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 2,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "highland-cow_v4loop_20261119-183415/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U15",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "highland-cow_v4loop_20261119-183415/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U15",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "highland-cow_v4loop_20261119-191115/round-1": {
+    "reads": 2,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 2
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261118-201516/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261118-201516/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-175436/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-175911/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-175911/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-175911/round-3": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-183418/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-183418/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-183421/round-1": {
+    "reads": 2,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 2,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 2
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-215313/round-1": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": true,
+      "votes": {
+       "stray": 0,
+       "left": 1
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   },
+   "sleeping-cat_v4loop_20261119-215313/round-2": {
+    "reads": 1,
+    "answers": [
+     {
+      "look": "U01",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U02",
+      "stray": true,
+      "left": false,
+      "votes": {
+       "stray": 1,
+       "left": 0
+      }
+     },
+     {
+      "look": "U03",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U04",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U05",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U06",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U07",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U08",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U09",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U10",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U11",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U12",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U13",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     },
+     {
+      "look": "U14",
+      "stray": false,
+      "left": false,
+      "votes": {
+       "stray": 0,
+       "left": 0
+      }
+     }
+    ]
+   }
+  },
+  "settings": {
+   "opus-loop": {
+    "calls": 23,
+    "looks": 302,
+    "ref_marks": 32,
+    "caught": 32,
+    "missed": [],
+    "added": [
+     "highland-cow_v4loop_20261119-175434/round-1/U13:left",
+     "highland-cow_v4loop_20261119-183412/round-1/U10:left"
+    ],
+    "agree_looks": 300,
+    "cost_usd": 0.0,
+    "seconds": 0.0,
+    "json_again": 0,
+    "cost_per_call": 0.0,
+    "seconds_per_call": 0.0,
+    "recall": 1.0,
+    "agree_share": 0.993
+   },
+   "opus-medium": {
+    "calls": 4,
+    "looks": 50,
+    "ref_marks": 5,
+    "caught": 5,
+    "missed": [],
+    "added": [],
+    "agree_looks": 50,
+    "cost_usd": 0.742,
+    "seconds": 107.1,
+    "json_again": 0,
+    "cost_per_call": 0.1855,
+    "seconds_per_call": 26.8,
+    "recall": 1.0,
+    "agree_share": 1.0
+   },
+   "opus-low": {
+    "calls": 4,
+    "looks": 50,
+    "ref_marks": 5,
+    "caught": 5,
+    "missed": [],
+    "added": [],
+    "agree_looks": 50,
+    "cost_usd": 0.657,
+    "seconds": 59.00000000000001,
+    "json_again": 0,
+    "cost_per_call": 0.1642,
+    "seconds_per_call": 14.8,
+    "recall": 1.0,
+    "agree_share": 1.0
+   },
+   "sonnet-medium": {
+    "calls": 4,
+    "looks": 50,
+    "ref_marks": 5,
+    "caught": 4,
+    "missed": [
+     "highland-cow_v4loop_20261119-191115/round-1/U11:left"
+    ],
+    "added": [
+     "highland-cow_v4loop_20261119-183412/round-1/U10:left"
+    ],
+    "agree_looks": 48,
+    "cost_usd": 0.354,
+    "seconds": 68.4,
+    "json_again": 0,
+    "cost_per_call": 0.0886,
+    "seconds_per_call": 17.1,
+    "recall": 0.8,
+    "agree_share": 0.96
+   },
+   "sonnet-low": {
+    "calls": 4,
+    "looks": 50,
+    "ref_marks": 5,
+    "caught": 3,
+    "missed": [
+     "highland-cow_v4loop_20261119-183412/round-1/U13:stray",
+     "highland-cow_v4loop_20261119-191115/round-1/U11:left"
+    ],
+    "added": [],
+    "agree_looks": 48,
+    "cost_usd": 0.359,
+    "seconds": 70.5,
+    "json_again": 0,
+    "cost_per_call": 0.0899,
+    "seconds_per_call": 17.6,
+    "recall": 0.6,
+    "agree_share": 0.96
+   },
+   "haiku-medium": {
+    "calls": 4,
+    "looks": 50,
+    "ref_marks": 5,
+    "caught": 4,
+    "missed": [
+     "highland-cow_v4loop_20261119-175434/round-1/U01:left"
+    ],
+    "added": [
+     "highland-cow_v4loop_20261119-175434/round-1/U11:stray",
+     "highland-cow_v4loop_20261119-183412/round-1/U05:left"
+    ],
+    "agree_looks": 47,
+    "cost_usd": 0.035,
+    "seconds": 207.2,
+    "json_again": 0,
+    "cost_per_call": 0.0086,
+    "seconds_per_call": 51.8,
+    "recall": 0.8,
+    "agree_share": 0.94
+   },
+   "haiku-high": {
+    "calls": 4,
+    "looks": 50,
+    "ref_marks": 5,
+    "caught": 4,
+    "missed": [
+     "highland-cow_v4loop_20261119-191115/round-1/U11:left"
+    ],
+    "added": [
+     "highland-cow_v4loop_20261119-175434/round-1/U11:stray",
+     "highland-cow_v4loop_20261119-183412/round-1/U10:stray",
+     "highland-cow_v4loop_20261119-191115/round-1/U11:stray"
+    ],
+    "agree_looks": 47,
+    "cost_usd": 0.055,
+    "seconds": 392.19999999999993,
+    "json_again": 0,
+    "cost_per_call": 0.0137,
+    "seconds_per_call": 98.0,
+    "recall": 0.8,
+    "agree_share": 0.94
+   }
+  }
+ }
 }
