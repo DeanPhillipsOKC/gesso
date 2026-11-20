@@ -1,0 +1,1056 @@
+{
+ "prepared": {
+  "highland-cow": {
+   "1": {
+    "area": 1.0,
+    "place": "mirrored top to bottom",
+    "other_step": 2,
+    "place_iou": 1.0,
+    "other_iou": 0.27,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "2": {
+    "area": 0.2698,
+    "place": "mirrored side to side",
+    "other_step": 3,
+    "place_iou": 0.463,
+    "other_iou": 0.18,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "3": {
+    "area": 0.1779,
+    "place": "mirrored side to side",
+    "other_step": 4,
+    "place_iou": 0.211,
+    "other_iou": 0.087,
+    "order": [
+     "real",
+     "other",
+     "half",
+     "place"
+    ]
+   },
+   "4": {
+    "area": 0.8497,
+    "place": "rolled half the canvas sideways",
+    "other_step": 5,
+    "place_iou": 0.995,
+    "other_iou": 0.086,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "5": {
+    "area": 0.0732,
+    "place": "mirrored side to side",
+    "other_step": 6,
+    "place_iou": 0.204,
+    "other_iou": 0.093,
+    "order": [
+     "other",
+     "real",
+     "half",
+     "place"
+    ]
+   },
+   "6": {
+    "area": 0.0091,
+    "place": "mirrored side to side",
+    "other_step": 7,
+    "place_iou": 0.0,
+    "other_iou": 0.001,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "7": {
+    "area": 0.6128,
+    "place": "mirrored side to side",
+    "other_step": 8,
+    "place_iou": 0.657,
+    "other_iou": 0.538,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "8": {
+    "area": 0.5378,
+    "place": "mirrored side to side",
+    "other_step": 9,
+    "place_iou": 0.532,
+    "other_iou": 0.431,
+    "order": [
+     "half",
+     "real",
+     "other",
+     "place"
+    ]
+   },
+   "9": {
+    "area": 0.4812,
+    "place": "mirrored side to side",
+    "other_step": 10,
+    "place_iou": 0.802,
+    "other_iou": 0.235,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "10": {
+    "area": 0.244,
+    "place": "mirrored side to side",
+    "other_step": 11,
+    "place_iou": 0.409,
+    "other_iou": 0.778,
+    "order": [
+     "place",
+     "half",
+     "real",
+     "other"
+    ]
+   },
+   "11": {
+    "area": 0.1901,
+    "place": "mirrored side to side",
+    "other_step": 12,
+    "place_iou": 0.191,
+    "other_iou": 0.021,
+    "order": [
+     "real",
+     "half",
+     "place",
+     "other"
+    ]
+   },
+   "12": {
+    "area": 0.0219,
+    "place": "mirrored side to side",
+    "other_step": 13,
+    "place_iou": 0.0,
+    "other_iou": 0.866,
+    "order": [
+     "other",
+     "real",
+     "half",
+     "place"
+    ]
+   },
+   "13": {
+    "area": 0.0215,
+    "place": "mirrored side to side",
+    "other_step": 14,
+    "place_iou": 0.0,
+    "other_iou": 0.008,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "14": {
+    "area": 0.1713,
+    "place": "mirrored side to side",
+    "other_step": 15,
+    "place_iou": 0.199,
+    "other_iou": 0.227,
+    "order": [
+     "real",
+     "half",
+     "other",
+     "place"
+    ]
+   },
+   "15": {
+    "area": 0.0484,
+    "place": "mirrored side to side",
+    "other_step": 16,
+    "place_iou": 0.023,
+    "other_iou": 0.312,
+    "order": [
+     "real",
+     "half",
+     "other",
+     "place"
+    ]
+   },
+   "16": {
+    "area": 0.0473,
+    "place": "mirrored side to side",
+    "other_step": 17,
+    "place_iou": 0.117,
+    "other_iou": 0.036,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "17": {
+    "area": 0.0172,
+    "place": "mirrored side to side",
+    "other_step": 18,
+    "place_iou": 0.17,
+    "other_iou": 0.0,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   },
+   "18": {
+    "area": 0.2488,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.532,
+    "other_iou": 0.09,
+    "order": [
+     "real",
+     "place",
+     "half",
+     "other"
+    ]
+   },
+   "19": {
+    "area": 0.0511,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.148,
+    "other_iou": 0.03,
+    "order": [
+     "real",
+     "other",
+     "place",
+     "half"
+    ]
+   },
+   "20": {
+    "area": 0.0256,
+    "place": "mirrored side to side",
+    "other_step": 21,
+    "place_iou": 0.01,
+    "other_iou": 0.0,
+    "order": [
+     "other",
+     "half",
+     "place",
+     "real"
+    ]
+   },
+   "21": {
+    "area": 0.1331,
+    "place": "mirrored side to side",
+    "other_step": 22,
+    "place_iou": 0.284,
+    "other_iou": 0.063,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "22": {
+    "area": 0.1394,
+    "place": "mirrored side to side",
+    "other_step": 21,
+    "place_iou": 0.168,
+    "other_iou": 0.063,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   }
+  },
+  "sleeping-cat": {
+   "1": {
+    "area": 0.0595,
+    "place": "mirrored side to side",
+    "other_step": 2,
+    "place_iou": 0.0,
+    "other_iou": 0.01,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "2": {
+    "area": 0.5347,
+    "place": "mirrored top to bottom",
+    "other_step": 3,
+    "place_iou": 0.17,
+    "other_iou": 0.011,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "3": {
+    "area": 0.0323,
+    "place": "mirrored side to side",
+    "other_step": 4,
+    "place_iou": 0.0,
+    "other_iou": 0.476,
+    "order": [
+     "place",
+     "real",
+     "other",
+     "half"
+    ]
+   },
+   "4": {
+    "area": 0.0398,
+    "place": "mirrored side to side",
+    "other_step": 5,
+    "place_iou": 0.0,
+    "other_iou": 0.237,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "5": {
+    "area": 0.0991,
+    "place": "mirrored side to side",
+    "other_step": 6,
+    "place_iou": 0.0,
+    "other_iou": 0.575,
+    "order": [
+     "other",
+     "real",
+     "half",
+     "place"
+    ]
+   },
+   "6": {
+    "area": 0.1092,
+    "place": "mirrored side to side",
+    "other_step": 7,
+    "place_iou": 0.0,
+    "other_iou": 0.011,
+    "order": [
+     "other",
+     "half",
+     "real",
+     "place"
+    ]
+   },
+   "7": {
+    "area": 0.433,
+    "place": "mirrored top to bottom",
+    "other_step": 8,
+    "place_iou": 0.0,
+    "other_iou": 0.479,
+    "order": [
+     "real",
+     "place",
+     "other",
+     "half"
+    ]
+   },
+   "8": {
+    "area": 0.2073,
+    "place": "mirrored side to side",
+    "other_step": 9,
+    "place_iou": 0.227,
+    "other_iou": 0.096,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "9": {
+    "area": 0.1339,
+    "place": "mirrored side to side",
+    "other_step": 10,
+    "place_iou": 0.203,
+    "other_iou": 0.262,
+    "order": [
+     "place",
+     "real",
+     "half",
+     "other"
+    ]
+   },
+   "10": {
+    "area": 0.42,
+    "place": "mirrored top to bottom",
+    "other_step": 11,
+    "place_iou": 0.11,
+    "other_iou": 0.759,
+    "order": [
+     "place",
+     "other",
+     "real",
+     "half"
+    ]
+   },
+   "11": {
+    "area": 0.3189,
+    "place": "mirrored side to side",
+    "other_step": 12,
+    "place_iou": 0.514,
+    "other_iou": 0.024,
+    "order": [
+     "other",
+     "real",
+     "place",
+     "half"
+    ]
+   },
+   "12": {
+    "area": 0.0225,
+    "place": "mirrored side to side",
+    "other_step": 13,
+    "place_iou": 0.029,
+    "other_iou": 0.028,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "13": {
+    "area": 0.419,
+    "place": "mirrored top to bottom",
+    "other_step": 14,
+    "place_iou": 0.618,
+    "other_iou": 0.57,
+    "order": [
+     "half",
+     "real",
+     "other",
+     "place"
+    ]
+   },
+   "14": {
+    "area": 0.2387,
+    "place": "mirrored side to side",
+    "other_step": 15,
+    "place_iou": 0.258,
+    "other_iou": 0.013,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "15": {
+    "area": 0.059,
+    "place": "mirrored side to side",
+    "other_step": 16,
+    "place_iou": 0.087,
+    "other_iou": 0.026,
+    "order": [
+     "place",
+     "other",
+     "real",
+     "half"
+    ]
+   },
+   "16": {
+    "area": 0.0245,
+    "place": "mirrored side to side",
+    "other_step": 17,
+    "place_iou": 0.0,
+    "other_iou": 0.017,
+    "order": [
+     "place",
+     "other",
+     "half",
+     "real"
+    ]
+   },
+   "17": {
+    "area": 0.1527,
+    "place": "mirrored side to side",
+    "other_step": 18,
+    "place_iou": 0.211,
+    "other_iou": 0.02,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "18": {
+    "area": 0.0278,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.023,
+    "other_iou": 0.06,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "19": {
+    "area": 0.0106,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.0,
+    "other_iou": 0.054,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "20": {
+    "area": 0.0103,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.0,
+    "other_iou": 0.054,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   }
+  },
+  "birch-grove": {
+   "1": {
+    "area": 1.0,
+    "place": "rolled half the canvas sideways",
+    "other_step": 2,
+    "place_iou": 1.0,
+    "other_iou": 0.116,
+    "order": [
+     "other",
+     "place",
+     "half",
+     "real"
+    ]
+   },
+   "2": {
+    "area": 0.1157,
+    "place": "mirrored side to side",
+    "other_step": 3,
+    "place_iou": 0.0,
+    "other_iou": 0.114,
+    "order": [
+     "real",
+     "other",
+     "place",
+     "half"
+    ]
+   },
+   "3": {
+    "area": 0.1267,
+    "place": "mirrored side to side",
+    "other_step": 4,
+    "place_iou": 0.0,
+    "other_iou": 0.06,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   },
+   "4": {
+    "area": 0.4247,
+    "place": "mirrored top to bottom",
+    "other_step": 5,
+    "place_iou": 0.0,
+    "other_iou": 0.293,
+    "order": [
+     "real",
+     "half",
+     "place",
+     "other"
+    ]
+   },
+   "5": {
+    "area": 0.1244,
+    "place": "mirrored side to side",
+    "other_step": 6,
+    "place_iou": 0.211,
+    "other_iou": 0.0,
+    "order": [
+     "place",
+     "half",
+     "real",
+     "other"
+    ]
+   },
+   "6": {
+    "area": 0.0234,
+    "place": "mirrored side to side",
+    "other_step": 7,
+    "place_iou": 0.191,
+    "other_iou": 0.217,
+    "order": [
+     "half",
+     "real",
+     "place",
+     "other"
+    ]
+   },
+   "7": {
+    "area": 0.0293,
+    "place": "mirrored side to side",
+    "other_step": 8,
+    "place_iou": 0.111,
+    "other_iou": 0.04,
+    "order": [
+     "real",
+     "place",
+     "other",
+     "half"
+    ]
+   },
+   "8": {
+    "area": 0.1815,
+    "place": "mirrored side to side",
+    "other_step": 9,
+    "place_iou": 0.297,
+    "other_iou": 0.121,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "9": {
+    "area": 0.022,
+    "place": "mirrored side to side",
+    "other_step": 10,
+    "place_iou": 0.016,
+    "other_iou": 0.015,
+    "order": [
+     "other",
+     "place",
+     "real",
+     "half"
+    ]
+   },
+   "10": {
+    "area": 0.0167,
+    "place": "mirrored side to side",
+    "other_step": 11,
+    "place_iou": 0.0,
+    "other_iou": 0.87,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "11": {
+    "area": 0.0154,
+    "place": "mirrored side to side",
+    "other_step": 12,
+    "place_iou": 0.0,
+    "other_iou": 0.008,
+    "order": [
+     "place",
+     "half",
+     "other",
+     "real"
+    ]
+   },
+   "12": {
+    "area": 0.2019,
+    "place": "mirrored side to side",
+    "other_step": 13,
+    "place_iou": 0.429,
+    "other_iou": 0.37,
+    "order": [
+     "real",
+     "place",
+     "half",
+     "other"
+    ]
+   },
+   "13": {
+    "area": 0.1426,
+    "place": "mirrored side to side",
+    "other_step": 14,
+    "place_iou": 0.296,
+    "other_iou": 0.025,
+    "order": [
+     "half",
+     "place",
+     "real",
+     "other"
+    ]
+   },
+   "14": {
+    "area": 0.2603,
+    "place": "mirrored side to side",
+    "other_step": 15,
+    "place_iou": 0.309,
+    "other_iou": 0.567,
+    "order": [
+     "place",
+     "half",
+     "real",
+     "other"
+    ]
+   },
+   "15": {
+    "area": 0.1542,
+    "place": "mirrored side to side",
+    "other_step": 16,
+    "place_iou": 0.124,
+    "other_iou": 0.393,
+    "order": [
+     "half",
+     "real",
+     "place",
+     "other"
+    ]
+   },
+   "16": {
+    "area": 0.171,
+    "place": "mirrored side to side",
+    "other_step": 17,
+    "place_iou": 0.165,
+    "other_iou": 0.023,
+    "order": [
+     "half",
+     "other",
+     "place",
+     "real"
+    ]
+   },
+   "17": {
+    "area": 0.0268,
+    "place": "mirrored side to side",
+    "other_step": 18,
+    "place_iou": 0.035,
+    "other_iou": 0.002,
+    "order": [
+     "place",
+     "other",
+     "half",
+     "real"
+    ]
+   },
+   "18": {
+    "area": 0.1969,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.272,
+    "other_iou": 0.5,
+    "order": [
+     "real",
+     "half",
+     "place",
+     "other"
+    ]
+   },
+   "19": {
+    "area": 0.1987,
+    "place": "mirrored side to side",
+    "other_step": 20,
+    "place_iou": 0.276,
+    "other_iou": 0.004,
+    "order": [
+     "half",
+     "place",
+     "other",
+     "real"
+    ]
+   },
+   "20": {
+    "area": 0.1901,
+    "place": "mirrored side to side",
+    "other_step": 19,
+    "place_iou": 0.366,
+    "other_iou": 0.004,
+    "order": [
+     "half",
+     "other",
+     "real",
+     "place"
+    ]
+   }
+  }
+ },
+ "worsened": {},
+ "pick": [],
+ "carry": [
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 2,
+   "file": "01-words-r2.png",
+   "beats": 1.0,
+   "toward": 0.604,
+   "where": 1.0,
+   "d_before_after": 53.83,
+   "d_result_after": 21.31,
+   "render_usd": 0.016,
+   "seconds": 9.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 9,
+   "condition": "words",
+   "rep": 2,
+   "file": "09-words-r2.png",
+   "beats": 0.5,
+   "toward": -0.51,
+   "where": 0.604,
+   "d_before_after": 5.32,
+   "d_result_after": 8.03,
+   "render_usd": 0.016,
+   "seconds": 12.0
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 2,
+   "file": "02-words-r2.png",
+   "beats": 0.25,
+   "toward": -0.021,
+   "where": 0.546,
+   "d_before_after": 7.76,
+   "d_result_after": 7.93,
+   "render_usd": 0.016,
+   "seconds": 13.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 2,
+   "file": "03-words-r2.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.224,
+   "d_before_after": 3.38,
+   "d_result_after": 8.75,
+   "render_usd": 0.016,
+   "seconds": 13.7
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 2,
+   "file": "07-words-r2.png",
+   "beats": 1.0,
+   "toward": 0.474,
+   "where": 0.94,
+   "d_before_after": 34.01,
+   "d_result_after": 17.9,
+   "render_usd": 0.016,
+   "seconds": 14.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "words",
+   "rep": 2,
+   "file": "08-words-r2.png",
+   "beats": 1.0,
+   "toward": 0.644,
+   "where": 0.91,
+   "d_before_after": 18.93,
+   "d_result_after": 6.74,
+   "render_usd": 0.016,
+   "seconds": 15.5
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 9,
+   "condition": "words",
+   "rep": 2,
+   "file": "09-words-r2.png",
+   "beats": 1.0,
+   "toward": -0.34,
+   "where": 0.454,
+   "d_before_after": 2.95,
+   "d_result_after": 3.96,
+   "render_usd": 0.016,
+   "seconds": 13.3
+  }
+ ],
+ "carry_grades": [
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 2,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.02988
+  },
+  {
+   "picture": "highland-cow",
+   "n": 8,
+   "condition": "words",
+   "rep": 2,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03069
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 2,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03014
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 2,
+   "grade": 1,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03198
+  },
+  {
+   "picture": "highland-cow",
+   "n": 9,
+   "condition": "words",
+   "rep": 2,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03102
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 2,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03342
+  },
+  {
+   "picture": "sleeping-cat",
+   "n": 9,
+   "condition": "words",
+   "rep": 2,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03137
+  }
+ ],
+ "graders": [],
+ "calls": [
+  {
+   "label": "grade-carry highland-cow 1",
+   "seconds": 5.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 3146,
+   "cache_read_tokens": 0,
+   "output_tokens": 235,
+   "cost_usd": 0.02988
+  },
+  {
+   "label": "grade-carry highland-cow 8",
+   "seconds": 6.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3150,
+   "cache_read_tokens": 0,
+   "output_tokens": 274,
+   "cost_usd": 0.03069
+  },
+  {
+   "label": "grade-carry highland-cow 2",
+   "seconds": 6.2,
+   "input_tokens": 2,
+   "cache_write_tokens": 3154,
+   "cache_read_tokens": 0,
+   "output_tokens": 245,
+   "cost_usd": 0.03014
+  },
+  {
+   "label": "grade-carry highland-cow 3",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3146,
+   "cache_read_tokens": 0,
+   "output_tokens": 340,
+   "cost_usd": 0.03198
+  },
+  {
+   "label": "grade-carry highland-cow 9",
+   "seconds": 7.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3142,
+   "cache_read_tokens": 0,
+   "output_tokens": 294,
+   "cost_usd": 0.03102
+  },
+  {
+   "label": "grade-carry highland-cow 7",
+   "seconds": 7.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3142,
+   "cache_read_tokens": 0,
+   "output_tokens": 414,
+   "cost_usd": 0.03342
+  },
+  {
+   "label": "grade-carry sleeping-cat 9",
+   "seconds": 6.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3138,
+   "cache_read_tokens": 0,
+   "output_tokens": 313,
+   "cost_usd": 0.03137
+  }
+ ]
+}
