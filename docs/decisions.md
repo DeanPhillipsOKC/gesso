@@ -334,6 +334,16 @@ with the date.
   miss leaves a thing in a step picture where it doesn't belong. Sonnet medium came closest, for $0.14 a lesson
   against $0.29. Owner: "Default." Don't re-propose a cheaper checker without a larger bench and the owner's answers
   on the faint looks (the birch grove's pale trunks). Other providers' models stay with #221.
+- **What v4's spikes adopted ships as changes to v3, not as a new pipeline version (2026-11-20, the owner left the
+  call to Claude).** Owner: "if v4 isn't a significant overhaul, it might be better to turn this into a design doc to
+  enhance v3 so that we're not having to transition from another major version. But if you think it's significant
+  enough, we can make it v4." Claude's call: it isn't. Of the 13 rows of v3's run it replaces two (the words) and
+  changes how four are asked or checked; no step picture changes and `plan.json` stays version 3. So the design is
+  `docs/design/pipeline-v3.1.md`, the words stage is swapped in place with no flag and no second pipeline beside
+  it, and lessons are stamped POC 2.1.0 with `"pipeline": 3`. "v4" stays the name of the plan, its spikes and #240;
+  nothing is renamed. A new pipeline version is for a change to how the step pictures are made or to what a lesson
+  is. Not decided by this: the gate, which the design proposes (the owner reads a lesson, where the v4 plan said
+  paints one).
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

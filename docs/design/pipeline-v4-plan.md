@@ -4,6 +4,11 @@ The plan for getting from pipeline v3 to v4 (owner approved the thesis, 2026-11-
 design: `docs/design/pipeline-v4.md` gets written from whatever the spikes adopt. Until then v3
 (`pipeline-v3.md`) is the pipeline. The parent issue is #240.
 
+**The design is written (2026-11-20): `docs/design/pipeline-v3.1.md`.** What the spikes adopted changes v3's words
+and how its helpers are asked, and none of its pictures, so it ships as changes to v3 (POC 2.1.0), not as a new
+pipeline version (`docs/decisions.md`). Where this plan says `pipeline-v4.md` or "build v4", read that file. "v4"
+stays the name of this plan, its spikes and #240.
+
 ## Context
 
 v3 made the pictures true. The owner called its lessons "worlds better than v2", and then said of the words
