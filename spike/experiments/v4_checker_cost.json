@@ -5,21 +5,30 @@
    "rounds": 1,
    "looks": 11,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 11
+   }
   },
   {
    "run": "birch-grove_v4loop_20261119-175914",
    "rounds": 3,
    "looks": 48,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 48
+   }
   },
   {
    "run": "birch-grove_v4loop_20261119-183424",
    "rounds": 3,
    "looks": 36,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 36
+   }
   },
   {
    "run": "birch-grove_v4loop_20261119-183427",
@@ -54,7 +63,10 @@
    "rounds": 2,
    "looks": 30,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 30
+   }
   },
   {
    "run": "highland-cow_v4loop_20261119-191115",
@@ -71,28 +83,40 @@
    "rounds": 2,
    "looks": 24,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 24
+   }
   },
   {
    "run": "sleeping-cat_v4loop_20261119-175436",
    "rounds": 1,
    "looks": 13,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 13
+   }
   },
   {
    "run": "sleeping-cat_v4loop_20261119-175911",
    "rounds": 3,
    "looks": 36,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 36
+   }
   },
   {
    "run": "sleeping-cat_v4loop_20261119-183418",
    "rounds": 2,
    "looks": 26,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 26
+   }
   },
   {
    "run": "sleeping-cat_v4loop_20261119-183421",
@@ -109,7 +133,10 @@
    "rounds": 2,
    "looks": 28,
    "last_round_vs_own_looks_mean_abs": 0.0,
-   "note": null
+   "note": null,
+   "renders_from": {
+    ".render-cache": 28
+   }
   }
  ],
  "answers": [
