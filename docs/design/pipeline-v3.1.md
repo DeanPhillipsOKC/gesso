@@ -192,6 +192,25 @@ No step's own lines change. The arc's checks, with one round of feedback and the
 Asked this way the arc took a feedback round on 3 of 3 lessons, against 1 of 3 as its own call, and still cost
 less ($0.14 and $0.09 against $0.24 and $0.03). After the round none failed.
 
+### As built (#276, build 1, on the branch)
+
+`spike/lesson_words.py`, `tools.py packets` and `check-text`, `v3/lesson-brief.md` and `v3/arc-brief.md`, `run.md`
+step D. The writer's folder is `words/lesson/`, and it answers through files there: `out.json`, then `fix-1.json`
+and `fix-2.json` (only the steps it changes), then `arc.json` and `arc-fix.json` (the whole arc again, as #267's run
+asked for it). `check-text` runs the next round each time and says which file to send the writer back for;
+`--final` takes out what still fails; `--arc` and `--arc --final` do the same for the arc. `words/lesson/rounds.json`
+keeps each round's counts. Beside the spikes:
+
+- **`paint_notes` stays** in the writer's form, as v3's: the seal still asks a paint the tubes can only come close
+  to for a note, and `steps.md` marks such a paint.
+- **A stage's end picture is the after half of its last step's pair** (`stages.md` says which), as #267's
+  `arc-same` sent it, not a 480-pixel picture of its own.
+- **`draft-text` still runs** and makes each step's header; on a step the writer wrote it adds no lines.
+- **Until build 2, `check` and the seal take the six lines in place of a summary and a tip** and ask nothing more
+  of them: the smallest change that keeps a lesson sealable on the branch.
+- **The real run on the cat** (`docs/spikes/v31-build1-cat.md`): the subagent helper worked. Round 1 sent back 20
+  failures, 11 of them check-text reading "nearest the window" as the window's sky.
+
 ## 7. The lesson file, the page, `check` and the seal (guesses: no spike sealed a lesson)
 
 - **`text.json`:** a step's `lines` are the six, each with its `kind` (`first`, `start`, `strokes`, `inside`,
