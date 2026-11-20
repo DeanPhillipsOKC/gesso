@@ -1,15 +1,18 @@
 """The combined v3.1 lesson (`docs/design/pipeline-v3.1.md`, section 12, step 1; under #240).
 
-One lesson, the sleeping cat, with everything the design adopts run together for the first time: the lesson's
-writer in six lines with the lean cuts and the paint check (`v4_writer_cost.py`'s `lean-paints`), the long arc as
-its next message, the design's three changes to the writer's brief (section 5), and the lean finisher (`f-lean`)
-on those words. The pictures are the cat made for #267 after #250 (`v4_writer_cost.py`'s set `new`): no render
-is made.
+Everything the design adopts run together for the first time: the lesson's writer in six lines with the lean cuts
+and the paint check (`v4_writer_cost.py`'s `lean-paints`), the long arc as its next message, the design's three
+changes to the writer's brief (section 5), and the lean finisher (`f-lean`) on those words. No render is made: the
+pictures are lessons already made. The sleeping cat is the one #267 made after #250 (`v4_writer_cost.py`'s set
+`new`), and it gets the finisher. The chickadee and the lavender balloon are the site's sealed v3 lessons (the
+owner's ask, 2026-11-20: the ones his partner means to paint), and get the words only: their diagrams, notes and
+known problems are the sealed lesson's.
 
-    .venv/bin/python spike/experiments/v31_combined.py words     # the writer, its checks, the arc
-    .venv/bin/python spike/experiments/v31_combined.py finish    # the finisher on those words
-    .venv/bin/python spike/experiments/v31_combined.py page      # docs/spikes/v31-combined-sleeping-cat.md
-    .venv/bin/python spike/experiments/v31_combined.py report
+    .venv/bin/python spike/experiments/v31_combined.py bench  --picture chickadee   # a sealed lesson's bench folder
+    .venv/bin/python spike/experiments/v31_combined.py words  --picture chickadee   # the writer, its checks, the arc
+    .venv/bin/python spike/experiments/v31_combined.py finish                       # the cat's finisher
+    .venv/bin/python spike/experiments/v31_combined.py page   --picture chickadee   # docs/spikes/v31-combined-<picture>.md
+    .venv/bin/python spike/experiments/v31_combined.py report --picture chickadee
 
 Results go in `spike/experiments/v31_combined.json`, in `v4_writer_cost.json`'s shape. Experiment code: it changes
 no tool, and the lesson isn't sealed or put on the site.
@@ -32,11 +35,27 @@ import v4_teacher as teacher  # noqa: E402
 import v4_writer_cost as wc  # noqa: E402
 
 RESULTS = HERE / "v31_combined.json"
-SET, PICTURE, WORDS, FINISH = "new", "sleeping-cat", "v31", "f-lean"
-LESSON = "sleeping-cat_v4loop_20261119-215313"
+WORDS, FINISH = "v31", "f-lean"
+# picture: (the set in v4_writer_cost's sense, its lesson folder under output/)
+LESSONS = {"sleeping-cat": ("new", "sleeping-cat_v4loop_20261119-215313"),
+           "chickadee": ("site", "chickadee_skill_20261118-091227"),
+           "balloon-lavender": ("site", "balloon-lavender_skill_20261118-094526")}
 LINE_WORDS = 40
-PAGE = ROOT / "docs" / "spikes" / "v31-combined-sleeping-cat.md"
-PICS = ROOT / "docs" / "spikes" / "v31-combined"
+SET, PICTURE, LESSON = "new", "sleeping-cat", LESSONS["sleeping-cat"][1]  # set by `choose`
+
+
+def choose(picture: str):
+    global SET, PICTURE, LESSON
+    PICTURE = picture
+    SET, LESSON = LESSONS[picture]
+
+
+def page_path() -> Path:
+    return ROOT / "docs" / "spikes" / f"v31-combined-{PICTURE}.md"
+
+
+def pics_dir() -> Path:
+    return ROOT / "docs" / "spikes" / "v31-combined" / PICTURE
 
 # The design's three changes to the writer's brief (section 5). Each is (the spike's words, the new words).
 BRIEF_CHANGES = [
@@ -69,8 +88,10 @@ def setup():
     """Point v4_writer_cost at this spike's results file and lesson, and put the brief's changes in."""
     wc.RESULTS = RESULTS
     wc.WORD_VARIANTS[WORDS] = wc.WORD_VARIANTS["lean-paints"]
+    wc.SETS.setdefault("site", {k: v[1] for k, v in LESSONS.items() if v[0] == "site"})
     if not RESULTS.exists():
-        RESULTS.write_text(json.dumps({"lessons": {SET: {PICTURE: LESSON}}}, indent=1) + "\n")
+        RESULTS.write_text(json.dumps({"lessons": {"new": {"sleeping-cat": LESSONS["sleeping-cat"][1]}}}, indent=1)
+                           + "\n")
     for old, new in BRIEF_CHANGES:
         if new not in teacher.BRIEF:
             assert teacher.BRIEF.count(old) == 1, old
@@ -82,6 +103,21 @@ def setup():
     wc.point(SET)
 
 
+def bench(args):
+    """A sealed lesson's bench folder and its writer's pictures (`v4_writer_cost.bench`, which reads the lesson and
+    writes only in the work folder). The cat's was made by #267."""
+    setup()
+    if SET != "site":
+        raise SystemExit("the cat's bench is v4_writer_cost.py's (bench --set new)")
+    only = {PICTURE: LESSON}
+    with_all = wc.SETS["site"]
+    wc.SETS["site"] = only
+    try:
+        wc.bench(argparse.Namespace(set="site", lesson=None))
+    finally:
+        wc.SETS["site"] = with_all
+
+
 def words(args):
     setup()
     if PICTURE in wc.state()["words"].get(SET, {}).get(WORDS, {}) and not args.again:
@@ -91,6 +127,8 @@ def words(args):
 
 def finish(args):
     setup()
+    if SET != "new":
+        raise SystemExit("only the cat gets the finisher: a sealed lesson keeps its own diagrams and notes")
     wc.finish_one(SET, WORDS, FINISH, PICTURE)
 
 
@@ -103,7 +141,7 @@ def report(args=None) -> dict:
     setup()
     st = wc.state()
     rec = st["words"][SET][WORDS][PICTURE]
-    calls = st["calls"]
+    calls = [c for c in st["calls"] if c.get("picture") == PICTURE]
     cost = loop.api_costs(calls)
     by = {}
     for c, d in zip(calls, cost):
@@ -128,13 +166,17 @@ def page(args):
     rec = st["words"][SET][WORDS][PICTURE]
     fin = st["finish"].get(SET, {}).get(f"{WORDS}+{FINISH}", {}).get(PICTURE) or {}
     les, a = teacher.packet(PICTURE), rec["arc"]
+    PICS, PAGE = pics_dir(), page_path()
     PICS.mkdir(parents=True, exist_ok=True)
     for name in ["photo.jpg", "finish.jpg"] + [f"steps/{s['n']:02d}.jpg" for s in les["steps"]]:
         im = Image.open(teacher.BENCH / PICTURE / name).convert("RGB")
         im.thumbnail((560, 560))
         im.save(PICS / Path(name).name, quality=78, optimize=True)
-    rel = PICS.name
-    out = ["# The sleeping cat as a v3.1 lesson (the combined lesson)", "",
+    rel = f"v31-combined/{PICTURE}"
+    issues = (fin.get("review") or {}).get("text_issues")
+    if issues is None and (ROOT / "output" / LESSON / "review.json").exists():  # a sealed lesson's own
+        issues = json.loads((ROOT / "output" / LESSON / "review.json").read_text()).get("text_issues")
+    out = [f"# The {PICTURE.replace('-', ' ')} as a v3.1 lesson (the combined lesson)", "",
            "The whole lesson as a painter would read it, made the way `docs/design/pipeline-v3.1.md` describes "
            "(section 12, step 1). The pictures are v3's. How it was made and what it cost: "
            "[v31-combined.md](v31-combined.md).", "",
@@ -167,9 +209,8 @@ def page(args):
             out += ["", f"![After step {s['n']}]({rel}/{s['n']:02d}.jpg)", ""]
         if o.get("end"):
             out += [f"*Where this stage ends:* {o['end']}", ""]
-    issues = (fin.get("review") or {}).get("text_issues") or []
     if issues:
-        out += ["## Known problems", "", "What the finisher listed for this lesson:", ""]
+        out += ["## Known problems", "", "What the finisher listed for this lesson's pictures and paints:", ""]
         out += [f"- **{i.get('step_id')}** ({i.get('kind')}): {i.get('problem')}" for i in issues]
         out.append("")
     PAGE.write_text("\n".join(out))
@@ -180,10 +221,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("words").add_argument("--again", action="store_true")
-    for name in ("finish", "page", "report"):
+    for name in ("bench", "finish", "page", "report"):
         sub.add_parser(name)
+    for p in sub.choices.values():
+        p.add_argument("--picture", choices=list(LESSONS), default="sleeping-cat")
     args = ap.parse_args(argv)
-    {"words": words, "finish": finish, "page": page, "report": report}[args.cmd](args)
+    choose(args.picture)
+    {"bench": bench, "words": words, "finish": finish, "page": page, "report": report}[args.cmd](args)
 
 
 if __name__ == "__main__":

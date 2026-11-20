@@ -45,7 +45,8 @@ class BriefTests(unittest.TestCase):
         v.setup()
         self.assertEqual(wc.WORD_VARIANTS[v.WORDS], wc.WORD_VARIANTS["lean-paints"])
         self.assertEqual(wc.RESULTS, v.RESULTS)
-        self.assertEqual(wc.lessons(v.SET), {v.PICTURE: v.LESSON})
+        self.assertEqual(wc.lessons("new"), {"sleeping-cat": v.LESSONS["sleeping-cat"][1]})
+        self.assertEqual(set(wc.lessons("site")), {"chickadee", "balloon-lavender"})
 
 
 class LongLinesTests(unittest.TestCase):
