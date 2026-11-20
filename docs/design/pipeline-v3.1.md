@@ -276,7 +276,8 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    corrected by what it showed: the 40-word round and the writer's silence on the page's aids (section 5), and one
    more risk (section 14). The owner also had it run on the chickadee and the lavender balloon, which his partner
    means to paint.
-3. **Build it into `/paint-lesson` in place,** on a branch, with no flag:
+3. **Build it into `/paint-lesson` in place,** on the branch `v3.1`, with no flag (#276 the words, #277 the page,
+   `check` and the seal, #278 the plan's writer, the finisher and the loop; by Opus):
    - the tools: `packets` for a lesson writer, `check-text` reading the six lines, the paint round, the arc's
      checks, the tool that applies the plan's changes;
    - the briefs: `v3/lesson-brief.md` and `v3/arc-brief.md` in place of `writer-brief.md`; the plan's brief for its
@@ -284,7 +285,7 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    - `run.md`, steps A, D and E;
    - the page, `check` and `publish --final` (section 7);
    - `v4_loop.py` brought into step with the new `run.md`.
-4. **The gate,** run from that branch before it merges (section 13).
+4. **The gate,** run from that branch before it merges (section 13; #279).
 5. **Then** merge, stamp POC 2.1.0, write the changelog entry, and fold the as-built facts into `pipeline-v3.md`,
    sections 4 and 10, so one file still describes the pipeline. The site's lessons still wait to be rerun from
    v3's gate; rerun them once, after this.
