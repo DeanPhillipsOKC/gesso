@@ -1,8 +1,10 @@
 # Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
 
-**A draft (2026-11-20), not built. The owner read it and merged it (#275), set the gate (section 13), and said go on the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`).** It is the design the v4 plan's Order, step 5 asks for
-(`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't
-replace it. Read that file first: every section number below that isn't this file's own is v3's.
+**A draft (2026-11-20), not built. The owner read it and merged it (#275), set the gate (section 13), and said go on
+the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`).** It is the design the v4 plan's
+Order, step 5 asks for (`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes
+`pipeline-v3.md`; it doesn't replace it. Read that file first: every section number below that isn't this file's own
+is v3's.
 
 Each piece is marked **proven** (a spike ran it and its write-up has the numbers), a **guess** (this draft's own
 joining of the pieces, run by nobody yet), or **open**.
@@ -267,9 +269,9 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
 
 ## 12. Build order
 
-1. **Done (2026-11-20, `docs/spikes/v31-combined.md`).** **One combined lesson, by experiment code:** the sleeping cat, with everything in sections 5 to 8 and the
-   brief's three changes, as a page the owner can read. Most of it exists (`v4_writer_cost.py`'s `lean-paints`
-   and `f-lean`). New: the brief's changes, and the two run together.
+1. **Done (2026-11-20, `docs/spikes/v31-combined.md`).** **One combined lesson, by experiment code:** the sleeping
+   cat, with everything in sections 5 to 8 and the brief's three changes, as a page the owner can read. Most of it
+   exists (`v4_writer_cost.py`'s `lean-paints` and `f-lean`). New: the brief's changes, and the two run together.
 2. **Done: go (the owner, 2026-11-20, "Looks good").** **The owner reads it:** go, change or stop. This draft is then
    corrected by what it showed: the 40-word round and the writer's silence on the page's aids (section 5), and one
    more risk (section 14). The owner also had it run on the chickadee and the lavender balloon, which his partner
