@@ -24,98 +24,6 @@
     "known": 16
   },
   {
-    "slug": "highland-cow",
-    "title": "A shaggy Highland cow standing in a tall golden-green meadow at sunset",
-    "subject": "A shaggy Highland cow standing in a tall golden-green meadow at sunset, with rolling green hills, blue mountains and a glimpse of a lake behind it",
-    "steps": 23,
-    "canvas": "12 x 16 in",
-    "tubes": 5,
-    "version": "POC 2.0.0",
-    "published": "2026-11-18",
-    "source": "highland-cow_skill_20261118-072336",
-    "versions": [
-      {
-        "id": "20261118-072336",
-        "version": "POC 2.0.0",
-        "when": "2026-11-18 07:23",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 23,
-        "href": "lessons/highland-cow/",
-        "current": true
-      }
-    ],
-    "known": 7
-  },
-  {
-    "slug": "sleeping-cat",
-    "title": "A gray tabby cat curled asleep on a yellow knit blanket on a wooden windowsill",
-    "subject": "A gray tabby cat curled asleep on a yellow knit blanket on a wooden windowsill, a blue wall behind and leaves through the window",
-    "steps": 21,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 2.0.0",
-    "published": "2026-11-18",
-    "source": "sleeping-cat_skill_20261118-080533",
-    "versions": [
-      {
-        "id": "20261118-080533",
-        "version": "POC 2.0.0",
-        "when": "2026-11-18 08:05",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 21,
-        "href": "lessons/sleeping-cat/",
-        "current": true
-      },
-      {
-        "id": "20261116-191623",
-        "version": "POC 1.12.1",
-        "when": "2026-11-16 19:16",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 15,
-        "href": "lessons/sleeping-cat/v/20261116-191623/",
-        "current": false
-      },
-      {
-        "id": "20261113-175836",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:58",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 13,
-        "href": "lessons/sleeping-cat/v/20261113-175836/",
-        "current": false
-      }
-    ],
-    "known": 9
-  },
-  {
-    "slug": "birch-grove",
-    "title": "An autumn birch grove",
-    "subject": "An autumn birch grove with a leaf-covered path running back into misty woods, golden leaves overhead and the sun glowing through on the left",
-    "steps": 20,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 2.0.0",
-    "published": "2026-11-18",
-    "source": "birch-grove_skill_20261118-083834",
-    "versions": [
-      {
-        "id": "20261118-083834",
-        "version": "POC 2.0.0",
-        "when": "2026-11-18 08:38",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 20,
-        "href": "lessons/birch-grove/",
-        "current": true
-      }
-    ],
-    "known": 7
-  },
-  {
     "slug": "chickadee",
     "title": "A black-capped chickadee perched on a curved brown branch in autumn",
     "subject": "A black-capped chickadee perched on a curved brown branch in autumn, with red and gold leaves hanging nearby and a low sun glowing through hazy orange woods",
@@ -399,6 +307,128 @@
         "current": false
       }
     ],
-    "known": 6
+    "known": 5
+  },
+  {
+    "slug": "highland-cow",
+    "title": "A shaggy Highland cow standing in tall summer grass at sunset",
+    "subject": "A shaggy Highland cow standing in tall summer grass at sunset, with violet hills, a sliver of loch and a gold-and-blue sky behind",
+    "steps": 22,
+    "canvas": "12 x 16 in",
+    "tubes": 5,
+    "version": "POC 2.0.2",
+    "published": "2026-11-20",
+    "source": "highland-cow_skill_20261120-193553",
+    "versions": [
+      {
+        "id": "20261120-193553",
+        "version": "POC 2.0.2",
+        "when": "2026-11-20 19:35",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 22,
+        "href": "lessons/highland-cow/",
+        "current": true
+      },
+      {
+        "id": "20261118-072336",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 07:23",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 23,
+        "href": "lessons/highland-cow/v/20261118-072336/",
+        "current": false
+      }
+    ],
+    "known": 2
+  },
+  {
+    "slug": "sleeping-cat",
+    "title": "A gray tabby kitten curled up asleep on a folded yellow knit blanket",
+    "subject": "A gray tabby kitten curled up asleep on a folded yellow knit blanket on a wooden window ledge, against a blue wall beside a sunny window",
+    "steps": 20,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.2",
+    "published": "2026-11-20",
+    "source": "sleeping-cat_skill_20261120-193553",
+    "versions": [
+      {
+        "id": "20261120-193553",
+        "version": "POC 2.0.2",
+        "when": "2026-11-20 19:35",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 20,
+        "href": "lessons/sleeping-cat/",
+        "current": true
+      },
+      {
+        "id": "20261118-080533",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 08:05",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 21,
+        "href": "lessons/sleeping-cat/v/20261118-080533/",
+        "current": false
+      },
+      {
+        "id": "20261116-191623",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 19:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 15,
+        "href": "lessons/sleeping-cat/v/20261116-191623/",
+        "current": false
+      },
+      {
+        "id": "20261113-175836",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:58",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 13,
+        "href": "lessons/sleeping-cat/v/20261113-175836/",
+        "current": false
+      }
+    ],
+    "known": 5
+  },
+  {
+    "slug": "birch-grove",
+    "title": "A misty autumn birch grove",
+    "subject": "A misty autumn birch grove with a leaf-covered path running back into the fog",
+    "steps": 20,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.0.2",
+    "published": "2026-11-20",
+    "source": "birch-grove_skill_20261120-193553",
+    "versions": [
+      {
+        "id": "20261120-193553",
+        "version": "POC 2.0.2",
+        "when": "2026-11-20 19:35",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 20,
+        "href": "lessons/birch-grove/",
+        "current": true
+      },
+      {
+        "id": "20261118-083834",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 08:38",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 20,
+        "href": "lessons/birch-grove/v/20261118-083834/",
+        "current": false
+      }
+    ],
+    "known": 4
   }
 ]
