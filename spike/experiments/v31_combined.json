@@ -159,6 +159,37 @@
    },
    "reply_chars": 6436,
    "at": "2026-11-20T15:17:58"
+  },
+  {
+   "set": "new",
+   "variant": "v31+f-lean",
+   "picture": "sleeping-cat",
+   "part": "finish",
+   "helper": "finisher",
+   "label": "D4 review, 8a diagrams, 8b notes",
+   "turn": 1,
+   "session": "d1f0efe4-4feb-435c-b6e6-de88d623fe0d",
+   "cache": "5m",
+   "seconds": 188.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 36596,
+   "cache_read_tokens": 0,
+   "output_tokens": 18761,
+   "thinking_tokens": 9978,
+   "cost_usd": 0.55821,
+   "effort": null,
+   "cli_cost_usd": 0.558208,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 23,
+    "picture_tokens": 3115,
+    "text_chars": 80038,
+    "system_chars": 325
+   },
+   "reply_chars": 21908,
+   "at": "2026-11-20T15:22:02"
   }
  ],
  "ab": [],
@@ -1807,5 +1838,688 @@
    }
   }
  },
- "finish": {}
+ "finish": {
+  "new": {
+   "v31+f-lean": {
+    "sleeping-cat": {
+     "lesson": "/tmp/gesso-v4-writer-cost/lessons/new/v31+f-lean/sleeping-cat_v4loop_20261119-215313",
+     "review": {
+      "finish_issues": [
+       "The wall changed color. The photo's wall is a muted, soft gray-blue, light at the left and only slightly deeper at the right. The finish made it a saturated, deep cobalt blue across the whole top half. It's the biggest area in the picture, so the owner would notice it first, and it makes the room look darker and cooler.",
+       "The cat got darker and harsher. In the photo the body is a soft mid gray with dark gray-brown stripes. In the finish the body is a deeper gray and the stripes are near black with hard edges, so the tabby reads higher-contrast and heavier than the gentle, sleepy original."
+      ],
+      "text_issues": [
+       {
+        "step_id": "blend-wall",
+        "kind": "chain",
+        "problem": "The leaves outside the window don't appear in steps 1 to 3. Those pictures show only the small sky patch. In step 4 the leaves, and more sky below them, appear all at once with the wall. The first stage's closing line also promises leaf taps that its pictures don't show.",
+        "action": "left: the chain's checker marked this unit (U02) in both rounds. erase redid it twice, still listed it under left, and refused a third try."
+       },
+       {
+        "step_id": "dab-dark-leaves",
+        "kind": "step",
+        "problem": "The step picture looks the same as step 1. It has no green taps, so a painter can't see where the far leaves go. Step 4's picture shows them.",
+        "action": "left: the same chain fault as unit 2 (build-steps: under 0.2% of the canvas changes). A fix needs a new plan and chain."
+       },
+       {
+        "step_id": "dab-pale-leaves",
+        "kind": "step",
+        "problem": "The step picture looks the same as step 1. It shows no pale leaf taps.",
+        "action": "left: the same chain fault as unit 2 (build-steps: under 0.2% of the canvas changes). A fix needs a new plan and chain."
+       },
+       {
+        "step_id": "dab-pale-leaves",
+        "kind": "paint",
+        "problem": "'Pale leaf green' was fitted to #a3cee2, a pale sky blue, because its step picture has no leaves to measure. Its recipe makes a blue, not a green. Mix it as its name says: Leaf green with white and a touch of yellow.",
+        "action": "left: the paint's name is in the chain's requests, so renaming or refitting it would render part of the chain again."
+       },
+       {
+        "step_id": "press-nose",
+        "kind": "step",
+        "problem": "The step changes very little of the canvas (under 0.2%).",
+        "action": "left: a kitten's nose is a tiny mark by nature. It still shows clearly in the picture and sits on the focal point."
+       },
+       {
+        "step_id": "darken-sill-front",
+        "kind": "words",
+        "problem": "The words ask for dark grain streaks. The picture shows pale, light streaks across the left and middle of the sill. Only the front band is dark.",
+        "action": "left: the words are the v4 teacher's fixed lines and are not rewritten in this run. The darker front band does match."
+       },
+       {
+        "step_id": "block-in-cat",
+        "kind": "words",
+        "problem": "The words say the cat's shape reaches the right edge. In the picture it stops about 1 in short of the edge, with the blanket showing beyond its back.",
+        "action": "left: the words are the v4 teacher's fixed lines and are not rewritten in this run. Follow the picture."
+       },
+       {
+        "step_id": "press-nose",
+        "kind": "words",
+        "problem": "The words make the nose about 3/4 in wide. In the picture it is nearer 1/3 in.",
+        "action": "left: the words are the v4 teacher's fixed lines and are not rewritten in this run. Keep it small, as in the picture."
+       }
+      ]
+     },
+     "construct": {
+      "block-in-frame": {
+       "title": "Build the window frame from straight pieces",
+       "paint": "Titanium white",
+       "stages": [
+        {
+         "caption": "A wide post where view meets wall",
+         "add": [
+          {
+           "rect": [
+            18,
+            2,
+            32,
+            84
+           ],
+           "paint": "Pale sky blue",
+           "done": true,
+           "behind": true
+          },
+          {
+           "rect": [
+            75,
+            2,
+            25,
+            82
+           ],
+           "paint": "Wall blue",
+           "done": true,
+           "behind": true
+          },
+          {
+           "rect": [
+            50,
+            2,
+            25.6,
+            86
+           ]
+          }
+         ],
+         "arrows": [
+          "M 62 6 L 62 80"
+         ]
+        },
+        {
+         "caption": "A thin upright beside it",
+         "add": [
+          {
+           "rect": [
+            43.6,
+            2,
+            6.4,
+            80
+           ]
+          }
+         ]
+        },
+        {
+         "caption": "A crossbar across the view",
+         "add": [
+          {
+           "rect": [
+            18,
+            26,
+            29,
+            8
+           ]
+          }
+         ],
+         "arrows": [
+          "M 20 30 L 44 30"
+         ]
+        },
+        {
+         "caption": "A slanting ledge along the bottom",
+         "add": [
+          {
+           "path": "M 18 85 L 69 76 L 69 88 L 18 98 Z"
+          }
+         ]
+        }
+       ]
+      },
+      "block-in-blanket": {
+       "title": "Build the folded blanket from round pieces",
+       "paint": "Golden yellow",
+       "stages": [
+        {
+         "caption": "A long slab along the sill",
+         "add": [
+          {
+           "rect": [
+            8,
+            38,
+            92,
+            28
+           ],
+           "round": 4
+          }
+         ],
+         "arrows": [
+          "M 12 52 L 94 52"
+         ]
+        },
+        {
+         "caption": "A ( ) rounds the left end",
+         "add": [
+          {
+           "ellipse": [
+            9,
+            52,
+            7,
+            14
+           ]
+          }
+         ]
+        },
+        {
+         "caption": "A soft hump along the top",
+         "add": [
+          {
+           "ellipse": [
+            54,
+            38,
+            45,
+            7
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "shade-blanket": {
+       "title": "Where the blanket's shadows go",
+       "paint": "Dark gold",
+       "stages": [
+        {
+         "caption": "Shadow in the hollow",
+         "add": [
+          {
+           "rect": [
+            8,
+            38,
+            92,
+            28
+           ],
+           "round": 4,
+           "paint": "Golden yellow",
+           "done": true
+          },
+          {
+           "ellipse": [
+            9,
+            52,
+            7,
+            14
+           ],
+           "paint": "Golden yellow",
+           "done": true
+          },
+          {
+           "ellipse": [
+            54,
+            38,
+            45,
+            7
+           ],
+           "paint": "Golden yellow",
+           "done": true
+          },
+          {
+           "ellipse": [
+            56,
+            44,
+            38,
+            5
+           ]
+          }
+         ]
+        },
+        {
+         "caption": "Under the rim and along the fold",
+         "add": [
+          {
+           "line": "M 6 46 Q 30 52 98 49",
+           "width": 3
+          },
+          {
+           "line": "M 5 56 Q 40 58 96 55",
+           "width": 3
+          }
+         ],
+         "arrows": [
+          "M 14 40 Q 8 44 10 50"
+         ]
+        },
+        {
+         "caption": "Along the base on the sill",
+         "add": [
+          {
+           "line": "M 8 64 Q 50 68 99 64",
+           "width": 3
+          }
+         ]
+        }
+       ]
+      },
+      "block-in-cat": {
+       "title": "Build the curled cat from simple pieces",
+       "paint": "Cat gray",
+       "stages": [
+        {
+         "caption": "A big oval for the body",
+         "add": [
+          {
+           "rect": [
+            3,
+            48,
+            95,
+            38
+           ],
+           "round": 10,
+           "paint": "Golden yellow",
+           "done": true,
+           "behind": true
+          },
+          {
+           "ellipse": [
+            64.5,
+            49.4,
+            33.5,
+            20.4
+           ]
+          }
+         ],
+         "arrows": [
+          "M 36 50 Q 64 24 96 46"
+         ]
+        },
+        {
+         "caption": "A circle for the head, at the left",
+         "add": [
+          {
+           "ellipse": [
+            23.4,
+            48.8,
+            20.7,
+            16.8
+           ]
+          }
+         ]
+        },
+        {
+         "caption": "Two triangle ears",
+         "add": [
+          {
+           "path": "M 35.6 25 L 26.5 35 L 43.2 36.6 Z"
+          },
+          {
+           "path": "M 2 40.3 L 14.2 37 L 15.7 49.2 Z"
+          }
+         ]
+        },
+        {
+         "caption": "Tail along the front, paws under the chin",
+         "add": [
+          {
+           "ellipse": [
+            67.6,
+            64.3,
+            30.5,
+            5.5
+           ],
+           "rotate": -8
+          },
+          {
+           "ellipse": [
+            22.7,
+            63.4,
+            5.5,
+            4
+           ]
+          },
+          {
+           "ellipse": [
+            33.4,
+            64,
+            5.5,
+            4
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "paint-white-patches": {
+       "title": "Where the white patches go",
+       "paint": "Titanium white",
+       "stages": [
+        {
+         "caption": "Muzzle and chin under the face",
+         "add": [
+          {
+           "ellipse": [
+            64.5,
+            49.4,
+            33.5,
+            20.4
+           ],
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "ellipse": [
+            23.4,
+            48.8,
+            20.7,
+            16.8
+           ],
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "path": "M 35.6 25 L 26.5 35 L 43.2 36.6 Z",
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "path": "M 2 40.3 L 14.2 37 L 15.7 49.2 Z",
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "ellipse": [
+            67.6,
+            64.3,
+            30.5,
+            5.5
+           ],
+           "rotate": -8,
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "ellipse": [
+            32.5,
+            54.3,
+            6,
+            5
+           ]
+          }
+         ]
+        },
+        {
+         "caption": "A blaze on the chest",
+         "add": [
+          {
+           "ellipse": [
+            53.9,
+            52.5,
+            7,
+            5
+           ],
+           "rotate": -20
+          }
+         ]
+        },
+        {
+         "caption": "Two round paws",
+         "add": [
+          {
+           "ellipse": [
+            22.7,
+            63.4,
+            5.5,
+            4
+           ]
+          },
+          {
+           "ellipse": [
+            33.4,
+            64,
+            5.5,
+            4
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "paint-stripes": {
+       "title": "Stripes wrap around the body",
+       "paint": "Charcoal brown",
+       "stages": [
+        {
+         "caption": "Arcs over the back, thick at the spine",
+         "add": [
+          {
+           "ellipse": [
+            64.5,
+            49.4,
+            33.5,
+            20.4
+           ],
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "ellipse": [
+            23.4,
+            48.8,
+            20.7,
+            16.8
+           ],
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "path": "M 35.6 25 L 26.5 35 L 43.2 36.6 Z",
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "path": "M 2 40.3 L 14.2 37 L 15.7 49.2 Z",
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "ellipse": [
+            67.6,
+            64.3,
+            30.5,
+            5.5
+           ],
+           "rotate": -8,
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "line": "M 50 32 Q 46 38 48 46",
+           "width": 2.5
+          },
+          {
+           "line": "M 60 30 Q 56 38 58 46",
+           "width": 2.5
+          },
+          {
+           "line": "M 70 30 Q 68 38 72 46",
+           "width": 2.5
+          },
+          {
+           "line": "M 80 32 Q 80 40 85 46",
+           "width": 2.5
+          },
+          {
+           "line": "M 89 37 Q 90 44 94 48",
+           "width": 2.5
+          }
+         ],
+         "arrows": [
+          "M 64 28 Q 60 36 62 44"
+         ]
+        },
+        {
+         "caption": "Bands across the tail",
+         "add": [
+          {
+           "line": "M 48 61 L 47 68",
+           "width": 2.5
+          },
+          {
+           "line": "M 56 60 L 55 69",
+           "width": 2.5
+          },
+          {
+           "line": "M 64 60 L 64 69",
+           "width": 2.5
+          },
+          {
+           "line": "M 72 59 L 73 68",
+           "width": 2.5
+          },
+          {
+           "line": "M 80 58 L 82 66",
+           "width": 2.5
+          }
+         ]
+        },
+        {
+         "caption": "Short arcs on forehead and cheek",
+         "add": [
+          {
+           "line": "M 20 34 Q 22 38 21 42",
+           "width": 1.5
+          },
+          {
+           "line": "M 26 34 Q 27 38 25 42",
+           "width": 1.5
+          },
+          {
+           "line": "M 8 50 Q 13 53 18 51",
+           "width": 1.5
+          }
+         ]
+        }
+       ]
+      },
+      "line-eyes": {
+       "title": "Place the sleeping face and the toes",
+       "paint": "Charcoal brown",
+       "stages": [
+        {
+         "caption": "Two closed eyes, curving down",
+         "add": [
+          {
+           "ellipse": [
+            49,
+            54,
+            45,
+            37
+           ],
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "path": "M 76 2 L 56 24 L 93 28 Z",
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "path": "M 2 36 L 29 28 L 32 55 Z",
+           "paint": "Cat gray",
+           "done": true
+          },
+          {
+           "ellipse": [
+            69,
+            66,
+            13,
+            11
+           ],
+           "paint": "Titanium white",
+           "done": true
+          },
+          {
+           "ellipse": [
+            47.5,
+            86.5,
+            12,
+            9
+           ],
+           "paint": "Titanium white",
+           "done": true
+          },
+          {
+           "ellipse": [
+            71,
+            88,
+            12,
+            9
+           ],
+           "paint": "Titanium white",
+           "done": true
+          },
+          {
+           "line": "M 28 54 Q 36 60 44 55",
+           "width": 1.8
+          },
+          {
+           "line": "M 64 48 Q 72 54 81 48",
+           "width": 1.8
+          }
+         ],
+         "arrows": [
+          "M 28 50 Q 36 56 44 51"
+         ]
+        },
+        {
+         "caption": "A small mouth under the muzzle",
+         "add": [
+          {
+           "line": "M 64 76 Q 68 79 72 76",
+           "width": 1.8
+          }
+         ]
+        },
+        {
+         "caption": "Short toe lines on each paw",
+         "add": [
+          {
+           "line": "M 44 82 L 45 90",
+           "width": 1.8
+          },
+          {
+           "line": "M 50 82 L 51 90",
+           "width": 1.8
+          },
+          {
+           "line": "M 67 83 L 68 91",
+           "width": 1.8
+          },
+          {
+           "line": "M 74 83 L 75 91",
+           "width": 1.8
+          }
+         ]
+        }
+       ]
+      }
+     },
+     "specced": 7,
+     "drawn": 7,
+     "looked": false,
+     "publish_refused": null,
+     "preview": {
+      "diagrams": 7,
+      "html": "/tmp/gesso-v4-writer-cost/lessons/new/v31+f-lean/sleeping-cat_v4loop_20261119-215313/trials/diagrams.html",
+      "png": "/tmp/gesso-v4-writer-cost/lessons/new/v31+f-lean/sleeping-cat_v4loop_20261119-215313/trials/diagrams.png",
+      "seconds": 1.96
+     }
+    }
+   }
+  }
+ }
 }
