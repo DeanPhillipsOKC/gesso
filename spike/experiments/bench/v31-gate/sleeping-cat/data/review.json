@@ -1,0 +1,37 @@
+{
+ "finish_issues": [
+  "First finish: the wall behind the cat turned from the photo's soft grey-blue (#98acc6) to a saturated cobalt blue (#709bcf), and the shadowed inner side of the window frame became bright ultramarine, which changed the calm mood. Re-rendered once from the first finish and the photo with that fix; the second finish's wall measures #9bb1cc and the rest is unchanged (first finish kept as trials/99_finish_first.png)."
+ ],
+ "text_issues": [
+  {
+   "step_id": "dab-dark-leaves",
+   "kind": "paint",
+   "problem": "The recipe for Leaf green was fitted to the step picture's color, #91aab9, a soft blue-gray 33 Lab units from the plan's muted green #5e8a68, so the mix the page gives makes grayish-blue leaves rather than green ones.",
+   "action": "left: the paint's name is in the chain's requests, so a fix would mean a new plan and a new chain."
+  },
+  {
+   "step_id": "flick-fur",
+   "kind": "paint",
+   "problem": "The recipe for Light gray was fitted to the step picture's color, #6e686c, a mid-dark gray 26 Lab units from the plan's pale gray #aeacb0, so the mix is darker than the pale flicks the words ask for.",
+   "action": "left: the paint's name is in the chain's requests, so a fix would mean a new plan and a new chain."
+  },
+  {
+   "step_id": "flick-fur",
+   "kind": "words",
+   "problem": "The words ask for pale gray flicks on the kitten's lit top, but the step picture adds small dark touches along the back, head and tail instead, so the picture and the words disagree about what this step lays.",
+   "action": "left: the words follow the plan and its paint; the picture comes from the chain, which only a new chain would change."
+  },
+  {
+   "step_id": "pink-ears-nose",
+   "kind": "words",
+   "problem": "This step has no Start line: every sentence of it failed the fact check and was taken out, so the page leaves the line off. Begin inside the ears.",
+   "action": "left: check-text --final emptied it after two rounds of fixes."
+  },
+  {
+   "step_id": "blend-wall",
+   "kind": "step",
+   "problem": "Several steps (blend-wall, block-in-frame, shade-frame, lay-in-ledge, darken-ledge, block-in-blanket, block-in-kitten, shade-kitten, white-patches, tabby-stripes, flick-fur) have no load line or no watch-out line, because their stroke cards don't give one yet.",
+   "action": "left: those lines come from the cards, which a run doesn't edit; the owner fills them in after painting from them."
+  }
+ ]
+}

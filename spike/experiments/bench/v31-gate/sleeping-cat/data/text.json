@@ -1,0 +1,1345 @@
+{
+ "steps": [
+  {
+   "stage_id": "blend-garden-sky",
+   "lines": [
+    {
+     "kind": "start",
+     "text": "Start at the top left corner of the canvas, in the narrow strip along the left edge that will be the window.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Brush side to side across the strip with Pale blue, working down. Without rinsing, pick up White and keep going lower, then stroke back up over the join while it's wet.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Pale blue sits at the top of the strip and fades to White lower down, because the sky looks lighter near the horizon.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Keep everything outside the strip as bare canvas. The wall and window frame come later.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The strip is a smooth sky that slants down toward the left edge at its bottom. Blue at the top, nearly White below, no hard line between.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Blend the sky through the window"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "blend-wall",
+   "lines": [
+    {
+     "kind": "start",
+     "text": "Start at the top edge of the canvas, right where the window's sky ends, and work toward the right edge.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 1,
+     "text": "You used Pale blue for the sky. Here it is the wall's lightest blue near the window, laid with crossing X strokes and a bigger brush instead of side to side.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Cross short strokes over each other like overlapping X shapes. Go back over the wet paint with longer side-to-side strokes where you want it smoother.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Use Pale blue near the sky strip and Wall blue farther toward the right edge, so the wall looks lit by the window. Carry it under the sky strip too, down to the ledge line.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the sky strip alone, and keep the bottom band of the canvas bare. Paint straight through where the frame, blanket and kitten will go.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The wall covers everything from the window's sky to the right edge, down to the ledge line. You can still see soft criss-cross marks.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Blend the blue wall"
+    }
+   ],
+   "stroke_cards": [
+    "x-stroke"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "dab-dark-leaves",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the sky strip dry first, or the leaves will smear into it.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start near the top of the sky strip and tap a few loose clumps, then move down the strip.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Tap with the tips of the bristles, wiping most of the Leaf green off first. Tap one spot more where you want a clump more solid.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes in the bottom half of the strip, where the trees are fuller. Keep the clumps loose and soft-edged, since the trees are far away.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Let the sky show between the clumps. Keep off the wall.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The strip shows soft, broken clumps of leaves from top to bottom, fuller lower down, with sky peeking between them.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the dark leaves outside"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "dab-light-leaves",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the darker leaves from step 3 dry first so the taps stay separate.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the top of the highest clump of leaves in the window strip.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 3,
+     "text": "Same old stiff brush and the same light taps. This time the mix is lighter and only goes where the sun hits each clump, so the darker taps keep showing.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Tap lightly with the brush tips, a dry brush with just a little Light leaf green on it.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Put the taps on the tops and upper edges of each clump, where the sun hits them. Make five or so lighter patches down the strip.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the darker leaves showing underneath each sunlit top, and leave the gaps of sky open.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Each clump has a sunlit, Light leaf green top over its darker underside. The leaves now look round and lit by the sun.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "old stiff brush",
+     "use": "Dab the sunlit leaves"
+    }
+   ],
+   "stroke_cards": [
+    "dabbing"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "block-in-frame",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the leaves and the wall dry first, or the frame will pick up their color.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with the tall post that closes the window, just where the leaves and sky end and the wall begins.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Build it from simple rectangles: pull the post down in straight strokes, then lay a crossbar across the glass near the top, then a wide sill under the glass.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Keep the edges straight, and let the sill slant down toward the left edge.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the sky and leaves showing in the window panes, between the frame's pieces.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A flat White frame stands around the window: posts, a crossbar and a slanting sill, with no shadows yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Block in the white window frame"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "construct": {
+    "title": "Build the window frame from rectangles",
+    "paint": "White",
+    "stages": [
+     {
+      "caption": "The tall post",
+      "add": [
+       {
+        "rect": [
+         0,
+         0,
+         45,
+         82
+        ],
+        "paint": "Pale blue",
+        "done": true
+       },
+       {
+        "rect": [
+         45,
+         0,
+         14,
+         86
+        ]
+       }
+      ],
+      "arrows": [
+       "M 52 4 L 52 80"
+      ]
+     },
+     {
+      "caption": "A crossbar near the top",
+      "add": [
+       {
+        "rect": [
+         0,
+         26,
+         46,
+         7
+        ]
+       }
+      ],
+      "arrows": [
+       "M 4 29 L 42 29"
+      ]
+     },
+     {
+      "caption": "A wide sill, slanting down left",
+      "add": [
+       {
+        "path": "M 0 80 L 59 72 L 59 86 L 0 96 Z"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-frame",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the frame from step 5 dry completely first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with the tall face of the frame where it meets the wall.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 2,
+     "text": "This is the same Wall blue you used on the wall, so the frame's shadowed faces settle into the wall around them.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Pull straight strokes down the length of that face, then add thin strips along the post's inner face, under the crossbar and along the front of the sill.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The Wall blue goes on the faces that turn away from the window light, so the frame looks solid instead of flat.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the frame faces that look toward the light bright and unpainted by this step.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The frame has a dark band where it meets the wall, thin shadow lines under the crossbar and the sill front, and bright faces everywhere else.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Shade the side of the frame"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "lay-in-ledge",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the wall and frame dry first so the line where they meet the ledge stays clean.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the left edge of the canvas, just under the frame's sill, and fill the bottom band.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Keep the brush level and pull long strokes from left to right across the whole canvas, working down to the bottom edge.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The Wood brown covers the whole ledge in one even coat. Its top edge follows the bottom of the wall.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Don't touch the wall or the window frame. Paint right through where the blanket will sit.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The bottom band is a flat warm brown from edge to edge, with no light or shadow yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Lay in the wooden ledge"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "darken-ledge",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the first ledge coat dry so the darker coat sits on top instead of mixing in.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the right edge of the canvas, along the back of the ledge where it meets the wall.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 7,
+     "text": "Same brush and the same long level strokes. This time the paint is darker, and you leave the slanting sunlit patches uncovered instead of filling the whole ledge.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Pull long level strokes from left to right, and across the bottom of the ledge too.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes in the right half and along the bottom, away from the window. Leave two long slanting bands on the left half uncovered: that's where the sunlight will fall.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave those slanting light patches and the thin dark line between them showing as the first warm brown.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The ledge is deep red-brown on the right and along the bottom, with long slanting lighter patches left near the window.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Darken the front of the ledge"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "light-ledge",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the ledge dry completely. Dry brush only works on dry paint.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the left edge of the canvas, in the lighter slanting patches you left in step 8.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Barely dip the brush tip, wipe it, and skim lightly along each slanting patch toward the right. Build it up in a few light passes.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The Sunlit wood goes only in the patches where the window light falls, the long slanting bands near the window.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the thin dark slanting line between the patches, and keep the darker brown on the right and in front untouched.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Two soft, broken, slanting bands of light lie across the ledge near the window. They catch the canvas texture and are never a solid block.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Dry-brush the sunlit patches on the ledge"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "block-in-blanket",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the ledge dry first so the yellow stays clean.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with one long, low oval for the top of the blanket, resting on the ledge near the wall.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 5,
+     "text": "You built the window frame from rectangles. The blanket is built the same way, but from a long oval and a rolled band, with a bigger brush.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Build it from pieces: the oval first, then a long rolled band along its front, with curved strokes rounding each end.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Cover the whole blanket in one flat coat, carrying it nearly to the right edge of the canvas.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the ledge showing below the blanket and at its left end, and the wall above it.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A flat yellow blanket in two rolled bands lies across the ledge, with no loops or shadows.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Block in the yellow blanket"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "paint_notes": [
+    "Golden yellow is see-through. Paint it twice, letting the first coat dry, so the brown and blue don't show through."
+   ],
+   "construct": {
+    "title": "Build the blanket from an oval and a roll",
+    "paint": "Golden yellow",
+    "stages": [
+     {
+      "caption": "A long, low oval on top",
+      "add": [
+       {
+        "ellipse": [
+         50,
+         40,
+         48,
+         10
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "A rolled band in front",
+      "add": [
+       {
+        "rect": [
+         2,
+         43,
+         98,
+         25
+        ],
+        "round": 12
+       }
+      ],
+      "arrows": [
+       "M 8 47 Q 2 56 8 65"
+      ]
+     },
+     {
+      "caption": "Round both ends",
+      "add": [],
+      "arrows": [
+       "M 6 46 Q 0 56 6 66",
+       "M 95 46 Q 100 56 95 66"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-blanket",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the blanket's yellow coat dry first, or the loops will blur.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start along the rim of the back roll, where the blanket meets the wall, and work your way across.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Press the tip down, let the belly spread, then lift as you pull, so each mark is a small teardrop. Set them in pairs leaning together like little Vs.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Lay rows of loops along each rolled band, darker in the groove between the two rolls and along the bottom, where the light doesn't reach. Scatter looser loops over the flat top.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave plenty of plain yellow showing between the loops.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The blanket reads as chunky knit: rows of darker V loops along the rolls, a dark groove between them and shadow along the bottom.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Press in the dark knit loops"
+    }
+   ],
+   "stroke_cards": [
+    "press-and-lift"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "light-blanket",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the darker loops from step 11 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the top of the back roll, at the left end near the window.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 11,
+     "text": "Same brush and the same teardrop loops. Now the mix is lighter and goes only where the light lands on the rolls, sitting over the darker loops instead of covering them.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Press and lift, the same small teardrop marks as before, set on top of the earlier loops.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes in the left half, toward the window, on the tops of the rolls where the light lands. Add only a few on the right.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the darker loops showing in the grooves and underneath. Don't cover them.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Bright loops catch the light on the tops of the rolls, thickest near the window, with the darker loops still showing below.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Press in the light knit loops"
+    }
+   ],
+   "stroke_cards": [
+    "press-and-lift"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "block-in-kitten",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the blanket dry first so the gray stays clean.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with one big oval for the body, resting on the back roll of the blanket.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 10,
+     "text": "Like the blanket, start with one big oval. Then add a circle for the head, triangle ears and curved pieces for the tail and legs.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Build it from pieces: the oval, then a circle for the head at its left end, two triangle ears, and curved pieces for the tail and front legs along the blanket.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Fill the whole kitten flat with Cat gray. The body stretches almost the full width of the blanket.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the front roll of the blanket showing below the kitten, and the wall above and around it.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A flat gray kitten shape lies curled on the blanket, head at the window end, two pointed ears, with no shading or face.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Block in the kitten"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "construct": {
+    "title": "Build the curled kitten from simple pieces",
+    "paint": "Cat gray",
+    "stages": [
+     {
+      "caption": "One big body oval",
+      "add": [
+       {
+        "ellipse": [
+         58,
+         51,
+         40,
+         20
+        ]
+       }
+      ],
+      "arrows": [
+       "M 20 51 Q 58 26 97 51"
+      ]
+     },
+     {
+      "caption": "A circle for the head",
+      "add": [
+       {
+        "circle": [
+         26,
+         52,
+         14
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Two triangle ears",
+      "add": [
+       {
+        "path": "M 8 52 L 10 39 L 19 45 Z"
+       },
+       {
+        "path": "M 28 41 L 37 28 L 41 40 Z"
+       }
+      ]
+     },
+     {
+      "caption": "Tail and legs curve along the front",
+      "add": [
+       {
+        "path": "M 96 58 Q 80 74 50 71 Q 36 71 30 66 L 34 62 Q 52 66 80 64 Q 92 60 94 54 Z"
+       }
+      ],
+      "arrows": [
+       "M 94 60 Q 70 76 36 68"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-kitten",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the flat gray kitten dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the back of the body, just behind the head, where it curves away from the window.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Use curved strokes that bend with the body: from the top of the back down and around toward the blanket, and around the curl of the tail.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The Dark gray goes on the back, the far end of the body, the bottom along the blanket and around the head's edges, because the light comes from the window.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave mid gray showing on the face, a patch on the side of the body, and where the paws and chest will go.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The kitten looks round now: dark around its back and underside, lighter gray on the face and side.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Shade the kitten's underside"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "white-patches",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the darker shading from step 14 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with the muzzle and chin, in the middle of the face under the closed eyes.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 14,
+     "text": "The same curved strokes you used for the shading, now with a smaller brush and White, bending around the muzzle and the round paws.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Curve each stroke around the shape: around the muzzle, then two round paws tucked under the chin, then a patch on the chest behind the face.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes in the left half, on the face and paws. The chest patch is the only White farther right.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the gray around the muzzle and the shading under the paws, so the paws look tucked in.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The kitten has a White muzzle and chin, two round White paws under its chin and a White patch on its chest.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the white muzzle, chest and paws"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "paint_notes": [
+    "White over gray may need two coats. Let the first dry before the second."
+   ]
+  },
+  {
+   "stage_id": "pink-ears-nose",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the muzzle and paws from step 15 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 11,
+     "text": "The same press and lift you used for the knit loops, now with a much smaller brush, so each mark is tiny enough for the ears and nose.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Press and lift: touch down at the base of the ear, press, then pull toward the tip and lift.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Fill the inside of both ears with Ear pink, and press one small triangle for the nose at the top of the muzzle.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave a gray rim around the edge of each ear, so the pink sits within a gray border.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Both ears are pink inside, with a gray border, and a small pink nose sits on the muzzle.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Paint the pink ears and nose"
+    }
+   ],
+   "stroke_cards": [
+    "press-and-lift"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "tabby-stripes",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the ears and nose dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the forehead between the ears, then work back over the body.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Press the full width of the brush, then turn it on edge and lighten as you pull, so each stripe tapers. Curve every stripe around the body.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes in the right half: long curving stripes over the back and side, plus short ones on the forehead and cheeks and bands across the curled tail.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave gray between the stripes, and keep them off the muzzle, paws and chest patch.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Dark tapering stripes curve around the head, back and tail. The gray between them is still plain.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch angle",
+     "use": "Pull the tabby stripes"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "construct": {
+    "title": "Curve the stripes around the body",
+    "paint": "Charcoal",
+    "stages": [
+     {
+      "caption": "Short ones on the forehead",
+      "add": [
+       {
+        "ellipse": [
+         58,
+         51,
+         40,
+         20
+        ],
+        "paint": "Cat gray",
+        "done": true
+       },
+       {
+        "circle": [
+         26,
+         52,
+         14
+        ],
+        "paint": "Cat gray",
+        "done": true
+       },
+       {
+        "line": "M 22 40 Q 24 44 23 48",
+        "width": 2
+       },
+       {
+        "line": "M 28 39 Q 29 43 28 47",
+        "width": 2
+       }
+      ]
+     },
+     {
+      "caption": "Long ones over the back",
+      "add": [
+       {
+        "line": "M 45 33 Q 51 45 47 60",
+        "width": 3
+       },
+       {
+        "line": "M 56 31 Q 63 45 59 64",
+        "width": 3
+       },
+       {
+        "line": "M 67 32 Q 75 46 71 66",
+        "width": 3
+       },
+       {
+        "line": "M 78 35 Q 87 47 83 65",
+        "width": 3
+       },
+       {
+        "line": "M 89 40 Q 96 50 93 61",
+        "width": 3
+       }
+      ],
+      "arrows": [
+       "M 45 28 Q 52 42 48 56"
+      ]
+     },
+     {
+      "caption": "Bands across the tail",
+      "add": [
+       {
+        "line": "M 60 63 L 61 71",
+        "width": 3
+       },
+       {
+        "line": "M 70 62 L 71 70",
+        "width": 3
+       },
+       {
+        "line": "M 80 60 L 82 68",
+        "width": 3
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "flick-fur",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the stripes from step 17 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start along the top edge of the back, where the light from the window lands.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Wipe the brush almost dry, then flick quick short strokes from the base upward, lifting as you go, in the way the fur lies.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Put a few flicks on the top of the head and back and on the tail, more toward the window. Fewer as you go down.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the stripes and the dark underside showing between the flicks.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The coat looks soft and furry on its lit top. The stripes and shading still read clearly underneath.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "small fan brush",
+     "use": "Flick in the light fur"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "eyes-mouth",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let everything on the face dry first, or the lines will spread.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with the lower closed eye, its middle about 3 3/4 in from the left edge.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 17,
+     "text": "The same Charcoal as the stripes, but thinned with water and pulled with a liner, so the lines stay thin and gentle.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Thin the paint with water and hold the brush upright. Pull each eye as one gentle curve that dips at the middle, starting thick and lightening.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Add the second eye higher on the face, toward the top ear, then a small dark line for the mouth where the chin meets the paws.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the muzzle, nose and paws clean. Only the eyes and mouth are lined.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Two calm curved lines show the closed eyes, and a small dark mouth sits under the nose. The kitten looks asleep.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#1 liner",
+     "use": "Line the closed eyes and mouth"
+    }
+   ],
+   "stroke_cards": [
+    "liner"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "construct": {
+    "title": "Place the sleeping eyes and the mouth",
+    "paint": "Charcoal",
+    "stages": [
+     {
+      "caption": "The lower eye: a curve that dips",
+      "add": [
+       {
+        "circle": [
+         54,
+         50,
+         36
+        ],
+        "paint": "Cat gray",
+        "done": true
+       },
+       {
+        "ellipse": [
+         57,
+         66,
+         15,
+         11
+        ],
+        "paint": "White",
+        "done": true
+       },
+       {
+        "circle": [
+         60,
+         58,
+         3
+        ],
+        "paint": "Ear pink",
+        "done": true
+       },
+       {
+        "line": "M 27 46 Q 36 54 45 47",
+        "width": 2.5
+       }
+      ]
+     },
+     {
+      "caption": "The upper eye, toward the top ear",
+      "add": [
+       {
+        "line": "M 63 34 Q 71 42 79 35",
+        "width": 2.5
+       }
+      ]
+     },
+     {
+      "caption": "A small mouth above the paws",
+      "add": [
+       {
+        "line": "M 56 71 Q 60 74 64 71",
+        "width": 1.5
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "whiskers",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the eye and mouth lines from step 19 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start each whisker on the muzzle, close to the pink nose.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 19,
+     "text": "Same liner and the same thin, steady pull as the eyes. Now the paint is White, and each line is longer and tapers out over the gray.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Thin the White with water, hold the brush upright and pull each whisker out in one stroke, lightening as you go so it tapers.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Fan three or four out toward the window over the cheek and the blanket, and three or four the other way over the gray toward the chest patch.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the eyes, nose and mouth clear. Keep the whiskers few and thin.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Thin, tapering whiskers fan out from both sides of the muzzle. The painting is finished.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#1 liner",
+     "use": "Pull the white whiskers"
+    }
+   ],
+   "stroke_cards": [
+    "liner"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  }
+ ],
+ "opening": {
+  "welcome": "You're about to paint a gray tabby kitten fast asleep on a chunky yellow knit blanket, on a wooden ledge by a sunny window. The heart of it is the sleeping face: closed eyes, a pink nose, a soft muzzle and paws tucked in. Warm window light and cool blue shadow give it a calm, cozy mood.",
+  "light": "Daylight comes in through the window and falls on the kitten's head and back, the rolls of the blanket and long slanting patches of the ledge. Everything turned away from the window drops into shadow, which is why so many steps paint the lit parts and the shaded parts separately.",
+  "skills": [
+   {
+    "card": "build-from-pieces",
+    "steps": [
+     5,
+     6,
+     10,
+     13
+    ],
+    "how": "You make a big shape from simple pieces: a rectangle, an oval or a circle first, then curved pieces added around it. It builds the window frame, the rolled blanket and the curled kitten. Keep the pieces simple and let them meet; only soften the joins where the shape should look smooth."
+   },
+   {
+    "card": "press-and-lift",
+    "steps": [
+     11,
+     12,
+     16
+    ],
+    "how": "Touch down with the tip of a round brush, press so it spreads, then pull and lift so the mark ends in a point. Rows of these teardrops make the blanket's knit loops, and smaller ones fill the kitten's ears. Too much paint or a slow lift gives a blob, so use less paint and lift quickly."
+   },
+   {
+    "card": "curved-strokes",
+    "steps": [
+     14,
+     15
+    ],
+    "how": "Every stroke bends with the shape, running down and around it, and that's what makes the kitten look round. You use it for the dark shading and again for the muzzle, chest and paws. Keep the darker paint on the shadow side and follow the curve every time."
+   }
+  ],
+  "road": "First you paint the sky through the window and the blue wall, the things farthest away. Then the window gets its leaves, its frame and the frame's shadows. Next comes the wooden ledge, laid in, darkened and lit with patches of sunlight, so the whole room is finished before anything sits in it. The blanket goes on next, flat first, then dark and light knit loops. Last comes the kitten: a flat shape, then shading, its pale patches, pink ears, stripes and fur. The sleeping face is saved for the very end, because that's where the eye lands."
+ },
+ "stages": {
+  "the-garden-view": {
+   "for": "Cover the far background, the sky through the window and the blue wall, with soft blended color.",
+   "end": "A strip of soft sky meets a criss-cross blue wall, and the band where the ledge will go is still bare canvas."
+  },
+  "the-wall-and-window": {
+   "for": "Turn the sky strip into a window, with leaves outside and a solid frame around them.",
+   "end": "A window with dappled green leaves stands in a bright frame with blue shadowed faces, next to the blue wall."
+  },
+  "the-ledge": {
+   "for": "Lay the wooden ledge and give it shadow and sunlight, so the room is finished.",
+   "end": "A warm red-brown ledge runs across the canvas, with long slanting bands of sunlight near the window."
+  },
+  "the-blanket": {
+   "for": "Build the folded knit blanket and give it the texture of chunky loops.",
+   "end": "A golden knit blanket in two rolls lies across the ledge, its loops darker in the grooves and bright where the light lands."
+  },
+  "the-kitten-shape": {
+   "for": "Build the kitten as one shape, make it look round, and add its pale patches.",
+   "end": "A rounded gray kitten lies curled on the blanket, with a pale muzzle, a pale chest patch and two pale paws."
+  },
+  "the-markings-and-fur": {
+   "for": "Give the kitten its pink ears and nose, its tabby stripes and its soft fur.",
+   "end": "The kitten has pink ears, a pink nose and dark tapering stripes around its head, back and tail, with soft fur on its lit back."
+  },
+  "the-sleeping-face": {
+   "for": "Finish the focal point: the closed eyes, the mouth and the whiskers.",
+   "end": "The finished painting: a sleeping tabby kitten with closed eyes and fine whiskers, curled on its knit blanket by the window."
+  }
+ }
+}

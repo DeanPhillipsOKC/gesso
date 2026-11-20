@@ -1,0 +1,10981 @@
+{
+ "canvas": {
+  "w_in": 16.0,
+  "h_in": 12.0
+ },
+ "tolerance": {
+  "inches_under_2": 0.145,
+  "inches": 0.27,
+  "share": 0.06
+ },
+ "parts": {
+  "sky": {
+   "name": "The misty glow",
+   "kind": "area",
+   "parent": null,
+   "widest_down": 0.0,
+   "base_wide": 16.0,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 0.0,
+   "bottom": 0.0,
+   "wide": 16.0,
+   "tall": 12.0,
+   "cx": 7.99,
+   "cy": 5.99,
+   "peak_x": 7.99,
+   "edges": [
+    "left",
+    "right",
+    "top",
+    "bottom"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 0.0,
+      "to": 12.0,
+      "mid": 6.0
+     }
+    ],
+    "right": [
+     {
+      "from": 0.0,
+      "to": 12.0,
+      "mid": 6.0
+     }
+    ],
+    "top": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0
+     }
+    ],
+    "bottom": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0
+     }
+    ]
+   },
+   "share": 1.0,
+   "beside": {
+    "ground": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "rock": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "birches": {
+     "this_is": [
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "far-woods": {
+   "name": "The dark wood on the right",
+   "kind": "marks",
+   "parent": "sky",
+   "widest_down": 0.76,
+   "base_wide": 3.22,
+   "left": 9.82,
+   "right": 0.0,
+   "top": 0.23,
+   "bottom": 4.05,
+   "wide": 6.18,
+   "tall": 7.71,
+   "cx": 13.48,
+   "cy": 4.82,
+   "peak_x": 13.81,
+   "edges": [
+    "right",
+    "top"
+   ],
+   "meets": {
+    "right": [
+     {
+      "from": 1.04,
+      "to": 7.82,
+      "mid": 4.43
+     }
+    ],
+    "top": []
+   },
+   "share": 0.1566,
+   "beside": {
+    "ground": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 1.34
+     }
+    },
+    "rock": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "birches": {
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 3.84
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 3.78
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "ground": {
+   "name": "The leafy forest floor",
+   "kind": "area",
+   "parent": null,
+   "widest_down": 0.14,
+   "base_wide": 16.0,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 7.05,
+   "bottom": 0.0,
+   "wide": 16.0,
+   "tall": 4.95,
+   "cx": 7.89,
+   "cy": 9.65,
+   "peak_x": 0.64,
+   "edges": [
+    "left",
+    "right",
+    "bottom"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 7.07,
+      "to": 12.0,
+      "mid": 9.53
+     }
+    ],
+    "right": [
+     {
+      "from": 7.46,
+      "to": 12.0,
+      "mid": 9.73
+     }
+    ],
+    "bottom": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0
+     }
+    ]
+   },
+   "share": 0.3902,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "rock": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "birches": {
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "path": {
+   "name": "The path into the fog",
+   "kind": "area",
+   "parent": null,
+   "widest_down": 1.0,
+   "base_wide": 7.94,
+   "left": 6.49,
+   "right": 1.57,
+   "top": 7.52,
+   "bottom": 0.0,
+   "wide": 7.94,
+   "tall": 4.48,
+   "cx": 10.01,
+   "cy": 10.38,
+   "peak_x": 9.26,
+   "edges": [
+    "bottom"
+   ],
+   "meets": {
+    "bottom": [
+     {
+      "from": 6.51,
+      "to": 14.39,
+      "mid": 10.45
+     }
+    ]
+   },
+   "share": 0.1011,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ground": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "rock": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.7
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 1.18
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "inside",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.26
+     }
+    },
+    "birches": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "far-birches": {
+   "name": "The far birches in the mist",
+   "kind": "marks",
+   "parent": "sky",
+   "widest_down": 0.96,
+   "base_wide": 0.81,
+   "left": 7.4,
+   "right": 3.46,
+   "top": 0.0,
+   "bottom": 3.82,
+   "wide": 5.15,
+   "tall": 8.18,
+   "cx": 9.97,
+   "cy": 5.72,
+   "peak_x": 8.05,
+   "edges": [
+    "top"
+   ],
+   "meets": {
+    "top": [
+     {
+      "from": 7.95,
+      "to": 8.15,
+      "mid": 8.05
+     }
+    ]
+   },
+   "share": 0.0159,
+   "beside": {
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 1.5,
+      "across": 0.0
+     }
+    },
+    "rock": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.7
+     }
+    },
+    "birches": {
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.9
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.93
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 2.18
+     }
+    }
+   }
+  },
+  "undergrowth": {
+   "name": "The golden undergrowth",
+   "kind": "marks",
+   "parent": "sky",
+   "widest_down": 0.75,
+   "base_wide": 0.3,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 4.24,
+   "bottom": 3.47,
+   "wide": 16.0,
+   "tall": 4.29,
+   "cx": 5.05,
+   "cy": 6.62,
+   "peak_x": 2.7,
+   "edges": [
+    "left",
+    "right"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 5.05,
+      "to": 7.5,
+      "mid": 6.28
+     }
+    ],
+    "right": [
+     {
+      "from": 7.36,
+      "to": 8.25,
+      "mid": 7.8
+     }
+    ]
+   },
+   "share": 0.1239,
+   "beside": {
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 1.34
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.58,
+      "across": 0.0
+     }
+    },
+    "rock": {
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "birches": {
+     "this_is": [
+      "above",
+      "below",
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "above",
+      "below",
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "rock": {
+   "name": "The mossy boulder",
+   "kind": "object",
+   "parent": null,
+   "widest_down": 0.71,
+   "base_wide": 0.43,
+   "left": 11.3,
+   "right": 2.06,
+   "top": 7.18,
+   "bottom": 3.5,
+   "wide": 2.64,
+   "tall": 1.31,
+   "cx": 12.62,
+   "cy": 7.89,
+   "peak_x": 12.75,
+   "edges": [],
+   "meets": {},
+   "share": 0.0124,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.7
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.93
+     }
+    },
+    "birches": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 3.04
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.7,
+      "across": 5.6
+     }
+    }
+   }
+  },
+  "the-boulder-s-mossy-top": {
+   "name": "The boulder's mossy top",
+   "kind": "marks",
+   "parent": "rock",
+   "widest_down": 0.36,
+   "base_wide": 0.18,
+   "left": 11.53,
+   "right": 2.11,
+   "top": 7.18,
+   "bottom": 3.62,
+   "wide": 2.36,
+   "tall": 1.2,
+   "cx": 12.82,
+   "cy": 7.79,
+   "peak_x": 12.72,
+   "edges": [],
+   "meets": {},
+   "share": 0.0085,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 1.18
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 1.25
+     }
+    },
+    "birches": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.38,
+      "across": 0.0
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.48,
+      "across": 0.03
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 3.26
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "inside"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.83,
+      "across": null
+     }
+    }
+   }
+  },
+  "the-leaf-carpet": {
+   "name": "The leaf carpet",
+   "kind": "marks",
+   "parent": null,
+   "widest_down": 0.81,
+   "base_wide": 6.83,
+   "left": 3.65,
+   "right": 1.22,
+   "top": 7.66,
+   "bottom": 0.0,
+   "wide": 11.14,
+   "tall": 4.34,
+   "cx": 9.91,
+   "cy": 10.68,
+   "peak_x": 9.76,
+   "edges": [
+    "bottom"
+   ],
+   "meets": {
+    "bottom": [
+     {
+      "from": 5.91,
+      "to": 6.08,
+      "mid": 6.0
+     },
+     {
+      "from": 6.65,
+      "to": 13.66,
+      "mid": 10.15
+     },
+     {
+      "from": 14.18,
+      "to": 14.78,
+      "mid": 14.48
+     }
+    ]
+   },
+   "share": 0.0866,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "ground": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.26
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "rock": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.93
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 1.25
+     }
+    },
+    "birches": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.03,
+      "across": null
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "birches": {
+   "name": "The big birches",
+   "kind": "object",
+   "parent": null,
+   "widest_down": 0.75,
+   "base_wide": 0.29,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 0.0,
+   "bottom": 0.0,
+   "wide": 16.0,
+   "tall": 12.0,
+   "cx": 6.87,
+   "cy": 5.71,
+   "peak_x": 8.68,
+   "edges": [
+    "left",
+    "right",
+    "top",
+    "bottom"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 0.27,
+      "to": 1.07,
+      "mid": 0.67
+     },
+     {
+      "from": 1.7,
+      "to": 3.21,
+      "mid": 2.46
+     },
+     {
+      "from": 3.61,
+      "to": 4.34,
+      "mid": 3.97
+     },
+     {
+      "from": 4.71,
+      "to": 9.42,
+      "mid": 7.07
+     }
+    ],
+    "right": [
+     {
+      "from": 0.0,
+      "to": 11.48,
+      "mid": 5.74
+     },
+     {
+      "from": 11.77,
+      "to": 12.0,
+      "mid": 11.88
+     }
+    ],
+    "top": [
+     {
+      "from": 0.39,
+      "to": 0.5,
+      "mid": 0.45
+     },
+     {
+      "from": 2.4,
+      "to": 3.38,
+      "mid": 2.89
+     },
+     {
+      "from": 5.57,
+      "to": 6.01,
+      "mid": 5.79
+     },
+     {
+      "from": 13.42,
+      "to": 14.05,
+      "mid": 13.74
+     },
+     {
+      "from": 15.23,
+      "to": 16.0,
+      "mid": 15.61
+     }
+    ],
+    "bottom": [
+     {
+      "from": 15.74,
+      "to": 16.0,
+      "mid": 15.87
+     }
+    ]
+   },
+   "share": 0.1809,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 3.84
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.9
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "above",
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "rock": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.38,
+      "across": 0.0
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "the-birches-shading-and-bark": {
+   "name": "The birches' shading and bark",
+   "kind": "marks",
+   "parent": "birches",
+   "widest_down": 0.78,
+   "base_wide": 0.38,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 0.0,
+   "bottom": 0.53,
+   "wide": 16.0,
+   "tall": 11.47,
+   "cx": 4.88,
+   "cy": 6.22,
+   "peak_x": 7.73,
+   "edges": [
+    "left",
+    "right",
+    "top"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 0.27,
+      "to": 1.07,
+      "mid": 0.67
+     },
+     {
+      "from": 1.7,
+      "to": 3.21,
+      "mid": 2.46
+     },
+     {
+      "from": 3.61,
+      "to": 4.34,
+      "mid": 3.97
+     },
+     {
+      "from": 4.71,
+      "to": 5.39,
+      "mid": 5.05
+     },
+     {
+      "from": 5.74,
+      "to": 9.41,
+      "mid": 7.58
+     }
+    ],
+    "right": [
+     {
+      "from": 9.77,
+      "to": 11.46,
+      "mid": 10.62
+     }
+    ],
+    "top": [
+     {
+      "from": 0.39,
+      "to": 0.5,
+      "mid": 0.45
+     },
+     {
+      "from": 3.14,
+      "to": 3.4,
+      "mid": 3.27
+     },
+     {
+      "from": 5.57,
+      "to": 6.05,
+      "mid": 5.81
+     },
+     {
+      "from": 13.44,
+      "to": 14.01,
+      "mid": 13.73
+     }
+    ]
+   },
+   "share": 0.1257,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "above",
+      "inside"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 3.78
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.93
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "above",
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "rock": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.48,
+      "across": 0.03
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "the-hanging-gold-leaves": {
+   "name": "The hanging gold leaves",
+   "kind": "marks",
+   "parent": null,
+   "widest_down": 0.07,
+   "base_wide": 0.94,
+   "left": 0.0,
+   "right": 0.67,
+   "top": 0.0,
+   "bottom": 4.36,
+   "wide": 15.33,
+   "tall": 7.64,
+   "cx": 6.0,
+   "cy": 2.17,
+   "peak_x": 7.36,
+   "edges": [
+    "left",
+    "top"
+   ],
+   "meets": {
+    "left": [],
+    "top": [
+     {
+      "from": 0.56,
+      "to": 2.39,
+      "mid": 1.48
+     },
+     {
+      "from": 3.38,
+      "to": 5.11,
+      "mid": 4.24
+     },
+     {
+      "from": 5.99,
+      "to": 8.64,
+      "mid": 7.31
+     },
+     {
+      "from": 8.78,
+      "to": 9.74,
+      "mid": 9.26
+     },
+     {
+      "from": 10.98,
+      "to": 11.7,
+      "mid": 11.34
+     },
+     {
+      "from": 11.93,
+      "to": 13.42,
+      "mid": 12.68
+     },
+     {
+      "from": 14.04,
+      "to": 14.99,
+      "mid": 14.52
+     }
+    ]
+   },
+   "share": 0.1509,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "path": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "rock": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 3.04
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 3.26
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.03,
+      "across": null
+     }
+    },
+    "birches": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sunlit-leaves-on-the-floor": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   }
+  },
+  "the-sunlit-leaves-on-the-floor": {
+   "name": "The sunlit leaves on the floor",
+   "kind": "marks",
+   "parent": null,
+   "widest_down": 0.89,
+   "base_wide": 2.0,
+   "left": 2.54,
+   "right": 0.33,
+   "top": 2.29,
+   "bottom": 0.43,
+   "wide": 13.13,
+   "tall": 9.28,
+   "cx": 8.09,
+   "cy": 9.8,
+   "peak_x": 14.87,
+   "edges": [],
+   "meets": {},
+   "share": 0.0306,
+   "beside": {
+    "sky": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-woods": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ground": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "path": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "far-birches": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 2.18
+     }
+    },
+    "undergrowth": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "rock": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.7,
+      "across": 5.6
+     }
+    },
+    "the-boulder-s-mossy-top": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.83,
+      "across": null
+     }
+    },
+    "the-leaf-carpet": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.03
+     }
+    },
+    "birches": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-birches-shading-and-bark": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-hanging-gold-leaves": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.42
+     }
+    }
+   }
+  }
+ },
+ "steps": [
+  {
+   "n": 1,
+   "id": "blend-mist",
+   "name": "Blend the misty glow",
+   "part": "sky",
+   "part_name": "The misty glow",
+   "kind": "area",
+   "show": "blend",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "pale-gold",
+     "name": "Pale gold",
+     "words": [
+      "pale",
+      "gold"
+     ]
+    },
+    {
+     "id": "haze-blue",
+     "name": "Haze blue",
+     "words": [
+      "haze",
+      "blue"
+     ]
+    },
+    {
+     "id": "deep-haze-blue",
+     "name": "Deep haze blue",
+     "words": [
+      "deep",
+      "haze",
+      "blue"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.15,
+    "base_wide": 1.28,
+    "left": 0.0,
+    "right": 0.25,
+    "top": 0.0,
+    "bottom": 3.67,
+    "wide": 15.75,
+    "tall": 8.33,
+    "cx": 8.15,
+    "cy": 3.74,
+    "peak_x": 7.73,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 0.0,
+       "to": 0.28,
+       "mid": 0.14
+      },
+      {
+       "from": 0.91,
+       "to": 1.72,
+       "mid": 1.32
+      },
+      {
+       "from": 3.18,
+       "to": 4.03,
+       "mid": 3.6
+      },
+      {
+       "from": 4.32,
+       "to": 4.72,
+       "mid": 4.52
+      },
+      {
+       "from": 5.12,
+       "to": 5.29,
+       "mid": 5.2
+      }
+     ],
+     "right": [],
+     "top": [
+      {
+       "from": 0.0,
+       "to": 2.41,
+       "mid": 1.21
+      },
+      {
+       "from": 3.16,
+       "to": 5.65,
+       "mid": 4.41
+      },
+      {
+       "from": 5.99,
+       "to": 13.44,
+       "mid": 9.72
+      },
+      {
+       "from": 14.04,
+       "to": 15.24,
+       "mid": 14.64
+      }
+     ]
+    },
+    "share": 0.5142
+   },
+   "marks": [
+    {
+     "widest_down": 0.0,
+     "base_wide": 16.0,
+     "left": 0.0,
+     "right": 0.0,
+     "top": 0.0,
+     "bottom": 0.0,
+     "wide": 16.0,
+     "tall": 12.0,
+     "cx": 7.99,
+     "cy": 5.99,
+     "peak_x": 7.99,
+     "edges": [
+      "left",
+      "right",
+      "top",
+      "bottom"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 0.0,
+        "to": 12.0,
+        "mid": 6.0
+       }
+      ],
+      "right": [
+       {
+        "from": 0.0,
+        "to": 12.0,
+        "mid": 6.0
+       }
+      ],
+      "top": [
+       {
+        "from": 0.0,
+        "to": 16.0,
+        "mid": 8.0
+       }
+      ],
+      "bottom": [
+       {
+        "from": 0.0,
+        "to": 16.0,
+        "mid": 8.0
+       }
+      ]
+     },
+     "share": 1.0,
+     "in_part": [
+      0.5,
+      0.5
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0,
+      "in_part": 0.5
+     }
+    ],
+    "down": [
+     {
+      "from": 0.0,
+      "to": 12.0,
+      "mid": 6.0,
+      "in_part": 0.5
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#a8bcd9",
+    "paints": {
+     "Pale gold": 38.4,
+     "Haze blue": 0.3,
+     "Deep haze blue": 6.1
+    },
+    "cx": 7.99,
+    "cy": 5.99,
+    "edges": [
+     "left",
+     "right",
+     "top",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.5,
+     "right": 0.5,
+     "top": 0.5,
+     "bottom": 0.5
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across from the top edge. Its bottom is about 3 1/2 in from the bottom edge."
+  },
+  {
+   "n": 2,
+   "id": "dab-dark-wood",
+   "name": "Dab the dark wood on the right",
+   "part": "far-woods",
+   "part_name": "The dark wood on the right",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "dark-blue-green",
+     "name": "Dark blue-green",
+     "words": [
+      "dark",
+      "blue",
+      "green"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.73,
+    "base_wide": 0.98,
+    "left": 10.37,
+    "right": 0.25,
+    "top": 2.85,
+    "bottom": 4.38,
+    "wide": 5.38,
+    "tall": 4.77,
+    "cx": 13.51,
+    "cy": 5.37,
+    "peak_x": 15.17,
+    "edges": [
+     "right"
+    ],
+    "meets": {
+     "right": []
+    },
+    "share": 0.0695
+   },
+   "marks": [
+    {
+     "widest_down": 0.67,
+     "base_wide": 1.39,
+     "left": 10.4,
+     "right": 0.0,
+     "top": 2.73,
+     "bottom": 4.31,
+     "wide": 5.6,
+     "tall": 4.96,
+     "cx": 13.68,
+     "cy": 5.4,
+     "peak_x": 13.87,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 2.99,
+        "to": 3.13,
+        "mid": 3.06
+       },
+       {
+        "from": 3.23,
+        "to": 7.68,
+        "mid": 5.46
+       }
+      ]
+     },
+     "share": 0.1013,
+     "in_part": [
+      0.62,
+      0.67
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 11.07,
+      "to": 11.53,
+      "mid": 11.3,
+      "in_part": 0.24
+     },
+     {
+      "from": 11.69,
+      "to": 16.0,
+      "mid": 13.84,
+      "in_part": 0.65
+     }
+    ],
+    "down": [
+     {
+      "from": 3.14,
+      "to": 7.38,
+      "mid": 5.26,
+      "in_part": 0.65
+     }
+    ],
+    "bands": [
+     [],
+     [
+      {
+       "from": 12.96,
+       "to": 15.89,
+       "mid": 14.43,
+       "in_part": 0.75
+      }
+     ],
+     [
+      {
+       "from": 11.24,
+       "to": 16.0,
+       "mid": 13.62,
+       "in_part": 0.61
+      }
+     ],
+     [
+      {
+       "from": 10.76,
+       "to": 16.0,
+       "mid": 13.38,
+       "in_part": 0.58
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#414d58",
+    "paints": {
+     "Dark blue-green": 0.7
+    },
+    "cx": 13.69,
+    "cy": 5.36,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.31,
+     "right": 0.69,
+     "top": 0.18,
+     "bottom": 0.82
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.51,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.41,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 3 in from the top edge, and its right side is at the right edge; it's about 5 1/2 in wide and 5 in tall."
+  },
+  {
+   "n": 3,
+   "id": "mist-wood-edge",
+   "name": "Mist the wood's left edge",
+   "part": "far-woods",
+   "part_name": "The dark wood on the right",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "misty-blue-green",
+     "name": "Misty blue-green",
+     "words": [
+      "misty",
+      "blue",
+      "green"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.29,
+    "base_wide": 0.64,
+    "left": 9.82,
+    "right": 0.48,
+    "top": 0.81,
+    "bottom": 4.58,
+    "wide": 5.7,
+    "tall": 6.61,
+    "cx": 12.26,
+    "cy": 3.95,
+    "peak_x": 13.43,
+    "edges": [],
+    "meets": {},
+    "share": 0.0281
+   },
+   "marks": [
+    {
+     "widest_down": 0.88,
+     "base_wide": 1.5,
+     "left": 8.53,
+     "right": 0.0,
+     "top": 0.0,
+     "bottom": 3.23,
+     "wide": 7.47,
+     "tall": 8.77,
+     "cx": 12.72,
+     "cy": 4.34,
+     "peak_x": 13.44,
+     "edges": [
+      "right",
+      "top"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 0.25,
+        "to": 3.48,
+        "mid": 1.86
+       },
+       {
+        "from": 3.75,
+        "to": 3.82,
+        "mid": 3.79
+       },
+       {
+        "from": 7.58,
+        "to": 8.41,
+        "mid": 8.0
+       }
+      ],
+      "top": [
+       {
+        "from": 12.85,
+        "to": 13.96,
+        "mid": 13.4
+       },
+       {
+        "from": 15.27,
+        "to": 15.37,
+        "mid": 15.32
+       }
+      ]
+     },
+     "share": 0.1151,
+     "in_part": [
+      0.47,
+      0.53
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 9.06,
+      "to": 11.17,
+      "mid": 10.12,
+      "in_part": 0.05
+     }
+    ],
+    "down": [
+     {
+      "from": 0.0,
+      "to": 3.14,
+      "mid": 1.57,
+      "in_part": 0.17
+     },
+     {
+      "from": 7.38,
+      "to": 8.48,
+      "mid": 7.93,
+      "in_part": 1.0
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 12.46,
+       "to": 16.0,
+       "mid": 14.23,
+       "in_part": 0.71
+      }
+     ],
+     [
+      {
+       "from": 10.95,
+       "to": 11.45,
+       "mid": 11.2,
+       "in_part": 0.22
+      },
+      {
+       "from": 11.58,
+       "to": 12.96,
+       "mid": 12.27,
+       "in_part": 0.4
+      }
+     ],
+     [
+      {
+       "from": 9.25,
+       "to": 11.43,
+       "mid": 10.34,
+       "in_part": 0.08
+      }
+     ],
+     [
+      {
+       "from": 8.72,
+       "to": 10.76,
+       "mid": 9.74,
+       "in_part": -0.01
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#6e85a1",
+    "paints": {
+     "Misty blue-green": 1.7
+    },
+    "cx": 12.72,
+    "cy": 4.34,
+    "edges": [
+     "right",
+     "top"
+    ],
+    "halves": {
+     "left": 0.49,
+     "right": 0.51,
+     "top": 0.5,
+     "bottom": 0.5
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    2
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.34
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.1
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.26,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its right side is about 1/2 in from the right edge; it's about 5 1/2 in wide and 6 1/2 in tall."
+  },
+  {
+   "n": 4,
+   "id": "lay-floor",
+   "name": "Lay in the forest floor",
+   "part": "ground",
+   "part_name": "The leafy forest floor",
+   "kind": "area",
+   "show": "blend",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "warm-ochre",
+     "name": "Warm ochre",
+     "words": [
+      "warm",
+      "ochre"
+     ]
+    },
+    {
+     "id": "rust-brown",
+     "name": "Rust brown",
+     "words": [
+      "rust",
+      "brown"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.91,
+    "base_wide": 7.0,
+    "left": 0.0,
+    "right": 0.0,
+    "top": 7.23,
+    "bottom": 0.0,
+    "wide": 16.0,
+    "tall": 4.77,
+    "cx": 8.07,
+    "cy": 10.11,
+    "peak_x": 9.3,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 9.38,
+       "to": 12.0,
+       "mid": 10.69
+      }
+     ],
+     "right": [
+      {
+       "from": 11.46,
+       "to": 11.89,
+       "mid": 11.68
+      }
+     ],
+     "bottom": [
+      {
+       "from": 0.0,
+       "to": 6.53,
+       "mid": 3.26
+      },
+      {
+       "from": 6.65,
+       "to": 13.66,
+       "mid": 10.15
+      },
+      {
+       "from": 14.14,
+       "to": 15.85,
+       "mid": 14.99
+      },
+      {
+       "from": 15.86,
+       "to": 16.0,
+       "mid": 15.93
+      }
+     ]
+    },
+    "share": 0.2738
+   },
+   "marks": [
+    {
+     "widest_down": 0.34,
+     "base_wide": 16.0,
+     "left": 0.0,
+     "right": 0.0,
+     "top": 7.3,
+     "bottom": 0.0,
+     "wide": 16.0,
+     "tall": 4.7,
+     "cx": 7.91,
+     "cy": 9.8,
+     "peak_x": 0.67,
+     "edges": [
+      "left",
+      "right",
+      "bottom"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 7.37,
+        "to": 12.0,
+        "mid": 9.69
+       }
+      ],
+      "right": [
+       {
+        "from": 7.82,
+        "to": 12.0,
+        "mid": 9.91
+       }
+      ],
+      "bottom": [
+       {
+        "from": 0.0,
+        "to": 16.0,
+        "mid": 8.0
+       }
+      ]
+     },
+     "share": 0.3609,
+     "in_part": [
+      0.49,
+      0.56
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0,
+      "in_part": 0.5
+     }
+    ],
+    "down": [
+     {
+      "from": 7.55,
+      "to": 12.0,
+      "mid": 9.77,
+      "in_part": 0.55
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#b67833",
+    "paints": {
+     "Warm ochre": 5.6,
+     "Rust brown": 4.5
+    },
+    "cx": 7.91,
+    "cy": 9.8,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.51,
+     "right": 0.49,
+     "top": 0.44,
+     "bottom": 0.56
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across to the bottom edge. Its top is about 5 in from the bottom edge."
+  },
+  {
+   "n": 5,
+   "id": "lay-path",
+   "name": "Lay the path into the fog",
+   "part": "path",
+   "part_name": "The path into the fog",
+   "kind": "area",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "mauve-brown",
+     "name": "Mauve brown",
+     "words": [
+      "mauve",
+      "brown"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.38,
+    "base_wide": 0.69,
+    "left": 6.49,
+    "right": 1.77,
+    "top": 7.52,
+    "bottom": 0.0,
+    "wide": 7.74,
+    "tall": 4.48,
+    "cx": 9.95,
+    "cy": 9.29,
+    "peak_x": 9.26,
+    "edges": [
+     "bottom"
+    ],
+    "meets": {
+     "bottom": [
+      {
+       "from": 6.51,
+       "to": 6.92,
+       "mid": 6.71
+      },
+      {
+       "from": 13.53,
+       "to": 14.23,
+       "mid": 13.88
+      }
+     ]
+    },
+    "share": 0.0197
+   },
+   "marks": [
+    {
+     "widest_down": 0.97,
+     "base_wide": 9.06,
+     "left": 5.76,
+     "right": 1.07,
+     "top": 7.3,
+     "bottom": 0.0,
+     "wide": 9.18,
+     "tall": 4.7,
+     "cx": 9.96,
+     "cy": 10.36,
+     "peak_x": 9.06,
+     "edges": [
+      "bottom"
+     ],
+     "meets": {
+      "bottom": [
+       {
+        "from": 5.93,
+        "to": 14.78,
+        "mid": 10.36
+       }
+      ]
+     },
+     "share": 0.1078,
+     "in_part": [
+      0.44,
+      0.63
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 7.42,
+      "to": 12.62,
+      "mid": 10.02,
+      "in_part": 0.44
+     }
+    ],
+    "down": [
+     {
+      "from": 7.72,
+      "to": 12.0,
+      "mid": 9.86,
+      "in_part": 0.52
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 8.37,
+       "to": 10.67,
+       "mid": 9.52,
+       "in_part": 0.38
+      }
+     ],
+     [
+      {
+       "from": 8.05,
+       "to": 11.48,
+       "mid": 9.76,
+       "in_part": 0.41
+      }
+     ],
+     [
+      {
+       "from": 7.88,
+       "to": 12.25,
+       "mid": 10.06,
+       "in_part": 0.45
+      }
+     ],
+     [
+      {
+       "from": 7.55,
+       "to": 13.03,
+       "mid": 10.29,
+       "in_part": 0.48
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#96746c",
+    "paints": {
+     "Mauve brown": 1.0
+    },
+    "cx": 9.96,
+    "cy": 10.36,
+    "edges": [
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.64,
+     "right": 0.36,
+     "top": 0.3,
+     "bottom": 0.7
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.1,
+      "across": null
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.7
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.18
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is at the bottom edge, and its right side is about 1 3/4 in from the right edge; it's about 7 1/2 in wide and 4 1/2 in tall."
+  },
+  {
+   "n": 6,
+   "id": "pull-far-birches",
+   "name": "Pull the thin far birches",
+   "part": "far-birches",
+   "part_name": "The far birches in the mist",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "haze-blue",
+     "name": "Haze blue",
+     "words": [
+      "haze",
+      "blue"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.65,
+    "base_wide": 0.36,
+    "left": 7.68,
+    "right": 3.58,
+    "top": 0.86,
+    "bottom": 4.77,
+    "wide": 4.75,
+    "tall": 6.38,
+    "cx": 11.25,
+    "cy": 5.28,
+    "peak_x": 8.03,
+    "edges": [],
+    "meets": {},
+    "share": 0.0035
+   },
+   "marks": [
+    {
+     "widest_down": 0.24,
+     "base_wide": 0.06,
+     "left": 7.38,
+     "right": 7.42,
+     "top": 0.0,
+     "bottom": 4.78,
+     "wide": 1.2,
+     "tall": 7.22,
+     "cx": 7.94,
+     "cy": 2.89,
+     "peak_x": 8.03,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 7.87,
+        "to": 8.19,
+        "mid": 8.03
+       }
+      ]
+     },
+     "share": 0.0082,
+     "in_part": [
+      0.1,
+      0.35
+     ]
+    },
+    {
+     "widest_down": 0.65,
+     "base_wide": 0.12,
+     "left": 11.73,
+     "right": 3.88,
+     "top": 4.49,
+     "bottom": 4.7,
+     "wide": 0.39,
+     "tall": 2.81,
+     "cx": 11.89,
+     "cy": 5.84,
+     "peak_x": 11.81,
+     "edges": [],
+     "meets": {},
+     "share": 0.0025,
+     "in_part": [
+      0.87,
+      0.71
+     ]
+    },
+    {
+     "widest_down": 0.47,
+     "base_wide": 0.16,
+     "left": 11.7,
+     "right": 3.42,
+     "top": 2.13,
+     "bottom": 7.41,
+     "wide": 0.88,
+     "tall": 2.46,
+     "cx": 12.03,
+     "cy": 3.43,
+     "peak_x": 11.86,
+     "edges": [],
+     "meets": {},
+     "share": 0.004,
+     "in_part": [
+      0.9,
+      0.42
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [],
+    "bands": [
+     [
+      {
+       "from": 7.81,
+       "to": 8.15,
+       "mid": 7.98,
+       "in_part": 0.11
+      }
+     ],
+     [
+      {
+       "from": 7.78,
+       "to": 8.12,
+       "mid": 7.95,
+       "in_part": 0.11
+      },
+      {
+       "from": 11.73,
+       "to": 12.0,
+       "mid": 11.87,
+       "in_part": 0.87
+      }
+     ],
+     [
+      {
+       "from": 7.74,
+       "to": 8.09,
+       "mid": 7.91,
+       "in_part": 0.1
+      }
+     ],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#a1a0ac",
+    "paints": {
+     "Haze blue": 11.8
+    },
+    "cx": 9.79,
+    "cy": 3.6,
+    "edges": [
+     "top"
+    ],
+    "halves": {
+     "left": 0.54,
+     "right": 0.46,
+     "top": 0.62,
+     "bottom": 0.38
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.32,
+      "across": null
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.42
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.45,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.09
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.09
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 2.27
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its right side is about 3 1/2 in from the right edge; it's about 4 1/2 in wide and 6 1/2 in tall."
+  },
+  {
+   "n": 7,
+   "id": "mark-far-birches",
+   "name": "Mark the far bark softly",
+   "part": "far-birches",
+   "part_name": "The far birches in the mist",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "soft-charcoal",
+     "name": "Soft charcoal",
+     "words": [
+      "soft",
+      "charcoal"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.78,
+    "base_wide": 0.34,
+    "left": 7.48,
+    "right": 3.53,
+    "top": 0.83,
+    "bottom": 4.58,
+    "wide": 4.99,
+    "tall": 6.59,
+    "cx": 9.66,
+    "cy": 5.67,
+    "peak_x": 8.02,
+    "edges": [],
+    "meets": {},
+    "share": 0.008
+   },
+   "marks": [
+    {
+     "widest_down": 0.94,
+     "base_wide": 0.61,
+     "left": 7.36,
+     "right": 7.04,
+     "top": 4.68,
+     "bottom": 3.87,
+     "wide": 1.59,
+     "tall": 3.46,
+     "cx": 7.8,
+     "cy": 6.75,
+     "peak_x": 7.96,
+     "edges": [],
+     "meets": {},
+     "share": 0.0066,
+     "in_part": [
+      0.08,
+      0.83
+     ]
+    },
+    {
+     "widest_down": 0.51,
+     "base_wide": 0.05,
+     "left": 7.85,
+     "right": 7.78,
+     "top": 0.29,
+     "bottom": 10.63,
+     "wide": 0.36,
+     "tall": 1.08,
+     "cx": 8.01,
+     "cy": 0.79,
+     "peak_x": 8.04,
+     "edges": [],
+     "meets": {},
+     "share": 0.0008,
+     "in_part": [
+      0.12,
+      0.1
+     ]
+    },
+    {
+     "widest_down": 0.96,
+     "base_wide": 0.8,
+     "left": 11.58,
+     "right": 3.38,
+     "top": 3.15,
+     "bottom": 3.88,
+     "wide": 1.04,
+     "tall": 4.97,
+     "cx": 12.15,
+     "cy": 6.21,
+     "peak_x": 11.97,
+     "edges": [],
+     "meets": {},
+     "share": 0.0107,
+     "in_part": [
+      0.92,
+      0.76
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 7.67,
+      "to": 7.99,
+      "mid": 7.83,
+      "in_part": 0.08
+     },
+     {
+      "from": 11.94,
+      "to": 12.48,
+      "mid": 12.21,
+      "in_part": 0.93
+     }
+    ],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [],
+     [
+      {
+       "from": 7.67,
+       "to": 7.99,
+       "mid": 7.83,
+       "in_part": 0.08
+      },
+      {
+       "from": 11.94,
+       "to": 12.48,
+       "mid": 12.21,
+       "in_part": 0.93
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#7b7271",
+    "paints": {
+     "Soft charcoal": 3.6
+    },
+    "cx": 10.31,
+    "cy": 5.94,
+    "edges": [
+     "top"
+    ],
+    "halves": {
+     "left": 0.43,
+     "right": 0.57,
+     "top": 0.14,
+     "bottom": 0.86
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    6
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.16
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.26,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.06
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.06
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 2.24
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 3/4 in from the top edge, and its right side is about 3 1/2 in from the right edge; it's about 5 in wide and 6 1/2 in tall."
+  },
+  {
+   "n": 8,
+   "id": "dab-dark-undergrowth",
+   "name": "Dab the dark of the undergrowth",
+   "part": "undergrowth",
+   "part_name": "The golden undergrowth",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "warm-ochre",
+     "name": "Warm ochre",
+     "words": [
+      "warm",
+      "ochre"
+     ]
+    },
+    {
+     "id": "moss-olive",
+     "name": "Moss olive",
+     "words": [
+      "moss",
+      "olive"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.83,
+    "base_wide": 0.7,
+    "left": 0.0,
+    "right": 0.25,
+    "top": 4.3,
+    "bottom": 3.67,
+    "wide": 15.75,
+    "tall": 4.03,
+    "cx": 5.63,
+    "cy": 6.96,
+    "peak_x": 2.82,
+    "edges": [
+     "left",
+     "right"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 5.21,
+       "to": 5.29,
+       "mid": 5.25
+      }
+     ],
+     "right": []
+    },
+    "share": 0.0489
+   },
+   "marks": [
+    {
+     "widest_down": 0.81,
+     "base_wide": 1.77,
+     "left": 0.0,
+     "right": 7.09,
+     "top": 4.25,
+     "bottom": 3.42,
+     "wide": 8.91,
+     "tall": 4.32,
+     "cx": 3.77,
+     "cy": 6.85,
+     "peak_x": 2.73,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 5.11,
+        "to": 8.07,
+        "mid": 6.59
+       }
+      ]
+     },
+     "share": 0.1105,
+     "in_part": [
+      0.24,
+      0.61
+     ]
+    },
+    {
+     "widest_down": 0.69,
+     "base_wide": 0.28,
+     "left": 9.67,
+     "right": 0.0,
+     "top": 6.21,
+     "bottom": 3.21,
+     "wide": 6.33,
+     "tall": 2.58,
+     "cx": 12.93,
+     "cy": 7.77,
+     "peak_x": 10.67,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 7.37,
+        "to": 8.6,
+        "mid": 7.99
+       }
+      ]
+     },
+     "share": 0.0296,
+     "in_part": [
+      0.81,
+      0.82
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.0,
+      "to": 7.06,
+      "mid": 3.53,
+      "in_part": 0.22
+     },
+     {
+      "from": 10.44,
+      "to": 11.31,
+      "mid": 10.88,
+      "in_part": 0.68
+     }
+    ],
+    "down": [
+     {
+      "from": 5.32,
+      "to": 8.34,
+      "mid": 6.83,
+      "in_part": 0.6
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.34,
+       "to": 5.66,
+       "mid": 3.5,
+       "in_part": 0.22
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 6.32,
+       "mid": 3.16,
+       "in_part": 0.2
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 7.06,
+       "mid": 3.53,
+       "in_part": 0.22
+      },
+      {
+       "from": 10.44,
+       "to": 11.31,
+       "mid": 10.88,
+       "in_part": 0.68
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 7.56,
+       "mid": 3.78,
+       "in_part": 0.24
+      },
+      {
+       "from": 10.23,
+       "to": 11.03,
+       "mid": 10.63,
+       "in_part": 0.66
+      },
+      {
+       "from": 12.53,
+       "to": 13.18,
+       "mid": 12.85,
+       "in_part": 0.8
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#a37330",
+    "paints": {
+     "Warm ochre": 10.0,
+     "Moss olive": 5.7
+    },
+    "cx": 5.73,
+    "cy": 7.04,
+    "edges": [
+     "left",
+     "right"
+    ],
+    "halves": {
+     "left": 0.76,
+     "right": 0.24,
+     "top": 0.25,
+     "bottom": 0.75
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.34
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.26
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across. Its top is about 4 1/2 in from the top edge and its bottom is about 3 1/2 in from the bottom edge."
+  },
+  {
+   "n": 9,
+   "id": "dab-gold-undergrowth",
+   "name": "Dab gold on the bushes",
+   "part": "undergrowth",
+   "part_name": "The golden undergrowth",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "bright-gold",
+     "name": "Bright gold",
+     "words": [
+      "bright",
+      "gold"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.35,
+    "base_wide": 0.38,
+    "left": 0.63,
+    "right": 0.64,
+    "top": 5.3,
+    "bottom": 3.84,
+    "wide": 14.72,
+    "tall": 2.86,
+    "cx": 4.58,
+    "cy": 6.41,
+    "peak_x": 0.73,
+    "edges": [],
+    "meets": {},
+    "share": 0.0045
+   },
+   "marks": [
+    {
+     "widest_down": 0.47,
+     "base_wide": 0.01,
+     "left": 0.96,
+     "right": 14.38,
+     "top": 6.19,
+     "bottom": 5.39,
+     "wide": 0.66,
+     "tall": 0.42,
+     "cx": 1.26,
+     "cy": 6.39,
+     "peak_x": 1.32,
+     "edges": [],
+     "meets": {},
+     "share": 0.0007,
+     "in_part": [
+      0.08,
+      0.5
+     ]
+    },
+    {
+     "widest_down": 0.49,
+     "base_wide": 0.04,
+     "left": 2.47,
+     "right": 12.59,
+     "top": 5.51,
+     "bottom": 6.04,
+     "wide": 0.94,
+     "tall": 0.46,
+     "cx": 2.92,
+     "cy": 5.73,
+     "peak_x": 2.95,
+     "edges": [],
+     "meets": {},
+     "share": 0.001,
+     "in_part": [
+      0.18,
+      0.35
+     ]
+    },
+    {
+     "widest_down": 0.74,
+     "base_wide": 0.11,
+     "left": 5.05,
+     "right": 9.92,
+     "top": 5.59,
+     "bottom": 5.52,
+     "wide": 1.03,
+     "tall": 0.89,
+     "cx": 5.63,
+     "cy": 6.1,
+     "peak_x": 5.44,
+     "edges": [],
+     "meets": {},
+     "share": 0.0016,
+     "in_part": [
+      0.35,
+      0.43
+     ]
+    },
+    {
+     "widest_down": 0.5,
+     "base_wide": 0.02,
+     "left": 6.21,
+     "right": 9.3,
+     "top": 6.53,
+     "bottom": 5.03,
+     "wide": 0.49,
+     "tall": 0.45,
+     "cx": 6.44,
+     "cy": 6.75,
+     "peak_x": 6.53,
+     "edges": [],
+     "meets": {},
+     "share": 0.0006,
+     "in_part": [
+      0.4,
+      0.59
+     ]
+    },
+    {
+     "widest_down": 0.65,
+     "base_wide": 0.06,
+     "left": 6.52,
+     "right": 9.08,
+     "top": 7.14,
+     "bottom": 4.3,
+     "wide": 0.4,
+     "tall": 0.56,
+     "cx": 6.71,
+     "cy": 7.45,
+     "peak_x": 6.72,
+     "edges": [],
+     "meets": {},
+     "share": 0.0004,
+     "in_part": [
+      0.42,
+      0.75
+     ]
+    },
+    {
+     "widest_down": 0.48,
+     "base_wide": 0.08,
+     "left": 7.7,
+     "right": 7.79,
+     "top": 7.88,
+     "bottom": 3.88,
+     "wide": 0.5,
+     "tall": 0.25,
+     "cx": 7.94,
+     "cy": 7.99,
+     "peak_x": 7.95,
+     "edges": [],
+     "meets": {},
+     "share": 0.0004,
+     "in_part": [
+      0.5,
+      0.87
+     ]
+    },
+    {
+     "widest_down": 0.48,
+     "base_wide": 0.01,
+     "left": 11.97,
+     "right": 3.22,
+     "top": 8.03,
+     "bottom": 3.7,
+     "wide": 0.81,
+     "tall": 0.27,
+     "cx": 12.26,
+     "cy": 8.18,
+     "peak_x": 12.42,
+     "edges": [],
+     "meets": {},
+     "share": 0.0003,
+     "in_part": [
+      0.77,
+      0.92
+     ]
+    },
+    {
+     "widest_down": 0.58,
+     "base_wide": 0.05,
+     "left": 14.43,
+     "right": 0.63,
+     "top": 7.99,
+     "bottom": 3.28,
+     "wide": 0.94,
+     "tall": 0.73,
+     "cx": 14.93,
+     "cy": 8.38,
+     "peak_x": 15.25,
+     "edges": [],
+     "meets": {},
+     "share": 0.0008,
+     "in_part": [
+      0.93,
+      0.97
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#dd9e35",
+    "paints": {
+     "Bright gold": 9.9
+    },
+    "cx": 6.48,
+    "cy": 6.83,
+    "edges": [
+     "left",
+     "right"
+    ],
+    "halves": {
+     "left": 0.76,
+     "right": 0.24,
+     "top": 0.48,
+     "bottom": 0.52
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    8
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.58
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.1
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.33
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.06
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.06
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "below"
+     ],
+     "gap": {
+      "down": 0.19,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 4 in from the bottom edge, and its left side is about 3/4 in from the left edge; it's about 14 1/2 in wide and 3 in tall."
+  },
+  {
+   "n": 10,
+   "id": "build-rock",
+   "name": "Build the boulder",
+   "part": "rock",
+   "part_name": "The mossy boulder",
+   "kind": "object",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "gray-violet",
+     "name": "Gray violet",
+     "words": [
+      "gray",
+      "violet"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.55,
+    "base_wide": 0.43,
+    "left": 11.3,
+    "right": 2.06,
+    "top": 7.18,
+    "bottom": 3.5,
+    "wide": 2.64,
+    "tall": 1.31,
+    "cx": 12.58,
+    "cy": 7.88,
+    "peak_x": 12.75,
+    "edges": [],
+    "meets": {},
+    "share": 0.0119
+   },
+   "marks": [
+    {
+     "widest_down": 0.74,
+     "base_wide": 0.3,
+     "left": 11.23,
+     "right": 2.06,
+     "top": 7.11,
+     "bottom": 3.53,
+     "wide": 2.71,
+     "tall": 1.36,
+     "cx": 12.61,
+     "cy": 7.87,
+     "peak_x": 12.72,
+     "edges": [],
+     "meets": {},
+     "share": 0.012,
+     "in_part": [
+      0.5,
+      0.53
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 11.55,
+      "to": 13.83,
+      "mid": 12.69,
+      "in_part": 0.53
+     }
+    ],
+    "down": [
+     {
+      "from": 7.17,
+      "to": 8.37,
+      "mid": 7.77,
+      "in_part": 0.45
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 11.82,
+       "to": 13.52,
+       "mid": 12.67,
+       "in_part": 0.52
+      }
+     ],
+     [
+      {
+       "from": 11.69,
+       "to": 13.68,
+       "mid": 12.68,
+       "in_part": 0.52
+      }
+     ],
+     [
+      {
+       "from": 11.53,
+       "to": 13.83,
+       "mid": 12.68,
+       "in_part": 0.52
+      }
+     ],
+     [
+      {
+       "from": 11.41,
+       "to": 13.93,
+       "mid": 12.67,
+       "in_part": 0.52
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#787791",
+    "paints": {
+     "Gray violet": 14.4
+    },
+    "cx": 12.61,
+    "cy": 7.87,
+    "edges": [],
+    "halves": {
+     "left": 0.5,
+     "right": 0.5,
+     "top": 0.44,
+     "bottom": 0.56
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.7
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.93
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.04
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.7,
+      "across": 5.6
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is about 2 in from the right edge; it's about 2 1/2 in wide and 1 1/4 in tall."
+  },
+  {
+   "n": 11,
+   "id": "moss-rock",
+   "name": "Lay the moss on the boulder",
+   "part": "the-boulder-s-mossy-top",
+   "part_name": "The boulder's mossy top",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "moss-olive",
+     "name": "Moss olive",
+     "words": [
+      "moss",
+      "olive"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.36,
+    "base_wide": 0.18,
+    "left": 11.53,
+    "right": 2.11,
+    "top": 7.18,
+    "bottom": 3.62,
+    "wide": 2.36,
+    "tall": 1.2,
+    "cx": 12.78,
+    "cy": 7.77,
+    "peak_x": 12.72,
+    "edges": [],
+    "meets": {},
+    "share": 0.008
+   },
+   "marks": [
+    {
+     "widest_down": 0.78,
+     "base_wide": 0.02,
+     "left": 11.16,
+     "right": 1.92,
+     "top": 7.12,
+     "bottom": 3.4,
+     "wide": 2.92,
+     "tall": 1.48,
+     "cx": 12.52,
+     "cy": 7.88,
+     "peak_x": 12.59,
+     "edges": [],
+     "meets": {},
+     "share": 0.0035,
+     "in_part": [
+      0.42,
+      0.58
+     ]
+    },
+    {
+     "widest_down": 0.38,
+     "base_wide": 0.05,
+     "left": 12.42,
+     "right": 3.13,
+     "top": 7.66,
+     "bottom": 3.9,
+     "wide": 0.45,
+     "tall": 0.43,
+     "cx": 12.68,
+     "cy": 7.87,
+     "peak_x": 12.62,
+     "edges": [],
+     "meets": {},
+     "share": 0.0003,
+     "in_part": [
+      0.49,
+      0.58
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 11.64,
+      "to": 11.86,
+      "mid": 11.75,
+      "in_part": 0.09
+     },
+     {
+      "from": 12.54,
+      "to": 12.72,
+      "mid": 12.63,
+      "in_part": 0.47
+     }
+    ],
+    "down": [
+     {
+      "from": 7.28,
+      "to": 7.51,
+      "mid": 7.39,
+      "in_part": 0.18
+     },
+     {
+      "from": 8.32,
+      "to": 8.39,
+      "mid": 8.36,
+      "in_part": 0.98
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 12.04,
+       "to": 12.41,
+       "mid": 12.23,
+       "in_part": 0.29
+      },
+      {
+       "from": 12.76,
+       "to": 12.96,
+       "mid": 12.86,
+       "in_part": 0.57
+      }
+     ],
+     [
+      {
+       "from": 11.83,
+       "to": 11.98,
+       "mid": 11.9,
+       "in_part": 0.16
+      }
+     ],
+     [
+      {
+       "from": 11.5,
+       "to": 11.8,
+       "mid": 11.65,
+       "in_part": 0.05
+      },
+      {
+       "from": 12.68,
+       "to": 12.84,
+       "mid": 12.76,
+       "in_part": 0.52
+      }
+     ],
+     [
+      {
+       "from": 12.66,
+       "to": 12.79,
+       "mid": 12.72,
+       "in_part": 0.51
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#685b43",
+    "paints": {
+     "Moss olive": 13.2
+    },
+    "cx": 12.53,
+    "cy": 7.88,
+    "edges": [],
+    "halves": {
+     "left": 0.63,
+     "right": 0.37,
+     "top": 0.42,
+     "bottom": 0.58
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.18
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.25
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.38,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.48,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.26
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.83,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is about 2 in from the right edge; it's about 2 1/2 in wide and 1 1/4 in tall."
+  },
+  {
+   "n": 12,
+   "id": "dash-rust-leaves",
+   "name": "Dash the dark fallen leaves",
+   "part": "the-leaf-carpet",
+   "part_name": "The leaf carpet",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "rust-brown",
+     "name": "Rust brown",
+     "words": [
+      "rust",
+      "brown"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.98,
+    "base_wide": 4.11,
+    "left": 2.3,
+    "right": 1.22,
+    "top": 7.71,
+    "bottom": 0.0,
+    "wide": 12.48,
+    "tall": 4.29,
+    "cx": 9.92,
+    "cy": 10.7,
+    "peak_x": 9.72,
+    "edges": [
+     "bottom"
+    ],
+    "meets": {
+     "bottom": [
+      {
+       "from": 6.65,
+       "to": 7.48,
+       "mid": 7.06
+      },
+      {
+       "from": 7.63,
+       "to": 11.51,
+       "mid": 9.57
+      },
+      {
+       "from": 12.11,
+       "to": 12.62,
+       "mid": 12.37
+      },
+      {
+       "from": 13.27,
+       "to": 13.66,
+       "mid": 13.46
+      },
+      {
+       "from": 14.18,
+       "to": 14.78,
+       "mid": 14.48
+      }
+     ]
+    },
+    "share": 0.0518
+   },
+   "marks": [
+    {
+     "widest_down": 1.0,
+     "base_wide": 4.11,
+     "left": 0.0,
+     "right": 0.0,
+     "top": 7.32,
+     "bottom": 0.0,
+     "wide": 16.0,
+     "tall": 4.68,
+     "cx": 7.24,
+     "cy": 10.28,
+     "peak_x": 10.0,
+     "edges": [
+      "left",
+      "right",
+      "bottom"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 8.45,
+        "to": 8.58,
+        "mid": 8.51
+       },
+       {
+        "from": 8.89,
+        "to": 9.0,
+        "mid": 8.95
+       },
+       {
+        "from": 9.09,
+        "to": 9.42,
+        "mid": 9.26
+       },
+       {
+        "from": 10.7,
+        "to": 11.04,
+        "mid": 10.87
+       },
+       {
+        "from": 11.38,
+        "to": 12.0,
+        "mid": 11.69
+       }
+      ],
+      "right": [
+       {
+        "from": 9.52,
+        "to": 9.84,
+        "mid": 9.68
+       },
+       {
+        "from": 10.27,
+        "to": 10.73,
+        "mid": 10.5
+       },
+       {
+        "from": 10.76,
+        "to": 10.92,
+        "mid": 10.84
+       },
+       {
+        "from": 10.93,
+        "to": 11.03,
+        "mid": 10.98
+       }
+      ],
+      "bottom": [
+       {
+        "from": 0.0,
+        "to": 1.43,
+        "mid": 0.72
+       },
+       {
+        "from": 1.44,
+        "to": 1.55,
+        "mid": 1.49
+       },
+       {
+        "from": 1.62,
+        "to": 1.84,
+        "mid": 1.73
+       },
+       {
+        "from": 1.97,
+        "to": 2.57,
+        "mid": 2.27
+       },
+       {
+        "from": 3.0,
+        "to": 3.43,
+        "mid": 3.22
+       },
+       {
+        "from": 4.06,
+        "to": 5.47,
+        "mid": 4.76
+       },
+       {
+        "from": 6.14,
+        "to": 6.25,
+        "mid": 6.19
+       },
+       {
+        "from": 6.62,
+        "to": 6.75,
+        "mid": 6.69
+       },
+       {
+        "from": 6.81,
+        "to": 7.12,
+        "mid": 6.96
+       },
+       {
+        "from": 7.28,
+        "to": 7.48,
+        "mid": 7.38
+       },
+       {
+        "from": 7.63,
+        "to": 11.51,
+        "mid": 9.57
+       },
+       {
+        "from": 12.11,
+        "to": 12.62,
+        "mid": 12.37
+       },
+       {
+        "from": 13.27,
+        "to": 15.11,
+        "mid": 14.19
+       }
+      ]
+     },
+     "share": 0.1296,
+     "in_part": [
+      0.32,
+      0.6
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.55,
+      "to": 4.21,
+      "mid": 2.88,
+      "in_part": -0.07
+     },
+     {
+      "from": 4.5,
+      "to": 5.11,
+      "mid": 4.81,
+      "in_part": 0.1
+     },
+     {
+      "from": 7.3,
+      "to": 9.21,
+      "mid": 8.26,
+      "in_part": 0.41
+     },
+     {
+      "from": 10.03,
+      "to": 11.08,
+      "mid": 10.56,
+      "in_part": 0.62
+     },
+     {
+      "from": 11.76,
+      "to": 12.44,
+      "mid": 12.1,
+      "in_part": 0.76
+     },
+     {
+      "from": 12.92,
+      "to": 14.07,
+      "mid": 13.49,
+      "in_part": 0.88
+     },
+     {
+      "from": 14.59,
+      "to": 16.0,
+      "mid": 15.3,
+      "in_part": 1.05
+     }
+    ],
+    "down": [
+     {
+      "from": 9.28,
+      "to": 9.62,
+      "mid": 9.45,
+      "in_part": 0.41
+     },
+     {
+      "from": 9.87,
+      "to": 10.14,
+      "mid": 10.0,
+      "in_part": 0.54
+     },
+     {
+      "from": 11.3,
+      "to": 11.58,
+      "mid": 11.44,
+      "in_part": 0.87
+     },
+     {
+      "from": 11.68,
+      "to": 12.0,
+      "mid": 11.84,
+      "in_part": 0.96
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.72,
+       "to": 1.41,
+       "mid": 1.06,
+       "in_part": -0.23
+      },
+      {
+       "from": 1.88,
+       "to": 3.34,
+       "mid": 2.61,
+       "in_part": -0.09
+      },
+      {
+       "from": 3.83,
+       "to": 5.25,
+       "mid": 4.54,
+       "in_part": 0.08
+      },
+      {
+       "from": 7.12,
+       "to": 8.18,
+       "mid": 7.65,
+       "in_part": 0.36
+      }
+     ],
+     [
+      {
+       "from": 0.11,
+       "to": 1.59,
+       "mid": 0.85,
+       "in_part": -0.25
+      },
+      {
+       "from": 2.25,
+       "to": 5.74,
+       "mid": 4.0,
+       "in_part": 0.03
+      },
+      {
+       "from": 6.35,
+       "to": 7.27,
+       "mid": 6.81,
+       "in_part": 0.28
+      },
+      {
+       "from": 9.42,
+       "to": 10.19,
+       "mid": 9.81,
+       "in_part": 0.55
+      },
+      {
+       "from": 14.89,
+       "to": 15.38,
+       "mid": 15.13,
+       "in_part": 1.03
+      }
+     ],
+     [
+      {
+       "from": 2.19,
+       "to": 3.29,
+       "mid": 2.74,
+       "in_part": -0.08
+      },
+      {
+       "from": 6.54,
+       "to": 7.5,
+       "mid": 7.02,
+       "in_part": 0.3
+      },
+      {
+       "from": 7.95,
+       "to": 8.62,
+       "mid": 8.28,
+       "in_part": 0.42
+      },
+      {
+       "from": 8.85,
+       "to": 9.74,
+       "mid": 9.3,
+       "in_part": 0.51
+      },
+      {
+       "from": 10.1,
+       "to": 10.76,
+       "mid": 10.43,
+       "in_part": 0.61
+      },
+      {
+       "from": 11.15,
+       "to": 12.04,
+       "mid": 11.59,
+       "in_part": 0.71
+      },
+      {
+       "from": 12.95,
+       "to": 13.94,
+       "mid": 13.44,
+       "in_part": 0.88
+      }
+     ],
+     [
+      {
+       "from": 1.55,
+       "to": 4.21,
+       "mid": 2.88,
+       "in_part": -0.07
+      },
+      {
+       "from": 4.5,
+       "to": 5.13,
+       "mid": 4.82,
+       "in_part": 0.1
+      },
+      {
+       "from": 7.29,
+       "to": 9.2,
+       "mid": 8.25,
+       "in_part": 0.41
+      },
+      {
+       "from": 10.03,
+       "to": 11.08,
+       "mid": 10.56,
+       "in_part": 0.62
+      },
+      {
+       "from": 11.76,
+       "to": 12.44,
+       "mid": 12.1,
+       "in_part": 0.76
+      },
+      {
+       "from": 12.92,
+       "to": 14.07,
+       "mid": 13.49,
+       "in_part": 0.88
+      },
+      {
+       "from": 14.59,
+       "to": 16.0,
+       "mid": 15.3,
+       "in_part": 1.05
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#9a5b2b",
+    "paints": {
+     "Rust brown": 7.3
+    },
+    "cx": 7.3,
+    "cy": 10.25,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.66,
+     "right": 0.34,
+     "top": 0.38,
+     "bottom": 0.62
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.29,
+      "across": null
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.99
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.44
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.06,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.03
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is at the bottom edge, and its right side is about 1 1/4 in from the right edge; it's about 12 1/2 in wide and 4 1/2 in tall."
+  },
+  {
+   "n": 13,
+   "id": "dash-ochre-leaves",
+   "name": "Dash the ochre fallen leaves",
+   "part": "the-leaf-carpet",
+   "part_name": "The leaf carpet",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "warm-ochre",
+     "name": "Warm ochre",
+     "words": [
+      "warm",
+      "ochre"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.89,
+    "base_wide": 1.02,
+    "left": 3.65,
+    "right": 1.38,
+    "top": 7.66,
+    "bottom": 0.0,
+    "wide": 10.97,
+    "tall": 4.34,
+    "cx": 10.0,
+    "cy": 10.66,
+    "peak_x": 9.76,
+    "edges": [
+     "bottom"
+    ],
+    "meets": {
+     "bottom": [
+      {
+       "from": 6.95,
+       "to": 7.28,
+       "mid": 7.12
+      },
+      {
+       "from": 7.44,
+       "to": 7.78,
+       "mid": 7.61
+      },
+      {
+       "from": 8.18,
+       "to": 8.29,
+       "mid": 8.23
+      },
+      {
+       "from": 9.2,
+       "to": 9.3,
+       "mid": 9.25
+      },
+      {
+       "from": 9.8,
+       "to": 9.93,
+       "mid": 9.86
+      },
+      {
+       "from": 11.38,
+       "to": 12.14,
+       "mid": 11.76
+      },
+      {
+       "from": 12.35,
+       "to": 13.52,
+       "mid": 12.93
+      }
+     ]
+    },
+    "share": 0.0268
+   },
+   "marks": [
+    {
+     "widest_down": 0.58,
+     "base_wide": 0.56,
+     "left": 0.96,
+     "right": 10.69,
+     "top": 10.62,
+     "bottom": 0.0,
+     "wide": 4.35,
+     "tall": 1.38,
+     "cx": 3.28,
+     "cy": 11.38,
+     "peak_x": 3.21,
+     "edges": [
+      "bottom"
+     ],
+     "meets": {
+      "bottom": [
+       {
+        "from": 2.32,
+        "to": 3.24,
+        "mid": 2.78
+       },
+       {
+        "from": 3.33,
+        "to": 4.21,
+        "mid": 3.77
+       }
+      ]
+     },
+     "share": 0.0108,
+     "in_part": [
+      -0.03,
+      0.86
+     ]
+    },
+    {
+     "widest_down": 0.35,
+     "base_wide": 0.08,
+     "left": 0.0,
+     "right": 6.46,
+     "top": 7.72,
+     "bottom": 1.75,
+     "wide": 9.54,
+     "tall": 2.53,
+     "cx": 4.17,
+     "cy": 8.84,
+     "peak_x": 1.3,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 7.78,
+        "to": 8.92,
+        "mid": 8.35
+       },
+       {
+        "from": 8.95,
+        "to": 9.11,
+        "mid": 9.03
+       }
+      ]
+     },
+     "share": 0.0244,
+     "in_part": [
+      0.05,
+      0.27
+     ]
+    },
+    {
+     "widest_down": 0.54,
+     "base_wide": 0.81,
+     "left": 4.95,
+     "right": 7.02,
+     "top": 9.84,
+     "bottom": 0.0,
+     "wide": 4.03,
+     "tall": 2.16,
+     "cx": 6.66,
+     "cy": 10.93,
+     "peak_x": 6.37,
+     "edges": [
+      "bottom"
+     ],
+     "meets": {
+      "bottom": [
+       {
+        "from": 5.36,
+        "to": 6.02,
+        "mid": 5.69
+       },
+       {
+        "from": 8.18,
+        "to": 8.29,
+        "mid": 8.23
+       }
+      ]
+     },
+     "share": 0.0137,
+     "in_part": [
+      0.27,
+      0.75
+     ]
+    },
+    {
+     "widest_down": 0.39,
+     "base_wide": 0.45,
+     "left": 9.11,
+     "right": 3.83,
+     "top": 10.57,
+     "bottom": 0.0,
+     "wide": 3.06,
+     "tall": 1.43,
+     "cx": 10.43,
+     "cy": 11.26,
+     "peak_x": 9.41,
+     "edges": [
+      "bottom"
+     ],
+     "meets": {
+      "bottom": [
+       {
+        "from": 11.38,
+        "to": 12.14,
+        "mid": 11.76
+       }
+      ]
+     },
+     "share": 0.0064,
+     "in_part": [
+      0.61,
+      0.83
+     ]
+    },
+    {
+     "widest_down": 0.71,
+     "base_wide": 1.01,
+     "left": 7.77,
+     "right": 0.0,
+     "top": 7.95,
+     "bottom": 0.0,
+     "wide": 8.23,
+     "tall": 4.05,
+     "cx": 12.7,
+     "cy": 10.25,
+     "peak_x": 10.15,
+     "edges": [
+      "right",
+      "bottom"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 9.82,
+        "to": 10.03,
+        "mid": 9.93
+       },
+       {
+        "from": 10.04,
+        "to": 10.32,
+        "mid": 10.18
+       },
+       {
+        "from": 11.04,
+        "to": 11.38,
+        "mid": 11.21
+       }
+      ],
+      "bottom": [
+       {
+        "from": 12.35,
+        "to": 13.52,
+        "mid": 12.93
+       }
+      ]
+     },
+     "share": 0.0274,
+     "in_part": [
+      0.81,
+      0.6
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.0,
+      "to": 1.54,
+      "mid": 1.27,
+      "in_part": -0.21
+     },
+     {
+      "from": 5.27,
+      "to": 7.3,
+      "mid": 6.29,
+      "in_part": 0.24
+     },
+     {
+      "from": 11.19,
+      "to": 12.92,
+      "mid": 12.06,
+      "in_part": 0.75
+     },
+     {
+      "from": 13.19,
+      "to": 13.66,
+      "mid": 13.42,
+      "in_part": 0.88
+     }
+    ],
+    "down": [
+     {
+      "from": 8.8,
+      "to": 8.98,
+      "mid": 8.89,
+      "in_part": 0.28
+     },
+     {
+      "from": 10.72,
+      "to": 11.3,
+      "mid": 11.01,
+      "in_part": 0.77
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.0,
+       "to": 0.69,
+       "mid": 0.35,
+       "in_part": -0.3
+      },
+      {
+       "from": 5.45,
+       "to": 7.09,
+       "mid": 6.27,
+       "in_part": 0.24
+      },
+      {
+       "from": 10.6,
+       "to": 11.07,
+       "mid": 10.83,
+       "in_part": 0.64
+      }
+     ],
+     [
+      {
+       "from": 3.0,
+       "to": 3.49,
+       "mid": 3.25,
+       "in_part": -0.04
+      },
+      {
+       "from": 5.8,
+       "to": 6.35,
+       "mid": 6.08,
+       "in_part": 0.22
+      },
+      {
+       "from": 7.27,
+       "to": 9.22,
+       "mid": 8.25,
+       "in_part": 0.41
+      },
+      {
+       "from": 11.18,
+       "to": 11.84,
+       "mid": 11.51,
+       "in_part": 0.71
+      }
+     ],
+     [
+      {
+       "from": 5.13,
+       "to": 5.64,
+       "mid": 5.39,
+       "in_part": 0.16
+      },
+      {
+       "from": 12.18,
+       "to": 12.85,
+       "mid": 12.51,
+       "in_part": 0.8
+      },
+      {
+       "from": 15.46,
+       "to": 15.96,
+       "mid": 15.71,
+       "in_part": 1.08
+      }
+     ],
+     [
+      {
+       "from": 1.0,
+       "to": 1.54,
+       "mid": 1.27,
+       "in_part": -0.21
+      },
+      {
+       "from": 5.27,
+       "to": 7.29,
+       "mid": 6.28,
+       "in_part": 0.24
+      },
+      {
+       "from": 11.19,
+       "to": 12.03,
+       "mid": 11.61,
+       "in_part": 0.71
+      },
+      {
+       "from": 12.44,
+       "to": 12.92,
+       "mid": 12.68,
+       "in_part": 0.81
+      },
+      {
+       "from": 13.19,
+       "to": 13.67,
+       "mid": 13.43,
+       "in_part": 0.88
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#cb7c2d",
+    "paints": {
+     "Warm ochre": 2.7
+    },
+    "cx": 7.56,
+    "cy": 10.14,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.62,
+     "right": 0.38,
+     "top": 0.4,
+     "bottom": 0.6
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    12
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.13
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.06,
+      "across": null
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.26,
+      "across": null
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.13
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.93
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.25
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is at the bottom edge, and its right side is about 1 1/2 in from the right edge; it's about 11 in wide and 4 1/2 in tall."
+  },
+  {
+   "n": 14,
+   "id": "pull-big-birches",
+   "name": "Pull the big birch trunks",
+   "part": "birches",
+   "part_name": "The big birches",
+   "kind": "object",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "pale-violet-gray",
+     "name": "Pale violet-gray",
+     "words": [
+      "pale",
+      "violet",
+      "gray"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.74,
+    "base_wide": 0.29,
+    "left": 0.0,
+    "right": 0.0,
+    "top": 0.0,
+    "bottom": 0.0,
+    "wide": 16.0,
+    "tall": 12.0,
+    "cx": 6.94,
+    "cy": 5.71,
+    "peak_x": 8.7,
+    "edges": [
+     "left",
+     "right",
+     "top",
+     "bottom"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 0.27,
+       "to": 1.07,
+       "mid": 0.67
+      },
+      {
+       "from": 1.7,
+       "to": 3.21,
+       "mid": 2.46
+      },
+      {
+       "from": 3.61,
+       "to": 3.96,
+       "mid": 3.79
+      },
+      {
+       "from": 3.97,
+       "to": 4.08,
+       "mid": 4.03
+      },
+      {
+       "from": 4.71,
+       "to": 9.42,
+       "mid": 7.07
+      }
+     ],
+     "right": [
+      {
+       "from": 0.0,
+       "to": 11.48,
+       "mid": 5.74
+      },
+      {
+       "from": 11.77,
+       "to": 12.0,
+       "mid": 11.88
+      }
+     ],
+     "top": [
+      {
+       "from": 0.39,
+       "to": 0.5,
+       "mid": 0.45
+      },
+      {
+       "from": 2.4,
+       "to": 3.38,
+       "mid": 2.89
+      },
+      {
+       "from": 5.57,
+       "to": 6.01,
+       "mid": 5.79
+      },
+      {
+       "from": 13.43,
+       "to": 14.04,
+       "mid": 13.74
+      },
+      {
+       "from": 15.23,
+       "to": 16.0,
+       "mid": 15.61
+      }
+     ],
+     "bottom": [
+      {
+       "from": 15.74,
+       "to": 16.0,
+       "mid": 15.87
+      }
+     ]
+    },
+    "share": 0.1783
+   },
+   "marks": [
+    {
+     "widest_down": 0.16,
+     "base_wide": 0.46,
+     "left": 0.0,
+     "right": 15.26,
+     "top": 4.49,
+     "bottom": 2.58,
+     "wide": 0.74,
+     "tall": 4.93,
+     "cx": 0.23,
+     "cy": 6.92,
+     "peak_x": 0.18,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 4.51,
+        "to": 9.41,
+        "mid": 6.96
+       }
+      ]
+     },
+     "share": 0.0117,
+     "in_part": [
+      0.01,
+      0.58
+     ]
+    },
+    {
+     "widest_down": 0.14,
+     "base_wide": 0.35,
+     "left": 0.0,
+     "right": 15.21,
+     "top": 0.0,
+     "bottom": 7.9,
+     "wide": 0.79,
+     "tall": 4.1,
+     "cx": 0.31,
+     "cy": 1.92,
+     "peak_x": 0.33,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 0.0,
+        "to": 4.02,
+        "mid": 2.01
+       }
+      ],
+      "top": [
+       {
+        "from": 0.0,
+        "to": 0.67,
+        "mid": 0.33
+       }
+      ]
+     },
+     "share": 0.013,
+     "in_part": [
+      0.02,
+      0.16
+     ]
+    },
+    {
+     "widest_down": 0.94,
+     "base_wide": 2.3,
+     "left": 0.28,
+     "right": 12.4,
+     "top": 0.0,
+     "bottom": 1.59,
+     "wide": 3.32,
+     "tall": 10.41,
+     "cx": 2.23,
+     "cy": 5.51,
+     "peak_x": 2.96,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [],
+      "top": [
+       {
+        "from": 2.36,
+        "to": 3.6,
+        "mid": 2.98
+       }
+      ]
+     },
+     "share": 0.0724,
+     "in_part": [
+      0.14,
+      0.46
+     ]
+    },
+    {
+     "widest_down": 0.95,
+     "base_wide": 1.57,
+     "left": 3.18,
+     "right": 9.89,
+     "top": 0.0,
+     "bottom": 2.7,
+     "wide": 2.93,
+     "tall": 9.3,
+     "cx": 4.76,
+     "cy": 4.79,
+     "peak_x": 5.57,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 5.02,
+        "to": 6.08,
+        "mid": 5.55
+       }
+      ]
+     },
+     "share": 0.053,
+     "in_part": [
+      0.3,
+      0.4
+     ]
+    },
+    {
+     "widest_down": 0.97,
+     "base_wide": 1.08,
+     "left": 13.27,
+     "right": 1.14,
+     "top": 0.0,
+     "bottom": 1.9,
+     "wide": 1.59,
+     "tall": 10.1,
+     "cx": 14.18,
+     "cy": 5.32,
+     "peak_x": 13.7,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 13.4,
+        "to": 14.09,
+        "mid": 13.74
+       }
+      ]
+     },
+     "share": 0.0386,
+     "in_part": [
+      0.89,
+      0.44
+     ]
+    },
+    {
+     "widest_down": 0.01,
+     "base_wide": 0.38,
+     "left": 15.06,
+     "right": 0.0,
+     "top": 0.0,
+     "bottom": 0.53,
+     "wide": 0.94,
+     "tall": 11.47,
+     "cx": 15.75,
+     "cy": 4.5,
+     "peak_x": 15.54,
+     "edges": [
+      "right",
+      "top"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 0.0,
+        "to": 11.46,
+        "mid": 5.73
+       }
+      ],
+      "top": [
+       {
+        "from": 15.14,
+        "to": 16.0,
+        "mid": 15.57
+       }
+      ]
+     },
+     "share": 0.0241,
+     "in_part": [
+      0.98,
+      0.38
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.59,
+      "to": 2.88,
+      "mid": 2.24,
+      "in_part": 0.14
+     },
+     {
+      "from": 4.06,
+      "to": 5.17,
+      "mid": 4.61,
+      "in_part": 0.29
+     },
+     {
+      "from": 13.96,
+      "to": 14.68,
+      "mid": 14.32,
+      "in_part": 0.89
+     }
+    ],
+    "down": [],
+    "bands": [
+     [
+      {
+       "from": 2.0,
+       "to": 3.19,
+       "mid": 2.6,
+       "in_part": 0.16
+      },
+      {
+       "from": 4.61,
+       "to": 5.64,
+       "mid": 5.12,
+       "in_part": 0.32
+      },
+      {
+       "from": 13.75,
+       "to": 14.41,
+       "mid": 14.08,
+       "in_part": 0.88
+      }
+     ],
+     [
+      {
+       "from": 1.75,
+       "to": 2.98,
+       "mid": 2.36,
+       "in_part": 0.15
+      },
+      {
+       "from": 4.27,
+       "to": 5.37,
+       "mid": 4.82,
+       "in_part": 0.3
+      },
+      {
+       "from": 13.9,
+       "to": 14.61,
+       "mid": 14.25,
+       "in_part": 0.89
+      }
+     ],
+     [
+      {
+       "from": 1.45,
+       "to": 2.75,
+       "mid": 2.1,
+       "in_part": 0.13
+      },
+      {
+       "from": 3.87,
+       "to": 4.99,
+       "mid": 4.43,
+       "in_part": 0.28
+      },
+      {
+       "from": 13.98,
+       "to": 14.71,
+       "mid": 14.35,
+       "in_part": 0.9
+      }
+     ],
+     [
+      {
+       "from": 1.1,
+       "to": 2.57,
+       "mid": 1.83,
+       "in_part": 0.11
+      },
+      {
+       "from": 3.38,
+       "to": 4.68,
+       "mid": 4.03,
+       "in_part": 0.25
+      },
+      {
+       "from": 13.93,
+       "to": 14.76,
+       "mid": 14.34,
+       "in_part": 0.9
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#beb8be",
+    "paints": {
+     "Pale violet-gray": 0.5
+    },
+    "cx": 6.33,
+    "cy": 5.04,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "halves": {
+     "left": 0.71,
+     "right": 0.29,
+     "top": 0.59,
+     "bottom": 0.41
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.06
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.38,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. It reaches all four edges of the canvas."
+  },
+  {
+   "n": 15,
+   "id": "shade-big-birches",
+   "name": "Shade the right side of the trunks",
+   "part": "the-birches-shading-and-bark",
+   "part_name": "The birches' shading and bark",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "gray-violet",
+     "name": "Gray violet",
+     "words": [
+      "gray",
+      "violet"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.63,
+    "base_wide": 0.06,
+    "left": 0.0,
+    "right": 0.0,
+    "top": 0.0,
+    "bottom": 0.9,
+    "wide": 16.0,
+    "tall": 11.1,
+    "cx": 4.9,
+    "cy": 4.96,
+    "peak_x": 7.97,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 0.27,
+       "to": 0.76,
+       "mid": 0.52
+      },
+      {
+       "from": 0.83,
+       "to": 1.07,
+       "mid": 0.95
+      },
+      {
+       "from": 1.71,
+       "to": 1.95,
+       "mid": 1.83
+      },
+      {
+       "from": 2.16,
+       "to": 2.4,
+       "mid": 2.28
+      },
+      {
+       "from": 2.58,
+       "to": 3.21,
+       "mid": 2.89
+      },
+      {
+       "from": 3.61,
+       "to": 4.08,
+       "mid": 3.84
+      },
+      {
+       "from": 4.15,
+       "to": 4.24,
+       "mid": 4.2
+      },
+      {
+       "from": 4.27,
+       "to": 4.34,
+       "mid": 4.3
+      },
+      {
+       "from": 4.71,
+       "to": 4.83,
+       "mid": 4.77
+      },
+      {
+       "from": 4.92,
+       "to": 5.39,
+       "mid": 5.16
+      },
+      {
+       "from": 5.74,
+       "to": 5.93,
+       "mid": 5.84
+      },
+      {
+       "from": 5.98,
+       "to": 6.47,
+       "mid": 6.22
+      },
+      {
+       "from": 6.62,
+       "to": 7.2,
+       "mid": 6.91
+      },
+      {
+       "from": 7.73,
+       "to": 8.33,
+       "mid": 8.03
+      },
+      {
+       "from": 8.44,
+       "to": 8.67,
+       "mid": 8.55
+      }
+     ],
+     "right": [
+      {
+       "from": 9.77,
+       "to": 9.87,
+       "mid": 9.82
+      },
+      {
+       "from": 9.93,
+       "to": 10.01,
+       "mid": 9.97
+      },
+      {
+       "from": 10.05,
+       "to": 10.5,
+       "mid": 10.28
+      }
+     ],
+     "top": [
+      {
+       "from": 0.39,
+       "to": 0.5,
+       "mid": 0.45
+      },
+      {
+       "from": 3.14,
+       "to": 3.38,
+       "mid": 3.26
+      },
+      {
+       "from": 5.57,
+       "to": 5.92,
+       "mid": 5.74
+      },
+      {
+       "from": 13.56,
+       "to": 14.01,
+       "mid": 13.78
+      }
+     ]
+    },
+    "share": 0.0421
+   },
+   "marks": [
+    {
+     "widest_down": 0.06,
+     "base_wide": 0.53,
+     "left": 0.0,
+     "right": 15.33,
+     "top": 0.0,
+     "bottom": 5.47,
+     "wide": 0.67,
+     "tall": 6.53,
+     "cx": 0.32,
+     "cy": 3.19,
+     "peak_x": 0.39,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 0.0,
+        "to": 0.76,
+        "mid": 0.38
+       },
+       {
+        "from": 0.86,
+        "to": 1.98,
+        "mid": 1.42
+       },
+       {
+        "from": 2.16,
+        "to": 2.31,
+        "mid": 2.23
+       },
+       {
+        "from": 2.58,
+        "to": 4.24,
+        "mid": 3.41
+       },
+       {
+        "from": 4.27,
+        "to": 4.78,
+        "mid": 4.52
+       },
+       {
+        "from": 4.92,
+        "to": 5.92,
+        "mid": 5.42
+       },
+       {
+        "from": 5.94,
+        "to": 6.46,
+        "mid": 6.2
+       }
+      ],
+      "top": [
+       {
+        "from": 0.19,
+        "to": 0.66,
+        "mid": 0.42
+       }
+      ]
+     },
+     "share": 0.0133,
+     "in_part": [
+      0.02,
+      0.28
+     ]
+    },
+    {
+     "widest_down": 0.49,
+     "base_wide": 0.43,
+     "left": 1.34,
+     "right": 12.55,
+     "top": 0.0,
+     "bottom": 2.67,
+     "wide": 2.11,
+     "tall": 9.33,
+     "cx": 2.47,
+     "cy": 4.21,
+     "peak_x": 2.89,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 2.37,
+        "to": 3.43,
+        "mid": 2.9
+       }
+      ]
+     },
+     "share": 0.033,
+     "in_part": [
+      0.15,
+      0.37
+     ]
+    },
+    {
+     "widest_down": 0.54,
+     "base_wide": 0.32,
+     "left": 3.55,
+     "right": 9.93,
+     "top": 0.0,
+     "bottom": 3.83,
+     "wide": 2.52,
+     "tall": 8.17,
+     "cx": 4.94,
+     "cy": 3.79,
+     "peak_x": 5.51,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 5.09,
+        "to": 5.92,
+        "mid": 5.5
+       }
+      ]
+     },
+     "share": 0.0237,
+     "in_part": [
+      0.31,
+      0.33
+     ]
+    },
+    {
+     "widest_down": 0.92,
+     "base_wide": 0.21,
+     "left": 13.3,
+     "right": 1.28,
+     "top": 0.0,
+     "bottom": 3.54,
+     "wide": 1.42,
+     "tall": 8.46,
+     "cx": 14.2,
+     "cy": 4.15,
+     "peak_x": 13.74,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 13.41,
+        "to": 13.5,
+        "mid": 13.46
+       },
+       {
+        "from": 13.56,
+        "to": 14.09,
+        "mid": 13.83
+       }
+      ]
+     },
+     "share": 0.0185,
+     "in_part": [
+      0.89,
+      0.36
+     ]
+    },
+    {
+     "widest_down": 0.0,
+     "base_wide": 0.07,
+     "left": 15.1,
+     "right": 0.0,
+     "top": 0.0,
+     "bottom": 6.66,
+     "wide": 0.9,
+     "tall": 5.34,
+     "cx": 15.74,
+     "cy": 1.79,
+     "peak_x": 15.58,
+     "edges": [
+      "right",
+      "top"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 0.0,
+        "to": 0.47,
+        "mid": 0.23
+       },
+       {
+        "from": 0.66,
+        "to": 1.93,
+        "mid": 1.29
+       },
+       {
+        "from": 2.16,
+        "to": 2.84,
+        "mid": 2.5
+       },
+       {
+        "from": 2.94,
+        "to": 3.75,
+        "mid": 3.35
+       },
+       {
+        "from": 3.98,
+        "to": 4.09,
+        "mid": 4.04
+       },
+       {
+        "from": 4.1,
+        "to": 4.17,
+        "mid": 4.14
+       },
+       {
+        "from": 4.28,
+        "to": 4.41,
+        "mid": 4.34
+       },
+       {
+        "from": 4.59,
+        "to": 4.73,
+        "mid": 4.66
+       }
+      ],
+      "top": [
+       {
+        "from": 15.19,
+        "to": 15.4,
+        "mid": 15.3
+       },
+       {
+        "from": 15.41,
+        "to": 16.0,
+        "mid": 15.71
+       }
+      ]
+     },
+     "share": 0.0066,
+     "in_part": [
+      0.98,
+      0.16
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.83,
+      "to": 2.77,
+      "mid": 2.3,
+      "in_part": 0.14
+     }
+    ],
+    "down": [
+     {
+      "from": 3.73,
+      "to": 4.66,
+      "mid": 4.2,
+      "in_part": 0.37
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 2.22,
+       "to": 3.14,
+       "mid": 2.68,
+       "in_part": 0.17
+      }
+     ],
+     [
+      {
+       "from": 1.93,
+       "to": 2.98,
+       "mid": 2.46,
+       "in_part": 0.15
+      },
+      {
+       "from": 4.61,
+       "to": 5.35,
+       "mid": 4.98,
+       "in_part": 0.31
+      }
+     ],
+     [
+      {
+       "from": 1.96,
+       "to": 2.75,
+       "mid": 2.36,
+       "in_part": 0.15
+      }
+     ],
+     [
+      {
+       "from": 1.69,
+       "to": 2.53,
+       "mid": 2.11,
+       "in_part": 0.13
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#9c8d8d",
+    "paints": {
+     "Gray violet": 1.3
+    },
+    "cx": 6.07,
+    "cy": 4.06,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "halves": {
+     "left": 0.72,
+     "right": 0.28,
+     "top": 0.72,
+     "bottom": 0.28
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.87
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.15
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 4.26,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 4.26,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1 in from the bottom edge."
+  },
+  {
+   "n": 16,
+   "id": "mark-big-bark",
+   "name": "Add the dark bark marks",
+   "part": "the-birches-shading-and-bark",
+   "part_name": "The birches' shading and bark",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "charcoal",
+     "name": "Charcoal",
+     "words": [
+      "charcoal"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.78,
+    "base_wide": 0.38,
+    "left": 0.0,
+    "right": 0.0,
+    "top": 0.0,
+    "bottom": 0.53,
+    "wide": 16.0,
+    "tall": 11.47,
+    "cx": 4.67,
+    "cy": 7.12,
+    "peak_x": 5.68,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 4.05,
+       "to": 4.3,
+       "mid": 4.18
+      },
+      {
+       "from": 4.75,
+       "to": 5.02,
+       "mid": 4.88
+      },
+      {
+       "from": 5.2,
+       "to": 5.27,
+       "mid": 5.24
+      },
+      {
+       "from": 5.79,
+       "to": 5.98,
+       "mid": 5.88
+      },
+      {
+       "from": 6.33,
+       "to": 6.64,
+       "mid": 6.49
+      },
+      {
+       "from": 7.16,
+       "to": 7.42,
+       "mid": 7.29
+      },
+      {
+       "from": 7.83,
+       "to": 7.93,
+       "mid": 7.88
+      },
+      {
+       "from": 8.24,
+       "to": 9.41,
+       "mid": 8.82
+      }
+     ],
+     "right": [
+      {
+       "from": 1.82,
+       "to": 2.33,
+       "mid": 2.07
+      },
+      {
+       "from": 9.8,
+       "to": 10.24,
+       "mid": 10.02
+      },
+      {
+       "from": 10.38,
+       "to": 11.46,
+       "mid": 10.92
+      }
+     ],
+     "top": [
+      {
+       "from": 5.77,
+       "to": 6.01,
+       "mid": 5.89
+      }
+     ]
+    },
+    "share": 0.0764
+   },
+   "marks": [
+    {
+     "widest_down": 0.87,
+     "base_wide": 0.77,
+     "left": 0.28,
+     "right": 13.03,
+     "top": 4.8,
+     "bottom": 1.36,
+     "wide": 2.68,
+     "tall": 5.84,
+     "cx": 1.76,
+     "cy": 8.39,
+     "peak_x": 1.82,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": []
+     },
+     "share": 0.0281,
+     "in_part": [
+      0.11,
+      0.73
+     ]
+    },
+    {
+     "widest_down": 0.88,
+     "base_wide": 0.84,
+     "left": 3.15,
+     "right": 10.7,
+     "top": 5.03,
+     "bottom": 2.58,
+     "wide": 2.15,
+     "tall": 4.39,
+     "cx": 4.3,
+     "cy": 7.72,
+     "peak_x": 5.25,
+     "edges": [],
+     "meets": {},
+     "share": 0.0171,
+     "in_part": [
+      0.27,
+      0.67
+     ]
+    },
+    {
+     "widest_down": 0.91,
+     "base_wide": 0.62,
+     "left": 13.75,
+     "right": 1.13,
+     "top": 5.98,
+     "bottom": 1.77,
+     "wide": 1.13,
+     "tall": 4.25,
+     "cx": 14.38,
+     "cy": 9.02,
+     "peak_x": 14.7,
+     "edges": [],
+     "meets": {},
+     "share": 0.0086,
+     "in_part": [
+      0.9,
+      0.79
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [],
+     [
+      {
+       "from": 3.54,
+       "to": 4.72,
+       "mid": 4.13,
+       "in_part": 0.26
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#423933",
+    "paints": {
+     "Charcoal": 1.1
+    },
+    "cx": 5.35,
+    "cy": 6.77,
+    "edges": [
+     "left",
+     "right",
+     "top",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.78,
+     "right": 0.22,
+     "top": 0.3,
+     "bottom": 0.7
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    15
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.9
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.5
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.54,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside"
+     ],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across from the top edge. Its bottom is about 1/2 in from the bottom edge."
+  },
+  {
+   "n": 17,
+   "id": "light-big-bark",
+   "name": "Catch the light on the bark",
+   "part": "the-birches-shading-and-bark",
+   "part_name": "The birches' shading and bark",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "cream",
+     "name": "Cream",
+     "words": [
+      "cream"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.18,
+    "base_wide": 0.18,
+    "left": 0.02,
+    "right": 0.0,
+    "top": 0.26,
+    "bottom": 1.92,
+    "wide": 15.98,
+    "tall": 9.82,
+    "cx": 9.11,
+    "cy": 4.92,
+    "peak_x": 0.15,
+    "edges": [
+     "left",
+     "right"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 0.56,
+       "to": 0.82,
+       "mid": 0.69
+      },
+      {
+       "from": 1.92,
+       "to": 2.85,
+       "mid": 2.38
+      },
+      {
+       "from": 2.93,
+       "to": 3.18,
+       "mid": 3.05
+      }
+     ],
+     "right": [
+      {
+       "from": 4.46,
+       "to": 4.62,
+       "mid": 4.54
+      },
+      {
+       "from": 4.66,
+       "to": 4.88,
+       "mid": 4.77
+      },
+      {
+       "from": 5.34,
+       "to": 5.86,
+       "mid": 5.6
+      },
+      {
+       "from": 7.02,
+       "to": 7.09,
+       "mid": 7.05
+      }
+     ]
+    },
+    "share": 0.0033
+   },
+   "marks": [
+    {
+     "widest_down": 0.1,
+     "base_wide": 0.15,
+     "left": 0.0,
+     "right": 15.7,
+     "top": 1.89,
+     "bottom": 8.41,
+     "wide": 0.3,
+     "tall": 1.7,
+     "cx": 0.11,
+     "cy": 2.66,
+     "peak_x": 0.15,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 1.92,
+        "to": 2.85,
+        "mid": 2.38
+       },
+       {
+        "from": 2.93,
+        "to": 3.57,
+        "mid": 3.25
+       }
+      ]
+     },
+     "share": 0.0015,
+     "in_part": [
+      0.01,
+      0.23
+     ]
+    },
+    {
+     "widest_down": 0.8,
+     "base_wide": 0.18,
+     "left": 13.6,
+     "right": 2.09,
+     "top": 1.25,
+     "bottom": 9.33,
+     "wide": 0.32,
+     "tall": 1.42,
+     "cx": 13.73,
+     "cy": 2.0,
+     "peak_x": 13.67,
+     "edges": [],
+     "meets": {},
+     "share": 0.001,
+     "in_part": [
+      0.86,
+      0.17
+     ]
+    },
+    {
+     "widest_down": 0.83,
+     "base_wide": 0.16,
+     "left": 13.85,
+     "right": 1.76,
+     "top": 4.43,
+     "bottom": 6.09,
+     "wide": 0.39,
+     "tall": 1.48,
+     "cx": 14.05,
+     "cy": 5.26,
+     "peak_x": 13.88,
+     "edges": [],
+     "meets": {},
+     "share": 0.001,
+     "in_part": [
+      0.88,
+      0.46
+     ]
+    },
+    {
+     "widest_down": 0.54,
+     "base_wide": 0.15,
+     "left": 15.25,
+     "right": 0.43,
+     "top": 0.08,
+     "bottom": 11.05,
+     "wide": 0.32,
+     "tall": 0.87,
+     "cx": 15.4,
+     "cy": 0.53,
+     "peak_x": 15.36,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 15.26,
+        "to": 15.44,
+        "mid": 15.35
+       }
+      ]
+     },
+     "share": 0.0008,
+     "in_part": [
+      0.96,
+      0.05
+     ]
+    },
+    {
+     "widest_down": 0.64,
+     "base_wide": 0.15,
+     "left": 15.48,
+     "right": 0.06,
+     "top": 2.44,
+     "bottom": 8.53,
+     "wide": 0.46,
+     "tall": 1.03,
+     "cx": 15.65,
+     "cy": 2.97,
+     "peak_x": 15.58,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 2.77,
+        "to": 3.46,
+        "mid": 3.11
+       }
+      ]
+     },
+     "share": 0.0012,
+     "in_part": [
+      0.98,
+      0.26
+     ]
+    },
+    {
+     "widest_down": 0.69,
+     "base_wide": 0.2,
+     "left": 15.58,
+     "right": 0.0,
+     "top": 3.6,
+     "bottom": 6.14,
+     "wide": 0.42,
+     "tall": 2.26,
+     "cx": 15.79,
+     "cy": 4.76,
+     "peak_x": 15.74,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 3.62,
+        "to": 3.69,
+        "mid": 3.66
+       },
+       {
+        "from": 3.71,
+        "to": 4.25,
+        "mid": 3.98
+       },
+       {
+        "from": 4.39,
+        "to": 4.64,
+        "mid": 4.52
+       },
+       {
+        "from": 4.68,
+        "to": 5.86,
+        "mid": 5.27
+       }
+      ]
+     },
+     "share": 0.0023,
+     "in_part": [
+      0.99,
+      0.41
+     ]
+    },
+    {
+     "widest_down": 0.59,
+     "base_wide": 0.07,
+     "left": 15.74,
+     "right": 0.0,
+     "top": 7.25,
+     "bottom": 3.61,
+     "wide": 0.26,
+     "tall": 1.14,
+     "cx": 15.88,
+     "cy": 7.85,
+     "peak_x": 15.85,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 7.28,
+        "to": 7.54,
+        "mid": 7.41
+       },
+       {
+        "from": 7.61,
+        "to": 8.34,
+        "mid": 7.97
+       }
+      ]
+     },
+     "share": 0.001,
+     "in_part": [
+      0.99,
+      0.68
+     ]
+    },
+    {
+     "widest_down": 0.35,
+     "base_wide": 0.06,
+     "left": 15.74,
+     "right": 0.0,
+     "top": 6.06,
+     "bottom": 4.84,
+     "wide": 0.26,
+     "tall": 1.1,
+     "cx": 15.88,
+     "cy": 6.6,
+     "peak_x": 15.91,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 6.07,
+        "to": 6.16,
+        "mid": 6.12
+       },
+       {
+        "from": 6.22,
+        "to": 6.97,
+        "mid": 6.6
+       },
+       {
+        "from": 7.01,
+        "to": 7.09,
+        "mid": 7.05
+       }
+      ]
+     },
+     "share": 0.0009,
+     "in_part": [
+      0.99,
+      0.58
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#ead5c0",
+    "paints": {
+     "Cream": 1.0
+    },
+    "cx": 11.19,
+    "cy": 4.0,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "halves": {
+     "left": 0.29,
+     "right": 0.71,
+     "top": 0.75,
+     "bottom": 0.25
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    15,
+    16
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.51
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.47
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.06
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across. Its top is about 1/4 in from the top edge and its bottom is about 2 in from the bottom edge."
+  },
+  {
+   "n": 18,
+   "id": "dab-hanging-leaves",
+   "name": "Dab the hanging gold leaves",
+   "part": "the-hanging-gold-leaves",
+   "part_name": "The hanging gold leaves",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "bright-gold",
+     "name": "Bright gold",
+     "words": [
+      "bright",
+      "gold"
+     ]
+    },
+    {
+     "id": "warm-ochre",
+     "name": "Warm ochre",
+     "words": [
+      "warm",
+      "ochre"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.02,
+    "base_wide": 0.94,
+    "left": 0.0,
+    "right": 0.72,
+    "top": 0.0,
+    "bottom": 4.36,
+    "wide": 15.28,
+    "tall": 7.64,
+    "cx": 6.75,
+    "cy": 2.14,
+    "peak_x": 6.99,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [],
+     "top": [
+      {
+       "from": 0.59,
+       "to": 2.13,
+       "mid": 1.36
+      },
+      {
+       "from": 2.23,
+       "to": 2.33,
+       "mid": 2.28
+      },
+      {
+       "from": 3.4,
+       "to": 5.06,
+       "mid": 4.23
+      },
+      {
+       "from": 6.02,
+       "to": 6.47,
+       "mid": 6.25
+      },
+      {
+       "from": 6.54,
+       "to": 6.62,
+       "mid": 6.58
+      },
+      {
+       "from": 6.68,
+       "to": 7.06,
+       "mid": 6.87
+      },
+      {
+       "from": 7.16,
+       "to": 7.26,
+       "mid": 7.21
+      },
+      {
+       "from": 7.27,
+       "to": 7.89,
+       "mid": 7.58
+      },
+      {
+       "from": 7.94,
+       "to": 8.58,
+       "mid": 8.26
+      },
+      {
+       "from": 9.31,
+       "to": 9.69,
+       "mid": 9.5
+      },
+      {
+       "from": 11.03,
+       "to": 11.5,
+       "mid": 11.26
+      },
+      {
+       "from": 12.05,
+       "to": 12.23,
+       "mid": 12.14
+      },
+      {
+       "from": 12.28,
+       "to": 13.23,
+       "mid": 12.76
+      },
+      {
+       "from": 14.09,
+       "to": 14.95,
+       "mid": 14.52
+      }
+     ]
+    },
+    "share": 0.0727
+   },
+   "marks": [
+    {
+     "widest_down": 0.36,
+     "base_wide": 0.16,
+     "left": 0.48,
+     "right": 14.41,
+     "top": 5.3,
+     "bottom": 4.45,
+     "wide": 1.11,
+     "tall": 2.25,
+     "cx": 1.01,
+     "cy": 6.44,
+     "peak_x": 0.74,
+     "edges": [],
+     "meets": {},
+     "share": 0.0074,
+     "in_part": [
+      0.07,
+      0.84
+     ]
+    },
+    {
+     "widest_down": 0.0,
+     "base_wide": 0.18,
+     "left": 0.57,
+     "right": 13.63,
+     "top": 0.0,
+     "bottom": 10.32,
+     "wide": 1.79,
+     "tall": 1.68,
+     "cx": 1.55,
+     "cy": 0.69,
+     "peak_x": 1.44,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 0.59,
+        "to": 2.13,
+        "mid": 1.36
+       },
+       {
+        "from": 2.25,
+        "to": 2.33,
+        "mid": 2.29
+       }
+      ]
+     },
+     "share": 0.0081,
+     "in_part": [
+      0.1,
+      0.09
+     ]
+    },
+    {
+     "widest_down": 0.38,
+     "base_wide": 0.34,
+     "left": 2.67,
+     "right": 11.76,
+     "top": 4.35,
+     "bottom": 4.24,
+     "wide": 1.57,
+     "tall": 3.41,
+     "cx": 3.42,
+     "cy": 6.06,
+     "peak_x": 3.68,
+     "edges": [],
+     "meets": {},
+     "share": 0.0146,
+     "in_part": [
+      0.22,
+      0.79
+     ]
+    },
+    {
+     "widest_down": 0.03,
+     "base_wide": 0.11,
+     "left": 3.27,
+     "right": 10.91,
+     "top": 0.0,
+     "bottom": 10.56,
+     "wide": 1.82,
+     "tall": 1.44,
+     "cx": 4.09,
+     "cy": 0.53,
+     "peak_x": 4.22,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 3.4,
+        "to": 5.06,
+        "mid": 4.23
+       }
+      ]
+     },
+     "share": 0.007,
+     "in_part": [
+      0.27,
+      0.07
+     ]
+    },
+    {
+     "widest_down": 0.68,
+     "base_wide": 0.5,
+     "left": 4.7,
+     "right": 7.44,
+     "top": 4.93,
+     "bottom": 3.42,
+     "wide": 3.86,
+     "tall": 3.64,
+     "cx": 6.2,
+     "cy": 7.09,
+     "peak_x": 5.6,
+     "edges": [],
+     "meets": {},
+     "share": 0.0312,
+     "in_part": [
+      0.4,
+      0.93
+     ]
+    },
+    {
+     "widest_down": 0.09,
+     "base_wide": 0.14,
+     "left": 5.84,
+     "right": 7.42,
+     "top": 0.0,
+     "bottom": 9.63,
+     "wide": 2.74,
+     "tall": 2.37,
+     "cx": 7.15,
+     "cy": 0.84,
+     "peak_x": 7.29,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 6.02,
+        "to": 6.47,
+        "mid": 6.25
+       },
+       {
+        "from": 6.54,
+        "to": 6.62,
+        "mid": 6.58
+       },
+       {
+        "from": 6.68,
+        "to": 7.06,
+        "mid": 6.87
+       },
+       {
+        "from": 7.16,
+        "to": 7.26,
+        "mid": 7.21
+       },
+       {
+        "from": 7.27,
+        "to": 7.89,
+        "mid": 7.58
+       },
+       {
+        "from": 7.94,
+        "to": 8.58,
+        "mid": 8.26
+       }
+      ]
+     },
+     "share": 0.0119,
+     "in_part": [
+      0.47,
+      0.11
+     ]
+    },
+    {
+     "widest_down": 0.14,
+     "base_wide": 0.22,
+     "left": 14.05,
+     "right": 0.72,
+     "top": 0.0,
+     "bottom": 10.22,
+     "wide": 1.23,
+     "tall": 1.78,
+     "cx": 14.59,
+     "cy": 0.81,
+     "peak_x": 14.56,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 14.09,
+        "to": 14.95,
+        "mid": 14.52
+       }
+      ]
+     },
+     "share": 0.0055,
+     "in_part": [
+      0.95,
+      0.11
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [
+     {
+      "from": 5.43,
+      "to": 8.05,
+      "mid": 6.74,
+      "in_part": 0.88
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 3.27,
+       "to": 4.18,
+       "mid": 3.73,
+       "in_part": 0.24
+      },
+      {
+       "from": 6.97,
+       "to": 7.61,
+       "mid": 7.29,
+       "in_part": 0.48
+      }
+     ],
+     [],
+     [],
+     [
+      {
+       "from": 2.97,
+       "to": 4.15,
+       "mid": 3.56,
+       "in_part": 0.23
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#eba837",
+    "paints": {
+     "Bright gold": 7.3,
+     "Warm ochre": 11.7
+    },
+    "cx": 5.97,
+    "cy": 3.81,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.77,
+     "right": 0.23,
+     "top": 0.51,
+     "bottom": 0.49
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.04
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 3.26
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 15 1/2 in wide and 7 1/2 in tall."
+  },
+  {
+   "n": 19,
+   "id": "tip-pale-leaves",
+   "name": "Tap the palest leaves",
+   "part": "the-hanging-gold-leaves",
+   "part_name": "The hanging gold leaves",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "pale-lemon",
+     "name": "Pale lemon",
+     "words": [
+      "pale",
+      "lemon"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.12,
+    "base_wide": 0.29,
+    "left": 0.0,
+    "right": 0.67,
+    "top": 0.0,
+    "bottom": 4.54,
+    "wide": 15.33,
+    "tall": 7.46,
+    "cx": 5.24,
+    "cy": 2.2,
+    "peak_x": 8.41,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [],
+     "top": [
+      {
+       "from": 2.11,
+       "to": 2.39,
+       "mid": 2.25
+      },
+      {
+       "from": 4.65,
+       "to": 4.9,
+       "mid": 4.78
+      },
+      {
+       "from": 5.01,
+       "to": 5.11,
+       "mid": 5.06
+      },
+      {
+       "from": 6.44,
+       "to": 6.73,
+       "mid": 6.58
+      },
+      {
+       "from": 6.99,
+       "to": 7.33,
+       "mid": 7.16
+      },
+      {
+       "from": 7.81,
+       "to": 8.02,
+       "mid": 7.91
+      },
+      {
+       "from": 8.5,
+       "to": 8.64,
+       "mid": 8.57
+      },
+      {
+       "from": 8.78,
+       "to": 9.32,
+       "mid": 9.05
+      },
+      {
+       "from": 10.98,
+       "to": 11.12,
+       "mid": 11.05
+      },
+      {
+       "from": 11.49,
+       "to": 11.7,
+       "mid": 11.59
+      },
+      {
+       "from": 12.16,
+       "to": 12.47,
+       "mid": 12.31
+      },
+      {
+       "from": 13.19,
+       "to": 13.42,
+       "mid": 13.3
+      },
+      {
+       "from": 14.5,
+       "to": 14.59,
+       "mid": 14.55
+      },
+      {
+       "from": 14.91,
+       "to": 14.99,
+       "mid": 14.95
+      }
+     ]
+    },
+    "share": 0.0776
+   },
+   "marks": [
+    {
+     "widest_down": 0.49,
+     "base_wide": 0.13,
+     "left": 0.56,
+     "right": 13.77,
+     "top": 0.23,
+     "bottom": 8.8,
+     "wide": 1.66,
+     "tall": 2.96,
+     "cx": 1.37,
+     "cy": 1.67,
+     "peak_x": 1.22,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": []
+     },
+     "share": 0.0039,
+     "in_part": [
+      0.09,
+      0.22
+     ]
+    },
+    {
+     "widest_down": 0.5,
+     "base_wide": 0.07,
+     "left": 3.11,
+     "right": 11.91,
+     "top": 2.55,
+     "bottom": 8.09,
+     "wide": 0.98,
+     "tall": 1.36,
+     "cx": 3.53,
+     "cy": 3.28,
+     "peak_x": 3.37,
+     "edges": [],
+     "meets": {},
+     "share": 0.001,
+     "in_part": [
+      0.23,
+      0.43
+     ]
+    },
+    {
+     "widest_down": 0.54,
+     "base_wide": 0.12,
+     "left": 3.24,
+     "right": 11.16,
+     "top": 0.64,
+     "bottom": 9.56,
+     "wide": 1.61,
+     "tall": 1.79,
+     "cx": 4.08,
+     "cy": 1.51,
+     "peak_x": 4.04,
+     "edges": [],
+     "meets": {},
+     "share": 0.0025,
+     "in_part": [
+      0.27,
+      0.2
+     ]
+    },
+    {
+     "widest_down": 0.02,
+     "base_wide": 0.02,
+     "left": 6.32,
+     "right": 8.5,
+     "top": 0.0,
+     "bottom": 10.77,
+     "wide": 1.18,
+     "tall": 1.23,
+     "cx": 6.94,
+     "cy": 0.5,
+     "peak_x": 6.88,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 6.65,
+        "to": 6.73,
+        "mid": 6.69
+       }
+      ]
+     },
+     "share": 0.0009,
+     "in_part": [
+      0.45,
+      0.07
+     ]
+    },
+    {
+     "widest_down": 0.3,
+     "base_wide": 0.07,
+     "left": 7.88,
+     "right": 7.2,
+     "top": 6.68,
+     "bottom": 4.25,
+     "wide": 0.93,
+     "tall": 1.07,
+     "cx": 8.34,
+     "cy": 7.16,
+     "peak_x": 8.11,
+     "edges": [],
+     "meets": {},
+     "share": 0.0007,
+     "in_part": [
+      0.54,
+      0.94
+     ]
+    },
+    {
+     "widest_down": 0.3,
+     "base_wide": 0.27,
+     "left": 7.6,
+     "right": 6.26,
+     "top": 0.0,
+     "bottom": 9.54,
+     "wide": 2.15,
+     "tall": 2.46,
+     "cx": 8.74,
+     "cy": 0.98,
+     "peak_x": 8.21,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": []
+     },
+     "share": 0.0015,
+     "in_part": [
+      0.57,
+      0.13
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#cec4a4",
+    "paints": {
+     "Pale lemon": 18.6
+    },
+    "cx": 4.93,
+    "cy": 2.39,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.78,
+     "right": 0.22,
+     "top": 0.81,
+     "bottom": 0.19
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    18
+   ],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.13,
+      "across": null
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.26,
+      "across": null
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sunlit-leaves-on-the-floor",
+     "name": "The sunlit leaves on the floor",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 15 1/2 in wide and 7 1/2 in tall."
+  },
+  {
+   "n": 20,
+   "id": "dash-pale-leaves",
+   "name": "Dash the sunlit fallen leaves",
+   "part": "the-sunlit-leaves-on-the-floor",
+   "part_name": "The sunlit leaves on the floor",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "pale-lemon",
+     "name": "Pale lemon",
+     "words": [
+      "pale",
+      "lemon"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.89,
+    "base_wide": 2.0,
+    "left": 2.54,
+    "right": 0.33,
+    "top": 2.29,
+    "bottom": 0.43,
+    "wide": 13.13,
+    "tall": 9.28,
+    "cx": 8.1,
+    "cy": 9.8,
+    "peak_x": 14.87,
+    "edges": [],
+    "meets": {},
+    "share": 0.0305
+   },
+   "marks": [
+    {
+     "widest_down": 0.86,
+     "base_wide": 0.61,
+     "left": 2.59,
+     "right": 11.28,
+     "top": 4.91,
+     "bottom": 1.41,
+     "wide": 2.13,
+     "tall": 5.68,
+     "cx": 3.36,
+     "cy": 8.3,
+     "peak_x": 4.16,
+     "edges": [],
+     "meets": {},
+     "share": 0.0133,
+     "in_part": [
+      0.06,
+      0.65
+     ]
+    },
+    {
+     "widest_down": 0.61,
+     "base_wide": 0.97,
+     "left": 4.68,
+     "right": 5.45,
+     "top": 7.78,
+     "bottom": 1.45,
+     "wide": 5.87,
+     "tall": 2.77,
+     "cx": 7.3,
+     "cy": 9.31,
+     "peak_x": 5.43,
+     "edges": [],
+     "meets": {},
+     "share": 0.0201,
+     "in_part": [
+      0.36,
+      0.76
+     ]
+    },
+    {
+     "widest_down": 0.61,
+     "base_wide": 0.2,
+     "left": 5.11,
+     "right": 5.42,
+     "top": 9.83,
+     "bottom": 0.13,
+     "wide": 5.47,
+     "tall": 2.04,
+     "cx": 7.9,
+     "cy": 10.96,
+     "peak_x": 6.35,
+     "edges": [
+      "bottom"
+     ],
+     "meets": {
+      "bottom": [
+       {
+        "from": 5.45,
+        "to": 5.57,
+        "mid": 5.51
+       }
+      ]
+     },
+     "share": 0.0146,
+     "in_part": [
+      0.41,
+      0.93
+     ]
+    },
+    {
+     "widest_down": 0.19,
+     "base_wide": 1.08,
+     "left": 7.82,
+     "right": 0.36,
+     "top": 8.26,
+     "bottom": 0.0,
+     "wide": 7.82,
+     "tall": 3.74,
+     "cx": 12.47,
+     "cy": 10.04,
+     "peak_x": 9.57,
+     "edges": [
+      "bottom"
+     ],
+     "meets": {
+      "bottom": [
+       {
+        "from": 12.37,
+        "to": 13.54,
+        "mid": 12.95
+       }
+      ]
+     },
+     "share": 0.0313,
+     "in_part": [
+      0.76,
+      0.84
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 3.01,
+      "to": 4.23,
+      "mid": 3.62,
+      "in_part": 0.08
+     },
+     {
+      "from": 8.37,
+      "to": 9.46,
+      "mid": 8.91,
+      "in_part": 0.49
+     },
+     {
+      "from": 12.12,
+      "to": 13.8,
+      "mid": 12.96,
+      "in_part": 0.79
+     }
+    ],
+    "down": [
+     {
+      "from": 9.25,
+      "to": 9.69,
+      "mid": 9.47,
+      "in_part": 0.77
+     },
+     {
+      "from": 9.93,
+      "to": 10.5,
+      "mid": 10.21,
+      "in_part": 0.85
+     },
+     {
+      "from": 10.78,
+      "to": 11.3,
+      "mid": 11.04,
+      "in_part": 0.94
+     }
+    ],
+    "bands": [
+     [],
+     [],
+     [],
+     [
+      {
+       "from": 2.7,
+       "to": 3.28,
+       "mid": 2.99,
+       "in_part": 0.03
+      },
+      {
+       "from": 5.15,
+       "to": 6.18,
+       "mid": 5.66,
+       "in_part": 0.24
+      },
+      {
+       "from": 10.5,
+       "to": 11.35,
+       "mid": 10.92,
+       "in_part": 0.64
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#d58831",
+    "paints": {
+     "Pale lemon": 11.8
+    },
+    "cx": 8.23,
+    "cy": 9.59,
+    "edges": [
+     "left",
+     "right",
+     "top",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.57,
+     "right": 0.43,
+     "top": 0.06,
+     "bottom": 0.94
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "sky",
+     "name": "The misty glow",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-woods",
+     "name": "The dark wood on the right",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ground",
+     "name": "The leafy forest floor",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "path",
+     "name": "The path into the fog",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "far-birches",
+     "name": "The far birches in the mist",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 2.24
+     }
+    },
+    {
+     "part": "undergrowth",
+     "name": "The golden undergrowth",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.06
+     }
+    },
+    {
+     "part": "rock",
+     "name": "The mossy boulder",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.7,
+      "across": 5.6
+     }
+    },
+    {
+     "part": "the-boulder-s-mossy-top",
+     "name": "The boulder's mossy top",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.83,
+      "across": null
+     }
+    },
+    {
+     "part": "the-leaf-carpet",
+     "name": "The leaf carpet",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "birches",
+     "name": "The big birches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-birches-shading-and-bark",
+     "name": "The birches' shading and bark",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-hanging-gold-leaves",
+     "name": "The hanging gold leaves",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.42
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 1/2 in from the bottom edge, and its right side is about 1/4 in from the right edge; it's about 13 in wide and 9 1/2 in tall."
+  }
+ ]
+}

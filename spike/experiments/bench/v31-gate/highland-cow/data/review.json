@@ -1,0 +1,9 @@
+{"finish_issues": [],
+ "text_issues": [
+  {"step_id": "locks-ginger", "kind": "paint",
+   "problem": "The paint called Ginger is a deep reddish brown (#8c4320), much darker than the plan's ginger (#c8742c), so it may look darker than its name suggests.",
+   "action": "left: the paint was fitted from the chain's pictures; renaming or refitting it would need a new plan and a new chain."},
+  {"step_id": "rim-cow", "kind": "words",
+   "problem": "This step has no Leave line: its only sentence couldn't be checked against the measured facts, so it was taken out.",
+   "action": "left: check-text --final removes a sentence that still fails after two rounds; keep the rump and the middle of the body dark so the rim stands out."}
+ ]}

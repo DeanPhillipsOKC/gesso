@@ -1,0 +1,32 @@
+{
+ "finish_issues": [
+  "The fog in the middle (behind the path and between the trunks) turned a deep, saturated blue instead of the pale blue-gray haze, which changed the misty morning mood. Fixed: re-rendered once from the first finish and the beginner version; the haze is now pale blue-gray, lightest near the end of the path.",
+  "The leaf-covered ground leaned red-orange instead of golden ochre with some burnt orange. Fixed: same re-render; the floor is now ochre and gold with burnt orange."
+ ],
+ "text_issues": [
+  {
+   "step_id": "blend-mist",
+   "kind": "paint",
+   "problem": "Pale gold is mixed to the plan's color (#f3dc94) because almost nothing in the picture where this step lays it is that color: the step picture is nearly all blue, with only a faint warm hint at the left edge.",
+   "action": "left: build-steps keeps the plan's color when the chain doesn't show it; fitting it again would need a new chain. Use only a little Pale gold, near the left edge."
+  },
+  {
+   "step_id": "tip-pale-leaves",
+   "kind": "paint",
+   "problem": "The paint called Pale lemon was fitted to a deeper gold (#f4b044), not the pale lemon the plan wanted (#fae889), so it looks deeper than its name; the sunlit leaves dashed with it in step 20 also show deeper gold than a pale lemon.",
+   "action": "left: the paint was fitted from the chain's pictures; renaming or refitting it would need a new plan and a new chain."
+  },
+  {
+   "step_id": "lay-floor",
+   "kind": "chain",
+   "problem": "The step picture shows a low blue-gray band of haze where the floor meets the fog, which none of this step's paints (Warm ochre, Rust brown) can make, so the words leave it out.",
+   "action": "left: a fix would need a new chain. Keep the top of the floor soft; the haze from step 1 can show through there."
+  },
+  {
+   "step_id": "light-big-bark",
+   "kind": "words",
+   "problem": "This step has no Leave line: its only sentence couldn't be checked against the measured facts, so it was taken out.",
+   "action": "left: check-text --final removes a sentence that still fails after two rounds; keep the rest of each trunk as it is and light only the sunlit edge."
+  }
+ ]
+}

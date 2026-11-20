@@ -1,0 +1,217 @@
+{
+  "ab": [
+    {
+      "A": "v3.1",
+      "B": "v3",
+      "grader": 1,
+      "note": "A is the one I'd paint from. Its words stand on their own and its pictures mostly change only what the step names. B has a big magic step at 15, its words depend on outlines and maps that aren't there, and many of its steps show no visible change. Clear preference, though A has its own jumps at steps 7 and 16.",
+      "picture": "birch-grove",
+      "preferred": "v3.1",
+      "scores": {
+        "v3": {
+          "agree": 2,
+          "note": "The words keep pointing at an outlined area, a paint map, a Where picture and a transfer outline that the painter doesn't have, so most steps can't be placed from the words. Step 15 makes a row of detailed middle birches appear from nowhere while it asks only for five flat trunks, and the words even tell the painter to ignore them. Step 9 leaves blue-gray holes no brush makes. Step 4's firs grow red trunks that no named paint makes. Steps 3, 5, 11, 14, 18, 19 and 20 barely change the picture, and step 1's sky already lays out the trunks and the path.",
+          "paintable": 1,
+          "real": 2,
+          "worst_steps": [
+            15,
+            9,
+            1
+          ]
+        },
+        "v3.1": {
+          "agree": 3,
+          "note": "Mostly builds in a believable order, and each step's words name what changes: fog, dark wood, floor, path, bushes, boulder, leaves, then trunks. The far birches go from blotchy white fragments in step 6 to finished bark-marked trunks in step 7, and a second trunk appears on the right. Step 1's fog already holds crisp ghost trunks and a reddish blotch, and step 16 jumps the big trunks from patchy shading to nearly finished birches. Step 17 shows almost no change, and step 19 adds a glowing haze that tapped leaves wouldn't make.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            7,
+            1,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "A": "v3",
+      "B": "v3.1",
+      "grader": 2,
+      "note": "B is the one to paint from: its steps change roughly what the words say, its words are concrete (where to start, where the paint goes, when to stop), and its problems sit in a few steps. A has premature content, magic additions, and near-empty or giant steps all the way through, and its words point to outlines the painter can't see. Clear preference.",
+      "picture": "birch-grove",
+      "preferred": "v3.1",
+      "scores": {
+        "v3": {
+          "agree": 2,
+          "note": "Step 1 already holds the whole misty forest (ghost trunks, light shafts, the path's shape), and later things arrive by magic: finished firs with red-brown trunks on a step that names only pine green and misty blue (4), red trunks from a gray paint (6), fog lifting off the firs on the floor step (7), and a row of finished middle birches on the plain-trunk step (15), which the tip itself tells the painter to ignore. Several steps change almost nothing (3, 5, 14, 18, 19, 20), and others jump: 9 goes from bare floor to a full leaf carpet with blue-gray blobs, and 17 goes from cut-out patches to finished bark. The words keep pointing to an 'outlined area' and paint maps the painter doesn't have, and some colors don't match their names (the 'Birch white' is darker than the 'Birch gray').",
+          "paintable": 2,
+          "real": 2,
+          "worst_steps": [
+            4,
+            15,
+            9
+          ]
+        },
+        "v3.1": {
+          "agree": 3,
+          "note": "The order reads like a real painting: fog, dark wood, floor, path, far birches, bushes, boulder, leaf carpet, big trunks, bark, then leaves. Most steps show what their words and paints describe, with a sensible amount of work each. The weak spots are the far birches, which go on as hard-edged pale blobs (6) and then jump to finished trunks with branches, plus one extra trunk (7), and the big-trunk shading, which goes on as cut-out patches no brush makes (15). Smaller problems: step 1 already shows the ghost trunks fairly sharp, with a reddish blotch at the left edge, steps 9 and 17 barely change anything, and step 19 adds a broad glow its pale leaf taps don't account for.",
+          "paintable": 4,
+          "real": 3,
+          "worst_steps": [
+            7,
+            6,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "A": "v3.1",
+      "B": "v3",
+      "grader": 1,
+      "note": "A, clearly. Both reach a similar finish, but A's steps add one thing at a time and its words match its pictures. B has magic in its sky and nose steps and words a beginner can't act on.",
+      "picture": "highland-cow",
+      "preferred": "v3.1",
+      "scores": {
+        "v3": {
+          "agree": 2,
+          "note": "A sun disc is already in the sky at step 1 with no instruction. Step 2 puts rose and peach streaks over the whole canvas when the words say they stop 2 in from the top. The words are boilerplate that point to outlines and a paint map the painter doesn't have, with odd sizes (step 20 says 1/4 in wide for both horns). The face goes wrong at the end: 'Nose pink' is an olive mix while the step 22 picture shows a pale smear, and step 23 redraws the whole nose bigger and greyer under the cover of 'line the nostrils'.",
+          "paintable": 2,
+          "real": 3,
+          "worst_steps": [
+            2,
+            22,
+            23
+          ]
+        },
+        "v3.1": {
+          "agree": 4,
+          "note": "Clean chain: sky, violet underlayer, banded hillside, meadow, flat cow, shadow, horns, locks, then nose and nostrils each arriving on their own step, with nothing showing early. The steps that ask the most are 14 (flat-shaded cow to a fully locked coat in one go) and 11 (the shading already reads as soft fur), and the step 21 rim is a big brightening, but the words cover what changes. Paints, words and pictures agree throughout.",
+          "paintable": 4,
+          "real": 4,
+          "worst_steps": [
+            14,
+            11,
+            21
+          ]
+        }
+      }
+    },
+    {
+      "A": "v3",
+      "B": "v3.1",
+      "grader": 2,
+      "note": "Both share the same hillside jump and patchy land underlayer, so the difference is the cow's face: B builds it in steps a beginner can follow, while A's last three steps contradict their own paints and make the face appear in one liner step. A also has more word/picture mismatches (step 2's band, step 20's 1/4 in area). A slight-to-clear preference for B.",
+      "picture": "highland-cow",
+      "preferred": "v3.1",
+      "scores": {
+        "v3": {
+          "agree": 2,
+          "note": "The sky, horns and grass steps read as a real painting in progress, but the face falls apart: step 21's nose barely shows, step 22 names a grey-green 'Nose pink' and the picture gets a white blotch, and step 23 (a liner with Dark umber) makes the whole muzzle, nose and chin appear and move. Step 8 jumps from patchy bands to a finished, lit hillside with one Deep green, step 7's green patches look like cut-out masks, and step 2's words say a 2 in band at the top while the picture streaks the whole canvas.",
+          "paintable": 2,
+          "real": 3,
+          "worst_steps": [
+            23,
+            22,
+            8
+          ]
+        },
+        "v3.1": {
+          "agree": 3,
+          "note": "Same weak spots in the land: step 7's olive bands are mask-like patches and step 8 jumps to a finished, bushy hillside from one Deep green. Step 14's 'ginger' is the base colour yet lighter locks appear, and step 16's nose arrives with nostrils already in before step 17 dots them. Otherwise the face goes in a believable order (nose, then mouth and chin, then the rim), and the words mostly match where the paint lands.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            8,
+            16,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "A": "v3.1",
+      "B": "v3",
+      "grader": 1,
+      "note": "A, clearly. Both lessons share the cat-shading jump, but B's first four steps would stop a beginner: the pictures and paints don't match, there's a no-op step, and the leaves appear by magic. B's words also give sizes that contradict its own pictures, while A's words are plain and follow the pictures all the way through.",
+      "picture": "sleeping-cat",
+      "preferred": "v3.1",
+      "scores": {
+        "v3": {
+          "agree": 2,
+          "note": "The window falls apart at the start. Step 1 is a small ragged blob of sky, step 2 only darkens that blob with no leaves, step 3 changes nothing, and then the leaves appear by magic in step 4 along with a wall that covers the whole canvas and shows ghosts of the frame and sill. The words are boilerplate with measurements that contradict the pictures (light loops 'under 1/4 in wide', leaves 1/4 in wide), and step 8 names the same Warm wood brown as the base for a visibly darker shade. From the frame on, the pictures are about as good as A's, with the same silhouette-to-modelled-cat jump at step 14 and eyes and whiskers that show up a step early.",
+          "paintable": 2,
+          "real": 2,
+          "worst_steps": [
+            4,
+            2,
+            8
+          ]
+        },
+        "v3.1": {
+          "agree": 3,
+          "note": "The background builds in a believable order, sky strip, wall, leaves, frame, ledge, and the words match each picture closely. It loses points on two big jumps: step 11 turns a flat yellow loaf into a shaped blanket with rolls and a sunken middle, and step 14 turns a flat silhouette into a modelled cat with faint stripes and face marks the words don't cover. The wall in step 2 also carries a faint ghost of the cat's back arc and the frame band.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            14,
+            11,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "A": "v3",
+      "B": "v3.1",
+      "grader": 2,
+      "note": "B, and I'm fairly sure, though not overwhelmingly: the two share the same picture faults from step 6 on, so the gap is in steps 2 to 4 and in the words. A's leaf steps show nothing and the wall step paints the leaves by magic, and its words are boilerplate a beginner can't place. B's opening steps match their pictures and its words can be followed.",
+      "picture": "sleeping-cat",
+      "preferred": "v3.1",
+      "scores": {
+        "v3": {
+          "agree": 2,
+          "note": "Steps 2 and 3 name green leaves but their pictures show only the blue sky patch (step 3 shows no change at all), then step 4, which names only wall blues, has the leaves appear by magic, plus a pale ghost band where the frame post will go. Step 14 leaves hard-edged gray cutouts of the muzzle and paws before step 15 paints them, step 11 jumps from a flat loaf to a sculpted bed, and step 6 rebuilds the window bars under a shading step. The words are mostly 'outlined area' boilerplate with sizes that don't fit (a nose area 5 in tall, a light-loop area under 1/4 in), so a beginner can't place much from them.",
+          "paintable": 2,
+          "real": 3,
+          "worst_steps": [
+            3,
+            4,
+            14
+          ]
+        },
+        "v3.1": {
+          "agree": 3,
+          "note": "Each step's words say where to start, which stroke to use, what to leave and when to stop, and the pictures mostly show what the paints name: the leaves arrive at the leaf steps and the ears and nose at the pink step. It shares A's step 14 ghost paws and muzzle cutout, the step 11 jump from flat loaf to rolled bed, and the step 6 frame redraw. The step 2 wall also carries a dark ghost band where the frame's shadow will go, and the step 3 leaves are blotchy cut-out patches.",
+          "paintable": 4,
+          "real": 3,
+          "worst_steps": [
+            14,
+            11,
+            2
+          ]
+        }
+      }
+    }
+  ],
+  "student": {
+    "all": {
+      "v3": 3.13,
+      "v3.1": 3.37
+    },
+    "birch-grove": {
+      "steps": 20,
+      "v3": 3.02,
+      "v3.1": 3.15
+    },
+    "highland-cow": {
+      "steps": 22,
+      "v3": 3.15,
+      "v3.1": 3.55
+    },
+    "sleeping-cat": {
+      "steps": 20,
+      "v3": 3.21,
+      "v3.1": 3.4
+    }
+  }
+}

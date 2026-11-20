@@ -1,0 +1,157 @@
+{
+  "photo": "birch-grove",
+  "run": "birch-grove_skill_20261120-193553",
+  "started": "2026-11-20 19:35",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "eaf2ea9b60d2cd14",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.0.2",
+        "commit": "94d7738",
+        "dirty": false,
+        "published": "2026-11-20"
+      },
+      "made_with": {
+        "version": "POC 2.0.2",
+        "commit": "94d7738",
+        "published": "2026-11-20"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-20T20:15:19"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 20,
+        "words": 3112,
+        "tubes": 5,
+        "cost_usd": 0.723,
+        "minutes": 7.5,
+        "paid_renders": 33,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 4,
+        "minutes_total": 39.4,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-mist",
+          "name": "Blend the misty glow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-dark-wood",
+          "name": "Dab the dark wood on the right",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mist-wood-edge",
+          "name": "Mist the wood's left edge",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-floor",
+          "name": "Lay in the forest floor",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-path",
+          "name": "Lay the path into the fog",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-far-birches",
+          "name": "Pull the thin far birches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mark-far-birches",
+          "name": "Mark the far bark softly",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-dark-undergrowth",
+          "name": "Dab the dark of the undergrowth",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-gold-undergrowth",
+          "name": "Dab gold on the bushes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "build-rock",
+          "name": "Build the boulder",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "moss-rock",
+          "name": "Lay the moss on the boulder",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dash-rust-leaves",
+          "name": "Dash the dark fallen leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dash-ochre-leaves",
+          "name": "Dash the ochre fallen leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-big-birches",
+          "name": "Pull the big birch trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-big-birches",
+          "name": "Shade the right side of the trunks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "mark-big-bark",
+          "name": "Add the dark bark marks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-big-bark",
+          "name": "Catch the light on the bark",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-hanging-leaves",
+          "name": "Dab the hanging gold leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "tip-pale-leaves",
+          "name": "Tap the palest leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dash-pale-leaves",
+          "name": "Dash the sunlit fallen leaves",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}
