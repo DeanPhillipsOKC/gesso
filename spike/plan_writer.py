@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RESEARCH = ROOT / "docs" / "research" / "acrylic-paint-along.md"
 FOR_GESSO = "For Gesso"
 LIBRARY = "library"  # <lesson>/library/: the files the writer picked
+CHANGES_LOG = "plan-changes-log.json"  # <lesson>/: every change plan-change made (the writer's own file is plan-changes.json)
 KINDS = ("elements", "strokes", "research")
 
 CHANGES_FORMAT = """Reply with only the changes to plan.json, as one ```json block in this shape. Leave out every key \
@@ -36,7 +37,8 @@ you don't need.
 - A field you set replaces what was there; a field set to null is removed.
 - A thing, paint, stage or step set to null is removed. A thing or paint under a new id or name is added whole.
 - `rename_paints` renames a paint everywhere it is named (steps, things, `of`). Renaming it to a paint that \
-already exists merges the two: the old one is removed and its steps use the other.
+already exists merges the two: the old one is removed and its steps use the other. Renames are made first, so set \
+a renamed paint's fields under its new name.
 - `after` is null for the first place in the stage (or the plan)."""
 
 CHANGE_KEYS = {"top", "things", "paints", "rename_paints", "stages", "steps", "add_stages", "add_steps", "move_steps"}
@@ -57,6 +59,19 @@ def apply_plan_changes(plan: dict, ch: dict) -> dict:
     unknown = set(ch) - CHANGE_KEYS
     if unknown:
         raise ValueError(f"unknown keys {sorted(unknown)}")
+    for k in ("top", "things", "paints", "rename_paints", "stages", "steps"):
+        if not isinstance(ch.get(k) or {}, dict):
+            raise ValueError(f"{k} must be an object keyed by id or name, not a list")
+    for k in ("add_stages", "add_steps", "move_steps"):
+        if not isinstance(ch.get(k) or [], list) or not all(isinstance(x, dict) for x in ch.get(k) or []):
+            raise ValueError(f"{k} must be a list of objects")
+    renames = ch.get("rename_paints") or {}
+    for old, new in renames.items():
+        if not isinstance(new, str) or not new.strip():
+            raise ValueError(f"rename_paints: {old!r} needs a new name, not {new!r}")
+    gone = set(renames) & set(ch.get("paints") or {})
+    if gone:  # renames are made first, so the old name no longer names a paint
+        raise ValueError(f"paints: {sorted(gone)} renamed in the same changes; set their fields under the new name")
     p = copy.deepcopy(plan)
 
     def merge(obj: dict, fields: dict, what: str):
@@ -68,6 +83,25 @@ def apply_plan_changes(plan: dict, ch: dict) -> dict:
             else:
                 obj[k] = v
 
+    for old, new in (ch.get("rename_paints") or {}).items():
+        names = [x.get("name") for x in p.setdefault("paints", [])]
+        if old not in names:
+            raise ValueError(f"rename_paints: no paint {old!r}")
+        if new in names and new != old:
+            keep = p["paints"][names.index(new)]
+            gone = p["paints"].pop(names.index(old))
+            keep["things"] = list(dict.fromkeys((keep.get("things") or []) + (gone.get("things") or [])))
+        else:
+            p["paints"][names.index(old)]["name"] = new
+        for x in p["paints"]:
+            if x.get("of") == old:
+                x["of"] = new
+            if x.get("of") == x.get("name"):
+                x.pop("of", None)
+        for st in p.get("stages") or []:
+            for step in st.get("steps") or []:
+                if old in (step.get("paints") or []):
+                    step["paints"] = list(dict.fromkeys(new if c == old else c for c in step["paints"]))
     merge(p, ch.get("top") or {}, "top")
     for key, idk in (("things", "id"), ("paints", "name")):
         items = p.setdefault(key, [])
@@ -82,25 +116,6 @@ def apply_plan_changes(plan: dict, ch: dict) -> dict:
                 items.append(new)
             else:
                 merge(items[at], fields, f"{key} {i}")
-    for old, new in (ch.get("rename_paints") or {}).items():
-        names = [x.get("name") for x in p["paints"]]
-        if old not in names:
-            raise ValueError(f"rename_paints: no paint {old!r}")
-        if new in names and new != old:
-            keep = p["paints"][names.index(new)]
-            gone = p["paints"].pop(names.index(old))
-            keep["things"] = list(dict.fromkeys((keep.get("things") or []) + (gone.get("things") or [])))
-        else:
-            p["paints"][names.index(old)]["name"] = new
-        for x in p["paints"]:
-            if x.get("of") == old:
-                x["of"] = new
-            if x.get("of") == x.get("name"):
-                x.pop("of")
-        for st in p.get("stages") or []:
-            for step in st.get("steps") or []:
-                if old in (step.get("paints") or []):
-                    step["paints"] = list(dict.fromkeys(new if c == old else c for c in step["paints"]))
     stages = p.setdefault("stages", [])
 
     def stage(i):

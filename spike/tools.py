@@ -1371,17 +1371,27 @@ def plan_change_tool(a: argparse.Namespace) -> dict:
     except ValueError as e:
         return {"problems": [f"{a.changes} isn't valid JSON ({e}); plan.json is as it was. Write the changes again."],
                 "applied": False, "cost_usd": 0.0}
+    def unchanged(why: str) -> dict:
+        return {"problems": [f"{why}. plan.json is as it was: send the changes again, fixed."], "applied": False,
+                "cost_usd": 0.0}
+
     try:
         new = plan_writer.apply_plan_changes(plan, ch)
     except ValueError as e:
-        return {"problems": [f"the changes don't apply: {e}. plan.json is as it was: send the changes again, fixed."],
-                "applied": False, "cost_usd": 0.0}
+        return unchanged(f"the changes don't apply: {e}")
+    except (AttributeError, TypeError, KeyError) as e:  # a shape the checks above didn't foresee
+        return unchanged(f"the changes aren't in the brief's shape ({type(e).__name__}: {e})")
     whole = plan_writer.is_whole_plan(ch)
+    if whole and (new.get("plan_version") != 3 or new.get("technique") != plan.get("technique")):
+        return unchanged("a whole plan sent as the changes must keep \"plan_version\": 3 and the plan's technique "
+                         f"({plan.get('technique')!r})")
     (lesson / "plan.json").write_text(json.dumps(new, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
-    log = lesson / "plan-changes.json"
+    log = lesson / plan_writer.CHANGES_LOG
     try:
         kept = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
     except ValueError:
+        kept = []
+    if not isinstance(kept, list):
         kept = []
     kept.append({"at": time.strftime("%Y-%m-%dT%H:%M:%S"), "whole_plan": whole,
                  "changes": None if whole else ch})
@@ -1605,7 +1615,7 @@ def add_v3_tools(sub) -> None:
                                    "paint, stage or step, paints to rename or merge, steps to add or move) to "
                                    "plan.json and prints plan-check's output. A file that is a whole plan replaces "
                                    "plan.json. Changes that don't apply are a problem and leave plan.json as it was. "
-                                   "Each one applied is kept in plan-changes.json.")
+                                   "Each one applied is kept in plan-changes-log.json.")
     p.add_argument("--lesson", required=True)
     p.add_argument("--changes", required=True, help="a JSON file of the changes, or a whole plan")
     p.set_defaults(func=plan_change_tool)

@@ -178,7 +178,7 @@ It makes the changes and prints what `plan-check` prints. Loop until `problems` 
 - A thing, paint, stage or step set to `null` is removed. A thing or paint under a new id or name is added whole.
 - `rename_paints` renames a paint everywhere it is named (steps, things, `of`). Renaming it to a paint that already
   exists merges the two: the old one is removed and its steps use the other. That is how a merge `check` asks for
-  is made.
+  is made. Renames are made first, so set a renamed paint's fields under its new name.
 - `after` is `null` for the first place in the stage (or the plan).
 - Changes that don't apply (a step id that isn't in the plan) are a problem, and `plan.json` is left as it was: fix
   them and run `plan-change` again. A file that is a whole plan replaces `plan.json`, but only send one when most

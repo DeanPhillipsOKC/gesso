@@ -271,7 +271,7 @@ diagrams and the notes in one reply. It looks at the diagrams again only when `p
   first: the brief says ask once, and a writer started again for a merge may still need a file.
 - **The changes** (`plan_writer.apply_plan_changes`, moved from the loop; `tools.py plan-change`): the writer
   writes `plan-changes.json` in the brief's shape and runs `plan-change`, which makes them, keeps each in
-  `<lesson>/plan-changes.json`, and prints what `plan-check` prints. Changes that don't apply are a problem and leave
+  `<lesson>/plan-changes-log.json`, and prints what `plan-check` prints. Changes that don't apply are a problem and leave
   `plan.json` as it was. A whole plan is still taken.
 - **The finisher** (`tools.py small-pictures`, `steps/8-finish.md`, `steps/diagrams.md`): the step pictures at 384
   pixels and the finish at 512 in `<lesson>/small/`. The look at the diagrams is asked for only when

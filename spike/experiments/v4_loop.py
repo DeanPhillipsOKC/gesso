@@ -524,10 +524,9 @@ class Run:
                                       "says: reply with plan-changes.json as one ```json block. The program writes it "
                                       "and runs plan-change."), label)
         for attempt in range(2):
-            path = self.L("plan-changes.json.in")
+            path = self.L("plan-changes.json")  # where plan-brief.md has the writer put them
             path.write_text(json.dumps(a, indent=1))
             r = self.tool("plan-change", "--lesson", self.lesson, "--changes", path, ok_refused=True)
-            path.unlink(missing_ok=True)
             if r.get("applied"):
                 self.state.setdefault("plan_changes", []).append({"label": label, "whole_plan": r.get("whole_plan"),
                                                                   "problems_after": len(r.get("problems") or [])})
@@ -612,8 +611,10 @@ class Run:
             self.plan_fix(h, ask, "C3 merge asked by check")
             pc = self.tool("plan-check", "--lesson", self.lesson, ok_refused=True)
             if pc.get("problems"):
-                self.plan_fix(h, "plan-check printed:\n" + json.dumps(pc) + "\nFix it.",
-                              "C3 plan-check after the merge")
+                pc = self.plan_fix(h, "plan-check printed:\n" + json.dumps(pc) + "\nFix it.",
+                                   "C3 plan-check after the merge")
+            if pc.get("problems") or "refused" in pc:  # run forward from a clean plan-check only (rule 9)
+                raise RuntimeError(f"plan-check still lists problems after the merge: {pc.get('problems')}")
             self.erase()
             return self.build_and_check()
         self.state["check_first"] = ck.get("problems")

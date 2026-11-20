@@ -92,6 +92,16 @@ class PlanChangesTests(unittest.TestCase):
         whole["why"] = "sent whole"
         self.assertIs(vl.apply_plan_changes(plan(), whole), whole)
 
+    def test_a_renamed_paints_fields_are_set_under_its_new_name(self):  # #284's review: it became a merge
+        p = vl.apply_plan_changes(plan(), {"rename_paints": {"Shadow gray": "Deep gray"},
+                                           "paints": {"Deep gray": {"looks": "a deep gray"}}})
+        deep = next(x for x in p["paints"] if x["name"] == "Deep gray")
+        self.assertEqual((deep["looks"], deep["of"], deep["color"]), ("a deep gray", "Cat gray", "#555555"))
+        self.assertEqual(len(p["paints"]), 4)
+        with self.assertRaisesRegex(ValueError, "new name"):
+            vl.apply_plan_changes(plan(), {"rename_paints": {"Shadow gray": "Deep gray"},
+                                           "paints": {"Shadow gray": {"looks": "x"}}})
+
     def test_what_does_not_apply_is_named(self):
         for ch, says in (({"steps": {"nope": {"name": "x"}}}, "nope"),
                          ({"rename_paints": {"Teal": "Sky blue"}}, "Teal"),
@@ -164,7 +174,7 @@ class PlanChangeToolTests(Folder):
         self.assertIn("units", r)  # plan-check's own output
         step = next(s for st in self.plan()["stages"] for s in st["steps"] if s["id"] == "dab-dark-trees")
         self.assertEqual(step["name"], "Dab the dark far trees")
-        [log] = json.loads((self.lesson / "plan-changes.json").read_text())
+        [log] = json.loads((self.lesson / vl.CHANGES_LOG).read_text())
         self.assertEqual(log["changes"]["steps"]["dab-dark-trees"]["name"], "Dab the dark far trees")
 
     def test_a_removed_paint_merged_into_another(self):
@@ -192,7 +202,7 @@ class PlanChangeToolTests(Folder):
         r = run("plan-change", "--lesson", self.lesson, "--changes", self.write("c.json", whole))
         self.assertTrue(r["applied"] and r["whole_plan"])
         self.assertEqual(self.plan(), whole)
-        self.assertIsNone(json.loads((self.lesson / "plan-changes.json").read_text())[0]["changes"])
+        self.assertIsNone(json.loads((self.lesson / vl.CHANGES_LOG).read_text())[0]["changes"])
 
     def test_changes_that_do_not_apply_leave_the_plan(self):
         before = (self.lesson / "plan.json").read_text()
@@ -202,7 +212,41 @@ class PlanChangeToolTests(Folder):
                 self.assertFalse(r["applied"])
                 self.assertTrue(r["problems"])
                 self.assertEqual((self.lesson / "plan.json").read_text(), before)
-        self.assertFalse((self.lesson / "plan-changes.json").exists())
+        self.assertFalse((self.lesson / vl.CHANGES_LOG).exists())
+
+
+    def changes_file(self, obj) -> Path:
+        """Where plan-brief.md tells the writer to put its changes."""
+        p = self.lesson / "plan-changes.json"
+        p.write_text(json.dumps(obj))
+        return p
+
+    def test_the_briefs_own_path_works_round_after_round(self):  # #284's review: the log was this same file
+        for name in ("Dab the dark far trees", "Dab the far trees"):
+            r = run("plan-change", "--lesson", self.lesson, "--changes",
+                    self.changes_file({"steps": {"dab-dark-trees": {"name": name}}}))
+            self.assertEqual(r["_code"], 0, r)
+            self.assertTrue(r["applied"], r)
+        self.assertEqual(len(json.loads((self.lesson / vl.CHANGES_LOG).read_text())), 2)
+
+    def test_changes_in_the_wrong_shape_are_a_problem(self):
+        before = (self.lesson / "plan.json").read_text()
+        thing = self.plan()["things"][0]
+        for ch in ({"things": [thing]}, {"add_steps": {"stage": "x"}}, {"rename_paints": {"Sky white": None}},
+                   {"steps": {"dab-dark-trees": "a name"}}):
+            with self.subTest(ch=ch):
+                r = run("plan-change", "--lesson", self.lesson, "--changes", self.changes_file(ch))
+                self.assertEqual(r["_code"], 0, r)
+                self.assertFalse(r["applied"])
+                self.assertTrue(r["problems"])
+                self.assertEqual((self.lesson / "plan.json").read_text(), before)
+
+    def test_a_whole_plan_must_stay_version_3(self):
+        whole = self.plan()
+        whole.pop("plan_version")
+        r = run("plan-change", "--lesson", self.lesson, "--changes", self.changes_file(whole))
+        self.assertFalse(r["applied"])
+        self.assertEqual(self.plan()["plan_version"], 3)
 
 
 class LibraryToolTests(Folder):
