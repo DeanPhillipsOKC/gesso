@@ -21,10 +21,13 @@ from lesson_page import title_for
 
 
 def summary_of(stage: dict) -> str:
-    """The skill's one-line summary, or the first sentence of the first instruction, cut to about a line."""
+    """The skill's one-line summary, or the first sentence of the first instruction, cut to about a line. A step the
+    lesson's writer wrote (v3.1) has no summary: its Start line is the instruction, since its First line says what
+    has to be dry ("Let the wall dry"), which doesn't say what the step does."""
     if stage.get("summary"):
         return stage["summary"]
-    first = (stage.get("steps") or [""])[0]
+    start = next((x["text"] for x in stage.get("lines") or [] if x.get("kind") == "start" and x.get("text")), None)
+    first = start or (stage.get("steps") or [""])[0]
     sentence = re.split(r"(?<=[.!?])\s", first, maxsplit=1)[0]
     return sentence if len(sentence) <= 120 else sentence[:117].rsplit(" ", 1)[0] + "..."
 

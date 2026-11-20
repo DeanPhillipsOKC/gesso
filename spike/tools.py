@@ -259,8 +259,10 @@ def add_render(sub) -> None:
 # <lesson>/99_finish.png the finished painting; the chain (chain/) erases it backward, a unit of the plan a render
 # <lesson>/v3/plan.json  the plan in version 2's shape (steps3.as_v2), what the later tools read; build-steps keeps it
 # <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is the finish)
-# <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, summary, tip, lines: [{kind, text,
-#                        edited}], brushes: [{brush, use}], made_with, reason}]}; design section 10
+# <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, lines: [{kind, text, edited, step?}],
+#                        brushes: [{brush, use}], made_with, reason}], "opening": {welcome, light, skills, road},
+#                        "stages": {<stage id>: {for, end}}}; v3.1 sections 5 to 7. A lesson made before v3.1 has a
+#                        summary and a tip a step, drafted lines, and no opening or stages
 # <lesson>/review.json   written by the skill: {"finish_issues": [...], "text_issues": [...]}
 
 
@@ -432,6 +434,12 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         out.append("chain/looks/answers.json doesn't answer for every unit: send the checker again")
     if not (lesson / "words" / "dropped.json").exists():
         out.append("the words haven't had their last check: run check-text --final")
+    import draft_text
+    import lesson_words
+
+    written = any(draft_text.written(t.get("lines")) for t in text.values())
+    if written and not (lesson_words.folder_of(lesson) / "arc-dropped.json").exists():
+        out.append("the arc hasn't had its last check: run check-text --arc --final (v3/run.md D4)")
     for key in NOTES_REQUIRED:
         if not notes.get(key):
             out.append(f"notes.json is missing {key} (step 8)")
@@ -450,12 +458,11 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         if t is None:
             out.append(f"text.json has no step {sid}")
             continue
-        # the text is its lines; its strokes come from the plan's stroke and the cards
-        import draft_text
-
+        # the text is its lines; its strokes come from the plan's stroke and the cards. A step the lesson's writer
+        # wrote (v3.1) has no summary: its six lines hold it, and `check` holds them
         for key in ("summary", "lines", "brushes", "made_with"):
             if key == "summary" and draft_text.written(t.get("lines")):
-                continue  # the lesson writer's six lines (v3.1); what the seal asks of them is #277's
+                continue
             if not t.get(key):
                 out.append(f"{sid}: text.json has no {key}")
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
@@ -540,6 +547,12 @@ def publish(a: argparse.Namespace) -> dict:
         "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
     lesson_data["pipeline"] = 3  # made by pipeline v3 and read by the page in version 2's shape
+    # the arc (v3.1, check-text --arc --final): read once before step 1, and a line at each stage's start and end. A
+    # lesson made before it has neither, and its page shows what it has
+    if text_all.get("opening"):
+        lesson_data["opening"] = text_all["opening"]
+    if any((v or {}).get("for") or (v or {}).get("end") for v in (text_all.get("stages") or {}).values()):
+        lesson_data["stage_lines"] = {k: v for k, v in text_all["stages"].items() if v}
     if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
         lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
     if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so

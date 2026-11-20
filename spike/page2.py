@@ -5,9 +5,12 @@ calls these for a lesson.json with "plan_version": 2; a version 1 page never rea
     contents(lesson)                        -> the stages, each with its step count
     tubes_first(lesson, tubes)              -> the tubes to get out, in the order the steps first need them
     paints_fold(count, cards)               -> every paint and its recipe, folded away (each step lists its own)
-    before_you_start(lesson, folder, embed) -> the start basics cards, the transfer outline (folded), strokes to try
+    before_you_start(lesson, folder, embed) -> the opening (v3.1), the transfer outline (folded), strokes to try,
+                                               the start basics cards
     step_basics(lesson, i)                  -> the basics cards whose moment is this step, open (#95)
     step(lesson, i, parts)                  -> one step: the Where / Result switch, its lines, paints, and folds
+    opening(lesson, known)                  -> v3.1's opening, at the top of Before you start (empty without one)
+    stage_line(lesson, group, which)        -> v3.1's line for a stage: `for` under its heading, `end` after its last step
 
 A step's Where view is the picture before it with this step's area outlined (aids/aids.json, from step-aids),
 drawn as SVG over the previous step's picture, so it costs no image of its own: each step picture is put in the
@@ -77,6 +80,17 @@ ol.legend li{display:flex;align-items:center;gap:.5rem;font-size:.92rem}
 .unchecked{justify-self:start;font:600 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--warn);
   border:1px dashed currentColor;border-radius:3px;padding:.25rem .45rem}
 .strokelink{font-size:.92rem}.strokelink a,.toc a,.start a{color:var(--ultramarine)}
+/* v3.1: a step's six lines, each with its label; the opening; a stage's first and last line. */
+ul.six{margin:0;display:grid;gap:.5rem}
+ul.six li{min-width:0}
+ul.six li>b:first-child{font-family:var(--display);font-weight:650}
+ul.six li.ln-back{border-left:3px solid var(--ultramarine);padding:.15rem 0 .15rem .7rem}
+ul.six a,.opening a{color:var(--ultramarine)}
+.opening{display:grid;gap:.9rem;max-width:46rem}
+.opening .welcome{font-size:1.1rem}
+.opening ul{margin:0;padding-left:1.2rem;display:grid;gap:.5rem}
+.stage-for{color:var(--muted);max-width:46rem;margin-bottom:-1.25rem}
+.stage-end{border-left:3px solid var(--stamp);padding:.3rem .75rem;max-width:46rem;margin-bottom:-1rem}
 .stop{display:flex;align-items:center;gap:.75rem;font:500 1.3rem/1.2 var(--hand);color:var(--stamp);margin-top:-1rem}
 .stop::before,.stop::after{content:"";flex:1;border-top:2px dashed var(--rule)}
 nav.toc ol{margin:0;padding-left:1.4rem;display:grid;gap:.35rem}
@@ -304,7 +318,10 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
     where_in = (f' · {e(group["name"])}, {group["steps"].index(s["id"]) + 1} of {len(group["steps"])}' if group else "")
     lines = s.get("lines") or []
     # a load line's words link to the paint-load card, with their two small pictures (#99)
-    do = f'<ol class="do">{"".join(f"<li>{loads.linked(x["text"])}</li>" for x in lines)}</ol>' if lines else ""
+    if written(lines):  # the lesson writer's six lines (v3.1), each with its label
+        do = six_lines(lines)
+    else:
+        do = f'<ol class="do">{"".join(f"<li>{loads.linked(x["text"])}</li>" for x in lines)}</ol>' if lines else ""
     tip = f'<p class="tip"><b>Tip:</b> {e(s["tip"])}</p>' if s.get("tip") else ""
     el = s.get("element") or {}
     if el.get("drafted"):  # a technique drafted for this lesson, not in the hand-checked library yet (#12)
@@ -327,8 +344,69 @@ def step(lesson: dict, i: int, folder: Path, embed: bool, known: dict, mixes: st
 </article>"""
 
 
-def stop(group: dict) -> str:
-    return f'<p class="stop" role="note">End of {e(group["name"])}: a good place to stop</p>'
+# a step's six lines (v3.1), as lesson_words.KINDS names them; a `back` line is "As in step N"
+LABELS = {"first": "First", "start": "Start", "strokes": "Strokes", "inside": "Where the paint sits",
+          "leave": "Leave", "stop": "Stop when"}
+
+
+def written(lines: list[dict]) -> bool:
+    """Whether a step's lines are the lesson writer's six (v3.1) rather than drafted lines (v3)."""
+    return any(x.get("kind") in LABELS for x in lines or [])
+
+
+def six_lines(lines: list[dict]) -> str:
+    """The step's lines, each with its label in bold. A back line's label links to the step it points at."""
+    rows = []
+    for x in lines:
+        kind = x.get("kind", "")
+        if kind == "back" and isinstance(x.get("step"), int):
+            label = f'As in <a href="#step-{x["step"]}">step {x["step"]}</a>'
+        else:
+            label = e(LABELS.get(kind, ""))
+        rows.append(f'<li class="ln-{e(kind)}">{f"<b>{label}:</b> " if label else ""}{loads.linked(x["text"])}</li>')
+    return f'<ul class="plain six">{"".join(rows)}</ul>'
+
+
+def stage_line(lesson: dict, group: dict, which: str) -> str:
+    """A stage's `for` line (under its heading) or `end` line (after its last step), from the arc (v3.1)."""
+    text = ((lesson.get("stage_lines") or {}).get(group["id"]) or {}).get(which)
+    if not text:
+        return ""
+    if which == "end":
+        return f'<p class="stage-end"><b>End of the stage:</b> {e(text)}</p>'
+    return f'<p class="stage-for">{e(text)}</p>'
+
+
+def opening(lesson: dict, known: dict) -> str:
+    """The arc's opening (v3.1), read once before step 1: the welcome, the light, what this painting teaches (each
+    skill a stroke card, with the steps that use it), and the way there. Empty for a lesson made before it."""
+    op = lesson.get("opening") or {}
+    if not op:
+        return ""
+    out = [f'<p class="welcome">{e(op["welcome"])}</p>'] if op.get("welcome") else []
+    if op.get("light"):
+        out.append(f'<div><h3>The light</h3><p>{e(op["light"])}</p></div>')
+    skills = []
+    for sk in op.get("skills") or []:
+        if not isinstance(sk, dict):
+            continue
+        card = sk.get("card", "")
+        name = e((known.get(card) or {}).get("name") or card)
+        title = f'<a href="#stroke-{e(card)}">{name}</a>' if card in known else name
+        ns = [n for n in sk.get("steps") or [] if isinstance(n, int)]
+        where = ", ".join(f'<a href="#step-{n}">{n}</a>' for n in ns)
+        where = f' <span class="small">(step{"s" if len(ns) != 1 else ""} {where})</span>' if ns else ""
+        skills.append(f'<li><b>{title}</b>{where}. {e(sk.get("how", ""))}</li>')
+    if skills:
+        out.append(f'<div><h3>What this painting teaches</h3><ul>{"".join(skills)}</ul></div>')
+    if op.get("road"):
+        out.append(f'<div><h3>The way there</h3><p>{e(op["road"])}</p></div>')
+    return f'<div class="opening">{"".join(out)}</div>'
+
+
+def stop(group: dict, lesson: dict | None = None) -> str:
+    end = stage_line(lesson, group, "end") if lesson else ""
+    return f'{end}<p class="stop" role="note">End of {e(group["name"])}: a good place to stop</p>'
 
 
 def contents(lesson: dict) -> str:
@@ -458,7 +536,7 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
     later = '<p class="small">The other basics are in the steps where they matter.</p>' if in_steps else ""
     # Folded and optional at the owner's word (#94). The steps say where in inches, so nothing here is needed (#122).
     placing = fold("Placing shapes with a transfer outline", "optional", transfer, cls="placing") if transfer else ""
-    return (f'<section class="start" id="start"><h2>Before you start</h2>{placing}{strokes}'
+    return (f'<section class="start" id="start"><h2>Before you start</h2>{opening(lesson, known)}{placing}{strokes}'
             f'<div><h3>Getting started</h3>{later}<div class="basics">{basics}</div></div></section>')
 
 

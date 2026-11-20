@@ -1,10 +1,10 @@
 # Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
 
-**A draft (2026-11-20), not built. The owner read it and merged it (#275), set the gate (section 13), and said go on
-the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`).** It is the design the v4 plan's
-Order, step 5 asks for (`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes
-`pipeline-v3.md`; it doesn't replace it. Read that file first: every section number below that isn't this file's own
-is v3's.
+**A draft (2026-11-20), being built on the branch `v3.1` (builds 1 and 2 done). The owner read it and merged it
+(#275), set the gate (section 13), and said go on the combined lesson (section 12, steps 1 and 2;
+`docs/spikes/v31-combined.md`).** It is the design the v4 plan's Order, step 5 asks for (`pipeline-v4-plan.md`),
+written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't replace it. Read that file
+first: every section number below that isn't this file's own is v3's.
 
 Each piece is marked **proven** (a spike ran it and its write-up has the numbers), a **guess** (this draft's own
 joining of the pieces, run by nobody yet), or **open**.
@@ -206,8 +206,8 @@ keeps each round's counts. Beside the spikes:
 - **A stage's end picture is the after half of its last step's pair** (`stages.md` says which), as #267's
   `arc-same` sent it, not a 480-pixel picture of its own.
 - **`draft-text` still runs** and makes each step's header; on a step the writer wrote it adds no lines.
-- **Until build 2, `check` and the seal take the six lines in place of a summary and a tip** and ask nothing more
-  of them: the smallest change that keeps a lesson sealable on the branch.
+- **Until build 2 (#277, section 7's as-built), `check` and the seal took the six lines in place of a summary and a
+  tip** and asked nothing more of them: the smallest change that keeps a lesson sealable on the branch.
 - **The real run on the cat** (`docs/spikes/v31-build1-cat.md`): the subagent helper worked. Round 1 sent back 20
   failures, 11 of them check-text reading "nearest the window" as the window's sky.
 
@@ -225,6 +225,28 @@ keeps each round's counts. Beside the spikes:
 - **The seal** asks for `check-text --final` as today. `lesson.json` adds the opening and the stage lines.
 - **Older lessons** have no opening and carry a summary and a tip. The page shows what a lesson has, so the site's
   history still opens.
+
+### As built (#277, build 2, on the branch)
+
+- **The page** (`page2.six_lines`, `opening`, `stage_line`): a step's lines in a list, each with its label in bold;
+  the back line's label is "As in step N" with N a link to that step, and it sits after Start, where `check-text
+  --arc` put it. "Before you start" opens with the welcome, then "The light", "What this painting teaches" (each
+  skill's card linked to its card and its steps listed), and "The way there". A stage's `for` line is under its
+  heading; its `end` line, marked "End of the stage", is just before the "good place to stop" mark. A lesson with
+  no opening and drafted lines gets v3's numbered list and its tip, as before.
+- **`lesson.json`** gains `opening` and `stage_lines` (by stage id), and a back line in a stage's `lines` keeps its
+  `step`. Neither key is written for a lesson without them.
+- **`check`** asks a step with the writer's lines for Start, Strokes, Where the paint sits, Leave and Stop when.
+  A line `check-text --final` emptied (`rounds.json`'s `emptied`) may be missing: it is a known problem in
+  `review.json`. A step with the six lines and a v3 summary or tip fails. The 40 words, the paint rule and the
+  sheet check are as they were, and cover the back lines. The arc's checks (`lesson_words.arc_problems`) run on
+  the arc as `text.json` holds it, so a number or side added to the opening, or a back line pointed at the wrong
+  step, can't be sealed. A part the arc's last check took out (`arc-dropped.json`) may be missing.
+- **The seal** also asks for `check-text --arc --final` on a lesson with the writer's lines.
+- **The site's card line** (`lesson_embed.summary_of`) is the Start line's first sentence when there is no
+  summary, not the first line: a First line ("Let the wall dry") says nothing about what the step does. On the
+  build 1 cat all 22 read as instructions ("Start with the wide upright of the frame, ..."). The tiles never read a
+  summary.
 
 ## 8. The plan's writer and the finisher
 

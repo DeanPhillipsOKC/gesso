@@ -130,12 +130,13 @@ def card_text(ids: list[str]) -> str:
     return "\n".join(out)
 
 
-def _lesson(lesson: Path) -> dict:
+def _lesson(lesson: Path, sheet_plan: tuple[dict, dict] | None = None) -> dict:
     """What the words' tools need of a lesson: the sheet, the plan in version 2's shape, the version 3 plan, and each
-    step's number, name, part, paints (names), stroke and brush, in painting order."""
+    step's number, name, part, paints (names), stroke and brush, in painting order. `sheet_plan` is the sheet and
+    the plan when the caller has measured them already (`check`)."""
     import plan3
 
-    sheet, plan = facts.lesson_sheet(lesson)
+    sheet, plan = sheet_plan or facts.lesson_sheet(lesson)
     raw = plan3.load(lesson)
     names = publish2.paint_names(plan)
     by_v3 = {s["id"]: s for s in plan3.steps(raw)}
@@ -811,3 +812,57 @@ def arc_round(lesson: Path, final: bool = False) -> dict:
     return {"problems": problems, "ok": not problems, "taken_out": len(gone), "left_failing": len(own2) + len(back2),
             "back_lines": backs, "arc_words": arc_words(arc), "first": a.get("first"),
             "advice": "The arc is in text.json (arc-dropped.json: what was taken out). Then run check."}
+
+
+# ------------------------------------------------------------------------------------------ what `check` holds (#277)
+def arc_of(text: dict) -> dict:
+    """The arc as text.json holds it after check-text --arc --final, in arc.json's shape."""
+    steps = {}
+    for t in text.get("steps") or []:
+        b = next((x for x in t.get("lines") or [] if x.get("kind") == "back"), None)
+        if b:
+            steps[t["stage_id"]] = {"back": {"step": b.get("step"), "text": b.get("text", "")}}
+    return {"opening": text.get("opening") or {}, "stages": text.get("stages") or {}, "steps": steps}
+
+
+def is_written(text: dict) -> bool:
+    """Whether a lesson's words are the lesson writer's (v3.1): a step's lines are the six, not drafted ones."""
+    import draft_text
+
+    return any(draft_text.written(t.get("lines")) for t in text.get("steps") or [])
+
+
+def taken(lesson: Path) -> tuple[set, set]:
+    """What the last checks took out and so may be missing: ({(step id, line kind)} emptied by check-text --final,
+    {an arc place}, from words/lesson/rounds.json and arc-dropped.json)."""
+    folder = folder_of(Path(lesson))
+    st = _state(folder)
+    lines = {(x.get("id"), x.get("kind")) for x in ((st.get("final") or {}).get("emptied") or [])}
+    try:
+        arc = json.loads((folder / "arc-dropped.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        arc = []
+    places = {x.get("where") for x in arc if isinstance(x, dict)}
+    return lines, places
+
+
+def arc_problems(lesson: Path, text: dict, sheet_plan: tuple[dict, dict]) -> list[str]:
+    """The arc's checks on the arc as text.json holds it (design section 7), so an arc changed after its round can't
+    be sealed. A part the arc's last check took out (arc-dropped.json) may be missing; what is there must pass."""
+    if not is_written(text):
+        return []  # a lesson made before v3.1 has no arc
+    if not text.get("opening"):
+        return ["text.json has no opening: the arc hasn't been written in. Run check-text --arc, then check-text "
+                "--arc --final (v3/run.md D4)."]
+    les = _lesson(Path(lesson), sheet_plan)
+    _, gone = taken(lesson)
+    out = []
+    for c in check_arc(les, arc_of(text)):
+        missing = c["what"] == "missing" or c["where"] == "opening.skills"
+        if missing and (c["where"] in gone or (c["where"] == "opening.skills" and any(
+                str(g).startswith("opening.skill") for g in gone))):
+            continue  # taken out by the arc's last check, and said so in arc-dropped.json
+        said = f" in: \"{c['sentence']}\"" if c.get("sentence") else ""
+        out.append(f"the arc's {c['where']}: {c['what']}{said}. Run check-text --arc and send the writer back, then "
+                   "check-text --arc --final.")
+    return out
