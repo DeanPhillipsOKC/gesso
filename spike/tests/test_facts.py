@@ -551,8 +551,8 @@ class ClaimTests(unittest.TestCase):
 
 
 class WriterTests(unittest.TestCase):
-    """The writer's packet and the merge (S8's A/B): the facts it's given pass the checker said the way they're
-    given, and a merge takes in a writer's words, sends back only its own failures, and takes out what still fails."""
+    """What the lesson's writer is given passes the checker said the way it's given, and a failure is the writer's
+    only where the writer wrote it."""
 
     @classmethod
     def setUpClass(cls):
@@ -579,18 +579,14 @@ class WriterTests(unittest.TestCase):
         self.assertIn("Under it, step 3 (Deep balloon red): at the middle row", words)
         self.assertIn("Its marks, biggest first", words)
 
-    def test_apply_and_whose_failures(self):
+    def test_whose_failures(self):
         t = text(self.sheet, {})
         t["steps"][1]["lines"].append({"kind": "how", "text": "Paint it at the right edge."})
-        bad = vf._apply(t, {"steps": {"balloon-shape": {"summary": "The balloon.", "tip": "Paint it at the right edge.",
-                                                        "lines": {"9": "x"}},
-                                      "nope": {"tip": "x"}}})
-        self.assertEqual(bad, ["balloon-shape: no line 9", "no step nope in this stage"])
-        self.assertEqual(t["steps"][1]["summary"], "The balloon.")
+        t["steps"][1]["tip"] = "Paint it at the right edge."
         r = vf.check_text(self.sheet, t, strict=True)
         fields = sorted(c["field"] for c in vf._writers(t, r["failures"]))
         self.assertEqual(fields, ["tip"])  # the unedited drafted line's same claim isn't the writer's
-        vf._apply(t, {"steps": {"balloon-shape": {"lines": {"2": "Paint it at the right edge."}}}})
+        t["steps"][1]["lines"][-1]["edited"] = True
         r = vf.check_text(self.sheet, t, strict=True)
         self.assertEqual(sorted(c["field"] for c in vf._writers(t, r["failures"])), ["line 2 (how)", "tip"])
 
@@ -629,10 +625,6 @@ class WriterTests(unittest.TestCase):
         self.assertEqual(step["lines"][0]["text"], "Pull it down.")
         self.assertTrue(vf._owned(step, "line 1 (how)"))
         self.assertFalse(vf._owned({"lines": [{"text": "x"}]}, "line 1 (how)"))
-
-    def test_apply_reports_a_line_key_that_isnt_a_number(self):
-        t = text(self.sheet, {})
-        self.assertEqual(vf._apply(t, {"steps": {"sky": {"lines": {"six": "x"}}}}), ["sky: no line six"])
 
 
 @lessons.slow

@@ -259,8 +259,10 @@ def add_render(sub) -> None:
 # <lesson>/99_finish.png the finished painting; the chain (chain/) erases it backward, a unit of the plan a render
 # <lesson>/v3/plan.json  the plan in version 2's shape (steps3.as_v2), what the later tools read; build-steps keeps it
 # <lesson>/NN_<id>.png   step pictures from build-steps, NN from 01 (the last is the finish)
-# <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, summary, tip, lines: [{kind, text,
-#                        edited}], brushes: [{brush, use}], made_with, reason}]}; design section 10
+# <lesson>/text.json     draft-text, then the skill: {"steps": [{stage_id, lines: [{kind, text, edited, step?}],
+#                        brushes: [{brush, use}], made_with, reason}], "opening": {welcome, light, skills, road},
+#                        "stages": {<stage id>: {for, end}}}; v3.1 sections 5 to 7. A lesson made before v3.1 has a
+#                        summary and a tip a step, drafted lines, and no opening or stages
 # <lesson>/review.json   written by the skill: {"finish_issues": [...], "text_issues": [...]}
 
 
@@ -432,6 +434,12 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         out.append("chain/looks/answers.json doesn't answer for every unit: send the checker again")
     if not (lesson / "words" / "dropped.json").exists():
         out.append("the words haven't had their last check: run check-text --final")
+    import draft_text
+    import lesson_words
+
+    written = any(draft_text.written(t.get("lines")) for t in text.values())
+    if written and not (lesson_words.folder_of(lesson) / "arc-dropped.json").exists():
+        out.append("the arc hasn't had its last check: run check-text --arc --final (v3/run.md D4)")
     for key in NOTES_REQUIRED:
         if not notes.get(key):
             out.append(f"notes.json is missing {key} (step 8)")
@@ -450,8 +458,11 @@ def seal_problems(lesson: Path, plan, text: dict, review: dict, notes: dict, che
         if t is None:
             out.append(f"text.json has no step {sid}")
             continue
-        # the text is its lines; its strokes come from the plan's stroke and the cards
+        # the text is its lines; its strokes come from the plan's stroke and the cards. A step the lesson's writer
+        # wrote (v3.1) has no summary: its six lines hold it, and `check` holds them
         for key in ("summary", "lines", "brushes", "made_with"):
+            if key == "summary" and draft_text.written(t.get("lines")):
+                continue
             if not t.get(key):
                 out.append(f"{sid}: text.json has no {key}")
     for key in ("texture_jumps", "paints_not_listed", "duplicate_recipes", "undocumented_diagrams", "long_instructions"):
@@ -536,6 +547,12 @@ def publish(a: argparse.Namespace) -> dict:
         "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
     lesson_data["pipeline"] = 3  # made by pipeline v3 and read by the page in version 2's shape
+    # the arc (v3.1, check-text --arc --final): read once before step 1, and a line at each stage's start and end. A
+    # lesson made before it has neither, and its page shows what it has
+    if text_all.get("opening"):
+        lesson_data["opening"] = text_all["opening"]
+    if any((v or {}).get("for") or (v or {}).get("end") for v in (text_all.get("stages") or {}).values()):
+        lesson_data["stage_lines"] = {k: v for k, v in text_all["stages"].items() if v}
     if any(p.get("element") for p in raw.get("parts") or []):  # the technique picks (#12), for the owner's review
         lesson_data["technique_picks"] = {"technique_why": raw.get("technique_why", ""), "parts": elements.picks(raw)}
     if review.get("review_context"):  # "same": no fresh reviewer could be started; Known problems says so
@@ -629,10 +646,13 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     if not data:
         raise Refused("run publish first: the preview reads lesson.json")
     paints = lookup(data["photo_read"]["mixes"])
-    rows = []
+    rows, specced, broken = [], [], []
     for i, st in enumerate(data["stages"], 1):
         html = strip(st.get("construct"), paints, st["id"])
+        if st.get("construct"):
+            specced.append(st["id"])
         if st.get("construct") and not html:
+            broken.append(st["id"])
             html = '<p class="flag">This spec is broken: it draws nothing. Check its shapes and path data.</p>'
         if html:
             rows.append(f'<section style="display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start">'
@@ -643,7 +663,8 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     page = trials / "diagrams.html"
     page.write_text(f'<!doctype html><meta charset="utf-8"><style>{STYLE}</style><body><div class="wrap" '
                     f'style="max-width:1200px">{"".join(rows) or "<p>No diagrams.</p>"}</div></body>', encoding="utf-8")
-    result = {"diagrams": len(rows), "html": str(page), "png": None}
+    result = {"diagrams": len(rows), "specced": len(specced), "drawn": len(specced) - len(broken), "broken": broken,
+              "html": str(page), "png": None}
     browser = next((b for b in BROWSERS if Path(b).exists()), None)
     if browser and rows:
         png = trials / "diagrams.png"
@@ -657,6 +678,39 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     elif not result["png"]:
         result["note"] = "No PNG: no Chrome or Edge found. Open the HTML in a browser, or serve the folder and look."
     return result
+
+
+FINISHER_STEP_SIDE = 384  # pixels: the finisher's step pictures (#267's f-lean)
+FINISHER_FINISH_SIDE = 512
+
+
+def small_pictures(a: argparse.Namespace) -> dict:
+    """Every step picture at 384 pixels and the finish at 512, in <lesson>/small/, for step 8's finisher to look at
+    in place of the full-size ones. Design v3.1, section 8."""
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    raw, plan, technique = load_plan(lesson)
+    paths = step_paths(lesson, plan)
+    missing = [p.name for p in paths if not p.exists()]
+    if missing:
+        raise Refused(f"missing step images: {missing}. Run build-steps --lesson {lesson}.")
+    fin = lesson / "99_finish.png"
+    if not fin.exists():
+        raise Refused(f"no 99_finish.png in {lesson}")
+    out = lesson / "small"
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir()
+    files = []
+    for src, side in [(p, FINISHER_STEP_SIDE) for p in paths] + [(fin, FINISHER_FINISH_SIDE)]:
+        im = Image.open(src).convert("RGB")
+        im.thumbnail((side, side), Image.LANCZOS)
+        dst = out / f"{src.stem}.jpg"
+        im.save(dst, quality=88)
+        files.append(f"small/{dst.name}")
+    return {"problems": [], "folder": str(out), "files": files, "steps": len(paths),
+            "advice": "Look at these, not the full-size pictures, for step 8.", "cost_usd": 0.0}
 
 
 def fit_canvas(a: argparse.Namespace) -> dict:
@@ -822,6 +876,12 @@ def add_lesson_tools(sub) -> None:
         return {"canvas": canvas_view(Path(a.lesson), a.images) or "no canvas crop needed", "cost_usd": 0.0}
     p.set_defaults(func=_view)
 
+    p = sub.add_parser("small-pictures", help="Free. Every step picture at 384 pixels and the finish at 512, in <lesson>/small/, for step 8.",
+                       description="Writes <lesson>/small/NN_<id>.jpg (384 pixels on the long side) for every step "
+                                   "and 99_finish.jpg (512): what step 8's finisher looks at in place of the "
+                                   "full-size pictures.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=small_pictures)
     p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
                        description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "
                                    "installed, trials/diagrams.png, so you can check each diagram against its step.")
@@ -1061,7 +1121,7 @@ def draft_text_tool(a: argparse.Namespace) -> dict:
     return {"text": str(path), "steps": len(text["steps"]), "lines": sum(len(t["lines"]) for t in text["steps"]),
             "edited_kept": sum(1 for t in text["steps"] for x in t["lines"] if x.get("edited")),
             "for_claude": todo, "left_out": draft_text.left_out(plan),
-            "advice": "Run check, then the chain's checker; the stage writers write each step's summary and tip "
+            "advice": "Run check, then the chain's checker; the lesson's writer writes each step's words "
                       "(packets, v3/run.md step D).", "cost_usd": 0.0}
 
 
@@ -1265,6 +1325,80 @@ def plan_check_tool(a: argparse.Namespace) -> dict:
             "cost_usd": 0.0}
 
 
+def library_tool(a: argparse.Namespace) -> dict:
+    """The library's list for the plan's writer, or with --picks, the files it picked in <lesson>/library/.
+    Design v3.1, section 8."""
+    import plan_writer
+
+    lesson = Path(a.lesson)
+    if not lesson.is_dir():
+        raise Refused(f"no lesson folder {lesson}")
+    if not a.picks:
+        listed = elements_tool(argparse.Namespace(lesson=str(lesson), out=None))
+        return {"problems": listed["problems"], "elements": listed["elements"], **plan_writer.library_list(),
+                "advice": "Pick what you'll read: the element of every thing, the card of every stroke you'll use, "
+                          "the research sections your picture needs (by heading, as listed; \"For Gesso\" is always "
+                          "sent). Write them to a file as {\"elements\": [...], \"strokes\": [...], \"research\": "
+                          "[...]} and run library --picks <that file>. Ask once, so take every one you might use.",
+                "cost_usd": 0.0}
+    try:
+        picks = json.loads(Path(a.picks).read_text(encoding="utf-8"))
+        r = plan_writer.write_library(lesson, picks)
+    except FileNotFoundError:
+        raise Refused(f"no picks file {a.picks}")
+    except ValueError as e:
+        return {"problems": [f"the picks can't be read: {e}. Nothing was written."], "cost_usd": 0.0}
+    problems = [f"no {kind[:-1] if kind != 'research' else 'research section'} {x!r}: pick one from library's list"
+                for kind, xs in r["unknown"].items() for x in xs]
+    return {"problems": problems, **r,
+            "advice": f"Read every file in {r['folder']} and nothing else from techniques/ or docs/. "
+                      + ("Fix the names problems lists and run library --picks again (what matched is kept)."
+                         if problems else ""),
+            "cost_usd": 0.0}
+
+
+def plan_change_tool(a: argparse.Namespace) -> dict:
+    """The plan's writer's changes made to plan.json, then plan-check. A whole plan is taken as it is. Changes that
+    don't apply leave plan.json as it was. Design v3.1, section 8."""
+    import plan_writer
+
+    lesson = Path(a.lesson)
+    plan, _ = _v3_plan(lesson)
+    try:
+        ch = json.loads(Path(a.changes).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        raise Refused(f"no changes file {a.changes}")
+    except ValueError as e:
+        return {"problems": [f"{a.changes} isn't valid JSON ({e}); plan.json is as it was. Write the changes again."],
+                "applied": False, "cost_usd": 0.0}
+    def unchanged(why: str) -> dict:
+        return {"problems": [f"{why}. plan.json is as it was: send the changes again, fixed."], "applied": False,
+                "cost_usd": 0.0}
+
+    try:
+        new = plan_writer.apply_plan_changes(plan, ch)
+    except ValueError as e:
+        return unchanged(f"the changes don't apply: {e}")
+    except (AttributeError, TypeError, KeyError) as e:  # a shape the checks above didn't foresee
+        return unchanged(f"the changes aren't in the brief's shape ({type(e).__name__}: {e})")
+    whole = plan_writer.is_whole_plan(ch)
+    if whole and (new.get("plan_version") != 3 or new.get("technique") != plan.get("technique")):
+        return unchanged("a whole plan sent as the changes must keep \"plan_version\": 3 and the plan's technique "
+                         f"({plan.get('technique')!r})")
+    (lesson / "plan.json").write_text(json.dumps(new, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    log = lesson / plan_writer.CHANGES_LOG
+    try:
+        kept = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
+    except ValueError:
+        kept = []
+    if not isinstance(kept, list):
+        kept = []
+    kept.append({"at": time.strftime("%Y-%m-%dT%H:%M:%S"), "whole_plan": whole,
+                 "changes": None if whole else ch})
+    log.write_text(json.dumps(kept, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return {**plan_check_tool(a), "applied": True, "whole_plan": whole}
+
+
 def _v3_ready(lesson: Path):
     """A version 3 lesson's plan with nothing wrong in it, and its finish, or a refusal."""
     import elements
@@ -1381,68 +1515,62 @@ def erase_tool(a: argparse.Namespace, client=None) -> dict:
 
 
 V3_REASON = "the finish erased back to this step by the image model, a render a stage of a thing"
-WRITER_BRIEF = ROOT / ".claude" / "skills" / "paint-lesson" / "v3" / "writer-brief.md"
 
 
 def packets_tool(a: argparse.Namespace) -> dict:
-    """The fact sheet and one writer's packet a stage, under <lesson>/words/. Design section 10."""
-    import facts
-    import plan3
+    """The fact sheet and the lesson writer's folder, words/lesson/. Design v3.1, section 5."""
+    import lesson_words
 
     lesson = Path(a.lesson)
     if not (lesson / "text.json").exists():
-        raise Refused(f"no text.json in {lesson}: run draft-text first (the packets hold each step's drafted lines)")
-    extra = None
-    if plan3.is_v3(lesson):  # what the plan says each step is for, beside what its picture shows
-        extra = {s["id"]: {"meant": s.get("after", "")} for s in plan3.steps(plan3.load(lesson))}
-    work = facts.packets(lesson, WRITER_BRIEF, extra)
-    stages = sorted(str(f) for f in work.glob("stage-*") if f.is_dir())
-    return {"sheet": str(work / "sheet.json"), "stages": stages,
-            "advice": f"Start one writer a stage, all {len(stages)} at once, each in a fresh context with only its "
-                      "folder: it reads brief.md there and writes out.json. Then run check-text.", "cost_usd": 0.0}
+        raise Refused(f"no text.json in {lesson}: run draft-text first (it makes each step's header)")
+    try:
+        r = lesson_words.packet(lesson)
+    except lesson_words.Refused as e:
+        raise Refused(str(e))
+    return {"problems": [], **r,
+            "advice": "Start one writer, in a fresh context, with: \"Follow brief.md in <lesson>/words/lesson. Read "
+                      "only that folder. Write out.json there.\" Then run check-text.", "cost_usd": 0.0}
 
 
 def check_text_tool(a: argparse.Namespace) -> dict:
-    """The writers' words into text.json, every number and side checked against the fact sheet. Design section 10."""
+    """The lesson writer's words into text.json, checked round by round against the fact sheet and the step's
+    paints; with --arc, the arc. Design v3.1, sections 5 and 6."""
     import facts
+    import lesson_words
 
     lesson = Path(a.lesson)
     if not (lesson / facts.WORK).is_dir() or not (lesson / "text.json").exists():
-        raise Refused(f"no writers' packets in {lesson}: run draft-text, then packets")
+        raise Refused(f"no writer's packet in {lesson}: run draft-text, then packets")
     try:
-        r = facts.merge(lesson, lambda: draft_text_tool(a), final=a.final)
-    except facts.Stale as e:
+        if a.arc:
+            r = lesson_words.arc_round(lesson, final=a.final)
+        else:
+            r = lesson_words.steps_round(lesson, lambda: draft_text_tool(a), final=a.final)
+    except lesson_words.Refused as e:
         raise Refused(str(e))
-    wrong = [f"{name}: its writer wrote no out.json" for name in r["missing"]] + r["bad"]
-    wrong += [f"{sid}: no summary or no tip from its writer" for sid in r["unwritten"]]
-    if not a.final:
-        wrong += r["failed"]
-    return {"problems": wrong, "ok": not wrong, "claims": r["claims"], "failures": r["failures"],
-            "dropped": r["dropped"], "left_failing": r["after"],
-            "stages_with_feedback": [f"stage-{k:02d}" for k in r["stages_with_feedback"]],
-            "advice": ("Send each stage in stages_with_feedback back to its writer once: it reads feedback.md in its "
-                       "folder and writes out.json again. Then run check-text --final, which takes out any sentence "
-                       "that still fails." if not a.final else
-                       "Sentences that still failed were taken out (words/dropped.json). A stage with a missing or "
-                       "unusable out.json needs its writer again. Then run check."), "cost_usd": 0.0}
+    return {**r, "cost_usd": 0.0}
 
 
 def add_v3_tools(sub) -> None:
-    p = sub.add_parser("packets", help="Free. v3: the fact sheet and one writer's packet a stage, for the stage writers.",
+    p = sub.add_parser("packets", help="Free. The fact sheet and the lesson writer's folder (words/lesson/).",
                        description="Measures the fact sheet from the step pictures (words/sheet.json) and writes "
-                                   "words/stage-NN/ for every stage: brief.md, steps.json (each step's paints, brush, "
-                                   "stroke, drafted lines, and what the plan says it is for), facts.md (the sheet's "
-                                   "rows as sentences), a before-and-after picture a step, the photo and the finish. "
-                                   "Run after draft-text.")
+                                   "words/lesson/ for the lesson's one writer: brief.md and arc-brief.md, steps.md "
+                                   "(each step's header and stroke card), cards.md, stages.md, plan.json, facts.md "
+                                   "(the sheet's rows as sentences, lean), a before-and-after picture and a change "
+                                   "picture a step, the photo and the finish. Run after draft-text.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=packets_tool)
-    p = sub.add_parser("check-text", help="Free. v3: the writers' words into text.json, each number and side checked against the sheet.",
-                       description="Drafts the lines again, lays every stage's words/stage-NN/out.json on them, and "
-                                   "checks every number, side and position the writers wrote against the fact sheet. "
-                                   "A failure is written to that stage's feedback.md for its writer, once. --final "
-                                   "takes out any sentence that still fails (words/dropped.json).")
+    p = sub.add_parser("check-text", help="Free. The lesson writer's words into text.json, round by round, each number and side checked against the sheet.",
+                       description="Lays words/lesson/out.json and the writer's answers (fix-1.json, fix-2.json) "
+                                   "into text.json as each step's six lines, and runs the next round: round 1 sends "
+                                   "back check-text's failures, round 2 the sentences that name a paint their step "
+                                   "doesn't list and the lines over 40 words (feedback.md says which file to write). "
+                                   "--final takes out any sentence that still fails (words/dropped.json). --arc does "
+                                   "the same for the arc (arc.json, arc-fix.json), and --arc --final writes it in.")
     p.add_argument("--lesson", required=True)
-    p.add_argument("--final", action="store_true", help="take out the sentences that still fail, after the one fix round")
+    p.add_argument("--final", action="store_true", help="take out the sentences that still fail, after the rounds")
+    p.add_argument("--arc", action="store_true", help="the arc's round (after check-text --final)")
     p.set_defaults(func=check_text_tool)
     p = sub.add_parser("erase", help="PAID, one low render a unit. v3: erase the finish backward by the plan's units (the chain).",
                        description="Makes <lesson>/chain/: P<nn>.png (the picture with every unit after nn erased), "
@@ -1472,6 +1600,25 @@ def add_v3_tools(sub) -> None:
                                    "palette. It knows nothing of the picture.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=plan_check_tool)
+    p = sub.add_parser("library", help="Free. v3.1: the library's list for the plan's writer, and the files it picks.",
+                       description="With no --picks: every element technique (as `elements` prints it), every "
+                                   "stroke card in a line (id, name, result), the research's \"For Gesso\" section "
+                                   "and the headings of its other sections. With --picks <file> ({\"elements\": [], "
+                                   "\"strokes\": [], \"research\": [headings]}): copies what was picked into "
+                                   "<lesson>/library/ (elements/, strokes/, research.md with \"For Gesso\" first), "
+                                   "added to what was picked before. A heading matches without its #s or number.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--picks", help="a JSON file of the picks")
+    p.set_defaults(func=library_tool)
+    p = sub.add_parser("plan-change", help="Free. v3.1: make the plan's writer's changes to plan.json, then plan-check.",
+                       description="Applies a changes file (the shape is in plan-brief.md: fields to set on a thing, "
+                                   "paint, stage or step, paints to rename or merge, steps to add or move) to "
+                                   "plan.json and prints plan-check's output. A file that is a whole plan replaces "
+                                   "plan.json. Changes that don't apply are a problem and leave plan.json as it was. "
+                                   "Each one applied is kept in plan-changes-log.json.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--changes", required=True, help="a JSON file of the changes, or a whole plan")
+    p.set_defaults(func=plan_change_tool)
 
 
 def build_parser() -> argparse.ArgumentParser:

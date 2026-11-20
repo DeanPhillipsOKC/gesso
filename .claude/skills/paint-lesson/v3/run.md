@@ -1,7 +1,8 @@
 # The run after steps 0 and 1 (`/paint-lesson <photo>`)
 
-This is the pipeline (version 3; its gate passed on 2026-11-18, `docs/decisions.md`). SKILL.md's steps 0 and 1
-come first, then this file.
+This is the pipeline (version 3; its gate passed on 2026-11-18, `docs/decisions.md`), with v3.1's changes
+(`docs/design/pipeline-v3.1.md`): one writer for the lesson's words, a plan's writer that picks its library files
+and answers with changes, and a finisher sent smaller pictures. SKILL.md's steps 0 and 1 come first, then this file.
 
 A version 3 lesson is planned first, by a painter's eye, and the pictures are made to fit the plan: the finished
 painting is erased backward by the image model, one piece of the plan at a time, and every step picture comes from
@@ -10,11 +11,11 @@ requests or the step words yourself.
 
 SKILL.md's rules for the whole run stand. Rule 9's order is this file's: after any change to `plan.json`,
 `plan-check`, `erase`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, then the chain's checker and its
-redos, then `packets`, the stage writers, `check-text`, and `check` again. A chain request that didn't change costs
+redos, then `packets`, the lesson's writer and its rounds (`check-text`), its arc, and `check` again. A chain request that didn't change costs
 nothing the second time.
 
 **Lessons are made on Opus** (`docs/decisions.md`, 2026-11-17). Every helper below (the plan's writer, the chain's
-checker, the stage writers) is a subagent on Opus in a fresh context, given only what its step names. **Run this
+checker, the lesson's writer) is a subagent on Opus in a fresh context, given only what its step names. **Run this
 from the session the owner started, not from inside a subagent:** a subagent can't start the helpers (the first
 real run stopped at step A for that, #219). If you aren't an Opus model, you still run the tools and start the
 helpers yourself, and hand what takes a painter's judgment to one more Opus subagent: steps 0 and 1 before the
@@ -36,8 +37,13 @@ plan, and E2 (diagrams, notes, the seal) at the end, with what happened in betwe
 1. Start one writer with: "Follow `.claude/skills/paint-lesson/v3/plan-brief.md`. Lesson folder: `<lesson>`. Photo:
    `<the photo's path, as step 0 left it>`. Technique: `techniques/acrylic-paint-along-beginner.yaml`." Add the
    palette's name when the painter uses their own tubes. Don't pass it your read of the picture.
+   The writer reads the library's list (`library`), asks once for the files it picks (`library --picks`, into
+   `<lesson>/library/`), and reads only those.
 2. When it replies, run `plan-check --lesson <lesson>` yourself. `problems` must be empty. If it isn't, send the
-   list back to the same writer once. If it still isn't, fix what is left yourself, as each problem says.
+   list back to the same writer once: "Fix these with a changes file and `plan-change`, as your brief says:" and the
+   list. It answers with only what changes, never the plan again. If it still isn't empty, fix what is left
+   yourself the same way: a changes file and `plan-change --lesson <lesson> --changes <file>`, which prints
+   `plan-check`'s output.
 3. Read `units` and `renders` in what `plan-check` printed: that is the chain's size.
 
 ### B. The chain
@@ -49,7 +55,7 @@ plan, and E2 (diagrams, notes, the seal) at the end, with what happened in betwe
    left standing. If it stops on a network error, run it again the same way, **without `--redo`**: what is already
    rendered costs nothing. If it is refused at its cost cap, don't run it again: the cap is twice the chain. A
    refused run leaves the chain before it as it was. So when `chain/chain.json` exists, go on with that chain and
-   its `answers.json`, and record each unit whose redo didn't run (D4). When there is no `chain/chain.json`, stop
+   its `answers.json`, and record each unit whose redo didn't run (D5). When there is no `chain/chain.json`, stop
    and tell whoever started you what was spent and why.
 
 Don't Read the renders yourself to second-guess the chain's checker (C4), and never edit a file in `chain/`.
@@ -59,12 +65,13 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
 1. `build-steps --lesson <lesson>`. `problems` must be empty (it only isn't when the chain's files don't belong
    together: run `erase` again). `notes` are faults that would need a new plan and a new chain: a paint fitted far
    from its name, a color the finish doesn't have, a step that changes almost nothing. Change nothing for them (a
-   paint's name is in the chain's requests, so even a rename renders part of the chain again): record each (D4).
+   paint's name is in the chain's requests, so even a rename renders part of the chain again): record each (D5).
 2. `step-aids`, then `mix`, then `draft-text`, each with `--lesson <lesson>`.
 3. **`check --lesson <lesson>` now, before the chain's checker and before any words are written.** Act now only on
    a problem that changes `plan.json`, such as two paints fitted to the same color that it asks you to merge: send
-   that problem alone to the plan's writer (A1's, if you can still reach it, else a new one with the same brief),
-   then run forward from `plan-check` (rule 9). A merge that leaves the chain's requests as they were renders
+   that problem alone to the plan's writer (A1's, if you can still reach it, else a new one with the same brief):
+   "Make only this change, with a changes file and `plan-change`:" and the problem. Then run forward from
+   `plan-check` (rule 9). A merge that leaves the chain's requests as they were renders
    nothing. Leave the rest of what `check` prints (the words, `review.json`, the seal's asks) for E1. Why: in the
    gate runs a merge asked for after the words threw away every stage writer's work, and one asked for after the
    chain's checker threw away its answers (#230 to #234).
@@ -74,39 +81,53 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
    (the unit's number is the digits of its `look`; `left` when it answered left, else `stray`). Every unit before
    a redone one is rendered again. Then the checker again, on the new looks.
 6. At most two rounds of step 5. `erase` refuses a unit that has had two more tries. What is still marked after
-   that, and everything `erase` lists under `left`, stays: write each into `review.json` as step D4 says.
+   that, and everything `erase` lists under `left`, stays: write each into `review.json` as step D5 says.
 7. After any redo, run C1 to C3 again (`build-steps`, `step-aids`, `mix`, `draft-text`, `check`) before D.
 
 ### D. The words
 
-1. `packets --lesson <lesson>`. It writes one folder a stage under `words/`.
-2. Start **one writer a stage, all at once**, each with: "Follow `brief.md` in `<lesson>/words/stage-NN`. Read only
-   that folder. Write `out.json` there. Name only the paints each step lists for itself, and keep every line under
-   40 words." (`brief.md` says both too; saying them up front saved a round in the gate runs.)
-3. `check-text --lesson <lesson>`. For each stage in `stages_with_feedback`, send its writer back once: "Read
-   `feedback.md` in your folder and write `out.json` again." Then `check-text --lesson <lesson> --final`, which
-   takes out any sentence that still fails. If `problems` still names a stage with a missing or unusable
-   `out.json`, start a new writer for that stage and run `check-text --final` again. `check` (E1) may then name a
-   paint a writer's words mention that the step doesn't list: send that writer back for it, and run
-   `check-text --final` again.
-4. Write `<lesson>/review.json`:
+One writer writes the whole lesson, in one conversation: the steps' words, two rounds of fixes, then the arc. Every
+round goes back to **that same writer** (send it a message; don't start a new one), so it reads what it already read
+from its own context.
+
+1. `packets --lesson <lesson>`. It writes the writer's folder, `words/lesson/`.
+2. Start **one writer** with: "Follow `brief.md` in `<lesson>/words/lesson`. Read only that folder. Write `out.json`
+   there. Name only the paints each step lists for itself, and keep every line under 40 words." (`brief.md` says
+   both too; saying them up front saved a round in the gate runs.)
+3. `check-text --lesson <lesson>`. While it prints a `send_back` file, send the writer: "Read `feedback.md` in your
+   folder and write `<send_back>`." and run `check-text --lesson <lesson>` again. There are two rounds at most
+   (check-text's failures, then paints a step doesn't list and lines over 40 words); a round with nothing to send
+   is passed by. When it prints `"done": true`, run `check-text --lesson <lesson> --final`, which takes out every
+   sentence that still fails. If `problems` names an unusable `out.json` or a step with no words, send the writer
+   back once with the problem; if the writer is lost, start a new one from D2 (a new `out.json` starts the rounds
+   again).
+4. **The arc**, as the same writer's next message: "Follow `arc-brief.md` in your folder and write `arc.json`." Then
+   `check-text --lesson <lesson> --arc`. If it prints a `send_back`, send the writer: "Read `arc-feedback.md` in your
+   folder and write `arc-fix.json`." Then `check-text --lesson <lesson> --arc --final`, which takes out what still
+   fails and writes the opening, the stages' lines and the back lines into `text.json`. After any later
+   `check-text --final`, run `check-text --arc --final` again (the arc is laid on the final words).
+5. Write `<lesson>/review.json`:
    ```json
    {"finish_issues": ["from step 1's finish check, or an empty list"],
     "text_issues": [{"step_id": "<the step it shows on>", "kind": "chain | paint | step | words",
                      "problem": "what a painter will see", "action": "left: <why it stays>"}]}
    ```
    One entry for each: a unit the checker still marks or `erase` lists under `left` (on that unit's first step);
-   a `notes` line of `build-steps` or `check` you left; a sentence in `words/dropped.json` whose loss leaves a
-   step's tip empty. Every `left` shows on the page under Known problems.
+   a `notes` line of `build-steps` or `check` you left; each line `check-text --final` lists under `emptied` (every
+   sentence of it was taken out, so the page leaves it off). Every `left` shows on the page under Known problems.
 
 ### E. Check, diagrams, notes, seal, report
 
 1. `check --lesson <lesson>` again. Fix each problem as it says and run the tools after that point again (rule 9).
-   A line it finds over 40 words goes back to that stage's writer to shorten, then `check-text --final` again.
+   A line it finds over 40 words goes back to the lesson's writer: "Shorten these lines to under 40 words and write
+   `fix-3.json` with only the steps you change." Then `check-text`, `check-text --final` and
+   `check-text --arc --final` again.
 2. `steps/8-finish.md` from 8a: diagrams, notes (`steps/notes.md`; `merged_parts` is `{}`, and every helper you
-   started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`.
+   started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`. Look at the step
+   pictures `small-pictures` makes (384 pixels, the finish at 512), and at the diagrams again only when
+   `preview-diagrams` draws fewer than were written.
 3. Put the sealed lesson on the lessons site as `steps/8-finish.md` 8c says (owner, 2026-11-18: a version 3
    lesson goes on the site like any other).
 4. Report as 8d says, and add: the units and renders; what the chain cost and how many renders were asked again
-   and why; what the checker marked each round; the mixes count against 10; how many sentences `check-text` took
-   out; every Known problem.
+   and why; what the checker marked each round; the mixes count against 10; what each of the words' rounds sent back
+   (`words/lesson/rounds.json`) and how many sentences `check-text` took out; every Known problem.

@@ -1,7 +1,8 @@
 # Pipeline v3: plan first, erase the finish back one stage at a time, write from what was measured
 
 **The gate passed (2026-11-18, owner's call; `docs/decisions.md`): v3 replaces v2.** `/paint-lesson` runs v3 with no
-flag (#236; `--v3` is kept and does nothing). v2's code was removed in #238 (section 11). Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
+flag (#236; `--v3` is kept and does nothing). v2's code was removed in #238 (section 11). **v3.1's changes are built in
+(POC 2.1.0, 2026-11-20, `pipeline-v3.1.md`): sections 4 and 10 say what they changed.** Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
 (`pipeline-v3-plan.md`, Order, step 5). Each section says what is **proven** (a spike ran it and its write-up has the
 numbers), what is a **guess** (this draft's own joining of the pieces, run by nobody yet), and what is **open**.
 
@@ -153,17 +154,21 @@ that looked the same (`docs/decisions.md`, 2026-11-17).
 |---|---|---|---|---|
 | 0 | Set up, check the photo, fit the canvas, beginner version | Claude + tools | `00_*.png`, `notes.json` | as is |
 | 1 | Reference and finish | filters + 1 render | `00_reference.png`, `99_finish.png` | as is |
-| 2 | The painter's plan | a writer in a fresh context | `plan.json`, version 3: things, paints, stages, steps | new (#172) |
-| 3 | Check the plan | `plan-check` | problems, each saying what to change | new |
+| 2 | The painter's plan | a writer in a fresh context, sent the library's list; it asks once for the files it picks (`library --picks`) | `plan.json`, version 3: things, paints, stages, steps | new (#172); v3.1 (#278) |
+| 3 | Check the plan | `plan-check`; the writer answers with changes (`plan-change`), not the plan again | problems, each saying what to change | new; v3.1 (#278) |
 | 4 | Erase backward | `erase`: one low render a unit, chained | `chain/P<nn>.png`, `chain/D<nn>.png` | new (#204) |
 | 5 | Look at the chain once; ask again for a unit that failed | Claude | at most 2 tries a unit | new |
 | 6 | Fit the paints, then the recipes | `paints`, `mix` | `plan.json`: each paint's color; recipes | changes |
 | 7 | Step pictures | `build-steps` | `NN_<id>.png` | changes |
 | 8 | Teaching pictures and the fact sheet | `step-aids`, `sheet` | `aids/`, `facts.json` | changes |
-| 9 | Draft the lines, then one writer a stage, in parallel | `draft-text`, then writers | `text.json` | changes (#173) |
-| 10 | Check the words against the sheet; one round of fixes | `check-text`, the same writers | `text.json` | new (#173) |
+| 9 | Each step's header, then one writer for the whole lesson, six lines a step | `draft-text`, then `packets` and the writer | `text.json` | changes (#173); v3.1 (#276) |
+| 10 | Check the words against the sheet; one round of fixes; the paint and 40-word round; then the arc, with its round | `check-text`, `--final`, `--arc`, the same writer | `text.json` | new (#173); v3.1 (#276) |
 | 11 | Checks | `check` | problems | changes |
-| 12 | Diagrams, notes, seal, publish | as v2 | the sealed lesson | as is |
+| 12 | Diagrams, notes, seal, publish | a finisher sent the step pictures at 384 pixels (`small-pictures`) | the sealed lesson | as is; v3.1 (#278) |
+
+**Since v3.1 (POC 2.1.0, 2026-11-20; `pipeline-v3.1.md`):** rows 2, 3, 9, 10 and 12 changed as marked; row 11
+asks for the six lines and the arc's checks where it asked for a summary and a tip. The run's steps are
+`.claude/skills/paint-lesson/v3/run.md`.
 
 What goes: listing parts with boxes and points, `outline` and its fix rounds, the background render, `part-colors`,
 and the text review in a fresh context (the checker is in its place, as in #173's run).
@@ -485,6 +490,20 @@ POC 2.0.0; the site refused one for a day, by Claude's reading of the gate). `ch
 after `check-text --final` can't be sealed. `erase` caps the chain's own renders at twice what the chain costs
 once (5 cents a unit plus 7), whatever the lesson spent before it. Cards are shown as the general
 cards (`card-adapt`, which v3's run never used, went with v2 in #238).
+
+**Since v3.1 (POC 2.1.0, 2026-11-20; `pipeline-v3.1.md`, sections 5 to 7, with their as-built notes).** The writer
+a stage and its summary and tip are gone. One writer, in a fresh context, writes the whole lesson from
+`words/lesson/` (`packets`): every step's before and after pictures, a picture of only what it changed, its header
+and card, `plan.json` and the fact sheet without what the lines don't use. Each step gets the same six lines (First,
+Start, Strokes, Where the paint sits, Leave, Stop when), an earlier step's marks named by their look and step. The
+rounds are the same writer's next messages: `check-text` (`fix-1.json`), then a paint its step doesn't list and a
+line over 40 words (`fix-2.json`), then `--final`, which takes out what still fails and leaves an emptied line off
+the page as a known problem. Then the arc (`arc.json`, `arc-fix.json`, `--arc --final`): an opening (welcome,
+light, two or three skills, the way there), a `for` and an `end` line a stage, and an "As in step N" line where a
+step repeats an earlier card or paint. `draft-text` still makes each step's header. The page shows the six lines
+with their labels, "Before you start", and the stage lines; `check` and the seal hold the six lines, the 40 words,
+the paint rule, the sheet and the arc's checks. The gate (`docs/spikes/v31-gate.md`): the student test 3.55, 3.40
+and 3.15 against v3's 3.15, 3.21 and 3.02, and Claude's blind graders 6 of 6.
 
 **Not solved:** the stroke cards' own words, where most teaching faults come from (a load word such as "creamy"
 that the step never explains). That is #175.

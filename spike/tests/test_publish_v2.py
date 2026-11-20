@@ -559,9 +559,21 @@ class PublishV2Tests(unittest.TestCase):
         code, r = run_tool("preview-diagrams", "--lesson", str(lesson))
         self.assertEqual(code, 0)
         self.assertEqual(r["diagrams"], 2)
+        self.assertEqual((r["specced"], r["drawn"]), (2, 1))  # step 8 looks again only when drawn < specced (#278)
+        self.assertEqual(len(r["broken"]), 1)
         html = Path(r["html"]).read_text(encoding="utf-8")
         self.assertIn("An oval", html)
         self.assertIn("This spec is broken", html)
+
+    def test_small_pictures_for_the_finisher(self):  # #278, the lean finisher
+        lesson = self.copy("chickadee")
+        code, r = run_tool("small-pictures", "--lesson", str(lesson))
+        self.assertEqual(code, 0, r)
+        from PIL import Image
+        steps = [p for p in sorted((lesson / "small").glob("[0-9][0-9]_*.jpg")) if p.name != "99_finish.jpg"]
+        self.assertEqual(len(steps), r["steps"])
+        self.assertTrue(all(max(Image.open(p).size) == 384 for p in steps))
+        self.assertEqual(max(Image.open(lesson / "small" / "99_finish.jpg").size), 512)
 
     def test_preview_with_no_diagrams_says_why(self):
         code, r = run_tool("preview-diagrams", "--lesson", str(self.lessons["chickadee"]))

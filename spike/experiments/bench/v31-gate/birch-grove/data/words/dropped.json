@@ -1,0 +1,9 @@
+[
+ {
+  "step": 17,
+  "id": "light-big-bark",
+  "field": "line 5 (leave)",
+  "sentence": "Leave the gray shading and dark marks showing beside these light strips: they are a narrow rim, not a new coat.",
+  "why": "step 17 (light-big-bark), line 5 (leave): \"beside these light strips\" can't find 'these light strips' on the sheet; sheet: nothing on the sheet"
+ }
+]

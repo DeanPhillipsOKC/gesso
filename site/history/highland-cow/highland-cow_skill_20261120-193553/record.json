@@ -1,0 +1,167 @@
+{
+  "photo": "highland-cow",
+  "run": "highland-cow_skill_20261120-193553",
+  "started": "2026-11-20 19:35",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "af82d59ab5d49225",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.0.2",
+        "commit": "17d6ebc",
+        "dirty": false,
+        "published": "2026-11-20"
+      },
+      "made_with": {
+        "version": "POC 2.0.2",
+        "commit": "2567277",
+        "published": "2026-11-20"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-20T20:10:07"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 12.0,
+        "h_in": 16.0,
+        "orientation": "portrait"
+      },
+      "metrics": {
+        "steps": 22,
+        "words": 3153,
+        "tubes": 5,
+        "cost_usd": 0.374,
+        "minutes": 4.0,
+        "paid_renders": 17,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 2,
+        "minutes_total": 34.2,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-sky",
+          "name": "Blend the sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-clouds",
+          "name": "Dry-brush the gold cloud streaks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-clouds",
+          "name": "Light the tops of the clouds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-hills",
+          "name": "Lay in the far violet hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-hills",
+          "name": "Shade the near hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-loch",
+          "name": "Lay in the sliver of loch",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-hillside",
+          "name": "Lay in the green hillside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "patch-hillside",
+          "name": "Streak the dark patches on the hillside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-meadow",
+          "name": "Lay in the meadow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-cow",
+          "name": "Block in the cow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-cow",
+          "name": "Shade the cow's dark side",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-horns",
+          "name": "Block in the horns",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-horns",
+          "name": "Shade the horns and darken the tips",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "locks-ginger",
+          "name": "Pull the ginger locks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "locks-tan",
+          "name": "Pull the golden tan locks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-nose",
+          "name": "Paint the nose",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "nostrils-mouth",
+          "name": "Dot the nostrils and line the mouth",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-dark-grass",
+          "name": "Flick the dark grass blades",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-light-grass",
+          "name": "Flick the sunlit grass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-seed-heads",
+          "name": "Flick the gold seed heads",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "rim-cow",
+          "name": "Light the gold rim on the cow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "last-lights",
+          "name": "Dry-brush the brightest lights",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

@@ -83,8 +83,14 @@ def strokes_and_brushes(plan: dict, known: dict) -> list[str]:
     return out
 
 
-def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] | None) -> list[str]:
-    """What Claude still has to write, percentages, long lines, and lines that no longer match the plan."""
+def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] | None,
+                  emptied: set | None = None) -> list[str]:
+    """What Claude still has to write, percentages, long lines, and lines that no longer match the plan. A step the
+    lesson's writer wrote (v3.1) has its six lines where a v3 step has a summary and a tip: every line but First,
+    unless check-text --final emptied it (`emptied`: {(step id, kind)}, a known problem in review.json)."""
+    import draft_text
+    import lesson_words
+
     out = []
     for st in plan.get("stages") or []:
         for s in st.get("steps") or []:
@@ -95,11 +101,20 @@ def text_problems(plan: dict, text: dict[str, dict], redrafted: dict[str, list] 
             if t is None or not t.get("lines"):
                 out.append(f"{sid}: no drafted lines in text.json. Run draft-text.")
                 continue
-            if not (t.get("summary") or "").strip():
+            if draft_text.written(t["lines"]):  # the six lines hold what a summary and a tip held (v3.1)
+                have = {x.get("kind") for x in t["lines"] if (x.get("text") or "").strip()}
+                gone = [k for k in lesson_words.NEEDED if k not in have and (sid, k) not in (emptied or set())]
+                if gone:
+                    out.append(f"{sid}: no {', '.join(lesson_words.LABELS[k] for k in gone)} line from the lesson's "
+                               "writer. Send it back for the step's six lines (First may be empty), then check-text.")
+                if t.get("summary") or t.get("tip"):
+                    out.append(f"{sid}: has the lesson writer's six lines and a v3 summary or tip too. Run "
+                               "check-text again: it writes the six lines alone.")
+            elif not (t.get("summary") or "").strip():
                 out.append(f"{sid}: no summary in text.json. Write one plain sentence, under {SUMMARY_CHARS} characters.")
             elif len(t["summary"]) > SUMMARY_CHARS:
                 out.append(f"{sid}: its summary is {len(t['summary'])} characters. Cut it under {SUMMARY_CHARS}.")
-            if not (t.get("tip") or "").strip():
+            if not draft_text.written(t["lines"]) and not (t.get("tip") or "").strip():
                 out.append(f"{sid}: no tip in text.json. Write one to three sentences only this photo needs (which way "
                            "the strokes run here, which side the light is on, what to leave showing).")
             for where, words in [("summary", t.get("summary") or ""), ("tip", t.get("tip") or "")] + \
@@ -195,6 +210,7 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     failures += elements.problems()  # a step is held to its element's strokes by plan-check
 
     built = built if built is not None else build(lesson, plan)
+    sheet = None
     steps = bs.flat_steps(plan)
     names = [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(steps)]
     if built is None:
@@ -233,7 +249,12 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     if built is not None:
         redrafted = {sid: draft_text.merge_lines((text.get(sid) or {}).get("lines") or [], lines)
                      for sid, lines in drafted.items()}
-    failures += text_problems(plan, text, redrafted)
+    import lesson_words
+
+    emptied, _ = lesson_words.taken(lesson)
+    failures += text_problems(plan, text, redrafted, emptied)
+    if sheet is not None:  # the arc's checks, on the arc as text.json holds it (v3.1, #277)
+        failures += lesson_words.arc_problems(lesson, words, (sheet, plan))
     gaps = draft_text.left_out(plan, known)
     if gaps:
         notes.append("lines the data can't give (none drafted): "

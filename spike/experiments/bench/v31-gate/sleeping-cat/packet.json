@@ -1,0 +1,551 @@
+{
+  "canvas_in": [
+    16.0,
+    12.0
+  ],
+  "finish": "finish.jpg",
+  "opening": "You're about to paint a gray tabby kitten fast asleep on a chunky yellow knit blanket, on a wooden ledge by a sunny window. The heart of it is the sleeping face: closed eyes, a pink nose, a soft muzzle and paws tucked in. Warm window light and cool blue shadow give it a calm, cozy mood.\n\nThe light: Daylight comes in through the window and falls on the kitten's head and back, the rolls of the blanket and long slanting patches of the ledge. Everything turned away from the window drops into shadow, which is why so many steps paint the lit parts and the shaded parts separately.\n\nWhat this painting teaches:\n- Building from pieces (steps 5, 6, 10, 13): You make a big shape from simple pieces: a rectangle, an oval or a circle first, then curved pieces added around it. It builds the window frame, the rolled blanket and the curled kitten. Keep the pieces simple and let them meet; only soften the joins where the shape should look smooth.\n- Press and lift (steps 11, 12, 16): Touch down with the tip of a round brush, press so it spreads, then pull and lift so the mark ends in a point. Rows of these teardrops make the blanket's knit loops, and smaller ones fill the kitten's ears. Too much paint or a slow lift gives a blob, so use less paint and lift quickly.\n- Curved strokes (steps 14, 15): Every stroke bends with the shape, running down and around it, and that's what makes the kitten look round. You use it for the dark shading and again for the muzzle, chest and paws. Keep the darker paint on the shadow side and follow the curve every time.\n\nThe way there: First you paint the sky through the window and the blue wall, the things farthest away. Then the window gets its leaves, its frame and the frame's shadows. Next comes the wooden ledge, laid in, darkened and lit with patches of sunlight, so the whole room is finished before anything sits in it. The blanket goes on next, flat first, then dark and light knit loops. Last comes the kitten: a flat shape, then shading, its pale patches, pink ears, stripes and fur. The sleeping face is saved for the very end, because that's where the eye lands.",
+  "photo": null,
+  "picture": "sleeping-cat",
+  "steps": [
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The sky and the wall",
+      "id": "blend-garden-sky",
+      "intro": "This stage, The sky and the wall: Cover the far background, the sky through the window and the blue wall, with soft blended color.",
+      "lines": [
+        "Start: Start at the top left corner of the canvas, in the narrow strip along the left edge that will be the window.",
+        "Strokes: Brush side to side across the strip with Pale blue, working down. Without rinsing, pick up White and keep going lower, then stroke back up over the join while it's wet.",
+        "Where the paint sits: Pale blue sits at the top of the strip and fades to White lower down, because the sky looks lighter near the horizon.",
+        "Leave: Keep everything outside the strip as bare canvas. The wall and window frame come later.",
+        "Stop when: The strip is a smooth sky that slants down toward the left edge at its bottom. Blue at the top, nearly White below, no hard line between."
+      ],
+      "n": 1,
+      "name": "Blend the sky through the window",
+      "paints": [
+        {
+          "hex": "#9fb5cf",
+          "name": "Pale blue",
+          "recipe": "3 parts white, 1 part ultramarine, a touch of yellow"
+        },
+        {
+          "hex": "#faf8f4",
+          "name": "White",
+          "recipe": "White, straight from the tube"
+        }
+      ],
+      "pair": "pairs/01.jpg",
+      "picture": "steps/01.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The sky and the wall",
+      "id": "blend-wall",
+      "intro": "This stage, The sky and the wall: Cover the far background, the sky through the window and the blue wall, with soft blended color. By its end: A strip of soft sky meets a criss-cross blue wall, and the band where the ledge will go is still bare canvas.",
+      "lines": [
+        "Start: Start at the top edge of the canvas, right where the window's sky ends, and work toward the right edge.",
+        "As in step 1: You used Pale blue for the sky. Here it is the wall's lightest blue near the window, laid with crossing X strokes and a bigger brush instead of side to side.",
+        "Strokes: Cross short strokes over each other like overlapping X shapes. Go back over the wet paint with longer side-to-side strokes where you want it smoother.",
+        "Where the paint sits: Use Pale blue near the sky strip and Wall blue farther toward the right edge, so the wall looks lit by the window. Carry it under the sky strip too, down to the ledge line.",
+        "Leave: Leave the sky strip alone, and keep the bottom band of the canvas bare. Paint straight through where the frame, blanket and kitten will go.",
+        "Stop when: The wall covers everything from the window's sky to the right edge, down to the ledge line. You can still see soft criss-cross marks."
+      ],
+      "n": 2,
+      "name": "Blend the blue wall",
+      "paints": [
+        {
+          "hex": "#8da6c7",
+          "name": "Wall blue",
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow"
+        },
+        {
+          "hex": "#9fb5cf",
+          "name": "Pale blue",
+          "recipe": "3 parts white, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/02.jpg",
+      "picture": "steps/02.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "old stiff brush",
+      "group": "The window",
+      "id": "dab-dark-leaves",
+      "intro": "This stage, The window: Turn the sky strip into a window, with leaves outside and a solid frame around them.",
+      "lines": [
+        "First: Let the sky strip dry first, or the leaves will smear into it.",
+        "Start: Start near the top of the sky strip and tap a few loose clumps, then move down the strip.",
+        "Strokes: Tap with the tips of the bristles, wiping most of the Leaf green off first. Tap one spot more where you want a clump more solid.",
+        "Where the paint sits: Most of it goes in the bottom half of the strip, where the trees are fuller. Keep the clumps loose and soft-edged, since the trees are far away.",
+        "Leave: Let the sky show between the clumps. Keep off the wall.",
+        "Stop when: The strip shows soft, broken clumps of leaves from top to bottom, fuller lower down, with sky peeking between them."
+      ],
+      "n": 3,
+      "name": "Dab the dark leaves outside",
+      "paints": [
+        {
+          "hex": "#91aab9",
+          "name": "Leaf green",
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow, a touch of burnt sienna"
+        }
+      ],
+      "pair": "pairs/03.jpg",
+      "picture": "steps/03.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "old stiff brush",
+      "group": "The window",
+      "id": "dab-light-leaves",
+      "intro": "This stage, The window: Turn the sky strip into a window, with leaves outside and a solid frame around them.",
+      "lines": [
+        "First: Let the darker leaves from step 3 dry first so the taps stay separate.",
+        "Start: Start on the top of the highest clump of leaves in the window strip.",
+        "As in step 3: Same old stiff brush and the same light taps. This time the mix is lighter and only goes where the sun hits each clump, so the darker taps keep showing.",
+        "Strokes: Tap lightly with the brush tips, a dry brush with just a little Light leaf green on it.",
+        "Where the paint sits: Put the taps on the tops and upper edges of each clump, where the sun hits them. Make five or so lighter patches down the strip.",
+        "Leave: Leave the darker leaves showing underneath each sunlit top, and leave the gaps of sky open.",
+        "Stop when: Each clump has a sunlit, Light leaf green top over its darker underside. The leaves now look round and lit by the sun."
+      ],
+      "n": 4,
+      "name": "Dab the sunlit leaves",
+      "paints": [
+        {
+          "hex": "#b1b985",
+          "name": "Light leaf green",
+          "recipe": "3 parts white, 1 part yellow, 1 part ultramarine, 1 part burnt sienna"
+        }
+      ],
+      "pair": "pairs/04.jpg",
+      "picture": "steps/04.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The window",
+      "id": "block-in-frame",
+      "intro": "This stage, The window: Turn the sky strip into a window, with leaves outside and a solid frame around them.",
+      "lines": [
+        "First: Let the leaves and the wall dry first, or the frame will pick up their color.",
+        "Start: Start with the tall post that closes the window, just where the leaves and sky end and the wall begins.",
+        "Strokes: Build it from simple rectangles: pull the post down in straight strokes, then lay a crossbar across the glass near the top, then a wide sill under the glass.",
+        "Where the paint sits: Keep the edges straight, and let the sill slant down toward the left edge.",
+        "Leave: Leave the sky and leaves showing in the window panes, between the frame's pieces.",
+        "Stop when: A flat White frame stands around the window: posts, a crossbar and a slanting sill, with no shadows yet."
+      ],
+      "n": 5,
+      "name": "Block in the white window frame",
+      "paints": [
+        {
+          "hex": "#faf8f4",
+          "name": "White",
+          "recipe": "White, straight from the tube"
+        }
+      ],
+      "pair": "pairs/05.jpg",
+      "picture": "steps/05.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The window",
+      "id": "shade-frame",
+      "intro": "This stage, The window: Turn the sky strip into a window, with leaves outside and a solid frame around them. By its end: A window with dappled green leaves stands in a bright frame with blue shadowed faces, next to the blue wall.",
+      "lines": [
+        "First: Let the frame from step 5 dry completely first.",
+        "Start: Start with the tall face of the frame where it meets the wall.",
+        "As in step 2: This is the same Wall blue you used on the wall, so the frame's shadowed faces settle into the wall around them.",
+        "Strokes: Pull straight strokes down the length of that face, then add thin strips along the post's inner face, under the crossbar and along the front of the sill.",
+        "Where the paint sits: The Wall blue goes on the faces that turn away from the window light, so the frame looks solid instead of flat.",
+        "Leave: Leave the frame faces that look toward the light bright and unpainted by this step.",
+        "Stop when: The frame has a dark band where it meets the wall, thin shadow lines under the crossbar and the sill front, and bright faces everywhere else."
+      ],
+      "n": 6,
+      "name": "Shade the side of the frame",
+      "paints": [
+        {
+          "hex": "#8da6c7",
+          "name": "Wall blue",
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/06.jpg",
+      "picture": "steps/06.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The wooden ledge",
+      "id": "lay-in-ledge",
+      "intro": "This stage, The wooden ledge: Lay the wooden ledge and give it shadow and sunlight, so the room is finished.",
+      "lines": [
+        "First: Let the wall and frame dry first so the line where they meet the ledge stays clean.",
+        "Start: Start at the left edge of the canvas, just under the frame's sill, and fill the bottom band.",
+        "Strokes: Keep the brush level and pull long strokes from left to right across the whole canvas, working down to the bottom edge.",
+        "Where the paint sits: The Wood brown covers the whole ledge in one even coat. Its top edge follows the bottom of the wall.",
+        "Leave: Don't touch the wall or the window frame. Paint right through where the blanket will sit.",
+        "Stop when: The bottom band is a flat warm brown from edge to edge, with no light or shadow yet."
+      ],
+      "n": 7,
+      "name": "Lay in the wooden ledge",
+      "paints": [
+        {
+          "hex": "#9b4525",
+          "name": "Wood brown",
+          "recipe": "2 parts red, 1 part ultramarine, a touch of yellow, a touch of white"
+        }
+      ],
+      "pair": "pairs/07.jpg",
+      "picture": "steps/07.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The wooden ledge",
+      "id": "darken-ledge",
+      "intro": "This stage, The wooden ledge: Lay the wooden ledge and give it shadow and sunlight, so the room is finished.",
+      "lines": [
+        "First: Let the first ledge coat dry so the darker coat sits on top instead of mixing in.",
+        "Start: Start at the right edge of the canvas, along the back of the ledge where it meets the wall.",
+        "As in step 7: Same brush and the same long level strokes. This time the paint is darker, and you leave the slanting sunlit patches uncovered instead of filling the whole ledge.",
+        "Strokes: Pull long level strokes from left to right, and across the bottom of the ledge too.",
+        "Where the paint sits: Most of it goes in the right half and along the bottom, away from the window. Leave two long slanting bands on the left half uncovered: that's where the sunlight will fall.",
+        "Leave: Leave those slanting light patches and the thin dark line between them showing as the first warm brown.",
+        "Stop when: The ledge is deep red-brown on the right and along the bottom, with long slanting lighter patches left near the window."
+      ],
+      "n": 8,
+      "name": "Darken the front of the ledge",
+      "paints": [
+        {
+          "hex": "#803621",
+          "name": "Dark wood",
+          "recipe": "2 parts red, 1 part ultramarine"
+        }
+      ],
+      "pair": "pairs/08.jpg",
+      "picture": "steps/08.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The wooden ledge",
+      "id": "light-ledge",
+      "intro": "This stage, The wooden ledge: Lay the wooden ledge and give it shadow and sunlight, so the room is finished. By its end: A warm red-brown ledge runs across the canvas, with long slanting bands of sunlight near the window.",
+      "lines": [
+        "First: Let the ledge dry completely. Dry brush only works on dry paint.",
+        "Start: Start at the left edge of the canvas, in the lighter slanting patches you left in step 8.",
+        "Strokes: Barely dip the brush tip, wipe it, and skim lightly along each slanting patch toward the right. Build it up in a few light passes.",
+        "Where the paint sits: The Sunlit wood goes only in the patches where the window light falls, the long slanting bands near the window.",
+        "Leave: Leave the thin dark slanting line between the patches, and keep the darker brown on the right and in front untouched.",
+        "Stop when: Two soft, broken, slanting bands of light lie across the ledge near the window. They catch the canvas texture and are never a solid block."
+      ],
+      "n": 9,
+      "name": "Dry-brush the sunlit patches on the ledge",
+      "paints": [
+        {
+          "hex": "#f89f5f",
+          "name": "Sunlit wood",
+          "recipe": "4 parts white, 3 parts red, 2 parts yellow"
+        }
+      ],
+      "pair": "pairs/09.jpg",
+      "picture": "steps/09.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The yellow blanket",
+      "id": "block-in-blanket",
+      "intro": "This stage, The yellow blanket: Build the folded knit blanket and give it the texture of chunky loops.",
+      "lines": [
+        "First: Let the ledge dry first so the yellow stays clean.",
+        "Start: Start with one long, low oval for the top of the blanket, resting on the ledge near the wall.",
+        "As in step 5: You built the window frame from rectangles. The blanket is built the same way, but from a long oval and a rolled band, with a bigger brush.",
+        "Strokes: Build it from pieces: the oval first, then a long rolled band along its front, with curved strokes rounding each end.",
+        "Where the paint sits: Cover the whole blanket in one flat coat, carrying it nearly to the right edge of the canvas.",
+        "Leave: Leave the ledge showing below the blanket and at its left end, and the wall above it.",
+        "Stop when: A flat yellow blanket in two rolled bands lies across the ledge, with no loops or shadows."
+      ],
+      "n": 10,
+      "name": "Block in the yellow blanket",
+      "paints": [
+        {
+          "hex": "#fdbb09",
+          "name": "Golden yellow",
+          "recipe": "1 part yellow, a touch of red"
+        }
+      ],
+      "pair": "pairs/10.jpg",
+      "picture": "steps/10.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The yellow blanket",
+      "id": "shade-blanket",
+      "intro": "This stage, The yellow blanket: Build the folded knit blanket and give it the texture of chunky loops.",
+      "lines": [
+        "First: Let the blanket's yellow coat dry first, or the loops will blur.",
+        "Start: Start along the rim of the back roll, where the blanket meets the wall, and work your way across.",
+        "Strokes: Press the tip down, let the belly spread, then lift as you pull, so each mark is a small teardrop. Set them in pairs leaning together like little Vs.",
+        "Where the paint sits: Lay rows of loops along each rolled band, darker in the groove between the two rolls and along the bottom, where the light doesn't reach. Scatter looser loops over the flat top.",
+        "Leave: Leave plenty of plain yellow showing between the loops.",
+        "Stop when: The blanket reads as chunky knit: rows of darker V loops along the rolls, a dark groove between them and shadow along the bottom."
+      ],
+      "n": 11,
+      "name": "Press in the dark knit loops",
+      "paints": [
+        {
+          "hex": "#df8004",
+          "name": "Dark gold",
+          "recipe": "2 parts yellow, 1 part red, 1 part burnt sienna"
+        }
+      ],
+      "pair": "pairs/11.jpg",
+      "picture": "steps/11.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The yellow blanket",
+      "id": "light-blanket",
+      "intro": "This stage, The yellow blanket: Build the folded knit blanket and give it the texture of chunky loops. By its end: A golden knit blanket in two rolls lies across the ledge, its loops darker in the grooves and bright where the light lands.",
+      "lines": [
+        "First: Let the darker loops from step 11 dry first.",
+        "Start: Start on the top of the back roll, at the left end near the window.",
+        "As in step 11: Same brush and the same teardrop loops. Now the mix is lighter and goes only where the light lands on the rolls, sitting over the darker loops instead of covering them.",
+        "Strokes: Press and lift, the same small teardrop marks as before, set on top of the earlier loops.",
+        "Where the paint sits: Most of it goes in the left half, toward the window, on the tops of the rolls where the light lands. Add only a few on the right.",
+        "Leave: Leave the darker loops showing in the grooves and underneath. Don't cover them.",
+        "Stop when: Bright loops catch the light on the tops of the rolls, thickest near the window, with the darker loops still showing below."
+      ],
+      "n": 12,
+      "name": "Press in the light knit loops",
+      "paints": [
+        {
+          "hex": "#fcd13e",
+          "name": "Light yellow",
+          "recipe": "1 part yellow, 1 part white, a touch of red, a touch of burnt sienna"
+        }
+      ],
+      "pair": "pairs/12.jpg",
+      "picture": "steps/12.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The kitten's shape",
+      "id": "block-in-kitten",
+      "intro": "This stage, The kitten's shape: Build the kitten as one shape, make it look round, and add its pale patches.",
+      "lines": [
+        "First: Let the blanket dry first so the gray stays clean.",
+        "Start: Start with one big oval for the body, resting on the back roll of the blanket.",
+        "As in step 10: Like the blanket, start with one big oval. Then add a circle for the head, triangle ears and curved pieces for the tail and legs.",
+        "Strokes: Build it from pieces: the oval, then a circle for the head at its left end, two triangle ears, and curved pieces for the tail and front legs along the blanket.",
+        "Where the paint sits: Fill the whole kitten flat with Cat gray. The body stretches almost the full width of the blanket.",
+        "Leave: Leave the front roll of the blanket showing below the kitten, and the wall above and around it.",
+        "Stop when: A flat gray kitten shape lies curled on the blanket, head at the window end, two pointed ears, with no shading or face."
+      ],
+      "n": 13,
+      "name": "Block in the kitten",
+      "paints": [
+        {
+          "hex": "#8f8686",
+          "name": "Cat gray",
+          "recipe": "2 parts white, 1 part ultramarine, 1 part burnt sienna, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/13.jpg",
+      "picture": "steps/13.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The kitten's shape",
+      "id": "shade-kitten",
+      "intro": "This stage, The kitten's shape: Build the kitten as one shape, make it look round, and add its pale patches.",
+      "lines": [
+        "First: Let the flat gray kitten dry first.",
+        "Start: Start on the back of the body, just behind the head, where it curves away from the window.",
+        "Strokes: Use curved strokes that bend with the body: from the top of the back down and around toward the blanket, and around the curl of the tail.",
+        "Where the paint sits: The Dark gray goes on the back, the far end of the body, the bottom along the blanket and around the head's edges, because the light comes from the window.",
+        "Leave: Leave mid gray showing on the face, a patch on the side of the body, and where the paws and chest will go.",
+        "Stop when: The kitten looks round now: dark around its back and underside, lighter gray on the face and side."
+      ],
+      "n": 14,
+      "name": "Shade the kitten's underside",
+      "paints": [
+        {
+          "hex": "#69636b",
+          "name": "Dark gray",
+          "recipe": "3 parts ultramarine, 3 parts burnt sienna, 2 parts white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/14.jpg",
+      "picture": "steps/14.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#6 round",
+      "group": "The kitten's shape",
+      "id": "white-patches",
+      "intro": "This stage, The kitten's shape: Build the kitten as one shape, make it look round, and add its pale patches. By its end: A rounded gray kitten lies curled on the blanket, with a pale muzzle, a pale chest patch and two pale paws.",
+      "lines": [
+        "First: Let the darker shading from step 14 dry first.",
+        "Start: Start with the muzzle and chin, in the middle of the face under the closed eyes.",
+        "As in step 14: The same curved strokes you used for the shading, now with a smaller brush and White, bending around the muzzle and the round paws.",
+        "Strokes: Curve each stroke around the shape: around the muzzle, then two round paws tucked under the chin, then a patch on the chest behind the face.",
+        "Where the paint sits: Most of it goes in the left half, on the face and paws. The chest patch is the only White farther right.",
+        "Leave: Leave the gray around the muzzle and the shading under the paws, so the paws look tucked in.",
+        "Stop when: The kitten has a White muzzle and chin, two round White paws under its chin and a White patch on its chest."
+      ],
+      "n": 15,
+      "name": "Paint the white muzzle, chest and paws",
+      "paints": [
+        {
+          "hex": "#faf8f4",
+          "name": "White",
+          "recipe": "White, straight from the tube"
+        }
+      ],
+      "pair": "pairs/15.jpg",
+      "picture": "steps/15.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#4 round",
+      "group": "The markings and fur",
+      "id": "pink-ears-nose",
+      "intro": "This stage, The markings and fur: Give the kitten its pink ears and nose, its tabby stripes and its soft fur.",
+      "lines": [
+        "First: Let the muzzle and paws from step 15 dry first.",
+        "As in step 11: The same press and lift you used for the knit loops, now with a much smaller brush, so each mark is tiny enough for the ears and nose.",
+        "Strokes: Press and lift: touch down at the base of the ear, press, then pull toward the tip and lift.",
+        "Where the paint sits: Fill the inside of both ears with Ear pink, and press one small triangle for the nose at the top of the muzzle.",
+        "Leave: Leave a gray rim around the edge of each ear, so the pink sits within a gray border.",
+        "Stop when: Both ears are pink inside, with a gray border, and a small pink nose sits on the muzzle."
+      ],
+      "n": 16,
+      "name": "Paint the pink ears and nose",
+      "paints": [
+        {
+          "hex": "#d87863",
+          "name": "Ear pink",
+          "recipe": "3 parts white, 2 parts red, 2 parts burnt sienna, a touch of ultramarine"
+        }
+      ],
+      "pair": "pairs/16.jpg",
+      "picture": "steps/16.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/4 inch angle",
+      "group": "The markings and fur",
+      "id": "tabby-stripes",
+      "intro": "This stage, The markings and fur: Give the kitten its pink ears and nose, its tabby stripes and its soft fur.",
+      "lines": [
+        "First: Let the ears and nose dry first.",
+        "Start: Start on the forehead between the ears, then work back over the body.",
+        "Strokes: Press the full width of the brush, then turn it on edge and lighten as you pull, so each stripe tapers. Curve every stripe around the body.",
+        "Where the paint sits: Most of it goes in the right half: long curving stripes over the back and side, plus short ones on the forehead and cheeks and bands across the curled tail.",
+        "Leave: Leave gray between the stripes, and keep them off the muzzle, paws and chest patch.",
+        "Stop when: Dark tapering stripes curve around the head, back and tail. The gray between them is still plain."
+      ],
+      "n": 17,
+      "name": "Pull the tabby stripes",
+      "paints": [
+        {
+          "hex": "#413b3f",
+          "name": "Charcoal",
+          "recipe": "1 part ultramarine, 1 part burnt sienna"
+        }
+      ],
+      "pair": "pairs/17.jpg",
+      "picture": "steps/17.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "small fan brush",
+      "group": "The markings and fur",
+      "id": "flick-fur",
+      "intro": "This stage, The markings and fur: Give the kitten its pink ears and nose, its tabby stripes and its soft fur. By its end: The kitten has pink ears, a pink nose and dark tapering stripes around its head, back and tail, with soft fur on its lit back.",
+      "lines": [
+        "First: Let the stripes from step 17 dry first.",
+        "Start: Start along the top edge of the back, where the light from the window lands.",
+        "Strokes: Wipe the brush almost dry, then flick quick short strokes from the base upward, lifting as you go, in the way the fur lies.",
+        "Where the paint sits: Put a few flicks on the top of the head and back and on the tail, more toward the window. Fewer as you go down.",
+        "Leave: Leave the stripes and the dark underside showing between the flicks.",
+        "Stop when: The coat looks soft and furry on its lit top. The stripes and shading still read clearly underneath."
+      ],
+      "n": 18,
+      "name": "Flick in the light fur",
+      "paints": [
+        {
+          "hex": "#6e686c",
+          "name": "Light gray",
+          "recipe": "1 part ultramarine, 1 part burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/18.jpg",
+      "picture": "steps/18.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#1 liner",
+      "group": "The sleeping face",
+      "id": "eyes-mouth",
+      "intro": "This stage, The sleeping face: Finish the focal point: the closed eyes, the mouth and the whiskers.",
+      "lines": [
+        "First: Let everything on the face dry first, or the lines will spread.",
+        "Start: Start with the lower closed eye, its middle about 3 3/4 in from the left edge.",
+        "As in step 17: The same Charcoal as the stripes, but thinned with water and pulled with a liner, so the lines stay thin and gentle.",
+        "Strokes: Thin the paint with water and hold the brush upright. Pull each eye as one gentle curve that dips at the middle, starting thick and lightening.",
+        "Where the paint sits: Add the second eye higher on the face, toward the top ear, then a small dark line for the mouth where the chin meets the paws.",
+        "Leave: Leave the muzzle, nose and paws clean. Only the eyes and mouth are lined.",
+        "Stop when: Two calm curved lines show the closed eyes, and a small dark mouth sits under the nose. The kitten looks asleep."
+      ],
+      "n": 19,
+      "name": "Line the closed eyes and mouth",
+      "paints": [
+        {
+          "hex": "#413b3f",
+          "name": "Charcoal",
+          "recipe": "1 part ultramarine, 1 part burnt sienna"
+        }
+      ],
+      "pair": "pairs/19.jpg",
+      "picture": "steps/19.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#1 liner",
+      "group": "The sleeping face",
+      "id": "whiskers",
+      "intro": "This stage, The sleeping face: Finish the focal point: the closed eyes, the mouth and the whiskers. By its end: The finished painting: a sleeping tabby kitten with closed eyes and fine whiskers, curled on its knit blanket by the window.",
+      "lines": [
+        "First: Let the eye and mouth lines from step 19 dry first.",
+        "Start: Start each whisker on the muzzle, close to the pink nose.",
+        "As in step 19: Same liner and the same thin, steady pull as the eyes. Now the paint is White, and each line is longer and tapers out over the gray.",
+        "Strokes: Thin the White with water, hold the brush upright and pull each whisker out in one stroke, lightening as you go so it tapers.",
+        "Where the paint sits: Fan three or four out toward the window over the cheek and the blanket, and three or four the other way over the gray toward the chest patch.",
+        "Leave: Leave the eyes, nose and mouth clear. Keep the whiskers few and thin.",
+        "Stop when: Thin, tapering whiskers fan out from both sides of the muzzle. The painting is finished."
+      ],
+      "n": 20,
+      "name": "Pull the white whiskers",
+      "paints": [
+        {
+          "hex": "#faf8f4",
+          "name": "White",
+          "recipe": "White, straight from the tube"
+        }
+      ],
+      "pair": "pairs/20.jpg",
+      "picture": "steps/20.jpg",
+      "tip": ""
+    }
+  ],
+  "write_to": "faults.json"
+}

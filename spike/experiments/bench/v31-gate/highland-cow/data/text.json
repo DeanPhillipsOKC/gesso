@@ -1,0 +1,1300 @@
+{
+ "steps": [
+  {
+   "stage_id": "blend-sky",
+   "lines": [
+    {
+     "kind": "start",
+     "text": "Start with Sky blue at the top edge of the canvas, stroking side to side across the full width.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Work down in long side-to-side strokes. Without rinsing, pick up Warm gold and paint it in, then stroke back up over the join several times while both are wet.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The blue band is about 5 1/4 in tall, starting at the top edge. Warm gold fills everything from there to the bottom edge, since hills and land go over it later.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave no white canvas anywhere. A few soft, deeper orange streaks in the gold can stay; you don't need to smooth them all away.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The whole canvas is covered: clear blue at the top edge melting into warm gold with no hard line. If a line shows, add more gold at the join and blend again.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Blend the sunset sky"
+    }
+   ],
+   "stroke_cards": [
+    "side-to-side-blend"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "lay-clouds",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the sky dry completely, or the dry brush will drag the wet colours together.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start near the top right corner of the canvas, laying the longest streak first and carrying it across toward the left.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 1,
+     "text": "This is the same Warm gold as the sky, but now on a dry brush, skimmed on in broken streaks instead of blended.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Skim the dry brush sideways in long, light strokes that drop gently toward the left. Then dab a few small broken puffs into the blue.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The clouds sit where the blue meets the gold, most of it on the right side, toward the sun. Their middle is about 3 1/2 in from the top edge.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Keep the strokes broken so blue sky shows through and between them. Leave the lower sky alone.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Ragged, flat gold streaks cross the blue, thickest toward the right edge, with sky peeking through. If one went on solid, let it dry before going on.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Dry-brush the gold cloud streaks"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "light-clouds",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the gold cloud streaks from step 2 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the cloud streaks near the left edge of the canvas, along their upper edges.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 2,
+     "text": "Same dry brush and same skimming touch as the cloud streaks, but now a paler paint, only along each streak's lit edge.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Skim the dry brush lightly side to side along the upper edge of each streak, in a few soft passes. Build it up slowly rather than pressing.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The light sits only along the upper edges of the streaks, most of it on the left side. The rest of each streak keeps its deeper gold.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the darker streak colour showing through the light, and the blue sky around the clouds untouched.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The clouds look lit along their upper edges with a soft paler glow, a gentle change rather than new solid shapes. The sky is finished.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Light the tops of the clouds"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "lay-hills",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the sky and clouds dry before painting the hills over them.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with Pale violet along the far ridge, its top about 2 1/4 in from the top edge, painting a gently bumpy line of peaks across the full width.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Keep the brush level and pull long strokes left and right. Then switch to Blue-violet and carry it down in level bands, each edge waving slightly like a ridge.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Pale violet stays a thin band along the peaks, since far hills fade in haze. Blue-violet fills the rest down to the bottom edge, as a base for the land.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the sky and clouds untouched over the hilltops; paint right up to the peaks and stop.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Violet covers the canvas from the peaks to the bottom edge, paler along the far ridge, with soft wavy ridge lines. No shading yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Lay in the far violet hills"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "shade-hills",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the violet hills from step 4 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the right edge of the canvas, about 3 1/2 in from the top edge, just past the pale far ridge.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 4,
+     "text": "The same Blue-violet as the nearer hills, but now dry-brushed in light, broken passes rather than laid on in level bands.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Skim the dry brush sideways along the nearer ridge, following its slope as it climbs toward the left, in several light passes.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The dark sits on the nearer ridge's slopes, in shade from the low sun, so the near range separates from the pale far one.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the pale far ridge and the sky alone, and keep the lower violet bands as they are.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A soft, darker band of ridge crosses the hills and reaches the right edge, feathery rather than solid. The two ranges now read apart.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Shade the near hills"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "lay-loch",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the hill shadows from step 5 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the right edge of the canvas, tucked right against the dark ridge from step 5.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 4,
+     "text": "Level strokes again, as for the hills, but with a small #6 flat and only a thin strip of water.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Keep the brush level and pull short, flat strokes from the right edge toward the left, tapering the strip to a point.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The water is a thin wedge about 1/2 in tall, its left end about 9 3/4 in from the left edge. Keep it flat and pale; it is too small for ripples.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the dark ridge crisp where it meets the water, and the hills around it untouched.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A thin, pale silver strip of water sits at the right edge of the canvas, tapering to a point, flat and calm.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 flat",
+     "use": "Lay in the sliver of loch"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "lay-hillside",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the hills and the loch dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start near the left edge of the canvas, about 3 1/2 in from the top edge, where the hillside's line begins.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 4,
+     "text": "Long strokes again, like the hills, but with the big 1 inch flat, slanting with the land and leaving gaps between bands.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Pull long strokes that slant gently down toward the right, following the roll of the land. Keep their ends broken and bumpy, band after band, down to the bottom edge.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Lay the paint in loose bands with gaps between them, so the hillside looks striped by rolling ground. The bands cover about half the area.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave long purple stripes from step 4 showing between the bands; step 8 fills them. Keep clear of the loch, the dark ridge and the far hills.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Slanting olive bands run from the hills to the bottom edge, with purple showing between them like furrows. It looks striped and unfinished, not covered.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Lay in the green hillside"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "patch-hillside",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the green bands from step 7 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the hillside's far line, about 3 1/4 in from the top edge, near the left edge of the canvas, filling the first purple stripe.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 7,
+     "text": "The same slanting strokes as the green bands, with a smaller 1/2 inch flat, this time filling the gaps between them.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Pull short horizontal strokes along each purple gap, following the same slant down toward the right as the bands from step 7. Let the ends break into little bumps.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Fill every purple stripe down to the bottom edge, so the dark becomes the shaded dips of the land. Also darken the far slope left of the loch.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the bands from step 7 showing as the sunny ridges; overlap their edges only slightly.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "No purple is left on the hillside. It reads as rolling land in stripes of light and dark green, sloping down toward the right.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch flat",
+     "use": "Streak the dark patches on the hillside"
+    }
+   ],
+   "stroke_cards": [
+    "horizontal-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "lay-meadow",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the hillside from step 8 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start along the meadow's ragged far edge, about 7 1/4 in from the top edge of the canvas, working across from the left edge.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 7,
+     "text": "Olive green again, as for the hillside, but now with Yellow-green on the same brush, in short criss-cross strokes.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Load both greens and paint short criss-cross X strokes in two directions. Work down to the bottom edge, letting the strokes stand slightly upright like grass.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Keep more Yellow-green along the meadow's far edge, where the low sun skims the grass, and more Olive green lower down. The two blend as the strokes cross.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Let a few small dark dabs of the hillside from step 8 peek through. Keep the hillside behind the meadow untouched.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The lower canvas is a textured green meadow with a ragged grassy edge, sunnier along it, criss-cross marks showing and no single blades yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1 inch flat",
+     "use": "Lay in the meadow"
+    }
+   ],
+   "stroke_cards": [
+    "x-stroke"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "block-cow",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the meadow dry before painting the cow over it.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with a big upright oval for the body, its middle about 5 in from the left edge. The outline on the Where picture shows the whole shape.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Add curved pieces: a rounded head with two ear bumps, high on the body toward the loch, and the shaggy back. Curve strokes downward the way hair hangs.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Paint the whole cow one flat colour, about 7 3/4 in wide and 8 3/4 in tall. No shading or hair yet; this is the base everything sits on.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Let the lowest part of the shape break into ragged points in the grass, so the legs fade into the meadow.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "One flat rust-brown shape stands in the meadow: a shaggy body, a rounded head with ear bumps, a ragged hem. No horns or face.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "3/4 inch flat",
+     "use": "Block in the cow"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "construct": {
+    "title": "Build the cow from three simple pieces",
+    "paint": "Rust brown",
+    "stages": [
+     {
+      "caption": "A big upright oval: the body",
+      "add": [
+       {
+        "ellipse": [
+         42,
+         58,
+         30,
+         34
+        ]
+       }
+      ],
+      "arrows": [
+       "M 30 30 Q 18 55 28 86"
+      ]
+     },
+     {
+      "caption": "A round head high on the right, ear bumps on top",
+      "add": [
+       {
+        "ellipse": [
+         44,
+         30,
+         22,
+         14
+        ],
+        "behind": true
+       },
+       {
+        "ellipse": [
+         72,
+         30,
+         19,
+         18
+        ]
+       },
+       {
+        "ellipse": [
+         57,
+         14,
+         6,
+         5
+        ]
+       },
+       {
+        "ellipse": [
+         87,
+         18,
+         6,
+         5
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Ragged points at the bottom for the legs in the grass",
+      "add": [
+       {
+        "path": "M 20 76 L 26 94 L 32 84 L 40 98 L 47 86 L 54 96 L 60 84 L 64 72 Z"
+       }
+      ],
+      "arrows": [
+       "M 50 60 Q 52 78 48 92"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-cow",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the cow shape from step 10 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the cow's rump, about 1 1/2 in from the left edge of the canvas.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Pull long curved strokes down the body, from the spine toward the belly, bending with the round of the back. Curve shorter strokes around the dome of the head and the ears.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The dark covers most of the body and the rump, which turn away from the sun, and the shadow where the head meets the chest. It also outlines the ear bumps.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the flat base colour showing on the face, on a stripe down the chest, and in streaks between your strokes, so the hair looks layered.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The cow now looks round and hairy: a dark streaked body, with the warmer face and chest catching the light. No horns or locks yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#10 round",
+     "use": "Shade the cow's dark side"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "block-horns",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the cow's shading from step 11 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start where each horn leaves the head, at the two ear bumps, and paint the thick base of each horn first.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 10,
+     "text": "Building from curved pieces again, as for the cow, but with a small #8 round and two narrow horns.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Build each horn in curved pieces, thick at the base and narrowing to the tip, bending upward. The longer one reaches up over the hills to a tip about 2 3/4 in from the top edge.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The horn nearer the left edge is the longer one, about 2 1/2 in tall, sweeping out and up. The other, nearer the loch, is shorter and hooks up at its tip.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the sky and hills showing crisply around each horn; keep the edges clean.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Two flat cream crescents rise from the head like a wide U, with no shading or dark tips yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#8 round",
+     "use": "Block in the horns"
+    }
+   ],
+   "stroke_cards": [
+    "build-from-pieces"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+   "construct": {
+    "title": "Two horns, thick at the head, curving up to a point",
+    "paint": "Horn cream",
+    "stages": [
+     {
+      "caption": "A thick base at each ear bump",
+      "add": [
+       {
+        "ellipse": [
+         50,
+         46,
+         30,
+         10
+        ],
+        "paint": "Rust brown",
+        "done": true
+       },
+       {
+        "ellipse": [
+         28,
+         32,
+         5,
+         4
+        ]
+       },
+       {
+        "ellipse": [
+         70,
+         33,
+         5,
+         4
+        ]
+       }
+      ]
+     },
+     {
+      "caption": "Curve out and up, narrowing to the tip",
+      "add": [
+       {
+        "path": "M 25 35 Q 9 28 9 3 Q 15 24 32 30 Z"
+       },
+       {
+        "path": "M 66 36 Q 92 33 94 12 Q 85 28 71 30 Z"
+       }
+      ],
+      "arrows": [
+       "M 27 32 Q 12 26 10 6",
+       "M 70 33 Q 90 30 93 14"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "stage_id": "shade-horns",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the pale horns from step 12 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the base of each horn, where it meets the head, and work out toward the tip.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 11,
+     "text": "Curved strokes again, as when you shaded the cow, but with a tiny #4 round, following each horn's bend.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Pull curved strokes along each horn, following its bend from base to tip. Go over the tips a second time so they come out darker.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Cover almost all of each horn, deepest at the tips, the way old horn darkens. Add one small dab on the face, where the eye hides in the fringe's shadow.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave only a thin hint of the pale first coat along the inner curve of each horn; the bright edge comes in the last step.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The horns read as gray-brown curved horns with dark tips, no longer flat and pale, and a small dark spot sits on the face.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#4 round",
+     "use": "Shade the horns and darken the tips"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "locks-ginger",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the horns and the cow's shading dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the crown of the head between the horns, and pull the first locks down over the face as the fringe.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Press the full brush width at each lock's root, then lighten onto the edge as you pull down, so it tapers to a point. Curve them with the body.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Cover the fringe, the head and the whole body with hanging locks, overlapping the base of the horns. The fringe hangs over where the eyes would be.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave gaps between the locks so the darker coat from steps 10 and 11 shows through, especially on the rump and the chest.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The cow is covered in long hanging locks, darker coat showing between them, eyes hidden by the fringe. No pale locks or nose yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch angle",
+     "use": "Pull the ginger locks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "locks-tan",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the locks from step 14 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start high on the cow's shoulder, about 1 3/4 in from the left edge of the canvas.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 14,
+     "text": "The same press-then-lift pull as the first locks, but fewer and shorter, with gaps so those locks still show.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Use the same press-then-lift pull as in step 14, but shorter, tapering each lock to a point as it hangs down.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes on the left side, along the rounded back and shoulder where the hair catches light, plus a few short locks on the fringe between the horns.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Keep these locks fewer and spaced out, with the locks from step 14 and the darker coat showing between them.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Light honey streaks run down the shoulder and a few fringe locks; the rest of the coat stays darker, so the hair looks layered.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/2 inch angle",
+     "use": "Pull the golden tan locks"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "paint-nose",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the coat locks dry first, so the nose doesn't smear into them.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with the nose, just where the fringe ends, its middle about 7 1/2 in from the left edge.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 13,
+     "text": "Curved strokes again, as on the horns, but this time bending around a round nose.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Curve the strokes around the nose so it looks round, sweeping around its dome and into a chin curve. Then pull a few long curved strokes down the coat.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The nose is about 1 in wide, a soft rounded muzzle. The few long dusty locks go on the shoulder and fringe, deepening the coat between the lighter locks.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the fringe hanging over the nose, and the lighter locks showing around the new strokes.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A rounded dusty-pink nose peeks out from the fringe, plain with no nostrils, and the coat has a few deeper locks.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 round",
+     "use": "Paint the nose"
+    }
+   ],
+   "stroke_cards": [
+    "curved-strokes"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "nostrils-mouth",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the nose from step 16 dry completely before dotting on it.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start with the two nostrils: two dots set apart near the lower end of the nose.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 11,
+     "text": "The same Dark brown as the cow's shadow side, but now in small dots with a tiny #2 round.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Dip in fresh paint for each dot and touch it down. Then press a row of small dots into a short mouth line, and dot in the shadow of the chin.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Darken the shadow where the chin meets the chest, and add a few small dots in the coat and where the longer horn meets the head, for depth.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave most of the nose pink, and keep the dots small so the face stays soft. Keep a fresh puddle, or the dots come out uneven.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The face has two dark nostrils, a short mouth line and a shadowed chin. The face is finished.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#2 round",
+     "use": "Dot the nostrils and line the mouth"
+    }
+   ],
+   "stroke_cards": [
+    "dotting"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "flick-dark-grass",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the cow's face and coat dry before flicking grass over them.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start at the bottom edge of the canvas and flick upward, working across from the left edge to the right edge.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 8,
+     "text": "The same Deep green as the dark stripes on the hillside, but now flicked up as blades with a fan brush.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Flick each blade quickly up from its base, lifting off so the tip thins, slanting a little toward the right. Keep the brush lightly loaded; too much paint makes blobs.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "The blades are densest at the bottom edge and thin out about 10 1/2 in from the top edge. Flick them straight over the cow's legs so it stands in the grass.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the meadow showing between the blades, and keep the meadow around the cow's chest clear.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Dark green blades fill the lower canvas and rise over the cow's legs, with lighter meadow between them. No light blades or seed heads yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Flick the dark grass blades"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "flick-light-grass",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the dark blades from step 18 dry, so the light ones stay clean.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start near the bottom edge of the canvas, flicking a few blades up between the dark ones.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 18,
+     "text": "The same quick flick as the dark blades, with a brighter paint and fewer blades, so the dark shows between.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Use the same quick upward flick, lifting off so each tip thins and slanting a little toward the right. Make fewer blades as you go up.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Scatter them across the whole meadow, a few near the left edge and a cluster right of The Highland cow, where the sun skims the grass.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave plenty of the dark blades showing between the light ones, so the grass looks deep.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Bright blades sit over the dark ones, more spaced out higher up, the dark showing between. No gold seed heads yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Flick the sunlit grass"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "flick-seed-heads",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the light blades from step 19 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start near the right edge of the canvas, at the tips of the blades there.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 2,
+     "text": "The same Warm gold as the cloud streaks, now flicked on in small, short marks at the blade tips.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Use short, light flicks upward from the tip of a blade, lifting off fast so each seed head is a small tapered mark.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Scatter them over the meadow: a loose column near the left edge, a band right of The Highland cow, and a few lower down, at blade tips where the light catches.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave wide gaps between them; most blades stay without a head.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "Small gold seed heads dot the tall grass on both sides of the cow, spaced out, not in rows.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "fan brush",
+     "use": "Flick the gold seed heads"
+    }
+   ],
+   "stroke_cards": [
+    "flicking"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "rim-cow",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the seed heads and the coat dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the fringe between the horns, laying the first lit locks across the crown of the head.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 14,
+     "text": "The same thick-to-thin pull as the locks, but with a smaller 1/4 inch angle and short glowing locks along the sunlit edges.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Press, then lift onto the edge as you pull down, so each short lock tapers to a point. Follow the hang of the hair.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it goes on the right side of the cow: the fringe, the cheek, the chest and the body's edge facing the sun, plus a thin edge along the shoulder nearest the left edge.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "A glowing gold rim runs along the cow's fringe and sunlit side, so it looks lit from behind by the low sun. The horns have no light edge yet.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "1/4 inch angle",
+     "use": "Light the gold rim on the cow"
+    }
+   ],
+   "stroke_cards": [
+    "thick-to-thin"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  },
+  {
+   "stage_id": "last-lights",
+   "lines": [
+    {
+     "kind": "first",
+     "text": "Let the gold rim from step 21 dry first.",
+     "edited": true
+    },
+    {
+     "kind": "start",
+     "text": "Start on the outer curve of each horn, near the head, and skim toward the tip.",
+     "edited": true
+    },
+    {
+     "kind": "back",
+     "step": 3,
+     "text": "The same Cream gold and light dry brush as the cloud edges, now on the horns and the brightest grass tips.",
+     "edited": true
+    },
+    {
+     "kind": "strokes",
+     "text": "Skim the dry brush lightly along each horn's outer curve. Then drag it in short, light upward touches over the grass tips.",
+     "edited": true
+    },
+    {
+     "kind": "inside",
+     "text": "Most of it on the right side: the grass tips right of The Highland cow, where the sun hits hardest. Add a few touches lower down.",
+     "edited": true
+    },
+    {
+     "kind": "leave",
+     "text": "Leave the dark blades and most of the grass untouched; only the brightest tips catch this light.",
+     "edited": true
+    },
+    {
+     "kind": "stop",
+     "text": "The horns catch light along their outer curves and the grass beside the cow glows. The painting is finished.",
+     "edited": true
+    }
+   ],
+   "brushes": [
+    {
+     "brush": "#6 flat",
+     "use": "Dry-brush the brightest lights"
+    }
+   ],
+   "stroke_cards": [
+    "dry-brush"
+   ],
+   "made_with": "composite:from-finish",
+   "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+  }
+ ],
+ "opening": {
+  "welcome": "You're about to paint a shaggy Highland cow standing in tall summer grass at sunset, with violet hills and a gold sky behind it. The heart of it is the cow's face: the glowing fringe, the soft nose and the two curved horns.",
+  "light": "The light is the low sun, sitting behind the cow near the hills. It makes the sky glow gold, leaves most of the cow's coat in shade, and catches a bright gold rim along the fringe, the sunlit side of the cow and the grass tips.",
+  "skills": [
+   {
+    "card": "thick-to-thin",
+    "steps": [
+     14,
+     15,
+     21
+    ],
+    "how": "Press the full width of the angle brush, then turn onto its edge and lighten as you pull, so each mark tapers to a point. It builds the cow's whole shaggy coat, lock by lock, and its gold rim. Leave gaps so the darker coat shows between the locks."
+   },
+   {
+    "card": "flicking",
+    "steps": [
+     18,
+     19,
+     20
+    ],
+    "how": "A quick stroke up from the base of a blade, lifting off so the tip thins. It makes the tall grass and lets it grow over the cow's legs. Keep the brush lightly loaded, since too much paint makes flat blobs, and let each lighter pass thin out as it goes."
+   },
+   {
+    "card": "dry-brush",
+    "steps": [
+     2,
+     3,
+     5,
+     22
+    ],
+    "how": "Only the tip of a dry brush goes in the paint, skimmed lightly so the marks break up and catch the canvas texture. It lays the cloud streaks, the soft hill shadows and the last bright lights. If it goes on solid, the brush was too loaded."
+   }
+  ],
+  "road": "First you blend the sky and dry-brush its clouds, because everything else sits on it. Next come the far hills and the sliver of loch, then the rolling hillside and the meadow, so the whole canvas is covered before the cow arrives. The cow is built the way a teacher draws it: a flat shape, its shadow, then the horns. Then its coat goes on lock by lock, light over dark, and the face comes after that. The tall grass is flicked on next so it grows over the cow's legs, and the gold rim and brightest lights go on last."
+ },
+ "stages": {
+  "the-sky": {
+   "for": "This stage covers the canvas with a smooth sunset sky and its gold cloud streaks.",
+   "end": "The canvas is all sky now, clear blue melting into warm gold, with ragged lit cloud streaks."
+  },
+  "the-hills-and-loch": {
+   "for": "This stage lays in the distant violet hills, shades the nearer range, and adds the pale sliver of loch.",
+   "end": "Two ranges of violet hills sit against the sunset, the nearer one darker, with a thin silver strip of loch tucked against them."
+  },
+  "the-land": {
+   "for": "This stage builds the rolling green hillside and the meadow, so the whole canvas is covered before the cow.",
+   "end": "Striped green hillside rolls back toward the hills, and a textured green-and-gold meadow fills the front of the canvas."
+  },
+  "the-cow-shape": {
+   "for": "This stage builds the cow as a flat shape, gives it a shadow side, and adds its two horns.",
+   "end": "A rounded, dark-streaked brown cow stands in the meadow with two gray-brown curved horns, still with no locks or face."
+  },
+  "the-shaggy-coat": {
+   "for": "This stage pulls the cow's long locks of hair, light over dark, so the coat looks shaggy.",
+   "end": "The cow is covered in long hanging ginger and honey locks, its eyes hidden by the fringe."
+  },
+  "the-face": {
+   "for": "This stage gives the cow its face: the rounded nose, the nostrils and the mouth.",
+   "end": "A soft dusty-pink nose with dark nostrils and a mouth line peeks out from the fringe."
+  },
+  "the-tall-grass": {
+   "for": "This stage flicks the tall grass over the meadow and the cow's legs, dark blades first, then sunlit ones and seed heads.",
+   "end": "Tall grass with dark and sunlit blades and gold seed heads rises around the cow and hides its legs."
+  },
+  "the-last-lights": {
+   "for": "This stage adds the low sun's last touches: the gold rim on the cow and the brightest lights.",
+   "end": "The painting is finished: the cow glows along its fringe and sunlit side, the horns catch the light, and the grass tips shine."
+  }
+ }
+}

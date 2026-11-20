@@ -1,4 +1,4 @@
-"""Spike for #241 (v4, measure): one v3 lesson made by a program, with Claude's tokens measured per call.
+"""The program loop: one Gesso lesson made by a program, with Claude's tokens measured per call (#241; v3.1 since #278).
 
 The program follows `.claude/skills/paint-lesson/v3/run.md` (and SKILL.md's steps 0, 1 and 8) in code: it runs the
 tools in `spike/tools.py` in their order and starts every helper itself. A helper is one call to Claude, or a short
@@ -6,9 +6,14 @@ conversation of them, through Claude Code's one-shot mode (`claude -p`) on the o
 helper gets everything it would have read in one message, with no tools, and answers in one reply (the change
 #241's first look asked for). The call sits behind `call_claude`, so an API client can replace that one function.
 
+Since #278 it follows v3.1's run.md (`docs/design/pipeline-v3.1.md`, section 9: the loop is the meter): the plan's
+writer is sent the library's list and the files it picks (`library`), and answers with changes (`plan-change`); one
+writer writes the whole lesson, its rounds and its arc (`packets`, `check-text`); the finisher sees the step pictures
+at 384 pixels (`small-pictures`) and looks at its diagrams again only when fewer draw than it wrote.
+
 Every call is logged to `<lesson>/v4/calls.json`: the helper, its input, cache and output tokens, seconds, the cost
 at the API's published rates, and an estimate of how much of the input was pictures, instructions and Claude
-Code's own additions. `report` sums it for `docs/spikes/v4-loop-baseline.md`.
+Code's own additions. `report` sums it.
 
     .venv/bin/python spike/experiments/v4_loop.py run photos/sleeping-cat.jpg
     .venv/bin/python spike/experiments/v4_loop.py run photos/sleeping-cat.jpg --lesson <folder>   # go on after a stop
@@ -31,7 +36,6 @@ import sys
 import tempfile
 import threading
 import time
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from pathlib import Path
 
@@ -61,6 +65,9 @@ def rates_of(model) -> dict:
 LONG_SIDE = 1568
 
 LOCK = threading.Lock()
+
+sys.path.insert(0, str(ROOT / "spike"))
+import plan_writer  # noqa: E402
 
 
 # ----------------------------------------------------------------------------------------------------- Claude, one call
@@ -243,7 +250,9 @@ def last_json(text: str):
 
 
 # ------------------------------------------------------------------------------------------------- the cuts (#253)
-# Each is off unless named with --cuts, so a run with none is the baseline of #241.
+# All three were adopted (2026-11-19), and since #278 the loop follows v3.1's run.md, which asks the plan's writer for
+# its picks and its changes: every run has them. A run's state keeps the list, so a report of an older run still
+# says which it had.
 CUTS = {
     "api-cache": "cache each call as the API would: the five-minute cache where the conversation goes on, none where "
                  "nothing follows",
@@ -251,178 +260,22 @@ CUTS = {
     "plan-picks": "the plan's writer is sent the library's list and asks for the files it picks",
 }
 
-CHANGES_FORMAT = """Reply with only the changes to plan.json, as one ```json block in this shape. Leave out every key \
-you don't need.
-{"top": {"<a plan field, such as why>": <its new value>},
- "things": {"<thing id>": {<the fields to set>}},
- "paints": {"<paint name>": {<the fields to set>}},
- "rename_paints": {"<old name>": "<new name>"},
- "stages": {"<stage id>": {<the fields to set, not its steps>}},
- "steps": {"<step id>": {<the fields to set>}},
- "add_stages": [{"after": "<stage id>", "stage": {<the whole stage, with its steps>}}],
- "add_steps": [{"stage": "<stage id>", "after": "<step id>", "step": {<the whole step>}}],
- "move_steps": [{"step": "<step id>", "stage": "<stage id>", "after": "<step id>"}]}
-- A field you set replaces what was there; a field set to null is removed.
-- A thing, paint, stage or step set to null is removed. A thing or paint under a new id or name is added whole.
-- `rename_paints` renames a paint everywhere it is named (steps, things, `of`). Renaming it to a paint that \
-already exists merges the two: the old one is removed and its steps use the other.
-- `after` is null for the first place in the stage (or the plan)."""
+# The plan's writer's changes and the library's picks are the tools' since #278 (`spike/plan_writer.py`).
+CHANGES_FORMAT = plan_writer.CHANGES_FORMAT
+apply_plan_changes = plan_writer.apply_plan_changes
+heading = plan_writer.heading
+stroke_list = plan_writer.stroke_list
+research_sections = plan_writer.research_sections
 
 
-def apply_plan_changes(plan: dict, ch: dict) -> dict:
-    """plan.json with the writer's changes (CHANGES_FORMAT) made. A reply that is a whole plan is taken as it is.
-    Raises ValueError, naming what doesn't apply, and leaves `plan` untouched."""
-    import copy
-    if isinstance(ch, dict) and isinstance(ch.get("stages"), list) and "things" in ch and "paints" in ch:
-        return ch
-    if not isinstance(ch, dict):
-        raise ValueError("the changes aren't a JSON object")
-    unknown = set(ch) - {"top", "things", "paints", "rename_paints", "stages", "steps", "add_stages", "add_steps",
-                         "move_steps"}
-    if unknown:
-        raise ValueError(f"unknown keys {sorted(unknown)}")
-    p = copy.deepcopy(plan)
-
-    def merge(obj: dict, fields: dict, what: str):
-        if not isinstance(fields, dict):
-            raise ValueError(f"{what}: the fields to set must be an object")
-        for k, v in fields.items():
-            if v is None:
-                obj.pop(k, None)
-            else:
-                obj[k] = v
-
-    merge(p, ch.get("top") or {}, "top")
-    for key, idk in (("things", "id"), ("paints", "name")):
-        items = p.setdefault(key, [])
-        for i, fields in (ch.get(key) or {}).items():
-            at = next((n for n, x in enumerate(items) if x.get(idk) == i), None)
-            if fields is None:
-                if at is None:
-                    raise ValueError(f"{key}: no {i!r} to remove")
-                items.pop(at)
-            elif at is None:
-                merge(new := {idk: i}, fields, f"{key} {i}")
-                items.append(new)
-            else:
-                merge(items[at], fields, f"{key} {i}")
-    for old, new in (ch.get("rename_paints") or {}).items():
-        names = [x.get("name") for x in p["paints"]]
-        if old not in names:
-            raise ValueError(f"rename_paints: no paint {old!r}")
-        if new in names and new != old:
-            keep = p["paints"][names.index(new)]
-            gone = p["paints"].pop(names.index(old))
-            keep["things"] = list(dict.fromkeys((keep.get("things") or []) + (gone.get("things") or [])))
-        else:
-            p["paints"][names.index(old)]["name"] = new
-        for x in p["paints"]:
-            if x.get("of") == old:
-                x["of"] = new
-            if x.get("of") == x.get("name"):
-                x.pop("of")
-        for st in p.get("stages") or []:
-            for step in st.get("steps") or []:
-                if old in (step.get("paints") or []):
-                    step["paints"] = list(dict.fromkeys(new if c == old else c for c in step["paints"]))
-    stages = p.setdefault("stages", [])
-
-    def stage(i):
-        for st in stages:
-            if st.get("id") == i:
-                return st
-        raise ValueError(f"no stage {i!r}")
-
-    def find(i):
-        for st in stages:
-            for n, step in enumerate(st.get("steps") or []):
-                if step.get("id") == i:
-                    return st, n
-        raise ValueError(f"no step {i!r}")
-
-    def place(lst: list, after, key="id", what="step"):
-        if after is None:
-            return 0
-        for n, x in enumerate(lst):
-            if x.get(key) == after:
-                return n + 1
-        raise ValueError(f"no {what} {after!r} to put it after")
-
-    for i, fields in (ch.get("stages") or {}).items():
-        if fields is None:
-            stages.remove(stage(i))
-        else:
-            if "steps" in fields:
-                raise ValueError(f"stages {i}: set its steps with steps, add_steps or move_steps")
-            merge(stage(i), fields, f"stage {i}")
-    for i, fields in (ch.get("steps") or {}).items():
-        st, n = find(i)
-        if fields is None:
-            st["steps"].pop(n)
-        else:
-            merge(st["steps"][n], fields, f"step {i}")
-    for a in ch.get("add_stages") or []:
-        if not isinstance(a.get("stage"), dict) or not a["stage"].get("id"):
-            raise ValueError("add_stages: each needs a whole stage with an id")
-        stages.insert(place(stages, a.get("after"), what="stage"), a["stage"])
-    for a in ch.get("add_steps") or []:
-        if not isinstance(a.get("step"), dict) or not a["step"].get("id"):
-            raise ValueError("add_steps: each needs a whole step with an id")
-        st = stage(a.get("stage"))
-        st.setdefault("steps", []).insert(place(st["steps"], a.get("after")), a["step"])
-    for a in ch.get("move_steps") or []:
-        st, n = find(a.get("step"))
-        step = st["steps"].pop(n)
-        to = stage(a.get("stage"))
-        to.setdefault("steps", []).insert(place(to["steps"], a.get("after")), step)
-    p["stages"] = [st for st in stages if st.get("steps")]  # a stage left with no steps goes
-    return p
-
-
-def heading(h: str) -> str:
-    """A research heading as the writer may quote it: no #s, no section number, any case."""
-    return re.sub(r"^\d+\.\s*", "", h.strip().lstrip("#").strip()).lower()
-
-
-def stroke_list() -> str:
-    """Every stroke card in a line: its id, its name and the result it gives."""
-    import yaml
-    out = []
-    for f in sorted((ROOT / "techniques" / "strokes").glob("*.yaml")):
-        c = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
-        out.append(f"- {f.stem}: {c.get('name', '')}. {c.get('result', '')}".rstrip())
-    return "\n".join(out)
-
-
-def research_sections() -> dict:
-    """docs/research/acrylic-paint-along.md cut at its headings: "For Gesso" whole, every other numbered section
-    by its own heading and each of its ### headings (a ## heading is the whole section)."""
-    text = (ROOT / "docs" / "research" / "acrylic-paint-along.md").read_text(encoding="utf-8")
-    out, top, sub = {}, None, None
-    for line in text.splitlines():
-        if line.startswith("## "):
-            top, sub = line, None
-            key = "For Gesso" if line.strip() == "## For Gesso" else line
-            if line.strip() == "## Sources":
-                top = None
-                continue
-            out[key] = line + "\n"
-            continue
-        if top is None:
-            continue
-        tkey = "For Gesso" if top.strip() == "## For Gesso" else top
-        out[tkey] += line + "\n"
-        if line.startswith("### ") and tkey != "For Gesso":
-            sub = "  " + line
-            out[sub] = line + "\n"
-        elif sub and tkey != "For Gesso":
-            out[sub] += line + "\n"
-    return out
+# What `check` prints that only a change to plan.json fixes (run.md C3): it names plan.json, or it is a step whose
+# brush its stroke's card doesn't take (#278's cat: plan-check doesn't hold the brush, so it got to the seal).
+PLAN_ASK = re.compile(r"plan\.json|Change the brush, or the stroke")
 
 
 # ------------------------------------------------------------------------------------------------------------- the run
 class Run:
-    def __init__(self, photo: str, lesson: Path, cuts: list[str] | tuple = ()):
+    def __init__(self, photo: str, lesson: Path, cuts: list[str] | tuple = tuple(CUTS)):
         self.photo = photo
         self.lesson = lesson
         lesson.mkdir(parents=True, exist_ok=True)
@@ -445,7 +298,9 @@ class Run:
 
     def tool(self, *args, ok_refused: bool = False) -> dict:
         t0 = time.time()
-        r = subprocess.run(TOOLS + [str(a) for a in args], capture_output=True, text=True, cwd=ROOT)
+        # publish records a run under output/ in site/history/; a loop lesson isn't a /paint-lesson run (#278)
+        env = {**os.environ, "GESSO_HISTORY": str(self.lesson / "v4" / "history")}
+        r = subprocess.run(TOOLS + [str(a) for a in args], capture_output=True, text=True, cwd=ROOT, env=env)
         secs = round(time.time() - t0, 1)
         out = {}
         for line in reversed(r.stdout.strip().splitlines()):
@@ -626,69 +481,35 @@ class Run:
 
     # ----------------------------------------------------------------------------------------- A. the plan
     def plan_message(self) -> Message:
+        """Run.md A1 as v3.1 asks it (#278): the brief, the pictures and the library's list, as `library` prints it.
+        The writer asks for the files it picks."""
         lesson = self.lesson
         m = Message().file(SKILL / "v3" / "plan-brief.md")
-        if "plan-picks" in self.cuts:
-            return self.picks_message(m)
         m.text(f"Lesson folder: {lesson.relative_to(ROOT)}. Photo: {Path(self.state['photo_used']).relative_to(ROOT)}. "
                f"Technique: {TECHNIQUE}.")
         m.picture(self.L("99_finish.png"), "99_finish.png").picture(self.state["photo_used"],
                                                                      Path(self.state["photo_used"]).name)
         m.file(self.L("canvas.json"), "canvas.json").file(ROOT / TECHNIQUE, TECHNIQUE)
-        el = subprocess.run(TOOLS + ["elements"], capture_output=True, text=True, cwd=ROOT).stdout
-        m.text("`spike/tools.py elements` printed:\n" + el)
-        for f in sorted((ROOT / "techniques" / "elements").glob("*.yaml")):
-            m.file(f, f"techniques/elements/{f.name}")
-        for f in sorted((ROOT / "techniques" / "strokes").glob("*.yaml")):
-            m.file(f, f"techniques/strokes/{f.name}")
-        m.file(ROOT / "docs" / "research" / "acrylic-paint-along.md", "docs/research/acrylic-paint-along.md")
-        m.text("Every element file and stroke card is above, so pick from them. Reply with the whole plan.json as one "
-               "```json block, then your brief's reply in a few lines. The program writes it and runs plan-check.")
+        lib = self.tool("library", "--lesson", lesson)
+        m.text(f"`spike/tools.py library --lesson {lesson.relative_to(ROOT)}` printed:\n"
+               + json.dumps({k: v for k, v in lib.items() if k not in ("cost_usd", "seconds", "advice")}, indent=1))
+        m.text("The program runs every tool for you. Pick what you'll read, as your brief says, and reply with your "
+               'picks.json as one ```json block: {"elements": ["<element id>"], "strokes": ["<card id>"], '
+               '"research": ["<a heading, as listed>"]}. The program writes it, runs library --picks and sends you '
+               "the files.")
         return m
 
-    def picks_message(self, m: Message) -> Message:
-        """#253, cut 4: the plan's writer is sent the library's list, not the library, and asks for what it picks."""
-        lesson = self.lesson
-        m.text(f"Lesson folder: {lesson.relative_to(ROOT)}. Photo: {Path(self.state['photo_used']).relative_to(ROOT)}. "
-               f"Technique: {TECHNIQUE}.")
-        m.picture(self.L("99_finish.png"), "99_finish.png").picture(self.state["photo_used"],
-                                                                     Path(self.state["photo_used"]).name)
-        m.file(self.L("canvas.json"), "canvas.json").file(ROOT / TECHNIQUE, TECHNIQUE)
-        el = subprocess.run(TOOLS + ["elements"], capture_output=True, text=True, cwd=ROOT).stdout
-        m.text("`spike/tools.py elements` printed:\n" + el)
-        m.text("`ls techniques/strokes/`, with each card's name and the result it gives:\n" + stroke_list())
-        research = research_sections()
-        m.text('docs/research/acrylic-paint-along.md, its "For Gesso" section:\n' + research["For Gesso"])
-        m.text("Its other sections:\n" + "\n".join(k for k in research if k != "For Gesso"))
-        m.text("Before you write the plan, ask for what you'll read: the element files of the things you'll paint, "
-               "the stroke card of every stroke you'll use, and the research sections your picture needs. The "
-               "program sends them, then you write the plan. You can ask once, so take every one you might use. "
-               'Reply with one ```json block: {"elements": ["<element id>"], "strokes": ["<card id>"], '
-               '"research": ["<a section heading, as listed>"]}')
-        return m
-
-    def picks_files(self, picks: dict) -> Message:
-        research = research_sections()
+    def picks_files(self, picks) -> Message:
+        """The files the writer picked, as `library --picks` copied them into <lesson>/library/."""
+        path = self.L("picks.json")
+        path.write_text(json.dumps(picks, indent=1))
+        r = self.tool("library", "--lesson", self.lesson, "--picks", path)
+        self.state["picks"] = {k: r.get(k) for k in ("files", "research", "unknown", "problems")}
         m = Message()
-        got = {"elements": [], "strokes": [], "research": [], "unknown": []}
-        for kind, folder in (("elements", "elements"), ("strokes", "strokes")):
-            for i in dict.fromkeys(picks.get(kind) or []):
-                f = ROOT / "techniques" / folder / f"{Path(str(i)).stem}.yaml"
-                if f.exists():
-                    m.file(f, f"techniques/{folder}/{f.name}")
-                    got[kind].append(f.stem)
-                else:
-                    got["unknown"].append(str(i))
-        for h in dict.fromkeys(picks.get("research") or []):
-            key = next((k for k in research if heading(k) == heading(str(h))), None)
-            if key and key != "For Gesso":
-                m.text(f"docs/research/acrylic-paint-along.md, {key.lstrip('#').strip()}:\n{research[key]}")
-                got["research"].append(key)
-            elif not key:
-                got["unknown"].append(str(h))
-        self.state["picks"] = got
-        if got["unknown"]:
-            m.text("Not found, so not sent: " + ", ".join(got["unknown"]))
+        for f in r.get("files") or []:
+            m.file(self.lesson / f, f)
+        if r.get("problems"):
+            m.text("library printed these problems; what matched is above:\n" + "\n".join(r["problems"]))
         m.text("These are the files you asked for. Write the plan now. Reply with the whole plan.json as one ```json "
                "block, then your brief's reply in a few lines. The program writes it and runs plan-check.")
         return m
@@ -696,33 +517,31 @@ class Run:
     def write_plan(self, plan):
         (self.L("plan.json")).write_text(json.dumps(plan, indent=1))
 
-    def plan_fix(self, h: "Helper", ask: str, label: str):
-        """Send the plan's writer what a check found and write the plan it answers with. With cut 3 (#253) the
-        writer answers with changes to the plan, not the whole file again."""
-        if "plan-changes" not in self.cuts:
-            self.write_plan(h.ask_json(Message().text(ask + " Reply with the whole plan.json again."), label))
-            return
-        plan = json.loads(self.L("plan.json").read_text())
-        a = h.ask_json(Message().text(ask + "\n\n" + CHANGES_FORMAT), label)
+    def plan_fix(self, h: "Helper", ask: str, label: str) -> dict:
+        """Run.md A2 and C3 as v3.1 asks them (#278): the plan's writer answers with a changes file, and the
+        program runs `plan-change`, which makes it and prints plan-check. Changes that don't apply go back once."""
+        a = h.ask_json(Message().text(ask + "\n\nAnswer with a changes file, as your brief's \"Fixing the plan\" "
+                                      "says: reply with plan-changes.json as one ```json block. The program writes it "
+                                      "and runs plan-change."), label)
         for attempt in range(2):
-            try:
-                self.write_plan(apply_plan_changes(plan, a))
-                return
-            except ValueError as e:
-                if attempt:
-                    raise RuntimeError(f"the plan's changes don't apply: {e}")
-                a = h.ask_json(Message().text(f"Your changes don't apply to the plan: {e}\nThe plan is as it was "
-                                              "before them. Send the changes again, fixed, as one ```json block."),
-                               label + " (changes again)")
+            path = self.L("plan-changes.json")  # where plan-brief.md has the writer put them
+            path.write_text(json.dumps(a, indent=1))
+            r = self.tool("plan-change", "--lesson", self.lesson, "--changes", path, ok_refused=True)
+            if r.get("applied"):
+                self.state.setdefault("plan_changes", []).append({"label": label, "whole_plan": r.get("whole_plan"),
+                                                                  "problems_after": len(r.get("problems") or [])})
+                return r
+            if attempt:
+                raise RuntimeError(f"the plan's changes don't apply: {r.get('problems') or r.get('refused')}")
+            a = h.ask_json(Message().text("plan-change printed:\n" + json.dumps(r.get("problems") or r) +
+                                          "\nSend the changes again, fixed, as one ```json block."),
+                           label + " (changes again)")
 
     def plan(self):
         h = Helper(self, "plan-writer", NO_TOOLS + "You are the plan's writer for a Gesso painting lesson.")
         self.helpers["plan-writer"] = h
-        if "plan-picks" in self.cuts:
-            picks = h.ask_json(self.plan_message(), "A0 the picks")
-            self.write_plan(h.ask_json(self.picks_files(picks), "A1 the plan"))
-        else:
-            self.write_plan(h.ask_json(self.plan_message(), "A1 the plan"))
+        picks = h.ask_json(self.plan_message(), "A0 the picks")
+        self.write_plan(h.ask_json(self.picks_files(picks), "A1 the plan"))
         for rnd in range(3):
             pc = self.tool("plan-check", "--lesson", self.lesson, ok_refused=True)
             unnamed = [u["steps"][0] for u in pc.get("units") or [] if u.get("name") is None]
@@ -776,25 +595,26 @@ class Run:
         for t in ("step-aids", "mix", "draft-text"):
             self.tool(t, "--lesson", self.lesson)
         ck = self.tool("check", "--lesson", self.lesson, ok_refused=True)
-        plan_asks = [p for p in ck.get("problems") or [] if "plan.json" in p]
-        if plan_asks and not self.state.get("merged"):
-            self.state["merged"] = plan_asks
+        # run.md C3: act now on a problem that changes plan.json (a merge, or a brush its step's card doesn't take)
+        plan_asks = [p for p in ck.get("problems") or [] if PLAN_ASK.search(p)]
+        if plan_asks and len(self.state.get("plan_asks_rounds") or []) < 2:
+            self.state.setdefault("plan_asks_rounds", []).append(plan_asks)
+            self.state["merged"] = (self.state.get("merged") or []) + plan_asks
             h = self.helpers.get("plan-writer")
             if h is None:
                 h = Helper(self, "plan-writer", NO_TOOLS + "You are the plan's writer for a Gesso painting lesson.")
                 h.session = self.state.get("plan_session")
                 h.turn = 9
                 self.helpers["plan-writer"] = h
-            ask = "`check` asks for this change to the plan:\n" + "\n".join(plan_asks)
-            if "plan-changes" in self.cuts:  # the conversation already holds the plan and every change to it
-                ask += "\n\nMake only that change."
-            else:
-                ask += "\n\nThe plan as it stands:\n" + self.L("plan.json").read_text() + "\n\nMake only that change."
+            # the conversation already holds the plan and every change to it
+            ask = "`check` asks for this change to the plan:\n" + "\n".join(plan_asks) + "\n\nMake only that change."
             self.plan_fix(h, ask, "C3 merge asked by check")
             pc = self.tool("plan-check", "--lesson", self.lesson, ok_refused=True)
             if pc.get("problems"):
-                self.plan_fix(h, "plan-check printed:\n" + json.dumps(pc) + "\nFix it.",
-                              "C3 plan-check after the merge")
+                pc = self.plan_fix(h, "plan-check printed:\n" + json.dumps(pc) + "\nFix it.",
+                                   "C3 plan-check after the merge")
+            if pc.get("problems") or "refused" in pc:  # run forward from a clean plan-check only (rule 9)
+                raise RuntimeError(f"plan-check still lists problems after the merge: {pc.get('problems')}")
             self.erase()
             return self.build_and_check()
         self.state["check_first"] = ck.get("problems")
@@ -825,141 +645,163 @@ class Run:
         self.build_and_check()
 
     # ----------------------------------------------------------------------------------------- D. the words
-    def writer_message(self, folder: Path) -> Message:
+    def words_folder(self) -> Path:
+        return self.lesson / "words" / "lesson"
+
+    def writer_message(self) -> Message:
+        """Run.md D2: the lesson's one writer is sent its folder, as `packets` wrote it, less what is for later."""
+        folder = self.words_folder()
         m = Message().text("Follow `brief.md` in your folder. Read only that folder. Name only the paints each step "
                            "lists for itself, and keep every line under 40 words. Your folder, "
                            f"{folder.relative_to(ROOT)}, holds:")
-        m.file(folder / "brief.md").file(folder / "steps.json").file(folder / "facts.md")
-        for p in sorted(folder.glob("pair-*.jpg")):
-            m.picture(p, p.name)
+        for name in ("brief.md", "steps.md", "plan.json", "facts.md", "cards.md"):
+            m.file(folder / name)
+        for p in sorted(folder.glob("pair-*.jpg")) + sorted(folder.glob("change-*.jpg")):
+            m.picture(p, p.name)  # packets made them at the sizes the writer reads (#267's pics-small)
         m.picture(folder / "photo.jpg", "photo.jpg").picture(folder / "finish.jpg", "finish.jpg")
         m.text("Reply with out.json as one ```json block, then your one line. The program writes the file.")
         return m
 
+    def answer(self, h: "Helper", name: str, ask: str, label: str):
+        """Send the writer `ask` and write its reply to `name` in its folder."""
+        out = h.ask_json(Message().text(ask), label)
+        (self.words_folder() / name).write_text(json.dumps(out, indent=1))
+
+    def steps_rounds(self, h: "Helper"):
+        """Run.md D3: check-text's rounds, each answer the writer's next message; then --final."""
+        folder = self.words_folder()
+        asked_again = False
+        for _ in range(6):
+            ct = self.tool("check-text", "--lesson", self.lesson)
+            send = ct.get("send_back")
+            if send:
+                self.answer(h, send, "Read feedback.md (below) and write " + send + ": reply with it as one ```json "
+                            "block. The program writes the file.\n\n<file name=\"feedback.md\">\n"
+                            + (folder / "feedback.md").read_text() + "\n</file>", f"D3 {send}")
+                continue
+            if ct.get("done"):
+                break
+            if asked_again:
+                raise RuntimeError(f"check-text still can't use the writer's words: {ct.get('problems')}")
+            asked_again = True  # an unusable out.json or a step with no words: back once, and the rounds start again
+            self.answer(h, "out.json", "check-text printed these problems with out.json:\n" +
+                        "\n".join(ct.get("problems") or []) + "\nWrite the whole out.json again, fixed, as one "
+                        "```json block.", "D3 out.json again")
+        return self.tool("check-text", "--lesson", self.lesson, "--final")
+
+    def arc(self, h: "Helper"):
+        """Run.md D4: the arc as the same writer's next message, its round, then --arc --final."""
+        folder = self.words_folder()
+        m = Message().text("Your step words are checked. Follow arc-brief.md and write arc.json. The new files in "
+                           "your folder:")
+        for name in ("arc-brief.md", "stages.md", "words.md"):
+            m.file(folder / name)
+        m.text("Reply with arc.json as one ```json block, then your one line. The program writes the file.")
+        (folder / "arc.json").write_text(json.dumps(h.ask_json(m, "D4 the arc"), indent=1))
+        ca = self.tool("check-text", "--lesson", self.lesson, "--arc")
+        if ca.get("send_back"):
+            self.answer(h, "arc-fix.json", "Read arc-feedback.md (below) and write arc-fix.json: the whole arc again, "
+                        "as one ```json block.\n\n<file name=\"arc-feedback.md\">\n"
+                        + (folder / "arc-feedback.md").read_text() + "\n</file>", "D4 arc-fix.json")
+        return self.tool("check-text", "--lesson", self.lesson, "--arc", "--final")
+
     def words(self):
         self.tool("packets", "--lesson", self.lesson)
-        stages = sorted((self.lesson / "words").glob("stage-*"))
-        writers = {s.name: Helper(self, f"writer-{s.name}", NO_TOOLS + "You write one stage of a Gesso lesson.")
-                   for s in stages}
-        self.helpers.update({f"writer-{k}": v for k, v in writers.items()})
-
-        def first(s: Path):
-            out = writers[s.name].ask_json(self.writer_message(s), "D2 words")
-            (s / "out.json").write_text(json.dumps(out, indent=1))
-
-        with ThreadPoolExecutor(len(stages)) as ex:
-            list(ex.map(first, stages))
-        ct = self.tool("check-text", "--lesson", self.lesson)
-        self.state["check_text_first"] = {k: ct.get(k) for k in ("failed", "dropped", "stages_with_feedback")
-                                          if k in ct}
-
-        def again(name: str):
-            s = self.lesson / "words" / name
-            out = writers[name].ask_json(Message().file(s / "feedback.md").text(
-                "Read feedback.md (above) and write out.json again: the whole file, as one ```json block."),
-                "D3 feedback", last=True)
-            (s / "out.json").write_text(json.dumps(out, indent=1))
-
-        fb = ct.get("stages_with_feedback") or []
-        with ThreadPoolExecutor(max(1, len(fb))) as ex:
-            list(ex.map(again, fb))
-        ctf = self.tool("check-text", "--lesson", self.lesson, "--final")
-        self.state["check_text_final"] = {k: ctf.get(k) for k in ("dropped", "problems", "left_failing") if k in ctf}
-        bad = [p for p in ctf.get("problems") or [] if "stage-" in str(p)]
-        for name in sorted({re.search(r"stage-\d\d", str(p)).group(0) for p in bad}):
-            s = self.lesson / "words" / name
-            w = Helper(self, f"writer-{name}-new", NO_TOOLS + "You write one stage of a Gesso lesson.")
-            self.helpers[f"writer-{name}"] = w
-            (s / "out.json").write_text(json.dumps(w.ask_json(self.writer_message(s), "D3 new writer", last=True), indent=1))
-        if bad:
-            self.tool("check-text", "--lesson", self.lesson, "--final")
+        h = Helper(self, "lesson-writer", NO_TOOLS + "You are the lesson's writer for a Gesso painting lesson: you "
+                   "teach every step, then give the lesson its arc.")
+        self.helpers["lesson-writer"] = h
+        (self.words_folder() / "out.json").write_text(json.dumps(h.ask_json(self.writer_message(), "D2 the words"),
+                                                                  indent=1))
+        ctf = self.steps_rounds(h)
+        self.state["check_text_final"] = {k: ctf.get(k) for k in ("dropped", "left_failing", "emptied", "words",
+                                                                  "problems") if k in ctf}
+        caf = self.arc(h)
+        self.state["arc_final"] = {k: caf.get(k) for k in ("taken_out", "left_failing", "back_lines", "arc_words",
+                                                           "first", "problems") if k in caf}
+        self.state["writer_session"] = h.session
         self.save()
 
-    def stage_of(self) -> dict:
-        m = {}
-        for s in sorted((self.lesson / "words").glob("stage-*")):
-            for st in json.loads((s / "steps.json").read_text()).get("steps", []):
-                m[st.get("id")] = s.name
-        return m
+    def lesson_writer(self) -> "Helper":
+        h = self.helpers.get("lesson-writer")
+        if h is None:  # a run that stopped after the words: go on with the writer's conversation
+            h = Helper(self, "lesson-writer", NO_TOOLS + "You are the lesson's writer for a Gesso painting lesson.")
+            h.session, h.turn = self.state.get("writer_session"), 9
+            self.helpers["lesson-writer"] = h
+        return h
 
     def fix_words_from_check(self, problems: list[str]) -> list[str]:
-        """E1: a line over 40 words, or a paint a step doesn't list, goes back to its stage's writer."""
-        where = self.stage_of()
-        sent = {}
-        rest = []
-        for p in problems:
-            ids = [sid for sid in where if sid in p]
-            if ids and re.search(r"line \d+ is \d+ words|isn't one of its paints", p):
-                sent.setdefault(where[ids[0]], []).append(p)
-            else:
-                rest.append(p)
-        if not sent:
+        """Run.md E1: a line over 40 words, or a paint a step doesn't list, goes back to the lesson's writer as
+        fix-3.json; then check-text, --final and --arc --final again."""
+        send = [p for p in problems if re.search(r"line \d+ is \d+ words|isn't one of its paints", p)]
+        rest = [p for p in problems if p not in send]
+        if not send:
             return rest
-
-        def back(name):
-            s = self.lesson / "words" / name
-            h = self.helpers.get(f"writer-{name}")
-            if h is None:
-                h = Helper(self, f"writer-{name}", NO_TOOLS + "You write one stage of a Gesso lesson.")
-                self.helpers[f"writer-{name}"] = h
-                h.session = next((c["session"] for c in reversed(self.ledger.calls)
-                                  if c["helper"] == f"writer-{name}"), None)
-            msg = Message().text("The last check found this in your words:\n" + "\n".join(sent[name]) +
-                                 "\n\nFix it and write the whole out.json again, as one ```json block.")
-            (s / "out.json").write_text(json.dumps(h.ask_json(msg, "E1 check's ask", last=True), indent=1))
-
-        with ThreadPoolExecutor(len(sent)) as ex:
-            list(ex.map(back, sent))
+        self.answer(self.lesson_writer(), "fix-3.json", "The last check found this in your words:\n" +
+                    "\n".join(send) + "\n\nShorten each line named to under 40 words, and name only the step's "
+                    "own paints. Reply with fix-3.json, only the steps you change, as one ```json block.",
+                    "E1 check's ask")
+        self.tool("check-text", "--lesson", self.lesson)
         self.tool("check-text", "--lesson", self.lesson, "--final")
+        self.tool("check-text", "--lesson", self.lesson, "--arc", "--final")
         return rest
 
-    # ----------------------------------------------------------------------------------------- D4 and E
+    # ----------------------------------------------------------------------------------------- D5 and E
+    def words_json(self) -> str:
+        text = json.loads(self.L("text.json").read_text())
+        return json.dumps({"opening": text.get("opening"), "stages": text.get("stages"),
+                           "steps": [{"step": s["stage_id"], "lines": [{"kind": x.get("kind"), "text": x["text"]}
+                                                                       for x in s.get("lines", [])]}
+                                     for s in text["steps"]]})
+
     def finish(self):
+        """Run.md D5 and E2 with v3.1's lean finisher (#267's f-lean, #278): the step pictures at 384 pixels and the
+        finish at 512, one reply, and a look at the diagrams only when fewer draw than were written."""
         ck = self.tool("check", "--lesson", self.lesson, ok_refused=True)
         rest = self.fix_words_from_check(ck.get("problems") or [])
         if len(rest) != len(ck.get("problems") or []):
             ck = self.tool("check", "--lesson", self.lesson, ok_refused=True)
-            rest = ck.get("problems") or []
         h = Helper(self, "finisher", NO_TOOLS + "You finish a Gesso lesson: its review, construction diagrams and "
                    "notes. You write the files' contents; the program saves them and runs publish.")
         self.helpers["finisher"] = h
         plan = json.loads(self.L("plan.json").read_text())
-        text = json.loads(self.L("text.json").read_text())
+        folder = self.words_folder()
         m = Message().file(SKILL / "v3" / "run.md", "v3/run.md").file(SKILL / "steps" / "8-finish.md")
         m.file(SKILL / "steps" / "diagrams.md").file(SKILL / "steps" / "notes.md")
-        m.text("Everything before this was done by the program. What the tools printed that you need:\n" + json.dumps({
-            "finish_issues": self.state.get("finish_issues"), "plan_check": self.state.get("plan_check"),
-            "erase": self.state.get("erase"), "checker_marked_each_round": self.state.get("checker"),
-            "build_steps_notes": self.state.get("build_notes"), "check_now": ck,
-            "check_text_first": self.state.get("check_text_first"),
-            "check_text_final": self.state.get("check_text_final"), "merged_by_check": self.state.get("merged")},
-            indent=1))
+        m.text("Everything before this was done by the program, which also runs small-pictures and publish for you. "
+               "What the tools printed that you need:\n" + json.dumps({
+                   "finish_issues": self.state.get("finish_issues"), "plan_check": self.state.get("plan_check"),
+                   "erase": self.state.get("erase"), "checker_marked_each_round": self.state.get("checker"),
+                   "build_steps_notes": self.state.get("build_notes"), "check_now": ck,
+                   "check_text_final": self.state.get("check_text_final"), "arc_final": self.state.get("arc_final"),
+                   "merged_by_check": self.state.get("merged")}, indent=1))
+        for name in ("rounds.json", "arc-dropped.json"):
+            if (folder / name).exists():
+                m.file(folder / name, f"words/lesson/{name}")
         m.file(self.L("words/dropped.json"), "words/dropped.json").text("plan.json:\n" + json.dumps(plan))
-        m.text("text.json, each step's summary, tip and lines:\n" + json.dumps(
-            [{"step": s["stage_id"], "summary": s.get("summary"), "tip": s.get("tip"),
-              "lines": [x["text"] for x in s.get("lines", [])]} for s in text["steps"]]))
+        m.text("The lesson's words (its opening, its stage lines, and each step's lines):\n" + self.words_json())
         m.file(self.L("notes.json"), "notes.json (so far)")
-        for i, s in enumerate(text["steps"], 1):
-            p = self.L(f"{i:02d}_{s['stage_id']}.png")
-            if p.exists():
-                m.picture(p, p.name, max_side=768)
-        m.picture(self.L("99_finish.png"), "99_finish.png", max_side=768)
-        m.text("Do D4 (review.json) and E2 (8a diagrams, 8b notes) for this lesson. Reply with one ```json block: "
-               '{"review": {review.json}, "construct": {"<step id>": {construct spec}}, "notes": {"read": "", '
-               '"order": "", "steps": {"<step id>": ""}, "beginner_check": {...}, "merged_parts": {}, '
-               '"learned": ["..."]}, "other_fixes": "what you would change for check\'s other problems, if any"}')
-        a = h.ask_json(m, "D4 review, 8a diagrams, 8b notes")
+        sp = self.tool("small-pictures", "--lesson", self.lesson)
+        for f in sp["files"]:
+            m.picture(self.lesson / f, f)
+        m.text("Do D5 (review.json) and E2 (8a diagrams, 8b notes) for this lesson. Don't rewrite the words. Reply "
+               'with one ```json block: {"review": {review.json}, "construct": {"<step id>": {construct spec}}, '
+               '"notes": {"read": "", "order": "", "steps": {"<step id>": ""}, "beginner_check": {...}, '
+               '"merged_parts": {}, "learned": ["..."]}, "other_fixes": "what you would change for check\'s other '
+               'problems, if any"}')
+        a = h.ask_json(m, "D5 review, 8a diagrams, 8b notes")
         self.apply_finish(a)
-        pub = self.tool("publish", "--lesson", self.lesson, ok_refused=True)
+        self.tool("publish", "--lesson", self.lesson, ok_refused=True)
         prev = self.tool("preview-diagrams", "--lesson", self.lesson, ok_refused=True)
-        m = Message().text("publish printed:\n" + json.dumps({k: v for k, v in pub.items() if k not in ("steps",)})[:6000])
-        if self.L("trials/diagrams.png").exists():
-            m.picture(self.L("trials/diagrams.png"), "trials/diagrams.png")
-        m.text('Look at your diagrams next to their steps. Reply with {"construct": {only the specs you change}, '
-               '"notes": {only the fields you change}} or {} when nothing changes.')
-        b = h.ask_json(m, "8a look at the diagrams")
-        if b:
-            self.apply_finish(b)
+        self.state["diagrams"] = {k: prev.get(k) for k in ("specced", "drawn", "broken")}
+        if (prev.get("drawn") or 0) < (prev.get("specced") or 0):
+            m = Message().text("preview-diagrams printed:\n" + json.dumps({k: v for k, v in prev.items()
+                                                                           if k not in ("html",)}))
+            if self.L("trials/diagrams.png").exists():
+                m.picture(self.L("trials/diagrams.png"), "trials/diagrams.png")
+            m.text('Some diagrams draw nothing (`broken`). Fix them. Reply with {"construct": {only the specs you '
+                   'change}, "notes": {only the fields you change}}.')
+            self.apply_finish(h.ask_json(m, "8a look at the diagrams"))
+            self.state["diagrams"]["looked"] = True
         for rnd in range(3):
             fin = self.tool("publish", "--lesson", self.lesson, "--final", ok_refused=True)
             if "refused" not in fin:
@@ -967,7 +809,7 @@ class Run:
                 break
             c = h.ask_json(Message().text("publish --final refused:\n" + str(fin["refused"])[:6000] +
                                           '\nReply with {"review": ..., "construct": ..., "notes": ...}, only what '
-                                          "changes, to fix it."), f"8c seal refused, round {rnd + 1}", last=True)
+                                          "changes, to fix it."), f"8c seal refused, round {rnd + 1}")
             self.apply_finish(c)
         self.save()
 
@@ -1001,14 +843,14 @@ class Run:
         self.phase("words", self.words)
         if "finish" not in self.state["done"]:
             self.note("learned", [
-                "Plan writer: one helper given plan-brief.md, the finish, the photo, canvas.json, the technique, "
-                "every element file, every stroke card and the research file in one message; plan-check's output "
-                "went back to it.",
+                "Plan writer (v3.1, #278): one helper given plan-brief.md, the finish, the photo, canvas.json, the "
+                "technique and what `library` prints; it asked for the files it picked (`library --picks`) and was "
+                "sent those, then answered plan-check and check with changes (`plan-change`).",
                 "Chain checker: a fresh helper each round, given chain-check.md, asked.json and every look.",
-                "Stage writers: one helper a stage, all at once, each given its whole words/stage-NN folder in one "
-                "message; feedback.md went back to the same writer.",
-                "Finisher: one helper for review.json, the diagrams and the notes, given run.md, step 8's files, what "
-                "the tools printed, plan.json, text.json and the step pictures at 768 pixels."])
+                "Lesson writer (v3.1): one helper for the whole lesson, given words/lesson/ as packets wrote it; "
+                "check-text's rounds and the arc were its next messages.",
+                "Finisher (v3.1): one helper for review.json, the diagrams and the notes, given run.md, step 8's "
+                "files, what the tools printed, plan.json, the words and the step pictures at 384 pixels."])
         self.phase("finish", self.finish)
         self.state["ended"] = datetime.now().isoformat(timespec="seconds")
         self.save()
@@ -1127,7 +969,6 @@ def main(argv=None):
     r = sub.add_parser("run")
     r.add_argument("photo")
     r.add_argument("--lesson")
-    r.add_argument("--cuts", default="", help="comma-separated, from: " + ", ".join(CUTS))
     r.add_argument("--until", choices=["checker"], help="stop after this phase (#267)")
     p = sub.add_parser("report")
     p.add_argument("lesson")
@@ -1137,8 +978,7 @@ def main(argv=None):
         return
     stem = Path(a.photo).stem
     lesson = Path(a.lesson) if a.lesson else ROOT / "output" / f"{stem}_v4loop_{datetime.now():%Y%m%d-%H%M%S}"
-    cuts = [c for c in a.cuts.split(",") if c]
-    Run(a.photo, lesson.resolve(), cuts).go(a.until)
+    Run(a.photo, lesson.resolve()).go(a.until)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,216 @@
+{
+  "Sky blue": {
+    "parts": {
+      "Titanium white": 2,
+      "Cadmium yellow medium (hue)": 0.2,
+      "Ultramarine blue": 1
+    },
+    "text": "2 parts white, 1 part ultramarine, a touch of yellow",
+    "mixed_hex": "#8eafcf",
+    "target_hex": "#8eb8e1",
+    "delta_e": 3.3,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Loch silver": {
+    "parts": {
+      "Titanium white": 12,
+      "Cadmium yellow medium (hue)": 1,
+      "Ultramarine blue": 1,
+      "Burnt sienna": 2
+    },
+    "text": "12 parts white, 2 parts burnt sienna, 1 part yellow, 1 part ultramarine",
+    "mixed_hex": "#d9d1ba",
+    "target_hex": "#d4cdbc",
+    "delta_e": 2.4,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Cream gold": {
+    "parts": {
+      "Titanium white": 1,
+      "Cadmium yellow medium (hue)": 0.2,
+      "Cadmium red medium (hue)": 0.2,
+      "Ultramarine blue": 0.2
+    },
+    "text": "1 part white, a touch of yellow, a touch of red, a touch of ultramarine",
+    "mixed_hex": "#d3bd9b",
+    "target_hex": "#cebd9b",
+    "delta_e": 2.1,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Warm gold": {
+    "parts": {
+      "Titanium white": 2,
+      "Cadmium yellow medium (hue)": 2,
+      "Cadmium red medium (hue)": 1
+    },
+    "text": "2 parts yellow, 2 parts white, 1 part red",
+    "mixed_hex": "#ffc050",
+    "target_hex": "#fab949",
+    "delta_e": 1.7,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Pale violet": {
+    "parts": {
+      "Titanium white": 4,
+      "Ultramarine blue": 3,
+      "Burnt sienna": 1
+    },
+    "text": "4 parts white, 3 parts ultramarine, 1 part burnt sienna",
+    "mixed_hex": "#747ebb",
+    "target_hex": "#7381be",
+    "delta_e": 1.4,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Blue-violet": {
+    "parts": {
+      "Titanium white": 1,
+      "Ultramarine blue": 1,
+      "Burnt sienna": 0.2
+    },
+    "text": "1 part ultramarine, 1 part white, a touch of burnt sienna",
+    "mixed_hex": "#6171c0",
+    "target_hex": "#5970b1",
+    "delta_e": 2.7,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Olive green": {
+    "parts": {
+      "Cadmium yellow medium (hue)": 3,
+      "Ultramarine blue": 1,
+      "Burnt sienna": 3
+    },
+    "text": "3 parts yellow, 3 parts burnt sienna, 1 part ultramarine",
+    "mixed_hex": "#837d1a",
+    "target_hex": "#807e2f",
+    "delta_e": 3.0,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Deep green": {
+    "parts": {
+      "Titanium white": 0.2,
+      "Cadmium yellow medium (hue)": 2,
+      "Cadmium red medium (hue)": 1,
+      "Ultramarine blue": 3
+    },
+    "text": "3 parts ultramarine, 2 parts yellow, 1 part red, a touch of white",
+    "mixed_hex": "#516036",
+    "target_hex": "#53613f",
+    "delta_e": 2.4,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Yellow-green": {
+    "parts": {
+      "Cadmium yellow medium (hue)": 3,
+      "Cadmium red medium (hue)": 1,
+      "Ultramarine blue": 1
+    },
+    "text": "3 parts yellow, 1 part red, 1 part ultramarine",
+    "mixed_hex": "#a29121",
+    "target_hex": "#9f8f30",
+    "delta_e": 2.0,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Rust brown": {
+    "parts": {
+      "Cadmium yellow medium (hue)": 0.2,
+      "Cadmium red medium (hue)": 2,
+      "Ultramarine blue": 1
+    },
+    "text": "2 parts red, 1 part ultramarine, a touch of yellow",
+    "mixed_hex": "#893616",
+    "target_hex": "#873e20",
+    "delta_e": 2.3,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Dark brown": {
+    "parts": {
+      "Cadmium red medium (hue)": 2,
+      "Ultramarine blue": 3,
+      "Burnt sienna": 3
+    },
+    "text": "3 parts ultramarine, 3 parts burnt sienna, 2 parts red",
+    "mixed_hex": "#53311f",
+    "target_hex": "#563223",
+    "delta_e": 1.8,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Ginger": {
+    "parts": {
+      "Cadmium yellow medium (hue)": 1,
+      "Cadmium red medium (hue)": 3,
+      "Ultramarine blue": 2
+    },
+    "text": "3 parts red, 2 parts ultramarine, 1 part yellow",
+    "mixed_hex": "#81431d",
+    "target_hex": "#8c4320",
+    "delta_e": 3.1,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Golden tan": {
+    "parts": {
+      "Titanium white": 2,
+      "Cadmium yellow medium (hue)": 0.2,
+      "Cadmium red medium (hue)": 0.2,
+      "Burnt sienna": 3
+    },
+    "text": "3 parts burnt sienna, 2 parts white, a touch of yellow, a touch of red",
+    "mixed_hex": "#c08252",
+    "target_hex": "#c1824f",
+    "delta_e": 0.7,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Horn cream": {
+    "parts": {
+      "Titanium white": 12,
+      "Cadmium yellow medium (hue)": 2,
+      "Burnt sienna": 3
+    },
+    "text": "12 parts white, 3 parts burnt sienna, 2 parts yellow",
+    "mixed_hex": "#ead59f",
+    "target_hex": "#e8d6a5",
+    "delta_e": 1.4,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Horn shadow": {
+    "parts": {
+      "Titanium white": 1,
+      "Cadmium red medium (hue)": 1,
+      "Ultramarine blue": 2,
+      "Burnt sienna": 3
+    },
+    "text": "3 parts burnt sienna, 2 parts ultramarine, 1 part red, 1 part white",
+    "mixed_hex": "#70483c",
+    "target_hex": "#704935",
+    "delta_e": 3.7,
+    "reachable": true,
+    "guess_recipe": ""
+  },
+  "Muzzle mauve": {
+    "parts": {
+      "Titanium white": 1,
+      "Cadmium red medium (hue)": 1,
+      "Ultramarine blue": 1,
+      "Burnt sienna": 2
+    },
+    "text": "2 parts burnt sienna, 1 part red, 1 part ultramarine, 1 part white",
+    "mixed_hex": "#8e5340",
+    "target_hex": "#955e47",
+    "delta_e": 4.0,
+    "reachable": true,
+    "guess_recipe": ""
+  }
+}

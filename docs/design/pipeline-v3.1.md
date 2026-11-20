@@ -1,10 +1,10 @@
-# Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
-
-**A draft (2026-11-20), not built. The owner read it and merged it (#275), set the gate (section 13), and said go on
-the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`).** It is the design the v4 plan's
-Order, step 5 asks for (`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes
-`pipeline-v3.md`; it doesn't replace it. Read that file first: every section number below that isn't this file's own
-is v3's.
+**Built (2026-11-20, POC 2.1.0).** The gate passed (section 13; `docs/spikes/v31-gate.md`) and the owner read the
+highland cow and said "Looks good". `v3.1` merged into main; `pipeline-v3.md`, sections 4 and 10, describe the
+pipeline as it now runs, and this file is the record of how it was designed and built. A draft (2026-11-20), built
+on the branch `v3.1` (#276 to #278). The owner read it and merged it (#275), set the gate (section 13), and said go
+on the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`). It is the design the v4 plan's Order, step 5 asks for (`pipeline-v4-plan.md`),
+written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't replace it. Read that file
+first: every section number below that isn't this file's own is v3's.
 
 Each piece is marked **proven** (a spike ran it and its write-up has the numbers), a **guess** (this draft's own
 joining of the pieces, run by nobody yet), or **open**.
@@ -192,6 +192,25 @@ No step's own lines change. The arc's checks, with one round of feedback and the
 Asked this way the arc took a feedback round on 3 of 3 lessons, against 1 of 3 as its own call, and still cost
 less ($0.14 and $0.09 against $0.24 and $0.03). After the round none failed.
 
+### As built (#276, build 1, on the branch)
+
+`spike/lesson_words.py`, `tools.py packets` and `check-text`, `v3/lesson-brief.md` and `v3/arc-brief.md`, `run.md`
+step D. The writer's folder is `words/lesson/`, and it answers through files there: `out.json`, then `fix-1.json`
+and `fix-2.json` (only the steps it changes), then `arc.json` and `arc-fix.json` (the whole arc again, as #267's run
+asked for it). `check-text` runs the next round each time and says which file to send the writer back for;
+`--final` takes out what still fails; `--arc` and `--arc --final` do the same for the arc. `words/lesson/rounds.json`
+keeps each round's counts. Beside the spikes:
+
+- **`paint_notes` stays** in the writer's form, as v3's: the seal still asks a paint the tubes can only come close
+  to for a note, and `steps.md` marks such a paint.
+- **A stage's end picture is the after half of its last step's pair** (`stages.md` says which), as #267's
+  `arc-same` sent it, not a 480-pixel picture of its own.
+- **`draft-text` still runs** and makes each step's header; on a step the writer wrote it adds no lines.
+- **Until build 2 (#277, section 7's as-built), `check` and the seal took the six lines in place of a summary and a
+  tip** and asked nothing more of them: the smallest change that keeps a lesson sealable on the branch.
+- **The real run on the cat** (`docs/spikes/v31-build1-cat.md`): the subagent helper worked. Round 1 sent back 20
+  failures, 11 of them check-text reading "nearest the window" as the window's sky.
+
 ## 7. The lesson file, the page, `check` and the seal (guesses: no spike sealed a lesson)
 
 - **`text.json`:** a step's `lines` are the six, each with its `kind` (`first`, `start`, `strokes`, `inside`,
@@ -207,6 +226,28 @@ less ($0.14 and $0.09 against $0.24 and $0.03). After the round none failed.
 - **Older lessons** have no opening and carry a summary and a tip. The page shows what a lesson has, so the site's
   history still opens.
 
+### As built (#277, build 2, on the branch)
+
+- **The page** (`page2.six_lines`, `opening`, `stage_line`): a step's lines in a list, each with its label in bold;
+  the back line's label is "As in step N" with N a link to that step, and it sits after Start, where `check-text
+  --arc` put it. "Before you start" opens with the welcome, then "The light", "What this painting teaches" (each
+  skill's card linked to its card and its steps listed), and "The way there". A stage's `for` line is under its
+  heading; its `end` line, marked "End of the stage", is just before the "good place to stop" mark. A lesson with
+  no opening and drafted lines gets v3's numbered list and its tip, as before.
+- **`lesson.json`** gains `opening` and `stage_lines` (by stage id), and a back line in a stage's `lines` keeps its
+  `step`. Neither key is written for a lesson without them.
+- **`check`** asks a step with the writer's lines for Start, Strokes, Where the paint sits, Leave and Stop when.
+  A line `check-text --final` emptied (`rounds.json`'s `emptied`) may be missing: it is a known problem in
+  `review.json`. A step with the six lines and a v3 summary or tip fails. The 40 words, the paint rule and the
+  sheet check are as they were, and cover the back lines. The arc's checks (`lesson_words.arc_problems`) run on
+  the arc as `text.json` holds it, so a number or side added to the opening, or a back line pointed at the wrong
+  step, can't be sealed. A part the arc's last check took out (`arc-dropped.json`) may be missing.
+- **The seal** also asks for `check-text --arc --final` on a lesson with the writer's lines.
+- **The site's card line** (`lesson_embed.summary_of`) is the Start line's first sentence when there is no
+  summary, not the first line: a First line ("Let the wall dry") says nothing about what the step does. On the
+  build 1 cat all 22 read as instructions ("Start with the wide upright of the frame, ..."). The tiles never read a
+  summary.
+
 ## 8. The plan's writer and the finisher
 
 **The plan's writer (proven, #253).** Its first message was 92,000 tokens, most of it the library. Now:
@@ -219,6 +260,26 @@ less ($0.14 and $0.09 against $0.24 and $0.03). After the round none failed.
 
 **The finisher (proven, #267).** Step pictures at 384 pixels and the finish at 512. It writes `review.json`, the
 diagrams and the notes in one reply. It looks at the diagrams again only when `publish` draws fewer than it wrote.
+
+### As built (#278, build 3, on the branch)
+
+- **The picks** (`spike/plan_writer.py`, `tools.py library`): `library --lesson` prints what `elements` prints, every
+  card in a line and the research's "For Gesso" with the other headings; the writer writes `picks.json` and runs
+  `library --picks`, which copies what it picked into `<lesson>/library/` (`research.md` holds "For Gesso" and each
+  section picked). A heading matches without its #s or number, in any case; a ### section inside a ## section also
+  picked is sent once; a name it doesn't know is a problem, and what matched is kept. A second ask adds to the
+  first: the brief says ask once, and a writer started again for a merge may still need a file.
+- **The changes** (`plan_writer.apply_plan_changes`, moved from the loop; `tools.py plan-change`): the writer
+  writes `plan-changes.json` in the brief's shape and runs `plan-change`, which makes them, keeps each in
+  `<lesson>/plan-changes-log.json`, and prints what `plan-check` prints. Changes that don't apply are a problem and leave
+  `plan.json` as it was. A whole plan is still taken.
+- **The finisher** (`tools.py small-pictures`, `steps/8-finish.md`, `steps/diagrams.md`): the step pictures at 384
+  pixels and the finish at 512 in `<lesson>/small/`. The look at the diagrams is asked for only when
+  `preview-diagrams`' `drawn` is under `specced`. **Changed from #267:** that spike counted `publish`'s
+  `diagrams`, which counts the specs and not what draws, so a spec drawn as error text still counted (#267's Sonnet
+  cat). `preview-diagrams` now says which specs draw nothing (`broken`).
+- **The loop** (`v4_loop.py`) follows this `run.md`: the three cuts of #253 are always on, its words are one
+  writer's with `check-text`'s rounds and the arc as that writer's next messages, and its finisher is the one above.
 
 ## 9. What it costs
 
@@ -239,6 +300,9 @@ Renders are beside that: $0.55 to $0.95 a lesson, unchanged.
   holds for the loop now and for the app's Worker later.
 - **So the loop is kept as the meter.** `v4_loop.py` follows `run.md` in code. After the build it follows the new
   `run.md`, and the cost of a v3.1 lesson is measured there.
+- **Measured after build 3 (#278, `docs/spikes/v31-build3-cat.md`):** the sleeping cat, sealed by the loop on the
+  new `run.md`, $2.98 at the API's rates ($1.36 to the chain's checker, $0.90 the words, $0.72 the finisher, which
+  looked at its diagrams once because three drew nothing). One run.
 
 ## 10. The yardstick
 
@@ -276,7 +340,7 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    corrected by what it showed: the 40-word round and the writer's silence on the page's aids (section 5), and one
    more risk (section 14). The owner also had it run on the chickadee and the lavender balloon, which his partner
    means to paint.
-3. **Build it into `/paint-lesson` in place,** on the branch `v3.1`, with no flag (#276 the words, #277 the page,
+3. **Built (#276 to #278): it is in `/paint-lesson` in place,** on the branch `v3.1`, with no flag (#276 the words, #277 the page,
    `check` and the seal, #278 the plan's writer, the finisher and the loop; by Opus):
    - the tools: `packets` for a lesson writer, `check-text` reading the six lines, the paint round, the arc's
      checks, the tool that applies the plan's changes;
@@ -285,7 +349,7 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    - `run.md`, steps A, D and E;
    - the page, `check` and `publish --final` (section 7);
    - `v4_loop.py` brought into step with the new `run.md`.
-4. **The gate,** run from that branch before it merges (section 13; #279).
+4. **Done: passed (2026-11-20, #279, `docs/spikes/v31-gate.md`).** The gate, run from that branch before it merged.
 5. **Then** merge, stamp POC 2.1.0, write the changelog entry, and fold the as-built facts into `pipeline-v3.md`,
    sections 4 and 10, so one file still describes the pipeline. The site's lessons still wait to be rerun from
    v3's gate; rerun them once, after this.

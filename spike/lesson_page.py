@@ -342,7 +342,8 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
             g = group_at[s["id"]]
             n = len(g["steps"])
             steps_html.append(f'\n<h2 class="group" id="stage-{e(g["id"])}">{e(g["name"])} '
-                              f'<span class="small">{n} step{"s" if n != 1 else ""}</span></h2>')
+                              f'<span class="small">{n} step{"s" if n != 1 else ""}</span></h2>'
+                              + (v2_part("stage_line", lesson, g, "for") if v2 else ""))
         blist = s.get("brush_list") or ([{"brush": s["brushes"], "use": ""}] if s.get("brushes") else [])
         chips = "".join(f'<span class="chip" title="{e(describe(b["brush"]) or b.get("use", ""))}">{picture(b["brush"], "small")}'
                         f'{e(b["brush"])}</span>' for b in blist)
@@ -379,7 +380,7 @@ def page(lesson: dict, technique: dict, folder: Path, embed: bool = False, stand
                                          diagram_paints))
             ends = next((g for g in lesson.get("groups") or [] if g.get("steps") and g["steps"][-1] == s["id"]), None)
             if ends:
-                steps_html.append(page2.stop(ends))
+                steps_html.append(page2.stop(ends, lesson))
             continue
         steps_html.append(f"""
 <article class="step" id="step-{i + 1}">

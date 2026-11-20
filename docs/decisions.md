@@ -351,6 +351,12 @@ with the date.
   the student test no lower than v3's words on any and higher across the three; Claude's graders prefer them on
   most pictures with a clear loss on none; the owner reads one and says yes; the Claude cost reported beside the $1
   aim, not a pass or fail. Painting one stays #252, and what it shows is fixed afterward.
+- **The v3.1 gate passed; v3.1 is the pipeline, POC 2.1.0 (2026-11-20, owner's call, #279).** Three hands-off
+  lessons from the branch (the highland cow, the sleeping cat, the birch grove) were sealed; the student test scored
+  them 3.55, 3.40 and 3.15 against v3's 3.15, 3.21 and 3.02, and Claude's blind graders preferred them 6 of 6
+  (`docs/spikes/v31-gate.md`). The owner read the highland cow: "Looks good merge in the site." So `v3.1` merges
+  into main as POC 2.1.0 and the three lessons go on the site. Not decided by this: rerunning the site's other
+  lessons from their photos, which #279 says to ask about before the renders are spent.
 - **Go on v3.1's build (2026-11-20, owner's call, after the combined lesson).** The owner read the combined lessons
   (the sleeping cat, then the chickadee and the lavender balloon, which he asked for because his partner means to
   paint one of those this weekend): "Looks good." So v3.1 is built into `/paint-lesson` as the design's section 12

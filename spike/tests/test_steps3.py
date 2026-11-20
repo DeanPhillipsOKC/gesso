@@ -344,72 +344,102 @@ class V3ToolsTests(unittest.TestCase):
         self.assertIn("changed since", r["refused"])
 
     def words_check_and_seal(self):
-        """packets, the writers' words, check-text with one fix round, check, and what the seal asks of a v3 run."""
+        """packets, a stand-in lesson writer through every round (v3.1, #276), the arc and its round, check, and what
+        the seal asks of the run."""
         self.assertIn("run draft-text, then packets", self.tool("check-text")[1]["refused"])
         code, r = self.tool("packets")
-        self.assertEqual((code, len(r["stages"])), (0, 3))
-        words = self.lesson / "words"
-        stage = json.loads((words / "stage-03" / "steps.json").read_text())
-        self.assertEqual([s["id"] for s in stage["steps"]], ["shadows", "light-cat", "cat-eyes"])
-        self.assertEqual(stage["steps"][0]["meant"], "Glaze the shadows is done.")  # the plan's `after`
-        for name in ("brief.md", "facts.md", "pair-04.jpg", "finish.jpg"):
-            self.assertTrue((words / "stage-03" / name).exists(), name)
-        sheet = json.loads((words / "sheet.json").read_text())
+        self.assertEqual((code, r["steps"], r["stages"]), (0, 6, 3))
+        folder = self.lesson / "words" / "lesson"
+        for name in ("brief.md", "arc-brief.md", "steps.md", "cards.md", "stages.md", "plan.json", "facts.md",
+                     "pair-01.jpg", "change-06.jpg", "finish.jpg"):
+            self.assertTrue((folder / name).exists(), name)
+        steps_md = (folder / "steps.md").read_text()
+        self.assertIn("step 5 `light-cat`: Light the cat. Part: ", steps_md)
+        self.assertIn("Stroke card: curved-strokes", steps_md)
+        self.assertIn("Pale gray (", steps_md)  # its recipe, as the page shows it
+        facts_md = (folder / "facts.md").read_text()
+        self.assertNotIn("Where line (kept as it is", facts_md)  # the lean sheet (#267)
+        self.assertNotIn(" in (", facts_md)
+        self.assertIn("stage 3 `the-finish`: Shadows and lights. Steps 4, 5, 6. Its end: pair-06.jpg.",
+                      (folder / "stages.md").read_text())
+        sheet = json.loads((self.lesson / "words" / "sheet.json").read_text())
         # a unit that comes back to a thing is measured by what it changed (#214): the eyes, not a speck
         self.assertAlmostEqual(sheet["parts"]["the-cat-s-eyes"]["wide"], 70 / 480 * 12, delta=0.3)
 
-        def write(k: int, steps: dict) -> None:
-            (words / f"stage-{k:02d}" / "out.json").write_text(json.dumps({"steps": steps}), encoding="utf-8")
+        def six(what: str, **lines) -> dict:
+            return {"first": "", "start": f"Start on {what} where the after picture has it.",
+                    "strokes": "Pull each stroke smoothly, the way the card says.", "inside": f"Cover {what} evenly.",
+                    "leave": "Leave the paint already there as it is.", "stop": f"Stop when {what} matches the "
+                    "after picture.", **lines}
 
-        plain = lambda what: {"summary": f"Paint {what}.", "tip": "Work from the top down."}  # noqa: E731
-        write(1, {"blend-sky": plain("the sky")})
-        write(2, {"block-rug": plain("the rug"), "block-cat": {**plain("the cat"), "lines": {"1": "x", "99": "y"}}})
-        (words / "stage-03" / "out.json").write_text("{not json", encoding="utf-8")
+        def write(name: str, steps: dict) -> None:
+            (folder / name).write_text(json.dumps({"steps": steps}), encoding="utf-8")
+
+        long = " ".join(["Work the red into the weave of the rug slowly and patiently"] * 5) + "."
+        first = {"blend-sky": six("the sky"), "block-rug": six("the rug", inside=long),
+                 "block-cat": six("the cat"), "shadows": six("the shadows"),
+                 "light-cat": six("the cat's back", strokes="Lay the Pale gray over the Cat gray coat."),
+                 "cat-eyes": six("the eyes", inside="The eyes are about 9 in wide. Keep them dark.")}
+        self.assertIn("no out.json", self.tool("check-text")[1]["problems"][0])
+        (folder / "out.json").write_text("{not json", encoding="utf-8")
         code, r = self.tool("check-text")
-        self.assertEqual(code, 0)
-        self.assertFalse(r["ok"])
-        self.assertTrue(any("stage-03: out.json isn't valid JSON" in x for x in r["problems"]))
-        self.assertTrue(any("block-cat: no line 99" in x for x in r["problems"]))
-        self.assertEqual(r["stages_with_feedback"], ["stage-02", "stage-03"])
-        self.assertIn("no line 99", (words / "stage-02" / "feedback.md").read_text())
-        # the one fix round: stage 2 drops its bad line; stage 3 writes a size the sheet doesn't have
-        write(2, {"block-rug": plain("the rug"), "block-cat": plain("the cat")})
-        write(3, {"shadows": plain("the shadows"), "light-cat": plain("the light"),
-                  "cat-eyes": {"summary": "Dot the eyes.", "tip": "The eyes are about 9 in wide. Keep them dark."}})
+        self.assertTrue(any("out.json isn't valid JSON" in x for x in r["problems"]), r)
+        write("out.json", {**first, "nope": six("x"), "block-cat": {k: v for k, v in six("the cat").items()
+                                                                    if k != "stop"}})
         code, r = self.tool("check-text")
-        self.assertGreaterEqual(r["failures"], 1)  # the size, and its quarrel with the measured Where line
-        self.assertEqual(r["stages_with_feedback"], ["stage-03"])
-        self.assertIn("9 in", (words / "stage-03" / "feedback.md").read_text())
-        code, r = self.tool("check-text", "--final")
-        self.assertEqual((r["ok"], r["dropped"], r["left_failing"]), (True, 1, 0), r)
+        self.assertTrue(any("no step nope" in x for x in r["problems"]), r)
+        self.assertTrue(any("block-cat) has no `stop` line" in x for x in r["problems"]), r)
+        # round 1: the number the sheet doesn't have goes back, and only that
+        write("out.json", first)
+        code, r = self.tool("check-text")
+        self.assertEqual((code, r["round"], r["send_back"]), (0, 1, "fix-1.json"), r)
+        fb = (folder / "feedback.md").read_text()
+        self.assertIn("9 in", fb)
+        self.assertNotIn("Cat gray", fb)
+        self.assertIn("only the steps you change", fb)
         text = {t["stage_id"]: t for t in json.loads((self.lesson / "text.json").read_text())["steps"]}
-        self.assertEqual(text["cat-eyes"]["tip"], "Keep them dark.")
-        self.assertEqual(text["cat-eyes"]["reason"], tools.V3_REASON)
-        self.assertEqual(json.loads((words / "dropped.json").read_text())[0]["id"], "cat-eyes")
-        # the words laid again from out.json bring the failing sentence back: the last check no longer stands,
-        # and `check` (which the seal runs) says so
+        self.assertEqual([x["kind"] for x in text["light-cat"]["lines"]],
+                         ["start", "strokes", "inside", "leave", "stop"])  # `first` left empty; no drafted lines
+        self.assertNotIn("summary", text["light-cat"])
+        self.assertEqual(text["light-cat"]["reason"], tools.V3_REASON)  # the header is still draft-text's
+        self.assertEqual(self.tool("check-text")[1]["send_back"], "fix-1.json")  # waiting on the answer
+        # its answer changes one step and still says a size the sheet doesn't have; round 2: the paint and the line
+        write("fix-1.json", {"cat-eyes": six("the eyes", inside="The eyes are about 8 in wide. Keep them dark.")})
         code, r = self.tool("check-text")
-        self.assertFalse((words / "dropped.json").exists())
-        self.assertTrue(any("9 in" in x and "check-text --final" in x for x in self.tool("check")[1]["problems"]))
-        # a writer's file is read as it comes: a line number that isn't one, another stage's step, an odd folder
-        write(1, {"blend-sky": {**plain("the sky"), "lines": {"\u00b2": "x"}}, "cat-eyes": plain("not mine")})
-        (words / "stage-x").mkdir()
+        self.assertEqual((r["round"], r["send_back"]), (2, "fix-2.json"), r)
+        fb = (folder / "feedback.md").read_text()
+        self.assertIn("names Cat gray, which isn't one of its paints (Pale gray)", fb)
+        self.assertIn("its `inside` line is 60 words", fb)
+        self.assertNotIn("8 in", fb)  # check-text's failures went back once, in round 1
+        write("fix-2.json", {"block-rug": six("the rug")})
         code, r = self.tool("check-text")
-        self.assertEqual(code, 0)
-        self.assertTrue(any("no line" in x for x in r["problems"]))
-        self.assertTrue(any("no step cat-eyes in this stage" in x for x in r["problems"]))
-        write(1, {"blend-sky": plain("the sky")})
+        self.assertTrue(r["done"], r)
+        self.assertEqual([x["sent"] for x in r["rounds"]], [1, 2])
+        # the last check takes out what still fails either check; it never rewords
         code, r = self.tool("check-text", "--final")
-        self.assertTrue(r["ok"], r)
+        self.assertEqual((r["ok"], r["dropped"], r["left_failing"], r["long_lines"]), (True, 2, 0, []), r)
+        self.assertEqual(r["emptied"], [{"id": "light-cat", "kind": "strokes"}])
+        text = {t["stage_id"]: t for t in json.loads((self.lesson / "text.json").read_text())["steps"]}
+        self.assertEqual(next(x for x in text["cat-eyes"]["lines"] if x["kind"] == "inside")["text"], "Keep them dark.")
+        self.assertNotIn("strokes", [x["kind"] for x in text["light-cat"]["lines"]])
+        self.assertEqual(sorted(x["id"] for x in json.loads((self.lesson / "words" / "dropped.json").read_text())),
+                         ["cat-eyes", "light-cat"])
+        self.assertIn("## Step 6 `cat-eyes`", (folder / "words.md").read_text())
+        # draft-text run again keeps the writer's lines, and adds none of its own (it makes the header only)
+        before = json.loads((self.lesson / "text.json").read_text())
+        self.tool("draft-text")
+        self.assertEqual([t["lines"] for t in json.loads((self.lesson / "text.json").read_text())["steps"]],
+                         [t["lines"] for t in before["steps"]])
+        self.arc_round(folder)
         code, r = self.tool("check")
-        self.assertEqual(code, 0)
-        self.assertEqual(r["problems"], [])
+        self.assertEqual((code, r["problems"]), (0, []))
         # the seal: a version 3 run needs the chain's checker and the words' last check, not the text review
+        text = {t["stage_id"]: t for t in json.loads((self.lesson / "text.json").read_text())["steps"]}
         review = {"finish_issues": [], "text_issues": []}
         (self.lesson / "review.json").write_text(json.dumps(review), encoding="utf-8")
         plan_model = tools.load_plan(self.lesson)[1]
         asks = lambda: [x for x in tools.seal_problems(self.lesson, plan_model, text, review, {}, {})  # noqa: E731
-                        if "checker" in x or "check-text" in x or "text review" in x]
+                        if "checker" in x or "check-text" in x or "text review" in x or "summary" in x]
         self.assertEqual(len(asks()), 1)
         self.assertIn("chain/looks/answers.json", asks()[0])
         (self.lesson / "chain" / "looks" / "answers.json").write_text("[]", encoding="utf-8")
@@ -426,12 +456,77 @@ class V3ToolsTests(unittest.TestCase):
         import site_lessons
 
         self.assertTrue(site_lessons.on_site_era(self.lesson))
+        # the words laid again from the writer's files bring the failing sentences back: the last check no longer
+        # stands, and `check` (which the seal runs) says so
+        code, r = self.tool("check-text")
+        self.assertFalse((self.lesson / "words" / "dropped.json").exists())
+        self.assertTrue(any("8 in" in x and "check-text --final" in x for x in self.tool("check")[1]["problems"]))
+        # a new out.json starts its rounds again, and the old answers go
+        write("out.json", {**first, "cat-eyes": six("the eyes")})
+        code, r = self.tool("check-text")
+        self.assertFalse((folder / "fix-1.json").exists())
+        self.assertIn("out.json is new: its rounds start from round 1", r["said"])
         # packets made again throw the old words away, and check-text refuses words written for other pictures
         self.tool("packets")
-        self.assertFalse((words / "stage-01" / "out.json").exists())
-        sheet_path = words / "sheet.json"
+        self.assertFalse((folder / "out.json").exists())
+        sheet_path = self.lesson / "words" / "sheet.json"
         sheet_path.write_text(sheet_path.read_text().replace('"w_in": 12.0', '"w_in": 11.0'), encoding="utf-8")
         self.assertIn("run packets again", self.tool("check-text")[1]["refused"])
+
+    def arc_round(self, folder: Path) -> None:
+        """The arc as the writer's next message: each of its checks, its one round, and what --final writes."""
+        self.assertIn("no arc.json", self.tool("check-text", "--arc")[1]["problems"][0])
+
+        def write(name: str, arc: dict) -> None:
+            (folder / name).write_text(json.dumps(arc), encoding="utf-8")
+
+        good = {"opening": {"welcome": "A gray cat asleep on a red rug.", "light": "Soft daylight from the window.",
+                            "skills": [{"card": "build-from-pieces", "steps": [2, 3], "how": "Flat shapes first."},
+                                       {"card": "curved-strokes", "steps": [4, 5], "how": "Strokes that follow the "
+                                        "form."}],
+                            "road": "The sky goes first, then the shapes, then the shadows and lights."},
+                "stages": {"the-sky": {"for": "The sky behind it all.", "end": "A soft blue sky."},
+                           "the-shapes": {"for": "The rug and the cat as flat shapes.", "end": "Two flat shapes."},
+                           "the-finish": {"for": "Shadow and light.", "end": "The cat looks round."}},
+                "steps": {"block-cat": {"back": {"step": 2, "text": "The same flat pieces as the rug, now in gray."}},
+                          "light-cat": {"back": {"step": 4, "text": "The same curved strokes as the shadows."}},
+                          "cat-eyes": {"back": {"step": 4, "text": "The same dark paint as the shadows."}}}}
+        bad = json.loads(json.dumps(good))
+        bad["opening"]["skills"].append({"card": "glazing", "steps": [4], "how": "Thin layers."})  # not a card it uses
+        bad["opening"]["skills"][1]["steps"] = [4, 6]  # step 6 is dotting
+        bad["opening"]["road"] += " Finish on the right side of the cat."  # a side word in the opening
+        bad["stages"]["the-sky"]["end"] = "A blue sky about 12 in wide."  # a number in a stage's line
+        del bad["stages"]["the-finish"]["for"]
+        bad["steps"]["light-cat"]["back"] = {"step": 1, "text": "Like the sky."}  # shares neither card nor paint
+        bad["steps"]["block-rug"] = {"back": {"step": 3, "text": "As the cat."}}  # not an earlier step
+        bad["steps"]["cat-eyes"]["back"]["text"] = "The same dark paint as the Rug red shadows."  # not its paint
+        bad["steps"]["block-cat"]["back"]["text"] = "The cat is about 9 in wide, like the rug."  # check-text fails
+        write("arc.json", bad)
+        code, r = self.tool("check-text", "--arc")
+        self.assertEqual((code, r["send_back"]), (0, "arc-fix.json"), r)
+        fb = (folder / "arc-feedback.md").read_text()
+        for said in ("`glazing` isn't a stroke card this lesson uses", "steps [6] don't use the card `curved-strokes`",
+                     "right side of the cat", "about 12 in wide", "stage the-finish.for: missing",
+                     "step 1 shares neither this step's stroke card", "step 3 isn't an earlier step",
+                     "names Rug red, which isn't one of its paints", "9 in"):
+            self.assertIn(said, fb)
+        self.assertEqual(r["first"], {"arc": 9, "back_check_text": 1})
+        # the whole arc again, with two faults left: they are taken out, and nothing else is
+        again = json.loads(json.dumps(good))
+        again["opening"]["road"] += " Finish on the right side of the cat."
+        again["steps"]["light-cat"]["back"] = {"step": 1, "text": "Like the sky."}
+        write("arc-fix.json", again)
+        code, r = self.tool("check-text", "--arc", "--final")
+        self.assertEqual((r["ok"], r["taken_out"], r["left_failing"], r["back_lines"]), (True, 2, 0, 2), r)
+        t = json.loads((self.lesson / "text.json").read_text())
+        self.assertEqual(t["opening"]["road"], good["opening"]["road"])
+        self.assertEqual(t["stages"]["the-shapes"], good["stages"]["the-shapes"])
+        by = {x["stage_id"]: x for x in t["steps"]}
+        self.assertEqual([x["kind"] for x in by["block-cat"]["lines"]], ["start", "back", "strokes", "inside", "leave",
+                                                                        "stop"])
+        self.assertEqual(by["block-cat"]["lines"][1]["step"], 2)
+        self.assertFalse(any(x["kind"] == "back" for x in by["light-cat"]["lines"]))
+        self.assertEqual(len(json.loads((folder / "arc-dropped.json").read_text())), 2)
 
 
 if __name__ == "__main__":

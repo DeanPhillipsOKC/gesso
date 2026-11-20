@@ -1,6 +1,6 @@
 ---
 name: paint-lesson
-description: Turns a photo into a step-by-step beginner acrylic painting lesson (Gesso pipeline v3). A painter's plan is written first, the finished painting is erased backward by the image model one piece of the plan at a time, and every step picture comes from that chain; the words are written a stage at a time from the pictures and a measured fact sheet. Use when the owner runs /paint-lesson <photo>, or asks for a painting lesson from a photo.
+description: Turns a photo into a step-by-step beginner acrylic painting lesson (Gesso pipeline v3). A painter's plan is written first, the finished painting is erased backward by the image model one piece of the plan at a time, and every step picture comes from that chain; one writer then teaches every step in six lines from the pictures, checked against a measured fact sheet, and gives the lesson its arc. Use when the owner runs /paint-lesson <photo>, or asks for a painting lesson from a photo.
 ---
 
 # paint-lesson
@@ -58,7 +58,7 @@ Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/
    machine.
 9. **The order is fixed, and going back means running forward again.** After any change to `plan.json`:
    `plan-check`, `erase`, `build-steps`, `step-aids`, `mix`, `draft-text`, `check`, then the chain's checker and its
-   redos, then `packets`, the stage writers, `check-text`, and `check` again, in that order (`v3/run.md`). A chain
+   redos, then `packets`, the lesson's writer and its rounds (`check-text`), its arc, and `check` again, in that order (`v3/run.md`). A chain
    request that didn't change costs nothing the second time. Don't skip one because it ran before.
 10. **Seal last.** Your last command is `publish --lesson <lesson> --final`. It refuses until `check` is clean.
    After the seal, change nothing.
