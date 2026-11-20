@@ -37,6 +37,7 @@ from v4_loop import NO_TOOLS, SKILL, Message, call_claude, cost, last_json  # no
 OUT = ROOT / "output"
 BENCH = OUT / "bench" / "v4-checker"
 DATA = HERE / "v4_checker_cost.json"
+USED: dict[str, int] = {}  # where the replay's renders came from: the render cache, or the run's _raw.png
 SYSTEM = NO_TOOLS + "You are the chain's checker for a Gesso lesson."
 
 # name -> (Claude Code's model alias, effort). Claude Code's aliases are the 5.5 models (checked: "haiku" answers as
@@ -85,14 +86,29 @@ def _saved_render(lesson: Path, chain: Path):
     import numpy as np
     from PIL import Image
     from run import size_for
-    from tools import _to_frame
+    from tools import CACHE_DIR, _to_frame, cache_key
 
     def render(name: str, src: Path, prompt: str, fresh: bool):
-        raw = chain / f"{name}_raw.png"
+        picture = np.array(Image.open(src).convert("RGB"))
+        size = size_for(src)
+        frame, box = _to_frame(picture, size)
+        # The render cache first, keyed as `erase` keys it (the picture as sent, with its gray bands, and the
+        # request). A run whose later redo was stopped by the cost cap rendered some units again under the same
+        # names, so their _raw.png is not what the checker saw; the cache still holds the earlier answer.
+        padded = box != (0, 0) + frame.size
+        if padded:
+            frame.save(src)
+            prompt = prompt.replace("No text, signature", "Keep the plain gray bands at the edges exactly as they are. "
+                                                          "No text, signature")
+        key = cache_key([src], prompt, size, "low")
+        if padded:
+            Image.fromarray(picture).save(src)
+        raw = CACHE_DIR / f"{key}.png"
+        if not raw.exists():
+            raw = chain / f"{name}_raw.png"
+        USED[raw.parent.name] = USED.get(raw.parent.name, 0) + 1
         if not raw.exists():
             raise RuntimeError(f"{lesson.name}: no saved render {raw.name}")
-        picture = np.array(Image.open(src).convert("RGB"))
-        frame, box = _to_frame(picture, size_for(src))
         got = Image.open(raw).convert("RGB")
         if got.size != frame.size:
             got = got.resize(frame.size, Image.LANCZOS)
@@ -155,11 +171,18 @@ def rebuild_run(run: Path) -> dict:
 
 def cmd_rebuild(a):
     runs = sorted(p for p in OUT.glob("*_v4loop_*") if (p / "v4" / "state.json").exists())
-    rows = [rebuild_run(r) for r in runs]
+    if a.only:
+        runs = [r for r in runs if re.search(a.only, r.name)]
+    rows = []
+    for r in runs:
+        USED.clear()
+        rows.append(rebuild_run(r) | {"renders_from": dict(USED)})
     for r in rows:
         print(json.dumps(r))
     d = load()
-    d["rounds"] = rows
+    keep = {r["run"]: r for r in d.get("rounds", [])}
+    keep.update({r["run"]: r for r in rows})
+    d["rounds"] = [keep[k] for k in sorted(keep)]
     save(d)
 
 
@@ -303,7 +326,9 @@ def cmd_report(a):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("rebuild").set_defaults(fn=cmd_rebuild)
+    b = sub.add_parser("rebuild")
+    b.add_argument("--only", help="a regex on the run's folder name")
+    b.set_defaults(fn=cmd_rebuild)
     q = sub.add_parser("ask")
     q.add_argument("settings", nargs="+", choices=list(SETTINGS))
     q.add_argument("--reps", type=int, default=1)
