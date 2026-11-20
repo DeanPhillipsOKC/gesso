@@ -1,10 +1,16 @@
 # Step 8: diagrams, notes, seal, report
 
 ## 8a. Construction diagrams
+First `small-pictures --lesson <lesson>`. For all of step 8, look at the step pictures in `<lesson>/small/` (384
+pixels) and its `99_finish.jpg` (512), not the full-size ones: they are enough to judge a step, and cost a sixth as
+much to read (pipeline v3.1, section 8).
+
 Follow `steps/diagrams.md`: go through every step as someone who has never painted
 and give a `construct` diagram to each step that blocks in a shaped object. It goes on the step's entry in
 `text.json`. The Where picture and the paint map already show where and which paint, so a diagram is for **how to
-build the shape**, nothing else. `publish`, then `preview-diagrams` to look at them.
+build the shape**, nothing else. Write every diagram and the notes in one go, then `publish` and
+`preview-diagrams`. Look at the diagrams again only when `preview-diagrams` draws fewer than you wrote (`drawn`
+under `specced`; `broken` names them).
 
 ## 8b. Notes
 Follow `steps/notes.md` for `notes.json` (its schema wins over anything step 0 said about field names).

@@ -45,11 +45,14 @@ Shapes: `ellipse [cx, cy, rx, ry]` (optional `rotate`), `circle [cx, cy, r]`, `r
 `round`), `path "<d>"` (filled, optional `opacity`), `line "<d>"` (stroked, `width`). Any shape can set `paint` (a
 plan paint's name or id, or a `#hex`), `behind: true`, or `done: true`. A shape whose paint matches none of those
 draws gray, and `check` lists it. `arrows` show only in their panel. A broken spec is left off the
-page, so check `publish`'s `diagrams` count.
+page, so check `preview-diagrams`' `drawn` count.
 
-Look at your diagrams before moving on: **`publish` first** (the preview reads `lesson.json`, so a new or changed
-diagram shows only after a publish), then `preview-diagrams --lesson <lesson>` draws each next to its step image
-into `<lesson>/trials/diagrams.png` to Read.
+Check your diagrams before moving on: **`publish` first** (the preview reads `lesson.json`, so a new or changed
+diagram shows only after a publish), then `preview-diagrams --lesson <lesson>`. It prints `specced` (the specs you
+wrote), `drawn` (the ones that draw something) and `broken` (the steps whose spec draws nothing). When `drawn` is
+under `specced`, fix the broken specs, publish again, and Read `<lesson>/trials/diagrams.png`, which draws each
+diagram next to its step image. When every spec draws, go on without reading it (pipeline v3.1, section 8; in #267
+every diagram drew on three lessons, so the look was never needed).
 
 Write what you noticed and decided into `notes.json` as `beginner_check` (step 8b). `publish` lists any diagram
 without a note in `undocumented_diagrams`.

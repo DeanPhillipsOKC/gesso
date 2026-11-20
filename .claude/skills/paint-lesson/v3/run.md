@@ -1,7 +1,8 @@
 # The run after steps 0 and 1 (`/paint-lesson <photo>`)
 
-This is the pipeline (version 3; its gate passed on 2026-11-18, `docs/decisions.md`), with v3.1's words (one
-writer for the lesson, `docs/design/pipeline-v3.1.md`). SKILL.md's steps 0 and 1 come first, then this file.
+This is the pipeline (version 3; its gate passed on 2026-11-18, `docs/decisions.md`), with v3.1's changes
+(`docs/design/pipeline-v3.1.md`): one writer for the lesson's words, a plan's writer that picks its library files
+and answers with changes, and a finisher sent smaller pictures. SKILL.md's steps 0 and 1 come first, then this file.
 
 A version 3 lesson is planned first, by a painter's eye, and the pictures are made to fit the plan: the finished
 painting is erased backward by the image model, one piece of the plan at a time, and every step picture comes from
@@ -36,8 +37,13 @@ plan, and E2 (diagrams, notes, the seal) at the end, with what happened in betwe
 1. Start one writer with: "Follow `.claude/skills/paint-lesson/v3/plan-brief.md`. Lesson folder: `<lesson>`. Photo:
    `<the photo's path, as step 0 left it>`. Technique: `techniques/acrylic-paint-along-beginner.yaml`." Add the
    palette's name when the painter uses their own tubes. Don't pass it your read of the picture.
+   The writer reads the library's list (`library`), asks once for the files it picks (`library --picks`, into
+   `<lesson>/library/`), and reads only those.
 2. When it replies, run `plan-check --lesson <lesson>` yourself. `problems` must be empty. If it isn't, send the
-   list back to the same writer once. If it still isn't, fix what is left yourself, as each problem says.
+   list back to the same writer once: "Fix these with a changes file and `plan-change`, as your brief says:" and the
+   list. It answers with only what changes, never the plan again. If it still isn't empty, fix what is left
+   yourself the same way: a changes file and `plan-change --lesson <lesson> --changes <file>`, which prints
+   `plan-check`'s output.
 3. Read `units` and `renders` in what `plan-check` printed: that is the chain's size.
 
 ### B. The chain
@@ -63,8 +69,9 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
 2. `step-aids`, then `mix`, then `draft-text`, each with `--lesson <lesson>`.
 3. **`check --lesson <lesson>` now, before the chain's checker and before any words are written.** Act now only on
    a problem that changes `plan.json`, such as two paints fitted to the same color that it asks you to merge: send
-   that problem alone to the plan's writer (A1's, if you can still reach it, else a new one with the same brief),
-   then run forward from `plan-check` (rule 9). A merge that leaves the chain's requests as they were renders
+   that problem alone to the plan's writer (A1's, if you can still reach it, else a new one with the same brief):
+   "Make only this change, with a changes file and `plan-change`:" and the problem. Then run forward from
+   `plan-check` (rule 9). A merge that leaves the chain's requests as they were renders
    nothing. Leave the rest of what `check` prints (the words, `review.json`, the seal's asks) for E1. Why: in the
    gate runs a merge asked for after the words threw away every stage writer's work, and one asked for after the
    chain's checker threw away its answers (#230 to #234).
@@ -116,7 +123,9 @@ from its own context.
    `fix-3.json` with only the steps you change." Then `check-text`, `check-text --final` and
    `check-text --arc --final` again.
 2. `steps/8-finish.md` from 8a: diagrams, notes (`steps/notes.md`; `merged_parts` is `{}`, and every helper you
-   started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`.
+   started goes in `learned` with what it was given), then `publish --lesson <lesson> --final`. Look at the step
+   pictures `small-pictures` makes (384 pixels, the finish at 512), and at the diagrams again only when
+   `preview-diagrams` draws fewer than were written.
 3. Put the sealed lesson on the lessons site as `steps/8-finish.md` 8c says (owner, 2026-11-18: a version 3
    lesson goes on the site like any other).
 4. Report as 8d says, and add: the units and renders; what the chain cost and how many renders were asked again

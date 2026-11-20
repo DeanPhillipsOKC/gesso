@@ -15,14 +15,22 @@ uses their own tubes. Write `plan.json` in the lesson folder.
   (`00_beginner.png` when there is one, else `00_canvas_frame.png` or `00_canvas_fit.png`), and `canvas.json` (the
   canvas size in inches).
 - The technique file. Its `v2_rules`, `v2_step_range`, `v2_stage_range`, `max_mixes` and `stroke_results` bind you.
-- The element techniques: `.venv/bin/python spike/tools.py elements` lists them (what each is for and its steps in
-  order). Read the file in `techniques/elements/` of every one you pick.
-- The stroke cards: `ls techniques/strokes/`. Read the card of every stroke you use (its `brushes` are the kinds of
-  brush that stroke takes).
-- `docs/research/acrylic-paint-along.md`: its "For Gesso" rules and the sections your picture needs.
+- **The library, by its list first.** `.venv/bin/python spike/tools.py library --lesson <the lesson folder>` prints
+  every element technique (what each is for and its steps in order), every stroke card in a line (its id, name and
+  the result it gives), the research's "For Gesso" rules whole, and the headings of the research's other sections.
+  Look at the pictures, then pick what you'll read: the element of every thing you'll paint, the card of every
+  stroke you'll use (its `brushes` are the kinds of brush that stroke takes), and the research sections your
+  picture needs. Write the picks to `<the lesson folder>/picks.json` as
+  `{"elements": ["<element id>"], "strokes": ["<card id>"], "research": ["<a heading, as listed>"]}` and run
+  `.venv/bin/python spike/tools.py library --lesson <the lesson folder> --picks <the lesson folder>/picks.json`.
+  It copies them into `<the lesson folder>/library/`. **Ask once**, so take every one you might use (in the spikes a
+  writer took about half the library). If its `problems` name a pick it doesn't know, fix the name and run it
+  again: what matched is kept.
+- Then read every file in `<the lesson folder>/library/`: the element files, the cards, and `research.md`.
 
-Read nothing else: no other lesson or run (`output/`, `site/`, `spike/`), and nothing under `docs/spikes/` or
-`docs/design/`. Run no tool but `elements` and `plan-check`.
+Read nothing else: not the rest of `techniques/elements/`, `techniques/strokes/` or the research file, no other
+lesson or run (`output/`, `site/`, `spike/`), and nothing under `docs/`. Run no tool but `library`, `plan-check` and
+`plan-change`.
 
 ## What stands
 
@@ -143,9 +151,38 @@ These are the owner's decisions. Don't work around them.
 - Paint names say what the paint looks like ("Warm rust"), and fit every thing that uses it. Brush sizes follow the
   canvas: the biggest brush for the biggest areas, a liner only for lines.
 
-Then run `.venv/bin/python spike/tools.py plan-check --lesson <the lesson folder>` and fix what `problems` lists
-until it is empty. It checks the plan against itself, the technique and the library; whether it's a good lesson is
-on you.
+Then run `.venv/bin/python spike/tools.py plan-check --lesson <the lesson folder>`. It checks the plan against
+itself, the technique and the library; whether it's a good lesson is on you.
+
+## Fixing the plan: send the changes, not the plan again
+
+Once `plan.json` is written, every fix is a changes file, not the whole plan rewritten: for `plan-check`'s
+`problems`, and for a change you are sent later (a merge `check` asks for). Write only what changes to
+`<the lesson folder>/plan-changes.json`, in this shape (leave out every key you don't need), and run
+`.venv/bin/python spike/tools.py plan-change --lesson <the lesson folder> --changes <the lesson folder>/plan-changes.json`.
+It makes the changes and prints what `plan-check` prints. Loop until `problems` is empty.
+
+```json
+{"top": {"<a plan field, such as why>": "<its new value>"},
+ "things": {"<thing id>": {"<field>": "<value>"}},
+ "paints": {"<paint name>": {"<field>": "<value>"}},
+ "rename_paints": {"<old name>": "<new name>"},
+ "stages": {"<stage id>": {"<field, not its steps>": "<value>"}},
+ "steps": {"<step id>": {"<field>": "<value>"}},
+ "add_stages": [{"after": "<stage id>", "stage": {"...": "the whole stage, with its steps"}}],
+ "add_steps": [{"stage": "<stage id>", "after": "<step id>", "step": {"...": "the whole step"}}],
+ "move_steps": [{"step": "<step id>", "stage": "<stage id>", "after": "<step id>"}]}
+```
+
+- A field you set replaces what was there; a field set to `null` is removed.
+- A thing, paint, stage or step set to `null` is removed. A thing or paint under a new id or name is added whole.
+- `rename_paints` renames a paint everywhere it is named (steps, things, `of`). Renaming it to a paint that already
+  exists merges the two: the old one is removed and its steps use the other. That is how a merge `check` asks for
+  is made.
+- `after` is `null` for the first place in the stage (or the plan).
+- Changes that don't apply (a step id that isn't in the plan) are a problem, and `plan.json` is left as it was: fix
+  them and run `plan-change` again. A file that is a whole plan replaces `plan.json`, but only send one when most
+  of the plan changes.
 
 Reply with: the number of steps and stages, the units `plan-check` printed (how many renders), which steps cross
 things and why each is one move, the mixes count, and anything in the finish you chose to leave out.
