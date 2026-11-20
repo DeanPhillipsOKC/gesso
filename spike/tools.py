@@ -646,10 +646,13 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     if not data:
         raise Refused("run publish first: the preview reads lesson.json")
     paints = lookup(data["photo_read"]["mixes"])
-    rows = []
+    rows, specced, broken = [], [], []
     for i, st in enumerate(data["stages"], 1):
         html = strip(st.get("construct"), paints, st["id"])
+        if st.get("construct"):
+            specced.append(st["id"])
         if st.get("construct") and not html:
+            broken.append(st["id"])
             html = '<p class="flag">This spec is broken: it draws nothing. Check its shapes and path data.</p>'
         if html:
             rows.append(f'<section style="display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start">'
@@ -660,7 +663,8 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     page = trials / "diagrams.html"
     page.write_text(f'<!doctype html><meta charset="utf-8"><style>{STYLE}</style><body><div class="wrap" '
                     f'style="max-width:1200px">{"".join(rows) or "<p>No diagrams.</p>"}</div></body>', encoding="utf-8")
-    result = {"diagrams": len(rows), "html": str(page), "png": None}
+    result = {"diagrams": len(rows), "specced": len(specced), "drawn": len(specced) - len(broken), "broken": broken,
+              "html": str(page), "png": None}
     browser = next((b for b in BROWSERS if Path(b).exists()), None)
     if browser and rows:
         png = trials / "diagrams.png"
@@ -674,6 +678,39 @@ def preview_diagrams(a: argparse.Namespace) -> dict:
     elif not result["png"]:
         result["note"] = "No PNG: no Chrome or Edge found. Open the HTML in a browser, or serve the folder and look."
     return result
+
+
+FINISHER_STEP_SIDE = 384  # pixels: the finisher's step pictures (#267's f-lean)
+FINISHER_FINISH_SIDE = 512
+
+
+def small_pictures(a: argparse.Namespace) -> dict:
+    """Every step picture at 384 pixels and the finish at 512, in <lesson>/small/, for step 8's finisher to look at
+    in place of the full-size ones. Design v3.1, section 8."""
+    from PIL import Image
+
+    lesson = Path(a.lesson)
+    raw, plan, technique = load_plan(lesson)
+    paths = step_paths(lesson, plan)
+    missing = [p.name for p in paths if not p.exists()]
+    if missing:
+        raise Refused(f"missing step images: {missing}. Run build-steps --lesson {lesson}.")
+    fin = lesson / "99_finish.png"
+    if not fin.exists():
+        raise Refused(f"no 99_finish.png in {lesson}")
+    out = lesson / "small"
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir()
+    files = []
+    for src, side in [(p, FINISHER_STEP_SIDE) for p in paths] + [(fin, FINISHER_FINISH_SIDE)]:
+        im = Image.open(src).convert("RGB")
+        im.thumbnail((side, side), Image.LANCZOS)
+        dst = out / f"{src.stem}.jpg"
+        im.save(dst, quality=88)
+        files.append(f"small/{dst.name}")
+    return {"problems": [], "folder": str(out), "files": files, "steps": len(paths),
+            "advice": "Look at these, not the full-size pictures, for step 8.", "cost_usd": 0.0}
 
 
 def fit_canvas(a: argparse.Namespace) -> dict:
@@ -839,6 +876,12 @@ def add_lesson_tools(sub) -> None:
         return {"canvas": canvas_view(Path(a.lesson), a.images) or "no canvas crop needed", "cost_usd": 0.0}
     p.set_defaults(func=_view)
 
+    p = sub.add_parser("small-pictures", help="Free. Every step picture at 384 pixels and the finish at 512, in <lesson>/small/, for step 8.",
+                       description="Writes <lesson>/small/NN_<id>.jpg (384 pixels on the long side) for every step "
+                                   "and 99_finish.jpg (512): what step 8's finisher looks at in place of the "
+                                   "full-size pictures.")
+    p.add_argument("--lesson", required=True)
+    p.set_defaults(func=small_pictures)
     p = sub.add_parser("preview-diagrams", help="Free. Draw every construction diagram next to its step image (HTML, and a PNG to Read).",
                        description="After publish: writes <lesson>/trials/diagrams.html and, when Chrome or Edge is "
                                    "installed, trials/diagrams.png, so you can check each diagram against its step.")
@@ -1282,6 +1325,80 @@ def plan_check_tool(a: argparse.Namespace) -> dict:
             "cost_usd": 0.0}
 
 
+def library_tool(a: argparse.Namespace) -> dict:
+    """The library's list for the plan's writer, or with --picks, the files it picked in <lesson>/library/.
+    Design v3.1, section 8."""
+    import plan_writer
+
+    lesson = Path(a.lesson)
+    if not lesson.is_dir():
+        raise Refused(f"no lesson folder {lesson}")
+    if not a.picks:
+        listed = elements_tool(argparse.Namespace(lesson=str(lesson), out=None))
+        return {"problems": listed["problems"], "elements": listed["elements"], **plan_writer.library_list(),
+                "advice": "Pick what you'll read: the element of every thing, the card of every stroke you'll use, "
+                          "the research sections your picture needs (by heading, as listed; \"For Gesso\" is always "
+                          "sent). Write them to a file as {\"elements\": [...], \"strokes\": [...], \"research\": "
+                          "[...]} and run library --picks <that file>. Ask once, so take every one you might use.",
+                "cost_usd": 0.0}
+    try:
+        picks = json.loads(Path(a.picks).read_text(encoding="utf-8"))
+        r = plan_writer.write_library(lesson, picks)
+    except FileNotFoundError:
+        raise Refused(f"no picks file {a.picks}")
+    except ValueError as e:
+        return {"problems": [f"the picks can't be read: {e}. Nothing was written."], "cost_usd": 0.0}
+    problems = [f"no {kind[:-1] if kind != 'research' else 'research section'} {x!r}: pick one from library's list"
+                for kind, xs in r["unknown"].items() for x in xs]
+    return {"problems": problems, **r,
+            "advice": f"Read every file in {r['folder']} and nothing else from techniques/ or docs/. "
+                      + ("Fix the names problems lists and run library --picks again (what matched is kept)."
+                         if problems else ""),
+            "cost_usd": 0.0}
+
+
+def plan_change_tool(a: argparse.Namespace) -> dict:
+    """The plan's writer's changes made to plan.json, then plan-check. A whole plan is taken as it is. Changes that
+    don't apply leave plan.json as it was. Design v3.1, section 8."""
+    import plan_writer
+
+    lesson = Path(a.lesson)
+    plan, _ = _v3_plan(lesson)
+    try:
+        ch = json.loads(Path(a.changes).read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        raise Refused(f"no changes file {a.changes}")
+    except ValueError as e:
+        return {"problems": [f"{a.changes} isn't valid JSON ({e}); plan.json is as it was. Write the changes again."],
+                "applied": False, "cost_usd": 0.0}
+    def unchanged(why: str) -> dict:
+        return {"problems": [f"{why}. plan.json is as it was: send the changes again, fixed."], "applied": False,
+                "cost_usd": 0.0}
+
+    try:
+        new = plan_writer.apply_plan_changes(plan, ch)
+    except ValueError as e:
+        return unchanged(f"the changes don't apply: {e}")
+    except (AttributeError, TypeError, KeyError) as e:  # a shape the checks above didn't foresee
+        return unchanged(f"the changes aren't in the brief's shape ({type(e).__name__}: {e})")
+    whole = plan_writer.is_whole_plan(ch)
+    if whole and (new.get("plan_version") != 3 or new.get("technique") != plan.get("technique")):
+        return unchanged("a whole plan sent as the changes must keep \"plan_version\": 3 and the plan's technique "
+                         f"({plan.get('technique')!r})")
+    (lesson / "plan.json").write_text(json.dumps(new, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    log = lesson / plan_writer.CHANGES_LOG
+    try:
+        kept = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
+    except ValueError:
+        kept = []
+    if not isinstance(kept, list):
+        kept = []
+    kept.append({"at": time.strftime("%Y-%m-%dT%H:%M:%S"), "whole_plan": whole,
+                 "changes": None if whole else ch})
+    log.write_text(json.dumps(kept, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return {**plan_check_tool(a), "applied": True, "whole_plan": whole}
+
+
 def _v3_ready(lesson: Path):
     """A version 3 lesson's plan with nothing wrong in it, and its finish, or a refusal."""
     import elements
@@ -1483,6 +1600,25 @@ def add_v3_tools(sub) -> None:
                                    "palette. It knows nothing of the picture.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=plan_check_tool)
+    p = sub.add_parser("library", help="Free. v3.1: the library's list for the plan's writer, and the files it picks.",
+                       description="With no --picks: every element technique (as `elements` prints it), every "
+                                   "stroke card in a line (id, name, result), the research's \"For Gesso\" section "
+                                   "and the headings of its other sections. With --picks <file> ({\"elements\": [], "
+                                   "\"strokes\": [], \"research\": [headings]}): copies what was picked into "
+                                   "<lesson>/library/ (elements/, strokes/, research.md with \"For Gesso\" first), "
+                                   "added to what was picked before. A heading matches without its #s or number.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--picks", help="a JSON file of the picks")
+    p.set_defaults(func=library_tool)
+    p = sub.add_parser("plan-change", help="Free. v3.1: make the plan's writer's changes to plan.json, then plan-check.",
+                       description="Applies a changes file (the shape is in plan-brief.md: fields to set on a thing, "
+                                   "paint, stage or step, paints to rename or merge, steps to add or move) to "
+                                   "plan.json and prints plan-check's output. A file that is a whole plan replaces "
+                                   "plan.json. Changes that don't apply are a problem and leave plan.json as it was. "
+                                   "Each one applied is kept in plan-changes-log.json.")
+    p.add_argument("--lesson", required=True)
+    p.add_argument("--changes", required=True, help="a JSON file of the changes, or a whole plan")
+    p.set_defaults(func=plan_change_tool)
 
 
 def build_parser() -> argparse.ArgumentParser:

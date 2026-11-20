@@ -1,6 +1,6 @@
 # Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
 
-**A draft (2026-11-20), being built on the branch `v3.1` (builds 1 and 2 done). The owner read it and merged it
+**A draft (2026-11-20), being built on the branch `v3.1` (builds 1 to 3 done). The owner read it and merged it
 (#275), set the gate (section 13), and said go on the combined lesson (section 12, steps 1 and 2;
 `docs/spikes/v31-combined.md`).** It is the design the v4 plan's Order, step 5 asks for (`pipeline-v4-plan.md`),
 written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't replace it. Read that file
@@ -261,6 +261,26 @@ keeps each round's counts. Beside the spikes:
 **The finisher (proven, #267).** Step pictures at 384 pixels and the finish at 512. It writes `review.json`, the
 diagrams and the notes in one reply. It looks at the diagrams again only when `publish` draws fewer than it wrote.
 
+### As built (#278, build 3, on the branch)
+
+- **The picks** (`spike/plan_writer.py`, `tools.py library`): `library --lesson` prints what `elements` prints, every
+  card in a line and the research's "For Gesso" with the other headings; the writer writes `picks.json` and runs
+  `library --picks`, which copies what it picked into `<lesson>/library/` (`research.md` holds "For Gesso" and each
+  section picked). A heading matches without its #s or number, in any case; a ### section inside a ## section also
+  picked is sent once; a name it doesn't know is a problem, and what matched is kept. A second ask adds to the
+  first: the brief says ask once, and a writer started again for a merge may still need a file.
+- **The changes** (`plan_writer.apply_plan_changes`, moved from the loop; `tools.py plan-change`): the writer
+  writes `plan-changes.json` in the brief's shape and runs `plan-change`, which makes them, keeps each in
+  `<lesson>/plan-changes-log.json`, and prints what `plan-check` prints. Changes that don't apply are a problem and leave
+  `plan.json` as it was. A whole plan is still taken.
+- **The finisher** (`tools.py small-pictures`, `steps/8-finish.md`, `steps/diagrams.md`): the step pictures at 384
+  pixels and the finish at 512 in `<lesson>/small/`. The look at the diagrams is asked for only when
+  `preview-diagrams`' `drawn` is under `specced`. **Changed from #267:** that spike counted `publish`'s
+  `diagrams`, which counts the specs and not what draws, so a spec drawn as error text still counted (#267's Sonnet
+  cat). `preview-diagrams` now says which specs draw nothing (`broken`).
+- **The loop** (`v4_loop.py`) follows this `run.md`: the three cuts of #253 are always on, its words are one
+  writer's with `check-text`'s rounds and the arc as that writer's next messages, and its finisher is the one above.
+
 ## 9. What it costs
 
 Claude a lesson at the API's rates, from the spikes' means:
@@ -280,6 +300,9 @@ Renders are beside that: $0.55 to $0.95 a lesson, unchanged.
   holds for the loop now and for the app's Worker later.
 - **So the loop is kept as the meter.** `v4_loop.py` follows `run.md` in code. After the build it follows the new
   `run.md`, and the cost of a v3.1 lesson is measured there.
+- **Measured after build 3 (#278, `docs/spikes/v31-build3-cat.md`):** the sleeping cat, sealed by the loop on the
+  new `run.md`, $2.98 at the API's rates ($1.36 to the chain's checker, $0.90 the words, $0.72 the finisher, which
+  looked at its diagrams once because three drew nothing). One run.
 
 ## 10. The yardstick
 
@@ -317,7 +340,7 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    corrected by what it showed: the 40-word round and the writer's silence on the page's aids (section 5), and one
    more risk (section 14). The owner also had it run on the chickadee and the lavender balloon, which his partner
    means to paint.
-3. **Build it into `/paint-lesson` in place,** on the branch `v3.1`, with no flag (#276 the words, #277 the page,
+3. **Built (#276 to #278): it is in `/paint-lesson` in place,** on the branch `v3.1`, with no flag (#276 the words, #277 the page,
    `check` and the seal, #278 the plan's writer, the finisher and the loop; by Opus):
    - the tools: `packets` for a lesson writer, `check-text` reading the six lines, the paint round, the arc's
      checks, the tool that applies the plan's changes;
