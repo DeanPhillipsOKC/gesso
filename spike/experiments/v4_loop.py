@@ -47,13 +47,15 @@ MODEL = "opus"
 RATE = {"input": 4.00, "output": 20.00, "cache_write_5m": 5.00, "cache_write_1h": 8.00, "cache_read": 0.20}
 # #267: Claude Sonnet 5.5's, from the same table: $2 in, $10 out, a cache read $0.10, the writes 1.25 and 2 times input.
 RATES = {"opus": RATE, "sonnet": {"input": 2.00, "output": 10.00, "cache_write_5m": 2.50, "cache_write_1h": 4.00,
-                                  "cache_read": 0.10}}
+                                  "cache_read": 0.10},
+         # #268: Claude Haiku 5.5's, prompts up to 100,000 tokens: $0.10 in, $0.50 out, the same multiples.
+         "haiku": {"input": 0.10, "output": 0.50, "cache_write_5m": 0.125, "cache_write_1h": 0.20, "cache_read": 0.01}}
 
 
 def rates_of(model) -> dict:
-    """The rates for a call's model: a name ("sonnet", "opus") or the list Claude Code reports ("claude-sonnet-5-5")."""
+    """The rates for a call's model: a name ("sonnet", "haiku", "opus") or the list Claude Code reports ("claude-sonnet-5-5")."""
     names = " ".join(model) if isinstance(model, (list, tuple)) else str(model or "")
-    return RATES["sonnet"] if "sonnet" in names else RATE
+    return next((RATES[k] for k in ("sonnet", "haiku") if k in names), RATE)
 # A picture costs about width x height / 750 tokens once its long side is brought down to 1568 pixels. Checked on
 # this model with three of the lesson's own pictures: 1599, 2045 and 898 tokens measured, 1622, 2097, 878 by this.
 LONG_SIDE = 1568
