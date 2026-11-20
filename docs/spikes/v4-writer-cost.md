@@ -254,7 +254,9 @@ graders $7.22, the student test's graders $5.99: about $34.
 
 ## What's next
 
-- Build `lean` and `f-lean` into v4 (`docs/design/pipeline-v4.md`), with the paint check (`paint-check`, #270).
+- Build `lean` and `f-lean` into v4 (`docs/design/pipeline-v4.md`), with the paint check (`paint-check`, #270). Fix the
+  brief's two rules that cause what it catches (`pipeline-v4-plan.md`, C3): earlier marks by their look and step,
+  not their paint, unless a side word needs the name.
 - The plan's writer is now the largest helper ($0.72 to $1.03). C1's two unbuilt fixes for its merge are moot where
   #250 removes the merge.
 - C2 (#221), the chain's checker on a smaller model, is the one model change still open. This spike's Sonnet result
