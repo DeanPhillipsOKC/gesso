@@ -80,6 +80,9 @@ WORD_CUTS = {
                 "the cache rather than being sent them again",
     "effort-low": "the writer and the arc at low effort (Claude Code's default is medium)",
     "sonnet": "the writer and the arc on Claude Sonnet 5.5",
+    "paint-check": "v3 check's `isn't one of its paints` on the words (#270): a sentence naming a paint its step doesn't "
+                   "list goes back to the writer once, after check-text (the arc's back lines with the arc's own "
+                   "round); what still names one is taken out",
 }
 FINISH_CUTS = {
     "f-pics-small": "the finisher's step pictures at 384 pixels (from 768), the finish at 512",
@@ -95,6 +98,7 @@ WORD_VARIANTS = {
     "lean": ["pics-small", "facts-lean", "feedback-changes", "arc-same"],
     "lean-sonnet": ["pics-small", "facts-lean", "feedback-changes", "arc-same", "sonnet"],
     "lean-low": ["pics-small", "facts-lean", "feedback-changes", "arc-same", "effort-low"],
+    "lean-paints": ["pics-small", "facts-lean", "feedback-changes", "arc-same", "paint-check"],
 }
 FINISH_VARIANTS = {
     "base": [],
@@ -329,6 +333,73 @@ def arc_message_new(picture: str, cuts: list[str]) -> loop.Message:
     return out
 
 
+# ------------------------------------------------------------------------------------------ the paints a step lists
+def step_paints(picture: str) -> tuple[dict[str, set[str]], list[str]]:
+    """{step id: the names of the paints it lists}, and every paint's name in the lesson."""
+    listed = {s["id"]: {c["name"] for c in s.get("paints") or []} for s in student.lesson(picture)["steps"]}
+    names = [c["name"] for c in teacher.plan(picture).get("paints") or [] if c.get("name")]
+    names += sorted({n for v in listed.values() for n in v} - set(names))
+    return listed, names
+
+
+def paint_failures(picture: str, text: dict, back_only: bool = False) -> list[dict]:
+    """v3 check's `isn't one of its paints` (tools.paints_not_listed) on the v4 words, a sentence at a time: a
+    sentence that names a paint its step doesn't list, so the page shows no recipe for it there."""
+    from facts import sentences
+    from tools import paints_not_listed
+    listed, names = step_paints(picture)
+    num = {s["id"]: s["n"] for s in student.lesson(picture)["steps"]}
+    out = []
+    for t in text["steps"]:
+        mine = listed.get(t["stage_id"], set())
+        colors = [{"name": n} for n in mine]
+        for k, ln in enumerate(t.get("lines") or [], 1):
+            if back_only and ln.get("kind") != "back":
+                continue
+            for sent in sentences(ln.get("text") or ""):
+                for x in paints_not_listed([{"id": t["stage_id"], "colors": colors, "steps": [sent]}], names):
+                    out.append({"step": num.get(t["stage_id"]), "id": t["stage_id"],
+                                "field": f"line {k} ({ln.get('kind')})", "sentence": sent, "paint": x["paint"],
+                                "listed": sorted(mine)})
+    return out
+
+
+def say_paint(c: dict) -> str:
+    return (f"step {c['step']} ({c['id']}) names {c['paint']}, which isn't one of its paints "
+            f"({', '.join(c['listed']) or 'it lists none'}), so the page shows no recipe for it there")
+
+
+def paint_feedback(fails: list[dict], changes_only: bool) -> str:
+    lines = [f"- {say_paint(c)}\n  in: \"{c['sentence']}\"" for c in fails]
+    how = "only the steps that change" if changes_only else "write the whole JSON again, every step"
+    return ("# Paints a step doesn't list\n\nFix each one (" + how + "): if you meant one of the step's own paints, "
+            "name that one; if you meant paint already on the canvas, say it without the paint's name (\"the gray "
+            "from step 5\"). A sentence that still names a paint its step doesn't list is taken out.\n\n"
+            + "\n".join(lines) + "\n" + (CHANGES_ONLY if changes_only else ""))
+
+
+def take_out_paints(text: dict, fails: list[dict]) -> list[dict]:
+    """Every sentence that still names a paint its step doesn't list, taken out of its line. Returns what went."""
+    from facts import sentences
+    by_id = {t["stage_id"]: t for t in text["steps"]}
+    gone = []
+    for c in fails:
+        ln = by_id[c["id"]]["lines"][int(re.match(r"line (\d+)", c["field"]).group(1)) - 1]
+        kept = [x for x in sentences(ln["text"]) if x.strip() != c["sentence"].strip()]
+        if len(kept) < len(sentences(ln["text"])):
+            ln["text"] = " ".join(kept)
+            gone.append({k: c[k] for k in ("step", "id", "field", "sentence", "paint")})
+    for t in text["steps"]:
+        t["lines"] = [x for x in t["lines"] if x["text"].strip()]
+    return gone
+
+
+def as_arc_failure(c: dict) -> dict:
+    """A back line's paint failure in v4_arc's shape, so arc.feedback says it and arc.take_out_arc drops the line."""
+    return {"where": f"step {c['id']}.back", "what": say_paint(c) + ": name one of its own paints, or say it without "
+            "the paint's name", "sentence": c["sentence"]}
+
+
 # ------------------------------------------------------------------------------------------------- the words, written
 FINAL: dict[str, dict] = {}  # each picture's checked step lines, which v4_arc.compose reads as its `base_words`
 arc.base_words = lambda pic: FINAL[pic]
@@ -355,7 +426,16 @@ def write_words(set_: str, variant: str, picture: str):
         words.update({k: v for k, v in ((again or {}).get("steps") or {}).items() if k in ids})
     text = teacher.text_of(picture, "slots", words)
     r2 = teacher.check(picture, text)
+    paints = "paint-check" in cuts
+    p1 = paint_failures(picture, text) if paints else []
+    if p1:  # after check-text's round: its own round, the same conversation
+        again = w.ask_json(loop.Message().text(paint_feedback(p1, "feedback-changes" in cuts)), "W1 paints")
+        words.update({k: v for k, v in ((again or {}).get("steps") or {}).items() if k in ids})
+        text = teacher.text_of(picture, "slots", words)
+        r2 = teacher.check(picture, text)
     gone = teacher.take_out(text, r2["failures"])
+    p2 = paint_failures(picture, text) if paints else []
+    paints_gone = take_out_paints(text, p2)
     r3 = teacher.check(picture, text)
     final = {t["stage_id"]: t["lines"] for t in text["steps"]}
     missing = [s["id"] for s in student.lesson(picture)["steps"] if not final.get(s["id"])]
@@ -375,15 +455,17 @@ def write_words(set_: str, variant: str, picture: str):
     t = arc.text_for_check(picture, composed)
     t1 = [c for c in teacher.check(picture, t)["failures"] if "(back)" in c["field"]]
     a1 = arc.check_arc(picture, obj)
-    if t1 or a1:
-        again = h.ask_json(loop.Message().text(arc.feedback(t1, a1, False)), "W2 arc feedback")
+    ap1 = [as_arc_failure(c) for c in paint_failures(picture, t, back_only=True)] if paints else []
+    if t1 or a1 or ap1:
+        again = h.ask_json(loop.Message().text(arc.feedback(t1, a1 + ap1, False)), "W2 arc feedback")
         if again:
             obj = again
     composed = arc.compose(picture, "arc-add-long", obj)
     t = arc.text_for_check(picture, composed)
     r = teacher.check(picture, t)
     a2 = arc.check_arc(picture, obj)
-    gone_arc = arc.take_out_arc(obj, a2)
+    ap2 = [as_arc_failure(c) for c in paint_failures(picture, t, back_only=True)] if paints else []
+    gone_arc = arc.take_out_arc(obj, a2 + ap2)
     for c in arc.back_lines_gone(t, r["failures"]):
         x = obj.get("steps", {}).get(c["id"])
         if isinstance(x, dict) and x.pop("back", None):
@@ -398,14 +480,18 @@ def write_words(set_: str, variant: str, picture: str):
                      "left_failing": len(r3["failures"]), "claims_final": len(r3["claims"]),
                      "arc_text_failures_first": len(t1), "arc_failures_first": len(a1), "arc_failures_second": len(a2),
                      "arc_taken_out": gone_arc,
-                     "back_left_failing": len([c for c in r4["failures"] if "(back)" in c["field"]])},
+                     "back_left_failing": len([c for c in r4["failures"] if "(back)" in c["field"]]),
+                     **({"paints_first": len(p1), "paints_second": len(p2), "paints_taken_out": paints_gone,
+                         "arc_paints_first": len(ap1), "arc_paints_second": len(ap2),
+                         "paints_left": len(paint_failures(picture, t))} if paints else {})},
            "backs": sum(any(x["kind"] == "back" for x in v) for v in final_arc.values()),
            "words_count": sum(len(" ".join(x["text"] for x in v).split()) for v in final.values()),
            "arc_words": arc.arc_words(obj)}
     update(lambda st: st["words"].setdefault(set_, {}).setdefault(variant, {}).__setitem__(picture, rec))
     print(f"words {set_} {variant} {picture}: {len(fails1)} failures, then {len(r2['failures'])}; {len(gone)} taken "
           f"out; arc {len(a1)}+{len(t1)} failures, {len(gone_arc)} taken out; {rec['backs']} back lines; "
-          f"missing {missing}")
+          f"missing {missing}" + (f"; paints {len(p1)}, then {len(p2)} ({len(paints_gone)} taken out), arc "
+                                  f"{len(ap1)} then {len(ap2)}" if paints else ""))
 
 
 def words(args):
@@ -786,13 +872,19 @@ def report(args) -> dict:
                     for b in by.values():
                         b["api_usd"] = round(b["api_usd"], 3)
                         b["charged_usd"] = round(b["charged_usd"], 3)
+                    by_label = {}
+                    for c in cs:
+                        by_label[c["label"]] = round(by_label.get(c["label"], 0.0) + c["api_usd"], 3)
                     p = {"api_usd": round(sum(c["api_usd"] for c in cs), 3), "calls": len(cs), "by_helper": by,
+                         "by_label": by_label,
                          "models": sorted({m for c in cs for m in c.get("model") or []})}
                     if kind == "words":
                         r = pics[pic]
                         p.update(words=r["words_count"], arc_words=r["arc_words"], backs=r["backs"],
                                  check=r["check"] | {"taken_out": len(r["check"]["taken_out"]),
-                                                     "arc_taken_out": len(r["check"]["arc_taken_out"])},
+                                                     "arc_taken_out": len(r["check"]["arc_taken_out"])}
+                                 | ({"paints_taken_out": len(r["check"]["paints_taken_out"])}
+                                    if "paints_taken_out" in r["check"] else {}),
                                  missing=r["missing"])
                     else:
                         r = pics[pic]
