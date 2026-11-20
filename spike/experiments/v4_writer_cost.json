@@ -2293,6 +2293,99 @@
    },
    "reply_chars": 19688,
    "at": "2026-11-19T22:36:32"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "highland-cow",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 words",
+   "turn": 1,
+   "session": "4fc36cb8-b468-4439-b802-a13854e9c198",
+   "cache": "5m",
+   "seconds": 138.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 64082,
+   "cache_read_tokens": 0,
+   "output_tokens": 11217,
+   "thinking_tokens": 5564,
+   "cost_usd": 0.54476,
+   "effort": null,
+   "cli_cost_usd": 0.544758,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 46,
+    "picture_tokens": 27734,
+    "text_chars": 77737,
+    "system_chars": 242
+   },
+   "reply_chars": 15280,
+   "at": "2026-11-20T12:36:45"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "highland-cow",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 feedback",
+   "turn": 2,
+   "session": "4fc36cb8-b468-4439-b802-a13854e9c198",
+   "cache": "5m",
+   "seconds": 19.2,
+   "input_tokens": 4,
+   "cache_write_tokens": 12386,
+   "cache_read_tokens": 64082,
+   "output_tokens": 2388,
+   "thinking_tokens": 249,
+   "cost_usd": 0.12252,
+   "effort": null,
+   "cli_cost_usd": 0.6672804,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 2911,
+    "system_chars": 0
+   },
+   "reply_chars": 5879,
+   "at": "2026-11-20T12:37:04"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "highland-cow",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 paints",
+   "turn": 3,
+   "session": "4fc36cb8-b468-4439-b802-a13854e9c198",
+   "cache": "5m",
+   "seconds": 16.0,
+   "input_tokens": 4,
+   "cache_write_tokens": 3015,
+   "cache_read_tokens": 76468,
+   "output_tokens": 1761,
+   "thinking_tokens": 168,
+   "cost_usd": 0.0656,
+   "effort": null,
+   "cli_cost_usd": 0.732885,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 1671,
+    "system_chars": 0
+   },
+   "reply_chars": 4334,
+   "at": "2026-11-20T12:37:20"
   }
  ],
  "ab": [
