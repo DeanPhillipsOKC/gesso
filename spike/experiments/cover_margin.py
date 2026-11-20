@@ -623,7 +623,7 @@ def bench(args) -> None:
     save(st)
 
 
-def writer_blocks(pic: str, work: Path) -> list[dict]:
+def writer_blocks(pic: str, work: Path, tag: str = "", only: list[int] | None = None) -> list[dict]:
     """What the lesson's writer is sent for the changed steps of one picture: lesson-brief.md with one added
     sentence, the changed steps' headers, facts and cards, the plan, the photo and finish, and each changed step's
     pair and change pictures (made from the variant's pictures, as `packets` makes them)."""
@@ -631,8 +631,10 @@ def writer_blocks(pic: str, work: Path) -> list[dict]:
     import facts
     import lesson_words as lw
     import v4_student as student
-    st = state()["bench"][pic]
-    b = work / "bench" / pic
+    st = dict(state()[f"bench{tag}"][pic])
+    if only:  # the steps after a changed one: their own picture is the same, the one before it isn't
+        st["changed"] = [{"n": n, "id": None, "hidden": None} for n in only]
+    b = work / f"bench{tag}" / pic
     packet = json.loads((b / "packet.json").read_text())
     sheet = json.loads((b / "data" / "words" / "sheet.json").read_text())
     plan = json.loads((b / "data" / "plan.json").read_text())
@@ -697,18 +699,29 @@ def words(args) -> None:
     cwd = work / "cwd"
     cwd.mkdir(parents=True, exist_ok=True)
     for pic in args.picture or PICTURES:
-        if pic in st.get("words", {}) and not args.again:
-            out = st["words"][pic]
+        if not st[f"bench{args.tag}"][pic]["changed"]:
+            continue
+        if pic in st.get(f"words{args.tag}", {}) and not args.again:
+            out = st[f"words{args.tag}"][pic]
         else:
-            r = call_claude(writer_blocks(pic, work), "You are a painting teacher writing a beginner's lesson.", cwd=cwd)
+            r = call_claude(writer_blocks(pic, work, args.tag), "You are a painting teacher writing a beginner's lesson.", cwd=cwd)
             ans = last_json(r["text"])
             out = {"steps": ans["steps"], "note": r["text"].strip().splitlines()[-1][:400],
                    "cost_usd": round(cost(r["usage"]), 4), "seconds": r["seconds"],
                    "usage": {k: r["usage"].get(k) for k in ("input_tokens", "output_tokens",
                                                              "cache_creation_input_tokens", "cache_read_input_tokens")}}
-            st.setdefault("words", {})[pic] = out
+            st.setdefault(f"words{args.tag}", {})[pic] = out
             save(st)
-        b = work / "bench" / pic
+        if args.after and not out.get("after"):  # #289's stage 2 left these out: their old words describe the old canvas
+            changed = {c["n"] for c in st[f"bench{args.tag}"][pic]["changed"]}
+            count = len(json.loads((work / f"bench{args.tag}" / pic / "packet.json").read_text())["steps"])
+            nxt = sorted({n + 1 for n in changed if n + 1 not in changed and n + 1 <= count})
+            r = call_claude(writer_blocks(pic, work, args.tag, nxt), "You are a painting teacher writing a beginner's lesson.",
+                            cwd=cwd)
+            out["steps"].update(last_json(r["text"])["steps"])
+            out["after"] = {"steps": nxt, "cost_usd": round(cost(r["usage"]), 4)}
+            save(st)
+        b = work / f"bench{args.tag}" / pic
         packet = json.loads((b / "packet.json").read_text())
         for s in packet["steps"]:
             w = out["steps"].get(s["id"])
@@ -779,9 +792,17 @@ def grade(args) -> None:
     todo = [n for n in sorted(st[f"ab_key{args.tag}"]) if n not in done]
 
     def one(name):
-        r = call_claude(grade_blocks(out / name), "You grade painting lessons in the owner's place.", cwd=cwd)
-        g = last_json(r["text"])
-        return name, g, round(cost(r["usage"]), 4)
+        import re
+        usd = 0.0
+        for _ in range(3):  # a reply whose JSON doesn't parse is asked for again, and its cost still counts
+            r = call_claude(grade_blocks(out / name), "You grade painting lessons in the owner's place.", cwd=cwd)
+            usd += cost(r["usage"])
+            for text in (r["text"], re.sub(r",(\s*[}\]])", r"\1", r["text"])):
+                try:
+                    return name, last_json(text), round(usd, 4)
+                except ValueError:
+                    pass
+        raise RuntimeError(f"{name}: three replies with no readable JSON")
 
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         for name, g, usd in ex.map(one, todo):
@@ -834,7 +855,8 @@ def report(args) -> dict:
                              "variant": round(float(np.mean(allv)), 2) if allv else None,
                              "gain": round(float(d.mean()), 2) if len(d) else None,
                              "se": round(float(d.std(ddof=1) / np.sqrt(len(d))), 2) if len(d) > 1 else None}
-    costs = {"words": round(sum(w["cost_usd"] for w in st.get("words", {}).values()), 2),
+    costs = {"words": round(sum(w["cost_usd"] + (w.get("after") or {}).get("cost_usd", 0)
+                                for t in ("", "-line") for w in st.get(f"words{t}", {}).values()), 2),
              "graders": round(sum(r.get("cost_usd", 0) for t in ("ab", "ab-open") for r in st.get(t, [])), 2)}
     for f in ("variant", "base"):
         p = STUDENT / f"{f}.json"
@@ -919,6 +941,7 @@ def main(argv=None) -> None:
             x.add_argument("--words-from", help="take the changed steps' words from the bench of this tag (`base`: the first run)")
         if name == "words":
             x.add_argument("--again", action="store_true")
+            x.add_argument("--after", action="store_true", help="also the step after each changed run (its canvas before changed)")
         if name == "grade":
             x.add_argument("--workers", type=int, default=3)
     sub.add_parser("report")

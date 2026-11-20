@@ -5,18 +5,26 @@ The numbers, the words, the graders' answers and the costs: `spike/experiments/c
 holds the stage 2 numbers below). The student test's answers: `spike/experiments/cover_margin/variant.json` and
 `base.json`. Run on 2026-11-20, on the three v3.1 gate lessons.
 
-**Verdict: drop.** As a picture rule, it loses. All four blind reads preferred the lesson as it is (the cow 2 of 2,
-the cat 2 of 2). The student test fell on the changed steps: 2.79 against 3.14 (−0.36 ± 0.14), where adopting needs
-it no lower. What the graders marked down was the same thing every time. Where a later subject sits inside a layer
-(the cow on the hillside, the blanket on the ledge's sunlight), the masked picture leaves a flat shape of the layer's
-paint. That is the "ghost or blotch where a thing will go" the owner has sunk lessons for.
+**Verdict: open, waiting on the owner and an independent check.** Three versions were tested. The first two are
+dropped. The third is the owner's own rule, and he likes its pictures.
 
-A second try took the islands out and kept only the part a teacher would say: the sky stops about an inch below where
-the hills start, with the canvas below left bare (`open-1-staged`). On the cow both reads said "none", though both
-called the sky band a little tidier. The student test on those three steps still fell, from 2.83 to 2.33. Spikes
-count only clear wins (`docs/decisions.md`, 2026-11-17), and a tie isn't one. So the second try is dropped too.
+- **`edge-1-staged` (the first pick): drop.** All four blind reads preferred the lesson as it is (the cow 2 of 2, the
+  cat 2 of 2), and the student test fell (2.79 against 3.14, −0.36 ± 0.14). Where a later subject sits inside a layer
+  (the cow on the hillside, the blanket on the ledge's sunlight), it leaves a flat shape of the layer's paint: the
+  "ghost or blotch where a thing will go" the owner has sunk lessons for.
+- **`open-1-staged` (no islands, only the cow's sky stops short): drop.** Both reads said "none", and the student test
+  on its three steps fell (2.83 → 2.33).
+- **`line-1-later` (the owner's rule, after he saw the first two): a tie on the cow, a loss on the birch grove.** Every
+  layer a big area will cover, flat ones included, stops at a loose line a bit past the lowest point it's needed. The
+  student test is level within its noise (2.97 against 3.09 over 16 steps, −0.12 ± 0.17). The cow's blind reads are a
+  tie: none, none on the corrected words, and baseline, none before step 8's words were fixed. The birch grove's split
+  by round, none, none, then baseline, baseline. Every read that preferred the baseline named the same thing: a white gap
+  above the floor, left for undergrowth that isn't painted until four steps later. It saves about 1.4 canvases of
+  painting on the cow and 0.3 on the birch grove. Neither test can credit that, and that saving is the owner's whole reason
+  for #287. See "The owner's rule" below.
 
-The owner raised #287, so this is a recommendation until he has seen `cover-margin-owner-cow.jpg` (at the end).
+The owner looked at the first two versions' pictures. He said they didn't match what he meant: the issue's spec hadn't
+captured it. His notes are on #289.
 
 ## What was run
 
@@ -225,3 +233,59 @@ Not built; for the record, if #287 comes back.
 *Top: the lesson as it is. Bottom: the pick. The sky stops about 3 1/2 in down and the canvas below stays white.
 The hills are one flat coat, so they're painted through and step 4 doesn't change. The hillside leaves a flat
 block where the cow goes. With the islands taken out, the bottom row's step 7 is the top row's.*
+
+## The owner's rule (`line-1-later`)
+
+After seeing the first two versions, the owner said the sky left "a mountain-shaped hole" (the margin followed the
+outline of what covers it), and that the lavender hills should stop short too (the `detail` rule had painted them
+through as flat). What he wanted was "extend a bit past where they were needed for large areas that would be covered".
+He looked at the result (`stop_line` in `cover_margin.py`) and said: "Yea that's right. I like it."
+
+**The rule.** Only a cover painted in a later stage that runs up from the canvas's bottom edge counts (at least
+1 1/2 in up a column). In each column the layer is painted down to the deepest point it is needed within 2 in to
+either side, the line is smoothed, then about 1 in more is added, with a small wobble and a ragged fade. Below the line
+the canvas stays bare. Everything else (thin things, subjects inside a layer) is painted through. Both of build-steps'
+checks still hold. It changes cow steps 1 to 7 and birch grove steps 1 to 7. On the cat nothing changes: its ledge strip
+runs along the whole bottom edge and stays visible.
+
+**Paint skipped** (share of each step's own paint): the cow's sky 69%, clouds 45% and 28%, lavender hills 73% (1.42
+canvases added up); the birch grove's mist 32% (0.32). Steps 5 to 7 skip nothing themselves but show the earlier
+layers stopped.
+
+**The words.** The 14 changed steps were rewritten by the same writer, then step 8 of each picture. The issue said to
+rewrite only the steps whose picture changed. But step 8's picture starts from a changed canvas, and the cow's old
+words told the painter to "fill every purple stripe" that is now bare canvas. Both cow graders in round 1 named that.
+$1.14 of Claude for all 16.
+
+**The student test**, 16 steps (1 to 8 on each picture), two carries a side, graded alone:
+
+| | baseline | `line-1-later` |
+|---|---|---|
+| cow | 3.31 | 3.06 |
+| birch grove | 2.88 | 2.88 |
+| all 16 | 3.09 | 2.97 (−0.12 ± 0.17) |
+
+**The blind A/B**, two reads a picture, sides swapped, each round:
+
+| | round 1 (old step 8 words) | round 2 (step 8 rewritten) |
+|---|---|---|
+| cow | baseline, none | none, none |
+| birch grove | none, none | baseline, baseline |
+
+What they said:
+- **The cow, round 2:** "B paints only where each thing goes ... This is more economical" (round 1); "the two lessons
+  only differ in the underpainting (white gaps versus a gold-then-violet base)" (round 2).
+- **The birch grove, round 2:** "a floating white hump of bare canvas on the canvas for four steps"; "a brushless patch
+  on the canvas for four steps". In round 1 the same picture was "an odd hard-edged white blob ... The words do explain
+  it ... but it looks like a mistake", and still a toss-up.
+
+**Claude's reading.** On the cow the rule costs nothing the tests can see and saves well over a canvas of painting.
+The birch grove's one fault is a rule problem, and it looks fixable: the mist stops for undergrowth that comes four
+steps later, so bare canvas shows between paint that is already done. A rule that only stops a layer where the next
+thing painted there covers it would leave no gap. That wasn't built or tested. Before any build, an adopt here is a new
+pipeline version (`docs/decisions.md`, 2026-11-20), so a design by Fable comes first. The facts, the Where picture and
+the words of the step after a changed run need to follow (see "What it would take").
+
+**Cost of this round:** renders $0.42, and $0.18 for the baseline's second carries on the new steps. Claude: words $1.14,
+grading the carries $0.98 (plus $0.34 on the baseline side), blind reads $4.73 over two rounds.
+

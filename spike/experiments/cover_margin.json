@@ -8384,5 +8384,875 @@
    "note": "The two lessons are the same from step 4 to the finish. They differ only in whether the sky gold runs to the bottom edge (A) or stops at a band over white canvas (B), and step 4 covers either way. B's sky start is marginally tidier, but that is a small edge, not a preference: a toss-up.",
    "cost_usd": 0.682
   }
- ]
+ ],
+ "bench-line": {
+  "highland-cow": {
+   "variant": "line-1-later",
+   "changed": [
+    {
+     "n": 1,
+     "id": "blend-sky",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 3.33984375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.774
+     }
+    },
+    {
+     "n": 2,
+     "id": "lay-clouds",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 3.33984375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.774
+     }
+    },
+    {
+     "n": 3,
+     "id": "light-clouds",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 3.33984375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.774
+     }
+    },
+    {
+     "n": 4,
+     "id": "lay-hills",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.65234375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.662
+     }
+    },
+    {
+     "n": 5,
+     "id": "shade-hills",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.65234375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.662
+     }
+    },
+    {
+     "n": 6,
+     "id": "lay-loch",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.65234375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.662
+     }
+    },
+    {
+     "n": 7,
+     "id": "lay-hillside",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 4.74609375,
+      "bottom": 0.0,
+      "bare": 0.99,
+      "share": 0.286
+     }
+    }
+   ]
+  },
+  "sleeping-cat": {
+   "variant": "line-1-later",
+   "changed": []
+  },
+  "birch-grove": {
+   "variant": "line-1-later",
+   "changed": [
+    {
+     "n": 1,
+     "id": "blend-mist",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 6.189010989010989,
+      "bottom": 0.0,
+      "bare": 0.98,
+      "share": 0.356
+     }
+    },
+    {
+     "n": 2,
+     "id": "dab-dark-wood",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 6.189010989010989,
+      "bottom": 0.0,
+      "bare": 0.98,
+      "share": 0.356
+     }
+    },
+    {
+     "n": 3,
+     "id": "mist-wood-edge",
+     "hidden": {
+      "left": 0.0,
+      "right": 0.0,
+      "top": 6.189010989010989,
+      "bottom": 0.0,
+      "bare": 0.98,
+      "share": 0.356
+     }
+    },
+    {
+     "n": 4,
+     "id": "lay-floor",
+     "hidden": {
+      "left": 1.0432234432234433,
+      "right": 11.135531135531135,
+      "top": 6.189010989010989,
+      "bottom": 4.958241758241758,
+      "bare": 0.81,
+      "share": 0.006
+     }
+    },
+    {
+     "n": 5,
+     "id": "lay-path",
+     "hidden": {
+      "left": 1.0432234432234433,
+      "right": 11.135531135531135,
+      "top": 6.189010989010989,
+      "bottom": 4.958241758241758,
+      "bare": 0.81,
+      "share": 0.006
+     }
+    },
+    {
+     "n": 6,
+     "id": "pull-far-birches",
+     "hidden": {
+      "left": 1.0432234432234433,
+      "right": 11.135531135531135,
+      "top": 6.189010989010989,
+      "bottom": 4.958241758241758,
+      "bare": 0.81,
+      "share": 0.006
+     }
+    },
+    {
+     "n": 7,
+     "id": "mark-far-birches",
+     "hidden": {
+      "left": 1.0432234432234433,
+      "right": 11.135531135531135,
+      "top": 6.189010989010989,
+      "bottom": 4.958241758241758,
+      "bare": 0.81,
+      "share": 0.006
+     }
+    }
+   ]
+  }
+ },
+ "words-line": {
+  "highland-cow": {
+   "steps": {
+    "blend-sky": {
+     "first": "",
+     "start": "Start at the sky's upper left corner with Sky blue, right along the top edge of the canvas.",
+     "strokes": "Stroke side to side across the full width. Without rinsing, pick up Warm gold and paint the band under the blue. Then stroke back up over the join several times while both are wet.",
+     "inside": "Blue fills the top of the sky. The gold sits lower down and is strongest toward the right edge of the canvas, where the low sun is.",
+     "leave": "Stop about 3 1/4 in from the top edge and leave the rest of the canvas white. The hills cover that ragged bottom edge later.",
+     "stop": "A smooth band of sky runs across the top of the canvas, clear blue melting into gold. If you see a hard line where the colors meet, add more gold at the join and blend again."
+    },
+    "lay-clouds": {
+     "first": "Let the sky dry completely, or the dry brush will smear it.",
+     "start": "Start near the sky's upper right corner with just the tip of the brush in Warm gold.",
+     "strokes": "Skim the brush lightly left and right in long, flat strokes, so each streak has a flat bottom and broken, feathery edges. Build it up in several light passes.",
+     "inside": "Most of the gold goes on the right half of the sky, in long streaks stacked down toward the hills. Add a few small streaks in the upper left and one long band low across the whole width.",
+     "leave": "Leave the blue showing between the streaks and through their edges, especially across the upper left of the sky.",
+     "stop": "Soft gold streaks cross the sky, thickest on the right half, with blue peeking through. If one goes on solid, your brush is too loaded: wipe it drier and keep the next streaks lighter."
+    },
+    "light-clouds": {
+     "first": "Let the gold streaks dry first.",
+     "start": "Start at the left edge on the lowest cloud band, with only the tip of the brush in Cream gold. That band's top is about 2 1/2 in from the top edge.",
+     "strokes": "Skim lightly left and right along the top edge of each streak, letting the paint break up over the canvas texture.",
+     "inside": "Most of the cream goes on the left half of the sky, over the low band and along the top of the sky. The streaks near the right edge of the canvas get only small touches on their tops.",
+     "leave": "Leave the warm gold showing under every cream touch, and the blue between the streaks.",
+     "stop": "The clouds have pale, glowing tops over warm gold undersides. Stop while it still looks broken and see-through, before any of it turns into a solid cream patch."
+    },
+    "lay-hills": {
+     "first": "The sky must be dry so the hills get a clean top edge.",
+     "start": "Start at the left edge with Pale violet on the far ridge line. Its top is about 2 1/4 in from the top edge.",
+     "strokes": "Keep the brush level and pull long strokes left and right, following the ridges' gentle rises and dips across to the right edge.",
+     "inside": "Pale violet makes a thin far range along the horizon. Under it, Blue-violet lays in the nearer range, whose own ridge cuts across the pale one, and fills everything beneath.",
+     "leave": "Leave the gold sky showing above the ridge line. Keep both colors flat, with no shading.",
+     "stop": "Carry the Blue-violet down to about 4 3/4 in from the top edge, past where the green hillside will start, and leave the canvas under it white. You should see two flat violet bands, the far one paler."
+    },
+    "shade-hills": {
+     "first": "Let the hills dry fully before dry-brushing over them.",
+     "start": "Start on the near range a little in from the left edge of the canvas, just under a ridge line, with only the tip of the brush in Blue-violet.",
+     "strokes": "Skim lightly, pulling short strokes along the slope as it slants down toward the right edge of the canvas. Build the dark up in a few soft passes.",
+     "inside": "The dark sits on the shadowed slopes of the nearer range, the faces turned away from the low sun. It runs in one long band along the ridge.",
+     "leave": "Leave the pale far range and the lower part of the near hills as they are, so the two ranges read apart.",
+     "stop": "A soft, broken darker band runs along the nearer slopes and reaches the right edge of the canvas. If it goes on solid, let it dry and keep the next passes lighter."
+    },
+    "lay-loch": {
+     "first": "The hills must be dry so the water stays pale and clean.",
+     "start": "Start at the right edge of the canvas, at the foot of the hills. The loch's middle is about 4 3/4 in from the top edge.",
+     "strokes": "Keep the #6 flat level and pull short strokes away from the right edge, lifting off so the strip narrows to a point.",
+     "inside": "Loch silver fills one thin, flat sliver of calm water, tucked under the hills and tapering to its tip. It is too small for ripples.",
+     "leave": "Leave the blue-violet hills showing above and around the sliver.",
+     "stop": "A thin pale strip of loch lies at the right edge, its tip about 9 3/4 in from the left edge. Keep it a sliver: beginners tend to make the water too thick."
+    },
+    "lay-hillside": {
+     "first": "Let the hills and loch dry before painting against them.",
+     "start": "Start at the left edge of the canvas at the top of the hillside, about 3 1/2 in from the top edge, overlapping the foot of the hills.",
+     "strokes": "Pull long strokes left and right, keeping the brush level along the slope, so each band leans down toward the right edge of the canvas, the way the hillside's top edge slopes.",
+     "inside": "Lay the top of the hillside as a band just under the hills and the loch. Then carry long bands of Olive green on down to the bottom edge.",
+     "leave": "Leave white streaks of canvas between the lower green bands. The meadow covers them later. Don't paint over the loch.",
+     "stop": "Olive green runs from under the hills to the bottom edge in slanting bands, with bare streaks between them. Check that the hillside's top edge slopes down, not straight across."
+    },
+    "patch-hillside": {
+     "first": "Let the lighter green coat from step 7 dry first, or the dark will smear into it and turn muddy.",
+     "start": "Begin at the top of the hillside, just under the far violet hills, at the left edge of the canvas. The first rows sit about 3 1/4 in from the top edge.",
+     "strokes": "Pull long, level strokes left and right across the hillside. Lay short rows of dark patches one under another, following the slope of the hilltop.",
+     "inside": "Keep the patches thin and close together near the hills, and wider and longer lower down. They are the dips in the rolling ground, so the land seems to roll back.",
+     "leave": "Leave the lighter green from step 7 showing between every row, about as much light as dark. Keep the dark off the far violet hills and the loch.",
+     "stop": "Stop when the dark rows reach the bottom edge of the canvas and the whole hillside reads as rolling bands. Don't make every patch the same length, or it turns into stripes."
+    }
+   },
+   "note": "These didn't square: step 1's facts say the paint reaches the bottom edge, but its picture stops about 3 1/4 in down. In step 3, the plan puts more cream on the right, while the change picture and facts put most on the left. Step 5's Where area is a 1/2 in box, which doesn't match its long band. Step 7's plan calls for a flat even coat, but the picture shows slanting bands with bare gaps.",
+   "cost_usd": 0.3808,
+   "seconds": 84.3,
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 8354,
+    "cache_creation_input_tokens": 26720,
+    "cache_read_input_tokens": 0
+   },
+   "after": {
+    "steps": [
+     8
+    ],
+    "cost_usd": 0.1657
+   }
+  },
+  "birch-grove": {
+   "steps": {
+    "blend-mist": {
+     "first": "",
+     "start": "Start in the sky's upper left corner with a little Pale gold. Then work Haze blue across the middle, and Deep haze blue down the right side of the canvas.",
+     "strokes": "Make short criss-cross X strokes, overlapping them as you move across. While it's still wet, go back over it with lighter, longer side-to-side strokes to soften the joins between the colours.",
+     "inside": "Keep the gold faint and only in the upper left corner, where the hazy sun glows. The blue gets deeper toward the right edge, where the fog is thicker and farther from the light.",
+     "leave": "Leave the white canvas below the mist bare. The mist stops in a soft wavy line, highest on the left side of the canvas, about 6 1/4 in from the top edge.",
+     "stop": "The upper canvas is one soft misty blend reaching the left, right and top edges, lowest on the right side of the canvas, about 3 3/4 in from the bottom edge. Don't scrub it into one flat gray."
+    },
+    "dab-dark-wood": {
+     "first": "Let the mist from step 1 dry completely, or the dark will smear into it.",
+     "start": "Start along the ragged top of the dark wood, about 2 3/4 in from the top edge, and work toward the right edge.",
+     "strokes": "Dip only the brush tip, with no water, and skim lightly in short broken strokes like clumps of far trees. Build it up in several light passes; if it goes on solid, wipe the brush.",
+     "inside": "The mass is fullest and darkest low down and toward the right edge, where the wood is deepest. Its top and left side break into ragged clumps, with a small dab or two higher in the fog.",
+     "leave": "Leave the misty blend showing through the ragged top and the left side of the dark wood, and everything left of the dark wood untouched.",
+     "stop": "A dark, soft-edged wood runs from about 10 1/2 in from the left edge to the right edge, its bottom about 7 1/2 in from the top edge. The rest is still misty."
+    },
+    "mist-wood-edge": {
+     "first": "Let the dark mass from step 2 dry first.",
+     "start": "Start where the dark wood meets the fog on its left side, your first strokes about 9 in from the left edge.",
+     "strokes": "Dry-brush with just the tip loaded, skimming short broken strokes into the dark edge. Then pull a few narrow pointed treetops up above the dark wood, reaching the top edge.",
+     "inside": "This lighter paint goes only around the outside: the left side of the dark wood, its bottom down to about 8 1/2 in from the top edge, and the tall tops, because fog veils the wood's edges.",
+     "leave": "Leave the dark middle and the far right part of the dark mass from step 2 showing; that is the deepest part of the wood.",
+     "stop": "The wood fades softly into the fog on its left side, along its bottom and in its pointed tops, darkest at the far right, with no hard outline anywhere."
+    },
+    "lay-floor": {
+     "first": "The misty blend and the wood must be dry before you start.",
+     "start": "Start along the bottom edge with Rust brown, from the left edge to the right edge.",
+     "strokes": "Stroke side to side in even, creamy strokes. Without rinsing, pick up Warm ochre and paint it above the rust, toward the fog, then stroke back over the join several times while it's wet.",
+     "inside": "Rust brown stays in front along the bottom edge; Warm ochre fills the back nearer the fog, because the far ground is lighter in the haze. A hard line at the join needs more ochre.",
+     "leave": "Leave the white hump of bare canvas above the floor, its left side about 1 in from the left edge, as it is: the bushes cover it later.",
+     "stop": "The floor reaches the left, right and bottom edges, its top about 7 1/2 in from the top edge, just overlapping the mist. It reads ochre at the back, rust in front."
+    },
+    "lay-path": {
+     "first": "Let the floor from step 4 dry.",
+     "start": "Start at the bottom edge, where the path is widest, its left side about 6 1/2 in from the left edge.",
+     "strokes": "Keep the brush level and pull long strokes left and right across the path, making each stroke shorter as you work back toward the fog.",
+     "inside": "The path narrows as it goes back to a thin strip, its top about 7 1/2 in from the top edge, just below the dark wood. Keep it smoother and lighter at the back, more textured in front.",
+     "leave": "Leave the floor showing on both sides of the path; most of the path sits in the left half of the canvas.",
+     "stop": "A plain mauve-brown path runs from the bottom edge back into the fog, wide in front and thin at the back, with slightly ragged edges and no leaves yet."
+    },
+    "pull-far-birches": {
+     "first": "The mist, the dark wood and the floor must all be dry.",
+     "start": "Start at the foot of the trunk left of the path, its middle about 8 in from the left edge, just above the floor.",
+     "strokes": "Press the full brush width at the foot, then pull straight up, turning onto the edge and easing off so the trunk tapers. Pull this one all the way to the top edge.",
+     "inside": "Then pull two thinner trunks over the dark wood, their middles about 12 in from the left edge, from near the floor up into the fog. Keep all three pale and plain: they are far away.",
+     "leave": "Leave the faint misty trunks from step 1 on the left side of the canvas as they are, and the dark wood showing between the two right trunks.",
+     "stop": "Three thin pale trunks stand in the fog: a tall one left of the path reaching the top edge, and two against the dark wood. No bark marks yet."
+    },
+    "mark-far-birches": {
+     "first": "Let the trunks from step 6 dry, or the gray will turn muddy on them.",
+     "start": "Start at the foot of the trunk left of the path, where it meets the floor, then work up its lower part, whose top is about 4 3/4 in from the top edge.",
+     "strokes": "Press the full width for short marks across the trunk, lifting onto the edge so each tapers. At the foot, press wide and pull out a little onto the floor, like roots.",
+     "inside": "Most of the gray fills in the lower trunks down to the floor; higher up, only small scattered dashes, because far bark is soft in the mist. Do the same on the two trunks against the dark wood.",
+     "leave": "Leave plenty of the pale trunk showing between the upper marks, so the birches still read as white. Pressing hard up high is the usual mistake.",
+     "stop": "Each far trunk is dark and solid near the floor, pale with a few soft gray marks above, and stands firmly on the ground."
+    },
+    "dab-dark-undergrowth": {
+     "first": "Let the soft gray bark marks from step 7 and the flat orange-gold floor dry first, so your taps don't lift them.",
+     "start": "Start the bank of bushes at the left edge of the canvas, its top about 4 1/4 in from the top edge, tapping Warm ochre toward the path.",
+     "strokes": "Wipe the dry brush on a paper towel, then tap straight in with the tip. Build rounded bumps, tapping a spot many times to make it solid. A wet or loaded brush leaves blobs, not dots.",
+     "inside": "Tap solid where the bushes sit on the floor, looser in their crown. Right of the path, tap Moss olive in a low band at the foot of the dark wood, its left end about 9 3/4 in from the left edge.",
+     "leave": "Leave little gaps of misty fog in the crown of the left bushes. Keep the path into the fog clear, but cover the foot of each far trunk the bushes cross.",
+     "stop": "Stop when a bumpy bank about 9 in wide runs from the left edge to the path, and a low dull band hugs the dark wood's foot. No bright gold yet."
+    }
+   },
+   "note": "Things I couldn't fully square: step 1's picture has faint pale trunks and hardly any gold; step 4 leaves a white patch of bare canvas; steps 2 and 5 show ochre flecks no listed paint makes; and step 7 fills the lower trunks solid instead of making the small marks the plan describes.",
+   "cost_usd": 0.4102,
+   "seconds": 98.0,
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 10036,
+    "cache_creation_input_tokens": 26188,
+    "cache_read_input_tokens": 0
+   },
+   "after": {
+    "steps": [
+     8
+    ],
+    "cost_usd": 0.1795
+   }
+  }
+ },
+ "ab_key-line": {
+  "highland-cow-g1": {
+   "picture": "highland-cow",
+   "grader": 1,
+   "A": "variant",
+   "B": "baseline"
+  },
+  "highland-cow-g2": {
+   "picture": "highland-cow",
+   "grader": 2,
+   "B": "variant",
+   "A": "baseline"
+  },
+  "birch-grove-g1": {
+   "picture": "birch-grove",
+   "grader": 1,
+   "A": "variant",
+   "B": "baseline"
+  },
+  "birch-grove-g2": {
+   "picture": "birch-grove",
+   "grader": 2,
+   "B": "variant",
+   "A": "baseline"
+  }
+ },
+ "ab-line-round1": [
+  {
+   "folder": "birch-grove-g1",
+   "picture": "birch-grove",
+   "grader": 1,
+   "preferred": "none",
+   "scores": {
+    "variant": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      6,
+      19,
+      4
+     ],
+     "note": "From step 5 on, A and B have the same pictures and nearly the same words, so they share the same faults. Step 6 says haze-blue trunks with no bark, but its picture shows white trunks already carrying dark bark marks and branches. Step 19 says small pale taps, but the picture lays a big gold glow over the whole upper left. A's own problems: step 1's picture has ghost trunks and a dark ghost shape that the words never mention, and step 4 leaves a white hump of bare canvas floating in the fog until step 8. The words do explain the hump, but a beginner would still read it as a mistake."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      6,
+      19,
+      1
+     ],
+     "note": "B shares A's step 6 bark-before-its-step, step 19's glow that no tap makes, and step 15's hard camouflage patches where the words describe dry-brushed shading. Its opening is cleaner: step 1 covers the whole canvas as the words say and mentions the pale trunk streaks, and step 4 has no leftover white blotch. Step 1 still shows far more ready-made trees than 'a few paler streaks' explains."
+    }
+   },
+   "note": "The two lessons differ only in steps 1 to 4. B's full-canvas fog avoids A's odd white hump and matches its words a little better, so B has a slight edge. From step 5 on they are identical, and both carry the same worse faults at steps 6, 15 and 19. Under the rule that a small edge is not a preference, this is a toss-up leaning B.",
+   "cost_usd": 0.4965
+  },
+  {
+   "folder": "birch-grove-g2",
+   "picture": "birch-grove",
+   "grader": 2,
+   "preferred": "none",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      6,
+      15
+     ],
+     "note": "From step 2 on, the pictures are the same as B's, so the same faults decide the scores. Step 1 already shows the far trunks, a dark squiggle and pink patches the words don't cover. Step 6 shows bark speckles on trunks the words say are plain, step 15 reads as a stamped camouflage pattern, and steps 2 and 12 show ochre and lavender flecks with no paint named for them. Step 1 is otherwise clear and matches its picture, but the words of step 3 leave out the pointed treetops the picture adds."
+    },
+    "variant": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      4,
+      6
+     ],
+     "note": "B shares A's faults from step 2 on: step 1's ghost trunks and marks, speckled far trunks in step 6, and the camouflage shading in step 15. It adds an odd hard-edged white blob of bare canvas that sits from step 4 to step 7. The words do explain it, and the bushes cover it in step 8, but it looks like a mistake. B's words are better at step 3 (they name the pointed treetops) and step 2 (the high dab), but step 5 wrongly says most of the path sits in the left half."
+    }
+   },
+   "note": "The two lessons are the same from step 5's picture onward; they differ only in how the fog and floor go on in steps 1 to 4. A's full-canvas fog avoids B's leftover white blob, while B's words fit the pictures slightly better at steps 2 and 3 but get step 5's path placement wrong. It's a toss-up, with at most a faint lean to A, so I record no real difference.",
+   "cost_usd": 0.5071
+  },
+  {
+   "folder": "highland-cow-g1",
+   "picture": "highland-cow",
+   "grader": 1,
+   "preferred": "baseline",
+   "scores": {
+    "variant": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      16,
+      13
+     ],
+     "note": "From step 9 on, A and B are the same, and that shared run is mostly sound. It is a believable build from flat cow to locks to rim light. But step 13 reshapes both horns, which turn thinner and hook differently with no instruction. Step 16 already shows nostrils its words say aren't there yet, and step 3 shifts the little cloud puffs as well as lighting their tops. A's own problem is in steps 7 to 8: step 7 leaves white canvas between the green bands, but step 8 tells the painter to fill 'every purple stripe' until 'no purple is left'. The canvas has no purple, so a beginner reading those words is misled."
+    },
+    "baseline": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 4,
+     "worst_steps": [
+      16,
+      13,
+      4
+     ],
+     "note": "B shares steps 9 to 22 with A, so it has the same horn change in 13, early nostrils in 16 and shifting clouds in 3. Its opening covers the whole canvas: step 1 is sky to the bottom edge, and step 4 is violet to the bottom edge with wavy ridge bands. That makes step 4 a big area for one go, and the step 1 orange streaks and step 4 bands slightly foreshadow later shapes, though the words cover both. In return, the purple gaps the step 7 and 8 words describe really are on the canvas, so words and pictures agree through the landscape."
+    }
+   },
+   "note": "The two lessons differ only in steps 1 to 6 and how that start feeds into steps 7 and 8. B's words match its pictures there, while A's step 8 keeps telling the painter to fill purple stripes that aren't on the canvas. Both share the same later flaws (horns reshaped in 13, nostrils showing in 16), so the edge is slight. B is the one I'd paint from.",
+   "cost_usd": 0.6873
+  },
+  {
+   "folder": "highland-cow-g2",
+   "picture": "highland-cow",
+   "grader": 2,
+   "preferred": "none",
+   "scores": {
+    "baseline": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      21,
+      13
+     ],
+     "note": "The early steps work as layers: the whole canvas goes sky gold, then violet to the bottom edge, then olive bands with purple gaps, and step 8's words ('fill every purple stripe') match what is on the canvas. Step 8 does more than Deep green can, though: the olive bands gain gold highlights and texture. Step 13's horns change shape when they are shaded, and the eye dab the words ask for is hard to see. Step 21 is a big jump in glow for one gold rim pass. From step 8 on, the pictures are identical to B's."
+    },
+    "variant": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      21,
+      13
+     ],
+     "note": "B paints only where each thing goes: a sky band with a ragged white edge, violet only down to the hills, then olive bands with white canvas between them. This is more economical, and steps 1, 4 and 7 match their words. But step 8 still says to fill 'every purple stripe' until 'no purple is left' when the gaps are white canvas, a plain words-versus-picture mismatch for a literal beginner. From step 8 on, B has the same problems as A: magic highlights on the hillside, the horn shape change, and the big rim jump."
+    }
+   },
+   "note": "The two lessons differ only in how the first seven steps lay the underlayers, and from step 8 on they are identical. A's layers agree with its later words, while B's step 8 talks about purple stripes that B's canvas doesn't have. B instead saves the beginner from painting the whole canvas violet. That trade is a small edge to A at most, so this is close to a toss-up.",
+   "cost_usd": 0.6833
+  }
+ ],
+ "ab-line-round1-note": "graded before step 8's words were rewritten (its old words described violet gaps that are bare canvas here)",
+ "ab-line": [
+  {
+   "folder": "birch-grove-g1",
+   "picture": "birch-grove",
+   "grader": 1,
+   "preferred": "baseline",
+   "scores": {
+    "variant": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 2,
+     "worst_steps": [
+      4,
+      1,
+      15
+     ],
+     "note": "Step 1 stops the mist at a wavy line over bare white, and step 4 then tells the painter to leave a white 'hump' of bare canvas. That hump floats like a cut-out over the floor through steps 4-7 until the bushes cover it in step 8: a blotch where a thing will go, which no brush would make. It shares B's other faults: ghost trunks already in the step 1 fog (only explained back in step 6), ochre flecks in the step 2 wood when only dark blue-green is named, far trunks already speckled in step 6 when the words say no bark marks, and hard camouflage patches in step 15 where the words describe a dry-brushed shaded edge. Steps 8-14 and 16-20 are clean and small enough for a beginner."
+    },
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      1,
+      15,
+      6
+     ],
+     "note": "Step 1 covers the whole canvas in fog, so the floor in step 4 goes over paint, not over a leftover white shape. Step 1's words at least ask for the pale upright streaks the picture shows, though the trunks in the picture are sharper and more finished than 'a few paler streaks'. The rest is the same as A, with the same faults: ochre flecks in the step 2 wood, bark speckles already there in step 6, hard-edged patches in step 15 instead of dry brush, and a top-left glow brightening in step 19 beyond what pale-lemon taps would give."
+    }
+   },
+   "note": "From step 2 on, the two lessons are nearly the same in pictures and words; the difference is the opening. A leaves a floating white hump of bare canvas on the canvas for four steps, which is the kind of 'patch no brush makes' the owner marks down; B paints the fog edge to edge and has no such shape. That is a slight but real edge for B, not a toss-up, since the rest of both lessons carries the same faults.",
+   "cost_usd": 0.49
+  },
+  {
+   "folder": "birch-grove-g2",
+   "picture": "birch-grove",
+   "grader": 2,
+   "preferred": "baseline",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      6,
+      3,
+      15
+     ],
+     "note": "Fog over the whole canvas, then floor, path, bushes, trunks: every stage reads as a half-done painting with no leftover blotches. Agree is pulled down in several places. Step 6 says 'no bark marks yet' but its trunks are already speckled dark. Step 3's words don't mention the tall pointed treetops that appear. Step 2's wood shows olive flecks that a single dark blue-green can't make. Step 15's shading lands as camouflage patches across the whole trunk, not along the shaded edge."
+    },
+    "variant": {
+     "real": 2,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      4,
+      1,
+      6
+     ],
+     "note": "Steps 8 to 20 are the same as A, flaws included (step 6's early bark marks, step 15's patchy shading). The difference is the start. Step 1 leaves the lower canvas white behind a hard wavy edge. Step 4 then leaves a floating white hump, with a hard, brushless outline, sitting where the bushes will go, and it stays through steps 5 to 7. The words do tell the painter to leave it, and step 3 does name the pointed treetops, which A misses. But the hump is exactly the kind of blotch-before-its-step the owner marks down, and it makes four step pictures look unlike a real painting."
+    }
+   },
+   "note": "The lessons are identical from step 8 on, so the choice rests on steps 1 to 7. B's leftover white hump is a brushless patch on the canvas for four steps where the bushes will go; A's opening has only smaller word-picture mismatches. A over B, slight to clear: B's better step-3 words don't make up for the blotch.",
+   "cost_usd": 0.4917
+  },
+  {
+   "folder": "highland-cow-g1",
+   "picture": "highland-cow",
+   "grader": 1,
+   "preferred": "none",
+   "scores": {
+    "variant": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      11,
+      8,
+      14
+     ],
+     "note": "The sky, hills and loch (1-7) build up believably on white canvas, and the pictures match the words. Step 8 is the main mislead: the words say keep the dark off the violet hills, but the picture adds a new dark ridge left of the loch over them, and the white gaps fill with more than one Deep green. Step 11 is magic: one dark brown suddenly gives rendered fur, ear and face modelling. Step 14's 'ginger' locks come out as a busy dark-and-light pattern the single paint doesn't explain."
+    },
+    "baseline": {
+     "real": 4,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      11,
+      4,
+      14
+     ],
+     "note": "Covering the whole canvas in gold and then violet (1, 4) is clearly worded, and the pictures match. Step 8's words cover the dark slope left of the loch, which A's don't. Step 4 has a beginner lay ready-made wavy hill bands over the whole lower canvas, which is a lot for one level-band step and hints at the green stripes to come. From step 9 on the pictures and words are identical to A, with the same magic in step 11 and the same overloaded step 14."
+    }
+   },
+   "note": "The two lessons only differ in the underpainting (white gaps versus a gold-then-violet base), and from step 9 the cow, grass and lights are the same pictures and words. B's step 8 words fit its picture better than A's, but B's step 4 asks more in one go, so the two roughly cancel out. A toss-up, maybe a slight lean to B, not enough to prefer.",
+   "cost_usd": 0.6853
+  },
+  {
+   "folder": "highland-cow-g2",
+   "picture": "highland-cow",
+   "grader": 2,
+   "preferred": "none",
+   "scores": {
+    "baseline": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      3,
+      16
+     ],
+     "note": "Steps 1 to 7 are clean and readable: gold and then violet cover the whole canvas, and the olive bands over purple stripes match the words. Step 8 is a big jump. It names one Deep green for filling stripes, but the picture turns the hillside into a fully lit, rolling landscape with yellow highlights, a new dark ridge by the loch, and dark patches that don't sit in the old stripes. From step 9 on it is identical to B, with reasonable steps, though step 3 barely changes and its small cloud puffs vanish, and step 16 shapes more of the face than a nose."
+    },
+    "variant": {
+     "real": 3,
+     "paintable": 3,
+     "agree": 3,
+     "worst_steps": [
+      8,
+      3,
+      16
+     ],
+     "note": "Steps 1 to 7 leave white canvas under the sky and hills, then olive bands with white streaks between them. Those pictures match the words and look like a real half-done canvas. Step 8 makes the same magic jump as A, only from white: white gaps turn into a finished lit hillside with yellow highlights that the single Deep green doesn't cover. Its words also say to leave lighter green between every row, which half-contradicts filling the white gaps. Steps 9 to 22 are the same pictures and words as A."
+    }
+   },
+   "note": "The two lessons differ only in steps 1 to 7: A covers the whole canvas with gold and then violet, while B leaves the lower canvas white until the green goes on. Both handle that part well. Both share the same big jump at step 8 and identical later steps. A toss-up: neither difference would change how well a beginner gets through it.",
+   "cost_usd": 0.6923
+  }
+ ],
+ "report-line": {
+  "variant": "line-1-later",
+  "student": {
+   "highland-cow": {
+    "steps": 8,
+    "baseline": 3.31,
+    "variant": 3.06,
+    "per_step": {
+     "1": [
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       3
+      ]
+     ],
+     "2": [
+      [
+       4,
+       3
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "3": [
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ]
+     ],
+     "4": [
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       3
+      ]
+     ],
+     "5": [
+      [
+       3,
+       4
+      ],
+      [
+       4,
+       2
+      ]
+     ],
+     "6": [
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       3
+      ]
+     ],
+     "7": [
+      [
+       3,
+       2
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "8": [
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       3
+      ]
+     ]
+    }
+   },
+   "birch-grove": {
+    "steps": 8,
+    "baseline": 2.88,
+    "variant": 2.88,
+    "per_step": {
+     "1": [
+      [
+       3,
+       3
+      ],
+      [
+       3,
+       2
+      ]
+     ],
+     "2": [
+      [
+       3,
+       3
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "3": [
+      [
+       2,
+       2
+      ],
+      [
+       4,
+       4
+      ]
+     ],
+     "4": [
+      [
+       3,
+       3
+      ],
+      [
+       3,
+       2
+      ]
+     ],
+     "5": [
+      [
+       4,
+       4
+      ],
+      [
+       3,
+       3
+      ]
+     ],
+     "6": [
+      [
+       2,
+       2
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "7": [
+      [
+       2,
+       2
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     "8": [
+      [
+       4,
+       4
+      ],
+      [
+       4,
+       4
+      ]
+     ]
+    }
+   },
+   "all": {
+    "steps": 16,
+    "baseline": 3.09,
+    "variant": 2.97,
+    "gain": -0.12,
+    "se": 0.17
+   }
+  },
+  "spared": {
+   "highland-cow": {
+    "steps": {
+     "1": 0.688,
+     "2": 0.448,
+     "3": 0.278,
+     "4": 0.729
+    },
+    "canvas_total": 1.419
+   },
+   "birch-grove": {
+    "steps": {
+     "1": 0.316,
+     "3": 0.02
+    },
+    "canvas_total": 0.319
+   }
+  },
+  "cost": {
+   "words": 1.14,
+   "renders_line": 0.416,
+   "carry_grades_line": 0.98,
+   "graders_round1": 2.37,
+   "graders_round2": 2.36
+  },
+  "ab_round1": {
+   "highland-cow": [
+    "baseline",
+    "none"
+   ],
+   "birch-grove": [
+    "none",
+    "none"
+   ]
+  },
+  "ab_round2": {
+   "highland-cow": [
+    "none",
+    "none"
+   ],
+   "birch-grove": [
+    "baseline",
+    "baseline"
+   ]
+  }
+ }
 }
