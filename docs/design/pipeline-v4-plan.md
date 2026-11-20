@@ -135,8 +135,8 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   show a small effect.
 - **C2. A cheaper model or lower effort for the yes/no helpers** (the chain's checker, the feedback rounds). #221
   is the spike. It ends in a recommendation for the owner, since it changes "Claude does the checks".
-  **Run 2026-11-20 for the chain's checker, Claude only (#268, `docs/spikes/v4-checker-cost.md`): drop proposed, the
-  owner's call.** The 23 checker rounds of 13 loop runs were laid again from the render cache, with no renders, and
+  **Run 2026-11-20 for the chain's checker, Claude only (#268, `docs/spikes/v4-checker-cost.md`): dropped, the owner's
+  call 2026-11-20.** The 23 checker rounds of 13 loop runs were laid again from the render cache, with no renders, and
   each cheaper setting was asked them once. Every setting missed some of the 29 marks most of three Opus reads made:
   Opus low 4, Sonnet medium 5, Sonnet low 7, Haiku medium 6, Haiku high 7. The loop's own Opus read missed 2. Sonnet
   medium came closest (24 of the 25 marks all three Opus reads made, as often as a second Opus read) for $0.14 a

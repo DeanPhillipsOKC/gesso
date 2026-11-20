@@ -328,6 +328,12 @@ with the date.
   blind reads for Opus on each), so don't re-propose it for writing or finishing. The finisher split in two or at low
   effort is dropped; the words at low effort are parked (no student test, 2 of 6 reads against). Owner: "Yes. Accept
   the verdict." They live in `spike/experiments/v4_writer_cost.py` until v4 is built.
+- **The chain's checker stays on Opus 5.5 at medium effort (2026-11-20, owner's call, after #268).** Opus low,
+  Sonnet 5.5 at medium and low, and Haiku 5.5 at medium and high each missed 4 to 7 of the 29 marks most Opus reads
+  made on the bench's 23 checker rounds, where the loop's own Opus read missed 2 (`docs/spikes/v4-checker-cost.md`). A
+  miss leaves a thing in a step picture where it doesn't belong. Sonnet medium came closest, for $0.14 a lesson
+  against $0.29. Owner: "Default." Don't re-propose a cheaper checker without a larger bench and the owner's answers
+  on the faint looks (the birch grove's pale trunks). Other providers' models stay with #221.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
