@@ -2386,6 +2386,130 @@
    },
    "reply_chars": 4334,
    "at": "2026-11-20T12:37:20"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "birch-grove",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 words",
+   "turn": 1,
+   "session": "dadccd14-c2ed-4d6b-8d33-bf398e7372ef",
+   "cache": "5m",
+   "seconds": 179.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 53513,
+   "cache_read_tokens": 0,
+   "output_tokens": 15490,
+   "thinking_tokens": 10054,
+   "cost_usd": 0.57737,
+   "effort": null,
+   "cli_cost_usd": 0.577373,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 42,
+    "picture_tokens": 17080,
+    "text_chars": 77833,
+    "system_chars": 242
+   },
+   "reply_chars": 14641,
+   "at": "2026-11-20T12:37:24"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "birch-grove",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 feedback",
+   "turn": 2,
+   "session": "dadccd14-c2ed-4d6b-8d33-bf398e7372ef",
+   "cache": "5m",
+   "seconds": 20.9,
+   "input_tokens": 4,
+   "cache_write_tokens": 16454,
+   "cache_read_tokens": 53513,
+   "output_tokens": 2425,
+   "thinking_tokens": 463,
+   "cost_usd": 0.14149,
+   "effort": null,
+   "cli_cost_usd": 0.7188616,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 2380,
+    "system_chars": 0
+   },
+   "reply_chars": 5262,
+   "at": "2026-11-20T12:37:46"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "birch-grove",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 paints",
+   "turn": 3,
+   "session": "dadccd14-c2ed-4d6b-8d33-bf398e7372ef",
+   "cache": "5m",
+   "seconds": 7.6,
+   "input_tokens": 4,
+   "cache_write_tokens": 2730,
+   "cache_read_tokens": 69967,
+   "output_tokens": 561,
+   "thinking_tokens": 91,
+   "cost_usd": 0.03888,
+   "effort": null,
+   "cli_cost_usd": 0.757741,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 0,
+    "picture_tokens": 0,
+    "text_chars": 848,
+    "system_chars": 0
+   },
+   "reply_chars": 1206,
+   "at": "2026-11-20T12:37:53"
+  },
+  {
+   "set": "c1",
+   "variant": "lean-paints",
+   "picture": "sleeping-cat",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 words",
+   "turn": 1,
+   "session": "6829d36c-1dd6-4bd2-8247-51aa24443a01",
+   "cache": "5m",
+   "seconds": 212.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 62203,
+   "cache_read_tokens": 0,
+   "output_tokens": 20115,
+   "thinking_tokens": 13898,
+   "cost_usd": 0.71332,
+   "effort": null,
+   "cli_cost_usd": 0.7133229999999999,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 50,
+    "picture_tokens": 20260,
+    "text_chars": 90524,
+    "system_chars": 242
+   },
+   "reply_chars": 17315,
+   "at": "2026-11-20T12:37:59"
   }
  ],
  "ab": [
