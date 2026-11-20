@@ -1,0 +1,43 @@
+{
+ "lessons": {
+  "new": {
+   "sleeping-cat": "sleeping-cat_v4loop_20261119-215313"
+  }
+ },
+ "calls": [
+  {
+   "set": "new",
+   "variant": "v31",
+   "picture": "sleeping-cat",
+   "part": "words",
+   "helper": "writer",
+   "label": "W1 words",
+   "turn": 1,
+   "session": "8f7d9909-9501-4d09-9be7-f87a1a08dba5",
+   "cache": "5m",
+   "seconds": 91.4,
+   "input_tokens": 2,
+   "cache_write_tokens": 56546,
+   "cache_read_tokens": 0,
+   "output_tokens": 9080,
+   "thinking_tokens": 3568,
+   "cost_usd": 0.46434,
+   "effort": null,
+   "cli_cost_usd": 0.464338,
+   "model": [
+    "claude-opus-5-5"
+   ],
+   "sent": {
+    "pictures": 46,
+    "picture_tokens": 18670,
+    "text_chars": 80935,
+    "system_chars": 242
+   },
+   "reply_chars": 14870,
+   "at": "2026-11-20T15:16:33"
+  }
+ ],
+ "ab": [],
+ "words": {},
+ "finish": {}
+}
