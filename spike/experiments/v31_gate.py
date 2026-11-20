@@ -184,7 +184,7 @@ def side_folder(src: Path, dest: Path):
     dest.mkdir(parents=True)
     for f in ("photo.jpg", "finish.jpg", "lesson.md", "packet.json"):
         shutil.copy(src / f, dest / f)
-    shutil.copytree(src / "steps", dest / "steps")
+    shutil.copytree(src / "steps", dest / "steps", copy_function=shutil.copyfile)  # no file dates: they tell the sides apart
     packet = read_json(src / "packet.json")
     before = None
     for s in packet["steps"]:

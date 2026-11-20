@@ -61,7 +61,7 @@ between two runs in #174.
 13 (0.14 against 0.55), where "fewer go near the fog, so the back stays calm" led the reader to the picture with
 only half the leaves. v3 had four (the cow's 2, the cat's 2, the birch grove's 10 and 20). The words lift the
 reader's chance on the real after over the header alone by 0.12, 0.17 and 0.09 (cow, cat, birch), against v3's
-0.13, 0.18 and 0.09: about the same, from a higher start.
+0.12, 0.18 and 0.09: about the same, from a higher start.
 
 ## The blind graders
 
@@ -116,6 +116,9 @@ graders ran as subagents.
 
 ## Limits
 
+- The A/B was blind by label only. No file names a pipeline and the key sat outside the folders, but the step
+  pictures kept their file dates (v3's from 2026-11-18, the new ones from today; `side_folder` now copies without
+  them), and the new side's lesson has an opening and labeled lines, which is the lesson itself.
 - One run of each lesson. The cat's and the birch grove's gains are inside what the test moves between runs; the
   cow's isn't.
 - Carry compares the new words on the new pictures with v3's words on v3's pictures. The near misses and the grade
