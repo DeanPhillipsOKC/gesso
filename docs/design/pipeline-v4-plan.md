@@ -146,6 +146,12 @@ Run on the frozen bench, on v3's pictures, so only the words differ between the 
   −0.30 ± 0.11, 5 of 6 reads for the baseline). Low effort and a split finisher were a little worse. After #250 a new
   cat had no merge asked for. #270 added v3's paint check to the words (a paint a step doesn't list goes back to the
   writer once): $0.07 a lesson, and none left on C1's three lessons.
+  **For `pipeline-v4.md` (the owner's call, 2026-11-20): fix the brief's contradiction that causes them, with no spike
+  of its own.** W1's brief says both "Name only the paints the step lists" and "name an earlier step's marks by
+  their paint", so the writer names the earlier paint ("The Wood brown must be dry"). v4's brief names an earlier
+  step's marks by their look and step ("the brown streaks from step 8"), keeping the paint's name only where a side
+  word needs it for check-text to find the reference; if the earlier paint has to be named there, the check's
+  round handles it. The paint check stays as the backstop.
 
 ## The later bet: an easel coach (#257, parked)
 
