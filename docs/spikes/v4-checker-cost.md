@@ -5,7 +5,7 @@ C2 of `docs/design/pipeline-v4-plan.md`, under #240, Claude only. Run on 2026-11
 answer, with its cost, time and tokens, is in `spike/experiments/v4_checker_cost.json`. The rounds it replays are in
 `output/bench/v4-checker/`.
 
-**Proposed verdict: drop. Keep Opus 5.5 at medium effort for the chain's checker** (the owner's call to make). No cheaper setting
+**Verdict: drop. Keep Opus 5.5 at medium effort for the chain's checker** (the owner's call, 2026-11-20: "Default."). No cheaper setting
 passes the issue's rule: miss no stray or left-standing piece that Opus catches. Every one missed 4 to 7 of the
 29 marks most of Opus's reads made, and at least one of the 25 marks all of Opus's reads made. The closest was
 Sonnet 5.5 at medium effort. It caught 24 of those 25, about as often as a second Opus read does (95%). But it
