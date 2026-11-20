@@ -195,6 +195,9 @@ Same as v3 (`pipeline-v3-plan.md`, "How a spike runs"), with these changes:
 
 ## The gate (proposed; the owner sets it)
 
+**Set 2026-11-20, with one change: the owner reads one lesson, and painting one stays #252
+(`pipeline-v3.1.md`, section 13; `docs/decisions.md`).** The lines below are the proposal as it was.
+
 - The student test's score beats v3's words on every bench picture.
 - Claude's graders prefer v4 on most bench pictures and it loses clearly on none.
 - **The owner paints one v4 lesson** and says the words helped.

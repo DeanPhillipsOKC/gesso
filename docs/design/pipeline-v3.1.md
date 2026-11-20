@@ -1,8 +1,10 @@
 # Pipeline v3.1: a teacher writes the words, and the fact sheet checks them
 
-**A draft (2026-11-20), not built.** It is the design the v4 plan's Order, step 5 asks for
-(`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes `pipeline-v3.md`; it doesn't
-replace it. Read that file first: every section number below that isn't this file's own is v3's.
+**A draft (2026-11-20), not built. The owner read it and merged it (#275), set the gate (section 13), and said go on
+the combined lesson (section 12, steps 1 and 2; `docs/spikes/v31-combined.md`).** It is the design the v4 plan's
+Order, step 5 asks for (`pipeline-v4-plan.md`), written from the spikes that ended in adopt. It changes
+`pipeline-v3.md`; it doesn't replace it. Read that file first: every section number below that isn't this file's own
+is v3's.
 
 Each piece is marked **proven** (a spike ran it and its write-up has the numbers), a **guess** (this draft's own
 joining of the pieces, run by nobody yet), or **open**.
@@ -135,9 +137,12 @@ spike sealed a lesson without them.)
    named the earlier paint on 12 of 64 steps ("The Wood brown must be dry"). The new rule: "the brown streaks from
    step 8". The paint's name is kept only where a side word needs it for `check-text` to find the thing. The paint
    check below is the backstop. The owner asked for this with no spike of its own (2026-11-20).
-2. **A line is under 40 words,** as in v3. 20 of the spike's lines were over. The brief says it and `check` holds it.
+2. **A line is under 40 words,** as in v3. 20 of the spike's lines were over. The brief says it, and that isn't
+   enough: in the combined lesson seven lines on two of three lessons were still over, all of them "Where the paint
+   sits". So the words' rounds count them (below), and `check` holds the limit at the end.
 3. **The writer is told what the page shows beside its words:** the transfer outline and the Where picture. It may
-   point at them ("inside the outline"). The spike's writer didn't know they exist.
+   point at them ("inside the outline"). The spike's writer didn't know they exist. In the combined lesson it
+   never did, in 70 steps: the rule stays, and it changes nothing a painter reads.
 
 ### The checks and their rounds (proven, #254 and #270)
 
@@ -147,6 +152,8 @@ In the writer's one conversation, so each round reads what was sent from the cac
    changes.
 2. The paint check (`tools.paints_not_listed`, v3's own): a sentence that names a paint its step doesn't list goes
    back once. The writer names one of the step's own paints if that is the one meant, or says it without the name.
+   A line over 40 words goes back in the same round, to be shortened. (A guess: the combined lesson counted them
+   and sent none back.)
 3. `check-text` again on the new words. A sentence that still fails either check is taken out, never reworded by a
    tool: a listed paint the writer didn't mean would have the painter load the wrong color.
 
@@ -262,11 +269,15 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
 
 ## 12. Build order
 
-1. **One combined lesson, by experiment code:** the sleeping cat, with everything in sections 5 to 8 and the
-   brief's three changes, as a page the owner can read. Most of it exists (`v4_writer_cost.py`'s `lean-paints`
-   and `f-lean`). New: the brief's changes, and the two run together.
-2. **The owner reads it:** go, change or stop. This draft is then corrected by what it showed.
-3. **Build it into `/paint-lesson` in place,** on a branch, with no flag:
+1. **Done (2026-11-20, `docs/spikes/v31-combined.md`).** **One combined lesson, by experiment code:** the sleeping
+   cat, with everything in sections 5 to 8 and the brief's three changes, as a page the owner can read. Most of it
+   exists (`v4_writer_cost.py`'s `lean-paints` and `f-lean`). New: the brief's changes, and the two run together.
+2. **Done: go (the owner, 2026-11-20, "Looks good").** **The owner reads it:** go, change or stop. This draft is then
+   corrected by what it showed: the 40-word round and the writer's silence on the page's aids (section 5), and one
+   more risk (section 14). The owner also had it run on the chickadee and the lavender balloon, which his partner
+   means to paint.
+3. **Build it into `/paint-lesson` in place,** on the branch `v3.1`, with no flag (#276 the words, #277 the page,
+   `check` and the seal, #278 the plan's writer, the finisher and the loop; by Opus):
    - the tools: `packets` for a lesson writer, `check-text` reading the six lines, the paint round, the arc's
      checks, the tool that applies the plan's changes;
    - the briefs: `v3/lesson-brief.md` and `v3/arc-brief.md` in place of `writer-brief.md`; the plan's brief for its
@@ -274,7 +285,7 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
    - `run.md`, steps A, D and E;
    - the page, `check` and `publish --final` (section 7);
    - `v4_loop.py` brought into step with the new `run.md`.
-4. **The gate,** run from that branch before it merges (section 13).
+4. **The gate,** run from that branch before it merges (section 13; #279).
 5. **Then** merge, stamp POC 2.1.0, write the changelog entry, and fold the as-built facts into `pipeline-v3.md`,
    sections 4 and 10, so one file still describes the pipeline. The site's lessons still wait to be rerun from
    v3's gate; rerun them once, after this.
@@ -283,10 +294,11 @@ percent; acrylic, beginner, 12 to 24 steps; lessons made on Opus.
 tools, and its rounds are one conversation. In the skill it is a subagent that reads `words/lesson/` and is sent
 back with a message. It should read the same files and write the same JSON, but nobody has run it.
 
-## 13. The gate (proposed; the owner sets it)
+## 13. The gate (set by the owner, 2026-11-20)
 
 The v4 plan proposed four lines. With no second pipeline to choose between, the gate is what lets the build's
-branch merge, so this draft changes one of them:
+branch merge, so this draft changed one of them, and the owner took it as written ("Default",
+`docs/decisions.md`):
 
 - three hands-off bench lessons (the cow, the cat, the birch grove) made from the branch, sealed;
 - the student test's score is no lower than v3's words on any of them, and higher across the three;
@@ -303,6 +315,10 @@ shows is fixed afterward, as changes to v3.1.
 - **The gain is small.** The teacher's +0.21 clears the bar on one picture of three, and the arc is level. The
   strongest evidence is the graders' 6 of 6 and the owner's reading of one lesson.
 - **More is said about place and less of it is checked** (section 5). A wrong "behind the head" passes.
+- **Words can pass every check and still disagree with their picture.** The combined cat's finisher found three
+  (pale streaks called dark, a shape said to reach an edge it doesn't, a nose twice its size), and they ended as
+  known problems on the page. Sending the finisher's finds back to the writer once would fix them at the cost of a
+  round. Nobody has run it, so it isn't in this design.
 - **Neither test showed the page's aids.** v3's words may do better on the real page than they scored.
 - **One word fault is left:** the birch grove's step 20, where "most of it on the right side" is true by the
   sheet's halves and still misleads.

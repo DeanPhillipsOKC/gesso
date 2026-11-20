@@ -344,6 +344,19 @@ with the date.
   nothing is renamed. A new pipeline version is for a change to how the step pictures are made or to what a lesson
   is. Not decided by this: the gate, which the design proposes (the owner reads a lesson, where the v4 plan said
   paints one).
+- **v3.1's gate: the owner reads one finished lesson; painting one isn't in it (2026-11-20, owner's call).** Asked
+  whether the gate should keep the v4 plan's "the owner paints one v4 lesson" or the design's "the owner reads one",
+  so that the build's branch doesn't wait on an afternoon of painting, the owner said "Default" (the design's). The
+  gate (`docs/design/pipeline-v3.1.md`, section 13): three hands-off bench lessons from the build's branch, sealed;
+  the student test no lower than v3's words on any and higher across the three; Claude's graders prefer them on
+  most pictures with a clear loss on none; the owner reads one and says yes; the Claude cost reported beside the $1
+  aim, not a pass or fail. Painting one stays #252, and what it shows is fixed afterward.
+- **Go on v3.1's build (2026-11-20, owner's call, after the combined lesson).** The owner read the combined lessons
+  (the sleeping cat, then the chickadee and the lavender balloon, which he asked for because his partner means to
+  paint one of those this weekend): "Looks good." So v3.1 is built into `/paint-lesson` as the design's section 12
+  says, by Opus (the owner's order: the design by Fable, the build by Opus). The lesson's words in a trial run are
+  written by Opus too: the owner said so when the combined lesson started. A whole lesson page with the new words
+  was made for painting from (`docs/spikes/v31-combined.md`); it isn't on the site.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
