@@ -1,0 +1,42 @@
+{
+ "out": "325db9c243fae558",
+ "rounds": [
+  {
+   "n": 1,
+   "kind": "check-text",
+   "sent": 2,
+   "claims": 48,
+   "answer": "fix-1.json",
+   "feedback": "# The checker's failures in your words (round 1)\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. A sentence that still fails after the next round is taken out.\n\n- step 21 (rim-cow), line 5 (leave): \"beside it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"Keep the rump and the middle of the body dark; the rim glows only because the darker coat stays beside it.\"\n- step 22 (last-lights), line 4 (inside): \"about 8 in from the top edge\" says 8 in from the top edge; sheet: The tall grass: nearest from the top edge 9 3/4 in, 13 7/8 in\n  in: \"Most of it on the right side: the grass tips right of The Highland cow, about 8 in from the top edge, where the sun hits hardest.\"\n\nWrite `fix-1.json` in your folder with only the steps you change, in out.json's shape (`{\"steps\": {\"<step id>\": {every line of that step}}}`). A step you leave out keeps its words. Then reply with one line.\n"
+  },
+  {
+   "n": 2,
+   "kind": "paints and long lines",
+   "sent": 0,
+   "paints": 0,
+   "long_lines": 0,
+   "check_text_left": 1
+  }
+ ],
+ "final": {
+  "dropped": 1,
+  "emptied": [
+   {
+    "id": "rim-cow",
+    "kind": "leave"
+   }
+  ],
+  "long_lines": 0
+ },
+ "arc": {
+  "sha": "ff88074d95fe9707",
+  "sent": 0,
+  "first": {
+   "arc": 0,
+   "back_check_text": 0
+  },
+  "final": {
+   "taken_out": 0
+  }
+ }
+}

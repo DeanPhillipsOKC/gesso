@@ -1,0 +1,42 @@
+{
+ "out": "786462a2da7f943a",
+ "rounds": [
+  {
+   "n": 1,
+   "kind": "check-text",
+   "sent": 6,
+   "claims": 58,
+   "answer": "fix-1.json",
+   "feedback": "# The checker's failures in your words (round 1)\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. A sentence that still fails after the next round is taken out.\n\n- step 1 (blend-mist), line 4 (leave): \"all four edges\" said of what's left showing, which the sheet doesn't hold; sheet: The path into the fog reaches bottom\n  in: \"Leave no white canvas anywhere: the fog runs to all four edges.\"\n- step 3 (mist-wood-edge), line 6 (stop): \"inside a soft\" can't find 'a soft' on the sheet; sheet: nothing on the sheet\n  in: \"Stop when the dark wood sits inside a soft, feathery halo with no hard edge against the fog, still darkest at the right edge of the canvas.\"\n- step 14 (pull-big-birches), line 4 (inside): \"about 14 1/4 in\" a length with nothing named to measure it against; sheet: no axis, edge or size named\n  in: \"Paint five trunks, all running off the top edge: a thin one at the left edge, the two leaning ones, and two straight ones, their middles about 14 1/4 in and 15 3/4 in from the left edge.\"\n- step 14 (pull-big-birches), line 4 (inside): \"15 3/4 in from the left edge\" says 15 3/4 in from the left edge; sheet: The boulder's mossy top: nearest from the left edge 12 13/16 in, 11 1/2 in\n  in: \"Paint five trunks, all running off the top edge: a thin one at the left edge, the two leaning ones, and two straight ones, their middles about 14 1/4 in and 15 3/4 in from the left edge.\"\n- step 14 (pull-big-birches), line 4 (inside): \"left edge\" says it reaches the left edge (its left side is 11 1/2 in from the left edge); sheet: The boulder's mossy top reaches no edge\n  in: \"Paint five trunks, all running off the top edge: a thin one at the left edge, the two leaning ones, and two straight ones, their middles about 14 1/4 in and 15 3/4 in from the left edge.\"\n- step 17 (light-big-bark), line 5 (leave): \"beside the new light\" can't find 'the new light' on the sheet; sheet: nothing on the sheet\n  in: \"Leave the gray shading and dark marks showing beside the new light: it is a narrow rim, not a new coat.\"\n\nWrite `fix-1.json` in your folder with only the steps you change, in out.json's shape (`{\"steps\": {\"<step id>\": {every line of that step}}}`). A step you leave out keeps its words. Then reply with one line.\n"
+  },
+  {
+   "n": 2,
+   "kind": "paints and long lines",
+   "sent": 0,
+   "paints": 0,
+   "long_lines": 0,
+   "check_text_left": 1
+  }
+ ],
+ "final": {
+  "dropped": 1,
+  "emptied": [
+   {
+    "id": "light-big-bark",
+    "kind": "leave"
+   }
+  ],
+  "long_lines": 0
+ },
+ "arc": {
+  "sha": "5ed385fba0d3e03f",
+  "sent": 0,
+  "first": {
+   "arc": 0,
+   "back_check_text": 0
+  },
+  "final": {
+   "taken_out": 0
+  }
+ }
+}

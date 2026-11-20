@@ -1,0 +1,570 @@
+{
+  "canvas_in": [
+    16.0,
+    12.0
+  ],
+  "finish": "finish.jpg",
+  "opening": "You're about to paint a misty autumn birch grove, with a leafy path running back into the fog. What makes it sing is the contrast: two big leaning white birches, crisp and sharp, standing in front of a soft, glowing haze.\n\nThe light: A hazy low sun glows through the mist from behind the trees. It lights one side of each trunk, each bush and each leaf cluster, and leaves the other side in soft gray shade.\n\nWhat this painting teaches:\n- Thick to thin (steps 6, 7, 14, 16): Press the full width of the brush, then turn onto its edge and ease off, so the mark starts wide and tapers. It makes every birch trunk, far and near, and every bark mark. Keep the pressure changing through the stroke, or the line comes out the same width all the way.\n- Dry brush (steps 2, 3, 15, 17): Only the tip of a dry brush goes in the paint, and you skim lightly so the mark breaks up on the canvas texture. It builds the far wood, its misty rim, and the shade and light on the big trunks. If it goes on solid, the brush was too loaded: let it dry and skim the base color back over it.\n- Horizontal strokes (steps 5, 12, 13, 20): Keep the brush level and the strokes going side to side, so the ground lies flat and stretches away. It lays the path and every fallen leaf in the carpet. Keep the strokes shorter and calmer toward the fog, and bigger and busier nearest you.\n\nThe way there: First the fog goes on as one wet blend over the whole canvas, so the mood is down before anything else. Then the far wood, the forest floor, the path and the faint far birches go in, all soft and cool because they sit back in the mist. Next come the golden bushes and the mossy boulder, then the carpet of fallen leaves. The big birches go on near the end, over a finished ground, so they stay the sharpest and brightest things in the picture. Last, the hanging gold leaves and the palest lights go in front of everything.",
+  "photo": null,
+  "picture": "birch-grove",
+  "steps": [
+    {
+      "brushes": "1 inch flat",
+      "group": "The misty distance",
+      "id": "blend-mist",
+      "intro": "This stage, The misty distance: This stage sets the mood: the soft fog and the dark far wood that everything else will sit in front of.",
+      "lines": [
+        "Start: Start in the upper left corner of the canvas with Pale gold, working a small patch of soft glow there.",
+        "Strokes: Work in short criss-cross X strokes, then move out across the canvas. Pick up Haze blue and Deep haze blue without rinsing, so each colour melts into the last while wet.",
+        "Where the paint sits: Keep Pale gold to a faint warmth near the left edge, where the hazy sun sits. Haze blue fills the middle; Deep haze blue goes into the lower part and the right side of the canvas.",
+        "Leave: Leave no white canvas anywhere: cover every corner. Let a few paler upright streaks show through the blue, like trunks far back in the fog.",
+        "Stop when: Stop when the whole canvas is a soft blue-gray mist with gentle criss-cross texture and no hard edges."
+      ],
+      "n": 1,
+      "name": "Blend the misty glow",
+      "paints": [
+        {
+          "hex": "#f3dc94",
+          "name": "Pale gold",
+          "recipe": "4 parts white, 1 part yellow, 1 part burnt sienna"
+        },
+        {
+          "hex": "#a9bdda",
+          "name": "Haze blue",
+          "recipe": "3 parts white, 1 part ultramarine, a touch of yellow"
+        },
+        {
+          "hex": "#8fa9d0",
+          "name": "Deep haze blue",
+          "recipe": "2 parts white, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/01.jpg",
+      "picture": "steps/01.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The misty distance",
+      "id": "dab-dark-wood",
+      "intro": "This stage, The misty distance: This stage sets the mood: the soft fog and the dark far wood that everything else will sit in front of.",
+      "lines": [
+        "First: Let the misty blend dry completely, or the dark paint will smear into the fog.",
+        "Start: Start at the right edge of the canvas, at the middle of the dark wood, about 5 1/4 in from the top edge.",
+        "Strokes: Skim a nearly dry brush lightly over the canvas, working outward and up, and let the top break into ragged, leafy bumps against the fog.",
+        "Where the paint sits: Keep it darkest and most solid low in the mass, where the trees meet the ground: most of it sits in the bottom half of the dark wood. The ragged top stays thin.",
+        "Leave: Its left side stops about 10 1/4 in from the left edge; leave everything past that as mist, and let flecks of fog show through the ragged top.",
+        "Stop when: Stop when a soft dark blue-green mass about 5 1/2 in wide reaches the right edge, ragged on top, with no leaf detail."
+      ],
+      "n": 2,
+      "name": "Dab the dark wood on the right",
+      "paints": [
+        {
+          "hex": "#404c58",
+          "name": "Dark blue-green",
+          "recipe": "1 part ultramarine, a touch of yellow, a touch of burnt sienna, a touch of white"
+        }
+      ],
+      "pair": "pairs/02.jpg",
+      "picture": "steps/02.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The misty distance",
+      "id": "mist-wood-edge",
+      "intro": "This stage, The misty distance: This stage sets the mood: the soft fog and the dark far wood that everything else will sit in front of. By its end: The canvas is a soft blue-gray fog with faint ghost trunks, and a dark blue-green wood melting into the mist at its rim.",
+      "lines": [
+        "First: Let the dark wood dry first, so the lighter paint sits on top instead of mixing to mud.",
+        "Start: Start along the dark wood's outer rim, where its dark shape meets the fog, nearest the middle of the canvas.",
+        "As in step 2: Same dry brush and the same light skim as the dark wood. This time the paint is lighter and goes only on the rim, so the wood melts into the fog.",
+        "Strokes: With a dry brush and light pressure, skim short strokes outward from the dark into the fog, up over the ragged top and along the foot of the wood.",
+        "Where the paint sits: The misty paint rings the wood: along its fog side, over its top up to the top edge of the canvas, and along its foot. That lighter rim is fog drifting in front of the trees.",
+        "Leave: Leave the dark middle of the wood untouched, and keep the dark showing through the broken strokes at its rim.",
+        "Stop when: Stop when the dark wood is ringed with feathery, misty strokes and has no hard edge against the fog, still darkest at the right edge of the canvas."
+      ],
+      "n": 3,
+      "name": "Mist the wood's left edge",
+      "paints": [
+        {
+          "hex": "#7289a7",
+          "name": "Misty blue-green",
+          "recipe": "1 part ultramarine, 1 part white, a touch of yellow, a touch of burnt sienna"
+        }
+      ],
+      "pair": "pairs/03.jpg",
+      "picture": "steps/03.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The forest floor",
+      "id": "lay-floor",
+      "intro": "This stage, The forest floor: This stage gives the scene its ground: a warm floor and the path that leads your eye back into the fog.",
+      "lines": [
+        "First: Let the mist and the dark wood dry before you start.",
+        "Start: Start with Rust brown near the bottom edge of the canvas, working from the left edge to the right edge.",
+        "Strokes: Stroke side to side, edge to edge. Without rinsing, pick up Warm ochre and work it up the floor in the same level strokes, then stroke back over the join while wet.",
+        "Where the paint sits: Warm ochre covers most of the floor up to where it meets the fog, its top about 7 1/4 in from the top edge. Rust brown stays in broken patches lower down, nearest you.",
+        "Leave: Leave the fog and the dark wood untouched. Keep the line where the floor meets the fog level and soft, not a hard stripe.",
+        "Stop when: Stop when the lower part of the canvas is a warm, slightly mottled floor about 4 3/4 in tall, with no path or leaf marks yet."
+      ],
+      "n": 4,
+      "name": "Lay in the forest floor",
+      "paints": [
+        {
+          "hex": "#cd832e",
+          "name": "Warm ochre",
+          "recipe": "3 parts burnt sienna, 2 parts yellow, 1 part red, 1 part white"
+        },
+        {
+          "hex": "#ab6d32",
+          "name": "Rust brown",
+          "recipe": "3 parts burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/04.jpg",
+      "picture": "steps/04.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The forest floor",
+      "id": "lay-path",
+      "intro": "This stage, The forest floor: This stage gives the scene its ground: a warm floor and the path that leads your eye back into the fog. By its end: A warm orange floor now meets the fog, with a plain mauve path narrowing back into the mist.",
+      "lines": [
+        "First: Let the floor dry, so the path keeps a clean edge instead of blending into the ochre.",
+        "Start: Start at the bottom edge of the canvas, where the path is widest, its middle about 10 in from the left edge.",
+        "Strokes: Keep the brush level and pull long strokes left and right, working up the canvas. Make each stroke a little shorter as you go, so the path narrows into the fog.",
+        "Where the paint sits: Fill the path solid: it is flat ground going away from you. Its far end, a narrow strip about 7 1/2 in from the top edge, melts into the fog.",
+        "Leave: Leave the ochre floor showing on both sides of the path, with a few ragged ochre bits biting into its edges.",
+        "Stop when: Stop when a plain path runs from the bottom edge back into the fog, wide in front and thin at the back, with no leaves yet."
+      ],
+      "n": 5,
+      "name": "Lay the path into the fog",
+      "paints": [
+        {
+          "hex": "#95736d",
+          "name": "Mauve brown",
+          "recipe": "2 parts burnt sienna, 2 parts white, 1 part ultramarine, a touch of red"
+        }
+      ],
+      "pair": "pairs/05.jpg",
+      "picture": "steps/05.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/4 inch flat",
+      "group": "The far birches",
+      "id": "pull-far-birches",
+      "intro": "This stage, The far birches: This stage adds depth with thin, pale birches far back in the fog, kept soft so they stay distant.",
+      "lines": [
+        "First: Let the floor and path dry before you start.",
+        "Start: Start the first trunk at its foot in the fog, its middle about 8 in from the left edge, and pull it up to the top edge.",
+        "As in step 1: Haze blue is the same paint as the fog, so these trunks stay soft and far away. This time it goes on as thin, tapering lines with a small brush.",
+        "Strokes: Press the full width of the brush at the foot of each trunk, then turn onto the edge and ease off as you pull up, so it tapers toward the top.",
+        "Where the paint sits: Paint three thin trunks: that first tall one, and two shorter, broken ones in front of the dark wood, their middles about 12 in from the left edge.",
+        "Leave: Leave the faint pale streaks from step 1 and the fog around these trunks as they are. Keep the new trunks thin, pale and a little broken.",
+        "Stop when: Stop when three thin, pale blue-white trunks stand softly in the fog, with no bark marks yet."
+      ],
+      "n": 6,
+      "name": "Pull the thin far birches",
+      "paints": [
+        {
+          "hex": "#a9bdda",
+          "name": "Haze blue",
+          "recipe": "3 parts white, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/06.jpg",
+      "picture": "steps/06.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/4 inch flat",
+      "group": "The far birches",
+      "id": "mark-far-birches",
+      "intro": "This stage, The far birches: This stage adds depth with thin, pale birches far back in the fog, kept soft so they stay distant. By its end: Three thin pale birches stand in the fog by the path, dark at their feet and lightly speckled higher up.",
+      "lines": [
+        "First: Let the pale trunks from step 6 dry, so the marks stay crisp.",
+        "Start: Start at the foot of the first trunk, its middle about 8 in from the left edge, where it meets the floor.",
+        "As in step 6: Same small brush and the same press-then-ease stroke as the pale trunks, but now short and dark, so each mark starts wide and breaks off thin.",
+        "Strokes: Press the brush flat at the foot and pull short strokes up the trunk, turning onto the edge so the marks thin and break off higher up.",
+        "Where the paint sits: The lower part of each trunk goes nearly solid dark, with a small dark flare where it stands on the floor. Higher up, place only a few small dots, since the shadow is low.",
+        "Leave: Leave the pale blue-white of step 6 showing between the dots on the upper trunks.",
+        "Stop when: Stop when all three far trunks are dark at the foot and speckled with soft gray dots above, still soft and quiet in the fog."
+      ],
+      "n": 7,
+      "name": "Mark the far bark softly",
+      "paints": [
+        {
+          "hex": "#767176",
+          "name": "Soft charcoal",
+          "recipe": "1 part ultramarine, 1 part burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/07.jpg",
+      "picture": "steps/07.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch old stiff flat",
+      "group": "The golden undergrowth",
+      "id": "dab-dark-undergrowth",
+      "intro": "This stage, The golden undergrowth: This stage brings in the autumn color: banks of golden bushes and a mossy boulder by the path.",
+      "lines": [
+        "First: Let the far trunks dry, since the bushes go over their feet.",
+        "Start: Start at the left edge of the canvas, about 4 1/4 in from the top edge, at the top of the big bank of bushes.",
+        "Strokes: Tap with the tip of a dry, lightly loaded brush, building the bushes from many small dabs; tap more in one spot to make it solid.",
+        "Where the paint sits: Warm ochre makes a bank about 9 in wide from the left edge to the foot of the first far trunk. Moss olive, with a little ochre, makes a low band at the foot of the dark wood.",
+        "Leave: Leave small gaps of fog between the dabs near the top of the bank, and keep the path clear between the two groups of bushes.",
+        "Stop when: Stop when a dappled ochre bank fills most of the left side of the canvas down to the floor, and a low olive band sits under the dark wood."
+      ],
+      "n": 8,
+      "name": "Dab the dark of the undergrowth",
+      "paints": [
+        {
+          "hex": "#cd832e",
+          "name": "Warm ochre",
+          "recipe": "3 parts burnt sienna, 2 parts yellow, 1 part red, 1 part white"
+        },
+        {
+          "hex": "#916730",
+          "name": "Moss olive",
+          "recipe": "3 parts yellow, 3 parts red, 2 parts ultramarine"
+        }
+      ],
+      "pair": "pairs/08.jpg",
+      "picture": "steps/08.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch old stiff flat",
+      "group": "The golden undergrowth",
+      "id": "dab-gold-undergrowth",
+      "intro": "This stage, The golden undergrowth: This stage brings in the autumn color: banks of golden bushes and a mossy boulder by the path.",
+      "lines": [
+        "First: Let the ochre dabs dry, so the gold sits on top and stays bright.",
+        "Start: Start near the top of the bushes, about 1 1/4 in from the left edge, where the sun's glow reaches them first.",
+        "As in step 8: Same stiff brush and the same light taps as the dark bushes. This time the paint is brighter and goes in just a few small clusters, not a whole bank.",
+        "Strokes: Tap small clusters with the tip of a dry brush, a few taps each, so they read as bunches of lit leaves.",
+        "Where the paint sits: Put small clusters along the top of the ochre bank and down toward the path, plus two or three tiny ones along the foot of the olive band. Most of the gold sits in the left half.",
+        "Leave: Leave most of the ochre showing: the gold is only a handful of bright spots, not a new coat.",
+        "Stop when: Stop when a handful of small gold clusters, each about coin size, glow against the darker bushes."
+      ],
+      "n": 9,
+      "name": "Dab gold on the bushes",
+      "paints": [
+        {
+          "hex": "#fac244",
+          "name": "Bright gold",
+          "recipe": "3 parts yellow, 2 parts white, 1 part red"
+        }
+      ],
+      "pair": "pairs/09.jpg",
+      "picture": "steps/09.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#10 round",
+      "group": "The golden undergrowth",
+      "id": "build-rock",
+      "intro": "This stage, The golden undergrowth: This stage brings in the autumn color: banks of golden bushes and a mossy boulder by the path.",
+      "lines": [
+        "First: Let the olive band dry, since the boulder sits in front of it.",
+        "Start: Start with a low oval, its middle about 12 1/2 in from the left edge, sitting on the floor right of the path into the fog.",
+        "Strokes: Lay the oval first, then add a curved piece on each side, like ( ), and a domed piece over the top, smaller toward the edges.",
+        "Where the paint sits: Fill the whole boulder flat, about 2 3/4 in wide and 1 1/4 in tall: a rounded dome with a flat bottom where it sits on the ground.",
+        "Leave: Leave the olive band and the far trunks around the dome untouched. No moss or shadow yet.",
+        "Stop when: Stop when a smooth gray-violet dome sits on the floor, its pieces softened together into one flat colour."
+      ],
+      "n": 10,
+      "name": "Build the boulder",
+      "paints": [
+        {
+          "hex": "#988a89",
+          "name": "Gray violet",
+          "recipe": "4 parts white, 3 parts burnt sienna, 2 parts ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/10.jpg",
+      "picture": "steps/10.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#10 round",
+      "group": "The golden undergrowth",
+      "id": "moss-rock",
+      "intro": "This stage, The golden undergrowth: This stage brings in the autumn color: banks of golden bushes and a mossy boulder by the path. By its end: A bank of golden bushes glows by the path, an olive band sits at the foot of the dark wood, and a mossy boulder rests in front of it.",
+      "lines": [
+        "First: Let the boulder dry, or the olive will mix into the gray.",
+        "Start: Start at the top of the boulder's dome, its middle about 12 1/2 in from the left edge.",
+        "As in step 8: Moss olive is the same paint you dabbed at the foot of the dark wood. This time it goes on in curved strokes that bend over the round boulder.",
+        "Strokes: Pull each stroke from the top of the dome down and around its curve, bending with the rounded shape.",
+        "Where the paint sits: The moss covers the top thickly, where the light lands and moss grows, and runs down the sides in thinner, broken strokes, a little more on the left side of the boulder.",
+        "Leave: Leave patches of the gray-violet showing low on the boulder and along its foot, so it still reads as stone.",
+        "Stop when: Stop when the boulder reads as a rounded, moss-covered rock, olive on top with gray peeking through near the ground."
+      ],
+      "n": 11,
+      "name": "Lay the moss on the boulder",
+      "paints": [
+        {
+          "hex": "#916730",
+          "name": "Moss olive",
+          "recipe": "3 parts yellow, 3 parts red, 2 parts ultramarine"
+        }
+      ],
+      "pair": "pairs/11.jpg",
+      "picture": "steps/11.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The leaf carpet",
+      "id": "dash-rust-leaves",
+      "intro": "This stage, The leaf carpet: This stage turns the plain floor into a carpet of fallen leaves that draws you down the path.",
+      "lines": [
+        "First: Let the floor, path and boulder dry.",
+        "Start: Start at the bottom edge of the canvas near the left edge, where the leaves are nearest and biggest.",
+        "As in step 5: Same level side-to-side strokes as the path, but now with a smaller brush and short dashes, one leaf at a time, instead of long strokes.",
+        "Strokes: Keep the brush level and make short, flat dashes left and right, each one a leaf. Overlap them in loose rows as you work up the floor.",
+        "Where the paint sits: Cover the front of the floor from the left edge to the right edge, and run the dashes up the whole path into the fog. Make them big in front and smaller toward the back.",
+        "Leave: Leave plenty of gaps where the ochre floor from step 4 shows between the dashes, especially toward the back.",
+        "Stop when: Stop when the floor and path read as a carpet of dark rust leaves, dense in front and thinning near the fog, with no gold leaves yet."
+      ],
+      "n": 12,
+      "name": "Dash the dark fallen leaves",
+      "paints": [
+        {
+          "hex": "#ab6d32",
+          "name": "Rust brown",
+          "recipe": "3 parts burnt sienna, 1 part white, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/12.jpg",
+      "picture": "steps/12.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The leaf carpet",
+      "id": "dash-ochre-leaves",
+      "intro": "This stage, The leaf carpet: This stage turns the plain floor into a carpet of fallen leaves that draws you down the path. By its end: The floor and path are covered in rust and ochre leaves, big and busy in front and calmer toward the fog.",
+      "lines": [
+        "First: Let the rust dashes from step 12 dry, so the new ones stay separate.",
+        "Start: Start at the left edge of the canvas, about 7 3/4 in from the top edge, where the floor meets the bushes.",
+        "As in step 12: Same short, level dashes and the same brush as the dark leaves. This time lay them over those leaves and let the dark ones show between.",
+        "Strokes: Use the same short, level dashes, each one a single leaf, laid left and right over the rust ones.",
+        "Where the paint sits: Scatter them across the floor and along the middle of the path, more in front and in loose drifts across the front. Fewer go near the fog, so the back stays calm.",
+        "Leave: Leave the rust dashes showing between and around the new ones, and keep some mauve showing on the path.",
+        "Stop when: Stop when the leaf carpet is a lively mix of ochre and rust leaves, brightest in front, with the path still readable as a lane."
+      ],
+      "n": 13,
+      "name": "Dash the ochre fallen leaves",
+      "paints": [
+        {
+          "hex": "#cd832e",
+          "name": "Warm ochre",
+          "recipe": "3 parts burnt sienna, 2 parts yellow, 1 part red, 1 part white"
+        }
+      ],
+      "pair": "pairs/13.jpg",
+      "picture": "steps/13.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The big birches",
+      "id": "pull-big-birches",
+      "intro": "This stage, The big birches: This stage paints the star of the picture: the big white birches, sharp and bright in front of the soft scene.",
+      "lines": [
+        "First: Let the leaf carpet and bushes dry completely, since the trunks go over them.",
+        "Start: Start with the big leaning trunk whose middle is about 2 1/4 in from the left edge, at its foot on the leaves.",
+        "As in step 6: Same press-then-ease stroke as the thin far birches, but with a much bigger brush and more pressure, so these trunks come out wide, solid and pale.",
+        "Strokes: Press the full width of the brush at the foot and pull up to the top edge, easing the pressure so each trunk narrows a little. Tilt the two leaning ones toward the path.",
+        "Where the paint sits: Paint five trunks, each running off the top edge: a thin one that the canvas edge cuts, the two big leaning ones, and two straight ones, the last of them also cut by the canvas edge.",
+        "Leave: Leave the bushes, path and far birches showing between the trunks, with clean trunk edges.",
+        "Stop when: Stop when five plain, pale gray-white trunks stand over the scene, the two leaning ones widest, with no shading or bark marks."
+      ],
+      "n": 14,
+      "name": "Pull the big birch trunks",
+      "paints": [
+        {
+          "hex": "#beb8bf",
+          "name": "Pale violet-gray",
+          "recipe": "12 parts white, 3 parts burnt sienna, 2 parts ultramarine"
+        }
+      ],
+      "pair": "pairs/14.jpg",
+      "picture": "steps/14.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The big birches",
+      "id": "shade-big-birches",
+      "intro": "This stage, The big birches: This stage paints the star of the picture: the big white birches, sharp and bright in front of the soft scene.",
+      "lines": [
+        "First: Let the pale trunks dry fully, or the dry brush will drag them up.",
+        "Start: Start at the top edge of the canvas, on the shaded edge of the leaning trunk whose middle is about 2 1/2 in from the left edge.",
+        "As in step 2: Same dry, skimming stroke as the dark wood, now with a smaller brush on each trunk's shaded edge, so the bark stays broken and textured.",
+        "Strokes: With a dry brush and light pressure, skim down each trunk in short, broken passes, letting the paint catch the canvas texture.",
+        "Where the paint sits: Lay it heaviest along each trunk's shaded edge, away from the sun's glow, and in broken patches across the upper trunks. It thins lower down, so most of it sits in the top half.",
+        "Leave: Leave the lower part of each trunk and pale flecks down its sunlit edge clean, so the trunks still read white.",
+        "Stop when: Stop when every trunk is patchy gray-violet from the top edge down and pale near its foot, with no dark bark marks yet."
+      ],
+      "n": 15,
+      "name": "Shade the right side of the trunks",
+      "paints": [
+        {
+          "hex": "#988a89",
+          "name": "Gray violet",
+          "recipe": "4 parts white, 3 parts burnt sienna, 2 parts ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/15.jpg",
+      "picture": "steps/15.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The big birches",
+      "id": "mark-big-bark",
+      "intro": "This stage, The big birches: This stage paints the star of the picture: the big white birches, sharp and bright in front of the soft scene.",
+      "lines": [
+        "First: Let the gray-violet shading dry, so the dark marks stay sharp.",
+        "Start: Start at the foot of the big leaning trunk whose middle is about 1 3/4 in from the left edge, where it meets the leaves.",
+        "As in step 7: Same short marks as the far bark, but darker and bigger, with a wider brush, so these trunks come forward.",
+        "Strokes: Press the flat brush across the trunk, then lift onto its edge as you pull, so each mark starts wide and breaks off thin. Work up each trunk.",
+        "Where the paint sits: Make the foot of each trunk nearly solid dark, then scatter short marks up it, bigger and closer low down, smaller higher up. Most of the dark sits in the bottom half.",
+        "Leave: Leave plenty of pale and gray-violet bark showing between the marks; many marks cross only part of the trunk.",
+        "Stop when: Stop when all five trunks carry broken dark bands, heavy at their feet and sparse near the top edge."
+      ],
+      "n": 16,
+      "name": "Add the dark bark marks",
+      "paints": [
+        {
+          "hex": "#3f3631",
+          "name": "Charcoal",
+          "recipe": "3 parts burnt sienna, 2 parts ultramarine, a touch of white"
+        }
+      ],
+      "pair": "pairs/16.jpg",
+      "picture": "steps/16.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The big birches",
+      "id": "light-big-bark",
+      "intro": "This stage, The big birches: This stage paints the star of the picture: the big white birches, sharp and bright in front of the soft scene. By its end: Five big birches stand in front, pale and shaded, with dark broken bark marks and a warm rim of light.",
+      "lines": [
+        "First: Let the bark marks dry, since the light goes over them in places.",
+        "Start: Start on the sunlit edge of the trunk about 13 3/4 in from the left edge, near the top edge of the canvas.",
+        "As in step 15: Same brush and the same dry skim as the shading, but this time on each trunk's sunlit edge, and only a thin rim.",
+        "Strokes: With a dry brush and light pressure, skim short strokes down the sunlit edge of each trunk, in a few light passes.",
+        "Where the paint sits: Lay thin, broken strips down the sunlit edge of the two trunks by the right edge of the canvas and the thin trunk at the left edge. Most of it is on the right side.",
+        "Stop when: Stop when those trunks have a warm, feathery rim of light down one edge, with the rest of the bark unchanged."
+      ],
+      "n": 17,
+      "name": "Catch the light on the bark",
+      "paints": [
+        {
+          "hex": "#efd9c3",
+          "name": "Cream",
+          "recipe": "4 parts white, 1 part burnt sienna, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/17.jpg",
+      "picture": "steps/17.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The hanging leaves and last lights",
+      "id": "dab-hanging-leaves",
+      "intro": "This stage, The hanging leaves and last lights: This stage finishes the painting with the hanging gold leaves and the last, brightest touches of light.",
+      "lines": [
+        "First: Let the trunks dry, since the leaves cross over them.",
+        "Start: Start at the top edge of the canvas, about 1 1/2 in from the left edge, in the glow where the leaves are thickest.",
+        "As in step 9: Bright gold is the same paint as the gold clusters in the bushes. This time each leaf is pressed and lifted with a round brush, so it ends in a point.",
+        "Strokes: Touch down with the tip, press so the brush spreads, then pull and lift so each leaf ends in a point. Let them hang in loose, downward clusters.",
+        "Where the paint sits: Hang clusters along the top edge across the left side, a spray through the top middle, and one about 14 1/2 in from the left edge. Then press bright leaves over the bushes between the leaning trunks' feet.",
+        "Leave: Leave the fog showing between the leaves and clusters, and keep most of each trunk clear.",
+        "Stop when: Stop when gold leaves hang across the top, thickest over the glow, and the bushes between the trunks glow gold, with no pale tips yet."
+      ],
+      "n": 18,
+      "name": "Dab the hanging gold leaves",
+      "paints": [
+        {
+          "hex": "#fac244",
+          "name": "Bright gold",
+          "recipe": "3 parts yellow, 2 parts white, 1 part red"
+        },
+        {
+          "hex": "#cd832e",
+          "name": "Warm ochre",
+          "recipe": "3 parts burnt sienna, 2 parts yellow, 1 part red, 1 part white"
+        }
+      ],
+      "pair": "pairs/18.jpg",
+      "picture": "steps/18.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The hanging leaves and last lights",
+      "id": "tip-pale-leaves",
+      "intro": "This stage, The hanging leaves and last lights: This stage finishes the painting with the hanging gold leaves and the last, brightest touches of light.",
+      "lines": [
+        "First: Let the gold leaves dry, so the pale taps sit on top.",
+        "Start: Start in the leaf cluster near the top edge, about 1 1/4 in from the left edge, where the glow is brightest.",
+        "As in step 9: Same light taps as the gold clusters on the bushes, now with a round brush and a paler paint, only on the sunlit side of each cluster.",
+        "Strokes: Tap lightly with the tip of a dry brush, a few taps per spot, so the light breaks up instead of going solid.",
+        "Where the paint sits: Tap the sunlit side of the leaf clusters along the top, most of it on the left side and near the top edge, plus a few taps on the bushes by the path.",
+        "Leave: Leave the darker gold showing under and around each pale tap, so the leaves keep their depth.",
+        "Stop when: Stop when the leaf clusters sparkle with small pale lights on their lit side, brightest toward the top left corner of the canvas, and the floor is untouched."
+      ],
+      "n": 19,
+      "name": "Tap the palest leaves",
+      "paints": [
+        {
+          "hex": "#f4b044",
+          "name": "Pale lemon",
+          "recipe": "2 parts yellow, 1 part red, 1 part white"
+        }
+      ],
+      "pair": "pairs/19.jpg",
+      "picture": "steps/19.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The hanging leaves and last lights",
+      "id": "dash-pale-leaves",
+      "intro": "This stage, The hanging leaves and last lights: This stage finishes the painting with the hanging gold leaves and the last, brightest touches of light. By its end: Gold leaves hang across the trees, bright gold fills the bushes, and pale sunlit leaves dot the floor: the painting is finished.",
+      "lines": [
+        "First: Let the leaf carpet and trunks dry before the last leaves go on.",
+        "Start: Start in the middle of the floor, about 8 1/4 in from the left edge and 9 1/2 in from the top edge.",
+        "As in step 13: Same short, level dashes and the same brush as the ochre leaves, but only a few, and paler, laid over the carpet as the brightest leaves.",
+        "Strokes: Keep the brush level and make short, flat dashes left and right, each a single sunlit leaf laid on top of the carpet.",
+        "Where the paint sits: Scatter them across the floor and path, around the trunk feet and under the bushes, most in the bottom half where the light falls. Add one falling leaf in the fog near the right edge.",
+        "Leave: Leave most of the ochre and rust leaves showing; these are only the brightest few on top.",
+        "Stop when: Stop when a scatter of light leaves brightens the front of the floor and the path. The painting is finished."
+      ],
+      "n": 20,
+      "name": "Dash the sunlit fallen leaves",
+      "paints": [
+        {
+          "hex": "#f4b044",
+          "name": "Pale lemon",
+          "recipe": "2 parts yellow, 1 part red, 1 part white"
+        }
+      ],
+      "pair": "pairs/20.jpg",
+      "picture": "steps/20.jpg",
+      "tip": ""
+    }
+  ],
+  "write_to": "faults.json"
+}

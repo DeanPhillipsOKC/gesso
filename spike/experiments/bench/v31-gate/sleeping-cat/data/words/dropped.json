@@ -1,0 +1,9 @@
+[
+ {
+  "step": 16,
+  "id": "pink-ears-nose",
+  "field": "line 2 (start)",
+  "sentence": "Start inside the upright ear, the one that points up toward the top of the canvas.",
+  "why": "step 16 (pink-ears-nose), line 2 (start): \"inside the upright ear\" can't find 'the upright ear' on the sheet; sheet: nothing on the sheet"
+ }
+]

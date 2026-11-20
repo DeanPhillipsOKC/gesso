@@ -108,6 +108,17 @@ def md(picture: str, steps: list[dict], opening: str) -> str:
     return "\n".join(out)
 
 
+def put_photo(les: Path, dest: Path) -> bool:
+    """The photo the lesson was painted from, cropped to the canvas. packet.py looks for photo.png, which a v3.1 run
+    doesn't write; the fitted photo (or the canvas frame) is in the image model's frame, as the steps are."""
+    from PIL import Image
+    for name in ("00_canvas_fit.png", "00_canvas_frame.png"):
+        if (les / name).exists():
+            pk._save(pk.crop_canvas(Image.open(les / name), pk.canvas_box(les)), dest / "photo.jpg", pk.SIDE)
+            return True
+    return False
+
+
 def bench(args):
     cards = card_names()
     for les in [Path(x).resolve() for x in args.lesson]:
@@ -120,6 +131,8 @@ def bench(args):
             shutil.rmtree(dest)
         packet = pk.build_one(les, dest)
         shutil.rmtree(dest / "pairs", ignore_errors=True)  # as bench/v3-words: the pairs are the steps side by side
+        if not (dest / "photo.jpg").exists() and put_photo(les, dest):
+            packet["photo"] = "photo.jpg"
         text = read_json(les / "text.json") or {}
         back_step = {}  # lesson.json's back line may not carry its step; text.json's does
         for t in text.get("steps") or []:

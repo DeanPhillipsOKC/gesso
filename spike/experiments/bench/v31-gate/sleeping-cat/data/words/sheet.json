@@ -1,0 +1,9555 @@
+{
+ "canvas": {
+  "w_in": 16.0,
+  "h_in": 12.0
+ },
+ "tolerance": {
+  "inches_under_2": 0.145,
+  "inches": 0.27,
+  "share": 0.06
+ },
+ "parts": {
+  "garden-sky": {
+   "name": "The pale sky through the window",
+   "kind": "area",
+   "parent": null,
+   "widest_down": 0.0,
+   "base_wide": 0.83,
+   "left": 0.0,
+   "right": 14.01,
+   "top": 0.0,
+   "bottom": 6.06,
+   "wide": 1.99,
+   "tall": 5.94,
+   "cx": 0.97,
+   "cy": 2.79,
+   "peak_x": 0.99,
+   "edges": [
+    "left",
+    "top"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 0.0,
+      "to": 5.92,
+      "mid": 2.96
+     }
+    ],
+    "top": [
+     {
+      "from": 0.0,
+      "to": 1.99,
+      "mid": 1.0
+     }
+    ]
+   },
+   "share": 0.0579,
+   "beside": {
+    "wall": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.32,
+      "across": null
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 1.7,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.1,
+      "across": 0.16
+     }
+    },
+    "cat": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.99
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 1.15
+     }
+    }
+   }
+  },
+  "wall": {
+   "name": "The blue wall",
+   "kind": "area",
+   "parent": null,
+   "widest_down": 0.78,
+   "base_wide": 1.24,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 0.0,
+   "bottom": 4.18,
+   "wide": 16.0,
+   "tall": 7.82,
+   "cx": 8.89,
+   "cy": 3.55,
+   "peak_x": 8.99,
+   "edges": [
+    "left",
+    "right",
+    "top"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 5.86,
+      "to": 7.8,
+      "mid": 6.83
+     }
+    ],
+    "right": [
+     {
+      "from": 0.0,
+      "to": 7.57,
+      "mid": 3.79
+     }
+    ],
+    "top": [
+     {
+      "from": 1.99,
+      "to": 16.0,
+      "mid": 9.0
+     }
+    ]
+   },
+   "share": 0.5206,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "garden-trees": {
+   "name": "The trees through the window",
+   "kind": "marks",
+   "parent": "garden-sky",
+   "widest_down": 0.58,
+   "base_wide": 0.72,
+   "left": 0.0,
+   "right": 13.74,
+   "top": 0.0,
+   "bottom": 5.74,
+   "wide": 2.26,
+   "tall": 6.26,
+   "cx": 1.09,
+   "cy": 3.54,
+   "peak_x": 1.25,
+   "edges": [
+    "left",
+    "top"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 2.96,
+      "to": 6.25,
+      "mid": 4.61
+     }
+    ],
+    "top": [
+     {
+      "from": 0.47,
+      "to": 1.99,
+      "mid": 1.23
+     }
+    ]
+   },
+   "share": 0.0398,
+   "beside": {
+    "wall": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 1.38,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.32,
+      "across": 0.22
+     }
+    },
+    "cat": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.9
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.86
+     }
+    }
+   }
+  },
+  "window-frame": {
+   "name": "The white window frame",
+   "kind": "object",
+   "parent": null,
+   "widest_down": 0.29,
+   "base_wide": 0.98,
+   "left": 0.0,
+   "right": 11.69,
+   "top": 0.0,
+   "bottom": 4.18,
+   "wide": 4.31,
+   "tall": 7.82,
+   "cx": 1.97,
+   "cy": 3.71,
+   "peak_x": 2.18,
+   "edges": [
+    "left",
+    "top"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 1.62,
+      "to": 2.58,
+      "mid": 2.1
+     },
+     {
+      "from": 5.51,
+      "to": 7.8,
+      "mid": 6.66
+     }
+    ],
+    "top": [
+     {
+      "from": 1.3,
+      "to": 3.07,
+      "mid": 2.19
+     }
+    ]
+   },
+   "share": 0.093,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "wall": {
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 1.79,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "the-window-frame-s-shadows": {
+   "name": "The window frame's shadows",
+   "kind": "marks",
+   "parent": "window-frame",
+   "widest_down": 0.78,
+   "base_wide": 0.98,
+   "left": 0.0,
+   "right": 11.65,
+   "top": 0.0,
+   "bottom": 4.18,
+   "wide": 4.35,
+   "tall": 7.82,
+   "cx": 2.46,
+   "cy": 4.56,
+   "peak_x": 2.27,
+   "edges": [
+    "left",
+    "top"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 2.19,
+      "to": 2.58,
+      "mid": 2.38
+     },
+     {
+      "from": 6.07,
+      "to": 6.45,
+      "mid": 6.26
+     },
+     {
+      "from": 6.76,
+      "to": 7.8,
+      "mid": 7.28
+     }
+    ],
+    "top": [
+     {
+      "from": 2.19,
+      "to": 2.37,
+      "mid": 2.28
+     }
+    ]
+   },
+   "share": 0.0463,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "wall": {
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "ledge": {
+   "name": "The wooden ledge",
+   "kind": "area",
+   "parent": null,
+   "widest_down": 0.29,
+   "base_wide": 16.0,
+   "left": 0.0,
+   "right": 0.0,
+   "top": 6.26,
+   "bottom": 0.0,
+   "wide": 16.0,
+   "tall": 5.74,
+   "cx": 7.86,
+   "cy": 9.45,
+   "peak_x": 4.16,
+   "edges": [
+    "left",
+    "right",
+    "bottom"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 7.73,
+      "to": 12.0,
+      "mid": 9.87
+     }
+    ],
+    "right": [
+     {
+      "from": 7.55,
+      "to": 12.0,
+      "mid": 9.77
+     }
+    ],
+    "bottom": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0
+     }
+    ]
+   },
+   "share": 0.4215,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.32,
+      "across": null
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   }
+  },
+  "light-and-shadow-on-the-ledge": {
+   "name": "Light and shadow on the ledge",
+   "kind": "marks",
+   "parent": "ledge",
+   "widest_down": 0.72,
+   "base_wide": 2.05,
+   "left": 0.0,
+   "right": 8.16,
+   "top": 7.64,
+   "bottom": 1.07,
+   "wide": 7.84,
+   "tall": 3.29,
+   "cx": 3.72,
+   "cy": 9.46,
+   "peak_x": 2.99,
+   "edges": [
+    "left"
+   ],
+   "meets": {
+    "left": [
+     {
+      "from": 8.85,
+      "to": 10.28,
+      "mid": 9.56
+     }
+    ]
+   },
+   "share": 0.0755,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 1.7,
+      "across": null
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 1.38,
+      "across": null
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 1.7
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "below"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 1.09,
+      "across": null
+     }
+    }
+   }
+  },
+  "blanket": {
+   "name": "The yellow knit blanket",
+   "kind": "object",
+   "parent": null,
+   "widest_down": 0.41,
+   "base_wide": 5.72,
+   "left": 1.16,
+   "right": 0.0,
+   "top": 5.12,
+   "bottom": 0.89,
+   "wide": 14.84,
+   "tall": 5.99,
+   "cx": 8.76,
+   "cy": 8.19,
+   "peak_x": 4.64,
+   "edges": [
+    "right"
+   ],
+   "meets": {
+    "right": [
+     {
+      "from": 6.05,
+      "to": 11.11,
+      "mid": 8.58
+     }
+    ]
+   },
+   "share": 0.3944,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "the-blanket-s-knit-loops": {
+   "name": "The blanket's knit loops",
+   "kind": "marks",
+   "parent": "blanket",
+   "widest_down": 0.72,
+   "base_wide": 4.88,
+   "left": 1.95,
+   "right": 0.0,
+   "top": 5.34,
+   "bottom": 0.9,
+   "wide": 14.05,
+   "tall": 5.75,
+   "cx": 8.38,
+   "cy": 8.6,
+   "peak_x": 5.86,
+   "edges": [
+    "right"
+   ],
+   "meets": {
+    "right": [
+     {
+      "from": 6.06,
+      "to": 6.46,
+      "mid": 6.26
+     },
+     {
+      "from": 6.54,
+      "to": 7.35,
+      "mid": 6.94
+     },
+     {
+      "from": 10.0,
+      "to": 10.92,
+      "mid": 10.46
+     }
+    ]
+   },
+   "share": 0.0839,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.1,
+      "across": 0.16
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.32,
+      "across": 0.22
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "cat": {
+     "this_is": [
+      "below"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.03
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   }
+  },
+  "cat": {
+   "name": "The sleeping tabby kitten",
+   "kind": "object",
+   "parent": null,
+   "widest_down": 0.41,
+   "base_wide": 8.99,
+   "left": 1.02,
+   "right": 0.07,
+   "top": 1.34,
+   "bottom": 3.5,
+   "wide": 14.91,
+   "tall": 7.16,
+   "cx": 8.88,
+   "cy": 5.33,
+   "peak_x": 6.48,
+   "edges": [
+    "right"
+   ],
+   "meets": {
+    "right": [
+     {
+      "from": 5.73,
+      "to": 5.81,
+      "mid": 5.77
+     },
+     {
+      "from": 5.96,
+      "to": 7.12,
+      "mid": 6.54
+     }
+    ]
+   },
+   "share": 0.3899,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   }
+  },
+  "the-kitten-s-shading-and-white-patches": {
+   "name": "The kitten's shading and white patches",
+   "kind": "marks",
+   "parent": "cat",
+   "widest_down": 0.61,
+   "base_wide": 2.05,
+   "left": 2.98,
+   "right": 0.2,
+   "top": 3.3,
+   "bottom": 3.69,
+   "wide": 12.82,
+   "tall": 5.0,
+   "cx": 8.03,
+   "cy": 6.57,
+   "peak_x": 7.12,
+   "edges": [
+    "right"
+   ],
+   "meets": {
+    "right": [
+     {
+      "from": 6.07,
+      "to": 6.93,
+      "mid": 6.5
+     }
+    ]
+   },
+   "share": 0.0594,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.99
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.99
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.29
+     }
+    }
+   }
+  },
+  "the-kitten-s-ears-stripes-and-fur": {
+   "name": "The kitten's ears, stripes and fur",
+   "kind": "marks",
+   "parent": "cat",
+   "widest_down": 0.44,
+   "base_wide": 0.76,
+   "left": 1.21,
+   "right": 1.62,
+   "top": 1.56,
+   "bottom": 3.87,
+   "wide": 13.18,
+   "tall": 6.57,
+   "cx": 8.05,
+   "cy": 4.57,
+   "peak_x": 6.54,
+   "edges": [],
+   "meets": {},
+   "share": 0.0667,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "wall": {
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 1.7
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.03
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-sleeping-face": {
+     "this_is": [
+      "above",
+      "below",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.26
+     }
+    }
+   }
+  },
+  "the-sleeping-face": {
+   "name": "The sleeping face",
+   "kind": "marks",
+   "parent": "cat",
+   "widest_down": 0.83,
+   "base_wide": 0.2,
+   "left": 3.11,
+   "right": 9.01,
+   "top": 4.91,
+   "bottom": 5.44,
+   "wide": 3.88,
+   "tall": 1.65,
+   "cx": 5.02,
+   "cy": 5.86,
+   "peak_x": 6.27,
+   "edges": [],
+   "meets": {},
+   "share": 0.0014,
+   "beside": {
+    "garden-sky": {
+     "this_is": [
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 1.15
+     }
+    },
+    "wall": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "garden-trees": {
+     "this_is": [
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": null,
+      "across": 0.86
+     }
+    },
+    "window-frame": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 1.79,
+      "across": 0.0
+     }
+    },
+    "the-window-frame-s-shadows": {
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    "light-and-shadow-on-the-ledge": {
+     "this_is": [
+      "above"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 1.09,
+      "across": null
+     }
+    },
+    "blanket": {
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-blanket-s-knit-loops": {
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    "the-kitten-s-shading-and-white-patches": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "touches": true,
+     "gap": {
+      "down": 0.0,
+      "across": 0.29
+     }
+    },
+    "the-kitten-s-ears-stripes-and-fur": {
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "touches": false,
+     "gap": {
+      "down": 0.0,
+      "across": 0.26
+     }
+    }
+   }
+  }
+ },
+ "steps": [
+  {
+   "n": 1,
+   "id": "blend-garden-sky",
+   "name": "Blend the sky through the window",
+   "part": "garden-sky",
+   "part_name": "The pale sky through the window",
+   "kind": "area",
+   "show": "blend",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "pale-blue",
+     "name": "Pale blue",
+     "words": [
+      "pale",
+      "blue"
+     ]
+    },
+    {
+     "id": "white",
+     "name": "White",
+     "words": [
+      "white"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.03,
+    "base_wide": 0.91,
+    "left": 0.0,
+    "right": 14.69,
+    "top": 0.0,
+    "bottom": 6.43,
+    "wide": 1.31,
+    "tall": 5.57,
+    "cx": 0.61,
+    "cy": 2.8,
+    "peak_x": 0.64,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 0.0,
+       "to": 1.72,
+       "mid": 0.86
+      },
+      {
+       "from": 2.11,
+       "to": 2.18,
+       "mid": 2.14
+      },
+      {
+       "from": 2.55,
+       "to": 5.55,
+       "mid": 4.05
+      }
+     ],
+     "top": [
+      {
+       "from": 0.0,
+       "to": 1.3,
+       "mid": 0.65
+      }
+     ]
+    },
+    "share": 0.0292
+   },
+   "marks": [
+    {
+     "widest_down": 0.0,
+     "base_wide": 0.83,
+     "left": 0.0,
+     "right": 14.01,
+     "top": 0.0,
+     "bottom": 6.06,
+     "wide": 1.99,
+     "tall": 5.94,
+     "cx": 0.97,
+     "cy": 2.79,
+     "peak_x": 0.99,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 0.0,
+        "to": 5.92,
+        "mid": 2.96
+       }
+      ],
+      "top": [
+       {
+        "from": 0.0,
+        "to": 1.99,
+        "mid": 1.0
+       }
+      ]
+     },
+     "share": 0.0579,
+     "in_part": [
+      0.49,
+      0.47
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.0,
+      "to": 1.99,
+      "mid": 1.0,
+      "in_part": 0.5
+     }
+    ],
+    "down": [
+     {
+      "from": 0.0,
+      "to": 5.61,
+      "mid": 2.81,
+      "in_part": 0.47
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.0,
+       "to": 1.99,
+       "mid": 1.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 1.99,
+       "mid": 1.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 1.99,
+       "mid": 1.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 1.98,
+       "mid": 0.99,
+       "in_part": 0.5
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#bde1fc",
+    "paints": {
+     "Pale blue": 11.2,
+     "White": 16.7
+    },
+    "cx": 0.97,
+    "cy": 2.79,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.52,
+     "right": 0.48,
+     "top": 0.53,
+     "bottom": 0.47
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 2.98,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 0.16
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.7
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.86
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 1 1/4 in wide and 5 1/2 in tall."
+  },
+  {
+   "n": 2,
+   "id": "blend-wall",
+   "name": "Blend the blue wall",
+   "part": "wall",
+   "part_name": "The blue wall",
+   "kind": "area",
+   "show": "blend",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "wall-blue",
+     "name": "Wall blue",
+     "words": [
+      "wall",
+      "blue"
+     ]
+    },
+    {
+     "id": "pale-blue",
+     "name": "Pale blue",
+     "words": [
+      "pale",
+      "blue"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.02,
+    "base_wide": 0.26,
+    "left": 3.06,
+    "right": 0.0,
+    "top": 0.0,
+    "bottom": 5.93,
+    "wide": 12.94,
+    "tall": 6.07,
+    "cx": 10.16,
+    "cy": 1.54,
+    "peak_x": 9.53,
+    "edges": [
+     "right",
+     "top"
+    ],
+    "meets": {
+     "right": [
+      {
+       "from": 0.0,
+       "to": 6.06,
+       "mid": 3.03
+      }
+     ],
+     "top": [
+      {
+       "from": 3.06,
+       "to": 16.0,
+       "mid": 9.53
+      }
+     ]
+    },
+    "share": 0.1749
+   },
+   "marks": [
+    {
+     "widest_down": 0.78,
+     "base_wide": 1.24,
+     "left": 0.0,
+     "right": 0.0,
+     "top": 0.0,
+     "bottom": 4.18,
+     "wide": 16.0,
+     "tall": 7.82,
+     "cx": 8.89,
+     "cy": 3.55,
+     "peak_x": 8.99,
+     "edges": [
+      "left",
+      "right",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 5.86,
+        "to": 7.8,
+        "mid": 6.83
+       }
+      ],
+      "right": [
+       {
+        "from": 0.0,
+        "to": 7.57,
+        "mid": 3.79
+       }
+      ],
+      "top": [
+       {
+        "from": 1.99,
+        "to": 16.0,
+        "mid": 9.0
+       }
+      ]
+     },
+     "share": 0.5206,
+     "in_part": [
+      0.56,
+      0.45
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.98,
+      "to": 16.0,
+      "mid": 8.99,
+      "in_part": 0.56
+     }
+    ],
+    "down": [
+     {
+      "from": 0.0,
+      "to": 6.8,
+      "mid": 3.4,
+      "in_part": 0.43
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.99,
+       "to": 16.0,
+       "mid": 9.0,
+       "in_part": 0.56
+      }
+     ],
+     [
+      {
+       "from": 1.99,
+       "to": 16.0,
+       "mid": 9.0,
+       "in_part": 0.56
+      }
+     ],
+     [
+      {
+       "from": 1.97,
+       "to": 16.0,
+       "mid": 8.98,
+       "in_part": 0.56
+      }
+     ],
+     [
+      {
+       "from": 1.36,
+       "to": 16.0,
+       "mid": 8.68,
+       "in_part": 0.54
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#90a8c9",
+    "paints": {
+     "Wall blue": 0.7,
+     "Pale blue": 4.3
+    },
+    "cx": 8.89,
+    "cy": 3.55,
+    "edges": [
+     "left",
+     "right",
+     "top"
+    ],
+    "halves": {
+     "left": 0.43,
+     "right": 0.57,
+     "top": 0.55,
+     "bottom": 0.45
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.73
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.73
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 1.28,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 3.04,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its right side is at the right edge; it's about 13 in wide and 6 in tall."
+  },
+  {
+   "n": 3,
+   "id": "dab-dark-leaves",
+   "name": "Dab the dark leaves outside",
+   "part": "garden-trees",
+   "part_name": "The trees through the window",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "leaf-green",
+     "name": "Leaf green",
+     "words": [
+      "leaf",
+      "green"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.81,
+    "base_wide": 0.91,
+    "left": 0.0,
+    "right": 14.7,
+    "top": 0.0,
+    "bottom": 6.43,
+    "wide": 1.3,
+    "tall": 5.57,
+    "cx": 0.64,
+    "cy": 3.97,
+    "peak_x": 0.68,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 3.3,
+       "to": 3.45,
+       "mid": 3.38
+      },
+      {
+       "from": 3.49,
+       "to": 3.81,
+       "mid": 3.65
+      },
+      {
+       "from": 4.25,
+       "to": 5.55,
+       "mid": 4.9
+      }
+     ],
+     "top": [
+      {
+       "from": 1.02,
+       "to": 1.13,
+       "mid": 1.07
+      },
+      {
+       "from": 1.17,
+       "to": 1.25,
+       "mid": 1.21
+      }
+     ]
+    },
+    "share": 0.0095
+   },
+   "marks": [
+    {
+     "widest_down": 0.65,
+     "base_wide": 0.23,
+     "left": 0.0,
+     "right": 13.62,
+     "top": 0.0,
+     "bottom": 5.46,
+     "wide": 2.38,
+     "tall": 6.54,
+     "cx": 1.09,
+     "cy": 3.72,
+     "peak_x": 1.2,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 3.3,
+        "to": 3.45,
+        "mid": 3.38
+       },
+       {
+        "from": 3.49,
+        "to": 3.81,
+        "mid": 3.65
+       },
+       {
+        "from": 4.2,
+        "to": 5.59,
+        "mid": 4.89
+       },
+       {
+        "from": 5.85,
+        "to": 5.92,
+        "mid": 5.88
+       },
+       {
+        "from": 6.04,
+        "to": 6.38,
+        "mid": 6.21
+       }
+      ],
+      "top": [
+       {
+        "from": 0.41,
+        "to": 0.54,
+        "mid": 0.47
+       },
+       {
+        "from": 1.02,
+        "to": 1.13,
+        "mid": 1.07
+       },
+       {
+        "from": 1.17,
+        "to": 1.25,
+        "mid": 1.21
+       },
+       {
+        "from": 1.34,
+        "to": 1.51,
+        "mid": 1.42
+       },
+       {
+        "from": 1.78,
+        "to": 2.03,
+        "mid": 1.9
+       }
+      ]
+     },
+     "share": 0.0224,
+     "in_part": [
+      0.48,
+      0.59
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.21,
+      "to": 0.41,
+      "mid": 0.31,
+      "in_part": 0.14
+     },
+     {
+      "from": 0.89,
+      "to": 1.56,
+      "mid": 1.22,
+      "in_part": 0.54
+     }
+    ],
+    "down": [
+     {
+      "from": 0.23,
+      "to": 0.79,
+      "mid": 0.51,
+      "in_part": 0.08
+     },
+     {
+      "from": 2.32,
+      "to": 2.78,
+      "mid": 2.55,
+      "in_part": 0.41
+     },
+     {
+      "from": 3.48,
+      "to": 4.64,
+      "mid": 4.06,
+      "in_part": 0.65
+     },
+     {
+      "from": 5.39,
+      "to": 5.91,
+      "mid": 5.65,
+      "in_part": 0.9
+     }
+    ],
+    "bands": [
+     [],
+     [
+      {
+       "from": 0.87,
+       "to": 1.45,
+       "mid": 1.16,
+       "in_part": 0.51
+      }
+     ],
+     [
+      {
+       "from": 0.21,
+       "to": 0.42,
+       "mid": 0.32,
+       "in_part": 0.14
+      },
+      {
+       "from": 0.9,
+       "to": 1.07,
+       "mid": 0.98,
+       "in_part": 0.44
+      },
+      {
+       "from": 1.17,
+       "to": 1.63,
+       "mid": 1.4,
+       "in_part": 0.62
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 1.42,
+       "mid": 0.71,
+       "in_part": 0.31
+      },
+      {
+       "from": 1.58,
+       "to": 1.72,
+       "mid": 1.65,
+       "in_part": 0.73
+      },
+      {
+       "from": 1.81,
+       "to": 1.99,
+       "mid": 1.9,
+       "in_part": 0.84
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#7ea3b9",
+    "paints": {
+     "Leaf green": 4.2
+    },
+    "cx": 1.09,
+    "cy": 3.71,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.51,
+     "right": 0.49,
+     "top": 0.28,
+     "bottom": 0.72
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside"
+     ],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 2.98,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 0.16
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.61,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.7
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.83,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.86
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 1 1/4 in wide and 5 1/2 in tall."
+  },
+  {
+   "n": 4,
+   "id": "dab-light-leaves",
+   "name": "Dab the sunlit leaves",
+   "part": "garden-trees",
+   "part_name": "The trees through the window",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "light-leaf-green",
+     "name": "Light leaf green",
+     "words": [
+      "light",
+      "leaf",
+      "green"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.61,
+    "base_wide": 0.86,
+    "left": 0.0,
+    "right": 14.69,
+    "top": 0.0,
+    "bottom": 6.73,
+    "wide": 1.31,
+    "tall": 5.27,
+    "cx": 0.68,
+    "cy": 3.32,
+    "peak_x": 0.91,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 2.96,
+       "to": 3.55,
+       "mid": 3.26
+      },
+      {
+       "from": 3.68,
+       "to": 4.28,
+       "mid": 3.98
+      }
+     ],
+     "top": [
+      {
+       "from": 0.5,
+       "to": 1.3,
+       "mid": 0.9
+      }
+     ]
+    },
+    "share": 0.0087
+   },
+   "marks": [
+    {
+     "widest_down": 0.39,
+     "base_wide": 0.22,
+     "left": 0.0,
+     "right": 13.87,
+     "top": 2.26,
+     "bottom": 7.7,
+     "wide": 2.13,
+     "tall": 2.04,
+     "cx": 0.91,
+     "cy": 3.24,
+     "peak_x": 1.97,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 2.96,
+        "to": 3.55,
+        "mid": 3.26
+       },
+       {
+        "from": 3.68,
+        "to": 4.28,
+        "mid": 3.98
+       }
+      ]
+     },
+     "share": 0.0077,
+     "in_part": [
+      0.4,
+      0.52
+     ]
+    },
+    {
+     "widest_down": 0.36,
+     "base_wide": 0.14,
+     "left": 0.0,
+     "right": 14.02,
+     "top": 4.31,
+     "bottom": 5.8,
+     "wide": 1.98,
+     "tall": 1.89,
+     "cx": 1.02,
+     "cy": 5.19,
+     "peak_x": 1.65,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 5.54,
+        "to": 6.05,
+        "mid": 5.79
+       }
+      ]
+     },
+     "share": 0.0075,
+     "in_part": [
+      0.45,
+      0.83
+     ]
+    },
+    {
+     "widest_down": 0.03,
+     "base_wide": 0.11,
+     "left": 0.45,
+     "right": 14.03,
+     "top": 0.0,
+     "bottom": 11.1,
+     "wide": 1.52,
+     "tall": 0.9,
+     "cx": 1.33,
+     "cy": 0.34,
+     "peak_x": 1.16,
+     "edges": [
+      "top"
+     ],
+     "meets": {
+      "top": [
+       {
+        "from": 0.5,
+        "to": 1.84,
+        "mid": 1.17
+       }
+      ]
+     },
+     "share": 0.0033,
+     "in_part": [
+      0.59,
+      0.05
+     ]
+    },
+    {
+     "widest_down": 0.6,
+     "base_wide": 0.07,
+     "left": 1.44,
+     "right": 13.98,
+     "top": 3.15,
+     "bottom": 8.11,
+     "wide": 0.57,
+     "tall": 0.74,
+     "cx": 1.75,
+     "cy": 3.55,
+     "peak_x": 1.94,
+     "edges": [],
+     "meets": {},
+     "share": 0.0011,
+     "in_part": [
+      0.77,
+      0.57
+     ]
+    },
+    {
+     "widest_down": 0.59,
+     "base_wide": 0.19,
+     "left": 1.45,
+     "right": 13.74,
+     "top": 1.0,
+     "bottom": 9.98,
+     "wide": 0.81,
+     "tall": 1.02,
+     "cx": 1.88,
+     "cy": 1.52,
+     "peak_x": 1.96,
+     "edges": [],
+     "meets": {},
+     "share": 0.0024,
+     "in_part": [
+      0.83,
+      0.24
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.04,
+      "to": 0.21,
+      "mid": 0.12,
+      "in_part": 0.05
+     },
+     {
+      "from": 0.41,
+      "to": 0.89,
+      "mid": 0.65,
+      "in_part": 0.29
+     },
+     {
+      "from": 1.56,
+      "to": 1.96,
+      "mid": 1.76,
+      "in_part": 0.78
+     }
+    ],
+    "down": [
+     {
+      "from": 2.78,
+      "to": 3.47,
+      "mid": 3.12,
+      "in_part": 0.5
+     },
+     {
+      "from": 4.64,
+      "to": 5.54,
+      "mid": 5.09,
+      "in_part": 0.81
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.52,
+       "to": 2.19,
+       "mid": 1.86,
+       "in_part": 0.82
+      }
+     ],
+     [
+      {
+       "from": 1.75,
+       "to": 2.09,
+       "mid": 1.92,
+       "in_part": 0.85
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 0.21,
+       "mid": 0.11,
+       "in_part": 0.05
+      },
+      {
+       "from": 0.42,
+       "to": 0.9,
+       "mid": 0.66,
+       "in_part": 0.29
+      },
+      {
+       "from": 1.07,
+       "to": 1.17,
+       "mid": 1.12,
+       "in_part": 0.5
+      },
+      {
+       "from": 1.63,
+       "to": 1.97,
+       "mid": 1.8,
+       "in_part": 0.8
+      }
+     ],
+     [
+      {
+       "from": 1.42,
+       "to": 1.58,
+       "mid": 1.5,
+       "in_part": 0.66
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#abb482",
+    "paints": {
+     "Light leaf green": 1.5
+    },
+    "cx": 1.16,
+    "cy": 3.29,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.46,
+     "right": 0.54,
+     "top": 0.42,
+     "bottom": 0.58
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    3
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.45,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 2.08,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 3.26,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.22,
+      "across": null
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 1.06,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.7
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.89
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 1 1/4 in wide and 5 1/2 in tall."
+  },
+  {
+   "n": 5,
+   "id": "block-in-frame",
+   "name": "Block in the white window frame",
+   "part": "window-frame",
+   "part_name": "The white window frame",
+   "kind": "object",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "white",
+     "name": "White",
+     "words": [
+      "white"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.29,
+    "base_wide": 0.98,
+    "left": 0.0,
+    "right": 12.93,
+    "top": 0.0,
+    "bottom": 4.18,
+    "wide": 3.07,
+    "tall": 7.82,
+    "cx": 1.6,
+    "cy": 3.36,
+    "peak_x": 2.18,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 1.62,
+       "to": 2.58,
+       "mid": 2.1
+      },
+      {
+       "from": 5.51,
+       "to": 7.8,
+       "mid": 6.66
+      }
+     ],
+     "top": [
+      {
+       "from": 1.3,
+       "to": 3.07,
+       "mid": 2.19
+      }
+     ]
+    },
+    "share": 0.0617
+   },
+   "marks": [
+    {
+     "widest_down": 0.82,
+     "base_wide": 0.98,
+     "left": 0.0,
+     "right": 12.35,
+     "top": 0.0,
+     "bottom": 4.18,
+     "wide": 3.65,
+     "tall": 7.82,
+     "cx": 1.81,
+     "cy": 3.93,
+     "peak_x": 2.16,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 1.9,
+        "to": 2.6,
+        "mid": 2.25
+       },
+       {
+        "from": 5.48,
+        "to": 7.8,
+        "mid": 6.64
+       }
+      ],
+      "top": [
+       {
+        "from": 1.29,
+        "to": 3.07,
+        "mid": 2.18
+       }
+      ]
+     },
+     "share": 0.0846,
+     "in_part": [
+      0.42,
+      0.5
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.28,
+      "to": 3.07,
+      "mid": 2.17,
+      "in_part": 0.5
+     }
+    ],
+    "down": [
+     {
+      "from": 0.0,
+      "to": 7.02,
+      "mid": 3.51,
+      "in_part": 0.45
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.0,
+       "to": 3.07,
+       "mid": 1.54,
+       "in_part": 0.36
+      }
+     ],
+     [
+      {
+       "from": 1.28,
+       "to": 3.07,
+       "mid": 2.17,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 1.28,
+       "to": 3.07,
+       "mid": 2.17,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.34,
+       "to": 3.08,
+       "mid": 1.71,
+       "in_part": 0.4
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#faf8f4",
+    "paints": {
+     "White": 0.0
+    },
+    "cx": 1.81,
+    "cy": 3.93,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.62,
+     "right": 0.38,
+     "top": 0.49,
+     "bottom": 0.51
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.7,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.06
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 3 in wide and 8 in tall."
+  },
+  {
+   "n": 6,
+   "id": "shade-frame",
+   "name": "Shade the side of the frame",
+   "part": "the-window-frame-s-shadows",
+   "part_name": "The window frame's shadows",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "wall-blue",
+     "name": "Wall blue",
+     "words": [
+      "wall",
+      "blue"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.29,
+    "base_wide": 0.98,
+    "left": 0.0,
+    "right": 11.69,
+    "top": 0.0,
+    "bottom": 4.18,
+    "wide": 4.31,
+    "tall": 7.82,
+    "cx": 1.95,
+    "cy": 3.95,
+    "peak_x": 2.27,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 2.19,
+       "to": 2.58,
+       "mid": 2.38
+      },
+      {
+       "from": 6.07,
+       "to": 6.45,
+       "mid": 6.26
+      },
+      {
+       "from": 6.76,
+       "to": 7.8,
+       "mid": 7.28
+      }
+     ],
+     "top": [
+      {
+       "from": 2.19,
+       "to": 2.37,
+       "mid": 2.28
+      }
+     ]
+    },
+    "share": 0.0268
+   },
+   "marks": [
+    {
+     "widest_down": 0.79,
+     "base_wide": 0.98,
+     "left": 0.0,
+     "right": 11.19,
+     "top": 0.0,
+     "bottom": 4.18,
+     "wide": 4.81,
+     "tall": 7.82,
+     "cx": 2.77,
+     "cy": 3.99,
+     "peak_x": 3.57,
+     "edges": [
+      "left",
+      "top"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 2.19,
+        "to": 2.6,
+        "mid": 2.4
+       },
+       {
+        "from": 6.06,
+        "to": 6.49,
+        "mid": 6.28
+       },
+       {
+        "from": 6.77,
+        "to": 7.11,
+        "mid": 6.94
+       },
+       {
+        "from": 7.14,
+        "to": 7.8,
+        "mid": 7.47
+       }
+      ],
+      "top": [
+       {
+        "from": 2.18,
+        "to": 2.38,
+        "mid": 2.28
+       },
+       {
+        "from": 3.43,
+        "to": 4.34,
+        "mid": 3.89
+       }
+      ]
+     },
+     "share": 0.057,
+     "in_part": [
+      0.64,
+      0.51
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 2.18,
+      "to": 2.4,
+      "mid": 2.29,
+      "in_part": 0.53
+     },
+     {
+      "from": 3.42,
+      "to": 4.4,
+      "mid": 3.91,
+      "in_part": 0.9
+     }
+    ],
+    "down": [
+     {
+      "from": 5.92,
+      "to": 6.81,
+      "mid": 6.36,
+      "in_part": 0.81
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.52,
+       "to": 2.37,
+       "mid": 1.95,
+       "in_part": 0.45
+      },
+      {
+       "from": 3.42,
+       "to": 4.37,
+       "mid": 3.9,
+       "in_part": 0.9
+      }
+     ],
+     [
+      {
+       "from": 2.17,
+       "to": 2.38,
+       "mid": 2.27,
+       "in_part": 0.52
+      },
+      {
+       "from": 3.66,
+       "to": 4.38,
+       "mid": 4.02,
+       "in_part": 0.92
+      }
+     ],
+     [
+      {
+       "from": 2.18,
+       "to": 2.4,
+       "mid": 2.29,
+       "in_part": 0.53
+      },
+      {
+       "from": 3.59,
+       "to": 4.4,
+       "mid": 3.99,
+       "in_part": 0.92
+      }
+     ],
+     [
+      {
+       "from": 2.02,
+       "to": 2.4,
+       "mid": 2.21,
+       "in_part": 0.51
+      },
+      {
+       "from": 3.02,
+       "to": 3.97,
+       "mid": 3.5,
+       "in_part": 0.8
+      },
+      {
+       "from": 4.07,
+       "to": 4.41,
+       "mid": 4.24,
+       "in_part": 0.97
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#a2a5bf",
+    "paints": {
+     "Wall blue": 8.3
+    },
+    "cx": 2.78,
+    "cy": 4.0,
+    "edges": [
+     "left",
+     "top"
+    ],
+    "halves": {
+     "left": 0.29,
+     "right": 0.71,
+     "top": 0.48,
+     "bottom": 0.52
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside"
+     ],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.7,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": 0.26
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is at the top edge, and its left side is at the left edge; it's about 4 1/2 in wide and 8 in tall."
+  },
+  {
+   "n": 7,
+   "id": "lay-in-ledge",
+   "name": "Lay in the wooden ledge",
+   "part": "ledge",
+   "part_name": "The wooden ledge",
+   "kind": "area",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "wood-brown",
+     "name": "Wood brown",
+     "words": [
+      "wood",
+      "brown"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.83,
+    "base_wide": 16.0,
+    "left": 0.0,
+    "right": 0.0,
+    "top": 7.36,
+    "bottom": 0.0,
+    "wide": 16.0,
+    "tall": 4.64,
+    "cx": 6.13,
+    "cy": 10.97,
+    "peak_x": 1.04,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 7.73,
+       "to": 12.0,
+       "mid": 9.87
+      }
+     ],
+     "right": [
+      {
+       "from": 11.09,
+       "to": 12.0,
+       "mid": 11.54
+      }
+     ],
+     "bottom": [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0
+      }
+     ]
+    },
+    "share": 0.1237
+   },
+   "marks": [
+    {
+     "widest_down": 0.3,
+     "base_wide": 16.0,
+     "left": 0.0,
+     "right": 0.0,
+     "top": 6.28,
+     "bottom": 0.0,
+     "wide": 16.0,
+     "tall": 5.72,
+     "cx": 7.85,
+     "cy": 9.47,
+     "peak_x": 4.11,
+     "edges": [
+      "left",
+      "right",
+      "bottom"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 7.77,
+        "to": 12.0,
+        "mid": 9.88
+       }
+      ],
+      "right": [
+       {
+        "from": 7.59,
+        "to": 12.0,
+        "mid": 9.8
+       }
+      ],
+      "bottom": [
+       {
+        "from": 0.0,
+        "to": 16.0,
+        "mid": 8.0
+       }
+      ]
+     },
+     "share": 0.4184,
+     "in_part": [
+      0.49,
+      0.56
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.0,
+      "to": 16.0,
+      "mid": 8.0,
+      "in_part": 0.5
+     }
+    ],
+    "down": [
+     {
+      "from": 6.73,
+      "to": 12.0,
+      "mid": 9.36,
+      "in_part": 0.54
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.46,
+       "to": 16.0,
+       "mid": 8.23,
+       "in_part": 0.51
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 16.0,
+       "mid": 8.0,
+       "in_part": 0.5
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#9b4525",
+    "paints": {
+     "Wood brown": 0.0
+    },
+    "cx": 7.85,
+    "cy": 9.47,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.52,
+     "right": 0.48,
+     "top": 0.43,
+     "bottom": 0.57
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": null
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.47
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.8,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area, all the way across to the bottom edge. Its top is about 4 1/2 in from the bottom edge."
+  },
+  {
+   "n": 8,
+   "id": "darken-ledge",
+   "name": "Darken the front of the ledge",
+   "part": "light-and-shadow-on-the-ledge",
+   "part_name": "Light and shadow on the ledge",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "dark-wood",
+     "name": "Dark wood",
+     "words": [
+      "dark",
+      "wood"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.78,
+    "base_wide": 0.18,
+    "left": 0.0,
+    "right": 14.68,
+    "top": 8.79,
+    "bottom": 1.71,
+    "wide": 1.32,
+    "tall": 1.5,
+    "cx": 0.46,
+    "cy": 9.81,
+    "peak_x": 1.08,
+    "edges": [
+     "left"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 9.83,
+       "to": 10.28,
+       "mid": 10.05
+      }
+     ]
+    },
+    "share": 0.0016
+   },
+   "marks": [
+    {
+     "widest_down": 0.94,
+     "base_wide": 16.0,
+     "left": 0.0,
+     "right": 0.0,
+     "top": 6.29,
+     "bottom": 0.0,
+     "wide": 16.0,
+     "tall": 5.71,
+     "cx": 8.84,
+     "cy": 9.62,
+     "peak_x": 4.11,
+     "edges": [
+      "left",
+      "right",
+      "bottom"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 7.83,
+        "to": 8.92,
+        "mid": 8.37
+       },
+       {
+        "from": 9.84,
+        "to": 10.54,
+        "mid": 10.19
+       },
+       {
+        "from": 10.55,
+        "to": 10.72,
+        "mid": 10.63
+       },
+       {
+        "from": 10.96,
+        "to": 11.58,
+        "mid": 11.27
+       },
+       {
+        "from": 11.61,
+        "to": 11.82,
+        "mid": 11.72
+       }
+      ],
+      "right": [
+       {
+        "from": 7.61,
+        "to": 7.76,
+        "mid": 7.68
+       },
+       {
+        "from": 7.83,
+        "to": 8.6,
+        "mid": 8.21
+       },
+       {
+        "from": 8.61,
+        "to": 8.79,
+        "mid": 8.7
+       },
+       {
+        "from": 8.89,
+        "to": 8.98,
+        "mid": 8.94
+       },
+       {
+        "from": 9.05,
+        "to": 9.21,
+        "mid": 9.13
+       },
+       {
+        "from": 9.22,
+        "to": 9.33,
+        "mid": 9.28
+       },
+       {
+        "from": 9.34,
+        "to": 9.43,
+        "mid": 9.39
+       },
+       {
+        "from": 9.45,
+        "to": 9.64,
+        "mid": 9.54
+       },
+       {
+        "from": 9.73,
+        "to": 10.34,
+        "mid": 10.03
+       },
+       {
+        "from": 10.69,
+        "to": 11.27,
+        "mid": 10.98
+       },
+       {
+        "from": 11.31,
+        "to": 11.53,
+        "mid": 11.42
+       },
+       {
+        "from": 11.54,
+        "to": 11.98,
+        "mid": 11.76
+       }
+      ],
+      "bottom": [
+       {
+        "from": 0.0,
+        "to": 0.81,
+        "mid": 0.4
+       },
+       {
+        "from": 0.88,
+        "to": 1.14,
+        "mid": 1.01
+       },
+       {
+        "from": 1.15,
+        "to": 16.0,
+        "mid": 8.57
+       }
+      ]
+     },
+     "share": 0.201,
+     "in_part": [
+      1.13,
+      0.6
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.63,
+      "to": 1.14,
+      "mid": 0.88,
+      "in_part": 0.11
+     },
+     {
+      "from": 6.21,
+      "to": 7.5,
+      "mid": 6.86,
+      "in_part": 0.87
+     },
+     {
+      "from": 9.54,
+      "to": 16.0,
+      "mid": 12.77,
+      "in_part": 1.63
+     }
+    ],
+    "down": [
+     {
+      "from": 6.33,
+      "to": 6.89,
+      "mid": 6.61,
+      "in_part": -0.31
+     },
+     {
+      "from": 7.38,
+      "to": 7.79,
+      "mid": 7.59,
+      "in_part": -0.02
+     },
+     {
+      "from": 8.67,
+      "to": 8.91,
+      "mid": 8.79,
+      "in_part": 0.35
+     },
+     {
+      "from": 10.77,
+      "to": 12.0,
+      "mid": 11.38,
+      "in_part": 1.14
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 0.0,
+       "to": 2.59,
+       "mid": 1.3,
+       "in_part": 0.17
+      },
+      {
+       "from": 7.83,
+       "to": 10.53,
+       "mid": 9.18,
+       "in_part": 1.17
+      },
+      {
+       "from": 10.74,
+       "to": 13.3,
+       "mid": 12.02,
+       "in_part": 1.53
+      },
+      {
+       "from": 13.55,
+       "to": 14.01,
+       "mid": 13.78,
+       "in_part": 1.76
+      },
+      {
+       "from": 14.21,
+       "to": 16.0,
+       "mid": 15.1,
+       "in_part": 1.93
+      }
+     ],
+     [
+      {
+       "from": 1.01,
+       "to": 1.55,
+       "mid": 1.28,
+       "in_part": 0.16
+      },
+      {
+       "from": 4.03,
+       "to": 5.23,
+       "mid": 4.63,
+       "in_part": 0.59
+      },
+      {
+       "from": 9.31,
+       "to": 14.41,
+       "mid": 11.86,
+       "in_part": 1.51
+      },
+      {
+       "from": 14.79,
+       "to": 15.98,
+       "mid": 15.38,
+       "in_part": 1.96
+      }
+     ],
+     [
+      {
+       "from": 0.63,
+       "to": 1.16,
+       "mid": 0.9,
+       "in_part": 0.11
+      },
+      {
+       "from": 6.05,
+       "to": 7.42,
+       "mid": 6.73,
+       "in_part": 0.86
+      },
+      {
+       "from": 9.51,
+       "to": 16.0,
+       "mid": 12.75,
+       "in_part": 1.63
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 0.79,
+       "mid": 0.39,
+       "in_part": 0.05
+      },
+      {
+       "from": 7.99,
+       "to": 9.53,
+       "mid": 8.76,
+       "in_part": 1.12
+      },
+      {
+       "from": 10.34,
+       "to": 16.0,
+       "mid": 13.17,
+       "in_part": 1.68
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#ab4926",
+    "paints": {
+     "Dark wood": 10.5
+    },
+    "cx": 8.84,
+    "cy": 9.62,
+    "edges": [
+     "left",
+     "right",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.21,
+     "right": 0.79,
+     "top": 0.43,
+     "bottom": 0.57
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 3.3,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.15,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 3.3,
+      "across": null
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.02,
+      "across": null
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.02,
+      "across": null
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.9,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "left of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.61
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.35,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.09,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 1 3/4 in from the bottom edge, and its left side is at the left edge; it's about 1 1/4 in wide and 1 1/2 in tall."
+  },
+  {
+   "n": 9,
+   "id": "light-ledge",
+   "name": "Dry-brush the sunlit patches on the ledge",
+   "part": "light-and-shadow-on-the-ledge",
+   "part_name": "Light and shadow on the ledge",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "sunlit-wood",
+     "name": "Sunlit wood",
+     "words": [
+      "sunlit",
+      "wood"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.92,
+    "base_wide": 1.58,
+    "left": 0.0,
+    "right": 9.48,
+    "top": 8.54,
+    "bottom": 1.07,
+    "wide": 6.52,
+    "tall": 2.39,
+    "cx": 1.8,
+    "cy": 9.86,
+    "peak_x": 0.89,
+    "edges": [
+     "left"
+    ],
+    "meets": {
+     "left": [
+      {
+       "from": 8.86,
+       "to": 9.9,
+       "mid": 9.38
+      }
+     ]
+    },
+    "share": 0.0115
+   },
+   "marks": [
+    {
+     "widest_down": 0.36,
+     "base_wide": 0.16,
+     "left": 0.0,
+     "right": 14.79,
+     "top": 8.51,
+     "bottom": 2.07,
+     "wide": 1.21,
+     "tall": 1.42,
+     "cx": 0.47,
+     "cy": 9.13,
+     "peak_x": 0.92,
+     "edges": [
+      "left"
+     ],
+     "meets": {
+      "left": [
+       {
+        "from": 8.86,
+        "to": 9.89,
+        "mid": 9.38
+       }
+      ]
+     },
+     "share": 0.0044,
+     "in_part": [
+      0.06,
+      0.45
+     ]
+    },
+    {
+     "widest_down": 0.66,
+     "base_wide": 0.74,
+     "left": 0.49,
+     "right": 5.65,
+     "top": 8.55,
+     "bottom": 0.74,
+     "wide": 9.86,
+     "tall": 2.71,
+     "cx": 4.51,
+     "cy": 9.97,
+     "peak_x": 2.1,
+     "edges": [],
+     "meets": {},
+     "share": 0.0615,
+     "in_part": [
+      0.58,
+      0.71
+     ]
+    },
+    {
+     "widest_down": 0.32,
+     "base_wide": 0.43,
+     "left": 2.06,
+     "right": 5.44,
+     "top": 7.63,
+     "bottom": 1.79,
+     "wide": 8.5,
+     "tall": 2.58,
+     "cx": 5.83,
+     "cy": 8.67,
+     "peak_x": 2.97,
+     "edges": [],
+     "meets": {},
+     "share": 0.029,
+     "in_part": [
+      0.74,
+      0.31
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 0.0,
+      "to": 0.62,
+      "mid": 0.31,
+      "in_part": 0.04
+     },
+     {
+      "from": 1.2,
+      "to": 6.34,
+      "mid": 3.77,
+      "in_part": 0.48
+     },
+     {
+      "from": 7.68,
+      "to": 9.4,
+      "mid": 8.54,
+      "in_part": 1.09
+     }
+    ],
+    "down": [
+     {
+      "from": 7.79,
+      "to": 8.66,
+      "mid": 8.23,
+      "in_part": 0.18
+     },
+     {
+      "from": 8.92,
+      "to": 10.71,
+      "mid": 9.81,
+      "in_part": 0.66
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 2.59,
+       "to": 7.06,
+       "mid": 4.82,
+       "in_part": 0.62
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 1.0,
+       "mid": 0.5,
+       "in_part": 0.06
+      },
+      {
+       "from": 1.56,
+       "to": 4.01,
+       "mid": 2.78,
+       "in_part": 0.36
+      },
+      {
+       "from": 5.08,
+       "to": 9.26,
+       "mid": 7.17,
+       "in_part": 0.91
+      }
+     ],
+     [
+      {
+       "from": 0.0,
+       "to": 0.62,
+       "mid": 0.31,
+       "in_part": 0.04
+      },
+      {
+       "from": 1.21,
+       "to": 6.15,
+       "mid": 3.68,
+       "in_part": 0.47
+      },
+      {
+       "from": 7.67,
+       "to": 8.25,
+       "mid": 7.96,
+       "in_part": 1.02
+      },
+      {
+       "from": 8.47,
+       "to": 9.31,
+       "mid": 8.89,
+       "in_part": 1.13
+      }
+     ],
+     [
+      {
+       "from": 0.8,
+       "to": 7.92,
+       "mid": 4.36,
+       "in_part": 0.56
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#e47c45",
+    "paints": {
+     "Sunlit wood": 9.6
+    },
+    "cx": 4.84,
+    "cy": 9.56,
+    "edges": [
+     "left",
+     "bottom"
+    ],
+    "halves": {
+     "left": 0.4,
+     "right": 0.6,
+     "top": 0.38,
+     "bottom": 0.62
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    8
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 2.98,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.83,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 2.98,
+      "across": null
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.7,
+      "across": null
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.7,
+      "across": null
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.1,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.22,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.22,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 2.11,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its left side is at the left edge; it's about 6 1/2 in wide and 2 1/2 in tall."
+  },
+  {
+   "n": 10,
+   "id": "block-in-blanket",
+   "name": "Block in the yellow blanket",
+   "part": "blanket",
+   "part_name": "The yellow knit blanket",
+   "kind": "object",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "golden-yellow",
+     "name": "Golden yellow",
+     "words": [
+      "golden",
+      "yellow"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.59,
+    "base_wide": 5.26,
+    "left": 1.16,
+    "right": 0.0,
+    "top": 6.0,
+    "bottom": 0.89,
+    "wide": 14.84,
+    "tall": 5.11,
+    "cx": 8.69,
+    "cy": 9.33,
+    "peak_x": 9.43,
+    "edges": [
+     "right"
+    ],
+    "meets": {
+     "right": [
+      {
+       "from": 6.06,
+       "to": 6.41,
+       "mid": 6.23
+      },
+      {
+       "from": 6.56,
+       "to": 11.11,
+       "mid": 8.84
+      }
+     ]
+    },
+    "share": 0.2129
+   },
+   "marks": [
+    {
+     "widest_down": 0.41,
+     "base_wide": 4.84,
+     "left": 1.18,
+     "right": 0.0,
+     "top": 5.16,
+     "bottom": 0.91,
+     "wide": 14.82,
+     "tall": 5.93,
+     "cx": 8.86,
+     "cy": 8.11,
+     "peak_x": 4.64,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 6.08,
+        "to": 10.92,
+        "mid": 8.5
+       }
+      ]
+     },
+     "share": 0.3756,
+     "in_part": [
+      0.52,
+      0.5
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.52,
+      "to": 16.0,
+      "mid": 8.76,
+      "in_part": 0.51
+     }
+    ],
+    "down": [
+     {
+      "from": 5.57,
+      "to": 10.52,
+      "mid": 8.04,
+      "in_part": 0.49
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.58,
+       "to": 16.0,
+       "mid": 8.79,
+       "in_part": 0.51
+      }
+     ],
+     [
+      {
+       "from": 1.21,
+       "to": 16.0,
+       "mid": 8.6,
+       "in_part": 0.5
+      }
+     ],
+     [
+      {
+       "from": 1.52,
+       "to": 16.0,
+       "mid": 8.76,
+       "in_part": 0.51
+      }
+     ],
+     [
+      {
+       "from": 1.34,
+       "to": 16.0,
+       "mid": 8.67,
+       "in_part": 0.51
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#fdbb0a",
+    "paints": {
+     "Golden yellow": 0.0
+    },
+    "cx": 8.86,
+    "cy": 8.11,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.48,
+     "right": 0.52,
+     "top": 0.5,
+     "bottom": 0.5
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.77,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.77,
+      "across": null
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.83
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its right side is at the right edge; it's about 15 in wide and 5 in tall."
+  },
+  {
+   "n": 11,
+   "id": "shade-blanket",
+   "name": "Press in the dark knit loops",
+   "part": "the-blanket-s-knit-loops",
+   "part_name": "The blanket's knit loops",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "dark-gold",
+     "name": "Dark gold",
+     "words": [
+      "dark",
+      "gold"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.68,
+    "base_wide": 3.38,
+    "left": 1.95,
+    "right": 0.0,
+    "top": 6.06,
+    "bottom": 0.9,
+    "wide": 14.05,
+    "tall": 5.04,
+    "cx": 9.23,
+    "cy": 9.71,
+    "peak_x": 15.89,
+    "edges": [
+     "right"
+    ],
+    "meets": {
+     "right": [
+      {
+       "from": 6.07,
+       "to": 6.41,
+       "mid": 6.24
+      },
+      {
+       "from": 6.56,
+       "to": 7.35,
+       "mid": 6.96
+      },
+      {
+       "from": 8.12,
+       "to": 8.38,
+       "mid": 8.25
+      },
+      {
+       "from": 10.0,
+       "to": 10.92,
+       "mid": 10.46
+      }
+     ]
+    },
+    "share": 0.0543
+   },
+   "marks": [
+    {
+     "widest_down": 0.85,
+     "base_wide": 4.68,
+     "left": 1.52,
+     "right": 0.0,
+     "top": 5.32,
+     "bottom": 0.94,
+     "wide": 14.48,
+     "tall": 5.74,
+     "cx": 9.25,
+     "cy": 8.35,
+     "peak_x": 5.39,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 6.18,
+        "to": 7.42,
+        "mid": 6.8
+       },
+       {
+        "from": 7.43,
+        "to": 7.58,
+        "mid": 7.51
+       },
+       {
+        "from": 7.59,
+        "to": 8.4,
+        "mid": 8.0
+       },
+       {
+        "from": 8.66,
+        "to": 9.66,
+        "mid": 9.16
+       },
+       {
+        "from": 9.93,
+        "to": 10.93,
+        "mid": 10.43
+       }
+      ]
+     },
+     "share": 0.2053,
+     "in_part": [
+      0.52,
+      0.52
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 2.32,
+      "to": 3.49,
+      "mid": 2.91,
+      "in_part": 0.07
+     },
+     {
+      "from": 9.78,
+      "to": 10.4,
+      "mid": 10.09,
+      "in_part": 0.58
+     },
+     {
+      "from": 12.89,
+      "to": 13.69,
+      "mid": 13.29,
+      "in_part": 0.81
+     },
+     {
+      "from": 14.04,
+      "to": 15.12,
+      "mid": 14.58,
+      "in_part": 0.9
+     }
+    ],
+    "down": [
+     {
+      "from": 5.88,
+      "to": 6.62,
+      "mid": 6.25,
+      "in_part": 0.16
+     },
+     {
+      "from": 7.65,
+      "to": 7.9,
+      "mid": 7.78,
+      "in_part": 0.42
+     },
+     {
+      "from": 9.52,
+      "to": 10.51,
+      "mid": 10.01,
+      "in_part": 0.81
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 2.16,
+       "to": 4.95,
+       "mid": 3.55,
+       "in_part": 0.11
+      },
+      {
+       "from": 8.43,
+       "to": 9.06,
+       "mid": 8.74,
+       "in_part": 0.48
+      },
+      {
+       "from": 9.38,
+       "to": 16.0,
+       "mid": 12.69,
+       "in_part": 0.76
+      }
+     ],
+     [
+      {
+       "from": 3.06,
+       "to": 4.54,
+       "mid": 3.8,
+       "in_part": 0.13
+      },
+      {
+       "from": 6.42,
+       "to": 8.78,
+       "mid": 7.6,
+       "in_part": 0.4
+      },
+      {
+       "from": 9.68,
+       "to": 10.37,
+       "mid": 10.03,
+       "in_part": 0.57
+      },
+      {
+       "from": 11.1,
+       "to": 13.84,
+       "mid": 12.47,
+       "in_part": 0.75
+      }
+     ],
+     [
+      {
+       "from": 9.08,
+       "to": 10.37,
+       "mid": 9.73,
+       "in_part": 0.55
+      },
+      {
+       "from": 14.15,
+       "to": 15.16,
+       "mid": 14.65,
+       "in_part": 0.9
+      }
+     ],
+     [
+      {
+       "from": 1.58,
+       "to": 7.84,
+       "mid": 4.71,
+       "in_part": 0.2
+      },
+      {
+       "from": 8.66,
+       "to": 9.39,
+       "mid": 9.03,
+       "in_part": 0.5
+      },
+      {
+       "from": 9.79,
+       "to": 11.84,
+       "mid": 10.81,
+       "in_part": 0.63
+      },
+      {
+       "from": 12.28,
+       "to": 13.02,
+       "mid": 12.65,
+       "in_part": 0.76
+      },
+      {
+       "from": 13.37,
+       "to": 15.88,
+       "mid": 14.63,
+       "in_part": 0.9
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#ed9306",
+    "paints": {
+     "Dark gold": 6.0
+    },
+    "cx": 9.2,
+    "cy": 8.34,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.47,
+     "right": 0.53,
+     "top": 0.48,
+     "bottom": 0.52
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.06
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 8.8
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 1 in from the bottom edge, and its right side is at the right edge; it's about 14 in wide and 5 in tall."
+  },
+  {
+   "n": 12,
+   "id": "light-blanket",
+   "name": "Press in the light knit loops",
+   "part": "the-blanket-s-knit-loops",
+   "part_name": "The blanket's knit loops",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "light-yellow",
+     "name": "Light yellow",
+     "words": [
+      "light",
+      "yellow"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": -0.01,
+    "base_wide": 0.01,
+    "left": 2.48,
+    "right": 9.76,
+    "top": 8.65,
+    "bottom": 1.71,
+    "wide": 3.75,
+    "tall": 1.64,
+    "cx": 3.34,
+    "cy": 8.81,
+    "peak_x": 2.9,
+    "edges": [],
+    "meets": {},
+    "share": 0.0
+   },
+   "marks": [
+    {
+     "widest_down": 0.48,
+     "base_wide": 0.16,
+     "left": 2.53,
+     "right": 8.49,
+     "top": 9.62,
+     "bottom": 1.7,
+     "wide": 4.98,
+     "tall": 0.68,
+     "cx": 4.86,
+     "cy": 9.96,
+     "peak_x": 3.87,
+     "edges": [],
+     "meets": {},
+     "share": 0.0058,
+     "in_part": [
+      0.21,
+      0.8
+     ]
+    },
+    {
+     "widest_down": 0.67,
+     "base_wide": 0.35,
+     "left": 1.18,
+     "right": 0.0,
+     "top": 5.17,
+     "bottom": 1.86,
+     "wide": 14.82,
+     "tall": 4.97,
+     "cx": 7.88,
+     "cy": 7.54,
+     "peak_x": 4.7,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 7.37,
+        "to": 7.46,
+        "mid": 7.42
+       },
+       {
+        "from": 7.48,
+        "to": 7.64,
+        "mid": 7.56
+       },
+       {
+        "from": 8.0,
+        "to": 8.13,
+        "mid": 8.07
+       }
+      ]
+     },
+     "share": 0.1123,
+     "in_part": [
+      0.42,
+      0.38
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.44,
+      "to": 2.72,
+      "mid": 2.08,
+      "in_part": 0.01
+     },
+     {
+      "from": 3.13,
+      "to": 9.11,
+      "mid": 6.12,
+      "in_part": 0.3
+     },
+     {
+      "from": 10.42,
+      "to": 12.55,
+      "mid": 11.49,
+      "in_part": 0.68
+     },
+     {
+      "from": 15.13,
+      "to": 16.0,
+      "mid": 15.57,
+      "in_part": 0.97
+     }
+    ],
+    "down": [
+     {
+      "from": 5.53,
+      "to": 5.86,
+      "mid": 5.7,
+      "in_part": 0.06
+     },
+     {
+      "from": 6.71,
+      "to": 7.04,
+      "mid": 6.88,
+      "in_part": 0.27
+     },
+     {
+      "from": 7.23,
+      "to": 7.48,
+      "mid": 7.35,
+      "in_part": 0.35
+     },
+     {
+      "from": 8.33,
+      "to": 9.05,
+      "mid": 8.69,
+      "in_part": 0.58
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.45,
+       "to": 2.16,
+       "mid": 1.81,
+       "in_part": -0.01
+      },
+      {
+       "from": 4.98,
+       "to": 7.56,
+       "mid": 6.27,
+       "in_part": 0.31
+      },
+      {
+       "from": 7.98,
+       "to": 8.67,
+       "mid": 8.33,
+       "in_part": 0.45
+      }
+     ],
+     [
+      {
+       "from": 1.21,
+       "to": 3.04,
+       "mid": 2.12,
+       "in_part": 0.01
+      },
+      {
+       "from": 4.18,
+       "to": 6.4,
+       "mid": 5.29,
+       "in_part": 0.24
+      },
+      {
+       "from": 9.99,
+       "to": 10.92,
+       "mid": 10.46,
+       "in_part": 0.61
+      },
+      {
+       "from": 13.96,
+       "to": 15.4,
+       "mid": 14.68,
+       "in_part": 0.91
+      }
+     ],
+     [
+      {
+       "from": 1.5,
+       "to": 9.0,
+       "mid": 5.25,
+       "in_part": 0.23
+      },
+      {
+       "from": 10.39,
+       "to": 12.61,
+       "mid": 11.5,
+       "in_part": 0.68
+      },
+      {
+       "from": 12.91,
+       "to": 14.0,
+       "mid": 13.45,
+       "in_part": 0.82
+      },
+      {
+       "from": 15.17,
+       "to": 16.0,
+       "mid": 15.58,
+       "in_part": 0.97
+      }
+     ],
+     [
+      {
+       "from": 10.12,
+       "to": 10.69,
+       "mid": 10.4,
+       "in_part": 0.6
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#fcbc1e",
+    "paints": {
+     "Light yellow": 6.8
+    },
+    "cx": 8.18,
+    "cy": 7.79,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.58,
+     "right": 0.42,
+     "top": 0.58,
+     "bottom": 0.42
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    11
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 3.2,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 3.17,
+      "across": null
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.95,
+      "across": 1.63
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "inside",
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.86
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.25,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 1.34,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 4.06,
+      "across": null
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 1 3/4 in from the bottom edge, and its left side is about 2 1/2 in from the left edge; it's about 4 in wide and 1 3/4 in tall."
+  },
+  {
+   "n": 13,
+   "id": "block-in-kitten",
+   "name": "Block in the kitten",
+   "part": "cat",
+   "part_name": "The sleeping tabby kitten",
+   "kind": "object",
+   "show": "full",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "cat-gray",
+     "name": "Cat gray",
+     "words": [
+      "cat",
+      "gray"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.41,
+    "base_wide": 8.99,
+    "left": 1.02,
+    "right": 0.07,
+    "top": 1.34,
+    "bottom": 3.5,
+    "wide": 14.91,
+    "tall": 7.16,
+    "cx": 8.88,
+    "cy": 5.33,
+    "peak_x": 6.48,
+    "edges": [
+     "right"
+    ],
+    "meets": {
+     "right": [
+      {
+       "from": 5.73,
+       "to": 5.81,
+       "mid": 5.77
+      },
+      {
+       "from": 5.96,
+       "to": 7.12,
+       "mid": 6.54
+      }
+     ]
+    },
+    "share": 0.3899
+   },
+   "marks": [
+    {
+     "widest_down": 0.43,
+     "base_wide": 8.86,
+     "left": 0.91,
+     "right": 0.0,
+     "top": 1.17,
+     "bottom": 3.53,
+     "wide": 15.09,
+     "tall": 7.3,
+     "cx": 8.83,
+     "cy": 5.27,
+     "peak_x": 6.5,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 5.65,
+        "to": 6.95,
+        "mid": 6.3
+       }
+      ]
+     },
+     "share": 0.3956,
+     "in_part": [
+      0.52,
+      0.55
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.92,
+      "to": 15.66,
+      "mid": 8.79,
+      "in_part": 0.52
+     }
+    ],
+    "down": [
+     {
+      "from": 2.09,
+      "to": 8.39,
+      "mid": 5.24,
+      "in_part": 0.54
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 3.69,
+       "to": 14.07,
+       "mid": 8.88,
+       "in_part": 0.53
+      }
+     ],
+     [
+      {
+       "from": 1.08,
+       "to": 15.27,
+       "mid": 8.18,
+       "in_part": 0.48
+      }
+     ],
+     [
+      {
+       "from": 1.89,
+       "to": 15.65,
+       "mid": 8.77,
+       "in_part": 0.52
+      }
+     ],
+     [
+      {
+       "from": 2.29,
+       "to": 15.82,
+       "mid": 9.05,
+       "in_part": 0.54
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#8f8785",
+    "paints": {
+     "Cat gray": 1.4
+    },
+    "cx": 8.83,
+    "cy": 5.27,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.46,
+     "right": 0.54,
+     "top": 0.43,
+     "bottom": 0.57
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.61,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.1,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its right side is at the right edge; it's about 15 in wide and 7 in tall."
+  },
+  {
+   "n": 14,
+   "id": "shade-kitten",
+   "name": "Shade the kitten's underside",
+   "part": "the-kitten-s-shading-and-white-patches",
+   "part_name": "The kitten's shading and white patches",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "dark-gray",
+     "name": "Dark gray",
+     "words": [
+      "dark",
+      "gray"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.4,
+    "base_wide": 0.49,
+    "left": 2.98,
+    "right": 0.2,
+    "top": 5.07,
+    "bottom": 3.68,
+    "wide": 12.82,
+    "tall": 3.25,
+    "cx": 11.89,
+    "cy": 6.73,
+    "peak_x": 8.1,
+    "edges": [
+     "right"
+    ],
+    "meets": {
+     "right": [
+      {
+       "from": 6.07,
+       "to": 6.93,
+       "mid": 6.5
+      }
+     ]
+    },
+    "share": 0.016
+   },
+   "marks": [
+    {
+     "widest_down": 0.41,
+     "base_wide": 7.09,
+     "left": 1.02,
+     "right": 0.04,
+     "top": 1.34,
+     "bottom": 3.54,
+     "wide": 14.95,
+     "tall": 7.12,
+     "cx": 9.63,
+     "cy": 5.19,
+     "peak_x": 6.49,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 5.66,
+        "to": 6.95,
+        "mid": 6.3
+       }
+      ]
+     },
+     "share": 0.2541,
+     "in_part": [
+      0.52,
+      0.38
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 2.44,
+      "to": 4.64,
+      "mid": 3.54,
+      "in_part": 0.04
+     },
+     {
+      "from": 6.72,
+      "to": 7.85,
+      "mid": 7.28,
+      "in_part": 0.34
+     },
+     {
+      "from": 9.92,
+      "to": 15.8,
+      "mid": 12.86,
+      "in_part": 0.77
+     }
+    ],
+    "down": [
+     {
+      "from": 2.31,
+      "to": 6.2,
+      "mid": 4.25,
+      "in_part": 0.19
+     },
+     {
+      "from": 6.77,
+      "to": 8.29,
+      "mid": 7.53,
+      "in_part": 0.85
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 1.42,
+       "to": 4.57,
+       "mid": 2.99,
+       "in_part": 0.0
+      },
+      {
+       "from": 4.9,
+       "to": 9.03,
+       "mid": 6.96,
+       "in_part": 0.31
+      },
+      {
+       "from": 11.02,
+       "to": 15.34,
+       "mid": 13.18,
+       "in_part": 0.8
+      }
+     ],
+     [
+      {
+       "from": 2.06,
+       "to": 2.84,
+       "mid": 2.45,
+       "in_part": -0.04
+      },
+      {
+       "from": 3.92,
+       "to": 4.79,
+       "mid": 4.35,
+       "in_part": 0.11
+      },
+      {
+       "from": 5.46,
+       "to": 8.39,
+       "mid": 6.93,
+       "in_part": 0.31
+      },
+      {
+       "from": 10.41,
+       "to": 10.97,
+       "mid": 10.69,
+       "in_part": 0.6
+      },
+      {
+       "from": 11.31,
+       "to": 15.61,
+       "mid": 13.46,
+       "in_part": 0.82
+      }
+     ],
+     [
+      {
+       "from": 2.78,
+       "to": 4.89,
+       "mid": 3.83,
+       "in_part": 0.07
+      },
+      {
+       "from": 7.27,
+       "to": 8.04,
+       "mid": 7.65,
+       "in_part": 0.36
+      },
+      {
+       "from": 10.61,
+       "to": 15.82,
+       "mid": 13.22,
+       "in_part": 0.8
+      }
+     ],
+     [
+      {
+       "from": 2.48,
+       "to": 3.93,
+       "mid": 3.21,
+       "in_part": 0.02
+      },
+      {
+       "from": 6.61,
+       "to": 7.68,
+       "mid": 7.14,
+       "in_part": 0.32
+      },
+      {
+       "from": 8.12,
+       "to": 9.18,
+       "mid": 8.65,
+       "in_part": 0.44
+      },
+      {
+       "from": 9.53,
+       "to": 10.76,
+       "mid": 10.15,
+       "in_part": 0.56
+      },
+      {
+       "from": 11.92,
+       "to": 15.79,
+       "mid": 13.85,
+       "in_part": 0.85
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#7c7174",
+    "paints": {
+     "Dark gray": 6.6
+    },
+    "cx": 9.62,
+    "cy": 5.2,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.46,
+     "right": 0.54,
+     "top": 0.61,
+     "bottom": 0.39
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.73
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.73
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.34,
+      "across": 0.32
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.95,
+      "across": 0.32
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.47
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.22,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.29
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its right side is at the right edge; it's about 13 in wide and 3 in tall."
+  },
+  {
+   "n": 15,
+   "id": "white-patches",
+   "name": "Paint the white muzzle, chest and paws",
+   "part": "the-kitten-s-shading-and-white-patches",
+   "part_name": "The kitten's shading and white patches",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "white",
+     "name": "White",
+     "words": [
+      "white"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.47,
+    "base_wide": 1.18,
+    "left": 3.36,
+    "right": 5.59,
+    "top": 4.5,
+    "bottom": 3.73,
+    "wide": 7.04,
+    "tall": 3.77,
+    "cx": 6.61,
+    "cy": 6.58,
+    "peak_x": 9.65,
+    "edges": [],
+    "meets": {},
+    "share": 0.042
+   },
+   "marks": [
+    {
+     "widest_down": 0.74,
+     "base_wide": 1.05,
+     "left": 3.36,
+     "right": 9.06,
+     "top": 4.95,
+     "bottom": 3.7,
+     "wide": 3.58,
+     "tall": 3.35,
+     "cx": 5.3,
+     "cy": 6.97,
+     "peak_x": 5.01,
+     "edges": [],
+     "meets": {},
+     "share": 0.0289,
+     "in_part": [
+      0.18,
+      0.73
+     ]
+    },
+    {
+     "widest_down": 0.68,
+     "base_wide": 1.04,
+     "left": 7.85,
+     "right": 5.56,
+     "top": 4.34,
+     "bottom": 5.38,
+     "wide": 2.59,
+     "tall": 2.29,
+     "cx": 9.19,
+     "cy": 5.73,
+     "peak_x": 9.78,
+     "edges": [],
+     "meets": {},
+     "share": 0.0145,
+     "in_part": [
+      0.48,
+      0.49
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 4.65,
+      "to": 6.68,
+      "mid": 5.67,
+      "in_part": 0.21
+     }
+    ],
+    "down": [
+     {
+      "from": 6.25,
+      "to": 6.54,
+      "mid": 6.39,
+      "in_part": 0.62
+     }
+    ],
+    "bands": [
+     [],
+     [
+      {
+       "from": 4.86,
+       "to": 5.44,
+       "mid": 5.15,
+       "in_part": 0.17
+      },
+      {
+       "from": 8.66,
+       "to": 9.74,
+       "mid": 9.2,
+       "in_part": 0.49
+      }
+     ],
+     [
+      {
+       "from": 5.12,
+       "to": 6.79,
+       "mid": 5.95,
+       "in_part": 0.23
+      },
+      {
+       "from": 8.18,
+       "to": 10.02,
+       "mid": 9.1,
+       "in_part": 0.48
+      }
+     ],
+     [
+      {
+       "from": 4.51,
+       "to": 6.48,
+       "mid": 5.5,
+       "in_part": 0.2
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#f1e6dc",
+    "paints": {
+     "White": 5.5
+    },
+    "cx": 6.54,
+    "cy": 6.51,
+    "edges": [],
+    "halves": {
+     "left": 0.87,
+     "right": 0.13,
+     "top": 0.23,
+     "bottom": 0.77
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    14
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 2.08
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 2.08
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.38,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.38,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.89
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.26,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its bottom is about 3 1/2 in from the bottom edge, and its left side is about 3 1/2 in from the left edge; it's about 7 in wide and 4 in tall."
+  },
+  {
+   "n": 16,
+   "id": "pink-ears-nose",
+   "name": "Paint the pink ears and nose",
+   "part": "the-kitten-s-ears-stripes-and-fur",
+   "part_name": "The kitten's ears, stripes and fur",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "ear-pink",
+     "name": "Ear pink",
+     "words": [
+      "ear",
+      "pink"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.56,
+    "base_wide": 0.5,
+    "left": 1.21,
+    "right": 9.07,
+    "top": 1.56,
+    "bottom": 5.27,
+    "wide": 5.72,
+    "tall": 5.17,
+    "cx": 4.23,
+    "cy": 3.82,
+    "peak_x": 6.54,
+    "edges": [],
+    "meets": {},
+    "share": 0.0168
+   },
+   "marks": [
+    {
+     "widest_down": 0.28,
+     "base_wide": 0.21,
+     "left": 1.18,
+     "right": 12.74,
+     "top": 3.95,
+     "bottom": 6.41,
+     "wide": 2.07,
+     "tall": 1.64,
+     "cx": 2.04,
+     "cy": 4.66,
+     "peak_x": 1.61,
+     "edges": [],
+     "meets": {},
+     "share": 0.0074,
+     "in_part": [
+      0.06,
+      0.47
+     ]
+    },
+    {
+     "widest_down": 0.58,
+     "base_wide": 0.13,
+     "left": 5.3,
+     "right": 9.93,
+     "top": 6.2,
+     "bottom": 5.27,
+     "wide": 0.77,
+     "tall": 0.53,
+     "cx": 5.73,
+     "cy": 6.48,
+     "peak_x": 5.94,
+     "edges": [],
+     "meets": {},
+     "share": 0.0009,
+     "in_part": [
+      0.34,
+      0.75
+     ]
+    },
+    {
+     "widest_down": 0.73,
+     "base_wide": 0.23,
+     "left": 5.59,
+     "right": 9.07,
+     "top": 1.54,
+     "bottom": 8.44,
+     "wide": 1.34,
+     "tall": 2.03,
+     "cx": 6.39,
+     "cy": 2.61,
+     "peak_x": 6.53,
+     "edges": [],
+     "meets": {},
+     "share": 0.0072,
+     "in_part": [
+      0.39,
+      0.16
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 1.38,
+      "to": 2.25,
+      "mid": 1.82,
+      "in_part": 0.05
+     }
+    ],
+    "down": [],
+    "bands": [
+     [
+      {
+       "from": 6.34,
+       "to": 6.9,
+       "mid": 6.62,
+       "in_part": 0.41
+      }
+     ],
+     [
+      {
+       "from": 1.27,
+       "to": 2.22,
+       "mid": 1.74,
+       "in_part": 0.04
+      }
+     ],
+     [
+      {
+       "from": 1.76,
+       "to": 2.54,
+       "mid": 2.15,
+       "in_part": 0.07
+      }
+     ],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#da826b",
+    "paints": {
+     "Ear pink": 2.7
+    },
+    "cx": 4.27,
+    "cy": 3.84,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 1.0,
+     "right": 0.0,
+     "top": 0.78,
+     "bottom": 0.22
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.61,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 8.86
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 8.86
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 1 1/2 in from the top edge, and its left side is about 1 1/4 in from the left edge; it's about 5 1/2 in wide and 5 in tall."
+  },
+  {
+   "n": 17,
+   "id": "tabby-stripes",
+   "name": "Pull the tabby stripes",
+   "part": "the-kitten-s-ears-stripes-and-fur",
+   "part_name": "The kitten's ears, stripes and fur",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "charcoal",
+     "name": "Charcoal",
+     "words": [
+      "charcoal"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.38,
+    "base_wide": 0.74,
+    "left": 1.34,
+    "right": 1.62,
+    "top": 2.14,
+    "bottom": 3.87,
+    "wide": 13.05,
+    "tall": 5.99,
+    "cx": 9.56,
+    "cy": 4.83,
+    "peak_x": 10.79,
+    "edges": [],
+    "meets": {},
+    "share": 0.0479
+   },
+   "marks": [
+    {
+     "widest_down": 0.46,
+     "base_wide": 0.47,
+     "left": 6.66,
+     "right": 7.03,
+     "top": 2.52,
+     "bottom": 5.17,
+     "wide": 2.31,
+     "tall": 4.31,
+     "cx": 7.83,
+     "cy": 4.31,
+     "peak_x": 7.66,
+     "edges": [],
+     "meets": {},
+     "share": 0.0199,
+     "in_part": [
+      0.5,
+      0.42
+     ]
+    },
+    {
+     "widest_down": 0.79,
+     "base_wide": 2.09,
+     "left": 6.27,
+     "right": 2.02,
+     "top": 6.55,
+     "bottom": 3.55,
+     "wide": 7.71,
+     "tall": 1.9,
+     "cx": 10.21,
+     "cy": 7.66,
+     "peak_x": 9.16,
+     "edges": [],
+     "meets": {},
+     "share": 0.0377,
+     "in_part": [
+      0.68,
+      0.93
+     ]
+    },
+    {
+     "widest_down": 0.21,
+     "base_wide": 0.05,
+     "left": 10.14,
+     "right": 3.45,
+     "top": 1.95,
+     "bottom": 8.64,
+     "wide": 2.41,
+     "tall": 1.42,
+     "cx": 11.21,
+     "cy": 2.49,
+     "peak_x": 11.66,
+     "edges": [],
+     "meets": {},
+     "share": 0.0048,
+     "in_part": [
+      0.76,
+      0.14
+     ]
+    },
+    {
+     "widest_down": 0.32,
+     "base_wide": 0.19,
+     "left": 10.2,
+     "right": 1.51,
+     "top": 2.89,
+     "bottom": 7.8,
+     "wide": 4.29,
+     "tall": 1.3,
+     "cx": 12.39,
+     "cy": 3.44,
+     "peak_x": 12.87,
+     "edges": [],
+     "meets": {},
+     "share": 0.009,
+     "in_part": [
+      0.85,
+      0.29
+     ]
+    },
+    {
+     "widest_down": 0.11,
+     "base_wide": 0.3,
+     "left": 10.69,
+     "right": 0.11,
+     "top": 4.03,
+     "bottom": 4.04,
+     "wide": 5.2,
+     "tall": 3.93,
+     "cx": 14.14,
+     "cy": 5.58,
+     "peak_x": 13.27,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": [
+       {
+        "from": 5.73,
+        "to": 5.81,
+        "mid": 5.77
+       },
+       {
+        "from": 5.91,
+        "to": 6.01,
+        "mid": 5.96
+       },
+       {
+        "from": 6.02,
+        "to": 6.79,
+        "mid": 6.4
+       }
+      ]
+     },
+     "share": 0.0225,
+     "in_part": [
+      0.98,
+      0.61
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 7.65,
+      "to": 8.59,
+      "mid": 8.12,
+      "in_part": 0.52
+     },
+     {
+      "from": 11.37,
+      "to": 15.23,
+      "mid": 13.3,
+      "in_part": 0.92
+     }
+    ],
+    "down": [
+     {
+      "from": 3.01,
+      "to": 5.91,
+      "mid": 4.46,
+      "in_part": 0.44
+     },
+     {
+      "from": 7.15,
+      "to": 8.29,
+      "mid": 7.72,
+      "in_part": 0.94
+     }
+    ],
+    "bands": [
+     [
+      {
+       "from": 6.93,
+       "to": 7.92,
+       "mid": 7.43,
+       "in_part": 0.47
+      },
+      {
+       "from": 12.32,
+       "to": 14.12,
+       "mid": 13.22,
+       "in_part": 0.91
+      }
+     ],
+     [
+      {
+       "from": 2.46,
+       "to": 3.33,
+       "mid": 2.9,
+       "in_part": 0.13
+      },
+      {
+       "from": 7.51,
+       "to": 8.05,
+       "mid": 7.78,
+       "in_part": 0.5
+      },
+      {
+       "from": 12.04,
+       "to": 13.29,
+       "mid": 12.67,
+       "in_part": 0.87
+      }
+     ],
+     [
+      {
+       "from": 7.72,
+       "to": 8.38,
+       "mid": 8.05,
+       "in_part": 0.52
+      }
+     ],
+     [
+      {
+       "from": 7.33,
+       "to": 7.97,
+       "mid": 7.65,
+       "in_part": 0.49
+      },
+      {
+       "from": 14.71,
+       "to": 15.8,
+       "mid": 15.26,
+       "in_part": 1.07
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#423c40",
+    "paints": {
+     "Charcoal": 0.3
+    },
+    "cx": 10.23,
+    "cy": 5.48,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.24,
+     "right": 0.76,
+     "top": 0.45,
+     "bottom": 0.55
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    16
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 1.28,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.25
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 3.84
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 2 in from the top edge, and its left side is about 1 1/4 in from the left edge; it's about 13 in wide and 6 in tall."
+  },
+  {
+   "n": 18,
+   "id": "flick-fur",
+   "name": "Flick in the light fur",
+   "part": "the-kitten-s-ears-stripes-and-fur",
+   "part_name": "The kitten's ears, stripes and fur",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "light-gray",
+     "name": "Light gray",
+     "words": [
+      "light",
+      "gray"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.69,
+    "base_wide": 0.19,
+    "left": 1.21,
+    "right": 6.63,
+    "top": 2.52,
+    "bottom": 5.25,
+    "wide": 8.16,
+    "tall": 4.23,
+    "cx": 4.15,
+    "cy": 4.59,
+    "peak_x": 5.68,
+    "edges": [],
+    "meets": {},
+    "share": 0.0017
+   },
+   "marks": [
+    {
+     "widest_down": 0.54,
+     "base_wide": 0.9,
+     "left": 1.05,
+     "right": 0.12,
+     "top": 1.82,
+     "bottom": 3.77,
+     "wide": 14.83,
+     "tall": 6.41,
+     "cx": 9.33,
+     "cy": 4.8,
+     "peak_x": 10.63,
+     "edges": [
+      "right"
+     ],
+     "meets": {
+      "right": []
+     },
+     "share": 0.0705,
+     "in_part": [
+      0.62,
+      0.49
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 4.55,
+      "to": 5.74,
+      "mid": 5.15,
+      "in_part": 0.3
+     }
+    ],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [
+      {
+       "from": 2.61,
+       "to": 3.24,
+       "mid": 2.92,
+       "in_part": 0.13
+      },
+      {
+       "from": 6.31,
+       "to": 7.72,
+       "mid": 7.02,
+       "in_part": 0.44
+      }
+     ],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#73676a",
+    "paints": {
+     "Light gray": 2.9
+    },
+    "cx": 9.05,
+    "cy": 4.86,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.39,
+     "right": 0.61,
+     "top": 0.5,
+     "bottom": 0.5
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    16,
+    17
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 4.32
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.61,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 6.98
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 6.98
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-sleeping-face",
+     "name": "The sleeping face",
+     "painted": false,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.16,
+      "across": 0.26
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 2 1/2 in from the top edge, and its left side is about 1 1/4 in from the left edge; it's about 8 in wide and 4 in tall."
+  },
+  {
+   "n": 19,
+   "id": "eyes-mouth",
+   "name": "Line the closed eyes and mouth",
+   "part": "the-sleeping-face",
+   "part_name": "The sleeping face",
+   "kind": "marks",
+   "show": "pass",
+   "first_of_part": true,
+   "paints": [
+    {
+     "id": "charcoal",
+     "name": "Charcoal",
+     "words": [
+      "charcoal"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.83,
+    "base_wide": 0.2,
+    "left": 3.11,
+    "right": 9.01,
+    "top": 4.91,
+    "bottom": 5.44,
+    "wide": 3.88,
+    "tall": 1.65,
+    "cx": 5.02,
+    "cy": 5.86,
+    "peak_x": 6.27,
+    "edges": [],
+    "meets": {},
+    "share": 0.0014
+   },
+   "marks": [
+    {
+     "widest_down": 0.14,
+     "base_wide": 0.02,
+     "left": 2.59,
+     "right": 11.04,
+     "top": 5.84,
+     "bottom": 5.05,
+     "wide": 2.37,
+     "tall": 1.11,
+     "cx": 3.64,
+     "cy": 6.2,
+     "peak_x": 4.29,
+     "edges": [],
+     "meets": {},
+     "share": 0.0026,
+     "in_part": [
+      0.14,
+      0.78
+     ]
+    },
+    {
+     "widest_down": 0.7,
+     "base_wide": 0.14,
+     "left": 3.83,
+     "right": 10.76,
+     "top": 3.45,
+     "bottom": 6.57,
+     "wide": 1.41,
+     "tall": 1.98,
+     "cx": 4.66,
+     "cy": 4.6,
+     "peak_x": 4.31,
+     "edges": [],
+     "meets": {},
+     "share": 0.0016,
+     "in_part": [
+      0.4,
+      -0.19
+     ]
+    },
+    {
+     "widest_down": 0.88,
+     "base_wide": 0.69,
+     "left": 6.14,
+     "right": 4.99,
+     "top": 1.83,
+     "bottom": 4.97,
+     "wide": 4.86,
+     "tall": 5.2,
+     "cx": 7.8,
+     "cy": 5.09,
+     "peak_x": 10.28,
+     "edges": [],
+     "meets": {},
+     "share": 0.0076,
+     "in_part": [
+      1.21,
+      0.11
+     ]
+    },
+    {
+     "widest_down": 0.85,
+     "base_wide": 1.61,
+     "left": 6.24,
+     "right": 0.55,
+     "top": 3.32,
+     "bottom": 3.53,
+     "wide": 9.21,
+     "tall": 5.16,
+     "cx": 11.65,
+     "cy": 6.7,
+     "peak_x": 14.24,
+     "edges": [],
+     "meets": {},
+     "share": 0.0143,
+     "in_part": [
+      2.2,
+      1.08
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [
+     {
+      "from": 4.07,
+      "to": 4.71,
+      "mid": 4.39,
+      "in_part": 0.33
+     },
+     {
+      "from": 7.53,
+      "to": 7.82,
+      "mid": 7.67,
+      "in_part": 1.18
+     }
+    ],
+    "down": [],
+    "bands": [
+     [
+      {
+       "from": 4.08,
+       "to": 4.38,
+       "mid": 4.23,
+       "in_part": 0.29
+      },
+      {
+       "from": 5.86,
+       "to": 6.08,
+       "mid": 5.97,
+       "in_part": 0.74
+      },
+      {
+       "from": 7.69,
+       "to": 7.85,
+       "mid": 7.77,
+       "in_part": 1.2
+      }
+     ],
+     [
+      {
+       "from": 4.31,
+       "to": 4.51,
+       "mid": 4.41,
+       "in_part": 0.34
+      },
+      {
+       "from": 5.84,
+       "to": 6.0,
+       "mid": 5.92,
+       "in_part": 0.72
+      }
+     ],
+     [
+      {
+       "from": 7.95,
+       "to": 8.12,
+       "mid": 8.04,
+       "in_part": 1.27
+      }
+     ],
+     [
+      {
+       "from": 3.27,
+       "to": 3.75,
+       "mid": 3.51,
+       "in_part": 0.1
+      },
+      {
+       "from": 4.71,
+       "to": 4.93,
+       "mid": 4.82,
+       "in_part": 0.44
+      },
+      {
+       "from": 6.93,
+       "to": 7.61,
+       "mid": 7.27,
+       "in_part": 1.07
+      }
+     ]
+    ]
+   },
+   "adds": {
+    "hex": "#5a4f51",
+    "paints": {
+     "Charcoal": 7.5
+    },
+    "cx": 8.97,
+    "cy": 5.64,
+    "edges": [
+     "right"
+    ],
+    "halves": {
+     "left": 0.18,
+     "right": 0.82,
+     "top": 0.47,
+     "bottom": 0.53
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.86
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "right of"
+     ],
+     "gap": {
+      "down": null,
+      "across": 1.86
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": 0.03
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 1.79,
+      "across": 0.26
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.8,
+      "across": null
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 2.11,
+      "across": null
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.83
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.03,
+      "across": 8.8
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.29
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "below",
+      "inside",
+      "left of",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.26
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 5 in from the top edge, and its left side is about 3 in from the left edge; it's about 4 in wide and 1 3/4 in tall."
+  },
+  {
+   "n": 20,
+   "id": "whiskers",
+   "name": "Pull the white whiskers",
+   "part": "the-sleeping-face",
+   "part_name": "The sleeping face",
+   "kind": "marks",
+   "show": "full",
+   "first_of_part": false,
+   "paints": [
+    {
+     "id": "white",
+     "name": "White",
+     "words": [
+      "white"
+     ]
+    }
+   ],
+   "area": {
+    "widest_down": 0.75,
+    "base_wide": 7.84,
+    "left": 0.88,
+    "right": 0.0,
+    "top": 1.21,
+    "bottom": 3.38,
+    "wide": 15.12,
+    "tall": 7.42,
+    "cx": 6.62,
+    "cy": 5.31,
+    "peak_x": 6.52,
+    "edges": [
+     "right"
+    ],
+    "meets": {
+     "right": []
+    },
+    "share": 0.0719
+   },
+   "marks": [
+    {
+     "widest_down": 0.25,
+     "base_wide": 0.04,
+     "left": 2.61,
+     "right": 11.82,
+     "top": 6.9,
+     "bottom": 4.38,
+     "wide": 1.57,
+     "tall": 0.71,
+     "cx": 3.29,
+     "cy": 7.15,
+     "peak_x": 3.71,
+     "edges": [],
+     "meets": {},
+     "share": 0.0004,
+     "in_part": [
+      0.05,
+      1.36
+     ]
+    },
+    {
+     "widest_down": 0.43,
+     "base_wide": 0.01,
+     "left": 2.67,
+     "right": 10.91,
+     "top": 6.41,
+     "bottom": 4.7,
+     "wide": 2.41,
+     "tall": 0.89,
+     "cx": 3.89,
+     "cy": 6.79,
+     "peak_x": 4.76,
+     "edges": [],
+     "meets": {},
+     "share": 0.001,
+     "in_part": [
+      0.2,
+      1.14
+     ]
+    },
+    {
+     "widest_down": 0.25,
+     "base_wide": 0.08,
+     "left": 3.59,
+     "right": 8.38,
+     "top": 5.46,
+     "bottom": 3.69,
+     "wide": 4.03,
+     "tall": 2.85,
+     "cx": 6.05,
+     "cy": 6.85,
+     "peak_x": 7.45,
+     "edges": [],
+     "meets": {},
+     "share": 0.002,
+     "in_part": [
+      0.76,
+      1.18
+     ]
+    },
+    {
+     "widest_down": 0.54,
+     "base_wide": 0.18,
+     "left": 7.78,
+     "right": 5.54,
+     "top": 4.29,
+     "bottom": 5.38,
+     "wide": 2.67,
+     "tall": 2.33,
+     "cx": 9.34,
+     "cy": 5.62,
+     "peak_x": 9.8,
+     "edges": [],
+     "meets": {},
+     "share": 0.0021,
+     "in_part": [
+      1.61,
+      0.43
+     ]
+    }
+   ],
+   "crossings": {
+    "across": [],
+    "down": [],
+    "bands": [
+     [],
+     [],
+     [],
+     []
+    ]
+   },
+   "adds": {
+    "hex": "#ad9489",
+    "paints": {
+     "White": 25.8
+    },
+    "cx": 6.26,
+    "cy": 6.06,
+    "edges": [],
+    "halves": {
+     "left": 0.36,
+     "right": 0.64,
+     "top": 0.32,
+     "bottom": 0.68
+    }
+   },
+   "same_paint_as_under": [],
+   "earlier_steps_of_part": [
+    19
+   ],
+   "others": [
+    {
+     "part": "garden-sky",
+     "name": "The pale sky through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "wall",
+     "name": "The blue wall",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "garden-trees",
+     "name": "The trees through the window",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.48,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "window-frame",
+     "name": "The white window frame",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-window-frame-s-shadows",
+     "name": "The window frame's shadows",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "ledge",
+     "name": "The wooden ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "light-and-shadow-on-the-ledge",
+     "name": "Light and shadow on the ledge",
+     "painted": true,
+     "touches": false,
+     "this_is": [
+      "above",
+      "right of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 1.73
+     }
+    },
+    {
+     "part": "blanket",
+     "name": "The yellow knit blanket",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "the-blanket-s-knit-loops",
+     "name": "The blanket's knit loops",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    },
+    {
+     "part": "cat",
+     "name": "The sleeping tabby kitten",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "inside"
+     ],
+     "gap": {
+      "down": null,
+      "across": null
+     }
+    },
+    {
+     "part": "the-kitten-s-shading-and-white-patches",
+     "name": "The kitten's shading and white patches",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "above",
+      "below",
+      "left of"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": 0.0
+     }
+    },
+    {
+     "part": "the-kitten-s-ears-stripes-and-fur",
+     "name": "The kitten's ears, stripes and fur",
+     "painted": true,
+     "touches": true,
+     "this_is": [
+      "below"
+     ],
+     "gap": {
+      "down": 0.0,
+      "across": null
+     }
+    }
+   ],
+   "where": "Inside the outlined area. Its top is about 1 1/4 in from the top edge, and its right side is at the right edge; it's about 15 in wide and 7 1/2 in tall."
+  }
+ ]
+}
