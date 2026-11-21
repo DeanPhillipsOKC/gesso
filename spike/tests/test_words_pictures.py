@@ -110,7 +110,7 @@ class RebuiltTests(unittest.TestCase):
         self.assertNotIn("refused", out)
 
         # built again without the rule: the new words are refused the other way
-        code, out = lessons.run_tool("build-steps", "--lesson", str(lesson))
+        code, out = lessons.run_tool("build-steps", "--lesson", str(lesson), "--no-stops")
         self.assertEqual(code, 0, out)
         code, out = lessons.run_tool("check-text", "--lesson", str(lesson))
         self.assertIn("built without --stops since packets ran", out["refused"])

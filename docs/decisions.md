@@ -394,6 +394,15 @@ with the date.
   skipped) was sealed and read. Owner: "Go." On the two guesses the design left open: the dashed stop line ("Didn't
   see a dashed line so should be fine") and the page's line about painting skipped ("Didn't notice it so keep or not
   doesn't matter"), both stay as built. Next is the gate (`docs/design/pipeline-v4.md`, section 12).
+- **Pipeline v4's gate passes; v4 is the pipeline, POC 2.2.0 (2026-11-21, owner's call, #299).** Six hands-off
+  lessons, the cow, the cat and the birch grove each built from one chain with the rule and without
+  (`docs/spikes/v4-gate.md`). Every measured line passed but two, which the design left to the owner: the student
+  test was exactly on its 0.25 line at two carries (−0.21 ± 0.18 with the third), and the rule's side had one more
+  known problem on the cat and the birch grove, each a line the words lost (the cat's pictures are the same files
+  either way). The graders preferred the rule 4 of 4 where the pictures differ. Owner: "I'll go with your
+  recommendation" (pass). So `v4` merges into main, `build-steps` runs the rule by default (`--no-stops` for the
+  bench), and lessons are stamped POC 2.2.0 with `"pipeline": 4`. Not decided by this: rerunning the site's
+  lessons (#288), or putting the gate's lessons on the site.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

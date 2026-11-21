@@ -1,9 +1,9 @@
 # Pipeline v4: a covered layer stops at a loose line
 
-**A draft (2026-11-21, #292, for #287). Builds 1 to 4 of section 13 (the rule in `build-steps`, behind `--stops`;
-the sheet's `stop` and `onto` and `check-text`'s line; the dashed stop line, the page's line and the stamp; the
-briefs and the words' record of their pictures) are built on the branch `v4` (#295, #296, #297, #298); the rest
-isn't.** The owner read it and merged it (#293), set the
+**Built (POC 2.2.0, 2026-11-21).** The gate passed on the owner's call (`docs/spikes/v4-gate.md`; `docs/decisions.md`)
+and `v4` merged into main with the rule on by default (`build-steps --no-stops` for the bench). `pipeline-v3.md`
+(sections 4 and 8 to 10) describes the run as it is now; this file is the design and its history. It was a draft
+(2026-11-21, #292, for #287), built in #295 to #299. The owner read it and merged it (#293), set the
 gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after
 spike #289 (`docs/decisions.md`; `docs/spikes/cover-margin.md`, sections "The owner's rule" and "The gap fixed"). It
 lives in `spike/experiments/cover_margin.py` as the variant `line-1-next`, laid over step pictures after they are
@@ -472,7 +472,14 @@ the full suite before each merge (`docs/testing.md`).
      stopped step says where its lower edge is and which step covers the bare canvas.
    - **The owner said go,** and keeps the dashed line and the page's line as built.
 6. **The gate** (section 12), from the branch.
-7. **Then** merge, turn `--stops` on by default, stamp the version, write the changelog entry, fold the as-built
+
+   **Run (#299; `docs/spikes/v4-gate.md`).** Six sealed lessons, each picture built both ways from one chain. The
+   student test −0.21 ± 0.18 over 16 steps (three carries a side, after two came out exactly on the 0.25 line); the
+   graders preferred the rule 4 of 4 where the pictures differ, none on the cat; the rule's side had one more known
+   problem on the cat and the birch grove, each a line the words lost. The owner passed it on Claude's
+   recommendation. Found: a later layer's render can paint the stopped one back (the birch grove's bushes lay a fog
+   band onto the bare canvas).
+7. **Done (2026-11-21).** Merge, turn `--stops` on by default, stamp the version, write the changelog entry, fold the as-built
    facts into `pipeline-v3.md` (sections 8 to 10) so one file still describes the run, and unblock #287 to be
    closed. Rerunning the site's lessons is the owner's call, as it was after v3.1. A lesson whose folder still has
    its chain needs no render for it: a build, new words and a seal.
