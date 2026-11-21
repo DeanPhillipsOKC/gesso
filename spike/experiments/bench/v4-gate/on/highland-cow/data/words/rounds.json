@@ -1,0 +1,42 @@
+{
+ "out": "d147d470e2795a28",
+ "rounds": [
+  {
+   "n": 1,
+   "kind": "check-text",
+   "sent": 9,
+   "claims": 50,
+   "answer": "fix-1.json",
+   "feedback": "# The checker's failures in your words (round 1)\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. A sentence that still fails after the next round is taken out.\n\n- step 1 (blend-sky), line 2 (strokes): \"below the blue\" can't find 'the blue' on the sheet; sheet: nothing on the sheet\n  in: \"Without rinsing, add Pale gold below the blue, then Golden yellow lower still, and stroke back up over each join while wet.\"\n- step 1 (blend-sky), line 5 (stop): \"about 6 in\" a length with nothing named to measure it against; sheet: no axis, edge or size named\n  in: \"Its lower edge is loose and uneven, not ruled: about 3 3/4 in from the top edge for most of its width, about 6 in at the right edge.\"\n- step 2 (streak-clouds), line 2 (start): \"about 1 in from the top edge\" says 1 in from the top edge; sheet: this step: nearest from the top edge 1 1/4 in, 1 13/16 in, 0 in\n  in: \"Start about 1 in from the top edge, skimming a long, flat-bottomed streak of Peach orange across the sky.\"\n- step 2 (streak-clouds), line 3 (strokes): \"beside the orange ones\" can't find 'the orange ones' on the sheet; sheet: nothing on the sheet\n  in: \"Lay Golden yellow streaks beside the orange ones.\"\n- step 4 (lay-in-far-hills), line 6 (stop): \"about 6 in\" a length with nothing named to measure it against; sheet: no axis, edge or size named\n  in: \"The lower edge is loose and uneven: about 5 1/4 in from the top edge for most of its width, about 6 in at the right edge.\"\n- step 7 (lay-in-hillside), line 5 (leave): \"above the ridge\" can't find 'the ridge' on the sheet; sheet: nothing on the sheet\n  in: \"Leave the far hills and the loch showing above the ridge.\"\n- step 7 (lay-in-hillside), line 6 (stop): \"about 4 in from the top edge\" says 4 in from the top edge; sheet: this step: nearest from the top edge 3 1/4 in, 3 1/4 in, 9 5/16 in\n  in: \"The hillside is olive with gold-green bands, its ridge about 4 in from the top edge at the middle.\"\n- step 8 (dab-dark-bushes), line 4 (inside): \"about 4 in\" a length with nothing named to measure it against; sheet: no axis, edge or size named\n  in: \"Most bushes sit in rows between about 4 in and 8 in from the top edge, smaller toward the back.\"\n- step 8 (dab-dark-bushes), line 4 (inside): \"8 in from the top edge\" says 8 in from the top edge; sheet: this step: nearest from the top edge 7 5/16 in, 6 1/8 in, 6 1/16 in\n  in: \"Most bushes sit in rows between about 4 in and 8 in from the top edge, smaller toward the back.\"\n\nWrite `fix-1.json` in your folder with only the steps you change, in out.json's shape (`{\"steps\": {\"<step id>\": {every line of that step}}}`). A step you leave out keeps its words. Then reply with one line.\n"
+  },
+  {
+   "n": 2,
+   "kind": "paints and long lines",
+   "sent": 0,
+   "paints": 0,
+   "long_lines": 0,
+   "check_text_left": 0
+  }
+ ],
+ "final": {
+  "dropped": 0,
+  "emptied": [],
+  "long_lines": 0,
+  "pictures": {
+   "made_from": "ad6114620c567bcf8f1c233a1bbdf188f4a81782bad4a1af307d4f0aaba0ff63",
+   "stops": true,
+   "pictures": "bfc898b4be277b43"
+  }
+ },
+ "arc": {
+  "sha": "3eea1203383db103",
+  "sent": 0,
+  "first": {
+   "arc": 0,
+   "back_check_text": 0
+  },
+  "final": {
+   "taken_out": 0
+  }
+ }
+}

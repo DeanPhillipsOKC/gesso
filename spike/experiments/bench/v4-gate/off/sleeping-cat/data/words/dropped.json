@@ -1,0 +1,9 @@
+[
+ {
+  "step": 17,
+  "id": "paint-ears",
+  "field": "line 2 (start)",
+  "sentence": "Start deep inside the ear at the top of the head, close to where it joins the head.",
+  "why": "step 17 (paint-ears), line 2 (start): \"inside the ear at the top of the head\" can't find 'the ear at the top of the head' on the sheet; sheet: nothing on the sheet"
+ }
+]

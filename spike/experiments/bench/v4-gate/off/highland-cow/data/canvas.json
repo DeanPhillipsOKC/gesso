@@ -1,0 +1,31 @@
+{
+  "canvas": {
+    "w_in": 12.0,
+    "h_in": 16.0,
+    "orientation": "portrait"
+  },
+  "crop_box": [
+    0,
+    86,
+    1024,
+    1451
+  ],
+  "mode": "crop",
+  "lost_share": 0.111,
+  "frame_size": [
+    1024,
+    1536
+  ],
+  "canvas_box": [
+    0.0,
+    0.056,
+    1.0,
+    0.9447
+  ],
+  "needs_render": false,
+  "chosen": "default",
+  "input": "photos/highland-cow.jpg",
+  "frame": "output/highland-cow_skill_20261121-102810/00_canvas_frame.png",
+  "why": "A highland cow standing in tall grass at sunset, with far hills, a sliver of loch and a glowing sky; the whole cow with both horn tips must stay, and some sky above the hills",
+  "grid_note": "Each 10% is 1.2 in across and 1.6 in down."
+}

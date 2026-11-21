@@ -1,0 +1,29 @@
+{
+  "finish_issues": [],
+  "text_issues": [
+    {
+      "step_id": "blend-wall",
+      "kind": "chain",
+      "problem": "The wall step's picture also paints the leaves and sky in the lower half of the window, which its blues can't; the image model removed them with the wall and didn't put them back, after two more tries.",
+      "action": "left: two redos of the wall's render, both the same."
+    },
+    {
+      "step_id": "dab-dark-leaves",
+      "kind": "paint",
+      "problem": "The paint called Leaf green was measured from the pictures as a soft gray-green (#89af9d), lighter than its name says.",
+      "action": "left: renaming it would render part of the chain again; build-steps' note."
+    },
+    {
+      "step_id": "paint-nose",
+      "kind": "step",
+      "problem": "The nose step changes almost nothing a painter would see (under 0.2% of the canvas).",
+      "action": "left: a step that changes almost nothing needs a new plan and chain; build-steps' note."
+    },
+    {
+      "step_id": "paint-ears",
+      "kind": "words",
+      "problem": "Every sentence of its start line failed the fact check, so the page leaves that line off.",
+      "action": "left: check-text --final took it out."
+    }
+  ]
+}
