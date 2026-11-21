@@ -1,0 +1,720 @@
+{
+ "plan_version": 3,
+ "photo": "output/birch-grove_skill_20261121-141536/00_beginner.png",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "A misty wood is layers at different distances, so painting back to front (glow, far trunks, near woods, ground, birches, leaves) lets each layer go straight over the last with simple repeated marks.",
+ "subject": "A misty autumn birch grove with a leaf-covered path running back into the fog",
+ "focal_point": "The two big leaning birches left of center, against the sunlit gold haze, with the path opening beside them",
+ "light": "A low sun at the upper left, behind the trees: the left of the wood glows gold, the right side and the pines sit in cool blue shade, and the trunks are lit on their left sides.",
+ "why": "We start with the glowing background and the far misty trunks, so the depth is there before anything solid goes on. Then the near woods (pines and gold bushes) and the leafy ground with its rock, then the birches, which are the subject, over all of it. The gold leaves overhead and the fallen leaves go on last, over the trunks, and the brightest leaves finish it.",
+ "things": [
+  {
+   "id": "glow",
+   "name": "The misty glow behind the wood",
+   "called": "the misty background",
+   "element": "sky-blend",
+   "why": "The background is one soft gradient, warm cream-gold on the left to cool blue haze on the right, blended wet in one go.",
+   "behind": []
+  },
+  {
+   "id": "far-trunks",
+   "name": "The far misty trunks",
+   "element": "trunks-branches",
+   "why": "Thin pale trunks in the fog, pulled thick to thin; far away, so no bark marks and no light.",
+   "behind": [
+    "glow"
+   ]
+  },
+  {
+   "id": "mist",
+   "name": "The mist down the path",
+   "element": "clouds",
+   "why": "Mist painted over a background that is already there, dry-brushed so it stays soft.",
+   "behind": [
+    "glow",
+    "far-trunks"
+   ]
+  },
+  {
+   "id": "pines",
+   "name": "The blue-green pines on the right",
+   "element": "pines",
+   "why": "Evergreens stamped with a fan brush, then lit on the side toward the sun.",
+   "behind": [
+    "glow",
+    "far-trunks"
+   ],
+   "plain": "the plain dark blue-green pine shapes"
+  },
+  {
+   "id": "bushes",
+   "name": "The golden undergrowth",
+   "element": "foliage",
+   "why": "Masses of gold leaves on the bushes at the left and along the path, tapped dark, mid, then light.",
+   "behind": [
+    "glow",
+    "far-trunks",
+    "pines"
+   ],
+   "plain": "the plain deep ochre bush masses"
+  },
+  {
+   "id": "ground",
+   "name": "The leaf-covered ground and path",
+   "element": "field-grass",
+   "why": "Closest element for flat ground: a horizontal base lighter at the back, then a darker front. It lacks leaf-litter marks, so the fallen leaves are a thing of their own.",
+   "behind": [
+    "glow"
+   ],
+   "plain": "the plain rust-orange ground with a lighter path"
+  },
+  {
+   "id": "rock",
+   "name": "The mossy rock",
+   "element": "round-object",
+   "why": "A rounded boulder with a lit left side and a dark right side, built from simple pieces.",
+   "behind": [
+    "ground",
+    "pines",
+    "bushes"
+   ],
+   "plain": "the plain moss-gray rock shape"
+  },
+  {
+   "id": "birches",
+   "name": "The birches",
+   "element": "birch-trunks",
+   "why": "Six white-barked trunks with broken dark marks: two thin ones at the far left and center, two big leaning ones left of center, two on the right.",
+   "behind": [
+    "glow",
+    "far-trunks",
+    "mist",
+    "pines",
+    "bushes",
+    "ground"
+   ],
+   "plain": "the plain pale gray-white trunk shapes with no marks"
+  },
+  {
+   "id": "canopy",
+   "name": "The golden leaves overhead",
+   "element": "foliage",
+   "why": "The hanging gold leaves across the top, tapped over the trunks dark, mid, then light.",
+   "behind": [
+    "glow",
+    "far-trunks",
+    "birches"
+   ],
+   "plain": "the deep ochre leaf dabs across the top"
+  },
+  {
+   "id": "fallen-leaves",
+   "name": "The fallen leaves",
+   "element": "foliage",
+   "why": "Closest element for a carpet of separate leaf dabs: darkest dabs first, then mid, then a few sunlit ones. It has no ground element of its own.",
+   "behind": [
+    "ground",
+    "birches",
+    "bushes",
+    "rock"
+   ],
+   "plain": "scattered dark rust and gray leaf dabs on the ground"
+  }
+ ],
+ "paints": [
+  {
+   "name": "Golden yellow",
+   "looks": "a warm, strong gold, the main color of the leaves",
+   "color": "#e9a42a",
+   "things": [
+    "glow",
+    "bushes",
+    "canopy",
+    "fallen-leaves"
+   ]
+  },
+  {
+   "name": "Sunlit lemon",
+   "looks": "Golden yellow with white, the brightest pale yellow leaves",
+   "color": "#f8d870",
+   "of": "Golden yellow",
+   "things": [
+    "bushes",
+    "canopy",
+    "fallen-leaves"
+   ]
+  },
+  {
+   "name": "Haze blue",
+   "looks": "a soft pale blue-gray, the cool fog on the right",
+   "color": "#a9bcd6",
+   "things": [
+    "glow"
+   ]
+  },
+  {
+   "name": "Misty blue-gray",
+   "looks": "Haze blue made a little darker and grayer, for the far trunks",
+   "color": "#8c9cb5",
+   "of": "Haze blue",
+   "things": [
+    "far-trunks"
+   ]
+  },
+  {
+   "name": "Mist white",
+   "looks": "Haze blue with a lot of white, a pale bluish white",
+   "color": "#d6e0ee",
+   "of": "Haze blue",
+   "things": [
+    "mist"
+   ]
+  },
+  {
+   "name": "Pine blue-green",
+   "looks": "a dark, cool blue-green",
+   "color": "#3e5a5e",
+   "things": [
+    "pines"
+   ]
+  },
+  {
+   "name": "Sage green",
+   "looks": "Pine blue-green with white and a touch of yellow, a soft gray-green",
+   "color": "#7b8f6c",
+   "of": "Pine blue-green",
+   "things": [
+    "pines"
+   ]
+  },
+  {
+   "name": "Deep ochre",
+   "looks": "a deep brownish gold, the shadowed leaves",
+   "color": "#b77a1e",
+   "things": [
+    "bushes",
+    "canopy"
+   ]
+  },
+  {
+   "name": "Rust orange",
+   "looks": "a warm burnt orange, the main color of the ground",
+   "color": "#c9702a",
+   "things": [
+    "ground",
+    "fallen-leaves"
+   ]
+  },
+  {
+   "name": "Path tan",
+   "looks": "Rust orange with white, a pale peachy tan for the path",
+   "color": "#d9a477",
+   "of": "Rust orange",
+   "things": [
+    "ground"
+   ]
+  },
+  {
+   "name": "Brown shadow",
+   "looks": "Rust orange with blue added, a dull warm brown",
+   "color": "#7a4a2c",
+   "of": "Rust orange",
+   "things": [
+    "ground"
+   ]
+  },
+  {
+   "name": "Moss gray",
+   "looks": "a muddy olive gray",
+   "color": "#7f8169",
+   "things": [
+    "rock"
+   ]
+  },
+  {
+   "name": "Moss gray dark",
+   "looks": "Moss gray with blue and sienna, a dark olive gray",
+   "color": "#4e5446",
+   "of": "Moss gray",
+   "things": [
+    "rock"
+   ]
+  },
+  {
+   "name": "Moss gray light",
+   "looks": "Moss gray with white, a pale greenish gray",
+   "color": "#b0b29a",
+   "of": "Moss gray",
+   "things": [
+    "rock"
+   ]
+  },
+  {
+   "name": "Birch gray-white",
+   "looks": "a pale warm off-white, the glow at the upper left and the trunks' base",
+   "color": "#d9d8d2",
+   "things": [
+    "glow",
+    "birches"
+   ]
+  },
+  {
+   "name": "Warm white",
+   "looks": "Birch gray-white with more white and a touch of yellow, nearly pure white",
+   "color": "#f7f3e8",
+   "of": "Birch gray-white",
+   "things": [
+    "birches"
+   ]
+  },
+  {
+   "name": "Bark brown-black",
+   "looks": "a very dark brown, near black",
+   "color": "#3a2a20",
+   "things": [
+    "birches"
+   ]
+  },
+  {
+   "name": "Bark gray-brown",
+   "looks": "Bark brown-black with white, a soft gray-brown",
+   "color": "#8a7c70",
+   "of": "Bark brown-black",
+   "things": [
+    "birches"
+   ]
+  },
+  {
+   "name": "Rust red",
+   "looks": "a deep red-brown, the darkest fallen leaves",
+   "color": "#9c4320",
+   "things": [
+    "fallen-leaves"
+   ]
+  },
+  {
+   "name": "Leaf gray",
+   "looks": "a cool gray-violet, the gray fallen leaves",
+   "color": "#7d7682",
+   "things": [
+    "fallen-leaves"
+   ]
+  }
+ ],
+ "stages": [
+  {
+   "id": "the-background",
+   "name": "The misty background",
+   "steps": [
+    {
+     "id": "blend-glow",
+     "name": "Blend the misty glow",
+     "lays": [
+      {
+       "thing": "glow",
+       "what": "the whole canvas: glow cream at the upper left and down the left side, warming to gold through the middle, cooling to pale haze blue on the right"
+      }
+     ],
+     "paints": [
+      "Birch gray-white",
+      "Golden yellow",
+      "Haze blue"
+     ],
+     "blend": true,
+     "stroke": "x-stroke",
+     "brush": "1 inch flat",
+     "after": "The whole canvas, top to bottom edge, is a soft blended glow: pale cream at the upper left, gold through the middle and lower left, pale blue haze on the right. Nothing else is painted yet.",
+     "why": "The glow runs under everything, so it goes on first and all the way down."
+    },
+    {
+     "id": "pull-far-trunks",
+     "name": "Pull the far misty trunks",
+     "lays": [
+      {
+       "thing": "far-trunks",
+       "what": "a dozen thin, pale blue-gray trunks standing in the fog across the middle of the canvas, more on the right, thick at the bottom and tapering up, running from the top edge down to the lower third"
+      }
+     ],
+     "paints": [
+      "Misty blue-gray"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/2 inch flat",
+     "after": "Thin, soft blue-gray trunks stand in the glow from the top edge down into the lower third, faint on the left and clearer on the right. No bark marks."
+    },
+    {
+     "id": "brush-mist",
+     "name": "Dry-brush the mist down the path",
+     "lays": [
+      {
+       "thing": "mist",
+       "what": "a soft pale bluish-white haze over the lower ends of the far trunks in the center, where the path will vanish into the fog"
+      }
+     ],
+     "paints": [
+      "Mist white"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1 inch old stiff flat",
+     "after": "A soft pale haze veils the bottoms of the far trunks in the center of the canvas, so they fade into the fog. The glow still runs to the bottom edge."
+    }
+   ]
+  },
+  {
+   "id": "the-near-woods",
+   "name": "The pines and the golden bushes",
+   "steps": [
+    {
+     "id": "stamp-pines",
+     "name": "Stamp the dark pines",
+     "lays": [
+      {
+       "thing": "pines",
+       "what": "a cluster of dark blue-green pines on the right, from just right of center to the right edge, tops two-fifths of the way down, widening toward the ground"
+      }
+     ],
+     "paints": [
+      "Pine blue-green"
+     ],
+     "stroke": "fan-tapping",
+     "brush": "fan brush",
+     "after": "A soft mass of dark blue-green pines fills the right middle, over the far trunks, with no light on them.",
+     "paint_notes": "Pine blue-green can't be mixed exactly from these five tubes: ultramarine with a little yellow and a touch of burnt sienna gives the nearest dull dark blue-green, a little grayer than the picture."
+    },
+    {
+     "id": "light-pines",
+     "name": "Tap light on the pines' left side",
+     "lays": [
+      {
+       "thing": "pines",
+       "what": "sage green tapped on the left, sun-facing edges of the pine branches"
+      }
+     ],
+     "paints": [
+      "Sage green"
+     ],
+     "stroke": "fan-tapping",
+     "brush": "fan brush",
+     "after": "The pines have soft gray-green light on their left sides, with the dark blue-green showing under and between."
+    },
+    {
+     "id": "dab-bushes-dark",
+     "name": "Dab the dark of the golden bushes",
+     "lays": [
+      {
+       "thing": "bushes",
+       "what": "deep ochre dabs over the undergrowth at the left half from the middle of the canvas down to the ground, along both sides of the path, and a band at the foot of the pines"
+      }
+     ],
+     "paints": [
+      "Deep ochre"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "Deep ochre leaf masses fill the lower left middle and line the path and the foot of the pines, with the glow showing in gaps. No lighter leaves yet."
+    },
+    {
+     "id": "dab-bushes-mid",
+     "name": "Dab the middle gold on the bushes",
+     "lays": [
+      {
+       "thing": "bushes",
+       "what": "golden yellow dabs over most of the bushes, more on the left, leaving deep ochre at the bottoms"
+      }
+     ],
+     "paints": [
+      "Golden yellow"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "The bushes are mostly warm gold, with the deep ochre showing low down and between the dabs."
+    },
+    {
+     "id": "dab-bushes-light",
+     "name": "Tap the sunlit tops of the bushes",
+     "lays": [
+      {
+       "thing": "bushes",
+       "what": "a few sunlit lemon taps on the tops and left sides of the bushes, most at the left near the glow"
+      }
+     ],
+     "paints": [
+      "Sunlit lemon"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "The bushes have bright pale yellow tops on the left, gold in the middle and ochre at the bottom."
+    }
+   ]
+  },
+  {
+   "id": "the-ground",
+   "name": "The ground and the rock",
+   "steps": [
+    {
+     "id": "lay-ground",
+     "name": "Lay in the ground and the path",
+     "lays": [
+      {
+       "thing": "ground",
+       "what": "the bottom third as rust orange in level strokes, with a pale tan path from the bottom center narrowing back to the mist"
+      }
+     ],
+     "paints": [
+      "Rust orange",
+      "Path tan"
+     ],
+     "blend": true,
+     "stroke": "horizontal-strokes",
+     "brush": "3/4 inch flat",
+     "after": "The bottom third is flat rust-orange ground, with a pale tan path narrowing from the bottom center back into the mist. No leaves, shadows or rock yet."
+    },
+    {
+     "id": "shade-ground",
+     "name": "Dry-brush the shadows on the ground",
+     "lays": [
+      {
+       "thing": "ground",
+       "what": "brown shadow dry-brushed along the bottom edge, at the lower left, and in soft bands across the path"
+      }
+     ],
+     "paints": [
+      "Brown shadow"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1 inch old stiff flat",
+     "after": "The ground is darker brown at the front and lower left, with soft shadow bands across the path, lighter toward the back.",
+     "unit": "The shadows on the ground"
+    },
+    {
+     "id": "build-rock",
+     "name": "Build the rock from pieces",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "rock",
+       "what": "the whole boulder right of the path, as one flat moss-gray shape built from a wide low oval with a smaller rounded piece on its left"
+      }
+     ],
+     "paints": [
+      "Moss gray"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "#8 round",
+     "after": "A flat moss-gray rock shape sits on the ground right of the path, in front of the pines, with no shading or light."
+    },
+    {
+     "id": "shade-rock",
+     "name": "Shade the rock's right side",
+     "lays": [
+      {
+       "thing": "rock",
+       "what": "a dark olive crescent on the right side and the bottom of the rock"
+      }
+     ],
+     "paints": [
+      "Moss gray dark"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The rock is darker on its right side and bottom, still moss gray on top and at the left.",
+     "unit": "The rock's shading and light"
+    },
+    {
+     "id": "light-rock",
+     "name": "Light the rock's top left",
+     "lays": [
+      {
+       "thing": "rock",
+       "what": "pale greenish gray curved strokes on the top left of the rock"
+      }
+     ],
+     "paints": [
+      "Moss gray light"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The rock is round: pale on the top left, moss gray in the middle and dark on the right and bottom."
+    }
+   ]
+  },
+  {
+   "id": "the-birches",
+   "name": "The birches",
+   "steps": [
+    {
+     "id": "pull-birches",
+     "name": "Pull the pale birch trunks",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "birches",
+       "what": "six trunks from the ground to the top edge: a thin one at the far left, two big ones leaning right left of center, a slim one in the center, and two straight ones on the right, each wide at the base and tapering up"
+      }
+     ],
+     "paints": [
+      "Birch gray-white"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "3/4 inch flat",
+     "after": "Six flat pale gray-white trunks stand from the ground to the top edge over the woods, with no shading or bark marks."
+    },
+    {
+     "id": "shade-birches",
+     "name": "Dry-brush the shade on the trunks",
+     "lays": [
+      {
+       "thing": "birches",
+       "what": "gray-brown dry-brushed down the right side of every trunk, heavier toward the base"
+      }
+     ],
+     "paints": [
+      "Bark gray-brown"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat",
+     "after": "Each trunk is shaded gray-brown down its right side and darker near the ground, still pale on the left, with no dark marks yet.",
+     "unit": "The birch bark"
+    },
+    {
+     "id": "mark-bark",
+     "name": "Lay the dark bark marks",
+     "lays": [
+      {
+       "thing": "birches",
+       "what": "short broken dark marks across each trunk with the brush's edge, more and bigger toward the base, and the dark at each trunk's foot"
+      }
+     ],
+     "paints": [
+      "Bark brown-black"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/4 inch flat",
+     "after": "The trunks have broken near-black bark marks, dense at the bases and sparser higher up, with pale bark between. No bright light on them yet."
+    },
+    {
+     "id": "light-bark",
+     "name": "Catch the light on the bark",
+     "lays": [
+      {
+       "thing": "birches",
+       "what": "warm white dragged down the left, sunlit side of each trunk, over the marks in places"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1/2 inch flat",
+     "after": "The trunks are bright white on their left sides, gray on the right, with dark bark marks. Nothing hangs over their tops yet."
+    }
+   ]
+  },
+  {
+   "id": "the-canopy",
+   "name": "The golden leaves overhead",
+   "steps": [
+    {
+     "id": "dab-canopy-dark",
+     "name": "Dab the dark leaves overhead",
+     "lays": [
+      {
+       "thing": "canopy",
+       "what": "deep ochre leaf dabs across the top fifth of the canopy, over the trunk tops, thicker at the top left and the top right"
+      }
+     ],
+     "paints": [
+      "Deep ochre"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "Deep ochre leaf dabs hang across the top of the canvas over the trunk tops, with the glow and trunks showing between them."
+    },
+    {
+     "id": "dab-canopy-mid",
+     "name": "Dab the gold leaves overhead",
+     "lays": [
+      {
+       "thing": "canopy",
+       "what": "golden yellow dabs over most of the dark ones and a few loose leaves drifting down in the upper middle"
+      }
+     ],
+     "paints": [
+      "Golden yellow"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "The leaves overhead are mostly gold, with ochre showing beneath. They have no pale sunlit leaves yet."
+    }
+   ]
+  },
+  {
+   "id": "the-fallen-leaves",
+   "name": "The fallen leaves",
+   "steps": [
+    {
+     "id": "dab-leaves-dark",
+     "name": "Dab the dark fallen leaves",
+     "lays": [
+      {
+       "thing": "fallen-leaves",
+       "what": "scattered rust red and gray-violet leaf dabs over the ground, bigger and wider apart at the bottom, small near the path's end, some over the trunk feet"
+      }
+     ],
+     "paints": [
+      "Rust red",
+      "Leaf gray"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "Dark red-brown and gray leaf dabs are scattered across the ground and over the trunk feet, with the rust ground between them."
+    },
+    {
+     "id": "dab-leaves-mid",
+     "name": "Dab the orange and gold fallen leaves",
+     "lays": [
+      {
+       "thing": "fallen-leaves",
+       "what": "rust orange and golden yellow leaf dabs over most of the ground, leaving dark leaves showing, smaller toward the back"
+      }
+     ],
+     "paints": [
+      "Rust orange",
+      "Golden yellow"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "The ground is a carpet of orange and gold leaves with dark ones showing between. No pale sunlit leaves yet."
+    }
+   ]
+  },
+  {
+   "id": "the-last-lights",
+   "name": "The last lights",
+   "steps": [
+    {
+     "id": "tap-last-lights",
+     "name": "Tap the sunlit leaves",
+     "unit": "The sunlit leaves",
+     "lays": [
+      {
+       "thing": "canopy",
+       "what": "pale lemon leaves tapped on the top left of the canopy, nearest the glow"
+      },
+      {
+       "thing": "fallen-leaves",
+       "what": "a few pale lemon leaves on the path and the lit left side of the ground"
+      }
+     ],
+     "paints": [
+      "Sunlit lemon"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff brush",
+     "after": "The finished painting: bright pale leaves catch the sun at the top left and along the path.",
+     "why": "One brush loaded with one pale yellow, tapping the brightest leaves wherever the sun falls."
+    }
+   ]
+  }
+ ]
+}

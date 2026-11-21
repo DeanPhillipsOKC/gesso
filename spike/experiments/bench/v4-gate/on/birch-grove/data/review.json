@@ -1,0 +1,55 @@
+{
+  "finish_issues": [
+    "The view came out a little closer than the photo: the birches are larger and the slim far-left birch sits at the left edge."
+  ],
+  "text_issues": [
+    {
+      "step_id": "pull-far-trunks",
+      "kind": "chain",
+      "problem": "Most of the far misty trunks are already in step 1's fog; this step adds only one trunk and two small marks.",
+      "action": "left: the image model removed only a few trunks in two more tries."
+    },
+    {
+      "step_id": "pull-far-trunks",
+      "kind": "chain",
+      "problem": "The far trunks step also paints the pointed top of the dark misty pine left of center, which belongs to the background.",
+      "action": "left: the chain's checker still marks it after two more tries."
+    },
+    {
+      "step_id": "brush-mist",
+      "kind": "chain",
+      "problem": "The mist step changes almost nothing a painter would see: the image model left the mist down the path in place.",
+      "action": "left: two more tries changed nothing."
+    },
+    {
+      "step_id": "dab-leaves-dark",
+      "kind": "chain",
+      "problem": "Some fallen leaves are already on the ground before this step (about 3% of the canvas), where the image model didn't take them out.",
+      "action": "left: erase lists it after two more tries."
+    },
+    {
+      "step_id": "blend-glow",
+      "kind": "paint",
+      "problem": "The paint called Mist white keeps the plan's rough color: the pictures don't show it where the plan lays it.",
+      "action": "left: build-steps' note; a new plan and chain would be needed."
+    },
+    {
+      "step_id": "light-rock",
+      "kind": "paint",
+      "problem": "The paint called Moss gray light was measured as a warm tan (#d3ac6d), not gray.",
+      "action": "left: renaming it would render part of the chain again; build-steps' note."
+    },
+    {
+      "step_id": "dab-leaves-dark",
+      "kind": "paint",
+      "problem": "The paint called Leaf gray was measured as a brown (#6b4d3c), not gray.",
+      "action": "left: renaming it would render part of the chain again; build-steps' note."
+    },
+    {
+      "step_id": "light-rock",
+      "kind": "words",
+      "problem": "Every sentence of its stop line failed the fact check, so the page leaves that line off.",
+      "action": "left: check-text --final took it out."
+    }
+  ]
+}

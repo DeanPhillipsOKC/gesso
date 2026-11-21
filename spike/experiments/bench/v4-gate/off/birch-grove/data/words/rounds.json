@@ -1,0 +1,44 @@
+{
+ "out": "e2b2aaa5a336594f",
+ "rounds": [
+  {
+   "n": 1,
+   "kind": "check-text",
+   "sent": 12,
+   "claims": 55,
+   "answer": "fix-1.json",
+   "feedback": "# The checker's failures in your words (round 1)\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. A sentence that still fails after the next round is taken out.\n\n- step 5 (light-pines), line 4 (inside): \"at the upper left\" says upper left (wants 50% in each); sheet: 38% of the paint it adds is in the upper half of the blue-green pines on the right, 57% of the paint it adds is in the left half of the blue-green pines on the right\n  in: \"Put it only on the branch edges that face the sun at the upper left, in broken clumps up each tree.\"\n- step 9 (lay-ground), line 3 (strokes): \"edge to edge\" says it reaches the left and right edges (its left side is 9 11/16 in from the left edge; its right side is 0 in from the right edge); sheet: The blue-green pines on the right reaches right, top\n  in: \"Keep the brush level and pull long strokes left and right, edge to edge, smoother toward the back and more textured in front.\"\n- step 10 (shade-ground), line 4 (inside): \"left edge\" says it reaches the left edge (its left side is 9 3/16 in from the left edge); sheet: this step reaches no edge\n  in: \"Add one small touch at the left edge.\"\n- step 12 (shade-rock), line 4 (inside): \"at the upper left\" says upper left; sheet: The leaf-covered ground and path: the leaf-covered ground and path centered 8 in from the left, 9 7/8 in from the top\n  in: \"Cover most of the rock, darkest on the right side of the mossy rock and where it meets the ground, away from the sun at the upper left.\"\n- step 14 (pull-birches), line 2 (start): \"about 1/2 in from the left edge\" says 1/2 in from the left edge; sheet: The far misty trunks: nearest from the left edge 2 in, 5 5/16 in\n  in: \"Start with the two big leaning trunks: the first one's left side is about 1/2 in from the left edge, the second one's about 3 in from the left edge.\"\n- step 14 (pull-birches), line 2 (start): \"about 3 in from the left edge\" says 3 in from the left edge; sheet: The far misty trunks: nearest from the left edge 2 in, 5 5/16 in\n  in: \"Start with the two big leaning trunks: the first one's left side is about 1/2 in from the left edge, the second one's about 3 in from the left edge.\"\n- step 14 (pull-birches), line 6 (stop): \"top edge\" says it reaches the top edge (its top side is 3/8 in from the top edge); sheet: The far misty trunks reaches no edge\n  in: \"Six flat, pale trunks stand from the ground to the top edge.\"\n- step 18 (dab-canopy-dark), line 4 (inside): \"all the way across\" says it reaches the left and right edges (its left side is 0 in from the left edge; its right side is 5/8 in from the right edge); sheet: this step reaches left, top\n  in: \"Then work along the top edge in smaller clusters all the way across, over the trunk tops, with a bigger one near the right edge.\"\n- step 18 (dab-canopy-dark), line 6 (stop): \"top edge\" says it reaches the top edge (its top side is 7 1/8 in from the top edge); sheet: The leaf-covered ground and path reaches bottom, left, right\n  in: \"Loose brownish-gold leaf clusters hang along the top edge, thickest in the top left corner, with the fog showing through.\"\n- step 18 (dab-canopy-dark), line 6 (stop): \"in the top left corner\" says top left; sheet: The leaf-covered ground and path: the leaf-covered ground and path centered 8 in from the left, 9 7/8 in from the top\n  in: \"Loose brownish-gold leaf clusters hang along the top edge, thickest in the top left corner, with the fog showing through.\"\n- step 19 (dab-canopy-mid), line 3 (strokes): \"below them in the middle of the canvas\" can't find 'them in the middle of the canvas' on the sheet; sheet: nothing on the sheet\n  in: \"Tap with the tip over the dark clusters, a few dabs at a time, then let a few single dabs drift down below them in the middle of the canvas.\"\n- step 21 (dab-leaves-mid), line 3 (strokes): \"about 9 in from the top edge\" says 9 in from the top edge; sheet: The leaf-covered ground and path: nearest from the top edge 9 7/8 in, 7 1/8 in\n  in: \"Tap short, flat leaf dabs laid sideways, getting smaller as you go back to about 9 in from the top edge.\"\n\nWrite `fix-1.json` in your folder with only the steps you change, in out.json's shape (`{\"steps\": {\"<step id>\": {every line of that step}}}`). A step you leave out keeps its words. Then reply with one line.\n"
+  },
+  {
+   "n": 2,
+   "kind": "paints and long lines",
+   "sent": 0,
+   "paints": 0,
+   "long_lines": 0,
+   "check_text_left": 0
+  }
+ ],
+ "final": {
+  "dropped": 0,
+  "emptied": [],
+  "long_lines": 0,
+  "pictures": {
+   "made_from": "a8e43378a61ae82677a18cbc70d1e212699f7c290f8f1e0b7cc032192c7c4ef8",
+   "stops": false,
+   "pictures": "7a85415ac1b0e03a"
+  }
+ },
+ "arc": {
+  "sha": "4a8e4215e35af8fb",
+  "sent": 1,
+  "first": {
+   "arc": 1,
+   "back_check_text": 0
+  },
+  "answer": "arc-fix.json",
+  "feedback": "# The checker's failures in the arc\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. What still fails is taken out.\n\n- stage the-canopy.end: the opening and a stage's lines say no number and no side word\n  in: \"Clusters of gold leaves hang across the sky over the trunks, with darker leaves beneath them and fog showing through.\"\n\nWrite `arc-fix.json` in your folder: the whole arc again (the opening, the stage lines and the back lines), in arc.json's shape. Then reply with one line.\n",
+  "final": {
+   "taken_out": 0
+  }
+ }
+}
