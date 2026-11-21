@@ -252,7 +252,7 @@ class CowTests(unittest.TestCase):
 
 @lessons.slow
 class PublishTests(unittest.TestCase):
-    """A fixture lesson (the lavender balloon: its darker ridges and its tree's canopy stop, #295) built with
+    """A fixture lesson (the lavender balloon: its sky and clouds, darker ridges, hills and tree's canopy stop, 0.92 of a canvas) built with
     --stops and published is stamped pipeline 4 and its page shows the dashed stretch and the line; built without
     it, it is published as before."""
 
@@ -285,7 +285,7 @@ class PublishTests(unittest.TestCase):
         self.assertLessEqual(set(dashed), set(stopped))
         page = (lesson / "lesson-standalone.html").read_text(encoding="utf-8")
         self.assertIn('class="stop-line"', page)
-        self.assertIn('<p class="spared">This lesson skips under an eighth of a canvas of painting', page)
+        self.assertIn('<p class="spared">This lesson skips about a whole canvas of painting', page)  # 0.92
         shutil.rmtree(lesson)
 
 

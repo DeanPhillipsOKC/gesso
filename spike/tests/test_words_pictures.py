@@ -65,7 +65,7 @@ def _about_pictures(failures: list[str]) -> list[str]:
 
 @lessons.slow
 class RebuiltTests(unittest.TestCase):
-    """The lavender balloon (the one fixture where a layer stops), worded without the rule, then rebuilt with it."""
+    """The lavender balloon (a fixture where layers stop), worded without the rule, then rebuilt with it."""
 
     def test_old_words_are_refused_until_written_again(self):
         lesson = lessons.lesson("lavender-balloon", "worded")

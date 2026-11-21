@@ -49,14 +49,17 @@ The rule that fixes it exists, and only the step pictures know about it. In the 
 sky reaches the bottom edge, the Where picture still outlined the whole canvas, and the words were held to the
 pictures by one hand-made line a step and no check.
 
-## 2. The rule (as adopted; nothing here is changed)
+## 2. The rule (as adopted, widened once)
 
 - **Which layers stop.** After each unit, a pixel is covered later when its owner at the finish is a later unit that
   shares no thing with the unit on top now. Of that, a unit stops only where all three hold:
   - the cover is from a later stage of the plan (work in the layer's own stage is one passage with it: the cow's
     clouds on its sky);
-  - the next paint laid there from a later stage is in the stage right after the layer's, so bare canvas never
-    waits behind finished paint (the birch grove's mist doesn't stop for undergrowth four steps away);
+  - stopping leaves no bare canvas above paint already laid: nothing below it in its column is painted by an earlier
+    stage than the one that covers it first (the birch grove's mist doesn't stop for undergrowth four steps away
+    above a floor already painted). The cover may come any number of stages on (the owner's call, 2026-11-21, after
+    the 2.2.0 cow; until then it had to be the stage right after, `line-1-next`). Specks under 1/4 in that a mask
+    missed count as the paint around them;
   - the cover runs up from the canvas's bottom edge, at least 1 1/2 in up its column.
 - **Where it stops.** In each column the layer is painted down to the deepest point it is needed within 2 in to
   either side. That line is smoothed, then moved about 1 in further down, with a small wobble and a ragged fade.
@@ -82,6 +85,10 @@ the spike gives.
 | Words that say where a layer stops | #289, one writer call a picture | With one added sentence and one measured line a step, the writer wrote "Stop the sky about 3 1/2 in from the top edge, with a soft, wavy lower edge. Leave the canvas under it bare white, because the hills will cover it." | They never ran through `check-text`. The writer was sent only the changed steps. |
 | The step after a stopped run | #289 | Left as written, the cow's step 8 said to fill purple stripes that were now bare canvas, and both graders named it. Rewritten, both reads were "none". | In a run every step is written from the new pictures. Whether a writer then leans on the plan's `after` isn't known. |
 
+**Widened (2026-11-21).** With the rule widened (section 2), the cow's lines and its 1.42 canvases are as above,
+and the birch grove's mist line rises at its left (its highest point 7 11/16 in to 7 5/16 in; 1.5% of the canvas
+moves, 0.29 of a canvas skipped). The table holds the widened rule's numbers.
+
 **Measured for this design** by running the experiment's `line-1-next` and `facts.make_sheet` over
 `spike/experiments/bench/v31-gate/<picture>/chain/` (no render, no Claude call; the build's tests keep these numbers,
 section 13):
@@ -90,7 +97,7 @@ section 13):
 |---|---|---|---|---|
 | cow: sky, then clouds | 1, 2, 3 | the far hills (step 4) | 3 5/16 in at its highest, 3 1/2 in for most of it, 4 1/8 in at its lowest (the left edge) | 1 in (11/16 to 1 7/16) |
 | cow: far hills | 4 | the green hillside (step 7) | 4 5/8 in, 5 1/4 in, 6 1/16 in | 1 1/8 in (11/16 to 2) |
-| birch grove: the mist | 1 | the forest floor (step 4) | 7 11/16 in, 8 1/4 in, 9 in | 1 1/8 in (11/16 to 2 1/4) |
+| birch grove: the mist | 1 | the forest floor (step 4) | 7 5/16 in, 8 3/16 in, 9 in | 1 1/8 in (11/16 to 2 1/2) |
 | sleeping cat | none | | | |
 
 The birch grove's far woods (steps 2 and 3) also stop, over 0.3% of the canvas.
@@ -119,7 +126,8 @@ what covers what, so the build lays the chain twice, as `erase` already does:
 4. **Second laying.** Inside the pixels a step lays, the picture takes that unit's line: bare canvas below it, the
    unit's picture above. Everywhere else it keeps what the step before showed.
 
-The code moves out of the experiment into `spike/stops.py` (`covered`, `next_stage_paints`, `stop_line`, and the
+The code moves out of the experiment into `spike/stops.py` (`covered`, `next_stage_paints` (since widened to
+`no_gap_below`), `stop_line`, and the
 part of `variant_steps` that `line` uses). The variants that lost stay in `spike/experiments/cover_margin.py` as the
 record and are built nowhere.
 
@@ -269,8 +277,10 @@ whole canvas is sky" and the far hills now sit partly on bare canvas. They stay,
 **One sentence joins `plan-brief.md`** (a guess), under `behind`: write `behind` and the `after` lines as now, as
 if each layer ran under what covers it; a later tool decides how much of a layer its step picture shows.
 
-**The stages now decide more than headings.** A layer stops only for the stage right after its own. A plan that puts
-the far hills in the sky's stage, or a small stage between the sky and the land, stops nothing there. The brief
+**The stages now decide more than headings.** A layer doesn't stop for a cover in its own stage, nor above paint a
+stage between them has already laid. A plan that puts the far hills in the sky's stage stops nothing there. (Until
+the rule was widened, a layer stopped only for the stage right after its own, and the 2.2.0 cow's sky didn't stop
+at all: its chain showed sky, not hills, behind the hillside, two stages on.) The brief
 doesn't ask the writer to arrange stages for the rule: on the two bench plans it changed, the stages as written
 were right. `build.json` lists what didn't stop and why (section 5), so the gate's lessons show how often it
 happens before anyone writes a rule for it.
@@ -340,10 +350,10 @@ the full suite before each merge (`docs/testing.md`).
      cover's top (most of it, the least, the greatest).
    - A stopped unit's row is kept only when its line hides some of its own paint. A unit with a line that hides
      none of it is listed under `not_stopped` ("its line hides none of its own paint"). `covered_by` is the first
-     unit of the next stage that lays paint below the line.
+     unit of a later stage that lays paint below the line (the next stage's, before the rule was widened).
    - A unit that doesn't stop is also listed when anything later covers it from the bottom edge (1 1/2 in up): "the
-     cover is in its own stage", "the cover is more than one stage on" (the next paint laid there from a later
-     stage isn't in the stage right after), or "the cover is too narrow" (a trunk or a post: each column's depth is
+     cover is in its own stage", "stopping would leave bare canvas above paint already laid" (until the widening,
+     "the cover is more than one stage on"), or "the cover is too narrow" (a trunk or a post: each column's depth is
      its neighbours' too). On the cow, the green hillside is listed (its cover is the tall grass, four stages on).
    - The rule beside the spike's keeps every layer that left a pixel bare until it is painted, so where the cow's
      sky and clouds both stop, a glow on the sky stays off the canvas the clouds left bare too.
@@ -352,8 +362,8 @@ the full suite before each merge (`docs/testing.md`).
      it, changed.
    - `digest` takes `canvas.json` in only for a build with the rule, so a lesson built without it doesn't go stale.
    - The note of section 5 compares each column's line with the lowest pixel the finish shows of the unit there.
-   - Of the fixtures, only the lavender balloon stops anything (its darker ridges and its tree's canopy, 0.05 of a
-     canvas). The chickadee and the red sailboat give the same pictures either way.
+   - Of the fixtures, the lavender balloon and the red sailboat stop layers (0.92 and 0.39 of a canvas with the
+     widened rule; 0.05 and none before it). The chickadee gives the same pictures either way.
 2. **The sheet and `check-text`.** `stop` and `onto` (section 6), their sentences, `lean`, the line's range in the
    checker. Tests: section 6's table on the cow's chain; a sentence that puts the sky's edge 1 in below its lowest
    point fails, and one at "most of it" passes; "reaches the bottom edge" fails on a stopped step; a planted fault
@@ -464,7 +474,8 @@ by hand. Here it is sent the whole lesson and two new facts among many.
 - **Three pictures, one kind.** A sky, land rising from the bottom edge, a subject on the land. A cover that comes
   in from a side or from the top (a wall, a tree canopy, a cliff) stops nothing, by the rule as adopted. Whether it
   should is the owner's to say after a lesson shows one.
-- **The stages decide** (section 9). The rule was fitted to two plans' stages after looking.
+- **The stages and the chain decide** (section 9). The rule was fitted to two plans' stages after looking, and
+  then widened after one more (the 2.2.0 cow), whose chain painted sky where the spike's had painted hills.
 - **Words with no number aren't checked** (section 6). "Fill the purple gaps" passes on bare canvas. The writer has
   the picture and the `onto` fact, and the finisher is the only backstop.
 - **A stopped layer's edge is the model's whole layer, cut.** Where the layer under the cover was drawn differently

@@ -4,16 +4,16 @@
     work_out(plan, us, masks, owner, fr)    -> how hidden each unit's paint is, and the rows build.json keeps
     lay(pictures, masks, unit_of, stops)     -> the step pictures with each stopped layer ending at its line
 
-A step picture shows a whole layer, the part a later thing covers too. Under the owner's rule (`line-1-next`,
-adopted 2026-11-21, docs/decisions.md; spike #289, docs/spikes/cover-margin.md) a layer that the next stage covers
-from the canvas's bottom edge up stops at a loose line about an inch past the cover's top, and the canvas below it
+A step picture shows a whole layer, the part a later thing covers too. Under the owner's rule (`line-1-any`:
+spike #289's `line-1-next`, adopted 2026-11-21, with its next-stage limit widened the same day, docs/decisions.md;
+docs/spikes/cover-margin.md) a layer that a later stage covers from the canvas's bottom edge up stops at a loose line about an inch past the cover's top, and the canvas below it
 stays bare until the cover is painted. This is that rule, moved out of spike/experiments/cover_margin.py with the
 spike's numbers unchanged; the variants that lost stay there as the record.
 
 **The cover map.** A unit lays paint where its steps' masks are (the first laying). After unit u, a pixel is
 covered later when its owner at the finish is a later unit that shares no thing with the unit on top now. Of that,
-a unit stops only where the cover is from a later stage (`later_stage`), the next paint laid there from a later
-stage is in the stage right after the unit's (`next_stage_paints`), and the cover runs up from the bottom edge at
+a unit stops only where the cover is from a later stage (`later_stage`), stopping leaves no bare canvas above
+paint a later stage has already laid in that column (`no_gap_below`), and the cover runs up from the bottom edge at
 least LINE_RUN inches up its column (`stop_line`).
 
 **The line.** In each column the layer is painted down to the deepest point it is needed within LINE_REACH inches to
@@ -33,7 +33,7 @@ import numpy as np
 
 import from_finish as ff
 
-RULE = "line-1-next"
+RULE = "line-1-any"
 MARGIN = 1.0  # inches past the cover's top (the spike's `margin`)
 LINE_REACH = 2.0  # inches: a layer goes as deep as it is needed anywhere this far to each side
 LINE_RUN = 1.5  # inches: a cover reaching the bottom edge must run at least this far up a column to stop a layer
@@ -45,6 +45,7 @@ SEED = 289
 NUMBERS = {"margin_in": MARGIN, "reach_in": LINE_REACH, "run_in": LINE_RUN, "ramp_in": RAMP, "wobble": WOBBLE,
            "wobble_in": WOBBLE_SIZE, "rag": RAG, "seed": SEED}
 HIDDEN = 0.5  # a pixel more hidden than this is bare canvas in the picture
+SPECK = 0.25  # inches: paint this close counts as the same band when judging gaps (`no_gap_below`)
 SHOWING = 0.5  # inches: a stopped unit's line this close below what the finish shows of it is a note (section 5)
 
 
@@ -114,15 +115,25 @@ def later_stage(at: list[int], owner: np.ndarray, u: int) -> np.ndarray:
     return np.array(at + [-1])[owner] > at[u]
 
 
-def next_stage_paints(at: list[int], laid: list[np.ndarray], u: int) -> np.ndarray:
-    """Where the next unit after u to lay paint from a later stage is in the stage right after u's, so bare canvas
-    never waits behind finished paint (the birch grove's mist doesn't stop for undergrowth four steps away). Work of
-    u's own stage is one passage with it (the cow's clouds on its sky)."""
-    nxt = np.full(laid[0].shape, -1, np.int32)
+def no_gap_below(at: list[int], laid: list[np.ndarray], u: int, ppi: float) -> np.ndarray:
+    """Where stopping unit u leaves no bare canvas above paint already laid: no pixel below it in its column is
+    painted by an earlier stage than the first stage after u's to paint it. Stages, not steps: the steps of one
+    stage are one passage, and a speck a mask missed mustn't count as a gap: each pixel takes the earliest stage
+    within SPECK inches, so a hole in a band of paint is that band's. A layer stops for a cover
+    however many stages on (the owner's call, 2026-11-21, after the 2.2.0 cow: the sky stops for the hillside two
+    stages on), but the birch grove's mist doesn't stop for undergrowth four steps away above a floor already
+    painted, which left a floating white patch (#289). Work of u's own stage is one passage with it (the cow's
+    clouds on its sky)."""
+    never = max(at) + 1
+    first = np.full(laid[0].shape, never, np.int32)  # the stage that first lays paint there after u's
     for k in range(len(laid) - 1, u, -1):
         if at[k] > at[u]:
-            nxt[laid[k]] = k
-    return np.array(at + [-1])[nxt] == at[u] + 1
+            first[laid[k]] = at[k]
+    k = 2 * int(round(SPECK * ppi / 2)) + 1
+    first = cv2.erode(first.astype(np.uint8), np.ones((k, k), np.uint8)).astype(np.int32)  # the window's least
+    below = np.full(first.shape, never, np.int32)
+    below[:-1] = np.minimum.accumulate(first[::-1], axis=0)[::-1][1:]
+    return below >= first
 
 
 def covered(us: list[dict], laid: list[np.ndarray], owner: np.ndarray) -> list[np.ndarray]:
@@ -210,6 +221,14 @@ def line_row(line: dict, fr: dict) -> dict:
                            "greatest": _in(past.max(), ppi)}}
 
 
+def above_line(hid: np.ndarray) -> np.ndarray:
+    """Above a stopped layer's line, column by column: the rows over its first hidden pixel. The line's ragged
+    fade leaves specks of the layer below that, and they mustn't count as paint already laid (`no_gap_below`)."""
+    h = hid > HIDDEN
+    first = np.where(h.any(0), h.argmax(0), h.shape[0])
+    return np.arange(h.shape[0])[:, None] < first[None, :]
+
+
 def _runs_up(cov: np.ndarray, fr: dict) -> bool:
     return bool((bottom_run(cov, fr)[1] < cov[fr["crop"][0]:fr["crop"][1]].shape[0]).any())
 
@@ -222,24 +241,37 @@ def work_out(plan: dict, us: list[dict], masks: list[np.ndarray], owner: np.ndar
     own = owner_map(owner, laid)
     at = stage_of(plan, us)
     cov_all = covered(us, laid, own)
-    want, not_stopped, lines = [], [], []
-    for u, c in enumerate(cov_all):
+    n = len(us)
+    want, lines, not_stopped = [None] * n, [None] * n, []
+    shown = list(laid)  # where each unit's paint shows: a later unit that stops shows none below its line
+    for u in range(n - 1, -1, -1):  # last first: a unit's gaps are judged on the later units' shown paint
+        c = cov_all[u]
         later = c & later_stage(at, own, u)
-        cov = later & next_stage_paints(at, laid, u)
+        cov = later & no_gap_below(at, shown, u, fr["ppi"])
         hid, line = stop_line(cov, fr)
-        want.append(hid)
-        lines.append(line)
+        want[u], lines[u] = hid, line
+        shown[u] = laid[u] & above_line(hid)
         if line is None:
             if _runs_up(c, fr):
                 if not _runs_up(later, fr):
                     why = "the cover is in its own stage"
                 elif not _runs_up(cov, fr):
-                    why = "the cover is more than one stage on"
+                    why = "stopping would leave bare canvas above paint already laid"
                 else:  # each column's depth is its neighbours' too: a thin cover, a trunk or a post, stops nothing
                     why = "the cover is too narrow"
                 not_stopped.append({"unit": u, "id": us[u]["id"], "steps": [i + 1 for i in us[u]["steps"]],
                                     "why": why})
-    return {"want": want, "lines": lines, "owner": own, "laid": laid, "not_stopped": not_stopped}
+    not_stopped.sort(key=lambda r: r["unit"])
+    # a line never takes back paint an earlier unit already shows: there the later layer is painted through (#306's
+    # review: the lavender balloon's canopy turned the hills' gold back into bare canvas)
+    # (a unit is hidden no more than the least hidden paint laid there before it, so layers that share a fade keep it)
+    showing = np.ones(laid[0].shape, np.float32)
+    for u in range(n):
+        if lines[u] is not None:
+            want[u] = np.minimum(want[u], showing).astype(want[u].dtype)
+            shown[u] = laid[u] & ~(want[u] > HIDDEN)
+        showing = np.where(laid[u], np.minimum(showing, want[u] if lines[u] is not None else 0.0), showing)
+    return {"want": want, "lines": lines, "owner": own, "laid": laid, "shown": shown, "not_stopped": not_stopped}
 
 
 def lay(pictures: list[np.ndarray], masks: list[np.ndarray], us: list[dict], want: list[np.ndarray]) -> dict:
@@ -297,8 +329,8 @@ def report(plan: dict, us: list[dict], masks: list[np.ndarray], worked: dict, la
             not_stopped.append({"unit": u, "id": us[u]["id"], "steps": steps_of[u],
                                 "why": "its line hides none of its own paint"})
             continue
-        nxt = [k for k in range(u + 1, len(us)) if at[k] == at[u] + 1
-               and (worked["laid"][k] & (worked["want"][u] > HIDDEN)).any()]
+        nxt = [k for k in range(u + 1, len(us)) if at[k] > at[u]
+               and (worked["shown"][k] & (worked["want"][u] > HIDDEN)).any()]
         by = nxt[0] if nxt else None
         rows.append({"unit": u, "id": us[u]["id"], "steps": steps_of[u],
                      "covered_by": None if by is None else {"unit": by, "id": us[by]["id"],
