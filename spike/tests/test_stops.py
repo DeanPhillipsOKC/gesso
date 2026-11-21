@@ -2,10 +2,10 @@
 its loose line (spike/stops.py), in build-steps behind --stops.
 
 On a made-up scene (as test_v3_cover_margin's): a sky covered from the bottom edge by a hill of the next stage
-stops about 1 in past the hill's top; a cover in the sky's own stage, one two stages on, a thin one, an island and
-one shorter than 1 1/2 in each stop nothing; build-steps' checks 1 and 2 hold; and a unit that comes back to the sky
+stops about 1 in past the hill's top, and so does one two stages on; a cover in the sky's own stage, a thin one, an
+island and one shorter than 1 1/2 in each stop nothing; no bare canvas is left above paint already laid; build-steps' checks 1 and 2 hold; and a unit that comes back to the sky
 doesn't uncover the canvas the sky left bare. Then the tool on test_steps3's scene and the fixture lessons, and
-(slow) the three bench chains against the spike's own `line-1-next` pictures and the design's section 3 table."""
+(slow) the three bench chains against the spike's own `line-1-next` pictures (the rule before its widening) and the design's section 3 table."""
 
 from __future__ import annotations
 
@@ -112,13 +112,12 @@ class TheRuleTests(unittest.TestCase):
         self.assertEqual(r["said"]["spared"][1]["spared"], 0.0)
         self.assertAlmostEqual(r["said"]["spared_canvas"], r["said"]["spared"][0]["spared_canvas"], places=3)
         self.assertEqual(r["said"]["notes"], [])
-        self.assertEqual(r["said"]["stops"]["rule"], "line-1-next")
+        self.assertEqual(r["said"]["stops"]["rule"], "line-1-any")
         self.assertEqual(r["said"]["stops"]["numbers"]["margin_in"], 1.0)
 
     def test_covers_that_stop_nothing(self):
         cases = {
             "in the layer's own stage": dict(hill_stage="s1", stages=("s1",)),
-            "two stages on": dict(stages=("s1", "between", "s2")),
             "thin": dict(hill=("trunk", ["trunk"], box(40, H, 40, 43), (240, 240, 230), "behind")),
             "an island": dict(hill=("rock", ["rock"], box(60, 130, 20, 70), (120, 110, 100), "behind")),
             "shorter than 1 1/2 in": dict(hill=("strip", ["strip"], box(H - 10, H, 0, W), (110, 150, 60), "behind")),
@@ -132,12 +131,56 @@ class TheRuleTests(unittest.TestCase):
                 sc = scene([(SKY[0], "s1", *SKY[1:]), (hill[0], kw.get("hill_stage", "s2"), *hill[1:])],
                            list(kw.get("stages", ("s1", "s2"))))
                 self.assertTrue(all(np.array_equal(a, b) for a, b in zip(r["pictures"], sc["base"])))
-        why = {w: self.two(**cases[w])["said"]["stops"]["not_stopped"]
-               for w in ("in the layer's own stage", "two stages on")}
-        self.assertEqual(why["in the layer's own stage"][0]["why"], "the cover is in its own stage")
-        self.assertEqual(why["two stages on"][0]["why"], "the cover is more than one stage on")
+        why = self.two(**cases["in the layer's own stage"])["said"]["stops"]["not_stopped"]
+        self.assertEqual(why[0]["why"], "the cover is in its own stage")
         self.assertEqual(self.two(**cases["an island"])["said"]["stops"]["not_stopped"], [])
         self.assertEqual(self.two(**cases["thin"])["said"]["stops"]["not_stopped"][0]["why"], "the cover is too narrow")
+
+    def test_a_cover_two_stages_on_stops_the_layer_too(self):
+        """The owner's call after the 2.2.0 cow (2026-11-21): the sky stops for the hillside two stages on, as for
+        the next stage, when nothing between paints under it."""
+        r = self.two(stages=("s1", "between", "s2"))
+        self.assertTrue(self.stopped(r))
+        row, = r["said"]["stops"]["stopped"]
+        self.assertEqual(row["covered_by"], {"unit": 1, "id": "hill", "step": 2})
+        self.assertAlmostEqual(row["line"]["most"], HILL_TOP / PPI + 1.0, delta=0.3)
+
+    def test_no_bare_canvas_is_left_above_paint_already_laid(self):
+        """The birch grove's mist (#289): undergrowth two stages on above a floor the next stage paints. The sky
+        stops only over the floor, so no white patch floats over finished paint; over a floor too short to stop it,
+        it doesn't stop at all, and build.json says why."""
+        sky = (SKY[0], "s1", *SKY[1:])
+        floor = ("floor", "s2", ["floor"], box(120, H, 0, W), (150, 120, 80), "behind")
+        under = ("under", "s3", ["under"], box(HILL_TOP, 120, 0, W), (60, 90, 60), "behind")
+        sc = scene([sky, floor, under], ["s1", "s2", "s3"])
+        r = run(sc)
+        self.assertTrue(bare(r["pictures"][0][150, 50]))
+        self.assertFalse(bare(r["pictures"][0][100, 50]))  # over the undergrowth's band: the sky is painted
+        self.assertFalse(bare(r["pictures"][0][HILL_TOP + 5, 50]))
+        row, = r["said"]["stops"]["stopped"]
+        self.assertEqual(row["covered_by"], {"unit": 1, "id": "floor", "step": 2})
+        self.assertAlmostEqual(row["line"]["most"], 120 / PPI + 1.0, delta=0.3)
+        self.checks_hold(sc, r)
+        low = ("floor", "s2", ["floor"], box(H - 6, H, 0, W), (150, 120, 80), "behind")  # 3/4 in: too short
+        under = ("under", "s3", ["under"], box(HILL_TOP, H - 6, 0, W), (60, 90, 60), "behind")
+        r = run(scene([sky, low, under], ["s1", "s2", "s3"]))
+        self.assertFalse(self.stopped(r))
+        self.assertEqual(r["said"]["stops"]["not_stopped"][0]["why"],
+                         "stopping would leave bare canvas above paint already laid")
+
+    def test_a_speck_a_mask_missed_is_no_gap(self):
+        """A pixel inside the hill that the hill's render didn't change is painted first by a later stage: it
+        mustn't stop the sky from stopping above it (the 2.2.0 cow's far hills had such holes)."""
+        sky = (SKY[0], "s1", *SKY[1:])
+        hill_where = box(HILL_TOP, H, 0, W)
+        hill_where[100, 40] = False
+        hill = (HILL[0], "s2", HILL[1], hill_where, HILL[3], HILL[4])
+        grass = ("grass", "s3", ["grass"], box(100, 101, 40, 41), (80, 140, 60), "behind")
+        r = run(scene([sky, hill, grass], ["s1", "s2", "s3"]))
+        row, = r["said"]["stops"]["stopped"]
+        self.assertAlmostEqual(row["line"]["most"], HILL_TOP / PPI + 1.0, delta=0.3)
+        self.assertAlmostEqual(row["line"]["lowest"], self.two()["said"]["stops"]["stopped"][0]["line"]["lowest"],
+                               delta=1 / 16)
 
     def checks_hold(self, sc: dict, r: dict) -> None:
         """build-steps' checks 1 and 2 on the second laying: the last picture is the finish, and no step changes a
@@ -244,7 +287,7 @@ class BuildStepsTests(unittest.TestCase):
         (lesson / "canvas.json").write_text(json.dumps({"canvas": {"w_in": 12, "h_in": 8}, "canvas_box": box}))
         lesson3.read(lesson)  # a build without the rule doesn't read the canvas
         built = lesson3.make(lesson, plan, finish, stops=True)
-        self.assertEqual(built["stops"]["rule"], "line-1-next")
+        self.assertEqual(built["stops"]["rule"], "line-1-any")
         self.assertEqual(built["stops"]["stopped"], [])
         self.assertEqual(built["spared_canvas"], 0.0)
         self.assertEqual([(lesson / n).read_bytes() for n in built["steps"]], before)  # nothing stops: the same
@@ -315,8 +358,8 @@ TABLE = {  # docs/design/pipeline-v4.md section 3: (unit, its steps, covered by 
     "highland-cow": [("sky", [1], 4, 3 + 5 / 16, 3.5, 4 + 1 / 8, 1.0),  # the sky, then the clouds
                      ("clouds", [2, 3], 4, 3 + 5 / 16, 3.5, 4 + 1 / 8, 1.0),
                      ("far-hills", [4], 7, 4 + 5 / 8, 5.25, 6 + 1 / 16, 1 + 1 / 8)],
-    "birch-grove": [("sky", [1], 4, 7 + 11 / 16, 8.25, 9.0, 1 + 1 / 8),  # the mist, and the far woods in it
-                    ("far-woods", [2, 3], 4, 7 + 11 / 16, 8.25, 9.0, 1 + 1 / 8)],
+    "birch-grove": [("sky", [1], 4, 7 + 5 / 16, 8 + 3 / 16, 9.0, 1 + 1 / 8),  # the mist, and the far woods in it
+                    ("far-woods", [2, 3], 4, 7 + 5 / 16, 8 + 3 / 16, 9.0, 1 + 1 / 8)],
     "sleeping-cat": [],
 }
 
@@ -324,7 +367,9 @@ TABLE = {  # docs/design/pipeline-v4.md section 3: (unit, its steps, covered by 
 @lessons.slow
 class BenchTests(unittest.TestCase):
     """The three bench chains (spike/experiments/bench/v31-gate/): the rule's pictures are the experiment's
-    `line-1-next` pictures, pixel for pixel, and the lines are the design's section 3 table (to 1/16 in)."""
+    `line-1-next` pictures, the owner's rule before its next-stage limit was widened (2026-11-21), within 2% of the
+    canvas a step (the birch grove's mist line rises a little at its left; on the cow no pixel moves by more than
+    the noise), and the lines are the design's section 3 table (to 1/16 in)."""
 
     def test_the_bench_chains(self):
         import cover_margin as cm
@@ -338,7 +383,8 @@ class BenchTests(unittest.TestCase):
                 worked = stops.work_out(L["plan"], L["units"], L["m"], L["owner_png"], fr)
                 laid = stops.lay(base, L["m"], L["units"], worked["want"])
                 for i, (a, b) in enumerate(zip(laid["pictures"], want)):
-                    self.assertTrue(np.array_equal(a, b), i + 1)
+                    moved = (np.abs(a.astype(np.int16) - b.astype(np.int16)).max(2) > 6).mean()
+                    self.assertLessEqual(moved, 0.02 if pic == "birch-grove" and i < 3 else 0.0, (pic, i + 1))
                 said = stops.report(L["plan"], L["units"], L["m"], worked, laid, fr)
                 got = [(r["id"], r["steps"], r["covered_by"]["step"], r["line"]["highest"], r["line"]["most"],
                         r["line"]["lowest"], r["line"]["past_cover"]["most"]) for r in said["stops"]["stopped"]]
@@ -351,7 +397,7 @@ class BenchTests(unittest.TestCase):
                     self.assertEqual([s["spared"] for s in said["spared"][:4]], [0.688, 0.448, 0.278, 0.729])
                     self.assertAlmostEqual(said["spared_canvas"], 1.42, delta=0.01)
                 if pic == "birch-grove":
-                    self.assertAlmostEqual(said["spared"][0]["spared"], 0.28, delta=0.01)
+                    self.assertAlmostEqual(said["spared"][0]["spared"], 0.29, delta=0.01)
 
 
 if __name__ == "__main__":

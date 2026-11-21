@@ -430,7 +430,7 @@ def opening(lesson: dict, known: dict) -> str:
 
 def _canvases(x: float) -> str:
     """A number of canvases to the nearest quarter, in words: "half a canvas", "1 1/2 canvases"; under an eighth,
-    "under an eighth of a canvas" (the lavender balloon's 0.05)."""
+    "under an eighth of a canvas" (a lesson where little stops)."""
     if x < 0.125:
         return "under an eighth of a canvas"
     q = int(x * 4 + 0.5) / 4

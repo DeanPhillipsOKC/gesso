@@ -381,6 +381,14 @@ with the date.
   picture; the painting saved is reported, not passed or failed; the owner reads the cow and says yes. The stamp is
   POC 2.2.0 with `"pipeline": 4` (the design had proposed 3.0.0). Not decided by this: the dashed stop line on the
   Where picture and the page's line about painting skipped, both guesses in the design. Next is the build, by Opus.
+- **A covered layer stops for a cover any number of stages on (2026-11-21, owner's call, during #299; widens the rule
+  above).** The first 2.2.0 cow's chain painted sky, not far hills, behind the hillside, so under `line-1-next` its
+  sky ran to the bottom edge (only the far hills stopped, 0.02 of a canvas). Owner: "I'm trying to avoid wasted time
+  so if it gets mostly covered eventually by any step we should only paint it part way." Asked whether to keep the
+  birch grove's fix (no white patch left floating over paint already laid), he said yes. So a layer stops wherever a
+  later stage covers it from the bottom edge, except above paint a stage between them has already laid
+  (`line-1-any`, `spike/stops.py`); on that cow it skips about 1 canvas. The spike's cow and birch grove come out as
+  before within 1/16 in, apart from the mist's line rising a little at its left.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

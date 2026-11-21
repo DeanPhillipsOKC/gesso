@@ -254,7 +254,7 @@ class FixtureTests(unittest.TestCase):
                                  SHEETS[name])
 
     def test_with_the_rule_the_stopped_steps_say_so(self):
-        """The lavender balloon's darker ridges and its tree's canopy stop (#295): build-steps --stops, then the sheet
+        """The lavender balloon's layers stop (its sky and clouds, darker ridges, hills and tree's canopy): build-steps --stops, then the sheet
         as check-text reads it has `stop` on exactly their steps."""
         lesson = lessons.lesson("lavender-balloon", "chained")
         code, out = lessons.run_tool("build-steps", "--lesson", str(lesson), "--stops")
