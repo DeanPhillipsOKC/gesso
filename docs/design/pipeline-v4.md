@@ -1,6 +1,7 @@
 # Pipeline v4: a covered layer stops at a loose line
 
-**A draft (2026-11-21, #292, for #287). Nothing here is built.** The owner read it and merged it (#293), set the
+**A draft (2026-11-21, #292, for #287). Build 1 of section 13 (the rule in `build-steps`, behind `--stops`) is
+built on the branch `v4` (#295); the rest isn't.** The owner read it and merged it (#293), set the
 gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after
 spike #289 (`docs/decisions.md`; `docs/spikes/cover-margin.md`, sections "The owner's rule" and "The gap fixed"). It
 lives in `spike/experiments/cover_margin.py` as the variant `line-1-next`, laid over step pictures after they are
@@ -330,6 +331,25 @@ the full suite before each merge (`docs/testing.md`).
      stops gives the same;
    - on the three bench chains (a slow test): the pictures are the experiment's `line-1-next` pictures, and the
      lines are section 3's table.
+
+   **Built (#295, `spike/tests/test_stops.py`).** As written, with these readings of what the design left loose:
+   - A line's five distances are where the bare canvas starts in each column (past the fade), as section 3's table
+     was measured; on the bench they come within 1/32 in of it. `past_cover` gives how far that is past the
+     cover's top (most of it, the least, the greatest).
+   - A stopped unit's row is kept only when its line hides some of its own paint, so the cow's hills' shadows and
+     loch (whose lines are the far hills') have none. `covered_by` is the first unit of the next stage that lays
+     paint below the line.
+   - A unit that doesn't stop is listed when anything later covers it from the bottom edge (1 1/2 in up): "the cover
+     is in its own stage", or "the cover is more than one stage on" (the next paint laid there from a later stage
+     isn't in the stage right after). On the cow, the green hillside is listed (its cover is the tall grass, four
+     stages on).
+   - Check 3 (`from_its_paints`) stays the first laying's, since bare canvas is laid by no step; the rows' `changed`,
+     `seen` and `outside_unit` are measured again on the second laying for a step whose picture, or the one before
+     it, changed.
+   - `digest` takes `canvas.json` in only for a build with the rule, so a lesson built without it doesn't go stale.
+   - The note of section 5 compares each column's line with the lowest pixel the finish shows of the unit there.
+   - Of the fixtures, only the lavender balloon stops anything (its darker ridges and its tree's canopy, 0.05 of a
+     canvas). The chickadee and the red sailboat give the same pictures either way.
 2. **The sheet and `check-text`.** `stop` and `onto` (section 6), their sentences, `lean`, the line's range in the
    checker. Tests: section 6's table on the cow's chain; a sentence that puts the sky's edge 1 in below its lowest
    point fails, and one at "most of it" passes; "reaches the bottom edge" fails on a stopped step; a planted fault

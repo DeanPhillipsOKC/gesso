@@ -5,7 +5,9 @@
 
 `build-steps` on a version 3 lesson fits the paints, cuts the step pictures from the chain, and keeps beside them
 what the later tools need: v3/plan.json (the plan in version 2's shape, a part a unit), parts/owner.png (which unit
-each pixel belongs to), v3/masks.npz (where each step lays paint) and v3/build.json (the checks' numbers). The
+each pixel belongs to), v3/masks.npz (`m<nn>` the paint each step's picture shows, `f<nn>` where it lays paint in
+full: the same unless a layer stops, pipeline v4) and v3/build.json (the checks' numbers, and with --stops where
+each layer stops). The
 later tools read those; they never cut a version 3 lesson's steps themselves. What was kept goes stale when
 plan.json or the chain changes: `read` refuses it then, and says to run build-steps again.
 """
@@ -29,12 +31,14 @@ class Stale(Exception):
     """What build-steps kept for a version 3 lesson is missing or was made from another plan or chain."""
 
 
-def digest(lesson: Path) -> str:
-    """What the kept files were made from: plan.json, the chain's numbers and pictures, and the finish."""
+def digest(lesson: Path, stops: bool = False) -> str:
+    """What the kept files were made from: plan.json, the chain's numbers and pictures, and the finish. With
+    `stops` (pipeline v4), canvas.json too: a layer's line is in inches, so a changed canvas makes the step pictures
+    stale. Without it the step pictures don't read the canvas, and a lesson built before v4 stays fresh."""
     lesson = Path(lesson)
     h = hashlib.sha256()
     for path in [lesson / "plan.json", lesson / "99_finish.png", lesson / "chain" / "chain.json",
-                 *sorted((lesson / "chain").glob("[PDC][0-9][0-9].png"))]:
+                 *sorted((lesson / "chain").glob("[PDC][0-9][0-9].png")), *([lesson / "canvas.json"] * stops)]:
         h.update(path.name.encode() + b"\0" + (path.read_bytes() if path.exists() else b"") + b"\0")
     return h.hexdigest()
 
@@ -50,16 +54,28 @@ def step_names(plan: dict) -> list[str]:
     return [f"{i + 1:02d}_{s['id']}.png" for i, s in enumerate(plan3.steps(plan))]
 
 
-def make(lesson: Path, plan: dict, finish: np.ndarray, save=None) -> dict:
+def make(lesson: Path, plan: dict, finish: np.ndarray, save=None, stops: bool = False) -> dict:
     """Write the step pictures and everything `read` returns; return the build (steps3.build) with the v2-shaped
-    plan as "plan" and the shapes as "owner". `save(rgb, path)` writes a step picture (tools.save_png)."""
+    plan as "plan" and the shapes as "owner". `save(rgb, path)` writes a step picture (tools.save_png). With `stops`
+    a covered layer stops at its line (pipeline v4, spike/stops.py): the canvas's box and size come from canvas.json
+    (or the default size, as step-aids picks it), and build.json keeps where each layer stops."""
     lesson = Path(lesson)
     us = plan3.units(plan)
     ch = erase3.load(lesson, plan)
     if ch[-1]["P"].shape != finish.shape:
         raise erase3.Refused("the chain doesn't match 99_finish.png's size: run erase again")
-    built = steps3.build(plan, finish, ch)
     owner = steps3.owner_from(ch)
+    fr = None
+    if stops:
+        import canvas as cv
+        import stops as st
+
+        try:
+            info = cv.lesson_canvas(lesson)
+        except cv.NoCanvas as err:
+            raise erase3.Refused(str(err)) from err
+        fr = st.frame(finish.shape, info.get("canvas_box"), info["canvas"])
+    built = steps3.build(plan, finish, ch, owner, fr)
     view = steps3.as_v2(plan, us, ch, built["hexes"], owner, finish)
     wrong = plan2.problems(view)
     if wrong:  # a fault in as_v2, not in the plan: the version 2 tools would misread the lesson
@@ -75,10 +91,12 @@ def make(lesson: Path, plan: dict, finish: np.ndarray, save=None) -> dict:
     (lesson / "v3").mkdir(exist_ok=True)
     Image.fromarray(owner.astype(np.uint8)).save(lesson / "parts" / "owner.png")
     np.savez_compressed(lesson / "v3" / "masks.npz", **{f"m{i:02d}": m for i, m in enumerate(built["masks"])},
+                        **{f"f{i:02d}": m for i, m in enumerate(built.get("full") or built["masks"])},
                         **{f"s{n:02d}": s for n, s in enumerate(steps3.shapes(ch, owner))})
     (lesson / "v3" / "plan.json").write_text(json.dumps(view, indent=1) + "\n", encoding="utf-8")
-    kept = {k: built[k] for k in ("rows", "paints", "final_gap", "outside_unit_max", "from_its_paints_median", "little")}
-    (lesson / "v3" / "build.json").write_text(json.dumps({"made_from": digest(lesson), "steps": names,
+    kept = {k: built[k] for k in ("rows", "paints", "final_gap", "outside_unit_max", "from_its_paints_median", "little",
+                                  "stops", "spared_canvas", "stop_notes") if k in built}
+    (lesson / "v3" / "build.json").write_text(json.dumps({"made_from": digest(lesson, stops), "steps": names,
                                                           "files": _hashes(lesson, names), **kept}, indent=1),
                                               encoding="utf-8")
     return {**built, "plan": view, "owner": owner, "steps": names}
@@ -94,8 +112,10 @@ def read(lesson: Path, pictures: bool = True) -> dict:
     if not all(p.exists() for p in need):
         raise Stale(f"no step pictures yet for this version 3 lesson: {again} (after erase)")
     build = json.loads(need[1].read_text(encoding="utf-8"))
-    if build.get("made_from") != digest(lesson):
-        raise Stale(f"plan.json or the chain changed since the step pictures were made: {again} again")
+    if build.get("made_from") != digest(lesson, "stops" in build):
+        what = "plan.json, canvas.json or the chain" if "stops" in build else "plan.json or the chain"
+        raise Stale(f"{what} changed since the step pictures were made: {again} again"
+                    + (" --stops" if "stops" in build else ""))
     missing = [n for n in build["steps"] if not (lesson / n).exists()]
     if missing:
         raise Stale(f"missing step pictures {missing[:3]}: {again} again")
@@ -106,6 +126,7 @@ def read(lesson: Path, pictures: bool = True) -> dict:
     out = {"plan": json.loads(need[0].read_text(encoding="utf-8")), "build": build, "rows": build["rows"],
            "owner": np.array(Image.open(need[3])).astype("int32"),
            "masks": [kept[k] for k in sorted(k for k in kept.files if k.startswith("m"))],
+           "full": [kept[k] for k in sorted(k for k in kept.files if k.startswith("f"))],
            "shapes": [kept[k] for k in sorted(k for k in kept.files if k.startswith("s"))]}
     if pictures:
         out["pictures"] = [np.array(Image.open(lesson / n).convert("RGB")) for n in build["steps"]]

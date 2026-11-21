@@ -2,7 +2,8 @@
 sections 7 to 9).
 
     fit(plan, us, ch)        -> each paint's color in this painting, fitted to what the units changed
-    build(plan, finish, ch)  -> the step pictures, where each step lays paint, and the checks' numbers
+    build(plan, finish, ch)  -> the step pictures, where each step lays paint, and the checks' numbers (with
+                                owner and fr, a covered layer stops at its line: spike/stops.py, pipeline v4)
     owner_from(ch)           -> which unit each pixel of the finish belongs to
     as_v2(plan, ...)         -> the plan in the shape the later tools read (a part a unit)
 
@@ -24,6 +25,7 @@ import build_steps as bs
 import erase3
 import from_finish as ff
 import plan3
+import stops
 
 REFIT = 2  # rounds of "each pixel to its nearest paint, each paint to the middle of its pixels"
 REACH = 30.0  # Lab units: a pixel further than this from a paint isn't that paint, whatever else is in the unit
@@ -150,7 +152,25 @@ def fit(plan: dict, us: list[dict], ch: list[dict]) -> tuple[dict[str, str], lis
     return one, per_unit, rows
 
 
-def build(plan: dict, finish: np.ndarray, ch: list[dict]) -> dict:
+def _measure(pictures: list[np.ndarray], base: list[np.ndarray], us: list[dict], ch: list[dict],
+             rows: list[dict]) -> None:
+    """Each step's row of what a painter sees change, measured again on the second laying's `pictures` for a step
+    whose picture, or the one before it, isn't the first laying's (`base`): `changed` (by LAID), `seen` (by
+    erase3.WEAK, check 4) and `outside_unit` (check 2: changed outside what its unit adds)."""
+    unit_of = {i: n for n, u in enumerate(us) for i in u["steps"]}
+    bare = np.full(pictures[0].shape, ff.CANVAS, np.uint8)
+    for i, pic in enumerate(pictures):
+        prev = pictures[i - 1] if i else bare
+        if np.array_equal(pic, base[i]) and (i == 0 or np.array_equal(prev, base[i - 1])):
+            continue
+        changed = np.abs(pic.astype(np.float32) - prev.astype(np.float32)).max(2) > LAID
+        moved = np.sqrt(((erase3._lab(pic) - erase3._lab(prev)) ** 2).sum(2))
+        rows[i].update(changed=round(float(changed.mean()), 4), seen=round(float((moved >= erase3.WEAK).mean()), 4),
+                       outside_unit=round(float((changed & ~bs.halo(ch[unit_of[i]]["D"])).mean()), 5))
+
+
+def build(plan: dict, finish: np.ndarray, ch: list[dict], owner: np.ndarray | None = None,
+          fr: dict | None = None) -> dict:
     """The step pictures and what the checks measure: {"pictures", "masks", "rows", "paints", "hexes", and the
     lesson's numbers}. Each pixel of a unit's change belongs to one step: the first of the unit that names the paint
     nearest it. A step lays its own pixels; the unit's last step lays all that is left, so the picture after it is
@@ -158,7 +178,13 @@ def build(plan: dict, finish: np.ndarray, ch: list[dict]) -> dict:
 
     The three checks (docs/design/pipeline-v3-plan.md): `final_gap`, the share of the last picture that isn't the
     finish; `outside_unit`, the share of the canvas a step changed outside what its unit adds; `from_its_paints`,
-    how far what a step lays is from the paints it names. And `little`: a step that changes almost nothing."""
+    how far what a step lays is from the paints it names. And `little`: a step that changes almost nothing.
+
+    With `fr` (the canvas in the frame, stops.frame) and `owner` (owner_from), a covered layer stops at its line
+    (pipeline v4, docs/design/pipeline-v4.md section 5): the chain is laid once as above, then again with each
+    stopped unit ending at its line (stops.lay). The pictures, checks 1, 2 and 4 are the second laying's; check 3
+    is what each step lays, from the first. "masks" are then the paint each picture shows, "full" where each step
+    lays paint in full, and "stops", "spared_canvas" and each row's `spared` say what was left bare."""
     us, steps = plan3.units(plan), plan3.steps(plan)
     one, per_unit, paint_rows = fit(plan, us, ch)
     canvas = np.empty(finish.shape, np.float32)
@@ -195,9 +221,24 @@ def build(plan: dict, finish: np.ndarray, ch: list[dict]) -> dict:
                        "from_its_paints": far}
             pictures[i] = pic
             masks[i] = where & changed if (where & changed).any() else where
+    out = {"paints": paint_rows, "hexes": one}
+    if fr is not None:
+        if owner is None:
+            owner = owner_from(ch)
+        worked = stops.work_out(plan, us, masks, owner, fr)
+        second = stops.lay(pictures, masks, us, worked["want"])
+        said = stops.report(plan, us, masks, worked, second, fr)
+        full, full_pictures, pictures = masks, pictures, second["pictures"]
+        masks = []
+        for i, f in enumerate(full):
+            shows = f & ~(second["hidden"][i] > stops.HIDDEN)
+            masks.append(shows if shows.any() else f)
+            rows[i]["spared"] = said["spared"][i]["spared"]
+        _measure(pictures, full_pictures, us, ch, rows)
+        out.update(full=full, stops=said["stops"], spared_canvas=said["spared_canvas"], stop_notes=said["notes"])
     gap = np.abs(pictures[-1].astype(np.int16) - finish.astype(np.int16)).max(2) > erase3.MOVED
     medians = [r["from_its_paints"]["median"] for r in rows if r["from_its_paints"]]
-    return {"pictures": pictures, "masks": masks, "rows": rows, "paints": paint_rows, "hexes": one,
+    return {"pictures": pictures, "masks": masks, "rows": rows, **out,
             "final_gap": round(float(gap.mean()), 4), "outside_unit_max": max(r["outside_unit"] for r in rows),
             "from_its_paints_median": round(float(np.median(medians)), 1) if medians else None,
             "little": [r["id"] for r in rows if r["seen"] < LITTLE]}
@@ -224,6 +265,7 @@ def problems(built: dict) -> tuple[list[str], list[str]]:
                          f"{r['color']}: check that its name still says what it looks like.")
     for sid in built["little"]:
         notes.append(f"{sid}: changes almost nothing a painter would see (under {LITTLE:.1%} of the canvas).")
+    notes += built.get("stop_notes") or []
     return bad, notes
 
 

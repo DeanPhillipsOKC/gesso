@@ -20,9 +20,10 @@ Project knowledge lives under `docs/`. Read it before making changes:
   as it is now. Read it before changing the words stage.
 - `docs/design/pipeline-v4-plan.md`: the plan for pipeline v4, a lesson you can paint from (a student test as the
   yardstick, then spikes on the words, stroke maps and cost). Read it before any issue under #240.
-- `docs/design/pipeline-v4.md`: a draft, not built (#292, for #287). Pipeline v4 as changes to v3: a layer the next
-  stage covers stops at a loose line, and the fact sheet, the teaching pictures and the words follow. Not the v4
-  plan above, whose design became v3.1. Read it before any issue that builds it.
+- `docs/design/pipeline-v4.md`: a draft (#292, for #287), being built on the branch `v4` (build 1 is #295).
+  Pipeline v4 as changes to v3: a layer the next stage covers stops at a loose line, and the fact sheet, the
+  teaching pictures and the words follow. Not the v4 plan above, whose design became v3.1. Read it before any issue
+  that builds it.
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
   anything, and don't re-propose what it rules out.
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).
