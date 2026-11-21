@@ -1,0 +1,640 @@
+{
+  "canvas_in": [
+    12.0,
+    16.0
+  ],
+  "finish": "finish.jpg",
+  "opening": "You're about to paint a shaggy highland cow standing in tall golden grass at sunset, with violet hills and a glint of loch behind. What makes it sing is the cow's face: the pink nose peeking out of a long, glowing fringe, framed by two curved horns.\n\nThe light: The low sun sits behind the cow, near the horizon. It turns the sky gold where it sets, catches the edges of things, and wraps a bright gold rim round the cow's fringe and coat while its face and body stay in warm shadow.\n\nWhat this painting teaches:\n- Dry brush (steps 2, 3, 5, 22): A nearly dry brush skimmed lightly so the paint breaks up on the canvas. It makes the cloud streaks, the shadowed hollows of the hills and the last glowing rim on the cow. Wipe the brush well: too much paint and it goes on solid.\n- Thick to thin (steps 13, 14): Press the full width of the angle brush, then lift onto its edge as you pull, so each mark tapers to a point. Every hanging lock of the cow's coat is one of these. Lift at the end, or the locks look blunt and stuck on.\n- Flicking (steps 19, 20, 21): A quick upward stroke with the fan brush that lifts off as it goes, so each blade thins at its tip. It builds the tall grass in passes, darkest first. Keep the load light, or the blades turn into flat blobs.\n\nThe way there: We start at the back: the sunset sky in one wet blend, then its clouds. The far hills and the loch go on next, then the green hillside, its bushes and the meadow, so the whole background is done fast. The first layers stop short where the next one covers them, so bare canvas showing early on is expected. Most of the time goes on the cow: a flat shape, shading, then two passes of hanging locks before the horns and the face. The tall grass is flicked over the cow's legs after, so it stands in the field. The brightest gold goes on last, when everything it covers is dry.",
+  "photo": "photo.jpg",
+  "picture": "highland-cow",
+  "steps": [
+    {
+      "brushes": "1 inch flat",
+      "group": "The sky",
+      "id": "blend-sky",
+      "intro": "This stage, The sky: The farthest thing first: a smooth sunset sky with soft cloud streaks across it.",
+      "lines": [
+        "Start: Start along the top edge of the canvas with Sky blue, stroking side to side from the left edge to the right edge.",
+        "Strokes: Work down in level strokes. Without rinsing, work in Pale gold next as you go down, then Golden yellow, and stroke back up over each join while wet.",
+        "Where the paint sits: The blue stays at the top and the Golden yellow sits lowest, running lower on the right side of the sky, where the sun is. A hard line means: add the lighter color and blend again.",
+        "Leave: The rest of the canvas stays bare until step 4.",
+        "Stop when: A smooth blue-to-gold sky. Its lower edge is loose and uneven, not ruled: about 3 3/4 in from the top edge for most of its width, about 6 in from the top edge at the right edge."
+      ],
+      "n": 1,
+      "name": "Blend the sunset sky",
+      "paints": [
+        {
+          "hex": "#a1a9bf",
+          "name": "Sky blue",
+          "recipe": "6 parts white, 2 parts ultramarine, 1 part burnt sienna, a touch of yellow"
+        },
+        {
+          "hex": "#c2b1a5",
+          "name": "Pale gold",
+          "recipe": "6 parts white, 2 parts burnt sienna, 1 part ultramarine, a touch of yellow"
+        },
+        {
+          "hex": "#fac172",
+          "name": "Golden yellow",
+          "recipe": "6 parts white, 3 parts yellow, 2 parts red"
+        }
+      ],
+      "pair": "pairs/01.jpg",
+      "picture": "steps/01.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The sky",
+      "id": "streak-clouds",
+      "intro": "This stage, The sky: The farthest thing first: a smooth sunset sky with soft cloud streaks across it.",
+      "lines": [
+        "First: Let the sky dry completely first.",
+        "Start: Start about 1 1/4 in from the top edge, skimming a long, flat-bottomed streak of Peach orange across the sky.",
+        "As in step 1: The Golden yellow from the sky comes back, but now dry-brushed in broken streaks instead of blended smooth.",
+        "Strokes: Wipe the brush nearly dry and skim sideways with light pressure, so each streak breaks up on the canvas. Lay Golden yellow streaks in among them.",
+        "Where the paint sits: The streaks stack in loose rows down the sky, more on the right side of the sky, where the sun is low. A few short ones reach the sky's lower edge.",
+        "Leave: Let the sky show between the streaks and through their broken edges. The rest of the canvas stays bare until step 4.",
+        "Stop when: Soft orange and gold streaks lie across the sky. If one goes on solid, the brush was too loaded."
+      ],
+      "n": 2,
+      "name": "Dry-brush the orange cloud streaks",
+      "paints": [
+        {
+          "hex": "#eeb57a",
+          "name": "Peach orange",
+          "recipe": "4 parts white, 1 part yellow, 1 part red, 1 part burnt sienna"
+        },
+        {
+          "hex": "#fac172",
+          "name": "Golden yellow",
+          "recipe": "6 parts white, 3 parts yellow, 2 parts red"
+        }
+      ],
+      "pair": "pairs/02.jpg",
+      "picture": "steps/02.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The sky",
+      "id": "light-clouds",
+      "intro": "This stage, The sky: The farthest thing first: a smooth sunset sky with soft cloud streaks across it. By its end: A blue-to-gold sky with orange and gold streaks lies across the canvas, and the rest of the canvas is still bare.",
+      "lines": [
+        "First: Let the cloud streaks dry first.",
+        "Start: Start near the top edge on the left side of the sky, skimming Pale gold along the upper edge of the highest streak.",
+        "As in step 2: The same dry brush as the streaks, but with even less paint, and only where the sun catches their edges.",
+        "Strokes: Use a dry brush with almost no paint and skim sideways along the top of each streak in one light pass.",
+        "Where the paint sits: Touch only upper edges, where the low sun catches the clouds: a thin line on the highest streaks, and a longer, softer one low in the sky, its top about 3 1/2 in from the top edge.",
+        "Leave: Leave the orange showing in each streak, and most streaks untouched. The rest of the canvas stays bare until step 4.",
+        "Stop when: A few streaks have a faint pale glow along their tops. If it reads as new white clouds, you pressed too hard."
+      ],
+      "n": 3,
+      "name": "Light the tops of the clouds",
+      "paints": [
+        {
+          "hex": "#c2b1a5",
+          "name": "Pale gold",
+          "recipe": "6 parts white, 2 parts burnt sienna, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/03.jpg",
+      "picture": "steps/03.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The far hills and the loch",
+      "id": "lay-in-far-hills",
+      "intro": "This stage, The far hills and the loch: Distance: pale and darker violet hills, shaded so they roll back, with a sliver of water at their foot.",
+      "lines": [
+        "First: Let the sky dry first.",
+        "Start: Start with the Hazy lavender range, its rolling tops about 2 1/4 in from the top edge, along the bottom of the sky.",
+        "Strokes: Bend each stroke down along the curve of each bump. Then lay the Hill violet range in front, its tops a little lower, overlapping the lavender.",
+        "Where the paint sits: The lavender shows only as the back row of soft tops; Hill violet covers the rest, since nearer land reads darker. Keep both flat.",
+        "Leave: Small gaps of sky left in the violet are fine; step 5 fills them. The rest of the canvas stays bare until step 7.",
+        "Stop when: Two flat violet ranges. The lower edge is loose and uneven: about 5 1/4 in from the top edge for most of its width, about 6 in from the top edge at the right edge."
+      ],
+      "n": 4,
+      "name": "Lay in the far violet hills",
+      "paints": [
+        {
+          "hex": "#838db6",
+          "name": "Hazy lavender",
+          "recipe": "4 parts white, 2 parts ultramarine, 1 part burnt sienna"
+        },
+        {
+          "hex": "#717eab",
+          "name": "Hill violet",
+          "recipe": "3 parts white, 2 parts ultramarine, 1 part burnt sienna"
+        }
+      ],
+      "pair": "pairs/04.jpg",
+      "picture": "steps/04.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The far hills and the loch",
+      "id": "shade-far-hills",
+      "intro": "This stage, The far hills and the loch: Distance: pale and darker violet hills, shaded so they roll back, with a sliver of water at their foot.",
+      "lines": [
+        "First: Let the violet hills dry first.",
+        "Start: Start in the middle of the nearer range, about 3 1/4 in from the top edge, dry-brushing Deep violet just under its rolling tops.",
+        "As in step 2: The same dry brush you used on the clouds, now with the bigger brush, building dark hollows on the hills instead of streaks.",
+        "Strokes: Skim the nearly dry brush lightly along each slope in a few short passes, building the dark in light layers.",
+        "Where the paint sits: The dark sits in hollows just under the nearer ridges, most of it on the right side of the far violet hills, with two small patches at the left edge.",
+        "Leave: Leave the pale back range and the ridge tops showing. The rest of the canvas stays bare until step 7.",
+        "Stop when: The nearer range has dark hollows, so it reads as hills one behind another, and the gaps from step 4 are filled."
+      ],
+      "n": 5,
+      "name": "Shade the far hills' slopes",
+      "paints": [
+        {
+          "hex": "#68749e",
+          "name": "Deep violet",
+          "recipe": "3 parts ultramarine, 3 parts white, 1 part burnt sienna, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/05.jpg",
+      "picture": "steps/05.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The far hills and the loch",
+      "id": "lay-in-loch",
+      "intro": "This stage, The far hills and the loch: Distance: pale and darker violet hills, shaded so they roll back, with a sliver of water at their foot. By its end: Two rolling violet ranges sit against the sky with a bright sliver of loch, and the rest of the canvas is still bare.",
+      "lines": [
+        "First: Let the hills dry first.",
+        "Start: Start at the right edge of the canvas, about 4 1/2 in from the top edge, at the foot of the far violet hills, with a thin band of Pale gold.",
+        "As in step 1: You blended this Pale gold into the sky. Here it becomes the water, so the loch mirrors the sunset.",
+        "Strokes: Keep the brush level and pull long, flat strokes in from the right edge, tapering the band to a point about 9 3/4 in from the left edge.",
+        "Where the paint sits: Lay a thin line of Hill violet along the top edge of the gold for the far shore. The rest stays bright gold: still water catching the sunset.",
+        "Leave: Leave the violet hills showing around the loch. The rest of the canvas stays bare until step 7.",
+        "Stop when: A bright sliver of loch about 2 1/4 in wide, with a violet shore along its top."
+      ],
+      "n": 6,
+      "name": "Lay in the sliver of loch",
+      "paints": [
+        {
+          "hex": "#c2b1a5",
+          "name": "Pale gold",
+          "recipe": "6 parts white, 2 parts burnt sienna, 1 part ultramarine, a touch of yellow"
+        },
+        {
+          "hex": "#717eab",
+          "name": "Hill violet",
+          "recipe": "3 parts white, 2 parts ultramarine, 1 part burnt sienna"
+        }
+      ],
+      "pair": "pairs/06.jpg",
+      "picture": "steps/06.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The hillside and the meadow",
+      "id": "lay-in-hillside",
+      "intro": "This stage, The hillside and the meadow: The ground the cow will stand on: a green hillside dotted with bushes and a glowing meadow base.",
+      "lines": [
+        "First: Let the hills and the loch dry first.",
+        "Start: Start at the left edge just below the far violet hills, and run the hillside's curving ridge down toward the loch at the right edge.",
+        "As in step 6: The same long, level strokes as the loch, now with the big brush across the whole hillside.",
+        "Strokes: Pull long, level strokes left and right with Olive green, working down band by band to the bottom edge.",
+        "Where the paint sits: Work Gold-green into the upper slopes and in soft bands across the hillside, where the low sun lies. Keep more Olive green lower down, with a few darker patches.",
+        "Leave: Leave the far hills and the loch showing. The hillside's top covers the hills' loose lower edge.",
+        "Stop when: No white canvas shows. The hillside is olive with gold-green bands, its curving top about 3 1/4 in from the top edge at its highest."
+      ],
+      "n": 7,
+      "name": "Lay in the green hillside",
+      "paints": [
+        {
+          "hex": "#737038",
+          "name": "Olive green",
+          "recipe": "2 parts yellow, 2 parts ultramarine, 1 part red, a touch of white"
+        },
+        {
+          "hex": "#a78f33",
+          "name": "Gold-green",
+          "recipe": "3 parts yellow, 1 part red, 1 part ultramarine"
+        }
+      ],
+      "pair": "pairs/07.jpg",
+      "picture": "steps/07.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "old stiff brush",
+      "group": "The hillside and the meadow",
+      "id": "dab-dark-bushes",
+      "intro": "This stage, The hillside and the meadow: The ground the cow will stand on: a green hillside dotted with bushes and a glowing meadow base.",
+      "lines": [
+        "First: Let the hillside dry first, or the dabs turn to mud.",
+        "Start: Start along the ridge at the left edge, tapping Dark green just under the ridge line, and work along it toward the right edge.",
+        "Strokes: Tap with the tip of the stiff brush, no water on it. Build each bush as a clump of taps, in rows that slope with the hillside.",
+        "Where the paint sits: Most bushes sit in rows on the upper hillside, the first row about 3 1/4 in from the top edge, smaller toward the back. A few bigger patches go near the bottom edge.",
+        "Leave: Leave plenty of the olive and gold hillside showing between the rows and the bushes.",
+        "Stop when: Dark scrubby patches dot the hillside in rows. Blobs mean the brush is too wet: wipe it on a paper towel."
+      ],
+      "n": 8,
+      "name": "Dab the dark bushes on the hillside",
+      "paints": [
+        {
+          "hex": "#585e43",
+          "name": "Dark green",
+          "recipe": "3 parts ultramarine, 3 parts burnt sienna, 1 part yellow, 1 part white"
+        }
+      ],
+      "pair": "pairs/08.jpg",
+      "picture": "steps/08.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "old stiff brush",
+      "group": "The hillside and the meadow",
+      "id": "dab-lit-bushes",
+      "intro": "This stage, The hillside and the meadow: The ground the cow will stand on: a green hillside dotted with bushes and a glowing meadow base.",
+      "lines": [
+        "First: Let the dark bushes dry first.",
+        "Start: Start on the top of a bush in the upper rows on the right side of the bushes on the hillside, tapping a small cluster of Gold-green.",
+        "As in step 8: The same tapping as the dark bushes, but only a few taps, where the sun catches the bushes.",
+        "Strokes: Tap lightly with the tip of the dry stiff brush, only along the top edge of each bush.",
+        "Where the paint sits: Touch only some bushes, mostly in the upper rows, on the side facing the sun. One low patch near the bottom gets a tap too.",
+        "Leave: Leave the dark taps from step 8 showing around each new tap; most of each bush stays dark.",
+        "Stop when: A few small sunlit tops catch the light. The change is small; if bushes turn solid, you tapped too long."
+      ],
+      "n": 9,
+      "name": "Dab the sunlit tops of the bushes",
+      "paints": [
+        {
+          "hex": "#a78f33",
+          "name": "Gold-green",
+          "recipe": "3 parts yellow, 1 part red, 1 part ultramarine"
+        }
+      ],
+      "pair": "pairs/09.jpg",
+      "picture": "steps/09.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1 inch flat",
+      "group": "The hillside and the meadow",
+      "id": "lay-in-meadow",
+      "intro": "This stage, The hillside and the meadow: The ground the cow will stand on: a green hillside dotted with bushes and a glowing meadow base. By its end: The whole canvas is covered: sky, violet hills, a bushy green hillside and a meadow glowing gold at its back and dark in front.",
+      "lines": [
+        "First: Let the hillside and bushes dry first.",
+        "Start: Start the back of the meadow about 8 in from the top edge with Gold-green, from the left edge to the right edge.",
+        "As in step 7: You laid these greens on the hillside in level strokes. Now they cross in X's and run from gold at the back to dark in front.",
+        "Strokes: Make short criss-cross strokes like overlapping X's, working down. Pick up Olive green for the middle and Dark green near the bottom edge, blending each into the last while wet.",
+        "Where the paint sits: The meadow glows gold at its back and darkens toward the front. Also lay a thin Gold-green strip of sunlight along the ridge of the green hillside.",
+        "Leave: Leave the bushes and the hillside showing above the meadow.",
+        "Stop when: The lower half is a textured meadow, gold at the back, olive in the middle, dark at the bottom, with no grass blades yet."
+      ],
+      "n": 10,
+      "name": "Blend the meadow base",
+      "paints": [
+        {
+          "hex": "#a78f33",
+          "name": "Gold-green",
+          "recipe": "3 parts yellow, 1 part red, 1 part ultramarine"
+        },
+        {
+          "hex": "#737038",
+          "name": "Olive green",
+          "recipe": "2 parts yellow, 2 parts ultramarine, 1 part red, a touch of white"
+        },
+        {
+          "hex": "#585e43",
+          "name": "Dark green",
+          "recipe": "3 parts ultramarine, 3 parts burnt sienna, 1 part yellow, 1 part white"
+        }
+      ],
+      "pair": "pairs/10.jpg",
+      "picture": "steps/10.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "3/4 inch flat",
+      "group": "The cow's shape",
+      "id": "block-in-cow",
+      "intro": "This stage, The cow's shape: The cow as one big shape, then shaded so it starts to look round and shaggy.",
+      "lines": [
+        "First: Let the meadow dry first.",
+        "Start: Start with a big oval for the body, its middle about 5 in from the left edge and 8 1/2 in from the top edge. The Where picture outlines the cow.",
+        "Strokes: Add the head as a rounded piece at the top right of the highland cow, then curved ( ) pieces on each side for shoulders and rump, tapering into two short legs.",
+        "Where the paint sits: Fill the whole shape flat with Coat rust. The top of the head sits about 4 1/2 in from the top edge.",
+        "Leave: Leave the meadow, hillside and bushes showing all around the cow. Let the legs end ragged where grass will cover them.",
+        "Stop when: A flat rust cow shape about 7 3/4 in wide, with no shading, horns or face."
+      ],
+      "n": 11,
+      "name": "Block in the cow from pieces",
+      "paints": [
+        {
+          "hex": "#974620",
+          "name": "Coat rust",
+          "recipe": "3 parts red, 2 parts burnt sienna, 1 part ultramarine, a touch of white"
+        }
+      ],
+      "pair": "pairs/11.jpg",
+      "picture": "steps/11.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch flat",
+      "group": "The cow's shape",
+      "id": "shade-cow",
+      "intro": "This stage, The cow's shape: The cow as one big shape, then shaded so it starts to look round and shaggy. By its end: A dark, shaggy rust cow stands in the meadow, with a lighter patch where its face will go.",
+      "lines": [
+        "First: Let the flat rust coat dry first.",
+        "Start: Start on the left side of the highland cow at the top of its back, pulling Dark rust down in long curves.",
+        "As in step 4: You bent strokes over the hills' bumps. Now bend them down and round the cow's body, like hanging hair.",
+        "Strokes: Bend each stroke with the body, down and round the belly, like hanging hair. On the head, curve down from the crown.",
+        "Where the paint sits: Cover most of the cow, darkest on the shadow side, where the head meets the body and low down. The sun is behind the cow, so the face and chest stay lighter.",
+        "Leave: Leave the mid rust showing on the face and down the chest, and in streaks between strokes.",
+        "Stop when: The cow looks dark and shaggy, with a lighter patch on the face and chest, where the face will go."
+      ],
+      "n": 12,
+      "name": "Shade the cow's coat",
+      "paints": [
+        {
+          "hex": "#5e3223",
+          "name": "Dark rust",
+          "recipe": "1 part red, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/12.jpg",
+      "picture": "steps/12.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch angle",
+      "group": "The shaggy coat",
+      "id": "pull-copper-locks",
+      "intro": "This stage, The shaggy coat: The long hanging hair that makes it a highland cow.",
+      "lines": [
+        "First: Let the shading dry first.",
+        "Start: Start at the crown of the head, pressing the brush flat and pulling the fringe locks down over the face.",
+        "Strokes: Press the full width, then lift onto the edge as you pull down, so each lock tapers to a point. Work down the body in overlapping rows.",
+        "Where the paint sits: Cover the fringe, the top of the head and the whole body with Light copper locks. On the body they hang down and curve with its roundness.",
+        "Leave: Leave thin gaps of the dark shading from step 12 between locks so they read as hair. Leave the lighter patch on the face and chest alone.",
+        "Stop when: The cow is covered in long copper locks with dark between them. Blunt ends mean you didn't lift."
+      ],
+      "n": 13,
+      "name": "Pull the copper locks",
+      "paints": [
+        {
+          "hex": "#9e4d22",
+          "name": "Light copper",
+          "recipe": "3 parts burnt sienna, 1 part red, a touch of white"
+        }
+      ],
+      "pair": "pairs/13.jpg",
+      "picture": "steps/13.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/2 inch angle",
+      "group": "The shaggy coat",
+      "id": "pull-gold-locks",
+      "intro": "This stage, The shaggy coat: The long hanging hair that makes it a highland cow. By its end: The cow is covered in long copper locks with a few bright gold ones, and dark showing between them.",
+      "lines": [
+        "First: Let the copper locks dry first.",
+        "Start: Start on the fringe, about 7 1/4 in from the left edge, with two short locks of Golden yellow.",
+        "As in step 13: The same press-and-lift lock as the copper, with a brighter paint and only a handful of strokes.",
+        "Strokes: Use the same thick-to-thin pull as the copper: press, then lift to a point, following the locks underneath.",
+        "Where the paint sits: Add only a handful: a couple on the fringe, one at the top of the back, and two or three on the left side of the highland cow, about 1 3/4 in from the left edge.",
+        "Leave: Leave most of the copper locks and the dark gaps untouched; this is a small step.",
+        "Stop when: A few bright golden locks shine among the copper. If gold spreads everywhere, the cow looks flat."
+      ],
+      "n": 14,
+      "name": "Pull the golden locks",
+      "paints": [
+        {
+          "hex": "#fac172",
+          "name": "Golden yellow",
+          "recipe": "6 parts white, 3 parts yellow, 2 parts red"
+        }
+      ],
+      "pair": "pairs/14.jpg",
+      "picture": "steps/14.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#8 round",
+      "group": "The horns and the face",
+      "id": "block-in-horns",
+      "intro": "This stage, The horns and the face: The focal point: curved horns and a face that looks back at you.",
+      "lines": [
+        "First: Let the coat dry first.",
+        "Start: Start with the thick base of the left horn at the top of the head, then curve it up and out to a point about 2 3/4 in from the top edge.",
+        "As in step 11: You built the cow from an oval and curved pieces. Build each horn the same way, much smaller, with the round brush.",
+        "Strokes: Build each horn from curved pieces: a wide base piece where it meets the hair, then thinner pieces toward the tip. Soften the joins.",
+        "Where the paint sits: The left horn is the taller one, sweeping up over the hills. The other is smaller, curling out and up, its tip about 3 3/4 in from the top edge.",
+        "Leave: Leave the fringe overlapping the base of each horn.",
+        "Stop when: Two flat cream horns curve up from the head, the left one taller, both tapering to points, with no shading."
+      ],
+      "n": 15,
+      "name": "Build the horns from curved pieces",
+      "paints": [
+        {
+          "hex": "#dec193",
+          "name": "Horn cream",
+          "recipe": "8 parts white, 3 parts burnt sienna, 1 part yellow"
+        }
+      ],
+      "pair": "pairs/15.jpg",
+      "picture": "steps/15.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#4 round",
+      "group": "The horns and the face",
+      "id": "shade-horns",
+      "intro": "This stage, The horns and the face: The focal point: curved horns and a face that looks back at you.",
+      "lines": [
+        "First: Let the cream horns dry first.",
+        "Start: Start at the thick base of the left horn, where it meets the fringe, with Horn brown.",
+        "As in step 12: Like the cow's shading, the darker paint follows the curve, here along each horn's underside with a tiny brush.",
+        "Strokes: Follow each horn's curve with the small round, from the base out along the underside toward the tip.",
+        "Where the paint sits: Shade the base and the whole underside of each horn, the side turned away from the sun, and darken the tips a little.",
+        "Leave: Leave a thin cream stripe along the top edge of each horn, where the light falls.",
+        "Stop when: The horns look round: gray-brown at the base and underneath, with a cream line along the top."
+      ],
+      "n": 16,
+      "name": "Shade the horn bases",
+      "paints": [
+        {
+          "hex": "#855e4a",
+          "name": "Horn brown",
+          "recipe": "3 parts burnt sienna, 1 part ultramarine, 1 part white"
+        }
+      ],
+      "pair": "pairs/16.jpg",
+      "picture": "steps/16.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#6 round",
+      "group": "The horns and the face",
+      "id": "paint-nose",
+      "intro": "This stage, The horns and the face: The focal point: curved horns and a face that looks back at you.",
+      "lines": [
+        "First: Let the locks dry first.",
+        "Start: Start on the lighter patch of the face, the nose's middle about 7 1/4 in from the left edge and 7 3/4 in from the top edge.",
+        "As in step 16: You curved along the horns; now curve round the nose as if it were a small, flattened ball.",
+        "Strokes: Curve your strokes round the nose like a flattened ball: across the top, then round the sides and the bottom.",
+        "Where the paint sits: Make it broad and rounded, about 1 in wide, a little wider at the bottom where the nostrils will go.",
+        "Leave: Leave the fringe hanging over the top of the nose and the coat around it. No nostrils yet.",
+        "Stop when: A soft mauve-pink nose sits on the face, just where the fringe ends."
+      ],
+      "n": 17,
+      "name": "Paint the pink nose",
+      "paints": [
+        {
+          "hex": "#a87161",
+          "name": "Muzzle pink",
+          "recipe": "3 parts burnt sienna, 3 parts white, 1 part red, 1 part ultramarine"
+        }
+      ],
+      "pair": "pairs/17.jpg",
+      "picture": "steps/17.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "#2 round",
+      "group": "The horns and the face",
+      "id": "paint-eye-nostrils",
+      "intro": "This stage, The horns and the face: The focal point: curved horns and a face that looks back at you. By its end: Two shaded horns curve up from the fringe, and a pink nose, nostrils, mouth and a shy eye give the cow its face.",
+      "lines": [
+        "First: Let the nose dry first, or the lines will spread.",
+        "Start: Start with two small curved nostrils at the bottom of the nose, then a short mouth line across the chin.",
+        "Strokes: Hold the round upright with thin, watery paint and light, steady pressure. Wobble the edges a little and reload often.",
+        "Where the paint sits: Darken the shaded cheek where the nose meets the fringe, and tuck a small eye into the fringe. Add a few short dark gaps between locks on the body.",
+        "Leave: Leave the pink showing around the nostrils, and keep the eye half hidden by hair.",
+        "Stop when: The cow has a face: dark nostrils, a mouth line and a shy eye peeking out. Keep the eye a small dark dot, not a round cartoon eye."
+      ],
+      "n": 18,
+      "name": "Line in the eye, nostrils and mouth",
+      "paints": [
+        {
+          "hex": "#543022",
+          "name": "Deep brown",
+          "recipe": "3 parts ultramarine, 2 parts red, 2 parts burnt sienna"
+        }
+      ],
+      "pair": "pairs/18.jpg",
+      "picture": "steps/18.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "fan brush",
+      "group": "The tall grass",
+      "id": "flick-dark-grass",
+      "intro": "This stage, The tall grass: Tall grass flicked over the cow's legs so it stands in the field, not on it.",
+      "lines": [
+        "First: Let the meadow and the cow dry first.",
+        "Start: Start at the bottom edge, flicking Dark green blades upward with the fan brush, working from the left edge to the right edge.",
+        "As in step 8: This is the bush green again, but flicked upward with the fan brush instead of tapped.",
+        "Strokes: Push up from the base and lift off quickly so each blade thins at its tip. Lean them slightly different ways.",
+        "Where the paint sits: Pack the blades thickest along the bottom, thinning as you go up to about 9 3/4 in from the top edge. Flick some over the bottom of the cow's coat so it stands in the grass.",
+        "Leave: Leave the meadow base showing between the blades, and the back of the meadow smooth.",
+        "Stop when: Dark blades rise across the front of the meadow and over the cow's legs. Flat blobs mean too much paint."
+      ],
+      "n": 19,
+      "name": "Flick the dark grass",
+      "paints": [
+        {
+          "hex": "#585e43",
+          "name": "Dark green",
+          "recipe": "3 parts ultramarine, 3 parts burnt sienna, 1 part yellow, 1 part white"
+        }
+      ],
+      "pair": "pairs/19.jpg",
+      "picture": "steps/19.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "fan brush",
+      "group": "The tall grass",
+      "id": "flick-mid-grass",
+      "intro": "This stage, The tall grass: Tall grass flicked over the cow's legs so it stands in the field, not on it.",
+      "lines": [
+        "First: Let the dark blades dry first.",
+        "Start: Start low on the right side of the tall grass, flicking Olive green blades up over the dark ones.",
+        "As in step 19: The same flick as the dark grass, with a lighter green, letting the dark show between.",
+        "Strokes: Use the same quick upward flick, lifting off so the tips break. Vary the length and lean of each blade.",
+        "Where the paint sits: Put them among the dark blades, more on the right side of the tall grass and near the bottom edge, fewer as you go up. A few go up the left edge too.",
+        "Leave: Leave the dark blades showing at the bases and between the olive ones.",
+        "Stop when: The grass has depth, olive blades in front of darker ones, up to about 10 1/4 in from the top edge."
+      ],
+      "n": 20,
+      "name": "Flick the olive grass",
+      "paints": [
+        {
+          "hex": "#737038",
+          "name": "Olive green",
+          "recipe": "2 parts yellow, 2 parts ultramarine, 1 part red, a touch of white"
+        }
+      ],
+      "pair": "pairs/20.jpg",
+      "picture": "steps/20.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "fan brush",
+      "group": "The tall grass",
+      "id": "flick-seed-heads",
+      "intro": "This stage, The tall grass: Tall grass flicked over the cow's legs so it stands in the field, not on it. By its end: Dark and olive blades with golden seed heads fill the meadow and rise over the cow's legs.",
+      "lines": [
+        "First: Let the olive blades dry first.",
+        "Start: Start near the bottom edge with the biggest seed heads, flicking short Golden yellow marks at the tips of a few blades.",
+        "As in step 14: The Golden yellow of the cow's bright locks comes back as seed heads, flicked short with the fan brush.",
+        "Strokes: Make a short upward flick with a light load, lifting off so each head tapers at the top like an oat head.",
+        "Where the paint sits: Make them biggest and widest apart near the bottom edge, smaller and closer toward the back, up to about 9 1/2 in from the top edge, on both sides of the cow.",
+        "Leave: Leave most blades without heads, and the dark grass between them.",
+        "Stop when: Scattered golden seed heads dot the tall grass, big in front and small at the back."
+      ],
+      "n": 21,
+      "name": "Flick the golden seed heads",
+      "paints": [
+        {
+          "hex": "#fac172",
+          "name": "Golden yellow",
+          "recipe": "6 parts white, 3 parts yellow, 2 parts red"
+        }
+      ],
+      "pair": "pairs/21.jpg",
+      "picture": "steps/21.jpg",
+      "tip": ""
+    },
+    {
+      "brushes": "1/4 inch flat",
+      "group": "The last lights",
+      "id": "last-lights",
+      "intro": "This stage, The last lights: The low sun's brightest touches, put on last over dry paint. By its end: The finished painting: a gold rim glows round the cow, the horns catch the light, and the meadow shines behind it.",
+      "lines": [
+        "First: Let everything dry completely first.",
+        "Start: Start along the top of the fringe between the horns, dry-brushing short Pale gold strokes that run off the edge of the hair.",
+        "As in step 3: You skimmed this Pale gold onto the clouds' sunlit edges. Now it goes on the edges the sun hits, with the smallest flat.",
+        "Strokes: Wipe the brush nearly dry and skim short strokes outward across the edge, so the light looks fuzzy, not drawn.",
+        "Where the paint sits: Light the rim along the head and back, down the lit side of the chest, and a thin line on top of each horn. Skim a glow across the back of the meadow and tip a few seed heads.",
+        "Leave: Leave the shaded side of the cow, its face and most of the grass untouched.",
+        "Stop when: A gold rim glows along the cow's top and lit side, the horns catch a line of light, and the back of the meadow shines."
+      ],
+      "n": 22,
+      "name": "Dry-brush the brightest sunlit edges",
+      "paints": [
+        {
+          "hex": "#c2b1a5",
+          "name": "Pale gold",
+          "recipe": "6 parts white, 2 parts burnt sienna, 1 part ultramarine, a touch of yellow"
+        }
+      ],
+      "pair": "pairs/22.jpg",
+      "picture": "steps/22.jpg",
+      "tip": ""
+    }
+  ],
+  "write_to": "faults.json"
+}

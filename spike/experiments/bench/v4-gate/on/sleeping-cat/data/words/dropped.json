@@ -1,0 +1,16 @@
+[
+ {
+  "step": 4,
+  "id": "blend-wall",
+  "field": "line 2 (start)",
+  "sentence": "Start at the top edge, next to the pale sky patch, and work toward the right edge of the canvas.",
+  "why": "step 4 (blend-wall), line 2 (start): \"next to the pale sky patch\" can't find 'the pale sky patch' on the sheet; sheet: nothing on the sheet"
+ },
+ {
+  "step": 8,
+  "id": "shade-sill",
+  "field": "line 4 (inside)",
+  "sentence": "Darken a band along the back of the sill where it meets the wall, the far end of the sill, and the front strip along the bottom edge of the canvas.",
+  "why": "step 8 (shade-sill), line 4 (inside): \"bottom edge of the canvas\" says it reaches the bottom edge (its bottom side is 3 9/16 in from the bottom edge); sheet: The blue wall reaches left, right, top"
+ }
+]

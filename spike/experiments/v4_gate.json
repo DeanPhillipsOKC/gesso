@@ -1,0 +1,254 @@
+{
+  "steps": {
+    "birch-grove": {
+      "changed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "not_stopped": [
+        {
+          "id": "mist",
+          "steps": [
+            3
+          ],
+          "unit": 2,
+          "why": "its line hides none of its own paint"
+        },
+        {
+          "id": "ground",
+          "steps": [
+            9
+          ],
+          "unit": 5,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "the-shadows-on-the-ground",
+          "steps": [
+            10
+          ],
+          "unit": 6,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "rock",
+          "steps": [
+            11
+          ],
+          "unit": 7,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "the-rock-s-shading-and-light",
+          "steps": [
+            12,
+            13
+          ],
+          "unit": 8,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "birches",
+          "steps": [
+            14
+          ],
+          "unit": 9,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "the-birch-bark",
+          "steps": [
+            15,
+            16,
+            17
+          ],
+          "unit": 10,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "canopy",
+          "steps": [
+            18,
+            19
+          ],
+          "unit": 11,
+          "why": "the cover is too narrow"
+        }
+      ],
+      "same_pictures": false,
+      "same_png": null,
+      "spared_canvas": 0.405,
+      "steps": 22,
+      "stopped": [
+        {
+          "covered_by": {
+            "id": "pines",
+            "step": 4,
+            "unit": 3
+          },
+          "id": "glow",
+          "most_in": 6.166,
+          "steps": [
+            1
+          ]
+        },
+        {
+          "covered_by": {
+            "id": "pines",
+            "step": 4,
+            "unit": 3
+          },
+          "id": "far-trunks",
+          "most_in": 6.166,
+          "steps": [
+            2
+          ]
+        },
+        {
+          "covered_by": {
+            "id": "ground",
+            "step": 9,
+            "unit": 5
+          },
+          "id": "pines",
+          "most_in": 8.709,
+          "steps": [
+            4,
+            5
+          ]
+        },
+        {
+          "covered_by": {
+            "id": "ground",
+            "step": 9,
+            "unit": 5
+          },
+          "id": "bushes",
+          "most_in": 8.709,
+          "steps": [
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "tested": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "highland-cow": {
+      "changed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "not_stopped": [
+        {
+          "id": "loch",
+          "steps": [
+            6
+          ],
+          "unit": 3,
+          "why": "its line hides none of its own paint"
+        },
+        {
+          "id": "hillside",
+          "steps": [
+            7
+          ],
+          "unit": 4,
+          "why": "the cover is too narrow"
+        },
+        {
+          "id": "bushes",
+          "steps": [
+            8,
+            9
+          ],
+          "unit": 5,
+          "why": "the cover is too narrow"
+        }
+      ],
+      "same_pictures": false,
+      "same_png": null,
+      "spared_canvas": 1.007,
+      "steps": 22,
+      "stopped": [
+        {
+          "covered_by": {
+            "id": "far-hills",
+            "step": 4,
+            "unit": 2
+          },
+          "id": "sky",
+          "most_in": 3.785,
+          "steps": [
+            1
+          ]
+        },
+        {
+          "covered_by": {
+            "id": "far-hills",
+            "step": 4,
+            "unit": 2
+          },
+          "id": "clouds",
+          "most_in": 3.785,
+          "steps": [
+            2,
+            3
+          ]
+        },
+        {
+          "covered_by": {
+            "id": "hillside",
+            "step": 7,
+            "unit": 4
+          },
+          "id": "far-hills",
+          "most_in": 5.227,
+          "steps": [
+            4,
+            5
+          ]
+        }
+      ],
+      "tested": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "sleeping-cat": {
+      "changed": [],
+      "not_stopped": [],
+      "same_pictures": true,
+      "same_png": true,
+      "spared_canvas": 0.0,
+      "steps": 21,
+      "stopped": [],
+      "tested": []
+    }
+  }
+}

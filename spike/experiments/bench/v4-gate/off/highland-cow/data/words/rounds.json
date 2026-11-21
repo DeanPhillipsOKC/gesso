@@ -1,0 +1,42 @@
+{
+ "out": "fc8a5c364cb731f7",
+ "rounds": [
+  {
+   "n": 1,
+   "kind": "check-text",
+   "sent": 15,
+   "claims": 61,
+   "answer": "fix-1.json",
+   "feedback": "# The checker's failures in your words (round 1)\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. A sentence that still fails after the next round is taken out.\n\n- step 1 (blend-sky), line 2 (strokes): \"just below the blue\" can't find 'the blue' on the sheet; sheet: nothing on the sheet\n  in: \"Without rinsing, pick up Golden yellow and Pale gold for a broad warm band just below the blue, then go back to Sky blue for everything below it.\"\n- step 1 (blend-sky), line 2 (strokes): \"below it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"Without rinsing, pick up Golden yellow and Pale gold for a broad warm band just below the blue, then go back to Sky blue for everything below it.\"\n- step 1 (blend-sky), line 3 (inside): \"Below it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"Below it, Sky blue fills the rest, with a few soft warm streaks blended in.\"\n- step 4 (lay-in-far-hills), line 4 (inside): \"below it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"The pale lavender stays on top as a thin far ridge, and the darker violet fills the band below it.\"\n- step 4 (lay-in-far-hills), line 5 (leave): \"above the back range\" can't find 'the back range' on the sheet; sheet: nothing on the sheet\n  in: \"Leave the sky showing above the back range.\"\n- step 6 (lay-in-loch), line 4 (inside): \"below it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"The violet shore sits on top, and the pale water glows below it, catching the sunset.\"\n- step 6 (lay-in-loch), line 6 (stop): \"above it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"Stop when a thin, flat, glowing strip of water lies at the right edge with a dark shore above it.\"\n- step 7 (lay-in-hillside), line 5 (leave): \"above the ridge\" can't find 'the ridge' on the sheet; sheet: nothing on the sheet\n  in: \"Leave the far violet hills and the loch showing above the ridge; the ridge tucks just under the end of the loch.\"\n- step 7 (lay-in-hillside), line 6 (stop): \"below the ridge is green\" can't find 'the ridge is green' on the sheet; sheet: nothing on the sheet\n  in: \"Stop when everything below the ridge is green, from the left edge to the right edge and down to the bottom edge, with no blue or sky streaks showing through.\"\n- step 9 (dab-lit-bushes), line 5 (leave): \"below its lit top\" can't find 'its lit top' on the sheet; sheet: nothing on the sheet\n  in: \"Leave most of each dark bush showing below its lit top; these are small accents, not a coat.\"\n- step 12 (shade-cow), line 4 (inside): \"below it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"Keep them off the face and the chest below it, where light reaches.\"\n- step 17 (paint-nose), line 2 (start): \"just below the fringe\" can't find 'the fringe' on the sheet; sheet: nothing on the sheet\n  in: \"Start at the middle of the nose, just below the fringe, about 7 3/4 in from the top edge.\"\n- step 17 (paint-nose), line 5 (leave): \"above it\" can't find 'it' on the sheet; sheet: nothing on the sheet\n  in: \"Leave the locks around the nose showing, and don't cover the fringe above it.\"\n- step 18 (paint-eye-nostrils), line 3 (strokes): \"below the nose\" can't find 'the nose' on the sheet; sheet: nothing on the sheet\n  in: \"Add a short curved mouth line below the nose, then a small dark eye peeking from under the fringe.\"\n- step 20 (flick-mid-grass), line 4 (inside): \"beside the dark blades rather than on top of them\" can't find 'the dark blades rather than on top of them' on the sheet; sheet: nothing on the sheet\n  in: \"Put them beside the dark blades rather than on top of them.\"\n\nWrite `fix-1.json` in your folder with only the steps you change, in out.json's shape (`{\"steps\": {\"<step id>\": {every line of that step}}}`). A step you leave out keeps its words. Then reply with one line.\n"
+  },
+  {
+   "n": 2,
+   "kind": "paints and long lines",
+   "sent": 0,
+   "paints": 0,
+   "long_lines": 0,
+   "check_text_left": 0
+  }
+ ],
+ "final": {
+  "dropped": 0,
+  "emptied": [],
+  "long_lines": 0,
+  "pictures": {
+   "made_from": "58bbc2d0cf36745652ec28f0e719c7eb24cb6b9eb4d8fa5a19a5424308be5f32",
+   "stops": false,
+   "pictures": "6d8dc44a34e29672"
+  }
+ },
+ "arc": {
+  "sha": "24f66a789bea6928",
+  "sent": 0,
+  "first": {
+   "arc": 0,
+   "back_check_text": 0
+  },
+  "final": {
+   "taken_out": 0
+  }
+ }
+}

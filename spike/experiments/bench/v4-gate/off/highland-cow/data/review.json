@@ -1,0 +1,25 @@
+{
+  "finish_issues": [
+    "The far hills are a little deeper blue-violet than the photo's."
+  ],
+  "text_issues": [
+    {
+      "step_id": "blend-sky",
+      "kind": "paint",
+      "problem": "The paint called Pale gold was measured from the pictures as a grayish beige (#c2b1a5), not the pale warm gold its name says, so its swatch may look duller than the name.",
+      "action": "left: a paint's name is in the chain's requests, so renaming it would render part of the chain again; build-steps' note."
+    },
+    {
+      "step_id": "pull-copper-locks",
+      "kind": "paint",
+      "problem": "The paint called Light copper was measured from the pictures as a deep rust (#9e4d22), darker than its name says.",
+      "action": "left: a paint's name is in the chain's requests, so renaming it would render part of the chain again; build-steps' note."
+    },
+    {
+      "step_id": "lay-in-far-hills",
+      "kind": "chain",
+      "problem": "A few orange bits of cloud show inside the violet hills where the image model didn't repaint; step 5's shading covers them.",
+      "action": "left: holes in the far hills' render."
+    }
+  ]
+}
