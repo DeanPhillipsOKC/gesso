@@ -8,7 +8,7 @@ holds the stage 2 numbers below). The student test's answers: `spike/experiments
 **Verdict: adopt `line-1-next` (the owner's call, 2026-11-21: "This is the way").** Four versions were tested. The
 first three are dropped. The fourth is the owner's own rule with the birch grove's gap fixed. It ties on every test
 that can see it, and it skips painting no test can credit. Next is a design by Fable, since it is a new pipeline
-version (`docs/decisions.md`).
+version (`docs/decisions.md`). The design: `docs/design/pipeline-v4.md` (#292).
 
 - **`edge-1-staged` (the first pick): drop.** All four blind reads preferred the lesson as it is (the cow 2 of 2, the
   cat 2 of 2), and the student test fell (2.79 against 3.14, −0.36 ± 0.14). Where a later subject sits inside a layer
