@@ -1,7 +1,7 @@
 # Pipeline v4: a covered layer stops at a loose line
 
-**A draft (2026-11-21, #292, for #287). Build 1 of section 13 (the rule in `build-steps`, behind `--stops`) is
-built on the branch `v4` (#295); the rest isn't.** The owner read it and merged it (#293), set the
+**A draft (2026-11-21, #292, for #287). Builds 1 and 2 of section 13 (the rule in `build-steps`, behind `--stops`;
+the sheet's `stop` and `onto` and `check-text`'s line) are built on the branch `v4` (#295, #296); the rest isn't.** The owner read it and merged it (#293), set the
 gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after
 spike #289 (`docs/decisions.md`; `docs/spikes/cover-margin.md`, sections "The owner's rule" and "The gap fixed"). It
 lives in `spike/experiments/cover_margin.py` as the variant `line-1-next`, laid over step pictures after they are
@@ -356,6 +356,25 @@ the full suite before each merge (`docs/testing.md`).
    checker. Tests: section 6's table on the cow's chain; a sentence that puts the sky's edge 1 in below its lowest
    point fails, and one at "most of it" passes; "reaches the bottom edge" fails on a stopped step; a planted fault
    in a stop distance is caught at the rate #173's planted faults were.
+
+   **Built (#296, `spike/tests/test_stop_facts.py`).** As written, with these readings:
+   - `make_sheet` takes build.json's `stops` and the `f<nn>` masks (`lesson_sheet` and `check` pass them). `stop`
+     is the line's five distances and `next` (the covering step, its name, and `past_cover` as `covers`). On the
+     cow, section 6's table comes out as written, and steps 1 to 4 carry `stop`.
+   - A stopped unit's part ("as the finish shows it") is its shape cut to what its pictures show, so the sky's part
+     ends at its line too. A stopped step's own things leave its part out: the v2 shape files the cow's hillside
+     under its sky, so the part's family still reached the bottom edge, and "the sky reaches the bottom edge" passed.
+   - `onto` is read from which part's paint is on top before the step, the pictures as shown (bare where a step
+     lays paint its picture doesn't show). On the cow the far hills go about two fifths over the gold cloud
+     streaks, not the sky: the clouds' last step lays its unit over the whole sky. Shares under 5% aren't said.
+   - The checker: a length from the top or bottom edge of a stopped step's own paint passes at the nearest point
+     of the line's range, and the area's box bottom is dropped. When the sentence is about where it stops ("stop",
+     "lower edge", "down to", "ends", ...) or names its bottom, the line is the only fact it's held to; otherwise
+     the step's other places count as before. Without that, a mark's middle let 16 of 42 faults moved up 1 in pass.
+   - Planted faults: each of the five distances, from the top and the bottom edge in three phrasings, moved ±1 in
+     and ±1/2 in, counting only moves that leave the line (as #173 counted only mutants wrong by construction): 384
+     of 384 caught on the cow and the birch grove, and no false alarm on the distances as measured.
+   - Without `--stops` the fixtures' sheets are what they were before, byte for byte, with `onto` added.
 3. **The teaching pictures and the page.** The dashed stretch in `aids.json` and on the page; `lesson.json`'s
    `spared`; the stamp; `site_lessons.kind`. The outline, the paint map and the close-up need no code: their tests
    hold section 7's sizes.
