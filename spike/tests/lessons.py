@@ -135,7 +135,7 @@ def words_into(name: str, folder: Path) -> None:
 
 
 FOLDER = "{name}_skill_20261112-090000"  # a run time in the name: history counts minutes from it
-STAGES = {"chained": (None, ()), "built": ("chained", ("build-steps", "step-aids", "mix")),
+STAGES = {"chained": (None, ()), "built": ("chained", ("build-steps --no-stops", "step-aids", "mix")),
           "published": ("built", ("publish",)), "checked": ("built", ("draft-text", "check")),
           "worded": ("checked", ("packets", words_into))}
 

@@ -62,10 +62,10 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
 
 ### C. Pictures, recipes, drafted lines, the first check, the chain's checker
 
-1. `build-steps --lesson <lesson>`, with `--stops` when whoever started you asked for a pipeline v4 lesson
-   (`docs/design/pipeline-v4.md`; while v4 is built it is off by default). With it, a layer the next stage covers
-   from the bottom edge stops at a loose line about 1 in past the cover, and the canvas below stays bare until the
-   cover is painted; `v3/build.json`'s `stops` says where each layer stops, and every later tool reads that, so no
+1. `build-steps --lesson <lesson>`. It builds pipeline v4's pictures (POC 2.2.0; `docs/design/pipeline-v4.md`): a
+   layer a later stage covers from the bottom edge stops at a loose line about 1 in past the cover, and the canvas
+   below stays bare until the cover is painted. Pass `--no-stops` only when whoever started you asks for the old
+   pictures (the bench does); `v3/build.json`'s `stops` says where each layer stops, and every later tool reads that, so no
    other tool takes the flag. Run it the same way every time in a run: words written for pictures built the other
    way are refused by `check-text` and `check` until `packets` and the writer run again (D). `problems` must be
    empty (it only isn't when the chain's files don't belong together: run `erase` again). `notes` are faults that would need a new plan and a new chain: a paint fitted far
@@ -87,7 +87,7 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
    a redone one is rendered again. Then the checker again, on the new looks.
 6. At most two rounds of step 5. `erase` refuses a unit that has had two more tries. What is still marked after
    that, and everything `erase` lists under `left`, stays: write each into `review.json` as step D5 says.
-7. After any redo, run C1 to C3 again (`build-steps`, with `--stops` if C1 had it, `step-aids`, `mix`,
+7. After any redo, run C1 to C3 again (`build-steps`, with `--no-stops` if C1 had it, `step-aids`, `mix`,
    `draft-text`, `check`) before D.
 
 ### D. The words
