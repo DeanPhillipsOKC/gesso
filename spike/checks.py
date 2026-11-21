@@ -236,8 +236,9 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
             # words can change after check-text's last check (a tool run again, a tip fixed by hand)
             t_path = lesson / "text.json"
             if t_path.exists():
-                sheet = facts.make_sheet(plan, pictures, masks, owner, canvas_box, canvas,
-                                         lesson3.read(lesson, pictures=False)["shapes"])
+                kept = lesson3.read(lesson, pictures=False)
+                sheet = facts.make_sheet(plan, pictures, masks, owner, canvas_box, canvas, kept["shapes"],
+                                         kept["build"].get("stops"), kept["full"])
                 words = json.loads(t_path.read_text(encoding="utf-8"))
                 for c in facts._writers(words, facts.check_text(sheet, words, strict=True)["failures"]):
                     failures.append(f"{facts.say(c)} Run check-text, then check-text --final.")

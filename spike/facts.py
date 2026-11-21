@@ -279,12 +279,44 @@ def _color_words(name: str) -> list[str]:
 STOP = {"the", "a", "an", "and", "of", "its", "in", "on", "to", "with", "far", "big", "small"}
 
 
+def onto(parts: list[dict], steps: list[dict], masks: list[np.ndarray], full: list[np.ndarray],
+         canvas_box: list[float] | None) -> list[dict]:
+    """What each step's paint goes onto (pipeline v4, design section 6): of the paint its picture shows (inside the
+    canvas), the share laid on bare canvas and the share over each earlier part, read from which part was on top
+    before the step. `masks` are the paint each picture shows, `full` where each step lays paint in full: where a
+    step lays paint its picture doesn't show, the canvas is bare after it (a layer that stops at its line)."""
+    index = {p["id"]: k for k, p in enumerate(parts)}
+    top = np.full(masks[0].shape, -1, np.int32)
+    out = []
+    for i, s in enumerate(steps):
+        under = aids.to_canvas(top, canvas_box)[aids.to_canvas(masks[i], canvas_box)]
+        n = max(under.size, 1)
+        over = [{"part": parts[k]["id"], "name": parts[k].get("name") or parts[k]["id"],
+                 "share": round(float((under == k).sum() / n), 3)} for k in sorted(set(under.tolist()) - {-1})]
+        out.append({"bare": round(float((under == -1).sum() / n), 3),
+                    "over": sorted([o for o in over if o["share"] >= 0.005], key=lambda o: -o["share"])})
+        top = top.copy()
+        top[full[i] & ~masks[i]] = -1
+        top[masks[i]] = index[s["part"]]
+    return out
+
+
 def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner: np.ndarray,
-               canvas_box: list[float] | None, canvas: dict, shapes: list[np.ndarray] | None = None) -> dict:
+               canvas_box: list[float] | None, canvas: dict, shapes: list[np.ndarray] | None = None,
+               stops: dict | None = None, full: list[np.ndarray] | None = None) -> dict:
     """The lesson's fact sheet: {"canvas", "tolerance", "parts": {id: what the finish shows of it}, "steps": [...]}.
-    `pictures` and `masks` are build_steps.build's (in the frame), `owner` parts/owner.png."""
+    `pictures` and `masks` are build_steps.build's (in the frame), `owner` parts/owner.png. With a build that stops
+    covered layers (pipeline v4), `stops` is build.json's and `full` where each step lays paint in full (masks.npz's
+    `f<nn>`): a stopped unit's steps get `stop`, where its lower edge is, and its part is what its pictures show."""
     parts = plan["parts"]
     steps = bs.flat_steps(plan)
+    stopped = {n: r for r in (stops or {}).get("stopped") or [] for n in r["steps"]}  # step number -> its unit's row
+    if shapes is not None and stopped:
+        # a stopped unit's shape is what its pictures show of it: the rest of the layer is never painted
+        shapes = list(shapes)
+        for r in {id(r): r for r in stopped.values()}.values():
+            k = next(k for k, p in enumerate(parts) if p.get("unit", k) == r["unit"])
+            shapes[k] = shapes[k] & np.any([masks[n - 1] for n in r["steps"]], axis=0)
     names = publish2.paint_names(plan)
     hexes = {c["id"]: c["hex"] for c in plan.get("paints") or []}
     seen = bs.visible(plan, owner, masks)
@@ -319,6 +351,7 @@ def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], 
         first.setdefault(s["part"], i)
     blank = np.empty_like(pictures[0])
     blank[:] = bs.ff.CANVAS
+    goes = onto(parts, steps, masks, full or masks, canvas_box)
     out = []
     for i, s in enumerate(steps):
         before = pictures[i - 1] if i else blank
@@ -380,7 +413,15 @@ def make_sheet(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], 
                     "area": area, "marks": mk, "crossings": crossings(own_paint, part, canvas), "adds": adds,
                     "same_paint_as_under": same_as_under,
                     "earlier_steps_of_part": [j + 1 for j in own_before], "others": others,
-                    "where": aids.where_words(area_c, canvas)})
+                    "where": aids.where_words(area_c, canvas), "onto": goes[i]})
+        r = stopped.get(i + 1)
+        if r:  # build.json's line, and the step that paints below it next
+            ln, by = r["line"], r.get("covered_by")
+            out[-1]["stop"] = {k: ln[k] for k in ("highest", "most", "lowest", "left", "right")}
+            if by:
+                nxt = steps[by["step"] - 1]
+                out[-1]["stop"]["next"] = {"step": by["step"], "name": nxt.get("name") or nxt["id"],
+                                           "covers": ln["past_cover"]}
     return {"canvas": {"w_in": float(canvas["w_in"]), "h_in": float(canvas["h_in"])}, "tolerance": TOLERANCE,
             "parts": part_facts, "steps": out}
 
@@ -393,7 +434,8 @@ def lesson_sheet(lesson: Path) -> tuple[dict, dict]:
     kept = tools._v3_kept(lesson)
     plan, owner, pictures, masks, shapes = kept["plan"], kept["owner"], kept["pictures"], kept["masks"], kept["shapes"]
     box, canvas = canvas_of(lesson, pictures[0].shape)
-    return make_sheet(plan, pictures, masks, owner, box, canvas, shapes), plan
+    return make_sheet(plan, pictures, masks, owner, box, canvas, shapes, kept["build"].get("stops"),
+                      kept["full"]), plan
 
 
 def canvas_of(lesson: Path, shape) -> tuple[list | None, dict]:
@@ -447,6 +489,9 @@ LENGTH = re.compile(
     r"\s*-?\s*(?P<unit>in\b\.?(?!\s+(?:the|a|an|its|their|each|every|this|that|these|those|there|here|front|place|"
     r"half|one|two)\b)|inch(?:es)?\b)"
     r"(?P<and>\s+and\s+a\s+(?:half|quarter))?", re.I)
+# words about where a layer that stops short ends (pipeline v4): a length in them is held to its line alone
+STOP_CUE = re.compile(r"\b(?:stop(?:s|ping|ped)?|lower edge|ends?|ending|down to|as far (?:down )?as|no (?:further|lower))\b",
+                      re.I)
 BRUSH = re.compile(r"^\s*(?:wide\s+)?(?:flat|bright|filbert|angle|angled|round|mop|fan|brush|liner|dagger)\b", re.I)
 SIDES = "left|right|top|bottom"
 EDGE = re.compile(r"\b(?P<side>" + SIDES + r")(?:\s+canvas)?\s+edge\b(?P<of>\s+of\s+(?:the\s+)?(?P<owner>[\w-]+))?", re.I)
@@ -604,13 +649,15 @@ class Lesson:
 
 
 def _things(st: dict, lesson: Lesson) -> list[dict]:
-    """The step's own things: its area, the marks it adds, and its part as the finish shows it."""
+    """The step's own things: its area, the marks it adds, and its part as the finish shows it. A step whose layer
+    stops short (pipeline v4) is held to its own paint: its part's family can run on below its line (the v2 shape
+    files the cow's hillside under its sky)."""
     out = []
     if st["area"]:
         out.append(dict(st["area"], what="the step's area"))
     out += [dict(m, what=f"mark {k + 1}") for k, m in enumerate(st["marks"])]
     p = lesson.parts.get(st["part"])
-    if p:
+    if p and not st.get("stop"):
         out.append(dict(p, what=st["part_name"].lower()))
     return out
 
@@ -814,7 +861,17 @@ class Reader:
             extra = pieces
             if not where_line and not label and who == "this step" and axis == "x":
                 extra = pieces + self.st["crossings"]["across"]  # the bars it paints, where they cross the middle row
-            vals = [coord(t, a, axis) for t in things + extra for a in anchors]
+            stop = self.st.get("stop") if axis == "y" and who == "this step" and not label else None
+            line = bool(stop) and anchor in (None, "bottom")
+            # a stopped step's lower edge is its line (pipeline v4, design section 6), not its area's box: the box
+            # ends at the line's lowest point. Words about where it stops are held to the line alone
+            only = line and (anchor == "bottom" or bool(STOP_CUE.search(sentence)))
+            vals = [] if only else [coord(t, a, axis) for t in things + extra for a in anchors
+                                    if not (line and a == "bottom" and t.get("what") == "the step's area")]
+            if line:  # anywhere between its highest and lowest points: the nearest of them to what was said
+                said_top = said if e == "top" else self.ch - said
+                vals.append(min(max(said_top, stop["highest"]), stop["lowest"]))
+                vals += [stop[k] for k in ("highest", "most", "lowest", "left", "right") if stop.get(k) is not None]
             full = self.cw if axis == "x" else self.ch
             return [v if e in ("left", "top") else full - v for v in vals if v is not None]
 
@@ -1320,6 +1377,46 @@ def _beside(o: dict) -> str:
     return f"{where} {o['name']}" + (", touching" if o["touches"] else "") + (f" ({', '.join(gaps)})" if gaps else "")
 
 
+SHARES = [(1 / 10, "a tenth"), (1 / 5, "a fifth"), (1 / 4, "a quarter"), (1 / 3, "a third"), (2 / 5, "two fifths"),
+          (1 / 2, "half"), (3 / 5, "three fifths"), (2 / 3, "two thirds"), (3 / 4, "three quarters"),
+          (4 / 5, "four fifths"), (9 / 10, "nine tenths")]
+ONTO_MIN = 0.05  # a share of a step's paint under this isn't said
+ONTO_ALL = 0.95  # ... and one over this is "all of it"
+
+
+def share_words(v: float) -> str:
+    """A share as a painter says it: 'a fifth', 'two thirds'."""
+    return min(SHARES, key=lambda x: abs(x[0] - v))[1]
+
+
+def stop_words(stop: dict) -> str:
+    """Where a stopped layer's lower edge is, as the sheet says it (design section 6)."""
+    ends = [f"{q(stop[e])} at the {e} edge" for e in ("left", "right") if stop.get(e) is not None]
+    out = (f"It stops short. Its lower edge is a loose, uneven line: about {q(stop['most'])} from the top edge for "
+           f"most of its width, {q(stop['highest'])} at its highest and {q(stop['lowest'])} at its lowest"
+           + (f" ({', '.join(ends)})" if ends else "") + ". Below it the canvas stays bare.")
+    nxt = stop.get("next")
+    if nxt:
+        out += (f" Step {nxt['step']} ({nxt['name']}) paints there next, and its top covers this edge by about "
+                f"{q(nxt['covers']['most'])}.")
+    return out
+
+
+def onto_words(o: dict) -> str:
+    """What a step's paint goes onto: 'Of what it paints, about a fifth goes over The sky and the rest on bare
+    canvas.'"""
+    said = [("on bare canvas", o["bare"])] if o["bare"] >= ONTO_MIN else []
+    said += [(f"over {x['name']}", x["share"]) for x in o["over"] if x["share"] >= ONTO_MIN]
+    said.sort(key=lambda x: -x[1])
+    if not said:
+        return ""
+    top, v = said[0]
+    if len(said) == 1 or v >= ONTO_ALL:
+        return f"{'All' if v >= 0.995 else 'Nearly all' if v >= ONTO_ALL else 'Most'} of what it paints goes {top}."
+    some = [f"about {share_words(x)} {'goes ' if k == 0 else ''}{w}" for k, (w, x) in enumerate(said[1:])]
+    return f"Of what it paints, {', '.join(some)}{',' if len(some) > 1 else ''} and the rest {top}."
+
+
 def facts_text(sheet: dict, plan: dict, st: dict) -> str:
     """One step's facts as plain sentences, every number in the ruler step it may be said in, every part and earlier
     mark named the way the checker finds it."""
@@ -1361,6 +1458,10 @@ def facts_text(sheet: dict, plan: dict, st: dict) -> str:
         head.append(f"Where its paint crosses the middle row of {st['part_name']} (middle {q(part['cx'])} from the "
                     f"left edge): {runs(cr.get('across') or [], 'left')}. Down its middle column: "
                     f"{runs(cr.get('down') or [], 'top')}.")
+    if st.get("stop"):
+        head.append(stop_words(st["stop"]))
+    if st.get("onto") and onto_words(st["onto"]):
+        head.append(onto_words(st["onto"]))
     if part:
         head.append(_box_words(part, f"{st['part_name']} as the finish shows it"))
     for j in st["earlier_steps_of_part"][-3:]:
