@@ -350,7 +350,7 @@ the full suite before each merge (`docs/testing.md`).
      cover's top (most of it, the least, the greatest).
    - A stopped unit's row is kept only when its line hides some of its own paint. A unit with a line that hides
      none of it is listed under `not_stopped` ("its line hides none of its own paint"). `covered_by` is the first
-     unit of the next stage that lays paint below the line.
+     unit of a later stage that lays paint below the line (the next stage's, before the rule was widened).
    - A unit that doesn't stop is also listed when anything later covers it from the bottom edge (1 1/2 in up): "the
      cover is in its own stage", "stopping would leave bare canvas above paint already laid" (until the widening,
      "the cover is more than one stage on"), or "the cover is too narrow" (a trunk or a post: each column's depth is

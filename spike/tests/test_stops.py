@@ -182,6 +182,20 @@ class TheRuleTests(unittest.TestCase):
         self.assertAlmostEqual(row["line"]["lowest"], self.two()["said"]["stops"]["stopped"][0]["line"]["lowest"],
                                delta=1 / 16)
 
+    def test_a_line_never_takes_back_paint_already_showing(self):
+        """A mist laid over the whole canvas stops for the hill, but a patch of ground painted before it already
+        shows at the bottom left: the mist is painted there, not turned back into bare canvas (#306's review, the
+        lavender balloon's canopy over its hills)."""
+        ground = ("ground", "s1", ["ground"], box(130, H, 0, 40), (150, 120, 80), "first")
+        mist = ("mist", "s2", ["mist"], box(0, H, 0, W), (200, 205, 215), "behind")
+        hill = (HILL[0], "s3", ["hill", "ground"], *HILL[2:])  # the ground's own thing: the patch isn't covered
+        sc = scene([ground, mist, hill], ["s1", "s2", "s3"])
+        r = run(sc)
+        self.assertEqual([x["id"] for x in r["said"]["stops"]["stopped"]], ["mist"])
+        self.assertTrue(bare(r["pictures"][1][140, 70]))  # bare canvas under the mist's line, where nothing was
+        self.assertFalse(bare(r["pictures"][1][150, 20]))  # the ground's patch stays painted
+        self.checks_hold(sc, r)
+
     def checks_hold(self, sc: dict, r: dict) -> None:
         """build-steps' checks 1 and 2 on the second laying: the last picture is the finish, and no step changes a
         pixel outside where its unit lays paint."""

@@ -262,6 +262,15 @@ def work_out(plan: dict, us: list[dict], masks: list[np.ndarray], owner: np.ndar
                 not_stopped.append({"unit": u, "id": us[u]["id"], "steps": [i + 1 for i in us[u]["steps"]],
                                     "why": why})
     not_stopped.sort(key=lambda r: r["unit"])
+    # a line never takes back paint an earlier unit already shows: there the later layer is painted through (#306's
+    # review: the lavender balloon's canopy turned the hills' gold back into bare canvas)
+    # (a unit is hidden no more than the least hidden paint laid there before it, so layers that share a fade keep it)
+    showing = np.ones(laid[0].shape, np.float32)
+    for u in range(n):
+        if lines[u] is not None:
+            want[u] = np.minimum(want[u], showing).astype(want[u].dtype)
+            shown[u] = laid[u] & ~(want[u] > HIDDEN)
+        showing = np.where(laid[u], np.minimum(showing, want[u] if lines[u] is not None else 0.0), showing)
     return {"want": want, "lines": lines, "owner": own, "laid": laid, "shown": shown, "not_stopped": not_stopped}
 
 
