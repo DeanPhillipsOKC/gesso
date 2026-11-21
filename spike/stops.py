@@ -231,38 +231,48 @@ def work_out(plan: dict, us: list[dict], masks: list[np.ndarray], owner: np.ndar
         lines.append(line)
         if line is None:
             if _runs_up(c, fr):
-                why = ("the cover is in its own stage" if not _runs_up(later, fr) else
-                       "the cover is more than one stage on")
+                if not _runs_up(later, fr):
+                    why = "the cover is in its own stage"
+                elif not _runs_up(cov, fr):
+                    why = "the cover is more than one stage on"
+                else:  # each column's depth is its neighbours' too: a thin cover, a trunk or a post, stops nothing
+                    why = "the cover is too narrow"
                 not_stopped.append({"unit": u, "id": us[u]["id"], "steps": [i + 1 for i in us[u]["steps"]],
                                     "why": why})
     return {"want": want, "lines": lines, "owner": own, "laid": laid, "not_stopped": not_stopped}
 
 
 def lay(pictures: list[np.ndarray], masks: list[np.ndarray], us: list[dict], want: list[np.ndarray]) -> dict:
-    """The second laying: {"pictures", "hidden" (how hidden each pixel is after each step), "by" (after each step,
-    the unit whose line left each pixel bare, -1 none)}. Inside a step's mask the picture takes its unit's line,
-    bare canvas below it; everywhere else it keeps what the step before showed. Canvas a stopped layer left bare is
-    uncovered only by a unit that shares no thing with that layer."""
+    """The second laying: {"pictures", "hidden" (how hidden each pixel is after each step), "bare_by" (after the last
+    step, a map a unit: where its line left the canvas bare and nothing has painted it since)}. Inside a step's mask
+    the picture takes its unit's line, bare canvas below it; everywhere else it keeps what the step before showed.
+
+    Canvas a stopped layer left bare is uncovered only by a unit that shares no thing with that layer. A pixel can
+    be left bare by several layers at once (the cow's sky, then its clouds), so each pixel keeps all of them until
+    it is painted: a glow on the sky stays off the canvas the clouds left bare too (#300's review)."""
     unit_of = {i: n for n, u in enumerate(us) for i in u["steps"]}
     same = share_things(us)
     hide = np.zeros(masks[0].shape, np.float32)
-    by = np.full(masks[0].shape, -1, np.int32)
+    bare_by = np.zeros((len(us), *masks[0].shape), bool)
     fill = np.empty(pictures[0].shape, np.float32)
     fill[:] = ff.CANVAS
-    out, hidden, bys = [], [], []
+    out, hidden = [], []
     for i, b in enumerate(pictures):
         u = unit_of[i]
         where = masks[i]
-        hide, by = hide.copy(), by.copy()
-        new, old, was = want[u][where], hide[where], by[where]
-        keep = (was >= 0) & same[u, np.maximum(was, 0)] & (old > new)  # the stopped layer's own thing comes back
+        hide = hide.copy()
+        new, old = want[u][where], hide[where]
+        left = bare_by[:, where]  # (units, pixels): the layers that left each pixel bare
+        keep = (left & same[u][:, None]).any(0) & (old > new)  # a stopped layer's own thing comes back
         hide[where] = np.where(keep, old, new)
-        by[where] = np.where(keep, was, np.where(new > 0, u, -1))
+        stays = keep | (new > 0)  # still bare: whoever left it bare still did
+        left &= stays[None]
+        left[u] |= new > 0
+        bare_by[:, where] = left
         a = hide[..., None]
         out.append(np.clip(b.astype(np.float32) * (1 - a) + fill * a, 0, 255).astype(np.uint8))
         hidden.append(hide)
-        bys.append(by)
-    return {"pictures": out, "hidden": hidden, "by": bys}
+    return {"pictures": out, "hidden": hidden, "bare_by": bare_by}
 
 
 def report(plan: dict, us: list[dict], masks: list[np.ndarray], worked: dict, laid2: dict, fr: dict) -> dict:
@@ -276,15 +286,17 @@ def report(plan: dict, us: list[dict], masks: list[np.ndarray], worked: dict, la
         n = int(m.sum())
         h = m & (hidden[i] > HIDDEN)
         spared.append({"spared": round(float(h.sum() / max(n, 1)), 3), "spared_canvas": round(float(h.mean()), 4)})
-    rows, notes = [], []
+    rows, notes, not_stopped = [], [], list(worked["not_stopped"])
     at = stage_of(plan, us)
     own = worked["owner"]
     y0, y1, x0, x1 = fr["crop"]
     for u, line in enumerate(worked["lines"]):
         if line is None:
             continue
-        if not any(spared[i]["spared"] > 0 for i in us[u]["steps"]):
-            continue  # its line runs where it lays no paint
+        if not any((masks[i] & (hidden[i] > HIDDEN)).any() for i in us[u]["steps"]):
+            not_stopped.append({"unit": u, "id": us[u]["id"], "steps": steps_of[u],
+                                "why": "its line hides none of its own paint"})
+            continue
         nxt = [k for k in range(u + 1, len(us)) if at[k] == at[u] + 1
                and (worked["laid"][k] & (worked["want"][u] > HIDDEN)).any()]
         by = nxt[0] if nxt else None
@@ -306,5 +318,6 @@ def report(plan: dict, us: list[dict], masks: list[np.ndarray], worked: dict, la
                 notes.append(f"{us[u]['id']}: its line comes {gap:.2f} in below the lowest of it the finish shows, "
                              f"under {SHOWING:g} in. The rule's arithmetic can't do that: check the chain's masks.")
     total = round(sum(s["spared_canvas"] for s in spared), 3)
-    return {"stops": {"rule": RULE, "numbers": NUMBERS, "stopped": rows, "not_stopped": worked["not_stopped"]},
+    not_stopped.sort(key=lambda r: r["unit"])
+    return {"stops": {"rule": RULE, "numbers": NUMBERS, "stopped": rows, "not_stopped": not_stopped},
             "spared": spared, "spared_canvas": total, "notes": notes}

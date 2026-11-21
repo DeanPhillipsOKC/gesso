@@ -128,12 +128,16 @@ class TheRuleTests(unittest.TestCase):
                 r = self.two(**kw)
                 self.assertFalse(self.stopped(r))
                 self.assertEqual(r["said"]["stops"]["stopped"], [])
-                self.assertTrue(all(np.array_equal(a, b) for a, b in zip(r["pictures"], self.two(**kw)["pictures"])))
+                hill = kw.get("hill", HILL)
+                sc = scene([(SKY[0], "s1", *SKY[1:]), (hill[0], kw.get("hill_stage", "s2"), *hill[1:])],
+                           list(kw.get("stages", ("s1", "s2"))))
+                self.assertTrue(all(np.array_equal(a, b) for a, b in zip(r["pictures"], sc["base"])))
         why = {w: self.two(**cases[w])["said"]["stops"]["not_stopped"]
                for w in ("in the layer's own stage", "two stages on")}
         self.assertEqual(why["in the layer's own stage"][0]["why"], "the cover is in its own stage")
         self.assertEqual(why["two stages on"][0]["why"], "the cover is more than one stage on")
         self.assertEqual(self.two(**cases["an island"])["said"]["stops"]["not_stopped"], [])
+        self.assertEqual(self.two(**cases["thin"])["said"]["stops"]["not_stopped"][0]["why"], "the cover is too narrow")
 
     def checks_hold(self, sc: dict, r: dict) -> None:
         """build-steps' checks 1 and 2 on the second laying: the last picture is the finish, and no step changes a
@@ -171,8 +175,35 @@ class TheRuleTests(unittest.TestCase):
         self.assertTrue(bare(r["pictures"][1][140, 50]))  # still bare after the glow
         self.assertFalse(bare(r["pictures"][1][20, 50]))  # the glow above the line
         self.assertGreater(r["said"]["spared"][1]["spared"], 0.3)
-        self.assertEqual(int(r["by"][1][140, 50]), 0)  # left bare by the sky
         self.assertFalse(bare(r["pictures"][2][140, 50]))  # the hill, another thing, paints it
+        self.checks_hold(sc, r)
+
+    def test_canvas_two_layers_left_bare_stays_bare_for_a_glow_on_either(self):
+        """The sky and a cloud bank under it both stop for the hill (the cow's sky, then its clouds): the glow on the
+        sky stays off the canvas the cloud left bare too (#300's review)."""
+        sky = (SKY[0], "s1", *SKY[1:])
+        cloud = ("cloud", "s1", ["cloud"], box(100, H, 0, W), (240, 240, 245), "behind")
+        glow = ("glow", "s2", ["sky"], box(0, H, 0, W), (200, 170, 200), "back")
+        hill = (HILL[0], "s2", *HILL[1:])
+        sc = scene([sky, cloud, glow, hill], ["s1", "s2"])
+        r = run(sc)
+        self.assertEqual([x["id"] for x in r["said"]["stops"]["stopped"]], ["sky", "cloud"])  # the glow has no line
+        self.assertGreater(r["said"]["spared"][2]["spared"], 0.3)
+        self.assertTrue(bare(r["pictures"][1][140, 50]))
+        self.assertTrue(bare(r["pictures"][2][140, 50]))  # still bare after the glow
+        self.assertFalse(bare(r["pictures"][3][140, 50]))
+        self.checks_hold(sc, r)
+
+    def test_a_unit_that_comes_back_after_its_cover_changes_nothing_the_cover_painted(self):
+        """The glow after the hill: the hill has painted the canvas the sky left bare, so the glow lays only above."""
+        sky = (SKY[0], "s1", *SKY[1:])
+        hill = (HILL[0], "s2", *HILL[1:])
+        glow = ("glow", "s3", ["sky"], box(0, HILL_TOP, 0, W), (200, 170, 200), "back")
+        sc = scene([sky, hill, glow], ["s1", "s2", "s3"])
+        r = run(sc)
+        self.assertTrue(bare(r["pictures"][0][140, 50]))
+        self.assertFalse(bare(r["pictures"][2][140, 50]))
+        self.assertFalse(bare(r["pictures"][2][20, 50]))
         self.checks_hold(sc, r)
 
 

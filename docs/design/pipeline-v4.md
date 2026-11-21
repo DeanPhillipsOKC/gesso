@@ -336,13 +336,15 @@ the full suite before each merge (`docs/testing.md`).
    - A line's five distances are where the bare canvas starts in each column (past the fade), as section 3's table
      was measured; on the bench they come within 1/32 in of it. `past_cover` gives how far that is past the
      cover's top (most of it, the least, the greatest).
-   - A stopped unit's row is kept only when its line hides some of its own paint, so the cow's hills' shadows and
-     loch (whose lines are the far hills') have none. `covered_by` is the first unit of the next stage that lays
-     paint below the line.
-   - A unit that doesn't stop is listed when anything later covers it from the bottom edge (1 1/2 in up): "the cover
-     is in its own stage", or "the cover is more than one stage on" (the next paint laid there from a later stage
-     isn't in the stage right after). On the cow, the green hillside is listed (its cover is the tall grass, four
-     stages on).
+   - A stopped unit's row is kept only when its line hides some of its own paint. A unit with a line that hides
+     none of it is listed under `not_stopped` ("its line hides none of its own paint"). `covered_by` is the first
+     unit of the next stage that lays paint below the line.
+   - A unit that doesn't stop is also listed when anything later covers it from the bottom edge (1 1/2 in up): "the
+     cover is in its own stage", "the cover is more than one stage on" (the next paint laid there from a later
+     stage isn't in the stage right after), or "the cover is too narrow" (a trunk or a post: each column's depth is
+     its neighbours' too). On the cow, the green hillside is listed (its cover is the tall grass, four stages on).
+   - The rule beside the spike's keeps every layer that left a pixel bare until it is painted, so where the cow's
+     sky and clouds both stop, a glow on the sky stays off the canvas the clouds left bare too.
    - Check 3 (`from_its_paints`) stays the first laying's, since bare canvas is laid by no step; the rows' `changed`,
      `seen` and `outside_unit` are measured again on the second laying for a step whose picture, or the one before
      it, changed.
