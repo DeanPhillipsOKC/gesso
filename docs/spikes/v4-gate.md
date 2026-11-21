@@ -7,16 +7,17 @@ it is `spike/experiments/v4_gate.py` (the bench, the tested steps, the blind fol
 student test's summary) and `spike/experiments/v4_gate/student-on.json` and `student-off.json` (every carry and
 grade). The six lessons, in the bench's shape, are `spike/experiments/bench/v4-gate/on/` and `off/`.
 
-**Verdict: every measured line passes but one, which fails as written on noise from the words: the build with the
-rule has one more known problem than the one without on the cat and on the birch grove. The owner said yes to the
-cow. Whether the gate passes is the owner's call.**
+**Verdict: two lines are the owner's call; the rest pass.** The known-problems line fails as written, on lines the
+words lost (the rule's side has one more on the cat, whose pictures are the same files, and on the birch grove).
+The student test was exactly on its fail line at two carries; a third carry, run after seeing that, puts it inside
+(−0.21 ± 0.18). The owner said yes to the cow.
 
 | Line of the gate | Needed | Result | |
 |---|---|---|---|
 | Both builds of each lesson seal | 6 | 6 | pass |
 | The rule's build has no more known problems | ≤ | cow 4 / 4, cat 5 / 4, birch grove 9 / 8 | **fails as written** (below) |
 | Checks 1 and 2 hold; nothing-stops is the same byte for byte | yes | yes; the cat's 21 step pictures are the same files | pass |
-| Student test, the three together | not lower by 0.25 or more | 3.02 against 3.23 (−0.21 ± 0.18, 16 steps, three carries a side) | pass |
+| Student test, the three together | not lower by 0.25 or more | two carries: 2.97 against 3.22, exactly −0.25; three: 3.02 against 3.23 (−0.21 ± 0.18, 16 steps) | **the owner's call** (below) |
 | Blind graders | a clear loss on no picture | the rule preferred 4 of 4 on the cow and birch grove (all slight), none 2 of 2 on the cat | pass |
 | The saving | reported | cow 1.01 canvases, cat 0, birch grove 0.41 | not a pass or fail |
 | The owner reads the cow and says yes | yes | "Go" (2026-11-21) | pass |
@@ -62,7 +63,8 @@ not the pictures:
 
 - **The cat:** its step pictures are the same files either way, so the rule can't have added a problem there. Its
   rule-side writer lost two lines (the wall's Start, the sill's shading) and the other side one (the ears' Start).
-- **The birch grove:** the rule's side lost the rock's light step's Stop line. Its other eight problems are the
+- **The birch grove:** the rule's side lost the rock's light step's Stop line (over where it put the rock; the rock
+  doesn't stop, so the rule had no part in it). Its other eight problems are the
   same on both sides (the chain's units 1, 2 and 12, the pine's top, three paints, the finish).
 - **The cow:** both sides have 4. Step 4's holes in the far hills are white on the rule's side and orange on the
   other; it is one problem on each.
@@ -74,8 +76,13 @@ birch grove 8 / 8.
 
 `v4_student.py` on the gate's bench, as #289 and the v3.1 gate ran it: the image model carries out each tested step's
 words on its before picture, and a grader who never sees the words scores the result alone against the lesson's own
-after picture, 1 to 5. Two carries a side; the two came out exactly 0.25 lower on the rule's side (2.97 against
-3.22), the gate's edge, so each side got a third.
+after picture, 1 to 5. Two carries a side came out exactly 0.25 lower on the rule's side (2.97 against 3.22, −0.25
+± 0.21). The gate reads "lower by 0.25 or more" as a fail and "between 0.15 and 0.25" as a third carry; the two
+overlap there. The gate's script as first written called it a fail (`v4_gate.json` recorded `"fail"`), and the
+inclusive reading, a third carry a side, was chosen after seeing the number. So this line is the owner's to call:
+at two carries it fails by the letter; with the third it passes.
+
+Each cell is the step's three grades, the third carry's last.
 
 | Step | Cow, rule | Cow, no rule | Birch grove, rule | Birch grove, no rule |
 |---|---|---|---|---|

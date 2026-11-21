@@ -22,7 +22,10 @@ same byte for byte (the gate's check).
 
 `report` gives each picture's student score on its tested steps, a side, and the three together: the gate fails
 when the rule's side is lower by 0.25 or more, and at two carries a side it asks for a third when the gap is from
-0.15 to 0.25, either end included (the gate's two carries came out at exactly 0.25); with three, the gap decides. Every grade is a carry graded alone (`grade-carry --solo words`).
+0.15 to 0.25, either end included; with three, the gap decides. The design says "lower by 0.25 or more" fails and
+"between 0.15 and 0.25" asks for a third, which overlap at exactly 0.25. The gate's two carries came out there, the
+script as first written called it a fail, and the inclusive reading was chosen after seeing it (the owner's call,
+docs/spikes/v4-gate.md). Every grade is a carry graded alone (`grade-carry --solo words`).
 
 Experiment code: it reads lessons and the bench and changes no tool.
 """
@@ -153,7 +156,8 @@ def report(args):
         all_on += on
         all_off += off
         rows[pic] = {"tested": tested, "rule": mean(on), "no rule": mean(off), "by_step": per}
-    gap = round(float(np.mean(all_on) - np.mean(all_off)), 2) if all_on and all_off else None
+    raw = float(np.mean(all_on) - np.mean(all_off)) if all_on and all_off else None  # compared unrounded
+    gap = round(raw, 2) if raw is not None else None
     diffs = [np.mean(g["on"][(p, n)]) - np.mean(g["off"][(p, n)]) for p in PICTURES for n in st["steps"][p]["tested"]
              if g["on"].get((p, n)) and g["off"].get((p, n))]
     se = round(float(np.std(diffs, ddof=1) / np.sqrt(len(diffs))), 2) if len(diffs) > 1 else None
@@ -161,12 +165,12 @@ def report(args):
                    if g[s].get((p, n))), default=0)
     if gap is None:
         verdict = None
-    elif gap <= -FAIL - 1e-9 and carries >= 3:
+    elif raw <= -FAIL + 1e-9 and carries >= 3:
         verdict = "fail"
-    elif gap < -THIRD and carries < 3:
+    elif raw < -THIRD and carries < 3:
         verdict = "third carry"  # at two carries a side, a gap from 0.15 to 0.25 (either end) asks for a third
     else:
-        verdict = "fail" if gap <= -FAIL - 1e-9 else "pass"
+        verdict = "fail" if raw <= -FAIL + 1e-9 else "pass"
     rows["all"] = {"rule": round(float(np.mean(all_on)), 2) if all_on else None,
                    "no rule": round(float(np.mean(all_off)), 2) if all_off else None,
                    "gap": gap, "se": se, "steps": len(diffs), "carries": carries, "student": verdict}
