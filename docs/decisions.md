@@ -389,6 +389,11 @@ with the date.
   later stage covers it from the bottom edge, except above paint a stage between them has already laid
   (`line-1-any`, `spike/stops.py`); on that cow it skips about 1 canvas. The spike's cow and birch grove come out as
   before within 1/16 in, apart from the mist's line rising a little at its left.
+- **Go on pipeline v4 after the owner read the cow (2026-11-21, owner's call, #299 step 1).** The first 2.2.0 cow
+  (`output/highland-cow_skill_20261121-102810`, the widened rule: its sky, clouds and far hills stop, about 1 canvas
+  skipped) was sealed and read. Owner: "Go." On the two guesses the design left open: the dashed stop line ("Didn't
+  see a dashed line so should be fine") and the page's line about painting skipped ("Didn't notice it so keep or not
+  doesn't matter"), both stay as built. Next is the gate (`docs/design/pipeline-v4.md`, section 12).
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the

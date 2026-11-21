@@ -458,6 +458,19 @@ the full suite before each merge (`docs/testing.md`).
      run that goes on after a stop can't build the other way.
 5. **One whole lesson, the cow, for the owner:** go, change or stop. This draft is then corrected by what it
    showed.
+
+   **Done (2026-11-21, #299).** A fresh hands-off `/paint-lesson` run, `output/highland-cow_skill_20261121-102810`
+   (22 steps, 8 stages, 14 chain renders, nothing asked again; $0.42 of renders). What it showed, and what changed:
+   - **Its chain painted sky, not far hills, behind the hillside.** Under `line-1-next` only the far hills stopped
+     (0.017 of a canvas). The owner widened the rule (section 2; `docs/decisions.md`): with it the sky and clouds
+     stop at about 3 3/4 in and the far hills at 5 1/4 in, about 1 canvas skipped. Its review (#306) added that a
+     line never takes back paint already showing.
+   - **Holes in a cover's render show bare canvas.** Specks inside the far hills that their render didn't change
+     are white on step 4 (sky before the rule), until step 5 shades them. Filed as a known problem; not fixed.
+   - **The words:** round 1 sent back 9 sentences (a distance "at the right edge" with no edge to measure from,
+     phrases the checker can't place), round 2 none, `--final` took out nothing; the arc passed first time. Every
+     stopped step says where its lower edge is and which step covers the bare canvas.
+   - **The owner said go,** and keeps the dashed line and the page's line as built.
 6. **The gate** (section 12), from the branch.
 7. **Then** merge, turn `--stops` on by default, stamp the version, write the changelog entry, fold the as-built
    facts into `pipeline-v3.md` (sections 8 to 10) so one file still describes the run, and unblock #287 to be
