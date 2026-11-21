@@ -5,8 +5,10 @@ The numbers, the words, the graders' answers and the costs: `spike/experiments/c
 holds the stage 2 numbers below). The student test's answers: `spike/experiments/cover_margin/variant.json` and
 `base.json`. Run on 2026-11-20, on the three v3.1 gate lessons.
 
-**Verdict: open, waiting on the owner and an independent check.** Three versions were tested. The first two are
-dropped. The third is the owner's own rule, and he likes its pictures.
+**Verdict: adopt `line-1-next` (the owner's call, 2026-11-21: "This is the way").** Four versions were tested. The
+first three are dropped. The fourth is the owner's own rule with the birch grove's gap fixed. It ties on every test
+that can see it, and it skips painting no test can credit. Next is a design by Fable, since it is a new pipeline
+version (`docs/decisions.md`).
 
 - **`edge-1-staged` (the first pick): drop.** All four blind reads preferred the lesson as it is (the cow 2 of 2, the
   cat 2 of 2), and the student test fell (2.79 against 3.14, −0.36 ± 0.14). Where a later subject sits inside a layer
