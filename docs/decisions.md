@@ -381,6 +381,28 @@ with the date.
   picture; the painting saved is reported, not passed or failed; the owner reads the cow and says yes. The stamp is
   POC 2.2.0 with `"pipeline": 4` (the design had proposed 3.0.0). Not decided by this: the dashed stop line on the
   Where picture and the page's line about painting skipped, both guesses in the design. Next is the build, by Opus.
+- **A covered layer stops for a cover any number of stages on (2026-11-21, owner's call, during #299; widens the rule
+  above).** The first 2.2.0 cow's chain painted sky, not far hills, behind the hillside, so under `line-1-next` its
+  sky ran to the bottom edge (only the far hills stopped, 0.02 of a canvas). Owner: "I'm trying to avoid wasted time
+  so if it gets mostly covered eventually by any step we should only paint it part way." Asked whether to keep the
+  birch grove's fix (no white patch left floating over paint already laid), he said yes. So a layer stops wherever a
+  later stage covers it from the bottom edge, except above paint a stage between them has already laid
+  (`line-1-any`, `spike/stops.py`); on that cow it skips about 1 canvas. The spike's cow and birch grove come out as
+  before within 1/16 in, apart from the mist's line rising a little at its left.
+- **Go on pipeline v4 after the owner read the cow (2026-11-21, owner's call, #299 step 1).** The first 2.2.0 cow
+  (`output/highland-cow_skill_20261121-102810`, the widened rule: its sky, clouds and far hills stop, about 1 canvas
+  skipped) was sealed and read. Owner: "Go." On the two guesses the design left open: the dashed stop line ("Didn't
+  see a dashed line so should be fine") and the page's line about painting skipped ("Didn't notice it so keep or not
+  doesn't matter"), both stay as built. Next is the gate (`docs/design/pipeline-v4.md`, section 12).
+- **Pipeline v4's gate passes; v4 is the pipeline, POC 2.2.0 (2026-11-21, owner's call, #299).** Six hands-off
+  lessons, the cow, the cat and the birch grove each built from one chain with the rule and without
+  (`docs/spikes/v4-gate.md`). Every measured line passed but two, which the design left to the owner: the student
+  test was exactly on its 0.25 line at two carries (−0.21 ± 0.18 with the third), and the rule's side had one more
+  known problem on the cat and the birch grove, each a line the words lost (the cat's pictures are the same files
+  either way). The graders preferred the rule 4 of 4 where the pictures differ. Owner: "I'll go with your
+  recommendation" (pass). So `v4` merges into main, `build-steps` runs the rule by default (`--no-stops` for the
+  bench), and lessons are stamped POC 2.2.0 with `"pipeline": 4`. Not decided by this: rerunning the site's
+  lessons (#288), or putting the gate's lessons on the site.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
@@ -399,6 +421,14 @@ with the date.
   subscription instead of paying for API calls, with filters and renders as command-line tools.
   The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
+- **An issue closes when its pull request merges, into any branch (2026-11-21, owner's call).** GitHub closes an
+  issue on its own only for a merge into `main`, so a build merged into a working branch (such as `v4`) left its issue
+  open. Claude closes it by hand when the merge is done. A parent issue stays open until its own work is done. Owner:
+  "Why do we need to keep prs and issues open?"
+- **The pipeline v4 builds are POC 2.2.0 updates (2026-11-21, owner's call).** Issues, pull requests and messages to
+  the owner name them by the version a lesson is stamped with ("2.2.0 build 4"), not "v4": "v4" is also the v4 plan
+  (#240) and the yardstick. The design file (`pipeline-v4.md`), the branch `v4` and the stamp `"pipeline": 4`
+  keep their names (owner: "Leave them as v4").
 - **Every piece of work gets a pull request (2026-11-13, owner's call).** When work on an issue is done and pushed,
   Claude opens a pull request without asking (owner: "Always want a pull request. No need to ask").
 - **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works mostly

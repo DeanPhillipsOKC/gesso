@@ -30,6 +30,10 @@ CANVAS = "#faf9f5"  # from_finish.CANVAS: the bare canvas before step 1
 MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}
 PICTURE_PX = 900  # step pictures on the page, at most this many pixels on the long side
 OPEN_CLOSE_UP = 0.03  # a close-up starts open when the step's area is under this share: too small to see otherwise
+# Pipeline v4's two page ideas (docs/design/pipeline-v4.md sections 7 and 10). Neither is decided (docs/decisions.md,
+# 2026-11-21): the owner says when he reads the cow lesson. Each turns off alone, and off, the page is as before.
+DASHED_STOP = True  # a stopped layer's stop line is drawn dashed on its Where outline (aids.json's `stop_path`)
+SPARED_LINE = True  # one line under the opening: how much painting the lesson skips (lesson.json's `spared_canvas`)
 
 STYLE = """
 /* Version 2: where this step's paint goes, close-ups, paint maps, cards, and stopping places. */
@@ -44,6 +48,9 @@ STYLE = """
 svg.pic{width:100%;height:auto;display:block;border-radius:4px;border:1px solid var(--rule);background:#faf9f5}
 .area-halo{fill:none;stroke:#fff;stroke-width:5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
 .area-line{fill:none;stroke:#111;stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.stop-halo{fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.stop-line{fill:none;stroke:#111;stroke-width:2;stroke-dasharray:7 6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.spared{color:var(--muted)}
 .grid4{fill:none;stroke:#1d2430;stroke-opacity:.45;stroke-width:1;stroke-dasharray:6 5;vector-effect:non-scaling-stroke}
 .grid2{fill:none;stroke:#1d2430;stroke-opacity:.6;stroke-width:1.4;vector-effect:non-scaling-stroke}
 .grid8{fill:none;stroke:#1d2430;stroke-opacity:.35;stroke-width:1;stroke-dasharray:3 4;vector-effect:non-scaling-stroke}
@@ -152,9 +159,23 @@ def _grid(w: int, h: int, n: int, x0: float = 0, y0: float = 0, x1: float | None
     return f'<path class="{cls}" d="{d(weak)}"/><path class="grid2" d="{d(strong)}"/>'
 
 
-def _outline(path: str) -> str:
-    return (f'<path class="area-halo" fill-rule="evenodd" d="{path}"/>'
-            f'<path class="area-line" fill-rule="evenodd" d="{path}"/>') if path else ""
+def _outline(path: str, stop: str = "", key: str = "", size: tuple[int, int] = (0, 0)) -> str:
+    """The Where outline. With a stop line (pipeline v4, aids.json's `stop_path`) and DASHED_STOP, the solid outline
+    is masked away along it and the stretch is drawn dashed instead, so it reads as "about here" and nobody copies its
+    wobble. `key` makes the mask's id unique on the page."""
+    if not path:
+        return ""
+    solid = (f'<path class="area-halo" fill-rule="evenodd" d="{path}"/>'
+             f'<path class="area-line" fill-rule="evenodd" d="{path}"/>')
+    if not (stop and DASHED_STOP and key):
+        return solid
+    w, h = size
+    # the gap in the solid line is in page units: 14 hides the 5 px halo down to a picture about 360 px wide
+    return (f'<defs><mask id="sm-{key}" maskUnits="userSpaceOnUse" x="-20" y="-20" width="{w + 40}" height="{h + 40}">'
+            f'<rect x="-20" y="-20" width="{w + 40}" height="{h + 40}" fill="#fff"/>'
+            f'<path d="{stop}" fill="none" stroke="#000" stroke-width="14" stroke-linecap="round" '
+            f'stroke-linejoin="round"/></mask></defs><g mask="url(#sm-{key})">{solid}</g>'
+            f'<path class="stop-halo" d="{stop}"/><path class="stop-line" d="{stop}"/>')
 
 
 def where_view(lesson: dict, i: int) -> str:
@@ -170,7 +191,8 @@ def where_view(lesson: dict, i: int) -> str:
             f'with this step\'s area outlined">'
             f'<defs><mask id="m-{n}"><rect width="{w}" height="{h}" fill="#fff"/>{hole}</mask></defs>{before}'
             f'<rect width="{w}" height="{h}" fill="#fff" fill-opacity=".6" mask="url(#m-{n})"/>'
-            f'{"" if i or not path else _tint(path)}{_grid(w, h, 4)}{_outline(path)}</svg>')
+            f'{"" if i or not path else _tint(path)}{_grid(w, h, 4)}'
+            f'{_outline(path, a.get("stop_path", ""), str(n), (w, h))}</svg>')
 
 
 def _tint(path: str) -> str:
@@ -211,12 +233,14 @@ def closeup(lesson: dict, i: int, folder: Path, embed: bool) -> str:
     w, h = view_of(lesson)
     x0, y0, x1, y1 = c["box"]
     path = (lesson["stages"][i].get("aids") or {}).get("path", "")
+    stop_line = (lesson["stages"][i].get("aids") or {}).get("stop_path", "")
 
     def fig(src: str, label: str, line: bool) -> str:
         return (f'<figure><svg class="pic" viewBox="{x0} {y0} {x1 - x0} {y1 - y0}" role="img" aria-label="{label}, up close">'
                 f'<image x="{x0}" y="{y0}" width="{x1 - x0}" height="{y1 - y0}" preserveAspectRatio="none" '
                 f'href="{aid_src(folder, src, embed)}"/>{_grid(w, h, 8, x0, y0, x1, y1)}'
-                f'{_outline(path) if line else ""}</svg><figcaption>{label}</figcaption></figure>')
+                f'{_outline(path, stop_line, f"{i + 1}c", (w, h)) if line else ""}</svg>'
+                f'<figcaption>{label}</figcaption></figure>')
     body = (f'<div class="twin">{fig(c["before"], "Before", True)}{fig(c["after"], "After", False)}</div>'
             f'<p class="small">{e(_eighths(lesson.get("canvas")))}</p>')
     small = (lesson["stages"][i].get("aids") or {}).get("area", 1) < OPEN_CLOSE_UP
@@ -404,6 +428,33 @@ def opening(lesson: dict, known: dict) -> str:
     return f'<div class="opening">{"".join(out)}</div>'
 
 
+def _canvases(x: float) -> str:
+    """A number of canvases to the nearest quarter, in words: "half a canvas", "1 1/2 canvases"; under an eighth,
+    "under an eighth of a canvas" (a lesson where little stops)."""
+    if x < 0.125:
+        return "under an eighth of a canvas"
+    q = int(x * 4 + 0.5) / 4
+    whole, frac = int(q), q - int(q)
+    part = {0.25: "a quarter", 0.5: "half", 0.75: "three quarters"}.get(frac, "")
+    if not whole:
+        return f"{part} of a canvas" if frac != 0.5 else "half a canvas"
+    if not frac:
+        return "a whole canvas" if whole == 1 else f"{whole} canvases"
+    return f"{whole} {({0.25: '1/4', 0.5: '1/2', 0.75: '3/4'})[frac]} canvases"
+
+
+def spared_line(lesson: dict) -> str:
+    """Pipeline v4's one line under the opening: how much painting the lesson skips that later layers would cover
+    (lesson.json's `spared_canvas`). Empty with SPARED_LINE off, for a lesson made before the rule, and for one built
+    with it where nothing stopped."""
+    x = lesson.get("spared_canvas")
+    if not SPARED_LINE or not isinstance(x, (int, float)) or x <= 0:
+        return ""
+    about = "" if x < 0.125 else "about "
+    return (f'<p class="spared">This lesson skips {about}{_canvases(x)} of painting that later layers would '
+            'cover.</p>')
+
+
 def stop(group: dict, lesson: dict | None = None) -> str:
     end = stage_line(lesson, group, "end") if lesson else ""
     return f'{end}<p class="stop" role="note">End of {e(group["name"])}: a good place to stop</p>'
@@ -536,7 +587,7 @@ def before_you_start(lesson: dict, folder: Path, embed: bool, known: dict) -> st
     later = '<p class="small">The other basics are in the steps where they matter.</p>' if in_steps else ""
     # Folded and optional at the owner's word (#94). The steps say where in inches, so nothing here is needed (#122).
     placing = fold("Placing shapes with a transfer outline", "optional", transfer, cls="placing") if transfer else ""
-    return (f'<section class="start" id="start"><h2>Before you start</h2>{opening(lesson, known)}{placing}{strokes}'
+    return (f'<section class="start" id="start"><h2>Before you start</h2>{opening(lesson, known)}{spared_line(lesson)}{placing}{strokes}'
             f'<div><h3>Getting started</h3>{later}<div class="basics">{basics}</div></div></section>')
 
 

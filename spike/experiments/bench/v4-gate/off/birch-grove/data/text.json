@@ -1,0 +1,1235 @@
+{
+  "steps": [
+    {
+      "stage_id": "blend-glow",
+      "lines": [
+        {
+          "kind": "start",
+          "text": "Start across the top edge with Haze blue and work down. This coat covers the whole canvas, from edge to edge.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Work in short criss-cross X strokes, with both colors on the brush where two meet, so they melt together. Keep going down to the bottom edge.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Most of it is Haze blue, darker in soft upright patches up high, like trees in fog. One thin warm band of Golden yellow runs in from the left edge, fading before the middle: the low sun.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "No bare canvas anywhere. The criss-cross marks can stay showing as soft texture.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "A cool blue, foggy wood, lightened low down with Birch gray-white into pale mottled fog. Don't blend it flat; stop while it looks soft and broken.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1 inch flat",
+          "use": "Blend the misty glow"
+        }
+      ],
+      "stroke_cards": [
+        "x-stroke"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "pull-far-trunks",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the glow from step 1 dry completely, or these trunks will smear into it.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start with the one long trunk, its left side about 3 1/2 in from the left edge.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Press the full brush width at its foot, then pull straight up, turning onto the edge and easing off so it thins. It is about 5 3/4 in tall.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Add two short, soft marks the same way: a small one nearer the left edge, and a narrow one near the top edge, about 11 in from the left edge. Far trunks get no bark marks and no light.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the rest of the glow untouched.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "One thin blue-gray trunk tapering upward and two small soft marks, all a little darker than the fog. If a trunk looks crisp, it looks too close: keep them soft.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1/2 inch flat",
+          "use": "Pull the far misty trunks"
+        }
+      ],
+      "stroke_cards": [
+        "thick-to-thin"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "brush-mist",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Steps 1 and 2 must be dry, or the dry brush will drag them.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start where the far trunks fade into the fog in the middle of the canvas, with only the bristle tips in the paint.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Skim the brush lightly side to side, barely touching, so the paint catches only the texture of the canvas. Build it in a few light passes.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Keep it to a faint veil over the lower ends of the far trunks, so they fade into the fog where the path will end.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Everything else stays as it is, and the trunks still show through the veil.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The change is very slight: the fog there just looks a little softer and paler. If a solid white patch appears, the brush held too much paint: wipe it and skim more lightly.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1 inch old stiff flat",
+          "use": "Dry-brush the mist down the path"
+        }
+      ],
+      "stroke_cards": [
+        "dry-brush"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "stamp-pines",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "The fog must be dry before you stamp over it.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the pine tops near the top edge. The pine mass's left side is about 9 in from the left edge.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Stamp with the middle tips of the fan, working down each tree in a zigzag and pressing harder as you go, so each tree widens toward its foot.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Make several pointed tree shapes side by side, merging into one dark mass low down. No light yet: this side of the wood is in shade.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave small gaps of fog between branches and trees. Everything left of the blue-green pines on the right stays as it is.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "A flat, dark mass of pines from the top edge down past the middle of the canvas, fog peeking through. Clumpy marks? Thin the paint and spread the fan.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "fan brush",
+          "use": "Stamp the dark pines"
+        }
+      ],
+      "stroke_cards": [
+        "fan-tapping"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+      "paint_notes": [
+        "Pine blue-green can't be mixed exactly from these tubes: the recipe gives a dull dark blue-green, a little grayer than the picture, and that is fine."
+      ]
+    },
+    {
+      "stage_id": "light-pines",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the dark pines from step 4 dry, so this lighter green sits on top instead of mixing in.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start on the lowest sunny branches of the front pine, on the left side of the blue-green pines on the right.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 4,
+          "text": "Same fan brush and the same tapping, but a lighter green and a lighter touch, only on the branch edges facing the sun.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap with the middle tips of the fan in short strokes slanting down and out along each branch, working up the tree.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Put it only on the branch edges that face the sun, in broken clumps up each tree. Most of it goes on the left side of the blue-green pines on the right.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the dark from step 4 showing under and between every clump, and the shaded side of each tree mostly dark.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "Soft gray-green light catches the sunny branch edges in scattered clumps. If it hides the dark, you pressed too hard.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "fan brush",
+          "use": "Tap light on the pines' left side"
+        }
+      ],
+      "stroke_cards": [
+        "fan-tapping"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-bushes-dark",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "The pines and the fog must be dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the left edge of the canvas, where the top of the big bush mass is about 4 1/4 in from the top edge.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap with the tip of a nearly dry brush, building a rounded mound of leaf dabs about 8 1/2 in wide.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Fill the mound most solidly low down, where the bushes are in shade. Then tap a second, low strip along the foot of the blue-green pines on the right, out to the right edge.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave small gaps of fog between dabs, and the gap between the two masses untouched: the path runs there.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "A big rounded mass of brownish-gold dabs at the left edge and a low strip by the pines. No lighter leaves yet. Blobs mean a wet brush: wipe it on a towel.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Dab the dark of the golden bushes"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-bushes-mid",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the dark dabs from step 6 dry, so the gold stays clean.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start along the top of the big bush mass at the left edge, about 4 1/4 in from the top edge.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 6,
+          "text": "The same tapping with the same stiff brush, now with Golden yellow over the dark dabs instead of covering bare fog.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap with the tip, a few dabs at a time, working along the mound and then down it.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Cover most of the big mound, thickest where the light hits, plus a short row on the strip at the foot of the pines. Most of it goes on the left side of the golden undergrowth.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the dark dabs from step 6 showing low down and between the gold dabs, so the bushes have depth.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The big bush mass reads mostly warm gold, with dark showing beneath and between. The strip by the pines has just a few gold dabs.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Dab the middle gold on the bushes"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-bushes-light",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the gold from step 7 dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the top of the big bush mass, about 3 1/2 in from the top edge, nearest the glow.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 6,
+          "text": "The same tapping again, but far fewer taps of Sunlit lemon, kept to where the sun hits the bushes.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap lightly with the tip, one small leaf at a time, then build up along the mound.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Cover the upper part of the big mound, where the sun from the upper left hits. Most of it goes on the left side of the golden undergrowth; the strip by the pines gets a few specks.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the gold and dark dabs from steps 6 and 7 showing low down on the mound.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The big bush mass glows pale yellow across its upper part, gold beneath and darkest at its foot.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Tap the sunlit tops of the bushes"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "lay-ground",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the bushes dry, so the ground doesn't drag them.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the bottom edge with Rust orange and work up to about 7 in from the top edge, where the ground meets the bushes and pines.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Keep the brush level and pull long strokes left and right across the ground, smoother toward the back and more textured in front.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Lay Path tan in a strip from the bottom edge near the middle, narrowing back to a point where the far woods begin. Blend its sides wet into the orange.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the bushes, pines and fog untouched, except their very lowest edge, which the ground overlaps.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The bottom of the canvas is warm orange ground from edge to edge, with a pale tan path narrowing back into the fog. No shadows, rock or loose leaves yet.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "3/4 inch flat",
+          "use": "Lay in the ground and the path"
+        }
+      ],
+      "stroke_cards": [
+        "horizontal-strokes"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "shade-ground",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "The ground from step 9 must be dry before you dry-brush over it.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start on the near part of the path, where the patch's middle is about 8 3/4 in from the left edge.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 3,
+          "text": "The same dry brush and the same old stiff flat as the mist, now with a dark brown skimmed across the path.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Wipe the brush nearly dry, then skim short strokes left and right across the path, building up in a few light passes.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Keep it to one patch across the path, about as tall as your hand, so the path reads as lying in the trees' shade.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the rest of the ground and path as they are; the orange should still show through the shadow.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "A soft, broken brown patch crosses the path, see-through, not solid. If it went on solid, the brush was too loaded.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1 inch old stiff flat",
+          "use": "Dry-brush the shadows on the ground"
+        }
+      ],
+      "stroke_cards": [
+        "dry-brush"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "build-rock",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the ground and bushes dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start with a wide, low oval whose left side is about 10 3/4 in from the left edge and whose top is about 7 in from the top edge, at the foot of the pines.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Then add curved pieces on each side, like brackets, smaller toward the ends, to round it off.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Fill it flat and solid in one even color, with no shading yet. Keep its base flat where it sits on the ground.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the bushes, pines and ground around it as they are.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "A flat olive-gray dome, about 2 3/4 in wide, sits on the ground at the foot of the pines, with no light or shadow yet.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "#8 round",
+          "use": "Build the rock from pieces"
+        }
+      ],
+      "stroke_cards": [
+        "build-from-pieces"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+      "construct": {
+        "title": "Build the boulder from simple pieces",
+        "paint": "Moss gray",
+        "stages": [
+          {
+            "caption": "A low oval on the ground",
+            "add": [
+              {
+                "ellipse": [
+                  50,
+                  60,
+                  30,
+                  10
+                ]
+              }
+            ],
+            "arrows": [
+              "M 22 60 Q 50 46 78 60"
+            ]
+          },
+          {
+            "caption": "A dome over the top",
+            "add": [
+              {
+                "path": "M 18 62 Q 20 32 50 30 Q 80 32 82 62 Z",
+                "behind": true
+              }
+            ],
+            "arrows": [
+              "M 24 54 Q 50 30 76 54"
+            ]
+          },
+          {
+            "caption": "Soften into one shape, flat bottom",
+            "add": [
+              {
+                "path": "M 14 66 Q 16 30 50 28 Q 84 30 86 66 Z"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "stage_id": "shade-rock",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the rock from step 11 dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start on the right side of the mossy rock, where it sits on the ground.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Bend each stroke with the rock: from the top of the dome down and around its curve, like the back of an upside-down bowl.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Cover most of the rock, darkest on the right side of the mossy rock and where it meets the ground, the side away from the sun.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Let a little of the flat rock color from step 11 show in patches on the left side of the mossy rock, nearest the light.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The rock is mostly dark olive, darkest on the right side of the mossy rock, with a few lighter patches toward the sun. It already starts to look round.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "#8 round",
+          "use": "Shade the rock's right side"
+        }
+      ],
+      "stroke_cards": [
+        "curved-strokes"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "light-rock",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the dark from step 12 dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start on the top of the mossy rock, on the side toward the sun, its middle about 11 3/4 in from the left edge.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 12,
+          "text": "The same curved strokes with the same round brush, now with a pale mix on the side facing the sun.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Curve each short stroke over the dome, following its top and bending down toward the ground, like light sliding over a ball.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Keep it to a pale cap facing the sun at the upper left. Most of it goes on the left side of the mossy rock.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the dark from step 12 showing on the right side of the mossy rock and low down.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The rock reads round: a pale cap toward the sun, dark on the right side of the mossy rock and at its foot.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "#8 round",
+          "use": "Light the rock's top left"
+        }
+      ],
+      "stroke_cards": [
+        "curved-strokes"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "pull-birches",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Everything behind the trunks must be dry: fog, pines, bushes, ground and rock.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start with the two big leaning trunks, near the left edge of the canvas, their feet low on the ground.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 2,
+          "text": "The same thick-to-thin pull as the far trunk, but with a bigger brush, much wider trunks, and a pale color.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Press the full brush width at each foot and pull up to the top edge, easing off so each trunk narrows. The big ones lean, tops nearer the middle of the canvas.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Then pull four thinner ones: one at the left edge, a slim, shorter one near the middle of the canvas, one near the right edge and one at the right edge.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave everything between the trunks as it is. Keep the trunks flat and even: no shading or bark yet.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "Six flat, pale trunks stand from the ground up over the woods. Wobbly edges are fine.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "3/4 inch flat",
+          "use": "Pull the pale birch trunks"
+        }
+      ],
+      "stroke_cards": [
+        "thick-to-thin"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing",
+      "construct": {
+        "title": "Pull a big trunk from its foot",
+        "paint": "Birch gray-white",
+        "stages": [
+          {
+            "caption": "Press the full brush at the foot",
+            "add": [
+              {
+                "path": "M 36 94 L 56 94 L 55 84 L 37 84 Z"
+              }
+            ]
+          },
+          {
+            "caption": "Ease off and lean as you pull up",
+            "add": [
+              {
+                "path": "M 36 94 L 56 94 L 66 4 L 56 4 Z"
+              }
+            ],
+            "arrows": [
+              "M 46 88 L 61 10"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "stage_id": "shade-birches",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the trunks from step 14 dry, so the dry brush skips over them cleanly.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start near the top edge on the two big leaning trunks, with only the tips of the bristles in the paint.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 3,
+          "text": "The same dry brush as the mist, now with a smaller flat brush and a gray-brown, skimmed down the trunks.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Skim light strokes down each trunk, barely touching, building broken patches in a few light passes.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Put broken patches over the upper part of every trunk, more on the shaded side of each, away from the sun. Most of it goes on the left side of the birch bark, where the big trunks are.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the pale trunk color showing between the patches and on the lower part of every trunk.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The trunks are patchy gray-brown up high and pale near their feet. If a patch went on solid, the brush was too loaded.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1/2 inch flat",
+          "use": "Dry-brush the shade on the trunks"
+        }
+      ],
+      "stroke_cards": [
+        "dry-brush"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "mark-bark",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the gray-brown patches from step 15 dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the foot of the biggest leaning trunk, near the left edge, where the bark is darkest.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 14,
+          "text": "The same thick-to-thin press as the trunks, but with the small flat brush, making short broken marks across them.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Press the full width of the small brush for each mark, then roll onto its edge to finish it thin, laying short broken marks across the trunk.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Pack marks at the feet of the two big trunks and the trunk near the right edge until nearly solid dark; higher up, space them out. Most of it goes on the left side of the birch bark.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave pale bark showing between the marks, more of it the higher you go.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "Dark, broken bark marks run up every trunk, dense and nearly solid at the bases, sparse near the top edge.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1/4 inch flat",
+          "use": "Lay the dark bark marks"
+        }
+      ],
+      "stroke_cards": [
+        "thick-to-thin"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "light-bark",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the dark marks from step 16 dry, so the white doesn't turn gray.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start near the top edge on the trunk whose middle is about 13 3/4 in from the left edge.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 15,
+          "text": "The same brush and the same dry brush as the trunk shade, now with Warm white on the sunny edges.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "With a nearly dry brush, skim thin strokes down the trunk's sunny edge, facing the glow, so the line breaks up over the marks.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Do the same on the trunk at the right edge of the canvas. Most of it goes on the right side of the birch bark; touch only a few small bits onto the other trunks.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the gray patches and dark marks showing on the rest of each trunk.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The trunk near the right edge and the one at the right edge each have a thin, broken bright line down their sunny side. The others look almost unchanged.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "1/2 inch flat",
+          "use": "Catch the light on the bark"
+        }
+      ],
+      "stroke_cards": [
+        "dry-brush"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-canopy-dark",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "The trunks must be dry before leaves go over them.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start in the top left corner of the canvas, where the leaves hang thickest, over the tops of the two big trunks.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 6,
+          "text": "The same Deep ochre and the same tapping as the dark of the bushes, now hanging in clusters overhead.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap with the tip of a nearly dry brush, in loose clusters hanging down from the top edge.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Make the cluster at the left edge the biggest. Then work along the top edge in smaller clusters, over the trunk tops, with a bigger one near the right edge.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave plenty of fog and trunk showing between the clusters. The lower canvas stays as it is.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "Loose brownish-gold leaf clusters hang across the top of the canvas, thickest over the two big trunks, with the fog showing through.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Dab the dark leaves overhead"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-canopy-mid",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the dark leaf dabs from step 18 dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start on the clusters along the top edge near the left edge.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 7,
+          "text": "The same Golden yellow and tapping as the bushes, now over the dark leaf clusters overhead.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap with the tip over the dark clusters, a few dabs at a time, then let a few single dabs drift down into the fog.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Cover most of each dark cluster, keeping the gold close to the top edge. Nearly all of it is in the top half of the golden leaves overhead.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the dark dabs from step 18 peeking out underneath and between, and the trunks and fog between the clusters.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The leaves overhead read mostly warm gold, with darker leaves underneath and a few loose leaves falling.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Dab the gold leaves overhead"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-leaves-dark",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the ground and the trunk feet dry.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the bottom edge, where the leaves are biggest, then work back up the ground to about 8 in from the top edge.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 6,
+          "text": "The same tapping as the bushes, but each tap is a flat leaf laid sideways on the ground, in Rust red and Leaf gray.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap each leaf with the tip as a short flat dab, laid sideways, smaller and closer together as you go back.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Scatter Rust red and Leaf gray dabs from the left edge to the right edge, over the path too, and over the feet of the trunks so they sit in the leaves.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the ground showing between all the dabs; these are only the darkest leaves.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "Dark red-brown and gray leaves are sprinkled across the whole ground, big at the front and small toward the back.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Dab the dark fallen leaves"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "dab-leaves-mid",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Let the dark leaves from step 20 dry, so the colors stay separate.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start at the bottom edge near the left edge, where the leaves are biggest.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 9,
+          "text": "Rust orange is the ground color, now tapped on as single leaves instead of long level strokes.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap short, flat leaf dabs laid sideways, getting smaller as you go back toward the path's far end.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Use Rust orange for most leaves and Golden yellow for some, in loose drifts across the ground and path, heavier toward the front.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the dark leaves from step 20 showing between them, and the ground showing between the drifts.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "The front of the ground is a busy carpet of orange and gold leaves, with dark ones showing between. No pale leaves yet.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Dab the orange and gold fallen leaves"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    },
+    {
+      "stage_id": "tap-last-lights",
+      "lines": [
+        {
+          "kind": "first",
+          "text": "Everything must be dry; these are the last touches.",
+          "edited": true
+        },
+        {
+          "kind": "start",
+          "text": "Start in the top left corner of the canvas, on the leaves overhead around the two big trunks, nearest the glow.",
+          "edited": true
+        },
+        {
+          "kind": "back",
+          "step": 8,
+          "text": "The same Sunlit lemon and tapping as the bush tops, now on the leaves overhead and along the path too.",
+          "edited": true
+        },
+        {
+          "kind": "strokes",
+          "text": "Tap small single leaves with the tip, one at a time, over the gold already there.",
+          "edited": true
+        },
+        {
+          "kind": "inside",
+          "text": "Then light the bushes behind the big trunks, a band along the far path toward the rock, and a few leaves on the near path. Most of it goes on the left side of the sunlit leaves.",
+          "edited": true
+        },
+        {
+          "kind": "leave",
+          "text": "Leave the gold and dark leaves showing between the light ones. The pines and the shaded woods stay as they are.",
+          "edited": true
+        },
+        {
+          "kind": "stop",
+          "text": "Sun seems to pour in from the upper left corner of the canvas, lighting leaves overhead, on the bushes and along the path. Spotty everywhere means too many.",
+          "edited": true
+        }
+      ],
+      "brushes": [
+        {
+          "brush": "old stiff brush",
+          "use": "Tap the sunlit leaves"
+        }
+      ],
+      "stroke_cards": [
+        "dabbing"
+      ],
+      "made_with": "composite:from-finish",
+      "reason": "the finish erased back to this step by the image model, a render a stage of a thing"
+    }
+  ],
+  "opening": {
+    "welcome": "You're going to paint a misty autumn birch grove, with a leaf-covered path running back into the fog. The heart of it is the pair of big leaning birches against the gold haze, with the path opening next to them. What makes it sing is the contrast: warm gold leaves and white bark in front of cool blue fog.",
+    "light": "The low sun shines through the trees from behind, so the near side of the wood glows gold while the pines and the far side sit in cool blue shade. The birch trunks and the leaves catch that sun on the side facing it.",
+    "skills": [
+      {
+        "card": "dabbing",
+        "steps": [
+          6,
+          7,
+          8,
+          18,
+          19,
+          20,
+          21,
+          22
+        ],
+        "how": "Dabbing is tapping with the tip of a nearly dry brush, so each tap leaves a leaf. It builds the golden bushes, the leaves overhead and the carpet of fallen leaves, always dark first, then gold, then the sunlit ones. Watch for blobs: they mean a wet or overloaded brush, so wipe it on a towel."
+      },
+      {
+        "card": "dry-brush",
+        "steps": [
+          3,
+          10,
+          15,
+          17
+        ],
+        "how": "Dry brush is a brush with almost no paint and no water, skimmed lightly so the paint catches only the canvas texture. It makes the mist, the shadow on the path, and the shade and light on the birch bark. If it goes on solid, the brush held too much paint."
+      },
+      {
+        "card": "thick-to-thin",
+        "steps": [
+          2,
+          14,
+          16
+        ],
+        "how": "Thick to thin is pressing the full width of the brush, then turning onto its edge and easing off so the mark tapers. It pulls the far misty trunks, the big birch trunks and the dark bark marks. Press firmly where the mark should be wide, and lift gently where it should end."
+      }
+    ],
+    "road": "First comes the misty background: the blue glow, a far trunk and a veil of mist, so the depth is there before anything solid goes on. Next the near woods: the dark pines and the golden bushes, each built dark to light. Then the ground and its path, with a shadow and the mossy rock. The birches come after that, over everything behind them, because they are the subject. Last come the gold leaves overhead, the fallen leaves, and the brightest sunlit leaves that finish it."
+  },
+  "stages": {
+    "the-background": {
+      "for": "This stage lays the foggy blue wood that everything else stands in.",
+      "end": "The whole canvas is a soft blue fog with faint pale trunks, darker tree shapes and a faint warm glow."
+    },
+    "the-near-woods": {
+      "for": "This stage builds the dark pines and the golden bushes that make the near woods.",
+      "end": "Dark blue-green pines with soft gray-green light stand in the fog, and a big glowing gold bush mass faces them across a gap where the path will run, with fog still filling the ground."
+    },
+    "the-ground": {
+      "for": "This stage lays the leafy ground with its pale path, a shadow, and the mossy rock.",
+      "end": "Warm orange ground with a pale path runs back between the bushes and the pines, and a round mossy rock sits at the foot of the pines."
+    },
+    "the-birches": {
+      "for": "This stage paints the birches, the subject, over everything behind them.",
+      "end": "White birch trunks with gray shade and dark broken bark marks stand in front of the woods, darkest at their feet."
+    },
+    "the-canopy": {
+      "for": "This stage hangs the gold leaves overhead, over the trunk tops.",
+      "end": "Clusters of gold leaves hang across the sky in front of the trunks, with darker leaves peeking out and fog showing between them."
+    },
+    "the-fallen-leaves": {
+      "for": "This stage covers the ground in fallen leaves, dark ones first.",
+      "end": "The ground is a carpet of orange, gold, red-brown and gray leaves, big in front and small toward the path's far end."
+    },
+    "the-last-lights": {
+      "for": "This stage adds the brightest sunlit leaves that finish the painting.",
+      "end": "The finished painting: pale sunlit leaves glow overhead, on the bushes and along the path, against the blue fog."
+    }
+  }
+}

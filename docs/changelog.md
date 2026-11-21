@@ -6,6 +6,21 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 2.2.0 (2026-11-21)
+Pipeline v4 (`docs/design/pipeline-v4.md`, #292 to #299): step pictures stop showing paint that a later layer
+covers. A lesson carries `"pipeline": 4`.
+- A layer a later stage covers from the bottom edge stops at a loose, uneven line about 1 in past the cover, and the
+  canvas below stays bare until the cover paints it (#295; widened during #299 to a cover any number of stages on,
+  except above paint already laid). Thin things and subjects inside a layer are painted through. On the gate's
+  lessons it skips about a whole canvas of painting on the highland cow and 0.4 of one on the birch grove.
+- The fact sheet says where a stopped layer's edge is and which step covers the bare canvas, and what each step's
+  paint goes onto; `check-text` holds the edge's inches (#296).
+- The Where outline follows the paint the picture shows, with the stop line dashed; the page says under the opening
+  how much painting the lesson skips (#297).
+- The briefs teach a layer that stops, and words written for other step pictures can't be sealed (#298).
+- `build-steps --no-stops` builds a lesson the old way, for the bench. The gate's six lessons were made on the branch
+  before the version was bumped, so they are stamped POC 2.1.0 with their commits.
+
 ## POC 2.1.0 (2026-11-20)
 Pipeline v3.1 (`docs/design/pipeline-v3.1.md`, #276 to #279): the words are taught, and every helper is sent less.
 No step picture changes; `lesson.json` keeps `"pipeline": 3`.

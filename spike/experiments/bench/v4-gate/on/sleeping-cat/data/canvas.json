@@ -1,0 +1,25 @@
+{
+  "canvas": {
+    "w_in": 16.0,
+    "h_in": 12.0,
+    "orientation": "landscape"
+  },
+  "mode": "extend",
+  "lost_share": 0.0,
+  "frame_size": [
+    1536,
+    1024
+  ],
+  "canvas_box": [
+    0.0553,
+    0.0,
+    0.944,
+    1.0
+  ],
+  "needs_render": true,
+  "chosen": "default",
+  "input": "photos/sleeping-cat.jpg",
+  "frame": "output/sleeping-cat_skill_20261121-141536/00_canvas_frame.png",
+  "why": "The sleeping tabby cat must stay whole, from its left ear to its curled back, with most of the yellow blanket under it",
+  "grid_note": "Each 10% is 1.6 in across and 1.2 in down."
+}

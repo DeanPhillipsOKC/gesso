@@ -1,0 +1,49 @@
+{
+ "out": "70ed51e0e597c0ba",
+ "rounds": [
+  {
+   "n": 1,
+   "kind": "check-text",
+   "sent": 12,
+   "claims": 53,
+   "answer": "fix-1.json",
+   "feedback": "# The checker's failures in your words (round 1)\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. A sentence that still fails after the next round is taken out.\n\n- step 6 (dab-bushes-dark), line 4 (inside): \"about 8 1/2 in in from the left edge\" says 8 1/2 in from the left edge; sheet: this step: nearest from the left edge 7 11/16 in, 7 1/8 in, 6 11/16 in\n  in: \"The bush reaches about 8 1/2 in in from the left edge.\"\n- step 10 (shade-ground), line 2 (start): \"a little left of the middle of the canvas\" says a little left of the middle; sheet: the canvas's middle is 8 in from the left edge; this step's middles: 9 13/16 in, 9 1/8 in, 9 9/16 in\n  in: \"Start on the path, about 9 in from the top edge, a little left of the middle of the canvas.\"\n- step 10 (shade-ground), line 4 (inside): \"left edge of the canvas\" says it reaches the left edge (its left side is 9 3/16 in from the left edge); sheet: this step reaches no edge\n  in: \"Add a tiny touch at the left edge of the canvas.\"\n- step 12 (shade-rock), line 4 (inside): \"at the upper left\" says upper left; sheet: The blue-green pines on the right: the blue-green pines on the right centered 13 1/4 in from the left, 4 15/16 in from the top\n  in: \"Cover the right side and the bottom of the rock and most of its top, because the sun is at the upper left.\"\n- step 13 (light-rock), line 6 (stop): \"on the top left\" says top left; sheet: The mossy rock: the mossy rock centered 12 3/8 in from the left, 7 3/4 in from the top\n  in: \"Stop when the rock looks round: pale on the top left, dark on the right and underneath.\"\n- step 14 (pull-birches), line 6 (stop): \"top edge\" says it reaches the top edge (its top side is 3/8 in from the top edge); sheet: The far misty trunks reaches no edge\n  in: \"Stop when six flat pale trunks reach the top edge, the two big ones widest, with no shading or marks.\"\n- step 15 (shade-birches), line 2 (start): \"about 1/2 in from the left edge\" says 1/2 in from the left edge; sheet: this step: nearest from the left edge 5/16 in, 1/4 in, 0 in\n  in: \"Start near the top edge on the big trunk whose left side is about 1/2 in from the left edge.\"\n- step 16 (mark-bark), line 3 (strokes): \"above another up the trunk\" can't find 'another up the trunk' on the sheet; sheet: nothing on the sheet\n  in: \"Lay them one above another up the trunk.\"\n- step 18 (dab-canopy-dark), line 4 (inside): \"about 4 in from the top edge\" says 4 in from the top edge; sheet: this step: nearest from the top edge 3 1/4 in, 2 13/16 in, 1 15/16 in\n  in: \"Spread clusters across the top of the canvas, down to about 4 in from the top edge, thicker near the top left and the top right.\"\n- step 19 (dab-canopy-mid), line 4 (inside): \"about 2 in from the top edge\" says 2 in from the top edge; sheet: this step: nearest from the top edge 1 11/16 in, 1 1/4 in, 1 3/16 in\n  in: \"Cover most of each dark cluster, mostly within about 2 in from the top edge.\"\n- step 21 (dab-leaves-mid), line 4 (inside): \"about 9 in from the top edge\" says 9 in from the top edge; sheet: The blue-green pines on the right: nearest from the top edge 4 15/16 in, 1/16 in\n  in: \"Scatter them over the front of the ground at the left and the right, from about 9 in from the top edge down, smaller toward the back.\"\n- step 22 (tap-last-lights), line 6 (stop): \"at the top left\" says top left; sheet: The fallen leaves: the fallen leaves centered 7 1/2 in from the left, 10 5/8 in from the top\n  in: \"Stop when bright pale leaves catch the sun at the top left, on the big bush and along the path.\"\n\nWrite `fix-1.json` in your folder with only the steps you change, in out.json's shape (`{\"steps\": {\"<step id>\": {every line of that step}}}`). A step you leave out keeps its words. Then reply with one line.\n"
+  },
+  {
+   "n": 2,
+   "kind": "paints and long lines",
+   "sent": 0,
+   "paints": 0,
+   "long_lines": 0,
+   "check_text_left": 1
+  }
+ ],
+ "final": {
+  "dropped": 1,
+  "emptied": [
+   {
+    "id": "light-rock",
+    "kind": "stop"
+   }
+  ],
+  "long_lines": 0,
+  "pictures": {
+   "made_from": "ebca53602c5c0383c5e0b8549dbd15e555944a7f1ae74d8b1c3df2a0c16fef34",
+   "stops": true,
+   "pictures": "6808585be175d6a7"
+  }
+ },
+ "arc": {
+  "sha": "80308c53c0623564",
+  "sent": 1,
+  "first": {
+   "arc": 1,
+   "back_check_text": 0
+  },
+  "answer": "arc-fix.json",
+  "feedback": "# The checker's failures in the arc\n\nFix each one: use the fact the sheet gives, or say it without a number or a side. What still fails is taken out.\n\n- stage the-canopy.end: the opening and a stage's lines say no number and no side word\n  in: \"Gold leaves hang in loose clusters over the trunks, with darker leaves showing beneath and fog between.\"\n\nWrite `arc-fix.json` in your folder: the whole arc again (the opening, the stage lines and the back lines), in arc.json's shape. Then reply with one line.\n",
+  "final": {
+   "taken_out": 0
+  }
+ }
+}

@@ -565,7 +565,7 @@ class TextToolTests(unittest.TestCase):
         (lesson / "plan.json").write_text(json.dumps(plan), encoding="utf-8")
         out = run_tool("check", "--lesson", str(lesson))[1]["failures"]
         self.assertIn("plan.json or the chain changed since the step pictures were made", out[0])
-        code, r = run_tool("build-steps", "--lesson", str(lesson))  # the brush isn't in the chain's requests
+        code, r = run_tool("build-steps", "--lesson", str(lesson), "--no-stops")  # the brush isn't in the chain's requests
         self.assertEqual(code, 0, r)
         out = run_tool("check", "--lesson", str(lesson))[1]["failures"]
         self.assertIn("paint-sun: its drafted lines don't match the plan and pictures any more. Run draft-text again "

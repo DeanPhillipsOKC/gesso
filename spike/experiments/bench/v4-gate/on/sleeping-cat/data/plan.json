@@ -1,0 +1,649 @@
+{
+ "plan_version": 3,
+ "photo": "output/sleeping-cat_skill_20261121-141536/00_canvas_fit.png",
+ "technique": "techniques/acrylic-paint-along-beginner.yaml",
+ "technique_why": "A cozy indoor scene of big simple shapes (a window, a wall, a sill, a blanket and one curled cat) suits painting back to front, with the cat built from an oval and finished in passes.",
+ "subject": "A gray tabby cat asleep, curled on a yellow knitted blanket on a wooden windowsill, against a blue wall beside a white window with trees outside",
+ "focal_point": "The cat's sleeping face: the closed eyes, the pink nose and the white muzzle by the paws",
+ "light": "Daylight comes through the window on the upper left, lighting the left side of the cat, the top of the blanket roll and patches of the sill.",
+ "why": "We start with the farthest things, the view through the window and the blue wall, then the white frame and the wooden sill, so the room is done before the cat. The blanket goes on next as a flat roll with knit stitches dark then light, and the cat goes on last over everything: a flat gray shape, its shading, the white patches, the stripes, the fur, and the sleeping face at the very end, where the lesson spends most of its steps.",
+ "things": [
+  {
+   "id": "window-sky",
+   "name": "The sky through the window",
+   "called": "the pale sky outside the window",
+   "element": "sky-blend",
+   "why": "A soft pale blue behind the trees, blended in one go.",
+   "behind": []
+  },
+  {
+   "id": "trees",
+   "name": "The trees through the window",
+   "called": "the green leaves outside the window",
+   "element": "foliage",
+   "why": "Far leaves dabbed dark then light, soft and without detail since they are outside and far.",
+   "behind": [
+    "window-sky"
+   ],
+   "plain": "the dark green dabs of leaves"
+  },
+  {
+   "id": "wall",
+   "name": "The blue wall",
+   "element": "sky-blend",
+   "why": "A wall of loose criss-cross blue, deeper and lighter blues blended wet like a sky.",
+   "behind": []
+  },
+  {
+   "id": "window-frame",
+   "name": "The white window frame",
+   "element": "shaped-object",
+   "why": "A post, a crossbar and the lower ledge built from rectangles, then shaded lavender on the side away from the light.",
+   "behind": [
+    "window-sky",
+    "trees",
+    "wall"
+   ],
+   "plain": "the plain white window frame"
+  },
+  {
+   "id": "sill",
+   "name": "The wooden windowsill",
+   "element": "shaped-object",
+   "why": "A flat wooden shelf built from two rectangles (the top and the front edge), then shaded and lit with sun patches. Shaped-object has no plank stroke, so the wood is kept to broad pieces.",
+   "behind": [],
+   "plain": "the plain rust-brown sill"
+  },
+  {
+   "id": "blanket",
+   "name": "The yellow knitted blanket",
+   "element": "shaped-object",
+   "why": "A folded roll built from long curved pieces, then knit stitches pressed in dark then light. No element has knit stitches, so the stitches are press-and-lift teardrops in V rows.",
+   "behind": [
+    "sill",
+    "wall"
+   ],
+   "plain": "the plain golden yellow blanket roll",
+   "left_out": "The single strands of yarn: the knit is shown only as rows of teardrop stitches."
+  },
+  {
+   "id": "cat",
+   "name": "The sleeping tabby cat",
+   "element": "furry-animal",
+   "why": "A short-haired cat with stripes and white patches, exactly what this element builds: shape, shade, pale patches, markings, fur, face.",
+   "behind": [
+    "wall",
+    "blanket",
+    "window-frame"
+   ],
+   "plain": "the plain gray cat shape",
+   "left_out": "Separate toe pads and single hairs on the paws; the paws are white shapes with a couple of dividing lines."
+  }
+ ],
+ "paints": [
+  {
+   "name": "Pale sky blue",
+   "looks": "a very pale soft blue, nearly white",
+   "color": "#cfe2ee",
+   "things": [
+    "window-sky"
+   ]
+  },
+  {
+   "name": "Leaf green",
+   "looks": "a medium soft green for the shaded leaves",
+   "color": "#4f8a5a",
+   "things": [
+    "trees"
+   ]
+  },
+  {
+   "name": "Light leaf green",
+   "looks": "Leaf green with white and a little yellow, a sunny yellow-green",
+   "color": "#a8cf78",
+   "of": "Leaf green",
+   "things": [
+    "trees"
+   ]
+  },
+  {
+   "name": "Wall blue",
+   "looks": "a strong medium cornflower blue",
+   "color": "#4a78c8",
+   "things": [
+    "wall"
+   ]
+  },
+  {
+   "name": "Light wall blue",
+   "looks": "Wall blue with white, the lighter patches on the wall",
+   "color": "#80a4dc",
+   "of": "Wall blue",
+   "things": [
+    "wall"
+   ]
+  },
+  {
+   "name": "Warm white",
+   "looks": "a creamy white with a touch of yellow",
+   "color": "#f5f0e4",
+   "things": [
+    "window-sky",
+    "window-frame",
+    "cat"
+   ]
+  },
+  {
+   "name": "Lavender gray",
+   "looks": "a soft blue-violet gray for shadows on white",
+   "color": "#9c9cc8",
+   "things": [
+    "window-frame"
+   ]
+  },
+  {
+   "name": "Wood brown",
+   "looks": "a warm rust brown",
+   "color": "#8a3f1f",
+   "things": [
+    "sill"
+   ]
+  },
+  {
+   "name": "Dark wood brown",
+   "looks": "Wood brown with a little blue, a deep red-brown",
+   "color": "#5a2614",
+   "of": "Wood brown",
+   "things": [
+    "sill"
+   ]
+  },
+  {
+   "name": "Sunlit peach",
+   "looks": "Wood brown with lots of white and yellow, a warm peach",
+   "color": "#e8a476",
+   "of": "Wood brown",
+   "things": [
+    "sill"
+   ]
+  },
+  {
+   "name": "Golden yellow",
+   "looks": "a rich warm mustard yellow",
+   "color": "#e7b01c",
+   "things": [
+    "blanket"
+   ]
+  },
+  {
+   "name": "Dark ochre",
+   "looks": "Golden yellow with a little burnt sienna, a deep ochre",
+   "color": "#b47c10",
+   "of": "Golden yellow",
+   "things": [
+    "blanket"
+   ]
+  },
+  {
+   "name": "Pale yellow",
+   "looks": "Golden yellow with white, a light lemony yellow",
+   "color": "#f7d860",
+   "of": "Golden yellow",
+   "things": [
+    "blanket"
+   ]
+  },
+  {
+   "name": "Cat gray",
+   "looks": "a medium warm gray",
+   "color": "#7f7b7f",
+   "things": [
+    "cat"
+   ]
+  },
+  {
+   "name": "Dark cat gray",
+   "looks": "Cat gray with more blue and sienna, a deep gray",
+   "color": "#55525a",
+   "of": "Cat gray",
+   "things": [
+    "cat"
+   ]
+  },
+  {
+   "name": "Light cat gray",
+   "looks": "Cat gray with white, a pale silvery gray",
+   "color": "#b7b3b4",
+   "of": "Cat gray",
+   "things": [
+    "cat"
+   ]
+  },
+  {
+   "name": "Charcoal",
+   "looks": "Cat gray with lots of blue and sienna, nearly black",
+   "color": "#2e2a31",
+   "of": "Cat gray",
+   "things": [
+    "cat"
+   ]
+  },
+  {
+   "name": "Ear pink",
+   "looks": "a warm rosy pink, white with red and a little sienna",
+   "color": "#d6746a",
+   "things": [
+    "cat"
+   ]
+  },
+  {
+   "name": "Nose pink",
+   "looks": "Ear pink with more white",
+   "color": "#e58f8a",
+   "of": "Ear pink",
+   "things": [
+    "cat"
+   ]
+  }
+ ],
+ "stages": [
+  {
+   "id": "the-window-view",
+   "name": "The view through the window",
+   "steps": [
+    {
+     "id": "blend-window-sky",
+     "name": "Blend the pale sky in the window",
+     "lays": [
+      {
+       "thing": "window-sky",
+       "what": "the whole left strip of the canvas, the window opening, pale blue at the top fading to near white lower down"
+      }
+     ],
+     "paints": [
+      "Pale sky blue",
+      "Warm white"
+     ],
+     "blend": true,
+     "stroke": "side-to-side-blend",
+     "brush": "1 inch flat",
+     "after": "A pale blue strip runs down the left fifth of the canvas from the top edge to the sill line, painted straight through where the window frame will go. Everything else is bare white canvas."
+    },
+    {
+     "id": "dab-dark-leaves",
+     "name": "Dab the green leaves outside",
+     "lays": [
+      {
+       "thing": "trees",
+       "what": "soft clusters of green leaves filling the lower two thirds of the window strip, with pale sky showing between and above them"
+      }
+     ],
+     "paints": [
+      "Leaf green"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat brush",
+     "after": "Soft medium-green leaf clusters fill the lower part of the window strip, with pale sky between them and above. No light leaves yet; the rest of the canvas is bare."
+    },
+    {
+     "id": "dab-light-leaves",
+     "name": "Tap the sunny leaves",
+     "lays": [
+      {
+       "thing": "trees",
+       "what": "a few yellow-green taps on the tops of the leaf clusters, the side toward the light"
+      }
+     ],
+     "paints": [
+      "Light leaf green"
+     ],
+     "stroke": "dabbing",
+     "brush": "old stiff flat brush",
+     "after": "The leaves outside have yellow-green tops over the darker green. The rest of the canvas right of the window strip is still bare."
+    }
+   ]
+  },
+  {
+   "id": "the-wall",
+   "name": "The blue wall",
+   "steps": [
+    {
+     "id": "blend-wall",
+     "name": "Criss-cross the blue wall",
+     "lays": [
+      {
+       "thing": "wall",
+       "what": "the whole wall right of the window, strong blue with lighter patches worked in, from the top edge down to the sill line, straight through where the cat and blanket will lie"
+      }
+     ],
+     "paints": [
+      "Wall blue",
+      "Light wall blue"
+     ],
+     "blend": true,
+     "stroke": "x-stroke",
+     "brush": "1 inch flat",
+     "after": "Loose criss-crossed blue covers everything right of the window strip from the top edge down to the sill line, running under where the cat and blanket will go. The bottom quarter of the canvas is still bare white."
+    }
+   ]
+  },
+  {
+   "id": "the-window-frame",
+   "name": "The window frame",
+   "steps": [
+    {
+     "id": "block-in-frame",
+     "name": "Block in the white frame",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "window-frame",
+       "what": "the white window frame as rectangles: the tall post between the window and the wall, the crossbar across the window, and the deep lower ledge under the window"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/2 inch flat",
+     "after": "A flat creamy white window frame (a tall post, a crossbar and a lower ledge) sits between the window view and the blue wall, with no shading. The bottom quarter of the canvas is bare."
+    },
+    {
+     "id": "shade-frame",
+     "name": "Shade the frame lavender",
+     "lays": [
+      {
+       "thing": "window-frame",
+       "what": "lavender gray strips on the inner face of the post, under the crossbar and along the lower ledge, the sides away from the window light"
+      }
+     ],
+     "paints": [
+      "Lavender gray"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1/4 inch flat",
+     "after": "The white frame has soft lavender shadow strips on its inner faces and under the crossbar, so it looks deep. The bottom quarter of the canvas is still bare.",
+     "unit": "The frame's shadows"
+    }
+   ]
+  },
+  {
+   "id": "the-sill",
+   "name": "The wooden sill",
+   "steps": [
+    {
+     "id": "block-in-sill",
+     "name": "Block in the wooden sill",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "sill",
+       "what": "the whole windowsill as a flat rust-brown shelf: the top as a wide band and the front edge as a strip along the bottom, painted straight through where the blanket will go"
+      }
+     ],
+     "paints": [
+      "Wood brown"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1 inch flat",
+     "after": "The bottom quarter of the canvas is a flat rust-brown sill, running under where the blanket will go, with no shading or sun patches. Wall, frame and window above are done."
+    },
+    {
+     "id": "shade-sill",
+     "name": "Darken the sill's front edge",
+     "lays": [
+      {
+       "thing": "sill",
+       "what": "deep red-brown along the front edge strip and the right side of the sill top"
+      }
+     ],
+     "paints": [
+      "Dark wood brown"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1 inch flat",
+     "after": "The sill has a dark red-brown front edge and a darker right side. No sun patches yet.",
+     "unit": "The sill's shadow and sun patches"
+    },
+    {
+     "id": "light-sill",
+     "name": "Lay the sun patches on the sill",
+     "lays": [
+      {
+       "thing": "sill",
+       "what": "pale peach slanted patches of window light on the left part of the sill top"
+      }
+     ],
+     "paints": [
+      "Sunlit peach"
+     ],
+     "stroke": "dry-brush",
+     "brush": "1 inch flat",
+     "after": "The sill is finished: rust-brown with a dark front edge and peach sun patches on the left. The blanket and cat are not there yet."
+    }
+   ]
+  },
+  {
+   "id": "the-blanket",
+   "name": "The knitted blanket",
+   "steps": [
+    {
+     "id": "block-in-blanket",
+     "name": "Block in the blanket roll",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "blanket",
+       "what": "the whole blanket as flat golden yellow: a long fat roll across the front of the sill built from curved pieces, and the ring rising behind it where the cat will lie, painted straight through under the cat"
+      }
+     ],
+     "paints": [
+      "Golden yellow"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "1 inch flat",
+     "after": "A flat golden yellow blanket roll lies across the sill with its ring rising behind, running under where the cat will lie, with no stitches or shading."
+    },
+    {
+     "id": "dark-stitches",
+     "name": "Press in the dark stitches",
+     "lays": [
+      {
+       "thing": "blanket",
+       "what": "deep ochre teardrop stitches in rows of Vs following the curve of the roll, thicker along the bottom of the roll and in the fold between the front roll and the ring"
+      }
+     ],
+     "paints": [
+      "Dark ochre"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#8 round",
+     "after": "The blanket shows rows of dark ochre V stitches following its curves, darkest along the bottom and in the fold, with golden yellow between. No light stitches yet.",
+     "unit": "The blanket's knit stitches"
+    },
+    {
+     "id": "light-stitches",
+     "name": "Press in the light stitches",
+     "lays": [
+      {
+       "thing": "blanket",
+       "what": "pale yellow teardrop stitches on the tops of the roll and the ring, between the dark ones, on the side toward the light"
+      }
+     ],
+     "paints": [
+      "Pale yellow"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#6 round",
+     "after": "The blanket is finished: a chunky knit roll with dark stitches low and pale yellow stitches on its tops. No cat yet."
+    }
+   ]
+  },
+  {
+   "id": "the-cat-shape",
+   "name": "The cat's shape",
+   "steps": [
+    {
+     "id": "block-in-cat",
+     "name": "Block in the curled cat",
+     "block_in": true,
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "the whole cat as one flat gray shape: a big oval for the curled body, a circle for the head on the left, two triangle ears, and the curved tail and front legs wrapping the front"
+      }
+     ],
+     "paints": [
+      "Cat gray"
+     ],
+     "stroke": "build-from-pieces",
+     "brush": "3/4 inch flat",
+     "after": "A flat gray cat shape lies curled on the blanket, head on the left with two ears, with no shading, white patches, stripes or face."
+    },
+    {
+     "id": "shade-cat",
+     "name": "Shade the cat's far side",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "deep gray curved along the right end of the body, the back, under the tail and under the head"
+      }
+     ],
+     "paints": [
+      "Dark cat gray"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "1/2 inch flat",
+     "after": "The gray cat is darker along its back, right end and underneath, lighter on the left toward the window. Still no white patches, stripes or face.",
+     "unit": "The cat's shading and white patches"
+    },
+    {
+     "id": "paint-white-patches",
+     "name": "Paint the white muzzle, chest and paws",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "creamy white on the muzzle and chin, the patch on the chest behind the head, and the two front paws"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "curved-strokes",
+     "brush": "#8 round",
+     "after": "The cat has a white muzzle, a white chest patch and two white front paws on the gray. No stripes, ear pink or face yet."
+    }
+   ]
+  },
+  {
+   "id": "the-markings",
+   "name": "The stripes and fur",
+   "steps": [
+    {
+     "id": "paint-stripes",
+     "name": "Pull the dark tabby stripes",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "charcoal stripes curving around the body, the tail and the front leg, and short bars on the forehead"
+      }
+     ],
+     "paints": [
+      "Charcoal"
+     ],
+     "stroke": "thick-to-thin",
+     "brush": "1/4 inch angle",
+     "after": "The cat has dark tabby stripes wrapping its body, tail, leg and forehead. The ears are still gray inside and there is no face or fur texture.",
+     "unit": "The cat's stripes, ears and fur"
+    },
+    {
+     "id": "paint-ears",
+     "name": "Paint the pink inside the ears",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "rosy pink inside both ears"
+      }
+     ],
+     "paints": [
+      "Ear pink"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#4 round",
+     "after": "Both ears are pink inside. The cat still has no fur texture or face."
+    },
+    {
+     "id": "flick-fur",
+     "name": "Flick the light fur",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "short pale silvery-gray flicks over the gray between the stripes, more on the left side toward the light, following the curve of the body"
+      }
+     ],
+     "paints": [
+      "Light cat gray"
+     ],
+     "stroke": "flicking",
+     "brush": "small fan brush",
+     "after": "Soft pale fur flicks lighten the cat's gray, most on the head and the lit left side, with the stripes and dark showing between. The face is still blank."
+    }
+   ]
+  },
+  {
+   "id": "the-face",
+   "name": "The sleeping face",
+   "steps": [
+    {
+     "id": "paint-eyes",
+     "name": "Line the closed eyes",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "two short downward-curving charcoal lines for the closed eyes, with a tiny lash flick, and a short mouth line under the nose"
+      }
+     ],
+     "paints": [
+      "Charcoal"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "The cat has two curved closed eyes and a small mouth line. No nose or whiskers yet.",
+     "unit": "The cat's sleeping face"
+    },
+    {
+     "id": "paint-nose",
+     "name": "Press in the pink nose",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "a small pink triangle nose on the white muzzle"
+      }
+     ],
+     "paints": [
+      "Nose pink"
+     ],
+     "stroke": "press-and-lift",
+     "brush": "#2 round",
+     "after": "A small pink nose sits on the white muzzle under the closed eyes. No whiskers yet."
+    },
+    {
+     "id": "pull-whiskers",
+     "name": "Pull the white whiskers",
+     "lays": [
+      {
+       "thing": "cat",
+       "what": "thin white whisker lines fanning out from both sides of the muzzle"
+      }
+     ],
+     "paints": [
+      "Warm white"
+     ],
+     "stroke": "liner",
+     "brush": "liner",
+     "after": "The painting is finished: thin white whiskers fan out from the muzzle of the sleeping tabby on its yellow blanket."
+    }
+   ]
+  }
+ ]
+}

@@ -451,7 +451,8 @@ class V3ToolsTests(unittest.TestCase):
         code, r = self.tool("publish")
         self.assertEqual(code, 0, r)
         data = json.loads((self.lesson / "lesson.json").read_text())
-        self.assertEqual((data["plan_version"], data["pipeline"], len(data["stages"])), (2, 3, 6))
+        # build-steps runs pipeline v4's rule by default since POC 2.2.0: stamped 4 whether or not a layer stopped
+        self.assertEqual((data["plan_version"], data["pipeline"], len(data["stages"])), (2, 4, 6))
         # the lessons site takes a version 3 lesson like any other (owner, 2026-11-18)
         import site_lessons
 

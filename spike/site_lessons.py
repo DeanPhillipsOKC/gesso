@@ -170,7 +170,8 @@ def kind(data: dict) -> str:
     """What made the step pictures: 'cut from the finish', 'some steps cut from the finish', or '' (rendered)."""
     made = [s.get("made_with", "") for s in data.get("stages", [])[:-1]]
     cut = sum(1 for m in made if m.startswith("composite:from-finish"))
-    if cut and data.get("pipeline") == 3:  # pipeline v3: every step is the finish erased back by the image model
+    # pipeline v3 and later (v4 stops a covered layer short): every step is the finish erased back by the image model
+    if cut and isinstance(data.get("pipeline"), int) and data["pipeline"] >= 3:
         return "steps erased back from the finish"
     return "" if not cut else "steps cut from the finish" if cut == len(made) else "some steps cut from the finish"
 

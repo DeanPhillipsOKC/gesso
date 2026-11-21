@@ -2,7 +2,9 @@
 
 **The gate passed (2026-11-18, owner's call; `docs/decisions.md`): v3 replaces v2.** `/paint-lesson` runs v3 with no
 flag (#236; `--v3` is kept and does nothing). v2's code was removed in #238 (section 11). **v3.1's changes are built in
-(POC 2.1.0, 2026-11-20, `pipeline-v3.1.md`): sections 4 and 10 say what they changed.** Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
+(POC 2.1.0, 2026-11-20, `pipeline-v3.1.md`): sections 4 and 10 say what they changed. Pipeline v4's rule is built
+in too (POC 2.2.0, 2026-11-21, `pipeline-v4.md`): a layer a later stage covers stops at a loose line; sections 4 and 8
+to 10 say what it changed.** Written as a draft (2026-11-17, #210), before the gate. This file is written from the spikes that ended in adopt
 (`pipeline-v3-plan.md`, Order, step 5). Each section says what is **proven** (a spike ran it and its write-up has the
 numbers), what is a **guess** (this draft's own joining of the pieces, run by nobody yet), and what is **open**.
 
@@ -169,6 +171,11 @@ that looked the same (`docs/decisions.md`, 2026-11-17).
 **Since v3.1 (POC 2.1.0, 2026-11-20; `pipeline-v3.1.md`):** rows 2, 3, 9, 10 and 12 changed as marked; row 11
 asks for the six lines and the arc's checks where it asked for a summary and a tip. The run's steps are
 `.claude/skills/paint-lesson/v3/run.md`.
+
+**Since v4 (POC 2.2.0, 2026-11-21; `pipeline-v4.md`):** row 7 lays the chain twice and stops each covered layer at
+its line (section 8); rows 8 and 11 measure the paint each picture shows, and the sheet says where a layer stops and
+what a step's paint goes onto (section 9); row 9's brief says how to teach a layer that stops (section 10). No
+render and no Claude call is added. `build-steps --no-stops` builds a lesson the v3 way, for the bench.
 
 What goes: listing parts with boxes and points, `outline` and its fix rounds, the background render, `part-colors`,
 and the text review in a fresh context (the checker is in its place, as in #173's run).
@@ -422,6 +429,22 @@ a new chain. Check 4 measures what a painter would see (`seen`: a change of 9 La
 blur), because a thing drawn again by a render moves every pixel a little; the spikes counted any pixel 6 levels
 off.
 
+**Since v4 (POC 2.2.0, 2026-11-21; `pipeline-v4.md`, sections 2 and 5, and the rule's code `spike/stops.py`).** A
+step picture no longer shows paint a later stage covers. `steps3.build` lays the chain twice: the first laying gives
+each step's mask; then, for each unit, a pixel is covered when its owner at the finish is a later unit that shares
+no thing with it, and the unit stops where that cover is from a later stage, runs up from the bottom edge at least
+1 1/2 in, and stopping leaves no bare canvas above paint an in-between stage has already laid (`no_gap_below`; the
+owner widened the first rule, which stopped a layer only for the stage right after its own, during the gate). In
+each column the layer is painted down to the deepest point it is needed within 2 in to either side, smoothed, then
+about 1 in further with a wobble and a ragged fade; below that the canvas stays bare until the cover paints it. Thin
+things and subjects inside a layer are painted through, a line never takes back paint already showing, and canvas a
+stopped layer left bare is uncovered only by a unit that shares no thing with it. `v3/masks.npz`'s `m<nn>` is the
+paint the picture shows and `f<nn>` where the step lays paint in full; `v3/build.json` keeps `stops` (each stopped
+unit, what covers it, its line as five distances from the top edge, and the units covered from the bottom edge that
+didn't stop and why), each step's `spared` and the lesson's `spared_canvas`. Checks 1 and 2 are measured on the
+second laying. A lesson built this way carries `"pipeline": 4`. On the gate's three lessons the rule skipped 1.01
+canvases on the cow, 0.41 on the birch grove and nothing on the cat (`docs/spikes/v4-gate.md`).
+
 ## 9. Teaching pictures and the fact sheet
 
 v2 draws these from outlines. In v3 a step's area is what the step laid, and a thing's shape is the core of its
@@ -453,6 +476,13 @@ the spikes kept by hand is worked out:
   top at the end (#214).
 - on the fact sheet, a unit that lays on several things has no parent: each thing's place is its own units'
   shapes, and the unit's place is its own (#227). `v3/plan.json` still files it under the first thing.
+
+**Since v4 (POC 2.2.0; `pipeline-v4.md`, sections 6 and 7).** Every teaching picture is drawn from the paint the
+step's picture shows, so a stopped sky's Where outline is its 4 1/4 in, not the whole canvas. The stretch of the
+outline that is a stop line is drawn dashed (`aids.json`'s `stop_path`), and the page says under the opening how much
+painting the lesson skips. The sheet gains `stop` (where a stopped step's lower edge is, five distances, and the step
+that covers the bare canvas) and `onto` (the share of a step's paint laid on bare canvas and over each earlier part).
+`check-text` holds a length from the top or bottom edge of a stopped step's own paint to the line's range.
 
 ## 10. Words
 
@@ -504,6 +534,13 @@ step repeats an earlier card or paint. `draft-text` still makes each step's head
 with their labels, "Before you start", and the stage lines; `check` and the seal hold the six lines, the 40 words,
 the paint rule, the sheet and the arc's checks. The gate (`docs/spikes/v31-gate.md`): the student test 3.55, 3.40
 and 3.15 against v3's 3.15, 3.21 and 3.02, and Claude's blind graders 6 of 6.
+
+**Since v4 (POC 2.2.0; `pipeline-v4.md`, section 8).** The lesson brief says to give a stopped layer's edge in the
+sheet's inches, say that it is loose, and say that the canvas stays bare until the covering step; and to write a
+step's paint onto bare canvas when the sheet says so. The arc may say the first layers stop short; the plan brief
+says to write `behind` and `after` as if each layer ran under its cover; the finisher is told that bare canvas below
+a loose line is meant. `packets` records what the step pictures were made from (`words/lesson/pictures.json`), and
+`check-text` and `check` refuse words written for other pictures.
 
 **Not solved:** the stroke cards' own words, where most teaching faults come from (a load word such as "creamy"
 that the step never explains). That is #175.

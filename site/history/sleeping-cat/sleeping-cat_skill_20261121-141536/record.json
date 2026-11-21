@@ -1,0 +1,162 @@
+{
+  "photo": "sleeping-cat",
+  "run": "sleeping-cat_skill_20261121-141536",
+  "started": "2026-11-21 14:15",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "6716b78ad5a0d6b1",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.1.0",
+        "commit": "4c1cce0",
+        "dirty": false,
+        "published": "2026-11-21"
+      },
+      "made_with": {
+        "version": "POC 2.1.0",
+        "commit": "4c1cce0",
+        "published": "2026-11-21"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-21T15:12:04"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 16.0,
+        "h_in": 12.0,
+        "orientation": "landscape"
+      },
+      "metrics": {
+        "steps": 21,
+        "words": 2675,
+        "tubes": 5,
+        "cost_usd": 0.364,
+        "minutes": 3.3,
+        "paid_renders": 17,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 5,
+        "minutes_total": 56.5,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-window-sky",
+          "name": "Blend the pale sky in the window",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-dark-leaves",
+          "name": "Dab the green leaves outside",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-light-leaves",
+          "name": "Tap the sunny leaves",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "blend-wall",
+          "name": "Criss-cross the blue wall",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-frame",
+          "name": "Block in the white frame",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-frame",
+          "name": "Shade the frame lavender",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-sill",
+          "name": "Block in the wooden sill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-sill",
+          "name": "Darken the sill's front edge",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-sill",
+          "name": "Lay the sun patches on the sill",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-blanket",
+          "name": "Block in the blanket roll",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dark-stitches",
+          "name": "Press in the dark stitches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-stitches",
+          "name": "Press in the light stitches",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-cat",
+          "name": "Block in the curled cat",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-cat",
+          "name": "Shade the cat's far side",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-white-patches",
+          "name": "Paint the white muzzle, chest and paws",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-stripes",
+          "name": "Pull the dark tabby stripes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-ears",
+          "name": "Paint the pink inside the ears",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-fur",
+          "name": "Flick the light fur",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-eyes",
+          "name": "Line the closed eyes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-nose",
+          "name": "Press in the pink nose",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-whiskers",
+          "name": "Pull the white whiskers",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

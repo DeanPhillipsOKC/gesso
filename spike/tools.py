@@ -546,7 +546,17 @@ def publish(a: argparse.Namespace) -> dict:
         # beside the keys every reader of lesson.json uses: the plan's stages, for the page's headings, and the aids
         "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
-    lesson_data["pipeline"] = 3  # made by pipeline v3 and read by the page in version 2's shape
+    # made by pipeline v3, or v4 when build-steps ran with the rule (--stops), whether or not any layer stopped; read
+    # by the page in version 2's shape (docs/design/pipeline-v4.md section 5)
+    build_path = lesson / "v3" / "build.json"
+    build = json.loads(build_path.read_text(encoding="utf-8")) if build_path.exists() else {}
+    lesson_data["pipeline"] = 4 if "stops" in build else 3
+    if "stops" in build:  # the share of each step's paint its picture doesn't show, and those shares of the canvas
+        rows = build.get("rows") or []
+        for st, r in zip(stages, rows if len(rows) == len(stages) else []):
+            if "spared" in r:
+                st["spared"] = r["spared"]
+        lesson_data["spared_canvas"] = build.get("spared_canvas", 0.0)
     # the arc (v3.1, check-text --arc --final): read once before step 1, and a line at each stage's start and end. A
     # lesson made before it has neither, and its page shows what it has
     if text_all.get("opening"):
@@ -1052,7 +1062,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     lesson = Path(a.lesson)
     plan, _, finish = _v3_ready(lesson)
     try:
-        built = lesson3.make(lesson, plan, finish, save_png)
+        built = lesson3.make(lesson, plan, finish, save_png, stops=a.stops)
     except erase3.Refused as e:
         raise Refused(str(e))
     (lesson / "trials").mkdir(exist_ok=True)
@@ -1062,6 +1072,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     return {"steps": built["steps"], "sheet": str(sheet), "rows": built["rows"], "paints": built["paints"],
             "problems": bad, "notes": notes,
             "checks": {k: built[k] for k in ("final_gap", "outside_unit_max", "from_its_paints_median")},
+            **({"stops": built["stops"], "spared_canvas": built["spared_canvas"]} if "stops" in built else {}),
             "advice": "Read the sheet. Every step should add one thing; nothing else should change. `notes` can't be "
                       "fixed without a new plan and a new chain: record each in notes.json as a known problem. Then "
                       "step-aids, mix, draft-text.", "cost_usd": 0.0}
@@ -1090,7 +1101,7 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
     canvas_box, canvas = _lesson_canvas(lesson)
     view = canvas_view(lesson, names)
     data = aids.make(plan, kept["pictures"], kept["masks"], kept["owner"], canvas_box, canvas, lesson / "aids",
-                     [view.get(n, n) for n in names])
+                     [view.get(n, n) for n in names], full=kept.get("full") if "stops" in kept["build"] else None)
     (lesson / "aids" / "aids.json").write_text(json.dumps(data, indent=1), encoding="utf-8")
     rows = data["steps"]
     return {"aids": str(lesson / "aids" / "aids.json"), "steps": len(rows),
@@ -1247,6 +1258,10 @@ def add_step_tools(sub) -> None:
                                    "trials/steps.jpg (all of them on one sheet), and keeps what the later tools read "
                                    "(v3/, parts/owner.png). `notes` are faults only a new plan and chain can fix.")
     p.add_argument("--lesson", required=True)
+    p.add_argument("--stops", action=argparse.BooleanOptionalAction, default=True,
+                   help="pipeline v4 (on by default since POC 2.2.0; --no-stops for the bench): a layer a later "
+                        "stage covers from the bottom edge stops at a loose line about 1 in past the cover's top, and "
+                        "the canvas below stays bare (spike/stops.py). build.json keeps where each layer stops.")
     p.set_defaults(func=build_steps_tool)
     p = sub.add_parser("step-aids", help="Free. Every step's teaching pictures (where, close-up, paint map) and the transfer outline.",
                        description="Run after build-steps. Writes aids/aids.json and its pictures: each step's painted "
@@ -1558,7 +1573,9 @@ def add_v3_tools(sub) -> None:
                                    "words/lesson/ for the lesson's one writer: brief.md and arc-brief.md, steps.md "
                                    "(each step's header and stroke card), cards.md, stages.md, plan.json, facts.md "
                                    "(the sheet's rows as sentences, lean), a before-and-after picture and a change "
-                                   "picture a step, the photo and the finish. Run after draft-text.")
+                                   "picture a step, the photo and the finish, and pictures.json (what the step "
+                                   "pictures were made from: check-text and check refuse words written for other "
+                                   "pictures). Run after draft-text.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=packets_tool)
     p = sub.add_parser("check-text", help="Free. The lesson writer's words into text.json, round by round, each number and side checked against the sheet.",

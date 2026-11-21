@@ -62,8 +62,13 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
 
 ### C. Pictures, recipes, drafted lines, the first check, the chain's checker
 
-1. `build-steps --lesson <lesson>`. `problems` must be empty (it only isn't when the chain's files don't belong
-   together: run `erase` again). `notes` are faults that would need a new plan and a new chain: a paint fitted far
+1. `build-steps --lesson <lesson>`. It builds pipeline v4's pictures (POC 2.2.0; `docs/design/pipeline-v4.md`): a
+   layer a later stage covers from the bottom edge stops at a loose line about 1 in past the cover, and the canvas
+   below stays bare until the cover is painted. Pass `--no-stops` only when whoever started you asks for the old
+   pictures (the bench does); `v3/build.json`'s `stops` says where each layer stops, and every later tool reads that, so no
+   other tool takes the flag. Run it the same way every time in a run: words written for pictures built the other
+   way are refused by `check-text` and `check` until `packets` and the writer run again (D). `problems` must be
+   empty (it only isn't when the chain's files don't belong together: run `erase` again). `notes` are faults that would need a new plan and a new chain: a paint fitted far
    from its name, a color the finish doesn't have, a step that changes almost nothing. Change nothing for them (a
    paint's name is in the chain's requests, so even a rename renders part of the chain again): record each (D5).
 2. `step-aids`, then `mix`, then `draft-text`, each with `--lesson <lesson>`.
@@ -82,7 +87,8 @@ Don't Read the renders yourself to second-guess the chain's checker (C4), and ne
    a redone one is rendered again. Then the checker again, on the new looks.
 6. At most two rounds of step 5. `erase` refuses a unit that has had two more tries. What is still marked after
    that, and everything `erase` lists under `left`, stays: write each into `review.json` as step D5 says.
-7. After any redo, run C1 to C3 again (`build-steps`, `step-aids`, `mix`, `draft-text`, `check`) before D.
+7. After any redo, run C1 to C3 again (`build-steps`, with `--no-stops` if C1 had it, `step-aids`, `mix`,
+   `draft-text`, `check`) before D.
 
 ### D. The words
 
@@ -90,7 +96,8 @@ One writer writes the whole lesson, in one conversation: the steps' words, two r
 round goes back to **that same writer** (send it a message; don't start a new one), so it reads what it already read
 from its own context.
 
-1. `packets --lesson <lesson>`. It writes the writer's folder, `words/lesson/`.
+1. `packets --lesson <lesson>`. It writes the writer's folder, `words/lesson/`, and records in it what the step
+   pictures were made from (`pictures.json`), so words written for other pictures can't be sealed.
 2. Start **one writer** with: "Follow `brief.md` in `<lesson>/words/lesson`. Read only that folder. Write `out.json`
    there. Name only the paints each step lists for itself, and keep every line under 40 words." (`brief.md` says
    both too; saying them up front saved a round in the gate runs.)
