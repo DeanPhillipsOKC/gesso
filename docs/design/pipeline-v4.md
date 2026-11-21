@@ -421,6 +421,25 @@ the full suite before each merge (`docs/testing.md`).
      plan brief's sentence closes its paragraph on `behind`; the finisher's paragraph goes at the end of 8a and
      also says what still is a known problem: words that send the painter to a layer where the picture shows bare
      canvas.
+   - **The run (the design's guess to watch).** The cow's v3.1 gate lesson (`output/highland-cow_skill_20261120-193553`)
+     copied and built again from its chain with `--stops`, then C2 and D, the writer an Opus subagent reading
+     `words/lesson/`. Before `packets`, the old words were refused by `check-text` and by `check`, which also found
+     5 numbers in them that the stopped pictures no longer have (the sky "5 1/4 in tall", the sky and the hills
+     reaching the bottom edge); the old steps 7 and 8 still said to leave and then fill "purple stripes", which no
+     check could see. With the new words:
+     - Every stopped step (1 to 4) says that its lower edge is loose and that the rest of the canvas stays bare
+       until the covering step, named. Steps 1 and 4 say how far in inches ("about 3 1/2 in from the top edge",
+       "about 5 1/4 in"); steps 2 and 3, the clouds, say "keep to the sky's loose lower edge" with no number.
+     - Steps 7 and 8 are written to bare canvas: "leave stripes of bare canvas between the bands: step 8 fills
+       them", "fill the bare stripes between the bands", "no bare canvas is left on the hillside". No step names
+       purple.
+     - The rounds: round 1 sent back 12 of 52 claims; 5 were the brief's own sentence ("the canvas below it stays
+       bare" fails: the tool looks for a part called "it stays bare"), so the brief now gives the sentence without
+       a side word. Round 2 sent nothing. `--final` took out 1 sentence (step 1's "edge to edge", which the tool
+       read as about "The cow's shadow side", a misreading that came before this build). The arc passed its round
+       first time (0 sent back, 16 back lines), and its road says "the early layers stop short where the next one
+       will cover them, so some bare canvas is expected for a while". `check` then printed no failures.
+     - Not run: the finisher, the seal, the student test and the graders (build 5).
    - `run.md` C1 says when to pass `--stops` and that no other tool takes it; C7 builds again the same way; D1 says
      what `packets` records. `v4_loop.py run --stops` builds with the rule, and keeps the choice in its state so a
      run that goes on after a stop can't build the other way.

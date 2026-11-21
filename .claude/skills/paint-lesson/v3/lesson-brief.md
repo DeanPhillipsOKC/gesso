@@ -56,8 +56,9 @@ still wet), and a mistake a beginner is likely to make here.
 
 Some layers stop short of where the picture will end: `facts.md` says "It stops short" on such a step. Say how far
 the layer goes, in the sheet's inches from the top edge, and that its lower edge is loose and uneven, not a ruled
-line. In Leave, say that the canvas below it stays bare and which step covers it. Never send the painter round the
-outline of a thing that isn't painted yet.
+line. In Leave, say that the rest of the canvas stays bare and which step covers it ("the rest of the canvas stays
+bare until step 4"), with no side word: "the canvas below it stays bare" fails, because the tool can't find a part
+called "it". Never send the painter round the outline of a thing that isn't painted yet.
 
 A step's paint may go onto bare canvas where the plan's `after` says an earlier layer shows: `facts.md` says what
 it goes onto. Write to that and to the picture.
