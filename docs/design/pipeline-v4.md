@@ -1,7 +1,7 @@
 # Pipeline v4: a covered layer stops at a loose line
 
 **Built (POC 2.2.0, 2026-11-21).** The gate passed on the owner's call (`docs/spikes/v4-gate.md`; `docs/decisions.md`)
-and `v4` merged into main with the rule on by default (`build-steps --no-stops` for the bench). `pipeline-v3.md`
+and `v4` goes into main with the rule on by default (`build-steps --no-stops` for the bench). `pipeline-v3.md`
 (sections 4 and 8 to 10) describes the run as it is now; this file is the design and its history. It was a draft
 (2026-11-21, #292, for #287), built in #295 to #299. The owner read it and merged it (#293), set the
 gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after

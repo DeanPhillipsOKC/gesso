@@ -295,8 +295,9 @@ class Run:
             self.state.setdefault("stops", False)  # a run from before #298 was built without the rule
         if stops is not None and self.state.get("stops", stops) != stops:
             raise SystemExit("this run was started " + ("with" if self.state["stops"] else "without") + " --stops: "
-                             "go on the same way, or start a new lesson folder")
-        self.state.setdefault("stops", bool(stops))
+                             "go on the same way (" + ("--stops" if self.state["stops"] else "--no-stops") + ", or "
+                             "no flag), or start a new lesson folder")
+        self.state.setdefault("stops", True if stops is None else stops)  # a new run: the rule unless --no-stops
         self.cuts = set(self.state.get("cuts") or [])
         unknown = self.cuts - set(CUTS)
         if unknown:
@@ -982,7 +983,7 @@ def main(argv=None):
     r.add_argument("photo")
     r.add_argument("--lesson")
     r.add_argument("--until", choices=["checker"], help="stop after this phase (#267)")
-    r.add_argument("--stops", action=argparse.BooleanOptionalAction, default=True,
+    r.add_argument("--stops", action=argparse.BooleanOptionalAction, default=None,
                    help="build the step pictures with pipeline v4's rule (#298; on by default since POC 2.2.0)")
     p = sub.add_parser("report")
     p.add_argument("lesson")
@@ -992,7 +993,7 @@ def main(argv=None):
         return
     stem = Path(a.photo).stem
     lesson = Path(a.lesson) if a.lesson else ROOT / "output" / f"{stem}_v4loop_{datetime.now():%Y%m%d-%H%M%S}"
-    Run(a.photo, lesson.resolve(), stops=a.stops or None).go(a.until)
+    Run(a.photo, lesson.resolve(), stops=a.stops).go(a.until)  # None: a new run takes the rule, an old one its own
 
 
 if __name__ == "__main__":
