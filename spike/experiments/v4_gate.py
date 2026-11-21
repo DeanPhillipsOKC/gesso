@@ -21,8 +21,8 @@ whose pictures are the same either way (nothing stopped) has no tested step, and
 same byte for byte (the gate's check).
 
 `report` gives each picture's student score on its tested steps, a side, and the three together: the gate fails
-when the rule's side is lower by 0.25 or more, and asks for a third carry a side when the gap is between 0.15 and
-0.25. Every grade is a carry graded alone (`grade-carry --solo words`).
+when the rule's side is lower by 0.25 or more, and at two carries a side it asks for a third when the gap is from
+0.15 to 0.25, either end included (the gate's two carries came out at exactly 0.25); with three, the gap decides. Every grade is a carry graded alone (`grade-carry --solo words`).
 
 Experiment code: it reads lessons and the bench and changes no tool.
 """
@@ -157,10 +157,19 @@ def report(args):
     diffs = [np.mean(g["on"][(p, n)]) - np.mean(g["off"][(p, n)]) for p in PICTURES for n in st["steps"][p]["tested"]
              if g["on"].get((p, n)) and g["off"].get((p, n))]
     se = round(float(np.std(diffs, ddof=1) / np.sqrt(len(diffs))), 2) if len(diffs) > 1 else None
-    verdict = None if gap is None else ("fail" if gap <= -FAIL else "third carry" if gap < -THIRD else "pass")
+    carries = min((len(g[s][(p, n)]) for s in SIDES for p in PICTURES for n in st["steps"][p]["tested"]
+                   if g[s].get((p, n))), default=0)
+    if gap is None:
+        verdict = None
+    elif gap <= -FAIL - 1e-9 and carries >= 3:
+        verdict = "fail"
+    elif gap < -THIRD and carries < 3:
+        verdict = "third carry"  # at two carries a side, a gap from 0.15 to 0.25 (either end) asks for a third
+    else:
+        verdict = "fail" if gap <= -FAIL - 1e-9 else "pass"
     rows["all"] = {"rule": round(float(np.mean(all_on)), 2) if all_on else None,
                    "no rule": round(float(np.mean(all_off)), 2) if all_off else None,
-                   "gap": gap, "se": se, "steps": len(diffs), "student": verdict}
+                   "gap": gap, "se": se, "steps": len(diffs), "carries": carries, "student": verdict}
     st["student"] = rows
     write_json(RESULTS, st)
     print(json.dumps({"student": {p: {k: v for k, v in r.items() if k != "by_step"} for p, r in rows.items()},
