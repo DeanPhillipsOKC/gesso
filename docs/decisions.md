@@ -399,6 +399,14 @@ with the date.
   subscription instead of paying for API calls, with filters and renders as command-line tools.
   The pipeline moves into the app once the lessons look right.
 - **Backlog in GitHub Issues** with RepBunny's scoring labels (see `docs/backlog.md`).
+- **An issue closes when its pull request merges, into any branch (2026-11-21, owner's call).** GitHub closes an
+  issue on its own only for a merge into `main`, so a build merged into a working branch (such as `v4`) left its issue
+  open. Claude closes it by hand when the merge is done. A parent issue stays open until its own work is done. Owner:
+  "Why do we need to keep prs and issues open?"
+- **The pipeline v4 builds are POC 2.2.0 updates (2026-11-21, owner's call).** Issues, pull requests and messages to
+  the owner name them by the version a lesson is stamped with ("2.2.0 build 4"), not "v4": "v4" is also the v4 plan
+  (#240) and the yardstick. Not decided by this: renaming the design file, the branch `v4` or the stamp
+  `"pipeline": 4`.
 - **Every piece of work gets a pull request (2026-11-13, owner's call).** When work on an issue is done and pushed,
   Claude opens a pull request without asking (owner: "Always want a pull request. No need to ask").
 - **Claude merges its own pull requests during the proof of concept (2026-11-13, owner's call).** The owner works mostly
