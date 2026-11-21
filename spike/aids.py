@@ -4,6 +4,7 @@ written for pipeline v2, docs/design/pipeline-v2.md section 10, and kept when v2
     make(plan, pictures, masks, canvas_box, canvas, out) -> aids.json's contents, with its pictures written to out/
     where_words(area, canvas)                             -> "Inside the outlined area. Its top is about 2 in ..."
     path_mask(path, size)                                 -> the pixels an outline path covers (for tests and checks)
+    stop_path(shown, full, size)                          -> the stretch of the outline that is a stopped layer's line
 
 A step picture shows the canvas after the step. A beginner also needs to see where this step's paint goes, a closer
 look when it's small, and which paint goes where. Each of those is cut from what build-steps already knows: every
@@ -11,6 +12,9 @@ step's painted area (lesson3's masks) and its picture. Nothing is inferred or re
 shape (steps3.as_v2): a part a unit.
 
 - Where (every step): the step's painted area as an SVG path, drawn on the page over the picture before the step.
+  With pipeline v4's rule (build-steps --stops) the area is the paint the step picture shows, and on a step whose
+  layer stops, the stretch of the outline that is its stop line is a second, open path (`stop_path`): the page draws
+  it dashed, so it reads as "about here" (docs/design/pipeline-v4.md section 7).
 - Close-up (an area under CLOSE_UP of the canvas): before and after, cropped to the area with a margin.
 - Paint map (the first step of a part, and any flat, pass, or blend step with 2 or more paints): the area in flat
   patches, one per paint, numbered in painting order, as a small indexed PNG.
@@ -89,19 +93,60 @@ def view_mask(area: np.ndarray, size: tuple[int, int]) -> np.ndarray:
     return joined > 0
 
 
+def _contours(m: np.ndarray, size: tuple[int, int], how: int) -> list[np.ndarray]:
+    """The outline's pieces (and holes) around a page-coordinates mask, specks left out."""
+    floor = SPECK * size[0] * size[1]
+    contours, _ = cv2.findContours(m.astype(np.uint8), cv2.RETR_CCOMP, how)
+    return [c for c in contours if cv2.contourArea(c) >= floor]
+
+
 def outline_path(area: np.ndarray, size: tuple[int, int]) -> str:
     """SVG path data (page coordinates, fill-rule evenodd) around a canvas-sized mask."""
-    m = view_mask(area, size)
-    floor = SPECK * size[0] * size[1]
-    contours, _ = cv2.findContours(m.astype(np.uint8), cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
     out = []
-    for c in contours:
-        if cv2.contourArea(c) < floor:
-            continue
+    for c in _contours(view_mask(area, size), size, cv2.CHAIN_APPROX_SIMPLE):
         c = cv2.approxPolyDP(c, 0.8, True).reshape(-1, 2)
         if len(c) < 3:
             continue
         out.append("M" + " ".join(f"{x} {y}" for x, y in c) + "Z")
+    return "".join(out)
+
+
+STOP_NEAR = 3  # page units: an outline point this close to paint the step lays but its picture doesn't show is on
+# the stop line
+STOP_MIN = 0.03  # a stretch of the stop line shorter than this share of the long side isn't drawn dashed (a corner)
+
+
+def stop_path(shown: np.ndarray, full: np.ndarray, size: tuple[int, int]) -> str:
+    """The stretch of the Where outline that is a stopped layer's line, as open SVG path data in page coordinates
+    ("M x y L x y ..." a stretch), or "" when the step's picture shows all the paint it lays. `shown` is the paint
+    the step picture shows (masks.npz's m<nn>, the outline's own mask) and `full` where it lays paint in full
+    (f<nn>), both cropped to the canvas: the stop line is where the outline borders the paint below it that isn't
+    shown. The points are the outline's own, so the dashed stretch lies on it."""
+    gone = full & ~shown
+    if not gone.any():
+        return ""
+    m = view_mask(shown, size)
+    g = (cv2.resize(gone.astype(np.float32), size, interpolation=cv2.INTER_AREA) > 0.5) & ~m
+    if not g.any():
+        return ""
+    near = cv2.dilate(g.astype(np.uint8), _disk(STOP_NEAR)) > 0
+    least = STOP_MIN * VIEW
+    out = []
+    for c in _contours(m, size, cv2.CHAIN_APPROX_NONE):
+        c = c.reshape(-1, 2)
+        on = near[c[:, 1], c[:, 0]]
+        if not on.any():
+            continue
+        if not on.all():  # start where the line isn't, so no stretch is cut in two at the contour's start
+            k = int(np.argmin(on))
+            c, on = np.roll(c, -k, 0), np.roll(on, -k)
+        edges = np.flatnonzero(np.diff(np.concatenate([[0], on.astype(np.int8), [0]])))
+        for a, b in zip(edges[::2], edges[1::2]):
+            run = c[a:b]
+            if len(run) < least:
+                continue
+            run = cv2.approxPolyDP(run.reshape(-1, 1, 2), 0.8, False).reshape(-1, 2)
+            out.append(f"M{run[0][0]} {run[0][1]}L" + " ".join(f"{x} {y}" for x, y in run[1:]))
     return "".join(out)
 
 
@@ -408,9 +453,12 @@ def map_steps(plan: dict) -> dict[int, tuple[str, list[str]]]:
 
 
 def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner: np.ndarray,
-         canvas_box: list[float] | None, canvas: dict | None, out: Path, images: list[str]) -> dict:
+         canvas_box: list[float] | None, canvas: dict | None, out: Path, images: list[str],
+         full: list[np.ndarray] | None = None) -> dict:
     """Write every step's teaching pictures into `out` (the lesson's aids/ folder) and return aids.json's
-    contents. `pictures` and `masks` are build_steps.build's, in the frame; `images` the step pictures' names."""
+    contents. `pictures` and `masks` are build_steps.build's, in the frame; `images` the step pictures' names.
+    `full` (pipeline v4, masks.npz's f<nn>) is where each step lays paint in full: a step whose picture shows less
+    of it gets `stop_path`, the stretch of its outline that is the stop line."""
     out.mkdir(parents=True, exist_ok=True)
     for old in out.glob("*"):
         if old.is_file() and old.suffix in (".png", ".jpg"):
@@ -419,6 +467,7 @@ def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner:
     paints = {c["id"]: c for c in plan.get("paints") or []}
     pics = [to_canvas(p, canvas_box) for p in pictures]
     areas = [to_canvas(m, canvas_box) for m in masks]
+    fulls = [to_canvas(m, canvas_box) for m in full] if full is not None else areas
     seen = [to_canvas(m, canvas_box) for m in bs.visible(plan, owner, masks)]  # what the finish shows of it (#126)
     size = view_size(pics[0].shape)
     blank = np.empty_like(pics[0])
@@ -431,6 +480,9 @@ def make(plan: dict, pictures: list[np.ndarray], masks: list[np.ndarray], owner:
         # the outline is everything the step paints; the words place what of it the finished painting shows (#126)
         row = {"id": s["id"], "image": images[i], "area": round(share, 4),
                "path": outline_path(area, size), "where_words": where_words(seen[i], canvas)}
+        dashed = stop_path(area, fulls[i], size) if fulls[i] is not area else ""
+        if dashed:
+            row["stop_path"] = dashed
         stem = f"{i + 1:02d}_{s['id']}"
         vm = view_mask(area, size) if area.any() and share < CLOSE_UP else None
         if vm is not None and vm.any() and _span(vm) <= CLOSE_SPAN * VIEW:
