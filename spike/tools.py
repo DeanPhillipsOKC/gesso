@@ -1052,7 +1052,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     lesson = Path(a.lesson)
     plan, _, finish = _v3_ready(lesson)
     try:
-        built = lesson3.make(lesson, plan, finish, save_png)
+        built = lesson3.make(lesson, plan, finish, save_png, stops=a.stops)
     except erase3.Refused as e:
         raise Refused(str(e))
     (lesson / "trials").mkdir(exist_ok=True)
@@ -1062,6 +1062,7 @@ def build_steps_tool(a: argparse.Namespace) -> dict:
     return {"steps": built["steps"], "sheet": str(sheet), "rows": built["rows"], "paints": built["paints"],
             "problems": bad, "notes": notes,
             "checks": {k: built[k] for k in ("final_gap", "outside_unit_max", "from_its_paints_median")},
+            **({"stops": built["stops"], "spared_canvas": built["spared_canvas"]} if "stops" in built else {}),
             "advice": "Read the sheet. Every step should add one thing; nothing else should change. `notes` can't be "
                       "fixed without a new plan and a new chain: record each in notes.json as a known problem. Then "
                       "step-aids, mix, draft-text.", "cost_usd": 0.0}
@@ -1247,6 +1248,10 @@ def add_step_tools(sub) -> None:
                                    "trials/steps.jpg (all of them on one sheet), and keeps what the later tools read "
                                    "(v3/, parts/owner.png). `notes` are faults only a new plan and chain can fix.")
     p.add_argument("--lesson", required=True)
+    p.add_argument("--stops", action="store_true",
+                   help="pipeline v4 (being built, off by default): a layer the next stage covers from the bottom "
+                        "edge stops at a loose line about 1 in past the cover's top, and the canvas below stays bare "
+                        "(spike/stops.py). build.json keeps where each layer stops.")
     p.set_defaults(func=build_steps_tool)
     p = sub.add_parser("step-aids", help="Free. Every step's teaching pictures (where, close-up, paint map) and the transfer outline.",
                        description="Run after build-steps. Writes aids/aids.json and its pictures: each step's painted "
