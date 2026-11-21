@@ -20,7 +20,9 @@ The writer's files, all in words/lesson/:
 
 The tools write `feedback.md` and `arc-feedback.md` (what to fix, and which file to write), `rounds.json` (each
 round's counts), `words.md` (the checked step words, for the arc) and `arc-dropped.json`; `words/dropped.json` is
-what the steps' last check took out, as in v3.
+what the steps' last check took out, as in v3. `pictures.json` is what the step pictures the writer was sent were
+made from (build.json's `made_from`, and whether it has `stops`: pipeline v4, section 8), and check-text --final
+keeps it in rounds.json as what the words were written for, so words written for other pictures aren't sealed.
 
 What was moved here from the experiments, and from where: the change picture and the lean fact sheet
 (`v4_teacher.py`, `v4_writer_cost.py`), the paint check on the words (`v4_writer_cost.paint_failures`), the arc's
@@ -66,6 +68,71 @@ class Refused(ValueError):
 
 def folder_of(lesson: Path) -> Path:
     return Path(lesson) / facts.WORK / FOLDER
+
+
+# ------------------------------------------------------------------- words belong to their pictures (v4, section 8)
+PICTURES = "pictures.json"  # in words/lesson/: what the step pictures in the packet were made from
+AGAIN = ("run packets, then the lesson's writer again on the new folder, and its rounds (check-text, then "
+         "check-text --final and the arc; v3/run.md D)")
+
+
+def pictures_of(lesson: Path) -> dict | None:
+    """What the lesson's step pictures are made from now: build.json's `made_from` (the plan, the chain, the finish,
+    and with the rule the canvas) and whether it was built with the rule. None before build-steps."""
+    path = Path(lesson) / "v3" / "build.json"
+    try:
+        build = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    files = json.dumps(build.get("files") or {}, sort_keys=True).encode()
+    return {"made_from": build.get("made_from"), "stops": "stops" in build,
+            "pictures": hashlib.sha256(files).hexdigest()[:16]}  # what build-steps wrote: a changed rule's lines too
+
+
+def packet_pictures(lesson: Path) -> dict | None:
+    """What the step pictures in the writer's folder were made from, as packets recorded it; None for a folder made
+    before the record (#298)."""
+    try:
+        got = json.loads((folder_of(lesson) / PICTURES).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return got if isinstance(got, dict) else None
+
+
+def other_pictures(was: dict | None, now: dict | None) -> str | None:
+    """Why words written for the pictures `was` describes don't belong to the pictures `now` describes, or None
+    when they do. `was` None is a record from before #298: those words were written for pictures without the rule,
+    so they stand only while the lesson has none."""
+    if now is None:
+        return None  # no step pictures: lesson3.read's own refusal says so
+    if was is None:
+        return "the step pictures were built with --stops since" if now["stops"] else None
+    if was.get("stops") != now["stops"]:
+        return f"the step pictures were built {'with' if now['stops'] else 'without'} --stops since"
+    if was.get("made_from") != now["made_from"]:
+        return "the step pictures were made again from a changed plan, chain or canvas since"
+    if was.get("pictures") is not None and was["pictures"] != now.get("pictures"):
+        return "the step pictures were made again, and came out different, since"
+    return None
+
+
+def pictures_refusal(lesson: Path) -> str | None:
+    """check-text's refusal of a writer's folder cut from other step pictures than the lesson's now."""
+    why = other_pictures(packet_pictures(lesson), pictures_of(lesson))
+    return f"the writer's folder was made for other step pictures ({why} packets ran): {AGAIN}" if why else None
+
+
+def words_problem(lesson: Path, text: dict) -> str | None:
+    """`check`'s: the lesson writer's words in text.json must be the ones check-text --final laid for the step
+    pictures as they are now. None for words that aren't the writer's (drafted lines, a lesson before v3.1)."""
+    if not is_written(text):
+        return None
+    final = _state(folder_of(lesson)).get("final")
+    if final is None:
+        return ("text.json holds the lesson writer's words, but words/lesson/ has no last check of them (packets made "
+                f"the writer's folder again after they were written, or check-text --final hasn't run): {AGAIN}")
+    why = other_pictures(final.get("pictures"), pictures_of(lesson))
+    return f"text.json's words were written for other step pictures ({why} they were): {AGAIN}" if why else None
 
 
 # ----------------------------------------------------------------------------------------- what the writer reads
@@ -241,6 +308,7 @@ def packet(lesson: Path) -> dict:
     shutil.copyfile(lesson / "plan.json", folder / "plan.json")
     shutil.copyfile(LESSON_BRIEF, folder / "brief.md")
     shutil.copyfile(ARC_BRIEF, folder / "arc-brief.md")
+    (folder / PICTURES).write_text(json.dumps(pictures_of(lesson)) + "\n", encoding="utf-8")
     return {"folder": str(folder), "steps": len(les["steps"]), "stages": len(les["stages"]),
             "sheet": str(work / "sheet.json")}
 
@@ -484,6 +552,9 @@ def steps_round(lesson: Path, redraft, final: bool = False) -> dict:
     work = lesson / facts.WORK
     if not folder.is_dir():
         raise Refused(f"no lesson writer's folder in {lesson}: run packets")
+    wrong = pictures_refusal(lesson)
+    if wrong:
+        raise Refused(wrong)
     les = _lesson(lesson)
     kept = work / "sheet.json"
     if not kept.exists() or json.loads(kept.read_text(encoding="utf-8")) != json.loads(json.dumps(les["sheet"])):
@@ -556,7 +627,8 @@ def steps_round(lesson: Path, redraft, final: bool = False) -> dict:
     (folder / "words.md").write_text(words_md(les, text), encoding="utf-8")
     arc_note = ("the arc was laid on the words before this: run check-text --arc --final again"
                 if (folder / "arc.json").exists() else "")
-    st["final"] = {"dropped": len(gone), "emptied": empty, "long_lines": len(long_lines(les, text))}
+    st["final"] = {"dropped": len(gone), "emptied": empty, "long_lines": len(long_lines(les, text)),
+                   "pictures": pictures_of(lesson)}  # what these words were written for (#298)
     _save_state(folder, st)
     return {"problems": problems, "ok": not problems, "dropped": len(gone), "left_failing": left,
             "emptied": empty, "long_lines": long_lines(les, text), "words": sum(
@@ -745,6 +817,10 @@ def arc_round(lesson: Path, final: bool = False) -> dict:
     work = lesson / facts.WORK
     if not folder.is_dir() or not (work / "dropped.json").exists():
         raise Refused("the steps' words haven't had their last check: run check-text --final before the arc")
+    wrong = pictures_refusal(lesson) or words_problem(lesson, json.loads((lesson / "text.json").read_text(
+        encoding="utf-8")))
+    if wrong:
+        raise Refused(wrong)
     les = _lesson(lesson)
     path = lesson / "text.json"
     text = json.loads(path.read_text(encoding="utf-8"))

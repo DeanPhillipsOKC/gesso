@@ -133,7 +133,9 @@ These are the owner's decisions. Don't work around them.
   `after` lines of its steps say so: if the sea's `behind` is `["sky"]`, the sky is painted down to the bottom edge
   where the sea will go, and the sky's `after` says "the sky runs to the bottom edge", never "the bottom third is bare
   canvas". When the sea really goes on bare canvas, its `behind` is `[]`, and the `after` lines before the sea say
-  that part of the canvas is bare. Decide which a painter would do, then make both say it.
+  that part of the canvas is bare. Decide which a painter would do, then make both say it. Write `behind` and the `after`
+  lines this way, as if each layer ran under what covers it: a later tool decides how much of a layer its step
+  picture shows.
 - **`plain`** on a thing painted in more than one go: how it looks after its first coat, as a short phrase ("the
   plain gray cat shape"). A render told to keep the thing while it is still plain is told this.
 - **`called`** (optional) on a thing whose name would mislead someone asked to remove it or keep it: a name that

@@ -99,7 +99,7 @@ class SheetTests(unittest.TestCase):
         text = facts.facts_text(self.sheet, {}, sky)
         self.assertIn("It stops short. Its lower edge is a loose, uneven line: about 8 in (8) from the top edge for "
                       "most of its width, 7 1/2 in (7 1/2) at its highest and 8 1/2 in (8 1/2) at its lowest (8 in (8) "
-                      "at the left edge, 8 in (8) at the right edge). Below it the canvas stays bare. Step 2 (Lay the "
+                      "at the left edge, 8 in (8) at the right edge). The rest of the canvas stays bare. Step 2 (Lay the "
                       "far hills) paints there next, and its top covers this edge by about 1 in (1).", text)
         self.assertIn("All of what it paints goes on bare canvas.", text)
         lean = facts.lean(facts.facts_text(self.sheet, {}, hills))

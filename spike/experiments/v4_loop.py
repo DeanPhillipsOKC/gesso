@@ -11,12 +11,17 @@ writer is sent the library's list and the files it picks (`library`), and answer
 writer writes the whole lesson, its rounds and its arc (`packets`, `check-text`); the finisher sees the step pictures
 at 384 pixels (`small-pictures`) and looks at its diagrams again only when fewer draw than it wrote.
 
+Since #298 `--stops` builds the step pictures with pipeline v4's rule (`build-steps --stops`, run.md C1;
+`docs/design/pipeline-v4.md`): a run keeps the choice in its state, so a run that goes on after a stop builds the
+same way, and the briefs it sends are the skill's own, which say what a stopped layer means.
+
 Every call is logged to `<lesson>/v4/calls.json`: the helper, its input, cache and output tokens, seconds, the cost
 at the API's published rates, and an estimate of how much of the input was pictures, instructions and Claude
 Code's own additions. `report` sums it.
 
     .venv/bin/python spike/experiments/v4_loop.py run photos/sleeping-cat.jpg
     .venv/bin/python spike/experiments/v4_loop.py run photos/sleeping-cat.jpg --lesson <folder>   # go on after a stop
+    .venv/bin/python spike/experiments/v4_loop.py run photos/highland-cow.jpg --stops   # pipeline v4's rule (#298)
     .venv/bin/python spike/experiments/v4_loop.py report <lesson>
 
 Experiment code: it changes no tool and writes only inside its lesson folder. The lesson isn't put on the site
@@ -275,7 +280,7 @@ PLAN_ASK = re.compile(r"plan\.json|Change the brush, or the stroke")
 
 # ------------------------------------------------------------------------------------------------------------- the run
 class Run:
-    def __init__(self, photo: str, lesson: Path, cuts: list[str] | tuple = tuple(CUTS)):
+    def __init__(self, photo: str, lesson: Path, cuts: list[str] | tuple = tuple(CUTS), stops: bool | None = None):
         self.photo = photo
         self.lesson = lesson
         lesson.mkdir(parents=True, exist_ok=True)
@@ -285,6 +290,12 @@ class Run:
         self.state = json.loads(self.state_path.read_text()) if self.state_path.exists() else {
             "photo": photo, "started": datetime.now().isoformat(timespec="seconds"), "done": [], "phases": {},
             "tools": [], "cuts": sorted(cuts)}
+        if self.state_path.exists():
+            self.state.setdefault("stops", False)  # a run from before #298 was built without the rule
+        if stops is not None and self.state.get("stops", stops) != stops:
+            raise SystemExit("this run was started " + ("with" if self.state["stops"] else "without") + " --stops: "
+                             "go on the same way, or start a new lesson folder")
+        self.state.setdefault("stops", bool(stops))
         self.cuts = set(self.state.get("cuts") or [])
         unknown = self.cuts - set(CUTS)
         if unknown:
@@ -588,7 +599,7 @@ class Run:
         raise RuntimeError("erase failed three times")
 
     def build_and_check(self):
-        bs = self.tool("build-steps", "--lesson", self.lesson)
+        bs = self.tool("build-steps", "--lesson", self.lesson, *(["--stops"] * bool(self.state.get("stops"))))
         if bs.get("problems"):
             raise RuntimeError(f"build-steps problems: {bs['problems']}")
         self.state["build_notes"] = bs.get("notes")
@@ -970,6 +981,7 @@ def main(argv=None):
     r.add_argument("photo")
     r.add_argument("--lesson")
     r.add_argument("--until", choices=["checker"], help="stop after this phase (#267)")
+    r.add_argument("--stops", action="store_true", help="build the step pictures with pipeline v4's rule (#298)")
     p = sub.add_parser("report")
     p.add_argument("lesson")
     a = ap.parse_args(argv)
@@ -978,7 +990,7 @@ def main(argv=None):
         return
     stem = Path(a.photo).stem
     lesson = Path(a.lesson) if a.lesson else ROOT / "output" / f"{stem}_v4loop_{datetime.now():%Y%m%d-%H%M%S}"
-    Run(a.photo, lesson.resolve()).go(a.until)
+    Run(a.photo, lesson.resolve(), stops=a.stops or None).go(a.until)
 
 
 if __name__ == "__main__":

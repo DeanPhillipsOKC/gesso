@@ -30,10 +30,12 @@ and two more:
     sentences on what the stroke is, where in this painting it does its work, and what to watch for (from the
     card). Pick the cards that do the most work in this painting, not every card.
   - `road`: four to six sentences: every stage in order, what each one adds, and why the order (from the plan's
-    `why`).
+    `why`). It may say that the first layers stop where the next will cover them (a step `facts.md` says "It stops
+    short" on), so the bare canvas they leave doesn't surprise the painter; say it without a number or a side word.
 - **A stage's two lines**, for every stage in `stages.md`: `for`, one sentence of what the stage is for (shown at
   the top of the stage); and `end`, one sentence of what the canvas looks like at its end, from its end picture
-  (shown after the stage's last step).
+  (shown after the stage's last step). A stage whose layers stop short ends with bare canvas showing: say "the rest of
+  the canvas is still bare", with no step number and no side word.
 - **A step that points back** (`back`): give one to every step that repeats an earlier step's stroke card or one of
   its paints, where saying so helps a beginner: they've done this, and here is what's different this time (the
   paint, the brush, the size, where it goes). That is likely about half the steps. Skip a step only when the tie is
