@@ -311,15 +311,25 @@
   },
   {
     "slug": "highland-cow",
-    "title": "A shaggy Highland cow standing in tall summer grass at sunset",
-    "subject": "A shaggy Highland cow standing in tall summer grass at sunset, with violet hills, a sliver of loch and a gold-and-blue sky behind",
+    "title": "A shaggy highland cow standing in tall golden-green grass at sunset",
+    "subject": "A shaggy highland cow standing in tall golden-green grass at sunset, with violet hills, a sliver of loch and a gold and blue sky behind",
     "steps": 22,
     "canvas": "12 x 16 in",
     "tubes": 5,
-    "version": "POC 2.0.2",
-    "published": "2026-11-20",
-    "source": "highland-cow_skill_20261120-193553",
+    "version": "POC 2.1.0",
+    "published": "2026-11-21",
+    "source": "highland-cow_skill_20261121-102810",
     "versions": [
+      {
+        "id": "20261121-102810",
+        "version": "POC 2.1.0",
+        "when": "2026-11-21 10:28",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 22,
+        "href": "lessons/highland-cow/",
+        "current": true
+      },
       {
         "id": "20261120-193553",
         "version": "POC 2.0.2",
@@ -327,8 +337,8 @@
         "guessed": false,
         "kind": "steps erased back from the finish",
         "steps": 22,
-        "href": "lessons/highland-cow/",
-        "current": true
+        "href": "lessons/highland-cow/v/20261120-193553/",
+        "current": false
       },
       {
         "id": "20261118-072336",
@@ -341,19 +351,29 @@
         "current": false
       }
     ],
-    "known": 2
+    "known": 3
   },
   {
     "slug": "sleeping-cat",
-    "title": "A gray tabby kitten curled up asleep on a folded yellow knit blanket",
-    "subject": "A gray tabby kitten curled up asleep on a folded yellow knit blanket on a wooden window ledge, against a blue wall beside a sunny window",
-    "steps": 20,
+    "title": "A gray tabby cat asleep",
+    "subject": "A gray tabby cat asleep, curled on a yellow knitted blanket on a wooden windowsill, against a blue wall beside a white window with trees outside",
+    "steps": 21,
     "canvas": "16 x 12 in",
     "tubes": 5,
-    "version": "POC 2.0.2",
-    "published": "2026-11-20",
-    "source": "sleeping-cat_skill_20261120-193553",
+    "version": "POC 2.1.0",
+    "published": "2026-11-21",
+    "source": "sleeping-cat_skill_20261121-141536",
     "versions": [
+      {
+        "id": "20261121-141536",
+        "version": "POC 2.1.0",
+        "when": "2026-11-21 14:15",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 21,
+        "href": "lessons/sleeping-cat/",
+        "current": true
+      },
       {
         "id": "20261120-193553",
         "version": "POC 2.0.2",
@@ -361,8 +381,8 @@
         "guessed": false,
         "kind": "steps erased back from the finish",
         "steps": 20,
-        "href": "lessons/sleeping-cat/",
-        "current": true
+        "href": "lessons/sleeping-cat/v/20261120-193553/",
+        "current": false
       },
       {
         "id": "20261118-080533",
@@ -401,13 +421,23 @@
     "slug": "birch-grove",
     "title": "A misty autumn birch grove",
     "subject": "A misty autumn birch grove with a leaf-covered path running back into the fog",
-    "steps": 20,
+    "steps": 22,
     "canvas": "16 x 12 in",
     "tubes": 5,
-    "version": "POC 2.0.2",
-    "published": "2026-11-20",
-    "source": "birch-grove_skill_20261120-193553",
+    "version": "POC 2.1.0",
+    "published": "2026-11-21",
+    "source": "birch-grove_skill_20261121-141536",
     "versions": [
+      {
+        "id": "20261121-141536",
+        "version": "POC 2.1.0",
+        "when": "2026-11-21 14:15",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 22,
+        "href": "lessons/birch-grove/",
+        "current": true
+      },
       {
         "id": "20261120-193553",
         "version": "POC 2.0.2",
@@ -415,8 +445,8 @@
         "guessed": false,
         "kind": "steps erased back from the finish",
         "steps": 20,
-        "href": "lessons/birch-grove/",
-        "current": true
+        "href": "lessons/birch-grove/v/20261120-193553/",
+        "current": false
       },
       {
         "id": "20261118-083834",
@@ -429,6 +459,6 @@
         "current": false
       }
     ],
-    "known": 4
+    "known": 8
   }
 ]
