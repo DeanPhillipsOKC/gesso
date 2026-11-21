@@ -1,6 +1,7 @@
 # Pipeline v4: a covered layer stops at a loose line
 
-**A draft (2026-11-21, #292, for #287). Nothing here is built.** The owner adopted the rule on 2026-11-21 after
+**A draft (2026-11-21, #292, for #287). Nothing here is built.** The owner read it and merged it (#293), set the
+gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after
 spike #289 (`docs/decisions.md`; `docs/spikes/cover-margin.md`, sections "The owner's rule" and "The gap fixed"). It
 lives in `spike/experiments/cover_margin.py` as the variant `line-1-next`, laid over step pictures after they are
 built. This file says how it goes into the run so that every part of a lesson agrees with it. It changes
@@ -31,7 +32,7 @@ It is still written as changes to v3, as v3.1 was, because most of the run doesn
 What follows from that:
 
 - `plan.json` stays `plan_version: 3`. The writer writes the same file (section 9).
-- A lesson is stamped **POC 3.0.0** (a guess: v2 was 1.x and v3 is 2.x; the owner can make it 2.2.0 at the merge).
+- A lesson is stamped **POC 2.2.0** (the owner's call, 2026-11-21; this draft had proposed 3.0.0).
 - Going back is `build-steps --no-stops`, and every lesson on the site keeps the version that made it.
 
 ## 1. Why change
@@ -291,7 +292,7 @@ happens before anyone writes a rule for it.
 - **Time:** `build-steps` lays the chain twice and works out a line a unit. Seconds.
 - **The gate** costs what three lessons cost, and half as much again for the second set of words (section 12).
 
-## 12. The gate (proposed; the owner sets it)
+## 12. The gate (set by the owner, 2026-11-21: "Default")
 
 The spike tied on both tests, and neither can see the saving. A gate that asks for a win can't be met, so this one
 asks for no loss and reports the saving.

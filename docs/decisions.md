@@ -374,6 +374,13 @@ with the date.
   "This is the way." It changes how step pictures are made, so it is a new pipeline version: a design by Fable
   first (the facts, the Where picture, and the words of the step after a changed run have to follow), then the
   build. It lives in `spike/experiments/cover_margin.py` until then.
+- **Pipeline v4's design is merged; its gate asks for no loss, and its lessons are POC 2.2.0 (2026-11-21, owner's
+  call, #292 and #293).** The owner merged `docs/design/pipeline-v4.md` and said "Default" to its gate (section 12):
+  three hands-off bench lessons, each built twice from one chain, with the rule and without; both seal; the student
+  test on the changed steps and the step after isn't lower by 0.25 or more; Claude's graders show a clear loss on no
+  picture; the painting saved is reported, not passed or failed; the owner reads the cow and says yes. The stamp is
+  POC 2.2.0 with `"pipeline": 4` (the design had proposed 3.0.0). Not decided by this: the dashed stop line on the
+  Where picture and the page's line about painting skipped, both guesses in the design. Next is the build, by Opus.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
