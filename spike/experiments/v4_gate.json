@@ -1,4 +1,198 @@
 {
+  "ab": [
+    {
+      "A": "rule",
+      "B": "no rule",
+      "grader": 1,
+      "note": "From step 9 on the two lessons share identical pictures, so the shared faults decide most of both scores. A gets a slight edge because its words say plainly where each layer goes, while B's placement lines garble in about ten steps. B's fully covered early canvas is a small plus that doesn't make up for that. Slight preference, close to a toss-up.",
+      "picture": "birch-grove",
+      "preferred": "rule",
+      "scores": {
+        "no rule": {
+          "agree": 2,
+          "note": "From step 9 on, the pictures and faults are the same as A's (magic leaf carpet at 9, the bush moving at 8, big jumps at 16 and 19). Covering the whole canvas in fog avoids A's odd white swoop, and the step 1 words at least mention darker tree shapes in the fog. But the mottled fog on the lower canvas looks blotchy. Many steps also carry garbled placement lines ('the left side of the blue-green pines on the right', 'most of it goes on the right side of the birch bark' for the sunlit edge at step 17) that would confuse a beginner about where the paint goes.",
+          "paintable": 2,
+          "real": 2,
+          "worst_steps": [
+            9,
+            1,
+            19
+          ]
+        },
+        "rule": {
+          "agree": 2,
+          "note": "Steps 9 to 22 use the same pictures as B, and they carry the big faults: step 9 lays a finished leaf carpet when the words ask for level strokes of flat orange and tan, the bush grows and moves at step 8, and steps 16 and 19 jump to near-finished bark and canopy. Step 1 already shows a whole far wood of trunks and fir shapes the words never mention, and its bare-canvas edge is a big smooth swoop that shifts from step to step. The words are clean and easy to follow, which keeps paintable at 3.",
+          "paintable": 3,
+          "real": 2,
+          "worst_steps": [
+            1,
+            9,
+            19
+          ]
+        }
+      }
+    },
+    {
+      "A": "no rule",
+      "B": "rule",
+      "grader": 2,
+      "note": "Slight preference for B. The pictures are identical from step 10 and share the same big flaws. The difference comes from B's clearer, placeable words and from not making the painter build a mottled fog that is wholly painted over at step 9. Its swooping bare-canvas edge, white holes and the step 8 fog are real costs, so this is close to a toss-up.",
+      "picture": "birch-grove",
+      "preferred": "rule",
+      "scores": {
+        "no rule": {
+          "agree": 2,
+          "note": "Step 1 'blend the glow' already shows a whole far forest of trunks and pine shapes, and the lower half sits under cell-like mottled blotches no brush makes for eight steps before the ground buries them. Step 9's 'long level strokes' picture is already a carpet of leaf dabs, step 18's overhead leaves show as ghost rings, and steps 2, 3, 10, 17 and 21 barely change anything. The words keep using jargon a beginner can't place ('the left side of the golden undergrowth', 'the right side of the birch bark'), and step 17's words promise bright edges the picture doesn't show.",
+          "paintable": 2,
+          "real": 3,
+          "worst_steps": [
+            1,
+            9,
+            18
+          ]
+        },
+        "rule": {
+          "agree": 2,
+          "note": "From step 10 on, the pictures are the same as A's, with the same problems: magic in step 1, a leaf texture in step 9, ghost rings in step 18 and several near no-op steps. Before that, the fog stops at a big swooping S-curve with bare canvas below. That is honest about what's still unpainted and matches the words, but the pines and bushes then sit half on white with hard white holes, and in step 8 a band of blue fog appears under the bushes that the Sunlit lemon taps don't explain. The words are plainer and point to real places (inches, 'the tallest pine'), so a beginner can follow them more easily, though step 13 is missing its 'stop when' line.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            1,
+            9,
+            18
+          ]
+        }
+      }
+    },
+    {
+      "A": "rule",
+      "B": "no rule",
+      "grader": 1,
+      "note": "Only steps 1-6 differ, and the two lessons share everything from step 7 on. A is slightly better: its sky and hills stop where the next layer covers them and nothing shifts. B's full-canvas sky is wasted work, and its lower streaks change in step 3 with no words for it. The edge is slight, not clear.",
+      "picture": "highland-cow",
+      "preferred": "rule",
+      "scores": {
+        "no rule": {
+          "agree": 3,
+          "note": "Step 1 paints sky over the whole canvas, which the words state, but that's a lot of wasted streaky blue-and-orange sky that the land then covers, and step 3, meant as a light skim on cloud tops, visibly reshapes the big lower streaks. Step 4 has the same orange blotches in the hills as A. Steps 7-22 are identical to A, with the same grass-step problems.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            3,
+            4,
+            19
+          ]
+        },
+        "rule": {
+          "agree": 3,
+          "note": "Steps 1-6 stop each layer at a loose line, and the words say so and give where the edge sits, so bare canvas is never a surprise. Step 4 still shows white holes and orange blotches in the violet hills that no brush makes (step 5 fills them). From step 19 on the pictures (the same as B's) overreach: the 'dark grass' step puts in many light yellow-green blades, and seed heads show in step 20 before step 21 names them.",
+          "paintable": 4,
+          "real": 3,
+          "worst_steps": [
+            4,
+            19,
+            20
+          ]
+        }
+      }
+    },
+    {
+      "A": "no rule",
+      "B": "rule",
+      "grader": 2,
+      "note": "Only steps 1 to 6 differ in the pictures. Steps 7 to 22 are identical, and the words are about as good on both sides. B wins because A spends six steps painting a sky with fake cloud streaks over what will be the ground, and that reads as a ghost of the hillside, while B leaves that part bare and says so. Slight but real edge for B, not a toss-up.",
+      "picture": "highland-cow",
+      "preferred": "rule",
+      "scores": {
+        "no rule": {
+          "agree": 3,
+          "note": "For steps 1 to 6 the whole canvas below the hills is a streaky sunset sky with diagonal bands that slope like the hillside still to come. Step 2 even has you paint orange cloud streaks low on the canvas, where step 7 buries them under grass, so nothing in those six pictures looks like a real half-done painting of this scene. Step 4's hills are full of orange holes, and the later steps, which are the same as B's, have their own faults: blotchy dark patches in step 13, lighter blades showing up in the dark-grass step 19, and seed heads in step 20 that the words say aren't there yet.",
+          "paintable": 3,
+          "real": 2,
+          "worst_steps": [
+            2,
+            4,
+            19
+          ]
+        },
+        "rule": {
+          "agree": 3,
+          "note": "The sky and hills stop at a loose edge over bare canvas, and the words give that edge in inches and say the white is expected, so steps 1 to 6 read like a real start. The odd domed lower edge in steps 1 to 3 is a small cost. Step 4 still has blotchy holes in the violet, some of them bare white where the words only mention 'gaps of sky'. Step 11 points to a 'Where picture' the painter doesn't have. Steps 7 to 22 share A's pictures and A's faults (13, 19, 20).",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            4,
+            13,
+            19
+          ]
+        }
+      }
+    },
+    {
+      "A": "rule",
+      "B": "no rule",
+      "grader": 1,
+      "note": "The step pictures, paints and brushes are identical; only the wording differs, and each side has small wins the other lacks. The faults that would stop a beginner (step 4's growing window view, step 11's big jump, step 8's unexplained bar) are in the pictures and hurt both equally. Toss-up.",
+      "picture": "sleeping-cat",
+      "preferred": "none",
+      "scores": {
+        "no rule": {
+          "agree": 3,
+          "note": "Same pictures as A, so the same faults: the window view grows into a tree in step 4 with no instruction, step 11 asks for the whole folded knit in one go, and the light diagonal bar in step 8 is called plain rust and then 'the thin dark bar' in step 9. B names a few things A misses (the dark shadow strip under the roll in step 10, the fold turning over at the left end in step 11) but loses some too (no start in step 17, a vague nose position in step 20). On balance its words help about as much as A's.",
+          "paintable": 3,
+          "real": 4,
+          "worst_steps": [
+            4,
+            11,
+            8
+          ]
+        },
+        "rule": {
+          "agree": 3,
+          "note": "The pictures read as a real painting built back to front, but step 4 is magic: the small leaf clump turns into a big tree and the window view grows, while the words only name the wall blues. Step 11 jumps from a flat yellow sausage to a fully folded chunky knit with one stitch pass, and step 8's pale lavender diagonal bar is never named (A just says 'cut by one thin diagonal line'). The words otherwise track the pictures well, with useful placements like the ear directions in step 13 and the nose position in step 20.",
+          "paintable": 3,
+          "real": 4,
+          "worst_steps": [
+            4,
+            11,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "A": "no rule",
+      "B": "rule",
+      "grader": 2,
+      "note": "The step pictures are byte-identical, so only the words differ, and each side's words are a little better in different places: A says where the sill's dark goes, B places the cat, eyes and nose more exactly. Neither fixes the picture problems at steps 4, 11 and 14, which are what would stop a beginner. It's a toss-up.",
+      "picture": "sleeping-cat",
+      "preferred": "none",
+      "scores": {
+        "no rule": {
+          "agree": 3,
+          "note": "Same step pictures as B. Step 4 makes the small sky patch into a big window view with a full tree, which no words cover. Step 11 goes from a flat yellow roll to a fully knitted, folded blanket with one dark ochre, and step 14 leaves exact light-gray silhouettes of the coming white patches while building the head out of one dark gray. Step 6 also moves the frame. The words place things well (step 8 says where the dark goes), but steps 8 and 9 disagree: the bar is left plain rust in 8 and called a dark bar in 9, and the picture shows a pale line.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            4,
+            11,
+            14
+          ]
+        },
+        "rule": {
+          "agree": 3,
+          "note": "Same pictures, so the same problems: the window view grows unexplained at step 4, the blanket jumps from flat to finished at step 11, and step 14 leaves ghost silhouettes of the white patches. The words give more positions that match the pictures (the cat reaching the right edge with one ear out sideways, the second eye higher up, the nose spot). But step 8 has no line saying where the dark goes, and the thin diagonal line on the sill is never painted by any step.",
+          "paintable": 3,
+          "real": 3,
+          "worst_steps": [
+            4,
+            11,
+            14
+          ]
+        }
+      }
+    }
+  ],
   "steps": {
     "birch-grove": {
       "changed": [
@@ -248,6 +442,214 @@
       "spared_canvas": 0.0,
       "steps": 21,
       "stopped": [],
+      "tested": []
+    }
+  },
+  "student": {
+    "all": {
+      "gap": -0.25,
+      "no rule": 3.22,
+      "rule": 2.97,
+      "se": 0.21,
+      "steps": 16,
+      "student": "fail"
+    },
+    "birch-grove": {
+      "by_step": {
+        "1": {
+          "no rule": [
+            3,
+            3
+          ],
+          "rule": [
+            2,
+            2
+          ]
+        },
+        "2": {
+          "no rule": [
+            2,
+            3
+          ],
+          "rule": [
+            3,
+            2
+          ]
+        },
+        "3": {
+          "no rule": [
+            4,
+            3
+          ],
+          "rule": [
+            5,
+            4
+          ]
+        },
+        "4": {
+          "no rule": [
+            3,
+            3
+          ],
+          "rule": [
+            2,
+            2
+          ]
+        },
+        "5": {
+          "no rule": [
+            3,
+            3
+          ],
+          "rule": [
+            3,
+            3
+          ]
+        },
+        "6": {
+          "no rule": [
+            4,
+            4
+          ],
+          "rule": [
+            3,
+            2
+          ]
+        },
+        "7": {
+          "no rule": [
+            4,
+            4
+          ],
+          "rule": [
+            4,
+            4
+          ]
+        },
+        "8": {
+          "no rule": [
+            3,
+            3
+          ],
+          "rule": [
+            1,
+            2
+          ]
+        },
+        "9": {
+          "no rule": [
+            4,
+            3
+          ],
+          "rule": [
+            4,
+            3
+          ]
+        }
+      },
+      "no rule": 3.28,
+      "rule": 2.83,
+      "tested": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "highland-cow": {
+      "by_step": {
+        "1": {
+          "no rule": [
+            4,
+            4
+          ],
+          "rule": [
+            4,
+            4
+          ]
+        },
+        "2": {
+          "no rule": [
+            3,
+            2
+          ],
+          "rule": [
+            4,
+            3
+          ]
+        },
+        "3": {
+          "no rule": [
+            2,
+            1
+          ],
+          "rule": [
+            2,
+            2
+          ]
+        },
+        "4": {
+          "no rule": [
+            3,
+            2
+          ],
+          "rule": [
+            3,
+            3
+          ]
+        },
+        "5": {
+          "no rule": [
+            4,
+            5
+          ],
+          "rule": [
+            3,
+            3
+          ]
+        },
+        "6": {
+          "no rule": [
+            3,
+            3
+          ],
+          "rule": [
+            3,
+            3
+          ]
+        },
+        "7": {
+          "no rule": [
+            4,
+            4
+          ],
+          "rule": [
+            4,
+            3
+          ]
+        }
+      },
+      "no rule": 3.14,
+      "rule": 3.14,
+      "tested": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "sleeping-cat": {
+      "by_step": {},
+      "no rule": null,
+      "rule": null,
       "tested": []
     }
   }

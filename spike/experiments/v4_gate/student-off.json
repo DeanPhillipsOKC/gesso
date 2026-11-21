@@ -1302,6 +1302,104 @@
    "d_result_after": 10.6,
    "render_usd": 0.016,
    "seconds": 13.0
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 3,
+   "file": "01-words-r3.png",
+   "beats": 1.0,
+   "toward": 0.639,
+   "where": 1.0,
+   "d_before_after": 33.31,
+   "d_result_after": 12.03,
+   "render_usd": 0.016,
+   "seconds": 10.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 3,
+   "file": "03-words-r3.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.28,
+   "d_before_after": 3.72,
+   "d_result_after": 7.64,
+   "render_usd": 0.016,
+   "seconds": 11.2
+  },
+  {
+   "picture": "highland-cow",
+   "n": 6,
+   "condition": "words",
+   "rep": 3,
+   "file": "06-words-r3.png",
+   "beats": 0.5,
+   "toward": -1.0,
+   "where": 0.005,
+   "d_before_after": 0.39,
+   "d_result_after": 6.26,
+   "render_usd": 0.016,
+   "seconds": 11.4
+  },
+  {
+   "picture": "highland-cow",
+   "n": 5,
+   "condition": "words",
+   "rep": 3,
+   "file": "05-words-r3.png",
+   "beats": 1.0,
+   "toward": -1.0,
+   "where": 0.142,
+   "d_before_after": 1.2,
+   "d_result_after": 4.34,
+   "render_usd": 0.016,
+   "seconds": 12.9
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 3,
+   "file": "02-words-r3.png",
+   "beats": 0.25,
+   "toward": -0.82,
+   "where": 0.369,
+   "d_before_after": 5.69,
+   "d_result_after": 10.35,
+   "render_usd": 0.016,
+   "seconds": 14.5
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 3,
+   "file": "04-words-r3.png",
+   "beats": 1.0,
+   "toward": -0.005,
+   "where": 0.294,
+   "d_before_after": 8.44,
+   "d_result_after": 8.48,
+   "render_usd": 0.016,
+   "seconds": 15.3
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 3,
+   "file": "07-words-r3.png",
+   "beats": 1.0,
+   "toward": 0.725,
+   "where": 0.981,
+   "d_before_after": 34.26,
+   "d_result_after": 9.43,
+   "render_usd": 0.016,
+   "seconds": 11.1
   }
  ],
  "carry_grades": [
@@ -1434,6 +1532,196 @@
    "batch": 1,
    "solo": true,
    "cost_usd": 0.03116
+  },
+  {
+   "picture": "birch-grove",
+   "n": 7,
+   "condition": "words",
+   "rep": 2,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03036
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03142
+  },
+  {
+   "picture": "birch-grove",
+   "n": 9,
+   "condition": "words",
+   "rep": 2,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03126
+  },
+  {
+   "picture": "birch-grove",
+   "n": 8,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03308
+  },
+  {
+   "picture": "birch-grove",
+   "n": 8,
+   "condition": "words",
+   "rep": 2,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03625
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03179
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03248
+  },
+  {
+   "picture": "highland-cow",
+   "n": 1,
+   "condition": "words",
+   "rep": 2,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03332
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03148
+  },
+  {
+   "picture": "highland-cow",
+   "n": 2,
+   "condition": "words",
+   "rep": 2,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0331
+  },
+  {
+   "picture": "highland-cow",
+   "n": 3,
+   "condition": "words",
+   "rep": 2,
+   "grade": 1,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03042
+  },
+  {
+   "picture": "highland-cow",
+   "n": 5,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03116
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 2,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03169
+  },
+  {
+   "picture": "highland-cow",
+   "n": 4,
+   "condition": "words",
+   "rep": 1,
+   "grade": 2,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03378
+  },
+  {
+   "picture": "highland-cow",
+   "n": 5,
+   "condition": "words",
+   "rep": 2,
+   "grade": 5,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03236
+  },
+  {
+   "picture": "highland-cow",
+   "n": 6,
+   "condition": "words",
+   "rep": 1,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03439
+  },
+  {
+   "picture": "highland-cow",
+   "n": 6,
+   "condition": "words",
+   "rep": 2,
+   "grade": 3,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03263
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 1,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.03173
+  },
+  {
+   "picture": "highland-cow",
+   "n": 7,
+   "condition": "words",
+   "rep": 2,
+   "grade": 4,
+   "batch": 1,
+   "solo": true,
+   "cost_usd": 0.0319
   }
  ],
  "graders": [],
@@ -1554,6 +1842,177 @@
    "cache_read_tokens": 0,
    "output_tokens": 227,
    "cost_usd": 0.03116
+  },
+  {
+   "label": "grade-carry birch-grove 7",
+   "seconds": 6.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3334,
+   "cache_read_tokens": 0,
+   "output_tokens": 184,
+   "cost_usd": 0.03036
+  },
+  {
+   "label": "grade-carry birch-grove 9",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3346,
+   "cache_read_tokens": 0,
+   "output_tokens": 232,
+   "cost_usd": 0.03142
+  },
+  {
+   "label": "grade-carry birch-grove 9",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3326,
+   "cache_read_tokens": 0,
+   "output_tokens": 232,
+   "cost_usd": 0.03126
+  },
+  {
+   "label": "grade-carry birch-grove 8",
+   "seconds": 7.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3334,
+   "cache_read_tokens": 0,
+   "output_tokens": 320,
+   "cost_usd": 0.03308
+  },
+  {
+   "label": "grade-carry birch-grove 8",
+   "seconds": 9.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3338,
+   "cache_read_tokens": 0,
+   "output_tokens": 477,
+   "cost_usd": 0.03625
+  },
+  {
+   "label": "grade-carry highland-cow 1",
+   "seconds": 6.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3330,
+   "cache_read_tokens": 0,
+   "output_tokens": 257,
+   "cost_usd": 0.03179
+  },
+  {
+   "label": "grade-carry highland-cow 2",
+   "seconds": 5.8,
+   "input_tokens": 2,
+   "cache_write_tokens": 3342,
+   "cache_read_tokens": 0,
+   "output_tokens": 287,
+   "cost_usd": 0.03248
+  },
+  {
+   "label": "grade-carry highland-cow 1",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3326,
+   "cache_read_tokens": 0,
+   "output_tokens": 335,
+   "cost_usd": 0.03332
+  },
+  {
+   "label": "grade-carry highland-cow 3",
+   "seconds": 5.5,
+   "input_tokens": 2,
+   "cache_write_tokens": 3342,
+   "cache_read_tokens": 0,
+   "output_tokens": 237,
+   "cost_usd": 0.03148
+  },
+  {
+   "label": "grade-carry highland-cow 2",
+   "seconds": 8.1,
+   "input_tokens": 2,
+   "cache_write_tokens": 3346,
+   "cache_read_tokens": 0,
+   "output_tokens": 316,
+   "cost_usd": 0.0331
+  },
+  {
+   "label": "grade-carry highland-cow 3",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3326,
+   "cache_read_tokens": 0,
+   "output_tokens": 190,
+   "cost_usd": 0.03042
+  },
+  {
+   "label": "grade-carry highland-cow 5",
+   "seconds": 5.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3346,
+   "cache_read_tokens": 0,
+   "output_tokens": 219,
+   "cost_usd": 0.03116
+  },
+  {
+   "label": "grade-carry highland-cow 4",
+   "seconds": 6.6,
+   "input_tokens": 2,
+   "cache_write_tokens": 3338,
+   "cache_read_tokens": 0,
+   "output_tokens": 249,
+   "cost_usd": 0.03169
+  },
+  {
+   "label": "grade-carry highland-cow 4",
+   "seconds": 9.7,
+   "input_tokens": 2,
+   "cache_write_tokens": 3326,
+   "cache_read_tokens": 0,
+   "output_tokens": 358,
+   "cost_usd": 0.03378
+  },
+  {
+   "label": "grade-carry highland-cow 5",
+   "seconds": 7.3,
+   "input_tokens": 2,
+   "cache_write_tokens": 3346,
+   "cache_read_tokens": 0,
+   "output_tokens": 279,
+   "cost_usd": 0.03236
+  },
+  {
+   "label": "grade-carry highland-cow 6",
+   "seconds": 7.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3338,
+   "cache_read_tokens": 0,
+   "output_tokens": 384,
+   "cost_usd": 0.03439
+  },
+  {
+   "label": "grade-carry highland-cow 6",
+   "seconds": 8.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3338,
+   "cache_read_tokens": 0,
+   "output_tokens": 296,
+   "cost_usd": 0.03263
+  },
+  {
+   "label": "grade-carry highland-cow 7",
+   "seconds": 6.9,
+   "input_tokens": 2,
+   "cache_write_tokens": 3338,
+   "cache_read_tokens": 0,
+   "output_tokens": 251,
+   "cost_usd": 0.03173
+  },
+  {
+   "label": "grade-carry highland-cow 7",
+   "seconds": 7.0,
+   "input_tokens": 2,
+   "cache_write_tokens": 3342,
+   "cache_read_tokens": 0,
+   "output_tokens": 258,
+   "cost_usd": 0.0319
   }
  ]
 }
