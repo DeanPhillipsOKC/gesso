@@ -1,8 +1,9 @@
 # Pipeline v4: a covered layer stops at a loose line
 
-**A draft (2026-11-21, #292, for #287). Builds 1 to 3 of section 13 (the rule in `build-steps`, behind `--stops`;
-the sheet's `stop` and `onto` and `check-text`'s line; the dashed stop line, the page's line and the stamp) are built
-on the branch `v4` (#295, #296, #297); the rest isn't.** The owner read it and merged it (#293), set the
+**A draft (2026-11-21, #292, for #287). Builds 1 to 4 of section 13 (the rule in `build-steps`, behind `--stops`;
+the sheet's `stop` and `onto` and `check-text`'s line; the dashed stop line, the page's line and the stamp; the
+briefs and the words' record of their pictures) are built on the branch `v4` (#295, #296, #297, #298); the rest
+isn't.** The owner read it and merged it (#293), set the
 gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after
 spike #289 (`docs/decisions.md`; `docs/spikes/cover-margin.md`, sections "The owner's rule" and "The gap fixed"). It
 lives in `spike/experiments/cover_margin.py` as the variant `line-1-next`, laid over step pictures after they are
@@ -402,6 +403,27 @@ the full suite before each merge (`docs/testing.md`).
 4. **The words and the checks.** The three briefs' sentences (the lesson's, the arc's, the plan's), the finisher's,
    `packets`' record and the refusal in `check-text` and `check`, `run.md` step C. `v4_loop.py` is brought into
    step.
+
+   **Built (#298, `spike/tests/test_words_pictures.py`).** As written, with these readings:
+   - The record is `words/lesson/pictures.json`, `{"made_from", "stops"}` from build.json, written by `packets`.
+     `check-text --final` copies it into `rounds.json`'s `final` as what the words were written for. `check-text`
+     (every round, `--final`, the arc) refuses a folder whose record isn't the build's now; `check` fails a
+     text.json holding the writer's words whose last check recorded other pictures, or that has no last check in
+     the folder at all (`packets` ran again after the words, which on its own leaves the old words in text.json).
+     Both say whether the pictures were since built with `--stops`, without it, or from a changed plan, chain or
+     canvas, and to run `packets` and the writer again.
+   - A record from before #298 (a v3.1 lesson) counts as pictures built without the rule: its words stand while
+     build.json has no `stops`, so no sealed lesson goes stale.
+   - `check` already held checks 1 and 2 from build.json, measured on the second laying, and carried the note of
+     section 5 (`steps3.problems`, since #295); the test holds both on a fixture built with `--stops`.
+   - The briefs: the lesson brief's two paragraphs (section 8) go after "Say also" in "What a step says"; the arc's
+     clause joins `road`, and says to give it without a number or a side word, which the arc's check fails; the
+     plan brief's sentence closes its paragraph on `behind`; the finisher's paragraph goes at the end of 8a and
+     also says what still is a known problem: words that send the painter to a layer where the picture shows bare
+     canvas.
+   - `run.md` C1 says when to pass `--stops` and that no other tool takes it; C7 builds again the same way; D1 says
+     what `packets` records. `v4_loop.py run --stops` builds with the rule, and keeps the choice in its state so a
+     run that goes on after a stop can't build the other way.
 5. **One whole lesson, the cow, for the owner:** go, change or stop. This draft is then corrected by what it
    showed.
 6. **The gate** (section 12), from the branch.

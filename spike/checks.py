@@ -253,6 +253,9 @@ def run(lesson: Path, text: dict[str, dict] | None = None, built=None) -> dict:
     import lesson_words
 
     emptied, _ = lesson_words.taken(lesson)
+    if text_path.exists():  # words written for other step pictures (pipeline v4, section 8; #298)
+        wrong = lesson_words.words_problem(lesson, json.loads(text_path.read_text(encoding="utf-8")))
+        failures += [wrong] if wrong else []
     failures += text_problems(plan, text, redrafted, emptied)
     if sheet is not None:  # the arc's checks, on the arc as text.json holds it (v3.1, #277)
         failures += lesson_words.arc_problems(lesson, words, (sheet, plan))

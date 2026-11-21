@@ -12,6 +12,13 @@ build the shape**, nothing else. Write every diagram and the notes in one go, th
 `preview-diagrams`. Look at the diagrams again only when `preview-diagrams` draws fewer than you wrote (`drawn`
 under `specced`; `broken` names them).
 
+**Bare canvas below a loose line is meant.** In a lesson built with `--stops` (pipeline v4), a layer that a later
+stage covers stops at a loose, uneven line about an inch past where that cover will reach, and the canvas below it
+stays bare until the covering step paints there: `v3/build.json`'s `stops` lists each one and the step that covers
+it. That bare canvas in the early steps isn't a fault in the pictures and isn't a known problem: don't file it in
+`review.json`. What is one: a step's words that send the painter to paint, or leave, a layer where its picture
+shows bare canvas.
+
 ## 8b. Notes
 Follow `steps/notes.md` for `notes.json` (its schema wins over anything step 0 said about field names).
 

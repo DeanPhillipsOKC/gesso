@@ -1573,7 +1573,9 @@ def add_v3_tools(sub) -> None:
                                    "words/lesson/ for the lesson's one writer: brief.md and arc-brief.md, steps.md "
                                    "(each step's header and stroke card), cards.md, stages.md, plan.json, facts.md "
                                    "(the sheet's rows as sentences, lean), a before-and-after picture and a change "
-                                   "picture a step, the photo and the finish. Run after draft-text.")
+                                   "picture a step, the photo and the finish, and pictures.json (what the step "
+                                   "pictures were made from: check-text and check refuse words written for other "
+                                   "pictures). Run after draft-text.")
     p.add_argument("--lesson", required=True)
     p.set_defaults(func=packets_tool)
     p = sub.add_parser("check-text", help="Free. The lesson writer's words into text.json, round by round, each number and side checked against the sheet.",
