@@ -363,6 +363,17 @@ with the date.
   says, by Opus (the owner's order: the design by Fable, the build by Opus). The lesson's words in a trial run are
   written by Opus too: the owner said so when the combined lesson started. A whole lesson page with the new words
   was made for painting from (`docs/spikes/v31-combined.md`); it isn't on the site.
+- **A covered layer stops at a loose line, a bit past where the next stage covers it (2026-11-21, owner's call, after
+  #289; for #287).** A layer that a big area from the next stage will cover is painted down to a loose line a bit past
+  the lowest point it is needed nearby, and the canvas below stays bare until that stage paints it (`line-1-next`,
+  `docs/spikes/cover-margin.md`). Flat layers stop too. Thin things and subjects sitting inside a layer are painted
+  through: a flat placeholder shape under a subject was marked down by every blind read. The tests tie (the blind
+  reads none on both pictures, the student test −0.21 ± 0.21, level within its noise), and neither can credit the
+  painting it saves: about 1.4 canvases on the highland cow. The owner raised #287 for that saving, so it is adopted
+  on his judgement, not on a measured win. Owner, on the pictures: "Yea that's right. I like it"; on the gap fixed:
+  "This is the way." It changes how step pictures are made, so it is a new pipeline version: a design by Fable
+  first (the facts, the Where picture, and the words of the step after a changed run have to follow), then the
+  build. It lives in `spike/experiments/cover_margin.py` until then.
 - **Building the painting forward is parked (2026-11-17, owner's call, after stage 1 of the spike for #207).** The image
   model painted the highland cow onto a bare canvas a thing at a time, with no finish to cut from
   (`docs/spikes/v4-forward.md`). Owner: "A lot of the steps look the same in that one. Might be worth tweaking in the
