@@ -290,6 +290,8 @@ class Run:
         self.state = json.loads(self.state_path.read_text()) if self.state_path.exists() else {
             "photo": photo, "started": datetime.now().isoformat(timespec="seconds"), "done": [], "phases": {},
             "tools": [], "cuts": sorted(cuts)}
+        if self.state_path.exists():
+            self.state.setdefault("stops", False)  # a run from before #298 was built without the rule
         if stops is not None and self.state.get("stops", stops) != stops:
             raise SystemExit("this run was started " + ("with" if self.state["stops"] else "without") + " --stops: "
                              "go on the same way, or start a new lesson folder")

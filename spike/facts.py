@@ -1394,7 +1394,7 @@ def stop_words(stop: dict) -> str:
     ends = [f"{q(stop[e])} at the {e} edge" for e in ("left", "right") if stop.get(e) is not None]
     out = (f"It stops short. Its lower edge is a loose, uneven line: about {q(stop['most'])} from the top edge for "
            f"most of its width, {q(stop['highest'])} at its highest and {q(stop['lowest'])} at its lowest"
-           + (f" ({', '.join(ends)})" if ends else "") + ". Below it the canvas stays bare.")
+           + (f" ({', '.join(ends)})" if ends else "") + ". The rest of the canvas stays bare.")  # no side word: the brief's sentence (#298)
     nxt = stop.get("next")
     if nxt:
         out += (f" Step {nxt['step']} ({nxt['name']}) paints there next, and its top covers this edge by about "

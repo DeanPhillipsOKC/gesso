@@ -405,7 +405,9 @@ the full suite before each merge (`docs/testing.md`).
    step.
 
    **Built (#298, `spike/tests/test_words_pictures.py`).** As written, with these readings:
-   - The record is `words/lesson/pictures.json`, `{"made_from", "stops"}` from build.json, written by `packets`.
+   - The record is `words/lesson/pictures.json`, `{"made_from", "stops"}` from build.json and `pictures`, a hash
+     of the files build-steps wrote (build.json's `files`), so a change to the rule's code that moves the lines on
+     the same plan and chain makes the words stale too. `packets` writes it.
      `check-text --final` copies it into `rounds.json`'s `final` as what the words were written for. `check-text`
      (every round, `--final`, the arc) refuses a folder whose record isn't the build's now; `check` fails a
      text.json holding the writer's words whose last check recorded other pictures, or that has no last check in
@@ -435,7 +437,8 @@ the full suite before each merge (`docs/testing.md`).
        purple.
      - The rounds: round 1 sent back 12 of 52 claims; 5 were the brief's own sentence ("the canvas below it stays
        bare" fails: the tool looks for a part called "it stays bare"), so the brief now gives the sentence without
-       a side word. Round 2 sent nothing. `--final` took out 1 sentence (step 1's "edge to edge", which the tool
+       a side word, and so does the sheet's stop fact ("The rest of the canvas stays bare", which said "Below it")
+       and the arc brief's `end` line. Round 2 sent nothing. `--final` took out 1 sentence (step 1's "edge to edge", which the tool
        read as about "The cow's shadow side", a misreading that came before this build). The arc passed its round
        first time (0 sent back, 16 back lines), and its road says "the early layers stop short where the next one
        will cover them, so some bare canvas is expected for a while". `check` then printed no failures.

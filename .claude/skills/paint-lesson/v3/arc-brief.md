@@ -34,7 +34,8 @@ and two more:
     short" on), so the bare canvas they leave doesn't surprise the painter; say it without a number or a side word.
 - **A stage's two lines**, for every stage in `stages.md`: `for`, one sentence of what the stage is for (shown at
   the top of the stage); and `end`, one sentence of what the canvas looks like at its end, from its end picture
-  (shown after the stage's last step).
+  (shown after the stage's last step). A stage whose layers stop short ends with bare canvas showing: say "the rest of
+  the canvas is still bare", with no step number and no side word.
 - **A step that points back** (`back`): give one to every step that repeats an earlier step's stroke card or one of
   its paints, where saying so helps a beginner: they've done this, and here is what's different this time (the
   paint, the brush, the size, where it goes). That is likely about half the steps. Skip a step only when the tie is

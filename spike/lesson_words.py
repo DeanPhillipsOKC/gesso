@@ -84,7 +84,9 @@ def pictures_of(lesson: Path) -> dict | None:
         build = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
-    return {"made_from": build.get("made_from"), "stops": "stops" in build}
+    files = json.dumps(build.get("files") or {}, sort_keys=True).encode()
+    return {"made_from": build.get("made_from"), "stops": "stops" in build,
+            "pictures": hashlib.sha256(files).hexdigest()[:16]}  # what build-steps wrote: a changed rule's lines too
 
 
 def packet_pictures(lesson: Path) -> dict | None:
@@ -109,6 +111,8 @@ def other_pictures(was: dict | None, now: dict | None) -> str | None:
         return f"the step pictures were built {'with' if now['stops'] else 'without'} --stops since"
     if was.get("made_from") != now["made_from"]:
         return "the step pictures were made again from a changed plan, chain or canvas since"
+    if was.get("pictures") is not None and was["pictures"] != now.get("pictures"):
+        return "the step pictures were made again, and came out different, since"
     return None
 
 

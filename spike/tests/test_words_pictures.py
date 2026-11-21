@@ -38,6 +38,12 @@ class OtherPicturesTests(unittest.TestCase):
         self.assertIn("changed plan, chain or canvas",
                       lesson_words.other_pictures(PLAIN, {"made_from": "xyz", "stops": False}))
 
+    def test_the_same_inputs_but_other_pictures(self):
+        """The rule's code changed on the branch: the same plan and chain, but the lines fall elsewhere."""
+        was, now = {**RULED, "pictures": "1111"}, {**RULED, "pictures": "2222"}
+        self.assertIn("came out different", lesson_words.other_pictures(was, now))
+        self.assertIsNone(lesson_words.other_pictures(RULED, now))  # a record without the hash: made_from alone
+
     def test_a_record_from_before_it(self):
         """Words checked before the record (a v3.1 lesson) stand while the lesson has no rule, and not with it."""
         self.assertIsNone(lesson_words.other_pictures(None, PLAIN))
