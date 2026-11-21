@@ -24,174 +24,6 @@
     "known": 16
   },
   {
-    "slug": "chickadee",
-    "title": "A black-capped chickadee perched on a curved brown branch in autumn",
-    "subject": "A black-capped chickadee perched on a curved brown branch in autumn, with red and gold leaves hanging nearby and a low sun glowing through hazy orange woods",
-    "steps": 24,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 2.0.0",
-    "published": "2026-11-18",
-    "source": "chickadee_skill_20261118-091227",
-    "versions": [
-      {
-        "id": "20261118-091227",
-        "version": "POC 2.0.0",
-        "when": "2026-11-18 09:12",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 24,
-        "href": "lessons/chickadee/",
-        "current": true
-      },
-      {
-        "id": "20261116-191619",
-        "version": "POC 1.12.1",
-        "when": "2026-11-16 19:16",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/v/20261116-191619/",
-        "current": false
-      },
-      {
-        "id": "20261114-075954",
-        "version": "POC 1.8.0",
-        "when": "2026-11-14 07:59",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/v/20261114-075954/",
-        "current": false
-      },
-      {
-        "id": "20261114-022723",
-        "version": "POC 1.6.0",
-        "when": "2026-11-14 02:27",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 18,
-        "href": "lessons/chickadee/v/20261114-022723/",
-        "current": false
-      },
-      {
-        "id": "20261113-174245",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:42",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/v/20261113-174245/",
-        "current": false
-      },
-      {
-        "id": "20261113-130614",
-        "version": "POC 1.0.1",
-        "when": "2026-11-13 13:06",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 19,
-        "href": "lessons/chickadee/v/20261113-130614/",
-        "current": false
-      },
-      {
-        "id": "20261113-041241",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 17,
-        "href": "lessons/chickadee/v/20261113-041241/",
-        "current": false
-      }
-    ],
-    "known": 4
-  },
-  {
-    "slug": "lavender-balloon",
-    "title": "A striped hot-air balloon floating over a sunset valley",
-    "subject": "A striped hot-air balloon floating over a sunset valley, with violet mountains, a small lake, golden hills, a lone tree, and rows of lavender running toward the horizon.",
-    "steps": 24,
-    "canvas": "16 x 12 in",
-    "tubes": 5,
-    "version": "POC 2.0.0",
-    "published": "2026-11-18",
-    "source": "balloon-lavender_skill_20261118-094526",
-    "versions": [
-      {
-        "id": "20261118-094526",
-        "version": "POC 2.0.0",
-        "when": "2026-11-18 09:45",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/",
-        "current": true
-      },
-      {
-        "id": "20261116-171639",
-        "version": "POC 1.12.1",
-        "when": "2026-11-16 17:16",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261116-171639/",
-        "current": false
-      },
-      {
-        "id": "20261116-153316",
-        "version": "POC 1.12.0",
-        "when": "2026-11-16 15:33",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261116-153316/",
-        "current": false
-      },
-      {
-        "id": "20261114-075951",
-        "version": "POC 1.8.0",
-        "when": "2026-11-14 07:59",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261114-075951/",
-        "current": false
-      },
-      {
-        "id": "20261113-174242",
-        "version": "POC 1.1.0",
-        "when": "2026-11-13 17:42",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 24,
-        "href": "lessons/lavender-balloon/v/20261113-174242/",
-        "current": false
-      },
-      {
-        "id": "20261113-130631",
-        "version": "POC 1.0.1",
-        "when": "2026-11-13 13:06",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 23,
-        "href": "lessons/lavender-balloon/v/20261113-130631/",
-        "current": false
-      },
-      {
-        "id": "20261113-041226",
-        "version": "POC 1.0.0",
-        "when": "2026-11-13 04:12",
-        "guessed": false,
-        "kind": "steps cut from the finish",
-        "steps": 21,
-        "href": "lessons/lavender-balloon/v/20261113-041226/",
-        "current": false
-      }
-    ],
-    "known": 4
-  },
-  {
     "slug": "red-sailboat",
     "title": "A small red sailboat",
     "subject": "A small red sailboat with white sails on a calm teal sea at sunset, a purple hill on the far shore and the sun low over the water",
@@ -459,6 +291,194 @@
         "current": false
       }
     ],
-    "known": 8
+    "known": 9
+  },
+  {
+    "slug": "chickadee",
+    "title": "A black-capped chickadee perched on a curving brown branch",
+    "subject": "A black-capped chickadee perched on a curving brown branch in a misty autumn wood, with gold and red leaves hanging and the sun glowing behind.",
+    "steps": 23,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.2.0",
+    "published": "2026-11-21",
+    "source": "chickadee_skill_20261121-211951",
+    "versions": [
+      {
+        "id": "20261121-211951",
+        "version": "POC 2.2.0",
+        "when": "2026-11-21 21:19",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 23,
+        "href": "lessons/chickadee/",
+        "current": true
+      },
+      {
+        "id": "20261118-091227",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 09:12",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 24,
+        "href": "lessons/chickadee/v/20261118-091227/",
+        "current": false
+      },
+      {
+        "id": "20261116-191619",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 19:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261116-191619/",
+        "current": false
+      },
+      {
+        "id": "20261114-075954",
+        "version": "POC 1.8.0",
+        "when": "2026-11-14 07:59",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261114-075954/",
+        "current": false
+      },
+      {
+        "id": "20261114-022723",
+        "version": "POC 1.6.0",
+        "when": "2026-11-14 02:27",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 18,
+        "href": "lessons/chickadee/v/20261114-022723/",
+        "current": false
+      },
+      {
+        "id": "20261113-174245",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-174245/",
+        "current": false
+      },
+      {
+        "id": "20261113-130614",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 19,
+        "href": "lessons/chickadee/v/20261113-130614/",
+        "current": false
+      },
+      {
+        "id": "20261113-041241",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 17,
+        "href": "lessons/chickadee/v/20261113-041241/",
+        "current": false
+      }
+    ],
+    "known": 4
+  },
+  {
+    "slug": "lavender-balloon",
+    "title": "A striped hot-air balloon drifting over a sunset valley",
+    "subject": "A striped hot-air balloon drifting over a sunset valley, with a lone oak on a golden hill and lavender rows running toward the hills",
+    "steps": 24,
+    "canvas": "16 x 12 in",
+    "tubes": 5,
+    "version": "POC 2.2.0",
+    "published": "2026-11-21",
+    "source": "balloon-lavender_skill_20261121-211951",
+    "versions": [
+      {
+        "id": "20261121-211951",
+        "version": "POC 2.2.0",
+        "when": "2026-11-21 21:19",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/",
+        "current": true
+      },
+      {
+        "id": "20261118-094526",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 09:45",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261118-094526/",
+        "current": false
+      },
+      {
+        "id": "20261116-171639",
+        "version": "POC 1.12.1",
+        "when": "2026-11-16 17:16",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261116-171639/",
+        "current": false
+      },
+      {
+        "id": "20261116-153316",
+        "version": "POC 1.12.0",
+        "when": "2026-11-16 15:33",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261116-153316/",
+        "current": false
+      },
+      {
+        "id": "20261114-075951",
+        "version": "POC 1.8.0",
+        "when": "2026-11-14 07:59",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261114-075951/",
+        "current": false
+      },
+      {
+        "id": "20261113-174242",
+        "version": "POC 1.1.0",
+        "when": "2026-11-13 17:42",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 24,
+        "href": "lessons/lavender-balloon/v/20261113-174242/",
+        "current": false
+      },
+      {
+        "id": "20261113-130631",
+        "version": "POC 1.0.1",
+        "when": "2026-11-13 13:06",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 23,
+        "href": "lessons/lavender-balloon/v/20261113-130631/",
+        "current": false
+      },
+      {
+        "id": "20261113-041226",
+        "version": "POC 1.0.0",
+        "when": "2026-11-13 04:12",
+        "guessed": false,
+        "kind": "steps cut from the finish",
+        "steps": 21,
+        "href": "lessons/lavender-balloon/v/20261113-041226/",
+        "current": false
+      }
+    ],
+    "known": 7
   }
 ]
