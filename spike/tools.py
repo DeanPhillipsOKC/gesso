@@ -546,7 +546,17 @@ def publish(a: argparse.Namespace) -> dict:
         # beside the keys every reader of lesson.json uses: the plan's stages, for the page's headings, and the aids
         "plan_version": 2, "groups": publish2.groups(raw), "aids": publish2.attach_aids(lesson, stages),
     }
-    lesson_data["pipeline"] = 3  # made by pipeline v3 and read by the page in version 2's shape
+    # made by pipeline v3, or v4 when build-steps ran with the rule (--stops), whether or not any layer stopped; read
+    # by the page in version 2's shape (docs/design/pipeline-v4.md section 5)
+    build_path = lesson / "v3" / "build.json"
+    build = json.loads(build_path.read_text(encoding="utf-8")) if build_path.exists() else {}
+    lesson_data["pipeline"] = 4 if "stops" in build else 3
+    if "stops" in build:  # the share of each step's paint its picture doesn't show, and those shares of the canvas
+        rows = build.get("rows") or []
+        for st, r in zip(stages, rows if len(rows) == len(stages) else []):
+            if "spared" in r:
+                st["spared"] = r["spared"]
+        lesson_data["spared_canvas"] = build.get("spared_canvas", 0.0)
     # the arc (v3.1, check-text --arc --final): read once before step 1, and a line at each stage's start and end. A
     # lesson made before it has neither, and its page shows what it has
     if text_all.get("opening"):
@@ -1091,7 +1101,7 @@ def step_aids_tool(a: argparse.Namespace) -> dict:
     canvas_box, canvas = _lesson_canvas(lesson)
     view = canvas_view(lesson, names)
     data = aids.make(plan, kept["pictures"], kept["masks"], kept["owner"], canvas_box, canvas, lesson / "aids",
-                     [view.get(n, n) for n in names])
+                     [view.get(n, n) for n in names], full=kept.get("full") if "stops" in kept["build"] else None)
     (lesson / "aids" / "aids.json").write_text(json.dumps(data, indent=1), encoding="utf-8")
     rows = data["steps"]
     return {"aids": str(lesson / "aids" / "aids.json"), "steps": len(rows),

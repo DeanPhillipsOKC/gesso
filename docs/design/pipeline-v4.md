@@ -1,7 +1,8 @@
 # Pipeline v4: a covered layer stops at a loose line
 
-**A draft (2026-11-21, #292, for #287). Builds 1 and 2 of section 13 (the rule in `build-steps`, behind `--stops`;
-the sheet's `stop` and `onto` and `check-text`'s line) are built on the branch `v4` (#295, #296); the rest isn't.** The owner read it and merged it (#293), set the
+**A draft (2026-11-21, #292, for #287). Builds 1 to 3 of section 13 (the rule in `build-steps`, behind `--stops`;
+the sheet's `stop` and `onto` and `check-text`'s line; the dashed stop line, the page's line and the stamp) are built
+on the branch `v4` (#295, #296, #297); the rest isn't.** The owner read it and merged it (#293), set the
 gate as written (section 12) and the stamp at POC 2.2.0 (`docs/decisions.md`, 2026-11-21). The owner adopted the rule on 2026-11-21 after
 spike #289 (`docs/decisions.md`; `docs/spikes/cover-margin.md`, sections "The owner's rule" and "The gap fixed"). It
 lives in `spike/experiments/cover_margin.py` as the variant `line-1-next`, laid over step pictures after they are
@@ -378,6 +379,26 @@ the full suite before each merge (`docs/testing.md`).
 3. **The teaching pictures and the page.** The dashed stretch in `aids.json` and on the page; `lesson.json`'s
    `spared`; the stamp; `site_lessons.kind`. The outline, the paint map and the close-up need no code: their tests
    hold section 7's sizes.
+
+   **Built (#297, `spike/tests/test_stop_pictures.py`).** As written, with these readings:
+   - `aids.stop_path` is the stretch of the Where outline that borders paint the step lays but its picture doesn't
+     show (`f<nn>` less `m<nn>`), made of the outline's own points, as open "M x y L ..." paths; a stretch under
+     3% of the long side (a corner) isn't kept. `step-aids` passes the `f<nn>` masks only for a build with the rule,
+     so a lesson built without it gets the same aids.json, byte for byte. On the cow, steps 1 to 4 have one, and it
+     lies along build.json's line.
+   - The page masks the solid outline away along the stretch and draws it dashed, on the Where picture and on the
+     close-up's Before. `page2.DASHED_STOP` turns it off; off, the Where picture is a lesson's without the stretch.
+   - The page's line goes under the opening, at the top of Before you start: "This lesson skips about 1 1/2
+     canvases of painting that later layers would cover", to the nearest quarter of a canvas, and "under an eighth of
+     a canvas" below that (the lavender balloon's 0.05). No line when nothing stopped or for an older lesson.
+     `page2.SPARED_LINE` turns it off, apart from the dashed line.
+   - `publish` copies each build.json row's `spared` onto its lesson.json stage and `spared_canvas` onto the lesson
+     only for a build with the rule, and stamps `"pipeline": 4` then (3 otherwise). `site_lessons.kind` reads any
+     whole number of 3 or more.
+   - Section 7's sizes on the cow, to 1/8 in: the sky's outline 16 to 4 1/4 in, the clouds' 9 3/4 and 6 to 4 and
+     4 1/4 in, the far hills' 13 3/4 to 4 in; every later step's outline, map and close-up is as it was. The sky's,
+     the clouds' and the far hills' paint maps are cut to the shown paint, and the transfer outline is the same
+     bytes either way.
 4. **The words and the checks.** The three briefs' sentences (the lesson's, the arc's, the plan's), the finisher's,
    `packets`' record and the refusal in `check-text` and `check`, `run.md` step C. `v4_loop.py` is brought into
    step.
