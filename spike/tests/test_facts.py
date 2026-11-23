@@ -419,6 +419,59 @@ class TwoThingsTests(unittest.TestCase):
         self.assertEqual(sheet["parts"]["sun"]["parent"], "sky")
 
 
+def window_scene():
+    """The sleeping cat's window and ear insides (#282), made up: the sky through the window 0 to 3 in across (its
+    middle 1 1/2 in from the left edge), and the ear insides' middle 2 1/4 in from the left edge."""
+    paints = {"wall": ("Wall cream", "#e8dcc0"), "sky": ("Sky blue", "#a8c8e8"), "cat": ("Cat grey", "#8a8a8a"),
+              "pink": ("Ear pink", "#e0a0a0")}
+    parts = [("wall", "The wall", "area", None, box(0, 0, 16, 12)),
+             ("window-sky", "The sky through the window", "area", None, box(0, 0, 3, 4)),
+             ("cat", "The cat", "object", None, box(1, 5, 12, 11)),
+             ("ear-insides", "The cat's ear insides", "marks", "cat", ellipse(2.25, 5.5, 0.3, 0.3))]
+    steps = [("blend-wall", "wall", "full", ["wall"], box(0, 0, 16, 12)),
+             ("blend-window-sky", "window-sky", "full", ["sky"], box(0, 0, 3, 4)),
+             ("block-in-cat", "cat", "full", ["cat"], box(1, 5, 12, 11)),
+             ("paint-ear-insides", "ear-insides", "full", ["pink"], ellipse(2.25, 5.5, 0.3, 0.3))]
+    return scene(parts, steps, paints)
+
+
+class PointerTests(unittest.TestCase):
+    """A part named only to point at a piece of the step's own thing isn't what the sentence is about (#282: 11 of the
+    cat's 20 round-1 failures checked the ear's numbers against the sky through the window)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.sheet = window_scene()
+
+    def check(self, tip):
+        return failed(vf.check_text(self.sheet, text(self.sheet, {"paint-ear-insides": tip}), strict=True),
+                      "paint-ear-insides")
+
+    def test_the_cats_two_sentences_pass(self):
+        for tip in ["Start in the ear nearest the window, its middle about 2 1/4 in from the left edge.",
+                    "Start in the left ear, its middle about 2 1/4 in from the left edge."]:
+            self.assertEqual(self.check(tip), [], tip)
+
+    def test_other_pointers(self):
+        for tip in ["Start in the ear closest to the window, its middle about 2 1/4 in from the left edge.",
+                    "Start on the side facing the window, its middle about 2 1/4 in from the left edge.",
+                    "Start in the ear toward the window, its middle about 2 1/4 in from the left edge.",
+                    "Start in the ear by the window, its middle about 2 1/4 in from the left edge."]:
+            self.assertEqual(self.check(tip), [], tip)
+
+    def test_the_numbers_are_still_checked_against_the_step(self):
+        bad = self.check("Start in the ear nearest the window, its middle about 6 in from the left edge.")
+        self.assertEqual([c["words"] for c in bad], ["about 6 in from the left edge"])
+        self.assertTrue(bad[0]["sheet"].startswith("this step"), bad[0]["sheet"])
+
+    def test_a_part_named_as_the_subject_is_still_the_subject(self):
+        lesson = vf.Lesson(self.sheet)
+        for s in ["The window's sky runs to about 3 in from the left edge.",
+                  "The nearest window runs to about 3 in from the left edge."]:
+            self.assertEqual([pid for _a, _b, pid in lesson.subjects(s)], ["window-sky"], s)
+        self.assertEqual(lesson.subjects("the ear nearest the window"), [])
+
+
 class RulerTests(unittest.TestCase):
     """Inches as a ruler marks them, never decimals (owner, 2026-11-18)."""
 
