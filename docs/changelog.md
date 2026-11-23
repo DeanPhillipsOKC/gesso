@@ -6,6 +6,13 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 2.2.1 (2026-11-23)
+- check-text no longer checks a step's numbers against a part the sentence names only to point (#282). In "the
+  ear nearest the window, its middle about 2 1/4 in from the left edge", the window says which ear: the numbers are
+  the ear step's, not the sky's through the window. This holds after "nearest", "nearer", "closest", "closer" and
+  "facing" ("toward" and "by" already worked). On the sleeping cat's v3.1 build run, 11 of round 1's 20 failures
+  were this, and the writer took right numbers out to get past them.
+
 ## POC 2.2.0 (2026-11-21)
 Pipeline v4 (`docs/design/pipeline-v4.md`, #292 to #299): step pictures stop showing paint that a later layer
 covers. A lesson carries `"pipeline": 4`.

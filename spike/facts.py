@@ -548,6 +548,11 @@ SIDE_WORD = re.compile(r"\b(?:left|right|top|bottom|upper|lower|center|centre|mi
                        + NUMW + r")\b", re.I)
 PREP = (r"\b(?:of|on|onto|above|below|under|over|to|from|beside|near|behind|into|around|toward|towards|in|at|by|with|"
         r"between|past|across|along|through|up|down|against|than|like)")
+# a part named only to say which piece of the step's own thing is meant: "the ear nearest the window", "the end
+# closest to the window", "the side facing the light" (#282). "toward" and "by" are in PREP already. The article is
+# needed, so "the nearest trunk" still names the trunk.
+POINTER = (r"\b(?:nearest|nearer|closest|closer|facing)\s+(?:to\s+)?(?:the|its|their|a|each|both)\s+"
+           r"(?:[\w-]+\s+){0,2}$")
 GENERIC = {"light", "dark", "deep", "pale", "soft", "warm", "cool", "bright", "muted", "shadow", "sunset", "golden"}
 
 
@@ -637,10 +642,13 @@ class Lesson:
 
     def subjects(self, text: str) -> list[tuple[int, int, str]]:
         """The mentions that can be what a sentence is about: not the object of a preposition ("on the top of the
-        big hill"), except a place named by what goes there ("around where the sun will go")."""
+        big hill"), except a place named by what goes there ("around where the sun will go"), and not a part named
+        only to point at a piece of the step's own thing ("the ear nearest the window", #282)."""
         out = []
         for a, b, pid in self.mentions(text):
             before = text[:a]
+            if re.search(POINTER, before, re.I):
+                continue
             if re.search(r"\bwhere\s+(?:the\s+|its\s+)?(?:\w+\s+)?$", before, re.I) or \
                     not re.search(PREP + r"\s+(?:the\s+|its\s+|their\s+|a\s+|each\s+|both\s+)?(?:[\w-]+\s+){0,2}$",
                                   before, re.I):
