@@ -36,7 +36,7 @@ plan, and E2 (diagrams, notes, the seal) at the end, with what happened in betwe
 
 1. Start one writer with: "Follow `.claude/skills/paint-lesson/v3/plan-brief.md`. Lesson folder: `<lesson>`. Photo:
    `<the photo's path, as step 0 left it>`. Technique: `techniques/acrylic-paint-along-beginner.yaml`." Add the
-   palette's name when the painter uses their own tubes. Don't pass it your read of the picture.
+   palette's name when the painter uses their own tubes. With `--kit`, add: "Kit lesson: yes." Don't pass it your read of the picture.
    The writer reads the library's list (`library`), asks once for the files it picks (`library --picks`, into
    `<lesson>/library/`), and reads only those.
 2. When it replies, run `plan-check --lesson <lesson>` yourself. `problems` must be empty. If it isn't, send the

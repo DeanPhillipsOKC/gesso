@@ -24,6 +24,8 @@ Project knowledge lives under `docs/`. Read it before making changes:
   stops at a loose line, and the fact sheet, the teaching pictures and the words follow; `pipeline-v3.md` describes
   the run as it is now. Not the v4 plan above, whose design became v3.1. Read it before changing how step pictures
   are made.
+- `docs/spikes/kit-finish.md`: the 2026-11-27 probe behind the kit lesson trial (`/paint-lesson --kit`, #316, POC
+  2.3.0), and why step pictures built from brush strokes were dropped.
 - `docs/decisions.md`: decisions the owner has already made. Read it before proposing or filing
   anything, and don't re-propose what it rules out.
 - `docs/backlog.md`: how the GitHub Issues backlog works (labels, scoring, `human` tasks).

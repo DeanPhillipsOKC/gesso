@@ -172,6 +172,11 @@ that looked the same (`docs/decisions.md`, 2026-11-17).
 asks for the six lines and the arc's checks where it asked for a summary and a tip. The run's steps are
 `.claude/skills/paint-lesson/v3/run.md`.
 
+**A kit lesson (POC 2.3.0, 2026-11-27; a trial, #316, `docs/spikes/kit-finish.md`):** with `--kit`, row 1's finish
+is asked for in marks a four-brush kit can make (the technique's `kit.finish`), and rows 2 and 3 hold the plan to
+the kit: `"kit": true` in `plan.json`, at most `kit.max_brushes` brushes and `kit.max_recipes` paints in all, a
+version (`of`) counted. Nothing else in the run changes, and without `--kit` nothing does.
+
 **Since v4 (POC 2.2.0, 2026-11-21; `pipeline-v4.md`):** row 7 lays the chain twice and stops each covered layer at
 its line (section 8); rows 8 and 11 measure the paint each picture shows, and the sheet says where a layer stops and
 what a step's paint goes onto (section 9); row 9's brief says how to teach a layer that stops (section 10). No

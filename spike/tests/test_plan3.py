@@ -297,6 +297,65 @@ class ProblemsTests(unittest.TestCase):
         self.assertTrue(any("block-rug: no `after`" in x for x in found))
 
 
+IDS = ["blend-sky", "block-rug", "block-cat", "shadows", "light-cat", "cat-eyes"]
+
+
+class KitTests(unittest.TestCase):
+    """A kit lesson (#316): `"kit": true` in the plan, and the technique's `kit` block holds the limits."""
+
+    KIT = {**TECH, "kit": {"max_brushes": 2, "max_recipes": 4}}
+
+    def problems(self, p, technique=None):
+        return plan3.problems(p, technique or self.KIT, elements=ELEMENTS, strokes=STROKES)
+
+    def test_a_plan_that_isnt_a_kit_lesson_is_held_to_neither_limit(self):
+        p = plan()
+        for i, b in zip(IDS, ["1 inch flat", "1/2 inch flat", "#8 round", "#4 round", "fan brush", "liner"]):
+            step(p, i)["brush"] = b
+        self.assertEqual(len(plan3.brushes(p)), 6)
+        self.assertEqual(self.problems(p), [])  # 6 brushes and 5 paints, and no "kit": true
+        self.assertNotIn("kit", plan3.notes(p, self.KIT))
+        p["kit"] = True
+        self.assertEqual(plan3.problems(p, TECH, elements=ELEMENTS, strokes=STROKES), [])  # a technique with no kit
+
+    def test_a_kit_lesson_names_no_more_brushes_than_the_kit_holds(self):
+        p = plan()
+        p["kit"] = True
+        p["paints"] = p["paints"][:4]
+        step(p, "light-cat")["paints"] = ["Cat gray"]
+        self.assertEqual(self.problems(p), [])  # one brush, four paints
+        step(p, "blend-sky")["brush"] = "1 inch flat"
+        step(p, "cat-eyes")["brush"] = "1 Inch  Flat"  # the same brush, spelled another way
+        self.assertEqual(self.problems(p), [])
+        self.assertEqual(plan3.brushes(p), ["1 inch flat", "1/2 inch flat"])
+        step(p, "light-cat")["brush"] = "#4 round"
+        got = self.problems(p)
+        self.assertEqual(len(got), 1)
+        self.assertIn("at most 2 brushes, and the steps name 3: 1 inch flat, 1/2 inch flat, #4 round", got[0])
+
+    def test_a_kit_lesson_counts_a_version_as_a_paint_to_mix(self):
+        p = plan()
+        p["kit"] = True
+        got = self.problems(p)  # four mixes and one version of a mix: five to mix
+        self.assertEqual(len(got), 1)
+        self.assertIn("at most 4 paints to mix", got[0])
+        self.assertIn("the plan has 5", got[0])
+        self.assertEqual(plan3.notes(p, self.KIT)["kit"],
+                         {"brushes": ["1/2 inch flat"], "max_brushes": 2, "recipes": 5, "max_recipes": 4})
+
+    def test_kit_must_be_true_or_false(self):
+        p = plan()
+        p["kit"] = "yes"
+        self.assertEqual(self.problems(p), ["`kit` must be true or false (no quotes), not 'yes'"])
+
+    def test_the_technique_file_has_a_kit(self):
+        import yaml
+
+        kit = yaml.safe_load((HERE.parent.parent / "techniques" / "acrylic-paint-along-beginner.yaml").read_text())["kit"]
+        self.assertEqual((kit["max_brushes"], kit["max_recipes"]), (4, 10))
+        self.assertIn("{canvas}", kit["finish"])
+
+
 class BenchPlansTests(unittest.TestCase):
     """The three plans the spikes' chains were made from."""
 

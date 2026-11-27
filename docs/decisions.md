@@ -412,6 +412,27 @@ with the date.
   partner browses and opens lessons on her phone exactly as before. The outline model runs only where a lesson
   is made.
 
+- **A kit lesson is tried on one picture (2026-11-27, owner's call, #316).** A read of three POC 2.2.0 lessons found
+  11, 12 and 8 brushes and 17, 19 and 20 recipes in them, against 2 to 4 brushes in the paint-night and YouTube
+  formats, and finishes made of marks finer than any brush the lesson names. A probe the same day asked the image
+  model for the same three finishes as two beginners could paint them with four brushes; all three came back simpler
+  and still good to look at (`docs/spikes/kit-finish.md`). Asked "one real cow lesson made with a four-brush finish,
+  hands-off, set beside the published one for you to read", which "caps the plan at 4 brushes and counts every
+  recipe toward 10, which changes your 12 Nov decision on mixes", the owner said "Yes". So a run started with
+  `--kit` holds the plan to the technique's `kit` (4 brushes; 10 paints to mix in all, a lighter or darker version
+  counted) and adds the kit's sentences to the finish render's request. It is off unless asked for, and lessons
+  made either way are POC 2.3.0. This changes "At most 10 mixes" (2026-11-12) only for a kit lesson: there a
+  version counts, and 10 is a limit `plan-check` holds, where it was a target. Not decided by this: whether kit
+  lessons become the default. The owner reads the cow first.
+- **Step pictures built from brush strokes are dropped (2026-11-27, after a probe; the owner doubted it first).**
+  Claude proposed a stroke engine as the source of the step pictures (#170's idea): each step carried out as strokes
+  of its own brush and paints. Owner: "The brush strokes experiment looks like old school painterly technique and
+  you admitted it didn't look good". The probe then showed the image model repaints a stroke layout faithfully, its
+  mistakes included, so such a picture is only as good as the program that lays the strokes out, and a quick one is
+  far short of what the image model composes by itself (`docs/spikes/kit-finish.md`). Don't re-propose a stroke
+  engine as what makes the pictures. As a measure (how many strokes a step asks for) it was not tried properly and
+  stays open.
+
 ## How we work
 
 - **Same approach as RepBunny (2026-10-19):** automate as much as possible, built up bit by bit.

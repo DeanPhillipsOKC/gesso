@@ -22,6 +22,9 @@ third there, it's the bottom third here). No text, signature, or watermark. <fra
   original, or the original's detail flows back in.
 - Every step is cut from the finish, so it gets high quality.
 - With `--palette`, name the painter's tube colors in the prompt in place of the technique's five.
+- With `--kit`, put the technique's `kit.finish` right after `<finish.prompt>`, with `{canvas}` as the canvas's size
+  from `canvas.json` ("12 by 16 inch"). It asks for a painting four brushes can make: broad, separate marks, none
+  finer than a small round's.
 
 Then Read the finish and the photo and compare. Simplifying is expected. Flag only what the owner would notice
 and mind:
@@ -31,7 +34,10 @@ and mind:
 - the mood or time of day changed;
 - the subject looks stretched or squeezed (the frame snaps to 1024x1536, 1536x1024, or 1024x1024, so a slightly
   different shape is fine);
-- with a beginner version, anything on your drop or merge list came back.
+- with a beginner version, anything on your drop or merge list came back;
+- with `--kit`, a texture still made of fine marks: hair, grass, leaves or stitches clearly thinner than a quarter
+  of an inch on the canvas (on a 12 x 16 in canvas a quarter inch is about a fiftieth of the short side), or far
+  too many of them to count.
 
 With a beginner version, also run `busy <lesson>/99_finish.png --lesson <lesson>`: fine texture has to stay below
 the photo's (`came_down`). If it didn't, flag it, naming where `busy/99_finish.jpg` outlines it. With no beginner

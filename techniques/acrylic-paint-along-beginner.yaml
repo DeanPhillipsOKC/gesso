@@ -39,6 +39,20 @@ v2_stage_range: [4, 9]
 # count (owner, 2026-11-12; docs/design/pipeline-v2.md section 9).
 max_mixes: 10
 
+# A kit lesson (the skill's --kit; plan.json has "kit": true): the painter's whole kit is small, and the finished
+# painting is asked for in marks that kit can make. A trial, off unless asked for (owner, 2026-11-27, #316;
+# docs/decisions.md, docs/spikes/kit-finish.md). `finish` is added to the finish render's request, with {canvas} as
+# the canvas's size ("12 by 16 inch"). `max_recipes` counts every paint, a lighter or darker version too.
+kit:
+  max_brushes: 4
+  max_recipes: 10
+  finish: >-
+    Paint it as two beginners could really paint it in one evening on a {canvas} canvas with four brushes: a 1 inch
+    flat, a 1/2 inch flat, a small round and one more (a fan, a liner or an old stiff brush). No mark is finer than
+    the small round makes, about a quarter of an inch on the canvas. Fur, grass, leaves, bushes, bark, stitches and
+    clouds are a few dozen broad, separate strokes each, never hundreds of fine ones. At most ten mixed colors, laid
+    as flat paint, with no blending finer than a brush width.
+
 # How much detail a lesson at this level can hold. Pictures with more get a beginner version first (skill step 0c).
 detail_budget:
   max_parts: 8
