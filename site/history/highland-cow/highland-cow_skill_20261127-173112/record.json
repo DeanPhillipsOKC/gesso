@@ -1,0 +1,147 @@
+{
+  "photo": "highland-cow",
+  "run": "highland-cow_skill_20261127-173112",
+  "started": "2026-11-27 17:31",
+  "publishes": [
+    {
+      "n": 1,
+      "digest": "8347a67ae86745c2",
+      "strip": "strip-1.jpg",
+      "published_with": {
+        "version": "POC 2.3.0",
+        "commit": "ec6d88c",
+        "dirty": false,
+        "published": "2026-11-27"
+      },
+      "made_with": {
+        "version": "POC 2.3.0",
+        "commit": "ec6d88c",
+        "published": "2026-11-27"
+      },
+      "provenance": {
+        "kind": "hands-off",
+        "sealed": "2026-11-27T18:00:54"
+      },
+      "palette": "",
+      "technique": "acrylic-paint-along-beginner",
+      "canvas": {
+        "w_in": 12.0,
+        "h_in": 16.0,
+        "orientation": "portrait"
+      },
+      "metrics": {
+        "steps": 18,
+        "words": 2564,
+        "tubes": 5,
+        "cost_usd": 0.552,
+        "minutes": 5.8,
+        "paid_renders": 24,
+        "redos": 0,
+        "review_problems": 0,
+        "text_problems": 5,
+        "minutes_total": 29.7,
+        "checks": {
+          "long_steps": 0,
+          "long_instructions": 0,
+          "paints_not_listed": 0,
+          "unreachable_paints": 0,
+          "texture_jumps": 0,
+          "duplicate_recipes": 0,
+          "undocumented_diagrams": 0
+        }
+      },
+      "steps": [
+        {
+          "id": "blend-sky",
+          "name": "Blend the sunset sky",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "streak-clouds",
+          "name": "Streak in the gold clouds",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-hills",
+          "name": "Lay in the far hills",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-ridges",
+          "name": "Darken the nearer ridges",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-lake",
+          "name": "Lay in the glowing lake",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-hillside",
+          "name": "Lay in the green slope",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dab-bushes",
+          "name": "Dab the dark bushes",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "lay-meadow",
+          "name": "Lay in the near meadow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "block-in-cow",
+          "name": "Block in the cow",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "shade-cow",
+          "name": "Shade the cow's shadow side",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-horns",
+          "name": "Pull the curved horns",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "pull-locks",
+          "name": "Pull the long gold locks",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "light-rim",
+          "name": "Light the rim of the hair",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "paint-muzzle",
+          "name": "Paint the rounded muzzle",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "dot-nostrils",
+          "name": "Dot in the nostrils",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-dark-grass",
+          "name": "Flick the dark grass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-olive-grass",
+          "name": "Flick the olive grass",
+          "made_with": "composite:from-finish"
+        },
+        {
+          "id": "flick-gold-grass",
+          "name": "Flick the sunlit gold grass",
+          "made_with": "composite:from-finish"
+        }
+      ]
+    }
+  ]
+}

@@ -142,50 +142,6 @@
     "known": 5
   },
   {
-    "slug": "highland-cow",
-    "title": "A shaggy highland cow standing in tall golden-green grass at sunset",
-    "subject": "A shaggy highland cow standing in tall golden-green grass at sunset, with violet hills, a sliver of loch and a gold and blue sky behind",
-    "steps": 22,
-    "canvas": "12 x 16 in",
-    "tubes": 5,
-    "version": "POC 2.1.0",
-    "published": "2026-11-21",
-    "source": "highland-cow_skill_20261121-102810",
-    "versions": [
-      {
-        "id": "20261121-102810",
-        "version": "POC 2.1.0",
-        "when": "2026-11-21 10:28",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 22,
-        "href": "lessons/highland-cow/",
-        "current": true
-      },
-      {
-        "id": "20261120-193553",
-        "version": "POC 2.0.2",
-        "when": "2026-11-20 19:35",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 22,
-        "href": "lessons/highland-cow/v/20261120-193553/",
-        "current": false
-      },
-      {
-        "id": "20261118-072336",
-        "version": "POC 2.0.0",
-        "when": "2026-11-18 07:23",
-        "guessed": false,
-        "kind": "steps erased back from the finish",
-        "steps": 23,
-        "href": "lessons/highland-cow/v/20261118-072336/",
-        "current": false
-      }
-    ],
-    "known": 3
-  },
-  {
     "slug": "sleeping-cat",
     "title": "A gray tabby cat asleep",
     "subject": "A gray tabby cat asleep, curled on a yellow knitted blanket on a wooden windowsill, against a blue wall beside a white window with trees outside",
@@ -480,5 +436,59 @@
       }
     ],
     "known": 7
+  },
+  {
+    "slug": "highland-cow",
+    "title": "A shaggy Highland cow standing in tall golden-green grass on a hillside",
+    "subject": "A shaggy Highland cow standing in tall golden-green grass on a hillside at sunset, with blue-violet hills and a glint of lake behind its horns",
+    "steps": 18,
+    "canvas": "12 x 16 in",
+    "tubes": 5,
+    "version": "POC 2.3.0",
+    "published": "2026-11-27",
+    "source": "highland-cow_skill_20261127-173112",
+    "versions": [
+      {
+        "id": "20261127-173112",
+        "version": "POC 2.3.0",
+        "when": "2026-11-27 17:31",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 18,
+        "href": "lessons/highland-cow/",
+        "current": true
+      },
+      {
+        "id": "20261121-102810",
+        "version": "POC 2.1.0",
+        "when": "2026-11-21 10:28",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 22,
+        "href": "lessons/highland-cow/v/20261121-102810/",
+        "current": false
+      },
+      {
+        "id": "20261120-193553",
+        "version": "POC 2.0.2",
+        "when": "2026-11-20 19:35",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 22,
+        "href": "lessons/highland-cow/v/20261120-193553/",
+        "current": false
+      },
+      {
+        "id": "20261118-072336",
+        "version": "POC 2.0.0",
+        "when": "2026-11-18 07:23",
+        "guessed": false,
+        "kind": "steps erased back from the finish",
+        "steps": 23,
+        "href": "lessons/highland-cow/v/20261118-072336/",
+        "current": false
+      }
+    ],
+    "known": 5
   }
 ]
