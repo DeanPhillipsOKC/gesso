@@ -29,6 +29,11 @@ even if you read it earlier. Don't read ahead. Pipeline v2's steps 2 to 7 were r
   `technique_why`. Today only `acrylic-paint-along-beginner.yaml` has version 2 keys.
 - `--palette <name>` (optional): the painter's own tubes from `palettes/<name>.yaml`. Put `"palette": "<name>"` in
   plan.json.
+- `--kit` (optional, a trial: #316, `docs/decisions.md` 2026-11-27): a kit lesson. The painter's whole kit is small
+  (the technique's `kit`: 4 brushes, 10 paints to mix in all), and the finished painting is asked for in marks that
+  kit can make. Step 1b adds the technique's `kit.finish` to the finish render's request, and step A tells the
+  plan's writer, who puts `"kit": true` in plan.json; `plan-check` then holds the plan to both limits. Without it
+  nothing changes.
 - `--v3` (optional, does nothing): v3 is the run with or without it. Older notes and commands still pass it.
 
 Run every tool with the venv: `PY=.venv/Scripts/python.exe` (Windows) or `.venv/bin/python`.

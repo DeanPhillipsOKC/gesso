@@ -6,6 +6,15 @@ What each Gesso version added to the lessons it makes. Every lesson is stamped w
 While Gesso is a proof of concept (POC), the minor number goes up for anything that changes what a lesson looks
 like or contains, and the patch number for fixes. The numbers before 0.9.0 were given afterward, from the history.
 
+## POC 2.3.0 (2026-11-27)
+A kit lesson, as a trial (#316, `docs/spikes/kit-finish.md`): off unless the run is started with `--kit`. Without
+it a lesson is made as at 2.2.0.
+- The painter's whole kit is small: at most 4 brushes across the lesson and at most 10 paints to mix, a lighter or
+  darker version of a paint counted too. `plan-check` refuses a kit plan over either and prints both counts.
+- The finished painting is asked for in marks that kit can make: broad, separate strokes, none finer than a small
+  round's, where a texture used to be hundreds of fine ones. The finish check flags a texture still made of fine
+  marks.
+
 ## POC 2.2.0 (2026-11-21)
 Pipeline v4 (`docs/design/pipeline-v4.md`, #292 to #299): step pictures stop showing paint that a later layer
 covers. A lesson carries `"pipeline": 4`.

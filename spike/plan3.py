@@ -197,6 +197,23 @@ def _target(technique: dict | None) -> int | None:
     return t if isinstance(t, int) else None
 
 
+def kit_of(plan: dict, technique: dict | None) -> dict | None:
+    """The technique's kit limits, when the plan is a kit lesson (`"kit": true`), else None."""
+    kit = (technique or {}).get("kit") if isinstance(technique, dict) else None
+    return kit if plan.get("kit") is True and isinstance(kit, dict) else None
+
+
+def brushes(plan: dict) -> list[str]:
+    """Every brush the plan's steps name, once each, in the order they are first used. Two spellings of one brush
+    ("1 Inch  flat") are one brush."""
+    seen: dict[str, str] = {}
+    for s in steps(plan):
+        b = s.get("brush")
+        if _str(b):
+            seen.setdefault(" ".join(b.lower().split()), " ".join(b.split()))
+    return list(seen.values())
+
+
 def _str(x) -> bool:
     return isinstance(x, str) and bool(x.strip())
 
@@ -238,6 +255,7 @@ def shape_problems(plan) -> list[str]:
             if k in holder and not isinstance(holder[k], bool):
                 out.append(f"{where}`{k}` must be true or false (no quotes), not {holder[k]!r}")
 
+    flag(plan, ("kit",), "")
     for t in rows(plan, "things", ""):
         where = f"thing {t.get('id')!r}: "
         text(t, ("id", "name", "element", "plain", "called"), where, need=("id", "name", "element"))
@@ -458,13 +476,24 @@ def problems(plan: dict, technique: dict | None = None, elements: dict[str, dict
             out.append(f"{tid}: it is painted in {n} units, so say how it looks after the first (`plain`): \"the "
                        "plain gray cat shape\". A render asked to keep it while it is still plain is told that name.")
 
-    target = _target(technique)
+    kit = kit_of(plan, technique)
+    target = None if kit else _target(technique)  # a kit lesson counts every paint (below), versions too
     near = closest(plan)
     if target is not None and len(bases(plan)) > target and near and near[0] <= CLOSE:
         de, a, b = near
         out.append(f"{len(bases(plan))} paints to mix, above the technique's target of {target}, and {a!r} and {b!r} "
                    f"are only Delta E {de:.1f} apart by their `color`. Use one for both; or, if one is the other "
                    "with white or a dark added, give it `of` (the other's name), which isn't counted.")
+    if kit:
+        most, mine = kit.get("max_brushes"), brushes(plan)
+        if isinstance(most, int) and len(mine) > most:
+            out.append(f"a kit lesson uses at most {most} brushes, and the steps name {len(mine)}: {', '.join(mine)}. "
+                       "Plan every step for one small kit, and give steps that can share a brush the same one.")
+        most, mine = kit.get("max_recipes"), [p.get("name") for p in plan.get("paints") or []]
+        if isinstance(most, int) and len(mine) > most:
+            out.append(f"a kit lesson has at most {most} paints to mix, lighter and darker versions (`of`) counted "
+                       f"too, and the plan has {len(mine)}. Use one paint where two are close, and keep a version "
+                       "only where a painter would miss it.")
     return out
 
 
@@ -486,6 +515,7 @@ def notes(plan: dict, technique: dict | None = None) -> dict:
             uses.setdefault(p, []).append(i + 1)
     again = [{"paint": p, "steps": at, "mix_again_at": [b for a, b in zip(at, at[1:]) if b - a >= APART]}
              for p, at in uses.items() if any(b - a >= APART for a, b in zip(at, at[1:]))]
+    kit = kit_of(plan, technique)
     target = _target(technique)
     n = len(bases(plan))
     out = {"mixes": n, "max_mixes": target, "versions": len(plan.get("paints") or []) - n, "mix_again": again}
@@ -494,4 +524,8 @@ def notes(plan: dict, technique: dict | None = None) -> dict:
         out["over_target"] = (f"{n} paints to mix, above the target of {target}, and no two are close enough to be "
                               "one. Allowed: a lesson ends above the target rather than lose a color a painter can "
                               "see.")
+    if kit:
+        out.pop("over_target", None)  # the kit's limit is the one that holds, and it counts versions
+        out["kit"] = {"brushes": brushes(plan), "max_brushes": kit.get("max_brushes"),
+                      "recipes": len(plan.get("paints") or []), "max_recipes": kit.get("max_recipes")}
     return out

@@ -51,6 +51,12 @@ These are the owner's decisions. Don't work around them.
   or a dark added) isn't counted: give it `"of": "<the paint's name>"`. Two paints a painter can tell apart are
   never merged to get under 10, so a plan may end above it; `plan-check` says when two could be one.
 - The painter is a beginner. Leave out what a beginner can't make and say so (`left_out`).
+- **Only when you were told "Kit lesson: yes":** put `"kit": true` at the top of the plan. The painter's whole kit
+  is the technique's `kit`: at most `max_brushes` different brushes across every step, and at most `max_recipes`
+  paints in all, where a lighter or darker version (`of`) counts as one more to mix. Choose the kit first, from the
+  kinds of brush your strokes' cards take, then give every step one of those brushes. The finished painting was
+  asked for in broad marks that such a kit can make, so plan those marks and no finer ones. `plan-check` holds the
+  plan to both limits and prints the counts (`kit`).
 
 ## What is yours to decide
 
