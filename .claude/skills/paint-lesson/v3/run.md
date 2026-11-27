@@ -44,6 +44,10 @@ plan, and E2 (diagrams, notes, the seal) at the end, with what happened in betwe
    list. It answers with only what changes, never the plan again. If it still isn't empty, fix what is left
    yourself the same way: a changes file and `plan-change --lesson <lesson> --changes <file>`, which prints
    `plan-check`'s output.
+   With `--kit`, what `plan-check` printed must also hold `kit` (the brushes and the count of paints). If it
+   doesn't, the plan isn't a kit lesson: send the writer "Put `\"kit\": true` at the top of the plan, with a changes
+   file and `plan-change`, and fit the plan to the kit's limits." and run `plan-check` again. Check this again after
+   every later change to the plan (C3).
 3. Read `units` and `renders` in what `plan-check` printed: that is the chain's size.
 
 ### B. The chain

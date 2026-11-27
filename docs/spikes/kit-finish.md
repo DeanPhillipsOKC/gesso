@@ -111,9 +111,9 @@ Expect a plainer lesson a beginner's kit can paint, and expect the uneven steps 
 
 | | Renders | Cost |
 |---|---|---|
-| Repaints of a stroke layout | 3 | $0.05 |
-| Kit finishes (cow, cat, birch grove) | 3 | $0.09 |
-| The cow's chain on its kit finish | 17 | $0.32 |
+| Repaints of a stroke layout | 3 | $0.054 |
+| Kit finishes (cow, cat, birch grove) | 3 | $0.093 |
+| The cow's chain on its kit finish | 17 | $0.322 |
 | **All** | **23** | **$0.47** |
 
 No Claude calls beyond the session's own.

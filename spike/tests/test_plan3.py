@@ -343,6 +343,26 @@ class KitTests(unittest.TestCase):
         self.assertEqual(plan3.notes(p, self.KIT)["kit"],
                          {"brushes": ["1/2 inch flat"], "max_brushes": 2, "recipes": 5, "max_recipes": 4})
 
+    def test_a_kit_lesson_is_not_also_told_that_a_version_isnt_counted(self):
+        p = plan()
+        del p["paints"][4]["of"]
+        p["paints"][4]["color"] = "#8f8d8a"  # five mixes over a target of four, two of them close
+        self.assertIn("which isn't counted", check(p)[0])
+        p["kit"] = True
+        got = self.problems(p)
+        self.assertEqual(len(got), 1)
+        self.assertIn("at most 4 paints to mix", got[0])
+        p["paints"][4]["color"] = "#c9c9c9"  # none close: a note without the kit, and no note with it
+        self.assertNotIn("over_target", plan3.notes(p, self.KIT))
+        del p["kit"]
+        self.assertIn("over_target", plan3.notes(p, self.KIT))
+
+    def test_kit_false_is_no_kit_lesson(self):
+        p = plan()
+        p["kit"] = False
+        self.assertEqual(self.problems(p), [])
+        self.assertNotIn("kit", plan3.notes(p, self.KIT))
+
     def test_kit_must_be_true_or_false(self):
         p = plan()
         p["kit"] = "yes"
@@ -401,6 +421,22 @@ class PlanCheckToolTests(unittest.TestCase):
         self.assertEqual(r["units"][7], {"unit": 7, "id": "blanket", "name": "The yellow knitted blanket",
                                          "kind": "behind", "things": ["blanket"], "steps": ["block-the-blanket"]})
         self.assertEqual(r["cost_usd"], 0.0)
+
+    def test_a_kit_lesson_is_told_at_plan_check_when_a_card_cant_be_done_with_its_brush(self):
+        p = json.loads((PLANS / "highland-cow.json").read_text(encoding="utf-8"))
+        flick = next(s for st in p["stages"] for s in st["steps"] if s.get("stroke") == "flicking")
+        flick["brush"] = "#6 round"  # flicking's card takes a fan brush
+        code, r = self.run_tool(p)
+        self.assertFalse(any("(its card)" in w for w in r["problems"]))  # not a kit lesson: `check` says it later
+        self.assertNotIn("kit", r)
+        p["kit"] = True
+        code, r = self.run_tool(p)
+        self.assertEqual(code, 0)
+        said = [w for w in r["problems"] if "(its card)" in w]
+        self.assertEqual(len(said), 1, r["problems"])
+        self.assertIn(flick["id"], said[0])
+        self.assertEqual((r["kit"]["max_brushes"], r["kit"]["max_recipes"]), (4, 10))
+        self.assertTrue(any("at most 4 brushes" in w for w in r["problems"]))
 
     def test_it_refuses_a_version_2_plan_and_a_plan_with_no_technique(self):
         code, r = self.run_tool({"plan_version": 2})

@@ -1325,6 +1325,14 @@ def plan_check_tool(a: argparse.Namespace) -> dict:
     lesson = Path(a.lesson)
     plan, technique = _v3_plan(lesson)
     wrong = plan3.problems(plan, technique, elements=elements.library())
+    if not plan3.shape_problems(plan) and plan3.kit_of(plan, technique):
+        # a kit lesson (#316): four brushes leave little room, so a brush its stroke's card can't be done with is
+        # said here, before the chain, and not only by `check` after it
+        import cards
+        import checks
+
+        wrong += [w for w in checks.strokes_and_brushes(plan, cards.strokes())
+                  if "(its card)" in w or "spike/brushes.py" in w]
     if plan3.shape_problems(plan):  # nothing more can be read from it
         return {"problems": wrong, "ok": False, "advice": "Fix the file's shape as each problem says, then run "
                 "plan-check again for the rest.", "cost_usd": 0.0}
